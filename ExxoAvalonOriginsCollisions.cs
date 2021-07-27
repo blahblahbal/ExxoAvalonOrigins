@@ -65,12 +65,17 @@ namespace ExxoAvalonOrigins
 							{
 								num5 = 20;
 							}
-							if (!Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == ModContent.TileType<PoisonSpike>())
+							if (!Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == ModContent.TileType<Tiles.PoisonSpike>())
 							{
 								num5 = 35;
 								Main.player[Main.myPlayer].AddBuff(BuffID.Poisoned, 180, true);
 							}
-							return new Vector2((float)num9, (float)num5);
+                            if (!Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == ModContent.TileType<Tiles.VenomSpike>())
+                            {
+                                num5 = 45;
+                                Main.player[Main.myPlayer].AddBuff(BuffID.Venom, 180, true);
+                            }
+                            return new Vector2((float)num9, (float)num5);
 						}
 					}
 				}

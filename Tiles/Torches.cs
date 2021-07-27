@@ -130,10 +130,10 @@ namespace ExxoAvalonOrigins.Tiles
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)
         {
             offsetY = 0;
-            if (WorldGen.SolidTile(i, j - 1))
+            if (WorldGen.InWorld(i, j - 1) && WorldGen.SolidTile(i, j - 1))
             {
                 offsetY = 2;
-                if (WorldGen.SolidTile(i - 1, j + 1) || WorldGen.SolidTile(i + 1, j + 1))
+                if (WorldGen.InWorld(i - 1, j + 1) && WorldGen.SolidTile(i - 1, j + 1) || WorldGen.InWorld(i + 1, j + 1) && WorldGen.SolidTile(i + 1, j + 1))
                 {
                     offsetY = 4;
                 }
