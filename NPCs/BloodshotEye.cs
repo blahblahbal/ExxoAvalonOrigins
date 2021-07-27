@@ -1,0 +1,77 @@
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.NPCs
+{
+	public class BloodshotEye : ModNPC
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bloodshot Eye");
+			Main.npcFrameCount[npc.type] = 2;
+		}
+
+		public override void SetDefaults()
+		{
+			npc.damage = 25;
+			npc.lifeMax = 75;
+			npc.defense = 5;
+			npc.width = 30;
+			npc.aiStyle = 2;
+			npc.value = 150f;
+			npc.height = 32;
+			npc.knockBackResist = 0.8f;
+			npc.HitSound = SoundID.NPCHit1;
+	        npc.DeathSound = SoundID.NPCDeath6;
+			npc.buffImmune[BuffID.Confused] = true;
+		}
+
+		public override void NPCLoot()
+		{
+			if (Main.rand.Next(100) <= 45)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BloodshotLens>(), 1, false, 0, false);
+			}
+			if (Main.rand.Next(33) == 0)
+			{
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackLens, 1, false, 0, false);
+			}
+		}
+
+        public override void FindFrame(int frameHeight)
+        {
+            if (npc.velocity.X > 0f)
+            {
+                npc.spriteDirection = 1;
+                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X);
+            }
+            if (npc.velocity.X < 0f)
+            {
+                npc.spriteDirection = -1;
+                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 3.14f;
+            }
+            npc.frameCounter += 1.0;
+            if (npc.frameCounter >= 8.0)
+            {
+                npc.frame.Y = npc.frame.Y + frameHeight;
+                npc.frameCounter = 0.0;
+            }
+            if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
+            {
+                npc.frame.Y = 0;
+            }
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return Main.bloodMoon ? 0.091f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
+    }
+}

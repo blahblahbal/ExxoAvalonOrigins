@@ -1,0 +1,8 @@
+﻿displayName = Endo Avalon
+author = imkSushi, Blahblahbal, The Avalon Team
+version = 0.5.1.0
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, *.mp3
+includePDB = true
+hideCode = true
+hideResources = true
+includeSource = false
