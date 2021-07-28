@@ -203,7 +203,8 @@ namespace ExxoAvalonOrigins.NPCs
                                 num534 += Main.rand.Next(-40, 41) * 0.05f;
                                 vector50.X += num533 * 4f;
                                 vector50.Y += num534 * 4f;
-                                Projectile.NewProjectile(vector50.X, vector50.Y, num533, num534, ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, Main.myPlayer, 0f, 0f);
+                                int proj = Projectile.NewProjectile(vector50.X, vector50.Y, num533, num534, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 60, 0f, Main.myPlayer, 0f, 0f);
+                                Main.projectile[proj].GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
                             }
                         }
                     }
@@ -329,6 +330,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
+                npc.HitSound = SoundID.NPCHit4;
                 npc.damage = (int)(npc.defDamage * 1.5);
                 npc.defense = npc.defDefense + 18;
                 if (npc.ai[1] == 0f)
@@ -436,7 +438,8 @@ namespace ExxoAvalonOrigins.NPCs
                         num548 += npc.velocity.X * 0.5f;
                         vector52.X -= num548 * 1f;
                         vector52.Y -= num549 * 1f;
-                        Projectile.NewProjectile(vector52.X, vector52.Y, num548, num549, ProjectileID.EyeFire, 40, 0f, Main.myPlayer, 0f, 0f);
+                        int proj = Projectile.NewProjectile(vector52.X, vector52.Y, num548, num549, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 40, 0f, Main.myPlayer, 0f, 0f);
+                        Main.projectile[proj].GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
                         return;
                     }
                     return;

@@ -44,6 +44,7 @@ namespace ExxoAvalonOrigins.Items
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 45);
             recipe.AddIngredient(ModContent.ItemType<ElementalExcalibur>());
+            recipe.AddIngredient(ModContent.ItemType<BerserkerBlade>());
             recipe.AddIngredient(ModContent.ItemType<PumpkingsSword>());
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>()); // change to xeradon anvil
             recipe.SetResult(this);

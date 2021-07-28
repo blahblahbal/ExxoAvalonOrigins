@@ -44,11 +44,16 @@ namespace ExxoAvalonOrigins.NPCs
             var instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();
             npc.damage = npc.defDamage;
             npc.defense = npc.defDefense;
+            Vector2 head1Pos = Main.npc[(int)npc.ai[3]].position;
             if (npc.ai[0] == 0f && Main.netMode != 1)
             {
                 npc.TargetClosest(true);
                 npc.ai[0] = 1f;
                 instance.astigSpawned = false;
+                if (Vector2.Distance(head1Pos, npc.position) < 160)
+                {
+                    npc.velocity = Vector2.Normalize(npc.position - head1Pos) * 3f;
+                }
             }
             if (Main.player[npc.target].dead || Math.Abs(npc.position.X - Main.player[npc.target].position.X) > 6000f || Math.Abs(npc.position.Y - Main.player[npc.target].position.Y) > 6000f)
             {
@@ -62,6 +67,11 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 var num562 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Astigmatazer>(), 0);
                 Main.npc[num562].target = npc.target;
+                if (Main.netMode != 0)
+                {
+                    NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Astigmatazer has awoken!"), 255, 175f, 75f, 255f, 0);
+                }
+                else Main.NewText("Astigmatazer has awoken!", 175, 75, 255);
                 NPC.SpawnOnPlayer(npc.target, NPCID.TheDestroyer);
                 instance.astigSpawned = true;
             }
@@ -99,7 +109,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (npc.ai[1] == 0f)
             {
                 npc.ai[2] += 1f;
-                if (npc.ai[2] >= 600f)
+                if (npc.ai[2] >= 400f)
                 {
                     npc.ai[2] = 0f;
                     npc.ai[1] = 1f;
@@ -156,6 +166,10 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     npc.velocity.X = -8f;
                     return;
+                }
+                if (Vector2.Distance(head1Pos, npc.position) < 160)
+                {
+                    npc.velocity = Vector2.Normalize(npc.position - head1Pos) * 3f;
                 }
                 return;
             }

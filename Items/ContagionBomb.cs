@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Contaigon Bomb");
+			DisplayName.SetDefault("Contagion Bomb");
 			Tooltip.SetDefault("Converts tiles to the Contagion in a large radius");
 		}
 

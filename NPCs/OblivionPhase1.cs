@@ -204,7 +204,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 var num536 = 12f;
                                 var num537 = 25;
-                                int num538 = ProjectileID.CursedFlameHostile;
+                                int num538 = ModContent.ProjectileType<Projectiles.DarkMatterFireball>();
                                 num535 = (float)Math.Sqrt(num533 * num533 + num534 * num534);
                                 num535 = num536 / num535;
                                 num533 *= num535;
@@ -213,7 +213,8 @@ namespace ExxoAvalonOrigins.NPCs
                                 num534 += Main.rand.Next(-40, 41) * 0.05f;
                                 vector50.X += num533 * 4f;
                                 vector50.Y += num534 * 4f;
-                                Projectile.NewProjectile(vector50.X, vector50.Y, num533, num534, num538, num537, 0f, Main.myPlayer, 0f, 0f);
+                                int proj = Projectile.NewProjectile(vector50.X, vector50.Y, num533, num534, num538, num537, 0f, Main.myPlayer, 0f, 0f);
+                                Main.projectile[proj].GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
                             }
                         }
                     }
@@ -333,6 +334,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
+                npc.HitSound = SoundID.NPCHit4;
                 npc.damage = (int)(npc.defDamage * 1.5);
                 npc.defense = npc.defDefense + 18;
                 if (Main.rand.Next(2000) == 0)
@@ -436,7 +438,7 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.localAI[1] = 0f;
                         var num551 = 6f;
                         var num552 = 30;
-                        int num553 = ProjectileID.EyeFire;
+                        int num553 = ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>();
                         vector52 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
                         num548 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector52.X;
                         num549 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector52.Y;
@@ -450,7 +452,8 @@ namespace ExxoAvalonOrigins.NPCs
                         num548 += npc.velocity.X * 0.5f;
                         vector52.X -= num548 * 1f;
                         vector52.Y -= num549 * 1f;
-                        Projectile.NewProjectile(vector52.X, vector52.Y, num548, num549, num553, num552, 0f, Main.myPlayer, 0f, 0f);
+                        int proj = Projectile.NewProjectile(vector52.X, vector52.Y, num548, num549, num553, num552, 0f, Main.myPlayer, 0f, 0f);
+                        Main.projectile[proj].GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
                         return;
                     }
                     return;

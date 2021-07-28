@@ -337,6 +337,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
+                npc.HitSound = SoundID.NPCHit4;
                 npc.damage = (int)(npc.defDamage * 1.5);
                 npc.defense = npc.defDefense + 10;
                 if (npc.ai[1] == 0f)

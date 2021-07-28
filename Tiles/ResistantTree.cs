@@ -32,8 +32,8 @@ namespace ExxoAvalonOrigins.Tiles
         {
             frameWidth = 114;
             frameHeight = 98;
-            yOffset += 2;
-            xOffsetLeft += 16;
+            //yOffset += 2;
+            //xOffsetLeft += 16;
             return mod.GetTexture("Tiles/ResistantTreeTop");
         }
     }

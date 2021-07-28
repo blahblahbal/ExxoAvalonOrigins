@@ -30,6 +30,7 @@
             ushort spike = (ushort)ModContent.TileType<Tiles.VenomSpike>();
             byte wallUnsafe = (byte)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
             byte wallSafe = (byte)ModContent.WallType<Walls.ImperviousBrickWall>();
+            ushort platform = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
 
             // turn liquid in an area around the gen area to 0, and make it not lava
             for (int noLiquidX = x - 45; noLiquidX <= x + 210 + 45; noLiquidX++)
@@ -267,29 +268,121 @@
             MakeRectangle(x + 161, y + 91, 13, 1, brick);
 
             // platforms
-            MakeRectangle(x + 107, y + 16, 8, 1, 19);
-            MakeRectangle(x + 103, y + 26, 4, 1, 19);
-            MakeRectangle(x + 115, y + 26, 4, 1, 19);
-            MakeRectangle(x + 41, y + 50, 16, 1, 19);
-            MakeRectangle(x + 38, y + 58, 5, 1, 19);
-            MakeRectangle(x + 54, y + 57, 6, 1, 19);
-            MakeRectangle(x + 38, y + 64, 3, 1, 19);
-            MakeRectangle(x + 58, y + 60, 2, 1, 19);
-            MakeRectangle(x + 131, y + 45, 14, 1, 19);
-            MakeRectangle(x + 131, y + 49, 7, 1, 19);
-            MakeRectangle(x + 156, y + 47, 10, 1, 19);
-            MakeRectangle(x + 171, y + 47, 5, 1, 19);
-            MakeRectangle(x + 161, y + 54, 20, 1, 19);
-            MakeRectangle(x + 188, y + 46, 16, 1, 19);
-            MakeRectangle(x + 199, y + 50, 5, 1, 19);
-            MakeRectangle(x + 192, y + 54, 12, 1, 19);
-            MakeRectangle(x + 131, y + 65, 20, 1, 19);
-            MakeRectangle(x + 131, y + 72, 7, 1, 19);
-            MakeRectangle(x + 131, y + 79, 13, 1, 19);
-            MakeRectangle(x + 185, y + 66, 19, 1, 19);
-            MakeRectangle(x + 193, y + 73, 11, 1, 19);
-            MakeRectangle(x + 197, y + 80, 7, 1, 19);
-            MakeRectangle(x + 191, y + 87, 13, 1, 19);
+            for (int i2 = x + 107; i2 < x + 107 + 8; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 16, platform);
+            }
+            for (int i2 = x + 103; i2 < x + 103 + 4; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 26, platform);
+            }
+            for (int i2 = x + 115; i2 < x + 115 + 4; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 26, platform);
+            }
+            for (int i2 = x + 41; i2 < x + 41 + 16; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 50, platform);
+            }
+            for (int i2 = x + 38; i2 < x + 38 + 5; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 58, platform);
+            }
+            for (int i2 = x + 54; i2 < x + 54 + 6; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 57, platform);
+            }
+            for (int i2 = x + 38; i2 < x + 38 + 3; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 64, platform);
+            }
+            for (int i2 = x + 58; i2 < x + 58 + 2; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 60, platform);
+            }
+            for (int i2 = x + 131; i2 < x + 131 + 14; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 45, platform);
+            }
+            for (int i2 = x + 131; i2 < x + 131 + 7; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 49, platform);
+            }
+            for (int i2 = x + 156; i2 < x + 156 + 10; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 47, platform);
+            }
+            for (int i2 = x + 171; i2 < x + 171 + 5; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 47, platform);
+            }
+            for (int i2 = x + 161; i2 < x + 161 + 20; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 54, platform);
+            }
+            for (int i2 = x + 188; i2 < x + 188 + 16; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 46, platform);
+            }
+            for (int i2 = x + 199; i2 < x + 199 + 5; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 50, platform);
+            }
+            for (int i2 = x + 192; i2 < x + 192 + 12; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 54, platform);
+            }
+            for (int i2 = x + 131; i2 < x + 131 + 20; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 65, platform);
+            }
+            for (int i2 = x + 131; i2 < x + 131 + 7; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 72, platform);
+            }
+            for (int i2 = x + 131; i2 < x + 131 + 13; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 79, platform);
+            }
+            for (int i2 = x + 185; i2 < x + 185 + 19; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 66, platform);
+            }
+            for (int i2 = x + 193; i2 < x + 193 + 11; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 73, platform);
+            }
+            for (int i2 = x + 197; i2 < x + 197 + 7; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 80, platform);
+            }
+            for (int i2 = x + 191; i2 < x + 191 + 13; i2++)
+            {
+                WorldGen.PlaceTile(i2, y + 87, platform);
+            }
+            //MakeRectangle(x + 107, y + 16, 8, 1, platform);
+            //MakeRectangle(x + 103, y + 26, 4, 1, platform);
+            //MakeRectangle(x + 115, y + 26, 4, 1, platform);
+            //MakeRectangle(x + 41, y + 50, 16, 1, platform);
+            //MakeRectangle(x + 38, y + 58, 5, 1, platform);
+            //MakeRectangle(x + 54, y + 57, 6, 1, platform);
+            //MakeRectangle(x + 38, y + 64, 3, 1, platform);
+            //MakeRectangle(x + 58, y + 60, 2, 1, platform);
+            //MakeRectangle(x + 131, y + 45, 14, 1, platform);
+            //MakeRectangle(x + 131, y + 49, 7, 1, platform);
+            //MakeRectangle(x + 156, y + 47, 10, 1, platform);
+            //MakeRectangle(x + 171, y + 47, 5, 1, platform);
+            //MakeRectangle(x + 161, y + 54, 20, 1, platform);
+            //MakeRectangle(x + 188, y + 46, 16, 1, platform);
+            //MakeRectangle(x + 199, y + 50, 5, 1, platform);
+            //MakeRectangle(x + 192, y + 54, 12, 1, platform);
+            //MakeRectangle(x + 131, y + 65, 20, 1, platform);
+            //MakeRectangle(x + 131, y + 72, 7, 1, platform);
+            //MakeRectangle(x + 131, y + 79, 13, 1, platform);
+            //MakeRectangle(x + 185, y + 66, 19, 1, platform);
+            //MakeRectangle(x + 193, y + 73, 11, 1, platform);
+            //MakeRectangle(x + 197, y + 80, 7, 1, platform);
+            //MakeRectangle(x + 191, y + 87, 13, 1, platform);
             // end platforms
 
             // books
@@ -369,7 +462,7 @@
             WorldGen.PlaceTile(x + 188, y + 15, 10, style: 0);
             WorldGen.PlaceTile(x + 187, y + 15, 10, style: 0);
             // end doors
-            //WorldGen.Place3x3(x + 167, y + 90, 11);
+            //WorldGen.Place3x3(x + 167, y + 90, (ushort)ModContent.TileType<Tiles.LibraryAltar>());
 
             MakeRectangle(x + 189, y + 12, 1, 4);
             MakeRectangle(x + 190, y + 11, 1, 5);
@@ -543,11 +636,11 @@
                         Main.tile[i, j].type = (ushort)type;
                         if (type == 50) Main.tile[i, j].frameX = (short)(WorldGen.genRand.Next(0, 5) * 18);
                         if (type == 4) Main.tile[i, j].frameY = 176;
-                        if (type == 19)
-                        {
-                            Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
-                        }
-                        SquareTileFrame(i, j);
+                        //if (type == 19)
+                        //{
+                        //    Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
+                        //}
+                        WorldGen.SquareTileFrame(i, j);
                     }
                 }
             }

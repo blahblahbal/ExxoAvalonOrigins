@@ -89,6 +89,11 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 var num561 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Infernaspaz>(), 0);
                 Main.npc[num561].target = npc.target;
+                if (Main.netMode != 0)
+                {
+                    NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Infernaspaz has awoken!"), 255, 175f, 75f, 255f, 0);
+                }
+                else Main.NewText("Infernaspaz has awoken!", 175, 75, 255);
                 NPC.SpawnOnPlayer(npc.target, NPCID.Retinazer);
                 instance.infernaSpawned = true;
             }
