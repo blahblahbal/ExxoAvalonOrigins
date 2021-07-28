@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.IO;
 using ExxoAvalonOrigins.Items;
 using ExxoAvalonOrigins.Projectiles;
 using ExxoAvalonOrigins.UI;
@@ -143,6 +144,7 @@ namespace ExxoAvalonOrigins
         public bool zoneBooger;
         public bool zoneDark;
         public bool zoneComet;
+        public bool zoneHellcastle;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -177,7 +179,33 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+        public override void UpdateBiomes()
+        {
+            if (ExxoAvalonOriginsWorld.hellcastleTiles >= 400)
+            {
+                int num = (int)player.position.X / 16;
+                int num2 = (int)player.position.Y / 16;
+                if (Main.tile[num, num2].wall == ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+                {
+                    this.zoneHellcastle = true;
+                }
+            }
+            zoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
+        }
+        public override void SendCustomBiomes(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = zoneHellcastle;
+            flags[1] = zoneBooger;
+            writer.Write(flags);
+        }
 
+        public override void ReceiveCustomBiomes(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            zoneHellcastle = flags[0];
+            zoneBooger = flags[1];
+        }
         public bool HasItemInArmor(int type)
         {
             for (var i = 0; i < 20; i++)
@@ -233,7 +261,7 @@ namespace ExxoAvalonOrigins
             if (tag.ContainsKey("ExxoAvalonOrigins:CrystalHealth"))
             {
                 crystalHealth = tag.GetAsInt("ExxoAvalonOrigins:CrystalHealth");
-                if (crystalHealth > 4) crystalHealth = 4;
+                if (crystalHealth > 8) crystalHealth = 8;
                 if (player.statLifeMax == 500)
                 {
 	                player.statLifeMax += crystalHealth *= 25;

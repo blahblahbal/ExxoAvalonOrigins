@@ -30,9 +30,9 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override Texture2D GetTopTextures(int i, int j, ref int frame, ref int frameWidth, ref int frameHeight, ref int xOffsetLeft, ref int yOffset)
         {
-            frameWidth = 114;
-            frameHeight = 98;
-            //yOffset += 2;
+            frameWidth = 80;
+            frameHeight = 80;
+            yOffset += 2;
             //xOffsetLeft += 16;
             return mod.GetTexture("Tiles/ResistantTreeTop");
         }

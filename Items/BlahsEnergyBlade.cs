@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.Items
             recipe.AddIngredient(ModContent.ItemType<ElementalExcalibur>());
             recipe.AddIngredient(ModContent.ItemType<BerserkerBlade>());
             recipe.AddIngredient(ModContent.ItemType<PumpkingsSword>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>()); // change to xeradon anvil
+            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

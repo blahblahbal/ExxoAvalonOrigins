@@ -1,6 +1,6 @@
-﻿displayName = Endo Avalon
+﻿displayName = Exxo Avalon: Origins
 author = imkSushi, Blahblahbal, The Avalon Team
-version = 0.5.1.0
+version = 0.7.0.0
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, *.mp3
 includePDB = true
 hideCode = true

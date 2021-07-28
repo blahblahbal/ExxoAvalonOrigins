@@ -7,6 +7,7 @@ The Tremor team for some generic code from their opensource mod
 Jopojelly for help with the code and also for Cheat Sheet
 0x0ade for his TerrariaHooks mod - it enables several major features
 TerrorPenguin for many of the sprites
+Blasfah for many of the sprites
 Jace for many potion sprites
 PhilCo for some of the sprites
 Dragonfly for the Tome sprites

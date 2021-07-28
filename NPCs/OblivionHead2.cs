@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.value = 50000f;
 			npc.timeLeft = 22500;
 			npc.height = 102;
-			npc.knockBackResist = 0.1f;
+			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
 	        npc.DeathSound = SoundID.NPCDeath14;
         }
