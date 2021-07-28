@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.NPCs
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bloodshot Eye");
-			Main.npcFrameCount[npc.type] = 2;
+			Main.npcFrameCount[npc.type] = 3;
 		}
 
 		public override void SetDefaults()
@@ -23,10 +23,10 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.damage = 25;
 			npc.lifeMax = 75;
 			npc.defense = 5;
-			npc.width = 30;
+			npc.width = 48;
 			npc.aiStyle = 2;
 			npc.value = 150f;
-			npc.height = 32;
+			npc.height = 34;
 			npc.knockBackResist = 0.8f;
 			npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath6;
