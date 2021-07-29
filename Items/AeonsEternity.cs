@@ -16,26 +16,25 @@ namespace ExxoAvalonOrigins.Items
 		{
 			DisplayName.SetDefault("Aeon's Eternity");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/AeonsEternity");
-			item.damage = 39;
+			item.damage = 36;
+			item.scale = 1.1f;
+			item.melee = true;
 			item.autoReuse = true;
 			item.useTurn = true;
-			item.scale = 1.1f;
-			item.shootSpeed = 9f;
 			item.rare = 5;
 			item.width = dims.Width;
-			item.useTime = 20;
+			item.height = dims.Height;
+			item.useTime = 30;
+			item.useAnimation = 20;
+			item.useStyle = 1;
 			item.knockBack = 5.5f;
 			item.shoot = ModContent.ProjectileType<Projectiles.AeonBeam2>();
+			item.shootSpeed = 11f;
 			item.UseSound = SoundID.Item1;
-			item.melee = true;
-			item.useStyle = 1;
 			item.value = Item.sellPrice(0, 1, 0, 0);
-			item.useAnimation = 20;
-			item.height = dims.Height;
 		}
 	}
 }
