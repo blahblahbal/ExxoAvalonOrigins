@@ -42,7 +42,10 @@ namespace ExxoAvalonOrigins.NPCs
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false);
 			}
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.07f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
         public override void FindFrame(int frameHeight)
         {
             var num2 = 0;

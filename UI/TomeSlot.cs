@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.UI
     {
         public UIPanel tomeSlotDisplay;
         internal float scale = 1f;
-        Texture2D background = Main.inventoryBack9Texture;
+        Texture2D background = ExxoAvalonOrigins.tomeSlotBackgroundTexture;
         internal event Action<Item, Item> OnItemChange;
         internal event Func<Item, bool> CanPutIntoSlot;
         Item[] ssa = new Item[1];
@@ -32,26 +32,8 @@ namespace ExxoAvalonOrigins.UI
             tomeSlotDisplay.Width.Set(background.Width * scale, 0f);
             tomeSlotDisplay.Height.Set(background.Height * scale, 0f);
             tomeSlotDisplay.BackgroundColor = new Color(73, 94, 171);
-
             Append(tomeSlotDisplay);
         }
-        /*
-        void MouseItemDown(UIMouseEvent evt, UIElement listeningElement)
-        {
-            Player player = Main.LocalPlayer;
-            if ((!item.IsAir || (!Main.mouseItem.IsAir /*&& CanPutIntoSlot(Main.mouseItem)* /)) && player.itemAnimation == 0 && player.itemTime == 0)
-            {
-                Item tempItem = Main.mouseItem.Clone();
-                Main.mouseItem = item.Clone();
-                if (!Main.mouseItem.IsAir)
-                {
-                    Main.playerInventory = true;
-                }
-                item = tempItem;
-                Main.PlaySound(SoundID.Grab, Main.LocalPlayer.position);
-                OnItemChange.Invoke(Main.mouseItem, item);
-            }
-        }*/
 
         internal void DrawTomes(SpriteBatch spriteBatch)
         {
@@ -59,7 +41,7 @@ namespace ExxoAvalonOrigins.UI
             {
 
                 var mouseLoc = new Point(Main.mouseX, Main.mouseY);
-                var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * Main.inventoryScale), (int)(Main.inventoryBackTexture.Height * Main.inventoryScale));
+                var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
                 Main.inventoryScale = 0.85f;
                 var tmpItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
                 var mH = 0;
@@ -80,15 +62,44 @@ namespace ExxoAvalonOrigins.UI
                 {
                     Main.LocalPlayer.mouseInterface = true;
                     Main.armorHide = true;
-                    ssa[0] = tmpItem;
-                    var tm = Main.mouseItem.IsAir || Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome;
-                    if (tm) ItemSlot.Handle(ssa, ItemSlot.Context.InventoryItem, 0);
-                    tmpItem = ssa[0];
+                    if (Main.mouseLeftRelease && Main.mouseLeft)
+                    {
+                        if (Main.mouseItem.stack == 1 && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == 0 && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type != Main.mouseItem.type)
+                        {
+                            Main.PlaySound(7, -1, -1, 1);
+                            Item item6 = Main.mouseItem;
+                            Main.mouseItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
+                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = item6;
+                        }
+                        else if (Main.mouseItem.type == 0 && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > 0)
+                        {
+                            Item item7 = Main.mouseItem;
+                            Main.mouseItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
+                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = item7;
+                            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == 0 || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.stack < 1)
+                            {
+                                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = new Item();
+                            }
+                            if (Main.mouseItem.type == 0 || Main.mouseItem.stack < 1)
+                            {
+                                Main.mouseItem = new Item();
+                            }
+                            if (Main.mouseItem.type > 0 || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > 0)
+                            {
+                                Recipe.FindRecipes();
+                                Main.PlaySound(7, -1, -1, 1);
+                            }
+                        }
+                    }
+                    Main.hoverItemName = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > 0 ? Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Name : "Tome";
+                    Main.HoverItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Clone();
                 }
                 ssa[0] = tmpItem;
+                //spriteBatch.Draw(background, r, default(Color));
                 ItemSlot.Draw(spriteBatch, ssa, 10, 0, new Vector2(r.X, r.Y));
+                //Main.spriteBatch.Draw(background, r, default(Color));
                 tmpItem = ssa[0];
-                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = tmpItem;
+                //Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = tmpItem;
             }
         }
     }

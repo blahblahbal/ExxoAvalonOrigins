@@ -48,6 +48,9 @@ namespace ExxoAvalonOrigins.Tiles
                 case 5:
                     item = ModContent.ItemType<Items.EggmanTrophy>();
                     break;
+                case 8:
+                    item = ModContent.ItemType<Items.PhantasmTrophy>();
+                    break;
             }
             if (item > 0)
             {

@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items
             Rectangle playerWS = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {
-                if (/*!Pr.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect &&*/ !Pr.friendly && !Pr.bobber && Pr.type != 237 && Pr.type != 238 && Pr.type != 243 && Pr.type != 244 && Pr.type != 308 && Pr.type != 295 && Pr.type != 296 && Pr.type != 50 && Pr.type != 53 && Pr.type != 358)
+                if (!Pr.friendly && !Pr.bobber && Pr.type != 237 && Pr.type != 238 && Pr.type != 243 && Pr.type != 244 && Pr.type != 308 && Pr.type != 295 && Pr.type != 296 && Pr.type != 50 && Pr.type != 53 && Pr.type != 358 &&                    Pr.type != ProjectileID.PhantasmalDeathray && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>())
                 {
                     Rectangle proj2 = new Rectangle((int)Pr.position.X, (int)Pr.position.Y, Pr.width, Pr.height);
                     bool reflect = false, check = false;

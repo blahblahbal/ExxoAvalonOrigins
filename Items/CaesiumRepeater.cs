@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Caesium Repeater");
+			DisplayName.SetDefault("Caesium Crossbow");
 		}
 
 		public override void SetDefaults()

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Caesium Scimitar");
+			DisplayName.SetDefault("Caesium Spatha");
 		}
 
 		public override void SetDefaults()

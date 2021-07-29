@@ -93,6 +93,10 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.velocity.Y = -13f;
                         npc.velocity.X = npc.velocity.X + 3.5f * npc.direction;
+                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                        {
+                            npc.velocity.X = npc.velocity.X + 7f * npc.direction;
+                        }
                         npc.ai[0] = -200f;
                         npc.ai[1] = 0f;
                     }
@@ -100,6 +104,10 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.velocity.Y = -6f;
                         npc.velocity.X = npc.velocity.X + 4.5f * npc.direction;
+                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                        {
+                            npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
+                        }
                         npc.ai[0] = -120f;
                         npc.ai[1] += 1f;
                     }
@@ -107,6 +115,10 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.velocity.Y = -8f;
                         npc.velocity.X = npc.velocity.X + 4f * npc.direction;
+                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                        {
+                            npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
+                        }
                         npc.ai[0] = -120f;
                         npc.ai[1] += 1f;
                     }
@@ -166,7 +178,7 @@ namespace ExxoAvalonOrigins.NPCs
                     var vector155 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num1166 = (float)Math.Atan2(vector155.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector155.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
-                    for (var num1167 = 0f; num1167 <= 4f; num1167 += 0.4f)
+                    for (var num1167 = 0f; num1167 <= 3.6f; num1167 += 0.4f)
                     {
                         var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 12f * -1.0), (float)(Math.Sin(num1166 + num1167) * 12f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 50, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;

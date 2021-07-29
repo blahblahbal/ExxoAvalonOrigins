@@ -160,6 +160,16 @@ namespace ExxoAvalonOrigins
         public bool jumpAgain5;
         public bool dJumpEffect5;
         public bool doubleDamage;
+
+        public override void ResetEffects()
+        {
+            //Main.NewText("" + trapImmune.ToString());
+            //Main.NewText("" + slimeBand.ToString());
+            //trapImmune = false;
+            bubbleBoost = false;
+
+        }
+
         public override void UpdateBadLifeRegen()
         {
             if (darkInferno)
@@ -181,13 +191,14 @@ namespace ExxoAvalonOrigins
         }
         public override void UpdateBiomes()
         {
+            zoneHellcastle = false;
             if (ExxoAvalonOriginsWorld.hellcastleTiles >= 400)
             {
                 int num = (int)player.position.X / 16;
                 int num2 = (int)player.position.Y / 16;
                 if (Main.tile[num, num2].wall == ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
                 {
-                    this.zoneHellcastle = true;
+                    zoneHellcastle = true;
                 }
             }
             zoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
@@ -199,7 +210,7 @@ namespace ExxoAvalonOrigins
             flags[1] = zoneBooger;
             writer.Write(flags);
         }
-
+        
         public override void ReceiveCustomBiomes(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
@@ -221,9 +232,9 @@ namespace ExxoAvalonOrigins
         public override void OnEnterWorld(Player player)
         {
             if (tomeItem.type <= 0) tomeItem.SetDefaults();
-            Main.NewText("You are using Endo Avalon " + ExxoAvalonOrigins.version.ToString());
-            Main.NewText("Please note that Endo Avalon is in Beta; it may have many bugs");
-            Main.NewText("Please also note that Endo Avalon will interact weirdly with other large mods");
+            Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
+            Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
+            Main.NewText("Please also note that Exxo Avalon: Origins will interact weirdly with other large mods");
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
@@ -261,7 +272,7 @@ namespace ExxoAvalonOrigins
             if (tag.ContainsKey("ExxoAvalonOrigins:CrystalHealth"))
             {
                 crystalHealth = tag.GetAsInt("ExxoAvalonOrigins:CrystalHealth");
-                if (crystalHealth > 8) crystalHealth = 8;
+                if (crystalHealth > 4) crystalHealth = 4;
                 if (player.statLifeMax == 500)
                 {
 	                player.statLifeMax += crystalHealth *= 25;
@@ -274,7 +285,32 @@ namespace ExxoAvalonOrigins
 	            statStamMax = tag.GetAsInt("ExxoAvalonOrigins:Stamina");
             }
         }
-
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            if (HasItemInArmor(ModContent.ItemType<VampireTeeth>()))
+            {
+                if (item.melee)
+                {
+                    if (target.boss) vampireHeal(damage / 2, target.Center);
+                    else vampireHeal(damage, target.Center);
+                }
+            }
+        }
+        public void vampireHeal(int dmg, Vector2 Position)
+        {
+            float num = dmg * 0.075f;
+            if ((int)num == 0)
+            {
+                return;
+            }
+            if (player.lifeSteal <= 0f)
+            {
+                return;
+            }
+            player.lifeSteal -= num;
+            int num2 = player.whoAmI;
+            Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, 305, 0, 0f, player.whoAmI, (float)num2, num);
+        }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
             if (auraThorns && !player.immune && !npc.dontTakeDamage)
@@ -873,6 +909,7 @@ namespace ExxoAvalonOrigins
 
 	    public override void PostUpdateRunSpeeds()
 	    {
+            //Main.NewText("PostUpdateRunSpeeds " + slimeBand.ToString());
             FloorVisualsAvalon(player.velocity.Y > player.gravity);
 		    if (statStam >= 1 && player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
 		    {
@@ -1069,7 +1106,7 @@ namespace ExxoAvalonOrigins
                 {
                     player.sticky = false;
                 }
-                if (slimeBand)
+                if (HasItemInArmor(ModContent.ItemType<Items.BandofSlime>()))
                 {
                     player.slippy = true;
                     player.slippy2 = true;

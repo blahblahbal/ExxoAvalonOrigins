@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
-            //Main.tileMerge[Type][TileID.Ash] = true;
+            Main.tileMerge[Type][TileID.Ash] = true;
             Main.tileMerge[TileID.Ash][Type] = true;
             drop = mod.ItemType("CaesiumOre");
             soundType = SoundID.Tink;

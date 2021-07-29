@@ -42,7 +42,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.YuckyBit>(), 1, false, 0, false);
             }
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.055f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
         public override void AI()
         {
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead)

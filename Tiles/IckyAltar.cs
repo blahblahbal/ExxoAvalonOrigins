@@ -36,10 +36,14 @@ namespace ExxoAvalonOrigins.Tiles
             g = 0.5f + brightness * 2f;
             b = 0.2f;
         }
-
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged)
+        {
+            blockDamaged = false;
+            return Main.hardMode;
+        }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {   
-            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.IckyAltar>());
+        {
+            WorldGen.SmashAltar(i, j);
         }
     }
 }
