@@ -19,7 +19,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				{
 					num480 = 58;
 				}
-				var Sparkle = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 3, projectile.position.Y - projectile.velocity.Y * 3f), 8, 8, num480, 0f, 0f, 100, default(Color), 1.25f);
+				var Sparkle = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f, projectile.position.Y - projectile.velocity.Y * 2f), 8, 8, num480, 0f, 0f, 100, default(Color), 1.25f);
 				Main.dust[Sparkle].velocity *= 0.1f;
 			}
 		}

@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items
 			item.autoReuse = true;
 			item.useTurn = true;
 			item.scale = 1.2f;
-			item.shootSpeed = 9f;
+			item.shootSpeed = 13f;
 			item.rare = 12;
 			item.width = dims.Width;
 			item.useTime = 14;
@@ -37,7 +37,11 @@ namespace ExxoAvalonOrigins.Items
 			item.useAnimation = 14;
 			item.height = dims.Height;
 		}
-        public override void AddRecipes()
+		public override Color? GetAlpha(Color lightColor)
+		{
+			return new Color(255, 255, 255, 255);
+		}
+		public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 45);

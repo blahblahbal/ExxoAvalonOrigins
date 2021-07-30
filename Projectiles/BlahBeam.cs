@@ -16,18 +16,22 @@ namespace ExxoAvalonOrigins.Projectiles
 		{
 			DisplayName.SetDefault("Blah Beam");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahBeam");
             projectile.width = 16;
 			projectile.height = 16;
-			projectile.aiStyle = -1;
+			projectile.aiStyle = 27;
 			projectile.melee = true;
 			projectile.penetrate = 2;
 			projectile.light = 0.8f;
+			projectile.penetrate = 2;
 			projectile.alpha = 255;
 			projectile.friendly = true;
+        }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 100);
         }
         public static int FindClosest(Vector2 pos, float dist)
         {
@@ -81,57 +85,19 @@ namespace ExxoAvalonOrigins.Projectiles
                     Vector2 v = Main.npc[closest].position;
                     if (Collision.CanHit(projectile.position, projectile.width, projectile.height, v, Main.npc[closest].width, Main.npc[closest].height))
                     {
-                        projectile.velocity = Vector2.Normalize(v - projectile.position) * 9f;
+                        projectile.velocity = Vector2.Normalize(v - projectile.position) * 13f;
                     }
                 }
             }
             if (projectile.localAI[1] > 7f)
             {
-                var num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, 6, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.25f);
+                var num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, 6, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
                 Main.dust[num483].velocity *= -0.25f;
-                num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, 6, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.25f);
+                Main.dust[num483].noGravity = true;
+                num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, 6, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
                 Main.dust[num483].velocity *= -0.25f;
                 Main.dust[num483].position -= projectile.velocity * 0.5f;
-            }
-            if (projectile.localAI[1] < 15f)
-            {
-                projectile.localAI[1] += 1f;
-            }
-            else
-            {
-                if (projectile.localAI[0] == 0f)
-                {
-                    projectile.scale -= 0.02f;
-                    projectile.alpha += 30;
-                    if (projectile.alpha >= 250)
-                    {
-                        projectile.alpha = 255;
-                        projectile.localAI[0] = 1f;
-                    }
-                }
-                else if (projectile.localAI[0] == 1f)
-                {
-                    projectile.scale += 0.02f;
-                    projectile.alpha -= 30;
-                    if (projectile.alpha <= 0)
-                    {
-                        projectile.alpha = 0;
-                        projectile.localAI[0] = 0f;
-                    }
-                }
-            }
-            if (projectile.ai[1] == 0f)
-            {
-                projectile.ai[1] = 1f;
-                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 8);
-            }
-            else
-            {
-                projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 0.785f;
-            }
-            if (projectile.velocity.Y > 16f)
-            {
-                projectile.velocity.Y = 16f;
+                Main.dust[num483].noGravity = true;
             }
         }
     }

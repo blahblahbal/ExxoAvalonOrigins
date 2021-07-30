@@ -30,9 +30,9 @@ namespace ExxoAvalonOrigins.Items
 			item.useTime = 30;
 			item.useAnimation = 20;
 			item.useStyle = 1;
-			item.knockBack = 5.5f;
+			item.knockBack = 5f;
 			item.shoot = ModContent.ProjectileType<Projectiles.AeonBeam2>();
-			item.shootSpeed = 11f;
+			item.shootSpeed = 9f;
 			item.UseSound = SoundID.Item1;
 			item.value = Item.sellPrice(0, 1, 0, 0);
 		}

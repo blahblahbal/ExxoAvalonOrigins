@@ -12,6 +12,7 @@
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/BerserkerBlade");
             item.damage = 166;
             item.autoReuse = true;
+            item.UseSound = SoundID.Item1;
             item.useTurn = true;
             item.scale = 1f;
             item.rare = 8;
@@ -23,6 +24,10 @@
             item.value = Item.sellPrice(0, 12);
             item.useAnimation = 10;
             item.height = dims.Height;
+        }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 255);
         }
         public override void AddRecipes()
         {
