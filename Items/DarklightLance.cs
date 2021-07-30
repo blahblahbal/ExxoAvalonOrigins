@@ -24,18 +24,23 @@ namespace ExxoAvalonOrigins.Items
 			item.damage = 99;
 			item.noUseGraphic = true;
 			item.scale = 1f;
-			item.shootSpeed = 5.6f;
+			item.shootSpeed = 4f;
 			item.rare = 8;
 			item.noMelee = true;
 			item.width = dims.Width;
-			item.useTime = 13;
-			item.knockBack = 6.5f;
+			item.useTime = 22;
+			item.useAnimation = 22;
+			item.knockBack = 5.5f;
 			item.shoot = ModContent.ProjectileType<Projectiles.DarklightLance>();
 			item.melee = true;
+			item.autoReuse = true;
 			item.useStyle = 5;
 			item.value = Item.sellPrice(0, 40, 0, 0);
-			item.useAnimation = 13;
 			item.height = dims.Height;
+		}
+		public override bool CanUseItem(Player player)
+		{
+			return player.ownedProjectileCounts[item.shoot] < 1;
 		}
 	}
 }
