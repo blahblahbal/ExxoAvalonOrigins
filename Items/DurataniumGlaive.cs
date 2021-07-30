@@ -16,7 +16,6 @@ namespace ExxoAvalonOrigins.Items
 		{
 			DisplayName.SetDefault("Duratanium Glaive");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/DurataniumGlaive");
@@ -28,13 +27,13 @@ namespace ExxoAvalonOrigins.Items
 			item.rare = 4;
 			item.noMelee = true;
 			item.width = dims.Width;
-			item.useTime = 23;
+			item.useTime = 22;
+			item.useAnimation = 22;
 			item.knockBack = 5.1f;
 			item.shoot = ModContent.ProjectileType<Projectiles.DurataniumGlaive>();
 			item.melee = true;
 			item.useStyle = 5;
 			item.value = 105000;
-			item.useAnimation = 23;
 			item.height = dims.Height;
 		}
 	}

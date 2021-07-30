@@ -1,1 +1,40 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class DarklightLance : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Darklight Lance");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DarklightLance");			projectile.width = dims.Width * 18 / 124;			projectile.height = dims.Height * 18 / 124 / Main.projFrames[projectile.type];			projectile.aiStyle = -1;			projectile.friendly = true;			projectile.penetrate = -1;			projectile.tileCollide = false;			projectile.scale = 1.1f;			projectile.hide = true;			projectile.ownerHitCheck = true;			projectile.melee = true;		}		public override void AI()		{			projectile.direction = Main.player[projectile.owner].direction;			Main.player[projectile.owner].heldProj = projectile.whoAmI;			Main.player[projectile.owner].itemTime = Main.player[projectile.owner].itemAnimation;			projectile.position.X = Main.player[projectile.owner].position.X + (float)(Main.player[projectile.owner].width / 2) - (float)(projectile.width / 2);			projectile.position.Y = Main.player[projectile.owner].position.Y + (float)(Main.player[projectile.owner].height / 2) - (float)(projectile.height / 2);			if (!Main.player[projectile.owner].frozen)			{				if (projectile.ai[0] == 0f)				{					projectile.ai[0] = 3f;					projectile.netUpdate = true;				}				if (Main.player[projectile.owner].itemAnimation < Main.player[projectile.owner].itemAnimationMax / 3)				{					projectile.ai[0] -= 2.4f;				}				else				{					projectile.ai[0] += 2.1f;				}			}			projectile.position += projectile.velocity * projectile.ai[0];			if (Main.player[projectile.owner].itemAnimation == 0)			{				projectile.Kill();			}			projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 2.355f;			if (projectile.spriteDirection == -1)			{				projectile.rotation -= 1.57f;			}			int num313 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, 58, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);			Main.dust[num313].noGravity = true;			Main.dust[num313].fadeIn = 1.25f;			Main.dust[num313].velocity *= 0.25f;		}	}}
+using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class DarklightLance : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Darklight Lance");		}		public override void SetDefaults()		{			projectile.width = 18;			projectile.height = 18;			projectile.aiStyle = 19;			projectile.friendly = true;			projectile.penetrate = -1;			projectile.tileCollide = false;			projectile.scale = 1.2f;			projectile.hide = true;			projectile.ownerHitCheck = true;			projectile.melee = true;		}
+		public float movementFactor
+		{
+			get => projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}		public override void AI()		{
+			Player projOwner = Main.player[projectile.owner];
+			Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
+			projectile.direction = projOwner.direction;
+			projOwner.heldProj = projectile.whoAmI;
+			projOwner.itemTime = projOwner.itemAnimation;
+			projectile.position.X = ownerMountedCenter.X - (float)(projectile.width / 2);
+			projectile.position.Y = ownerMountedCenter.Y - (float)(projectile.height / 2);
+			if (!projOwner.frozen)
+			{
+				if (movementFactor == 0f)
+				{
+					movementFactor = 3f;
+					projectile.netUpdate = true;
+				}
+				if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3)
+				{
+					movementFactor -= 3.8f;
+				}
+				else
+				{
+					movementFactor += 3.2f;
+				}
+			}
+			projectile.position += projectile.velocity * movementFactor;
+			if (projOwner.itemAnimation == 0)
+			{
+				projectile.Kill();
+			}
+			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
+			if (projectile.spriteDirection == -1)
+			{
+				projectile.rotation -= MathHelper.ToRadians(90f);
+			}
+			int num313 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, 58, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);			Main.dust[num313].noGravity = true;			Main.dust[num313].fadeIn = 1.25f;			Main.dust[num313].velocity *= 0.25f;		}	}}
