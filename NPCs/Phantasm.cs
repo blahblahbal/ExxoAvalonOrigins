@@ -134,7 +134,7 @@ namespace ExxoAvalonOrigins.NPCs
                             int damage = 50;
                             Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
                             Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
-                            float rotation = (float)Math.Atan2(npc.Center.Y - offset.Y, npc.Center.X - offset.X);
+                            float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
                             int num54 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, 0);
                             Main.projectile[num54].velocity = Vector2.Normalize(T.position - npc.position) * 9f;
                             //Main.projectile[num54].notReflect = true;
@@ -344,6 +344,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.VampireTeeth>(), 1, false, -1);
             }
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.GhostintheMachine>(), Main.rand.Next(3, 6), false, 0);
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantasmTrophy>(), 1, false, 0);
+            }
         }
 
         public override void FindFrame(int frameHeight)

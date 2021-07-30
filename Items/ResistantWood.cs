@@ -20,4 +20,9 @@
             item.useAnimation = 15;
             item.height = dims.Height;
         }
+
+        public override bool CanBurnInLava()
+        {
+            return false;
+        }
     }}

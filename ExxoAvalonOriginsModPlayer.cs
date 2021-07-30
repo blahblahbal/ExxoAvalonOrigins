@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins
         public int statManaMax3 = 1500;
         public int statManaMax2 = 100;
         public int statMana = 100;
+        public bool shmAcc = false;
 	    public bool teleportVWasTriggered = false;
         public enum ShadowMirrorModes
         {
@@ -246,6 +247,89 @@ namespace ExxoAvalonOrigins
                     ref tileRangeBuff);
             }
         }
+        public override void PreUpdateBuffs()
+        {
+            for (int k = 0; k < player.buffType.Length; k++)
+            if (player.buffType[k] == 37)
+            {
+                if (Main.wof >= 0 && Main.npc[Main.wof].type == 113 || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                {
+                    player.gross = true;
+                    player.buffTime[k] = 10;
+                }
+                else
+                {
+                    player.DelBuff(k);
+                    k--;
+                }
+            }
+        }
+        public void WOSTongue()
+        {
+            if (ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].active)
+            {
+                float num = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + 40f;
+                if (Main.npc[ExxoAvalonOriginsWorld.wos].direction > 0)
+                {
+                    num -= 96f;
+                }
+                if (player.position.X + (float)player.width > num && player.position.X < num + 140f && player.gross)
+                {
+                    player.noKnockback = false;
+                    player.Hurt(PlayerDeathReason.ByNPC(ExxoAvalonOriginsWorld.wos), 50, Main.npc[ExxoAvalonOriginsWorld.wos].direction);
+                }
+                if (!player.gross && player.position.Y > (float)((Main.maxTilesY - 250) * 16) && player.position.X > num - 1920f && player.position.X < num + 1920f)
+                {
+                    player.AddBuff(37, 10, true);
+                    //Main.PlaySound(4, (int)Main.npc[ExxoAvalonOriginsWorld.wos].position.X, (int)Main.npc[ExxoAvalonOriginsWorld.wos].position.Y, 10);
+                }
+                if (player.gross)
+                {
+                    if (player.position.Y < (float)((Main.maxTilesY - 200) * 16))
+                    {
+                        player.AddBuff(38, 10, true);
+                    }
+                    if (Main.npc[ExxoAvalonOriginsWorld.wos].direction < 0)
+                    {
+                        if (player.position.X + (float)(player.width / 2) > Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2) + 40f)
+                        {
+                            player.AddBuff(38, 10, true);
+                        }
+                    }
+                    else if (player.position.X + (float)(player.width / 2) < Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2) - 40f)
+                    {
+                        player.AddBuff(38, 10, true);
+                    }
+                }
+                if (player.tongued)
+                {
+                    player.controlHook = false;
+                    player.controlUseItem = false;
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].aiStyle == 7)
+                        {
+                            Main.projectile[i].Kill();
+                        }
+                    }
+                    Vector2 vector = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
+                    float num2 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2) - vector.X;
+                    float num3 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].height / 2) - vector.Y;
+                    float num4 = (float)Math.Sqrt((double)(num2 * num2 + num3 * num3));
+                    if (num4 > 3000f)
+                    {
+                        //player.lastPosBeforeDeath = this.position;
+                        player.KillMe(PlayerDeathReason.ByNPC(ExxoAvalonOriginsWorld.wos), 1000.0, 0, false);
+                        return;
+                    }
+                    if (Main.npc[ExxoAvalonOriginsWorld.wos].position.X < 608f || Main.npc[ExxoAvalonOriginsWorld.wos].position.X > (float)((Main.maxTilesX - 38) * 16))
+                    {
+                        //this.lastPosBeforeDeath = this.position;
+                        player.KillMe(PlayerDeathReason.ByNPC(ExxoAvalonOriginsWorld.wos), 1000.0, 0, false);
+                    }
+                }
+            }
+        }
 
         public override bool ConsumeAmmo(Item weapon, Item ammo)
         {
@@ -283,6 +367,10 @@ namespace ExxoAvalonOrigins
             if (tag.ContainsKey("ExxoAvalonOrigins:Stamina"))
             {
 	            statStamMax = tag.GetAsInt("ExxoAvalonOrigins:Stamina");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SHMAcc"))
+            {
+                shmAcc = tag.Get<bool>("ExxoAvalonOrigins:SHMAcc");
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -448,7 +536,8 @@ namespace ExxoAvalonOrigins
             {
                 { "ExxoAvalonOrigins:TomeSlot", ItemIO.Save(tomeItem) },
                 { "ExxoAvalonOrigins:CrystalHealth", crystalHealth },
-                { "ExxoAvalonOrigins:Stamina", statStamMax}
+                { "ExxoAvalonOrigins:Stamina", statStamMax},
+                { "ExxoAvalonOrigins:SHMAcc", shmAcc }
             };
             return tag;
         }
@@ -472,6 +561,46 @@ namespace ExxoAvalonOrigins
             }
             chaosCharm = false;
             slimeImmune = false;
+            if (player.tongued)
+            {
+                bool flag21 = false;
+                if (ExxoAvalonOriginsWorld.wos >= 0)
+                {
+                    float num159 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2);
+                    num159 += (float)(Main.npc[ExxoAvalonOriginsWorld.wos].direction * 200);
+                    float num160 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].height / 2);
+                    Vector2 vector5 = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
+                    float num161 = num159 - vector5.X;
+                    float num162 = num160 - vector5.Y;
+                    float num163 = (float)Math.Sqrt((double)(num161 * num161 + num162 * num162));
+                    float num164 = 11f;
+                    float num165;
+                    if (num163 > num164)
+                    {
+                        num165 = num164 / num163;
+                    }
+                    else
+                    {
+                        num165 = 1f;
+                        flag21 = true;
+                    }
+                    num161 *= num165;
+                    num162 *= num165;
+                    player.velocity.X = num161;
+                    player.velocity.Y = num162;
+                    player.position += player.velocity;
+                }
+                if (flag21 && Main.myPlayer == player.whoAmI)
+                {
+                    for (int num166 = 0; num166 < 22; num166++)
+                    {
+                        if (player.buffType[num166] == 38)
+                        {
+                            player.DelBuff(num166);
+                        }
+                    }
+                }
+            }
         }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -758,6 +887,7 @@ namespace ExxoAvalonOrigins
 
         public override void PreUpdate()
         {
+            WOSTongue();
 	        if (teleportV)
 	        {
 		        teleportV = false;

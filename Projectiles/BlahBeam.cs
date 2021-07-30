@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.height = 16;
 			projectile.aiStyle = -1;
 			projectile.melee = true;
-			projectile.penetrate = 5;
+			projectile.penetrate = 2;
 			projectile.light = 0.8f;
 			projectile.alpha = 255;
 			projectile.friendly = true;

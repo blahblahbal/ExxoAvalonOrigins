@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.value = 1000f;
             npc.knockBackResist = 0.2f;
             npc.height = 24;
+            npc.noGravity = true;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath6;
         }
