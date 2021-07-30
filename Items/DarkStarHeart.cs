@@ -41,6 +41,7 @@ namespace ExxoAvalonOrigins.Items
         public override bool UseItem(Player player)
         {
             player.extraAccessorySlots++;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shmAcc = true;
             return true;
         }
     }

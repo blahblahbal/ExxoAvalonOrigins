@@ -468,6 +468,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.DarkStarHeart>(), numplayers, false, 0, false);
             }
             //ExxoAvalonOriginsWorld.InitiateSuperHardmode();
+            if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
             if (Main.netMode != 1)
             {

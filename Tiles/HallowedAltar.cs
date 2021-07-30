@@ -35,10 +35,14 @@ namespace ExxoAvalonOrigins.Tiles
             g = 0.9f;
             b = 0f;
         }
-
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged)
+        {
+            blockDamaged = false;
+            return ExxoAvalonOrigins.superHardmode;
+        }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {   
-            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.HallowedAltar>());
+            //TODO: Add SmashHallowAltar
         }
     }
 }

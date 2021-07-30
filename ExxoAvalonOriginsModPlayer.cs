@@ -550,6 +550,7 @@ namespace ExxoAvalonOrigins
 
 	    public override void PostUpdate()
         {
+            if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
                 var lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
