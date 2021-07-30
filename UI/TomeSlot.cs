@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.UI
                     }
                 }
                 r.X = Main.screenWidth - 92 - 47 - 47;
-                r.Y = mH + 174;
+                r.Y = mH + 174 + 47 + 47 + 47 + 47;
                 if (r.Contains(mouseLoc))
                 {
                     Main.LocalPlayer.mouseInterface = true;
