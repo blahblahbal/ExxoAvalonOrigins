@@ -28,14 +28,13 @@ using Terraria.ModLoader;using Terraria.UI;namespace ExxoAvalonOrigins{    
         }        public static bool IsPotion(int t)
         {
             return ((t >= 288 && t <= 305) || (t >= 2322 && t <= 2329) ||
-                                (t >= 2344 && t <= 2349) || (t >= 2354 && t <= 2356));// ||
-                                //t == 2359 || t == ID.ItemID.CrimsonPotion || t == ID.ItemID.ShockwavePotion ||
-                                //t == ID.ItemID.LuckPotion || t == ID.ItemID.BloodCastPotion || t == ID.ItemID.StarbrightPotion ||
-                                //t == ID.ItemID.VisionPotion || t == ID.ItemID.StrengthPotion || t == ID.ItemID.GPSPotion ||
-                                //t == ID.ItemID.TimeShiftPotion || t == ID.ItemID.ShadowPotion || t == ID.ItemID.RoguePotion ||
-                                //t == ID.ItemID.WisdomPotion || t == ID.ItemID.GauntletPotion || t == ID.ItemID.TitanskinPotion ||
-                                //t == ID.ItemID.InvincibilityPotion || t == ID.ItemID.ForceFieldPotion || t == ID.ItemID.MagnetPotion ||
-                                //(t >= 3873 && t <= 3925) || t == ID.ItemID.BlahPotion);
+                                (t >= 2344 && t <= 2349) || (t >= 2354 && t <= 2356) ||
+                                t == 2359 || t == ModContent.ItemType<Items.CrimsonPotion>() || t == ModContent.ItemType<Items.ShockwavePotion>() ||
+                                t == ModContent.ItemType<Items.LuckPotion>() || t == ModContent.ItemType<Items.BloodCastPotion>() || t == ModContent.ItemType<Items.StarbrightPotion>() ||
+                                t == ModContent.ItemType<Items.VisionPotion>() || t == ModContent.ItemType<Items.StrengthPotion>() || t == ModContent.ItemType<Items.GPSPotion>() ||
+                                /*t == ID.ItemID.TimeShiftPotion ||*/ t == ModContent.ItemType<Items.ShadowPotion>() || t == ModContent.ItemType<Items.RoguePotion>() ||
+                                t == ModContent.ItemType<Items.WisdomPotion>() || t == ModContent.ItemType<Items.GauntletPotion>() || t == ModContent.ItemType<Items.TitanskinPotion>() ||
+                                t == ModContent.ItemType<Items.InvincibilityPotion>() || t == ModContent.ItemType<Items.ForceFieldPotion>() || t == ModContent.ItemType<Items.BlahPotion>());
         }        public static bool IsAdvancedPotion(string name)
         {
             return (name.Contains("Advanced") && name.Contains("Potion"));
