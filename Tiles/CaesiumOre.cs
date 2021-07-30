@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
 		public override void SetDefaults()
 		{
 			mineResist = 5f;
-			AddMapEntry(new Color(86, 190, 74), LanguageManager.Instance.GetText("Caesium Ore"));
+			AddMapEntry(new Color(86, 190, 74), LanguageManager.Instance.GetText("Caesium"));
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;

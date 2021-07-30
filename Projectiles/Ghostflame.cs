@@ -8,9 +8,8 @@
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Ghostflame");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
+            projectile.width = 16;
+            projectile.height = 16;
             projectile.aiStyle = -1;
             projectile.tileCollide = false;
             projectile.friendly = false;

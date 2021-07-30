@@ -162,6 +162,13 @@ namespace ExxoAvalonOrigins
         public bool dJumpEffect5;
         public bool doubleDamage;
 
+        public int herbX;
+        public int herbY;
+        public int herbTier;
+        public int potionTotal;
+        public int herbTotal;
+        public int[] herbCounts = new int[10];
+
         public override void ResetEffects()
         {
             //Main.NewText("" + trapImmune.ToString());
@@ -372,6 +379,22 @@ namespace ExxoAvalonOrigins
             {
                 shmAcc = tag.Get<bool>("ExxoAvalonOrigins:SHMAcc");
             }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HerbTier"))
+            {
+                herbTier = tag.GetAsInt("ExxoAvalonOrigins:HerbTier");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HerbTotal"))
+            {
+                herbTotal = tag.GetAsInt("ExxoAvalonOrigins:HerbTotal");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:PotionTotal"))
+            {
+                potionTotal = tag.GetAsInt("ExxoAvalonOrigins:PotionTotal");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HerbCounts"))
+            {
+                herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
+            }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -537,7 +560,11 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:TomeSlot", ItemIO.Save(tomeItem) },
                 { "ExxoAvalonOrigins:CrystalHealth", crystalHealth },
                 { "ExxoAvalonOrigins:Stamina", statStamMax},
-                { "ExxoAvalonOrigins:SHMAcc", shmAcc }
+                { "ExxoAvalonOrigins:SHMAcc", shmAcc },
+                { "ExxoAvalonOrigins:HerbTier", herbTier },
+                { "ExxoAvalonOrigins:HerbTotal", herbTotal },
+                { "ExxoAvalonOrigins:PotionTotal", potionTotal },
+                { "ExxoAvalonOrigins:HerbCounts", herbCounts }
             };
             return tag;
         }
@@ -547,9 +574,31 @@ namespace ExxoAvalonOrigins
             if (ExxoAvalonOrigins.godMode) return false;
             return true;
         }
-
+        
 	    public override void PostUpdate()
         {
+            if (Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.HerbologyBench>() && Main.mouseRight && Main.mouseRightRelease)
+            {
+                Main.playerInventory = true;
+                ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
+                herbX = Player.tileTargetX;
+                herbY = Player.tileTargetY;
+                Main.mouseRightRelease = false;
+                if (ExxoAvalonOrigins.herb) Main.PlaySound(10, -1, -1, 1);
+                else Main.PlaySound(11, -1, -1, 1);
+            }
+            if (ExxoAvalonOrigins.herb)
+            {
+                int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
+                int num10 = (int)((player.position.Y + player.height * 0.5) / 16.0);
+                if (num9 < herbX - Player.tileRangeX || num9 > herbX + Player.tileRangeX + 1 || num10 < herbY - Player.tileRangeY || num10 > herbY + Player.tileRangeY + 1)
+                {
+                    Main.PlaySound(11, -1, -1, 1);
+                    ExxoAvalonOrigins.herb = false;
+                    player.dropItemCheck();
+                }
+            }
+            if (!Main.playerInventory) ExxoAvalonOrigins.herb = false;
             if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {

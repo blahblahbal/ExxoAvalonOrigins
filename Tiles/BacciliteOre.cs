@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(Color.Olive, LanguageManager.Instance.GetText("Baccilite Ore"));
+			AddMapEntry(Color.Olive, LanguageManager.Instance.GetText("Baccilite"));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
 			Main.tileShine[Type] = 1150;

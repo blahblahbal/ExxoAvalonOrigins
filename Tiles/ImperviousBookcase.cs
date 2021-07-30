@@ -12,7 +12,7 @@
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16 };
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddMapEntry(new Color(111, 22, 22));
+            AddMapEntry(new Color(191, 142, 111));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

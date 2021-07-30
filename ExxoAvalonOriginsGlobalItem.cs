@@ -20,4 +20,23 @@ using Terraria.ModLoader;using Terraria.UI;namespace ExxoAvalonOrigins{    
                     }
                 }
             }
+        }        public static bool IsHerb(int t)
+        {
+            return (t == ItemID.Daybloom || t == ItemID.Moonglow || t == ItemID.Blinkroot || t == ItemID.Deathweed ||
+                t == ItemID.Waterleaf || t == ItemID.Fireblossom || t == ItemID.Shiverthorn);// || t == ItemID.Sweetstem ||
+                //t == ItemID.Bloodberry || t == ItemID.Barfbush || (t >= 3700 && t <= 3719));
+        }        public static bool IsPotion(int t)
+        {
+            return ((t >= 288 && t <= 305) || (t >= 2322 && t <= 2329) ||
+                                (t >= 2344 && t <= 2349) || (t >= 2354 && t <= 2356));// ||
+                                //t == 2359 || t == ID.ItemID.CrimsonPotion || t == ID.ItemID.ShockwavePotion ||
+                                //t == ID.ItemID.LuckPotion || t == ID.ItemID.BloodCastPotion || t == ID.ItemID.StarbrightPotion ||
+                                //t == ID.ItemID.VisionPotion || t == ID.ItemID.StrengthPotion || t == ID.ItemID.GPSPotion ||
+                                //t == ID.ItemID.TimeShiftPotion || t == ID.ItemID.ShadowPotion || t == ID.ItemID.RoguePotion ||
+                                //t == ID.ItemID.WisdomPotion || t == ID.ItemID.GauntletPotion || t == ID.ItemID.TitanskinPotion ||
+                                //t == ID.ItemID.InvincibilityPotion || t == ID.ItemID.ForceFieldPotion || t == ID.ItemID.MagnetPotion ||
+                                //(t >= 3873 && t <= 3925) || t == ID.ItemID.BlahPotion);
+        }        public static bool IsAdvancedPotion(string name)
+        {
+            return (name.Contains("Advanced") && name.Contains("Potion"));
         }        public static void UpdateInvisibleVanity(ExxoAvalonOrigins.orig_UpdateVanity orig, Player player)        {            orig(player);            for (int k = 13; k < 18 + player.extraAccessorySlots; k++)            {                Item item = player.armor[k];                if (item.exists() &&                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity)                {                    item.modItem.UpdateVanity(player, EquipType.Back);                }            }        }    }}
