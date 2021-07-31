@@ -10,7 +10,8 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class DesertBeak : ModNPC
+    [AutoloadBossHead]
+    public class DesertBeak : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{

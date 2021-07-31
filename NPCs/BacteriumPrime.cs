@@ -11,7 +11,8 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class BacteriumPrime : ModNPC
+    [AutoloadBossHead]
+    public class BacteriumPrime : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{

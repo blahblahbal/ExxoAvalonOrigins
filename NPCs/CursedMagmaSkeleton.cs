@@ -52,6 +52,11 @@ namespace ExxoAvalonOrigins.NPCs
 			}
 		}
 
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return spawnInfo.player.ZoneRockLayerHeight && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
+        }
+
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)

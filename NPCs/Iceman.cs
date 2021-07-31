@@ -11,6 +11,7 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
+    [AutoloadHead]
 	public class Iceman : ModNPC
 	{
 		public override void SetStaticDefaults()
@@ -35,6 +36,125 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath1;
 		}
 
+        public override string TownNPCName()
+        {
+            switch (Main.rand.Next(9))
+            {
+                case 0:
+                    return "Icik";
+                case 1:
+                    return "Paul";
+                case 2:
+                    return "Skaldak";
+                case 3:
+                    return "Tom";
+                case 4:
+                    return "Sisko";
+                case 5:
+                    return "Lance";
+                case 6:
+                    return "Adrian";
+                case 7:
+                    return "Fred";
+                default:
+                    return "Jules";
+            }
+        }
+        public override string GetChat()
+        {
+            if (npc.homeless)
+            {
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+                        return "Thanks for dislodging me from that glacier bit. If you hadn't, I'd have probably gone dormant and stayed there for eons!";
+                    case 1:
+                        return "Wow! A human! I haven't seen one of you for... I don't know how long!";
+                    case 2:
+                        return "Thanks for not flinging matches at me. I hate it when people do that.";
+                }
+            }
+            else
+            {
+                if (!Main.dayTime && Main.rand.Next(5) == 0)
+                {
+                    return "You turned off the sun! Awesome. Now I won't melt.";
+                }
+                switch (Main.rand.Next(11))
+                {
+                    case 0:
+                        return "Frigid waters are my home, but I feel more welcome in here.";
+                    case 1:
+                        return "Could you turn down the sun? It's getting too hot in here. I'll melt!";
+                    case 2:
+                        return "I hope you keep a spare bag of ice on you. I'm about to chunk off and I need something to replace my mass.";
+                    case 3:
+                        return "Go long! I just made an ice football-- Get it?";
+                    case 4:
+                        return "Can you move the hellstone in that chest away from me? I'm feeling ill from all the heat.";
+                    case 5:
+                        return "Are you going to buy things? It makes me feel all warm and fuzzy inside when you do. Oh shoot, now I'm melting...";
+                    case 6:
+                        return "My people are very cold sometimes. I remember one of them standing in the way of a large sea liner.";
+                    case 7:
+                        return "You know what I think? That people don't notice my kind because we're ice to everyone.";
+                    case 8:
+                        return "Contrary to popular belief, my people are warm-blooded. We just like the cold.";
+                    case 9:
+                        return "Really?! I didn't know that-- Oh, sorry. Just talking to that bucket of ice over there.";
+                    case 10:
+                        return "Elta ia jiopa kol nib rtiufaba. Oops, my translator broke. Oh, there it goes.";
+                }
+            }
+            return "";
+        }
+        public static List<Item> CreateNewShop()
+        {
+            // create a list of item ids
+            var itemIds = new List<int>();
+
+            itemIds.Add(ItemID.FrostCore);
+            itemIds.Add(ItemID.FrostMinnow);
+            itemIds.Add(ModContent.ItemType<Items.SoulofIce>());
+            if (Main.LocalPlayer.ZoneSnow) itemIds.Add(ModContent.ItemType<Items.Freezethrower>());
+            itemIds.Add(ModContent.ItemType<Items.FrostySpectacle>());
+            itemIds.Add(ModContent.ItemType<Items.BagofFrost>());
+            itemIds.Add(ItemID.IceTorch);
+            if (ExxoAvalonOriginsGlobalNPC.oblivionDead) itemIds.Add(ModContent.ItemType<Items.HydrolythTrace>());
+            if (Main.LocalPlayer.ZoneSnow) itemIds.Add(ModContent.ItemType<Items.FreezeBolt>());
+            // convert to a list of items
+            var items = new List<Item>();
+            foreach (int itemId in itemIds)
+            {
+                Item item = new Item();
+                item.SetDefaults(itemId);
+                items.Add(item);
+            }
+            return items;
+        }
+        public override void SetChatButtons(ref string button, ref string button2)
+        {
+            button = Language.GetTextValue("LegacyInterface.28");
+        }
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (firstButton)
+            {
+                shop = true;
+            }
+        }
+        public override void SetupShop(Chest shop, ref int nextSlot)
+        {
+            foreach (Item item in CreateNewShop())
+            {
+                // We dont want "empty" items and unloaded items to appear
+                if (item == null || item.type == ItemID.None)
+                    continue;
+
+                shop.item[nextSlot].SetDefaults(item.type);
+                nextSlot++;
+            }
+        }
         public override void AI()
         {
             var flag22 = Main.raining;
@@ -577,7 +697,6 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
         }
-
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)
@@ -615,6 +734,26 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frameCounter = 0.0;
                 npc.frame.Y = frameHeight;
             }
+        }
+        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+        {
+            damage = 40;
+            knockback = 4f;
+        }
+        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
+        {
+            cooldown = 30;
+            randExtraCooldown = 30;
+        }
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
+        {
+            projType = ModContent.ProjectileType<Projectiles.Icicle>();
+            attackDelay = 1;
+        }
+        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
+        {
+            multiplier = 12f;
+            randomOffset = 2f;
         }
     }
 }

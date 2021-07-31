@@ -577,16 +577,6 @@ namespace ExxoAvalonOrigins
         
 	    public override void PostUpdate()
         {
-            //if (Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.HerbologyBench>() && Main.mouseRight && Main.mouseRightRelease)
-            //{
-            //    Main.playerInventory = true;
-            //    ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
-            //    herbX = Player.tileTargetX;
-            //    herbY = Player.tileTargetY;
-            //    Main.mouseRightRelease = false;
-            //    if (ExxoAvalonOrigins.herb) Main.PlaySound(10, -1, -1, 1);
-            //    else Main.PlaySound(11, -1, -1, 1);
-            //}
             if (ExxoAvalonOrigins.herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
