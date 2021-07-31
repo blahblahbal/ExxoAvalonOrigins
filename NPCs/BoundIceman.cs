@@ -32,6 +32,14 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.knockBackResist = 0.5f;
 		}
 
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return spawnInfo.player.ZoneSnow && ExxoAvalonOrigins.superHardmode ? 0.0526f : 0f;
+        }
+        public override bool CanChat()
+        {
+            return true;
+        }
         public override void AI()
         {
             for (var i = 0; i < 255; i++)

@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.055f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.055f : 0f;
         }
         public override void AI()
         {
@@ -145,12 +145,12 @@ namespace ExxoAvalonOrigins.NPCs
             if (num149 > 0f)
             {
                 npc.spriteDirection = 1;
-                npc.rotation = (float)Math.Atan2(num150, num149);
+                //npc.rotation = (float)Math.Atan2(num150, num149);
             }
             else if (num149 < 0f)
             {
                 npc.spriteDirection = -1;
-                npc.rotation = (float)Math.Atan2(num150, num149) + 3.14f;
+                //npc.rotation = (float)Math.Atan2(num150, num149) + 3.14f;
             }
             var num157 = 0.7f;
             if (npc.collideX)

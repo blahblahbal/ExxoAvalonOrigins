@@ -112,9 +112,12 @@
             int dist = 5000;
             bool phantasm = false;
             bool bactprime = false;
+            bool desertbeak = false;
+            bool wallofsteel = false;
+            bool armageddon = false;
             foreach (NPC n in Main.npc)
             {
-                if (n.type == ModContent.NPCType<NPCs.BacteriumPrime>())
+                if (n.type == ModContent.NPCType<NPCs.BacteriumPrime>() && n.active)
                 {
                     Rectangle bact = new Rectangle((int)(n.position.X + (float)(n.width / 2)) - dist, (int)(n.position.Y + (float)(n.height / 2)) - dist, dist * 2, dist * 2);
                     if (bact.Intersects(rectangle))
@@ -123,12 +126,39 @@
                         break;
                     }
                 }
-                if (n.type == ModContent.NPCType<NPCs.Phantasm>())
+                if (n.type == ModContent.NPCType<NPCs.Phantasm>() && n.active)
                 {
                     Rectangle phant = new Rectangle((int)(n.position.X + (float)(n.width / 2)) - dist, (int)(n.position.Y + (float)(n.height / 2)) - dist, dist * 2, dist * 2);
                     if (phant.Intersects(rectangle))
                     {
                         phantasm = true;
+                        break;
+                    }
+                }
+                if (n.type == ModContent.NPCType<NPCs.DesertBeak>() && n.active)
+                {
+                    Rectangle db = new Rectangle((int)(n.position.X + (float)(n.width / 2)) - dist, (int)(n.position.Y + (float)(n.height / 2)) - dist, dist * 2, dist * 2);
+                    if (db.Intersects(rectangle))
+                    {
+                        desertbeak = true;
+                        break;
+                    }
+                }
+                if (n.type == ModContent.NPCType<NPCs.WallofSteel>() && n.active)
+                {
+                    Rectangle wos = new Rectangle((int)(n.position.X + (float)(n.width / 2)) - dist, (int)(n.position.Y + (float)(n.height / 2)) - dist, dist * 2, dist * 2);
+                    if (wos.Intersects(rectangle))
+                    {
+                        wallofsteel = true;
+                        break;
+                    }
+                }
+                if (n.type == ModContent.NPCType<NPCs.ArmageddonSlime>() && n.active)
+                {
+                    Rectangle arma = new Rectangle((int)(n.position.X + (float)(n.width / 2)) - dist, (int)(n.position.Y + (float)(n.height / 2)) - dist, dist * 2, dist * 2);
+                    if (arma.Intersects(rectangle))
+                    {
+                        armageddon = true;
                         break;
                     }
                 }
@@ -138,9 +168,24 @@
                 music = GetSoundSlot(SoundType.Music, "Sounds/Music/BacteriumPrime");
                 priority = MusicPriority.BossLow;
             }
+            if (desertbeak)
+            {
+                music = GetSoundSlot(SoundType.Music, "Sounds/Music/DesertBeak");
+                priority = MusicPriority.BossLow;
+            }
             if (phantasm)
             {
                 music = GetSoundSlot(SoundType.Music, "Sounds/Music/Phantasm");
+                priority = MusicPriority.BossLow;
+            }
+            if (wallofsteel)
+            {
+                music = MusicID.Boss2;
+                priority = MusicPriority.BossLow;
+            }
+            if (armageddon)
+            {
+                music = GetSoundSlot(SoundType.Music, "Sounds/Music/ArmageddonSlime");
                 priority = MusicPriority.BossLow;
             }
         }

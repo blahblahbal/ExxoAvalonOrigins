@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
+    [AutoloadBossHead]
     public class WallofSteel : ModNPC
     {
         public override void SetStaticDefaults()
@@ -39,7 +40,11 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
                     npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
         }
-        
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.65f);
+        }
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             if (ExxoAvalonOriginsWorld.wos >= 0)
@@ -201,6 +206,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void AI()
         {
+            bool expert = Main.expertMode;
             if (npc.position.X < 160f || npc.position.X > (float)((Main.maxTilesX - 10) * 16))
             {
                 npc.active = false;
@@ -298,11 +304,31 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 num451 += 0.4f;
             }
-            if ((double)npc.life < (double)npc.lifeMax * 0.25)
+            if ((double)npc.life < npc.lifeMax * 0.25)
             {
                 num451 += 0.5f;
             }
-            if ((double)npc.life < (double)npc.lifeMax * 0.1)
+            if ((double)npc.life < npc.lifeMax * 0.1)
+            {
+                num451 += 0.6f;
+            }
+            if (npc.life < npc.lifeMax * 0.66 && Main.expertMode)
+            {
+                num451 += 0.3f;
+            }
+            if (npc.life < npc.lifeMax * 0.33 && Main.expertMode)
+            {
+                num451 += 0.3f;
+            }
+            if (npc.life < npc.lifeMax * 0.05 && Main.expertMode)
+            {
+                num451 += 0.6f;
+            }
+            if (npc.life < npc.lifeMax * 0.035 && Main.expertMode)
+            {
+                num451 += 0.6f;
+            }
+            if (npc.life < npc.lifeMax * 0.025 && Main.expertMode)
             {
                 num451 += 0.6f;
             }
@@ -336,43 +362,37 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     int fire;
                     float f = 0f;
+                    int dmg = Main.expertMode ? 75 : 60;
                     Vector2 laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
                     float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
                     Main.PlaySound(2, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     while (f <= .1f)
                     {
-                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 96, 60, 6f);
+                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 96, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
-                        //Main.projectile[fire].notReflect = true;
                         if (Main.netMode != 0)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                         }
-                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 96, 60, 6f);
+                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 96, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
-                        //Main.projectile[fire].notReflect = true;
                         if (Main.netMode != 0)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                         }
                         f += .034f;
                     }
-                    //int laser = Projectile.NewProjectile((velocity.X < 0 ? position.X : position.X + width), Main.wosB, npc.velocity.X, npc.velocity.Y, 100, 70, 6f);
-                    //Main.projectile[laser].velocity = Vector2.Normalize(Main.player[npc.target].center() - new Vector2(npc.position.X, Main.wosB)) * 5f;
-                    //Main.projectile[laser].tileCollide = false;
-                    //Main.projectile[laser].notReflect = true;
                     npc.ai[1] = 0;
                 }
                 npc.ai[2]++;
                 if (npc.ai[2] == 100)
                 {
-                    int laser = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosB, npc.velocity.X, npc.velocity.Y, 100, 55, 4f);
+                    int laser = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosB, npc.velocity.X, npc.velocity.Y, 100, Main.expertMode ? 70 : 55, 4f);
                     Main.projectile[laser].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosB)) * 5f;
                     Main.projectile[laser].hostile = true;
                     Main.projectile[laser].friendly = false;
-                    //Main.projectile[laser].notReflect = true;
                     Main.projectile[laser].tileCollide = false;
                     if (Main.netMode != 0) NetMessage.SendData(27, -1, -1, NetworkText.Empty, laser);
                     npc.ai[2] = 0;
@@ -386,16 +406,14 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.PlaySound(2, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     //while (f <= .1f)
                     //{
-                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 95, 55, 6f);
+                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 95, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
-                    //Main.projectile[fire].notReflect = true;
                     if (Main.netMode != 0)
                     {
                         NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                     }
-                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 95, 55, 6f);
+                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 95, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
-                    //Main.projectile[fire].notReflect = true;
                     if (Main.netMode != 0)
                     {
                         NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
@@ -434,7 +452,6 @@ namespace ExxoAvalonOrigins.NPCs
                     int fire = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT, npc.velocity.X, npc.velocity.Y, 101, 45, 4f);
                     Main.projectile[fire].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
                     Main.projectile[fire].tileCollide = false;
-                    //Main.projectile[fire].notReflect = true;
                     if (Main.netMode != 0) NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                 }
                 if (npc.ai[3] > 300)
@@ -466,8 +483,8 @@ namespace ExxoAvalonOrigins.NPCs
                     if (Main.player[i].active) numplayers++;
                 }
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.DarkStarHeart>(), numplayers, false, 0, false);
+                ExxoAvalonOriginsWorld.InitiateSuperHardmode();
             }
-            //ExxoAvalonOriginsWorld.InitiateSuperHardmode();
             if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
             if (Main.netMode != 1)

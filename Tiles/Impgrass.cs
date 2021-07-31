@@ -10,4 +10,12 @@
             Main.tileBlockLight[Type] = true;            Main.tileBlendAll[Type] = true;            Main.tileMergeDirt[Type] = true;
             drop = ItemID.AshBlock;
         }
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (fail && !effectOnly)
+            {
+                Main.tile[i, j].type = TileID.Ash;
+                WorldGen.SquareTileFrame(i, j);
+            }
+        }
     }}

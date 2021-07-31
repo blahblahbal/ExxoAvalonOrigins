@@ -11,6 +11,7 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
+    [AutoloadBossHead]
     public class Phantasm : ModNPC
     {
         public override void SetStaticDefaults()

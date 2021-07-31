@@ -1691,19 +1691,19 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    //if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
-                                    //{
-                                    //    if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
-                                    //    {
-                                    //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvStarbrightPotion>(), 1);
-                                    //        Main.item[x].owner = Main.myPlayer;
-                                    //        if (Main.netMode == 1)
-                                    //        {
-                                    //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
-                                    //        }
-                                    //        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
-                                    //    }
-                                    //}
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    {
+                                        if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
+                                        {
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvStarbrightPotion>(), 1);
+                                            Main.item[x].owner = Main.myPlayer;
+                                            if (Main.netMode == 1)
+                                            {
+                                                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                            }
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                        }
+                                    }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
                                 case 41:
