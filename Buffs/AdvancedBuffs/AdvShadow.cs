@@ -4,7 +4,7 @@
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Advanced Shadows");
-            Description.SetDefault("You can teleport to the cursor, press " + ExxoAvalonOrigins.shadowHotkey.ToString());
+            Description.SetDefault("You can teleport to the cursor, press V");
         }
 
         public override void Update(Player player, ref int k)

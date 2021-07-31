@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.NPCs
             Main.NewText("Oblivion has been reborn!", 175, 75, 255, false);
             if (Main.netMode == 2)
             {
-                NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Oblivion has been reborn!"), 255, 175f, 75f, 255f, 0);
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Oblivion has been reborn!"), new Color(175, 75, 255));
             }
         }
     }
