@@ -34,9 +34,13 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath6;
         }
-
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 255);
+        }
         public override void AI()
         {
+            npc.rotation = npc.velocity.X * 0.02f;
             Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 2f, 2f, 2f);
             npc.TargetClosest(true);
             //if (alpha > 0) alpha--;
@@ -352,7 +356,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override void FindFrame(int frameHeight)
         {
             npc.frameCounter++;
-            if (npc.frameCounter >= 6.0)
+            if (npc.frameCounter >= 4.0)
             {
                 npc.frame.Y = npc.frame.Y + frameHeight;
                 npc.frameCounter = 0.0;
