@@ -16,24 +16,24 @@ namespace ExxoAvalonOrigins.Items
 		{
 			DisplayName.SetDefault("Axe of Sickness");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/AxeofSickness");
-			item.damage = 15;
+			item.UseSound = SoundID.Item1;
+			item.damage = 24;
 			item.autoReuse = true;
 			item.useTurn = true;
-			item.scale = 1f;
-			item.axe = 12;
+			item.scale = 1.2f;
+			item.axe = 15;
 			item.rare = 1;
 			item.width = dims.Width;
-			item.useTime = 20;
-			item.knockBack = 0.5f;
+			item.useTime = 34;
+			item.knockBack = 6f;
 			item.melee = true;
 			item.useStyle = 1;
 			item.value = Item.sellPrice(0, 0, 36, 0);
 			item.UseSound = SoundID.Item1;
-			item.useAnimation = 20;
+			item.useAnimation = 34;
 			item.height = dims.Height;
 		}
     }
