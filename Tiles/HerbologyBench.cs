@@ -10,6 +10,16 @@ namespace ExxoAvalonOrigins.Tiles{
             TileObjectData.addTile(Type);
             Main.tileFrameImportant[Type] = true;
             AddMapEntry(new Color(153, 77, 86), LanguageManager.Instance.GetText("Herbology Bench"));
+        }        public override bool NewRightClick(int i, int j)
+        {
+            Main.playerInventory = true;
+            ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
+            Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbX = Player.tileTargetX;
+            Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbY = Player.tileTargetY;
+            Main.mouseRightRelease = false;
+            if (ExxoAvalonOrigins.herb) Main.PlaySound(10, -1, -1, 1);
+            else Main.PlaySound(11, -1, -1, 1);
+            return true;
         }        //public override void RightClick(int i, int j)
         //{
         //    Main.playerInventory = true;
