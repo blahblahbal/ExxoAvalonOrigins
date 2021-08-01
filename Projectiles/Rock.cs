@@ -8,13 +8,11 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             DisplayName.SetDefault("Rock");
         }
-
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Rock");
             projectile.netImportant = true;
-            projectile.width = dims.Width * 30 / 22;
-            projectile.height = dims.Height * 30 / 22 / Main.projFrames[projectile.type];
+            projectile.width = 32;
+            projectile.height = 32;
             projectile.aiStyle = 25;
             projectile.penetrate = -1;
             projectile.timeLeft = 1200;
