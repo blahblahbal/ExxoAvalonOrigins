@@ -16,23 +16,23 @@ namespace ExxoAvalonOrigins.Items
 		{
 			DisplayName.SetDefault("Caesium Spatha");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/CaesiumScimitar");
 			item.UseSound = SoundID.Item1;
-			item.damage = 58;
+			item.damage = 66;
 			item.useTurn = true;
-			item.scale = 1.1f;
+			item.scale = 1.2f;
 			item.rare = 5;
 			item.width = dims.Width;
-			item.useTime = 16;
-			item.knockBack = 5f;
+			item.useTime = 18;
+			item.knockBack = 8f;
 			item.melee = true;
+			item.autoReuse = true;
 			item.useStyle = 1;
 			item.value = Item.sellPrice(0, 5, 0, 0);
-			item.useAnimation = 16;
+			item.useAnimation = 18;
 			item.height = dims.Height;
 		}
-	}
+    }
 }

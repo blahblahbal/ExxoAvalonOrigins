@@ -16,26 +16,30 @@ namespace ExxoAvalonOrigins.Items
 		{
 			DisplayName.SetDefault("Caesium Crossbow");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/CaesiumRepeater");
 			item.UseSound = SoundID.Item5;
+			item.UseSound = SoundID.Item5;
 			item.damage = 53;
 			item.autoReuse = true;
 			item.useAmmo = AmmoID.Arrow;
-			item.shootSpeed = 9.5f;
+			item.shootSpeed = 16f;
 			item.ranged = true;
 			item.noMelee = true;
 			item.rare = 5;
 			item.width = dims.Width;
-			item.useTime = 20;
+			item.useTime = 16;
 			item.knockBack = 2.75f;
 			item.shoot = 1;
 			item.useStyle = 5;
 			item.value = 75000;
-			item.useAnimation = 20;
+			item.useAnimation = 16;
 			item.height = dims.Height;
+		}
+		public override Vector2? HoldoutOffset()
+		{
+			return new Vector2(-3, 0);
 		}
 	}
 }
