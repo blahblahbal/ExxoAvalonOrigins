@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Backgrounds
 {
-    public class ExampleSurfaceBgStyle : ModSurfaceBgStyle
+    public class ContagionSurfaceBgStyle : ModSurfaceBgStyle
     {
         public override bool ChooseBgStyle()
         {
@@ -65,7 +65,7 @@ namespace ExxoAvalonOrigins.Backgrounds
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
-            return mod.GetBackgroundSlot("Backgrounds/ExampleBiomeSurfaceClose");
+            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG");
         }
     }
 }

@@ -1,10 +1,23 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class ShadowMirror : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Shadow Mirror");			Tooltip.SetDefault("Gaze in the mirror to return home\nPress N to change waypoint modes");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/ShadowMirror");			item.mana = 30;			item.rare = 7;			item.width = dims.Width;			item.useTime = 90;			item.useTurn = true;			item.value = 500000;			item.useStyle = 4;            item.UseSound = SoundID.Item6;			item.useAnimation = 90;			item.height = dims.Height;		}        public override void UpdateInventory(Player player)
+﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+    class DemonConch : ModItem
+    {
+        public override void SetStaticDefaults()
         {
-            player.accThirdEye = player.accFishFinder = player.accWeatherRadio = player.accCalendar = player.accCritterGuide = player.accDreamCatcher =
-                player.accJarOfSouls = player.accStopwatch = player.accOreFinder = true;
-            player.accWatch = 3;
-            player.accDepthMeter = 1;
-            player.accCompass = 1;
+            DisplayName.SetDefault("Demon Conch");
+            Tooltip.SetDefault("If you listen closely, you can hear screams");
+        }
+
+        public override void SetDefaults()
+        {
+            item.mana = 30;
+            item.rare = 3;
+            item.width = 24;
+            item.useTime = 90;
+            item.useTurn = true;
+            item.value = Item.sellPrice(0, 1);
+            item.useStyle = 4;            item.UseSound = SoundID.Item6;
+            item.useAnimation = 90;
+            item.height = 24;
         }        public override void HoldItem(Player player)
         {
             if (player.itemAnimation > 0)
@@ -33,7 +46,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                         }
                     }
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = true;
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowWP);
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(5);
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = false;
                     for (int num367 = 0; num367 < 70; num367++)
                     {

@@ -457,8 +457,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         {
                             int x = WorldGen.genRand.Next(1, Main.maxTilesX - 3);
                             int y = (int)(WorldGen.worldSurfaceHigh + 20.0);
-                            WorldGen.Place3x2(x, y, ModContent.GetInstance<Tiles.HallowedAltar>().Type);
-                            if (Main.tile[x, y].type == ModContent.GetInstance<Tiles.HallowedAltar>().Type)
+                            WorldGen.Place3x2(x, y, (ushort)ModContent.TileType<Tiles.HallowedAltar>());
+                            if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.HallowedAltar>())
                                 break;
                         }
                     }

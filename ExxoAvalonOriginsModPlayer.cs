@@ -577,6 +577,7 @@ namespace ExxoAvalonOrigins
         
 	    public override void PostUpdate()
         {
+            ExxoAvalonOriginsCollisions.HurtTiles(player.position, player.velocity, player.width, player.height, false);
             if (ExxoAvalonOrigins.herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);

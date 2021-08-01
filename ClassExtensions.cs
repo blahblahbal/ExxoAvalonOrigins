@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +17,12 @@ namespace ExxoAvalonOrigins
         {
             return item.type > 0 && item.stack > 0;
         }
-        
+        public static int RemoveAtIndex(this List<int> list, int index)
+        {
+            int item = list[index];
+            list.RemoveAt(index);
+            return item;
+        }
         public static int AddVariable(this ILContext context, Type type)
         {
             context.Body.Variables.Add(new VariableDefinition(context.Import(type)));

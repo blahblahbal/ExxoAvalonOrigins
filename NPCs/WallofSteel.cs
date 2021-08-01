@@ -354,8 +354,8 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (Main.netMode != 1) // leeches
                     {
-                        //int num442 = NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)(npc.height / 2) + 20f), 476, 1);
-                        //Main.npc[num442].velocity.X = (float)(npc.direction * 8);
+                        int num442 = NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)(npc.height / 2) + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
+                        Main.npc[num442].velocity.X = (float)(npc.direction * 8);
                     }
                 }
                 if (npc.ai[1] > 90)

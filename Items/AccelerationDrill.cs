@@ -44,27 +44,54 @@ namespace ExxoAvalonOrigins.Items
 			item.height = dims.Height;
 		}
 
-		public override bool UseItem(Player player)
-		{
-			if (player.controlUseItem && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().speed && player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost <= (float)Player.tileTargetX && (player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f >= (float)Player.tileTargetX && player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost <= (float)Player.tileTargetY && (player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f >= (float)Player.tileTargetY)
-			{
-				for (int num360 = Player.tileTargetX - 1; num360 <= Player.tileTargetX + 1; num360++)
-				{
-					for (int num361 = Player.tileTargetY - 1; num361 <= Player.tileTargetY + 1; num361++)
-					{
-						if (Main.tile[num360, num361].active() && !Main.tileHammer[(int)Main.tile[num360, num361].type] && !Main.tileAxe[(int)Main.tile[num360, num361].type])
-						{
-							WorldGen.KillTile(num360, num361, false, false, false);
-							if (Main.netMode == 1)
-							{
-								NetMessage.SendData(17, -1, -1, NetworkText.FromLiteral(""), 0, (float)num360, (float)num361, 0f, 0);
-							}
-						}
-					}
-				}
-			}
+        public override void HoldItem(Player player)
+        {
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().speed && player.controlUseItem)
+            {
+                if (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost <= Player.tileTargetX && (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f >= Player.tileTargetX && player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost <= Player.tileTargetY && (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f >= (float)Player.tileTargetY)
+                {
+                    for (int x = Player.tileTargetX - 1; x <= Player.tileTargetX + 1; x++)
+                    {
+                        for (int y = Player.tileTargetY - 1; y <= Player.tileTargetY + 1; y++)
+                        {
+                            if (Main.tile[x, y].active() && !Main.tileHammer[Main.tile[x, y].type] && !Main.tileAxe[Main.tile[x, y].type])
+                            {
+                                if (Main.tile[x, y].type != 21)
+                                {
+                                    WorldGen.KillTile(x, y);
+                                    if (Main.netMode == 1)
+                                    {
+                                        NetMessage.SendData(17, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-			return true;
-		}
+  //      public override bool UseItem(Player player)
+		//{
+		//	if (player.controlUseItem && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().speed && player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost <= (float)Player.tileTargetX && (player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f >= (float)Player.tileTargetX && player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost <= (float)Player.tileTargetY && (player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f >= (float)Player.tileTargetY)
+		//	{
+		//		for (int num360 = Player.tileTargetX - 1; num360 <= Player.tileTargetX + 1; num360++)
+		//		{
+		//			for (int num361 = Player.tileTargetY - 1; num361 <= Player.tileTargetY + 1; num361++)
+		//			{
+		//				if (Main.tile[num360, num361].active() && !Main.tileHammer[(int)Main.tile[num360, num361].type] && !Main.tileAxe[(int)Main.tile[num360, num361].type])
+		//				{
+		//					WorldGen.KillTile(num360, num361, false, false, false);
+		//					if (Main.netMode == 1)
+		//					{
+		//						NetMessage.SendData(17, -1, -1, NetworkText.FromLiteral(""), 0, (float)num360, (float)num361, 0f, 0);
+		//					}
+		//				}
+		//			}
+		//		}
+		//	}
+
+		//	return true;
+		//}
 	}
 }

@@ -7,16 +7,24 @@ namespace ExxoAvalonOrigins.Waters
     public class ContagionWater : ModWaterStyle
     {
         public override bool ChooseWaterStyle()
-            => Main.bgStyle == mod.GetSurfaceBgStyleSlot("ContagionSurfaceBG");
-
+        {
+            return Main.bgStyle == mod.GetSurfaceBgStyleSlot("ContagionSurfaceBG");
+        }
+        
         public override int ChooseWaterfallStyle()
-            => mod.GetWaterfallStyleSlot("ContagionWaterfallStyle");
+        {
+            return mod.GetWaterfallStyleSlot("ContagionWaterfallStyle");
+        }
 
         public override int GetSplashDust()
-            => ModContent.DustType<Dusts.ContagionWaterSplash>();
+        {
+            return ModContent.DustType<Dusts.ContagionWaterSplash>();
+        }
 
         public override int GetDropletGore()
-            => mod.GetGoreSlot("Gores/ContagionDroplet");
+        {
+            return mod.GetGoreSlot("Gores/ContagionDroplet");
+        }
 
         public override void LightColorMultiplier(ref float r, ref float g, ref float b)
         {
@@ -26,6 +34,8 @@ namespace ExxoAvalonOrigins.Waters
         }
 
         public override Color BiomeHairColor()
-            => Color.Lime;
+        {
+            return Color.Lime;
+        }
     }
 }
