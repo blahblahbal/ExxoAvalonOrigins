@@ -3,7 +3,16 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             projectile.height = 16;			projectile.aiStyle = 27;			projectile.melee = true;			projectile.alpha = 255;			projectile.friendly = true;		}
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return new Color(255, 255, 255, 100);
+			if (this.projectile.localAI[1] >= 15f)
+			{
+				return new Color(255, 255, 255, this.projectile.alpha);
+			}
+			if (this.projectile.localAI[1] < 5f)
+			{
+				return Color.Transparent;
+			}
+			int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);
+			return new Color(num7, num7, num7, num7);
 		}
 		public override void Kill(int timeLeft)
 		{

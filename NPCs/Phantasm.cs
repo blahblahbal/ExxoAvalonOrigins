@@ -31,9 +31,9 @@ namespace ExxoAvalonOrigins.NPCs
             npc.aiStyle = -1;
             npc.value = 100000f;
             npc.knockBackResist = 0f;
-            npc.scale = 1.7f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath6;
+            npc.scale = 1.5f;
+            npc.HitSound = SoundID.NPCHit3;
+            npc.DeathSound = SoundID.NPCDeath39;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -339,6 +339,38 @@ namespace ExxoAvalonOrigins.NPCs
             if (Main.rand.Next(10) == 0)
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantasmTrophy>(), 1, false, 0);
+            }
+            for (int i = 0; i < 40; i++)
+            {
+                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, 180, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num890].velocity *= 5f;
+                Main.dust[num890].scale = 1.5f;
+                Main.dust[num890].noGravity = true;
+                Main.dust[num890].fadeIn = 2f;
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                int num893 = Dust.NewDust(npc.position, npc.width, npc.height, 180, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num893].velocity *= 2f;
+                Main.dust[num893].scale = 1.5f;
+                Main.dust[num893].noGravity = true;
+                Main.dust[num893].fadeIn = 3f;
+            }
+            for (int i = 0; i < 40; i++)
+            {
+                int num892 = Dust.NewDust(npc.position, npc.width, npc.height, 175, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num892].velocity *= 5f;
+                Main.dust[num892].scale = 1.5f;
+                Main.dust[num892].noGravity = true;
+                Main.dust[num892].fadeIn = 2f;
+            }
+            for (int i = 0; i < 40; i++)
+            {
+                int num891 = Dust.NewDust(npc.position, npc.width, npc.height, 180, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num891].velocity *= 10f;
+                Main.dust[num891].scale = 1.5f;
+                Main.dust[num891].noGravity = true;
+                Main.dust[num891].fadeIn = 1.5f;
             }
         }
 
