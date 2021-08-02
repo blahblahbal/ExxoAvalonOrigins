@@ -36,5 +36,19 @@ namespace ExxoAvalonOrigins.Items
 			item.UseSound = SoundID.Item1;
 			item.value = Item.sellPrice(0, 1, 0, 0);
 		}
-	}
+
+        //public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
+        //{
+        //    bool hasDebuff = false;
+        //    for (int i = 0; i < target.buffType.Length; i++)
+        //    {
+        //        if (Main.debuff[target.buffType[i]])
+        //        {
+        //            hasDebuff = true;
+        //            break;
+        //        }
+        //    }
+        //    if (hasDebuff) damage *= 2;
+        //}
+    }
 }
