@@ -9,7 +9,6 @@
 
         public override void SetDefaults()
         {
-            item.mana = 30;
             item.rare = 3;
             item.width = 24;
             item.useTime = 90;
@@ -46,7 +45,7 @@
                         }
                     }
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = true;
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(5);
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(5, player.whoAmI);
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = false;
                     for (int num367 = 0; num367 < 70; num367++)
                     {

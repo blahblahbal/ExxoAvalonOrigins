@@ -20,6 +20,51 @@ using Terraria.ModLoader;using Terraria.UI;namespace ExxoAvalonOrigins{    
                     }
                 }
             }
+        }        public override void UpdateEquip(Item item, Player player)
+        {
+            if (item.prefix == ModContent.PrefixType<Prefixes.Lurid>())
+            {
+                player.magicCrit += 2;
+                player.meleeCrit += 2;
+                player.rangedCrit += 2;
+                player.thrownCrit += 2;
+                player.statDefense += 2;
+            }
+            if (item.prefix == ModContent.PrefixType<Prefixes.Robust>())
+            {
+                player.magicDamage += 0.03f;
+                player.meleeDamage += 0.03f;
+                player.rangedDamage += 0.03f;
+                player.thrownDamage += 0.03f;
+                player.minionDamage += 0.03f;
+                player.statDefense += 3;
+            }
+            if (item.prefix == ModContent.PrefixType<Prefixes.Robust>())
+            {
+                player.meleeSpeed += 0.03f;
+                player.meleeDamage += 0.03f;
+                player.rangedDamage += 0.03f;
+                player.magicDamage += 0.03f;
+                player.minionDamage += 0.03f;
+                player.thrownDamage += 0.03f;
+            }
+            if (item.prefix == ModContent.PrefixType<Prefixes.Magical>())
+            {
+                player.statManaMax2 += 40;
+            }
+            if (item.prefix == ModContent.PrefixType<Prefixes.Bogus>())
+            {
+                player.magicCrit += 6;
+                player.meleeCrit += 6;
+                player.rangedCrit += 6;
+                player.thrownCrit += 6;
+            }
+            if (item.prefix == ModContent.PrefixType<Prefixes.Enchanted>())
+            {
+                player.moveSpeed += 0.03f;
+                player.statManaMax2 += 20;
+                player.statDefense++;
+            }
         }        public static bool IsHerb(int t)
         {
             return (t == ItemID.Daybloom || t == ItemID.Moonglow || t == ItemID.Blinkroot || t == ItemID.Deathweed ||

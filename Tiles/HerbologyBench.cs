@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Tiles{
         }        public override bool NewRightClick(int i, int j)
         {
             Main.playerInventory = true;
-            ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
+            if (Main.netMode != NetmodeID.Server) ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
             Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbX = Player.tileTargetX;
             Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbY = Player.tileTargetY;
             Main.mouseRightRelease = false;

@@ -130,8 +130,8 @@ namespace ExxoAvalonOrigins.NPCs
                     if (npc.ai[2] <= 300)
                     {
                         Player T = Main.player[npc.target];
-                        npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16; //ExxoAvalonOriginsWorld.LoK * 16;
                         npc.velocity *= 0f;
+                        npc.position = ExxoAvalonOriginsWorld.LoK * 16;
                         if (npc.ai[2] % 20 == 0)
                         {
                             float Speed = 9f;
@@ -153,11 +153,11 @@ namespace ExxoAvalonOrigins.NPCs
                 if (npc.ai[1] >= 4 && npc.ai[1] < 305)
                 {
                     npc.ai[1]++;
-                    npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16; //ExxoAvalonOriginsWorld.LoK * 16;
+                    npc.velocity *= 0f;
+                    npc.position = ExxoAvalonOriginsWorld.LoK * 16;
                     if (npc.ai[1] % 75 == 0)
                     {
                         Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
-                        npc.velocity *= 0f;
                         // fire laser
                         Vector2 velocityOfProj = Main.player[npc.target].Center - npc.Center;
                         velocityOfProj.Normalize();
@@ -168,7 +168,6 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
                         int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y + npc.width / 3, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 45, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
-                        //Main.projectile[p].notReflect = true;
                         npc.localAI[1] += 0.05f;
                         if (npc.localAI[1] > 1f)
                         {
@@ -192,20 +191,13 @@ namespace ExxoAvalonOrigins.NPCs
             // ai phase 3, fire spiral spread of ghostflame orbs
             else
             {
-                //if (npc.life > npc.lifeMax / 3 - 250)
-                //{
-                //    npc.ai[0] = 0;
-                //    npc.ai[1] = 0;
-                //    npc.ai[2] = 0;
-                //    npc.ai[3] = 0;
-                //}
-                npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16; //ExxoAvalonOriginsWorld.LoK * 16;
                 npc.velocity *= 0f;
+                npc.position = ExxoAvalonOriginsWorld.LoK * 16; // new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
                 npc.ai[3]++;
                 if (npc.ai[3] >= 300)
                 {
                     npc.dontTakeDamage = true;
-                    npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16; //ExxoAvalonOriginsWorld.LoK * 16;
+                    npc.position = ExxoAvalonOriginsWorld.LoK * 16; // new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
                     npc.velocity *= 0f;
                     npc.ai[1]++;
                     if (npc.ai[1] >= 250) npc.ai[1] = 250;
@@ -241,7 +233,6 @@ namespace ExxoAvalonOrigins.NPCs
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation2 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation2 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
-                            //Main.projectile[p].notReflect = true;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != 0)
@@ -251,7 +242,6 @@ namespace ExxoAvalonOrigins.NPCs
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation3 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation3 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
-                            //Main.projectile[p].notReflect = true;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != 0)
@@ -261,7 +251,6 @@ namespace ExxoAvalonOrigins.NPCs
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation4 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation4 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
-                            //Main.projectile[p].notReflect = true;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != 0)
@@ -290,7 +279,6 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
                         int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 45, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
-                        //Main.projectile[p2].notReflect = true;
                         Main.projectile[p2].localAI[0] += 120;
                         npc.localAI[1] += 0.05f;
                         if (npc.localAI[1] > 1f)

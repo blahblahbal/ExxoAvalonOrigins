@@ -21,7 +21,7 @@
             projectile.ignoreWater = true;
         }        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            //if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 240);
+            if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.ShadowCurse>(), 240);
         }        public override void AI()        {
             int num890 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 180, 0f, 0f, 0, default(Color), 1f);
             Main.dust[num890].velocity *= 0.1f;
