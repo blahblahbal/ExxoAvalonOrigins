@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items
             item.autoReuse = true;
             item.useTurn = true;
             item.scale = 1;
-            item.shootSpeed = 5f;
+            item.shootSpeed = 8f;
             item.rare = 8;
             item.width = dims.Width;
             item.useTime = 30;

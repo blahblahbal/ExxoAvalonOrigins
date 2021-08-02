@@ -8,7 +8,6 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             DisplayName.SetDefault("Rock");
         }
-
         public override void SetDefaults()
         {
             projectile.netImportant = true;
