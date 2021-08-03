@@ -31,7 +31,16 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, 100);
+            if (this.projectile.localAI[1] >= 15f)
+            {
+                return new Color(255, 255, 255, this.projectile.alpha);
+            }
+            if (this.projectile.localAI[1] < 5f)
+            {
+                return Color.Transparent;
+            }
+            int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);
+            return new Color(num7, num7, num7, num7);
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {

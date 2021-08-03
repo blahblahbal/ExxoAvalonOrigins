@@ -36,19 +36,28 @@ namespace ExxoAvalonOrigins.Items
 			item.UseSound = SoundID.Item1;
 			item.value = Item.sellPrice(0, 1, 0, 0);
 		}
-
-        //public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
-        //{
-        //    bool hasDebuff = false;
-        //    for (int i = 0; i < target.buffType.Length; i++)
-        //    {
-        //        if (Main.debuff[target.buffType[i]])
-        //        {
-        //            hasDebuff = true;
-        //            break;
-        //        }
-        //    }
-        //    if (hasDebuff) damage *= 2;
-        //}
-    }
+		public override void MeleeEffects(Player player, Rectangle hitbox)
+		{
+			if (Main.rand.Next(5) == 0)
+			{
+				int num208 = Main.rand.Next(3);
+				if (num208 == 0)
+				{
+					num208 = 15;
+				}
+				else if (num208 == 1)
+				{
+					num208 = 57;
+				}
+				else if (num208 == 2)
+				{
+					num208 = 58;
+				}
+				int num209 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, num208);
+				Dust dust = Main.dust[num209];
+				dust.velocity *= 0.2f;
+				dust.scale = 1.3f;
+			}
+		}
+	}
 }

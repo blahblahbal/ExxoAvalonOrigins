@@ -23,16 +23,15 @@ namespace ExxoAvalonOrigins.Items
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/BloodyAmulet");
 			item.UseSound = SoundID.Item4;
 			item.consumable = true;
-			item.rare = 8;
+			item.rare = 3;
 			item.width = dims.Width;
 			item.useTime = 40;
 			item.shoot = ModContent.ProjectileType<Projectiles.BloodyAmulet>();
 			item.useStyle = 1;
-			item.maxStack = 999;
+			item.maxStack = 20;
 			item.useAnimation = 40;
 			item.height = dims.Height;
 		}
-
         public override bool CanUseItem(Player player)
         {
             if (Main.pumpkinMoon) return false;

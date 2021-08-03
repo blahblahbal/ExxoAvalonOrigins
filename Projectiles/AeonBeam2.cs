@@ -1,26 +1,36 @@
 using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class AeonBeam2 : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Aeon Beam");		}		public override void SetDefaults()		{			projectile.width = 16;			projectile.height = 16;			projectile.aiStyle = 27;			projectile.melee = true;			projectile.penetrate = 1;			projectile.light = 0.2f;			projectile.alpha = 0;			projectile.friendly = true;        }
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return new Color(255, 255, 255, 100);
+			if (this.projectile.localAI[1] >= 15f)
+			{
+				return new Color(255, 255, 255, this.projectile.alpha);
+			}
+			if (this.projectile.localAI[1] < 5f)
+			{
+				return Color.Transparent;
+			}
+			int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);
+			return new Color(num7, num7, num7, num7);
 		}
 		public override void AI()        {
-			if (projectile.localAI[1] > 7f)
+			if (projectile.localAI[1] > 5f)
 			{
-				var num480 = Main.rand.Next(3);
-				if (num480 == 0)
+				int num208 = Main.rand.Next(3);
+				if (num208 == 0)
 				{
-					num480 = 15;
+					num208 = 15;
 				}
-				else if (num480 == 1)
+				else if (num208 == 1)
 				{
-					num480 = 57;
+					num208 = 57;
 				}
-				else
+				else if (num208 == 2)
 				{
-					num480 = 58;
+					num208 = 58;
 				}
-				var Sparkle = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f, projectile.position.Y - projectile.velocity.Y * 2f), 8, 8, num480, 0f, 0f, 100, default(Color), 1.25f);
-				Main.dust[Sparkle].velocity *= 0.1f;
+				int num209 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 2f), 8, 8, num208, 0f, 0f, 100, default(Color), 1.25f);
+				Dust dust = Main.dust[num209];
+				dust.velocity *= 0.1f;
 			}
 		}
         public override void Kill(int timeLeft)
