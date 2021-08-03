@@ -33,6 +33,17 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             return new Color(255, 255, 255, 100);
         }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            int randomNum = Main.rand.Next(7);
+            if (randomNum == 0) target.AddBuff(20, 300);
+            else if (randomNum == 1) target.AddBuff(24, 200);
+            else if (randomNum == 2) target.AddBuff(31, 120);
+            else if (randomNum == 3) target.AddBuff(39, 300);
+            else if (randomNum == 4) target.AddBuff(44, 300);
+            else if (randomNum == 5) target.AddBuff(70, 240);
+            else if (randomNum == 6) target.AddBuff(69, 300);
+        }
         public static int FindClosest(Vector2 pos, float dist)
         {
             int closest = -1;
@@ -40,7 +51,7 @@ namespace ExxoAvalonOrigins.Projectiles
             for (int i = 0; i < Main.npc.Length; i++)
             {
                 NPC N = Main.npc[i];
-                if (!N.active || N.townNPC) continue;
+                if (!N.active || N.townNPC || N.dontTakeDamage) continue;
                 if (Vector2.Distance(pos, N.Center) < last)
                 {
                     last = Vector2.Distance(pos, N.Center);

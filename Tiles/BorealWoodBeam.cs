@@ -19,5 +19,7 @@ namespace ExxoAvalonOrigins.Tiles
 			//Main.tileBeam[Type] = true;
 			drop = mod.ItemType("BorealWoodBeam");
 		}
-	}
+
+        //public override bool CanPlace(int i, int j)        //{        //    return ExxoAvalonOrigins.beams.Contains(Main.tile[i - 1, j].type) || ExxoAvalonOrigins.beams.Contains(Main.tile[i + 1, j].type) || ExxoAvalonOrigins.beams.Contains(Main.tile[i, j - 1].type) || ExxoAvalonOrigins.beams.Contains(Main.tile[i, j + 1].type);        //}
+    }
 }

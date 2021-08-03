@@ -560,6 +560,38 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     }
                 }
             }
+            for (int noHellHousesX = x; noHellHousesX <= x + 210; noHellHousesX++)
+            {
+                for (int noHellHousesY = y - 40; noHellHousesY <= y + 90; noHellHousesY++)
+                {
+                    if (Main.tile[noHellHousesX, noHellHousesY] == null) Main.tile[noHellHousesX, noHellHousesY] = new Tile();
+                    if (Main.tile[noHellHousesX, noHellHousesY].type == TileID.ObsidianBrick || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HellstoneBrick ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting3X2 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting2X3 ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting4X3 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting3X3 ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting6X4 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Torches ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Statues || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Banners ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Platforms || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chairs ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.WorkBenches || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Tables ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lampposts || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lamps ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pianos || Main.tile[noHellHousesX, noHellHousesY].type == TileID.GrandfatherClocks ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chandeliers || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Hellforge ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HangingLanterns)
+                    {
+                        Main.tile[noHellHousesX, noHellHousesY].active(false);
+                        Main.tile[noHellHousesX, noHellHousesY].wall = 0;
+                    }
+                    if (Main.tile[noHellHousesX, noHellHousesY].wall == WallID.ObsidianBrickUnsafe || Main.tile[noHellHousesX, noHellHousesY].wall == WallID.HellstoneBrickUnsafe)
+                    {
+                        Main.tile[noHellHousesX, noHellHousesY].wall = 0;
+                    }
+                    Main.tile[noHellHousesX, noHellHousesY].lava(false);
+                    if (noHellHousesX >= x && noHellHousesX <= x + 210 && noHellHousesY >= y && noHellHousesY <= y + 90)
+                    {
+                        Main.tile[noHellHousesX, noHellHousesY].slope(0);
+                        Main.tile[noHellHousesX, noHellHousesY].halfBrick(false);
+                    }
+                }
+            }
             MakeWallRectangle(x + 1, y + 3, 187, 95, wallUnsafe);
             MakeWallRectangle(x + 185, y + 37, 23, 61, wallUnsafe);
             MakeRectangle(x, y, 210, 100, brick);

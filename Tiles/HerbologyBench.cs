@@ -13,11 +13,11 @@ namespace ExxoAvalonOrigins.Tiles{
         }        public override bool NewRightClick(int i, int j)
         {
             Main.playerInventory = true;
-            if (Main.netMode != NetmodeID.Server) ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
+            if (Main.netMode != NetmodeID.Server) Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = !Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb;
             Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbX = Player.tileTargetX;
             Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbY = Player.tileTargetY;
             Main.mouseRightRelease = false;
-            if (ExxoAvalonOrigins.herb) Main.PlaySound(10, -1, -1, 1);
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) Main.PlaySound(10, -1, -1, 1);
             else Main.PlaySound(11, -1, -1, 1);
             return true;
         }        //public override void RightClick(int i, int j)

@@ -25,5 +25,9 @@ namespace ExxoAvalonOrigins.Tiles
             soundStyle = 1;
             minPick = 210;
         }
-	}
+        public override bool CanExplode(int i, int j)
+        {
+            return false;
+        }
+    }
 }

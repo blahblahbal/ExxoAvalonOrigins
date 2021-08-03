@@ -24,6 +24,7 @@ namespace ExxoAvalonOrigins
         public int statManaMax2 = 100;
         public int statMana = 100;
         public bool shmAcc = false;
+        public bool herb = false;
 	    public bool teleportVWasTriggered = false;
         public enum ShadowMirrorModes
         {
@@ -175,7 +176,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + slimeBand.ToString());
             //trapImmune = false;
             bubbleBoost = false;
-
+            darkInferno = false;
         }
 
         public override void UpdateBadLifeRegen()
@@ -580,18 +581,18 @@ namespace ExxoAvalonOrigins
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
             ExxoAvalonOriginsCollisions.HurtTiles(player.position, player.velocity, player.width, player.height, false);
-            if (ExxoAvalonOrigins.herb)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
                 int num10 = (int)((player.position.Y + player.height * 0.5) / 16.0);
                 if (num9 < herbX - Player.tileRangeX || num9 > herbX + Player.tileRangeX + 1 || num10 < herbY - Player.tileRangeY || num10 > herbY + Player.tileRangeY + 1)
                 {
                     Main.PlaySound(11, -1, -1, 1);
-                    ExxoAvalonOrigins.herb = false;
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
                     player.dropItemCheck();
                 }
             }
-            if (!Main.playerInventory) ExxoAvalonOrigins.herb = false;
+            if (!Main.playerInventory) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
             if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
@@ -1291,154 +1292,6 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-
-        public int ShadowTeleportation(int x, int y)
-        {
-            bool flag = false;
-            int num = 0;
-            int num2 = x;
-            int num3 = y;
-            int num4 = player.width;
-            Vector2 vector = new Vector2((float)num2, (float)num3) * 16f + new Vector2((float)(-(float)num4 / 2 + 8), (float)(-(float)player.height));
-            while (!flag && num < 1000)
-            {
-                num++;
-                num2 = x;
-                num3 = y;
-                vector = new Vector2(num2, num3) * 16f + new Vector2((-(float)num4 / 2 + 8), (-player.height));
-                if (!Collision.SolidCollision(vector, num4, player.height))
-                {
-                    if (Main.tile[num2, num3] == null)
-                    {
-                        Main.tile[num2, num3] = new Tile();
-                    }
-                    if ((Main.tile[num2, num3].wall != 87 || num3 <= Main.worldSurface || NPC.downedPlantBoss) && (!Main.wallDungeon[Main.tile[num2, num3].wall] || num3 <= Main.worldSurface || NPC.downedBoss3))
-                    {
-                        int i = 0;
-                        while (i < 500)
-                        {
-                            if (Main.tile[num2, num3 + i] == null)
-                            {
-                                Main.tile[num2, num3 + i] = new Tile();
-                            }
-                            Tile tile = Main.tile[num2, num3 + i];
-                            vector = new Vector2(num2, num3 + i) * 16f + new Vector2(-(float)num4 / 2 + 8, -player.height);
-                            Vector4 vector2 = Collision.SlopeCollision(vector, player.velocity, num4, player.height, player.gravDir, false);
-                            bool flag2 = !Collision.SolidCollision(vector, num4, player.height);
-                            if (flag2)
-                            {
-                                i++;
-                            }
-                            else
-                            {
-                                if (tile.active() && !tile.inActive() && Main.tileSolid[tile.type])
-                                {
-                                    Main.NewText("X: " + num2 + ", Y: " + (num3 + i).ToString());
-                                    break;
-                                }
-                                i++;
-                            }
-                        }
-                        if (Collision.SolidCollision(vector, num4, player.height) && i < 499)
-                        {
-                            flag = true;
-                            num3 += i;
-                            break;
-                        }
-                        //if (!Collision.LavaCollision(vector, num4, player.height) && Collision.HurtTiles(vector, player.velocity, num4, player.height, false).Y <= 0f)
-                        //{
-                        //    Vector4 vector3 = Collision.SlopeCollision(vector, player.velocity, num4, player.height, player.gravDir, false);
-                        //    if (Collision.SolidCollision(vector, num4, player.height) && i < 499)
-                        //    {
-                        //        Vector2 value = Vector2.UnitX * 16f;
-                        //        if (!(Collision.TileCollision(vector - value, value, player.width, player.height, false, false, (int)player.gravDir) != value))
-                        //        {
-                        //            value = -Vector2.UnitX * 16f;
-                        //            if (!(Collision.TileCollision(vector - value, value, player.width, player.height, false, false, (int)player.gravDir) != value))
-                        //            {
-                        //                value = Vector2.UnitY * 16f;
-                        //                if (!(Collision.TileCollision(vector - value, value, player.width, player.height, false, false, (int)player.gravDir) != value))
-                        //                {
-                        //                    value = -Vector2.UnitY * 16f;
-                        //                    if (!(Collision.TileCollision(vector - value, value, player.width, player.height, false, false, (int)player.gravDir) != value))
-                        //                    {
-                        //                        flag = true;
-                        //                        num3 += i;
-                        //                        Main.NewText("X: " + num2 + ", Y: " + num3);
-                        //                        break;
-                        //                    }
-                        //                }
-                        //            }
-                        //        }
-                        //    }
-                        //}
-                    }
-                }
-            }
-            if (flag)
-            {
-                Vector2 newPos = vector;
-                player.Teleport(newPos, 2);
-                player.velocity = Vector2.Zero;
-                if (Main.netMode == 2)
-                {
-                    RemoteClient.CheckSection(player.whoAmI, player.position);
-                    NetMessage.SendData(65, -1, -1, NetworkText.Empty, 0, (float)player.whoAmI, newPos.X, newPos.Y, 3);
-                }
-                return (int)newPos.Y;
-            }
-            return 200;
-        }
-        public void ShadowTeleport2(int x, int y, int playerID)
-        {
-            Main.player[playerID].position = new Vector2(x, y) * 16;
-            for (int i = -1; i <= 4; i++)
-            {
-                for (int j = -1; j <= 2; j++)
-                {
-                    if (Main.tile[(int)(Main.player[playerID].position.X / 16f) + j, (int)(Main.player[playerID].position.Y / 16f) + i] == null)
-                    {
-                        Main.tile[(int)(Main.player[playerID].position.X / 16f) + j, (int)(Main.player[playerID].position.Y / 16f) + i] = new Tile();
-                    }
-                }
-            }
-            //if (Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f)] == null)
-            //{
-            //    Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f)] = new Tile();
-            //}
-            //if (Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 3] == null)
-            //{
-            //    Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 3] = new Tile();
-            //}
-            if (!Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 3].active())
-            {
-                //if (Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4] == null)
-                //{
-                //    Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4] = new Tile();
-                //}
-                while (!Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4].active())
-                {
-                    //if (Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4] == null)
-                    //{
-                    //    Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4] = new Tile();
-                    //}
-                    Main.player[playerID].position.Y += 16f;
-                    Main.player[playerID].fallStart = (int)(Main.player[playerID].position.Y / 16f);
-                }
-            }
-            else
-            {
-                while (Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4].active())
-                {
-                    //if (Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4] == null)
-                    //{
-                    //    Main.tile[(int)(Main.player[playerID].position.X / 16f), (int)(Main.player[playerID].position.Y / 16f) + 4] = new Tile();
-                    //}
-                    Main.player[playerID].position.Y -= 16f;
-                    Main.player[playerID].fallStart = (int)(Main.player[playerID].position.Y / 16f);
-                }
-            }
-        }
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
             if (player.HasBuff(ModContent.BuffType<Buffs.ShadowCurse>()))
@@ -1465,59 +1318,59 @@ namespace ExxoAvalonOrigins
 			    case 0:
                     player.Spawn();
 				    break;
-			    case 1:
+			    case 1: // dungeon
 				    player.noFallDmg = true;
                     player.immuneTime = 100;
-                    if (ExxoAvalonOriginsWorld.dungeonSide == -1) ShadowTeleport2(Main.maxTilesX / 4, 200, pid);
-                    else if (ExxoAvalonOriginsWorld.dungeonSide == 1) ShadowTeleport2(Main.maxTilesX - Main.maxTilesX / 4, 200, pid);
+                    ShadowTeleport.Teleport(0);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(13, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
 				    break;
-			    case 2:
+			    case 2: // jungle
 				    player.noFallDmg = true;
                     player.immuneTime = 100;
-                    if (ExxoAvalonOriginsWorld.dungeonSide == -1) ShadowTeleport2(Main.maxTilesX - Main.maxTilesX / 4, 200, pid);
-                    else if (ExxoAvalonOriginsWorld.dungeonSide == 1) ShadowTeleport2(Main.maxTilesX / 4, 200, pid);
+                    Vector2 prePos = player.position;
+                    Vector2 pos = prePos;
+                    ShadowTeleport.Teleport(1);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(13, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
-			    case 3:
+			    case 3: // left ocean
 				    player.noFallDmg = true;
-                    player.immuneTime = 100;
-                    ShadowTeleport2(200, 200, pid);
+                    player.immuneTime = 300;
+                    ShadowTeleport.Teleport(2);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(13, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
-			    case 4:
+			    case 4: // right ocean
+                    player.noFallDmg = true;
+                    player.immuneTime = 300;
+                    ShadowTeleport.Teleport(3);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(13, number: player.whoAmI);
+                    }
+                    player.noFallDmg = false;
+                    break;
+			    case 5: // hell
                     player.noFallDmg = true;
                     player.immuneTime = 100;
-                    ShadowTeleport2(Main.maxTilesX - 200, 200, pid);
+                    ShadowTeleport.Teleport(4);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(13, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
-			    case 5:
-                    player.noFallDmg = true;
-                    player.immuneTime = 100;
-                    ShadowTeleport2(Main.maxTilesX / 2, Main.maxTilesY - 160, pid);
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        NetMessage.SendData(13, number: player.whoAmI);
-                    }
-                    player.noFallDmg = false;
-                    break;
-			    case 6:
+			    case 6: // random
 			    {
 				    if (Main.netMode == 0)
 				    {

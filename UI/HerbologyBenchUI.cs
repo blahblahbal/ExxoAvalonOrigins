@@ -171,11 +171,11 @@ namespace ExxoAvalonOrigins.UI
             int ypos2 = 510;
             int xpos3 = 200;
             int ypos3 = 810;
-            if (Main.playerInventory && ExxoAvalonOrigins.herb)
+            if (Main.playerInventory && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
                 if (Main.player[Main.myPlayer].chest != -1 || Main.npcShop != 0)
                 {
-                    ExxoAvalonOrigins.herb = false;
+                    Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
                     Main.player[Main.myPlayer].dropItemCheck();
                     Recipe.FindRecipes();
                 }

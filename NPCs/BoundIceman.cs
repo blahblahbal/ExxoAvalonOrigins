@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneSnow && ExxoAvalonOrigins.superHardmode ? 0.0526f : 0f;
+            return spawnInfo.player.ZoneSnow && !ExxoAvalonOriginsGlobalNPC.savedIceman && ExxoAvalonOrigins.superHardmode ? 0.0526f : 0f;
         }
         public override bool CanChat()
         {
@@ -47,6 +47,7 @@ namespace ExxoAvalonOrigins.NPCs
                 if (Main.player[i].active && Main.player[i].talkNPC == npc.whoAmI)
                 {
                     npc.Transform(ModContent.NPCType<Iceman>());
+                    ExxoAvalonOriginsGlobalNPC.savedIceman = true;
                 }
             }
             npc.TargetClosest(true);

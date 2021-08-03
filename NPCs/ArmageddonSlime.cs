@@ -201,8 +201,6 @@ namespace ExxoAvalonOrigins.NPCs
         public override void NPCLoot()
 		{
 			ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = true;
-			ExxoAvalonOriginsWorld.InitiateSuperHardmode();
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
 			if (Main.rand.Next(10) == 0)
 			{

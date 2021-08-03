@@ -5,5 +5,7 @@
         {
             DisplayName.SetDefault("Shadow Curse");
             Description.SetDefault("You take double damage");
+            Main.debuff[Type] = true;
+            canBeCleared = false;
         }
     }}

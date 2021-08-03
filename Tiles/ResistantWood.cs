@@ -6,4 +6,8 @@
             AddMapEntry(new Color(50, 50, 50));            Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;            Main.tileSpelunker[Type] = true;            drop = mod.ItemType("ResistantWood");        }
+        public override bool CanExplode(int i, int j)
+        {
+            return false;
+        }
     }}

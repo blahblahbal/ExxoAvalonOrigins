@@ -7,7 +7,6 @@
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = false;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-            //TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.addTile(Type);
             AddMapEntry(Color.Gray);
         }

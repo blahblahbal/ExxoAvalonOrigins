@@ -13,8 +13,8 @@
             item.useTurn = true;
             item.maxStack = 999;
             item.consumable = true;
-            item.createTile = TileID.MetalBars;
-            item.placeStyle = 35;
+            item.createTile = ModContent.TileType<Tiles.PlacedBars>();
+            item.placeStyle = 17;
             item.rare = 9;
             item.width = dims.Width;
             item.useTime = 10;
