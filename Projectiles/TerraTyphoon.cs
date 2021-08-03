@@ -1,1 +1,147 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Terra Typhoon");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TerraTyphoon");			projectile.width = dims.Width * 30 / 204;			projectile.height = dims.Height * 30 / 204 / Main.projFrames[projectile.type];			projectile.alpha = 255;			projectile.light = 0.9f;			projectile.aiStyle = -1;			projectile.friendly = true;			projectile.timeLeft = 540;			projectile.penetrate = -1;			projectile.tileCollide = true;			projectile.MaxUpdates = 2;			projectile.scale = 1f;			projectile.magic = true;			Main.projFrames[projectile.type] = 3;		}		public override void AI()		{			projectile.localAI[1] += 1f;			if (projectile.localAI[1] > 10f && Main.rand.Next(3) == 0)			{				var num872 = 6;				for (var num873 = 0; num873 < num872; num873++)				{					var vector66 = Vector2.Normalize(projectile.velocity) * new Vector2(projectile.width, projectile.height) / 2f;					vector66 = vector66.RotatedBy((num873 - (num872 / 2 - 1)) * 3.1415926535897931 / num872, default(Vector2)) + projectile.Center;					var value28 = ((float)(Main.rand.NextDouble() * 3.1415927410125732) - 1.57079637f).ToRotationVector2() * Main.rand.Next(3, 8);					var num874 = Dust.NewDust(vector66 + value28, 0, 0, (projectile.type == ProjectileID.Typhoon) ? 217 : ModContent.DustType<Dusts.Dust226>(), value28.X * 2f, value28.Y * 2f, 100, default(Color), 1.4f);					Main.dust[num874].noGravity = true;					Main.dust[num874].noLight = true;					Main.dust[num874].velocity /= 4f;					Main.dust[num874].velocity -= projectile.velocity;				}				projectile.alpha -= 5;				if (projectile.alpha < 50)				{					projectile.alpha = 50;				}				projectile.rotation += projectile.velocity.X * 0.1f;				projectile.frame = (int)(projectile.localAI[1] / 3f) % 3;				Lighting.AddLight((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, 0.1f, 0.4f, 0.6f);			}			var num875 = -1;			var vector67 = projectile.Center;			var num876 = 500f;			if (projectile.localAI[0] > 0f)			{				projectile.localAI[0] -= 1f;			}			if (projectile.ai[0] == 0f && projectile.localAI[0] == 0f)			{				for (var num877 = 0; num877 < 200; num877++)				{					var nPC9 = Main.npc[num877];					if (nPC9.active && !nPC9.dontTakeDamage && !nPC9.friendly && nPC9.lifeMax > 5 && (projectile.ai[0] == 0f || projectile.ai[0] == num877 + 1))					{						var vector68 = nPC9.Center;						var num878 = Vector2.Distance(vector68, vector67);						if (num878 < num876 && Collision.CanHit(projectile.position, projectile.width, projectile.height, nPC9.position, nPC9.width, nPC9.height))						{							num876 = num878;							vector67 = vector68;							num875 = num877;						}					}				}				if (num875 >= 0)				{					projectile.ai[0] = num875 + 1;					projectile.netUpdate = true;				}			}			if (projectile.localAI[0] == 0f && projectile.ai[0] == 0f)			{				projectile.localAI[0] = 30f;			}			var flag34 = false;			if (projectile.ai[0] != 0f)			{				var num879 = (int)(projectile.ai[0] - 1f);				if (Main.npc[num879].active && !Main.npc[num879].dontTakeDamage && Main.npc[num879].immune[projectile.owner] == 0)				{					var num880 = Main.npc[num879].position.X + Main.npc[num879].width / 2;					var num881 = Main.npc[num879].position.Y + Main.npc[num879].height / 2;					var num882 = Math.Abs(projectile.position.X + projectile.width / 2 - num880) + Math.Abs(projectile.position.Y + projectile.height / 2 - num881);					if (num882 < 1000f)					{						flag34 = true;						vector67 = Main.npc[num879].Center;					}				}				else				{					projectile.ai[0] = 0f;					flag34 = false;					projectile.netUpdate = true;				}			}			if (flag34)			{				var v2 = vector67 - projectile.Center;				var num883 = projectile.velocity.ToRotation();				var num884 = v2.ToRotation();				double num885 = num884 - num883;				if (num885 > 3.1415926535897931)				{					num885 -= 6.2831853071795862;				}				if (num885 < -3.1415926535897931)				{					num885 += 6.2831853071795862;				}				projectile.velocity = projectile.velocity.RotatedBy(num885 * 0.10000000149011612, default(Vector2));			}			var num886 = projectile.velocity.Length();			projectile.velocity.Normalize();			projectile.velocity *= num886 + 0.0025f;		}	}}
+using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Terra Typhoon");
+			Main.projFrames[projectile.type] = 3;
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 1;		}		public override void SetDefaults()		{			projectile.width = 63;			projectile.height = 63;			projectile.alpha = 255;			projectile.friendly = true;			projectile.timeLeft = 540;			projectile.penetrate = -1;			projectile.tileCollide = true;
+			projectile.MaxUpdates = 2;			projectile.scale = 1f;			projectile.magic = true;		}
+		public override Color? GetAlpha(Color lightColor)		{			return new Color(255, 255, 255, 200);		}
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+			if (projectile.velocity.Y != oldVelocity.Y)
+			{
+				projectile.velocity.Y = -oldVelocity.Y;
+			}
+			if (projectile.velocity.X != oldVelocity.X)
+			{
+				projectile.velocity.X = -oldVelocity.X;
+			}
+			return false;
+		}
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+		{
+			height = 30;
+			width = 30;
+			return true;
+		}
+		public override void AI()		{
+			projectile.frameCounter++;
+			if (projectile.frameCounter >= 3)
+			{
+				projectile.frame = (projectile.frame + 1) % Main.projFrames[projectile.type];
+				projectile.frameCounter = 0;
+			}
+			projectile.localAI[1]++;
+			if (projectile.localAI[1] > 10f && Main.rand.Next(3) == 0)
+			{
+				int num586 = 6;
+				for (int num587 = 0; num587 < num586; num587++)
+				{
+					Vector2 spinningpoint4 = Vector2.Normalize(projectile.velocity) * new Vector2(projectile.width, projectile.height) / 2f;
+					spinningpoint4 = spinningpoint4.RotatedBy((double)(num587 - (num586 / 2 - 1)) * Math.PI / (double)num586) + projectile.Center;
+					Vector2 vector54 = ((float)(Main.rand.NextDouble() * 3.1415927410125732) - (float)Math.PI / 2f).ToRotationVector2() * Main.rand.Next(3, 8);
+					int num588 = Dust.NewDust(spinningpoint4 + vector54, 0, 0, 107, vector54.X * 2f, vector54.Y * 2f, 100, default(Color), 1.4f);
+					Main.dust[num588].noGravity = true;
+					Main.dust[num588].noLight = true;
+					Dust dust = Main.dust[num588];
+					dust.velocity *= 0.05f;
+					dust = Main.dust[num588];
+					dust.velocity -= projectile.velocity;
+				}
+				projectile.alpha -= 5;
+				if (projectile.alpha < 50)
+				{
+					projectile.alpha = 50;
+				}
+				projectile.rotation += projectile.velocity.X * 0.1f;
+				projectile.frame = (int)(projectile.localAI[1] / 3f) % 3;
+				Lighting.AddLight((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, 0.1f, 0.4f, 0.6f);
+			}
+			int num589 = -1;
+			Vector2 vector55 = projectile.Center;
+			float num590 = 500f;
+			if (projectile.localAI[0] > 0f)
+			{
+				projectile.localAI[0]--;
+			}
+			if (projectile.ai[0] == 0f && projectile.localAI[0] == 0f)
+			{
+				for (int num591 = 0; num591 < 200; num591++)
+				{
+					NPC nPC4 = Main.npc[num591];
+					if (nPC4.CanBeChasedBy(this) && (projectile.ai[0] == 0f || projectile.ai[0] == (float)(num591 + 1)))
+					{
+						Vector2 center6 = nPC4.Center;
+						float num592 = Vector2.Distance(center6, vector55);
+						if (num592 < num590 && Collision.CanHit(projectile.position, projectile.width, projectile.height, nPC4.position, nPC4.width, nPC4.height))
+						{
+							num590 = num592;
+							vector55 = center6;
+							num589 = num591;
+						}
+					}
+				}
+				if (num589 >= 0)
+				{
+					projectile.ai[0] = num589 + 1;
+					projectile.netUpdate = true;
+				}
+				num589 = -1;
+			}
+			if (projectile.localAI[0] == 0f && projectile.ai[0] == 0f)
+			{
+				projectile.localAI[0] = 30f;
+			}
+			bool flag28 = false;
+			if (projectile.ai[0] != 0f)
+			{
+				int num593 = (int)(projectile.ai[0] - 1f);
+				if (Main.npc[num593].active && !Main.npc[num593].dontTakeDamage && Main.npc[num593].immune[projectile.owner] == 0)
+				{
+					float num594 = Main.npc[num593].position.X + (float)(Main.npc[num593].width / 2);
+					float num595 = Main.npc[num593].position.Y + (float)(Main.npc[num593].height / 2);
+					float num596 = Math.Abs(projectile.position.X + (float)(projectile.width / 2) - num594) + Math.Abs(projectile.position.Y + (float)(projectile.height / 2) - num595);
+					if (num596 < 1000f)
+					{
+						flag28 = true;
+						vector55 = Main.npc[num593].Center;
+					}
+				}
+				else
+				{
+					projectile.ai[0] = 0f;
+					flag28 = false;
+					projectile.netUpdate = true;
+				}
+			}
+			if (flag28)
+			{
+				Vector2 v2 = vector55 - projectile.Center;
+				float num597 = projectile.velocity.ToRotation();
+				float num598 = v2.ToRotation();
+				double num599 = num598 - num597;
+				if (num599 > Math.PI)
+				{
+					num599 -= Math.PI * 2.0;
+				}
+				if (num599 < -Math.PI)
+				{
+					num599 += Math.PI * 2.0;
+				}
+				projectile.velocity = projectile.velocity.RotatedBy(num599 * 0.10000000149011612);
+			}
+			float num600 = projectile.velocity.Length();
+			projectile.velocity.Normalize();
+			projectile.velocity *= num600 + 0.0025f;		}
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+		{
+			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			for (int k = 0; k < projectile.oldPos.Length; k++)
+			{
+				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
+				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, new Rectangle(0, projectile.height * projectile.frame, projectile.width, projectile.height), color, projectile.rotation, drawOrigin, projectile.scale * 0.9f, SpriteEffects.None, 0f);
+			}
+			return true;
+		}
+	}}
