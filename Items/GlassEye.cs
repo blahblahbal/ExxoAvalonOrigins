@@ -32,6 +32,7 @@ namespace ExxoAvalonOrigins.Items
 			item.useAnimation = 35;
 			item.useStyle = 5;
 			item.knockBack = 2f;
+			item.mana = 3;
 			item.shoot = ModContent.ProjectileType<Projectiles.Tear>();
 			item.shootSpeed = 12f;
 			item.UseSound = SoundID.NPCHit1;
