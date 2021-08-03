@@ -21,16 +21,22 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
-            Main.tileMerge[Type][TileID.Ash] = true;
-            Main.tileMerge[TileID.Ash][Type] = true;
+            //Main.tileMerge[Type][TileID.Ash] = true;
+            //Main.tileMerge[TileID.Ash][Type] = true;
             drop = mod.ItemType("CaesiumOre");
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 200;
+            ExxoAvalonOrigins.MergeWith(Type, TileID.Ash);
+            //ExxoAvalonOrigins.MergeWith(TileID.Ash, Type);
         }
-
         public override bool CanExplode(int i, int j)
         {
+            return false;
+        }
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            ExxoAvalonOrigins.MergeWithFrame(i, j, Type, TileID.Ash, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame);
             return false;
         }
     }
