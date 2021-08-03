@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class PyrasiteHead : AvalonWorm
+    internal class PyrasiteHead : PyrasiteWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/PyrasiteHead";
 
@@ -43,44 +43,12 @@ namespace ExxoAvalonOrigins.NPCs
         {
             base.Init();
             head = true;
+            minLength = 10;
+            maxLength = 15;
         }
-
-        //private int attackCounter;
-        //public override void SendExtraAI(BinaryWriter writer)
-        //{
-        //    writer.Write(attackCounter);
-        //}
-
-        //public override void ReceiveExtraAI(BinaryReader reader)
-        //{
-        //    attackCounter = reader.ReadInt32();
-        //}
-
-        //public override void CustomBehavior()
-        //{
-        //    if (Main.netMode != NetmodeID.MultiplayerClient)
-        //    {
-        //        if (attackCounter > 0)
-        //        {
-        //            attackCounter--;
-        //        }
-
-        //        Player target = Main.player[npc.target];
-        //        if (attackCounter <= 0 && Vector2.Distance(npc.Center, target.Center) < 200 && Collision.CanHit(npc.Center, 1, 1, target.Center, 1, 1))
-        //        {
-        //            Vector2 direction = (target.Center - npc.Center).SafeNormalize(Vector2.UnitX);
-        //            direction = direction.RotatedByRandom(MathHelper.ToRadians(10));
-
-        //            int projectile = Projectile.NewProjectile(npc.Center, direction * 1, ProjectileID.ShadowBeamHostile, 5, 0, Main.myPlayer);
-        //            Main.projectile[projectile].timeLeft = 300;
-        //            attackCounter = 500;
-        //            npc.netUpdate = true;
-        //        }
-        //    }
-        //}
     }
 
-    internal class PyrasiteBody : AvalonWorm
+    internal class PyrasiteBody : PyrasiteWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/PyrasiteBody";
 
@@ -111,7 +79,7 @@ namespace ExxoAvalonOrigins.NPCs
 
     }
 
-    internal class PyrasiteTail : AvalonWorm
+    internal class PyrasiteTail : PyrasiteWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/PyrasiteTail";
 
@@ -145,6 +113,24 @@ namespace ExxoAvalonOrigins.NPCs
         {
             base.Init();
             tail = true;
+        }
+    }
+    public abstract class PyrasiteWorm : Worm
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Mechanical Digger");
+        }
+
+        public override void Init()
+        {
+            minLength = 6;
+            maxLength = 10;
+            tailType = ModContent.NPCType<PyrasiteTail>();
+            bodyType = ModContent.NPCType<PyrasiteBody>();
+            headType = ModContent.NPCType<PyrasiteHead>();
+            speed = 5.5f;
+            turnSpeed = 0.045f;
         }
     }
 }

@@ -85,7 +85,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && (Main.hardMode || ExxoAvalonOriginsWorld.rhodium) ? 0.0526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && (Main.hardMode || ExxoAvalonOriginsWorld.rhodium) ? 0.0526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

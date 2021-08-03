@@ -335,7 +335,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (npc.velocity.X == 0f)
             {
                 npc.TargetClosest(true);
-                npc.velocity.X = (float)npc.direction;
+                npc.velocity.X = npc.direction;
             }
             if (npc.velocity.X < 0f)
             {
@@ -474,15 +474,31 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void NPCLoot()
         {
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore1"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore2"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore3"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore3"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore4"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore5"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore6"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore6"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore7"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore8"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore9"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore10"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore11"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore12"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore13"), npc.scale);
+            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore14"), npc.scale);
             ExxoAvalonOriginsWorld.wos = -1;
             if (!ExxoAvalonOrigins.superHardmode)
             {
-                int numplayers = 0;
-                for (int i = 0; i < 255; i++)
-                {
-                    if (Main.player[i].active) numplayers++;
-                }
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.DarkStarHeart>(), numplayers, false, 0, false);
+                //int numplayers = 0;
+                //for (int i = 0; i < 255; i++)
+                //{
+                //    if (Main.player[i].active) numplayers++;
+                //}
+                npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.DarkStarHeart>());
                 ExxoAvalonOriginsWorld.InitiateSuperHardmode();
             }
             if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);

@@ -4,13 +4,16 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Waters
 {
-    public class ContagionWater : ModWaterStyle
+    public class ContagionWaterStyle : ModWaterStyle
     {
         public override bool ChooseWaterStyle()
         {
             return Main.bgStyle == mod.GetSurfaceBgStyleSlot("ContagionSurfaceBG");
         }
-        
+        //public override bool Autoload(ref string name, ref string texture, ref string blockTexture)
+        //{
+        //    return true;
+        //}
         public override int ChooseWaterfallStyle()
         {
             return mod.GetWaterfallStyleSlot("ContagionWaterfallStyle");

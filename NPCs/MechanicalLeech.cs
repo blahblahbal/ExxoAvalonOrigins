@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class MechanicalLeechHead : AvalonWorm
+    internal class MechanicalLeechHead : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechHead";
 
@@ -31,44 +31,12 @@ namespace ExxoAvalonOrigins.NPCs
         {
             base.Init();
             head = true;
+            minLength = 6;
+            maxLength = 10;
         }
-
-        //private int attackCounter;
-        //public override void SendExtraAI(BinaryWriter writer)
-        //{
-        //    writer.Write(attackCounter);
-        //}
-
-        //public override void ReceiveExtraAI(BinaryReader reader)
-        //{
-        //    attackCounter = reader.ReadInt32();
-        //}
-
-        //public override void CustomBehavior()
-        //{
-        //    if (Main.netMode != NetmodeID.MultiplayerClient)
-        //    {
-        //        if (attackCounter > 0)
-        //        {
-        //            attackCounter--;
-        //        }
-
-        //        Player target = Main.player[npc.target];
-        //        if (attackCounter <= 0 && Vector2.Distance(npc.Center, target.Center) < 200 && Collision.CanHit(npc.Center, 1, 1, target.Center, 1, 1))
-        //        {
-        //            Vector2 direction = (target.Center - npc.Center).SafeNormalize(Vector2.UnitX);
-        //            direction = direction.RotatedByRandom(MathHelper.ToRadians(10));
-
-        //            int projectile = Projectile.NewProjectile(npc.Center, direction * 1, ProjectileID.ShadowBeamHostile, 5, 0, Main.myPlayer);
-        //            Main.projectile[projectile].timeLeft = 300;
-        //            attackCounter = 500;
-        //            npc.netUpdate = true;
-        //        }
-        //    }
-        //}
     }
 
-    internal class MechanicalLeechBody : AvalonWorm
+    internal class MechanicalLeechBody : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechBody";
 
@@ -90,7 +58,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class MechanicalLeechTail : AvalonWorm
+    internal class MechanicalLeechTail : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechTail";
 
@@ -115,6 +83,24 @@ namespace ExxoAvalonOrigins.NPCs
         {
             base.Init();
             tail = true;
+        }
+    }
+    public abstract class MechanicalLeechWorm : Worm
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Mechanical Digger");
+        }
+
+        public override void Init()
+        {
+            minLength = 6;
+            maxLength = 10;
+            tailType = ModContent.NPCType<MechanicalLeechTail>();
+            bodyType = ModContent.NPCType<MechanicalLeechBody>();
+            headType = ModContent.NPCType<MechanicalLeechHead>();
+            speed = 5.5f;
+            turnSpeed = 0.045f;
         }
     }
 }

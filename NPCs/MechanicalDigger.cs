@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class MechanicalDiggerHead : AvalonWorm
+    internal class MechanicalDiggerHead : MechanicalDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalDiggerHead";
 
@@ -48,43 +48,9 @@ namespace ExxoAvalonOrigins.NPCs
             base.Init();
             head = true;
         }
-
-        //private int attackCounter;
-        //public override void SendExtraAI(BinaryWriter writer)
-        //{
-        //    writer.Write(attackCounter);
-        //}
-
-        //public override void ReceiveExtraAI(BinaryReader reader)
-        //{
-        //    attackCounter = reader.ReadInt32();
-        //}
-
-        //public override void CustomBehavior()
-        //{
-        //    if (Main.netMode != NetmodeID.MultiplayerClient)
-        //    {
-        //        if (attackCounter > 0)
-        //        {
-        //            attackCounter--;
-        //        }
-
-        //        Player target = Main.player[npc.target];
-        //        if (attackCounter <= 0 && Vector2.Distance(npc.Center, target.Center) < 200 && Collision.CanHit(npc.Center, 1, 1, target.Center, 1, 1))
-        //        {
-        //            Vector2 direction = (target.Center - npc.Center).SafeNormalize(Vector2.UnitX);
-        //            direction = direction.RotatedByRandom(MathHelper.ToRadians(10));
-
-        //            int projectile = Projectile.NewProjectile(npc.Center, direction * 1, ProjectileID.ShadowBeamHostile, 5, 0, Main.myPlayer);
-        //            Main.projectile[projectile].timeLeft = 300;
-        //            attackCounter = 500;
-        //            npc.netUpdate = true;
-        //        }
-        //    }
-        //}
     }
 
-    internal class MechanicalDiggerBody : AvalonWorm
+    internal class MechanicalDiggerBody : MechanicalDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalDiggerBody";
 
@@ -117,7 +83,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class MechanicalDiggerTail : AvalonWorm
+    internal class MechanicalDiggerTail : MechanicalDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalDiggerTail";
 
@@ -157,7 +123,7 @@ namespace ExxoAvalonOrigins.NPCs
     }
 
     // I made this 2nd base class to limit code repetition.
-    public abstract class AvalonWorm : Worm
+    public abstract class MechanicalDiggerWorm : Worm
     {
         public override void SetStaticDefaults()
         {
@@ -166,8 +132,8 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void Init()
         {
-            minLength = 6;
-            maxLength = 12;
+            minLength = 12;
+            maxLength = 18;
             tailType = ModContent.NPCType<MechanicalDiggerTail>();
             bodyType = ModContent.NPCType<MechanicalDiggerBody>();
             headType = ModContent.NPCType<MechanicalDiggerHead>();

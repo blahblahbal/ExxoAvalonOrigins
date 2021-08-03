@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mechanical Hungry");
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[npc.type] = 4;
         }
 
         public override void SetDefaults()

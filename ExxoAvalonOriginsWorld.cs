@@ -7,7 +7,11 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         public static int wosB;
         public static int wosF = 0;
         public static int wos = -1;
-        public static bool downedPhantasm = false;        public override void TileCountsAvailable(int[] tileCounts)
+        public static bool downedPhantasm = false;        public override void ChooseWaterStyle(ref int style)
+        {
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+                style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
+        }        public override void TileCountsAvailable(int[] tileCounts)
         {
             ickyTiles = tileCounts[ModContent.TileType<Tiles.Chunkstone>()] + tileCounts[ModContent.TileType<Tiles.HardenedSnotsand>()] + tileCounts[ModContent.TileType<Tiles.Snotsandstone>()] + tileCounts[ModContent.TileType<Tiles.Ickgrass>()] + tileCounts[ModContent.TileType<Tiles.Snotsand>()] + tileCounts[ModContent.TileType<Tiles.YellowIce>()];
             hellcastleTiles = tileCounts[ModContent.TileType<Tiles.ImperviousBrick>()];
