@@ -23,6 +23,6 @@
 
         public override bool CanBurnInLava()
         {
-            return false;
+            return true;
         }
     }}

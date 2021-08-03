@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
     public class PlacedBars : ModTile
-    {        public override void SetDefaults()        {            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);            TileObjectData.addTile(Type);            Main.tileFrameImportant[Type] = true;            Main.tileObsidianKill[Type] = true;            Main.tileSolidTop[Type] = true;            Main.tileSolid[Type] = true;            Main.tileShine2[Type] = true;            Main.tileShine[Type] = 1100;        }
+    {        public override void SetDefaults()        {            Main.tileFrameImportant[Type] = true;            Main.tileObsidianKill[Type] = true;            Main.tileSolidTop[Type] = true;            Main.tileSolid[Type] = true;            Main.tileShine2[Type] = true;            Main.tileShine[Type] = 1100;        }
         public override void PlaceInWorld(int i, int j, Item item)        {            Main.tile[i, j].frameX = (short)(item.placeStyle * 18);        }
         // selects the map entry depending on the frameX
         public override ushort GetMapOption(int i, int j)        {            return (ushort)(Main.tile[i, j].frameX / 18);        }        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

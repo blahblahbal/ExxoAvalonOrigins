@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.value = 100000f;
             npc.knockBackResist = 0f;
             npc.scale = 1.5f;
-            npc.HitSound = SoundID.NPCHit3;
+            npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath39;
         }
         public override Color? GetAlpha(Color lightColor)

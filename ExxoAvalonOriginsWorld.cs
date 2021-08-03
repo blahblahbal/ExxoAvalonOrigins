@@ -443,7 +443,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             }
             return false;
         }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            theBeak = ModContent.ItemType<TheBeak>();            blbTimer = 0;            rhodium = true;            rhodiumBar = ModContent.TileType<RhodiumOre>();            shmOreTier1 = -1;            shmOreTier2 = -1;            contaigon = contaigonSet;            contaigonSet = false;            totalDark2 = 0;            nilShrineCount = 0;            hallowedAltarCount = 0;            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOrigins.nilMode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;            if (WorldGen.genRand.Next(2) == 0)            {                rhodium = false;                rhodiumBar = ModContent.TileType<OsmiumOre>();            }            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Contaigon Setup", delegate(GenerationProgress progress)                {                    progress.Message = "Setting up Avalonian World Gen";                    if (!contaigon && WorldGen.WorldGenParam_Evil == -1)                    {                        contaigon = WorldGen.genRand.Next(3) == 0;                        if (contaigon) WorldGen.crimson = false;                    }                    if (WorldGen.WorldGenParam_Evil == 2)                    {                        contaigon = true;                        WorldGen.crimson = false;                    }                }));            }            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");            if (shinies != -1)            {                tasks.Insert(shinies, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Signalling Avalon Hooks";                    generatingBaccilite = contaigon; //Signals ExxoAvalonOrigins.BacciliteReplacement() to replace a demonite ore type with baccilite.                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }                    GenerateHellcastle2(Main.maxTilesX / 3, Main.maxTilesY - 140);
-                    for (int hbx = Main.maxTilesX / 3 - 50; hbx < Main.maxTilesX / 3 + 350; hbx++)
+                    for (int hbx = Main.maxTilesX / 3 - 170; hbx < Main.maxTilesX / 3 + 380; hbx++)
                     {
                         for (int hby = Main.maxTilesY - 200; hby < Main.maxTilesY - 50; hby++)
                         {
@@ -1072,14 +1072,29 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             MakeRectangle(x + 181, y + 94, 15, 1, spike);
             MakeRectangle(x + 42, y + 21, 5, 1, spike);
             MakeRectangle(x + 59, y + 21, 1, 1, brick);
-            for (int c = x + 140; c <= x + 152; c += 2)
-            {
-                MakeRectangle(c, y + 93, 1, 1, spike);
-            }
-            for (int c = x + 182; c <= x + 194; c += 2)
-            {
-                MakeRectangle(c, y + 93, 1, 1, spike);
-            }
+
+
+            MakeRectangle(x + 141, y + 93, 1, 1, spike);
+            MakeRectangle(x + 143, y + 93, 1, 1, spike);
+            MakeRectangle(x + 145, y + 93, 1, 1, spike);
+            MakeRectangle(x + 147, y + 93, 1, 1, spike);
+            MakeRectangle(x + 149, y + 93, 1, 1, spike);
+            MakeRectangle(x + 151, y + 93, 1, 1, spike);
+
+            MakeRectangle(x + 183, y + 93, 1, 1, spike);
+            MakeRectangle(x + 185, y + 93, 1, 1, spike);
+            MakeRectangle(x + 187, y + 93, 1, 1, spike);
+            MakeRectangle(x + 189, y + 93, 1, 1, spike);
+            MakeRectangle(x + 191, y + 93, 1, 1, spike);
+            MakeRectangle(x + 193, y + 93, 1, 1, spike);
+            //for (int c = x + 140; c <= x + 152; c += 2)
+            //{
+            //    if (c != x + 140) MakeRectangle(c, y + 93, 1, 1, spike);
+            //}
+            //for (int c = x + 182; c <= x + 194; c += 2)
+            //{
+            //    if (c != x + 182) MakeRectangle(c, y + 93, 1, 1, spike);
+            //}
 
             //MakeRectangle(x + 140, y + 93, 1, 1, spike);
             //MakeRectangle(x + 142, y + 93, 1, 1, spike);

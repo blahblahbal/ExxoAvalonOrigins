@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
-            ExxoAvalonOrigins.MergeWithFrame(i, j, Type, TileID.Ash, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame);
+            ExxoAvalonOrigins.MergeWithFrame(i, j, Type, TileID.Ash, false, false, false, false, resetFrame);
             return false;
         }
     }
