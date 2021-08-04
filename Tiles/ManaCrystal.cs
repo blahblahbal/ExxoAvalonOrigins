@@ -1,4 +1,9 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{	public class ManaCrystal : ModTile	{		public override void SetDefaults()		{			AddMapEntry(new Color(113, 99, 99));			TileObjectData.newTile.Width = 2;			TileObjectData.newTile.Height = 2;			TileObjectData.newTile.CoordinateWidth = 16;			TileObjectData.newTile.CoordinateHeights = new int[] {16, 16};			TileObjectData.newTile.CoordinatePadding = 2;			TileObjectData.newTile.DrawYOffset = 2;			TileObjectData.newTile.StyleHorizontal = true;			TileObjectData.addTile(Type);			Main.tileFrameImportant[Type] = true;            dustType = 80;			//drop = mod.ItemType("ManaCrystal");		}        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{	public class ManaCrystal : ModTile	{		public override void SetDefaults()		{			AddMapEntry(new Color(113, 99, 99));
+            animationFrameHeight = 38;            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);            TileObjectData.newTile.DrawYOffset = 2;
+            TileObjectData.newTile.LavaDeath = false;
+            TileObjectData.addTile(Type);
+            Main.tileFrameImportant[Type] = true;            dustType = 80;		}        public override void AnimateTile(ref int frame, ref int frameCounter)        {            frameCounter++;            if (frameCounter > 6)            {                frameCounter = 0;                frame++;                if (frame >= 7) frame = 0;            }
+        }        public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 32, 16, ItemID.ManaCrystal);
         }

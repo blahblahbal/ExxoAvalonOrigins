@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles{	public class CaesiumForge : ModTile	{		public override void SetDefaults()		{			AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Caesium Forge"));            Main.tileFrameImportant[Type] = true;
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);			//TileObjectData.newTile.CoordinateHeights = new int[]			//{			//	16,			//	16			//};			//TileObjectData.newTile.DrawYOffset = 2;			//TileObjectData.newTile.StyleHorizontal = true;			//TileObjectData.newTile.LavaDeath = false;			TileObjectData.addTile(Type);			Main.tileLighted[Type] = true;			adjTiles = new int[] {TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces};		}        public override void AnimateTile(ref int frame, ref int frameCounter)
+            animationFrameHeight = 36;
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);            TileObjectData.newTile.DrawYOffset = 2;
+            TileObjectData.newTile.LavaDeath = false;			TileObjectData.addTile(Type);			Main.tileLighted[Type] = true;			adjTiles = new int[] {TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces};		}        public override void AnimateTile(ref int frame, ref int frameCounter)
         {
             frameCounter++;
             if (frameCounter > 4)

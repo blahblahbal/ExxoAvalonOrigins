@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.ObjectData;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -15,10 +16,41 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			Main.tileLighted[Type] = true;
-			drop = mod.ItemType("LivingLightning");
-		}
-
+            Main.tileLighted[Type] = true;
+            soundType = 0;
+            drop = mod.ItemType("LivingLightningBlock");
+            AddMapEntry(new Color(196, 142, 238));
+            animationFrameHeight = 90;
+            Main.tileSolid[Type] = false;
+            Main.tileNoAttach[Type] = false;
+            Main.tileFrameImportant[Type] = false;
+            TileObjectData.newTile.Width = 1;
+            TileObjectData.newTile.Height = 1;
+            TileObjectData.newTile.Origin = new Point16(0, 0);
+            TileObjectData.newTile.CoordinateHeights = new int[1] { 16 };
+            TileObjectData.newTile.CoordinateWidth = 16;
+            TileObjectData.newTile.CoordinatePadding = 2;
+            TileObjectData.newTile.HookCheck = new PlacementHook(CanPlaceAlter, -1, 0, processedCoordinates: true);
+            TileObjectData.newTile.UsesCustomCanPlace = true;
+            TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
+            TileObjectData.addTile(Type);
+        }
+        public int CanPlaceAlter(int i, int j, int type, int style, int direction)
+        {
+            return 1;
+        }
+        public static int AfterPlacement(int i, int j, int type, int style, int direction)
+        {
+            if (Main.netMode == 1)
+            {
+                NetMessage.SendTileRange(Main.myPlayer, i, j, 1, 1);
+            }
+            return 1;
+        }
+        public override void AnimateTile(ref int frame, ref int frameCounter)
+        {
+            frame = Main.tileFrame[TileID.LivingFire];
+        }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 0.6f;
