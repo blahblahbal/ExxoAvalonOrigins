@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.position.Y < Main.worldSurface) ? 0.05f : 0f;
+            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.position.Y < Main.worldSurface) ? 0.5f : 0f;
         }
         public override void AI()
         {
@@ -184,7 +184,7 @@ namespace ExxoAvalonOrigins.NPCs
                 var dust16 = Main.dust[num162];
                 dust16.velocity.Y = dust16.velocity.Y * 0.1f;
             }
-            if (Main.dayTime || Main.player[npc.target].dead)
+            if (Main.player[npc.target].dead)
             {
                 npc.velocity.Y = npc.velocity.Y - 0.02f * 2f;
                 if (npc.timeLeft > 10)

@@ -5,4 +5,4 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			Main.tileMerge[TileID.Ebonstone][Type] = true;
 			Main.tileMerge[Type][TileID.Crimstone] = true;
 			Main.tileMerge[TileID.Crimstone][Type] = true;
-			drop = mod.ItemType("ChunkstoneBlock");            soundType = SoundID.Tink;            soundStyle = 1;            minPick = 60;		}	}}
+			drop = mod.ItemType("ChunkstoneBlock");            soundType = SoundID.Tink;            soundStyle = 1;            minPick = 60;            dustType = 184;		}	}}

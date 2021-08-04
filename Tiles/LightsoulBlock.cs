@@ -19,6 +19,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileLighted[Type] = true;
             drop = ItemID.SoulofLight;
+            dustType = ModContent.DustType<Dusts.Dust228>();
 		}
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

@@ -6,5 +6,5 @@
             AddMapEntry(new Color(132, 65, 172));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("VenomSpike");            soundType = SoundID.Tink;            soundStyle = 1;        }
+            drop = mod.ItemType("VenomSpike");            soundType = SoundID.Tink;            soundStyle = 1;            dustType = 62;        }
     }}

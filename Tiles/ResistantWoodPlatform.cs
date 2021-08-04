@@ -32,6 +32,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = ModContent.ItemType<Items.ResistantWoodPlatform>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Platforms };
+            dustType = 54;
         }
 
         public override void PostSetDefaults()

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             Main.tileMerge[TileID.FleshIce][Type] = true;
             TileID.Sets.Conversion.Ice[Type] = true;
             drop = mod.ItemType("YellowIceBlock");
-            ExxoAvalonOrigins.MergeWith(Type, TileID.SnowBlock);            soundType = SoundID.Item;            soundStyle = 50;        }
+            ExxoAvalonOrigins.MergeWith(Type, TileID.SnowBlock);            soundType = SoundID.Item;            soundStyle = 50;            dustType = ModContent.DustType<Dusts.Dust237>();        }
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
             ExxoAvalonOrigins.MergeWithFrame(i, j, Type, TileID.SnowBlock, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame);

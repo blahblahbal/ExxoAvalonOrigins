@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = mod.ItemType("PyroscoricOre");
             soundType = SoundID.Tink;
             soundStyle = 1;
+            dustType = 174;
             minPick = 210;
         }
         public override bool CanExplode(int i, int j)

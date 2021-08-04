@@ -1,4 +1,11 @@
-﻿using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
     public class LibraryAltar : ModTile
     {
         public override void SetDefaults()
@@ -15,4 +22,5 @@
         {
             Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.LibraryAltar>());
         }
-    }}
+    }
+}

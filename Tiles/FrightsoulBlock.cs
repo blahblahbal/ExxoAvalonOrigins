@@ -18,6 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(Color.Orange);
 			Main.tileSolid[Type] = true;
 			drop = ItemID.SoulofFright;
+            dustType = ModContent.DustType<Dusts.Dust230>();
 		}
 
         public override void NearbyEffects(int i, int j, bool closer)

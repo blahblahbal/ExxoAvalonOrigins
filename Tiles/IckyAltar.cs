@@ -1,12 +1,7 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ID;
 using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
@@ -15,7 +10,7 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(new Color(255, 216, 0));
+			AddMapEntry(new Color(0, 250, 50), LanguageManager.Instance.GetText("Icky Altar"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.CoordinateHeights = new int[]
@@ -38,7 +33,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            blockDamaged = false;
+            if (!Main.hardMode) blockDamaged = false;
             return Main.hardMode;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

@@ -11,5 +11,5 @@
             Main.tileMerge[TileID.HardenedSand][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<HardenedSnotsand>()] = true;
             Main.tileMerge[ModContent.TileType<HardenedSnotsand>()][Type] = true;
-            drop = mod.ItemType("HardenedSnotsandBlock");        }
+            drop = mod.ItemType("HardenedSnotsandBlock");            dustType = 184;        }
     }}

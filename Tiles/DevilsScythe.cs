@@ -12,7 +12,7 @@
         }
         public override bool NewRightClick(int i, int j)
         {
-            Item.NewItem(new Rectangle(0, 0, 16, 16), ModContent.ItemType<Items.DevilsScythe>());
+            Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<Items.DevilsScythe>(), prefixGiven: -1);
             Main.tile[i, j].active(false);
             Main.PlaySound(0, new Vector2(i * 16, j * 16), 1);
             return true;

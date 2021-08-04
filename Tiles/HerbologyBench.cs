@@ -1,6 +1,17 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.Tiles{
+namespace ExxoAvalonOrigins.Tiles
+{
     public class HerbologyBench : ModTile
     {
         public override void SetDefaults()
@@ -10,7 +21,9 @@ namespace ExxoAvalonOrigins.Tiles{
             TileObjectData.addTile(Type);
             Main.tileFrameImportant[Type] = true;
             AddMapEntry(new Color(153, 77, 86), LanguageManager.Instance.GetText("Herbology Bench"));
-        }        public override bool NewRightClick(int i, int j)
+        }
+
+        public override bool NewRightClick(int i, int j)
         {
             Main.playerInventory = true;
             if (Main.netMode != NetmodeID.Server) Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = !Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb;
@@ -20,7 +33,9 @@ namespace ExxoAvalonOrigins.Tiles{
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) Main.PlaySound(10, -1, -1, 1);
             else Main.PlaySound(11, -1, -1, 1);
             return true;
-        }        //public override void RightClick(int i, int j)
+        }
+
+        //public override void RightClick(int i, int j)
         //{
         //    Main.playerInventory = true;
         //    ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
