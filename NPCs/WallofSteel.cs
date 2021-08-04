@@ -20,7 +20,6 @@ namespace ExxoAvalonOrigins.NPCs
             DisplayName.SetDefault("Wall of Steel");
             Main.npcFrameCount[npc.type] = 1;
         }
-
         public override void SetDefaults()
         {
             npc.width = 200;
@@ -37,8 +36,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.buffImmune[BuffID.Confused] = npc.buffImmune[ModContent.BuffType<Buffs.Freeze>()] = npc.buffImmune[BuffID.Poisoned] =
-                    npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
-                    npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
+            npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
+            npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
