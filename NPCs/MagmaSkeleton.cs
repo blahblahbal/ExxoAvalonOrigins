@@ -17,7 +17,6 @@ namespace ExxoAvalonOrigins.NPCs
 			DisplayName.SetDefault("Magma Skeleton");
 			Main.npcFrameCount[npc.type] = 15;
 		}
-
 		public override void SetDefaults()
 		{
 			npc.damage = 42;
@@ -33,7 +32,10 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Confused] = true;
         }
-
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255);
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)
@@ -72,10 +74,33 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = frameHeight;
             }
         }
-
+        public override void AI()
+        {
+            Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.9f, 0.25f, 0.05f);
+            if (Main.rand.Next(7) == 0)
+            {
+                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, 6, 0f, 0f, 0, default(Color), 1.2f);
+                Main.dust[num10].noGravity = true;
+            }
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return Main.hardMode && spawnInfo.player.ZoneRockLayerHeight ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
+        public override void NPCLoot()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, 6, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num890].velocity *= 5f;
+                Main.dust[num890].scale = 1.2f;
+                Main.dust[num890].noGravity = true;
+            }
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagmaHelmet"), 1f);
+                //Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagmaChestplate"), 1f);
+            }
         }
     }
 }

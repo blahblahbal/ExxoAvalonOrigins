@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -17,12 +18,11 @@ namespace ExxoAvalonOrigins.NPCs
 			DisplayName.SetDefault("Cursed Magma Skeleton");
 			Main.npcFrameCount[npc.type] = 15;
 		}
-
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			npc.damage = 120;
 			npc.netAlways = true;
-			npc.scale = 1.2f;
+			npc.scale = 1.35f;
 			npc.lifeMax = 2000;
 			npc.defense = 40;
 			npc.lavaImmune = true;
@@ -39,8 +39,11 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
 		}
-
-		public override void NPCLoot()
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255);
+        }
+        public override void NPCLoot()
 		{
 			if (Main.rand.Next(75) == 0)
 			{
@@ -56,7 +59,15 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return spawnInfo.player.ZoneRockLayerHeight && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
         }
-
+        public override void AI()
+        {
+            Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.6f, 0.87f, 0.0f);
+            if (Main.rand.Next(5) == 0)
+            {
+                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1.6f);
+                Main.dust[num10].noGravity = true;
+            }
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)
@@ -98,6 +109,14 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            for (int i = 0; i < 3; i++)
+            {
+                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[num890].velocity *= 5f;
+                Main.dust[num890].scale = 1f;
+                Main.dust[num890].noGravity = true;
+                Main.dust[num890].fadeIn = 2f;
+            }
             if (npc.life <= 0)
             {
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CursedMagmaSkeletonHelmet"), 1.2f);
@@ -105,6 +124,13 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone2"), 1.2f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone1"), 1.2f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone2"), 1.2f);
+                for (int i = 0; i < 20; i++)
+                {
+                    int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num890].velocity *= 7f;
+                    Main.dust[num890].scale = 1.6f;
+                    Main.dust[num890].noGravity = true;
+                }
             }
         }
     }
