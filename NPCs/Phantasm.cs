@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -35,6 +31,34 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath39;
         }
+        public static void Teleport(Vector2 coords, bool forceHandle = false, int whoAmI = 0)
+        {
+            bool syncData = forceHandle || Main.netMode == 0;
+            if (whoAmI == -1)
+            {
+                whoAmI = NPC.FindFirstNPC(ModContent.NPCType<Phantasm>());
+            }
+            if (syncData)
+            {
+                TeleportPhantasm(coords, forceHandle, whoAmI);
+            }
+            else
+            {
+                SyncPhantasmRelocate(coords);
+            }
+        }
+        private static void TeleportPhantasm(Vector2 coords, bool sync = false, int whoAmI = 0)
+        {
+            Main.npc[whoAmI].position = coords;
+            if (sync) NetMessage.SendData(23, -1, -1, null, whoAmI);
+        }
+        private static void SyncPhantasmRelocate(Vector2 coords)
+        {
+            var netMessage = ExxoAvalonOrigins.mod.GetPacket();
+            netMessage.Write((byte)AvalonMessageID.PhantasmRelocate);
+            netMessage.WriteVector2(coords);
+            netMessage.Send();
+        }
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 255);
@@ -44,7 +68,6 @@ namespace ExxoAvalonOrigins.NPCs
             npc.rotation = npc.velocity.X * 0.02f;
             Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 2f, 2f, 2f);
             npc.TargetClosest(true);
-            //if (alpha > 0) alpha--;
             if (Main.player[npc.target].dead) // || !Main.player[target].zoneHellcastle)
             {
                 npc.velocity.Y = npc.velocity.Y - 0.04f;
@@ -95,7 +118,6 @@ namespace ExxoAvalonOrigins.NPCs
                         p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                         Main.projectile[p].timeLeft = 600;
                         Main.projectile[p].friendly = false;
-                        //Main.projectile[p].notReflect = true;
                         Main.projectile[p].hostile = true;
                         Main.projectile[p].tileCollide = false;
                         if (Main.netMode != 0)
@@ -105,7 +127,6 @@ namespace ExxoAvalonOrigins.NPCs
                         p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                         Main.projectile[p].timeLeft = 600;
                         Main.projectile[p].friendly = false;
-                        //Main.projectile[p].notReflect = true;
                         Main.projectile[p].hostile = true;
                         Main.projectile[p].tileCollide = false;
                         if (Main.netMode != 0)
@@ -118,30 +139,56 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
             // ai phase 2; swooping attack and charging mah laser
-            else if (npc.life <= npc.lifeMax * 0.75 && npc.life > npc.lifeMax / 3)
+            else if (npc.life <= npc.lifeMax * 0.75 && npc.life > npc.lifeMax * 0.75 - 500)
             {
+                npc.velocity *= 0f;
+                npc.ai[0]++;
+                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                if (npc.ai[0] < 150 && npc.position != tpPos)
+                {
+                    npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
+                }
+                if (npc.ai[0] >= 150)
+                {
+                    npc.velocity *= 0f;
+                    npc.ai[0] = 0;
+                }
+                //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, NPC.FindFirstNPC(npc.type));
+                //npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+            }
+            else if (npc.life <= npc.lifeMax * 0.75 - 500 && npc.life > npc.lifeMax / 3)
+            {
+                npc.ai[0]++;
+                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                if (npc.ai[0] < 150 && npc.position != tpPos)
+                {
+                    npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
+                }
+                if (npc.ai[0] >= 150)
+                {
+                    npc.velocity *= 0f;
+                    npc.ai[0] = 0;
+                }
+                npc.velocity *= 0f;
                 if (npc.ai[1] <= 3)
                 {
                     // swooping attack
                     // after swooping attack, increment ai[1]
                     // using ai[2] to create the swooping attack
                     npc.ai[2]++;
-                    npc.ai[0] = 1;
+                    //npc.ai[0] = 1;
                     if (npc.ai[2] <= 300)
                     {
                         Player T = Main.player[npc.target];
-                        npc.velocity *= 0f;
-                        npc.position = ExxoAvalonOriginsWorld.LoK * 16;
                         if (npc.ai[2] % 20 == 0)
                         {
                             float Speed = 9f;
                             int damage = 50;
-                            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33).Volume *= 0.8f;
+                            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
                             Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
                             float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
                             int num54 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, 0);
                             Main.projectile[num54].velocity = Vector2.Normalize(T.position - npc.position) * 9f;
-                            //Main.projectile[num54].notReflect = true;
                         }
                     }
                     if (npc.ai[2] == 301)
@@ -153,8 +200,8 @@ namespace ExxoAvalonOrigins.NPCs
                 if (npc.ai[1] >= 4 && npc.ai[1] < 305)
                 {
                     npc.ai[1]++;
-                    npc.velocity *= 0f;
-                    npc.position = ExxoAvalonOriginsWorld.LoK * 16;
+                    //npc.velocity *= 0f;
+                    //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
                     if (npc.ai[1] % 75 == 0)
                     {
                         Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
@@ -192,13 +239,13 @@ namespace ExxoAvalonOrigins.NPCs
             else
             {
                 npc.velocity *= 0f;
-                npc.position = ExxoAvalonOriginsWorld.LoK * 16; // new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, NPC.FindFirstNPC(npc.type));
                 npc.ai[3]++;
                 if (npc.ai[3] >= 300)
                 {
                     npc.dontTakeDamage = true;
-                    npc.position = ExxoAvalonOriginsWorld.LoK * 16; // new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
-                    npc.velocity *= 0f;
+                    //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
                     npc.ai[1]++;
                     if (npc.ai[1] >= 250) npc.ai[1] = 250;
                     npc.ai[0]++;
@@ -214,7 +261,7 @@ namespace ExxoAvalonOrigins.NPCs
                     int p;
                     if (npc.ai[1] == 50 || npc.ai[1] == 100 || npc.ai[1] == 150 || npc.ai[1] == 200)
                     {
-                        NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PhantasmMinion>());
+                        NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<PhantasmMinion>());
                     }
                     if (npc.ai[0] % 10 == 0)
                     {
@@ -223,7 +270,6 @@ namespace ExxoAvalonOrigins.NPCs
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
-                            //Main.projectile[p].notReflect = true;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != 0)
@@ -301,7 +347,7 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.ai[2] = 0;
                         npc.ai[1] = 0;
                         npc.ai[3] = 0;
-                        if (NPC.AnyNPCs(ModContent.NPCType<NPCs.PhantasmMinion>())) { }
+                        if (NPC.AnyNPCs(ModContent.NPCType<PhantasmMinion>())) { }
                         else npc.dontTakeDamage = false;
                     }
                 }

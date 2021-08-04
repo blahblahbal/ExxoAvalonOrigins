@@ -89,7 +89,7 @@ namespace ExxoAvalonOrigins.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mechanical Digger");
+            DisplayName.SetDefault("Mechanical Leech");
         }
 
         public override void Init()

@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
             soundStyle = 1;
             minPick = 200;
             ExxoAvalonOrigins.MergeWith(Type, TileID.Ash);
+            ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<Impgrass>());
             //ExxoAvalonOrigins.MergeWith(TileID.Ash, Type);
         }
         public override bool CanExplode(int i, int j)

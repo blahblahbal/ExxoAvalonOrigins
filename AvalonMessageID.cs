@@ -9,5 +9,6 @@ namespace ExxoAvalonOrigins
     public enum AvalonMessageID : byte
     {
         ShadowTeleport = 0,
+        PhantasmRelocate = 1
     }
 }

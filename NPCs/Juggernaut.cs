@@ -49,7 +49,8 @@ namespace ExxoAvalonOrigins.NPCs
 			}
 			else if (Main.netMode == 2)
 			{
-				NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has been defeated!"), new Color(175, 75, 255));
+				//NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
 			}
 		}
 
@@ -61,6 +62,8 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.position = Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position;
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = true;
+                if (Main.netMode == 0) Main.NewText("A Juggernaut has awoken!", 175, 75, 255, false);
+                else if (Main.netMode == 2) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has awoken!"), new Color(175, 75, 255));
             }
             if (npc.justHit)
             {

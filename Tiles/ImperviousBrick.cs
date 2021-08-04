@@ -4,4 +4,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             if (!ExxoAvalonOriginsWorld.downedPhantasm) return false;
             return true;
         }
+        public override bool CanExplode(int i, int j)
+        {
+            return false;
+        }
     }}

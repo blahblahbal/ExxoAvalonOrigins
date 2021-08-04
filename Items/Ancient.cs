@@ -17,7 +17,6 @@ namespace ExxoAvalonOrigins.Items
 			DisplayName.SetDefault("Ancient");
 			Tooltip.SetDefault("Creates a sandstorm");
 		}
-
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Ancient");

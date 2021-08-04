@@ -93,15 +93,13 @@
         }        public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             AvalonMessageID id = (AvalonMessageID)reader.ReadByte();
-            //byte player;
             switch (id)
             {
                 case AvalonMessageID.ShadowTeleport:
                     ShadowTeleport.Teleport(reader.ReadInt32(), true, whoAmI);
-                    //player = reader.ReadByte();
-                    //int xCoord = reader.ReadInt32();
-                    //int yCoord = reader.ReadInt32();
-                    //Main.player[player].GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTeleportation(xCoord, yCoord);
+                    break;
+                case AvalonMessageID.PhantasmRelocate:
+                    NPCs.Phantasm.Teleport(reader.ReadVector2(), true, whoAmI);
                     break;
             }
         }        public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)

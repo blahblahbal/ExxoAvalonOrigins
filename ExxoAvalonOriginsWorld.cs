@@ -1176,7 +1176,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
 
 
             MakeRectangle(x + 138, y + 44, 1, 1);
-            //WorldGen.PlaceTile(x + 138, y + 44, 482); // devil's scythe
+            WorldGen.PlaceTile(x + 138, y + 44, ModContent.TileType<Tiles.DevilsScythe>()); // devil's scythe
             LoK = new Vector2(x + 168, y + 57);
             WorldGen.destroyObject = false;
         }

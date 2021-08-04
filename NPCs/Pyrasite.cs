@@ -119,7 +119,7 @@ namespace ExxoAvalonOrigins.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mechanical Digger");
+            DisplayName.SetDefault("Pyrasite");
         }
 
         public override void Init()
