@@ -75,5 +75,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			}
 			return true;
 		}
-
+		public override bool HasWalkDust()
+		{
+			return Main.rand.Next(3) == 0;
+		}
 		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;	}}

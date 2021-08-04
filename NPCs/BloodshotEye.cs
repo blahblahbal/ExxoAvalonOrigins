@@ -21,13 +21,13 @@ namespace ExxoAvalonOrigins.NPCs
 		public override void SetDefaults()
 		{
 			npc.damage = 25;
-			npc.lifeMax = 75;
+			npc.lifeMax = 110;
 			npc.defense = 5;
 			npc.width = 48;
 			npc.aiStyle = 2;
 			npc.value = 150f;
 			npc.height = 34;
-			npc.knockBackResist = 0.2f;
+			npc.knockBackResist = 0.4f;
 			npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath6;
 			npc.buffImmune[BuffID.Confused] = true;
@@ -42,6 +42,11 @@ namespace ExxoAvalonOrigins.NPCs
 			if (Main.rand.Next(33) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackLens, 1, false, 0, false);
+			}
+			if (npc.life <= 0)
+			{
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye1"), 1f);
+				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye2"), 1f);
 			}
 		}
 
