@@ -8,11 +8,17 @@ namespace ExxoAvalonOrigins.Tiles{	public class TritanoriumOre : ModTile	{		
         }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
+            float num1 = 0.2f;
+            float num2 = 0.4f;
+            float num3 = 0.6f;
+            num1 *= 0.7f;
+            num2 *= 0.7f;
+            num3 *= 0.7f;
             float num7 = (float)Main.rand.Next(90, 111) * 0.01f;
             num7 *= Main.essScale;
-            r = 0.1f * num7;
-            g = 0.2f * num7;
-            b = 0.3f * num7;
+            r = num1 * num7;
+            g = num2 * num7;
+            b = num3 * num7;
         }
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
