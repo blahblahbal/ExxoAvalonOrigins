@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI() {
 
-			int dustType = ModContent.DustType<Dusts.Dust237>();
+			int dustType = ModContent.DustType<Dusts.YellowSolutionDust>();
 
 			if (projectile.owner == Main.myPlayer)
 				Convert((int)(projectile.position.X + projectile.width / 2) / 16, (int)(projectile.position.Y + projectile.height / 2) / 16, 2);

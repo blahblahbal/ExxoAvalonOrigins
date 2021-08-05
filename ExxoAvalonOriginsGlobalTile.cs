@@ -1,4 +1,11 @@
-﻿using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalTile : GlobalTile    {        public override void SetDefaults()        {            int[] spelunkers =            {                TileID.Crimtane,                TileID.Meteorite,                TileID.Obsidian,                TileID.Hellstone            };            foreach (var tile in spelunkers)            {                Main.tileSpelunker[tile] = true;            }        }        public override bool Slope(int i, int j, int type)
+using System;using Microsoft.Xna.Framework.Graphics;using Microsoft.Xna.Framework;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalTile : GlobalTile    {        public override void SetDefaults()        {            int[] spelunkers =            {                TileID.Crimtane,                TileID.Meteorite,                TileID.Obsidian,                TileID.Hellstone            };            foreach (var tile in spelunkers)            {                Main.tileSpelunker[tile] = true;            }        }        public override void NearbyEffects(int i, int j, int type, bool closer)
+        {
+            if (type == ModContent.TileType<Tiles.PyroscoricOre>())
+            {
+            Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, 174, 0f, 0f);
+            }
+        }
+        public override bool Slope(int i, int j, int type)
         {
             if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() ||
                 Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>())

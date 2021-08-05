@@ -15,6 +15,7 @@ namespace ExxoAvalonOrigins.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Caesium Crossbow");
+			Tooltip.SetDefault("Converts wooden arrows into hellfire arrows");
 		}
 		public override void SetDefaults()
 		{
@@ -40,6 +41,14 @@ namespace ExxoAvalonOrigins.Items
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-3, 0);
+		}
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		{
+			if (type == ProjectileID.WoodenArrowFriendly)
+			{
+				type = ProjectileID.HellfireArrow;
+			}
+			return true;
 		}
 	}
 }
