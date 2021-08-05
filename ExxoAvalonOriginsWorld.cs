@@ -23,7 +23,105 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 //Rhodium/Osmium
                 rhodium = WorldGen.genRand.Next(2) == 0;                rhodiumBar = rhodium ? ModContent.TileType<RhodiumOre>() : ModContent.TileType<OsmiumOre>();                for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)                {                    var i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer3 = Main.rockLayer;                    var j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);                    WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)rhodiumBar);                }                Main.NewText("Retrogenned Rhodium/Osmium");
                 //Caesium
-                for (var num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)                {                    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    //WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), ModContent.TileType<CaesiumOre>(), false, 0f, 0f, false, true);                }                Main.NewText("Retrogenned Caesium");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 1, 0))            {                for (var num284 = 69; num284 < 72; num284++)                {                    var type8 = 0;                    float num285 = 0;                    if (num284 == 69)                    {                        type8 = ModContent.TileType<Tourmaline>();                        num285 = Main.maxTilesX * 0.2f;                    }                    else if (num284 == 70)                    {                        type8 = ModContent.TileType<Peridot>();                        num285 = Main.maxTilesX * 0.2f;                    }                    else if (num284 == 71)                    {                        type8 = ModContent.TileType<Zircon>();                        num285 = Main.maxTilesX * 0.2f;                    }                    num285 *= 0.2f;                    var num286 = 0;                    while (num286 < num285)                    {                        var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                        var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                        while (Main.tile[num287, num288].type != 1)                        {                            num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                            num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                        }                        WorldGen.TileRunner(num287, num288, WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), type8, false, 0f, 0f, false, true);                        num286++;                    }                }                Main.NewText("Retrogenned Tourmaline, Peridot and Zircon");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))            {                for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                {                    var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer = Main.rockLayer;                    var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                    GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                }                Main.NewText("Retrogenned Heartstone");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))            {                for (var num721 = 0; num721 < 3; num721++)                {                    var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);                    var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);                    IceShrine2(x10, y6);                }                Main.NewText("Retrogenned Ice Shrines");            }        }        public override void ModifyHardmodeTasks(List<GenPass> list)
+                for (var num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)                {                    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    //WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), ModContent.TileType<CaesiumOre>(), false, 0f, 0f, false, true);                }                Main.NewText("Retrogenned Caesium");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 1, 0))            {                for (var num284 = 69; num284 < 72; num284++)                {                    var type8 = 0;                    float num285 = 0;                    if (num284 == 69)                    {                        type8 = ModContent.TileType<Tourmaline>();                        num285 = Main.maxTilesX * 0.2f;                    }                    else if (num284 == 70)                    {                        type8 = ModContent.TileType<Peridot>();                        num285 = Main.maxTilesX * 0.2f;                    }                    else if (num284 == 71)                    {                        type8 = ModContent.TileType<Zircon>();                        num285 = Main.maxTilesX * 0.2f;                    }                    num285 *= 0.2f;                    var num286 = 0;                    while (num286 < num285)                    {                        var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                        var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                        while (Main.tile[num287, num288].type != 1)                        {                            num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                            num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                        }                        WorldGen.TileRunner(num287, num288, WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), type8, false, 0f, 0f, false, true);                        num286++;                    }                }                Main.NewText("Retrogenned Tourmaline, Peridot and Zircon");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))            {                for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                {                    var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer = Main.rockLayer;                    var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                    GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                }                Main.NewText("Retrogenned Heartstone");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))            {                for (var num721 = 0; num721 < 3; num721++)                {                    var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);                    var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);                    IceShrine2(x10, y6);                }                Main.NewText("Retrogenned Ice Shrines");            }        }        public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
+        {
+            Tile tile = Main.tile[x, y];
+            int type = tile.type;
+            int wall = tile.wall;
+            if (!WorldGen.InWorld(x, y, 1))
+            {
+                return;
+            }
+            if (convert == 0)
+            {
+                if (Main.tile[x, y] != null)
+                {
+                    if (wall == ModContent.WallType<Walls.ContagionGrassWall>())
+                    {
+                        Main.tile[x, y].wall = WallID.GrassUnsafe;
+                    }
+                    else if (wall == ModContent.WallType<Walls.ChunkstoneWall>())
+                    {
+                        Main.tile[x, y].wall = WallID.Stone;
+                    }
+                }
+                if (Main.tile[x, y] != null)
+                {
+                    if (type == ModContent.TileType<Ickgrass>())
+                    {
+                        tile.type = TileID.Grass;
+                    }
+                    else if (type == ModContent.TileType<YellowIce>())
+                    {
+                        tile.type = TileID.IceBlock;
+                    }
+                    else if (type == ModContent.TileType<Snotsand>())
+                    {
+                        tile.type = TileID.Sand;
+                    }
+                    else if (type == ModContent.TileType<Chunkstone>())
+                    {
+                        tile.type = TileID.Stone;
+                    }
+                    if (TileID.Sets.Conversion.Grass[type] || type == 0)
+                    {
+                        WorldGen.SquareTileFrame(x, y);
+                    }
+                }
+            }
+            if (convert == 1)
+            {
+                if (Main.tile[x, y] != null)
+                {
+                    if (wall == ModContent.WallType<Walls.ContagionGrassWall>() || wall == WallID.CrimsonGrassUnsafe || wall == WallID.CorruptGrassUnsafe || wall == WallID.HallowedGrassUnsafe)
+                    {
+                        Main.tile[x, y].wall = WallID.JungleUnsafe;
+                    }
+                    else if (wall == WallID.DirtUnsafe)
+                    {
+                        Main.tile[x, y].wall = WallID.MudUnsafe;
+                    }
+                }
+                if (Main.tile[x, y] != null)
+                {
+                    if (type == ModContent.TileType<Ickgrass>() || type == TileID.FleshGrass || type == TileID.CorruptGrass || type == TileID.Grass || type == TileID.HallowedGrass)
+                    {
+                        tile.type = TileID.JungleGrass;
+                    }
+                    else if (type == TileID.Dirt)
+                    {
+                        tile.type = TileID.Mud;
+                    }
+                    else if (type == ModContent.TileType<Snotsand>() || type == TileID.Sand || type == TileID.Crimsand || type == TileID.Ebonsand || type == TileID.Pearlsand)
+                    {
+                        tile.type = TileID.Sand;
+                    }
+                    else if (type == ModContent.TileType<Chunkstone>() || type == TileID.Pearlstone || type == TileID.Crimstone || type == TileID.Ebonstone)
+                    {
+                        tile.type = TileID.Stone;
+                    }
+                    else if (type == ModContent.TileType<YellowIce>() || type == TileID.HallowedIce || type == TileID.FleshIce || type == TileID.CorruptIce || type == TileID.IceBlock)
+                    {
+                        tile.type = (ushort)ModContent.TileType<GreenIce>();
+                    }
+                    if (TileID.Sets.Conversion.Grass[type] || type == 0)
+                    {
+                        WorldGen.SquareTileFrame(x, y);
+                    }
+                }
+            }
+            if (tileframe)
+            {
+                if (Main.netMode == 0)
+                {
+                    WorldGen.SquareTileFrame(x, y);
+                }
+                else if (Main.netMode == 2)
+                {
+                    NetMessage.SendTileSquare(-1, x, y, 1);
+                }
+            }
+        }        public override void ModifyHardmodeTasks(List<GenPass> list)
         {
             int index = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Good"));
             int index2 = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Evil"));

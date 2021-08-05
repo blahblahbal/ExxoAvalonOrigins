@@ -578,6 +578,7 @@ namespace ExxoAvalonOrigins
         
 	    public override void PostUpdate()
         {
+            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>())) player.wingTime = 0;
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
             ExxoAvalonOriginsCollisions.HurtTiles(player.position, player.velocity, player.width, player.height, false);

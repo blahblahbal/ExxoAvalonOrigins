@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -15,5 +16,9 @@ namespace ExxoAvalonOrigins.Dusts
 			Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), num67 * 0.2f, num67, num67 * 0.5f);
             return true;
 		}
-	}
+        public override Color? GetAlpha(Dust dust, Color lightColor)
+        {
+            return new Color(200, 200, 200, 100);
+        }
+    }
 }
