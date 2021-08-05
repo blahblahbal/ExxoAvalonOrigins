@@ -43,8 +43,12 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Frostburn] = true;
+            drawOffsetY = 55;
         }
-
+        public override Color? GetAlpha(Color drawColor)
+        {
+            return Color.White;
+        }
         public override void AI()
         {
             if (npc.ai[3] > 0f)

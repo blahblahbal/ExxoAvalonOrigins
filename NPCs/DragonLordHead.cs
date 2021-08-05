@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -18,8 +19,8 @@ namespace ExxoAvalonOrigins.NPCs
 			DisplayName.SetDefault("Dragon Lord");
 			Main.npcFrameCount[npc.type] = 1;
 		}
-
-		public override void SetDefaults()
+        public bool head;
+        public override void SetDefaults()
 		{
 			npc.damage = 125;
 			npc.boss = true;
@@ -43,9 +44,29 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Frostburn] = true;
+            drawOffsetY = 55;
 		}
-
-		public override void NPCLoot()
+        public override Color? GetAlpha(Color drawColor)
+        {
+            return Color.White;
+        }
+        /*public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Texture2D texture = mod.GetTexture("NPCs/DragonLordHead");
+            Vector2 vector2 = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount[npc.type] / 2);
+            Color color46 = Lighting.GetColor((int)((double)npc.position.X + (double)npc.width * 0.5) / 16, (int)(((double)npc.position.Y + (double)npc.height * 0.5) / 16.0));
+            for (int num99 = 1; num99 < npc.oldPos.Length; num99++)
+            {
+                _ = ref npc.oldPos[num99];
+                Color color24 = color46;
+                color24.R = (byte)(0.5 * (double)(int)color24.R * (double)(10 - num99) / 20.0);
+                color24.G = (byte)(0.5 * (double)(int)color24.G * (double)(10 - num99) / 20.0);
+                color24.B = (byte)(0.5 * (double)(int)color24.B * (double)(10 - num99) / 20.0);
+                color24.A = (byte)(0.5 * (double)(int)color24.A * (double)(10 - num99) / 20.0);
+                spriteBatch.Draw(texture, new Vector2(npc.oldPos[num99].X - Main.screenPosition.X + (float)(npc.width / 2) - (float)texture.Width * npc.scale / 2f + vector2.X * npc.scale, npc.oldPos[num99].Y - Main.screenPosition.Y + (float)npc.height - (float)texture.Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + vector2.Y * npc.scale), npc.frame, color24, npc.rotation, vector2, npc.scale, SpriteEffects.None, 0f);
+            }
+        }*/
+        public override void NPCLoot()
 		{
 			if (Main.rand.Next(7) == 0)
 			{
@@ -330,6 +351,10 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 1.57f;
             }
+        }
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return head ? (bool?)null : false;
         }
     }
 }
