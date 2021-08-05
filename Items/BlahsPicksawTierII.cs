@@ -28,7 +28,8 @@ namespace ExxoAvalonOrigins.Items
 			item.axe = 60;
 			item.pick = 700;
 			item.rare = 12;
-			item.width = dims.Width;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+            item.width = dims.Width;
 			item.useTime = 6;
 			item.knockBack = 5.5f;
 			item.melee = true;

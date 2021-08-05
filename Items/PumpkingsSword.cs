@@ -35,7 +35,8 @@ namespace ExxoAvalonOrigins.Items
 			item.useStyle = 1;
 			item.value = Item.sellPrice(0, 40, 0, 0);
 			item.height = dims.Height;
-		}
+            item.UseSound = SoundID.Item1;
+        }
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 255);

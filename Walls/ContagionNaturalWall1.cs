@@ -3,5 +3,6 @@
     {
         public override void SetDefaults()
         {            AddMapEntry(new Color(57, 55, 12));
+            WallID.Sets.Conversion.Sandstone[Type] = true;
         }
     }}

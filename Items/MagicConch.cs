@@ -19,7 +19,7 @@
             item.height = 24;
         }        public override void HoldItem(Player player)
         {
-            if (player.itemAnimation > 0)
+            if (player.itemAnimation > 0 && player.whoAmI == Main.myPlayer)
             {
                 if (Main.rand.Next(2) == 0)
                 {

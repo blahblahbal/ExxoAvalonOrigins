@@ -106,7 +106,19 @@ namespace ExxoAvalonOrigins.Projectiles
 							WorldGen.SquareTileFrame(k, l, true);
 							NetMessage.SendTileSquare(-1, k, l, 1);
 						}
-					}
+                        else if (TileID.Sets.Conversion.Sandstone[type])
+                        {
+                            Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.Snotsandstone>();
+                            WorldGen.SquareTileFrame(k, l, true);
+                            NetMessage.SendTileSquare(-1, k, l, 1);
+                        }
+                        else if (TileID.Sets.Conversion.HardenedSand[type])
+                        {
+                            Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.HardenedSnotsand>();
+                            WorldGen.SquareTileFrame(k, l, true);
+                            NetMessage.SendTileSquare(-1, k, l, 1);
+                        }
+                    }
 				}
 			}
 		}

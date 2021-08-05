@@ -117,7 +117,7 @@ namespace ExxoAvalonOrigins.Altair
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier3 == 111) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Adamantite!"), new Color(221, 85, 152));
-                        if (WorldGen.oreTier3 == 223) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Titanium!"), new Color(185, 194, 215));
+                        else if (WorldGen.oreTier3 == 223) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Titanium!"), new Color(185, 194, 215));
                         else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Troxinium!"), new Color(193, 218, 72));
                     }
                     num1 = WorldGen.oreTier3;

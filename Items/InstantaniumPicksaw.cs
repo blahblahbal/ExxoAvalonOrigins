@@ -37,6 +37,7 @@ namespace ExxoAvalonOrigins.Items
 			item.value = 416000;
 			item.useAnimation = 11;
 			item.height = dims.Height;
+            item.UseSound = SoundID.Item1;
 		}
 
         public override void HoldItem(Player player)

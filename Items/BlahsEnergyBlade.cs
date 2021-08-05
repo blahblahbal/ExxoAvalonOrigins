@@ -26,7 +26,8 @@ namespace ExxoAvalonOrigins.Items
 			item.scale = 1.2f;
 			item.shootSpeed = 13f;
 			item.rare = 12;
-			item.width = dims.Width;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+            item.width = dims.Width;
 			item.useTime = 14;
 			item.knockBack = 20f;
 			item.shoot = ModContent.ProjectileType<Projectiles.BlahBeam>();

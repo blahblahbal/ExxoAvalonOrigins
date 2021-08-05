@@ -12,7 +12,7 @@
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/HellboundRemote");
             item.rare = 6;
             item.width = dims.Width;
-            item.maxStack = 999;
+            item.maxStack = 1;
             item.value = 0;
             item.height = dims.Height;
         }

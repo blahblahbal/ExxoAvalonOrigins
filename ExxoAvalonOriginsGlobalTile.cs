@@ -1,10 +1,23 @@
-﻿using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalTile : GlobalTile    {        public override void SetDefaults()        {            int[] spelunkers =            {                TileID.Crimtane,                TileID.Meteorite,                TileID.Obsidian,                TileID.Hellstone            };            foreach (var tile in spelunkers)            {                Main.tileSpelunker[tile] = true;            }        }        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)        {            if (type == ModContent.TileType<Tiles.ImperviousBrick>())
+﻿using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalTile : GlobalTile    {        public override void SetDefaults()        {            int[] spelunkers =            {                TileID.Crimtane,                TileID.Meteorite,                TileID.Obsidian,                TileID.Hellstone            };            foreach (var tile in spelunkers)            {                Main.tileSpelunker[tile] = true;            }        }        public override bool Slope(int i, int j, int type)
+        {
+            if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() ||
+                Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>())
+            {
+                return false;
+            }
+            return base.Slope(i, j, type);
+        }        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)        {            if (type == ModContent.TileType<Tiles.ImperviousBrick>())
             {
                 if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.LockedImperviousDoor>() ||
                     Main.tile[i, j + 1].type == ModContent.TileType<Tiles.LockedImperviousDoor>())
                 {
                     fail = true;
                 }
+            }
+            if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() ||
+                Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>())
+            {
+                fail = true;
             }            int[] blowPipes =            {                ItemID.Blowpipe,                ItemID.Blowgun,                ModContent.ItemType<Items.ReinforcedBlowpipe>(),                ModContent.ItemType<Items.HallowedBlowpipe>(),                ModContent.ItemType<Items.SunsShadow>(),                ModContent.ItemType<Items.OrichythrilBlowpipe>(),                ModContent.ItemType<Items.HallowedBlowpipe>()            };            if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
             {
                 Main.PlaySound(6, i * 16, j * 16, 1);

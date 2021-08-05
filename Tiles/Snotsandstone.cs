@@ -11,5 +11,6 @@
             Main.tileMerge[TileID.HardenedSand][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<HardenedSnotsand>()] = true;
             Main.tileMerge[ModContent.TileType<HardenedSnotsand>()][Type] = true;
+            TileID.Sets.Conversion.Sandstone[Type] = true;
             drop = mod.ItemType("SnotsandstoneBlock");        }
     }}

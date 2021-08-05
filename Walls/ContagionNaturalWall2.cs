@@ -3,5 +3,6 @@
     {
         public override void SetDefaults()
         {            AddMapEntry(new Color(81, 86, 47));
+            WallID.Sets.Conversion.HardenedSand[Type] = true;
         }
     }}

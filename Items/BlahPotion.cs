@@ -24,8 +24,9 @@ namespace ExxoAvalonOrigins.Items
 			item.buffType = ModContent.BuffType<Buffs.Blah>();
 			item.UseSound = SoundID.Item3;
 			item.consumable = false;
-			item.rare = -12;
-			item.width = dims.Width;
+			item.rare = 11;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+            item.width = dims.Width;
 			item.useTime = 15;
 			item.useStyle = 2;
 			item.maxStack = 1;
