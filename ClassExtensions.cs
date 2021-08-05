@@ -13,6 +13,10 @@ namespace ExxoAvalonOrigins
 {
     public static class ClassExtensions
     {
+        public static Rectangle NewRectVector2(Vector2 V, Vector2 WH)
+        {
+            return new Rectangle((int)V.X, (int)V.Y, (int)WH.X, (int)WH.Y);
+        }
         public static bool exists(this Item item)
         {
             return item.type > 0 && item.stack > 0;
