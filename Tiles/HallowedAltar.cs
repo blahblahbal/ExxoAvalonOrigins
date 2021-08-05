@@ -31,8 +31,9 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 1f;
-            g = 0.9f;
+            var brightness = Main.rand.Next(-5, 6) * 0.0025f;
+            r = 1f + brightness;
+            g = 0.9f + brightness * 2f;
             b = 0f;
         }
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
@@ -43,6 +44,15 @@ namespace ExxoAvalonOrigins.Tiles
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {   
             //TODO: Add SmashHallowAltar
+        }
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if (Main.rand.Next(80) == 1)
+            {
+                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.HallowedWeapons, 0f, 0f, 0, default(Color), 1.5f);
+                Main.dust[num162].noGravity = true;
+                Main.dust[num162].velocity *= 1f;
+            }
         }
     }
 }
