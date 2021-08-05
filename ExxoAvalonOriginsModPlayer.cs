@@ -41,8 +41,8 @@ namespace ExxoAvalonOrigins
 		public bool lucky = false;
 		public bool enemySpawns2 = false;
 		public int crimsonCount = 0;
-		public bool darkInferno = false;
-		public int deliriumCount = 0;
+        public bool darkInferno = false;
+        public int deliriumCount = 0;
 		public bool forceField = true;
 		public int fAlevel = 0;
 		public int fAlastRecord = 0;

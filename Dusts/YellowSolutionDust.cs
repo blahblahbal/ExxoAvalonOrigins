@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Dusts
 {
-	public class Dust237 : ModDust
+	public class YellowSolutionDust : ModDust
 	{
 		public override bool Update(Dust dust)
 		{

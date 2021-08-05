@@ -15,6 +15,7 @@ namespace ExxoAvalonOrigins.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Caesium Spatha");
+			Tooltip.SetDefault("Explodes foes on hit");
 		}
 		public override void SetDefaults()
 		{
@@ -22,7 +23,7 @@ namespace ExxoAvalonOrigins.Items
 			item.UseSound = SoundID.Item1;
 			item.damage = 66;
 			item.useTurn = true;
-			item.scale = 1.2f;
+			item.scale = 1.3f;
 			item.rare = 5;
 			item.width = dims.Width;
 			item.useTime = 18;
@@ -33,6 +34,10 @@ namespace ExxoAvalonOrigins.Items
 			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.useAnimation = 18;
 			item.height = dims.Height;
+		}
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+			Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType<Projectiles.CaesiumExplosion>(), damage, knockBack, player.whoAmI, 0f, 0f);
 		}
     }
 }
