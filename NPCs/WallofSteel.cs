@@ -39,6 +39,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
             npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
         }
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemID.GreaterHealingPotion;
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);

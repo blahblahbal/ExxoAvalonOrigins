@@ -31,6 +31,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath39;
         }
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemID.GreaterHealingPotion;
+        }
         public static void Teleport(Vector2 coords, bool forceHandle = false, int whoAmI = 0)
         {
             bool syncData = forceHandle || Main.netMode == 0;

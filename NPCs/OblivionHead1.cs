@@ -38,8 +38,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit4;
 	        npc.DeathSound = SoundID.NPCDeath14;
 		}
-        
-
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ModContent.ItemType<Items.ElixirofLife>();
+        }
         public override void AI()
         {
             var instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();

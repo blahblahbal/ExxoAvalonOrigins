@@ -197,7 +197,10 @@ namespace ExxoAvalonOrigins.NPCs
             }
             return;
         }
-
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ModContent.ItemType<Items.ElixirofLife>();
+        }
         public override void NPCLoot()
 		{
 			ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = true;

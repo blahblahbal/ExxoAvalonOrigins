@@ -17,6 +17,7 @@ namespace ExxoAvalonOrigins
 {
     public class ExxoAvalonOriginsModPlayer : ModPlayer
     {
+        #region fields
         public int statStamMax = 300;
         public int statStamMax2 = 300;
         public int statStam = 100;
@@ -169,6 +170,7 @@ namespace ExxoAvalonOrigins
         public int potionTotal;
         public int herbTotal;
         public int[] herbCounts = new int[10];
+        #endregion
 
         public override void ResetEffects()
         {
@@ -582,8 +584,6 @@ namespace ExxoAvalonOrigins
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
             
-            
-            //ExxoAvalonOriginsCollisions.HurtTiles(player.position, player.velocity, player.width, player.height, false);
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
