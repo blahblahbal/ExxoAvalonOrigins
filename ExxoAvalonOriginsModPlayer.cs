@@ -40,6 +40,7 @@ namespace ExxoAvalonOrigins
         public bool slimeImmune = false;
 		public bool beeRepel = false;
 		public bool lucky = false;
+        public bool melting = false;
 		public bool enemySpawns2 = false;
 		public int crimsonCount = 0;
         public bool darkInferno = false;
@@ -179,6 +180,7 @@ namespace ExxoAvalonOrigins
             //trapImmune = false;
             bubbleBoost = false;
             darkInferno = false;
+            melting = false;
         }
 
         public override void UpdateBadLifeRegen()
@@ -198,6 +200,15 @@ namespace ExxoAvalonOrigins
                 {
                     player.lifeRegen -= 16;
                 }
+            }
+            if (melting)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                }
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 32;
             }
         }
         public override void UpdateBiomes()
@@ -580,7 +591,32 @@ namespace ExxoAvalonOrigins
         
 	    public override void PostUpdate()
         {
-            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>())) player.wingTime = 0;
+            Vector2 pposTile = player.Center / 16;
+            for (int xpos = (int)pposTile.X - 4; xpos <= (int)pposTile.X + 4; xpos++)
+            {
+                for (int ypos = (int)pposTile.Y - 4; ypos <= (int)pposTile.Y + 4; ypos++)
+                {
+                    if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.PyroscoricOre>())
+                    {
+                        player.AddBuff(ModContent.BuffType<Buffs.Melting>(), 60);
+                    }
+                }
+            }
+            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
+            {
+                int arma = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
+                if (arma != -1)
+                {
+                    Rectangle rectangle = new Rectangle((int)Main.screenPosition.X + (int)player.position.X, (int)Main.screenPosition.Y + (int)player.position.Y, Main.screenWidth, Main.screenHeight);
+                    int radius = 5000;
+                    Rectangle value = new Rectangle((int)(Main.npc[arma].position.X + (float)(Main.npc[arma].width / 2)) - radius, (int)(Main.npc[arma].position.Y + (float)(Main.npc[arma].height / 2)) - radius, radius * 2, radius * 2);
+                    if (rectangle.Intersects(value))
+                    {
+                        player.wingTime = 0;
+                        player.wingsLogic = 0;
+                    }
+                }
+            }
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
             
