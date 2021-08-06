@@ -168,7 +168,9 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath)
             {
-                Projectile.NewProjectile(npc.position.X + npc.width / 2f, npc.position.Y + npc.height / 2f, npc.velocity.X * 3f + Main.rand.Next(-2, 3), npc.velocity.Y * 3f + Main.rand.Next(-2, 3), ProjectileID.FlamethrowerTrap, 75, 1.2f, 255, 0f, 0f);
+                int p = Projectile.NewProjectile(npc.position.X + npc.width / 2f, npc.position.Y + npc.height / 2f, npc.velocity.X * 3f + Main.rand.Next(-2, 3), npc.velocity.Y * 3f + Main.rand.Next(-2, 3), ProjectileID.FlamethrowerTrap, 75, 1.2f, 255, 0f, 0f);
+                Main.projectile[p].hostile = true;
+                Main.projectile[p].friendly = false;
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD--;
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD <= 0)

@@ -127,11 +127,26 @@ namespace ExxoAvalonOrigins.Projectiles{
                 projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
                 projectile.knockBack = 8f;
                 projectile.Kill();
+            }            float num26 = (float)Math.Sqrt((double)(projectile.velocity.X * projectile.velocity.X + projectile.velocity.Y * projectile.velocity.Y));
+            float num27 = projectile.localAI[0];
+            if (num27 == 0f)
+            {
+                projectile.localAI[0] = num26;
+                num27 = num26;
+            }
+            if (projectile.alpha > 0)
+            {
+                projectile.alpha -= 25;
+            }
+            if (projectile.alpha < 0)
+            {
+                projectile.alpha = 0;
             }            float num28 = projectile.position.X;
             float num29 = projectile.position.Y;
             float num30 = 250f;
             bool flag = false;
-            int num31 = 0;            if (projectile.ai[1] == 0f)
+            int num31 = 0;
+            if (projectile.ai[1] == 0)
             {
                 for (int num32 = 0; num32 < Main.player.Length; num32++)
                 {
@@ -149,11 +164,13 @@ namespace ExxoAvalonOrigins.Projectiles{
                             num31 = num32;
                         }
                     }
-                }                if (flag)
+                }
+                if (flag)
                 {
                     projectile.ai[1] = (float)(num31 + 1);
                 }
-                flag = false;            }            if (projectile.ai[1] != 0f)
+                flag = false;
+            }            if (projectile.ai[1] != 0f)
             {
                 int num36 = (int)(projectile.ai[1] - 1f);
                 if (Main.player[num36].active)
@@ -168,5 +185,19 @@ namespace ExxoAvalonOrigins.Projectiles{
                         num29 = Main.player[num36].position.Y + (float)(Main.player[num36].height / 2);
                     }
                 }
+            }
+            if (flag)
+            {
+                float num40 = num27;
+                Vector2 vector = new Vector2(projectile.position.X + (float)projectile.width * 0.5f, projectile.position.Y + (float)projectile.height * 0.5f);
+                float num41 = num28 - vector.X;
+                float num42 = num29 - vector.Y;
+                float num43 = (float)Math.Sqrt((double)(num41 * num41 + num42 * num42));
+                num43 = num40 / num43;
+                num41 *= num43;
+                num42 *= num43;
+                int num44 = 8;
+                projectile.velocity.X = (projectile.velocity.X * (float)(num44 - 1) + num41) / (float)num44;
+                projectile.velocity.Y = (projectile.velocity.Y * (float)(num44 - 1) + num42) / (float)num44;
             }
         }    }}

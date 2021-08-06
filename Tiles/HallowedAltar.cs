@@ -42,8 +42,8 @@ namespace ExxoAvalonOrigins.Tiles
             return ExxoAvalonOrigins.superHardmode;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {   
-            //TODO: Add SmashHallowAltar
+        {
+            if (ExxoAvalonOrigins.superHardmode) ExxoAvalonOriginsWorld.SmashHallowAltar(i, j);
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {

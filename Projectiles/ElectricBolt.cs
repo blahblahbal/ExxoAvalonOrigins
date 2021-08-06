@@ -15,6 +15,7 @@
             projectile.ignoreWater = true;
             projectile.magic = true;
             projectile.penetrate = 2;
+            Main.projFrames[projectile.type] = 4;
         }        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.Next(8) == 0) target.AddBuff(ModContent.BuffType<Buffs.Electrified>(), 60 * 6);
