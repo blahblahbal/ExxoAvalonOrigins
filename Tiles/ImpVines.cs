@@ -16,7 +16,6 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileLavaDeath[Type] = true;
             Main.tileNoFail[Type] = true;
             Main.tileNoAttach[Type] = true;
-            Main.tileLighted[Type] = false;
             soundType = SoundID.Grass;
             dustType = 6;
 

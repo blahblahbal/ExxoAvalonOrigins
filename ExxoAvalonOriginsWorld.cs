@@ -614,6 +614,35 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             NetMessage.SendTileSquare(-1, num5, num6, 3);
                         }
                     }
+                    if ((Main.tile[num5, num6].type == ModContent.TileType<Impgrass>() || Main.tile[num5, num6].type == ModContent.TileType<Impvines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].active() && !Main.tile[num5, num6 + 1].lava())
+                    {
+                        bool flag10 = false;
+                        for (int num47 = num6; num47 > num6 - 10; num47--)
+                        {
+                            if (Main.tile[num5, num47].bottomSlope())
+                            {
+                                flag10 = false;
+                                break;
+                            }
+                            if (Main.tile[num5, num47].active() && Main.tile[num5, num47].type == 477 && !Main.tile[num5, num47].bottomSlope())
+                            {
+                                flag10 = true;
+                                break;
+                            }
+                        }
+                        if (flag10)
+                        {
+                            int num48 = num5;
+                            int num49 = num6 + 1;
+                            Main.tile[num48, num49].type = (ushort)ModContent.TileType<Impvines>();
+                            Main.tile[num48, num49].active(true);
+                            WorldGen.SquareTileFrame(num48, num49, true);
+                            if (Main.netMode == 2)
+                            {
+                                NetMessage.SendTileSquare(-1, num48, num49, 3);
+                            }
+                        }
+                    }
                 }
                 num4++;
             }
@@ -820,14 +849,14 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (num587 > 0 && !Main.tile[num586, num589].active())
                             {
                                 Main.tile[num586, num589].active(true);
-                                Main.tile[num586, num589].type = 508;
+                                Main.tile[num586, num589].type = (ushort)ModContent.TileType<Impvines>();
                                 num587--;
                             }
                             else
                             {
                                 num587 = 0;
                             }
-                            if (Main.tile[num586, num589].active() && Main.tile[num586, num589].type == 506 && !Main.tile[num586, num589].bottomSlope() && WorldGen.genRand.Next(5) < 3)
+                            if (Main.tile[num586, num589].active() && Main.tile[num586, num589].type == (ushort)ModContent.TileType<Impgrass>() && !Main.tile[num586, num589].bottomSlope() && WorldGen.genRand.Next(5) < 3)
                             {
                                 num587 = WorldGen.genRand.Next(1, 10);
                             }
