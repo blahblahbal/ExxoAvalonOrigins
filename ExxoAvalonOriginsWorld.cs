@@ -3,6 +3,7 @@ using Terraria.Utilities;
 using System.IO;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
+using Terraria.GameContent.Biomes;
 
 namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {        public static GenPass corruptionPass;        public static GenPass altarPass;        public static byte blbTimer;        public static bool rhodium;        public static int rhodiumBar;        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int nilShrineCount;        public static int hallowedAltarCount;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static int theBeak;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
@@ -754,7 +755,96 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 }
             }
             return false;
-        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            theBeak = ModContent.ItemType<TheBeak>();            blbTimer = 0;            rhodium = true;            rhodiumBar = ModContent.TileType<RhodiumOre>();            shmOreTier1 = -1;            shmOreTier2 = -1;            contaigon = contaigonSet;            contaigonSet = false;            totalDark2 = 0;            nilShrineCount = 0;            hallowedAltarCount = 0;            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOrigins.nilMode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;            if (WorldGen.genRand.Next(2) == 0)            {                rhodium = false;                rhodiumBar = ModContent.TileType<OsmiumOre>();            }            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Contaigon Setup", delegate(GenerationProgress progress)                {                    progress.Message = "Setting up Avalonian World Gen";                    if (!contaigon && WorldGen.WorldGenParam_Evil == -1)                    {                        contaigon = WorldGen.genRand.Next(3) == 0;                        if (contaigon) WorldGen.crimson = false;                    }                    if (WorldGen.WorldGenParam_Evil == 2)                    {                        contaigon = true;                        WorldGen.crimson = false;                    }                }));            }            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");            if (shinies != -1)            {                tasks.Insert(shinies, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Signalling Avalon Hooks";                    generatingBaccilite = contaigon; //Signals ExxoAvalonOrigins.BacciliteReplacement() to replace a demonite ore type with baccilite.                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }                    GenerateHellcastle2(Main.maxTilesX / 3, Main.maxTilesY - 140);
+        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            theBeak = ModContent.ItemType<TheBeak>();            blbTimer = 0;            rhodium = true;            rhodiumBar = ModContent.TileType<RhodiumOre>();            shmOreTier1 = -1;            shmOreTier2 = -1;            contaigon = contaigonSet;            contaigonSet = false;            totalDark2 = 0;            nilShrineCount = 0;            hallowedAltarCount = 0;            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOrigins.nilMode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;            int rhod = WorldGen.genRand.Next(3);            if (rhod == 0)            {                rhodium = false;                rhodiumBar = ModContent.TileType<Tiles.OsmiumOre>();            }            else if (rhod == 1)            {                rhodium = false;                rhodiumBar = ModContent.TileType<Tiles.IridiumOre>();            }            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", delegate(GenerationProgress progress)                {                    progress.Message = "Setting up Avalonian World Gen";                    if (!contaigon && WorldGen.WorldGenParam_Evil == -1)                    {                        contaigon = WorldGen.genRand.Next(3) == 0;                        if (contaigon) WorldGen.crimson = false;                    }                    if (WorldGen.WorldGenParam_Evil == 2)                    {                        contaigon = true;                        WorldGen.crimson = false;                    }                    int phmOreTier1 = WorldGen.genRand.Next(3);
+                    int phmOreTier2 = WorldGen.genRand.Next(3);
+                    int phmOreTier3 = WorldGen.genRand.Next(3);
+                    int phmOreTier4 = WorldGen.genRand.Next(3);                    if (phmOreTier1 == 0)
+                    {
+                        WorldGen.CopperTierOre = (ushort)ModContent.TileType<Tiles.BronzeOre>();
+                        WorldGen.copperBar = ModContent.ItemType<Items.BronzeBar>();
+                    }
+                    if (phmOreTier2 == 0)
+                    {
+                        WorldGen.IronTierOre = (ushort)ModContent.TileType<Tiles.NickelOre>();
+                        WorldGen.ironBar = ModContent.ItemType<Items.NickelBar>();
+                    }
+                    if (phmOreTier3 == 0)
+                    {
+                        WorldGen.SilverTierOre = (ushort)ModContent.TileType<Tiles.ZincOre>();
+                        WorldGen.silverBar = ModContent.ItemType<Items.ZincBar>();
+                    }
+                    if (phmOreTier4 == 0)
+                    {
+                        WorldGen.GoldTierOre = (ushort)ModContent.TileType<Tiles.BismuthOre>();
+                        WorldGen.goldBar = ModContent.ItemType<Items.BismuthBar>();
+                    }                }));            }            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");            if (shinies != -1)            {                tasks.RemoveAt(shinies);                tasks.Insert(shinies, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Signalling Avalon Hooks";                    generatingBaccilite = contaigon; //Signals ExxoAvalonOrigins.BacciliteReplacement() to replace a demonite ore type with baccilite.                }));                tasks.Insert(shinies + 1, new PassLegacy("Avalon PHM Ore Gen", delegate (GenerationProgress progress)                {
+                    progress.Message = Lang.gen[16].Value;
+                    for (int num559 = 0; num559 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); num559++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, (int)WorldGen.worldSurfaceHigh), WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), WorldGen.CopperTierOre);
+                    }
+                    for (int num560 = 0; num560 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 8E-05); num560++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, (int)WorldGen.rockLayerHigh), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 7), WorldGen.CopperTierOre);
+                    }
+                    for (int num561 = 0; num561 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.0002); num561++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(4, 9), WorldGen.genRand.Next(4, 8), WorldGen.CopperTierOre);
+                    }
+                    for (int num562 = 0; num562 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 3E-05); num562++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, (int)WorldGen.worldSurfaceHigh), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(2, 5), WorldGen.IronTierOre);
+                    }
+                    for (int num563 = 0; num563 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 8E-05); num563++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, (int)WorldGen.rockLayerHigh), WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(3, 6), WorldGen.IronTierOre);
+                    }
+                    for (int num564 = 0; num564 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.0002); num564++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(4, 9), WorldGen.genRand.Next(4, 8), WorldGen.IronTierOre);
+                    }
+                    for (int num565 = 0; num565 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2.6E-05); num565++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, (int)WorldGen.rockLayerHigh), WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(3, 6), WorldGen.SilverTierOre);
+                    }
+                    for (int num566 = 0; num566 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.00015); num566++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(4, 9), WorldGen.genRand.Next(4, 8), WorldGen.SilverTierOre);
+                    }
+                    for (int num567 = 0; num567 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.00017); num567++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(0, (int)WorldGen.worldSurfaceLow), WorldGen.genRand.Next(4, 9), WorldGen.genRand.Next(4, 8), WorldGen.SilverTierOre);
+                    }
+                    for (int num568 = 0; num568 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.00012); num568++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(4, 8), WorldGen.genRand.Next(4, 8), WorldGen.GoldTierOre);
+                    }
+                    for (int num569 = 0; num569 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.00012); num569++)
+                    {
+                        WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(0, (int)WorldGen.worldSurfaceLow - 20), WorldGen.genRand.Next(4, 8), WorldGen.genRand.Next(4, 8), WorldGen.GoldTierOre);
+                    }
+                    if (WorldGen.crimson)
+                    {
+                        for (int num570 = 0; num570 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num570++)
+                        {
+                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), 204);
+                        }
+                    }
+                    else if (contaigon)
+                    {
+                        for (int num571 = 0; num571 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num571++)
+                        {
+                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), (ushort)ModContent.TileType<Tiles.BacciliteOre>());
+                        }
+                    }
+                    else if (!contaigon && !WorldGen.crimson)
+                    {
+                        for (int num571 = 0; num571 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num571++)
+                        {
+                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), 22);
+                        }
+                    }
+                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }                    GenerateHellcastle2(Main.maxTilesX / 3, Main.maxTilesY - 140);
                     for (int hbx = Main.maxTilesX / 3 - 170; hbx < Main.maxTilesX / 3 + 380; hbx++)
                     {
                         for (int hby = Main.maxTilesY - 200; hby < Main.maxTilesY - 50; hby++)
@@ -860,7 +950,97 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             {
                                 num587 = WorldGen.genRand.Next(1, 10);
                             }
-                        }                    }                }));            }            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.Insert(microBiomes, new PassLegacy("Avalon Contaigon fix 1", delegate (GenerationProgress progress)                    {                        if (contaigon) WorldGen.crimson = true;                    }));                tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                {                    if (contaigon) WorldGen.crimson = false;                }));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle2(int x, int y)
+                        }                    }                }));            }            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);                tasks.Insert(microBiomes, new PassLegacy("Avalon Contaigon fix 1", delegate (GenerationProgress progress)
+                {
+                    if (contaigon) WorldGen.crimson = true;
+                }));                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", delegate (GenerationProgress progress)                {
+                    progress.Message = Lang.gen[76].Value + "..Thin Ice";
+                    float num = (float)(Main.maxTilesX * Main.maxTilesY) / 5040000f;
+                    float num2 = (float)Main.maxTilesX / 4200f;
+                    int num3 = (int)((float)WorldGen.genRand.Next(3, 6) * num);
+                    int num4 = 0;
+                    while (num4 < num3)
+                    {
+                        if (Biomes<ThinIceBiome>.Place(WorldGen.RandomWorldPoint((int)Main.worldSurface + 20, 50, 200, 50), WorldGen.structures))
+                        {
+                            num4++;
+                        }
+                    }
+                    progress.Set(0.1f);
+                    progress.Message = Lang.gen[76]?.ToString() + "..Enchanted Swords";
+                    int num5 = (int)Math.Ceiling(num);
+                    int num6 = 0;
+                    Point origin = default(Point);
+                    while (num6 < num5)
+                    {
+                        origin.Y = (int)WorldGen.worldSurface + WorldGen.genRand.Next(50, 100);
+                        if (WorldGen.genRand.Next(2) == 0)
+                        {
+                            origin.X = WorldGen.genRand.Next(50, (int)((float)Main.maxTilesX * 0.3f));
+                        }
+                        else
+                        {
+                            origin.X = WorldGen.genRand.Next((int)((float)Main.maxTilesX * 0.7f), Main.maxTilesX - 50);
+                        }
+                        if (Biomes<Terraria.GameContent.Biomes.EnchantedSwordBiome>.Place(origin, WorldGen.structures))
+                        {
+                            num6++;
+                        }
+                    }
+                    progress.Set(0.2f);
+                    progress.Message = Lang.gen[76]?.ToString() + "..Campsites";
+                    int num7 = (int)((float)WorldGen.genRand.Next(6, 12) * num);
+                    int num8 = 0;
+                    while (num8 < num7)
+                    {
+                        if (Biomes<CampsiteBiome>.Place(WorldGen.RandomWorldPoint((int)Main.worldSurface, 50, 200, 50), WorldGen.structures))
+                        {
+                            num8++;
+                        }
+                    }
+                    progress.Message = Lang.gen[76]?.ToString() + "..Mining Explosives";
+                    progress.Set(0.25f);
+                    int num9 = (int)((float)WorldGen.genRand.Next(14, 30) * num);
+                    int num10 = 0;
+                    while (num10 < num9)
+                    {
+                        if (Biomes<MiningExplosivesBiome>.Place(WorldGen.RandomWorldPoint((int)WorldGen.rockLayer, 50, 200, 50), WorldGen.structures))
+                        {
+                            num10++;
+                        }
+                    }
+                    progress.Message = Lang.gen[76]?.ToString() + "..Mahogany Trees";
+                    progress.Set(0.3f);
+                    int num11 = (int)((float)WorldGen.genRand.Next(6, 12) * num2);
+                    int num12 = 0;
+                    int num13 = 0;
+                    while (num12 < num11 && num13 < 20000)
+                    {
+                        if (Biomes<MahoganyTreeBiome>.Place(WorldGen.RandomWorldPoint((int)Main.worldSurface + 50, 50, 500, 50), WorldGen.structures))
+                        {
+                            num12++;
+                        }
+                        num13++;
+                    }
+                    progress.Message = Lang.gen[76]?.ToString() + "..Corruption Pits";
+                    progress.Set(0.4f);
+                    if (!WorldGen.crimson)
+                    {
+                        int num14 = (int)((float)WorldGen.genRand.Next(1, 3) * num);
+                        int num15 = 0;
+                        while (num15 < num14)
+                        {
+                            if (Biomes<CorruptionPitBiome>.Place(WorldGen.RandomWorldPoint((int)Main.worldSurface, 50, 500, 50), WorldGen.structures))
+                            {
+                                num15++;
+                            }
+                        }
+                    }
+                    progress.Message = Lang.gen[76]?.ToString() + "..Minecart Tracks";
+                    progress.Set(0.5f);
+                    TrackGenerator.Run((int)(10f * num), (int)(num * 25f) + 250);
+                    progress.Set(1f);
+                }));                tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                {                    if (contaigon) WorldGen.crimson = false;                }));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle2(int x, int y)
         {
             WorldGen.destroyObject = true;
             ushort brick = (ushort)ModContent.TileType<Tiles.ImperviousBrick>();
@@ -882,6 +1062,11 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         Main.tile[noLiquidX, noLiquidY].slope(0);
                         Main.tile[noLiquidX, noLiquidY].halfBrick(false);
                     }
+                    if (Main.tile[noLiquidX, noLiquidY].type == TileID.LargePiles || Main.tile[noLiquidX, noLiquidY].type == TileID.LargePiles2 ||
+                        Main.tile[noLiquidX, noLiquidY].type == TileID.SmallPiles)
+                    {
+                        Main.tile[noLiquidX, noLiquidY].active(false);
+                    }
                 }
             }
             for (int noHellHousesX = x; noHellHousesX <= x + 210; noHellHousesX++)
@@ -899,7 +1084,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lampposts || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lamps ||
                         Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pianos || Main.tile[noHellHousesX, noHellHousesY].type == TileID.GrandfatherClocks ||
                         Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chandeliers || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Hellforge ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HangingLanterns)
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HangingLanterns ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Bookcases)
                     {
                         Main.tile[noHellHousesX, noHellHousesY].active(false);
                         Main.tile[noHellHousesX, noHellHousesY].wall = 0;
@@ -1368,7 +1554,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
 
 
 
-            //AddHellcastleChest(x + 111, y + 31);
+            AddHellcastleChest(x + 111, y + 31);
 
             MakeWallRectangle(x + 192, y + 9, 2, 8, wallSafe);
             MakeWallRectangle(x + 196, y + 9, 2, 8, wallSafe);
@@ -1398,27 +1584,27 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             MakeRectangle(x + 59, y + 21, 1, 1, brick);
 
 
-            MakeRectangle(x + 141, y + 93, 1, 1, spike);
-            MakeRectangle(x + 143, y + 93, 1, 1, spike);
-            MakeRectangle(x + 145, y + 93, 1, 1, spike);
-            MakeRectangle(x + 147, y + 93, 1, 1, spike);
-            MakeRectangle(x + 149, y + 93, 1, 1, spike);
-            MakeRectangle(x + 151, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 141, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 143, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 145, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 147, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 149, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 151, y + 93, 1, 1, spike);
 
-            MakeRectangle(x + 183, y + 93, 1, 1, spike);
-            MakeRectangle(x + 185, y + 93, 1, 1, spike);
-            MakeRectangle(x + 187, y + 93, 1, 1, spike);
-            MakeRectangle(x + 189, y + 93, 1, 1, spike);
-            MakeRectangle(x + 191, y + 93, 1, 1, spike);
-            MakeRectangle(x + 193, y + 93, 1, 1, spike);
-            //for (int c = x + 140; c <= x + 152; c += 2)
-            //{
-            //    if (c != x + 140) MakeRectangle(c, y + 93, 1, 1, spike);
-            //}
-            //for (int c = x + 182; c <= x + 194; c += 2)
-            //{
-            //    if (c != x + 182) MakeRectangle(c, y + 93, 1, 1, spike);
-            //}
+            //MakeRectangle(x + 183, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 185, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 187, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 189, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 191, y + 93, 1, 1, spike);
+            //MakeRectangle(x + 193, y + 93, 1, 1, spike);
+            for (int c = x + 140; c <= x + 152; c += 2)
+            {
+                if (c != x + 140) MakeRectangle(c, y + 93, 1, 1, spike);
+            }
+            for (int c = x + 182; c <= x + 194; c += 2)
+            {
+                if (c != x + 182) MakeRectangle(c, y + 93, 1, 1, spike);
+            }
 
             //MakeRectangle(x + 140, y + 93, 1, 1, spike);
             //MakeRectangle(x + 142, y + 93, 1, 1, spike);
@@ -1545,7 +1731,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
                 {
                     int num = k;
-                    int num2 = WorldGen.PlaceChest(i - 1, num - 1, 21, notNearOtherChests, 49);
+                    int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<LockedUnderworldChest>(), notNearOtherChests);
                     if (num2 >= 0)
                     {
                         int num3 = 0;
@@ -1553,8 +1739,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         {
                             Main.chest[num2].item[0].SetDefaults(ModContent.ItemType<Items.Boomlash>(), false);
                             Main.chest[num2].item[0].Prefix(-1);
-                            //Main.chest[num2].item[1].SetDefaults(ItemID.EctoplasmicBeacon, false);
-                            //Main.chest[num2].item[1].stack = 1;
+                            Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<Items.EctoplasmicBeacon>(), false);
+                            Main.chest[num2].item[1].stack = 1;
                             int rand = WorldGen.genRand.Next(3);
                             if (rand == 0)
                             {

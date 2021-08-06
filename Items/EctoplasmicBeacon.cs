@@ -17,7 +17,7 @@
             item.value = 0;
             item.maxStack = 20;
             item.useAnimation = 45;
-            item.height = dims.Height;        }        public override bool CanUseItem(Player player)        {            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Phantasm>()) && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle;        }        public override bool UseItem(Player player)        {            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Phantasm>());            Main.PlaySound(SoundID.Roar, player.position, 0);            return true;        }        public override void AddRecipes()
+            item.height = dims.Height;            item.rare = 8;        }        public override bool CanUseItem(Player player)        {            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Phantasm>()) && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle;        }        public override bool UseItem(Player player)        {            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Phantasm>());            Main.PlaySound(SoundID.Roar, player.position, 0);            return true;        }        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Ectoplasm, 10);

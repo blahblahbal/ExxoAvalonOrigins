@@ -18,4 +18,4 @@
             item.value = 0;
             item.maxStack = 20;
             item.useAnimation = 45;
-            item.height = dims.Height;        }        public override bool CanUseItem(Player player)        {            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.Mechasting>())) return false;            return true;        }        public override bool UseItem(Player player)        {            Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 1);            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Mechasting>());            return true;        }    }}
+            item.height = dims.Height;        }        public override bool CanUseItem(Player player)        {            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.Mechasting>())) return false;            return true;        }        public override bool UseItem(Player player)        {            Main.PlaySound(SoundID.Roar, player.position, 0);            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Mechasting>());            return true;        }    }}

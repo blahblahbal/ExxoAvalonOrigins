@@ -53,8 +53,13 @@ namespace ExxoAvalonOrigins.NPCs
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
 			if (Main.rand.Next(10) <= 5)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ExxoAvalonOriginsWorld.rhodium ? ModContent.ItemType<Items.RhodiumOre>() : ModContent.ItemType<Items.OsmiumOre>(), Main.rand.Next(15, 26), false, 0, false);
-			}
+                if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.RhodiumOre>())
+				    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.RhodiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+                else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.OsmiumOre>())
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OsmiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+                else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.IridiumOre>())
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IridiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+            }
 			if (Main.rand.Next(3) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.TomeoftheDistantPast>(), 1, false, -2, false);

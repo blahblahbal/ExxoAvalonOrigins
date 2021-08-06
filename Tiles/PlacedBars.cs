@@ -20,5 +20,10 @@
                 case 14:                    toDrop = ModContent.ItemType<Items.BeetleBar>();                    break;
                 case 15:                    toDrop = ModContent.ItemType<Items.SuperhardmodeBar>();                    break;
                 case 16:                    toDrop = ModContent.ItemType<Items.EnchantedBar>();                    break;
-                case 17:                    toDrop = ModContent.ItemType<Items.BerserkerBar>();                    break;            }            Item.NewItem(i * 16, j * 16, 16, 16, toDrop);
+                case 17:                    toDrop = ModContent.ItemType<Items.BerserkerBar>();                    break;
+                case 18:                    toDrop = ModContent.ItemType<Items.BronzeBar>();                    break;
+                case 19:                    toDrop = ModContent.ItemType<Items.NickelBar>();                    break;
+                case 20:                    toDrop = ModContent.ItemType<Items.ZincBar>();                    break;
+                case 21:                    toDrop = ModContent.ItemType<Items.BismuthBar>();                    break;
+                case 22:                    toDrop = ModContent.ItemType<Items.IridiumBar>();                    break;            }            Item.NewItem(i * 16, j * 16, 16, 16, toDrop);
         }    }}
