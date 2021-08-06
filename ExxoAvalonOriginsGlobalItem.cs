@@ -118,7 +118,7 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
                         if (Main.hardMode && NPC.downedGolemBoss)
                         {
                             ExxoAvalonOriginsGlobalNPC.SpawnWOS(item.position);
-                            Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/WoS"));
+                            Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/WoS"), 0.75f);
                         }
                         NetMessage.SendData(21, -1, -1, NetworkText.Empty, item.whoAmI, 0f, 0f, 0f, 0);
                     }

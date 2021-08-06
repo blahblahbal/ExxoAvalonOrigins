@@ -188,7 +188,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             float Speed = 9f;
                             int damage = 50;
-                            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33, 0.8f);
                             Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
                             float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
                             int num54 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, 0);
@@ -319,7 +319,7 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     if (npc.ai[0] == 400 || npc.ai[0] == 450 || npc.ai[0] == 500 || npc.ai[0] == 550)
                     {
-                        Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
+                        Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"), 0.8f);
                         Vector2 velocityOfProj = Main.player[npc.target].Center - npc.Center;
                         velocityOfProj.Normalize();
                         float num1275 = -1f;

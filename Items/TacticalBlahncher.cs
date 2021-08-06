@@ -2,6 +2,20 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 
 namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Tactical Blahncher");			Tooltip.SetDefault("Launches homing blahckets\n75% chance to not consume ammo");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/TacticalBlahncher");			item.damage = 160;			item.autoReuse = true;			item.useTurn = false;			item.useAmmo = AmmoID.Rocket;			item.shootSpeed = 11f;			item.crit += 1;			item.ranged = true;			item.rare = 12;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
             item.noMelee = true;			item.width = dims.Width;			item.knockBack = 5f;			item.useTime = 9;			item.shoot = ModContent.ProjectileType<Projectiles.Blahcket>();			item.value = Item.sellPrice(1, 0, 0, 0);			item.useStyle = 5;			item.useAnimation = 9;			item.height = dims.Height;            item.UseSound = SoundID.Item11;        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 45);
+            recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 45);
+            recipe.AddIngredient(ModContent.ItemType<TacticalExpulsor>());
+            recipe.AddIngredient(ItemID.RocketLauncher);
+            recipe.AddIngredient(ItemID.GrenadeLauncher);
+            recipe.AddIngredient(ItemID.Stynger);
+            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10f, 0f);
