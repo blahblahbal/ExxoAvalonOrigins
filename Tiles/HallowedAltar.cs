@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            blockDamaged = false;
+            if (!ExxoAvalonOrigins.superHardmode) blockDamaged = false;
             return ExxoAvalonOrigins.superHardmode;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

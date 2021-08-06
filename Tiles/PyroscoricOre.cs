@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(new Color(255, 102, 0), LanguageManager.Instance.GetText("Pyroscopic"));
+			AddMapEntry(new Color(255, 102, 0), LanguageManager.Instance.GetText("Pyroscoric"));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
             Main.tileSpelunker[Type] = true;
