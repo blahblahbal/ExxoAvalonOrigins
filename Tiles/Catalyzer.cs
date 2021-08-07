@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Tiles{	public class Catalyzer : ModTile	{		publi
             {
                 frameCounter = 0;
                 frame++;
-                if (frame > 12) frame = 0;
+                if (frame >= 12) frame = 0;
             }
         }
 
