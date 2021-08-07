@@ -73,6 +73,7 @@ namespace ExxoAvalonOrigins.Projectiles
 						int type = Main.tile[k, l].type;
 						int wall = Main.tile[k, l].wall;
 
+						// Check walls
 						if (WallID.Sets.Conversion.Stone[wall]) {
 							Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ChunkstoneWall>();
 							WorldGen.SquareWallFrame(k, l, true);
@@ -84,7 +85,9 @@ namespace ExxoAvalonOrigins.Projectiles
 							WorldGen.SquareWallFrame(k, l, true);
 							NetMessage.SendTileSquare(-1, k, l, 1);
 						}
-						else if (TileID.Sets.Conversion.Stone[type]) {
+
+						// Check tiles
+						if (TileID.Sets.Conversion.Stone[type]) {
 							Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.Chunkstone>();
 							WorldGen.SquareTileFrame(k, l, true);
 							NetMessage.SendTileSquare(-1, k, l, 1);
