@@ -11,8 +11,13 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.addTile(Type);            Main.tileFrameImportant[Type] = true;            Main.tileSpelunker[Type] = true;
-        }        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+            TileObjectData.addTile(Type);            Main.tileFrameImportant[Type] = true;
+        }        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            ExxoAvalonOriginsWorld.CheckLargeHerb(i, j, Type);
+            noBreak = true;
+            return true;
+        }        public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             int item = 0;
             switch (frameX / 18)

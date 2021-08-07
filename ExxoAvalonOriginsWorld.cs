@@ -122,7 +122,111 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 num11++;
             }
             hallowAltarCount++;
-        }        public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
+        }        public static void CheckLargeHerb(int x, int y, int type)
+        {
+            if (WorldGen.destroyObject)
+            {
+                return;
+            }
+            Tile t = Main.tile[x, y];
+            int style = (int)(t.frameX / 18);
+            bool destroy = false;
+            int fixedY = y;
+            int yframe = (int)Main.tile[x, y].frameY;
+            fixedY -= yframe / 18;
+            if (!WorldGen.SolidTile2(x, fixedY + 3) || !Main.tile[x, fixedY].active() ||
+                !Main.tile[x, fixedY + 1].active() || !Main.tile[x, fixedY + 2].active())
+            {
+                destroy = true;
+            }
+            if (destroy)
+            {
+                WorldGen.destroyObject = true;
+                for (int u = fixedY; u < fixedY + 3; u++)
+                {
+                    WorldGen.KillTile(x, u, false, false, false);
+                }
+                if (type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>() || type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>() ||
+                    type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) // 469 through 471 are the immature tiles of the large herb; 472 is the mature version
+                {
+                    int item = 0;
+                    switch (style)
+                    {
+                        case 0:
+                            item = ModContent.ItemType<Items.LargeDaybloomSeed>();
+                            break;
+                        case 1:
+                            item = ModContent.ItemType<Items.LargeMoonglowSeed>();
+                            break;
+                        case 2:
+                            item = ModContent.ItemType<Items.LargeBlinkrootSeed>();
+                            break;
+                        case 3:
+                            item = ModContent.ItemType<Items.LargeDeathweedSeed>();
+                            break;
+                        case 4:
+                            item = ModContent.ItemType<Items.LargeWaterleafSeed>();
+                            break;
+                        case 5:
+                            item = ModContent.ItemType<Items.LargeFireblossomSeed>();
+                            break;
+                        case 6:
+                            item = ModContent.ItemType<Items.LargeShiverthornSeed>();
+                            break;
+                        case 7:
+                            item = ModContent.ItemType<Items.LargeBloodberrySeed>();
+                            break;
+                        case 8:
+                            item = ModContent.ItemType<Items.LargeSweetstemSeed>();
+                            break;
+                        case 9:
+                            item = ModContent.ItemType<Items.LargeBarfbushSeed>();
+                            break;
+                    }// 3710 through 3719 are the seeds
+                    if (item > 0) Item.NewItem(x * 16, fixedY * 16, 16, 48, item);
+                }
+                else
+                {
+                    int item = 0;
+                    switch (style)
+                    {
+                        case 0:
+                            item = ModContent.ItemType<Items.LargeDaybloom>();
+                            break;
+                        case 1:
+                            item = ModContent.ItemType<Items.LargeMoonglow>();
+                            break;
+                        case 2:
+                            item = ModContent.ItemType<Items.LargeBlinkroot>();
+                            break;
+                        case 3:
+                            item = ModContent.ItemType<Items.LargeDeathweed>();
+                            break;
+                        case 4:
+                            item = ModContent.ItemType<Items.LargeWaterleaf>();
+                            break;
+                        case 5:
+                            item = ModContent.ItemType<Items.LargeFireblossom>();
+                            break;
+                        case 6:
+                            item = ModContent.ItemType<Items.LargeShiverthorn>();
+                            break;
+                        case 7:
+                            item = ModContent.ItemType<Items.LargeBloodberry>();
+                            break;
+                        case 8:
+                            item = ModContent.ItemType<Items.LargeSweetstem>();
+                            break;
+                        case 9:
+                            item = ModContent.ItemType<Items.LargeBarfbush>();
+                            break;
+                    }
+                    if (item > 0) Item.NewItem(x * 16, fixedY * 16, 16, 48, item);
+                    // 3700 through 3709 are the large herbs
+                }
+                WorldGen.destroyObject = false;
+            }
+        }        public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
         {
             Tile tile = Main.tile[x, y];
             int type = tile.type;
@@ -292,7 +396,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         {
             if (Main.tile[x, y].active())
             {
-                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>() && WorldGen.genRand.Next(10) == 0) // phase 1 to 2
+                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>() && WorldGen.genRand.Next(8) == 0) // phase 1 to 2
                 {
                     bool grow = false;
                     if (Main.tile[x, y].frameX == 108) // shiverthorn check
@@ -313,15 +417,19 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
                         if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
                         if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, y, 2);
+                            NetMessage.SendTileSquare(-1, x, y + 1, 2);
+                            NetMessage.SendTileSquare(-1, x, y + 2, 2);
+                            NetMessage.SendTileSquare(-1, x, y - 1, 2);
+                            NetMessage.SendTileSquare(-1, x, y - 2, 2);
                         }
                         SquareTileFrameArea(x, y, 4, true);
                         return;
                     }
                 }
-                else if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>() && WorldGen.genRand.Next(9) == 0) // phase 2 to 3
+                else if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>() && WorldGen.genRand.Next(7) == 0) // phase 2 to 3
                 {
                     bool grow = false;
                     if (Main.tile[x, y].frameX == 108) // shiverthorn check
@@ -345,12 +453,16 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (Main.netMode == 2)
                         {
                             NetMessage.SendTileSquare(-1, x, y, 2);
+                            NetMessage.SendTileSquare(-1, x, y + 1, 2);
+                            NetMessage.SendTileSquare(-1, x, y + 2, 2);
+                            NetMessage.SendTileSquare(-1, x, y - 1, 2);
+                            NetMessage.SendTileSquare(-1, x, y - 2, 2);
                         }
                         SquareTileFrameArea(x, y, 4, true);
                         return;
                     }
                 }
-                else if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>() && WorldGen.genRand.Next(8) == 0) // phase 3 to 4
+                else if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>() && WorldGen.genRand.Next(5) == 0) // phase 3 to 4
                 {
                     Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
                     if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
@@ -360,6 +472,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (Main.netMode == 2)
                     {
                         NetMessage.SendTileSquare(-1, x, y, 2);
+                        NetMessage.SendTileSquare(-1, x, y + 1, 2);
+                        NetMessage.SendTileSquare(-1, x, y + 2, 2);
+                        NetMessage.SendTileSquare(-1, x, y - 1, 2);
+                        NetMessage.SendTileSquare(-1, x, y - 2, 2);
                     }
                     SquareTileFrameArea(x, y, 4, true);
                     return;
@@ -1003,7 +1119,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     for (int index1 = 0; index1 < num2; ++index1)
                     {
                         progress.Set(index1 / (float)num2);
-                        for (int index2 = 0; index2 < 10000; ++index2)
+                        for (int index2 = 0; index2 < 20000; ++index2)
                         {
                             int x = WorldGen.genRand.Next(1, Main.maxTilesX - 3);
                             int y = (int)(WorldGen.worldSurfaceHigh + 20.0);
@@ -1015,7 +1131,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     for (int index1 = 0; index1 < num; ++index1)
                     {
                         progress.Set(index1 / (float)num);
-                        for (int index2 = 0; index2 < 10000; ++index2)
+                        for (int index2 = 0; index2 < 20000; ++index2)
                         {
                             int x = WorldGen.genRand.Next(1, Main.maxTilesX - 3);
                             int y = (int)(WorldGen.worldSurfaceHigh + 20.0);
