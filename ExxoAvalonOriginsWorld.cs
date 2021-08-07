@@ -266,6 +266,14 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         tile.type = TileID.Stone;
                     }
+                    else if (type == ModContent.TileType<Snotsandstone>())
+                    {
+                        tile.type = TileID.Sandstone;
+                    }
+                    else if (type == ModContent.TileType<HardenedSnotsand>())
+                    {
+                        tile.type = TileID.HardenedSand;
+                    }
                     if (TileID.Sets.Conversion.Grass[type] || type == 0)
                     {
                         WorldGen.SquareTileFrame(x, y);
@@ -302,6 +310,14 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     else if (type == ModContent.TileType<Chunkstone>() || type == TileID.Pearlstone || type == TileID.Crimstone || type == TileID.Ebonstone)
                     {
                         tile.type = TileID.Stone;
+                    }
+                    else if (type == ModContent.TileType<Snotsandstone>() || type == TileID.HallowSandstone || type == TileID.CrimsonSandstone || type == TileID.CorruptSandstone)
+                    {
+                        tile.type = TileID.Sandstone;
+                    }
+                    else if (type == ModContent.TileType<HardenedSnotsand>() || type == TileID.HallowHardenedSand || type == TileID.CrimsonHardenedSand || type == TileID.CorruptHardenedSand)
+                    {
+                        tile.type = TileID.HardenedSand;
                     }
                     else if (type == ModContent.TileType<YellowIce>() || type == TileID.HallowedIce || type == TileID.FleshIce || type == TileID.CorruptIce || type == TileID.IceBlock)
                     {
