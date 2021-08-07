@@ -61,7 +61,7 @@
 
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
-            num = 1;
+            num = 6;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -117,7 +117,11 @@
                     {
                         player.inventory[num146] = new Item();
                     }
-                    Unlock(i, j);
+                    Unlock(num148, num149);
+                    if (Main.netMode == 1)
+                    {
+                        NetMessage.SendData(52, -1, -1, NetworkText.Empty, player.whoAmI, 1f, (float)num148, (float)num149, 0);
+                    }
                 }
             }
         }
