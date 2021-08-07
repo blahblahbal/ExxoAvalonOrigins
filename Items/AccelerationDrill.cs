@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.GameInput;
 
 namespace ExxoAvalonOrigins.Items
 {
@@ -16,7 +17,7 @@ namespace ExxoAvalonOrigins.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Acceleration Drill");
-			Tooltip.SetDefault("Press N to change mining modes");
+			Tooltip.SetDefault("\"Vroom vroom\"");
 		}
 
 		public override void SetDefaults()
@@ -44,7 +45,21 @@ namespace ExxoAvalonOrigins.Items
 			item.height = dims.Height;
 		}
 
-        public override void HoldItem(Player player)
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			var assignedKeys = ExxoAvalonOrigins.accDrillModeHotkey.GetAssignedKeys();
+
+			var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change mining modes");
+			tooltips.Add(assignedKeyInfo);
+
+			if (!(assignedKeys.Count > 0))
+            {
+				var unboundKeyInfo = new TooltipLine(mod, "Controls:PromptKeyInfo", "[c/900C3F:Please bind hotkey in the settings to change mining modes!]");
+				tooltips.Add(unboundKeyInfo);
+			}
+		}
+
+		public override void HoldItem(Player player)
         {
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().speed && player.controlUseItem)
             {
