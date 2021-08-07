@@ -31,7 +31,9 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath6;
 			npc.buffImmune[BuffID.Confused] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.BloodshotEyeBanner>();
+        }
 
 		public override void NPCLoot()
 		{

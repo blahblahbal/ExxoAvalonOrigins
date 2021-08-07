@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
         }
         public override void AI()
         {

@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.073f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.073f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
 
         public override void SetDefaults()
@@ -41,6 +41,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.buffImmune[BuffID.Frostburn] = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
         }
 
         public override void Init()
@@ -80,6 +82,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.buffImmune[BuffID.Frostburn] = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
         }
     }
 
@@ -113,6 +117,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.buffImmune[BuffID.Frostburn] = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
         }
 
         public override void Init()
@@ -137,8 +143,8 @@ namespace ExxoAvalonOrigins.NPCs
             tailType = ModContent.NPCType<MechanicalDiggerTail>();
             bodyType = ModContent.NPCType<MechanicalDiggerBody>();
             headType = ModContent.NPCType<MechanicalDiggerHead>();
-            speed = 5.5f;
-            turnSpeed = 0.045f;
+            speed = 8.5f;
+            turnSpeed = 0.07f;
         }
     }
 

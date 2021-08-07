@@ -35,7 +35,9 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath27;
 			npc.buffImmune[BuffID.Confused] = true;
 			npc.buffImmune[BuffID.OnFire] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.ArmoredHellTortoiseBanner>();
+        }
 
 		public override void NPCLoot()
 		{

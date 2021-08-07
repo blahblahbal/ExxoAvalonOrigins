@@ -32,7 +32,9 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Confused] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.RedAegisBonesBanner>();
+        }
 
 		public override void NPCLoot()
 		{

@@ -65,7 +65,12 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = 0;
             }
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.ZoneRockLayerHeight)
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.ZoneRockLayerHeight) ? 1f : 0f;
+            return 0f;
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)

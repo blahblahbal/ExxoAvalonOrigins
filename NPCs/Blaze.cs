@@ -38,7 +38,9 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath6;
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.Confused] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.BlazeBanner>();
+        }
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             SpriteEffects effects = SpriteEffects.None;
