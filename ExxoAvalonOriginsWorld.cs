@@ -2128,20 +2128,26 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             Main.tile[x, y].frameY = 18;
         }        public static void HookHardUpdateWorld(ILContext il)
         {
-            // Allows tile spread for contagion
             var c = new ILCursor(il);
 
+            // --- CONTAGION SPREAD HARDMODE ---
+
+            // Move il cursor into positon
             if (!c.TryGotoNext(i => i.MatchLdsfld<NPC>(nameof(NPC.downedPlantBoss))))
-                return; // Patch unable to be applied
+                return;
             if (!c.TryGotoNext(MoveType.After, i => i.MatchRet()))
                 return;
 
+            // Automatically shift cursor after each emit
             c.MoveAfterLabels();
 
+            // Load local variables to stack
             c.Emit(OpCodes.Ldloc_0);
             c.Emit(OpCodes.Ldarg_0);
             c.Emit(OpCodes.Ldarg_1);
-            c.EmitDelegate<Func<int, int, int, int>>((type, i, j) =>
+
+            // Emit custom logic
+            c.EmitDelegate<Action<int, int, int>>((type, i, j) =>
             {
                 if (type == ModContent.TileType<Tiles.Chunkstone>() || type == ModContent.TileType<Ickgrass>() || type == ModContent.TileType<Snotsand>() || type == ModContent.TileType<HardenedSnotsand>() || type == ModContent.TileType<Snotsandstone>() || type == ModContent.TileType<YellowIce>())
                 {
@@ -2218,7 +2224,6 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         }
                     }
                 }
-                return type;
             });
-            c.Emit(OpCodes.Stloc_0);
+            // --- END OF CONTAGION SPREAD HARDMODE ---
         }    }}
