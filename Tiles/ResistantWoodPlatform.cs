@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.StyleMultiplier = 27;
             TileObjectData.newTile.StyleWrapLimit = 27;
             TileObjectData.newTile.UsesCustomCanPlace = false;
-            TileObjectData.newTile.LavaDeath = true;
+            TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
             AddMapEntry(new Color(191, 142, 111));
