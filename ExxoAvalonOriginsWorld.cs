@@ -535,63 +535,67 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         }
                         if (good)
                         {
-                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68 || Main.tile[k, l].wall == 69 || Main.tile[k, l].wall == 81)
+                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68 || Main.tile[k, l].wall == 69 || Main.tile[k, l].wall == 81 || Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>())
                             {
                                 Main.tile[k, l].wall = 70;
                             }
-                            else if (Main.tile[k, l].wall == 216)
+                            else if (Main.tile[k, l].wall == 216 || Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>())
                             {
                                 Main.tile[k, l].wall = 219;
                             }
-                            else if (Main.tile[k, l].wall == 187)
+                            else if (Main.tile[k, l].wall == 187 || Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>())
                             {
                                 Main.tile[k, l].wall = 222;
+                            }
+                            if (Main.tile[k, l].active() && !Main.tile[k, l - 1].active() && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].type != TileID.Containers && Main.tile[k, l - 1].type != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(30) == 0)
+                            {
+                                WorldGen.Place3x2(k, l - 1, (ushort)ModContent.TileType<Tiles.HallowedAltar>());
                             }
                             if (Main.tile[k, l].wall == 3 || Main.tile[k, l].wall == 83)
                             {
                                 Main.tile[k, l].wall = 28;
                             }
-                            if (Main.tile[k, l].type == 2)
+                            if (Main.tile[k, l].type == 2 || Main.tile[k, l].type == (ushort)ModContent.TileType<Ickgrass>())
                             {
                                 Main.tile[k, l].type = 109;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 1)
+                            else if (Main.tile[k, l].type == 1 || Main.tile[k, l].type == (ushort)ModContent.TileType<Chunkstone>())
                             {
                                 Main.tile[k, l].type = 117;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 53 || Main.tile[k, l].type == 123)
+                            else if (Main.tile[k, l].type == 53 || Main.tile[k, l].type == 123 || Main.tile[k, l].type == (ushort)ModContent.TileType<Snotsand>())
                             {
                                 Main.tile[k, l].type = 116;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 23 || Main.tile[k, l].type == 199)
+                            else if (Main.tile[k, l].type == 23 || Main.tile[k, l].type == 199 || Main.tile[k, l].type == (ushort)ModContent.TileType<Ickgrass>())
                             {
                                 Main.tile[k, l].type = 109;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 25 || Main.tile[k, l].type == 203)
+                            else if (Main.tile[k, l].type == 25 || Main.tile[k, l].type == 203 || Main.tile[k, l].type == (ushort)ModContent.TileType<Chunkstone>())
                             {
                                 Main.tile[k, l].type = 117;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 112 || Main.tile[k, l].type == 234)
+                            else if (Main.tile[k, l].type == 112 || Main.tile[k, l].type == 234 || Main.tile[k, l].type == (ushort)ModContent.TileType<Snotsand>())
                             {
                                 Main.tile[k, l].type = 116;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 161 || Main.tile[k, l].type == 163 || Main.tile[k, l].type == 200)
+                            else if (Main.tile[k, l].type == 161 || Main.tile[k, l].type == 163 || Main.tile[k, l].type == 200 || Main.tile[k, l].type == (ushort)ModContent.TileType<YellowIce>())
                             {
                                 Main.tile[k, l].type = 164;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 396)
+                            else if (Main.tile[k, l].type == 396 || Main.tile[k, l].type == (ushort)ModContent.TileType<Snotsandstone>())
                             {
                                 Main.tile[k, l].type = 403;
                                 SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 397)
+                            else if (Main.tile[k, l].type == 397 || Main.tile[k, l].type == (ushort)ModContent.TileType<HardenedSnotsand>())
                             {
                                 Main.tile[k, l].type = 402;
                                 SquareTileFrame(k, l);
@@ -609,7 +613,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             }
                             else if (Main.tile[k, l].wall == 187)
                             {
-                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>();
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>();
                             }
                             if (Main.tile[k, l].type == 2)
                             {
@@ -734,48 +738,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     flag = false;
                 }
             }
-        }        public static void PlaceLargeHerb(int x, int y, int style, ushort type)
-        {
-            int desiredFrameX = style * 18;
-            int desiredFrameY = 2;
-            #region conventional null checks
-            if (Main.tile[x, y + 1] == null)
-            {
-                Main.tile[x, y + 1] = new Tile();
-            }
-            if (Main.tile[x, y] == null)
-            {
-                Main.tile[x, y] = new Tile();
-            }
-            if (Main.tile[x, y - 1] == null)
-            {
-                Main.tile[x, y - 1] = new Tile();
-            }
-            if (Main.tile[x, y - 2] == null)
-            {
-                Main.tile[x, y - 2] = new Tile();
-            }
-            #endregion
-            if (WorldGen.SolidTile2(x, y + 1) && !Main.tile[x, y].active() && !Main.tile[x, y - 1].active() && !Main.tile[x, y - 2].active())
-            {
-                Main.tile[x, y].active(true);
-                Main.tile[x, y].frameY = (short)(desiredFrameY + 36);
-                Main.tile[x, y].frameX = (short)desiredFrameX;
-                Main.tile[x, y].type = type;
-                Main.tile[x, y - 1].active(true);
-                Main.tile[x, y - 1].frameY = (short)(desiredFrameY + 18);
-                Main.tile[x, y - 1].frameX = (short)desiredFrameX;
-                Main.tile[x, y - 1].type = type;
-                Main.tile[x, y - 2].active(true);
-                Main.tile[x, y - 2].frameY = (short)(desiredFrameY);
-                Main.tile[x, y - 2].frameX = (short)desiredFrameX;
-                Main.tile[x, y - 2].type = type;
-            }
         }        public override void PostUpdate()
         {
             float num2 = 3E-05f * (float)Main.worldRate;
             float num3 = 1.5E-05f * (float)Main.worldRate;
-            bool flag = false;
             int num4 = 0;
             while ((float)num4 < (float)(Main.maxTilesX * Main.maxTilesY) * num2)
             {

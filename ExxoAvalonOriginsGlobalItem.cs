@@ -172,7 +172,14 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
         }        public static bool IsHerb(int t)
         {
             return (t == ItemID.Daybloom || t == ItemID.Moonglow || t == ItemID.Blinkroot || t == ItemID.Deathweed ||
-                t == ItemID.Waterleaf || t == ItemID.Fireblossom || t == ItemID.Shiverthorn);// || t == ItemID.Sweetstem ||
+                t == ItemID.Waterleaf || t == ItemID.Fireblossom || t == ItemID.Shiverthorn || t == ModContent.ItemType<Items.LargeBarfbush>() ||
+                t == ModContent.ItemType<Items.LargeBarfbushSeed>() || t == ModContent.ItemType<Items.LargeDaybloom>() || t == ModContent.ItemType<Items.LargeDaybloomSeed>() ||
+                t == ModContent.ItemType<Items.LargeBlinkroot>() || t == ModContent.ItemType<Items.LargeBlinkrootSeed>() || t == ModContent.ItemType<Items.LargeBloodberry>() ||
+                t == ModContent.ItemType<Items.LargeBloodberrySeed>() || t == ModContent.ItemType<Items.LargeDeathweed>() || t == ModContent.ItemType<Items.LargeDeathweedSeed>() ||
+                t == ModContent.ItemType<Items.LargeFireblossom>() || t == ModContent.ItemType<Items.LargeFireblossomSeed>() || t == ModContent.ItemType<Items.LargeMoonglow>() ||
+                t == ModContent.ItemType<Items.LargeMoonglowSeed>() || t == ModContent.ItemType<Items.LargeShiverthorn>() || t == ModContent.ItemType<Items.LargeShiverthornSeed>() ||
+                t == ModContent.ItemType<Items.LargeSweetstem>() || t == ModContent.ItemType<Items.LargeSweetstemSeed>() || t == ModContent.ItemType<Items.LargeWaterleaf>() ||
+                t == ModContent.ItemType<Items.LargeWaterleafSeed>());// || t == ItemID.Sweetstem ||
                 //t == ItemID.Bloodberry || t == ItemID.Barfbush || (t >= 3700 && t <= 3719));
         }        public static bool IsPotion(int t)
         {
