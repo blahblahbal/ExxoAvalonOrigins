@@ -19,9 +19,16 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.addTile(Type);
+			TileID.Sets.HasOutlines[Type] = true;
             Main.tileFrameImportant[Type] = true;
             AddMapEntry(new Color(153, 77, 86), LanguageManager.Instance.GetText("Herbology Bench"));
+			disableSmartCursor = true;
         }
+		
+		public override bool HasSmartInteract()
+		{
+			return true;
+		}
 
         public override bool NewRightClick(int i, int j)
         {
