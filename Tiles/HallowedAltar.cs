@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileHammer[Type] = true;
 			Main.tileLighted[Type] = true;
 			Main.tileFrameImportant[Type] = true;
+            dustType = DustID.HallowedWeapons;
 		}
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

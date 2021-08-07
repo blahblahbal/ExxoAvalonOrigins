@@ -110,7 +110,7 @@
             Main.mouseRightRelease = false;
             for (int num146 = 0; num146 < player.inventory.Length; num146++)
             {
-                if (player.inventory[num146].type == ModContent.ItemType<Items.ImperviousKey>() && player.inventory[num146].stack > 0)
+                if (player.inventory[num146].type == ModContent.ItemType<Items.UnderworldKey>() && player.inventory[num146].stack > 0)
                 {
                     player.inventory[num146].stack--;
                     if (player.inventory[num146].stack <= 0)

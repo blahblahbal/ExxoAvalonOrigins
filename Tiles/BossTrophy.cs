@@ -51,6 +51,9 @@ namespace ExxoAvalonOrigins.Tiles
                 case 6:
                     item = ModContent.ItemType<Items.WallofSteelTrophy>();
                     break;
+                case 7:
+                    item = ModContent.ItemType<Items.MechastingTrophy>();
+                    break;
                 case 8:
                     item = ModContent.ItemType<Items.PhantasmTrophy>();
                     break;
