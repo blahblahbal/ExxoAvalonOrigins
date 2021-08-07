@@ -26,6 +26,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.PyrasiteBanner>();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -126,8 +128,8 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void Init()
         {
-            minLength = 6;
-            maxLength = 10;
+            minLength = 10;
+            maxLength = 15;
             tailType = ModContent.NPCType<PyrasiteTail>();
             bodyType = ModContent.NPCType<PyrasiteBody>();
             headType = ModContent.NPCType<PyrasiteHead>();

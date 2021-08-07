@@ -31,6 +31,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit2;
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -98,6 +99,10 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.life <= 0)
             {
+                Gore.NewGore(npc.position, npc.velocity, 43, 1f);
+                Gore.NewGore(npc.position, npc.velocity, 43, 1f);
+                Gore.NewGore(npc.position, npc.velocity, 44, 1f);
+                Gore.NewGore(npc.position, npc.velocity, 44, 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagmaHelmet"), 1f);
                 //Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagmaChestplate"), 1f);
             }

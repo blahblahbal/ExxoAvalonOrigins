@@ -33,7 +33,9 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.knockBackResist = 0.3f;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.CougherBanner>();
+        }
 
         public override void NPCLoot()
         {

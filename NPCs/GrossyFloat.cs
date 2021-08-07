@@ -36,6 +36,8 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
         }
 
         public override void FindFrame(int frameHeight)
