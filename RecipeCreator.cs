@@ -482,5 +482,384 @@ using System;using Terraria;using Terraria.ID;using Terraria.ModLoader;using
             recipe.SetResult(ModContent.ItemType<Items.IridiumPants>());
             recipe.AddRecipe();
             // end Iridium stuff
+
+            #region catalyzer
+            // catalyzer stuff
+            // catalyzer recipe
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Wood, 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 30);
+            recipe.AddIngredient(ItemID.IronBar, 15);
+            recipe.AddIngredient(ItemID.WorkBench);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:WorkBenches");
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<Items.Catalyzer>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PearlstoneBlock, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.EbonstoneBlock, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.EbonstoneBlock, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CrimstoneBlock, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CrimstoneBlock, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.ChunkstoneBlock>(), 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.ChunkstoneBlock>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PearlstoneBlock, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.DarkMatterWood>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.Wood, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Wood, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.Ebonwood, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Ebonwood, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.Shadewood, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Shadewood, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.Coughwood>(), 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Coughwood>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.Pearlwood, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Pearlwood, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.BorealWood, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BorealWood, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PalmWood, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PalmWood, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.DarkMatterWood>(), 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.BacciliteOre>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.DemoniteOre, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.DemoniteOre, 40);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CrimtaneOre, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CrimtaneOre, 40);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.BacciliteOre>(), 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.DurataniumOre>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CobaltOre, 20);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CobaltOre, 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PalladiumOre, 20);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PalladiumOre, 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.DurataniumOre>(), 20);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.NaquadahOre>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.MythrilOre, 20);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MythrilOre, 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.OrichalcumOre, 20);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.OrichalcumOre, 20);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.NaquadahOre>(), 20);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.TroxiniumOre>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.AdamantiteOre, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.AdamantiteOre, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TitaniumOre, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TitaniumOre, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.TroxiniumOre>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.BacciliteBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.DemoniteBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.DemoniteBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CrimtaneBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.BacciliteBar>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.DurataniumBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CobaltBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CobaltBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PalladiumBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PalladiumBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.DurataniumBar>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.NaquadahBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.MythrilBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MythrilBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.OrichalcumBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.OrichalcumBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.NaquadahBar>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.TroxiniumBar>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.AdamantiteBar, 5);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.AdamantiteBar, 5);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TitaniumBar, 5);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TitaniumBar, 5);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.TroxiniumBar>(), 5);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Booger>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.ShadowScale, 3);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.ShadowScale, 3);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TissueSample, 3);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TissueSample, 3);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.Booger>(), 3);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Pathogen>(), 33);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CursedFlame, 33);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CursedFlame, 33);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.Ichor, 33);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Ichor, 33);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.Pathogen>(), 33);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.YuckyBit>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.RottenChunk, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.RottenChunk, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.Vertebrae, 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Vertebrae, 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.YuckyBit>(), 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.LimeGreenSolution>(), 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.GreenSolution, 100);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GreenSolution, 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PurpleSolution, 100);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PurpleSolution, 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.RedSolution, 100);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.RedSolution, 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.YellowSolution>(), 100);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.YellowSolution>(), 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.BlueSolution, 100);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BlueSolution, 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.DarkBlueSolution, 100);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.DarkBlueSolution, 100);
+            recipe.AddIngredient(ModContent.ItemType<Items.Sulphur>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<Items.LimeGreenSolution>(), 100);
+            recipe.AddRecipe();
+            #endregion
         }
     }}

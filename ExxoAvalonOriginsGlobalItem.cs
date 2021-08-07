@@ -7,6 +7,8 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
             {
                 if (item.type == ItemID.CoinGun) tooltipLine.text = "Spend Shot";
                 if (item.type == ItemID.HighTestFishingLine) tooltipLine.text = "High Tensile Fishing Line";
+                if (item.type == ItemID.BlueSolution) tooltipLine.text = "Cyan Solution";
+                if (item.type == ItemID.DarkBlueSolution) tooltipLine.text = "Blue Solution";
             }            if (item.accessory && !item.social)
             {
                 if (item.prefix == ModContent.PrefixType<Prefixes.Magical>())

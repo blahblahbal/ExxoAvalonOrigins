@@ -56,12 +56,14 @@ namespace ExxoAvalonOrigins.Altair
                         if (WorldGen.oreTier1 == 107) Main.NewText("Your world has been blessed with Cobalt!", 26, 105, 161, false);
                         else if (WorldGen.oreTier1 == 221) Main.NewText("Your world has been blessed with Palladium!", 235, 87, 47, false);
                         else Main.NewText("Your world has been blessed with Duratanium!", 137, 81, 89, false);
+                        if (WorldGen.altarCount == 0) Main.NewText("The underground smells like rotten eggs...", 210, 183, 4, false);
                     }
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier1 == 107) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Cobalt!"), new Color(26, 105, 161));
                         if (WorldGen.oreTier1 == 221) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Palladium!"), new Color(235, 87, 47));
                         else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Duratanium!"), new Color(137, 81, 89));
+                        if (WorldGen.altarCount == 0) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
                     }
                     num1 = WorldGen.oreTier1;
                     num7 *= 1.05f;
@@ -137,6 +139,10 @@ namespace ExxoAvalonOrigins.Altair
                 }
                 int j2 = WorldGen.genRand.Next((int)num12, Main.maxTilesY - 150);
                 WorldGen.OreRunner(i2, j2, WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)num1);
+                if (WorldGen.altarCount < 9)
+                {
+                    WorldGen.OreRunner(i2, j2, (double)WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)ModContent.TileType<Tiles.SulphurOre>());
+                }
             }
             int num13 = WorldGen.genRand.Next(3);
             int num2 = 0;
