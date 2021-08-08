@@ -167,6 +167,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                     tile.type = spike;
                                     tile.slope(0);
                                     tile.halfBrick(false);
+                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 3:
                                     if (confirmPlatforms == 1)
