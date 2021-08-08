@@ -35,7 +35,6 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
 		}
-
         public override string TownNPCName()
         {
             switch (Main.rand.Next(9))
