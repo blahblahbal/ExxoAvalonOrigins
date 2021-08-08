@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.defense = 28;
 			npc.lavaImmune = true;
 			npc.width = 34;
-			npc.aiStyle = 17;
+			npc.aiStyle = -1;
 			npc.value = Item.buyPrice(0, 1, 0, 0);
 			npc.height = 50;
 			npc.knockBackResist = 0f;
@@ -43,11 +43,144 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			
 		}
-
+        public override void AI()
+        {
+            npc.noGravity = true;
+            if (npc.ai[0] == 0f)
+            {
+                npc.noGravity = false;
+                npc.TargetClosest(true);
+                if (Main.netMode != 1)
+                {
+                    if (npc.velocity.X != 0f || npc.velocity.Y < 0f || (double)npc.velocity.Y > 0.3)
+                    {
+                        npc.ai[0] = 1f;
+                        npc.netUpdate = true;
+                    }
+                    else
+                    {
+                        Rectangle rectangle5 = new Rectangle((int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, Main.player[npc.target].width, Main.player[npc.target].height);
+                        Rectangle rectangle6 = new Rectangle((int)npc.position.X - 100, (int)npc.position.Y - 100, npc.width + 200, npc.height + 200);
+                        if (rectangle6.Intersects(rectangle5) || npc.life < npc.lifeMax)
+                        {
+                            npc.ai[0] = 1f;
+                            npc.velocity.Y = npc.velocity.Y - 6f;
+                            npc.netUpdate = true;
+                        }
+                    }
+                }
+            }
+            else if (!Main.player[npc.target].dead)
+            {
+                if (npc.collideX)
+                {
+                    npc.velocity.X = npc.oldVelocity.X * -0.5f;
+                    if (npc.direction == -1 && npc.velocity.X > 0f && npc.velocity.X < 2f)
+                    {
+                        npc.velocity.X = 2f;
+                    }
+                    if (npc.direction == 1 && npc.velocity.X < 0f && npc.velocity.X > -2f)
+                    {
+                        npc.velocity.X = -2f;
+                    }
+                }
+                if (npc.collideY)
+                {
+                    npc.velocity.Y = npc.oldVelocity.Y * -0.5f;
+                    if (npc.velocity.Y > 0f && npc.velocity.Y < 1f)
+                    {
+                        npc.velocity.Y = 1f;
+                    }
+                    if (npc.velocity.Y < 0f && npc.velocity.Y > -1f)
+                    {
+                        npc.velocity.Y = -1f;
+                    }
+                }
+                npc.TargetClosest(true);
+                if (npc.direction == -1 && npc.velocity.X > -3f)
+                {
+                    npc.velocity.X = npc.velocity.X - 0.1f;
+                    if (npc.velocity.X > 6f)
+                    {
+                        npc.velocity.X = npc.velocity.X - 0.1f;
+                    }
+                    else if (npc.velocity.X > 0f)
+                    {
+                        npc.velocity.X = npc.velocity.X - 0.05f;
+                    }
+                    if (npc.velocity.X < -6f)
+                    {
+                        npc.velocity.X = -6f;
+                    }
+                }
+                else if (npc.direction == 1 && npc.velocity.X < 3f)
+                {
+                    npc.velocity.X = npc.velocity.X + 0.1f;
+                    if (npc.velocity.X < -6f)
+                    {
+                        npc.velocity.X = npc.velocity.X + 0.1f;
+                    }
+                    else if (npc.velocity.X < 0f)
+                    {
+                        npc.velocity.X = npc.velocity.X + 0.05f;
+                    }
+                    if (npc.velocity.X > 6f)
+                    {
+                        npc.velocity.X = 6f;
+                    }
+                }
+                float num365 = Math.Abs(npc.position.X + (float)(npc.width / 2) - (Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2)));
+                float num366 = Main.player[npc.target].position.Y - (float)(npc.height / 2);
+                if (num365 > 50f)
+                {
+                    num366 -= 100f;
+                }
+                if (npc.position.Y < num366)
+                {
+                    npc.velocity.Y = npc.velocity.Y + 0.05f;
+                    if (npc.velocity.Y < 0f)
+                    {
+                        npc.velocity.Y = npc.velocity.Y + 0.01f;
+                    }
+                }
+                else
+                {
+                    npc.velocity.Y = npc.velocity.Y - 0.05f;
+                    if (npc.velocity.Y > 0f)
+                    {
+                        npc.velocity.Y = npc.velocity.Y - 0.01f;
+                    }
+                }
+                if (npc.velocity.Y < -3f)
+                {
+                    npc.velocity.Y = -3f;
+                }
+                if (npc.velocity.Y > 3f)
+                {
+                    npc.velocity.Y = 3f;
+                }
+            }
+            if (npc.wet)
+            {
+                if (npc.velocity.Y > 0f)
+                {
+                    npc.velocity.Y = npc.velocity.Y * 0.95f;
+                }
+                npc.velocity.Y = npc.velocity.Y - 0.5f;
+                if (npc.velocity.Y < -4f)
+                {
+                    npc.velocity.Y = -4f;
+                }
+                npc.TargetClosest(true);
+                return;
+            }
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
-                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle) ? 1f : 0f;
+            int xpos = (int)spawnInfo.player.position.X / 16;
+            int ypos = (int)spawnInfo.player.position.Y / 16;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>()) ? 1f : 0f;
             return 0f;
         }
         public override void FindFrame(int frameHeight)
