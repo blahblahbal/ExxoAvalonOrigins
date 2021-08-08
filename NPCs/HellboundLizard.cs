@@ -184,7 +184,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.type != 110 && npc.type != 111 && npc.type != 206 && npc.type != 214 && npc.type != 215 && npc.type != 216 && npc.type != 290 && npc.type != 291 && npc.type != 292 && npc.type != 293 && npc.type != 350 && npc.type != 387)
             {
-                float num39 = 1f;
+                float num39 = 4f;
                 if (npc.type == 186)
                 {
                     num39 = 1.1f;
