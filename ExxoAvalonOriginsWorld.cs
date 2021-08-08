@@ -213,7 +213,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 case 8:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
-                                    WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>(), true, true, -1, 0);
+                                    Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
@@ -289,7 +289,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 case 16:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
-                                    WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>(), true, true, -1, 0);
+                                    Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
                                     tile.slope(2);
                                     tile.halfBrick(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
@@ -347,7 +347,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 case 22:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
-                                    WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>(), true, true, -1, 0);
+                                    Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
                                     tile.slope(1);
                                     tile.halfBrick(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
