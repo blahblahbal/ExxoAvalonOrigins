@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             {
                 return;
             }
-            if (!ExxoAvalonOrigins.superHardmode)
+            if (!ExxoAvalonOrigins.superHardmode && !Main.hardMode)
             {
                 return;
             }
@@ -266,6 +266,14 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         tile.type = TileID.Stone;
                     }
+                    else if (type == ModContent.TileType<Snotsandstone>())
+                    {
+                        tile.type = TileID.Sandstone;
+                    }
+                    else if (type == ModContent.TileType<HardenedSnotsand>())
+                    {
+                        tile.type = TileID.HardenedSand;
+                    }
                     if (TileID.Sets.Conversion.Grass[type] || type == 0)
                     {
                         WorldGen.SquareTileFrame(x, y);
@@ -302,6 +310,14 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     else if (type == ModContent.TileType<Chunkstone>() || type == TileID.Pearlstone || type == TileID.Crimstone || type == TileID.Ebonstone)
                     {
                         tile.type = TileID.Stone;
+                    }
+                    else if (type == ModContent.TileType<Snotsandstone>() || type == TileID.HallowSandstone || type == TileID.CrimsonSandstone || type == TileID.CorruptSandstone)
+                    {
+                        tile.type = TileID.Sandstone;
+                    }
+                    else if (type == ModContent.TileType<HardenedSnotsand>() || type == TileID.HallowHardenedSand || type == TileID.CrimsonHardenedSand || type == TileID.CorruptHardenedSand)
+                    {
+                        tile.type = TileID.HardenedSand;
                     }
                     else if (type == ModContent.TileType<YellowIce>() || type == TileID.HallowedIce || type == TileID.FleshIce || type == TileID.CorruptIce || type == TileID.IceBlock)
                     {
@@ -547,7 +563,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             {
                                 Main.tile[k, l].wall = 222;
                             }
-                            if (Main.tile[k, l].active() && !Main.tile[k, l - 1].active() && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].type != TileID.Containers && Main.tile[k, l - 1].type != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(30) == 0)
+                            if (Main.tile[k, l].active() && !Main.tile[k, l - 1].active() && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].type != TileID.Containers && Main.tile[k, l - 1].type != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(150) == 0) // hallowed altar gen
                             {
                                 WorldGen.Place3x2(k, l - 1, (ushort)ModContent.TileType<Tiles.HallowedAltar>());
                             }
@@ -1045,7 +1061,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), 22);
                         }
                     }
-                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }                    GenerateHellcastle2(Main.maxTilesX / 3, Main.maxTilesY - 140);
+                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }
+                    GenerateHellcastle2(Main.maxTilesX / 3, Main.maxTilesY - 140); // change back later
                     for (int hbx = Main.maxTilesX / 3 - 170; hbx < Main.maxTilesX / 3 + 380; hbx++)
                     {
                         for (int hby = Main.maxTilesY - 200; hby < Main.maxTilesY - 50; hby++)
@@ -1106,7 +1123,12 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 break;
                         }
                     }
-                }));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", delegate (GenerationProgress progress)                {                    int x = Main.maxTilesX / 3;                    int y = Main.maxTilesY - 140;                    for (int i = x; i <= x + 210; i++)
+                }));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", delegate (GenerationProgress progress)                {
+                    int x = Main.maxTilesX / 3;
+                    int y = Main.maxTilesY - 140;
+                    //int x = Main.maxTilesX / 2;
+                    //int y = 250;
+                    for (int i = x; i <= x + 210; i++)
                     {
                         for (int j = y; j <= y + 90; j++)
                         {
@@ -1162,10 +1184,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             {
                                 num587 = WorldGen.genRand.Next(1, 10);
                             }
-                        }                    }                }));            }            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);                tasks.Insert(microBiomes, new PassLegacy("Avalon Contaigon fix 1", delegate (GenerationProgress progress)
-                {
-                    if (contaigon) WorldGen.crimson = true;
-                }));                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", delegate (GenerationProgress progress)                {
+                        }                    }                }));            }            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);                //tasks.Insert(microBiomes, new PassLegacy("Avalon Contaigon fix 1", delegate (GenerationProgress progress)
+                //{
+                //    if (contaigon) WorldGen.crimson = true;
+                //}));                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", delegate (GenerationProgress progress)                {
                     progress.Message = Lang.gen[76].Value + "..Thin Ice";
                     float num = (float)(Main.maxTilesX * Main.maxTilesY) / 5040000f;
                     float num2 = (float)Main.maxTilesX / 4200f;
@@ -1236,7 +1258,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     }
                     progress.Message = Lang.gen[76]?.ToString() + "..Corruption Pits";
                     progress.Set(0.4f);
-                    if (!WorldGen.crimson)
+                    if (!WorldGen.crimson && !contaigon)
                     {
                         int num14 = (int)((float)WorldGen.genRand.Next(1, 3) * num);
                         int num15 = 0;
@@ -1252,7 +1274,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     progress.Set(0.5f);
                     TrackGenerator.Run((int)(10f * num), (int)(num * 25f) + 250);
                     progress.Set(1f);
-                }));                tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                {                    if (contaigon) WorldGen.crimson = false;                }));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle2(int x, int y)
+                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    if (contaigon) WorldGen.crimson = false;                //}));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle2(int x, int y)
         {
             WorldGen.destroyObject = true;
             ushort brick = (ushort)ModContent.TileType<Tiles.ImperviousBrick>();
@@ -1297,7 +1319,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pianos || Main.tile[noHellHousesX, noHellHousesY].type == TileID.GrandfatherClocks ||
                         Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chandeliers || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Hellforge ||
                         Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HangingLanterns ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Bookcases)
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Bookcases || Main.tile[noHellHousesX, noHellHousesY].type == 89)
                     {
                         Main.tile[noHellHousesX, noHellHousesY].active(false);
                         Main.tile[noHellHousesX, noHellHousesY].wall = 0;

@@ -71,8 +71,110 @@ namespace ExxoAvalonOrigins.Tiles
                 case 14:
                     item = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
                     break;
+                case 15:
+                    item = ModContent.ItemType<Items.Banners.CougherBanner>();
+                    break;
+                case 16:
+                    item = ModContent.ItemType<Items.Banners.BactusBanner>();
+                    break;
+                case 17:
+                    item = ModContent.ItemType<Items.Banners.IckslimeBanner>();
+                    break;
+                case 18:
+                    item = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
+                    break;
+                case 19:
+                    item = ModContent.ItemType<Items.Banners.PyrasiteBanner>();
+                    break;
+                case 20:
+                    item = ModContent.ItemType<Items.Banners.EyeBonesBanner>();
+                    break;
+                case 21:
+                    item = ModContent.ItemType<Items.Banners.EctosphereBanner>();
+                    break;
+                case 22:
+                    item = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
+                    break;
+                case 23:
+                    item = ModContent.ItemType<Items.Banners.CopperSlimeBanner>();
+                    break;
+                case 24:
+                    item = ModContent.ItemType<Items.Banners.TinSlimeBanner>();
+                    break;
+                case 25:
+                    item = ModContent.ItemType<Items.Banners.IronSlimeBanner>();
+                    break;
+                case 26:
+                    item = ModContent.ItemType<Items.Banners.LeadSlimeBanner>();
+                    break;
+                case 27:
+                    item = ModContent.ItemType<Items.Banners.SilverSlimeBanner>();
+                    break;
+                case 28:
+                    item = ModContent.ItemType<Items.Banners.TungstenSlimeBanner>();
+                    break;
+                case 29:
+                    item = ModContent.ItemType<Items.Banners.GoldSlimeBanner>();
+                    break;
+                case 30:
+                    item = ModContent.ItemType<Items.Banners.PlatinumSlimeBanner>();
+                    break;
+                case 31:
+                    item = ModContent.ItemType<Items.Banners.CobaltSlimeBanner>();
+                    break;
+                case 32:
+                    item = ModContent.ItemType<Items.Banners.PalladiumSlimeBanner>();
+                    break;
+                case 33:
+                    item = ModContent.ItemType<Items.Banners.MythrilSlimeBanner>();
+                    break;
+                case 34:
+                    item = ModContent.ItemType<Items.Banners.OrichalcumSlimeBanner>();
+                    break;
+                case 35:
+                    item = ModContent.ItemType<Items.Banners.AdamantiteSlimeBanner>();
+                    break;
+                case 36:
+                    item = ModContent.ItemType<Items.Banners.TitaniumSlimeBanner>();
+                    break;
+                case 37:
+                    item = ModContent.ItemType<Items.Banners.RhodiumSlimeBanner>();
+                    break;
+                case 38:
+                    item = ModContent.ItemType<Items.Banners.OsmiumSlimeBanner>();
+                    break;
+                case 39:
+                    item = ModContent.ItemType<Items.Banners.DurataniumSlimeBanner>();
+                    break;
+                case 40:
+                    item = ModContent.ItemType<Items.Banners.NaquadahSlimeBanner>();
+                    break;
+                case 41:
+                    item = ModContent.ItemType<Items.Banners.TroxiniumSlimeBanner>();
+                    break;
+                case 44:
+                    item = ModContent.ItemType<Items.Banners.BronzeSlimeBanner>();
+                    break;
+                case 45:
+                    item = ModContent.ItemType<Items.Banners.NickelSlimeBanner>();
+                    break;
+                case 46:
+                    item = ModContent.ItemType<Items.Banners.ZincSlimeBanner>();
+                    break;
+                case 47:
+                    item = ModContent.ItemType<Items.Banners.BismuthSlimeBanner>();
+                    break;
+                case 48:
+                    item = ModContent.ItemType<Items.Banners.IridiumSlimeBanner>();
+                    break;
+                case 51:
+                    item = ModContent.ItemType<Items.Banners.IrateBonesBanner>();
+                    break;
                 case 52:
                     item = ModContent.ItemType<Items.Banners.AegisHalloworBanner>();
+                    break;
+                case 55:
+                    item = ModContent.ItemType<Items.Banners.CursedScepterBanner>();
                     break;
                 default:
                     return;
@@ -124,6 +226,108 @@ namespace ExxoAvalonOrigins.Tiles
                         break;
                     case 14:
                         type = "MechanicalDigger";
+                        break;
+                    case 15:
+                        type = "Cougher";
+                        break;
+                    case 16:
+                        type = "Bactus";
+                        break;
+                    case 17:
+                        type = "Ickslime";
+                        break;
+                    case 18:
+                        type = "GrossyFloat";
+                        break;
+                    case 19:
+                        type = "Pyrasite";
+                        break;
+                    case 20:
+                        type = "EyeBones";
+                        break;
+                    case 21:
+                        type = "Ectosphere";
+                        break;
+                    case 22:
+                        type = "BombSkeleton";
+                        break;
+                    case 23:
+                        type = "CopperSlime";
+                        break;
+                    case 24:
+                        type = "TinSlime";
+                        break;
+                    case 25:
+                        type = "IronSlime";
+                        break;
+                    case 26:
+                        type = "LeadSlime";
+                        break;
+                    case 27:
+                        type = "SilverSlime";
+                        break;
+                    case 28:
+                        type = "TungstenSlime";
+                        break;
+                    case 29:
+                        type = "GoldSlime";
+                        break;
+                    case 30:
+                        type = "PlatinumSlime";
+                        break;
+                    case 31:
+                        type = "CobaltSlime";
+                        break;
+                    case 32:
+                        type = "PalladiumSlime";
+                        break;
+                    case 33:
+                        type = "MythrilSlime";
+                        break;
+                    case 34:
+                        type = "OrichalcumSlime";
+                        break;
+                    case 35:
+                        type = "AdamantiteSlime";
+                        break;
+                    case 36:
+                        type = "TitaniumSlime";
+                        break;
+                    case 37:
+                        type = "RhodiumSlime";
+                        break;
+                    case 38:
+                        type = "OsmiumSlime";
+                        break;
+                    case 39:
+                        type = "DurataniumSlime";
+                        break;
+                    case 40:
+                        type = "NaquadahSlime";
+                        break;
+                    case 41:
+                        type = "TroxiniumSlime";
+                        break;
+                    case 44:
+                        type = "BronzeSlime";
+                        break;
+                    case 45:
+                        type = "NickelSlime";
+                        break;
+                    case 46:
+                        type = "ZincSlime";
+                        break;
+                    case 47:
+                        type = "BismuthSlime";
+                        break;
+                    case 48:
+                        type = "IridiumSlime";
+                        break;
+                    case 51:
+                        type = "IrateBones";
+                        break;
+                    case 55:
+                        type = "CursedScepter";
                         break;
                     default:
                         return;

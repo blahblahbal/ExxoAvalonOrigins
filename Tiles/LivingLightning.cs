@@ -34,6 +34,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
             TileObjectData.addTile(Type);
+            dustType = ModContent.DustType<Dusts.LightningDust>();
         }
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)
         {

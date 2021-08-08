@@ -26,10 +26,14 @@ namespace ExxoAvalonOrigins.NPCs
             npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.PyrasiteBanner>();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.position.Y < Main.worldSurface) ? 0.05f : 0f;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.ZoneOverworldHeight)
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.ZoneOverworldHeight) ? 0.5f : 0f;
+            return 0f;
         }
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -124,8 +128,8 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void Init()
         {
-            minLength = 6;
-            maxLength = 10;
+            minLength = 10;
+            maxLength = 15;
             tailType = ModContent.NPCType<PyrasiteTail>();
             bodyType = ModContent.NPCType<PyrasiteBody>();
             headType = ModContent.NPCType<PyrasiteHead>();

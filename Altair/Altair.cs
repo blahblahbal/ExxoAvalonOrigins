@@ -56,12 +56,14 @@ namespace ExxoAvalonOrigins.Altair
                         if (WorldGen.oreTier1 == 107) Main.NewText("Your world has been blessed with Cobalt!", 26, 105, 161, false);
                         else if (WorldGen.oreTier1 == 221) Main.NewText("Your world has been blessed with Palladium!", 235, 87, 47, false);
                         else Main.NewText("Your world has been blessed with Duratanium!", 137, 81, 89, false);
+                        if (WorldGen.altarCount == 0) Main.NewText("The underground smells like rotten eggs...", 210, 183, 4, false);
                     }
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier1 == 107) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Cobalt!"), new Color(26, 105, 161));
                         if (WorldGen.oreTier1 == 221) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Palladium!"), new Color(235, 87, 47));
                         else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Duratanium!"), new Color(137, 81, 89));
+                        if (WorldGen.altarCount == 0) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
                     }
                     num1 = WorldGen.oreTier1;
                     num7 *= 1.05f;
@@ -84,13 +86,13 @@ namespace ExxoAvalonOrigins.Altair
                     {
                         if (WorldGen.oreTier2 == 108) Main.NewText("Your world has been blessed with Mythril!", 93, 147, 88, false);
                         else if (WorldGen.oreTier2 == 222) Main.NewText("Your world has been blessed with Orichalcum!", 163, 22, 158, false);
-                        else Main.NewText("Your world has been blessed with Naquadah!", 0, 38, 255, false);
+                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>()) Main.NewText("Your world has been blessed with Naquadah!", 0, 38, 255, false);
                     }
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier2 == 108) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Mythril!"), new Color(93, 147, 88));
                         if (WorldGen.oreTier2 == 222) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Orichalcum!"), new Color(163, 22, 158));
-                        else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Naquadah!"), new Color(0, 38, 255));
+                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>()) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Naquadah!"), new Color(0, 38, 255));
                     }
                     num1 = WorldGen.oreTier2;
                     break;
@@ -112,13 +114,13 @@ namespace ExxoAvalonOrigins.Altair
                     {
                         if (WorldGen.oreTier3 == 111) Main.NewText("Your world has been blessed with Adamantite!", 221, 85, 152, false);
                         else if (WorldGen.oreTier3 == 223) Main.NewText("Your world has been blessed with Titanium!", 185, 194, 215, false);
-                        else Main.NewText("Your world has been blessed with Troxinium!", 193, 218, 72, false);
+                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>()) Main.NewText("Your world has been blessed with Troxinium!", 193, 218, 72, false);
                     }
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier3 == 111) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Adamantite!"), new Color(221, 85, 152));
                         else if (WorldGen.oreTier3 == 223) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Titanium!"), new Color(185, 194, 215));
-                        else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Troxinium!"), new Color(193, 218, 72));
+                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>()) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Troxinium!"), new Color(193, 218, 72));
                     }
                     num1 = WorldGen.oreTier3;
                     break;
@@ -137,6 +139,10 @@ namespace ExxoAvalonOrigins.Altair
                 }
                 int j2 = WorldGen.genRand.Next((int)num12, Main.maxTilesY - 150);
                 WorldGen.OreRunner(i2, j2, WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)num1);
+                if (WorldGen.altarCount < 9)
+                {
+                    WorldGen.OreRunner(i2, j2, (double)WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)ModContent.TileType<Tiles.SulphurOre>());
+                }
             }
             int num13 = WorldGen.genRand.Next(3);
             int num2 = 0;

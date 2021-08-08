@@ -33,7 +33,9 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Confused] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.IckslimeBanner>();
+        }
 
 		public override void NPCLoot()
 		{
@@ -44,7 +46,9 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.07f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode)
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.7f : 0f;
+            return 0f;
         }
         public override void FindFrame(int frameHeight)
         {

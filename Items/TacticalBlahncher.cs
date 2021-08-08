@@ -20,14 +20,17 @@ namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		publ
         {
             return new Vector2(-10f, 0f);
         }
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,			ref float knockBack)		{            float num78 = speedX + (float)Main.rand.Next(-50, 51) * 0.05f;
-            float num79 = speedY + (float)Main.rand.Next(-50, 51) * 0.05f;
-            if (Main.rand.Next(3) == 0)
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,			ref float knockBack)		{            for (int i = 0; i < 3; i++)
             {
-                num78 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
-                num79 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
-            }
-            Projectile.NewProjectile(position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockBack, player.whoAmI, 0f, 0f);			return false;		}        public override void HoldItem(Player player)
+                float num78 = speedX + (float)Main.rand.Next(-50, 51) * 0.05f;
+                float num79 = speedY + (float)Main.rand.Next(-50, 51) * 0.05f;
+                if (Main.rand.Next(3) == 0)
+                {
+                    num78 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
+                    num79 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
+                }
+                Projectile.NewProjectile(position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            }			return false;		}        public override void HoldItem(Player player)
         {
             Vector2 vector = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
             float num70 = (float)Main.mouseX + Main.screenPosition.X - vector.X;
@@ -49,7 +52,7 @@ namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		publ
             player.itemRotation = (float)Math.Atan2((double)(num71 * (float)player.direction), (double)(num70 * (float)player.direction));
         }        public override bool ConsumeAmmo(Player player)
         {
-            if (Main.rand.Next(4) < 2) return false;
+            if (Main.rand.Next(4) < 3) return false;
             return base.ConsumeAmmo(player);
         }
     }}

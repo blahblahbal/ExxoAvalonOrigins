@@ -27,7 +27,10 @@ namespace ExxoAvalonOrigins.Tiles
         {
             return mod.GetTexture("Tiles/ContagionTreeBranches");
         }
-
+        public override int CreateDust()
+        {
+            return 184;
+        }
         public override Texture2D GetTopTextures(int i, int j, ref int frame, ref int frameWidth, ref int frameHeight, ref int xOffsetLeft, ref int yOffset)
         {
             frameWidth = 80;

@@ -38,7 +38,9 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Confused] = true;
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.VampireHarpyBanner>();
+        }
 
         public override void FindFrame(int frameHeight)
         {

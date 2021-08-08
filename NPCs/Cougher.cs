@@ -33,7 +33,9 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.knockBackResist = 0.3f;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.CougherBanner>();
+        }
 
         public override void NPCLoot()
         {
@@ -44,7 +46,9 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.055f : 0f;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode)
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 1f : 0f;
+            return 0f;
         }
         public override void AI()
         {

@@ -38,7 +38,9 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Confused] = true;
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.CursedMagmaSkeletonBanner>();
+        }
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255);
@@ -57,7 +59,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
         }
         public override void AI()
         {

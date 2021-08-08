@@ -30,7 +30,9 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.knockBackResist = 0.4f;
 			npc.height = 24;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.CopperSlimeBanner>();
+        }
 
 		public override void NPCLoot()
 		{

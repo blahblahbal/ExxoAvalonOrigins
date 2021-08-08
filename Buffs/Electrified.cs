@@ -30,5 +30,17 @@ namespace ExxoAvalonOrigins.Buffs
                 player.lifeRegen -= minus2;
             }
         }
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            if (npc.lifeRegen > 0)
+            {
+                npc.lifeRegen = 0;
+            }
+            npc.lifeRegen -= 8;
+            if (npc.velocity.X != 0)
+            {
+                npc.lifeRegen -= 32;
+            }
+        }
     }
 }

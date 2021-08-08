@@ -36,6 +36,8 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
         }
 
         public override void FindFrame(int frameHeight)
@@ -65,7 +67,12 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = 0;
             }
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.ZoneRockLayerHeight)
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && spawnInfo.player.ZoneRockLayerHeight) ? 1f : 0f;
+            return 0f;
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)

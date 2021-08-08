@@ -29,9 +29,11 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.height = 32;
 			npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath39;
+	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Confused] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.EyeBonesBanner>();
+        }
 
 		public override void NPCLoot()
 		{
@@ -64,7 +66,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

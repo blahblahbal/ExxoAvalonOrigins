@@ -32,7 +32,9 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit2;
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.OnFire] = true;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.ImpactWizardBanner>();
+        }
 
         public override void NPCLoot()
         {

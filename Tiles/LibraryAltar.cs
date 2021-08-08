@@ -16,6 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.addTile(Type);
             AddMapEntry(Color.Gray);
+            dustType = DustID.Stone;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

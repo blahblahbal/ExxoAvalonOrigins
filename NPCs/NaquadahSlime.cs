@@ -30,7 +30,9 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.height = 24;
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.NaquadahSlimeBanner>();
+        }
 
 		public override void NPCLoot()
 		{

@@ -1,4 +1,7 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Terraria.Enums;
+using Terraria.DataStructures;
+
+namespace ExxoAvalonOrigins.Tiles{
     public class LargeHerbsStage4 : ModTile
     {
         public override void SetDefaults()
@@ -11,6 +14,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.StyleHorizontal = true;
+            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);            Main.tileFrameImportant[Type] = true;
         }        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
