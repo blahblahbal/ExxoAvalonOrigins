@@ -129,10 +129,6 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if ((npc.type != 110 && npc.type != 111 && npc.type != 206 && npc.type != 216 && npc.type != 214 && npc.type != 215 && npc.type != 291 && npc.type != 292 && npc.type != 293 && npc.type != 350) || npc.ai[2] <= 0f)
             {
-                if (Main.dayTime && (double)(npc.position.Y / 16f) < Main.worldSurface && npc.timeLeft > 10)
-                {
-                    npc.timeLeft = 10;
-                }
                 if (npc.velocity.X == 0f)
                 {
                     if (npc.velocity.Y == 0f)
@@ -167,7 +163,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 else if (npc.velocity.X < num28 && npc.direction == 1)
                 {
-                    npc.velocity.X = npc.velocity.X + 0.07f;
+                    npc.velocity.X = npc.velocity.X + 0.27f;
                     if (npc.velocity.X > num28)
                     {
                         npc.velocity.X = num28;
@@ -175,7 +171,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 else if (npc.velocity.X > -num28 && npc.direction == -1)
                 {
-                    npc.velocity.X = npc.velocity.X - 0.07f;
+                    npc.velocity.X = npc.velocity.X - 0.27f;
                     if (npc.velocity.X < -num28)
                     {
                         npc.velocity.X = -num28;
@@ -184,7 +180,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.type != 110 && npc.type != 111 && npc.type != 206 && npc.type != 214 && npc.type != 215 && npc.type != 216 && npc.type != 290 && npc.type != 291 && npc.type != 292 && npc.type != 293 && npc.type != 350 && npc.type != 387)
             {
-                float num39 = 4f;
+                float num39 = 1f;
                 if (npc.type == 186)
                 {
                     num39 = 1.1f;
@@ -213,10 +209,6 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     num39 = 1.05f;
                 }
-                if (npc.type == 3 || npc.type == 132 || npc.type == 186 || npc.type == 187 || npc.type == 188 || npc.type == 189 || npc.type == 200 || npc.type == 223 || npc.type == 331 || npc.type == 332)
-                {
-                    num39 *= 1f + (1f - npc.scale);
-                }
                 if (npc.velocity.X < -num39 || npc.velocity.X > num39)
                 {
                     if (npc.velocity.Y == 0f)
@@ -226,7 +218,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 else if (npc.velocity.X < num39 && npc.direction == 1)
                 {
-                    npc.velocity.X = npc.velocity.X + 0.07f;
+                    npc.velocity.X = npc.velocity.X + 0.27f;
                     if (npc.velocity.X > num39)
                     {
                         npc.velocity.X = num39;
@@ -234,7 +226,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 else if (npc.velocity.X > -num39 && npc.direction == -1)
                 {
-                    npc.velocity.X = npc.velocity.X - 0.07f;
+                    npc.velocity.X = npc.velocity.X - 0.27f;
                     if (npc.velocity.X < -num39)
                     {
                         npc.velocity.X = -num39;
