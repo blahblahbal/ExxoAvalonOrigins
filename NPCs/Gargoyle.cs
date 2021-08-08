@@ -22,8 +22,8 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			npc.damage = 85;
 			npc.netAlways = true;
-			npc.scale = 1.2f;
-			npc.lifeMax = 1400;
+			npc.scale = 1.1f;
+			npc.lifeMax = 2400;
 			npc.defense = 28;
 			npc.lavaImmune = true;
 			npc.width = 34;
@@ -31,8 +31,8 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.value = Item.buyPrice(0, 1, 0, 0);
 			npc.height = 50;
 			npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
+            npc.HitSound = null;
+	        npc.DeathSound = null;
 			npc.buffImmune[BuffID.Confused] = true;
 			npc.buffImmune[BuffID.OnFire] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
@@ -218,8 +218,13 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life > 0)
+            {
+                Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y, 41, 1f, -0.25f);
+            }
             if (npc.life <= 0)
             {
+                Main.PlaySound(SoundID.NPCKilled, (int)npc.Center.X, (int)npc.Center.Y, 5, 1f, -0.25f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GargoyleGore3"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GargoyleGore3"), 1f);
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GargoyleGore4"), 1f);
