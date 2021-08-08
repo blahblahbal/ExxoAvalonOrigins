@@ -11,9 +11,9 @@ namespace ExxoAvalonOrigins.Tiles{	public class TritanoriumOre : ModTile	{		
             float num1 = 0.2f;
             float num2 = 0.4f;
             float num3 = 0.6f;
-            num1 *= 0.7f;
-            num2 *= 0.7f;
-            num3 *= 0.7f;
+            num1 *= 0.8f;
+            num2 *= 0.8f;
+            num3 *= 0.8f;
             float num7 = (float)Main.rand.Next(90, 111) * 0.01f;
             num7 *= Main.essScale;
             r = num1 * num7;

@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			npc.damage = 85;
 			npc.netAlways = true;
-			npc.scale = 1.35f;
+			npc.scale = 1.2f;
 			npc.lifeMax = 1400;
 			npc.defense = 28;
 			npc.lavaImmune = true;
@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.aiStyle = 17;
 			npc.value = Item.buyPrice(0, 1, 0, 0);
 			npc.height = 50;
-			npc.knockBackResist = 0.1f;
+			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit2;
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Confused] = true;
@@ -62,19 +62,19 @@ namespace ExxoAvalonOrigins.NPCs
             else
             {
                 npc.frameCounter += 1.0;
-                if (npc.frameCounter <= 7)
+                if (npc.frameCounter <= 5)
                 {
                     npc.frame.Y = frameHeight;
                 }
-                else if (npc.frameCounter <= 14)
+                else if (npc.frameCounter <= 10)
                 {
                     npc.frame.Y = frameHeight * 2;
                 }
-                else if (npc.frameCounter <= 21)
+                else if (npc.frameCounter <= 15)
                 {
                     npc.frame.Y = frameHeight * 3;
                 }
-                else if (npc.frameCounter <= 28)
+                else if (npc.frameCounter <= 20)
                 {
                     npc.frame.Y = frameHeight * 4;
                 }

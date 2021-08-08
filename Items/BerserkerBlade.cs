@@ -14,7 +14,7 @@
             item.autoReuse = true;
             item.UseSound = SoundID.Item1;
             item.useTurn = true;
-            item.scale = 1f;
+            item.scale = 1.2f;
             item.rare = 8;
             item.width = dims.Width;
             item.useTime = 10;
