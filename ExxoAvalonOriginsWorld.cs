@@ -130,11 +130,11 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 {26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
             };
             int PosX = x;  //spawnX and spawnY is where you want the anchor to be when this generates
-            int PosY = y - 10;
+            int PosY = y;
             ushort impBrick = (ushort)ModContent.TileType<Tiles.ImperviousBrick>();
             ushort spike = (ushort)ModContent.TileType<Tiles.VenomSpike>();
             // turn liquid in an area around the gen area to 0, and make it not lava
-            for (int noLiquidX = x - 45 - 210; noLiquidX <= x + 420 + 45; noLiquidX++)
+            for (int noLiquidX = x - 45; noLiquidX <= x + 420 + 45; noLiquidX++)
             {
                 for (int noLiquidY = y - 20; noLiquidY <= y + 100; noLiquidY++)
                 {
@@ -150,6 +150,39 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         Main.tile[noLiquidX, noLiquidY].type == TileID.SmallPiles)
                     {
                         Main.tile[noLiquidX, noLiquidY].active(false);
+                    }
+                }
+            }
+            for (int noHellHousesX = x; noHellHousesX <= x + 420; noHellHousesX++)
+            {
+                for (int noHellHousesY = y - 40; noHellHousesY <= y + 90; noHellHousesY++)
+                {
+                    if (Main.tile[noHellHousesX, noHellHousesY] == null) Main.tile[noHellHousesX, noHellHousesY] = new Tile();
+                    if (Main.tile[noHellHousesX, noHellHousesY].type == TileID.ObsidianBrick || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HellstoneBrick ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting3X2 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting2X3 ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting4X3 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting3X3 ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting6X4 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Torches ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Statues || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Banners ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Platforms || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chairs ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.WorkBenches || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Tables ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lampposts || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lamps ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pianos || Main.tile[noHellHousesX, noHellHousesY].type == TileID.GrandfatherClocks ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chandeliers || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Hellforge ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HangingLanterns ||
+                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Bookcases || Main.tile[noHellHousesX, noHellHousesY].type == 89)
+                    {
+                        Main.tile[noHellHousesX, noHellHousesY].active(false);
+                        Main.tile[noHellHousesX, noHellHousesY].wall = 0;
+                    }
+                    if (Main.tile[noHellHousesX, noHellHousesY].wall == WallID.ObsidianBrickUnsafe || Main.tile[noHellHousesX, noHellHousesY].wall == WallID.HellstoneBrickUnsafe)
+                    {
+                        Main.tile[noHellHousesX, noHellHousesY].wall = 0;
+                    }
+                    Main.tile[noHellHousesX, noHellHousesY].lava(false);
+                    if (noHellHousesX >= x && noHellHousesX <= x + 210 && noHellHousesY >= y && noHellHousesY <= y + 90)
+                    {
+                        Main.tile[noHellHousesX, noHellHousesY].slope(0);
+                        Main.tile[noHellHousesX, noHellHousesY].halfBrick(false);
                     }
                 }
             }
@@ -234,7 +267,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 case 8:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
-                                    Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
+                                    WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>());
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
@@ -310,7 +343,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 case 16:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
-                                    Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
+                                    WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>());
                                     tile.slope(2);
                                     tile.halfBrick(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
@@ -368,7 +401,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 case 22:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
-                                    Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
+                                    WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>());
                                     tile.slope(1);
                                     tile.halfBrick(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
@@ -1457,7 +1490,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     }
                 }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }
                     GenerateHellcastle(Main.maxTilesX / 3 - 210, Main.maxTilesY - 140); // change back later
-                    for (int hbx = Main.maxTilesX / 3 - 170; hbx < Main.maxTilesX / 3 + 380; hbx++)
+                    for (int hbx = Main.maxTilesX / 3 - 250; hbx < Main.maxTilesX / 3 + 500; hbx++)
                     {
                         for (int hby = Main.maxTilesY - 200; hby < Main.maxTilesY - 50; hby++)
                         {
