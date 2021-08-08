@@ -255,9 +255,13 @@ namespace ExxoAvalonOrigins.NPCs
         public override void NPCLoot()
         {
             ExxoAvalonOriginsGlobalNPC.oblivionDead = true;
-            if (Main.rand.Next(4) == 0)
+            if (Main.rand.Next(7) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionTrophy>(), 1, false, 0, false);
+            }
+            if (Main.rand.Next(4) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CurseofOblivion>(), 1, false, 0, false);
             }
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.AccelerationDrill>(), 1, false, -2, false);
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofTorture>(), Main.rand.Next(60, 121), false, 0, false);

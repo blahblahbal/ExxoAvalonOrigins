@@ -68,12 +68,12 @@ namespace ExxoAvalonOrigins.Tiles
                 case 9:
                     item = ModContent.ItemType<Items.RingofDisgust>();
                     break;
-                //case 10:
-                //    item = ModContent.ItemType<Items.CurseofOblivion>();
-                //    break;
-                //case 11:
-                //    item = ModContent.ItemType<Items.Clash>();
-                //    break;
+                case 10:
+                    item = ModContent.ItemType<Items.CurseofOblivion>();
+                    break;
+                case 11:
+                    item = ModContent.ItemType<Items.Clash>();
+                    break;
             }
             if (item > 0)
             {
