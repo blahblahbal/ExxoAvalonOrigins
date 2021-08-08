@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.NPCs
 
 		public override void NPCLoot()
 		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Pathogen>(), 1, false, 0, false);
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Pathogen>(), 2 + Main.rand.Next(4), false, 0, false);
         }
 
         public override void FindFrame(int frameHeight)

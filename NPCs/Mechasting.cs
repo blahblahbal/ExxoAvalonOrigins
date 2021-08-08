@@ -284,6 +284,10 @@ namespace ExxoAvalonOrigins.NPCs
                     float rotation = (float)Math.Atan2(npc.Center.Y - Main.player[npc.target].Center.Y, npc.Center.X - Main.player[npc.target].Center.X);
                     float f = 0f; // degrees; 3.6f is a full 360 degrees
                     float speed = 9f; // the velocity of the projectile to be shot
+                    if (Main.expertMode)
+                    {
+                        speed = 15f;
+                    }
                     int p;
                     if (npc.ai[1] % 60 == 0)
                     {
@@ -334,7 +338,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
-            npc.rotation = npc.velocity.X * 0.1f;
+            npc.rotation = npc.velocity.X * 0.03f;
             npc.frameCounter++;
             if (npc.frameCounter < 3.0)
             {
