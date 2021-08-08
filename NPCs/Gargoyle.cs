@@ -100,7 +100,7 @@ namespace ExxoAvalonOrigins.NPCs
                 if (npc.direction == -1 && npc.velocity.X > -3f)
                 {
                     npc.velocity.X = npc.velocity.X - 0.1f;
-                    if (npc.velocity.X > 6f)
+                    if (npc.velocity.X > 9f)
                     {
                         npc.velocity.X = npc.velocity.X - 0.1f;
                     }
@@ -108,15 +108,15 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.velocity.X = npc.velocity.X - 0.05f;
                     }
-                    if (npc.velocity.X < -6f)
+                    if (npc.velocity.X < -9f)
                     {
-                        npc.velocity.X = -6f;
+                        npc.velocity.X = -9f;
                     }
                 }
                 else if (npc.direction == 1 && npc.velocity.X < 3f)
                 {
                     npc.velocity.X = npc.velocity.X + 0.1f;
-                    if (npc.velocity.X < -6f)
+                    if (npc.velocity.X < -9f)
                     {
                         npc.velocity.X = npc.velocity.X + 0.1f;
                     }
@@ -124,9 +124,9 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.velocity.X = npc.velocity.X + 0.05f;
                     }
-                    if (npc.velocity.X > 6f)
+                    if (npc.velocity.X > 9f)
                     {
-                        npc.velocity.X = 6f;
+                        npc.velocity.X = 9f;
                     }
                 }
                 float num365 = Math.Abs(npc.position.X + (float)(npc.width / 2) - (Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2)));

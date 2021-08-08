@@ -345,7 +345,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         {
                                             item = ModContent.ItemType<Items.Hellrazer>();
                                         }
-                                        AddHellcastleChest(k, l, contain: item);
+                                        //AddHellcastleChest(k, l, contain: item);
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -355,7 +355,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Benches, true, true, -1, 10);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodSofa>()); // sofas
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -365,7 +365,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.WorkBenches, true, true, -1, 14);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodWorkbench>()); // workbenches
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -383,7 +383,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.GrandfatherClocks, true, true, -1, 17);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodClock>()); // clocks
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -393,7 +393,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Dressers, true, true, -1, 9);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodDresser>()); // dressers
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -403,7 +403,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Chairs, true, true, -1, 16);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodChair>()); // chairs
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -413,7 +413,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Tables, true, true, -1, 13);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodTable>()); // tables
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -423,7 +423,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Pianos, true, true, -1, 15);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodPiano>()); // pianos
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -441,7 +441,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Beds, true, true, -1, 8);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodBed>()); // beds
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -451,7 +451,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, TileID.Bathtubs, true, true, -1, 25);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodBathtub>());
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
@@ -1766,7 +1766,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     progress.Set(0.5f);
                     TrackGenerator.Run((int)(10f * num), (int)(num * 25f) + 250);
                     progress.Set(1f);
-                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    if (contaigon) WorldGen.crimson = false;                //}));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastleOld(int x, int y)
+                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    if (contaigon) WorldGen.crimson = false;                //}));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle_old(int x, int y)
         {
             WorldGen.destroyObject = true;
             ushort brick = (ushort)ModContent.TileType<Tiles.ImperviousBrick>();
@@ -2457,7 +2457,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
                 {
                     int num = k;
-                    int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<LockedUnderworldChest>(), notNearOtherChests);
+                    int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<Tiles.ResistantWoodChest>(), notNearOtherChests);
                     if (num2 >= 0)
                     {
                         int num3 = 0;
