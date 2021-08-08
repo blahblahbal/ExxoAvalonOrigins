@@ -11,9 +11,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			if (projectile.owner == Main.myPlayer)
 			{
 				// Drop a javelin item, 1 in 18 chance (~5.5% chance)
-				int item = true
-					? Item.NewItem(projectile.getRect(), ModContent.ItemType<Items.EnchantedShuriken>())
-					: 0;
+				Item.NewItem(projectile.getRect(), ModContent.ItemType<Items.EnchantedShuriken>());
 			}
 		}
     }}

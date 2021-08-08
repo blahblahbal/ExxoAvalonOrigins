@@ -22,6 +22,11 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
             TileObjectData.addTile(Type);
+            dustType = 184;
+        }
+        public override bool CanPlace(int i, int j)
+        {
+            return (Main.tile[i, j - 1].active() || Main.tile[i - 1, j].active() || Main.tile[i, j + 1].active() || Main.tile[i + 1, j].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
         }
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)
         {

@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Tiles
             minPick = 200;
             ExxoAvalonOrigins.MergeWith(Type, TileID.Ash);
             ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<Impgrass>());
-            dustType = 99;
+            dustType = 106;
             //ExxoAvalonOrigins.MergeWith(TileID.Ash, Type);
         }
         public override bool CanExplode(int i, int j)
