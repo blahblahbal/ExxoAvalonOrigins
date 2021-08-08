@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using ExxoAvalonOrigins.Items;
 using ExxoAvalonOrigins.Projectiles;
 using ExxoAvalonOrigins.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -26,7 +28,7 @@ namespace ExxoAvalonOrigins
         public int statMana = 100;
         public bool shmAcc = false;
         public bool herb = false;
-	    public bool teleportVWasTriggered = false;
+        public bool teleportVWasTriggered = false;
         public enum ShadowMirrorModes
         {
             Spawn,
@@ -34,32 +36,32 @@ namespace ExxoAvalonOrigins
             Team
         }
 
-		public bool armorStealth = false;
-	    public int shadowCheckPointNum = 0;
-	    public int shadowPlayerNum = 0;
+        public bool armorStealth = false;
+        public int shadowCheckPointNum = 0;
+        public int shadowPlayerNum = 0;
         public bool slimeImmune = false;
-		public bool beeRepel = false;
-		public bool lucky = false;
+        public bool beeRepel = false;
+        public bool lucky = false;
         public bool melting = false;
-		public bool enemySpawns2 = false;
-		public int crimsonCount = 0;
+        public bool enemySpawns2 = false;
+        public int crimsonCount = 0;
         public bool darkInferno = false;
         public int deliriumCount = 0;
-		public bool forceField = true;
-		public int fAlevel = 0;
-		public int fAlastRecord = 0;
-		public bool gastroMinion = false;
-		public bool hungryMinion = false;
-		public bool iceGolem = false;
-		public int infectTimer = 0;
-		public int infectDmg = 0;
-		public bool weaponMinion = false;
-		public bool primeMinion = false;
-		public int shadowPotCd = 0;
-		public bool shockWave = false;
-		public int fallStart_old = 0;
-		public bool earthInsig = false;
-		public bool vision = false;
+        public bool forceField = true;
+        public int fAlevel = 0;
+        public int fAlastRecord = 0;
+        public bool gastroMinion = false;
+        public bool hungryMinion = false;
+        public bool iceGolem = false;
+        public int infectTimer = 0;
+        public int infectDmg = 0;
+        public bool weaponMinion = false;
+        public bool primeMinion = false;
+        public int shadowPotCd = 0;
+        public bool shockWave = false;
+        public int fallStart_old = 0;
+        public bool earthInsig = false;
+        public bool vision = false;
         public const int deliriumFreq = 600;
         public int crystalHealth = 0;
         public Item tomeItem = new Item();
@@ -126,7 +128,7 @@ namespace ExxoAvalonOrigins
         public bool shadowTele;
         public bool teleportV = false;
         public int tpCD;
-	    public bool oblivionKill = false;
+        public bool oblivionKill = false;
         public bool splitProj;
         public bool minionFreeze;
         public int deliriumDuration = 300;
@@ -171,6 +173,8 @@ namespace ExxoAvalonOrigins
         public int potionTotal;
         public int herbTotal;
         public int[] herbCounts = new int[10];
+        private int gemCount = 0;
+        private bool[] ownedLargeGems = new bool[10];
         #endregion
 
         public override void ResetEffects()
@@ -588,8 +592,8 @@ namespace ExxoAvalonOrigins
             if (ExxoAvalonOrigins.godMode) return false;
             return true;
         }
-        
-	    public override void PostUpdate()
+
+        public override void PostUpdate()
         {
             Vector2 pposTile = player.Center / 16;
             for (int xpos = (int)pposTile.X - 4; xpos <= (int)pposTile.X + 4; xpos++)
@@ -619,7 +623,7 @@ namespace ExxoAvalonOrigins
             }
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
-            
+
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
@@ -680,6 +684,196 @@ namespace ExxoAvalonOrigins
                         if (player.buffType[num166] == 38)
                         {
                             player.DelBuff(num166);
+                        }
+                    }
+                }
+            }
+
+            // Large gem inventory checking
+            gemCount++;
+            if (gemCount >= 10)
+            {
+                player.gem = -1;
+                ownedLargeGems = new bool[10];
+                gemCount = 0;
+                for (int num27 = 0; num27 <= 58; num27++)
+                {
+                    if (player.inventory[num27].type == 0 || player.inventory[num27].stack == 0)
+                    {
+                        player.inventory[num27].TurnToAir();
+                    }
+                    // Vanilla gems
+                    if (player.inventory[num27].type >= 1522 && player.inventory[num27].type <= 1527)
+                    {
+                        player.gem = player.inventory[num27].type - 1522;
+                        ownedLargeGems[player.gem] = true;
+                    }
+                    else if (player.inventory[num27].type == ItemID.LargeAmber)
+                    {
+                        player.gem = 6;
+                        ownedLargeGems[player.gem] = true;
+                    }
+                    // Modded gems
+                    else if (player.inventory[num27].type == ModContent.ItemType<LargeZircon>())
+                    {
+                        player.gem = 7;
+                        ownedLargeGems[player.gem] = true;
+                    }
+                    else if (player.inventory[num27].type == ModContent.ItemType<LargeTourmaline>())
+                    {
+                        player.gem = 8;
+                        ownedLargeGems[player.gem] = true;
+                    }
+                    else if (player.inventory[num27].type == ModContent.ItemType<LargePeridot>())
+                    {
+                        player.gem = 9;
+                        ownedLargeGems[player.gem] = true;
+                    }
+                }
+            }
+        }
+
+        // Large gem player layer logic
+        public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo) {
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            bool[] ownedLargeGems = drawPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ownedLargeGems;
+            if (ownedLargeGems.Length > 0)
+            {
+                bool flag2 = false;
+                DrawData value = default(DrawData);
+                float numGems = 0f;
+                for (int num23 = 0; num23 < 10; num23++)
+                {
+                    if (ownedLargeGems[num23])
+                    {
+                        numGems += 1f;
+                    }
+                }
+                float num25 = 1f - numGems * 0.06f;
+                float num26 = (numGems - 1f) * 4f;
+                switch ((int)numGems)
+                {
+                    case 2:
+                        num26 += 10f;
+                        break;
+                    case 3:
+                        num26 += 8f;
+                        break;
+                    case 4:
+                        num26 += 6f;
+                        break;
+                    case 5:
+                        num26 += 6f;
+                        break;
+                    case 6:
+                        num26 += 2f;
+                        break;
+                    case 7:
+                        num26 += 0f;
+                        break;
+                    case 8:
+                        num26 += 0f;
+                        break;
+                    case 9:
+                        num26 += 0f;
+                        break;
+                    case 10:
+                        num26 += 0f;
+                        break;
+                }
+                float rotSpeed = (float)drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
+                if (numGems > 0f)
+                {
+                    float spacing = (float)Math.PI * 2f / numGems;
+                    float num29 = 0f;
+                    Vector2 ringSize = new Vector2(1.5f, 0.85f);
+                    List<DrawData> list = new List<DrawData>();
+                    for (int num30 = 0; num30 < 10; num30++)
+                    {
+                        if (!ownedLargeGems[num30])
+                        {
+                            num29 += 1f;
+                            continue;
+                        }
+                        Vector2 value14 = (rotSpeed + spacing * ((float)num30 - num29)).ToRotationVector2();
+                        float num31 = num25;
+                        if (flag2)
+                        {
+                            num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
+                        }
+
+                        Texture2D texture2D4 = null;
+                        if (num30 < 7)
+                        {
+                            texture2D4 = Main.gemTexture[num30];
+                        }
+                        else
+                        {
+                            switch (num30)
+                            {
+                                case 7:
+                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
+                                    break;
+                                case 8:
+                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
+                                    break;
+                                case 9:
+                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
+                                    break;
+                            }
+                        }
+                        
+                        value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
+                        list.Add(value);
+                    }
+                    if (flag2)
+                    {
+                        list.Sort(DelegateMethods.CompareDrawSorterByYScale);
+                    }
+                    Main.playerDrawData.AddRange(list);
+                }
+            }
+        });
+
+        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        {
+            LargeGemLayer.visible = true;
+            layers.Add(LargeGemLayer);
+        }
+
+        // Large gem drop on death logic
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            if (Main.myPlayer == player.whoAmI)
+            {
+                player.trashItem.SetDefaults();
+                if (player.difficulty == 0)
+                {
+                    for (int i = 0; i < 59; i++)
+                    {
+                        if (player.inventory[i].stack > 0 && 
+                            (player.inventory[i].type == ModContent.ItemType<LargeZircon>() || 
+                            player.inventory[i].type == ModContent.ItemType<LargeTourmaline>() ||
+                            player.inventory[i].type == ModContent.ItemType<LargePeridot>()))
+                        {
+                            int num = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, player.inventory[i].type);
+                            Main.item[num].netDefaults(player.inventory[i].netID);
+                            Main.item[num].Prefix(player.inventory[i].prefix);
+                            Main.item[num].stack = player.inventory[i].stack;
+                            Main.item[num].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
+                            Main.item[num].velocity.X = (float)Main.rand.Next(-20, 21) * 0.2f;
+                            Main.item[num].noGrabDelay = 100;
+                            Main.item[num].favorited = false;
+                            Main.item[num].newAndShiny = false;
+                            if (Main.netMode == 1)
+                            {
+                                NetMessage.SendData(21, -1, -1, null, num);
+                            }
+                            player.inventory[i].SetDefaults();
                         }
                     }
                 }
@@ -978,6 +1172,19 @@ namespace ExxoAvalonOrigins
 	        }
 
 	        player.breathMax = 200;
+
+            // Large gem trashing logic
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (
+                    player.trashItem.type == ModContent.ItemType<LargeZircon>() ||
+                    player.trashItem.type == ModContent.ItemType<LargeTourmaline>() ||
+                    player.trashItem.type == ModContent.ItemType<LargePeridot>()
+                )
+                {
+                    player.trashItem.SetDefaults();
+                }
+            }
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)

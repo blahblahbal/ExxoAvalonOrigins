@@ -8,6 +8,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
@@ -46,6 +47,26 @@ namespace ExxoAvalonOrigins
                 spriteBatch.DrawString(spriteFont, text, new Vector2(v.X + spriteFont.MeasureString(text).X / 2, v.Y + spriteFont.MeasureString(text).Y / 2), outlineColor, 0f, new Vector2(spriteFont.MeasureString(text).X / 2, spriteFont.MeasureString(text).Y / 2), scale, SpriteEffects.None, 1f);
             }
             spriteBatch.DrawString(spriteFont, text, new Vector2(position.X + spriteFont.MeasureString(text).X / 2, position.Y + spriteFont.MeasureString(text).Y / 2), normalColor, 0f, new Vector2(spriteFont.MeasureString(text).X / 2, spriteFont.MeasureString(text).Y / 2), scale, SpriteEffects.None, 1f);
+        }
+        public static string GetTexturePath(this ModItem item)
+        {
+            string path = item.Texture;
+            path = path.Replace((ExxoAvalonOrigins.mod.Name) + "/", "");
+            return path;
+        }
+        public static Texture2D GetTexture(this ModItem item)
+        {
+            return item.mod.GetTexture(GetTexturePath(item));
+        }
+        public static Rectangle GetDims(this ModItem item) 
+        {
+            Rectangle dims;
+            if (Main.netMode == 2)
+                return new Rectangle(0, 0, 1, 1);
+                
+            dims = item.GetTexture().Bounds;
+
+            return dims;
         }
     }
 }
