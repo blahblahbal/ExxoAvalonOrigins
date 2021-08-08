@@ -1,13 +1,8 @@
 using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class OpalBolt : ModProjectile	{		private Color color;		private int dustId;		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Opal Bolt");		}		public override void SetDefaults()		{			projectile.CloneDefaults(ProjectileID.SapphireBolt);
-			//Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/OpalBolt");
-			//projectile.width = dims.Width * 10 / 16;
-			//projectile.height = dims.Height * 10 / 16 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			//projectile.alpha = 255;
-			//projectile.magic = true;
-			projectile.light = 0.9f;			projectile.penetrate = 1;
-			//projectile.friendly = true;
-			color = new Color(109, 0, 255) * projectile.light;			dustId = 263;		}		public override void AI()		{			for (var i = 0; i < 2; i++)			{				if (Main.rand.NextFloat() < 0.85f)
+			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/OpalBolt");			projectile.width = dims.Width * 10 / 16;			projectile.height = dims.Height * 10 / 16 / Main.projFrames[projectile.type];
+			projectile.aiStyle = -1;			projectile.penetrate = 1;
+	
+			color = new Color(109, 0, 255) * 0.9f;			dustId = 263;		}		public override void AI()		{			for (var i = 0; i < 2; i++)			{				if (Main.rand.NextFloat() < 0.85f)
 				{
 					var dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.velocity.X, projectile.velocity.Y, 50, color, 1.2f);					Main.dust[dust].noGravity = true;					Main.dust[dust].velocity *= 0.3f;				}			}			if (projectile.ai[1] == 0f)			{				projectile.ai[1] = 1f;				Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 8);			}
 
