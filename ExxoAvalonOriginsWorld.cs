@@ -133,6 +133,26 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             int PosY = y - 10;
             ushort impBrick = (ushort)ModContent.TileType<Tiles.ImperviousBrick>();
             ushort spike = (ushort)ModContent.TileType<Tiles.VenomSpike>();
+            // turn liquid in an area around the gen area to 0, and make it not lava
+            for (int noLiquidX = x - 45 - 210; noLiquidX <= x + 420 + 45; noLiquidX++)
+            {
+                for (int noLiquidY = y - 20; noLiquidY <= y + 100; noLiquidY++)
+                {
+                    if (Main.tile[noLiquidX, noLiquidY] == null) Main.tile[noLiquidX, noLiquidY] = new Tile();
+                    Main.tile[noLiquidX, noLiquidY].liquid = 0;
+                    Main.tile[noLiquidX, noLiquidY].lava(false);
+                    //if (noLiquidX >= x - 210 && noLiquidX <= x + 420 && noLiquidY >= y && noLiquidY <= y + 90)
+                    //{
+                    //    Main.tile[noLiquidX, noLiquidY].slope(0);
+                    //    Main.tile[noLiquidX, noLiquidY].halfBrick(false);
+                    //}
+                    if (Main.tile[noLiquidX, noLiquidY].type == TileID.LargePiles || Main.tile[noLiquidX, noLiquidY].type == TileID.LargePiles2 ||
+                        Main.tile[noLiquidX, noLiquidY].type == TileID.SmallPiles)
+                    {
+                        Main.tile[noLiquidX, noLiquidY].active(false);
+                    }
+                }
+            }
             //i = vertical, j = horizontal
             for (int confirmPlatforms = 0; confirmPlatforms < 2; confirmPlatforms++)    //Increase the iterations on this outermost for loop if tabletop-objects are not properly spawning
             {
