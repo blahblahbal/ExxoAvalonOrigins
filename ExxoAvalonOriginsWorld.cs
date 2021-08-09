@@ -365,7 +365,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodWorkbench>()); // workbenches
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodWorkBench>()); // workbenches
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
