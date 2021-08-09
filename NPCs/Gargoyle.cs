@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.netAlways = true;
 			npc.scale = 1.1f;
 			npc.lifeMax = 2400;
-			npc.defense = 28;
+			npc.defense = 30;
 			npc.lavaImmune = true;
 			npc.width = 34;
 			npc.aiStyle = -1;
@@ -178,7 +178,9 @@ namespace ExxoAvalonOrigins.NPCs
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
-                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>()) ? 1f : 0f;
+            {
+                return 2f;
+            }
             return 0f;
         }
         public override void FindFrame(int frameHeight)

@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			}		}
 		public override void Kill(int timeLeft)
 		{
-			Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 10);
+			Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
 			for (int num394 = 4; num394 < 24; num394++)
 			{
 				float num395 = projectile.oldVelocity.X * (30f / (float)num394);

@@ -18,10 +18,10 @@ namespace ExxoAvalonOrigins.NPCs
 			DisplayName.SetDefault("Hellbound Lizard");
 			Main.npcFrameCount[npc.type] = 16;
 		}
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
-			npc.damage = 60;
-			npc.lifeMax = 540;
+			npc.damage = 90;
+			npc.lifeMax = 780;
 			npc.defense = 20;
 			npc.lavaImmune = true;
 			npc.width = 18;
@@ -40,7 +40,6 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return new Color(255, 255, 255);
         }
-
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)
@@ -79,8 +78,23 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = frameHeight;
             }
         }
-        public override void AI()
+        /*public override void AI()
         {
+            if (Main.rand.Next(100) == 0)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    float speed = 11f;
+                    Vector2 vector = Main.player[npc.target].Center - npc.Center;
+                    vector.Normalize();
+                    vector *= speed;
+
+                    int fireBall = Projectile.NewProjectile(npc.Center.X + (npc.direction * 12), npc.Center.Y, vector.X, vector.Y, ProjectileID.Fireball, npc.damage, 1, Main.myPlayer, 0, 0);
+                    Main.projectile[fireBall].damage = npc.damage;
+                    Main.projectile[fireBall].hostile = true;
+                    Main.projectile[fireBall].friendly = false;
+                }
+            }
             Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.9f, 0.25f, 0.05f);
             if (Main.rand.Next(7) == 0)
             {
@@ -296,31 +310,27 @@ namespace ExxoAvalonOrigins.NPCs
                     float num100 = (float)(num99 * 16);
                     if (Main.tile[num98, num99].halfBrick())
                     {
-                        num100 += 8f;
+                        num100 += 80f; //f8
                     }
                     if (Main.tile[num98, num99 - 1].halfBrick())
                     {
-                        num100 -= 8f;
+                        num100 -= 80f; //f8
                     }
                     if (num100 < vector10.Y + (float)npc.height)
                     {
                         float num101 = vector10.Y + (float)npc.height - num100;
-                        float num102 = 16.1f;
-                        if (npc.type == 163 || npc.type == 164 || npc.type == 236 || npc.type == 239)
-                        {
-                            num102 += 8f;
-                        }
+                        float num102 = 100f; // 16.1f
                         if (num101 <= num102)
                         {
                             npc.gfxOffY += npc.position.Y + (float)npc.height - num100;
                             npc.position.Y = num100 - (float)npc.height;
                             if (num101 < 9f)
                             {
-                                npc.stepSpeed = 1f;
+                                npc.stepSpeed = 10f; //1f
                             }
                             else
                             {
-                                npc.stepSpeed = 2f;
+                                npc.stepSpeed = 20f; //2f
                             }
                         }
                     }
@@ -518,11 +528,13 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                 }
             }
-        }
+        }*/
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
-                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>()) ? 1f : 0f;
+            {
+                return 3f;
+            }
             return 0f;
         }
         public override void NPCLoot()
