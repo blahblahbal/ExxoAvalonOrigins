@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.newTile.StyleHorizontal = true;
             //TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.Table, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.StyleWrapLimit = 36;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
+            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };			TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
@@ -21,9 +21,9 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             Tile tile = Main.tile[i, j];
             if (tile.frameX == 0)
             {
-                r = 0.9f;
-                g = 0.65f;
-                b = 0.9f;
+                r = 1f;
+                g = 0.95f;
+                b = 0.65f;
             }
         }
 
@@ -74,7 +74,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             int frameX = Main.tile[i, j].frameX;
             int frameY = Main.tile[i, j].frameY;
             int width = 18;
-            int offsetY = 0;
+            int offsetY = 2;
             int height = 18;
             int offsetX = 1;
             Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);

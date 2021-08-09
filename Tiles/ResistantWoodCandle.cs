@@ -34,9 +34,9 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             Tile tile = Main.tile[i, j];
             if (tile.frameX == 0)
             {
-                r = 0.9f;
-                g = 0.65f;
-                b = 0.9f;
+                r = 1f;
+                g = 0.95f;
+                b = 0.65f;
             }
         }
 
