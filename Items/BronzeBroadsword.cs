@@ -8,17 +8,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/BronzeBroadsword");
-            item.damage = 7;
-            item.useTurn = true;
-            item.scale = 1.1f;
-            item.width = dims.Width;
-            item.useTime = 23;
-            item.knockBack = 5.2f;
-            item.melee = true;
-            item.useStyle = 1;
-            item.value = 900;
-            item.useAnimation = 23;
-            item.height = dims.Height;            item.UseSound = SoundID.Item1;
+            item.CloneDefaults(ItemID.TinBroadsword);
         }
     }}

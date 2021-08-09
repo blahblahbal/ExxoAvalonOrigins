@@ -9,14 +9,15 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/BronzeWatch");
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = 1500;
-            item.height = dims.Height;
+            item.CloneDefaults(ItemID.TinWatch);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            if (player.accWatch < 1) player.accWatch = 1;
+        }
+
+        public override void UpdateInventory(Player player)
         {
             if (player.accWatch < 1) player.accWatch = 1;
         }

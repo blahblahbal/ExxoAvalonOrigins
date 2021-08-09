@@ -690,6 +690,7 @@ namespace ExxoAvalonOrigins
             }
 
             // Large gem inventory checking
+            player.gemCount = 0;
             gemCount++;
             if (gemCount >= 10)
             {
