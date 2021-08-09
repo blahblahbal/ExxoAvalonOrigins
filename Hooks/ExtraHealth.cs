@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Hooks
 {
     public class ExtraHealth
     {
-        public static void DrawExtraHearts(On.Terraria.Main.orig_DrawInterface_Resources_Life orig)
+        public static void OnDrawInterface_Resources_Life(On.Terraria.Main.orig_DrawInterface_Resources_Life orig)
         {
 	        if (Main.player[Main.myPlayer].statLifeMax <= 500)
             {
@@ -129,7 +129,7 @@ namespace ExxoAvalonOrigins.Hooks
             }
         }
 
-        public static void DrawExtraMana(On.Terraria.Main.orig_DrawInterface_Resources_Mana orig)
+        public static void OnDrawInterface_Resources_Mana(On.Terraria.Main.orig_DrawInterface_Resources_Mana orig)
         {
 			int starMana = 20;
 			int sX = Main.screenWidth - 800;

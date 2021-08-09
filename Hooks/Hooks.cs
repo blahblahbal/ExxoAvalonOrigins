@@ -17,12 +17,12 @@ namespace ExxoAvalonOrigins.Hooks
             On.Terraria.UI.ItemSlot.EquipPage += TomeEquip.OnEquipPage;
             On.Terraria.WorldGen.TileRunner += BacciliteReplacement.OnTileRunner;
             On.Terraria.WorldGen.JungleRunner += JungleCoords.OnJungleRunner;
-            TomeEquip.UpdateVanity_Hook += TomeEquip.UpdateInvisibleVanity;
-            On.Terraria.Main.DrawInterface_Resources_Life += ExtraHealth.DrawExtraHearts;
-            On.Terraria.Main.DrawInterface_Resources_Mana += ExtraHealth.DrawExtraMana;
-            On.Terraria.Collision.HurtTiles += ExxoAvalonOriginsCollisions.HurtExtraTiles;
+            TomeEquip.UpdateVanity += TomeEquip.OnUpdateVanity;
+            On.Terraria.Main.DrawInterface_Resources_Life += ExtraHealth.OnDrawInterface_Resources_Life;
+            On.Terraria.Main.DrawInterface_Resources_Mana += ExtraHealth.OnDrawInterface_Resources_Mana;
+            On.Terraria.Collision.HurtTiles += TrapCollision.OnHurtTiles;
             On.Terraria.WorldGen.SmashAltar += EvilAltar.OnSmashAltar;
-            IL.Terraria.Main.DrawMenu += EvilChooserMenu.HookEvilMenu;
+            IL.Terraria.Main.DrawMenu += EvilChooserMenu.ILDrawMenu;
             IL.Terraria.WorldGen.hardUpdateWorld += ContagionSpread.ILHardUpdateWorld;
             IL.Terraria.Main.DrawPlayer += LargeGem.ILDrawPlayer;
             IL.Terraria.Player.SmartCursor_Torch += Torches.ILSmartCursor_Torch;

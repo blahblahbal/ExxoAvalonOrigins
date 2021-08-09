@@ -23,13 +23,13 @@ namespace ExxoAvalonOrigins.Hooks
         public delegate void orig_UpdateVanity(object threadContext);
         public delegate void hook_UpdateVanity(orig_UpdateVanity orig, Terraria.Player player);
 
-        public static event hook_UpdateVanity UpdateVanity_Hook
+        public static event hook_UpdateVanity UpdateVanity
         {
             add => HookEndpointManager.Add(typeof(ItemLoader).GetMethod("UpdateVanity"), value);
             remove => HookEndpointManager.Remove(typeof(ItemLoader).GetMethod("UpdateVanity"), value);
         }
 
-        public static void UpdateInvisibleVanity(orig_UpdateVanity orig, Player player)
+        public static void OnUpdateVanity(orig_UpdateVanity orig, Player player)
         {
             orig(player);
             for (int k = 13; k < 18 + player.extraAccessorySlots; k++)

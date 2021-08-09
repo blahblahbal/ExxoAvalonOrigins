@@ -28,8 +28,6 @@ namespace ExxoAvalonOrigins.Hooks
             // Spawn less ore when more altars are broken
             amountOreToSpawn /= (float)num6;
 
-            Main.NewText(currentOreTier);
-
             switch (currentOreTier)
             {
                 case 0:
@@ -156,8 +154,6 @@ namespace ExxoAvalonOrigins.Hooks
                     currentOreTier = WorldGen.oreTier3;
                     break;
             }
-
-            Main.NewText(currentOreTier);
 
             // Spawn ores
             for (int k = 0; k < amountOreToSpawn; k++)

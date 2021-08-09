@@ -17,78 +17,77 @@ namespace ExxoAvalonOrigins.Hooks
 {
     public class EvilChooserMenu
     {        
-        public static void HookEvilMenu(ILContext il)
+        public static void ILDrawMenu(ILContext il)
         {
-            var rightTarget = false;
             var c = new ILCursor(il);
-            while (!rightTarget)
-            {
-                if (!c.TryGotoNext(i => i.MatchLdcI4(-71)))
-                    throw new Exception("Couldn't find case: -71");
-                if (!c.Next.Next.MatchBneUn(out _))
-                    continue;
-                if (!c.Next.Next.Next.MatchLdcI4(200))
-                    continue;
-                rightTarget = true;
-            }
-            c.TryGotoNext(i => i.MatchLdcI4(3));
-            int buttonVerticalSpacingIndex = -1;
-            c.TryGotoNext(i => i.MatchLdloc(out buttonVerticalSpacingIndex));
-            if (buttonVerticalSpacingIndex == -1)
-                throw new Exception("Couldn't find the variable index for buttonVerticalSpacing");
-            c.TryGotoNext(i => i.MatchLdcI4(4));
-            c.TryGotoNext(i => i.MatchLdcI4(70));
+
+            // Move il cursor into positon
+            if (!c.TryGotoNext(i => i.MatchLdcI4(-71)))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdloc(26)))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdloc(26)))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchStelemI4()))
+                return;
+            int num = -1;
+            int index = -1;
+            if (!c.TryGotoPrev(i => i.MatchLdcI4(out num)))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchLdcI4(out index)))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdcI4(num)))
+                return;
+
+            // Automatically shift cursor after each emit
+            c.MoveAfterLabels();
+
             c.Remove();
-            c.Emit(Ldc_I4_S, (sbyte) 30);
-            c.TryGotoNext(i => i.MatchStelemI4());
-            c.Emit(Ldloc_S, (byte) buttonVerticalSpacingIndex);
-            c.Emit(Ldc_I4_5);
-            c.Emit(Ldc_I4_S, (sbyte) 70);
+            c.Emit(Ldc_I4, 30);
+            if (!c.TryGotoNext(i => i.MatchStelemI4()))
+                return;
+
+            c.Emit(Ldloc, 19);
+            c.Emit(Ldc_I4, index + 1);
+            c.Emit(Ldc_I4, num);
             c.Emit(Stelem_I4);
-            c.TryGotoNext(i => i.MatchLdcI4(5));
+
+            if (!c.TryGotoNext(i => i.MatchLdcI4(index + 1)))
+                return;
             c.Remove();
-            c.Emit(Ldc_I4_6);
-            var buttonNames = -1;
-            c.TryGotoNext(i => i.MatchLdloc(out buttonNames));
-            if (buttonNames == -1)
-                throw new Exception("Couldn't find the variable index for buttonNames");
+            c.Emit(Ldc_I4, index + 2);
+
             FieldReference selectedMenu = null;
-            c.TryGotoNext(i => i.MatchLdarg(0));
-            c.TryGotoNext(i => i.MatchLdfld(out selectedMenu));
-            if (selectedMenu == null)
-                throw new Exception("Couldn't find the private variable selectedMenu");
-            var index9 = il.AddVariable(typeof(int));
-            c.TryGotoNext(i => i.MatchLdstr("UI.Back"));
-            c.TryGotoPrev(i => i.MatchAdd());
-            c.Index--;
-            c.TryGotoPrev(i => i.MatchAdd());
+            
+            if (!c.TryGotoNext(i => i.MatchLdstr("UI.Back")))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchLdfld(out selectedMenu)))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchAdd()))
+                return;
+
             c.Emit(Add);
-            c.Emit(Stloc_S, (byte) index9);
-            c.Emit(Ldloc_S, (byte) buttonNames);
-            c.Emit(Ldloc_S, (byte) index9);
-            c.Emit(Ldstr, "Contagion");
-            c.Emit(Call, typeof(Language).GetMethod("GetTextValue", new[] {typeof(string)}));
-            c.Emit(Stelem_Ref);
+            c.Emit(Stloc, 47);
+            //FOR SOME CURSED REASON IT MUST BE BETWEEN THE ADD
+
+            c.Emit(Ldloc, 26);
+            c.Emit(Ldloc, 47);
             c.Emit(Ldarg_0);
             c.Emit(Ldfld, selectedMenu);
-            c.Emit(Ldloc_S, (byte) index9);
-            var endif = il.DefineLabel();
-            c.Emit(Bne_Un_S, endif);
-            c.Emit(Ldc_I4_2);
-            c.Emit(Stsfld, typeof(WorldGen).GetField(nameof(WorldGen.WorldGenParam_Evil)));
-            c.Emit(Ldc_I4_S, (sbyte) 10);
-            c.Emit(Ldc_I4_M1);
-            c.Emit(Ldc_I4_M1);
-            c.Emit(Ldc_I4_1);
-            c.Emit(Ldc_R4, 1f);
-            c.Emit(Ldc_R4, 0f);
-            c.Emit(Call, typeof(Main).GetMethod("PlaySound", new[] {typeof(Int32), typeof(Int32), typeof(Int32), typeof(Int32), typeof(float), typeof(float)}));
-            c.Emit(Pop);
-            c.Emit(Ldc_I4_7);
-            c.Emit(Stsfld, typeof(Main).GetField(nameof(Main.menuMode)));
-            c.MarkLabel(endif);
-            c.Emit(Ldloc_S, (byte) index9);
-            c.Emit(Ldc_I4_1);
+            c.EmitDelegate<Action< String[],int, int>>((butt,num17, val) =>
+            {
+                butt[num17] = "Contagion";
+                if (val == num17)
+                {
+                    WorldGen.WorldGenParam_Evil = 2;
+                    Main.PlaySound(10, -1, -1, 1, 1f, 0f);
+                    Main.menuMode = 7;
+                }
+            });
+
+            //FOR SOME CURSED REASON IT MUST BE BETWEEN THE ADD
+            c.Emit(Ldloc, 47);
+            c.Emit(Ldc_I4, 1);
         }
     }
 }
