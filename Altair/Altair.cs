@@ -61,7 +61,7 @@ namespace ExxoAvalonOrigins.Altair
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier1 == 107) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Cobalt!"), new Color(26, 105, 161));
-                        if (WorldGen.oreTier1 == 221) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Palladium!"), new Color(235, 87, 47));
+                        else if (WorldGen.oreTier1 == 221) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Palladium!"), new Color(235, 87, 47));
                         else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Duratanium!"), new Color(137, 81, 89));
                         if (WorldGen.altarCount == 0) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
                     }
@@ -91,7 +91,7 @@ namespace ExxoAvalonOrigins.Altair
                     else if (Main.netMode == 2)
                     {
                         if (WorldGen.oreTier2 == 108) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Mythril!"), new Color(93, 147, 88));
-                        if (WorldGen.oreTier2 == 222) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Orichalcum!"), new Color(163, 22, 158));
+                        else if (WorldGen.oreTier2 == 222) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Orichalcum!"), new Color(163, 22, 158));
                         else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>()) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Naquadah!"), new Color(0, 38, 255));
                     }
                     num1 = WorldGen.oreTier2;
