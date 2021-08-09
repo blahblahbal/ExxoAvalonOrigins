@@ -18,22 +18,7 @@ namespace ExxoAvalonOrigins.Items
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/BronzeAxe");
-            item.UseSound = SoundID.Item1;
-            item.damage = 3;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.05f;
-            item.axe = 8;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 4f;
-            item.melee = true;
-            item.useStyle = 1;
-            item.value = 700;
-            item.UseSound = SoundID.Item1;
-            item.useAnimation = 28;
-            item.height = dims.Height;
+            item.CloneDefaults(ItemID.TinAxe);
         }
     }
 }
