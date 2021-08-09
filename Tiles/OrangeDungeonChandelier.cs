@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;using Terraria.DataStructures;namespace ExxoAvalonOrigins.Tiles{
     public class OrangeDungeonChandelier : ModTile
     {
         public override void SetDefaults()
@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             TileObjectData.newTile.Width = 3;
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.StyleWrapLimit = 111;
+            TileObjectData.newTile.StyleWrapLimit = 111;			TileObjectData.newTile.Origin = new Point16(1, 0);
             TileObjectData.addTile(Type);
             dustType = -1;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
