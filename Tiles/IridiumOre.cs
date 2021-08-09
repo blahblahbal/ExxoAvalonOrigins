@@ -21,7 +21,8 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileMergeDirt[Type] = true;
 			Main.tileShine[Type] = 1150;
             Main.tileSpelunker[Type] = true;
-			drop = ModContent.ItemType<Items.IridiumOre>();
+            Main.tileBlockLight[Type] = true;
+            drop = ModContent.ItemType<Items.IridiumOre>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = 2;
