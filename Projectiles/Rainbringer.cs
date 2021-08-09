@@ -35,11 +35,11 @@ namespace ExxoAvalonOrigins.Projectiles
 				if (!Main.raining)
 				{
 					ExxoAvalonOrigins.StartRain();
-					if (Main.netMode == 0)
+					if (Main.netMode == NetmodeID.SinglePlayer)
 					{
 						Main.NewText("A rain event has started.", 0, 148, 255, false);
 					}
-					else if (Main.netMode == 2)
+					else if (Main.netMode == NetmodeID.Server)
 					{
 						NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A rain event has started."), 255, 0f, 148f, 255f, 0);
 					}
@@ -47,11 +47,11 @@ namespace ExxoAvalonOrigins.Projectiles
 				else
 				{
 					ExxoAvalonOrigins.StopRain();
-					if (Main.netMode == 0)
+					if (Main.netMode == NetmodeID.SinglePlayer)
 					{
 						Main.NewText("The rain has stopped.", 0, 148, 255, false);
 					}
-					else if (Main.netMode == 2)
+					else if (Main.netMode == NetmodeID.Server)
 					{
 						NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("The rain has stopped."), 255, 0f, 148f, 255f, 0);
 					}

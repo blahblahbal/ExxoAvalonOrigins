@@ -208,7 +208,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.active = false;
             }
             var num219 = npc.homeTileY;
-            if (Main.netMode != 1 && npc.homeTileY > 0)
+            if (Main.netMode != NetmodeID.MultiplayerClient && npc.homeTileY > 0)
             {
                 while (!WorldGen.SolidTile(npc.homeTileX, num219) && num219 < Main.maxTilesY - 20)
                 {
@@ -219,7 +219,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 return;
             }
-            if (Main.netMode != 1 && npc.townNPC && (flag22 || Main.tileDungeon[Main.tile[num216, num217].type]) && (num216 != npc.homeTileX || num217 != num219) && !npc.homeless)
+            if (Main.netMode != NetmodeID.MultiplayerClient && npc.townNPC && (flag22 || Main.tileDungeon[Main.tile[num216, num217].type]) && (num216 != npc.homeTileX || num217 != num219) && !npc.homeless)
             {
                 var flag24 = true;
                 for (var num220 = 0; num220 < 2; num220++)
@@ -271,7 +271,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (flag22 && !flag23)
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         if (num216 == npc.homeTileX && num217 == num219)
                         {
@@ -323,7 +323,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.velocity.X = 0f;
                     }
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         if (npc.ai[1] > 0f)
                         {
@@ -338,7 +338,7 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                     }
                 }
-                if (Main.netMode != 1 && (!flag22 || (num216 == npc.homeTileX && num217 == num219)))
+                if (Main.netMode != NetmodeID.MultiplayerClient && (!flag22 || (num216 == npc.homeTileX && num217 == num219)))
                 {
                     if (num216 < npc.homeTileX - 25 || num216 > npc.homeTileX + 25)
                     {
@@ -369,7 +369,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else if (npc.ai[0] == 1f)
             {
-                if (Main.netMode != 1 && flag22 && num216 == npc.homeTileX && num217 == npc.homeTileY)
+                if (Main.netMode != NetmodeID.MultiplayerClient && flag22 && num216 == npc.homeTileX && num217 == npc.homeTileY)
                 {
                     npc.ai[0] = 0f;
                     npc.ai[1] = 200 + Main.rand.Next(200);
@@ -377,7 +377,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.netUpdate = true;
                     return;
                 }
-                if (Main.netMode != 1 && !npc.homeless && !Main.tileDungeon[Main.tile[num216, num217].type] && (num216 < npc.homeTileX - 35 || num216 > npc.homeTileX + 35))
+                if (Main.netMode != NetmodeID.MultiplayerClient && !npc.homeless && !Main.tileDungeon[Main.tile[num216, num217].type] && (num216 < npc.homeTileX - 35 || num216 > npc.homeTileX + 35))
                 {
                     if (npc.position.X < npc.homeTileX * 16 && npc.direction == -1)
                     {
@@ -552,7 +552,7 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.tile[num229 - npc.direction, num230 + 1].halfBrick();
                     if (npc.townNPC && Main.tile[num229, num230 - 2].nactive() && Main.tile[num229, num230 - 2].type == 10 && (Main.rand.Next(10) == 0 || flag22))
                     {
-                        if (Main.netMode != 1)
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             var flag27 = WorldGen.OpenDoor(num229, num230 - 2, npc.direction);
                             if (flag27)

@@ -395,12 +395,12 @@ namespace ExxoAvalonOrigins.NPCs
                             npc.ai[1] = 10f;
                         }
                         WorldGen.KillTile(num103, num104 - 1, true, false, false);
-                        if ((Main.netMode != 1 || !flag12) && flag12 && Main.netMode != 1)
+                        if ((Main.netMode != NetmodeID.MultiplayerClient || !flag12) && flag12 && Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             if (npc.type == 26)
                             {
                                 WorldGen.KillTile(num103, num104 - 1, false, false, false);
-                                if (Main.netMode == 2)
+                                if (Main.netMode == NetmodeID.Server)
                                 {
                                     NetMessage.SendData(17, -1, -1, NetworkText.Empty, 0, (float)num103, (float)(num104 - 1), 0f, 0);
                                 }
@@ -413,7 +413,7 @@ namespace ExxoAvalonOrigins.NPCs
                                     npc.ai[3] = (float)num22;
                                     npc.netUpdate = true;
                                 }
-                                if (Main.netMode == 2 && flag13)
+                                if (Main.netMode == NetmodeID.Server && flag13)
                                 {
                                     NetMessage.SendData(19, -1, -1, NetworkText.Empty, 0, (float)num103, (float)(num104 - 1), (float)npc.direction, 0);
                                 }
@@ -471,7 +471,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[1] = 0f;
                 npc.ai[2] = 0f;
             }
-            if (Main.netMode != 1 && npc.type == 120 && npc.ai[3] >= (float)num22)
+            if (Main.netMode != NetmodeID.MultiplayerClient && npc.type == 120 && npc.ai[3] >= (float)num22)
             {
                 int num105 = (int)Main.player[npc.target].position.X / 16;
                 int num106 = (int)Main.player[npc.target].position.Y / 16;

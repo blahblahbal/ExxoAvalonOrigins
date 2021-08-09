@@ -43,11 +43,11 @@ namespace ExxoAvalonOrigins.NPCs
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IllegalWeaponInstructions>(), 1, false, 0, false);
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(3) + 1, false, 0, false);
 			npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = false;
-			if (Main.netMode == 0)
+			if (Main.netMode == NetmodeID.SinglePlayer)
 			{
 				Main.NewText("A Juggernaut has been defeated!", 175, 75, 255, false);
 			}
-			else if (Main.netMode == 2)
+			else if (Main.netMode == NetmodeID.Server)
 			{
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has been defeated!"), new Color(175, 75, 255));
 				//NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
@@ -62,8 +62,8 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.position = Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position;
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = true;
-                if (Main.netMode == 0) Main.NewText("A Juggernaut has awoken!", 175, 75, 255, false);
-                else if (Main.netMode == 2) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has awoken!"), new Color(175, 75, 255));
+                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText("A Juggernaut has awoken!", 175, 75, 255, false);
+                else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has awoken!"), new Color(175, 75, 255));
             }
             if (npc.justHit)
             {

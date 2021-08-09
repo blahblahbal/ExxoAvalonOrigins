@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[1] = 30f;
                 npc.netUpdate = true;
             }
-            if (npc.ai[0] >= 650f && Main.netMode != 1)
+            if (npc.ai[0] >= 650f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.ai[0] = 1f;
                 var num247 = (int)Main.player[npc.target].position.X / 16;
@@ -145,7 +145,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[1] -= 1f;
                 if (npc.ai[1] == 25f)
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         var num256 = 6f;
                         var vector23 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y);

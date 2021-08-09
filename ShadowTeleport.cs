@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins
 
         public static void Teleport(int teleportType = 0, bool forceHandle = false, int whoAmI = 0)
         {
-            bool syncData = forceHandle || Main.netMode == 0;
+            bool syncData = forceHandle || Main.netMode == NetmodeID.SinglePlayer;
             if (syncData)
             {
                 TeleportPlayer(teleportType, forceHandle, whoAmI);
@@ -184,7 +184,7 @@ namespace ExxoAvalonOrigins
             player.immune = postImmune;
             player.immuneTime = postImmuneTime;
 
-            if (Main.netMode != 2)
+            if (Main.netMode != NetmodeID.Server)
                 return;
 
             if (syncData)

@@ -527,7 +527,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             MakeWallRectangle(x + 200 + 234, y + 8, 2, 9, wallSafe);
         }        public static void SmashHallowAltar(int i, int j)
         {
-            if (Main.netMode == 1)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
@@ -561,15 +561,15 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         shmOreTier1 = ModContent.TileType<Tiles.PyroscoricOre>();
                     }
                 }
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     if (shmOreTier1 == ModContent.TileType<Tiles.TritanoriumOre>()) Main.NewText("Your world has been invigorated with Tritanorium!", 117, 158, 107, false);
                     else Main.NewText("Your world has been melted with Pyroscoric!", 187, 35, 0, false);
                 }
-                else if (Main.netMode == 2)
+                else if (Main.netMode == NetmodeID.Server)
                 {
-                    if (shmOreTier1 == ModContent.TileType<Tiles.TritanoriumOre>()) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been invigorated with Tritanorium!"), new Color(117f, 158f, 107f));
-                    else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been melted with Pyroscoric!"), new Color(187f, 35f, 0f));
+                    if (shmOreTier1 == ModContent.TileType<Tiles.TritanoriumOre>()) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been invigorated with Tritanorium!"), new Color(117, 158, 107));
+                    else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been melted with Pyroscoric!"), new Color(187, 35, 0));
                 }
                 num = shmOreTier1;
                 num3 *= 1.05f;
@@ -585,20 +585,20 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         shmOreTier2 = ModContent.TileType<Tiles.VorazylcumOre>();
                     }
                 }
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     if (shmOreTier2 == ModContent.TileType<Tiles.UnvolanditeOre>()) Main.NewText("Your world has been blessed with Unvolandite!", 171, 119, 75, false);
                     else Main.NewText("Your world has been blessed with Vorazylcum!", 123, 95, 126, false);
                 }
-                else if (Main.netMode == 2)
+                else if (Main.netMode == NetmodeID.Server)
                 {
                     if (shmOreTier2 == ModContent.TileType<Tiles.UnvolanditeOre>())
                     {
-                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Unvolandite!"), new Color(171f, 119f, 75f));
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Unvolandite!"), new Color(171, 119, 75));
                     }
                     else
                     {
-                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Vorazylcum!"), new Color(123f, 95f, 126f));
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Vorazylcum!"), new Color(123, 95, 126));
                     }
                 }
                 num = shmOreTier2;
@@ -830,11 +830,11 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             }
             if (tileframe)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     WorldGen.SquareTileFrame(x, y);
                 }
-                else if (Main.netMode == 2)
+                else if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendTileSquare(-1, x, y, 1);
                 }
@@ -965,7 +965,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
                         if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
                         if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, y, 2);
                             NetMessage.SendTileSquare(-1, x, y + 1, 2);
@@ -984,7 +984,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
                     if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
                     if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, x, y, 2);
                         NetMessage.SendTileSquare(-1, x, y + 1, 2);
@@ -1326,7 +1326,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 }
                             }
                         }
-                        if (Main.netMode == 2 && flag2)
+                        if (Main.netMode == NetmodeID.Server && flag2)
                         {
                             NetMessage.SendTileSquare(-1, num5, num6, 3);
                         }
@@ -1354,7 +1354,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             Main.tile[num48, num49].type = (ushort)ModContent.TileType<Impvines>();
                             Main.tile[num48, num49].active(true);
                             WorldGen.SquareTileFrame(num48, num49, true);
-                            if (Main.netMode == 2)
+                            if (Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendTileSquare(-1, num48, num49, 3);
                             }
@@ -1778,7 +1778,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     progress.Set(0.5f);
                     TrackGenerator.Run((int)(10f * num), (int)(num * 25f) + 250);
                     progress.Set(1f);
-                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    if (contaigon) WorldGen.crimson = false;                //}));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == 1)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle_old(int x, int y)
+                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    if (contaigon) WorldGen.crimson = false;                //}));            }        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == NetmodeID.MultiplayerClient)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public static void GenerateHellcastle_old(int x, int y)
         {
             WorldGen.destroyObject = true;
             ushort brick = (ushort)ModContent.TileType<Tiles.ImperviousBrick>();
@@ -2547,23 +2547,23 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 }
             }
             return false;
-        }        public bool Comet(int i, int j, int tile)        {            if (i < 50 || i > Main.maxTilesX - 50)            {                return false;            }            if (j < 50 || j > Main.maxTilesY - 50)            {                return false;            }            var num = 25;            var rectangle = new Rectangle((i - num) * 16, (j - num) * 16, num * 2 * 16, num * 2 * 16);            for (var k = 0; k < 255; k++)            {                if (Main.player[k].active)                {                    var value = new Rectangle((int)(Main.player[k].position.X + Main.player[k].width / 2 - NPC.sWidth / 2 - NPC.safeRangeX), (int)(Main.player[k].position.Y + Main.player[k].height / 2 - NPC.sHeight / 2 - NPC.safeRangeY), NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);                    if (rectangle.Intersects(value))                    {                        return false;                    }                }            }            for (var l = 0; l < 200; l++)            {                if (Main.npc[l].active)                {                    var value2 = new Rectangle((int)Main.npc[l].position.X, (int)Main.npc[l].position.Y, Main.npc[l].width, Main.npc[l].height);                    if (rectangle.Intersects(value2))                    {                        return false;                    }                }            }            for (var m = i - num; m < i + num; m++)            {                for (var n = j - num; n < j + num; n++)                {                    if (Main.tile[m, n].active() && Main.tile[m, n].type == 21 || Main.tile[m, n].type == TileID.Containers2)                    {                        return false;                    }                }            }            stopCometDrops = true;            num = 15;            for (var num2 = i - num; num2 < i + num; num2++)            {                for (var num3 = j - num; num3 < j + num; num3++)                {                    if (num3 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num2) + Math.Abs(j - num3) < num * 1.5 + Main.rand.Next(-5, 5))                    {                        if (!Main.tileSolid[Main.tile[num2, num3].type])                        {                            Main.tile[num2, num3].active(false);                        }                        Main.tile[num2, num3].type = (ushort) tile;                    }                }            }            num = 10;            for (var num4 = i - num; num4 < i + num; num4++)            {                for (var num5 = j - num; num5 < j + num; num5++)                {                    if (num5 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num4) + Math.Abs(j - num5) < num + Main.rand.Next(-3, 4))                    {                        Main.tile[num4, num5].active(false);                    }                }            }            num = 16;            for (var num6 = i - num; num6 < i + num; num6++)            {                for (var num7 = j - num; num7 < j + num; num7++)                {                    if (Main.tile[num6, num7].type == 5 || Main.tile[num6, num7].type == 32)                    {                        WorldGen.KillTile(num6, num7, false, false, false);                    }                    WorldGen.SquareTileFrame(num6, num7, true);                    WorldGen.SquareWallFrame(num6, num7, true);                }            }            num = 23;            for (var num8 = i - num; num8 < i + num; num8++)            {                for (var num9 = j - num; num9 < j + num; num9++)                {                    if (Main.tile[num8, num9].active() && Main.rand.Next(10) == 0 && Math.Abs(i - num8) + Math.Abs(j - num9) < num * 1.3)                    {                        if (Main.tile[num8, num9].type == 5 || Main.tile[num8, num9].type == 32)                        {                            WorldGen.KillTile(num8, num9, false, false, false);                        }                        Main.tile[num8, num9].type = (ushort) tile;                        WorldGen.SquareTileFrame(num8, num9, true);                    }                }            }            stopCometDrops = false;            if (Main.netMode == 0)            {                Main.NewText("A comet has struck ground!", 0, 201, 190, false);            }            else if (Main.netMode == 2)            {                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A comet has struck ground!"), new Color(0, 201, 190));            }            if (Main.netMode != 1)            {                NetMessage.SendTileSquare(-1, i, j, 30);            }            return true;        }        public static void InitiateSuperHardmode()        {            ThreadPool.QueueUserWorkItem(new WaitCallback(shmCallback), 1);        }
+        }        public bool Comet(int i, int j, int tile)        {            if (i < 50 || i > Main.maxTilesX - 50)            {                return false;            }            if (j < 50 || j > Main.maxTilesY - 50)            {                return false;            }            var num = 25;            var rectangle = new Rectangle((i - num) * 16, (j - num) * 16, num * 2 * 16, num * 2 * 16);            for (var k = 0; k < 255; k++)            {                if (Main.player[k].active)                {                    var value = new Rectangle((int)(Main.player[k].position.X + Main.player[k].width / 2 - NPC.sWidth / 2 - NPC.safeRangeX), (int)(Main.player[k].position.Y + Main.player[k].height / 2 - NPC.sHeight / 2 - NPC.safeRangeY), NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);                    if (rectangle.Intersects(value))                    {                        return false;                    }                }            }            for (var l = 0; l < 200; l++)            {                if (Main.npc[l].active)                {                    var value2 = new Rectangle((int)Main.npc[l].position.X, (int)Main.npc[l].position.Y, Main.npc[l].width, Main.npc[l].height);                    if (rectangle.Intersects(value2))                    {                        return false;                    }                }            }            for (var m = i - num; m < i + num; m++)            {                for (var n = j - num; n < j + num; n++)                {                    if (Main.tile[m, n].active() && Main.tile[m, n].type == 21 || Main.tile[m, n].type == TileID.Containers2)                    {                        return false;                    }                }            }            stopCometDrops = true;            num = 15;            for (var num2 = i - num; num2 < i + num; num2++)            {                for (var num3 = j - num; num3 < j + num; num3++)                {                    if (num3 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num2) + Math.Abs(j - num3) < num * 1.5 + Main.rand.Next(-5, 5))                    {                        if (!Main.tileSolid[Main.tile[num2, num3].type])                        {                            Main.tile[num2, num3].active(false);                        }                        Main.tile[num2, num3].type = (ushort) tile;                    }                }            }            num = 10;            for (var num4 = i - num; num4 < i + num; num4++)            {                for (var num5 = j - num; num5 < j + num; num5++)                {                    if (num5 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num4) + Math.Abs(j - num5) < num + Main.rand.Next(-3, 4))                    {                        Main.tile[num4, num5].active(false);                    }                }            }            num = 16;            for (var num6 = i - num; num6 < i + num; num6++)            {                for (var num7 = j - num; num7 < j + num; num7++)                {                    if (Main.tile[num6, num7].type == 5 || Main.tile[num6, num7].type == 32)                    {                        WorldGen.KillTile(num6, num7, false, false, false);                    }                    WorldGen.SquareTileFrame(num6, num7, true);                    WorldGen.SquareWallFrame(num6, num7, true);                }            }            num = 23;            for (var num8 = i - num; num8 < i + num; num8++)            {                for (var num9 = j - num; num9 < j + num; num9++)                {                    if (Main.tile[num8, num9].active() && Main.rand.Next(10) == 0 && Math.Abs(i - num8) + Math.Abs(j - num9) < num * 1.3)                    {                        if (Main.tile[num8, num9].type == 5 || Main.tile[num8, num9].type == 32)                        {                            WorldGen.KillTile(num8, num9, false, false, false);                        }                        Main.tile[num8, num9].type = (ushort) tile;                        WorldGen.SquareTileFrame(num8, num9, true);                    }                }            }            stopCometDrops = false;            if (Main.netMode == NetmodeID.SinglePlayer)            {                Main.NewText("A comet has struck ground!", 0, 201, 190, false);            }            else if (Main.netMode == NetmodeID.Server)            {                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A comet has struck ground!"), new Color(0, 201, 190));            }            if (Main.netMode != NetmodeID.MultiplayerClient)            {                NetMessage.SendTileSquare(-1, i, j, 30);            }            return true;        }        public static void InitiateSuperHardmode()        {            ThreadPool.QueueUserWorkItem(new WaitCallback(shmCallback), 1);        }
         public static void shmCallback(object threadContext)
         {
             if (ExxoAvalonOrigins.superHardmode) return;
             SpawnOblivionOreAndOpals();
-            ExxoAvalonOrigins.superHardmode = true;            if (Main.netMode == 0)
+            ExxoAvalonOrigins.superHardmode = true;            if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText("The ancient souls have been disturbed...", 255, 60, 0);
                 Main.NewText("The heavens above are rumbling...", 50, 255, 130);
                 Main.NewText("Your world has been blessed with the elements!", 0, 255, 0);
             }
-            else if (Main.netMode == 2)
+            else if (Main.netMode == NetmodeID.Server)
             {
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ancient souls have been disturbed..."), new Color(255, 60, 0));
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The heavens above are rumbling..."), new Color(50, 255, 130));
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with the elements!"), new Color(0, 255, 0));
-            }            if (Main.netMode == 2)
+            }            if (Main.netMode == NetmodeID.Server)
             {
                 Netplay.ResetSections();
             }
@@ -2654,104 +2654,4 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.SnotOrb>();
             Main.tile[x, y].frameX = (short)(18 + num);
             Main.tile[x, y].frameY = 18;
-        }        public static void HookHardUpdateWorld(ILContext il)
-        {
-            var c = new ILCursor(il);
-
-            // --- CONTAGION SPREAD HARDMODE ---
-
-            // Move il cursor into positon
-            if (!c.TryGotoNext(i => i.MatchLdsfld<NPC>(nameof(NPC.downedPlantBoss))))
-                return;
-            if (!c.TryGotoNext(MoveType.After, i => i.MatchRet()))
-                return;
-
-            // Automatically shift cursor after each emit
-            c.MoveAfterLabels();
-
-            // Load local variables to stack
-            c.Emit(OpCodes.Ldloc_0);
-            c.Emit(OpCodes.Ldarg_0);
-            c.Emit(OpCodes.Ldarg_1);
-
-            // Emit custom logic
-            c.EmitDelegate<Action<int, int, int>>((type, i, j) =>
-            {
-                if (type == ModContent.TileType<Tiles.Chunkstone>() || type == ModContent.TileType<Ickgrass>() || type == ModContent.TileType<Snotsand>() || type == ModContent.TileType<HardenedSnotsand>() || type == ModContent.TileType<Snotsandstone>() || type == ModContent.TileType<YellowIce>())
-                {
-                    bool flag5 = true;
-                    while (flag5)
-                    {
-                        flag5 = false;
-                        int num6 = i + WorldGen.genRand.Next(-3, 4);
-                        int num7 = j + WorldGen.genRand.Next(-3, 4);
-                        //bool flag6 = NearbyChlorophyte(num6, num7);
-                        if (Main.tile[num6, num7 - 1].type == 27)
-                        {
-                            continue;
-                        }
-                        if (Main.tile[num6, num7].type == 2)
-                        {
-                            if (WorldGen.genRand.Next(2) == 0)
-                            {
-                                flag5 = true;
-                            }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<Ickgrass>();
-                            WorldGen.SquareTileFrame(num6, num7);
-                            NetMessage.SendTileSquare(-1, num6, num7, 1);
-                        }
-                        else if (Main.tile[num6, num7].type == 1 || Main.tileMoss[Main.tile[num6, num7].type])
-                        {
-                            if (WorldGen.genRand.Next(2) == 0)
-                            {
-                                flag5 = true;
-                            }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<Chunkstone>();
-                            WorldGen.SquareTileFrame(num6, num7);
-                            NetMessage.SendTileSquare(-1, num6, num7, 1);
-                        }
-                        else if (Main.tile[num6, num7].type == 53)
-                        {
-                            if (WorldGen.genRand.Next(2) == 0)
-                            {
-                                flag5 = true;
-                            }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<Snotsand>();
-                            WorldGen.SquareTileFrame(num6, num7);
-                            NetMessage.SendTileSquare(-1, num6, num7, 1);
-                        }
-                        else if (Main.tile[num6, num7].type == 396)
-                        {
-                            if (WorldGen.genRand.Next(2) == 0)
-                            {
-                                flag5 = true;
-                            }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<Snotsandstone>();
-                            WorldGen.SquareTileFrame(num6, num7);
-                            NetMessage.SendTileSquare(-1, num6, num7, 1);
-                        }
-                        else if (Main.tile[num6, num7].type == 397)
-                        {
-                            if (WorldGen.genRand.Next(2) == 0)
-                            {
-                                flag5 = true;
-                            }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<HardenedSnotsand>();
-                            WorldGen.SquareTileFrame(num6, num7);
-                            NetMessage.SendTileSquare(-1, num6, num7, 1);
-                        }
-                        else if (Main.tile[num6, num7].type == 161)
-                        {
-                            if (WorldGen.genRand.Next(2) == 0)
-                            {
-                                flag5 = true;
-                            }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<YellowIce>();
-                            WorldGen.SquareTileFrame(num6, num7);
-                            NetMessage.SendTileSquare(-1, num6, num7, 1);
-                        }
-                    }
-                }
-            });
-            // --- END OF CONTAGION SPREAD HARDMODE ---
-        }    }}
+        }            }}

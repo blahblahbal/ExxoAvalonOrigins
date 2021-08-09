@@ -74,7 +74,7 @@ namespace ExxoAvalonOrigins.Items
                                 if (Main.tile[x, y].type != 21)
                                 {
                                     WorldGen.KillTile(x, y);
-                                    if (Main.netMode == 1)
+                                    if (Main.netMode == NetmodeID.MultiplayerClient)
                                     {
                                         NetMessage.SendData(17, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
                                     }
@@ -97,7 +97,7 @@ namespace ExxoAvalonOrigins.Items
 		//				if (Main.tile[num360, num361].active() && !Main.tileHammer[(int)Main.tile[num360, num361].type] && !Main.tileAxe[(int)Main.tile[num360, num361].type])
 		//				{
 		//					WorldGen.KillTile(num360, num361, false, false, false);
-		//					if (Main.netMode == 1)
+		//					if (Main.netMode == NetmodeID.MultiplayerClient)
 		//					{
 		//						NetMessage.SendData(17, -1, -1, NetworkText.FromLiteral(""), 0, (float)num360, (float)num361, 0f, 0);
 		//					}

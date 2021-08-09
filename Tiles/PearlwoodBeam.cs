@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -33,7 +34,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public static int AfterPlacement(int i, int j, int type, int style, int direction)
         {
-            if (Main.netMode == 1)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 NetMessage.SendTileRange(Main.myPlayer, i, j, 1, 1);
             }

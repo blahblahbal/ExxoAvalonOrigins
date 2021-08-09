@@ -158,7 +158,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.position.X = npc.position.X - npc.width / 2;
                 npc.position.Y = npc.position.Y - npc.height;
             }
-            if (Main.netMode == 1)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
@@ -188,7 +188,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num1168].tileCollide = false;
                     }
                     npc.ai[1] = -90f;
-                    if (Main.netMode == 2 && newNPC < 200)
+                    if (Main.netMode == NetmodeID.Server && newNPC < 200)
                     {
                         NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), newNPC, 0f, 0f, 0f, 0);
                     }

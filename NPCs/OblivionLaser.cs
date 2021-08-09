@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (!Main.npc[(int)npc.ai[1]].active || !(Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<OblivionHead1>() || Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<OblivionHead2>()))
             {
                 npc.ai[2] += 10f;
-                if (npc.ai[2] > 50f || Main.netMode != 2)
+                if (npc.ai[2] > 50f || Main.netMode != NetmodeID.Server)
                 {
                     npc.life = -1;
                     npc.HitEffect(0, 10.0);
@@ -190,14 +190,14 @@ namespace ExxoAvalonOrigins.NPCs
                         var num632 = Projectile.NewProjectile(vector71.X, vector71.Y, (float)(Math.Cos(num630 + num631) * num627 * -1.0), (float)(Math.Sin(num630 + num631) * num627 * -1.0), num629, num628, 0f, 0, 0f, 0f);
                         Main.projectile[num632].timeLeft = 600;
                         Main.projectile[num632].tileCollide = false;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num632, 0f, 0f, 0f, 0);
                         }
                         num632 = Projectile.NewProjectile(vector71.X, vector71.Y, (float)(Math.Cos(num630 - num631) * num627 * -1.0), (float)(Math.Sin(num630 - num631) * num627 * -1.0), num629, num628, 0f, 0, 0f, 0f);
                         Main.projectile[num632].timeLeft = 600;
                         Main.projectile[num632].tileCollide = false;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num632, 0f, 0f, 0f, 0);
                         }
@@ -274,14 +274,14 @@ namespace ExxoAvalonOrigins.NPCs
                         var num644 = Projectile.NewProjectile(vector73.X, vector73.Y, (float)(Math.Cos(num642 + num643) * num639 * -1.0), (float)(Math.Sin(num642 + num643) * num639 * -1.0), num641, num640, 0f, 0, 0f, 0f);
                         Main.projectile[num644].timeLeft = 600;
                         Main.projectile[num644].tileCollide = false;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num644, 0f, 0f, 0f, 0);
                         }
                         num644 = Projectile.NewProjectile(vector73.X, vector73.Y, (float)(Math.Cos(num642 - num643) * num639 * -1.0), (float)(Math.Sin(num642 - num643) * num639 * -1.0), num641, num640, 0f, 0, 0f, 0f);
                         Main.projectile[num644].timeLeft = 600;
                         Main.projectile[num644].tileCollide = false;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num644, 0f, 0f, 0f, 0);
                         }

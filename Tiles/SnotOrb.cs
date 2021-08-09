@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Tiles{
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            if (Main.netMode != 1 && !WorldGen.noTileActions)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !WorldGen.noTileActions)
             {
                 if (WorldGen.genRand.Next(2) == 0)
                 {
@@ -84,13 +84,13 @@ namespace ExxoAvalonOrigins.Tiles{
                     {
                         text = Lang.misc[11].Value;
                     }
-                    if (Main.netMode == 0)
+                    if (Main.netMode == NetmodeID.SinglePlayer)
                     {
                         Main.NewText(text, 50, 255, 130, false);
                     }
-                    else if (Main.netMode == 2)
+                    else if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), new Color(50f, 255f, 130f));
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), new Color(50, 255, 130));
                     }
                 }
                 Main.PlaySound(4, i * 16, j * 16, 1);

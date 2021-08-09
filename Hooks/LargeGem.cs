@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Hooks
 {
     public class LargeGem
     {
-        public static void HookILDrawPlayer(ILContext il)
+        public static void ILDrawPlayer(ILContext il)
         {
             var c = new ILCursor(il);
 

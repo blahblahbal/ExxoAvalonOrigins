@@ -111,7 +111,7 @@ namespace ExxoAvalonOrigins.NPCs
                 var dust41 = Main.dust[num489];
                 dust41.velocity.Y = dust41.velocity.Y * 0.1f;
             }
-            if (Main.netMode != 1 && !Main.dayTime && !dead2 && npc.timeLeft < 10)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !Main.dayTime && !dead2 && npc.timeLeft < 10)
             {
                 for (var num490 = 0; num490 < 200; num490++)
                 {
@@ -200,7 +200,7 @@ namespace ExxoAvalonOrigins.NPCs
                             vector46 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
                             num494 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector46.X;
                             num495 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector46.Y;
-                            if (Main.netMode != 1)
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 var num499 = (npc.type == ModContent.NPCType<Astigmatazer>()) ? 49 : 20;
                                 num496 = (float)Math.Sqrt(num494 * num494 + num495 * num495);
@@ -394,7 +394,7 @@ namespace ExxoAvalonOrigins.NPCs
                     num509 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector48.X;
                     num510 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector48.Y;
                     npc.rotation = (float)Math.Atan2(num510, num509) - 1.57f;
-                    if (Main.netMode == 1)
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         return;
                     }
@@ -480,7 +480,7 @@ namespace ExxoAvalonOrigins.NPCs
                     num518 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector49.X;
                     num519 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector49.Y;
                     npc.rotation = (float)Math.Atan2(num519, num518) - 1.57f;
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         npc.localAI[1] += 1f;
                         if (npc.life < npc.lifeMax * 0.75)

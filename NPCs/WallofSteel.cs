@@ -355,7 +355,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[1]++;
                 if (npc.ai[1] == 90)
                 {
-                    if (Main.netMode != 1) // leeches
+                    if (Main.netMode != NetmodeID.MultiplayerClient) // leeches
                     {
                         int num442 = NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)(npc.height / 2) + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
                         Main.npc[num442].velocity.X = (float)(npc.direction * 8);
@@ -374,14 +374,14 @@ namespace ExxoAvalonOrigins.NPCs
                         fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 96, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                         }
                         fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 96, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                         }
@@ -397,7 +397,7 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.projectile[laser].hostile = true;
                     Main.projectile[laser].friendly = false;
                     Main.projectile[laser].tileCollide = false;
-                    if (Main.netMode != 0) NetMessage.SendData(27, -1, -1, NetworkText.Empty, laser);
+                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(27, -1, -1, NetworkText.Empty, laser);
                     npc.ai[2] = 0;
                 }
                 if (npc.ai[2] == 90)
@@ -411,13 +411,13 @@ namespace ExxoAvalonOrigins.NPCs
                     //{
                     fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 95, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
-                    if (Main.netMode != 0)
+                    if (Main.netMode != NetmodeID.SinglePlayer)
                     {
                         NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                     }
                     fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 95, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
-                    if (Main.netMode != 0)
+                    if (Main.netMode != NetmodeID.SinglePlayer)
                     {
                         NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                     }
@@ -447,7 +447,7 @@ namespace ExxoAvalonOrigins.NPCs
                     if (npc.velocity.X > 0) Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
                     else if (npc.velocity.X < 0) Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
                     Main.projectile[wide].tileCollide = false;
-                    if (Main.netMode != 0) NetMessage.SendData(27, -1, -1, NetworkText.Empty, wide);
+                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(27, -1, -1, NetworkText.Empty, wide);
                 }
                 if (npc.ai[3] > 100 && npc.ai[3] < 150)
                 {
@@ -455,7 +455,7 @@ namespace ExxoAvalonOrigins.NPCs
                     int fire = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT, npc.velocity.X, npc.velocity.Y, 101, 45, 4f);
                     Main.projectile[fire].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
                     Main.projectile[fire].tileCollide = false;
-                    if (Main.netMode != 0) NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
+                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
                 }
                 if (npc.ai[3] > 300)
                 {
@@ -463,7 +463,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
             npc.spriteDirection = npc.direction;
-            if (npc.localAI[0] == 1f && Main.netMode != 1)
+            if (npc.localAI[0] == 1f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.localAI[0] = 2f;
                 for (int num456 = 0; num456 < 11; num456++)
@@ -506,7 +506,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int num22 = (int)(npc.position.X + (float)(npc.width / 2)) / 16;
                 int num23 = (int)(npc.position.Y + (float)(npc.height / 2)) / 16;
@@ -522,7 +522,7 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         Main.tile[k, l].lava(false);
                         Main.tile[k, l].liquid = 0;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, k, l, 1);
                         }

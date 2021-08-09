@@ -173,7 +173,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 return;
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 for (int num193 = 0; num193 < 10; num193++)
                 {

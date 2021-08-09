@@ -5,7 +5,7 @@ using ReLogic.Graphics;
 using Terraria;
 using Terraria.UI;
 
-namespace ExxoAvalonOrigins.UI
+namespace ExxoAvalonOrigins.Hooks
 {
     public class ExtraHealth
     {
@@ -257,7 +257,7 @@ namespace ExxoAvalonOrigins.UI
 			DrawStaminaBar();
         }
 
-        public static void DrawStaminaBar()
+        private static void DrawStaminaBar()
         {
 			ExxoAvalonOrigins.barStamina = 20;
 			if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2 > 0)

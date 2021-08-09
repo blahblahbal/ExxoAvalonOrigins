@@ -80,7 +80,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y = npc.velocity.Y * 1.05f;
                     npc.velocity.X = npc.velocity.X * 1.05f;
                 }
-                if (Main.netMode != 1 && Main.rand.Next(200) == 0)
+                if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.Next(200) == 0)
                 {
                     npc.TargetClosest(true);
                     vector107 = new Vector2(npc.Center.X, npc.Center.Y);

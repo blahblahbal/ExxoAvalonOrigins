@@ -8,6 +8,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
@@ -61,7 +62,7 @@ namespace ExxoAvalonOrigins
         public static Rectangle GetDims(this ModItem item) 
         {
             Rectangle dims;
-            if (Main.netMode == 2)
+            if (Main.netMode == NetmodeID.Server)
                 return new Rectangle(0, 0, 1, 1);
                 
             dims = item.GetTexture().Bounds;

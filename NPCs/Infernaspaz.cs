@@ -193,7 +193,7 @@ namespace ExxoAvalonOrigins.NPCs
                             vector50 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
                             num533 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector50.X;
                             num534 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector50.Y;
-                            if (Main.netMode != 1)
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 num535 = (float)Math.Sqrt(num533 * num533 + num534 * num534);
                                 num535 = 12f / num535;
@@ -400,7 +400,7 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.localAI[2] = 0f;
                         Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 34);
                     }
-                    if (Main.netMode == 1)
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         return;
                     }

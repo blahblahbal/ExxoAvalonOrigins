@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items
             if (Main.rand.Next(25) == 0 && Main.hardMode)
             {
                 int number = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<SackofToys>(), 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number, 1f, 0f, 0f, 0);
                     return;
@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(30) == 0)
             {
                 int number = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<SantasBeard>(), 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number, 1f, 0f, 0f, 0);
                     return;
@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(70) == 0)
             {
                 int number2 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<ChristmasTome>(), 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number2, 1f, 0f, 0f, 0);
                     return;
@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(10) == 0)
             {
                 int number2 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<CandyCane2>(), Main.rand.Next(5, 10), false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number2, 1f, 0f, 0f, 0);
                     return;
@@ -75,7 +75,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(20) == 0)
             {
                 int number2 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.Coal, Main.rand.Next(5, 13), false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number2, 1f, 0f, 0f, 0);
                     return;
@@ -84,12 +84,12 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(50) == 0)
             {
                 int number3 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<PlatinumCrate>(), 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number3, 1f, 0f, 0f, 0);
                 }
                 number3 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.GoldCoin, Main.rand.Next(30, 61), false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number3, 1f, 0f, 0f, 0);
                     return;
@@ -98,17 +98,17 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(42) == 0)
             {
                 int number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.ElfHat, 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                 }
                 number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.ElfShirt, 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                 }
                 number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.ElfPants, 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                     return;
@@ -117,7 +117,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(40) == 0)
             {
                 int number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<FrostySpectacle>(), 1, false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                     return;
@@ -126,7 +126,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(20) == 0)
             {
                 int number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<FrostShard>(), Main.rand.Next(5, 14), false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                     return;
@@ -148,7 +148,7 @@ namespace ExxoAvalonOrigins.Items
                 {
                     item = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.CandyCaneBlock, Main.rand.Next(30, 61), false, 0, false);
                 }
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), item, 1f, 0f, 0f, 0);
                     return;
@@ -157,7 +157,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(9) == 0)
             {
                 int number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.SilverCoin, Main.rand.Next(30, 71), false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                     return;
@@ -166,7 +166,7 @@ namespace ExxoAvalonOrigins.Items
             else if (Main.rand.Next(7) == 0)
             {
                 int number4 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ItemID.PineTreeBlock, Main.rand.Next(30, 71), false, 0, false);
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), number4, 1f, 0f, 0f, 0);
                     return;
@@ -201,7 +201,7 @@ namespace ExxoAvalonOrigins.Items
                     }
                     else item = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<CrystalEdge>(), 1, false, 0, false);
                 }
-                if (Main.netMode == 1)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(21, -1, -1, NetworkText.FromLiteral(""), item, 1f, 0f, 0f, 0);
                     return;

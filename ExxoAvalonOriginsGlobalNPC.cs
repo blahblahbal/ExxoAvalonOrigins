@@ -27,7 +27,7 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             {
                 return;
             }
-            if (Main.netMode == 1)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
@@ -77,7 +77,7 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             IL_162:
             num3 = num5 * 16;
             int num7 = NPC.NewNPC(num2, num3, ModContent.NPCType<NPCs.WallofSteel>(), 0);
-            if (Main.netMode == 2 && num7 < 200)
+            if (Main.netMode == NetmodeID.Server && num7 < 200)
             {
                 NetMessage.SendData(23, -1, -1, NetworkText.Empty, num7);
             }
@@ -87,12 +87,12 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             //}
             if (!essence)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     Main.NewText("Wall of Steel has awoken!", 175, 75, 255, false);
                     return;
                 }
-                if (Main.netMode == 2)
+                if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", NetworkText.FromLiteral("Wall of Steel")), new Color(175, 75, 255));
                 }

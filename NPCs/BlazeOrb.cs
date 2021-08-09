@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.dust[num286].noGravity = true;
                 }
             }
-            if (Collision.SolidCollision(npc.position, npc.width, npc.height) && Main.netMode != 1)
+            if (Collision.SolidCollision(npc.position, npc.width, npc.height) && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 var num287 = (int)(npc.position.X + npc.width / 2) / 16;
                 var num288 = (int)(npc.position.Y + npc.height / 2) / 16;
@@ -89,7 +89,7 @@ namespace ExxoAvalonOrigins.NPCs
                                     Main.tile[num290, num291].type = (ushort) ModContent.TileType<Tiles.BrimstoneBlock>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291, true);
-                                if (Main.netMode == 2)
+                                if (Main.netMode == NetmodeID.Server)
                                 {
                                     NetMessage.SendTileSquare(-1, num290, num291, 1);
                                 }
@@ -101,7 +101,7 @@ namespace ExxoAvalonOrigins.NPCs
                                     Main.tile[num290, num291].type = (ushort) ModContent.TileType<Tiles.CaesiumOre>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291);
-                                if (Main.netMode == 2)
+                                if (Main.netMode == NetmodeID.Server)
                                 {
                                     NetMessage.SendTileSquare(-1, num290, num291, 1);
                                 }
@@ -113,7 +113,7 @@ namespace ExxoAvalonOrigins.NPCs
                                     Main.tile[num290, num291].type = TileID.Hellstone;
                                 }
                                 WorldGen.SquareTileFrame(num290, num291);
-                                if (Main.netMode == 2)
+                                if (Main.netMode == NetmodeID.Server)
                                 {
                                     NetMessage.SendTileSquare(-1, num290, num291, 1);
                                 }

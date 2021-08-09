@@ -67,7 +67,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (!Main.npc[(int)npc.ai[1]].active || !(Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<OblivionHead1>() || Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<OblivionHead2>()))
             {
                 npc.ai[2] += 10f;
-                if (npc.ai[2] > 50f || Main.netMode != 2)
+                if (npc.ai[2] > 50f || Main.netMode != NetmodeID.Server)
                 {
                     npc.life = -1;
                     npc.HitEffect(0, 10.0);

@@ -192,7 +192,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y = -2f;
                 }
             }
-            if (Main.netMode != 1 && !Main.player[npc.target].dead)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !Main.player[npc.target].dead)
             {
                 if (npc.justHit)
                 {
@@ -207,7 +207,7 @@ namespace ExxoAvalonOrigins.NPCs
                         var vector158 = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
                         var num1191 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f + 40f), vector158.X - (player5.position.X + player5.width * 0.5f + 40f));
                         var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, 457, 70, 1f, npc.target, 0f, 0f);
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
                         }
@@ -217,7 +217,7 @@ namespace ExxoAvalonOrigins.NPCs
                         expr_4284B_cp_0.velocity.X = expr_4284B_cp_0.velocity.X * 7f;
                         var expr_4286B_cp_0 = Main.projectile[num1193];
                         expr_4286B_cp_0.velocity.Y = expr_4286B_cp_0.velocity.Y * 7f;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
                         }

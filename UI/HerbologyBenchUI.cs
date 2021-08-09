@@ -548,7 +548,7 @@ namespace ExxoAvalonOrigins.UI
                             {
                                 int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.BlahPotion>(), 1);
                                 Main.item[x].owner = Main.myPlayer;
-                                if (Main.netMode == 1)
+                                if (Main.netMode == NetmodeID.MultiplayerClient)
                                 {
                                     NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 }
@@ -576,7 +576,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ObsidianSkinPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -589,7 +589,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -605,7 +605,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.RegenerationPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -618,7 +618,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvRegenerationPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -634,7 +634,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.SwiftnessPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -647,7 +647,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvSwiftnessPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -663,7 +663,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.GillsPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -676,7 +676,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvGillsPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -692,7 +692,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.IronskinPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -705,7 +705,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvIronskinPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -721,7 +721,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ManaRegenerationPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -734,7 +734,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvManaRegenerationPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -750,7 +750,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.MagicPowerPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -763,7 +763,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvMagicPowerPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -779,7 +779,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.FeatherfallPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -792,7 +792,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvFeatherfallPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -808,7 +808,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.SpelunkerPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -821,7 +821,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvSpelunkerPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -837,7 +837,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.InvisibilityPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -850,7 +850,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvInvisibilityPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -866,7 +866,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ShinePotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -879,7 +879,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvShinePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -895,7 +895,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.NightOwlPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -908,7 +908,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvNightOwlPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -924,7 +924,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.BattlePotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -937,7 +937,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvBattlePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -953,7 +953,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ThornsPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -966,7 +966,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvThornsPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -982,7 +982,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.WaterWalkingPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -995,7 +995,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvWaterWalkingPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1011,7 +1011,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ArcheryPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1024,7 +1024,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvArcheryPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1040,7 +1040,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.HunterPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1053,7 +1053,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvHunterPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1069,7 +1069,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.GravitationPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1082,7 +1082,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvGravitationPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1098,7 +1098,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.MiningPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1111,7 +1111,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvMiningPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1127,7 +1127,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.HeartreachPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1140,7 +1140,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvHeartreachPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1156,7 +1156,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.CalmingPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1169,7 +1169,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvCalmingPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1185,7 +1185,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.BuilderPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1198,7 +1198,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvBuilderPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1214,7 +1214,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.TitanPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1227,7 +1227,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvTitanPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1243,7 +1243,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.FlipperPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1256,7 +1256,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvFlipperPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1272,7 +1272,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.SummoningPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1285,7 +1285,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvSummoningPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1301,7 +1301,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.TrapsightPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1314,7 +1314,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvDangersensePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1330,7 +1330,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.AmmoReservationPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1343,7 +1343,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvAmmoReservationPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1359,7 +1359,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LifeforcePotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1372,7 +1372,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvLifeforcePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1388,7 +1388,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.EndurancePotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1401,7 +1401,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvEndurancePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1417,7 +1417,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.RagePotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1430,7 +1430,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvRagePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1446,7 +1446,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.InfernoPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1459,7 +1459,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvInfernoPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1475,7 +1475,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.WrathPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1488,7 +1488,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvWrathPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1504,7 +1504,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.FishingPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1517,7 +1517,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvFishingPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1533,7 +1533,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.SonarPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1546,7 +1546,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvSonarPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1562,7 +1562,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.CratePotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1575,7 +1575,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvCratePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1591,7 +1591,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.WarmthPotion, 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1604,7 +1604,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1620,7 +1620,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.CrimsonPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1633,7 +1633,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvCrimsonPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1649,7 +1649,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.ShockwavePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1662,7 +1662,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvShockwavePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1678,7 +1678,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LuckPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1691,7 +1691,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvLuckPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1707,7 +1707,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.BloodCastPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1720,7 +1720,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvBloodCastPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1736,7 +1736,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.StarbrightPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1749,7 +1749,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvStarbrightPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1765,7 +1765,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.VisionPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1778,7 +1778,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvVisionPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1794,7 +1794,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.StrengthPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1807,7 +1807,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvStrengthPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1823,7 +1823,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.GPSPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1836,7 +1836,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvGPSPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1852,7 +1852,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.TimeShiftPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1865,7 +1865,7 @@ namespace ExxoAvalonOrigins.UI
                                     //    {
                                     //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvTimeShiftPotion>(), 1);
                                     //        Main.item[x].owner = Main.myPlayer;
-                                    //        if (Main.netMode == 1)
+                                    //        if (Main.netMode == NetmodeID.MultiplayerClient)
                                     //        {
                                     //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                     //        }
@@ -1881,7 +1881,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.ShadowPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1894,7 +1894,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvShadowPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1910,7 +1910,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.RoguePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1923,7 +1923,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvRoguePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1939,7 +1939,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.GauntletPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1952,7 +1952,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvGauntletPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1968,7 +1968,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.WisdomPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1981,7 +1981,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvWisdomPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -1997,7 +1997,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.TitanskinPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -2010,7 +2010,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvTitanskinPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -2027,7 +2027,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.NewText("This potion is unobtainable.", 230, 230, 25);
                                             //int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, 3873 + p, 1);
                                             //Main.item[x].owner = Main.myPlayer;
-                                            //if (Main.netMode == 1)
+                                            //if (Main.netMode == NetmodeID.MultiplayerClient)
                                             //{
                                             //    NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             //}
@@ -2042,7 +2042,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.NewText("This potion is unobtainable.", 230, 230, 25);
                                             //    int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvShockwavePotion>(), 1);
                                             //    Main.item[x].owner = Main.myPlayer;
-                                            //    if (Main.netMode == 1)
+                                            //    if (Main.netMode == NetmodeID.MultiplayerClient)
                                             //    {
                                             //        NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             //    }
@@ -2058,7 +2058,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.ForceFieldPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -2071,7 +2071,7 @@ namespace ExxoAvalonOrigins.UI
                                         {
                                             int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvForceFieldPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == 1)
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
@@ -2087,7 +2087,7 @@ namespace ExxoAvalonOrigins.UI
                                     //        {
                                     //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.MagnetPotion, 1);
                                     //            Main.item[x].owner = Main.myPlayer;
-                                    //            if (Main.netMode == 1)
+                                    //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                     //            {
                                     //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                     //            }
@@ -2123,7 +2123,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Daybloom, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2136,7 +2136,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeDaybloomSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2153,7 +2153,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Moonglow, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2166,7 +2166,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeMoonglowSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2183,7 +2183,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Blinkroot, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2196,7 +2196,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeBlinkrootSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2213,7 +2213,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Deathweed, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2226,7 +2226,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeDeathweedSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2243,7 +2243,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Waterleaf, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2256,7 +2256,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeWaterleafSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2273,7 +2273,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Fireblossom, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2286,7 +2286,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeFireblossomSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2303,7 +2303,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Shiverthorn, 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2316,7 +2316,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeShiverthornSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                         }
@@ -2333,7 +2333,7 @@ namespace ExxoAvalonOrigins.UI
                                 //        {
                                 //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Bloodberry, 1);
                                 //            Main.item[x].owner = Main.myPlayer;
-                                //            if (Main.netMode == 1)
+                                //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                 //            {
                                 //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 //            }
@@ -2346,7 +2346,7 @@ namespace ExxoAvalonOrigins.UI
                                 //        {
                                 //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeBloodberrySeed, 1);
                                 //            Main.item[x].owner = Main.myPlayer;
-                                //            if (Main.netMode == 1)
+                                //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                 //            {
                                 //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 //            }
@@ -2363,7 +2363,7 @@ namespace ExxoAvalonOrigins.UI
                                 //        {
                                 //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Sweetstem, 1);
                                 //            Main.item[x].owner = Main.myPlayer;
-                                //            if (Main.netMode == 1)
+                                //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                 //            {
                                 //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 //            }
@@ -2376,7 +2376,7 @@ namespace ExxoAvalonOrigins.UI
                                 //        {
                                 //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeSweetstemSeed, 1);
                                 //            Main.item[x].owner = Main.myPlayer;
-                                //            if (Main.netMode == 1)
+                                //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                 //            {
                                 //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 //            }
@@ -2393,7 +2393,7 @@ namespace ExxoAvalonOrigins.UI
                                 //        {
                                 //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Barfbush, 1);
                                 //            Main.item[x].owner = Main.myPlayer;
-                                //            if (Main.netMode == 1)
+                                //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                 //            {
                                 //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 //            }
@@ -2406,7 +2406,7 @@ namespace ExxoAvalonOrigins.UI
                                 //        {
                                 //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeBarfbushSeed, 1);
                                 //            Main.item[x].owner = Main.myPlayer;
-                                //            if (Main.netMode == 1)
+                                //            if (Main.netMode == NetmodeID.MultiplayerClient)
                                 //            {
                                 //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                 //            }
@@ -2499,7 +2499,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Daybloom, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2512,7 +2512,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeDaybloomSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2529,7 +2529,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Moonglow, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2542,7 +2542,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeMoonglowSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2559,7 +2559,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Blinkroot, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2572,7 +2572,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeBlinkrootSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2589,7 +2589,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Deathweed, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2602,7 +2602,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeDeathweedSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2619,7 +2619,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Waterleaf, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2632,7 +2632,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeWaterleafSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2649,7 +2649,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Fireblossom, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2662,7 +2662,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeFireblossomSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2679,7 +2679,7 @@ namespace ExxoAvalonOrigins.UI
         //                    {
         //                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Shiverthorn, 1);
         //                        Main.item[x].owner = Main.myPlayer;
-        //                        if (Main.netMode == 1)
+        //                        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                        {
         //                            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                        }
@@ -2692,7 +2692,7 @@ namespace ExxoAvalonOrigins.UI
         //                //    {
         //                //        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeShiverthornSeed, 1);
         //                //        Main.item[x].owner = Main.myPlayer;
-        //                //        if (Main.netMode == 1)
+        //                //        if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //        {
         //                //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //        }
@@ -2709,7 +2709,7 @@ namespace ExxoAvalonOrigins.UI
         //                //        {
         //                //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Bloodberry, 1);
         //                //            Main.item[x].owner = Main.myPlayer;
-        //                //            if (Main.netMode == 1)
+        //                //            if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //            {
         //                //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //            }
@@ -2722,7 +2722,7 @@ namespace ExxoAvalonOrigins.UI
         //                //        {
         //                //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeBloodberrySeed, 1);
         //                //            Main.item[x].owner = Main.myPlayer;
-        //                //            if (Main.netMode == 1)
+        //                //            if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //            {
         //                //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //            }
@@ -2739,7 +2739,7 @@ namespace ExxoAvalonOrigins.UI
         //                //        {
         //                //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Sweetstem, 1);
         //                //            Main.item[x].owner = Main.myPlayer;
-        //                //            if (Main.netMode == 1)
+        //                //            if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //            {
         //                //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //            }
@@ -2752,7 +2752,7 @@ namespace ExxoAvalonOrigins.UI
         //                //        {
         //                //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeSweetstemSeed, 1);
         //                //            Main.item[x].owner = Main.myPlayer;
-        //                //            if (Main.netMode == 1)
+        //                //            if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //            {
         //                //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //            }
@@ -2769,7 +2769,7 @@ namespace ExxoAvalonOrigins.UI
         //                //        {
         //                //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.Barfbush, 1);
         //                //            Main.item[x].owner = Main.myPlayer;
-        //                //            if (Main.netMode == 1)
+        //                //            if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //            {
         //                //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //            }
@@ -2782,7 +2782,7 @@ namespace ExxoAvalonOrigins.UI
         //                //        {
         //                //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.LargeBarfbushSeed, 1);
         //                //            Main.item[x].owner = Main.myPlayer;
-        //                //            if (Main.netMode == 1)
+        //                //            if (Main.netMode == NetmodeID.MultiplayerClient)
         //                //            {
         //                //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
         //                //            }

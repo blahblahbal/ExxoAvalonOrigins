@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.NPCs
             var instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();
             npc.damage = npc.defDamage;
             npc.defense = npc.defDefense;
-            if (npc.ai[0] == 0f && Main.netMode != 1)
+            if (npc.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest(true);
                 npc.ai[0] = 1f;
@@ -91,7 +91,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 var num561 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Infernaspaz>(), 0);
                 Main.npc[num561].target = npc.target;
-                if (Main.netMode != 0)
+                if (Main.netMode != NetmodeID.SinglePlayer)
                 {
                     NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Infernaspaz has awoken!"), 255, 175f, 75f, 255f, 0);
                 }
@@ -115,14 +115,14 @@ namespace ExxoAvalonOrigins.NPCs
                         var num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 + num573) * num569 * -1.0), (float)(Math.Sin(num572 + num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
                         Main.projectile[num574].timeLeft = 600;
                         Main.projectile[num574].tileCollide = false;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
                         }
                         num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 - num573) * num569 * -1.0), (float)(Math.Sin(num572 - num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
                         Main.projectile[num574].timeLeft = 600;
                         Main.projectile[num574].tileCollide = false;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
                         }

@@ -169,7 +169,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 return;
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)npc.height), ModContent.NPCType<MechanicalHungry2>(), 0);
                 for (int num193 = 0; num193 < 10; num193++)

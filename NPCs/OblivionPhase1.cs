@@ -111,7 +111,7 @@ namespace ExxoAvalonOrigins.NPCs
                 var dust43 = Main.dust[num528];
                 dust43.velocity.Y = dust43.velocity.Y * 0.1f;
             }
-            if (Main.netMode != 1 && !Main.dayTime && !dead3 && npc.timeLeft < 10)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !Main.dayTime && !dead3 && npc.timeLeft < 10)
             {
                 for (var num529 = 0; num529 < 200; num529++)
                 {
@@ -203,7 +203,7 @@ namespace ExxoAvalonOrigins.NPCs
                             vector50 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
                             num533 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector50.X;
                             num534 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector50.Y;
-                            if (Main.netMode != 1)
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 var num536 = 12f;
                                 var num537 = 25;
@@ -415,7 +415,7 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.localAI[2] = 0f;
                         Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 34);
                     }
-                    if (Main.netMode == 1)
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         return;
                     }

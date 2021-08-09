@@ -160,7 +160,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[num54].timeLeft = 600;
                             Main.projectile[num54].tileCollide = false;
                             //Main.projectile[num54].notReflect = true;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, num54);
                             }
@@ -168,7 +168,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[num54].timeLeft = 600;
                             Main.projectile[num54].tileCollide = false;
                             //Main.projectile[num54].notReflect = true;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, num54);
                             }
@@ -223,7 +223,7 @@ namespace ExxoAvalonOrigins.NPCs
                         //Main.projectile[p].notReflect = true;
                         //Main.projectile[p].bombPlayer = true;
                         Main.projectile[p].hostile = true;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                         }
@@ -234,7 +234,7 @@ namespace ExxoAvalonOrigins.NPCs
                         //Main.projectile[p].notReflect = true;
                         //Main.projectile[p].bombPlayer = true;
                         Main.projectile[p].hostile = true;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                         }
@@ -299,7 +299,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].friendly = false;
                             //Main.projectile[p].notReflect = true;
                             Main.projectile[p].hostile = true;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                             }
@@ -309,7 +309,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].friendly = false;
                             //Main.projectile[p].notReflect = true;
                             Main.projectile[p].hostile = true;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, null, p);
                             }

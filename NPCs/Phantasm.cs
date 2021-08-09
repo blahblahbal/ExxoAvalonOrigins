@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public static void Teleport(Vector2 coords, bool forceHandle = false, int whoAmI = 0)
         {
-            bool syncData = forceHandle || Main.netMode == 0;
+            bool syncData = forceHandle || Main.netMode == NetmodeID.SinglePlayer;
             if (whoAmI == -1)
             {
                 whoAmI = NPC.FindFirstNPC(ModContent.NPCType<Phantasm>());
@@ -124,7 +124,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[p].friendly = false;
                         Main.projectile[p].hostile = true;
                         Main.projectile[p].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                         }
@@ -133,7 +133,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[p].friendly = false;
                         Main.projectile[p].hostile = true;
                         Main.projectile[p].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                         }
@@ -276,7 +276,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                             }
@@ -285,7 +285,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                             }
@@ -294,7 +294,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                             }
@@ -303,7 +303,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].tileCollide = false;
-                            if (Main.netMode != 0)
+                            if (Main.netMode != NetmodeID.SinglePlayer)
                             {
                                 NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
                             }
@@ -362,11 +362,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (!ExxoAvalonOriginsWorld.downedPhantasm)
             {
-                if (Main.netMode == 0)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     Main.NewText("The spirits are stirring in the depths!", 50, 255, 130, false);
                 }
-                else if (Main.netMode == 2)
+                else if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("The spirits are stirring in the depths!"), 255, 50f, 255f, 130f, 0);
                 }

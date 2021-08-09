@@ -112,7 +112,7 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
             {
                 if (item.type == ModContent.ItemType<Items.HellboundRemote>())
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         item.active = false;
                         item.type = 0;
@@ -196,4 +196,4 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
         }        public static bool IsAdvancedPotion(string name)
         {
             return (name.Contains("Advanced") && name.Contains("Potion"));
-        }                public static void UpdateInvisibleVanity(ExxoAvalonOrigins.orig_UpdateVanity orig, Player player)        {            orig(player);            for (int k = 13; k < 18 + player.extraAccessorySlots; k++)            {                Item item = player.armor[k];                if (item.exists() &&                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity)                {                    item.modItem.UpdateVanity(player, EquipType.Back);                }            }        }    }}
+        }    }}

@@ -452,7 +452,7 @@ namespace ExxoAvalonOrigins
                     {
                         if (!N2.active || N2.dontTakeDamage || N2.townNPC || N2.life < 1 || N2.boss || N2.realLife >= 0 || N2.type == ModContent.NPCType<NPCs.Juggernaut>()) continue;
                         N2.StrikeNPC(damage, 5f, 1);
-                        if (Main.netMode == 1)
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
                             NetMessage.SendData(28, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, (float)damage, 0f, 0f, 0);
                         }
@@ -870,7 +870,7 @@ namespace ExxoAvalonOrigins
                             Main.item[num].noGrabDelay = 100;
                             Main.item[num].favorited = false;
                             Main.item[num].newAndShiny = false;
-                            if (Main.netMode == 1)
+                            if (Main.netMode == NetmodeID.MultiplayerClient)
                             {
                                 NetMessage.SendData(21, -1, -1, null, num);
                             }
@@ -1255,7 +1255,7 @@ namespace ExxoAvalonOrigins
 		        }
 	        }
 
-	        if (Main.netMode != 0 && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
+	        if (Main.netMode != NetmodeID.SinglePlayer && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
 	            ExxoAvalonOrigins.mirrorModeHotkey.JustPressed)
 	        {
 		        int newPlayer = teleportToPlayer;
@@ -1619,11 +1619,11 @@ namespace ExxoAvalonOrigins
                     break;
 			    case 6: // random
 			    {
-				    if (Main.netMode == 0)
+				    if (Main.netMode == NetmodeID.SinglePlayer)
 				    {
 					    player.TeleportationPotion();
 				    }
-				    else if (Main.netMode == 1 && player.whoAmI == Main.myPlayer)
+				    else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
 				    {
 					    NetMessage.SendData(73, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
 				    }

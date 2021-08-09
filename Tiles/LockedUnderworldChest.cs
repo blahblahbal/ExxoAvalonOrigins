@@ -118,7 +118,7 @@
                         player.inventory[num146] = new Item();
                     }
                     Unlock(num148, num149);
-                    if (Main.netMode == 1)
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         NetMessage.SendData(52, -1, -1, NetworkText.Empty, player.whoAmI, 1f, (float)num148, (float)num149, 0);
                     }

@@ -63,7 +63,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.timeLeft = 300;
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (!Main.npc[(int)npc.ai[0]].active)
                 {
@@ -77,7 +77,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.HitEffect(0, 10.0);
                     npc.active = false;
                 }
-                if (!npc.active && Main.netMode == 2)
+                if (!npc.active && Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(28, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
                 }
@@ -121,7 +121,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 {
                                     WorldGen.KillTile(num197, num198, true, true, false);
                                 }
-                                if (Main.netMode != 1 && Main.tile[num197, num198].type == TileID.Grass)
+                                if (Main.netMode != NetmodeID.MultiplayerClient && Main.tile[num197, num198].type == TileID.Grass)
                                 {
                                     var arg_CCAE_0 = Main.tile[num197, num198 - 1].type;
                                 }

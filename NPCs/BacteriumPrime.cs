@@ -58,7 +58,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 ExxoAvalonOriginsGlobalNPC.boogerBoss = npc.whoAmI;
             }
-            if (Main.netMode != 1 && npc.localAI[0] == 0f)
+            if (Main.netMode != NetmodeID.MultiplayerClient && npc.localAI[0] == 0f)
             {
                 npc.localAI[0] = 1f;
                 for (var num898 = 0; num898 < 20; num898++)
@@ -72,7 +72,7 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.npc[num901].netUpdate = true;
                 }
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest(true);
                 var num902 = 6000;
@@ -80,7 +80,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     npc.active = false;
                     npc.life = 0;
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
                     }
@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.velocity.Y = (npc.velocity.Y * 50f + num905) / 51f;
                 if (npc.ai[0] == -1f)
                 {
-                    if (Main.netMode == 1)
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         return;
                     }
@@ -201,7 +201,7 @@ namespace ExxoAvalonOrigins.NPCs
             else
             {
                 npc.TargetClosest(true);
-                if (npc.justHit && Main.netMode != 1 && npc.type == ModContent.NPCType<BacteriumPrime>())
+                if (npc.justHit && Main.netMode != NetmodeID.MultiplayerClient && npc.type == ModContent.NPCType<BacteriumPrime>())
                 {
                     npc.life = npc.lifeMax;
                     ExxoAvalonOriginsGlobalNPC.boogerBossCounter++;
@@ -229,7 +229,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (npc.ai[0] == 0f)
                 {
-                    if (Main.netMode == 1)
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         return;
                     }

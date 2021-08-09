@@ -139,7 +139,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y = -2f;
                 }
             }
-            if (Main.netMode != 1 && !Main.player[npc.target].dead)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !Main.player[npc.target].dead)
             {
                 if (npc.justHit)
                 {

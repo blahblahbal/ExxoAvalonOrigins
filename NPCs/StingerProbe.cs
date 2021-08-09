@@ -93,7 +93,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     npc.localAI[0] = 0f;
                 }
-                if (Main.netMode != 1 && npc.localAI[0] >= 120f)
+                if (Main.netMode != NetmodeID.MultiplayerClient && npc.localAI[0] >= 120f)
                 {
                     npc.localAI[0] = 0f;
                     if (Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))

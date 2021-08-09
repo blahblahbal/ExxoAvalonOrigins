@@ -13,7 +13,7 @@ using Terraria.UI.Chat;
 using Terraria.UI.Gamepad;
 using static Mono.Cecil.Cil.OpCodes;
 
-namespace ExxoAvalonOrigins.UI
+namespace ExxoAvalonOrigins.Hooks
 {
     public class EvilChooserMenu
     {        

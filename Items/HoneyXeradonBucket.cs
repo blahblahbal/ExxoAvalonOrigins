@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                                 Main.tile[num257, num258].liquidType(2);
                                 Main.tile[num257, num258].liquid = 255;
                                 WorldGen.SquareTileFrame(num257, num258, true);
-                                if (Main.netMode == 1)
+                                if (Main.netMode == NetmodeID.MultiplayerClient)
                                 {
                                     NetMessage.sendWater(num257, num258);
                                 }
@@ -51,7 +51,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                                         Main.tile[num261, num262].liquidType(2);
                                         Main.tile[num261, num262].liquid = 255;
                                         WorldGen.SquareTileFrame(num261, num262, true);
-                                        if (Main.netMode == 1)
+                                        if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
                                             NetMessage.sendWater(num261, num262);
                                         }

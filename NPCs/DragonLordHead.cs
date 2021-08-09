@@ -89,7 +89,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.timeLeft = 300;
             }
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (npc.ai[0] == 0f)
                 {
@@ -136,7 +136,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.HitEffect(0, 10.0);
                     npc.active = false;
                 }
-                if (!npc.active && Main.netMode == 2)
+                if (!npc.active && Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(28, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
                 }
