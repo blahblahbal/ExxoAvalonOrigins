@@ -41,15 +41,16 @@ namespace ExxoAvalonOrigins.Tiles
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             AddMapEntry(new Color(200, 200, 200));
             dustType = 44;
-            disableSmartCursor = true;
+            //disableSmartCursor = true;
             adjTiles = new int[] { TileID.Torches };
             torch = true;
         }
 
         public override bool Drop(int i, int j)
         {
-            var style = Main.tile[i, j].frameY / 18;
+            var style = Main.tile[i, j].frameY / 22;
             int toDrop = ItemID.Torch;
+
             switch (style)
             {
                 case 0:
@@ -167,6 +168,36 @@ namespace ExxoAvalonOrigins.Tiles
                 var x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 var y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
                 Main.spriteBatch.Draw(mod.GetTexture("Tiles/Torches_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            }
+        }
+
+        public override void MouseOver(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            var style = Main.tile[i, j].frameY / 22;
+
+            switch (style)
+            {
+                case 0:
+                    player.showItemIcon2 = ModContent.ItemType<Items.JungleTorch>();
+                    break;
+                case 1:
+                    player.showItemIcon2 = ModContent.ItemType<Items.PathogenTorch>();
+                    break;
+                case 2:
+                    player.showItemIcon2 = ModContent.ItemType<Items.SlimeTorch>();
+                    break;
+                case 3:
+                    player.showItemIcon2 = ModContent.ItemType<Items.CyanTorch>();
+                    break;
+                case 4:
+                    player.showItemIcon2 = ModContent.ItemType<Items.LimeTorch>();
+                    break;
+                case 5:
+                    player.showItemIcon2 = ModContent.ItemType<Items.BrownTorch>();
+                    break;
             }
         }
     }
