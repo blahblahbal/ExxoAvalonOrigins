@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.lifeMax = 1600;
 			npc.defense = 30;
 			npc.width = 30;
-			npc.height = 40;
+			npc.height = 30;
 			npc.aiStyle = -1;
             npc.scale = 1.3f;
 			npc.value = 1000f;
@@ -39,6 +39,10 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.noTileCollide = true;
 			npc.behindTiles = true;
 		}
+        public override Color? GetAlpha(Color drawColor)
+        {
+            return Color.White;
+        }
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Vector2 vector7 = new Vector2(npc.Center.X, npc.Center.Y);
@@ -65,15 +69,15 @@ namespace ExxoAvalonOrigins.NPCs
                     num30 = npc.ai[2] - vector7.Y;
 
                     Color color7 = Lighting.GetColor((int)vector7.X / 16, (int)(vector7.Y / 16f));
-                    Main.spriteBatch.Draw(mod.GetTexture("NPCs/EctoArm"), new Vector2(vector7.X - Main.screenPosition.X, vector7.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mod.GetTexture("NPCs/EctoArm").Width, mod.GetTexture("NPCs/EctoArm").Height)), color7, rotation7, new Vector2(mod.GetTexture("NPCs/EctoArm").Width * 0.5f, mod.GetTexture("NPCs/EctoArm").Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(mod.GetTexture("NPCs/EctoArm"), new Vector2(vector7.X - Main.screenPosition.X, vector7.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mod.GetTexture("NPCs/EctoArm").Width, mod.GetTexture("NPCs/EctoArm").Height)), Color.White, rotation7, new Vector2(mod.GetTexture("NPCs/EctoArm").Width * 0.5f, mod.GetTexture("NPCs/EctoArm").Height * 0.5f), 1f, SpriteEffects.None, 0f);
                 }
             }
             return true;
         }
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
-				return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle) ? 1f : 0f;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+				return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>()) ? 1f : 0f;
 			return 0f;
 		}
         public override void HitEffect(int hitDirection, double damage)
