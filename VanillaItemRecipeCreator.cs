@@ -275,6 +275,14 @@ namespace ExxoAvalonOrigins
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ItemID.Leather);
             recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.SolariumStar>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<Items.EarthStone>(), 3);
+            recipe.AddIngredient(ItemID.SoulofMight, 15);
+            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.SetResult(ItemID.Picksaw);
+            recipe.AddRecipe();
         }
     }
 }
