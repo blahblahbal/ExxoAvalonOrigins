@@ -1,4 +1,8 @@
-﻿using Terraria;using Terraria.ModLoader;using Terraria.ID;using System.Collections.Generic;using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using Terraria.UI;using ExxoAvalonOrigins.UI;using System.Security.Cryptography;using System.Text;using System.IO;using System.Net.Mime;using MonoMod.RuntimeDetour.HookGen;using Terraria.IO;using Terraria.Localization;using Terraria.Utilities;using ItemSlot = On.Terraria.UI.ItemSlot;using Language = On.Terraria.Localization.Language;using Player = On.Terraria.Player;using WorldGen = On.Terraria.WorldGen;namespace ExxoAvalonOrigins{    class ExxoAvalonOrigins : Mod    {        public static bool devMode = true; //TODO: Disable dev mode for release                public static bool godMode = false;        //public static int[] minPick = new int[Main.maxTileSets];        public static ModHotKey shadowHotkey;        public static ModHotKey sprintHotkey;        public static ModHotKey dashHotkey;        public static ModHotKey quintupleHotkey;        public static ModHotKey swimHotkey;        public static ModHotKey wallSlideHotkey;        public static ModHotKey bubbleBoostHotkey;        public static ModHotKey accDrillModeHotkey;        public static ModHotKey mirrorModeHotkey;        public static int dungeonEx = 0; //TODO: implement X catch in worldgen        public static int jungleEx = 0; //TODO: implement X catch in worldgen        public static bool superHardmode;        public static bool nilMode;        public static Texture2D BeamTexture;        public static Texture2D BeamVTexture;        public static Texture2D BeamStartTexture;        public static Texture2D BeamEndTexture;        public static Texture2D wosTexture;        public static Texture2D mechaHungryChainTexture;        public static readonly Version version = new Version(0, 9, 1, 0);        public static Version lastOpenedVersion = null;        public static Texture2D heart3Texture;        public static Texture2D mana2Texture;        public static Texture2D mana3Texture;        public static Texture2D mana4Texture;        public static Texture2D mana5Texture;        public static Texture2D mana6Texture;        public static Texture2D stamTexture;        public static Texture2D tomeSlotBackgroundTexture;        public static Texture2D herbButtonTexture;        private UserInterface tomeSlotUserInterface;        private UserInterface herbologyUserInterface;        public static Item herbItem;        public static bool herb;        public static string[] herbNames = new string[10] { "Daybloom", "Moonglow", "Blinkroot", "Deathweed", "Waterleaf", "Fireblossom", "Shiverthorn", "Bloodberry", "Sweetstem", "Barfbush" };        public static string[] potionNames = new string[53]
+﻿using Terraria;using Terraria.ModLoader;using Terraria.ID;using System.Collections.Generic;using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using Terraria.UI;using ExxoAvalonOrigins.UI;using System.Security.Cryptography;using System.Text;using System.IO;using System.Net.Mime;using MonoMod.RuntimeDetour.HookGen;using Terraria.IO;using Terraria.Localization;using Terraria.Utilities;using ItemSlot = On.Terraria.UI.ItemSlot;using Language = On.Terraria.Localization.Language;using Player = On.Terraria.Player;using WorldGen = On.Terraria.WorldGen;namespace ExxoAvalonOrigins{    class ExxoAvalonOrigins : Mod    {        public static bool devMode = true; //TODO: Disable dev mode for release                public static bool godMode = false;        //public static int[] minPick = new int[Main.maxTileSets];        public static ModHotKey shadowHotkey;        public static ModHotKey sprintHotkey;        public static ModHotKey dashHotkey;        public static ModHotKey quintupleHotkey;        public static ModHotKey swimHotkey;        public static ModHotKey wallSlideHotkey;        public static ModHotKey bubbleBoostHotkey;        public static ModHotKey accDrillModeHotkey;        public static ModHotKey mirrorModeHotkey;        public static int dungeonEx = 0; //TODO: implement X catch in worldgen        public static int jungleEx = 0; //TODO: implement X catch in worldgen        public static bool superHardmode;        public static bool nilMode;        public static Texture2D BeamTexture;        public static Texture2D BeamVTexture;        public static Texture2D BeamStartTexture;        public static Texture2D BeamEndTexture;        public static Texture2D wosTexture;        public static Texture2D mechaHungryChainTexture;        public static readonly Version version = new Version(0, 9, 1, 0);        public static Version lastOpenedVersion = null;        public static Texture2D heart3Texture;        public static Texture2D mana2Texture;        public static Texture2D mana3Texture;        public static Texture2D mana4Texture;        public static Texture2D mana5Texture;        public static Texture2D mana6Texture;        public static Texture2D stamTexture;        public static Texture2D tomeSlotBackgroundTexture;        public static Texture2D herbButtonTexture;        private UserInterface tomeSlotUserInterface;        private UserInterface herbologyUserInterface;        public int royStyle;
+        public static int royG = 0;        public int gbvStyle;
+        public static int gbvR = 160;
+        public static int gbvG = 0;
+        public static int gbvB = 0;        public static Item herbItem;        public static bool herb;        public static string[] herbNames = new string[10] { "Daybloom", "Moonglow", "Blinkroot", "Deathweed", "Waterleaf", "Fireblossom", "Shiverthorn", "Bloodberry", "Sweetstem", "Barfbush" };        public static string[] potionNames = new string[53]
         {
             "Obsidian Skin",
             "Regeneration",
@@ -68,46 +72,6 @@
             ModContent.TileType<Tiles.RichMahoganyBeam>(),
             ModContent.TileType<Tiles.ShadewoodBeam>()
         };        internal TomeSlot tomeSlot;        internal HerbologyBenchUI herbology;        public static bool subInterface = false;        public static int barStamina = 20;        public static int sX = Main.screenWidth - 800;        public static ExxoAvalonOrigins mod;        public ExxoAvalonOrigins()        {            mod = this;        }        public override void Load()        {            //Validate();            if (!Main.dedServ)            {                Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");                Main.itemTexture[ItemID.PaladinBanner] = GetTexture("Sprites/PaladinBanner");                Main.itemTexture[ItemID.PossessedArmorBanner] = GetTexture("Sprites/PossessedArmorBanner");                Main.itemTexture[ItemID.BoneLeeBanner] = GetTexture("Sprites/BoneLeeBanner");                Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");                Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");                Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");                heart3Texture = GetTexture("Sprites/Heart3");                mana2Texture = GetTexture("Sprites/Mana2");                mana3Texture = GetTexture("Sprites/Mana3");                mana4Texture = GetTexture("Sprites/Mana4");                mana5Texture = GetTexture("Sprites/Mana5");                mana6Texture = GetTexture("Sprites/Mana6");                stamTexture = GetTexture("Sprites/Stamina");                BeamVTexture = GetTexture("Sprites/BeamVenoshock");                BeamStartTexture = GetTexture("Sprites/BeamStart");                BeamEndTexture = GetTexture("Sprites/BeamEnd");                wosTexture = GetTexture("Sprites/WallofSteel");                mechaHungryChainTexture = GetTexture("Sprites/MechaHungryChain");                tomeSlotBackgroundTexture = GetTexture("Sprites/TomeSlotBackground");                herbButtonTexture = GetTexture("Sprites/HerbButton");                shadowHotkey = RegisterHotKey("Shadow Teleport", "V");//implemented TODO: Fix implementation of hotkeys                sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");//implemented?                dashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");                quintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");                swimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?                wallSlideHotkey = RegisterHotKey("Toggle Wall Sliding", "G");                bubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");                accDrillModeHotkey = RegisterHotKey("Change Acceleration Drill Mode", "N");                mirrorModeHotkey = RegisterHotKey("Change Mirror Modes", "N");                tomeSlot = new TomeSlot();                tomeSlot.Activate();                tomeSlotUserInterface = new UserInterface();                tomeSlotUserInterface.SetState(tomeSlot);                herbItem = new Item();                herbology = new HerbologyBenchUI();                herbology.Activate();                herbologyUserInterface = new UserInterface();                herbologyUserInterface.SetState(herbology);            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             /*for (int i = 0; i < Main.maxTileSets; i++)            {                minPick[i] = 0;            }            minPick[211] = 200;            minPick[mod.TileType("ShroomiteOre")] = 205;            minPick[TileID.Ebonstone] = minPick[TileID.Crimstone] = minPick[TileID.Pearlstone] = minPick[mod.TileType("Chunkstone")] =            minPick[TileID.Obsidian] = minPick[mod.TileType("RhodiumOre")] = minPick[mod.TileType("OsmiumOre")] = 60;            minPick[TileID.Meteorite] = 50;            minPick[TileID.Demonite] = minPick[TileID.Crimtane] = minPick[mod.TileType("BacciliteOre")] = minPick[mod.TileType("Tourmaline")] = minPick[mod.TileType("Peridot")] = minPick[mod.TileType("Zircon")] = 55;            minPick[TileID.LihzahrdBrick] = minPick[TileID.LihzahrdAltar] = minPick[mod.TileType("TritanoriumOre")] = minPick[mod.TileType("PyroscoricOre")] = minPick[mod.TileType("SolariumOre")] = 210;            minPick[TileID.Hellstone] = 65;            minPick[TileID.Cobalt] = minPick[TileID.Palladium] = minPick[mod.TileType("DurataniumOre")] = 100;            minPick[mod.TileType("BlueLihzahrdBrick")] = 400;            minPick[mod.TileType("UnvolanditeOre")] = minPick[mod.TileType("VorazylcumOre")] = 250;            minPick[TileID.Mythril] = minPick[TileID.Orichalcum] = minPick[mod.TileType("NaquadahOre")] = 110;            minPick[TileID.Adamantite] = minPick[TileID.Titanium] = minPick[mod.TileType("TroxiniumOre")] = 150;            minPick[mod.TileType("SolariumShrine")] = 9999;            minPick[mod.TileType("CaesiumOre")] = minPick[mod.TileType("Opal")] = 200;            minPick[mod.TileType("OblivionOre")] = minPick[mod.TileType("HydrolythOre")] = 300;            minPick[mod.TileType("FeroziumOre")] = 180;*/
             if (devMode)                Debug.Debug.DebugHooks();            Hooks.Hooks.AddHooks();            Main.chTitle = true;            //AddAvalonAlts();        }        public override void Unload()        {            base.Unload();            Main.chTitle = true;        }        public ModPacket GetPacket(AvalonMessageID type, int capacity)
         {
@@ -144,7 +108,79 @@
                     NPCs.Phantasm.Teleport(reader.ReadVector2(), true, whoAmI);
                     break;
             }
-        }        public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
+        }        public override void PostUpdateEverything()
+        {
+            if (royStyle == 0)
+            {
+                royG += 5;
+                if (royG >= 255)
+                {
+                    royG = 255;
+                    royStyle = 1;
+                }
+            }
+            if (royStyle == 1)
+            {
+                royG -= 5;
+                if (royG <= 0)
+                {
+                    royG = 0;
+                    royStyle = 0;
+                }
+            }
+            if (gbvStyle == 0)
+            {
+                gbvR -= 5;
+                if (gbvR <= 0)
+                {
+                    gbvR = 0;
+                    gbvStyle = 1;
+                }
+            }
+            if (gbvStyle == 1)
+            {
+                gbvG += 5;
+                if (gbvG >= 255)
+                {
+                    gbvG = 255;
+                }
+                if (gbvG >= 160)
+                {
+                    gbvB -= 5;
+                    if (gbvB <= 0)
+                    {
+                        gbvB = 0;
+                        gbvStyle = 2;
+                    }
+                }
+            }
+            if (gbvStyle == 2)
+            {
+                gbvG -= 5;
+                if (gbvG <= 0)
+                {
+                    gbvG = 0;
+                }
+                if (gbvG <= 160)
+                {
+                    gbvB += 5;
+                    if (gbvB >= 255)
+                    {
+                        gbvB = 255;
+                        gbvStyle = 3;
+                    }
+                }
+            }
+            if (gbvStyle == 3)
+            {
+                gbvR += 5;
+                if (gbvR >= 160)
+                {
+                    gbvR = 160;
+                    gbvStyle = 0;
+                }
+            }
+        }        public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
         {
             float ickyStrength = ExxoAvalonOriginsWorld.ickyTiles / 800f;
             ickyStrength = Math.Min(ickyStrength, 1f);
@@ -154,7 +190,7 @@
             int sunB = backgroundColor.B;
             // Remove some green and more red.
             sunR -= (int)(100f * ickyStrength * (backgroundColor.R / 255f));
-            //sunG -= (int)(178f * ickyStrength * (backgroundColor.G / 255f));
+            sunG -= (int)(50f * ickyStrength * (backgroundColor.G / 255f));
             sunB -= (int)(80f * ickyStrength * (backgroundColor.G / 255f));
             sunR = Utils.Clamp(sunR, 15, 255);
             sunG = Utils.Clamp(sunG, 15, 255);

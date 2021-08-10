@@ -40,6 +40,19 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return true;
         }
+        public override string GetChat()
+        {
+            switch (Main.rand.Next(3))
+            {
+                case 0:
+                    return "Thanks for dislodging me from that glacier bit. If you hadn't, I'd have probably gone dormant and stayed there for eons!";
+                case 1:
+                    return "Wow! A human! I haven't seen one of you for... I don't know how long!";
+                case 2:
+                    return "Thanks for not flinging matches at me. I hate it when people do that.";
+            }
+            return string.Empty;
+        }
         public override void AI()
         {
             for (var i = 0; i < 255; i++)
