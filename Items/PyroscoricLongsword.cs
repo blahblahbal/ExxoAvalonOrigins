@@ -14,4 +14,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				Main.dust[num162].noGravity = true;
 			}
 		}
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+			target.AddBuff(BuffID.Daybreak, 180);
+        }
     }}
