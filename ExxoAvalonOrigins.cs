@@ -184,6 +184,7 @@
         {
             float ickyStrength = ExxoAvalonOriginsWorld.ickyTiles / 800f;
             ickyStrength = Math.Min(ickyStrength, 1f);
+            if (ickyStrength <= 0) return;
 
             int sunR = Main.bgColor.R;
             int sunG = Main.bgColor.G;
