@@ -13,16 +13,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				int num162 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 6, 0f, 0f, 0, default(Color), 2f);
 				Main.dust[num162].noGravity = true;
 			}
-			if (Main.rand.Next(40) == 1)
-			{
-				int randomSize = Main.rand.Next(1, 4) / 2;
-				int num161 = Gore.NewGore(new Vector2(hitbox.X, hitbox.Y), default(Vector2), Main.rand.Next(61, 64));
-				Gore gore30 = Main.gore[num161];
-				Gore gore40 = gore30;
-				gore40.velocity *= 0.3f;
-				gore40.scale *= randomSize;
-				Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
-				Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
-			}
 		}
     }}
