@@ -65,6 +65,10 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Sys
                 Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
             }
         }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.Daybreak, 180);
+        }
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
             if (projectile.timeLeft >= 15)
