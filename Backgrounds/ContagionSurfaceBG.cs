@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Backgrounds
 
         public override int ChooseFarTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG");
+            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG2");
         }
 
         //private static int SurfaceFrameCounter;

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             recipe.SetResult(this, 4);
             recipe.AddRecipe();
 
-            ModRecipe recipe = new ModRecipe(mod);
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(this, 4);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<Echoplasm>());
