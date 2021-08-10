@@ -8,4 +8,9 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                 WorldGen.SquareTileFrame(i, j);
             }
         }
+        public override int SaplingGrowthType(ref int style)
+        {
+            style = 0;
+            return ModContent.TileType<ContagionSapling>();
+        }
     }}

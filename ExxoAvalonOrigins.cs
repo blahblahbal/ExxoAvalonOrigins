@@ -71,7 +71,7 @@
             ModContent.TileType<Tiles.CoughwoodBeam>(),
             ModContent.TileType<Tiles.RichMahoganyBeam>(),
             ModContent.TileType<Tiles.ShadewoodBeam>()
-        };        internal TomeSlot tomeSlot;        internal HerbologyBenchUI herbology;        public static bool subInterface = false;        public static int barStamina = 20;        public static int sX = Main.screenWidth - 800;        public static ExxoAvalonOrigins mod;        public ExxoAvalonOrigins()        {            mod = this;        }        public override void Load()        {            //Validate();            if (!Main.dedServ)            {                Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");                Main.itemTexture[ItemID.PaladinBanner] = GetTexture("Sprites/PaladinBanner");                Main.itemTexture[ItemID.PossessedArmorBanner] = GetTexture("Sprites/PossessedArmorBanner");                Main.itemTexture[ItemID.BoneLeeBanner] = GetTexture("Sprites/BoneLeeBanner");                Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");                Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");                Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");                heart3Texture = GetTexture("Sprites/Heart3");                mana2Texture = GetTexture("Sprites/Mana2");                mana3Texture = GetTexture("Sprites/Mana3");                mana4Texture = GetTexture("Sprites/Mana4");                mana5Texture = GetTexture("Sprites/Mana5");                mana6Texture = GetTexture("Sprites/Mana6");                stamTexture = GetTexture("Sprites/Stamina");                BeamVTexture = GetTexture("Sprites/BeamVenoshock");                BeamStartTexture = GetTexture("Sprites/BeamStart");                BeamEndTexture = GetTexture("Sprites/BeamEnd");                wosTexture = GetTexture("Sprites/WallofSteel");                mechaHungryChainTexture = GetTexture("Sprites/MechaHungryChain");                tomeSlotBackgroundTexture = GetTexture("Sprites/TomeSlotBackground");                herbButtonTexture = GetTexture("Sprites/HerbButton");                shadowHotkey = RegisterHotKey("Shadow Teleport", "V");//implemented TODO: Fix implementation of hotkeys                sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");//implemented?                dashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");                quintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");                swimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?                wallSlideHotkey = RegisterHotKey("Toggle Wall Sliding", "G");                bubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");                accDrillModeHotkey = RegisterHotKey("Change Acceleration Drill Mode", "N");                mirrorModeHotkey = RegisterHotKey("Change Mirror Modes", "N");                tomeSlot = new TomeSlot();                tomeSlot.Activate();                tomeSlotUserInterface = new UserInterface();                tomeSlotUserInterface.SetState(tomeSlot);                herbItem = new Item();                herbology = new HerbologyBenchUI();                herbology.Activate();                herbologyUserInterface = new UserInterface();                herbologyUserInterface.SetState(herbology);            }
+        };        internal TomeSlot tomeSlot;        internal HerbologyBenchUI herbology;        public static bool subInterface = false;        public static int barStamina = 20;        public static int sX = Main.screenWidth - 800;        public static ExxoAvalonOrigins mod;        public ExxoAvalonOrigins()        {            mod = this;        }        public override void Load()        {            //Validate();            if (!Main.dedServ)            {                Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");                Main.tileTexture[TileID.CopperCoinPile] = GetTexture("Sprites/CopperCoin");                Main.tileTexture[TileID.SilverCoinPile] = GetTexture("Sprites/SilverCoin");                Main.tileTexture[TileID.GoldCoinPile] = GetTexture("Sprites/GoldCoin");                Main.tileTexture[TileID.PlatinumCoinPile] = GetTexture("Sprites/PlatinumCoin");                Main.itemTexture[ItemID.PaladinBanner] = GetTexture("Sprites/PaladinBanner");                Main.itemTexture[ItemID.PossessedArmorBanner] = GetTexture("Sprites/PossessedArmorBanner");                Main.itemTexture[ItemID.BoneLeeBanner] = GetTexture("Sprites/BoneLeeBanner");                Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");                Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");                Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");                heart3Texture = GetTexture("Sprites/Heart3");                mana2Texture = GetTexture("Sprites/Mana2");                mana3Texture = GetTexture("Sprites/Mana3");                mana4Texture = GetTexture("Sprites/Mana4");                mana5Texture = GetTexture("Sprites/Mana5");                mana6Texture = GetTexture("Sprites/Mana6");                stamTexture = GetTexture("Sprites/Stamina");                BeamVTexture = GetTexture("Sprites/BeamVenoshock");                BeamStartTexture = GetTexture("Sprites/BeamStart");                BeamEndTexture = GetTexture("Sprites/BeamEnd");                wosTexture = GetTexture("Sprites/WallofSteel");                mechaHungryChainTexture = GetTexture("Sprites/MechaHungryChain");                tomeSlotBackgroundTexture = GetTexture("Sprites/TomeSlotBackground");                herbButtonTexture = GetTexture("Sprites/HerbButton");                shadowHotkey = RegisterHotKey("Shadow Teleport", "V");//implemented TODO: Fix implementation of hotkeys                sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");//implemented?                dashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");                quintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");                swimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?                wallSlideHotkey = RegisterHotKey("Toggle Wall Sliding", "G");                bubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");                accDrillModeHotkey = RegisterHotKey("Change Acceleration Drill Mode", "N");                mirrorModeHotkey = RegisterHotKey("Change Mirror Modes", "N");                tomeSlot = new TomeSlot();                tomeSlot.Activate();                tomeSlotUserInterface = new UserInterface();                tomeSlotUserInterface.SetState(tomeSlot);                herbItem = new Item();                herbology = new HerbologyBenchUI();                herbology.Activate();                herbologyUserInterface = new UserInterface();                herbologyUserInterface.SetState(herbology);            }
             /*for (int i = 0; i < Main.maxTileSets; i++)            {                minPick[i] = 0;            }            minPick[211] = 200;            minPick[mod.TileType("ShroomiteOre")] = 205;            minPick[TileID.Ebonstone] = minPick[TileID.Crimstone] = minPick[TileID.Pearlstone] = minPick[mod.TileType("Chunkstone")] =            minPick[TileID.Obsidian] = minPick[mod.TileType("RhodiumOre")] = minPick[mod.TileType("OsmiumOre")] = 60;            minPick[TileID.Meteorite] = 50;            minPick[TileID.Demonite] = minPick[TileID.Crimtane] = minPick[mod.TileType("BacciliteOre")] = minPick[mod.TileType("Tourmaline")] = minPick[mod.TileType("Peridot")] = minPick[mod.TileType("Zircon")] = 55;            minPick[TileID.LihzahrdBrick] = minPick[TileID.LihzahrdAltar] = minPick[mod.TileType("TritanoriumOre")] = minPick[mod.TileType("PyroscoricOre")] = minPick[mod.TileType("SolariumOre")] = 210;            minPick[TileID.Hellstone] = 65;            minPick[TileID.Cobalt] = minPick[TileID.Palladium] = minPick[mod.TileType("DurataniumOre")] = 100;            minPick[mod.TileType("BlueLihzahrdBrick")] = 400;            minPick[mod.TileType("UnvolanditeOre")] = minPick[mod.TileType("VorazylcumOre")] = 250;            minPick[TileID.Mythril] = minPick[TileID.Orichalcum] = minPick[mod.TileType("NaquadahOre")] = 110;            minPick[TileID.Adamantite] = minPick[TileID.Titanium] = minPick[mod.TileType("TroxiniumOre")] = 150;            minPick[mod.TileType("SolariumShrine")] = 9999;            minPick[mod.TileType("CaesiumOre")] = minPick[mod.TileType("Opal")] = 200;            minPick[mod.TileType("OblivionOre")] = minPick[mod.TileType("HydrolythOre")] = 300;            minPick[mod.TileType("FeroziumOre")] = 180;*/
             if (devMode)                Debug.Debug.DebugHooks();            Hooks.Hooks.AddHooks();            Main.chTitle = true;            //AddAvalonAlts();        }        public override void Unload()        {            base.Unload();            Main.chTitle = true;        }        public ModPacket GetPacket(AvalonMessageID type, int capacity)
         {
@@ -185,40 +185,36 @@
             float ickyStrength = ExxoAvalonOriginsWorld.ickyTiles / 800f;
             ickyStrength = Math.Min(ickyStrength, 1f);
 
-            int sunR = backgroundColor.R;
-            int sunG = backgroundColor.G;
-            int sunB = backgroundColor.B;
-            // Remove some green and more red.
-            sunR -= (int)(100f * ickyStrength * (backgroundColor.R / 255f));
-            sunG -= (int)(50f * ickyStrength * (backgroundColor.G / 255f));
-            sunB -= (int)(80f * ickyStrength * (backgroundColor.G / 255f));
+            int sunR = Main.bgColor.R;
+            int sunG = Main.bgColor.G;
+            int sunB = Main.bgColor.B;
+            sunR -= (int)(100f * ickyStrength * (Main.bgColor.R / 255f));
+            sunG -= (int)(50f * ickyStrength * (Main.bgColor.G / 255f));
+            sunB -= (int)(80f * ickyStrength * (Main.bgColor.G / 255f));
             sunR = Utils.Clamp(sunR, 15, 255);
             sunG = Utils.Clamp(sunG, 15, 255);
             sunB = Utils.Clamp(sunB, 15, 255);
-            backgroundColor.R = (byte)sunR;
-            backgroundColor.G = (byte)sunG;
-            backgroundColor.B = (byte)sunB;
-
-            //backgroundColor.R = (byte)(0.8f * ickyStrength + backgroundColor.R * (1f - ickyStrength));
-            //backgroundColor.G = (byte)(0.75f * ickyStrength + backgroundColor.G * (1f - ickyStrength));
-            //backgroundColor.B = (byte)(1.1f * ickyStrength + backgroundColor.B * (1f - ickyStrength));
+            Main.bgColor.R = (byte)sunR;
+            Main.bgColor.G = (byte)sunG;
+            Main.bgColor.B = (byte)sunB;
         }        public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
-            if (Main.gameMenu || priority > MusicPriority.Event)
-                return;
+            Mod musicMod = ModLoader.GetMod("AvalonMusic");
+            if (Main.musicVolume == 0f || Main.myPlayer == -1 || Main.gameMenu) return;
             Terraria.Player player = Main.LocalPlayer;
-            if (!player.active)
-                return;
+            if (!player.active) return;
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
             {
                 if (Main.player[Main.myPlayer].position.Y > Main.worldSurface * 16.0 + (Main.screenHeight / 2))
                 {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/UndergroundContagion");
+                    if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/UndergroundContagion");
+                    else music = MusicID.UndergroundCrimson;
                     priority = MusicPriority.BiomeHigh;
                 }
                 else
                 {
-                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/Contagion");
+                    if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Contagion");
+                    else music = MusicID.Crimson;
                     priority = MusicPriority.BiomeHigh;
                 }
             }
@@ -284,17 +280,20 @@
             }
             if (bactprime)
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/BacteriumPrime");
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/BacteriumPrime");
+                else music = MusicID.Boss3;
                 priority = MusicPriority.BossLow;
             }
             if (desertbeak)
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/DesertBeak");
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/DesertBeak");
+                else music = MusicID.Boss4;
                 priority = MusicPriority.BossLow;
             }
             if (phantasm)
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/Phantasm");
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Phantasm");
+                else music = MusicID.Boss3;
                 priority = MusicPriority.BossLow;
             }
             if (wallofsteel)
@@ -304,7 +303,8 @@
             }
             if (armageddon)
             {
-                music = GetSoundSlot(SoundType.Music, "Sounds/Music/ArmageddonSlime");
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/ArmageddonSlime");
+                else music = MusicID.Boss5;
                 priority = MusicPriority.BossLow;
             }
         }            public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)        {            var MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));            if (MouseTextIndex != -1)            {                layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Tome Slot",                    delegate                    {                        //if (!Main.mouseItem.IsAir && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome) Main.EquipPage = 2;                        tomeSlot.DrawTomes(Main.spriteBatch);                        return true;                    },                    InterfaceScaleType.UI)                );                layers.Insert(MouseTextIndex + 1, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Herbology Bench",                    delegate                    {

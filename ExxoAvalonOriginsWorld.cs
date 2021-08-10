@@ -849,7 +849,35 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 list.RemoveAt(index);
                 list.RemoveAt(index2);
             }
-        }        private static void GenerateContagion(GenerationProgress progress)
+        }        public static void AddPlants()
+        {
+            for (int i = 0; i < Main.maxTilesX; i++)
+            {
+                for (int j = 1; j < Main.maxTilesY; j++)
+                {
+                    if (Main.tile[i, j].type == (ushort)ModContent.TileType<Ickgrass>() && Main.tile[i, j].nactive() && Main.tile[i, j].slope() == 0 && Main.rand.Next(3) == 0)
+                    {
+                        if (!Main.tile[i, j - 1].active())
+                        {
+                            //WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ContagionShortGrass>(), true, false, style: Main.rand.Next(0, 8));
+                            Main.tile[i, j - 1].type = (ushort)ModContent.TileType<ContagionShortGrass>();
+                            Main.tile[i, j - 1].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                        }
+                    }
+                    //else if (Main.tile[i, j].type == 23 && Main.tile[i, j].nactive())
+                    //{
+                    //    if (!Main.tile[i, j - 1].active())
+                    //    {
+                    //        WorldGen.PlaceTile(i, j - 1, 24, true, false, -1, 0);
+                    //    }
+                    //}
+                    //else if (Main.tile[i, j].type == 199 && Main.tile[i, j].nactive() && !Main.tile[i, j - 1].active())
+                    //{
+                    //    WorldGen.PlaceTile(i, j - 1, 201, true, false, -1, 0);
+                    //}
+                }
+            }
+        }        private static void GenerateContagion(GenerationProgress progress)
         {
             GenerateHardmodeContagion();
         }        public override void NetSend(BinaryWriter writer)
@@ -1292,6 +1320,19 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
+                        if (!Main.tile[num5, num9].active() && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        {
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
+                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                            if (Main.tile[num5, num9].active())
+                            {
+                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                            }
+                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }
                         bool flag2 = false;
                         for (int m = num7; m < num8; m++)
                         {
@@ -1667,6 +1708,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             }
                         }
                     }                }));            }            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");            if (iceWalls != -1)            {                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Ice Shrines", delegate (GenerationProgress progress)                {                    for (var num721 = 0; num721 < 3; num721++)                    {                        var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);                        var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);                        while (Main.tile[x10, y6].type == TileID.LihzahrdBrick) x10--;                        IceShrine2(x10, y6);                    }                }));            }
+
+            var weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");            if (weeds != -1)            {                tasks.Insert(weeds + 1, new PassLegacy("Contagion weeds", delegate (GenerationProgress progress)                {                    AddPlants();                }));            }
 
             var impvines = tasks.FindIndex(genpass => genpass.Name == "Vines");            if (impvines != -1)            {                tasks.Insert(impvines + 1, new PassLegacy("Impvines", delegate (GenerationProgress progress)                {
                     for (int num586 = 0; num586 < Main.maxTilesX; num586++)
