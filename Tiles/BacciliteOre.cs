@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileShine[Type] = 1150;
             Main.tileSpelunker[Type] = true;
 			Main.tileBlockLight[Type] = true;
-			Main.tileValue[Type] = 315;
+			Main.tileValue[Type] = 320;
 			Main.tileLighted[Type] = true;
 			drop = ModContent.ItemType<Items.BacciliteOre>();
             soundType = SoundID.Tink;

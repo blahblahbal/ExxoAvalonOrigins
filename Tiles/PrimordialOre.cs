@@ -21,6 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
+            Main.tileValue[Type] = 815;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = 1;

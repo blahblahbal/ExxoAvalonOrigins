@@ -21,6 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileMergeDirt[Type] = true;
 			Main.tileShine[Type] = 1150;
             Main.tileSpelunker[Type] = true;
+            Main.tileValue[Type] = 215;
             Main.tileBlockLight[Type] = true;
 			drop = ModContent.ItemType<Items.BronzeOre>();
             soundType = SoundID.Tink;

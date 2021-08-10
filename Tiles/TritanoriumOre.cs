@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 
 namespace ExxoAvalonOrigins.Tiles{	public class TritanoriumOre : ModTile	{		public override void SetDefaults()		{			AddMapEntry(Color.DarkGreen, LanguageManager.Instance.GetText("Tritanorium Ore"));			Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;            Main.tileSpelunker[Type] = true;
-            Main.tileLighted[Type] = true;            drop = mod.ItemType("TritanoriumOre");            soundType = SoundID.Tink;            soundStyle = 1;            minPick = 210;            dustType = 1;        }        public override bool CanExplode(int i, int j)
+            Main.tileLighted[Type] = true;            Main.tileValue[Type] = 830;            drop = mod.ItemType("TritanoriumOre");            soundType = SoundID.Tink;            soundStyle = 1;            minPick = 210;            dustType = 1;        }        public override bool CanExplode(int i, int j)
         {
             return false;
         }

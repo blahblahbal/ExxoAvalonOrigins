@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneSnow && !ExxoAvalonOriginsGlobalNPC.savedIceman && ExxoAvalonOrigins.superHardmode ? 0.0526f : 0f;
+            return spawnInfo.player.ZoneSnow && spawnInfo.player.ZoneRockLayerHeight && !ExxoAvalonOriginsGlobalNPC.savedIceman && ExxoAvalonOrigins.superHardmode ? 0.0526f : 0f;
         }
         public override bool CanChat()
         {

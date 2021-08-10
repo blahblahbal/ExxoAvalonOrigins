@@ -58,6 +58,15 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 ExxoAvalonOriginsGlobalNPC.boogerBoss = npc.whoAmI;
             }
+            if (Main.player[npc.target].dead)
+            {
+                npc.velocity.Y = npc.velocity.Y - 0.04f;
+                if (npc.timeLeft > 10)
+                {
+                    npc.timeLeft = 10;
+                    return;
+                }
+            }
             if (Main.netMode != NetmodeID.MultiplayerClient && npc.localAI[0] == 0f)
             {
                 npc.localAI[0] = 1f;
