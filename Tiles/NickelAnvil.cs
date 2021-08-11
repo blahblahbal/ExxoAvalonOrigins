@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.placementPreview = true;
-            dustType = 209;
+            dustType = ModContent.DustType<Dusts.NickelDust>();
             adjTiles = new int[] { TileID.Anvils };
         }
 
