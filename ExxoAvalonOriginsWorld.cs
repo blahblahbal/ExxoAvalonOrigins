@@ -1515,7 +1515,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            theBeak = ModContent.ItemType<TheBeak>();            blbTimer = 0;            rhodium = true;            rhodiumBar = ModContent.TileType<RhodiumOre>();            shmOreTier1 = -1;            shmOreTier2 = -1;            contaigon = contaigonSet;            contaigonSet = false;            totalDark2 = 0;            nilShrineCount = 0;            hallowedAltarCount = 0;            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOrigins.nilMode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;            int rhod = WorldGen.genRand.Next(3);            if (rhod == 0)            {                rhodium = false;                rhodiumBar = ModContent.TileType<Tiles.OsmiumOre>();            }            else if (rhod == 1)            {                rhodium = false;                rhodiumBar = ModContent.TileType<Tiles.IridiumOre>();            }            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", delegate(GenerationProgress progress)                {                    progress.Message = "Setting up Avalonian World Gen";                    if (!contaigon && WorldGen.WorldGenParam_Evil == -1)                    {                        contaigon = WorldGen.genRand.Next(3) == 0;                        if (contaigon) WorldGen.crimson = false;                    }                    if (WorldGen.WorldGenParam_Evil == 2)                    {                        contaigon = true;                        WorldGen.crimson = false;                    }                    int phmOreTier1 = WorldGen.genRand.Next(3);
                     int phmOreTier2 = WorldGen.genRand.Next(3);
                     int phmOreTier3 = WorldGen.genRand.Next(3);
-                    int phmOreTier4 = WorldGen.genRand.Next(3);                    if (phmOreTier1 == 0)
+                    int phmOreTier4 = WorldGen.genRand.Next(3);                    // Set altenative prehard ores                    if (phmOreTier1 == 0)
                     {
                         WorldGen.CopperTierOre = (ushort)ModContent.TileType<Tiles.BronzeOre>();
                         WorldGen.copperBar = ModContent.ItemType<Items.BronzeBar>();
@@ -1536,6 +1536,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         WorldGen.goldBar = ModContent.ItemType<Items.BismuthBar>();
                     }                }));            }            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");            if (shinies != -1)            {                tasks.RemoveAt(shinies);                tasks.Insert(shinies, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Signalling Avalon Hooks";                    generatingBaccilite = contaigon; //Signals ExxoAvalonOrigins.BacciliteReplacement() to replace a demonite ore type with baccilite.                }));                tasks.Insert(shinies + 1, new PassLegacy("Avalon PHM Ore Gen", delegate (GenerationProgress progress)                {
                     progress.Message = Lang.gen[16].Value;
+                    // prehardmode ores
                     for (int num559 = 0; num559 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 6E-05); num559++)
                     {
                         WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, (int)WorldGen.worldSurfaceHigh), WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6), WorldGen.CopperTierOre);
@@ -1580,6 +1581,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(0, (int)WorldGen.worldSurfaceLow - 20), WorldGen.genRand.Next(4, 8), WorldGen.genRand.Next(4, 8), WorldGen.GoldTierOre);
                     }
+                    // Evil ores
                     if (WorldGen.crimson)
                     {
                         for (int num570 = 0; num570 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num570++)
@@ -1694,7 +1696,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         int num383 = 0;
                         while (!flag27)
                         {
-                            if (AddManaCrystal(WorldGen.genRand.Next(1, Main.maxTilesX), WorldGen.genRand.Next((int)(WorldGen.worldSurfaceLow + 20.0), Main.maxTilesY - 300)))
+                            if (AddManaCrystal(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)(WorldGen.worldSurfaceLow + 20.0), Main.maxTilesY - 300)))
                             {
                                 flag27 = true;
                             }
