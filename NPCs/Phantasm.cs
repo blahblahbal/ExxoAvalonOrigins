@@ -372,20 +372,27 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 ExxoAvalonOriginsWorld.downedPhantasm = true;
             }
-            int drop = Main.rand.Next(3);
-            if (drop == 0)
+            if (Main.expertMode)
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantomKnives>(), 1, false, -1);
+                npc.DropBossBags();
             }
-            if (drop == 1)
+            else
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.EtherealHeart>(), 1, false, -1);
+                int drop = Main.rand.Next(3);
+                if (drop == 0)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantomKnives>(), 1, false, -1);
+                }
+                if (drop == 1)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.EtherealHeart>(), 1, false, -1);
+                }
+                if (drop == 2)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.VampireTeeth>(), 1, false, -1);
+                }
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.GhostintheMachine>(), Main.rand.Next(3, 6), false, 0);
             }
-            if (drop == 2)
-            {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.VampireTeeth>(), 1, false, -1);
-            }
-            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.GhostintheMachine>(), Main.rand.Next(3, 6), false, 0);
             if (Main.rand.Next(10) == 0)
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantasmTrophy>(), 1, false, 0);

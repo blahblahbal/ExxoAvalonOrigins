@@ -10,7 +10,8 @@ namespace ExxoAvalonOrigins.Dusts
 	{
 		public override bool Update(Dust dust)
 		{
-			Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), 0.6f, 0.6f, 0f);
+			var lightFade = (dust.scale > 1 ? 1 : dust.scale);
+			Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), (0.15f * lightFade), (0.15f * lightFade), 0f);
 			return true;
 		}
         //public override Color GetAlpha(Color newColor)

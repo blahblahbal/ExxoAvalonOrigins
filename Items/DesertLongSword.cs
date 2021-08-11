@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Desert Long Sword");
+			DisplayName.SetDefault("Desert Longsword");
 		}
 
 		public override void SetDefaults()

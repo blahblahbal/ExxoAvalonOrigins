@@ -73,6 +73,15 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.TargetClosest(true);
             }
+            if (Main.player[npc.target].dead)
+            {
+                npc.velocity.Y = npc.velocity.Y - 0.04f;
+                if (npc.timeLeft > 10)
+                {
+                    npc.timeLeft = 10;
+                    return;
+                }
+            }
             if (npc.ai[0] < 300f)
             {
                 var arg_3FD3A_0 = Main.player[npc.target].velocity;

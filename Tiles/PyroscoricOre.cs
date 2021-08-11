@@ -22,6 +22,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileMergeDirt[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
+            Main.tileValue[Type] = 820;
             drop = mod.ItemType("PyroscoricOre");
             soundType = SoundID.Tink;
             soundStyle = 1;

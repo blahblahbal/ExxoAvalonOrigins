@@ -43,6 +43,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             potionType = ItemID.GreaterHealingPotion;
         }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 255);
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);
@@ -504,12 +508,21 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.DarkStarHeart>());
                 ExxoAvalonOriginsWorld.InitiateSuperHardmode();
             }
+            int drop = Main.rand.Next(4);
+            if (drop == 0)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.FleshBoiler>(), 1, false, -1, false);
+            }
+            if (drop == 1)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.MagicCleaver>(), 1, false, -1, false);
+            }
             if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int num22 = (int)(npc.position.X + (float)(npc.width / 2)) / 16;
-                int num23 = (int)(npc.position.Y + (float)(npc.height / 2)) / 16;
+                int num22 = (int)(npc.position.X + (npc.width / 2)) / 16;
+                int num23 = (int)(npc.position.Y + (npc.height / 2)) / 16;
                 int num24 = npc.width / 4 / 16 + 1;
                 for (int k = num22 - num24; k <= num22 + num24; k++)
                 {

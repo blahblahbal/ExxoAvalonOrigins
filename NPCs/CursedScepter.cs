@@ -58,7 +58,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return Main.hardMode && spawnInfo.player.ZoneDungeon ? 0.6f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return Main.hardMode && spawnInfo.player.ZoneDungeon ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
         public override void NPCLoot()
         {

@@ -2,9 +2,9 @@
     public class ContagionGrassWall : ModWall
     {
         public override void SetDefaults()
-        {            AddMapEntry(new Color(82, 91, 69));
+        {            AddMapEntry(new Color(106, 116, 59));
             soundType = SoundID.Grass;
             soundStyle = 1;
-            WallID.Sets.Conversion.Grass[base.Type] = true;
+            WallID.Sets.Conversion.Grass[Type] = true;
         }
     }}

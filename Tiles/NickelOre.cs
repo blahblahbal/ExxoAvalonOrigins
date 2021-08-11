@@ -20,12 +20,13 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
 			Main.tileShine[Type] = 1150;
+            Main.tileValue[Type] = 235;
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;
             drop = ModContent.ItemType<Items.NickelOre>();
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = 37;
+			dustType = ModContent.DustType<Dusts.NickelDust>();
 		}
 	}
 }
