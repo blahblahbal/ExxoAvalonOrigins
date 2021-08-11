@@ -2666,11 +2666,12 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             List<Vector2> points = new List<Vector2>();
             List<Vector2> pointsToGoTo = new List<Vector2>();
             List<double> angles = new List<double>();
-            List<Vector2> outerCircles = new List<Vector2>();
-            List<Vector2> secondaryCircles = new List<Vector2>();
+            List<Vector2> outerCircles = new List<Vector2>(); // the circles at the ends of the first tunnels
+            List<Vector2> secondaryCircles = new List<Vector2>(); // the circles at the ends of the outer circles
             List<Vector2> secondCircleStartPoints = new List<Vector2>();
             List<Vector2> secondCircleEndpoints = new List<Vector2>();
             List<double> secondCirclePointsAroundCircle = new List<double>();
+            List<Vector2> exclusions = new List<Vector2>();
             //new List<Vector2>();
             #region make the main circle
             for (int k = i - radius; k <= i + radius; k++)
@@ -2696,7 +2697,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 }
             }
             #endregion
-            int radiusModifier = radius - 5;
+            int radiusModifier = radius - 7; // makes the tunnels go deeper into the main circle (more subtracted means further in)
             Vector2 posToPlaceAnotherCircle = Vector2.Zero;
             #region find the points for making the tunnels to the outer circles
             for (int m = 0; m < 6; m++)
@@ -2934,117 +2935,143 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, 19f, (ushort)ModContent.TileType<Chunkstone>());
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, 13f, 65535);
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, 7f, (ushort)ModContent.TileType<Chunkstone>());
-                    if (secondaryCircles.Count != 0)
+                    exclusions.Add(outerCircles[q]);
+                }
+                if (secondaryCircles.Count != 0)
+                {
+                    for (int z = 0; z < secondaryCircles.Count; z++)
                     {
-                        for (int z = 0; z < secondaryCircles.Count; z++)
+                        if (secondaryCircles[z].Y < vector.Y) continue;
+                        int outerTunnelsRadiusMod = rad2;
+                        double pointsAroundCircle2 = (WorldGen.genRand.Next(0, 62831852) / 10000000);
+                        Vector2 item = new Vector2(secondaryCircles[z].X + ((int)Math.Round(outerTunnelsRadiusMod * Math.Cos(pointsAroundCircle2))), secondaryCircles[z].Y + ((int)Math.Round(outerTunnelsRadiusMod * Math.Sin(pointsAroundCircle2))));
+                        for (int m = 0; m < 6; m++)
                         {
-                            int outerTunnelsRadiusMod = rad2;
-                            double pointsAroundCircle2 = (WorldGen.genRand.Next(0, 62831852) / 10000000);
-                            Vector2 item = new Vector2(secondaryCircles[z].X + ((int)Math.Round(outerTunnelsRadiusMod * Math.Cos(pointsAroundCircle2))), secondaryCircles[z].Y + ((int)Math.Round(outerTunnelsRadiusMod * Math.Sin(pointsAroundCircle2))));
-                            for (int m = 0; m < 6; m++)
+                            Vector2 item2 = secondaryCircles[z];
+                            if (item.X > vector.X)
                             {
-                                Vector2 item2 = secondaryCircles[z];
-                                if (item.X > vector.X)
-                                {
-                                    if (item.X > vector.X + rad2 / 2)
-                                    {
-                                        if (item.Y > vector.Y)
-                                        {
-                                            if (item.Y > vector.Y + rad2 / 2)
-                                            {
-                                                item2 = new Vector2(item.X + 15f, item.Y + 15f);
-                                            }
-                                            else
-                                            {
-                                                item2 = new Vector2(item.X + 15f, item.Y + 9f);
-                                            }
-                                        }
-                                        else if (item.Y < vector.Y - rad2 / 2)
-                                        {
-                                            item2 = new Vector2(item.X + 15f, item.Y - 15f);
-                                        }
-                                        else
-                                        {
-                                            item2 = new Vector2(item.X + 15f, item.Y - 9f);
-                                        }
-                                    }
-                                    else if (item.Y > vector.Y)
-                                    {
-                                        if (item.Y > vector.Y + rad2 / 2)
-                                        {
-                                            item2 = new Vector2(item.X + 9f, item.Y + 15f);
-                                        }
-                                        else
-                                        {
-                                            item2 = new Vector2(item.X + 9f, item.Y + 9f);
-                                        }
-                                    }
-                                    else if (item.Y < vector.Y - rad2 / 2)
-                                    {
-                                        item2 = new Vector2(item.X + 9f, item.Y - 15f);
-                                    }
-                                    else
-                                    {
-                                        item2 = new Vector2(item.X + 9f, item.Y - 9f);
-                                    }
-                                }
-                                else if (item.X < vector.X - rad2 / 2)
+                                if (item.X > vector.X + rad2 / 2)
                                 {
                                     if (item.Y > vector.Y)
                                     {
                                         if (item.Y > vector.Y + rad2 / 2)
                                         {
-                                            item2 = new Vector2(item.X - 15f, item.Y + 15f);
+                                            item2 = new Vector2(item.X + 15f, item.Y + 15f);
                                         }
                                         else
                                         {
-                                            item2 = new Vector2(item.X - 15f, item.Y + 9f);
+                                            item2 = new Vector2(item.X + 15f, item.Y + 7f);
                                         }
                                     }
                                     else if (item.Y < vector.Y - rad2 / 2)
                                     {
-                                        item2 = new Vector2(item.X - 15f, item.Y - 15f);
+                                        item2 = new Vector2(item.X + 15f, item.Y - 15f);
                                     }
                                     else
                                     {
-                                        item2 = new Vector2(item.X - 15f, item.Y - 9f);
+                                        item2 = new Vector2(item.X + 15f, item.Y - 7f);
                                     }
                                 }
                                 else if (item.Y > vector.Y)
                                 {
                                     if (item.Y > vector.Y + rad2 / 2)
                                     {
-                                        item2 = new Vector2(item.X - 9f, item.Y + 15f);
+                                        item2 = new Vector2(item.X + 7f, item.Y + 15f);
                                     }
                                     else
                                     {
-                                        item2 = new Vector2(item.X - 9f, item.Y + 9f);
+                                        item2 = new Vector2(item.X + 7f, item.Y + 7f);
                                     }
                                 }
                                 else if (item.Y < vector.Y - rad2 / 2)
                                 {
-                                    item2 = new Vector2(item.X - 9f, item.Y - 15f);
+                                    item2 = new Vector2(item.X + 7f, item.Y - 15f);
                                 }
                                 else
                                 {
-                                    item2 = new Vector2(item.X - 9f, item.Y - 9f);
+                                    item2 = new Vector2(item.X + 7f, item.Y - 7f);
                                 }
-                                secondCircleStartPoints.Add(item);
-                                secondCircleEndpoints.Add(item2);
-                                secondCirclePointsAroundCircle.Add(pointsAroundCircle2);
                             }
-                            for (int n = 0; n < 6; n++)
+                            else if (item.X < vector.X - rad2 / 2)
                             {
-                                BoreTunnel2((int)secondCircleStartPoints[n].X, (int)secondCircleStartPoints[n].Y, (int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 6f, (ushort)ModContent.TileType<Chunkstone>());
-                                BoreTunnel2((int)secondCircleStartPoints[n].X, (int)secondCircleStartPoints[n].Y, (int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 4f, 65535);
-                                MakeCircle((int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 8f, (ushort)ModContent.TileType<Chunkstone>());
-                                MakeCircle((int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 4f, 65535);
+                                if (item.Y > vector.Y)
+                                {
+                                    if (item.Y > vector.Y + rad2 / 2)
+                                    {
+                                        item2 = new Vector2(item.X - 15f, item.Y + 15f);
+                                    }
+                                    else
+                                    {
+                                        item2 = new Vector2(item.X - 15f, item.Y + 7f);
+                                    }
+                                }
+                                else if (item.Y < vector.Y - rad2 / 2)
+                                {
+                                    item2 = new Vector2(item.X - 15f, item.Y - 15f);
+                                }
+                                else
+                                {
+                                    item2 = new Vector2(item.X - 15f, item.Y - 7f);
+                                }
                             }
+                            else if (item.Y > vector.Y)
+                            {
+                                if (item.Y > vector.Y + rad2 / 2)
+                                {
+                                    item2 = new Vector2(item.X - 7f, item.Y + 15f);
+                                }
+                                else
+                                {
+                                    item2 = new Vector2(item.X - 7f, item.Y + 7f);
+                                }
+                            }
+                            else if (item.Y < vector.Y - rad2 / 2)
+                            {
+                                item2 = new Vector2(item.X - 7f, item.Y - 15f);
+                            }
+                            else
+                            {
+                                item2 = new Vector2(item.X - 7f, item.Y - 7f);
+                            }
+                            secondCircleStartPoints.Add(item);
+                            secondCircleEndpoints.Add(item2);
+                            secondCirclePointsAroundCircle.Add(pointsAroundCircle2);
                         }
                     }
                 }
             }
+            
             #endregion
+            
+            
+            int num8 = radius - 7;
+            for (int num9 = 0; num9 < 20; num9++)
+            {
+                double d = (double)(WorldGen.genRand.Next(0, 62831852) / 10000000);
+                Vector2 vector2 = new Vector2(vector.X + (float)((int)Math.Round((double)num8 * Math.Cos(d))), vector.Y + (float)((int)Math.Round((double)num8 * Math.Sin(d))));
+                if (exclusions.Contains(vector2)) continue;
+                MakeCircle((int)vector2.X, (int)vector2.Y, 4f, (ushort)ModContent.TileType<Chunkstone>());
+            }
+            // make tunnels going outwards from the main circle
+            for (int n = 0; n < 6; n++)
+            {
+                if (points[n].Y < vector.Y) continue;
+                BoreTunnel2((int)points[n].X, (int)points[n].Y, (int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 8f, (ushort)ModContent.TileType<Chunkstone>());
+                BoreTunnel2((int)points[n].X, (int)points[n].Y, (int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 3f, 65535);
+                if (exclusions.Contains(pointsToGoTo[n])) continue;
+                MakeCircle((int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 11f, (ushort)ModContent.TileType<Chunkstone>());
+                MakeCircle((int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 6f, 65535);
+            }
+            // make tunnels going outwards from the outer circles
+            for (int n = 0; n < secondCircleStartPoints.Count; n++)
+            {
+                BoreTunnel2((int)secondCircleStartPoints[n].X, (int)secondCircleStartPoints[n].Y, (int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 4f, (ushort)ModContent.TileType<Chunkstone>());
+                BoreTunnel2((int)secondCircleStartPoints[n].X, (int)secondCircleStartPoints[n].Y, (int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 2f, 65535);
+                MakeCircle((int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 2f, 65535);
+
+                MakeCircle((int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 4f, (ushort)ModContent.TileType<Chunkstone>());
+                
+            }
             for (int num5 = i - radius; num5 <= i + radius; num5++)
             {
                 for (int num6 = j - radius; num6 <= j + radius; num6++)
@@ -3056,38 +3083,27 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     }
                 }
             }
-            
-            int num8 = radius - 7;
-            for (int num9 = 0; num9 < 20; num9++)
-            {
-                double d = (double)(WorldGen.genRand.Next(0, 62831852) / 10000000);
-                Vector2 vector2 = new Vector2(vector.X + (float)((int)Math.Round((double)num8 * Math.Cos(d))), vector.Y + (float)((int)Math.Round((double)num8 * Math.Sin(d))));
-                if (points.Contains(vector2)) continue;
-                MakeCircle((int)vector2.X, (int)vector2.Y, 4f, (ushort)ModContent.TileType<Chunkstone>());
-            }
-            // make tunnels going outwards from the main circle
-            for (int n = 0; n < 6; n++)
-            {
-                BoreTunnel2((int)points[n].X, (int)points[n].Y, (int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 8f, (ushort)ModContent.TileType<Chunkstone>());
-                BoreTunnel2((int)points[n].X, (int)points[n].Y, (int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 3f, 65535);
-                MakeCircle((int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 11f, (ushort)ModContent.TileType<Chunkstone>());
-                MakeCircle((int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 6f, 65535);
-            }
-            for (int k = i - radius; k <= i + radius; k++)
-            {
-                for (int l = j - radius; l <= j + radius; l++)
-                {
-                    float dist = Vector2.Distance(new Vector2(k, l), new Vector2(i, j));
-                    if (dist <= radius && dist >= (radius - 29))
-                    {
-                        Main.tile[k, l].active(false);
-                    }
-                }
-            }
+            //for (int k = i - radius; k <= i + radius; k++)
+            //{
+            //    for (int l = j - radius; l <= j + radius; l++)
+            //    {
+            //        float dist = Vector2.Distance(new Vector2(k, l), new Vector2(i, j));
+            //        if (dist <= radius && dist >= (radius - 29))
+            //        {
+            //            Main.tile[k, l].active(false);
+            //        }
+            //        if (((dist <= radius && dist >= radius - 7) || (dist <= (float)(radius - 22) && dist >= (float)(radius - 29))) && Main.tile[k, l].type != (ushort)ModContent.TileType<SnotOrb>())
+            //        {
+            //            Main.tile[k, l].active(true);
+            //            Main.tile[k, l].halfBrick(false);
+            //            Main.tile[k, l].slope(0);
+            //            Main.tile[k, l].type = (ushort)ModContent.TileType<Chunkstone>();
+            //        }
+            //    }
+            //}
             for (int num10 = 0; num10 < 6; num10++)
             {
-                //if (num10 < outerCircles.Count) { }
-                //else continue;
+                if (exclusions.Contains(pointsToGoTo[num10])) continue;
                 AddSnotOrb((int)pointsToGoTo[num10].X, (int)pointsToGoTo[num10].Y);
             }            BoreTunnel2(i, j - radius - 30, i, j - radius + 7, 10, ushort.MaxValue);            for (int x = i - 17; x < i + 17; x++)            {                for (int y = j - radius - 30; y < j - radius + 8; y++)                {                    if (x >= i + 12 || x <= i - 12)                    {                        Main.tile[x, y].active(true);                        Main.tile[x, y].halfBrick(false);                        Main.tile[x, y].slope(0);                        Main.tile[x, y].type = (ushort)ModContent.TileType<Chunkstone>();                    }                    if (x <= i + 12 && x >= i - 12)                    {                        Main.tile[x, y].wall = (ushort)ModContent.WallType<Walls.ChunkstoneWall>();                        Main.tile[x, y].active(false);                    }                }            }            for (int x = i - 17; x < i + 17; x++)            {                for (int y = j - radius - 30; y < j - radius + 8; y++)                {                    if (x == i + 12 || x == i - 12)                    {                        int rn = WorldGen.genRand.Next(13, 17);                        if (y % rn == 0)                        {                            MakeCircle(x, y, 3, (ushort)ModContent.TileType<Chunkstone>());                        }                    }                }            }        }        public void BoreTunnel2(int x0, int y0, int x1, int y1, float r, ushort type)        {            bool flag = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);            if (flag)            {                Swap<int>(ref x0, ref y0);                Swap<int>(ref x1, ref y1);            }            if (x0 > x1)            {                Swap<int>(ref x0, ref x1);                Swap<int>(ref y0, ref y1);            }            int num = x1 - x0;            int num2 = Math.Abs(y1 - y0);            int num3 = num / 2;            int num4 = (y0 < y1) ? 1 : -1;            int num5 = y0;            for (int i = x0; i <= x1; i++)            {                if (flag)                {                    MakeCircle(num5, i, r, type);                }                else                {                    MakeCircle(i, num5, r, type);                }                num3 -= num2;                if (num3 < 0)                {                    num5 += num4;                    num3 += num;                }            }        }                public void MakeCircle(int x, int y, float r, ushort type)        {            int num = (int)((float)x - r);            int num2 = (int)((float)y - r);            int num3 = (int)((float)x + r);            int num4 = (int)((float)y + r);            for (int i = num; i < num3 + 1; i++)            {                for (int j = num2; j < num4 + 1; j++)                {                    if (Vector2.Distance(new Vector2((float)i, (float)j), new Vector2((float)x, (float)y)) <= r && Main.tile[i, j].type != TileID.ShadowOrbs)                    {                        if (type == 65535)                        {                            Main.tile[i, j].active(false);                        }                        else                        {                            Main.tile[i, j].active(true);                            Main.tile[i, j].type = type;                            Main.tile[i, j].wall = (ushort) ModContent.WallType<Walls.ChunkstoneWall>();                            WorldGen.SquareTileFrame(i, j, true);                        }                    }                }            }        }        private static void Swap<T>(ref T lhs, ref T rhs)        {            T t = lhs;            lhs = rhs;            rhs = t;        }        public static void AddSnotOrb(int x, int y, int style = 0)
         {
