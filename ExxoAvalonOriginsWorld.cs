@@ -2900,7 +2900,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             {
                 for (int z = 0; z < secondaryCircles.Count; z++)
                 {
-                    if (secondaryCircles[z].Y < center.Y) continue;
+                    if (secondaryCircles[z].Y < center.Y - 10) continue;
                     int outerTunnelsRadiusMod = rad2 - 6;
                     double pointsAroundCircle2 = (WorldGen.genRand.Next(0, 62831852) / 10000000);
                     Vector2 randPointAroundCircle = new Vector2(outerCircles[z].X + ((int)Math.Round(outerTunnelsRadiusMod * Math.Cos(pointsAroundCircle2))), outerCircles[z].Y + ((int)Math.Round(outerTunnelsRadiusMod * Math.Sin(pointsAroundCircle2))));
@@ -3005,7 +3005,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             // make tunnels going outwards from the main circle
             for (int n = 0; n < points.Count; n++)
             {
-                if (points[n].Y < center.Y) continue;
+                if (points[n].Y < center.Y - 10) continue;
                 BoreTunnel2((int)points[n].X, (int)points[n].Y, (int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 8f, (ushort)ModContent.TileType<Chunkstone>());
                 BoreTunnel2((int)points[n].X, (int)points[n].Y, (int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 3f, 65535);
                 MakeEndingCircle((int)pointsToGoTo[n].X, (int)pointsToGoTo[n].Y, 11f, (ushort)ModContent.TileType<Chunkstone>());
@@ -3015,7 +3015,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             {
                 for (int q = 0; q < outerCircles.Count; q++)
                 {
-                    if (outerCircles[q].Y < center.Y) continue;
+                    if (outerCircles[q].Y < center.Y - 10) continue;
                     MakeEndingCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, rad2, (ushort)ModContent.TileType<Chunkstone>());
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, rad2 - 6, 65535);
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, rad2 - 13, (ushort)ModContent.TileType<Chunkstone>());
@@ -3046,7 +3046,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             // fill main tunnels with air
             for (int n = 0; n < points.Count; n++)
             {
-                if (points[n].Y < center.Y)
+                if (points[n].Y < center.Y - 10)
                 {
                     exclusions.Add(pointsToGoTo[n]);
                     continue;
@@ -3058,7 +3058,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             {
                 for (int q = 0; q < outerCircles.Count; q++)
                 {
-                    if (outerCircles[q].Y < center.Y) continue;
+                    if (outerCircles[q].Y < center.Y - 10) continue;
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, rad2 - 6, 65535);
                     MakeCircle((int)outerCircles[q].X, (int)outerCircles[q].Y, rad2 - 13, (ushort)ModContent.TileType<Chunkstone>());
                 }
