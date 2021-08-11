@@ -1619,7 +1619,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                     Main.tile[hbx, hby].type = (ushort)ModContent.TileType<Impgrass>();
                                     if (WorldGen.genRand.Next(2) == 0)
                                     {
-                                        GrowHellTree(hbx, hby + 1);
+                                        WorldGen.GrowTree(hbx, hby - 1);
                                     }
                                 }
                             }
@@ -1801,35 +1801,31 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    ContagionRunner2(Main.maxTilesX / 2, 300);                //}));            }        }        public static bool GrowHellTree(int i, int y)
         {
             int j;
-            for (j = y; TileLoader.IsSapling(Main.tile[i, j].type); j++)
+            for (j = y; TileLoader.IsSapling(Main.tile[i, j].type); j--)
             {
             }
             if ((Main.tile[i - 1, j - 1].liquid != 0 || Main.tile[i, j - 1].liquid != 0 || Main.tile[i + 1, j - 1].liquid != 0) && Main.tile[i, j].type != 60)
             {
                 return false;
             }
-            if (Main.tile[i, j].nactive() && !Main.tile[i, j].halfBrick() && Main.tile[i, j].slope() == 0 && TileLoader.CanGrowModTree(Main.tile[i - 1, j].type))
+            if (Main.tile[i, j].nactive() && !Main.tile[i, j].halfBrick() && Main.tile[i, j].slope() == 0 && TileLoader.CanGrowModTree(Main.tile[i - 1, j].type) || TileLoader.CanGrowModTree(Main.tile[i + 1, j].type) || TileLoader.CanGrowModTree(Main.tile[i, j].type))
             {
                 int num = 2;
-                int num2 = 16;
-                if (Main.tile[i, j].type == 60)
-                {
-                    num2 += 5;
-                }
-                if (WorldGen.EmptyTileCheck(i - num, i + num, j - num2, j - 1, TileID.Saplings))
+                int maxTreeHeight = 16;
+                if (WorldGen.EmptyTileCheck(i - num, i + num, j + maxTreeHeight, j + 1, TileID.Saplings))
                 {
                     bool flag = false;
                     bool flag2 = false;
-                    int num3 = WorldGen.genRand.Next(5, num2 + 1);
+                    int heightOfTree = WorldGen.genRand.Next(5, maxTreeHeight + 1);
                     int num4;
-                    for (int k = j - num3; k < j; k++)
+                    for (int k = j + heightOfTree; k > j; k--)
                     {
                         Main.tile[i, k].frameNumber((byte)WorldGen.genRand.Next(3));
                         Main.tile[i, k].active(active: true);
                         Main.tile[i, k].type = 5;
                         num4 = WorldGen.genRand.Next(3);
                         int num5 = WorldGen.genRand.Next(10);
-                        if (k == j - 1 || k == j - num3)
+                        if (k == j + 1 || k == j + heightOfTree)
                         {
                             num5 = 0;
                         }
@@ -2215,18 +2211,18 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         num4 = WorldGen.genRand.Next(3);
                         if (num4 == 0) // 198 220 242
                         {
-                            Main.tile[i, j - num3].frameX = 22;
-                            Main.tile[i, j - num3].frameY = 44;
+                            Main.tile[i, j - heightOfTree].frameX = 22;
+                            Main.tile[i, j - heightOfTree].frameY = 44;
                         }
                         if (num4 == 1)
                         {
-                            Main.tile[i, j - num3].frameX = 22;
-                            Main.tile[i, j - num3].frameY = 22;
+                            Main.tile[i, j - heightOfTree].frameX = 22;
+                            Main.tile[i, j - heightOfTree].frameY = 22;
                         }
                         if (num4 == 2)
                         {
-                            Main.tile[i, j - num3].frameX = 22;
-                            Main.tile[i, j - num3].frameY = 0;
+                            Main.tile[i, j - heightOfTree].frameX = 22;
+                            Main.tile[i, j - heightOfTree].frameY = 0;
                         }
                     }
                     else
@@ -2234,24 +2230,24 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         num4 = WorldGen.genRand.Next(3);
                         if (num4 == 0) // 198 220 242
                         {
-                            Main.tile[i, j - num3].frameX = 0;
-                            Main.tile[i, j - num3].frameY = 44;
+                            Main.tile[i, j - heightOfTree].frameX = 0;
+                            Main.tile[i, j - heightOfTree].frameY = 44;
                         }
                         if (num4 == 1)
                         {
-                            Main.tile[i, j - num3].frameX = 0;
-                            Main.tile[i, j - num3].frameY = 22;
+                            Main.tile[i, j - heightOfTree].frameX = 0;
+                            Main.tile[i, j - heightOfTree].frameY = 22;
                         }
                         if (num4 == 2)
                         {
-                            Main.tile[i, j - num3].frameX = 0;
-                            Main.tile[i, j - num3].frameY = 0;
+                            Main.tile[i, j - heightOfTree].frameX = 0;
+                            Main.tile[i, j - heightOfTree].frameY = 0;
                         }
                     }
-                    WorldGen.RangeFrame(i - 2, j - num3 - 1, i + 2, j + 1);
+                    WorldGen.RangeFrame(i - 2, j + heightOfTree - 1, i + 2, j + 1);
                     if (Main.netMode == 2)
                     {
-                        NetMessage.SendTileSquare(-1, i, (int)((double)j - (double)num3 * 0.5), num3 + 1);
+                        NetMessage.SendTileSquare(-1, i, (int)((double)j - (double)heightOfTree * 0.5), heightOfTree + 1);
                     }
                     return true;
                 }
