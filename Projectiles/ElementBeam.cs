@@ -2,12 +2,16 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 		public override Color? GetAlpha(Color lightColor)		{			if (this.projectile.localAI[1] >= 15f)			{				return new Color(255, 255, 255, this.projectile.alpha);			}			if (this.projectile.localAI[1] < 5f)			{				return Color.Transparent;			}			int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);			return new Color(num7, num7, num7, num7);		}
 		public override bool OnTileCollide(Vector2 oldVelocity)        {            Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 10);            return true;        }        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)        {            int randomNum = Main.rand.Next(7);            if (randomNum == 0) target.AddBuff(20, 300);            else if (randomNum == 1) target.AddBuff(24, 200);            else if (randomNum == 2) target.AddBuff(31, 120);            else if (randomNum == 3) target.AddBuff(39, 300);            else if (randomNum == 4) target.AddBuff(44, 300);            else if (randomNum == 5) target.AddBuff(70, 240);            else if (randomNum == 6) target.AddBuff(69, 300);        }        public override void AI()		{
 			int num12 = DustID.Rainbow;
+
+			Vector3 DiscoRGB = new Vector3((float)Main.DiscoR / 255f, (float)Main.DiscoG / 255f, (float)Main.DiscoB / 255f);
+			Color RGB = new Color(DiscoRGB.X, DiscoRGB.Y, DiscoRGB.Z);
+
 			if (projectile.localAI[1] > 7f)
 			{			
-				var num484 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 2f), 8, 8, num12, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.25f);
+				var num484 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 2f), 8, 8, num12, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, RGB, 1.25f);
 				Main.dust[num484].velocity *= -0.25f;
 				Main.dust[num484].noGravity = true;
-				num484 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 2f), 8, 8, num12, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.25f);
+				num484 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 2f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 2f), 8, 8, num12, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, RGB, 1.25f);
 				Main.dust[num484].velocity *= -0.25f;
 				Main.dust[num484].noGravity = true;
 				Main.dust[num484].position -= projectile.velocity * 0.5f;

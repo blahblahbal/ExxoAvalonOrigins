@@ -13,6 +13,7 @@ namespace ExxoAvalonOrigins.Tiles{
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
+            Main.tileLighted[Type] = true;
             Main.tileHammer[Type] = true;
         }        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
