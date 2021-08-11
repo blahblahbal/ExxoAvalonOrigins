@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			TileID.Sets.TouchDamageSands[Type] = 15;
 			TileID.Sets.Conversion.Sand[Type] = true;
 			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
-			TileID.Sets.Falling[Type] = true;			drop = mod.ItemType("SnotsandBlock");            dustType = 184;
+			TileID.Sets.Falling[Type] = true;			drop = mod.ItemType("SnotsandBlock");            SetModPalmTree(new ContagionPalmTree());            dustType = 184;
         }		//public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
 		//{
 		//	if (WorldGen.noTileActions)
@@ -79,4 +79,9 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 		{
 			return Main.rand.Next(3) == 0;
 		}
-		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;	}}
+		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;        public override int SaplingGrowthType(ref int style)
+        {
+            style = 0;
+            return ModContent.TileType<ContagionPalmSapling>();
+        }
+    }}

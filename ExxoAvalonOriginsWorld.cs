@@ -773,6 +773,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         tile.type = TileID.HardenedSand;
                     }
+                    else if (type == ModContent.TileType<ContagionShortGrass>())
+                    {
+                        tile.type = TileID.Plants;
+                    }
                     if (TileID.Sets.Conversion.Grass[type] || type == 0)
                     {
                         WorldGen.SquareTileFrame(x, y);
@@ -855,7 +859,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             {
                 for (int j = 1; j < Main.maxTilesY; j++)
                 {
-                    if (Main.tile[i, j].type == (ushort)ModContent.TileType<Ickgrass>() && Main.tile[i, j].nactive() && Main.tile[i, j].slope() == 0 && Main.rand.Next(3) == 0)
+                    if (Main.tile[i, j].type == (ushort)ModContent.TileType<Ickgrass>() && Main.tile[i, j].nactive() && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].halfBrick() && Main.rand.Next(3) == 0)
                     {
                         if (!Main.tile[i, j - 1].active())
                         {
@@ -1320,7 +1324,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num9 + 1].halfBrick() && Main.tile[num5, num9 + 1].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
                             Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);

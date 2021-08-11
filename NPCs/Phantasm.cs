@@ -30,6 +30,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.scale = 1.5f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath39;
+            bossBag = ModContent.ItemType<Items.PhantasmBossBag>();
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -375,6 +376,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (Main.expertMode)
             {
                 npc.DropBossBags();
+
             }
             else
             {
