@@ -1,19 +1,21 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using MonoMod.RuntimeDetour.HookGen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Terraria;
 using Terraria.ModLoader;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader.IO;
 using System.IO;
 using Terraria.Utilities;
-using Terraria.ModLoader.Exceptions;
-using Terraria.ModLoader.Default;
 using System.Reflection;
 using Terraria.IO;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
+using Terraria;
+using Mono.Cecil;
 
 namespace ExxoAvalonOrigins.Hooks
 {
@@ -23,80 +25,80 @@ namespace ExxoAvalonOrigins.Hooks
 		{
 			WorldFileData data = self.GetFieldValue<WorldFileData>("_data");
 			var path = Path.ChangeExtension(data.Path, ".twld");
-			//WorldIO.customDataFail = null;
+
 			if (!FileUtilities.Exists(path, data.IsCloudSave))
 			{
 				return orig(self);
 			}
 
+			//Stream stream = (data.IsCloudSave ? ((Stream)new MemoryStream(Terraria.Social.SocialAPI.Cloud.Read(path))) : ((Stream)new FileStream(path, FileMode.Open)));
 			byte[] buf = FileUtilities.ReadAllBytes(path, data.IsCloudSave);
 			if (buf[0] != 31 || buf[1] != 139)
 			{
 				return orig(self);
 			}
 
-			TagCompound tag = TagIO.FromStream(new MemoryStream(buf));
-			try
-			{
-				LoadModData(tag.GetList<TagCompound>("modData"));
-			}
-			catch (CustomModDataException ex2)
-			{
-				throw ex2;
-			}
-
 			bool contagion = false;
+			var stream = new MemoryStream(buf);
+			var tag = TagIO.FromStream(stream);
+
 			if (tag.ContainsKey("modData"))
 			{
-				foreach(TagCompound modDataTag in tag.GetList<TagCompound>("modData"))
-                {
-					if (modDataTag.ContainsKey("data"))
+				foreach (TagCompound modDataTag in tag.GetList<TagCompound>("modData").Skip(2))
+				{
+					if (modDataTag.Get<string>("mod") == ExxoAvalonOrigins.mod.Name)
                     {
 						TagCompound dataTag = modDataTag.Get<TagCompound>("data");
-						if (dataTag.ContainsKey("ExxoAvalonOrigins:Contagion"))
-                        {
-							contagion = dataTag.Get<bool>("ExxoAvalonOrigins:Contagion");
-						}
+						contagion = dataTag.Get<bool>("ExxoAvalonOrigins:Contagion");
+						break;
 					}
-                }
+				}
 			}
 
 			if (contagion)
 			{
-				return ExxoAvalonOrigins.mod.GetTexture("Sprites/IconContagion");
+				if (data.IsHardMode)
+                {
+					return ExxoAvalonOrigins.mod.GetTexture("Sprites/IconHallowContagion");
+				}
+				else
+                {
+					return ExxoAvalonOrigins.mod.GetTexture("Sprites/IconContagion");
+				}
 			}
 			else
 			{
 				return orig(self);
 			}
 		}
+		public static void ILDrawSelf(ILContext il)
+        {
+			var c = new ILCursor(il);
 
-		private static void LoadModData(IList<TagCompound> list)
-		{
-			foreach (TagCompound tag in list)
+			// Move il cursor into positon
+			if (!c.TryGotoNext(i => i.MatchLdsfld<WorldGen>(nameof(WorldGen.crimson))))
+				return;
+			if (!c.TryGotoNext(i => i.MatchLdloc(5)))
+				return;
+			if (!c.TryGotoPrev(i => i.MatchLdarg(1)))
+				return;
+			if (!c.TryGotoNext(i => i.MatchLdfld(out _)))
+				return;
+			c.Index++;
+			c.Index += 0;
+			c.EmitDelegate<Func<Texture2D, Texture2D>>((corruptTexture) =>
 			{
-				Mod mod = ModLoader.GetMod(tag.GetString("mod"));
-				ModWorld modWorld = mod?.GetModWorld(tag.GetString("name"));
-				if (modWorld != null)
-				{
-					try
-					{
-						if (tag.ContainsKey("legacyData"))
-						{
-							modWorld.LoadLegacy(new BinaryReader(new MemoryStream(tag.GetByteArray("legacyData"))));
-						}
-						else
-						{
-							modWorld.Load(tag.GetCompound("data"));
-						}
-					}
-					catch (Exception e)
-					{
-						throw new CustomModDataException(mod, "Error in reading custom world data for " + mod.Name, e);
-					}
+				if (ExxoAvalonOriginsWorld.contaigon)
+                {
+					return ExxoAvalonOrigins.mod.GetTexture("Sprites/Outer_Contagion");
 				}
-			}
+				else
+                {
+					return corruptTexture;
+                }
+			});
 		}
+		
 	}
 	public static class ReflectionExtensions
 	{
