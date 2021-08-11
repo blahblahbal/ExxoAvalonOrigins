@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		publ
                     num78 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                     num79 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                 }
-                Projectile.NewProjectile(position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockBack, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(position.X, position.Y, num78, num79, type, damage, knockBack, player.whoAmI, 0f, 0f);
             }			return false;		}        public override void HoldItem(Player player)
         {
             Vector2 vector = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
