@@ -20,6 +20,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileObsidianKill[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
+            TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Statue");

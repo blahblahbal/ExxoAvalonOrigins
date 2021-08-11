@@ -23,7 +23,6 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.penetrate = 5;
 			projectile.timeLeft = 60;
 			projectile.ignoreWater = false;
-			projectile.light = 0.4f;
 			projectile.tileCollide = true;
 			projectile.ranged = true;
 			projectile.extraUpdates = 2;
@@ -141,7 +140,6 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.penetrate = -1;
 			projectile.timeLeft = 300 + Main.rand.Next(50, 100);
 			projectile.ignoreWater = false;
-			projectile.light = 0.4f;
 			projectile.tileCollide = false;
 			projectile.ranged = true;
 			projectile.usesIDStaticNPCImmunity = true;
