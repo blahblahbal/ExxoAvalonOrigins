@@ -12,7 +12,6 @@ namespace ExxoAvalonOrigins.Tiles
                 return ModLoader.GetMod("ExxoAvalonOrigins");
             }
         }
-
         public override int DropWood()
         {
             return mod.ItemType("ResistantWood");
