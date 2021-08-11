@@ -1584,7 +1584,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         for (int num570 = 0; num570 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num570++)
                         {
-                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), 204);
+                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), TileID.Crimtane);
                         }
                     }
                     else if (contaigon)
@@ -1598,10 +1598,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         for (int num571 = 0; num571 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num571++)
                         {
-                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), 22);
+                            WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), TileID.Demonite);
                         }
                     }
-                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Avalonifying Underworld";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }
+                }));                tasks.Insert(shinies + 2, new PassLegacy("Avalon Shinies", delegate(GenerationProgress progress)                {                    progress.Message = "Adding Avalonian Shinies";                    generatingBaccilite = false;                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)                    {                        WorldGen.TileRunner(                            WorldGen.genRand.Next(100, Main.maxTilesX - 100), // Xcoord of tile                            WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile                            WorldGen.genRand.Next(4, 5), // Quantity                            WorldGen.genRand.Next(5, 7),                            rhodiumBar, //Tile to spawn                            false, 0f, 0f, false, true); //last input overrides existing tiles                    }                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                    {                        var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                        var rockLayer = Main.rockLayer;                        var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                        GenerateHearts(i8, j8, ModContent.TileType<Heartstone>());                    }                }));            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", delegate (GenerationProgress progress)                {                    progress.Message = "Adding Hellcastle and Imp biome";                    for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)                    {                        WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<CaesiumOre>());                    }
                     GenerateHellcastle(Main.maxTilesX / 3 - 210, Main.maxTilesY - 140); // change back later
                     for (int hbx = Main.maxTilesX / 3 - 350; hbx < Main.maxTilesX / 3 + 500; hbx++)
                     {
@@ -2719,11 +2719,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 if (WorldGen.genRand.Next(2) == 0)
                                 {
                                     outerCircles.Add(item2);
-                                    if (WorldGen.genRand.Next(1) == 0)
-                                    {
-                                        secondaryCircles.Add(item2);
-                                        excludedPointsForOuterTunnels.Add(randPoint);
-                                    }
+                                    secondaryCircles.Add(item2);
+                                    excludedPointsForOuterTunnels.Add(randPoint);
                                 }
                             }
                             else
@@ -2732,11 +2729,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 if (WorldGen.genRand.Next(2) == 0)
                                 {
                                     outerCircles.Add(item2);
-                                    if (WorldGen.genRand.Next(1) == 0)
-                                    {
-                                        secondaryCircles.Add(item2);
-                                        excludedPointsForOuterTunnels.Add(randPoint);
-                                    }
+                                    secondaryCircles.Add(item2);
+                                    excludedPointsForOuterTunnels.Add(randPoint);
                                 }
                             }
                         }
@@ -2746,11 +2740,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 outerCircles.Add(item2);
-                                if (WorldGen.genRand.Next(1) == 0)
-                                {
-                                    secondaryCircles.Add(item2);
-                                    excludedPointsForOuterTunnels.Add(randPoint);
-                                }
+                                secondaryCircles.Add(item2);
+                                excludedPointsForOuterTunnels.Add(randPoint);
                             }
                         }
                         else
@@ -2759,11 +2750,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 outerCircles.Add(item2);
-                                if (WorldGen.genRand.Next(1) == 0)
-                                {
-                                    secondaryCircles.Add(item2);
-                                    excludedPointsForOuterTunnels.Add(randPoint);
-                                }
+                                secondaryCircles.Add(item2);
+                                excludedPointsForOuterTunnels.Add(randPoint);
                             }
                         }
                     }
@@ -2775,11 +2763,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 outerCircles.Add(item2);
-                                if (WorldGen.genRand.Next(1) == 0)
-                                {
-                                    secondaryCircles.Add(item2);
-                                    excludedPointsForOuterTunnels.Add(randPoint);
-                                }
+                                secondaryCircles.Add(item2);
+                                excludedPointsForOuterTunnels.Add(randPoint);
                             }
                         }
                         else
@@ -2788,11 +2773,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 outerCircles.Add(item2);
-                                if (WorldGen.genRand.Next(1) == 0)
-                                {
-                                    secondaryCircles.Add(item2);
-                                    excludedPointsForOuterTunnels.Add(randPoint);
-                                }
+                                secondaryCircles.Add(item2);
+                                excludedPointsForOuterTunnels.Add(randPoint);
                             }
                         }
                     }
@@ -2802,11 +2784,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (WorldGen.genRand.Next(2) == 0)
                         {
                             outerCircles.Add(item2);
-                            if (WorldGen.genRand.Next(1) == 0)
-                            {
-                                secondaryCircles.Add(item2);
-                                excludedPointsForOuterTunnels.Add(randPoint);
-                            }
+                            secondaryCircles.Add(item2);
+                            excludedPointsForOuterTunnels.Add(randPoint);
                         }
                     }
                     else
@@ -2815,11 +2794,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (WorldGen.genRand.Next(2) == 0)
                         {
                             outerCircles.Add(item2);
-                            if (WorldGen.genRand.Next(1) == 0)
-                            {
-                                secondaryCircles.Add(item2);
-                                excludedPointsForOuterTunnels.Add(randPoint);
-                            }
+                            secondaryCircles.Add(item2);
+                            excludedPointsForOuterTunnels.Add(randPoint);
                         }
                     }
                 }
@@ -2833,11 +2809,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 outerCircles.Add(item2);
-                                if (WorldGen.genRand.Next(1) == 0)
-                                {
-                                    secondaryCircles.Add(item2);
-                                    excludedPointsForOuterTunnels.Add(randPoint);
-                                }
+                                secondaryCircles.Add(item2);
+                                excludedPointsForOuterTunnels.Add(randPoint);
                             }
                         }
                         else
@@ -2846,11 +2819,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 outerCircles.Add(item2);
-                                if (WorldGen.genRand.Next(1) == 0)
-                                {
-                                    secondaryCircles.Add(item2);
-                                    excludedPointsForOuterTunnels.Add(randPoint);
-                                }
+                                secondaryCircles.Add(item2);
+                                excludedPointsForOuterTunnels.Add(randPoint);
                             }
                         }
                     }
@@ -2860,11 +2830,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (WorldGen.genRand.Next(2) == 0)
                         {
                             outerCircles.Add(item2);
-                            if (WorldGen.genRand.Next(1) == 0)
-                            {
-                                secondaryCircles.Add(item2);
-                                excludedPointsForOuterTunnels.Add(randPoint);
-                            }
+                            secondaryCircles.Add(item2);
+                            excludedPointsForOuterTunnels.Add(randPoint);
                         }
                     }
                     else
@@ -2873,11 +2840,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (WorldGen.genRand.Next(2) == 0)
                         {
                             outerCircles.Add(item2);
-                            if (WorldGen.genRand.Next(1) == 0)
-                            {
-                                secondaryCircles.Add(item2);
-                                excludedPointsForOuterTunnels.Add(randPoint);
-                            }
+                            secondaryCircles.Add(item2);
+                            excludedPointsForOuterTunnels.Add(randPoint);
                         }
                     }
                 }
@@ -2889,11 +2853,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (WorldGen.genRand.Next(2) == 0)
                         {
                             outerCircles.Add(item2);
-                            if (WorldGen.genRand.Next(1) == 0)
-                            {
-                                secondaryCircles.Add(item2);
-                                excludedPointsForOuterTunnels.Add(randPoint);
-                            }
+                            secondaryCircles.Add(item2);
+                            excludedPointsForOuterTunnels.Add(randPoint);
                         }
                     }
                     else
@@ -2902,11 +2863,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (WorldGen.genRand.Next(2) == 0)
                         {
                             outerCircles.Add(item2);
-                            if (WorldGen.genRand.Next(1) == 0)
-                            {
-                                secondaryCircles.Add(item2);
-                                excludedPointsForOuterTunnels.Add(randPoint);
-                            }
+                            secondaryCircles.Add(item2);
+                            excludedPointsForOuterTunnels.Add(randPoint);
                         }
                     }
                 }
@@ -2916,11 +2874,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (WorldGen.genRand.Next(2) == 0)
                     {
                         outerCircles.Add(item2);
-                        if (WorldGen.genRand.Next(1) == 0)
-                        {
-                            secondaryCircles.Add(item2);
-                            excludedPointsForOuterTunnels.Add(randPoint);
-                        }
+                        secondaryCircles.Add(item2);
+                        excludedPointsForOuterTunnels.Add(randPoint);
                     }
                 }
                 else
@@ -2929,11 +2884,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (WorldGen.genRand.Next(2) == 0)
                     {
                         outerCircles.Add(item2);
-                        if (WorldGen.genRand.Next(1) == 0)
-                        {
-                            secondaryCircles.Add(item2);
-                            excludedPointsForOuterTunnels.Add(randPoint);
-                        }
+                        secondaryCircles.Add(item2);
+                        excludedPointsForOuterTunnels.Add(randPoint);
                     }
                 }
                 points.Add(randPoint);
@@ -2941,111 +2893,110 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 angles.Add(positionAroundCircle);
             }
             #endregion
-            
+
             // make outer circles
             #region outer circles and tunnels
-            if (outerCircles.Count != 0)
+            if (secondaryCircles.Count != 0)
             {
-                if (secondaryCircles.Count != 0)
+                for (int z = 0; z < secondaryCircles.Count; z++)
                 {
-                    for (int z = 0; z < secondaryCircles.Count; z++)
+                    if (secondaryCircles[z].Y < center.Y) continue;
+                    int outerTunnelsRadiusMod = rad2 - 6;
+                    double pointsAroundCircle2 = (WorldGen.genRand.Next(0, 62831852) / 10000000);
+                    Vector2 randPointAroundCircle = new Vector2(outerCircles[z].X + ((int)Math.Round(outerTunnelsRadiusMod * Math.Cos(pointsAroundCircle2))), outerCircles[z].Y + ((int)Math.Round(outerTunnelsRadiusMod * Math.Sin(pointsAroundCircle2))));
+                    for (int m = 0; m < 16; m++)
                     {
-                        if (secondaryCircles[z].Y < center.Y) continue;
-                        int outerTunnelsRadiusMod = rad2 - 6;
-                        double pointsAroundCircle2 = (WorldGen.genRand.Next(0, 62831852) / 10000000);
-                        Vector2 item = new Vector2(outerCircles[z].X + ((int)Math.Round(outerTunnelsRadiusMod * Math.Cos(pointsAroundCircle2))), outerCircles[z].Y + ((int)Math.Round(outerTunnelsRadiusMod * Math.Sin(pointsAroundCircle2))));
-                        for (int m = 0; m < 16; m++)
+                        Vector2 endpoint = secondaryCircles[z];
+                        #region endpoint calculation
+                        if (randPointAroundCircle.X > outerCircles[z].X)
                         {
-                            Vector2 item2 = secondaryCircles[z];
-                            if (item.X > outerCircles[z].X)
+                            if (randPointAroundCircle.X > outerCircles[z].X + rad2 / 2)
                             {
-                                if (item.X > outerCircles[z].X + rad2 / 2)
+                                if (randPointAroundCircle.Y > outerCircles[z].Y)
                                 {
-                                    if (item.Y > outerCircles[z].Y)
+                                    if (randPointAroundCircle.Y > outerCircles[z].Y + rad2 / 2)
                                     {
-                                        if (item.Y > outerCircles[z].Y + rad2 / 2)
-                                        {
-                                            item2 = new Vector2(item.X + 15f, item.Y + 15f);
-                                        }
-                                        else
-                                        {
-                                            item2 = new Vector2(item.X + 15f, item.Y + 7f);
-                                        }
-                                    }
-                                    else if (item.Y < outerCircles[z].Y - rad2 / 2)
-                                    {
-                                        item2 = new Vector2(item.X + 15f, item.Y - 15f);
+                                        endpoint = new Vector2(randPointAroundCircle.X + 15f, randPointAroundCircle.Y + 15f);
                                     }
                                     else
                                     {
-                                        item2 = new Vector2(item.X + 15f, item.Y - 7f);
+                                        endpoint = new Vector2(randPointAroundCircle.X + 15f, randPointAroundCircle.Y + 7f);
                                     }
                                 }
-                                else if (item.Y > outerCircles[z].Y)
+                                else if (randPointAroundCircle.Y < outerCircles[z].Y - rad2 / 2)
                                 {
-                                    if (item.Y > outerCircles[z].Y + rad2 / 2)
-                                    {
-                                        item2 = new Vector2(item.X + 7f, item.Y + 15f);
-                                    }
-                                    else
-                                    {
-                                        item2 = new Vector2(item.X + 7f, item.Y + 7f);
-                                    }
-                                }
-                                else if (item.Y < outerCircles[z].Y - rad2 / 2)
-                                {
-                                    item2 = new Vector2(item.X + 7f, item.Y - 15f);
+                                    endpoint = new Vector2(randPointAroundCircle.X + 15f, randPointAroundCircle.Y - 15f);
                                 }
                                 else
                                 {
-                                    item2 = new Vector2(item.X + 7f, item.Y - 7f);
+                                    endpoint = new Vector2(randPointAroundCircle.X + 15f, randPointAroundCircle.Y - 7f);
                                 }
                             }
-                            else if (item.X < outerCircles[z].X - rad2 / 2)
+                            else if (randPointAroundCircle.Y > outerCircles[z].Y)
                             {
-                                if (item.Y > outerCircles[z].Y)
+                                if (randPointAroundCircle.Y > outerCircles[z].Y + rad2 / 2)
                                 {
-                                    if (item.Y > outerCircles[z].Y + rad2 / 2)
-                                    {
-                                        item2 = new Vector2(item.X - 15f, item.Y + 15f);
-                                    }
-                                    else
-                                    {
-                                        item2 = new Vector2(item.X - 15f, item.Y + 7f);
-                                    }
-                                }
-                                else if (item.Y < outerCircles[z].Y - rad2 / 2)
-                                {
-                                    item2 = new Vector2(item.X - 15f, item.Y - 15f);
+                                    endpoint = new Vector2(randPointAroundCircle.X + 7f, randPointAroundCircle.Y + 15f);
                                 }
                                 else
                                 {
-                                    item2 = new Vector2(item.X - 15f, item.Y - 7f);
+                                    endpoint = new Vector2(randPointAroundCircle.X + 7f, randPointAroundCircle.Y + 7f);
                                 }
                             }
-                            else if (item.Y > outerCircles[z].Y)
+                            else if (randPointAroundCircle.Y < outerCircles[z].Y - rad2 / 2)
                             {
-                                if (item.Y > outerCircles[z].Y + rad2 / 2)
-                                {
-                                    item2 = new Vector2(item.X - 7f, item.Y + 15f);
-                                }
-                                else
-                                {
-                                    item2 = new Vector2(item.X - 7f, item.Y + 7f);
-                                }
-                            }
-                            else if (item.Y < outerCircles[z].Y - rad2 / 2)
-                            {
-                                item2 = new Vector2(item.X - 7f, item.Y - 15f);
+                                endpoint = new Vector2(randPointAroundCircle.X + 7f, randPointAroundCircle.Y - 15f);
                             }
                             else
                             {
-                                item2 = new Vector2(item.X - 7f, item.Y - 7f);
+                                endpoint = new Vector2(randPointAroundCircle.X + 7f, randPointAroundCircle.Y - 7f);
                             }
-                            secondCircleStartPoints.Add(item);
-                            secondCircleEndpoints.Add(item2);
-                            secondCirclePointsAroundCircle.Add(pointsAroundCircle2);
                         }
+                        else if (randPointAroundCircle.X < outerCircles[z].X - rad2 / 2)
+                        {
+                            if (randPointAroundCircle.Y > outerCircles[z].Y)
+                            {
+                                if (randPointAroundCircle.Y > outerCircles[z].Y + rad2 / 2)
+                                {
+                                    endpoint = new Vector2(randPointAroundCircle.X - 15f, randPointAroundCircle.Y + 15f);
+                                }
+                                else
+                                {
+                                    endpoint = new Vector2(randPointAroundCircle.X - 15f, randPointAroundCircle.Y + 7f);
+                                }
+                            }
+                            else if (randPointAroundCircle.Y < outerCircles[z].Y - rad2 / 2)
+                            {
+                                endpoint = new Vector2(randPointAroundCircle.X - 15f, randPointAroundCircle.Y - 15f);
+                            }
+                            else
+                            {
+                                endpoint = new Vector2(randPointAroundCircle.X - 15f, randPointAroundCircle.Y - 7f);
+                            }
+                        }
+                        else if (randPointAroundCircle.Y > outerCircles[z].Y)
+                        {
+                            if (randPointAroundCircle.Y > outerCircles[z].Y + rad2 / 2)
+                            {
+                                endpoint = new Vector2(randPointAroundCircle.X - 7f, randPointAroundCircle.Y + 15f);
+                            }
+                            else
+                            {
+                                endpoint = new Vector2(randPointAroundCircle.X - 7f, randPointAroundCircle.Y + 7f);
+                            }
+                        }
+                        else if (randPointAroundCircle.Y < outerCircles[z].Y - rad2 / 2)
+                        {
+                            endpoint = new Vector2(randPointAroundCircle.X - 7f, randPointAroundCircle.Y - 15f);
+                        }
+                        else
+                        {
+                            endpoint = new Vector2(randPointAroundCircle.X - 7f, randPointAroundCircle.Y - 7f);
+                        }
+                        #endregion
+                        secondCircleStartPoints.Add(randPointAroundCircle);
+                        secondCircleEndpoints.Add(endpoint);
+                        secondCirclePointsAroundCircle.Add(pointsAroundCircle2);
                     }
                 }
             }
@@ -3084,7 +3035,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             for (int n = 0; n < secondCircleStartPoints.Count; n++)
             {
                 if (excludedPointsForOuterTunnels.Count != 0 && n < excludedPointsForOuterTunnels.Count)
-                    if (Vector2.Distance(excludedPointsForOuterTunnels[n], secondCircleEndpoints[n]) < 45)
+                    if (Vector2.Distance(excludedPointsForOuterTunnels[n], secondCircleEndpoints[n]) < 55)
                         continue;
                 BoreTunnel2((int)secondCircleStartPoints[n].X, (int)secondCircleStartPoints[n].Y, (int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 5f, (ushort)ModContent.TileType<Chunkstone>());
                 BoreTunnel2((int)secondCircleStartPoints[n].X, (int)secondCircleStartPoints[n].Y, (int)secondCircleEndpoints[n].X, (int)secondCircleEndpoints[n].Y, 2f, 65535);

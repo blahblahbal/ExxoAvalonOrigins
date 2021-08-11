@@ -20,7 +20,9 @@ namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		publ
         {
             return new Vector2(-10f, 0f);
         }
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,			ref float knockBack)		{            for (int i = 0; i < 3; i++)
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
+            ref float knockBack)
+        {            for (int i = 0; i < 3; i++)
             {
                 float num78 = speedX + (float)Main.rand.Next(-50, 51) * 0.05f;
                 float num79 = speedY + (float)Main.rand.Next(-50, 51) * 0.05f;
@@ -29,8 +31,10 @@ namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		publ
                     num78 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                     num79 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                 }
-                Projectile.NewProjectile(position.X, position.Y, num78, num79, type, damage, knockBack, player.whoAmI, 0f, 0f);
-            }			return false;		}        public override void HoldItem(Player player)
+                Projectile.NewProjectile(position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            }
+            return false;
+        }        public override void HoldItem(Player player)
         {
             Vector2 vector = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
             float num70 = (float)Main.mouseX + Main.screenPosition.X - vector.X;
