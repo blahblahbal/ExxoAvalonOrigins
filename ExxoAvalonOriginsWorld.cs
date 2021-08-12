@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         }        public override void TileCountsAvailable(int[] tileCounts)
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
-            ickyTiles = tileCounts[ModContent.TileType<Tiles.Chunkstone>()] + tileCounts[ModContent.TileType<Tiles.HardenedSnotsand>()] + tileCounts[ModContent.TileType<Tiles.Snotsandstone>()] + tileCounts[ModContent.TileType<Tiles.Ickgrass>()] + tileCounts[ModContent.TileType<Tiles.Snotsand>()] + tileCounts[ModContent.TileType<Tiles.YellowIce>()];
+            ickyTiles = tileCounts[ModContent.TileType<Chunkstone>()] + tileCounts[ModContent.TileType<HardenedSnotsand>()] + tileCounts[ModContent.TileType<Snotsandstone>()] + tileCounts[ModContent.TileType<Ickgrass>()] + tileCounts[ModContent.TileType<Snotsand>()] + tileCounts[ModContent.TileType<YellowIce>()];
             hellcastleTiles = tileCounts[ModContent.TileType<Tiles.ImperviousBrick>()];
-            Main.sandTiles += tileCounts[ModContent.TileType<Tiles.Snotsand>()];
+            Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
         }
         
         public void RetroGen()        {            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 0, 0))            {
