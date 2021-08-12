@@ -1813,7 +1813,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                     i.SetDefaults(ModContent.ItemType<EnchantedBar>());
                                     i.stack = WorldGen.genRand.Next(35, 49);
                                 }
-                                if (i != null && i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.type = ModContent.ItemType<FlowerofTheJungle>();
+                                if (i != null && i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.SetDefaults(ModContent.ItemType<FlowerofTheJungle>());
                             }
                         }
                     }                }));            }        }        public static bool GrowHellTree(int i, int y)
