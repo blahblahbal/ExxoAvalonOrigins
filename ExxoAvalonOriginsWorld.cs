@@ -1804,14 +1804,17 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     progress.Set(1f);
                 }));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", delegate (GenerationProgress progress)                {                    foreach (Chest c in Main.chest)
                     {
-                        foreach (Item i in c.item)
+                        if (c != null)
                         {
-                            if (i.type == ItemID.EnchantedBoomerang)
+                            foreach (Item i in c.item)
                             {
-                                i.type = ModContent.ItemType<EnchantedBar>();
-                                i.stack = WorldGen.genRand.Next(35, 49);
+                                if (i != null && i.type == ItemID.EnchantedBoomerang)
+                                {
+                                    i.SetDefaults(ModContent.ItemType<EnchantedBar>());
+                                    i.stack = WorldGen.genRand.Next(35, 49);
+                                }
+                                if (i != null && i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.type = ModContent.ItemType<FlowerofTheJungle>();
                             }
-                            if (i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.type = ModContent.ItemType<FlowerofTheJungle>();
                         }
                     }                }));            }        }        public static bool GrowHellTree(int i, int y)
         {
