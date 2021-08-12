@@ -10,7 +10,9 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         public static int wosB;
         public static int wosF = 0;
         public static int wos = -1;
-        public static bool downedPhantasm = false;        public override void ChooseWaterStyle(ref int style)
+        public static bool downedBacteriumPrime = false;
+        public static bool downedDesertBeak = false;
+        public static bool downedPhantasm = false;        public static bool downedDragonLord = false;        public static bool downedMechasting = false;        public static bool downedOblivion = false;        public override void ChooseWaterStyle(ref int style)
         {
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
@@ -886,6 +888,11 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             flags[0] = ExxoAvalonOrigins.superHardmode;
             flags[1] = downedPhantasm;
             flags[2] = contaigon;
+            flags[3] = downedBacteriumPrime;
+            flags[4] = downedDesertBeak;
+            flags[5] = downedDragonLord;
+            flags[6] = downedMechasting;
+            flags[7] = downedOblivion;
             writer.Write(flags);
             writer.WriteVector2(LoK);
             writer.Write(ExxoAvalonOrigins.dungeonEx);
@@ -896,7 +903,12 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         {
             BitsByte flags = reader.ReadByte();
             ExxoAvalonOrigins.superHardmode = flags[0];
+            downedBacteriumPrime = flags[3];
+            downedDesertBeak = flags[4];
             downedPhantasm = flags[1];
+            downedDragonLord = flags[5];
+            downedMechasting = flags[6];
+            downedOblivion = flags[7];
             contaigon = flags[2];
             LoK = reader.ReadVector2();
             ExxoAvalonOrigins.dungeonEx = reader.ReadInt32();
@@ -3083,8 +3095,8 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
                 WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(5, 8), (ushort)ModContent.TileType<Tiles.PrimordialOre>());
             }
-        }        public override TagCompound Save()        {            var toSave = new TagCompound            {                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },                { "ExxoAvalonOrigins:Contagion", contaigon },                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
-                { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount }            };            return toSave;        }        public override void Load(TagCompound tag)        {            if (tag.ContainsKey("ExxoAvalonOrigins:LastOpenedVersion"))            {                ExxoAvalonOrigins.lastOpenedVersion = new Version(tag["ExxoAvalonOrigins:LastOpenedVersion"].ToString());            }            if (tag.ContainsKey("ExxoAvalonOrigins:SuperHardMode"))            {                ExxoAvalonOrigins.superHardmode = tag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedPhantasm"))            {                downedPhantasm = tag.Get<bool>("ExxoAvalonOrigins:DownedPhantasm");            }            if (tag.ContainsKey("ExxoAvalonOrigins:LibraryofKnowledge"))            {                LoK = tag.Get<Vector2>("ExxoAvalonOrigins:LibraryofKnowledge");            }            if (tag.ContainsKey("ExxoAvalonOrigins:Contagion"))            {                contaigon = tag.Get<bool>("ExxoAvalonOrigins:Contagion");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonSide"))
+        }        public override TagCompound Save()        {            var toSave = new TagCompound            {                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },                { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },                { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },                { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },                { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },                { "ExxoAvalonOrigins:Contagion", contaigon },                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
+                { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount }            };            return toSave;        }        public override void Load(TagCompound tag)        {            if (tag.ContainsKey("ExxoAvalonOrigins:LastOpenedVersion"))            {                ExxoAvalonOrigins.lastOpenedVersion = new Version(tag["ExxoAvalonOrigins:LastOpenedVersion"].ToString());            }            if (tag.ContainsKey("ExxoAvalonOrigins:SuperHardMode"))            {                ExxoAvalonOrigins.superHardmode = tag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedBacteriumPrime"))            {                downedBacteriumPrime = tag.Get<bool>("ExxoAvalonOrigins:DownedBacteriumPrime");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedDesertBeak"))            {                downedDesertBeak = tag.Get<bool>("ExxoAvalonOrigins:DownedDesertBeak");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedPhantasm"))            {                downedPhantasm = tag.Get<bool>("ExxoAvalonOrigins:DownedPhantasm");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedDragonLord"))            {                downedDragonLord = tag.Get<bool>("ExxoAvalonOrigins:DownedDragonLord");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedMechasting"))            {                downedMechasting = tag.Get<bool>("ExxoAvalonOrigins:DownedMechasting");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedOblivion"))            {                downedOblivion = tag.Get<bool>("ExxoAvalonOrigins:DownedOblivion");            }            if (tag.ContainsKey("ExxoAvalonOrigins:LibraryofKnowledge"))            {                LoK = tag.Get<Vector2>("ExxoAvalonOrigins:LibraryofKnowledge");            }            if (tag.ContainsKey("ExxoAvalonOrigins:Contagion"))            {                contaigon = tag.Get<bool>("ExxoAvalonOrigins:Contagion");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonSide"))
             {
                 dungeonSide = tag.GetAsInt("ExxoAvalonOrigins:DungeonSide");
             }            else            {

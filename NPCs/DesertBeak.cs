@@ -64,7 +64,10 @@ namespace ExxoAvalonOrigins.NPCs
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.TomeoftheDistantPast>(), 1, false, -2, false);
 			}
-		}
+
+            if (!ExxoAvalonOriginsWorld.downedDesertBeak)
+                ExxoAvalonOriginsWorld.downedDesertBeak = true;
+        }
 
         public override void AI()
         {

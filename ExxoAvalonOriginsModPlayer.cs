@@ -166,7 +166,14 @@ namespace ExxoAvalonOrigins
         public bool jumpAgain5;
         public bool dJumpEffect5;
         public bool doubleDamage;
+
+        #region Stinger Probe Minion AI vars
         public bool stingerProbeMinion = false;
+        public float rotTimer;
+        public int spawnProbeTimer;
+        public int probeID;
+        public Vector2[] endpoint = new Vector2[4];
+        #endregion
 
         public int herbX;
         public int herbY;
@@ -1168,11 +1175,39 @@ namespace ExxoAvalonOrigins
             {
                 player.AddBuff(ModContent.BuffType<Buffs.StingerProbe>(), 60, true);
 
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 1)
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, Main.myPlayer);
+                rotTimer += 0.025f;
+                if (rotTimer > 360)
+                    rotTimer = 1;
+
+                int radius = 75;
+                Vector2 baseEndpoint = player.Center + Vector2.One.RotatedBy(rotTimer) * radius;
+                endpoint[0] = baseEndpoint;
+                endpoint[1] = baseEndpoint.RotatedBy(MathHelper.ToRadians(90f));
+                endpoint[2] = baseEndpoint.RotatedBy(MathHelper.ToRadians(180f));
+                endpoint[3] = baseEndpoint.RotatedBy(MathHelper.ToRadians(270f));
+
+                if (probeID > 3)
+                    probeID = 3;
+
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 4)
+                    spawnProbeTimer++;
+                else
+                    spawnProbeTimer = 0;
+
+                if (spawnProbeTimer >= 300)
+                {
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI, probeID);
+                    probeID += 1;
+                    spawnProbeTimer = 0;
+                }
+
+                Main.NewText(player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()]);
             }
             else
             {
+                rotTimer = 1;
+                spawnProbeTimer = 0;
+                probeID = 0;
                 player.ClearBuff(ModContent.BuffType<Buffs.StingerProbe>());
             }
         }

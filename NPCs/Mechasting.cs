@@ -333,6 +333,9 @@ namespace ExxoAvalonOrigins.NPCs
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
+
+            if (!ExxoAvalonOriginsWorld.downedMechasting)
+                ExxoAvalonOriginsWorld.downedMechasting = true;
         }
 
         public override void FindFrame(int frameHeight)

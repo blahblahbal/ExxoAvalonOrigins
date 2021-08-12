@@ -73,6 +73,9 @@ namespace ExxoAvalonOrigins.NPCs
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DragonLordTrophy>(), 1, false, 0, false);
 			}
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11), false, 0, false);
+
+            if (!ExxoAvalonOriginsWorld.downedDragonLord)
+                ExxoAvalonOriginsWorld.downedDragonLord = true;
         }
 
         public override void AI()
