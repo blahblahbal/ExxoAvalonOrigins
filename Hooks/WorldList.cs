@@ -16,6 +16,7 @@ using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using Terraria;
 using Mono.Cecil;
+using Microsoft.Xna.Framework;
 
 namespace ExxoAvalonOrigins.Hooks
 {
@@ -78,6 +79,24 @@ namespace ExxoAvalonOrigins.Hooks
 			// Move il cursor into positon
 			if (!c.TryGotoNext(i => i.MatchLdsfld<WorldGen>(nameof(WorldGen.crimson))))
 				return;
+			if (!c.TryGotoNext(i => i.MatchCall(out _)))
+				return;
+			if (!c.TryGotoNext(i => i.MatchLdarg(0)))
+				return;
+			c.Emit(OpCodes.Ldloc, 4);
+			c.EmitDelegate<Func<Color, Color>>((color) =>
+			{
+				if (ExxoAvalonOriginsWorld.contaigon)
+				{
+					Color contagionBarColor = new Color(188, 158, 113);
+					return contagionBarColor;
+				}
+				else
+				{
+					return color;
+				}
+			});
+			c.Emit(OpCodes.Stloc, 4);
 			if (!c.TryGotoNext(i => i.MatchLdloc(5)))
 				return;
 			if (!c.TryGotoPrev(i => i.MatchLdarg(1)))
