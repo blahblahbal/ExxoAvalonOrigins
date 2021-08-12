@@ -773,10 +773,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         tile.type = TileID.HardenedSand;
                     }
-                    else if (type == ModContent.TileType<ContagionShortGrass>())
-                    {
-                        tile.type = TileID.Plants;
-                    }
+                    //else if (type == ModContent.TileType<ContagionShortGrass>())
+                    //{
+                    //    tile.type = TileID.Plants;
+                    //}
                     if (TileID.Sets.Conversion.Grass[type] || type == 0)
                     {
                         WorldGen.SquareTileFrame(x, y);
@@ -865,7 +865,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         {
                             //WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ContagionShortGrass>(), true, false, style: Main.rand.Next(0, 8));
                             Main.tile[i, j - 1].type = (ushort)ModContent.TileType<ContagionShortGrass>();
-                            Main.tile[i, j - 1].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                            Main.tile[i, j - 1].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
                         }
                     }
                     //else if (Main.tile[i, j].type == 23 && Main.tile[i, j].nactive())
@@ -1327,7 +1327,7 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         if (!Main.tile[num5, num9].active() && !Main.tile[num5, num9 + 1].halfBrick() && Main.tile[num5, num9 + 1].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
-                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
                             if (Main.tile[num5, num9].active())
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
@@ -1802,7 +1802,18 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     progress.Set(0.5f);
                     TrackGenerator.Run((int)(10f * num), (int)(num * 25f) + 250);
                     progress.Set(1f);
-                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    ContagionRunner2(Main.maxTilesX / 2, 300);                //}));            }        }        public static bool GrowHellTree(int i, int y)
+                }));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", delegate (GenerationProgress progress)                {                    foreach (Chest c in Main.chest)
+                    {
+                        foreach (Item i in c.item)
+                        {
+                            if (i.type == ItemID.EnchantedBoomerang)
+                            {
+                                i.type = ModContent.ItemType<EnchantedBar>();
+                                i.stack = WorldGen.genRand.Next(35, 49);
+                            }
+                            if (i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.type = ModContent.ItemType<FlowerofTheJungle>();
+                        }
+                    }                }));            }        }        public static bool GrowHellTree(int i, int y)
         {
             int j;
             for (j = y; TileLoader.IsSapling(Main.tile[i, j].type); j--)
