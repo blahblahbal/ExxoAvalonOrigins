@@ -187,6 +187,7 @@ namespace ExxoAvalonOrigins
             darkInferno = false;
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
+            liaB = false;
         }
 
         public override void UpdateBadLifeRegen()
