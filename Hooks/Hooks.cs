@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins.Hooks
             IL.Terraria.Main.DrawPlayer += LargeGem.ILDrawPlayer;
             IL.Terraria.Player.SmartCursor_Torch += Torches.ILSmartCursor_Torch;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.GetIcon += UIMenuContagion.OnGetIcon;
+            On.Terraria.Main.EraseWorld += UIMenuContagion.OnEraseWorld;
             IL.Terraria.GameContent.UI.Elements.UIGenProgressBar.DrawSelf += UIMenuContagion.ILDrawSelf;
         }
     }

@@ -129,6 +129,19 @@ namespace ExxoAvalonOrigins.Hooks
 			}
 		}
 
+		public static void OnEraseWorld(On.Terraria.Main.orig_EraseWorld orig, int i)
+        {
+			ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();
+			Dictionary<string, bool> newDict = config.GetWorldContagionStatus();
+			var path = Path.ChangeExtension(Main.WorldList[i].Path, ".twld");
+			if (newDict.ContainsKey(path))
+            {
+				newDict.Remove(path);
+				config.SetWorldContagionStatus(newDict);
+				ExxoAvalonOriginsConfig.Save(config);
+			}
+			orig(i);
+        }
 	}
 	public static class ReflectionExtensions
 	{
