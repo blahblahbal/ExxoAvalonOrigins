@@ -65,6 +65,7 @@ namespace ExxoAvalonOrigins.Backgrounds
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
+            b -= 200;
             return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG");
         }
     }

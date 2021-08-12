@@ -166,6 +166,7 @@ namespace ExxoAvalonOrigins
         public bool jumpAgain5;
         public bool dJumpEffect5;
         public bool doubleDamage;
+        public bool stingerProbeMinion = false;
 
         public int herbX;
         public int herbY;
@@ -185,6 +186,7 @@ namespace ExxoAvalonOrigins
             bubbleBoost = false;
             darkInferno = false;
             melting = false;
+            stingerProbeMinion = false; // gotta be here for effect reset
         }
 
         public override void UpdateBadLifeRegen()
@@ -1160,6 +1162,18 @@ namespace ExxoAvalonOrigins
             else
             {
                 player.statManaMax2 = statManaMax2;
+            }
+
+            if (stingerProbeMinion)
+            {
+                player.AddBuff(ModContent.BuffType<Buffs.StingerProbe>(), 60, true);
+
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 1)
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, Main.myPlayer);
+            }
+            else
+            {
+                player.ClearBuff(ModContent.BuffType<Buffs.StingerProbe>());
             }
         }
 
