@@ -123,11 +123,11 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, 0, false);
             }
-            if (npc.type == NPCID.DungeonSpirit)
+            if (npc.type == NPCID.DungeonSpirit && Main.rand.Next(7) == 0)
             {
                 int proj = Projectile.NewProjectile(npc.position, npc.velocity, ModContent.ProjectileType<Projectiles.SpiritPoppy>(), 0, 0, Main.myPlayer);
-                Main.projectile[proj].velocity.Y = -1.5f;
-                Main.projectile[proj].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
+                Main.projectile[proj].velocity.Y = -3.5f;
+                Main.projectile[proj].velocity.X = Main.rand.Next(-45, 46) * 0.1f;
             }
             if (npc.type == NPCID.Golem && !Main.expertMode)
             {

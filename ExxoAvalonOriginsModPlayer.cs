@@ -446,6 +446,18 @@ namespace ExxoAvalonOrigins
             {
                 herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
             }
+            if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax2"))
+            {
+                statManaMax2 = tag.Get<int>("ExxoAvalonOrigins:StatManaMax2");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax3"))
+            {
+                statManaMax3 = tag.Get<int>("ExxoAvalonOrigins:StatManaMax3");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:StatMana"))
+            {
+                statMana = tag.Get<int>("ExxoAvalonOrigins:StatMana");
+            }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -615,7 +627,11 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbTier", herbTier },
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
-                { "ExxoAvalonOrigins:HerbCounts", herbCounts }
+                { "ExxoAvalonOrigins:HerbCounts", herbCounts },
+                { "ExxoAvalonOrigins:StatManaMax2", statManaMax2 },
+                { "ExxoAvalonOrigins:StatManaMax3", statManaMax3 },
+                { "ExxoAvalonOrigins:StatMana", statMana }
+
             };
             return tag;
         }

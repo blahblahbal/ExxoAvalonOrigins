@@ -11,8 +11,8 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             projectile.netImportant = true;
-            projectile.width = 32;
-            projectile.height = 32;
+            projectile.width = 14;
+            projectile.height = 14;
             projectile.aiStyle = -1;
             projectile.penetrate = -1;
             projectile.timeLeft = 10000;
@@ -24,7 +24,15 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            projectile.Kill();
+            if (projectile.velocity.X != oldVelocity.X)
+            {
+                projectile.velocity.X = oldVelocity.X * -0.75f;
+            }
+            if (projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 1.5)
+            {
+                projectile.velocity.Y = oldVelocity.Y * -0.7f;
+            }
+            //projectile.Kill();
             return false;
         }
         public override void AI()
@@ -38,7 +46,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.ai[0]++;
             if (projectile.ai[0] >= 50 && projectile.ai[0] <= 100)
             {
-                projectile.velocity.Y *= 0.8f;
+                projectile.velocity.Y *= 0.6f;
             }
             if (projectile.ai[0] == 101)
             {
@@ -46,7 +54,8 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             if (projectile.ai[0] > 101)
             {
-                projectile.velocity.Y *= 1.02f;
+                projectile.velocity.Y += 0.2f;
+                if (projectile.velocity.Y > 4) projectile.velocity.Y = 4;
             }
 
 
@@ -64,6 +73,15 @@ namespace ExxoAvalonOrigins.Projectiles
                 int ypos = (int)((projectile.position.Y + (float)projectile.height - 4f) / 16f);
                 if (Main.tile[xpos, ypos] != null && !Main.tile[xpos, ypos].active())
                 {
+                    if (Main.tile[xpos, ypos].type != 21 || Main.tile[xpos + 1, ypos].type != 21 || Main.tile[xpos - 1, ypos].type != 21)
+                    {
+                        if (Main.tileSolid[Main.tile[xpos + 1, ypos].type] && Main.tileSolid[Main.tile[xpos - 1, ypos].type])
+                        {
+                            WorldGen.KillTile(xpos, ypos);
+                            WorldGen.KillTile(xpos + 1, ypos);
+                            WorldGen.KillTile(xpos - 1, ypos);
+                        }
+                    }
                     WorldGen.PlaceTile(xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), false, true);
                     if (Main.tile[xpos, ypos].active())
                     {
