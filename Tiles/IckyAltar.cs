@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -22,7 +23,8 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileHammer[Type] = true;
 			Main.tileLighted[Type] = true;
 			Main.tileFrameImportant[Type] = true;
-		}
+            adjTiles = new int[] { TileID.DemonAltar };
+        }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

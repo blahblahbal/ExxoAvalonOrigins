@@ -21,18 +21,18 @@ namespace ExxoAvalonOrigins.NPCs
 
 		public override void SetDefaults()
 		{
-			npc.damage = 130;
+			npc.damage = 170;
 			npc.boss = true;
 			npc.netAlways = true;
 			npc.scale = 1.8f;
-			npc.lifeMax = 37500;
-			npc.defense = 46;
-			npc.width = 98;
+			npc.lifeMax = 61000;
+			npc.defense = 55;
+			npc.width = 170;
 			npc.aiStyle = -1;
 			npc.npcSlots = 10f;
 			npc.value = 200000f;
 			npc.timeLeft = 750;
-			npc.height = 92;
+			npc.height = 120;
 			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -97,6 +97,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             npc.velocity.X = npc.velocity.X + 7f * npc.direction;
                         }
+                        ExxoAvalonOrigins.armaRO = false;
                         npc.ai[0] = -200f;
                         npc.ai[1] = 0f;
                     }
@@ -108,6 +109,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
                         }
+                        ExxoAvalonOrigins.armaRO = false;
                         npc.ai[0] = -120f;
                         npc.ai[1] += 1f;
                     }
@@ -119,6 +121,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
                         }
+                        ExxoAvalonOrigins.armaRO = false;
                         npc.ai[0] = -120f;
                         npc.ai[1] += 1f;
                     }
@@ -183,9 +186,17 @@ namespace ExxoAvalonOrigins.NPCs
                         var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 12f * -1.0), (float)(Math.Sin(num1166 + num1167) * 12f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 50, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
+                        if (Main.netMode != 0)
+                        {
+                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
+                        }
                         num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 12f * -1.0), (float)(Math.Sin(num1166 - num1167) * 12f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 50, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
+                        if (Main.netMode != 0)
+                        {
+                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
+                        }
                     }
                     npc.ai[1] = -90f;
                     if (Main.netMode == NetmodeID.Server && newNPC < 200)

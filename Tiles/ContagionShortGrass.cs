@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles
@@ -21,6 +22,13 @@ namespace ExxoAvalonOrigins.Tiles
             AddMapEntry(new Color(147, 166, 42));
         }
 
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (Main.tile[i, j].frameX / 18 == 10)
+            {
+                Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.ContaminatedMushroom>());
+            }
+        }
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)
         {
             offsetY = 2;

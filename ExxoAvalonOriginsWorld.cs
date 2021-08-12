@@ -19,9 +19,9 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         }        public override void TileCountsAvailable(int[] tileCounts)
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
-            ickyTiles = tileCounts[ModContent.TileType<Tiles.Chunkstone>()] + tileCounts[ModContent.TileType<Tiles.HardenedSnotsand>()] + tileCounts[ModContent.TileType<Tiles.Snotsandstone>()] + tileCounts[ModContent.TileType<Tiles.Ickgrass>()] + tileCounts[ModContent.TileType<Tiles.Snotsand>()] + tileCounts[ModContent.TileType<Tiles.YellowIce>()];
+            ickyTiles = tileCounts[ModContent.TileType<Chunkstone>()] + tileCounts[ModContent.TileType<HardenedSnotsand>()] + tileCounts[ModContent.TileType<Snotsandstone>()] + tileCounts[ModContent.TileType<Ickgrass>()] + tileCounts[ModContent.TileType<Snotsand>()] + tileCounts[ModContent.TileType<YellowIce>()];
             hellcastleTiles = tileCounts[ModContent.TileType<Tiles.ImperviousBrick>()];
-            Main.sandTiles += tileCounts[ModContent.TileType<Tiles.Snotsand>()];
+            Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
         }
         
         public void RetroGen()        {            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 0, 0))            {
@@ -775,6 +775,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     {
                         tile.type = TileID.HardenedSand;
                     }
+                    //else if (type == ModContent.TileType<ContagionShortGrass>())
+                    //{
+                    //    tile.type = TileID.Plants;
+                    //}
                     if (TileID.Sets.Conversion.Grass[type] || type == 0)
                     {
                         WorldGen.SquareTileFrame(x, y);
@@ -857,13 +861,13 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             {
                 for (int j = 1; j < Main.maxTilesY; j++)
                 {
-                    if (Main.tile[i, j].type == (ushort)ModContent.TileType<Ickgrass>() && Main.tile[i, j].nactive() && Main.tile[i, j].slope() == 0 && Main.rand.Next(3) == 0)
+                    if (Main.tile[i, j].type == (ushort)ModContent.TileType<Ickgrass>() && Main.tile[i, j].nactive() && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].halfBrick() && Main.rand.Next(3) == 0)
                     {
                         if (!Main.tile[i, j - 1].active())
                         {
                             //WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ContagionShortGrass>(), true, false, style: Main.rand.Next(0, 8));
                             Main.tile[i, j - 1].type = (ushort)ModContent.TileType<ContagionShortGrass>();
-                            Main.tile[i, j - 1].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                            Main.tile[i, j - 1].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
                         }
                     }
                     //else if (Main.tile[i, j].type == 23 && Main.tile[i, j].nactive())
@@ -1332,10 +1336,10 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num9 + 1].halfBrick() && Main.tile[num5, num9 + 1].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
-                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
                             if (Main.tile[num5, num9].active())
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
@@ -1810,7 +1814,21 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     progress.Set(0.5f);
                     TrackGenerator.Run((int)(10f * num), (int)(num * 25f) + 250);
                     progress.Set(1f);
-                }));                //tasks.Insert(microBiomes + 2, new PassLegacy("Avalon Contaigon fix 2", delegate (GenerationProgress progress)                //{                //    ContagionRunner2(Main.maxTilesX / 2, 300);                //}));            }        }        public static bool GrowHellTree(int i, int y)
+                }));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", delegate (GenerationProgress progress)                {                    foreach (Chest c in Main.chest)
+                    {
+                        if (c != null)
+                        {
+                            foreach (Item i in c.item)
+                            {
+                                if (i != null && i.type == ItemID.EnchantedBoomerang)
+                                {
+                                    i.SetDefaults(ModContent.ItemType<EnchantedBar>());
+                                    i.stack = WorldGen.genRand.Next(35, 49);
+                                }
+                                if (i != null && i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.SetDefaults(ModContent.ItemType<FlowerofTheJungle>());
+                            }
+                        }
+                    }                }));            }        }        public static bool GrowHellTree(int i, int y)
         {
             int j;
             for (j = y; TileLoader.IsSapling(Main.tile[i, j].type); j--)

@@ -29,6 +29,7 @@ namespace ExxoAvalonOrigins
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
+        public int screenShake;
         public enum ShadowMirrorModes
         {
             Spawn,
@@ -194,8 +195,29 @@ namespace ExxoAvalonOrigins
             darkInferno = false;
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
+            liaB = false;
+            if (screenShake > 0)
+            {
+                screenShake--;
+                //if (screenShake == 1) Main.PlaySound(2, (int)arma.position.X, (int)arma.position.Y, 14);
+            }
+            if (shmAcc)
+            {
+                player.extraAccessory = true;
+                player.extraAccessorySlots++;
+            }
         }
-
+        public override void UpdateDead()
+        {
+            if (screenShake > 0) screenShake--;
+        }
+        public override void ModifyScreenPosition()
+        {
+            if (screenShake > 0 && ExxoAvalonOrigins.armaRO)
+            {
+                Main.screenPosition += Main.rand.NextVector2Circular(15, 15);
+            }
+        }
         public override void UpdateBadLifeRegen()
         {
             if (darkInferno)
@@ -284,17 +306,19 @@ namespace ExxoAvalonOrigins
         public override void PreUpdateBuffs()
         {
             for (int k = 0; k < player.buffType.Length; k++)
-            if (player.buffType[k] == 37)
             {
-                if (Main.wof >= 0 && Main.npc[Main.wof].type == 113 || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                if (player.buffType[k] == 37)
                 {
-                    player.gross = true;
-                    player.buffTime[k] = 10;
-                }
-                else
-                {
-                    player.DelBuff(k);
-                    k--;
+                    if (Main.wof >= 0 && Main.npc[Main.wof].type == 113 || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                    {
+                        player.gross = true;
+                        player.buffTime[k] = 10;
+                    }
+                    else
+                    {
+                        player.DelBuff(k);
+                        k--;
+                    }
                 }
             }
         }
@@ -604,6 +628,30 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdate()
         {
+            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
+            {
+                int armaID = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
+                if (armaID != -1)
+                {
+                    if (Main.npc[armaID].active || Main.npc[armaID].life > 0)
+                    {
+                        if (Vector2.Distance(Main.npc[armaID].position, Main.player[Main.myPlayer].position) <= 100 * 16)
+                        {
+                            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(Main.npc[armaID].position, (int)(Main.npc[armaID].width * Main.npc[armaID].scale), (int)(Main.npc[armaID].height * Main.npc[armaID].scale)) && Main.npc[armaID].oldVelocity.Y > 0f && !ExxoAvalonOrigins.armaRO)
+                            {
+                                ExxoAvalonOrigins.armaRO = true;
+                                screenShake = 10;
+                            }
+                            if (ExxoAvalonOrigins.armaRO)
+                            {
+                                if (screenShake == 1) Main.PlaySound(2, (int)Main.npc[armaID].position.X, (int)Main.npc[armaID].position.Y, 14);
+                            }
+                        }
+                    }
+                }
+            }
+
+
             Vector2 pposTile = player.Center / 16;
             for (int xpos = (int)pposTile.X - 4; xpos <= (int)pposTile.X + 4; xpos++)
             {
@@ -645,7 +693,7 @@ namespace ExxoAvalonOrigins
                 }
             }
             if (!Main.playerInventory) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
-            if (shmAcc) player.extraAccessorySlots++;
+            //if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
                 var lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
