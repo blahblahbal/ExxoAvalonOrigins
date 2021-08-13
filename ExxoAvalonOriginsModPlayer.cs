@@ -23,9 +23,7 @@ namespace ExxoAvalonOrigins
         public int statStamMax = 300;
         public int statStamMax2 = 300;
         public int statStam = 100;
-        public int statManaMax3 = 1500;
-        public int statManaMax2 = 100;
-        public int statMana = 100;
+        public int spiritPoppyUseCount;
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
@@ -218,7 +216,7 @@ namespace ExxoAvalonOrigins
         {
             if (screenShake > 0 && ExxoAvalonOrigins.armaRO)
             {
-                Main.screenPosition += Main.rand.NextVector2Circular(15, 15);
+                Main.screenPosition += Main.rand.NextVector2Circular(20, 20);
             }
         }
         public override void UpdateBadLifeRegen()
@@ -449,6 +447,10 @@ namespace ExxoAvalonOrigins
             {
                 herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
             }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SpiritPoppyUseCount"))
+            {
+                spiritPoppyUseCount = tag.Get<int>("ExxoAvalonOrigins:SpiritPoppyUseCount");
+            }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -630,7 +632,8 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbTier", herbTier },
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
-                { "ExxoAvalonOrigins:HerbCounts", herbCounts }
+                { "ExxoAvalonOrigins:HerbCounts", herbCounts },
+                { "ExxoAvalonOrigins:SpiritPoppyUseCount", spiritPoppyUseCount }
             };
             return tag;
         }
@@ -640,9 +643,14 @@ namespace ExxoAvalonOrigins
             if (ExxoAvalonOrigins.godMode) return false;
             return true;
         }
-
+        public override void PreUpdateMovement()
+        {
+             // TO-DO: LOOK FOR WOS
+        }
         public override void PostUpdate()
         {
+            
+            //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
                 int armaID = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
@@ -980,7 +988,8 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateEquips()
         {
-            statManaMax2 = player.statManaMax2;
+            //player.statMana = statManaMax3;
+            //statManaMax2 = player.statManaMax2;
 			if (meleeStealth && armorStealth)
 			{
 				if (player.itemAnimation > 0)
@@ -1207,6 +1216,10 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateMiscEffects()
         {
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()) || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+            {
+                player.sticky = false;
+            }
             if (player.HasItem(ModContent.ItemType<SonicScrewdriverMkI>()))
             {
                 player.findTreasure = player.detectCreature = true;
@@ -1225,14 +1238,7 @@ namespace ExxoAvalonOrigins
                 player.accDepthMeter = 1;
                 player.accCompass = 1;
             }
-            if (statManaMax2 > statManaMax3)
-            {
-                player.statManaMax2 = statManaMax3;
-            }
-            else
-            {
-                player.statManaMax2 = statManaMax2;
-            }
+            player.statManaMax2 += (spiritPoppyUseCount * 20);
 
             if (stingerProbeMinion)
             {
@@ -1278,7 +1284,7 @@ namespace ExxoAvalonOrigins
         public override void PreUpdate()
         {
             WOSTongue();
-	        if (teleportV)
+            if (teleportV)
 	        {
 		        teleportV = false;
 		        teleportVWasTriggered = true;

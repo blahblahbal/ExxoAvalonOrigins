@@ -1,5 +1,16 @@
 using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	[AutoloadEquip(EquipType.Wings)]	class BlahsWings : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Blah's Wings");			Tooltip.SetDefault("Allows flight and slow fall and the wearer can run incredibly fast\nThe wearer has a chance to dodge attacks and negates fall damage");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/BlahsWings");			item.defense = 4;			item.rare = 12;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
-            item.width = dims.Width;			item.value = Item.sellPrice(2, 0, 0, 0);			item.accessory = true;			item.height = dims.Height;		}		public override void UpdateAccessory(Player player, bool hideVisual)		{			player.pStone = true;			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bubbleBoost = true;			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ethHeart = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().longInvince2 = true;            player.wingTime = 1000;            if (player.immune)			{				player.magicCrit += 7;				player.meleeCrit += 7;				player.rangedCrit += 7;				player.magicDamage += 0.07f;				player.meleeDamage += 0.07f;				player.rangedDamage += 0.07f;				player.minionDamage += 0.07f;			}			player.accRunSpeed = 10.29f;			player.rocketBoots = 2;			player.meleeSpeed += 0.15f;			player.noFallDmg = true;			player.blackBelt = true;			player.iceSkate = true;            if (player.controlUp && player.controlJump)
+            item.width = dims.Width;			item.value = Item.sellPrice(2, 0, 0, 0);			item.accessory = true;			item.height = dims.Height;		}        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    line.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                }
+            }
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)		{			player.pStone = true;			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bubbleBoost = true;			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ethHeart = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().longInvince2 = true;            player.wingTime = 1000;            if (player.immune)			{				player.magicCrit += 7;				player.meleeCrit += 7;				player.rangedCrit += 7;				player.magicDamage += 0.07f;				player.meleeDamage += 0.07f;				player.rangedDamage += 0.07f;				player.minionDamage += 0.07f;			}			player.accRunSpeed = 10.29f;			player.rocketBoots = 2;			player.meleeSpeed += 0.15f;			player.noFallDmg = true;			player.blackBelt = true;			player.iceSkate = true;            if (player.controlUp && player.controlJump)
             {
                 player.velocity.Y = player.velocity.Y - 0.3f * player.gravDir;
                 if (player.gravDir == 1f)

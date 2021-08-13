@@ -38,7 +38,17 @@ namespace ExxoAvalonOrigins.Items
 			item.useAnimation = 14;
 			item.height = dims.Height;
 		}
-		public override Color? GetAlpha(Color lightColor)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    line.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                }
+            }
+        }
+        public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(255, 255, 255, 255);
 		}

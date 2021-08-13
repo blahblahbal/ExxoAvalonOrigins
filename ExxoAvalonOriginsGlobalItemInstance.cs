@@ -4,7 +4,7 @@ using System.Linq;using System.Text;using System.Threading.Tasks;using Terrar
 
 namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalItemInstance : GlobalItem    {        public override bool InstancePerEntity        {            get { return true; }        }        public bool invince;        public int torch = 0;        public int wallWand = -1;        public int healStamina;        public bool tome = false;        public bool updateInvisibleVanity = false;        public AvalonRarity avalonRarity;        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");            if (tooltipLine != null)
+            TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "ExxoAvalonOrigins");            if (tooltipLine != null)
             {
                 switch (avalonRarity)
                 {

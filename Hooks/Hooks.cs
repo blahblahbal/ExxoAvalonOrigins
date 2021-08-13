@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Hooks
             On.Terraria.Main.DrawInterface_Resources_Mana += ExtraHealth.OnDrawInterface_Resources_Mana;
             On.Terraria.Collision.HurtTiles += TrapCollision.OnHurtTiles;
             On.Terraria.WorldGen.SmashAltar += EvilAltar.OnSmashAltar;
-            IL.Terraria.Main.DrawMenu += EvilChooserMenu.ILDrawMenu;
+            IL.Terraria.Main.DrawMenu += WorldCreationMenus.ILDrawMenu;
             IL.Terraria.WorldGen.hardUpdateWorld += ContagionSpread.ILHardUpdateWorld;
             IL.Terraria.Main.DrawPlayer += LargeGem.ILDrawPlayer;
             IL.Terraria.Player.SmartCursor_Torch += Torches.ILSmartCursor_Torch;
