@@ -37,6 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
 	        npc.DeathSound = SoundID.NPCDeath14;
+            bossBag = ModContent.ItemType<Items.OblivionBossBag>();
 		}
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -259,21 +260,28 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionTrophy>(), 1, false, 0, false);
             }
-            if (Main.rand.Next(4) == 0)
+            if (Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CurseofOblivion>(), 1, false, 0, false);
-            }
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.AccelerationDrill>(), 1, false, -2, false);
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofTorture>(), Main.rand.Next(60, 121), false, 0, false);
-            if (Main.rand.Next(5) > 0)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 1, false, 0, false);
+                npc.DropBossBags();
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 2, false, 0, false);
+                if (Main.rand.Next(4) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CurseofOblivion>(), 1, false, 0, false);
+                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.AccelerationDrill>(), 1, false, -2, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofTorture>(), Main.rand.Next(60, 121), false, 0, false);
+                if (Main.rand.Next(5) > 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 1, false, 0, false);
+                }
+                else
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 2, false, 0, false);
+                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
             }
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
 
             if (!ExxoAvalonOriginsWorld.downedOblivion)
                 ExxoAvalonOriginsWorld.downedOblivion = true;

@@ -37,6 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.boss = true;
             npc.lifeMax = 82000;
             npc.scale = 1.2f;
+            bossBag = ModContent.ItemType<Items.MechastingBossBag>();
             
         }
         public override void BossLoot(ref string name, ref int potionType)
@@ -332,7 +333,14 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+            }
+            else
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
+            }
 
             if (!ExxoAvalonOriginsWorld.downedMechasting)
                 ExxoAvalonOriginsWorld.downedMechasting = true;

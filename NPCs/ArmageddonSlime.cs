@@ -41,7 +41,8 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.CursedInferno] = true;
 			npc.buffImmune[BuffID.Frostburn] = true;
 			npc.buffImmune[mod.BuffType("Freeze")] = true;
-		    //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
+            //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
+            bossBag = ModContent.ItemType<Items.ArmageddonSlimeBossBag>();
 		}
 
         public override void AI()
@@ -215,7 +216,14 @@ namespace ExxoAvalonOrigins.NPCs
         public override void NPCLoot()
 		{
 			ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = true;
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+            }
+            else
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
+            }
 			if (Main.rand.Next(10) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeTrophy>(), 1, false, 0, false);

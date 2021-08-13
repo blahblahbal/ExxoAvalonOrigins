@@ -45,6 +45,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Frostburn] = true;
             drawOffsetY = 55;
+            bossBag = ModContent.ItemType<Items.DragonLordBossBag>();
 		}
         public override Color? GetAlpha(Color drawColor)
         {
@@ -72,7 +73,14 @@ namespace ExxoAvalonOrigins.NPCs
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DragonLordTrophy>(), 1, false, 0, false);
 			}
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11), false, 0, false);
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+            }
+            else
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11), false, 0, false);
+            }
 
             if (!ExxoAvalonOriginsWorld.downedDragonLord)
                 ExxoAvalonOriginsWorld.downedDragonLord = true;
