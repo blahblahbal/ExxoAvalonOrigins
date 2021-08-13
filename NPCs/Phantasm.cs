@@ -10,6 +10,7 @@ namespace ExxoAvalonOrigins.NPCs
     [AutoloadBossHead]
     public class Phantasm : ModNPC
     {
+        bool transitionDone;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Phantasm");
@@ -31,6 +32,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath39;
             bossBag = ModContent.ItemType<Items.PhantasmBossBag>();
+
+            transitionDone = false;
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -144,107 +147,155 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
             // ai phase 2; swooping attack and charging mah laser
-            else if (npc.life <= npc.lifeMax * 0.75 && npc.life > npc.lifeMax * 0.75 - 500)
+            /*else if (npc.life <= npc.lifeMax * 0.75 && npc.life > npc.lifeMax * 0.75 - 500)
             {
-                npc.velocity *= 0f;
-                npc.ai[0]++;
-                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
-                if (npc.ai[0] < 150 && npc.position != tpPos)
+                if (!transitionDone)
                 {
-                    npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
+                    npc.dontTakeDamage = true;
+                    Vector2 libraryCenter = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
+                    
+                    if (Vector2.Distance(libraryCenter, npc.Center) <= 5)
+                    {
+                        npc.velocity = Vector2.Zero;
+                        npc.Center = libraryCenter;
+                        transitionDone = true;
+                    }
+                    else
+                    {
+                        Vector2 heading = libraryCenter - npc.Center;
+                        heading.Normalize();
+                        heading *= new Vector2(1.5f, 1.5f).Length(); // multiply by speed
+                        npc.velocity = heading;
+                    }
                 }
-                if (npc.ai[0] >= 150)
+                else
                 {
+                    npc.dontTakeDamage = false;
                     npc.velocity *= 0f;
-                    npc.ai[0] = 0;
+                    npc.ai[0]++;
+                    Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
+                    if (npc.ai[0] < 150 && npc.position != tpPos)
+                    {
+                        npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
+                    }
+                    if (npc.ai[0] >= 150)
+                    {
+                        npc.velocity *= 0f;
+                        npc.ai[0] = 0;
+                    }
                 }
                 //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, NPC.FindFirstNPC(npc.type));
                 //npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
-            }
-            else if (npc.life <= npc.lifeMax * 0.75 - 500 && npc.life > npc.lifeMax / 3)
+            }*/
+            else if (npc.life <= npc.lifeMax * 0.75 && npc.life > npc.lifeMax / 3)
             {
-                npc.ai[0]++;
-                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
-                if (npc.ai[0] < 150 && npc.position != tpPos)
+                if (!transitionDone)
                 {
-                    npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
-                }
-                if (npc.ai[0] >= 150)
-                {
-                    npc.velocity *= 0f;
-                    npc.ai[0] = 0;
-                }
-                npc.velocity *= 0f;
-                if (npc.ai[1] <= 3)
-                {
-                    // swooping attack
-                    // after swooping attack, increment ai[1]
-                    // using ai[2] to create the swooping attack
-                    npc.ai[2]++;
-                    //npc.ai[0] = 1;
-                    if (npc.ai[2] <= 300)
+                    npc.dontTakeDamage = true;
+                    Vector2 libraryCenter = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
+
+                    if (Vector2.Distance(libraryCenter, npc.Center) <= 5)
                     {
-                        Player T = Main.player[npc.target];
-                        if (npc.ai[2] % 20 == 0)
+                        npc.velocity = Vector2.Zero;
+                        npc.Center = libraryCenter;
+                        transitionDone = true;
+                    }
+                    else
+                    {
+                        npc.life = (int)(npc.lifeMax * 0.75f);
+                        Vector2 heading = libraryCenter - npc.Center;
+                        heading.Normalize();
+                        heading *= new Vector2(1.5f, 1.5f).Length(); // multiply by speed
+                        npc.velocity = heading;
+                    }
+                }
+                else
+                {
+                    npc.dontTakeDamage = false;
+                    npc.ai[0]++;
+                    /*Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
+                    if (npc.ai[0] < 150 && npc.position != tpPos)
+                    {
+                        npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
+                    }*/
+                    if (npc.ai[0] >= 150)
+                    {
+                        npc.velocity *= 0f;
+                        npc.ai[0] = 0;
+                    }
+                    npc.velocity *= 0f;
+                    if (npc.ai[1] <= 3)
+                    {
+                        // swooping attack
+                        // after swooping attack, increment ai[1]
+                        // using ai[2] to create the swooping attack
+                        npc.ai[2]++;
+                        //npc.ai[0] = 1;
+                        if (npc.ai[2] <= 300)
                         {
-                            float Speed = 9f;
-                            int damage = 50;
-                            Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33, 0.8f);
-                            Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
-                            float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
-                            int num54 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, 0);
-                            Main.projectile[num54].velocity = Vector2.Normalize(T.position - npc.position) * 9f;
+                            Player T = Main.player[npc.target];
+                            if (npc.ai[2] % 20 == 0)
+                            {
+                                float Speed = 9f;
+                                int damage = 50;
+                                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33, 0.8f);
+                                /*Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
+                                float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
+                                int num54 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, 0);
+                                Main.projectile[num54].velocity = Vector2.Normalize(T.position - npc.position) * 9f;*/
+                                Projectile.NewProjectile(npc.Center, (T.Center - npc.Center).SafeNormalize(-Vector2.UnitY) * Speed, ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, Main.myPlayer);
+                            }
+                        }
+                        if (npc.ai[2] == 301)
+                        {
+                            npc.ai[1]++;
+                            npc.ai[2] = 0;
                         }
                     }
-                    if (npc.ai[2] == 301)
+                    if (npc.ai[1] >= 4 && npc.ai[1] < 305)
                     {
                         npc.ai[1]++;
-                        npc.ai[2] = 0;
-                    }
-                }
-                if (npc.ai[1] >= 4 && npc.ai[1] < 305)
-                {
-                    npc.ai[1]++;
-                    //npc.velocity *= 0f;
-                    //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
-                    if (npc.ai[1] % 75 == 0)
-                    {
-                        Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
-                        // fire laser
-                        Vector2 velocityOfProj = Main.player[npc.target].Center - npc.Center;
-                        velocityOfProj.Normalize();
-                        float num1275 = -1f;
-                        if (velocityOfProj.X < 0f)
+                        //npc.velocity *= 0f;
+                        //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
+                        if (npc.ai[1] % 75 == 0)
                         {
-                            num1275 = 1f;
+                            Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
+                            // fire laser
+                            Vector2 velocityOfProj = Main.player[npc.target].Center - npc.Center;
+                            velocityOfProj.Normalize();
+                            float num1275 = -1f;
+                            if (velocityOfProj.X < 0f)
+                            {
+                                num1275 = 1f;
+                            }
+                            velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
+                            int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y + npc.width / 3, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 45, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
+                            npc.localAI[1] += 0.05f;
+                            if (npc.localAI[1] > 1f)
+                            {
+                                npc.localAI[1] = 1f;
+                            }
+                            float num1277 = 1;
+                            if (num1277 < 0f)
+                            {
+                                num1277 *= -1f;
+                            }
+                            num1277 += MathHelper.Pi * -3;
+                            num1277 += MathHelper.TwoPi / 720f;
+                            npc.localAI[0] = num1277;
                         }
-                        velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
-                        int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y + npc.width / 3, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 45, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
-                        npc.localAI[1] += 0.05f;
-                        if (npc.localAI[1] > 1f)
+                        if (npc.ai[1] == 304)
                         {
-                            npc.localAI[1] = 1f;
+                            npc.ai[1] = 0;
                         }
-                        float num1277 = 1;
-                        if (num1277 < 0f)
-                        {
-                            num1277 *= -1f;
-                        }
-                        num1277 += MathHelper.Pi * -3;
-                        num1277 += MathHelper.TwoPi / 720f;
-                        npc.localAI[0] = num1277;
-                    }
-                    if (npc.ai[1] == 304)
-                    {
-                        npc.ai[1] = 0;
                     }
                 }
             }
             // ai phase 3, fire spiral spread of ghostflame orbs
-            else
+            else if (npc.life <= npc.lifeMax / 3 && transitionDone)
             {
                 npc.velocity *= 0f;
-                npc.position = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
+                //npc.position = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
                 //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, NPC.FindFirstNPC(npc.type));
                 npc.ai[3]++;
                 if (npc.ai[3] >= 300)

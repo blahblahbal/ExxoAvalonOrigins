@@ -60,7 +60,6 @@ namespace ExxoAvalonOrigins.Projectiles
                     activeIds = new List<bool>();
                 }
                 bool found = false;
-                Main.NewText(activeIds.Count);
                 for (int i = 0; i < activeIds.Count; i++)
                 {
                     if (!activeIds[i])

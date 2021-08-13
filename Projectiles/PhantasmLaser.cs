@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace ExxoAvalonOrigins.Projectiles{
     public class PhantasmLaser : ModProjectile
     {
+        Color laserColor;
+        Color[] colorArray = new Color[3];
+        int colorShift;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Phantasm Laser");
@@ -29,8 +32,29 @@ namespace ExxoAvalonOrigins.Projectiles{
             Texture2D texture2D19 = ExxoAvalonOrigins.BeamVTexture;
             Texture2D texture2D20 = ExxoAvalonOrigins.BeamStartTexture;
             float num204 = projectile.localAI[1];
-            Color color37 = new Color(0, 255, 255, 180) * 0.9f;
-            spriteBatch.Draw(texture2D18, p.Center - Main.screenPosition, null, color37, projectile.rotation, texture2D18.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+
+            colorArray[0] = new Color(88, 219, 255, 180) * 0.9f;
+            colorArray[1] = new Color(59, 219, 234, 180) * 0.9f;
+            colorArray[2] = new Color(30, 220, 214, 180) * 0.9f;
+
+            colorShift++;
+            if (colorShift > 60)
+                colorShift = 0;
+
+            if (colorShift <= 15)
+            {
+                laserColor = colorArray[0];
+            }
+            else if (colorShift > 15 && colorShift <= 30 || colorShift > 45 && colorShift <= 61)
+            {
+                laserColor = colorArray[1];
+            }
+            else if (colorShift > 30 && colorShift <= 45)
+            {
+                laserColor = colorArray[2];
+            }
+
+            spriteBatch.Draw(texture2D18, p.Center - Main.screenPosition, null, laserColor, projectile.rotation, texture2D18.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             num204 -= (float)(texture2D18.Height / 2 + texture2D20.Height) * projectile.scale;
             Vector2 center2 = p.Center;
             center2 += projectile.velocity * projectile.scale * (float)texture2D18.Height / 2f;
@@ -44,7 +68,7 @@ namespace ExxoAvalonOrigins.Projectiles{
                     {
                         rectangle7.Height = (int)(num204 - num205);
                     }
-                    spriteBatch.Draw(texture2D19, center2 - Main.screenPosition, rectangle7, color37, projectile.rotation, new Vector2((float)(rectangle7.Width / 2), 0f), projectile.scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture2D19, center2 - Main.screenPosition, rectangle7, laserColor, projectile.rotation, new Vector2((float)(rectangle7.Width / 2), 0f), projectile.scale, SpriteEffects.None, 0f);
                     num205 += (float)rectangle7.Height * projectile.scale;
                     center2 += projectile.velocity * (float)rectangle7.Height * projectile.scale;
                     rectangle7.Y += 16;
@@ -54,7 +78,7 @@ namespace ExxoAvalonOrigins.Projectiles{
                     }
                 }
             }
-            spriteBatch.Draw(texture2D20, center2 - Main.screenPosition, null, color37, projectile.rotation, texture2D20.Frame().Top(), projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture2D20, center2 - Main.screenPosition, null, laserColor, projectile.rotation, texture2D20.Frame().Top(), projectile.scale, SpriteEffects.None, 0f);
         }
         public bool Colliding2(Rectangle myRect, Rectangle targetRect)
         {
@@ -116,7 +140,7 @@ namespace ExxoAvalonOrigins.Projectiles{
                 float num834 = projectile.velocity.ToRotation() + ((Main.rand.Next(2) == 1) ? (-1f) : 1f) * 1.57079637f;
                 float num835 = (float)Main.rand.NextDouble() * 2f + 2f;
                 Vector2 vector59 = new Vector2((float)Math.Cos((double)num834) * num835, (float)Math.Sin((double)num834) * num835);
-                int num836 = Dust.NewDust(vector58, 0, 0, 233, vector59.X, vector59.Y, Scale: 0.7f);
+                int num836 = Dust.NewDust(vector58, 0, 0, DustID.DungeonSpirit, vector59.X, vector59.Y, Scale: 0.7f);
                 Main.dust[num836].noGravity = true;
                 Main.dust[num836].scale = 1.7f;
                 num4 = num833;
