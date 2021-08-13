@@ -10,7 +10,18 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
         public static int wosB;
         public static int wosF = 0;
         public static int wos = -1;
-        public static bool downedPhantasm = false;        public override void ChooseWaterStyle(ref int style)
+        public static bool downedPhantasm = false;        public enum JungleVariant
+        {
+            jungle,
+            tropics,
+            random
+        }        public enum OsmiumVariant
+        {
+            rhodium,
+            osmium,
+            iridium,
+            random
+        }        public static JungleVariant jungleMenuSelection;        public static OsmiumVariant osmiumMenuSelection;        public override void ChooseWaterStyle(ref int style)
         {
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
@@ -1516,7 +1527,29 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 }
             }
             return false;
-        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            theBeak = ModContent.ItemType<TheBeak>();            blbTimer = 0;            rhodium = true;            rhodiumBar = ModContent.TileType<RhodiumOre>();            shmOreTier1 = -1;            shmOreTier2 = -1;            contaigon = contaigonSet;            contaigonSet = false;            totalDark2 = 0;            nilShrineCount = 0;            hallowedAltarCount = 0;            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOrigins.nilMode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;            int rhod = WorldGen.genRand.Next(3);            if (rhod == 0)            {                rhodium = false;                rhodiumBar = ModContent.TileType<Tiles.OsmiumOre>();            }            else if (rhod == 1)            {                rhodium = false;                rhodiumBar = ModContent.TileType<Tiles.IridiumOre>();            }            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", delegate(GenerationProgress progress)                {                    progress.Message = "Setting up Avalonian World Gen";                    if (!contaigon && WorldGen.WorldGenParam_Evil == -1)                    {                        contaigon = WorldGen.genRand.Next(3) == 0;                        if (contaigon) WorldGen.crimson = false;                    }                    if (WorldGen.WorldGenParam_Evil == 2)                    {                        contaigon = true;                        WorldGen.crimson = false;                    }                    int phmOreTier1 = WorldGen.genRand.Next(3);
+        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            theBeak = ModContent.ItemType<TheBeak>();            blbTimer = 0;            rhodium = true;            rhodiumBar = ModContent.TileType<RhodiumOre>();            shmOreTier1 = -1;            shmOreTier2 = -1;            contaigon = contaigonSet;            contaigonSet = false;            totalDark2 = 0;            nilShrineCount = 0;            hallowedAltarCount = 0;            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOrigins.nilMode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;            if (osmiumMenuSelection == OsmiumVariant.random)
+            {
+                osmiumMenuSelection = (OsmiumVariant)WorldGen.genRand.Next(3);
+            }
+
+            switch (osmiumMenuSelection)
+            {
+                case OsmiumVariant.osmium:
+                    {
+                        rhodiumBar = ModContent.TileType<Tiles.OsmiumOre>();
+                        break;
+                    }
+                case OsmiumVariant.rhodium:
+                    {
+                        rhodiumBar = ModContent.TileType<Tiles.RhodiumOre>();
+                        break;
+                    }
+                case OsmiumVariant.iridium:
+                    {
+                        rhodiumBar = ModContent.TileType<Tiles.IridiumOre>();
+                        break;
+                    }
+            }                   var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", delegate(GenerationProgress progress)                {                    progress.Message = "Setting up Avalonian World Gen";                    if (!contaigon && WorldGen.WorldGenParam_Evil == -1)                    {                        contaigon = WorldGen.genRand.Next(3) == 0;                        if (contaigon) WorldGen.crimson = false;                    }                    if (WorldGen.WorldGenParam_Evil == 2)                    {                        contaigon = true;                        WorldGen.crimson = false;                    }                    int phmOreTier1 = WorldGen.genRand.Next(3);
                     int phmOreTier2 = WorldGen.genRand.Next(3);
                     int phmOreTier3 = WorldGen.genRand.Next(3);
                     int phmOreTier4 = WorldGen.genRand.Next(3);                    // Set altenative prehard ores                    if (phmOreTier1 == 0)
