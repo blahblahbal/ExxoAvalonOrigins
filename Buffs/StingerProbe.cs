@@ -15,8 +15,10 @@ namespace ExxoAvalonOrigins.Buffs
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
         }
+
         public override void Update(Player player, ref int buffIndex)
         {
+
             Projectiles.StingerProbeMinion.rotTimer += 0.5f;
             if (Projectiles.StingerProbeMinion.rotTimer >= 360)
                 Projectiles.StingerProbeMinion.rotTimer = 0;
@@ -41,6 +43,6 @@ namespace ExxoAvalonOrigins.Buffs
                 Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI);
                 spawnProbeTimer = 0;
             }
-}
+        }
     }
 }

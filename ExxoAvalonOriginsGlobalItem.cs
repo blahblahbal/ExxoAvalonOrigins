@@ -40,10 +40,12 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
         }        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)        {            TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");            if (tooltipLine != null)
             {
                 if (item.type == ItemID.CoinGun) tooltipLine.text = "Spend Shot";
-                if (item.type == ItemID.HighTestFishingLine) tooltipLine.text = "High Tensile Fishing Line";
+                if (item.type == ItemID.HighTestFishingLine) tooltipLine.text = tooltipLine.text.Replace("Test", "Tensile");
                 if (item.type == ItemID.BlueSolution) tooltipLine.text = "Cyan Solution";
                 if (item.type == ItemID.DarkBlueSolution) tooltipLine.text = "Blue Solution";
-                if (item.type == ItemID.FrostsparkBoots) tooltipLine.text = "Sparkfrost Boots";
+                if (item.type == ItemID.FrostsparkBoots) tooltipLine.text = tooltipLine.text.Replace("Frostspark", "Sparkfrost");
+                if (item.type == 3372) tooltipLine.text = "Lunatic Cultist Mask";
+                if (item.type == ItemID.AncientCultistTrophy) tooltipLine.text = "Lunatic Cultist Trophy";
             }            if (item.accessory && !item.social)
             {
                 if (item.prefix == ModContent.PrefixType<Prefixes.Magical>())
@@ -152,7 +154,7 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
                         item.active = false;
                         item.type = 0;
                         item.stack = 0;
-                        if (Main.hardMode && NPC.downedGolemBoss)
+                        if (Main.hardMode && ExxoAvalonOriginsWorld.downedPhantasm)
                         {
                             ExxoAvalonOriginsGlobalNPC.SpawnWOS(item.position);
                             Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/WoS"), 0.75f);
