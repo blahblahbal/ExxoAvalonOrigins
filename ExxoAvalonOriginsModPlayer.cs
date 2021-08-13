@@ -24,8 +24,9 @@ namespace ExxoAvalonOrigins
         public int statStamMax2 = 300;
         public int statStam = 100;
         public int statManaMax3 = 1500;
-        public int statManaMax2 = 100;
-        public int statMana = 100;
+        public int statManaMax2 = 400;
+        public int statManaMax = 20;
+        public int statMana = 20;
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
@@ -448,15 +449,21 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax2"))
             {
-                statManaMax2 = tag.Get<int>("ExxoAvalonOrigins:StatManaMax2");
+                statManaMax2 = tag.GetAsInt("ExxoAvalonOrigins:StatManaMax2");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax3"))
             {
-                statManaMax3 = tag.Get<int>("ExxoAvalonOrigins:StatManaMax3");
+                statManaMax3 = tag.GetAsInt("ExxoAvalonOrigins:StatManaMax3");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:StatMana"))
             {
-                statMana = tag.Get<int>("ExxoAvalonOrigins:StatMana");
+                statMana = tag.GetAsInt("ExxoAvalonOrigins:StatMana");
+                //if (statMana < statManaMax3) player.statMana = statManaMax3;
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax"))
+            {
+                statManaMax = tag.GetAsInt("ExxoAvalonOrigins:StatManaMax");
+                player.statManaMax = statManaMax;
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -630,7 +637,8 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbCounts", herbCounts },
                 { "ExxoAvalonOrigins:StatManaMax2", statManaMax2 },
                 { "ExxoAvalonOrigins:StatManaMax3", statManaMax3 },
-                { "ExxoAvalonOrigins:StatMana", statMana }
+                { "ExxoAvalonOrigins:StatMana", statMana },
+                { "ExxoAvalonOrigins:StatManaMax", statManaMax }
 
             };
             return tag;
@@ -641,9 +649,13 @@ namespace ExxoAvalonOrigins
             if (ExxoAvalonOrigins.godMode) return false;
             return true;
         }
-
+        public override void PreUpdateMovement()
+        {
+             // TO-DO: LOOK FOR WOS
+        }
         public override void PostUpdate()
         {
+            //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
                 int armaID = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
@@ -981,7 +993,8 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateEquips()
         {
-            statManaMax2 = player.statManaMax2;
+            //player.statMana = statManaMax3;
+            //statManaMax2 = player.statManaMax2;
 			if (meleeStealth && armorStealth)
 			{
 				if (player.itemAnimation > 0)
@@ -1208,6 +1221,13 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateMiscEffects()
         {
+            if (statManaMax2 > 1500) player.statManaMax2 = 1500;
+            if (statManaMax3 > 1500) player.statManaMax2 = 1500;
+            //if (player.statManaMax < statManaMax) player.statManaMax2 = statManaMax;
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()) || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+            {
+                player.sticky = false;
+            }
             if (player.HasItem(ModContent.ItemType<SonicScrewdriverMkI>()))
             {
                 player.findTreasure = player.detectCreature = true;

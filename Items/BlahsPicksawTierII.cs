@@ -39,7 +39,16 @@ namespace ExxoAvalonOrigins.Items
 			item.useAnimation = 6;
 			item.height = dims.Height;
 		}
-
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    line.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                }
+            }
+        }
         public override void HoldItem(Player player)
         {
             if (player.inventory[player.selectedItem].type == mod.ItemType("BlahsPicksawTierII"))

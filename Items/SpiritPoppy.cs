@@ -42,6 +42,8 @@ namespace ExxoAvalonOrigins.Items
         {
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax2 += 20;
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax3 += 20;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax += 20;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statMana += 20;
             player.statManaMax += 20;
             player.statMana += 20;
             player.statManaMax2 += 20;
