@@ -109,7 +109,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         Pr.friendly = true;
                         Pr.velocity.X *= -1f;
                         Pr.velocity.Y *= -1f;
-e;
+
                         projectile.Kill();
                     }
                 }
