@@ -299,13 +299,14 @@ namespace ExxoAvalonOrigins
             }
             return false;
         }
-
         public override void OnEnterWorld(Player player)
         {
             if (tomeItem.type <= 0) tomeItem.SetDefaults();
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact weirdly with other large mods");
+            
+            StingerProbeMinion.activeIds.Clear();
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)

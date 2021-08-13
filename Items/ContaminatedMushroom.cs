@@ -3,7 +3,7 @@
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Contaminated Mushroom");
+            DisplayName.SetDefault("Virulent Mushroom");
         }
 
         public override void SetDefaults()

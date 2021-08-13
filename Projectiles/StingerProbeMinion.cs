@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
         int projTimer;
         bool initialised = false;
         int id;
-        static List<bool> activeIds;
+        public static List<bool> activeIds = new List<bool>();
         public static float rotTimer;
         public override void SetStaticDefaults()
         {
@@ -43,7 +43,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             Player player = Main.player[projectile.owner];
 
-            if (player.dead || !player.active)
+            if (player.dead || !player.active || !player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<Items.AIController>()))
             {
                 player.ClearBuff(ModContent.BuffType<Buffs.StingerProbe>());
             }
@@ -60,6 +60,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     activeIds = new List<bool>();
                 }
                 bool found = false;
+                Main.NewText(activeIds.Count);
                 for (int i = 0; i < activeIds.Count; i++)
                 {
                     if (!activeIds[i])
@@ -188,7 +189,11 @@ namespace ExxoAvalonOrigins.Projectiles
                 Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
                 Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
             }
-
+            if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().stingerProbeMinion)
+            {
+                int bomb = Projectile.NewProjectile(projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
+                Main.projectile[bomb].timeLeft = 1;
+            }
             activeIds[id] = false;
         }
     }
