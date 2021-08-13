@@ -23,11 +23,7 @@ namespace ExxoAvalonOrigins
         public int statStamMax = 300;
         public int statStamMax2 = 300;
         public int statStam = 100;
-        public int statManaMax3 = 1500;
-        public int statManaMax2 = 400;
-        public int statManaMax = 20;
-        public int statMana = 20;
-        public bool[] extraMana = new bool[10];
+        public int spiritPoppyUseCount;
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
@@ -448,9 +444,9 @@ namespace ExxoAvalonOrigins
             {
                 herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
             }
-            if (tag.ContainsKey("ExxoAvalonOrigins:ExtraMana"))
+            if (tag.ContainsKey("ExxoAvalonOrigins:SpiritPoppyUseCount"))
             {
-                extraMana = tag.Get<bool[]>("ExxoAvalonOrigins:ExtraMana");
+                spiritPoppyUseCount = tag.Get<int>("ExxoAvalonOrigins:SpiritPoppyUseCount");
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -622,7 +618,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
                 { "ExxoAvalonOrigins:HerbCounts", herbCounts },
-                { "ExxoAvalonOrigins:ExtraMana", extraMana }
+                { "ExxoAvalonOrigins:SpiritPoppyUseCount", spiritPoppyUseCount }
             };
             return tag;
         }
@@ -1204,15 +1200,6 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateMiscEffects()
         {
-            if (statManaMax2 > 1500) player.statManaMax2 = 1500;
-            if (statManaMax3 > 1500) player.statManaMax2 = 1500;
-            foreach (bool b in extraMana)
-            {
-                if (b)
-                {
-                    player.statManaMax += 20;
-                }
-            }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()) || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()))
             {
                 player.sticky = false;
@@ -1235,14 +1222,7 @@ namespace ExxoAvalonOrigins
                 player.accDepthMeter = 1;
                 player.accCompass = 1;
             }
-            if (statManaMax2 > statManaMax3)
-            {
-                player.statManaMax2 = statManaMax3;
-            }
-            else
-            {
-                player.statManaMax2 = statManaMax2;
-            }
+            player.statManaMax2 += (spiritPoppyUseCount * 20);
 
             if (stingerProbeMinion)
             {

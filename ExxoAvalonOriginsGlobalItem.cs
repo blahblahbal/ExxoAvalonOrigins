@@ -34,7 +34,8 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
             }
         }        public override bool CanUseItem(Item item, Player player)
         {
-            if (item.type == ItemID.ManaCrystal && player.statManaMax == 200) return false;
+            if (item.type == ItemID.ManaCrystal && player.statManaMax >= 200) 
+                return false;
             return base.CanUseItem(item, player);
         }        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)        {            TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");            if (tooltipLine != null)
             {
