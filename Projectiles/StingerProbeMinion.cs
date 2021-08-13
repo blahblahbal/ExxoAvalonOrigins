@@ -12,9 +12,7 @@ namespace ExxoAvalonOrigins.Projectiles
 {
     public class StingerProbeMinion : ModProjectile
     {
-        float rotTimer;
         int projTimer;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stinger Probe");
@@ -33,8 +31,6 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.timeLeft = 60;
-
-            rotTimer = 1;
         }
 
         public override bool? CanCutTiles() { return false; }
@@ -84,6 +80,9 @@ namespace ExxoAvalonOrigins.Projectiles
                         Pr.friendly = true;
                         Pr.velocity.X *= -1f;
                         Pr.velocity.Y *= -1f;
+
+                        projectile.active = false;
+                        projectile.Kill();
                     }
                 }
             }
@@ -109,20 +108,16 @@ namespace ExxoAvalonOrigins.Projectiles
                         N.friendly = true;
                         N.velocity.X *= -1f;
                         N.velocity.Y *= -1f;
+
+                        projectile.active = false;
+                        projectile.Kill();
                     }
                 }
             }
             #endregion
 
             #region movement
-            rotTimer += 0.025f;
-            if (rotTimer > 360)
-                rotTimer = 1;
-
-            int radius = 75;
-            //Vector2 endpoint = new Vector2(radius, radius).RotatedBy(MathHelper.ToRadians(rotTimer));
-            Vector2 endpoint = player.Center + Vector2.One.RotatedBy(rotTimer) * radius;
-            projectile.Center = endpoint;
+            projectile.Center = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().endpoint[(int)projectile.ai[0]];
             #endregion
 
             #region projectile
@@ -143,6 +138,23 @@ namespace ExxoAvalonOrigins.Projectiles
                 projTimer = 120 + Main.rand.Next(60);
             }
             #endregion
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            Main.PlaySound(SoundID.NPCKilled, projectile.position, 14);
+
+            for (int i = 0; i < 2; i++)
+            {
+                int randomSize = Main.rand.Next(1, 4) / 2;
+                int num161 = Gore.NewGore(new Vector2(projectile.position.X, projectile.position.Y), default(Vector2), Main.rand.Next(61, 64));
+                Gore gore30 = Main.gore[num161];
+                Gore gore40 = gore30;
+                gore40.velocity *= 0.3f;
+                gore40.scale *= randomSize;
+                Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
+                Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
+            }
         }
     }
 }

@@ -50,6 +50,9 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacteriumPrimeMask>(), 1, false, 0, false);
             }
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41), false, 0, false);
+
+            if (!ExxoAvalonOriginsWorld.downedBacteriumPrime)
+                ExxoAvalonOriginsWorld.downedBacteriumPrime = true;
         }
 
         public override void AI()

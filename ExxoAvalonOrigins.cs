@@ -1,4 +1,4 @@
-﻿using Terraria;using Terraria.ModLoader;using Terraria.ID;using System.Collections.Generic;using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using Terraria.UI;using ExxoAvalonOrigins.UI;using System.Security.Cryptography;using System.Text;using System.IO;using System.Net.Mime;using MonoMod.RuntimeDetour.HookGen;using Terraria.IO;using Terraria.Localization;using Terraria.Utilities;using ItemSlot = On.Terraria.UI.ItemSlot;using Language = On.Terraria.Localization.Language;using Player = On.Terraria.Player;using WorldGen = On.Terraria.WorldGen;namespace ExxoAvalonOrigins{    class ExxoAvalonOrigins : Mod    {        public static bool devMode = true; //TODO: Disable dev mode for release                public static bool godMode = false;        //public static int[] minPick = new int[Main.maxTileSets];        public static ModHotKey shadowHotkey;        public static ModHotKey sprintHotkey;        public static ModHotKey dashHotkey;        public static ModHotKey quintupleHotkey;        public static ModHotKey swimHotkey;        public static ModHotKey wallSlideHotkey;        public static ModHotKey bubbleBoostHotkey;        public static ModHotKey accDrillModeHotkey;        public static ModHotKey mirrorModeHotkey;        public static int dungeonEx = 0; //TODO: implement X catch in worldgen        public static int jungleEx = 0; //TODO: implement X catch in worldgen        public static bool superHardmode;        public static bool nilMode;        public static Texture2D BeamTexture;        public static Texture2D BeamVTexture;        public static Texture2D BeamStartTexture;        public static Texture2D BeamEndTexture;        public static Texture2D wosTexture;        public static Texture2D mechaHungryChainTexture;        //public static Texture2D impTreeTexture;        public static readonly Version version = new Version(0, 9, 3, 0);        public static Version lastOpenedVersion = null;        public static Texture2D heart3Texture;        public static Texture2D mana2Texture;        public static Texture2D mana3Texture;        public static Texture2D mana4Texture;        public static Texture2D mana5Texture;        public static Texture2D mana6Texture;        public static Texture2D stamTexture;        public static Texture2D tomeSlotBackgroundTexture;        public static Texture2D herbButtonTexture;        private UserInterface tomeSlotUserInterface;        private UserInterface herbologyUserInterface;        public int royStyle;
+﻿using Terraria;using Terraria.ModLoader;using Terraria.ID;using System.Collections.Generic;using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using Terraria.UI;using ExxoAvalonOrigins.UI;using System.Security.Cryptography;using System.Text;using System.IO;using System.Net.Mime;using MonoMod.RuntimeDetour.HookGen;using Terraria.IO;using Terraria.Localization;using Terraria.Utilities;using ItemSlot = On.Terraria.UI.ItemSlot;using Language = On.Terraria.Localization.Language;using Player = On.Terraria.Player;using WorldGen = On.Terraria.WorldGen;namespace ExxoAvalonOrigins{    class ExxoAvalonOrigins : Mod    {        public static bool devMode = true; //TODO: Disable dev mode for release                public static bool godMode = false;        //public static int[] minPick = new int[Main.maxTileSets];        public static ModHotKey shadowHotkey;        public static ModHotKey sprintHotkey;        public static ModHotKey dashHotkey;        public static ModHotKey quintupleHotkey;        public static ModHotKey swimHotkey;        public static ModHotKey wallSlideHotkey;        public static ModHotKey bubbleBoostHotkey;        public static ModHotKey accDrillModeHotkey;        public static ModHotKey mirrorModeHotkey;        public static bool armaRO = false;        public static int dungeonEx = 0; //TODO: implement X catch in worldgen        public static int jungleEx = 0; //TODO: implement X catch in worldgen        public static bool superHardmode;        public static bool nilMode;        public static Texture2D BeamTexture;        public static Texture2D BeamVTexture;        public static Texture2D BeamStartTexture;        public static Texture2D BeamEndTexture;        public static Texture2D wosTexture;        public static Texture2D mechaHungryChainTexture;        //public static Texture2D impTreeTexture;        public static readonly Version version = new Version(0, 9, 3, 0);        public static Version lastOpenedVersion = null;        public static Texture2D heart3Texture;        public static Texture2D mana2Texture;        public static Texture2D mana3Texture;        public static Texture2D mana4Texture;        public static Texture2D mana5Texture;        public static Texture2D mana6Texture;        public static Texture2D stamTexture;        public static Texture2D tomeSlotBackgroundTexture;        public static Texture2D herbButtonTexture;        private UserInterface tomeSlotUserInterface;        private UserInterface herbologyUserInterface;        public int royStyle;
         public static int royG = 0;        public int gbvStyle;
         public static int gbvR = 160;
         public static int gbvG = 0;
@@ -308,7 +308,231 @@
                 else music = MusicID.Boss5;
                 priority = MusicPriority.BossLow;
             }
-        }            public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)        {            var MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));            if (MouseTextIndex != -1)            {                layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Tome Slot",                    delegate                    {                        //if (!Main.mouseItem.IsAir && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome) Main.EquipPage = 2;                        tomeSlot.DrawTomes(Main.spriteBatch);                        return true;                    },                    InterfaceScaleType.UI)                );                layers.Insert(MouseTextIndex + 1, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Herbology Bench",                    delegate                    {
+        }
+
+        public override void PostSetupContent()
+        {
+            #region BossChecklist
+            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
+            if (bossChecklist != null)
+            {
+                /*
+                // Boss checklist documentation can be found here: https://github.com/JavidPack/BossChecklist/wiki/Support-using-Mod-Call
+
+                // Vanilla boss progression floats:
+                KingSlime = 1f;
+                EyeOfCthulhu = 2f;
+                EaterOfWorlds = 3f;
+                QueenBee = 4f;
+                Skeletron = 5f;
+                WallOfFlesh = 6f;
+                TheTwins = 7f;
+                TheDestroyer = 8f;
+                SkeletronPrime = 9f;
+                Plantera = 10f;
+                Golem = 11f;
+                DukeFishron = 12f;
+                LunaticCultist = 13f;
+                Moonlord = 14f;
+
+                // Template
+                bossChecklist.Call
+                    (
+                    "",
+                    0f,
+                    ModContent.NPCType<>(),
+                    this,
+                    "",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld),
+                    ModContent.ItemType<>(),
+                    new List<int> {ModContent.ItemType<>(), 
+                        ModContent.ItemType<>()},
+                    new List<int> {ModContent.ItemType<>(),
+                        ModContent.ItemType<>()},
+                    " [i:" + ModContent.ItemType<>() + "] ",
+                    "",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/",
+                    "ExxoAvalonOrigins/NPCs/",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld)
+                    );
+                */
+
+                #region BacteriumPrime
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    3f,
+                    ModContent.NPCType<NPCs.BacteriumPrime>(),
+                    this,
+                    "Bacterium Prime",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedBacteriumPrime),
+                    ModContent.ItemType<Items.BacterialTotem>(),
+                    new List<int> {ModContent.ItemType<Items.BacteriumPrimeTrophy>(),
+                        ModContent.ItemType<Items.BacteriumPrimeMask>()},
+                    new List<int> {ModContent.ItemType<Items.BacciliteOre>(),
+                        ModContent.ItemType<Items.Booger>()},
+                    "Use [i:" + ModContent.ItemType<Items.BacterialTotem>() + "] or break three Snot Orbs in a Contagion ring",
+                    "Bacterium Prime melts back into the ick",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/BacteriumPrimeBossChecklist",
+                    "ExxoAvalonOrigins/NPCs/BacteriumPrime_Head_Boss",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.contaigon)
+                    );
+                #endregion
+
+                #region DesertBeak
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    3.5f,
+                    ModContent.NPCType<NPCs.DesertBeak>(),
+                    this,
+                    "Desert Beak",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDesertBeak),
+                    ModContent.ItemType<Items.TheBeak>(),
+                    new List<int> {ModContent.ItemType<Items.DesertBeakTrophy>(), 
+                        ModContent.ItemType<Items.DesertBeakMask>()},
+                    new List<int> {ItemID.SandBlock, 
+                        ModContent.ItemType<Items.DesertFeather>(), 
+                        ModContent.ItemType<Items.RhodiumOre>(), 
+                        ModContent.ItemType<Items.OsmiumBar>(), 
+                        ModContent.ItemType<Items.IridiumBar>(), 
+                        ModContent.ItemType<Items.TomeoftheDistantPast>()},
+                    "Use [i:" + ModContent.ItemType<Items.TheBeak>() + "] in the desert",
+                    "Desert Beak has retreated into the sky",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/DesertBeakBossChecklist",
+                    "ExxoAvalonOrigins/NPCs/DesertBeak_Head_Boss"
+                    );
+                #endregion
+
+                #region Phantasm
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    15f,
+                    ModContent.NPCType<NPCs.Phantasm>(),
+                    this,
+                    "Phantasm",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedPhantasm),
+                    ModContent.ItemType<Items.EctoplasmicBeacon>(),
+                    new List<int> {ModContent.ItemType<Items.PhantasmTrophy>()},
+                    new List<int> {ModContent.ItemType<Items.PhantomKnives>(),
+                        ModContent.ItemType<Items.EtherealHeart>(),
+                        ModContent.ItemType<Items.VampireTeeth>(),
+                        ModContent.ItemType<Items.GhostintheMachine>()},
+                    "Use an [i:" + ModContent.ItemType<Items.EctoplasmicBeacon>() + "] on the Library Alter in the Library of Knowledge",
+                    "The Phantasm fades away",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/PhantasmBossChecklist",
+                    "ExxoAvalonOrigins/NPCs/Phantasm_Head_Boss"
+                    );
+                #endregion
+
+                #region Wall of Steel
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    16f,
+                    ModContent.NPCType<NPCs.WallofSteel>(),
+                    this,
+                    "Wall of Steel",
+                    (Func<bool>)(() => superHardmode),
+                    ModContent.ItemType<Items.HellboundRemote>(),
+                    new List<int> {ModContent.ItemType<Items.WallofSteelTrophy>()},
+                    new List<int> {ModContent.ItemType<Items.DarkStarHeart>(),
+                        ModContent.ItemType<Items.FleshBoiler>(),
+                        ModContent.ItemType<Items.MagicCleaver>(),
+                        ModContent.ItemType<Items.SoulofBlight>()},
+                    "Throw a [i:" + ModContent.ItemType<Items.HellboundRemote>() + "] into lava",
+                    "The Wall of Steel hisses steam and sinks into the lava",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/WallofSteelBossChecklist",
+                    "ExxoAvalonOrigins/NPCs/WallofSteel_Head_Boss"
+                    );
+                #endregion
+
+                #region Armageddon Slime
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    17f,
+                    ModContent.NPCType<NPCs.ArmageddonSlime>(),
+                    this,
+                    "Armageddon Slime",
+                    (Func<bool>)(() => ExxoAvalonOriginsGlobalNPC.stoppedArmageddon),
+                    ModContent.ItemType<Items.DarkMatterChunk>(),
+                    new List<int> {ModContent.ItemType<Items.ArmageddonSlimeTrophy>(),
+                        ModContent.ItemType<Items.ArmageddonSlimeMask>()},
+                    new List<int> {ModContent.ItemType<Items.DarkMatterSoilBlock>()},
+                    "Use a [i:" + ModContent.ItemType<Items.DarkMatterChunk>() + "]",
+                    "The Armageddon Slime melts into the earth",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/ArmageddonSlimeBossChecklist",
+                    //"ExxoAvalonOrigins/NPCs/ArmageddonSlime_Head_Boss"
+                    "ExxoAvalonOrigins/Items/ArmageddonSlimeMask"
+                    );
+                #endregion
+
+                #region Dragon Lord
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    18f,
+                    ModContent.NPCType<NPCs.DragonLordHead>(),
+                    this,
+                    "Dragon Lord",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDragonLord),
+                    ModContent.ItemType<Items.DragonSpine>(),
+                    new List<int> {ModContent.ItemType<Items.DragonLordTrophy>()},
+                    new List<int> { ModContent.ItemType<Items.DragonScale>()},
+                    "Use a [i:" + ModContent.ItemType<Items.DragonSpine>() + "]",
+                    "The Dragon Lord flies away",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/DragonLordBossChecklist",
+                    //"ExxoAvalonOrigins/NPCs/ArmageddonSlime_Head_Boss"
+                    "ExxoAvalonOrigins/NPCs/DragonLordHead"
+                    );
+                #endregion
+
+                #region Mechasting
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    19f,
+                    ModContent.NPCType<NPCs.Mechasting>(),
+                    this,
+                    "Mechasting",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedMechasting),
+                    ModContent.ItemType<Items.MechanicalWasp>(),
+                    new List<int> { ModContent.ItemType<Items.MechastingTrophy>() },
+                    new List<int> { ModContent.ItemType<Items.SoulofDelight>() },
+                    "Use a [i:" + ModContent.ItemType<Items.MechanicalWasp>() + "]",
+                    "The Mechasting retreats to it's mechanical hive",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/MechastingBossChecklist"
+                    //"ExxoAvalonOrigins/NPCs/Mechasting_Head_Boss"
+                    );
+                #endregion
+
+                #region Oblivion
+                bossChecklist.Call
+                    (
+                    "AddBoss",
+                    20f,
+                    ModContent.NPCType<NPCs.OblivionHead1>(),
+                    this,
+                    "Oblivion",
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedOblivion),
+                    ModContent.ItemType<Items.EyeofOblivion>(),
+                    new List<int> {ModContent.ItemType<Items.OblivionTrophy>()},
+                    new List<int> {ModContent.ItemType<Items.VictoryPiece>(),
+                        ModContent.ItemType<Items.OblivionOre>(),
+                        ModContent.ItemType<Items.SoulofTorture>(),
+                        ModContent.ItemType<Items.AccelerationDrill>(),
+                        ModContent.ItemType<Items.CurseofOblivion>()},
+                    "Use a [i:" + ModContent.ItemType<Items.EyeofOblivion>() + "] at night",
+                    "Oblivion retreats into the night",
+                    "ExxoAvalonOrigins/Sprites/BossChecklist/OblivionBossChecklist"
+                    //"ExxoAvalonOrigins/NPCs/Oblivion_Head_Boss",
+                    );
+                #endregion
+            }
+            #endregion
+        }        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)        {            var MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));            if (MouseTextIndex != -1)            {                layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Tome Slot",                    delegate                    {                        //if (!Main.mouseItem.IsAir && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome) Main.EquipPage = 2;                        tomeSlot.DrawTomes(Main.spriteBatch);                        return true;                    },                    InterfaceScaleType.UI)                );                layers.Insert(MouseTextIndex + 1, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Herbology Bench",                    delegate                    {
                         //if (!Main.mouseItem.IsAir && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome) Main.EquipPage = 2;
                         herbology.DrawHerbologyInterface(Main.spriteBatch);                        return true;                    },                    InterfaceScaleType.UI)                );            }            /*            int resourceBarIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));            if (resourceBarIndex != -1)            {                layers.Insert(resourceBarIndex + 1, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Resource Bars",                    delegate                    {                        DrawInterfaceBars();                        DrawStamina();                        return true;                    },                    InterfaceScaleType.UI)                );            }            //layers.RemoveAt(resourceBarIndex);            int mouseOver = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Over"));            if (mouseOver != -1)            {                layers.Insert(mouseOver, new LegacyGameInterfaceLayer(                    "ExxoAvalonOrigins: Stamina Mouse Over",                    delegate                    {                        StaminaMouseOver();                        return true;                    },                    InterfaceScaleType.UI)                );            }*/        }        public override void AddRecipeGroups()        {            if (RecipeGroup.recipeGroupIDs.ContainsKey("Wood"))
             {

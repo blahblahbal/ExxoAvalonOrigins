@@ -24,11 +24,14 @@ namespace ExxoAvalonOrigins
         public int statStamMax2 = 300;
         public int statStam = 100;
         public int statManaMax3 = 1500;
-        public int statManaMax2 = 100;
-        public int statMana = 100;
+        public int statManaMax2 = 400;
+        public int statManaMax = 20;
+        public int statMana = 20;
+        public bool[] extraMana = new bool[10];
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
+        public int screenShake;
         public enum ShadowMirrorModes
         {
             Spawn,
@@ -166,7 +169,14 @@ namespace ExxoAvalonOrigins
         public bool jumpAgain5;
         public bool dJumpEffect5;
         public bool doubleDamage;
+
+        #region Stinger Probe Minion AI vars
         public bool stingerProbeMinion = false;
+        public float rotTimer;
+        public int spawnProbeTimer;
+        public int probeID;
+        public Vector2[] endpoint = new Vector2[4];
+        #endregion
 
         public int herbX;
         public int herbY;
@@ -188,8 +198,28 @@ namespace ExxoAvalonOrigins
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
             liaB = false;
+            if (screenShake > 0)
+            {
+                screenShake--;
+                //if (screenShake == 1) Main.PlaySound(2, (int)arma.position.X, (int)arma.position.Y, 14);
+            }
+            if (shmAcc)
+            {
+                player.extraAccessory = true;
+                player.extraAccessorySlots++;
+            }
         }
-
+        public override void UpdateDead()
+        {
+            if (screenShake > 0) screenShake--;
+        }
+        public override void ModifyScreenPosition()
+        {
+            if (screenShake > 0 && ExxoAvalonOrigins.armaRO)
+            {
+                Main.screenPosition += Main.rand.NextVector2Circular(20, 20);
+            }
+        }
         public override void UpdateBadLifeRegen()
         {
             if (darkInferno)
@@ -278,17 +308,19 @@ namespace ExxoAvalonOrigins
         public override void PreUpdateBuffs()
         {
             for (int k = 0; k < player.buffType.Length; k++)
-            if (player.buffType[k] == 37)
             {
-                if (Main.wof >= 0 && Main.npc[Main.wof].type == 113 || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                if (player.buffType[k] == 37)
                 {
-                    player.gross = true;
-                    player.buffTime[k] = 10;
-                }
-                else
-                {
-                    player.DelBuff(k);
-                    k--;
+                    if (Main.wof >= 0 && Main.npc[Main.wof].type == 113 || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                    {
+                        player.gross = true;
+                        player.buffTime[k] = 10;
+                    }
+                    else
+                    {
+                        player.DelBuff(k);
+                        k--;
+                    }
                 }
             }
         }
@@ -415,6 +447,10 @@ namespace ExxoAvalonOrigins
             if (tag.ContainsKey("ExxoAvalonOrigins:HerbCounts"))
             {
                 herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:ExtraMana"))
+            {
+                extraMana = tag.Get<bool[]>("ExxoAvalonOrigins:ExtraMana");
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -585,7 +621,8 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbTier", herbTier },
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
-                { "ExxoAvalonOrigins:HerbCounts", herbCounts }
+                { "ExxoAvalonOrigins:HerbCounts", herbCounts },
+                { "ExxoAvalonOrigins:ExtraMana", extraMana }
             };
             return tag;
         }
@@ -595,9 +632,37 @@ namespace ExxoAvalonOrigins
             if (ExxoAvalonOrigins.godMode) return false;
             return true;
         }
-
+        public override void PreUpdateMovement()
+        {
+             // TO-DO: LOOK FOR WOS
+        }
         public override void PostUpdate()
         {
+            //player.statMana = statMana;
+            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
+            {
+                int armaID = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
+                if (armaID != -1)
+                {
+                    if (Main.npc[armaID].active || Main.npc[armaID].life > 0)
+                    {
+                        if (Vector2.Distance(Main.npc[armaID].position, Main.player[Main.myPlayer].position) <= 100 * 16)
+                        {
+                            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(Main.npc[armaID].position, (int)(Main.npc[armaID].width * Main.npc[armaID].scale), (int)(Main.npc[armaID].height * Main.npc[armaID].scale)) && Main.npc[armaID].oldVelocity.Y > 0f && !ExxoAvalonOrigins.armaRO)
+                            {
+                                ExxoAvalonOrigins.armaRO = true;
+                                screenShake = 10;
+                            }
+                            if (ExxoAvalonOrigins.armaRO)
+                            {
+                                if (screenShake == 1) Main.PlaySound(2, (int)Main.npc[armaID].position.X, (int)Main.npc[armaID].position.Y, 14);
+                            }
+                        }
+                    }
+                }
+            }
+
+
             Vector2 pposTile = player.Center / 16;
             for (int xpos = (int)pposTile.X - 4; xpos <= (int)pposTile.X + 4; xpos++)
             {
@@ -639,7 +704,7 @@ namespace ExxoAvalonOrigins
                 }
             }
             if (!Main.playerInventory) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
-            if (shmAcc) player.extraAccessorySlots++;
+            //if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
                 var lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
@@ -911,7 +976,8 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateEquips()
         {
-            statManaMax2 = player.statManaMax2;
+            //player.statMana = statManaMax3;
+            //statManaMax2 = player.statManaMax2;
 			if (meleeStealth && armorStealth)
 			{
 				if (player.itemAnimation > 0)
@@ -1138,6 +1204,19 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateMiscEffects()
         {
+            if (statManaMax2 > 1500) player.statManaMax2 = 1500;
+            if (statManaMax3 > 1500) player.statManaMax2 = 1500;
+            foreach (bool b in extraMana)
+            {
+                if (b)
+                {
+                    player.statManaMax += 20;
+                }
+            }
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()) || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+            {
+                player.sticky = false;
+            }
             if (player.HasItem(ModContent.ItemType<SonicScrewdriverMkI>()))
             {
                 player.findTreasure = player.detectCreature = true;
@@ -1169,11 +1248,39 @@ namespace ExxoAvalonOrigins
             {
                 player.AddBuff(ModContent.BuffType<Buffs.StingerProbe>(), 60, true);
 
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 1)
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, Main.myPlayer);
+                rotTimer += 0.025f;
+                if (rotTimer > 360)
+                    rotTimer = 1;
+
+                int radius = 75;
+                Vector2 baseEndpoint = player.Center + Vector2.One.RotatedBy(rotTimer) * radius;
+                endpoint[0] = baseEndpoint;
+                endpoint[1] = baseEndpoint.RotatedBy(MathHelper.ToRadians(90f));
+                endpoint[2] = baseEndpoint.RotatedBy(MathHelper.ToRadians(180f));
+                endpoint[3] = baseEndpoint.RotatedBy(MathHelper.ToRadians(270f));
+
+                if (probeID > 3)
+                    probeID = 3;
+
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 4)
+                    spawnProbeTimer++;
+                else
+                    spawnProbeTimer = 0;
+
+                if (spawnProbeTimer >= 300)
+                {
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI, probeID);
+                    probeID += 1;
+                    spawnProbeTimer = 0;
+                }
+
+                Main.NewText(player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()]);
             }
             else
             {
+                rotTimer = 1;
+                spawnProbeTimer = 0;
+                probeID = 0;
                 player.ClearBuff(ModContent.BuffType<Buffs.StingerProbe>());
             }
         }

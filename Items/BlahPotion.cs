@@ -34,5 +34,16 @@ namespace ExxoAvalonOrigins.Items
 			item.height = dims.Height;
 			item.buffTime = 1080000;
 		}
-	}
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    line.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                }
+            }
+        }
+    }
 }

@@ -148,7 +148,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.velocity *= 0f;
                 npc.ai[0]++;
-                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
                 if (npc.ai[0] < 150 && npc.position != tpPos)
                 {
                     npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
@@ -164,7 +164,7 @@ namespace ExxoAvalonOrigins.NPCs
             else if (npc.life <= npc.lifeMax * 0.75 - 500 && npc.life > npc.lifeMax / 3)
             {
                 npc.ai[0]++;
-                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                Vector2 tpPos = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
                 if (npc.ai[0] < 150 && npc.position != tpPos)
                 {
                     npc.velocity = Vector2.Normalize(npc.position - tpPos) * 6f;
@@ -244,7 +244,7 @@ namespace ExxoAvalonOrigins.NPCs
             else
             {
                 npc.velocity *= 0f;
-                npc.position = new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16;
+                npc.position = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
                 //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, NPC.FindFirstNPC(npc.type));
                 npc.ai[3]++;
                 if (npc.ai[3] >= 300)

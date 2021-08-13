@@ -274,6 +274,9 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 2, false, 0, false);
             }
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
+
+            if (!ExxoAvalonOriginsWorld.downedOblivion)
+                ExxoAvalonOriginsWorld.downedOblivion = true;
         }
 
         public override void FindFrame(int frameHeight)
