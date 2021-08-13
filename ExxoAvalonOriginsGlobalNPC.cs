@@ -15,7 +15,17 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<TomeForge>());
                 nextSlot++;
             }
-        }        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)        {            if (ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                spawnRate = (int) (spawnRate * 0.6);                maxSpawns += 3;                if (player.position.Y <= Main.worldSurface * 16.0 + NPC.sHeight)                {                    spawnRate = (int) (spawnRate * 0.55);                    maxSpawns = (int) (maxSpawns * 1.11);                }            }            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().enemySpawns2)            {                spawnRate = (int)(spawnRate * 0.2);                maxSpawns = (int)(maxSpawns * 3f);            }            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)            {                spawnRate = (int)(spawnRate * 10f);                maxSpawns = (int)(maxSpawns * 10f);            }        }        public override bool PreAI(NPC npc)
+        }        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)        {            // Advanced battle potion buff changes            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advBattleBuff)
+            {
+                spawnRate = (int)(spawnRate * 0.35f);
+                maxSpawns = (int)(maxSpawns * 2.5f);
+            }
+            // Advanced calming potion buff changes
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advCalmingBuff)
+            {
+                spawnRate = (int)(spawnRate * 1.5f);
+                maxSpawns = (int)(maxSpawns * 0.65f);
+            }            if (ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                spawnRate = (int) (spawnRate * 0.6);                maxSpawns += 3;                if (player.position.Y <= Main.worldSurface * 16.0 + NPC.sHeight)                {                    spawnRate = (int) (spawnRate * 0.55);                    maxSpawns = (int) (maxSpawns * 1.11);                }            }            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().enemySpawns2)            {                spawnRate = (int)(spawnRate * 0.2);                maxSpawns = (int)(maxSpawns * 3f);            }            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)            {                spawnRate = (int)(spawnRate * 10f);                maxSpawns = (int)(maxSpawns * 10f);            }        }        public override bool PreAI(NPC npc)
         {
             if ((npc.type == NPCID.LavaSlime || npc.type == NPCID.FireImp || npc.type == NPCID.Hellbat || npc.type == NPCID.Lavabat || npc.type == NPCID.BoneSerpentHead) && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
             {

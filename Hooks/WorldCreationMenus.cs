@@ -1,16 +1,8 @@
 using System;
-using System.Linq;
-using System.Reflection.Emit;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Mono.Cecil;
-using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using MonoMod.Utils;
 using Terraria;
 using Terraria.Localization;
-using Terraria.UI.Chat;
-using Terraria.UI.Gamepad;
 using static Mono.Cecil.Cil.OpCodes;
 
 namespace ExxoAvalonOrigins.Hooks

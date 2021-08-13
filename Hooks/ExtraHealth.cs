@@ -1,6 +1,7 @@
 using System.Net.NetworkInformation;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoMod.Cil;
 using ReLogic.Graphics;
 using Terraria;
 using Terraria.UI;
@@ -135,7 +136,7 @@ namespace ExxoAvalonOrigins.Hooks
 			int sX = Main.screenWidth - 800;
 			if (Main.player[Main.myPlayer].statManaMax2 > 0)
 			{
-				int arg_6FC_0 = Main.player[Main.myPlayer].statManaMax2 / 20;
+				//int arg_6FC_0 = Main.player[Main.myPlayer].statManaMax2 / 20;
 				int num12 = (Main.player[Main.myPlayer].statManaMax2 - 200) / 20;
 				int num13 = (Main.player[Main.myPlayer].statManaMax2 - 400) / 20;
 				int num14 = (Main.player[Main.myPlayer].statManaMax2 - 600) / 20;
@@ -164,27 +165,27 @@ namespace ExxoAvalonOrigins.Hooks
 				}
 				if (num12 > 0)
 				{
-					int arg_828_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num12 / 8);
+					//int arg_828_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num12 / 8);
 					starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
 				}
 				if (num13 > 0)
 				{
-					int arg_85E_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num13 / 8);
+					//int arg_85E_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num13 / 8);
 					starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
 				}
 				if (num14 > 0)
 				{
-					int arg_894_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num14 / 8);
+					//int arg_894_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num14 / 8);
 					starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
 				}
 				if (num15 > 0)
 				{
-					int arg_8CA_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num15 / 8);
+					//int arg_8CA_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num15 / 8);
 					starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
 				}
 				if (num16 > 0)
 				{
-					int arg_900_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num16 / 8);
+					//int arg_900_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num16 / 8);
 					starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
 				}
 				for (int j = 1; j < Main.player[Main.myPlayer].statManaMax2 / starMana + 1; j++)
@@ -256,6 +257,21 @@ namespace ExxoAvalonOrigins.Hooks
 			}
 			DrawStaminaBar();
         }
+
+		public static void ILUpdate(ILContext il)
+        {
+			var c = new ILCursor(il);
+
+			// Move il cursor into positon
+			if (!c.TryGotoNext(i => i.MatchLdloca(67)))
+				return;
+			if (!c.TryGotoNext(i => i.MatchLdfld<Player>("statManaMax2")))
+				return;
+			if (!c.TryGotoNext(i => i.MatchLdarg(0)))
+				return;
+
+			c.RemoveRange(3);
+		}
 
         private static void DrawStaminaBar()
         {
