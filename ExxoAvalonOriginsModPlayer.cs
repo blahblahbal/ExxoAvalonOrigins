@@ -27,6 +27,7 @@ namespace ExxoAvalonOrigins
         public int statManaMax2 = 400;
         public int statManaMax = 20;
         public int statMana = 20;
+        public bool[] extraMana = new bool[10];
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
@@ -216,7 +217,7 @@ namespace ExxoAvalonOrigins
         {
             if (screenShake > 0 && ExxoAvalonOrigins.armaRO)
             {
-                Main.screenPosition += Main.rand.NextVector2Circular(15, 15);
+                Main.screenPosition += Main.rand.NextVector2Circular(20, 20);
             }
         }
         public override void UpdateBadLifeRegen()
@@ -447,23 +448,9 @@ namespace ExxoAvalonOrigins
             {
                 herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
             }
-            if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax2"))
+            if (tag.ContainsKey("ExxoAvalonOrigins:ExtraMana"))
             {
-                statManaMax2 = tag.GetAsInt("ExxoAvalonOrigins:StatManaMax2");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax3"))
-            {
-                statManaMax3 = tag.GetAsInt("ExxoAvalonOrigins:StatManaMax3");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:StatMana"))
-            {
-                statMana = tag.GetAsInt("ExxoAvalonOrigins:StatMana");
-                //if (statMana < statManaMax3) player.statMana = statManaMax3;
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:StatManaMax"))
-            {
-                statManaMax = tag.GetAsInt("ExxoAvalonOrigins:StatManaMax");
-                player.statManaMax = statManaMax;
+                extraMana = tag.Get<bool[]>("ExxoAvalonOrigins:ExtraMana");
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -635,11 +622,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
                 { "ExxoAvalonOrigins:HerbCounts", herbCounts },
-                { "ExxoAvalonOrigins:StatManaMax2", statManaMax2 },
-                { "ExxoAvalonOrigins:StatManaMax3", statManaMax3 },
-                { "ExxoAvalonOrigins:StatMana", statMana },
-                { "ExxoAvalonOrigins:StatManaMax", statManaMax }
-
+                { "ExxoAvalonOrigins:ExtraMana", extraMana }
             };
             return tag;
         }
@@ -1223,7 +1206,13 @@ namespace ExxoAvalonOrigins
         {
             if (statManaMax2 > 1500) player.statManaMax2 = 1500;
             if (statManaMax3 > 1500) player.statManaMax2 = 1500;
-            //if (player.statManaMax < statManaMax) player.statManaMax2 = statManaMax;
+            foreach (bool b in extraMana)
+            {
+                if (b)
+                {
+                    player.statManaMax += 20;
+                }
+            }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()) || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()))
             {
                 player.sticky = false;

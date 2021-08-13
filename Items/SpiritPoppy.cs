@@ -40,13 +40,25 @@ namespace ExxoAvalonOrigins.Items
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax2 += 20;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax3 += 20;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax += 20;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statMana += 20;
+            
+            if (player.statManaMax == 200) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[0] = true;
+            if (player.statManaMax == 220) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[1] = true;
+            if (player.statManaMax == 240) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[2] = true;
+            if (player.statManaMax == 260) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[3] = true;
+            if (player.statManaMax == 280) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[4] = true;
+            if (player.statManaMax == 300) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[5] = true;
+            if (player.statManaMax == 320) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[6] = true;
+            if (player.statManaMax == 340) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[7] = true;
+            if (player.statManaMax == 360) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[8] = true;
+            if (player.statManaMax == 380) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().extraMana[9] = true;
             player.statManaMax += 20;
-            player.statMana += 20;
-            player.statManaMax2 += 20;
+            //player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax2 += 20;
+            //player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax3 += 20;
+            //player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statManaMax += 20;
+            //player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statMana += 20;
+            //player.statManaMax += 20;
+            //player.statMana += 20;
+            //player.statManaMax2 += 20;
             return true;
         }
     }
