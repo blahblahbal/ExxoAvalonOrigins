@@ -37,7 +37,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit28;
 	        npc.DeathSound = SoundID.NPCDeath31;
 			npc.buffImmune[mod.BuffType("Freeze")] = true;
-		}
+            bossBag = ModContent.ItemType<Items.DesertBeakBossBag>();
+        }
 
 		public override void NPCLoot()
 		{
@@ -49,21 +50,28 @@ namespace ExxoAvalonOrigins.NPCs
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertBeakTrophy>(), 1, false, 0, false);
 			}
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(22, 55), false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
-			if (Main.rand.Next(10) <= 5)
-			{
-                if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.RhodiumOre>())
-				    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.RhodiumOre>(), Main.rand.Next(15, 26), false, 0, false);
-                else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.OsmiumOre>())
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OsmiumOre>(), Main.rand.Next(15, 26), false, 0, false);
-                else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.IridiumOre>())
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IridiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
             }
-			if (Main.rand.Next(3) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.TomeoftheDistantPast>(), 1, false, -2, false);
-			}
+            else
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(22, 55), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
+                if (Main.rand.Next(10) <= 5)
+                {
+                    if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.RhodiumOre>())
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.RhodiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+                    else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.OsmiumOre>())
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OsmiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+                    else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.IridiumOre>())
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IridiumOre>(), Main.rand.Next(15, 26), false, 0, false);
+                }
+                if (Main.rand.Next(3) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.TomeoftheDistantPast>(), 1, false, -2, false);
+                }
+            }
 
             if (!ExxoAvalonOriginsWorld.downedDesertBeak)
                 ExxoAvalonOriginsWorld.downedDesertBeak = true;

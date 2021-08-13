@@ -16,14 +16,14 @@ namespace ExxoAvalonOrigins
         {
 			if (!Main.hardMode)
 			{
-				if (npc.lifeMax <= 300 && !npc.boss && !npc.dontTakeDamage)
+				if (npc.lifeMax <= 300 && !npc.boss && !npc.dontTakeDamage) // Prehardmode
 					return true;
 				else
 					return false;
 			}
 			else
 			{
-				if (ExxoAvalonOrigins.superHardmode)
+				if (ExxoAvalonOrigins.superHardmode) // Superhardmode
 				{
 					if (npc.lifeMax <= 11000 && !npc.boss && !npc.dontTakeDamage)
 						return true;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins
 				}
 				else
 				{
-					if (npc.lifeMax <= 5000 && !npc.boss && !npc.dontTakeDamage)
+					if (npc.lifeMax <= 5000 && !npc.boss && !npc.dontTakeDamage) // Hardmode
 						return true;
 					else
 						return false;

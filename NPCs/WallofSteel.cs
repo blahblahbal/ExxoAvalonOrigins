@@ -38,6 +38,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.Confused] = npc.buffImmune[ModContent.BuffType<Buffs.Freeze>()] = npc.buffImmune[BuffID.Poisoned] =
             npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
             npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
+            bossBag = ModContent.ItemType<Items.WallofSteelBossBag>();
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -508,17 +509,24 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.DarkStarHeart>());
                 ExxoAvalonOriginsWorld.InitiateSuperHardmode();
             }
-            int drop = Main.rand.Next(4);
-            if (drop == 0)
-            {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.FleshBoiler>(), 1, false, -1, false);
-            }
-            if (drop == 1)
-            {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.MagicCleaver>(), 1, false, -1, false);
-            }
             if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
-            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+            }
+            else
+            {
+                int drop = Main.rand.Next(4);
+                if (drop == 0)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.FleshBoiler>(), 1, false, -1, false);
+                }
+                if (drop == 1)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.MagicCleaver>(), 1, false, -1, false);
+                }
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26), false, 0, false);
+            }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int num22 = (int)(npc.position.X + (npc.width / 2)) / 16;

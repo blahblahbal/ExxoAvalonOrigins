@@ -35,5 +35,9 @@ namespace ExxoAvalonOrigins.Items
 			item.useAnimation = 20;
 			item.height = dims.Height;
 		}
+		public override void MeleeEffects(Player player, Rectangle hitbox)
+		{
+			Lighting.AddLight((int)((player.itemLocation.X + 6f + player.velocity.X) / 16f), (int)((player.itemLocation.Y - 14f) / 16f), 0.05f, 0.25f, 0.6f);
+		}
 	}
 }

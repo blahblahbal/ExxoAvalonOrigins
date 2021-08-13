@@ -376,7 +376,6 @@ namespace ExxoAvalonOrigins.NPCs
             if (Main.expertMode)
             {
                 npc.DropBossBags();
-
             }
             else
             {

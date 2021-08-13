@@ -37,7 +37,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit8;
 	        npc.DeathSound = SoundID.NPCDeath10;
 			npc.knockBackResist = 0f;
-		}
+            bossBag = ModContent.ItemType<Items.BacteriumPrimeBossBag>();
+        }
 
         public override void NPCLoot()
         {
@@ -49,7 +50,15 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacteriumPrimeMask>(), 1, false, 0, false);
             }
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41), false, 0, false);
+
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+            }
+            else
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41), false, 0, false);
+            }
 
             if (!ExxoAvalonOriginsWorld.downedBacteriumPrime)
                 ExxoAvalonOriginsWorld.downedBacteriumPrime = true;
