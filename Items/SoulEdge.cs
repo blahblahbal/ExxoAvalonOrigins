@@ -9,7 +9,9 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(25));
 				//float scale = 1f - (Main.rand.NextFloat() * .3f);
 				//perturbedSpeed = perturbedSpeed * scale; 
-				Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+				int spirit = Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+				Main.projectile[spirit].magic = false;
+				Main.projectile[spirit].melee = true;
 			}
 			return false; // return false because we don't want tmodloader to shoot projectile
 		}
