@@ -150,6 +150,7 @@ namespace ExxoAvalonOrigins
         public bool zoneDark;
         public bool zoneComet;
         public bool zoneHellcastle;
+        public bool zoneDarkMatter;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -203,7 +204,7 @@ namespace ExxoAvalonOrigins
             advBattleBuff = false;
             advCalmingBuff = false;
             advCrateBuff = false;
-
+            mermanLava = false;
             bubbleBoost = false;
             darkInferno = false;
             melting = false;
@@ -232,6 +233,7 @@ namespace ExxoAvalonOrigins
                 Main.screenPosition += Main.rand.NextVector2Circular(20, 20);
             }
         }
+
         public override void UpdateBadLifeRegen()
         {
             if (darkInferno)
@@ -263,7 +265,7 @@ namespace ExxoAvalonOrigins
         public override void UpdateBiomes()
         {
             zoneHellcastle = false;
-            if (ExxoAvalonOriginsWorld.hellcastleTiles >= 400)
+            if (ExxoAvalonOriginsWorld.hellcastleTiles >= 350)
             {
                 int num = (int)player.position.X / 16;
                 int num2 = (int)player.position.Y / 16;
@@ -273,12 +275,14 @@ namespace ExxoAvalonOrigins
                 }
             }
             zoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
+            zoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
         }
         public override void SendCustomBiomes(BinaryWriter writer)
         {
             BitsByte flags = new BitsByte();
             flags[0] = zoneHellcastle;
             flags[1] = zoneBooger;
+            flags[2] = zoneDarkMatter;
             writer.Write(flags);
         }
         
@@ -287,6 +291,7 @@ namespace ExxoAvalonOrigins
             BitsByte flags = reader.ReadByte();
             zoneHellcastle = flags[0];
             zoneBooger = flags[1];
+            zoneDarkMatter = flags[2];
         }
         public bool HasItemInArmor(int type)
         {
@@ -304,7 +309,7 @@ namespace ExxoAvalonOrigins
             if (tomeItem.type <= 0) tomeItem.SetDefaults();
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
-            Main.NewText("Please also note that Exxo Avalon: Origins will interact weirdly with other large mods");
+            Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
             
             StingerProbeMinion.activeIds.Clear();
         }
@@ -592,6 +597,22 @@ namespace ExxoAvalonOrigins
         {
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
             if (blahArmor) drawInfo.shadow = 0f;
+            if (mermanLava)
+            {
+                Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
+                Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
+                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
+                Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
+                Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
+            }
+            else
+            {
+                Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
+                Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
+                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
+                Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
+                Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
+            }
             if (frozen)
             {
                 if (drawInfo.bodyColor == baseSkinTone)
