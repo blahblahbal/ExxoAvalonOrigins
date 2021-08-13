@@ -634,6 +634,7 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdate()
         {
+            
             //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
@@ -1268,7 +1269,7 @@ namespace ExxoAvalonOrigins
         public override void PreUpdate()
         {
             WOSTongue();
-	        if (teleportV)
+            if (teleportV)
 	        {
 		        teleportV = false;
 		        teleportVWasTriggered = true;
