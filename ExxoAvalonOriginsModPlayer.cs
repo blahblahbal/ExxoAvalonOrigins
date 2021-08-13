@@ -165,6 +165,8 @@ namespace ExxoAvalonOrigins
         public bool jumpAgain5;
         public bool dJumpEffect5;
         public bool doubleDamage;
+        public bool frozen;
+        public Color baseSkinTone;
 
         public bool advAmmoBuff;
         public bool advArcheryBuff;
@@ -206,6 +208,7 @@ namespace ExxoAvalonOrigins
             darkInferno = false;
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
+            frozen = false;
             liaB = false;
             if (screenShake > 0)
             {
@@ -588,6 +591,18 @@ namespace ExxoAvalonOrigins
         {
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
             if (blahArmor) drawInfo.shadow = 0f;
+            if (frozen)
+            {
+                if (drawInfo.bodyColor == baseSkinTone)
+                    drawInfo.bodyColor = new Color(0f, baseSkinTone.G * 0.639f, default, default);
+            }
+            else
+            {
+                if (drawInfo.bodyColor != baseSkinTone)
+                    drawInfo.bodyColor = baseSkinTone;
+                else
+                    baseSkinTone = drawInfo.bodyColor;
+            }
         }
 
         public override void UpdateLifeRegen()
@@ -663,6 +678,7 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdate()
         {
+            
             //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
@@ -1258,7 +1274,7 @@ namespace ExxoAvalonOrigins
         public override void PreUpdate()
         {
             WOSTongue();
-	        if (teleportV)
+            if (teleportV)
 	        {
 		        teleportV = false;
 		        teleportVWasTriggered = true;
