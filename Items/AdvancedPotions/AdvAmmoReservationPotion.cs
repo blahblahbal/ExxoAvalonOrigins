@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -20,18 +15,19 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvAmmoReservationPotion");
+            Rectangle dims = item.modItem.GetDims();
+            item.width = dims.Width;
+            item.height = dims.Height;
             item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvAmmoReservation>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;
-            item.rare = 7;
-            item.width = dims.Width;
+            item.rare = ItemRarityID.Lime;
             item.useTime = 15;
-            item.useStyle = 2;
+            item.useStyle = ItemUseStyleID.EatingUsing;
             item.maxStack = 100;
             item.value = Item.sellPrice(0, 0, 4, 0);
             item.useAnimation = 15;
-            item.height = dims.Height;
+            
             item.buffTime = 50400;
         }
     }

@@ -166,6 +166,12 @@ namespace ExxoAvalonOrigins
         public bool dJumpEffect5;
         public bool doubleDamage;
 
+        public bool advAmmoBuff;
+        public bool advArcheryBuff;
+        public bool advBattleBuff;
+        public bool advCalmingBuff;
+        public bool advCrateBuff;
+
         #region Stinger Probe Minion AI vars
         public bool stingerProbeMinion = false;
         public float rotTimer;
@@ -189,6 +195,13 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             //trapImmune = false;
+
+            advAmmoBuff = false;
+            advArcheryBuff = false;
+            advBattleBuff = false;
+            advCalmingBuff = false;
+            advCrateBuff = false;
+
             bubbleBoost = false;
             darkInferno = false;
             melting = false;
@@ -389,10 +402,17 @@ namespace ExxoAvalonOrigins
 
         public override bool ConsumeAmmo(Item weapon, Item ammo)
         {
-            var consume = true;
-            if (tomeItem.type == ModContent.ItemType<CreatorsTome>() && Main.rand.Next(4) == 0) consume = false;
-            if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>())&& Main.rand.Next(5) == 0) consume = false;
-            if ((tomeItem.type == ModContent.ItemType<ThePlumHarvest>() || tomeItem.type == ModContent.ItemType<Emperor>()) && Main.rand.Next(10) < 3) consume = false;
+            bool consume = true;
+            // 30% chance to not consume ammo
+            if (advAmmoBuff && Main.rand.Next(10) < 3)
+                consume = false;
+
+            if (tomeItem.type == ModContent.ItemType<CreatorsTome>() && Main.rand.Next(4) == 0) 
+                consume = false;
+            if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>())&& Main.rand.Next(5) == 0) 
+                consume = false;
+            if ((tomeItem.type == ModContent.ItemType<ThePlumHarvest>() || tomeItem.type == ModContent.ItemType<Emperor>()) && Main.rand.Next(10) < 3) 
+                consume = false;
             if (!consume)
             {
                 return false;
@@ -401,6 +421,15 @@ namespace ExxoAvalonOrigins
             {
                 return base.ConsumeAmmo(weapon, ammo);
             }
+        }
+
+        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult, ref float flat)
+        {
+            if (item.useAmmo == AmmoID.Arrow && advArcheryBuff)
+            {
+                mult *= 1.4f;
+            }
+            base.ModifyWeaponDamage(item, ref add, ref mult, ref flat);
         }
 
         public override void Load(TagCompound tag)
@@ -1224,45 +1253,6 @@ namespace ExxoAvalonOrigins
             }
             player.statManaMax2 += (spiritPoppyUseCount * 20);
 
-            if (stingerProbeMinion)
-            {
-                player.AddBuff(ModContent.BuffType<Buffs.StingerProbe>(), 60, true);
-
-                rotTimer += 0.025f;
-                if (rotTimer > 360)
-                    rotTimer = 1;
-
-                int radius = 75;
-                Vector2 baseEndpoint = player.Center + Vector2.One.RotatedBy(rotTimer) * radius;
-                endpoint[0] = baseEndpoint;
-                endpoint[1] = baseEndpoint.RotatedBy(MathHelper.ToRadians(90f));
-                endpoint[2] = baseEndpoint.RotatedBy(MathHelper.ToRadians(180f));
-                endpoint[3] = baseEndpoint.RotatedBy(MathHelper.ToRadians(270f));
-
-                if (probeID > 3)
-                    probeID = 3;
-
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 4)
-                    spawnProbeTimer++;
-                else
-                    spawnProbeTimer = 0;
-
-                if (spawnProbeTimer >= 300)
-                {
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI, probeID);
-                    probeID += 1;
-                    spawnProbeTimer = 0;
-                }
-
-                Main.NewText(player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()]);
-            }
-            else
-            {
-                rotTimer = 1;
-                spawnProbeTimer = 0;
-                probeID = 0;
-                player.ClearBuff(ModContent.BuffType<Buffs.StingerProbe>());
-            }
         }
 
         public override void PreUpdate()

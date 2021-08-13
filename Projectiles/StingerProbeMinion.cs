@@ -13,6 +13,10 @@ namespace ExxoAvalonOrigins.Projectiles
     public class StingerProbeMinion : ModProjectile
     {
         int projTimer;
+        bool initialised = false;
+        int id;
+        static List<bool> activeIds;
+        public static float rotTimer;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stinger Probe");
@@ -48,6 +52,31 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 projectile.timeLeft = 2;
             }
+       
+            if (!initialised)
+            {
+                if (activeIds == null)
+                {
+                    activeIds = new List<bool>();
+                }
+                bool found = false;
+                for (int i = 0; i < activeIds.Count; i++)
+                {
+                    if (!activeIds[i])
+                    {
+                        id = i;
+                        activeIds[i] = true;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    id = activeIds.Count;
+                    activeIds.Add(true);
+                }
+                initialised = true;
+            }
 
             #region reflect
             // yoinked from reflex charm
@@ -80,8 +109,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         Pr.friendly = true;
                         Pr.velocity.X *= -1f;
                         Pr.velocity.Y *= -1f;
-
-                        projectile.active = false;
+e;
                         projectile.Kill();
                     }
                 }
@@ -109,7 +137,6 @@ namespace ExxoAvalonOrigins.Projectiles
                         N.velocity.X *= -1f;
                         N.velocity.Y *= -1f;
 
-                        projectile.active = false;
                         projectile.Kill();
                     }
                 }
@@ -117,7 +144,13 @@ namespace ExxoAvalonOrigins.Projectiles
             #endregion
 
             #region movement
-            projectile.Center = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().endpoint[(int)projectile.ai[0]];
+            int radius = 75;
+            float speed = 1f;
+            Vector2 target = player.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(((360f / activeIds.Where(i => i == true).Count()) * id) + rotTimer)) * radius;
+            Vector2 error = target - projectile.Center;
+
+            projectile.velocity = (error * speed);
+            //projectile.Center = target;
             #endregion
 
             #region projectile
@@ -155,6 +188,8 @@ namespace ExxoAvalonOrigins.Projectiles
                 Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
                 Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
             }
+
+            activeIds[id] = false;
         }
     }
 }

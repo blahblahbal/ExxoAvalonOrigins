@@ -1,12 +1,4 @@
-﻿using MonoMod.RuntimeDetour.HookGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
-
-namespace ExxoAvalonOrigins.Hooks
+﻿namespace ExxoAvalonOrigins.Hooks
 {
     class Hooks
     {
@@ -30,6 +22,9 @@ namespace ExxoAvalonOrigins.Hooks
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.GetIcon += UIMenuContagion.OnGetIcon;
             On.Terraria.Main.EraseWorld += UIMenuContagion.OnEraseWorld;
             IL.Terraria.GameContent.UI.Elements.UIGenProgressBar.DrawSelf += UIMenuContagion.ILDrawSelf;
+            On.Terraria.Player.PickAmmo += BuffEffects.OnPickAmmo;
+            IL.Terraria.Projectile.FishingCheck += BuffEffects.ILCatchFish;
+            IL.Terraria.Player.Update += ExtraHealth.ILUpdate;
         }
     }
 }
