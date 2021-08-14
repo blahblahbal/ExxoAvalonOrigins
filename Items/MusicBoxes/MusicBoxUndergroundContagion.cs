@@ -8,7 +8,7 @@
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/MusicBoxUndergroundContagion");
+            Rectangle dims = ExxoAvalonOrigins.getDims("Items/MusicBoxes/MusicBoxUndergroundContagion");
             item.autoReuse = true;
             item.useTurn = true;
             item.maxStack = 999;
