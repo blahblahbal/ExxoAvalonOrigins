@@ -1574,9 +1574,26 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             }
         }        public override void PostUpdate()
         {
-            totalDark2 = WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterSoil>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatter>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterSand>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.Darksandstone>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.HardenedDarkSand>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterGrass>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.BlackIce>()];
+            //totalDark2 += WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterSoil>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatter>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterSand>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.Darksandstone>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.HardenedDarkSand>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterGrass>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.BlackIce>()];
+            Main.NewText(totalDark2);
+            //totalDark2 = 0;
             float num2 = 3E-05f * (float)Main.worldRate;
             float num3 = 1.5E-05f * (float)Main.worldRate;
+            totalDark2 = 0;
+            int darkSpread = 0;
+            while (darkSpread < (Main.maxTilesX * Main.maxTilesY) * num2)
+            {
+                int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
+                int j = WorldGen.genRand.Next(10, Main.maxTilesY - 200);
+                if (Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatterSoil>() || Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatter>() ||
+                   Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatterSand>() || Main.tile[i, j].type == ModContent.TileType<Tiles.Darksandstone>() ||
+                   Main.tile[i, j].type == ModContent.TileType<Tiles.HardenedDarkSand>() || Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatterGrass>() ||
+                   Main.tile[i, j].type == ModContent.TileType<Tiles.BlackIce>())
+                {
+                    totalDark2++;
+                }
+                darkSpread++;
+            }
             int num4 = 0;
             while ((float)num4 < (float)(Main.maxTilesX * Main.maxTilesY) * num2)
             {
@@ -1612,9 +1629,9 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
-                        if (ExxoAvalonOrigins.superHardmode && totalDark2 < 50)
+                        if (ExxoAvalonOrigins.superHardmode && totalDark2 < 250000)
                         {
-                            DarkMatterSpread(num5, num6);
+                            //DarkMatterSpread(num5, num6);
                         }
                     }
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
