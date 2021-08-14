@@ -10,11 +10,11 @@ namespace ExxoAvalonOrigins.Items{	class Timechanger : ModItem	{		public ove
 
 			if (Main.netMode == NetmodeID.SinglePlayer)
 			{
-				Main.NewText(String.Format("It is now {0}.", Main.dayTime ? "day" : "night"), 50, 255, 130, false);
+				Main.NewText(String.Format("It is now {0}.", Main.dayTime ? "Day" : "Night"), 50, 255, 130, false);
 			}
 			else if (Main.netMode == NetmodeID.Server)
 			{
-				NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", Main.dayTime ? "day" : "night")), new Color(50, 255, 130));
+				NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", Main.dayTime ? "Day" : "Night")), new Color(50, 255, 130));
 			}
 
 			return true;

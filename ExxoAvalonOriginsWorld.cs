@@ -5,7 +5,7 @@ using MonoMod.Cil;
 using Mono.Cecil.Cil;
 using Terraria.GameContent.Biomes;
 
-namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {        public static GenPass corruptionPass;        public static GenPass junglePass;        public static GenPass altarPass;        public static byte blbTimer;        public static bool rhodium;        public static int rhodiumBar;        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int nilShrineCount;        public static int hallowedAltarCount;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static int theBeak;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static Vector2 LoK = Vector2.Zero;
+namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {        public static GenPass corruptionPass;        public static GenPass junglePass;        public static GenPass altarPass;        public static GenPass hivesPass;        public static GenPass templePass;        public static byte blbTimer;        public static bool rhodium;        public static int rhodiumBar;        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int nilShrineCount;        public static int hallowedAltarCount;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static int theBeak;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
         public static int wosF = 0;
@@ -2145,66 +2145,66 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                 junglePass = tasks[jungle];                tasks[jungle] = new PassLegacy("Jungle or Tropics", delegate (GenerationProgress progress)                {
                     if (jungleMenuSelection == JungleVariant.tropics)
                     {
-                        junglePass.Apply(progress);
-                        //progress.Message = "Generating Tropics";
-                        //float num616 = Main.maxTilesX / 4200;
-                        //num616 *= 1.5f;
-                        //int num617 = 0;
-                        //float num618 = (float)WorldGen.genRand.Next(15, 30) * 0.01f;
-                        //dungeonSide = ((WorldGen.genRand.Next(2) != 0) ? 1 : (-1));
-                        //if (dungeonSide == -1)
-                        //{
-                        //    num618 = 1f - num618;
-                        //    num617 = (int)((float)Main.maxTilesX * num618);
-                        //}
-                        //else
-                        //{
-                        //    num617 = (int)((float)Main.maxTilesX * num618);
-                        //}
-                        //int num619 = (int)((double)Main.maxTilesY + Main.rockLayer) / 2;
-                        //num617 += WorldGen.genRand.Next((int)(-100f * num616), (int)(101f * num616));
-                        //num619 += WorldGen.genRand.Next((int)(-100f * num616), (int)(101f * num616));
-                        //int num620 = num617;
-                        //int num621 = num619;
-                        //WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, dungeonSide * 3);
-                        //for (int num622 = 0; (float)num622 < 6f * num616; num622++)
-                        //{
-                        //    WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(63, 65));
-                        //}
-                        ////mudWall = true;
-                        //progress.Set(0.15f);
-                        //num617 += WorldGen.genRand.Next((int)(-250f * num616), (int)(251f * num616));
-                        //num619 += WorldGen.genRand.Next((int)(-150f * num616), (int)(151f * num616));
-                        //int num623 = num617;
-                        //int num624 = num619;
-                        //int num625 = num617;
-                        //int num626 = num619;
-                        //WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>());
-                        ////mudWall = false;
-                        //for (int num627 = 0; (float)num627 < 6f * num616; num627++)
-                        //{
-                        //    WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(65, 67));
-                        //}
-                        ////mudWall = true;
-                        //progress.Set(0.3f);
-                        //num617 += WorldGen.genRand.Next((int)(-400f * num616), (int)(401f * num616));
-                        //num619 += WorldGen.genRand.Next((int)(-150f * num616), (int)(151f * num616));
-                        //int num628 = num617;
-                        //int num629 = num619;
-                        //WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, dungeonSide * -3);
-                        ////mudWall = false;
-                        //for (int num630 = 0; (float)num630 < 6f * num616; num630++)
-                        //{
-                        //    WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(67, 69));
-                        //}
-                        ////mudWall = true;
-                        //progress.Set(0.45f);
-                        //num617 = (num620 + num623 + num628) / 3;
-                        //num619 = (num621 + num624 + num629) / 3;
-                        //WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next((int)(400f * num616), (int)(600f * num616)), 1000, (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, 0f, -20f, noYChange: true);
+                        //junglePass.Apply(progress);
+                        progress.Message = "Generating Tropics";
+                        float num616 = Main.maxTilesX / 4200;
+                        num616 *= 1.5f;
+                        int num617 = 0;
+                        float num618 = (float)WorldGen.genRand.Next(15, 30) * 0.01f;
+                        dungeonSide = ((WorldGen.genRand.Next(2) != 0) ? 1 : (-1));
+                        if (dungeonSide == -1)
+                        {
+                            num618 = 1f - num618;
+                            num617 = (int)((float)Main.maxTilesX * num618);
+                        }
+                        else
+                        {
+                            num617 = (int)((float)Main.maxTilesX * num618);
+                        }
+                        int num619 = (int)((double)Main.maxTilesY + Main.rockLayer) / 2;
+                        num617 += WorldGen.genRand.Next((int)(-100f * num616), (int)(101f * num616));
+                        num619 += WorldGen.genRand.Next((int)(-100f * num616), (int)(101f * num616));
+                        int num620 = num617;
+                        int num621 = num619;
+                        WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, dungeonSide * 3);
+                        for (int num622 = 0; (float)num622 < 6f * num616; num622++)
+                        {
+                            WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(63, 65));
+                        }
+                        mudWall = true;
+                        progress.Set(0.15f);
+                        num617 += WorldGen.genRand.Next((int)(-250f * num616), (int)(251f * num616));
+                        num619 += WorldGen.genRand.Next((int)(-150f * num616), (int)(151f * num616));
+                        int num623 = num617;
+                        int num624 = num619;
+                        int num625 = num617;
+                        int num626 = num619;
+                        TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>());
+                        mudWall = false;
+                        for (int num627 = 0; (float)num627 < 6f * num616; num627++)
+                        {
+                            WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(65, 67));
+                        }
+                        mudWall = true;
+                        progress.Set(0.3f);
+                        num617 += WorldGen.genRand.Next((int)(-400f * num616), (int)(401f * num616));
+                        num619 += WorldGen.genRand.Next((int)(-150f * num616), (int)(151f * num616));
+                        int num628 = num617;
+                        int num629 = num619;
+                        TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, dungeonSide * -3);
+                        mudWall = false;
+                        for (int num630 = 0; (float)num630 < 6f * num616; num630++)
+                        {
+                            WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(67, 69));
+                        }
+                        mudWall = true;
+                        progress.Set(0.45f);
+                        num617 = (num620 + num623 + num628) / 3;
+                        num619 = (num621 + num624 + num629) / 3;
+                        TileRunner(num617, num619, WorldGen.genRand.Next((int)(400f * num616), (int)(600f * num616)), 1000, (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, 0f, -20f, noYChange: true);
                         //WorldGen.JungleRunner(num617, num619);
-                        //progress.Set(0.6f);
-                        ////mudWall = false;
+                        progress.Set(0.6f);
+                        mudWall = false;
                         //for (int num631 = 0; num631 < Main.maxTilesX / 4; num631++)
                         //{
                         //    num617 = WorldGen.genRand.Next(20, Main.maxTilesX - 20);
@@ -2216,72 +2216,72 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                         //    }
                         //    WorldGen.MudWallRunner(num617, num619);
                         //}
-                        //num617 = num625;
-                        //num619 = num626;
-                        //for (int num632 = 0; (float)num632 <= 20f * num616; num632++)
-                        //{
-                        //    progress.Set((60f + (float)num632 / num616) * 0.01f);
-                        //    num617 += WorldGen.genRand.Next((int)(-5f * num616), (int)(6f * num616));
-                        //    num619 += WorldGen.genRand.Next((int)(-5f * num616), (int)(6f * num616));
-                        //    WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(40, 100), WorldGen.genRand.Next(300, 500), (ushort)ModContent.TileType<Tiles.TropicalMud>());
-                        //}
-                        //for (int num633 = 0; (float)num633 <= 10f * num616; num633++)
-                        //{
-                        //    progress.Set((80f + (float)num633 / num616 * 2f) * 0.01f);
-                        //    num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
-                        //    num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
-                        //    while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != (ushort)ModContent.TileType<Tiles.TropicalMud>())
-                        //    {
-                        //        num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
-                        //        num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
-                        //    }
-                        //    for (int num634 = 0; (float)num634 < 8f * num616; num634++)
-                        //    {
-                        //        num617 += WorldGen.genRand.Next(-30, 31);
-                        //        num619 += WorldGen.genRand.Next(-30, 31);
-                        //        int type5 = -1;
-                        //        if (WorldGen.genRand.Next(7) == 0)
-                        //        {
-                        //            type5 = -2;
-                        //        }
-                        //        WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(10, 20), WorldGen.genRand.Next(30, 70), type5);
-                        //    }
-                        //}
-                        //for (int num635 = 0; (float)num635 <= 300f * num616; num635++)
-                        //{
-                        //    num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
-                        //    num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
-                        //    while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != (ushort)ModContent.TileType<Tiles.TropicalMud>())
-                        //    {
-                        //        num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
-                        //        num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
-                        //    }
-                        //    WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), (ushort)ModContent.TileType<Tiles.TropicalStone>());
-                        //    if (WorldGen.genRand.Next(4) == 0)
-                        //    {
-                        //        int type6 = WorldGen.genRand.Next(63, 69);
-                        //        WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-1, 2), num619 + WorldGen.genRand.Next(-1, 2), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(4, 8), type6);
-                        //    }
-                        //}
-                        //for (int num106 = 0; num106 < Main.maxTilesX; num106++)
-                        //{
-                        //    for (int num107 = 0; num107 < Main.maxTilesY; num107++)
-                        //    {
-                        //        if (Main.tile[num106, num107].active())
-                        //        {
-                        //            try
-                        //            {
-                        //                grassSpread = 0;
-                        //                AvalonSpreadGrass(num106, num107, (ushort)ModContent.TileType<Tiles.TropicalMud>(), (ushort)ModContent.TileType<Tiles.TropicalGrass>(), true, 0);
-                        //            }
-                        //            catch
-                        //            {
-                        //                grassSpread = 0;
-                        //                AvalonSpreadGrass(num106, num107, (ushort)ModContent.TileType<Tiles.TropicalMud>(), (ushort)ModContent.TileType<Tiles.TropicalGrass>(), false, 0);
-                        //            }
-                        //        }
-                        //    }
-                        //}
+                        num617 = num625;
+                        num619 = num626;
+                        for (int num632 = 0; (float)num632 <= 20f * num616; num632++)
+                        {
+                            progress.Set((60f + (float)num632 / num616) * 0.01f);
+                            num617 += WorldGen.genRand.Next((int)(-5f * num616), (int)(6f * num616));
+                            num619 += WorldGen.genRand.Next((int)(-5f * num616), (int)(6f * num616));
+                            WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(40, 100), WorldGen.genRand.Next(300, 500), (ushort)ModContent.TileType<Tiles.TropicalMud>());
+                        }
+                        for (int num633 = 0; (float)num633 <= 10f * num616; num633++)
+                        {
+                            progress.Set((80f + (float)num633 / num616 * 2f) * 0.01f);
+                            num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
+                            num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
+                            while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != (ushort)ModContent.TileType<Tiles.TropicalMud>())
+                            {
+                                num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
+                                num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
+                            }
+                            for (int num634 = 0; (float)num634 < 8f * num616; num634++)
+                            {
+                                num617 += WorldGen.genRand.Next(-30, 31);
+                                num619 += WorldGen.genRand.Next(-30, 31);
+                                int type5 = -1;
+                                if (WorldGen.genRand.Next(7) == 0)
+                                {
+                                    type5 = -2;
+                                }
+                                WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(10, 20), WorldGen.genRand.Next(30, 70), type5);
+                            }
+                        }
+                        for (int num635 = 0; (float)num635 <= 300f * num616; num635++)
+                        {
+                            num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
+                            num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
+                            while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != (ushort)ModContent.TileType<Tiles.TropicalMud>())
+                            {
+                                num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
+                                num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
+                            }
+                            WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), (ushort)ModContent.TileType<Tiles.TropicalStone>());
+                            if (WorldGen.genRand.Next(4) == 0)
+                            {
+                                int type6 = WorldGen.genRand.Next(63, 69);
+                                WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-1, 2), num619 + WorldGen.genRand.Next(-1, 2), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(4, 8), type6);
+                            }
+                        }
+                        for (int num106 = 0; num106 < Main.maxTilesX; num106++)
+                        {
+                            for (int num107 = 0; num107 < Main.maxTilesY; num107++)
+                            {
+                                if (Main.tile[num106, num107].active())
+                                {
+                                    try
+                                    {
+                                        grassSpread = 0;
+                                        AvalonSpreadGrass(num106, num107, (ushort)ModContent.TileType<Tiles.TropicalMud>(), (ushort)ModContent.TileType<Tiles.TropicalGrass>(), true, 0);
+                                    }
+                                    catch
+                                    {
+                                        grassSpread = 0;
+                                        AvalonSpreadGrass(num106, num107, (ushort)ModContent.TileType<Tiles.TropicalMud>(), (ushort)ModContent.TileType<Tiles.TropicalGrass>(), false, 0);
+                                    }
+                                }
+                            }
+                        }
                     }
                     else junglePass.Apply(progress);
                 });
@@ -2391,7 +2391,25 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
                                 if (num212 > WorldGen.UndergroundDesertLocation.X && num212 < WorldGen.UndergroundDesertLocation.X + WorldGen.UndergroundDesertLocation.Width)
                                 {
                                     flag12 = false;
-                                }                                for (int num216 = num211; num216 < num212; num216++)                                {                                    for (int num217 = 0; num217 < (int)Main.worldSurface; num217 += 5)                                    {                                        if (Main.tile[num216, num217].active() && Main.tileDungeon[Main.tile[num216, num217].type])                                        {                                            flag12 = false;                                            break;                                        }                                        if (!flag12)                                        {                                            break;                                        }                                    }                                }                                if (num213 < 200 && jungleX > num211 && jungleX < num212)                                {                                    num213++;                                    flag12 = false;                                }                            }                           ContagionRunner(num210, (int)WorldGen.worldSurfaceLow - 10 + (Main.maxTilesY / 8));                            for (int num218 = num211; num218 < num212; num218++)                            {                                int num219 = (int)WorldGen.worldSurfaceLow;                                while (num219 < Main.worldSurface - 1.0)                                {                                    if (Main.tile[num218, num219].active())                                    {                                        int num220 = num219 + WorldGen.genRand.Next(10, 14);                                        for (int num221 = num219; num221 < num220; num221++)                                        {                                            if ((Main.tile[num218, num221].type == TileID.Mud || Main.tile[num218, num221].type == TileID.JungleGrass) && num218 >= num211 + WorldGen.genRand.Next(5) && num218 < num212 - WorldGen.genRand.Next(5))                                            {                                                Main.tile[num218, num221].type = TileID.Dirt;                                            }                                        }                                        break;                                    }                                    num219++;                                }                            }                            double num222 = Main.worldSurface + 40.0;                            for (int num223 = num211; num223 < num212; num223++)                            {                                num222 += WorldGen.genRand.Next(-2, 3);                                if (num222 < Main.worldSurface + 30.0)                                {                                    num222 = Main.worldSurface + 30.0;                                }                                if (num222 > Main.worldSurface + 50.0)                                {                                    num222 = Main.worldSurface + 50.0;                                }                                int num57 = num223;                                bool flag13 = false;                                int num224 = (int)WorldGen.worldSurfaceLow;                                while (num224 < num222)                                {                                    if (Main.tile[num57, num224].active())                                    {                                        if (Main.tile[num57, num224].type == TileID.Sand && num57 >= num211 + WorldGen.genRand.Next(5) && num57 <= num212 - WorldGen.genRand.Next(5))                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<Snotsand>();                                        }                                        if (Main.tile[num57, num224].type == TileID.Dirt && num224 < Main.worldSurface - 1.0 && !flag13)                                        {                                            grassSpread = 0;                                            WorldGen.SpreadGrass(num57, num224, 0, ModContent.TileType<Ickgrass>(), true, 0);                                        }                                        flag13 = true;                                        if (Main.tile[num57, num224].type == TileID.Stone && num57 >= num211 + WorldGen.genRand.Next(5) && num57 <= num212 - WorldGen.genRand.Next(5))                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<Chunkstone>();                                        }                                        if (Main.tile[num57, num224].type == TileID.Grass)                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<Ickgrass>();                                        }                                        if (Main.tile[num57, num224].type == TileID.IceBlock)                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<YellowIce>();                                        }                                        if (Main.tile[num57, num224].type == TileID.HardenedSand)                                        {                                            Main.tile[num57, num224].type = (ushort)ModContent.TileType<HardenedSnotsand>();                                        }                                        if (Main.tile[num57, num224].type == TileID.Sandstone)                                        {                                            Main.tile[num57, num224].type = (ushort)ModContent.TileType<Snotsandstone>();                                        }                                    }                                    num224++;                                }                            }                            int num225 = WorldGen.genRand.Next(10, 15);                            for (int num226 = 0; num226 < num225; num226++)                            {                                int num227 = 0;                                bool flag14 = false;                                int num228 = 0;                                while (!flag14)                                {                                    num227++;                                    int num229 = WorldGen.genRand.Next(num211 - num228, num212 + num228);                                    int num230 = WorldGen.genRand.Next((int)(Main.worldSurface - num228 / 2), (int)(Main.worldSurface + 100.0 + num228));                                    if (num227 > 100)                                    {                                        num228++;                                        num227 = 0;                                    }                                    if (!Main.tile[num229, num230].active())                                    {                                        while (!Main.tile[num229, num230].active())                                        {                                            num230++;                                        }                                        num230--;                                    }                                    else                                    {                                        while (Main.tile[num229, num230].active() && num230 > Main.worldSurface)                                        {                                            num230--;                                        }                                    }                                    if (num228 > 10 || (Main.tile[num229, num230 + 1].active() && Main.tile[num229, num230 + 1].type == TileID.Crimstone))                                    {                                        WorldGen.Place3x2(num229, num230, (ushort) ModContent.TileType<IckyAltar>());                                        if (Main.tile[num229, num230].type == (ushort) ModContent.TileType<IckyAltar>())                                        {                                            flag14 = true;                                        }                                    }                                    if (num228 > 100)                                    {                                        flag14 = true;                                    }                                }                            }                            num208++;                        }                    }                    else                    {                        corruptionPass.Apply(progress);                    }                });            }            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");            if (gems != -1)            {                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", delegate (GenerationProgress progress)                {                    for (var num284 = 69; num284 < 72; num284++)                    {                        var type8 = 0;                        float num285 = 0;                        if (num284 == 69)                        {                            type8 = ModContent.TileType<Tourmaline>();                            num285 = Main.maxTilesX * 0.2f;                        }                        else if (num284 == 70)                        {                            type8 = ModContent.TileType<Peridot>();                            num285 = Main.maxTilesX * 0.2f;                        }                        else if (num284 == 71)                        {                            type8 = ModContent.TileType<Zircon>();                            num285 = Main.maxTilesX * 0.2f;                        }                        num285 *= 0.2f;                        var num286 = 0;                        while (num286 < num285)                        {                            var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                            var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                            while (Main.tile[num287, num288].type != 1)                            {                                num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                                num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                            }                            WorldGen.TileRunner(num287, num288, WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), type8, false, 0f, 0f, false, true);                            num286++;                        }                    }                }));            }            var altarsTask = tasks.FindIndex(genpass => genpass.Name == "Altars");            if (altarsTask != -1)            {                altarPass = tasks[altarsTask];                tasks.RemoveAt(altarsTask);                tasks.Insert(altarsTask, new PassLegacy("Altars", delegate(GenerationProgress progress)                {                    if (contaigon)                    {                        progress.Message = Lang.gen[26].Value;                        int num = (int) (Main.maxTilesX * Main.maxTilesY * 1.99999994947575E-05);                        for (int index1 = 0; index1 < num; ++index1)                        {                            progress.Set(index1 / (float) num);                            for (int index2 = 0; index2 < 10000; ++index2)                            {                                int x = WorldGen.genRand.Next(1, Main.maxTilesX - 3);                                int y = (int) (WorldGen.worldSurfaceHigh + 20.0);                                WorldGen.Place3x2(x, y, ModContent.GetInstance<Tiles.IckyAltar>().Type);                                if (Main.tile[x, y].type == ModContent.GetInstance<Tiles.IckyAltar>().Type)                                    break;                            }                        }                    }                    else                    {                        altarPass.Apply(progress);                    }                }));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", delegate (GenerationProgress progress)                {
+                                }                                for (int num216 = num211; num216 < num212; num216++)                                {                                    for (int num217 = 0; num217 < (int)Main.worldSurface; num217 += 5)                                    {                                        if (Main.tile[num216, num217].active() && Main.tileDungeon[Main.tile[num216, num217].type])                                        {                                            flag12 = false;                                            break;                                        }                                        if (!flag12)                                        {                                            break;                                        }                                    }                                }                                if (num213 < 200 && jungleX > num211 && jungleX < num212)                                {                                    num213++;                                    flag12 = false;                                }                            }                           ContagionRunner(num210, (int)WorldGen.worldSurfaceLow - 10 + (Main.maxTilesY / 8));                            for (int num218 = num211; num218 < num212; num218++)                            {                                int num219 = (int)WorldGen.worldSurfaceLow;                                while (num219 < Main.worldSurface - 1.0)                                {                                    if (Main.tile[num218, num219].active())                                    {                                        int num220 = num219 + WorldGen.genRand.Next(10, 14);                                        for (int num221 = num219; num221 < num220; num221++)                                        {                                            if ((Main.tile[num218, num221].type == TileID.Mud || Main.tile[num218, num221].type == TileID.JungleGrass) && num218 >= num211 + WorldGen.genRand.Next(5) && num218 < num212 - WorldGen.genRand.Next(5))                                            {                                                Main.tile[num218, num221].type = TileID.Dirt;                                            }                                        }                                        break;                                    }                                    num219++;                                }                            }                            double num222 = Main.worldSurface + 40.0;                            for (int num223 = num211; num223 < num212; num223++)                            {                                num222 += WorldGen.genRand.Next(-2, 3);                                if (num222 < Main.worldSurface + 30.0)                                {                                    num222 = Main.worldSurface + 30.0;                                }                                if (num222 > Main.worldSurface + 50.0)                                {                                    num222 = Main.worldSurface + 50.0;                                }                                int num57 = num223;                                bool flag13 = false;                                int num224 = (int)WorldGen.worldSurfaceLow;                                while (num224 < num222)                                {                                    if (Main.tile[num57, num224].active())                                    {                                        if (Main.tile[num57, num224].type == TileID.Sand && num57 >= num211 + WorldGen.genRand.Next(5) && num57 <= num212 - WorldGen.genRand.Next(5))                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<Snotsand>();                                        }                                        if (Main.tile[num57, num224].type == TileID.Dirt && num224 < Main.worldSurface - 1.0 && !flag13)                                        {                                            grassSpread = 0;                                            WorldGen.SpreadGrass(num57, num224, 0, ModContent.TileType<Ickgrass>(), true, 0);                                        }                                        flag13 = true;                                        if (Main.tile[num57, num224].type == TileID.Stone && num57 >= num211 + WorldGen.genRand.Next(5) && num57 <= num212 - WorldGen.genRand.Next(5))                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<Chunkstone>();                                        }                                        if (Main.tile[num57, num224].type == TileID.Grass)                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<Ickgrass>();                                        }                                        if (Main.tile[num57, num224].type == TileID.IceBlock)                                        {                                            Main.tile[num57, num224].type = (ushort) ModContent.TileType<YellowIce>();                                        }                                        if (Main.tile[num57, num224].type == TileID.HardenedSand)                                        {                                            Main.tile[num57, num224].type = (ushort)ModContent.TileType<HardenedSnotsand>();                                        }                                        if (Main.tile[num57, num224].type == TileID.Sandstone)                                        {                                            Main.tile[num57, num224].type = (ushort)ModContent.TileType<Snotsandstone>();                                        }                                    }                                    num224++;                                }                            }                            int num225 = WorldGen.genRand.Next(10, 15);                            for (int num226 = 0; num226 < num225; num226++)                            {                                int num227 = 0;                                bool flag14 = false;                                int num228 = 0;                                while (!flag14)                                {                                    num227++;                                    int num229 = WorldGen.genRand.Next(num211 - num228, num212 + num228);                                    int num230 = WorldGen.genRand.Next((int)(Main.worldSurface - num228 / 2), (int)(Main.worldSurface + 100.0 + num228));                                    if (num227 > 100)                                    {                                        num228++;                                        num227 = 0;                                    }                                    if (!Main.tile[num229, num230].active())                                    {                                        while (!Main.tile[num229, num230].active())                                        {                                            num230++;                                        }                                        num230--;                                    }                                    else                                    {                                        while (Main.tile[num229, num230].active() && num230 > Main.worldSurface)                                        {                                            num230--;                                        }                                    }                                    if (num228 > 10 || (Main.tile[num229, num230 + 1].active() && Main.tile[num229, num230 + 1].type == TileID.Crimstone))                                    {                                        WorldGen.Place3x2(num229, num230, (ushort) ModContent.TileType<IckyAltar>());                                        if (Main.tile[num229, num230].type == (ushort) ModContent.TileType<IckyAltar>())                                        {                                            flag14 = true;                                        }                                    }                                    if (num228 > 100)                                    {                                        flag14 = true;                                    }                                }                            }                            num208++;                        }                    }                    else                    {                        corruptionPass.Apply(progress);                    }                });            }            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");            if (gems != -1)            {                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", delegate (GenerationProgress progress)                {                    for (var num284 = 69; num284 < 72; num284++)                    {                        var type8 = 0;                        float num285 = 0;                        if (num284 == 69)                        {                            type8 = ModContent.TileType<Tourmaline>();                            num285 = Main.maxTilesX * 0.2f;                        }                        else if (num284 == 70)                        {                            type8 = ModContent.TileType<Peridot>();                            num285 = Main.maxTilesX * 0.2f;                        }                        else if (num284 == 71)                        {                            type8 = ModContent.TileType<Zircon>();                            num285 = Main.maxTilesX * 0.2f;                        }                        num285 *= 0.2f;                        var num286 = 0;                        while (num286 < num285)                        {                            var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                            var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                            while (Main.tile[num287, num288].type != 1)                            {                                num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                                num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                            }                            WorldGen.TileRunner(num287, num288, WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), type8, false, 0f, 0f, false, true);                            num286++;                        }                    }                }));            }            var altarsTask = tasks.FindIndex(genpass => genpass.Name == "Altars");            if (altarsTask != -1)            {                altarPass = tasks[altarsTask];                tasks.RemoveAt(altarsTask);                tasks.Insert(altarsTask, new PassLegacy("Altars", delegate(GenerationProgress progress)                {                    if (contaigon)                    {                        progress.Message = Lang.gen[26].Value;                        int num = (int) (Main.maxTilesX * Main.maxTilesY * 1.99999994947575E-05);                        for (int index1 = 0; index1 < num; ++index1)                        {                            progress.Set(index1 / (float) num);                            for (int index2 = 0; index2 < 10000; ++index2)                            {                                int x = WorldGen.genRand.Next(1, Main.maxTilesX - 3);                                int y = (int) (WorldGen.worldSurfaceHigh + 20.0);                                WorldGen.Place3x2(x, y, ModContent.GetInstance<Tiles.IckyAltar>().Type);                                if (Main.tile[x, y].type == ModContent.GetInstance<Tiles.IckyAltar>().Type)                                    break;                            }                        }                    }                    else                    {                        altarPass.Apply(progress);                    }                }));            }            var temple = tasks.FindIndex(genpass => genpass.Name == "Jungle Temple");            if (temple != -1)
+            {
+                templePass = tasks[temple];                tasks[temple] =
+                new PassLegacy("Avalon Jungle Temple", delegate (GenerationProgress progress)                {
+                    if (jungleMenuSelection == JungleVariant.tropics)
+                    {
+
+                    }
+                    else templePass.Apply(progress);
+                });            }            var hives = tasks.FindIndex(genpass => genpass.Name == "Hives");            if (hives != -1)
+            {
+                hivesPass = tasks[hives];                tasks[hives] =
+                new PassLegacy("Avalon Hives", delegate (GenerationProgress progress)                {
+                    if (jungleMenuSelection == JungleVariant.tropics)
+                    {
+
+                    }
+                    else hivesPass.Apply(progress);
+                });            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", delegate (GenerationProgress progress)                {
                     int x = Main.maxTilesX / 3 - 210;
                     int y = Main.maxTilesY - 140;
                     //int x = Main.maxTilesX / 2;
