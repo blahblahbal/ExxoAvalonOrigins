@@ -34,7 +34,74 @@ namespace ExxoAvalonOrigins
             Checkpoints,
             Team
         }
-
+        public List<int> undead = new List<int>()
+        {
+            NPCID.Zombie,
+            NPCID.Skeleton,
+            NPCID.AngryBones,
+            NPCID.DarkCaster,
+            NPCID.CursedSkull,
+            NPCID.UndeadMiner,
+            NPCID.Tim,
+            NPCID.DoctorBones,
+            NPCID.TheGroom,
+            NPCID.ArmoredSkeleton,
+            NPCID.Mummy,
+            NPCID.Wraith,
+            NPCID.SkeletonArcher,
+            NPCID.BaldZombie,
+            NPCID.PossessedArmor,
+            NPCID.VampireBat,
+            NPCID.Vampire,
+            NPCID.ZombieEskimo,
+            NPCID.UndeadViking,
+            NPCID.RuneWizard,
+            NPCID.PincushionZombie,
+            NPCID.SlimedZombie,
+            NPCID.SwampZombie,
+            NPCID.TwiggyZombie,
+            NPCID.ArmoredViking,
+            NPCID.FemaleZombie,
+            NPCID.HeadacheSkeleton,
+            NPCID.MisassembledSkeleton,
+            NPCID.PantlessSkeleton,
+            NPCID.ZombieRaincoat,
+            NPCID.Eyezor,
+            NPCID.Reaper,
+            NPCID.ZombieMushroom,
+            NPCID.ZombieMushroomHat,
+            NPCID.ZombieDoctor,
+            NPCID.ZombieSuperman,
+            NPCID.ZombiePixie,
+            NPCID.SkeletonTopHat,
+            NPCID.SkeletonAstonaut,
+            NPCID.SkeletonAlien,
+            NPCID.ZombieXmas,
+            NPCID.ZombieSweater
+        };
+        public List<int> flyer = new List<int>()
+        {
+            NPCID.DemonEye,
+            NPCID.EaterofSouls,
+            NPCID.Harpy,
+            NPCID.CaveBat,
+            NPCID.JungleBat,
+            NPCID.Pixie,
+            NPCID.WyvernHead,
+            NPCID.GiantBat,
+            NPCID.Crimera,
+            NPCID.CataractEye,
+            NPCID.SleepyEye,
+            NPCID.DialatedEye,
+            NPCID.GreenEye,
+            NPCID.PurpleEye,
+            NPCID.Moth,
+            NPCID.FlyingFish,
+            NPCID.FlyingSnake,
+            NPCID.AngryNimbus,
+            ModContent.NPCType<NPCs.VampireHarpy>(),
+            ModContent.NPCType<NPCs.Dragonfly>()
+        };
         public bool armorStealth = false;
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
@@ -1671,6 +1738,21 @@ namespace ExxoAvalonOrigins
         }
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
+            if (HasItemInArmor(ModContent.ItemType<UndeadTalisman>()) || HasItemInArmor(ModContent.ItemType<ImmunityCharm>()))
+            {
+                int dmgPlaceholder = npc.damage;
+                if (undead.Contains(npc.type))
+                {
+                    if (damage - (player.statDefense / 2 - 10) <= 0)
+                    {
+                        damage = 0;
+                        player.immune = true;
+                        player.immuneAlpha = 0;
+                    }
+                    else damage = dmgPlaceholder;
+                }
+            }
+
             if (player.HasBuff(ModContent.BuffType<Buffs.ShadowCurse>()))
             {
                 damage *= 2;
