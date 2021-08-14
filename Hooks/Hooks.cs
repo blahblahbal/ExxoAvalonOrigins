@@ -16,7 +16,7 @@
             On.Terraria.Collision.HurtTiles += TrapCollision.OnHurtTiles;
             On.Terraria.WorldGen.SmashAltar += EvilAltar.OnSmashAltar;
             IL.Terraria.Main.DrawMenu += WorldCreationMenus.ILDrawMenu;
-            IL.Terraria.WorldGen.hardUpdateWorld += ContagionSpread.ILHardUpdateWorld;
+            //IL.Terraria.WorldGen.hardUpdateWorld += ContagionSpread.ILHardUpdateWorld;
             IL.Terraria.Main.DrawPlayer += LargeGem.ILDrawPlayer;
             IL.Terraria.Player.SmartCursor_Torch += Torches.ILSmartCursor_Torch;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.GetIcon += UIMenuContagion.OnGetIcon;
