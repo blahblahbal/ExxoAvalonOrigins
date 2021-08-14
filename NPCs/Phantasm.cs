@@ -192,7 +192,7 @@ namespace ExxoAvalonOrigins.NPCs
                 if (!transitionDone)
                 {
                     npc.dontTakeDamage = true;
-                    Vector2 libraryCenter = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
+                    Vector2 libraryCenter = new Vector2(Main.maxTilesX / 3 + 184, Main.maxTilesY - 140 + 57) * 16;
 
                     if (Vector2.Distance(libraryCenter, npc.Center) <= 5)
                     {
