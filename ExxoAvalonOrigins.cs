@@ -236,6 +236,12 @@
                 else music = MusicID.Dungeon;
                 priority = MusicPriority.Environment;
             }
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
+            {
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics");
+                else music = MusicID.Jungle;
+                priority = MusicPriority.Environment;
+            }
             Rectangle rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
             int dist = 5000;
             bool phantasm = false;

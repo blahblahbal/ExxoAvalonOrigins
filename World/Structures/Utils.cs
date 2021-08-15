@@ -25,7 +25,8 @@ namespace ExxoAvalonOrigins.World.Structures
 
             // Loading file into list
             List<int[]> structureList = new List<int[]>();
-            using (Stream stream = assembly.GetManifestResourceStream("ExxoAvalonOrigins.World.Structures." + path)) {
+            using (Stream stream = assembly.GetManifestResourceStream("ExxoAvalonOrigins.World.Structures." + path))
+            {
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     while (reader.Peek() >= 0)

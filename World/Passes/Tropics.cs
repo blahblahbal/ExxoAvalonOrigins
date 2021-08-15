@@ -127,7 +127,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
                     num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
                 }
-                TileRunner(num617, num619, WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), 1);
+                TileRunner(num617, num619, WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), (ushort)ModContent.TileType<Tiles.TropicalStone>());
                 if (WorldGen.genRand.Next(4) == 0)
                 {
                     int type6 = WorldGen.genRand.Next(63, 69);

@@ -103,7 +103,11 @@ namespace ExxoAvalonOrigins.World.Passes
                         }
                         if (good)
                         {
-                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68 || Main.tile[k, l].wall == 69 || Main.tile[k, l].wall == 81 || Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>())
+                            if (Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>())
+                            {
+                                Main.tile[k, l].wall = 28;
+                            }
+                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68 || Main.tile[k, l].wall == 69 || Main.tile[k, l].wall == 81)
                             {
                                 Main.tile[k, l].wall = 70;
                             }
@@ -171,9 +175,13 @@ namespace ExxoAvalonOrigins.World.Passes
                         }
                         else if (ExxoAvalonOriginsWorld.contaigon)
                         {
-                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68)
+                            if (Main.tile[k, l].wall == 28)
                             {
                                 Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ChunkstoneWall>();
+                            }
+                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68)
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionGrassWall>();
                             }
                             else if (Main.tile[k, l].wall == 216)
                             {

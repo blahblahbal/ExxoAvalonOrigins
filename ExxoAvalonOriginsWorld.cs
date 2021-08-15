@@ -3,7 +3,7 @@ using System.Threading;
 using Terraria;using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;using Terraria.ModLoader.IO;using Terraria.Utilities;
 using Terraria.World.Generation;
-namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld    {        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int hallowedAltarCount = 0;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static Vector2 LoK = Vector2.Zero;
+namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld    {        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int hallowedAltarCount = 0;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static int tropicTiles = 0;        public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
         public static int wosF = 0;
@@ -29,6 +29,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
             ickyTiles = tileCounts[ModContent.TileType<Chunkstone>()] + tileCounts[ModContent.TileType<HardenedSnotsand>()] + tileCounts[ModContent.TileType<Snotsandstone>()] + tileCounts[ModContent.TileType<Ickgrass>()] + tileCounts[ModContent.TileType<Snotsand>()] + tileCounts[ModContent.TileType<YellowIce>()];
+            tropicTiles = tileCounts[ModContent.TileType<TropicalStone>()] + tileCounts[ModContent.TileType<Tiles.TuhrtlBrick>()] + tileCounts[ModContent.TileType<TropicalMud>()] + tileCounts[ModContent.TileType<TropicalGrass>()];
             hellcastleTiles = tileCounts[ModContent.TileType<Tiles.ImperviousBrick>()];
             darkTiles = tileCounts[ModContent.TileType<Tiles.DarkMatter>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterSand>()] + tileCounts[ModContent.TileType<Tiles.BlackIce>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterSoil>()] + tileCounts[ModContent.TileType<Tiles.HardenedDarkSand>()] + tileCounts[ModContent.TileType<Tiles.Darksandstone>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterGrass>()];
             Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
@@ -268,12 +269,12 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             if (contaigon)
             {
                 list.Insert(index + 1, (GenPass)new PassLegacy("Exxo Avalon Origins: Hardmode Contagion", new WorldGenLegacyMethod(World.Passes.ContagionHardMode.Method)));
-                // TODO REPLACE HALLOW GEN INSTEAD OF REMOVING
+                // TODO REPLACE EVIL GEN INSTEAD OF REMOVING
                 list.RemoveAt(index);
                 list.RemoveAt(index2);
             }
             list.Insert(index + 2, (GenPass)new PassLegacy("Hardmode snow ore generation", new WorldGenLegacyMethod(World.Passes.SnowHardMode.Method)));
-        }                public override void NetSend(BinaryWriter writer)
+        }        public override void NetSend(BinaryWriter writer)
         {
             var flags = new BitsByte();
             flags[0] = ExxoAvalonOrigins.superHardmode;
@@ -686,6 +687,14 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                                             WorldGen.SpreadGrass(m, n, ModContent.TileType<Ickgrass>(), num14, false, Main.tile[num5, num6].color());
                                         }
                                     }
+                                    if (Main.tile[m, n].type == (ushort)ModContent.TileType<TropicalMud>())
+                                    {
+                                        WorldGen.SpreadGrass(m, n, ModContent.TileType<TropicalMud>(), ModContent.TileType<TropicalGrass>(), false, Main.tile[num5, num6].color());
+                                    }
+                                    if (Main.tile[m, n].type == TileID.Ash)
+                                    {
+                                        WorldGen.SpreadGrass(m, n, TileID.Ash, ModContent.TileType<Impgrass>(), false, Main.tile[num5, num6].color());
+                                    }
                                 }
                             }
                         }
@@ -938,7 +947,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 //}));
                 tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                if (jungleMenuSelection == JungleVariant.tropics)
                 {
-
+                    World.Structures.TuhrtlOutpost.CreateTuhrtlOutpost(Main.maxTilesX / 2, (int)Main.worldSurface - 50);
                 }
                 //tasks.Insert(microBiomes + 3, new PassLegacy("Generating Tropics", delegate (GenerationProgress progress)                //{                //    if (jungleMenuSelection == JungleVariant.tropics)
                 //    {
