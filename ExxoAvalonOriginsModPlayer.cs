@@ -235,7 +235,13 @@ namespace ExxoAvalonOrigins
         public bool doubleDamage;
         public bool frozen;
         public Color baseSkinTone;
+        public bool bloodCast;
+        public bool necroticAura;
+        public bool reckoning;
+        public int reckoningLevel;
+        public int reckoningTimeLeft;
 
+        // Adv Buffs
         public bool advAmmoBuff;
         public bool advArcheryBuff;
         public bool advBattleBuff;
@@ -258,6 +264,10 @@ namespace ExxoAvalonOrigins
         public int[] herbCounts = new int[10];
         private int gemCount = 0;
         private bool[] ownedLargeGems = new bool[10];
+
+        // Crit damage multiplyer vars
+        public float critDamageMult = 0f;
+
         #endregion
 
         public override void ResetEffects()
@@ -271,13 +281,17 @@ namespace ExxoAvalonOrigins
             advBattleBuff = false;
             advCalmingBuff = false;
             advCrateBuff = false;
+            bloodCast = false;
             mermanLava = false;
             bubbleBoost = false;
             darkInferno = false;
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
+            necroticAura = false;
             frozen = false;
             liaB = false;
+            reckoning = false;
+
             if (screenShake > 0)
             {
                 screenShake--;
@@ -288,6 +302,8 @@ namespace ExxoAvalonOrigins
                 player.extraAccessory = true;
                 player.extraAccessorySlots++;
             }
+
+            critDamageMult = 0f;
         }
         public override void UpdateDead()
         {
@@ -564,6 +580,28 @@ namespace ExxoAvalonOrigins
                     else vampireHeal(damage, target.Center);
                 }
             }
+
+            if (crit && Main.rand.Next(8) == 0)
+                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    reckoningLevel += 1;
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (crit && Main.rand.Next(8) == 0)
+                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    reckoningLevel += 1;
+        }
+        public override void OnHitPvp(Item item, Player target, int damage, bool crit)
+        {
+            if (crit && Main.rand.Next(8) == 0)
+                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    reckoningLevel += 1;
+        }
+        public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
+        {
+            if (crit && Main.rand.Next(8) == 0)
+                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    reckoningLevel += 1;
         }
         public void vampireHeal(int dmg, Vector2 Position)
         {
@@ -627,6 +665,10 @@ namespace ExxoAvalonOrigins
                     NPC.CatchNPC(target.whoAmI, player.whoAmI);
                 }
             }
+            if (crit)
+            {
+                damage += MultiplyCritDamage(damage);
+            }
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -658,8 +700,31 @@ namespace ExxoAvalonOrigins
                     if (hyperBar == 25) hyperBar = 0;
                 }
             }
+            if (crit)
+            {
+                damage += MultiplyCritDamage(damage);
+            }
         }
-
+        public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
+        {
+            if (crit)
+            {
+                damage += MultiplyCritDamage(damage);
+            }
+        }
+        public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
+        {
+            if (crit)
+            {
+                damage += MultiplyCritDamage(damage);
+            }
+        }
+        public int MultiplyCritDamage(int dmg) // dmg = damage befor crit application
+        {
+            int bonusDmg = -dmg; 
+            bonusDmg += (int)((dmg * (critDamageMult + 1f)) / 2);
+            return bonusDmg;
+        }
         public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
         {
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
@@ -767,7 +832,6 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdate()
         {
-            
             //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
@@ -929,6 +993,79 @@ namespace ExxoAvalonOrigins
                         ownedLargeGems[player.gem] = true;
                     }
                 }
+            }
+
+            if (necroticAura)
+            {
+                for (int i = 0; i < Main.npc.Length; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc.townNPC)
+                        continue;
+                    if (!npc.active ||
+                        npc.dontTakeDamage ||
+                        npc.friendly ||
+                        npc.life < 1)
+                        continue;
+                    if (npc.Center.X >= player.Center.X - 320 &&
+                        npc.Center.X <= player.Center.X + 320 &&
+                        npc.Center.Y >= player.Center.Y - 320 &&
+                        npc.Center.Y <= player.Center.Y + 320)
+                    {
+                        int count = 0;
+                        if (count++ % 50 == 0)
+                        {
+                            foreach(NPC target in Main.npc)
+                            {
+                                if (target.Center.X >= player.Center.X - 320 &&
+                                    target.Center.X <= player.Center.X + 320 &&
+                                    target.Center.Y >= player.Center.Y - 320 &&
+                                    target.Center.Y <= player.Center.Y + 320)
+                                {
+                                    if (!target.active || 
+                                        target.dontTakeDamage || 
+                                        target.townNPC || 
+                                        target.life < 1 || 
+                                        target.boss || 
+                                        target.target == ModContent.NPCType<NPCs.Juggernaut>() || 
+                                        target.realLife >= 0) 
+                                        continue;
+                                    target.AddBuff(ModContent.BuffType<Buffs.NecroticDrain>(), 2);
+                                    //target.StrikeNPCNoInteraction(3 + (int)(target.defense / 2), 0f, 1, default, true);
+                                    //target.StrikeNPC(3 + (int)(target.defense / 2), 0f, 1, default, true);
+                                }
+                            }
+                            count = 0;
+                        }
+                    }
+                }
+            }
+
+            if (reckoning)
+            {
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    if (reckoningTimeLeft > 0)
+                        reckoningTimeLeft--;
+                    else
+                    {
+                        if (reckoningLevel > 1)
+                            reckoningLevel--;
+                        reckoningTimeLeft = 120;
+                    }
+
+                    if (reckoningLevel < 1)
+                        reckoningLevel = 1;
+
+                    player.rangedCrit += 3 * reckoningLevel;
+                }
+                else
+                    Main.NewText("Good job dummy, you broke the Reckoning set bonus");
+            }
+            else
+            {
+                reckoningLevel = 0;
+                reckoningTimeLeft = 0;
             }
         }
 
@@ -1103,7 +1240,6 @@ namespace ExxoAvalonOrigins
                 player.HealEffect(hpHealed, true);
             }
         }
-
         public override void PostUpdateEquips()
         {
             //player.statMana = statManaMax3;
@@ -1266,8 +1402,7 @@ namespace ExxoAvalonOrigins
 			        bubbleBoostActive = true;
 		        }
 		        stayInBounds(player.position);
-	        }
-	        
+	        }        
 	        
 	        if (chaosCharm)
 	        {
@@ -1356,8 +1491,11 @@ namespace ExxoAvalonOrigins
                 player.accDepthMeter = 1;
                 player.accCompass = 1;
             }
+            if (bloodCast)
+            {
+                player.statManaMax2 += player.statLifeMax2;
+            }
             player.statManaMax2 += (spiritPoppyUseCount * 20);
-
         }
 
         public override void PreUpdate()

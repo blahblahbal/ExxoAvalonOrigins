@@ -873,6 +873,52 @@ using System;using Terraria;using Terraria.ID;using Terraria.ModLoader;using
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ModContent.ItemType<Items.LimeGreenSolution>(), 100);
             recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 10);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodWorkBench>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 14);			recipe.AddTile(TileID.Anvils);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodBathtub>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 4);			recipe.AddIngredient(ItemID.Torch, 4);			recipe.AddIngredient(ItemID.Chain, 1);			recipe.AddTile(TileID.Anvils);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodChandelier>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 15);			recipe.AddIngredient(ItemID.Silk, 5);			recipe.AddTile(TileID.Sawmill);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodBed>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 20);			recipe.AddIngredient(ItemID.Book, 10);			recipe.AddTile(TileID.Sawmill);			recipe.SetResult(ModContent.ItemType<Items.ImperviousBookcase>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ItemID.IronBar, 3);			recipe.AddIngredient(ItemID.Glass, 6);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 10);			recipe.anyIronBar = true;			recipe.AddTile(TileID.Sawmill);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodClock>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 16);			recipe.AddTile(TileID.Sawmill);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodDresser>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ItemID.Bone, 4);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 15);			recipe.AddIngredient(ItemID.Book);			recipe.AddTile(TileID.Sawmill);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodPiano>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 5);			recipe.AddIngredient(ItemID.Silk, 2);			recipe.AddTile(TileID.Sawmill);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodSofa>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 5);			recipe.AddIngredient(ItemID.Torch, 3);			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodCandelabra>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 4);			recipe.AddIngredient(ItemID.Torch);			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodCandle>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 4);			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodChair>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 8);			recipe.AddIngredient(ItemID.IronBar, 2);			recipe.anyIronBar = true;			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodChest>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ItemID.Torch);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 3);			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodLamp>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 6);			recipe.AddIngredient(ItemID.Torch, 1);			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodLantern>());			recipe.AddRecipe();						recipe = new ModRecipe(mod);			recipe.AddIngredient(ModContent.ItemType<Items.ResistantWood>(), 8);			recipe.AddTile(TileID.WorkBenches);			recipe.SetResult(ModContent.ItemType<Items.ResistantWoodTable>());			recipe.AddRecipe();
-            #endregion
-        }
+			#endregion
+
+			#region Corrupted Thorn Armor
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.Spike, 20);
+			recipe.AddIngredient(ModContent.ItemType<Items.CorruptShard>(), 20);
+			recipe.AddIngredient(ItemID.SoulofNight, 10);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(ModContent.ItemType<Items.Armor.CorruptedThornCrown>());
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.Spike, 25);
+			recipe.AddIngredient(ModContent.ItemType<Items.CorruptShard>(), 25);
+			recipe.AddIngredient(ItemID.SoulofNight, 20);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(ModContent.ItemType<Items.Armor.CorruptedThornBodyarmor>());
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.Spike, 20);
+			recipe.AddIngredient(ModContent.ItemType<Items.CorruptShard>(), 20);
+			recipe.AddIngredient(ItemID.SoulofNight, 15);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(ModContent.ItemType<Items.Armor.CorruptedThornGreaves>());
+			#endregion
+
+			#region Divine Light Armor
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.PixieDust, 20);
+			recipe.AddIngredient(ItemID.HallowedBar, 20);
+			recipe.AddIngredient(ItemID.SoulofLight, 10);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightHuntingHorns>());
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.PixieDust, 25);
+			recipe.AddIngredient(ItemID.HallowedBar, 25);
+			recipe.AddIngredient(ItemID.SoulofLight, 20);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightJerkin>());
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.PixieDust, 20);
+			recipe.AddIngredient(ItemID.HallowedBar, 20);
+			recipe.AddIngredient(ItemID.SoulofLight, 15);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightTreads>());
+			#endregion
+		}
     }}

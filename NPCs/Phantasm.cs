@@ -205,7 +205,7 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.life = (int)(npc.lifeMax * 0.75f);
                         Vector2 heading = libraryCenter - npc.Center;
                         heading.Normalize();
-                        heading *= new Vector2(1.5f, 1.5f).Length(); // multiply by speed
+                        heading *= new Vector2(3f, 3f).Length(); // multiply by speed
                         npc.velocity = heading;
                     }
                 }
