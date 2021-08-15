@@ -4,7 +4,7 @@ using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
-    class Impvines
+    class TropicalVines
     {
         public static void Method(GenerationProgress progress)
         {

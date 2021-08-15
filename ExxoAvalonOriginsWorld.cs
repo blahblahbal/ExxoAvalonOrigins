@@ -790,9 +790,9 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         {
             ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;
 
-            if (ExxoAvalonOriginsWorld.jungleMenuSelection == ExxoAvalonOriginsWorld.JungleVariant.random)
+            if (jungleMenuSelection == JungleVariant.random)
             {
-                ExxoAvalonOriginsWorld.jungleMenuSelection = (ExxoAvalonOriginsWorld.JungleVariant)WorldGen.genRand.Next(2);
+                jungleMenuSelection = (JungleVariant)WorldGen.genRand.Next(2);
             }
 
             WorldGen.crimson = WorldGen.genRand.Next(2) == 0;
@@ -806,13 +806,13 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }
             if (WorldGen.WorldGenParam_Evil == -1)
             {
-                ExxoAvalonOriginsWorld.contaigon = WorldGen.genRand.Next(3) == 0;
-                if (ExxoAvalonOriginsWorld.contaigon)
+                contaigon = WorldGen.genRand.Next(3) == 0;
+                if (contaigon)
                     WorldGen.crimson = false;
             }
             if (WorldGen.WorldGenParam_Evil == 2)
             {
-                ExxoAvalonOriginsWorld.contaigon = true;
+                contaigon = true;
                 WorldGen.crimson = false;
             }
         }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks[reset] = new PassLegacy("Reset", World.Passes.ResetOverride.Method);                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));            }            if (jungleMenuSelection == JungleVariant.tropics)
@@ -880,7 +880,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 var impvines = tasks.FindIndex(genpass => genpass.Name == "Vines");
                 if (impvines != -1)
                 {
-                    tasks[impvines] = new PassLegacy("Impvines", World.Passes.Impvines.Method);
+                    tasks[impvines] = new PassLegacy("TropicalVines", World.Passes.TropicalVines.Method);
                 }
 
                 var mudwalls = tasks.FindIndex(genpass => genpass.Name == "Muds Walls In Jungle");
