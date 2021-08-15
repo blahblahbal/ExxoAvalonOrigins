@@ -817,24 +817,28 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }
         }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks[reset] = new PassLegacy("Reset", World.Passes.ResetOverride.Method);                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));            }            var vines = tasks.FindIndex(genpass => genpass.Name == "Vines");            if (jungleMenuSelection == JungleVariant.tropics)
             {
+                // good
                 var dirtwall = tasks.FindIndex(genpass => genpass.Name == "Dirt Wall Backgrounds");
                 if (dirtwall != -1)
                 {
                     tasks[dirtwall] = new PassLegacy("Dirt Walls", World.Passes.TropicsDirtWall.Method);
                 }
 
+                // good
                 var jungle = tasks.FindIndex(genpass => genpass.Name == "Jungle");
                 if (jungle != -1)
                 {
                     tasks[jungle] = new PassLegacy("Jungle or Tropics", World.Passes.Tropics.Method);
                 }
 
+                // good
                 var dirt = tasks.FindIndex(genpass => genpass.Name == "Clean Up Dirt");
                 if (dirt != -1)
                 {
                     tasks[dirt] = new PassLegacy("Clean Up Dirt", World.Passes.TropicsCleanUpDirt.Method);
                 }
 
+                // good
                 var wetjungle = tasks.FindIndex(genpass => genpass.Name == "Wet Jungle");
                 if (wetjungle != -1)
                 {
@@ -865,6 +869,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     tasks.RemoveAt(jtemple2);
                 }
 
+                // implement
                 var jtrees = tasks.FindIndex(genpass => genpass.Name == "Jungle Trees");
                 if (jtrees != -1)
                 {
@@ -877,6 +882,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     tasks.RemoveAt(jplants);
                 }
 
+                // good
                 if (vines != -1)
                 {
                     tasks.Insert(vines + 1, new PassLegacy("TropicalVines", World.Passes.TropicalVines.Method));
@@ -887,6 +893,19 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 {
                     tasks[mudwalls] = new PassLegacy("Avalon Tropics/Jungle Walls", World.Passes.JungleMudWalls.Method);
                 }
+
+                var wallVariety = tasks.FindIndex(genpass => genpass.Name == "Wall Variety");
+                if (wallVariety != -1)
+                {
+                    tasks[wallVariety] = new PassLegacy("Wall Variety", World.Passes.JungleWallVariety.Method);
+                }
+
+                // TODO: Implement Tropics WorldGen.AddGenerationPass("Cave Walls", delegate(GenerationProgress progress, GameConfiguration passConfig)
+                //var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");
+                //if (iceWalls != -1)
+                //{
+                //    tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Ice Shrines", World.Passes.IceShrine.Method));
+                //}
             }
             if (vines != -1)
             {

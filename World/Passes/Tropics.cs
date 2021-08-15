@@ -37,10 +37,10 @@ namespace ExxoAvalonOrigins.World.Passes
             num619 += WorldGen.genRand.Next((int)(-100f * num616), (int)(101f * num616));
             int num620 = num617;
             int num621 = num619;
-            TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, ExxoAvalonOriginsWorld.dungeonSide * 3); // (ushort)ModContent.TileType<Tiles.TropicalMud>()
+            TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), ModContent.TileType<Tiles.TropicalMud>(), addTile: false, ExxoAvalonOriginsWorld.dungeonSide * 3);
             for (int num622 = 0; (float)num622 < 6f * num616; num622++)
             {
-                WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(63, 65));
+                TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(63, 65));
             }
             mudWall = true;
             progress.Set(0.15f);
@@ -50,11 +50,11 @@ namespace ExxoAvalonOrigins.World.Passes
             int num624 = num619;
             int num625 = num617;
             int num626 = num619;
-            TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>());
+            TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), ModContent.TileType<Tiles.TropicalMud>());
             mudWall = false;
             for (int num627 = 0; (float)num627 < 6f * num616; num627++)
             {
-                WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(65, 67));
+                TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(65, 67));
             }
             mudWall = true;
             progress.Set(0.3f);
@@ -62,18 +62,18 @@ namespace ExxoAvalonOrigins.World.Passes
             num619 += WorldGen.genRand.Next((int)(-150f * num616), (int)(151f * num616));
             int num628 = num617;
             int num629 = num619;
-            TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, ExxoAvalonOriginsWorld.dungeonSide * -3);
+            TileRunner(num617, num619, WorldGen.genRand.Next((int)(250f * num616), (int)(500f * num616)), WorldGen.genRand.Next(50, 150), ModContent.TileType<Tiles.TropicalMud>(), addTile: false, ExxoAvalonOriginsWorld.dungeonSide * -3);
             mudWall = false;
             for (int num630 = 0; (float)num630 < 6f * num616; num630++)
             {
-                WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(67, 69));
+                TileRunner(num617 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), num619 + WorldGen.genRand.Next(-(int)(125f * num616), (int)(125f * num616)), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(67, 69));
             }
             mudWall = true;
             progress.Set(0.45f);
             num617 = (num620 + num623 + num628) / 3;
             num619 = (num621 + num624 + num629) / 3;
-            TileRunner(num617, num619, WorldGen.genRand.Next((int)(400f * num616), (int)(600f * num616)), 1000, (ushort)ModContent.TileType<Tiles.TropicalMud>(), addTile: false, 0f, -20f, noYChange: true);
-            //WorldGen.JungleRunner(num617, num619);
+            TileRunner(num617, num619, WorldGen.genRand.Next((int)(400f * num616), (int)(600f * num616)), 10000, ModContent.TileType<Tiles.TropicalMud>(), addTile: false, 0f, -20f, noYChange: true);
+            TropicalRunner(num617, num619);
             progress.Set(0.6f);
             mudWall = false;
             for (int num631 = 0; num631 < Main.maxTilesX / 4; num631++)
@@ -94,14 +94,14 @@ namespace ExxoAvalonOrigins.World.Passes
                 progress.Set((60f + (float)num632 / num616) * 0.01f);
                 num617 += WorldGen.genRand.Next((int)(-5f * num616), (int)(6f * num616));
                 num619 += WorldGen.genRand.Next((int)(-5f * num616), (int)(6f * num616));
-                WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(40, 100), WorldGen.genRand.Next(300, 500), (ushort)ModContent.TileType<Tiles.TropicalMud>());
+                TileRunner(num617, num619, WorldGen.genRand.Next(40, 100), WorldGen.genRand.Next(300, 500), ModContent.TileType<Tiles.TropicalMud>());
             }
             for (int num633 = 0; (float)num633 <= 10f * num616; num633++)
             {
                 progress.Set((80f + (float)num633 / num616 * 2f) * 0.01f);
                 num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
                 num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
-                while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != (ushort)ModContent.TileType<Tiles.TropicalMud>())
+                while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != ModContent.TileType<Tiles.TropicalMud>())
                 {
                     num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
                     num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
@@ -115,23 +115,23 @@ namespace ExxoAvalonOrigins.World.Passes
                     {
                         type5 = -2;
                     }
-                    WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(10, 20), WorldGen.genRand.Next(30, 70), type5);
+                    TileRunner(num617, num619, WorldGen.genRand.Next(10, 20), WorldGen.genRand.Next(30, 70), type5);
                 }
             }
             for (int num635 = 0; (float)num635 <= 300f * num616; num635++)
             {
                 num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
                 num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
-                while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != (ushort)ModContent.TileType<Tiles.TropicalMud>())
+                while (num617 < 1 || num617 >= Main.maxTilesX - 1 || num619 < 1 || num619 >= Main.maxTilesY - 1 || Main.tile[num617, num619].type != ModContent.TileType<Tiles.TropicalMud>())
                 {
                     num617 = num625 + WorldGen.genRand.Next((int)(-600f * num616), (int)(600f * num616));
                     num619 = num626 + WorldGen.genRand.Next((int)(-200f * num616), (int)(200f * num616));
                 }
-                WorldGen.TileRunner(num617, num619, WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), (ushort)ModContent.TileType<Tiles.TropicalStone>());
+                TileRunner(num617, num619, WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), 1);
                 if (WorldGen.genRand.Next(4) == 0)
                 {
                     int type6 = WorldGen.genRand.Next(63, 69);
-                    WorldGen.TileRunner(num617 + WorldGen.genRand.Next(-1, 2), num619 + WorldGen.genRand.Next(-1, 2), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(4, 8), type6);
+                    TileRunner(num617 + WorldGen.genRand.Next(-1, 2), num619 + WorldGen.genRand.Next(-1, 2), WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(4, 8), type6);
                 }
             }
             for (int num106 = 0; num106 < Main.maxTilesX; num106++)
@@ -253,30 +253,32 @@ namespace ExxoAvalonOrigins.World.Passes
         public static void TileRunner(int i, int j, double strength, int steps, int type, bool addTile = false, float speedX = 0f, float speedY = 0f, bool noYChange = false, bool overRide = true)
         {
             double num = strength;
-            float num2 = (float)steps;
-            Vector2 value;
-            value.X = (float)i;
-            value.Y = (float)j;
-            Vector2 value2;
-            value2.X = (float)WorldGen.genRand.Next(-10, 11) * 0.1f;
-            value2.Y = (float)WorldGen.genRand.Next(-10, 11) * 0.1f;
+            float num2 = steps;
+            Vector2 vector = default(Vector2);
+            vector.X = i;
+            vector.Y = j;
+            Vector2 vector2 = default(Vector2);
+            vector2.X = (float)WorldGen.genRand.Next(-10, 11) * 0.1f;
+            vector2.Y = (float)WorldGen.genRand.Next(-10, 11) * 0.1f;
             if (speedX != 0f || speedY != 0f)
             {
-                value2.X = speedX;
-                value2.Y = speedY;
+                vector2.X = speedX;
+                vector2.Y = speedY;
             }
+            bool flag = type == 368;
+            bool flag2 = type == 367;
             while (num > 0.0 && num2 > 0f)
             {
-                if (value.Y < 0f && num2 > 0f && type == 59)
+                if (vector.Y < 0f && num2 > 0f && type == ModContent.TileType<Tiles.TropicalMud>())
                 {
                     num2 = 0f;
                 }
                 num = strength * (double)(num2 / (float)steps);
                 num2 -= 1f;
-                int num3 = (int)((double)value.X - num * 0.5);
-                int num4 = (int)((double)value.X + num * 0.5);
-                int num5 = (int)((double)value.Y - num * 0.5);
-                int num6 = (int)((double)value.Y + num * 0.5);
+                int num3 = (int)((double)vector.X - num * 0.5);
+                int num4 = (int)((double)vector.X + num * 0.5);
+                int num5 = (int)((double)vector.Y - num * 0.5);
+                int num6 = (int)((double)vector.Y + num * 0.5);
                 if (num3 < 1)
                 {
                     num3 = 1;
@@ -297,158 +299,186 @@ namespace ExxoAvalonOrigins.World.Passes
                 {
                     for (int l = num5; l < num6; l++)
                     {
-                        if ((double)(Math.Abs((float)k - value.X) + Math.Abs((float)l - value.Y)) < strength * 0.5 * (1.0 + (double)WorldGen.genRand.Next(-10, 11) * 0.015))
+                        if (!((double)(Math.Abs((float)k - vector.X) + Math.Abs((float)l - vector.Y)) < strength * 0.5 * (1.0 + (double)WorldGen.genRand.Next(-10, 11) * 0.015)))
                         {
-                            if (mudWall && (double)l > Main.worldSurface && Main.tile[k, l - 1].wall != 2 && l < Main.maxTilesY - 210 - WorldGen.genRand.Next(3))
+                            continue;
+                        }
+                        if (mudWall && (double)l > Main.worldSurface && Main.tile[k, l - 1].wall != 2 && l < Main.maxTilesY - 210 - WorldGen.genRand.Next(3))
+                        {
+                            if (l > WorldGen.lavaLine - WorldGen.genRand.Next(0, 4) - 50)
                             {
-                                if (l > WorldGen.lavaLine - WorldGen.genRand.Next(0, 4) - 50)
+                                if (Main.tile[k, l - 1].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>() && Main.tile[k - 1, l].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>())
                                 {
-                                    if (ExxoAvalonOriginsWorld.jungleMenuSelection == ExxoAvalonOriginsWorld.JungleVariant.tropics)
-                                    {
-                                        if (Main.tile[k, l - 1].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>() && Main.tile[k - 1, l].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalGrassWall>())
-                                        {
-                                            WorldGen.PlaceWall(k, l, (ushort)ModContent.WallType<Walls.TropicalMudWall>(), true);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Main.tile[k, l - 1].wall != 64 && Main.tile[k, l + 1].wall != 64 && Main.tile[k - 1, l].wall != 64 && Main.tile[k, l + 1].wall != 64)
-                                        {
-                                            WorldGen.PlaceWall(k, l, 15, true);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (ExxoAvalonOriginsWorld.jungleMenuSelection == ExxoAvalonOriginsWorld.JungleVariant.tropics)
-                                    {
-                                        if (Main.tile[k, l - 1].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>() && Main.tile[k - 1, l].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>())
-                                        {
-                                            WorldGen.PlaceWall(k, l, (ushort)ModContent.WallType<Walls.TropicalGrassWall>(), true);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Main.tile[k, l - 1].wall != 15 && Main.tile[k, l + 1].wall != 15 && Main.tile[k - 1, l].wall != 15 && Main.tile[k, l + 1].wall != 15)
-                                        {
-                                            WorldGen.PlaceWall(k, l, 64, true);
-                                        }
-                                    }
+                                    WorldGen.PlaceWall(k, l, (ushort)ModContent.WallType<Walls.TropicalMudWall>(), mute: true);
                                 }
                             }
-                            if (type < 0)
+                            else if (Main.tile[k, l - 1].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>() && Main.tile[k - 1, l].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>() && Main.tile[k, l + 1].wall != (ushort)ModContent.WallType<Walls.TropicalMudWall>())
                             {
-                                if (type == -2 && Main.tile[k, l].active() && (l < WorldGen.waterLine || l > WorldGen.lavaLine))
-                                {
-                                    Main.tile[k, l].liquid = 255;
-                                    if (l > WorldGen.lavaLine)
-                                    {
-                                        Main.tile[k, l].lava(true);
-                                    }
-                                }
-                                Main.tile[k, l].active(false);
+                                WorldGen.PlaceWall(k, l, (ushort)ModContent.WallType<Walls.TropicalGrassWall>(), mute: true);
                             }
-                            else
+                        }
+                        if (type < 0)
+                        {
+                            if (type == -2 && Main.tile[k, l].active() && (l < WorldGen.waterLine || l > WorldGen.lavaLine))
                             {
-                                if ((overRide || !Main.tile[k, l].active()) && (type != 40 || Main.tile[k, l].type != 53) && (!Main.tileStone[type] || Main.tile[k, l].type == 1) && Main.tile[k, l].type != 189 && Main.tile[k, l].type != 196 && Main.tile[k, l].type != 45 && Main.tile[k, l].type != 147 && Main.tile[k, l].type != 190 && (Main.tile[k, l].type != 1 || type != 59 || (double)l >= Main.worldSurface + (double)WorldGen.genRand.Next(-50, 50)))
+                                Main.tile[k, l].liquid = byte.MaxValue;
+                                if (l > WorldGen.lavaLine)
                                 {
-                                    if (Main.tile[k, l].type != 53 || (double)l >= Main.worldSurface)
-                                    {
-                                        Main.tile[k, l].type = (ushort)type;
-                                    }
-                                }
-                                if (addTile)
-                                {
-                                    Main.tile[k, l].active(true);
-                                    Main.tile[k, l].liquid = 0;
-                                    Main.tile[k, l].lava(false);
-                                }
-                                if (noYChange && (double)l < Main.worldSurface && type != 59)
-                                {
-                                    Main.tile[k, l].wall = 2;
-                                }
-                                if (type == 59 && l > WorldGen.waterLine && Main.tile[k, l].liquid > 0)
-                                {
-                                    Main.tile[k, l].lava(false);
-                                    Main.tile[k, l].liquid = 0;
+                                    Main.tile[k, l].lava(lava: true);
                                 }
                             }
+                            Main.tile[k, l].active(active: false);
+                            continue;
+                        }
+                        if (flag && (double)(Math.Abs((float)k - vector.X) + Math.Abs((float)l - vector.Y)) < strength * 0.3 * (1.0 + (double)WorldGen.genRand.Next(-10, 11) * 0.01))
+                        {
+                            WorldGen.PlaceWall(k, l, 180, mute: true);
+                        }
+                        if (flag2 && (double)(Math.Abs((float)k - vector.X) + Math.Abs((float)l - vector.Y)) < strength * 0.3 * (1.0 + (double)WorldGen.genRand.Next(-10, 11) * 0.01))
+                        {
+                            WorldGen.PlaceWall(k, l, 178, mute: true);
+                        }
+                        if (overRide || !Main.tile[k, l].active())
+                        {
+                            Tile tile = Main.tile[k, l];
+                            bool flag3 = false;
+                            flag3 = Main.tileStone[type] && tile.type != 1;
+                            if (!TileID.Sets.CanBeClearedDuringGeneration[tile.type])
+                            {
+                                flag3 = true;
+                            }
+                            switch (tile.type)
+                            {
+                                case 53:
+                                    if (type == 40)
+                                    {
+                                        flag3 = true;
+                                    }
+                                    if ((double)l < Main.worldSurface && !(type == ModContent.TileType<Tiles.TropicalMud>() || type == TileID.Mud))
+                                    {
+                                        flag3 = true;
+                                    }
+                                    break;
+                                case 45:
+                                case 147:
+                                case 189:
+                                case 190:
+                                case 196:
+                                    flag3 = true;
+                                    break;
+                                case 396:
+                                case 397:
+                                    flag3 = !TileID.Sets.Ore[type];
+                                    break;
+                                case 1:
+                                    if ((type == TileID.Mud || type == ModContent.TileType<Tiles.TropicalMud>()) && (double)l < Main.worldSurface + (double)WorldGen.genRand.Next(-50, 50))
+                                    {
+                                        flag3 = true;
+                                    }
+                                    break;
+                                case 367:
+                                case 368:
+                                    if (type == TileID.Mud || type == ModContent.TileType<Tiles.TropicalMud>())
+                                    {
+                                        flag3 = true;
+                                    }
+                                    break;
+                            }
+                            if (!flag3)
+                            {
+                                tile.type = (ushort)type;
+                            }
+                        }
+                        if (addTile)
+                        {
+                            Main.tile[k, l].active(active: true);
+                            Main.tile[k, l].liquid = 0;
+                            Main.tile[k, l].lava(lava: false);
+                        }
+                        if (noYChange && (double)l < Main.worldSurface && type != ModContent.TileType<Tiles.TropicalMud>())
+                        {
+                            Main.tile[k, l].wall = 2;
+                        }
+                        if ((type == TileID.Mud || type == ModContent.TileType<Tiles.TropicalMud>()) && l > WorldGen.waterLine && Main.tile[k, l].liquid > 0)
+                        {
+                            Main.tile[k, l].lava(lava: false);
+                            Main.tile[k, l].liquid = 0;
                         }
                     }
                 }
-                value += value2;
+                vector += vector2;
                 if (num > 50.0)
                 {
-                    value += value2;
+                    vector += vector2;
                     num2 -= 1f;
-                    value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                    value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                    vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                    vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                     if (num > 100.0)
                     {
-                        value += value2;
+                        vector += vector2;
                         num2 -= 1f;
-                        value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                        value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                        vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                        vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                         if (num > 150.0)
                         {
-                            value += value2;
+                            vector += vector2;
                             num2 -= 1f;
-                            value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                            value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                            vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                            vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                             if (num > 200.0)
                             {
-                                value += value2;
+                                vector += vector2;
                                 num2 -= 1f;
-                                value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                 if (num > 250.0)
                                 {
-                                    value += value2;
+                                    vector += vector2;
                                     num2 -= 1f;
-                                    value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                    value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                    vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                    vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                     if (num > 300.0)
                                     {
-                                        value += value2;
+                                        vector += vector2;
                                         num2 -= 1f;
-                                        value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                        value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                        vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                        vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                         if (num > 400.0)
                                         {
-                                            value += value2;
+                                            vector += vector2;
                                             num2 -= 1f;
-                                            value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                            value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                            vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                            vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                             if (num > 500.0)
                                             {
-                                                value += value2;
+                                                vector += vector2;
                                                 num2 -= 1f;
-                                                value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                                value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                                 if (num > 600.0)
                                                 {
-                                                    value += value2;
+                                                    vector += vector2;
                                                     num2 -= 1f;
-                                                    value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                                    value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                    vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                    vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                                     if (num > 700.0)
                                                     {
-                                                        value += value2;
+                                                        vector += vector2;
                                                         num2 -= 1f;
-                                                        value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                                        value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                        vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                        vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                                         if (num > 800.0)
                                                         {
-                                                            value += value2;
+                                                            vector += vector2;
                                                             num2 -= 1f;
-                                                            value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                                            value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                            vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                            vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                                             if (num > 900.0)
                                                             {
-                                                                value += value2;
+                                                                vector += vector2;
                                                                 num2 -= 1f;
-                                                                value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                                                                value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                                vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                                                                vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
                                                             }
                                                         }
                                                     }
@@ -461,59 +491,60 @@ namespace ExxoAvalonOrigins.World.Passes
                         }
                     }
                 }
-                value2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                if (value2.X > 1f)
+                vector2.X += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                if (vector2.X > 1f)
                 {
-                    value2.X = 1f;
+                    vector2.X = 1f;
                 }
-                if (value2.X < -1f)
+                if (vector2.X < -1f)
                 {
-                    value2.X = -1f;
+                    vector2.X = -1f;
                 }
                 if (!noYChange)
                 {
-                    value2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
-                    if (value2.Y > 1f)
+                    vector2.Y += (float)WorldGen.genRand.Next(-10, 11) * 0.05f;
+                    if (vector2.Y > 1f)
                     {
-                        value2.Y = 1f;
+                        vector2.Y = 1f;
                     }
-                    if (value2.Y < -1f)
+                    if (vector2.Y < -1f)
                     {
-                        value2.Y = -1f;
-                    }
-                }
-                else if (type != 59 && num < 3.0)
-                {
-                    if (value2.Y > 1f)
-                    {
-                        value2.Y = 1f;
-                    }
-                    if (value2.Y < -1f)
-                    {
-                        value2.Y = -1f;
+                        vector2.Y = -1f;
                     }
                 }
-                if (type == 59 || type == (ushort)ModContent.TileType<Tiles.TropicalMud>() && !noYChange)
+                else if (type != ModContent.TileType<Tiles.TropicalMud>() && num < 3.0)
                 {
-                    if ((double)value2.Y > 0.5)
+                    if (vector2.Y > 1f)
                     {
-                        value2.Y = 0.5f;
+                        vector2.Y = 1f;
                     }
-                    if ((double)value2.Y < -0.5)
+                    if (vector2.Y < -1f)
                     {
-                        value2.Y = -0.5f;
+                        vector2.Y = -1f;
                     }
-                    if ((double)value.Y < Main.rockLayer + 100.0)
+                }
+                if ((type == TileID.Mud || type == ModContent.TileType<Tiles.TropicalMud>()) && !noYChange)
+                {
+                    if ((double)vector2.Y > 0.5)
                     {
-                        value2.Y = 1f;
+                        vector2.Y = 0.5f;
                     }
-                    if (value.Y > (float)(Main.maxTilesY - 300))
+                    if ((double)vector2.Y < -0.5)
                     {
-                        value2.Y = -1f;
+                        vector2.Y = -0.5f;
+                    }
+                    if ((double)vector.Y < Main.rockLayer + 100.0)
+                    {
+                        vector2.Y = 1f;
+                    }
+                    if (vector.Y > (float)(Main.maxTilesY - 300))
+                    {
+                        vector2.Y = -1f;
                     }
                 }
             }
         }
+        // TODO: Replace with WorldGen.AddGenerationPass("Spreading Grass", delegate(GenerationProgress progress, GameConfiguration passConfig)
         public static void AvalonSpreadGrass(int i, int j, int dirt = 0, int grass = 2, bool repeat = true, byte color = 0)
         {
             try

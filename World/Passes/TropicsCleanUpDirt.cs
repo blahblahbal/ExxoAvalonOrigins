@@ -20,11 +20,11 @@ namespace ExxoAvalonOrigins.World.Passes
                 {
                     if (flag34)
                     {
-                        if (Main.tile[num439, num441].wall == 2 || Main.tile[num439, num441].wall == 40 || Main.tile[num439, num441].wall == (ushort)ModContent.WallType<Walls.TropicalGrassWall>() || Main.tile[num439, num441].wall == (ushort)ModContent.WallType<Walls.TropicalMudWall>())
+                        if (Main.tile[num439, num441].wall == 2 || Main.tile[num439, num441].wall == 40 || Main.tile[num439, num441].wall == (ushort)ModContent.WallType<Walls.TropicalGrassWall>())
                         {
                             Main.tile[num439, num441].wall = 0;
                         }
-                        if (Main.tile[num439, num441].type != 53 && Main.tile[num439, num441].type != 112 && Main.tile[num439, num441].type != 234)
+                        if (Main.tile[num439, num441].type != 53 && Main.tile[num439, num441].type != 112 && Main.tile[num439, num441].type != 234 && Main.tile[num439, num441].type != ModContent.TileType<Tiles.Snotsand>())
                         {
                             if (Main.tile[num439 - 1, num441].wall == 2 || Main.tile[num439 - 1, num441].wall == 40 || Main.tile[num439 - 1, num441].wall == 40)
                             {
