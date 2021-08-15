@@ -4482,7 +4482,17 @@ namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsWorld : ModWorld    {
             Main.tile[x, y].frameY = 18;
         }
 
-        // Loads structure as 2d array from a given path to an embedded resource (see HellCastle implementation)
+        /// <summary>
+        /// Loads structure as 2D int array from a given manifest path to an embedded resource
+        /// </summary>
+        /// <param name="path">The embedded file manifest path.
+        /// <example>
+        /// For example:
+        /// <code>"ExxoAvalonOrigins.Structures.HellCastle.txt"
+        /// </code>
+        /// where the internal path of the file is Structures\HellCastle.txt
+        /// </example>
+        /// </param>
         public static int[,] GetStructure(string path)
         {
             var assembly = Assembly.GetExecutingAssembly();
