@@ -232,7 +232,8 @@
             }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
             {
-                music = MusicID.Dungeon;
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hellcastle");
+                else music = MusicID.Dungeon;
                 priority = MusicPriority.Environment;
             }
             Rectangle rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
