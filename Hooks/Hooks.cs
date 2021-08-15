@@ -16,7 +16,6 @@
             On.Terraria.Collision.HurtTiles += TrapCollision.OnHurtTiles;
             On.Terraria.WorldGen.SmashAltar += EvilAltar.OnSmashAltar;
             IL.Terraria.Main.DrawMenu += WorldCreationMenus.ILDrawMenu;
-            //IL.Terraria.WorldGen.hardUpdateWorld += ContagionSpread.ILHardUpdateWorld;
             IL.Terraria.Main.DrawPlayer += LargeGem.ILDrawPlayer;
             IL.Terraria.Player.SmartCursor_Torch += Torches.ILSmartCursor_Torch;
             On.Terraria.GameContent.UI.Elements.UIWorldListItem.GetIcon += UIMenuContagion.OnGetIcon;
@@ -25,6 +24,8 @@
             On.Terraria.Player.PickAmmo += BuffEffects.OnPickAmmo;
             IL.Terraria.Projectile.FishingCheck += BuffEffects.ILCatchFish;
             IL.Terraria.Player.Update += ExtraHealth.ILUpdate;
+            IL.Terraria.WorldGen.generateWorld += DungeonSide.ILGenerateWorld;
+            IL.Terraria.GameContent.Biomes.DesertBiome.FindStart += Tropics.ILFindStart;
         }
     }
 }

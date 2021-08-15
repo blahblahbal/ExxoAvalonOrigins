@@ -32,19 +32,14 @@ namespace ExxoAvalonOrigins.Items
             player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ItemID.SandBlock, Main.rand.Next(22, 55));
-            player.QuickSpawnItem(ModContent.ItemType<Items.DesertFeather>(), Main.rand.Next(2, 4));
+            player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4));
             if (Main.rand.Next(10) <= 5)
             {
-                if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.RhodiumOre>())
-                    player.QuickSpawnItem(ModContent.ItemType<Items.RhodiumOre>(), Main.rand.Next(15, 26));
-                else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.OsmiumOre>())
-                    player.QuickSpawnItem(ModContent.ItemType<Items.OsmiumOre>(), Main.rand.Next(15, 26));
-                else if (ExxoAvalonOriginsWorld.rhodiumBar == ModContent.TileType<Tiles.IridiumOre>())
-                    player.QuickSpawnItem(ModContent.ItemType<Items.IridiumOre>(), Main.rand.Next(15, 26));
+                player.QuickSpawnItem(ExxoAvalonOriginsWorld.osmiumOre.GetItemOre(), Main.rand.Next(15, 26));   
             }
             if (Main.rand.Next(3) == 0)
             {
-                player.QuickSpawnItem(ModContent.ItemType<Items.TomeoftheDistantPast>(), 1);
+                player.QuickSpawnItem(ModContent.ItemType<TomeoftheDistantPast>(), 1);
             }
         }
 

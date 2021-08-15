@@ -69,5 +69,33 @@ namespace ExxoAvalonOrigins
 
             return dims;
         }
+        public static int GetTile(this ExxoAvalonOriginsWorld.OsmiumVariant osmiumVariant)
+        {
+            switch (osmiumVariant)
+            {
+                case ExxoAvalonOriginsWorld.OsmiumVariant.osmium:
+                    return ModContent.TileType<Tiles.OsmiumOre>();
+                case ExxoAvalonOriginsWorld.OsmiumVariant.rhodium:
+                    return ModContent.TileType<Tiles.RhodiumOre>();
+                case ExxoAvalonOriginsWorld.OsmiumVariant.iridium:
+                    return ModContent.TileType<Tiles.IridiumOre>();
+                default:
+                    return -1;
+            }
+        }
+        public static int GetItemOre(this ExxoAvalonOriginsWorld.OsmiumVariant osmiumVariant)
+        {
+            switch (osmiumVariant)
+            {
+                case ExxoAvalonOriginsWorld.OsmiumVariant.osmium:
+                    return ModContent.ItemType<Items.OsmiumOre>();
+                case ExxoAvalonOriginsWorld.OsmiumVariant.rhodium:
+                    return ModContent.ItemType<Items.RhodiumOre>();
+                case ExxoAvalonOriginsWorld.OsmiumVariant.iridium:
+                    return ModContent.ItemType<Items.IridiumOre>();
+                default:
+                    return -1;
+            }
+        }
     }
 }

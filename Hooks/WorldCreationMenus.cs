@@ -237,7 +237,7 @@ namespace ExxoAvalonOrigins.Hooks
                 array4[4] = 30;
                 array4[5] = 70;
 
-                ExxoAvalonOriginsWorld.osmiumMenuSelection = ExxoAvalonOriginsWorld.OsmiumVariant.random;
+                ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.random;
 
                 int num17 = 0;
                 array9[num17] = "Pick ore type";
@@ -245,7 +245,7 @@ namespace ExxoAvalonOrigins.Hooks
                 array9[num17] = "Rhodium";
                 if (val == num17)
                 {
-                    ExxoAvalonOriginsWorld.osmiumMenuSelection = ExxoAvalonOriginsWorld.OsmiumVariant.rhodium;
+                    ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.rhodium;
                     Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                     Main.menuMode = 7;
                 }
@@ -253,7 +253,7 @@ namespace ExxoAvalonOrigins.Hooks
                 array9[num17] = "Osmium";
                 if (val == num17)
                 {
-                    ExxoAvalonOriginsWorld.osmiumMenuSelection = ExxoAvalonOriginsWorld.OsmiumVariant.osmium;
+                    ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.osmium;
                     Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                     Main.menuMode = 7;
                 }
@@ -261,7 +261,7 @@ namespace ExxoAvalonOrigins.Hooks
                 array9[num17] = "Iridium";
                 if (val == num17)
                 {
-                    ExxoAvalonOriginsWorld.osmiumMenuSelection = ExxoAvalonOriginsWorld.OsmiumVariant.iridium;
+                    ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.iridium;
                     Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                     Main.menuMode = 7;
                 }
@@ -269,7 +269,7 @@ namespace ExxoAvalonOrigins.Hooks
                 array9[num17] = Lang.misc[103].Value; // Random
                 if (val == num17)
                 {
-                    ExxoAvalonOriginsWorld.osmiumMenuSelection = ExxoAvalonOriginsWorld.OsmiumVariant.random;
+                    ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.random;
                     Main.PlaySound(10, -1, -1, 1, 1f, 0f);
                     Main.menuMode = 7;
                 }

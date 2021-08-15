@@ -1,25 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using System.Linq;
-using Terraria.ModLoader;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader.IO;
+﻿using System.Collections.Generic;
 using System.IO;
-using Terraria.Utilities;
-using System.Reflection;
-using Terraria.IO;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
-using Terraria;
-using Mono.Cecil;
-using Microsoft.Xna.Framework;
-using System.Collections;
-using System.ComponentModel;
-using System.Runtime.Serialization;
-using Terraria.ID;
 using Terraria.ModLoader.Config;
-using Terraria.ModLoader.Config.UI;
-using Terraria.UI;
 using Newtonsoft.Json;
 
 namespace ExxoAvalonOrigins

@@ -53,7 +53,6 @@ namespace ExxoAvalonOrigins.Hooks
 			if (!c.TryGotoNext(i => i.MatchLdfld(out _)))
 				return;
 			c.Index++;
-			c.Index += 0;
 			c.EmitDelegate<Func<Texture2D, Texture2D>>((corruptTexture) =>
 			{
 				if (ExxoAvalonOriginsWorld.contaigon)

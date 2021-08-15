@@ -11,10 +11,10 @@
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks)" />
   </Target>
   <ItemGroup>
-    <None Remove="Structures\HellCastle.txt" />
+    <None Remove="World\Structures\HellCastle.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Structures\HellCastle.txt" />
+    <EmbeddedResource Include="World\Structures\HellCastle.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
