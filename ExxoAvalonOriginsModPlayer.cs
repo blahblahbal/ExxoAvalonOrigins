@@ -1773,8 +1773,17 @@ namespace ExxoAvalonOrigins
 				}
 			}
 	    }
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        {
+            if (junk)
+                return;
 
-	    public void UpdateStaminaRegen()
+            #region Contagion Fish
+            if (zoneBooger && Main.rand.NextBool(10))
+                caughtType = ModContent.ItemType<Items.Fish.NauSeaFish>();
+            #endregion
+        }
+        public void UpdateStaminaRegen()
 	    {
 		    if (stamRegenDelay > 0)
 		    {
