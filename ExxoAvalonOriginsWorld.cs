@@ -268,6 +268,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         {
             int index = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Good"));
             int index2 = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Evil"));
+            int index3 = list.FindIndex(genpass => ((string)genpass.Name).Equals(""));
             if (contaigon)
             {
                 list.Insert(index + 1, (GenPass)new PassLegacy("Exxo Avalon Origins: Hardmode Contagion", new WorldGenLegacyMethod(World.Passes.ContagionHardMode.Method)));
@@ -589,7 +590,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             while ((float)num4 < (float)(Main.maxTilesX * Main.maxTilesY) * num2)
             {
                 int num5 = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
-                int num6 = WorldGen.genRand.Next(10, (int)Main.worldSurface - 1);
+                int num6 = WorldGen.genRand.Next(10, /*(int)Main.worldSurface - 1*/ Main.maxTilesY - 20);
                 int num7 = num5 - 1;
                 int num8 = num5 + 2;
                 int num9 = num6 - 1;
@@ -620,6 +621,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
+                        SpreadXanthophyte(num5, num6);
                         if (ExxoAvalonOrigins.superHardmode && totalDark2 < 250000)
                         {
                             //DarkMatterSpread(num5, num6);
@@ -973,7 +975,130 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 //                }
                 //            }
                 //        }
-                //    }                //}));            }        }        public static bool GrowHellTree(int i, int y)
+                //    }                //}));            }        }        public void SpreadXanthophyte(int x, int y)
+        {
+            if (Main.tile[x, y].inActive())
+                return;
+
+            int type = Main.tile[x, y].type;
+
+            if ((double)y > (Main.worldSurface + Main.rockLayer) / 2.0)
+            {
+                if ((type == ModContent.TileType<Tiles.TropicalGrass>()/* || type == ModContent.TileType<Tiles.BrownIce>()*/) && WorldGen.genRand.Next(325) == 0)
+                {
+                    int num6 = x + WorldGen.genRand.Next(-10, 11);
+                    int num7 = y + WorldGen.genRand.Next(-10, 11);
+                    if (Main.tile[num6, num7].active() && (Main.tile[num6, num7].type == ModContent.TileType<Tiles.TropicalMud>()/* || Main.tile[num6, num7].type == ModContent.TileType<Tiles.BrownIce>()*/) && (!Main.tile[num6, num7 - 1].active() || (Main.tile[num6, num7 - 1].type != 5 && Main.tile[num6, num7 - 1].type != 236 && Main.tile[num6, num7 - 1].type != 238)) && GrowingOreSpread.GrowingOre(x, y, ModContent.TileType<Tiles.Ores.XanthophyteOre>()))
+                    {
+                        Main.tile[num6, num7].type = (ushort)ModContent.TileType<Tiles.Ores.XanthophyteOre>();
+                        WorldGen.SquareTileFrame(num6, num7, true);
+                    }
+                }
+                if (type == (ushort)ModContent.TileType<Tiles.Ores.XanthophyteOre>() && WorldGen.genRand.Next(3) != 0)
+                {
+                    int num8 = x;
+                    int num9 = y;
+                    int num10 = WorldGen.genRand.Next(4);
+                    if (num10 == 0)
+                    {
+                        num8++;
+                    }
+                    if (num10 == 1)
+                    {
+                        num8--;
+                    }
+                    if (num10 == 2)
+                    {
+                        num9++;
+                    }
+                    if (num10 == 3)
+                    {
+                        num9--;
+                    }
+                    if (Main.tile[num8, num9].active() && (Main.tile[num8, num9].type == ModContent.TileType<TropicalMud>() || Main.tile[num8, num9].type == ModContent.TileType<TropicalGrass>()) /*|| Main.tile[num8, num9].type == ModContent.TileType<Tiles.BrownIce>())*/ && GrowingOreSpread.GrowingOre(x, y, ModContent.TileType<Tiles.Ores.XanthophyteOre>()))
+                    {
+                        Main.tile[num8, num9].type = (ushort)ModContent.TileType<Tiles.Ores.XanthophyteOre>();
+                        WorldGen.SquareTileFrame(num8, num9, true);
+                    }
+                }
+
+                /*if ((type == 70) && WorldGen.genRand.Next(150) == 0)
+                {
+                    int num6 = x + WorldGen.genRand.Next(-10, 11);
+                    int num7 = y + WorldGen.genRand.Next(-10, 11);
+                    if (Main.tile[num6, num7].active() && (Main.tile[num6, num7].type == 59 || Main.tile[num6, num7].type == 70) && (!Main.tile[num6, num7 - 1].active() || (Main.tile[num6, num7 - 1].type != 5 && Main.tile[num6, num7 - 1].type != 236 && Main.tile[num6, num7 - 1].type != 238)) && WorldGen.Shroomite(num6, num7))
+                    {
+                        Main.tile[num6, num7].type = 406;
+                        WorldGen.SquareTileFrame(num6, num7, true);
+                    }
+                }
+                if (type == 406 && WorldGen.genRand.Next(3) != 0)
+                {
+                    int num8 = i;
+                    int num9 = j;
+                    int num10 = WorldGen.genRand.Next(4);
+                    if (num10 == 0)
+                    {
+                        num8++;
+                    }
+                    if (num10 == 1)
+                    {
+                        num8--;
+                    }
+                    if (num10 == 2)
+                    {
+                        num9++;
+                    }
+                    if (num10 == 3)
+                    {
+                        num9--;
+                    }
+                    if (Main.tile[num8, num9].active() && (Main.tile[num8, num9].type == 59 || Main.tile[num8, num9].type == 70) && WorldGen.Shroomite(num8, num9))
+                    {
+                        Main.tile[num8, num9].type = 406;
+                        WorldGen.SquareTileFrame(num8, num9, true);
+                    }
+                }
+
+                if ((type == 161 || type == 163 || type == 164 || type == 200 || type == 361) && WorldGen.genRand.Next(150) == 0)
+                {
+                    int num6 = i + WorldGen.genRand.Next(-10, 11);
+                    int num7 = j + WorldGen.genRand.Next(-10, 11);
+                    if (Main.tile[num6, num7].active() && (Main.tile[num6, num7].type == 161 || Main.tile[num6, num7].type == 163 || Main.tile[num6, num7].type == 164 || Main.tile[num6, num7].type == 200 || Main.tile[num6, num7].type == 361) && (!Main.tile[num6, num7 - 1].active() || (Main.tile[num6, num7 - 1].type != 5 && Main.tile[num6, num7 - 1].type != 236 && Main.tile[num6, num7 - 1].type != 238)) && WorldGen.Ferozium(num6, num7))
+                    {
+                        Main.tile[num6, num7].type = 379;
+                        WorldGen.SquareTileFrame(num6, num7, true);
+                    }
+                }
+                if (type == 379 && WorldGen.genRand.Next(3) != 0)
+                {
+                    int num8 = i;
+                    int num9 = j;
+                    int num10 = WorldGen.genRand.Next(4);
+                    if (num10 == 0)
+                    {
+                        num8++;
+                    }
+                    if (num10 == 1)
+                    {
+                        num8--;
+                    }
+                    if (num10 == 2)
+                    {
+                        num9++;
+                    }
+                    if (num10 == 3)
+                    {
+                        num9--;
+                    }
+                    if (Main.tile[num8, num9].active() && (Main.tile[num8, num9].type == 161 || Main.tile[num8, num9].type == 164 || Main.tile[num8, num9].type == 361 || Main.tile[num8, num9].type == 163 || Main.tile[num8, num9].type == 200 || Main.tile[num8, num9].type == 411) && WorldGen.Ferozium(num8, num9))
+                    {
+                        Main.tile[num8, num9].type = 379;
+                        WorldGen.SquareTileFrame(num8, num9, true);
+                    }
+                }*/
+            }
+        }        public static bool GrowHellTree(int i, int y)
         {
             int j;
             for (j = y; TileLoader.IsSapling(Main.tile[i, j].type); j--)
