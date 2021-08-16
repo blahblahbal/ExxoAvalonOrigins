@@ -7,4 +7,8 @@
             AddMapEntry(new Color(51, 44, 48));
             drop = mod.ItemType("ImperviousBrickWall");
         }
+        public override void KillWall(int i, int j, ref bool fail)
+        {
+            if (!ExxoAvalonOriginsWorld.downedPhantasm) fail = true;
+        }
     }}
