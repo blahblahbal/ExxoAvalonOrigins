@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.AnchorValidTiles = new int[1] { ModContent.TileType<Ickgrass>() };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.DrawFlipHorizontal = true;
-            TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
+            TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.addTile(Type);

@@ -25,6 +25,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         {
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
+                style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
         }        public override void TileCountsAvailable(int[] tileCounts)
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
@@ -623,13 +625,17 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             //DarkMatterSpread(num5, num6);
                         }
                     }
-                    if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
+                    if (Main.tile[num5, num6].type == ModContent.TileType<TropicalGrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<TropicalGrass>())
                         {
-                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
-                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<TropicalShortGrass>(), true, false, -1, 0);
+                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
+                            if (num9 > Main.worldSurface && WorldGen.genRand.Next(15) == 0)
+                            {
+                                Main.tile[num5, num9].frameX = 8;
+                            }
                             if (Main.tile[num5, num9].active())
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
@@ -639,14 +645,14 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
                         }
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<TropicalGrass>())
+                    }
+                    if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
+                    {
+                        int num14 = (int)Main.tile[num5, num6].type;
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
-                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<TropicalShortGrass>(), true, false, -1, 0);
-                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
-                            if (num9 > Main.worldSurface && WorldGen.genRand.Next(15) == 0)
-                            {
-                                Main.tile[num5, num9].frameX = 8;
-                            }
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
+                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
                             if (Main.tile[num5, num9].active())
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
@@ -1426,7 +1432,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         public static void shmCallback(object threadContext)
         {
             if (ExxoAvalonOrigins.superHardmode) return;
-            SpawnOblivionOreAndOpals();
+            GenerateSHMOres();
             ExxoAvalonOrigins.superHardmode = true;            if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText("The ancient souls have been disturbed...", 255, 60, 0);
@@ -1442,7 +1448,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             {
                 Netplay.ResetSections();
             }
-        }        public static void SpawnOblivionOreAndOpals()
+        }        public static void GenerateSHMOres()
         {
             if (Main.rand == null)
             {
