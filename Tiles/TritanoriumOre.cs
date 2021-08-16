@@ -8,9 +8,9 @@ namespace ExxoAvalonOrigins.Tiles{	public class TritanoriumOre : ModTile	{		
         }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            float num1 = 0.2f;
-            float num2 = 0.4f;
-            float num3 = 0.6f;
+            float num1 = 0.05f;
+            float num2 = 0.55f;
+            float num3 = 0.84f;
             num1 *= 0.8f;
             num2 *= 0.8f;
             num3 *= 0.8f;
