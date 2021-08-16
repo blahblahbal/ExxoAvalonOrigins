@@ -3,7 +3,7 @@
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tropical Mud Block");
+            DisplayName.SetDefault("Loam Block");
         }
 
         public override void SetDefaults()
