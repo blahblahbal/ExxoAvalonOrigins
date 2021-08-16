@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.StyleWrapLimit = 36;			TileObjectData.newTile.Origin = new Point16(0, 2);
+            TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;

@@ -8,7 +8,8 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.newTile.StyleHorizontal = true;
             //TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.Table, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.StyleWrapLimit = 36;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };			TileObjectData.newTile.DrawYOffset = 2;
+            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };            TileObjectData.newTile.LavaDeath = false;
+            TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
