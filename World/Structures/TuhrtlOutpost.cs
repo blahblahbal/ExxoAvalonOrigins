@@ -15,6 +15,76 @@ namespace ExxoAvalonOrigins.World.Structures
         public static List<Vector2> SmallRoom(int x, int y)
         {
             int[,] _structure = {
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0},
+                {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
+                {0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0},
+                {0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0},
+                {0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
+                {0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+            };
+            int PosX = x;    //spawnX and spawnY is where you want the anchor to be when this generates
+            int PosY = y;
+            int xOffLeftS = PosX + 4;
+            int xOffRightS = PosX + 38;
+            int yOffS = PosY + 10;
+            Vector2 leftSmall = new Vector2(xOffLeftS, yOffS);
+            Vector2 rightSmall = new Vector2(xOffRightS, yOffS);
+            //i = vertical, j = horizontal
+            for (int confirmPlatforms = 0; confirmPlatforms < 2; confirmPlatforms++)    //Increase the iterations on this outermost for loop if tabletop-objects are not properly spawning
+            {
+                for (int i = 0; i < _structure.GetLength(0); i++)
+                {
+                    for (int j = _structure.GetLength(1) - 1; j >= 0; j--)
+                    {
+                        int k = PosX + j;
+                        int l = PosY + i;
+                        if (WorldGen.InWorld(k, l, 30))
+                        {
+                            Tile tile = Framing.GetTileSafely(k, l);
+                            switch (_structure[i, j])
+                            {
+                                case 0:
+                                    tile.active(true);
+                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.slope(0);
+                                    tile.halfBrick(false);
+                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    break;
+                                case 1:
+                                    if (confirmPlatforms == 0)
+                                    {
+                                        tile.active(false);
+                                        tile.halfBrick(false);
+                                        tile.slope(0);
+                                        tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            List<Vector2> list = new List<Vector2>() { leftSmall, rightSmall };
+            return list;
+        }
+
+        public static List<Vector2> LargeRoom(int x, int y)
+        {
+            int[,] _structure = {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -77,6 +147,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.halfBrick(false);
                                         tile.slope(0);
+                                        tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     }
                                     break;
                             }
@@ -163,7 +234,7 @@ namespace ExxoAvalonOrigins.World.Structures
             return list;
         }
 
-        public static List<Vector2> LargeRoom(int x, int y)
+        public static List<Vector2> LargeRoom_old(int x, int y)
         {
             int[,] _structure = {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -256,7 +327,7 @@ namespace ExxoAvalonOrigins.World.Structures
             return list;
         }
 
-        public static List<Vector2> BossRoom(int x, int y)
+        public static List<Vector2> BossRoom2(int x, int y)
         {
             int[,] _structure = {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -326,17 +397,11 @@ namespace ExxoAvalonOrigins.World.Structures
                             switch (_structure[i, j])
                             {
                                 case 0:
-                                    tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
-                                    tile.slope(0);
-                                    tile.halfBrick(false);
+                                    tile.active(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                                 case 1:
-                                    tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
-                                    tile.slope(0);
-                                    tile.halfBrick(false);
+                                    tile.active(false);
                                     tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                             }
@@ -560,12 +625,6 @@ namespace ExxoAvalonOrigins.World.Structures
                             switch (_structure[i, j])
                             {
                                 case 0:
-                                    if (confirmPlatforms == 0)
-                                    {
-                                        tile.active(false);
-                                        tile.halfBrick(false);
-                                        tile.slope(0);
-                                    }
                                     break;
                                 case 1:
                                     tile.active(true);
@@ -664,7 +723,7 @@ namespace ExxoAvalonOrigins.World.Structures
 
             MakeArea(x, y); // 191 blocks tall, 167 blocks wide
 
-            List<Vector2> med1 = MediumRoom(x + 75, y + 15);
+            List<Vector2> med1 = SmallRoom(x + 75, y + 15);
             startPoints.Add(med1[0]); // left side of first medium room (1s)
             startPoints.Add(med1[1]); // right side of first medium room (2s)
 
@@ -675,15 +734,15 @@ namespace ExxoAvalonOrigins.World.Structures
             List<Vector2> small2 = SmallRoom(x + 100, y + 40);
             endPoints.Add(small2[0]); // left side of second small room (2e)
 
-            List<Vector2> big1 = LargeRoom(x + 40, y + 85);
+            List<Vector2> big1 = SmallRoom(x + 40, y + 85);
             endPoints.Add(big1[0]); // left side of big room (3e)
             startPoints.Add(big1[1]); // right side of big room (4s)
 
-            List<Vector2> med2 = MediumRoom(x + 105, y + 110);
+            List<Vector2> med2 = SmallRoom(x + 105, y + 110);
             endPoints.Add(med2[0]); // left side of second medium room (4e)
             startPoints.Add(med2[0]); // left side of second medium room (5s)
 
-            endPoints.Add(BossRoom(x + 75, y + 135)[1]); // boss room (5e)
+            endPoints.Add(LargeRoom(x + 75, y + 135)[1]); // boss room (5e)
 
             for (int i = 0; i < startPoints.Count; i++)
             {

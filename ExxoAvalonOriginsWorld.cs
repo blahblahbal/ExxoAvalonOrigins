@@ -945,10 +945,13 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 //{
                 //    if (contaigon) WorldGen.crimson = true;
                 //}));
-                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                if (jungleMenuSelection == JungleVariant.tropics)
+                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Tuhrtl Outpost", delegate (GenerationProgress progress)
                 {
-                    World.Structures.TuhrtlOutpost.CreateTuhrtlOutpost(Main.maxTilesX / 2, (int)Main.worldSurface - 50);
-                }
+                    if (jungleMenuSelection == JungleVariant.tropics)
+                    {
+                        World.Structures.TuhrtlOutpost.CreateTuhrtlOutpost(Main.maxTilesX / 2, 300);
+                    }
+                }));
                 //tasks.Insert(microBiomes + 3, new PassLegacy("Generating Tropics", delegate (GenerationProgress progress)                //{                //    if (jungleMenuSelection == JungleVariant.tropics)
                 //    {
                 //        for (int num272 = 0; num272 < Main.maxTilesX; num272++)
