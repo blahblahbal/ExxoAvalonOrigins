@@ -241,7 +241,7 @@
             {
                 if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics");
                 else music = MusicID.Jungle;
-                priority = MusicPriority.Environment;
+                priority = MusicPriority.BiomeMedium;
             }
             Rectangle rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
             int dist = 5000;
