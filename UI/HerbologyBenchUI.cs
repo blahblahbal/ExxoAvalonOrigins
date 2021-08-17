@@ -416,7 +416,7 @@ namespace ExxoAvalonOrigins.UI
                                 }
                                 if (ExxoAvalonOrigins.herbItem.Name.Contains("Advanced") && ExxoAvalonOrigins.herbItem.Name.Contains("Potion"))
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += ExxoAvalonOrigins.herbItem.stack * 5;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += ExxoAvalonOrigins.herbItem.stack * 10;
                                 }
                                 if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.BlahPotion>())
                                 {
@@ -559,7 +559,7 @@ namespace ExxoAvalonOrigins.UI
                     #region Advanced Potions
                     if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 2)
                     {
-                        for (int p = 0; p < 52; p++)
+                        for (int p = 0; p < 53; p++)
                         {
                             spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.inventoryBack4Texture.Width / 2), (float)(Main.inventoryBack4Texture.Height / 2)), 1f, SpriteEffects.None, 0f);
                             if (Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
@@ -583,7 +583,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -593,7 +593,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.ObsidianSkinPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ObsidianSkinPotion].Width / 2), (float)(Main.itemTexture[ItemID.ObsidianSkinPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -612,7 +612,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -622,7 +622,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.RegenerationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.RegenerationPotion].Width / 2), (float)(Main.itemTexture[ItemID.RegenerationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -641,7 +641,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -651,7 +651,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.SwiftnessPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SwiftnessPotion].Width / 2), (float)(Main.itemTexture[ItemID.SwiftnessPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -670,7 +670,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -680,7 +680,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.GillsPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.GillsPotion].Width / 2), (float)(Main.itemTexture[ItemID.GillsPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -699,7 +699,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -709,7 +709,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.IronskinPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.IronskinPotion].Width / 2), (float)(Main.itemTexture[ItemID.IronskinPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -728,7 +728,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -738,7 +738,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.ManaRegenerationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ManaRegenerationPotion].Width / 2), (float)(Main.itemTexture[ItemID.ManaRegenerationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -757,7 +757,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -767,7 +767,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.MagicPowerPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.MagicPowerPotion].Width / 2), (float)(Main.itemTexture[ItemID.MagicPowerPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -786,7 +786,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -796,7 +796,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.FeatherfallPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.FeatherfallPotion].Width / 2), (float)(Main.itemTexture[ItemID.FeatherfallPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -815,7 +815,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -825,7 +825,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.SpelunkerPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SpelunkerPotion].Width / 2), (float)(Main.itemTexture[ItemID.SpelunkerPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -844,7 +844,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -854,7 +854,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.InvisibilityPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.InvisibilityPotion].Width / 2), (float)(Main.itemTexture[ItemID.InvisibilityPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -873,7 +873,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -883,7 +883,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.ShinePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ShinePotion].Width / 2), (float)(Main.itemTexture[ItemID.ShinePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -902,7 +902,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -912,7 +912,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.NightOwlPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.NightOwlPotion].Width / 2), (float)(Main.itemTexture[ItemID.NightOwlPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -931,7 +931,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -941,7 +941,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.BattlePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.BattlePotion].Width / 2), (float)(Main.itemTexture[ItemID.BattlePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -960,7 +960,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -970,7 +970,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.ThornsPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ThornsPotion].Width / 2), (float)(Main.itemTexture[ItemID.ThornsPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -989,7 +989,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -999,7 +999,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.WaterWalkingPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.WaterWalkingPotion].Width / 2), (float)(Main.itemTexture[ItemID.WaterWalkingPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1018,7 +1018,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1028,7 +1028,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.ArcheryPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ArcheryPotion].Width / 2), (float)(Main.itemTexture[ItemID.ArcheryPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1047,7 +1047,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1057,7 +1057,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.HunterPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.HunterPotion].Width / 2), (float)(Main.itemTexture[ItemID.HunterPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1076,7 +1076,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1086,7 +1086,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.GravitationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.GravitationPotion].Width / 2), (float)(Main.itemTexture[ItemID.GravitationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1105,7 +1105,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1115,7 +1115,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.MiningPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.MiningPotion].Width / 2), (float)(Main.itemTexture[ItemID.MiningPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1134,7 +1134,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1144,7 +1144,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.HeartreachPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.HeartreachPotion].Width / 2), (float)(Main.itemTexture[ItemID.HeartreachPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1163,7 +1163,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1173,7 +1173,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.CalmingPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.CalmingPotion].Width / 2), (float)(Main.itemTexture[ItemID.CalmingPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1192,7 +1192,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1202,7 +1202,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.BuilderPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.BuilderPotion].Width / 2), (float)(Main.itemTexture[ItemID.BuilderPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1221,7 +1221,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1231,7 +1231,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.TitanPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.TitanPotion].Width / 2), (float)(Main.itemTexture[ItemID.TitanPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1250,7 +1250,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1260,7 +1260,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.FlipperPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.FlipperPotion].Width / 2), (float)(Main.itemTexture[ItemID.FlipperPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1279,7 +1279,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1289,7 +1289,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.SummoningPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SummoningPotion].Width / 2), (float)(Main.itemTexture[ItemID.SummoningPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1308,7 +1308,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1318,7 +1318,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.TrapsightPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.TrapsightPotion].Width / 2), (float)(Main.itemTexture[ItemID.TrapsightPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1337,7 +1337,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1347,7 +1347,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.AmmoReservationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.AmmoReservationPotion].Width / 2), (float)(Main.itemTexture[ItemID.AmmoReservationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1366,7 +1366,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1376,7 +1376,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.LifeforcePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.LifeforcePotion].Width / 2), (float)(Main.itemTexture[ItemID.LifeforcePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1395,7 +1395,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1405,7 +1405,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.EndurancePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.EndurancePotion].Width / 2), (float)(Main.itemTexture[ItemID.EndurancePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1424,7 +1424,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1434,7 +1434,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.RagePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.RagePotion].Width / 2), (float)(Main.itemTexture[ItemID.RagePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1453,7 +1453,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1463,7 +1463,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.InfernoPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.InfernoPotion].Width / 2), (float)(Main.itemTexture[ItemID.InfernoPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1482,7 +1482,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1492,7 +1492,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.WrathPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.WrathPotion].Width / 2), (float)(Main.itemTexture[ItemID.WrathPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1511,7 +1511,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1521,7 +1521,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.FishingPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.FishingPotion].Width / 2), (float)(Main.itemTexture[ItemID.FishingPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1540,7 +1540,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1550,7 +1550,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.SonarPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SonarPotion].Width / 2), (float)(Main.itemTexture[ItemID.SonarPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1569,7 +1569,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1579,7 +1579,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.CratePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.CratePotion].Width / 2), (float)(Main.itemTexture[ItemID.CratePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1598,7 +1598,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1608,7 +1608,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.WarmthPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.WarmthPotion].Width / 2), (float)(Main.itemTexture[ItemID.WarmthPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1627,7 +1627,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1637,7 +1637,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.CrimsonPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.CrimsonPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.CrimsonPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1656,7 +1656,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1666,7 +1666,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.ShockwavePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.ShockwavePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.ShockwavePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1685,7 +1685,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1695,7 +1695,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.LuckPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.LuckPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.LuckPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1714,7 +1714,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1724,7 +1724,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.BloodCastPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.BloodCastPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.BloodCastPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1743,7 +1743,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1753,7 +1753,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1772,7 +1772,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1782,7 +1782,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.VisionPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.VisionPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.VisionPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1801,7 +1801,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1811,7 +1811,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.StrengthPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.StrengthPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.StrengthPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1830,7 +1830,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1840,7 +1840,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.GPSPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.GPSPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.GPSPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1859,7 +1859,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    //if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    //if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     //{
                                     //    if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                     //    {
@@ -1869,7 +1869,7 @@ namespace ExxoAvalonOrigins.UI
                                     //        {
                                     //            NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                     //        }
-                                    //        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                    //        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                     //    }
                                     //}
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.TimeShiftPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.TimeShiftPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.TimeShiftPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1888,7 +1888,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1898,7 +1898,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.ShadowPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.ShadowPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.ShadowPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1917,7 +1917,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1927,7 +1927,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.RoguePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.RoguePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.RoguePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1946,7 +1946,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1956,7 +1956,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.GauntletPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.GauntletPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.GauntletPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -1975,7 +1975,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -1985,7 +1985,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.WisdomPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.WisdomPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.WisdomPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -2004,7 +2004,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -2014,7 +2014,7 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.TitanskinPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.TitanskinPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.TitanskinPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
@@ -2034,7 +2034,7 @@ namespace ExxoAvalonOrigins.UI
                                             //Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
 
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
@@ -2065,7 +2065,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
                                         }
                                     }
-                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5)
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
@@ -2075,27 +2075,40 @@ namespace ExxoAvalonOrigins.UI
                                             {
                                                 NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.ForceFieldPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.ForceFieldPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.ForceFieldPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
-                                    //case 52:
-                                    //    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 1)
-                                    //    {
-                                    //        if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
-                                    //        {
-                                    //            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.MagnetPotion, 1);
-                                    //            Main.item[x].owner = Main.myPlayer;
-                                    //            if (Main.netMode == NetmodeID.MultiplayerClient)
-                                    //            {
-                                    //                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
-                                    //            }
-                                    //            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
-                                    //        }
-                                    //    }
-                                    //    spriteBatch.Draw(Main.itemTexture[ItemID.MagnetPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.MagnetPotion].Width / 2), (float)(Main.itemTexture[ItemID.MagnetPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
-                                    //    break;
+                                case 52:
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 1)
+                                    {
+                                        if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
+                                        {
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.Potions.FuryPotion>(), 1);
+                                            Main.item[x].owner = Main.myPlayer;
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            {
+                                                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                            }
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
+                                        }
+                                    }
+                                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
+                                    {
+                                        if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
+                                        {
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvFuryPotion>(), 1);
+                                            Main.item[x].owner = Main.myPlayer;
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            {
+                                                NetMessage.SendData(21, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                            }
+                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
+                                        }
+                                    }
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    break;
                             }
                             if (p % 13 == 12)
                             {

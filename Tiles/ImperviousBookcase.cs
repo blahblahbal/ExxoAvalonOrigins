@@ -21,6 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
             AddMapEntry(new Color(191, 142, 111));
+            dustType = 54;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

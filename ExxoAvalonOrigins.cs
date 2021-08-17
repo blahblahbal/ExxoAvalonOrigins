@@ -4,7 +4,7 @@
         public static int royG = 0;        public int gbvStyle;
         public static int gbvR = 160;
         public static int gbvG = 0;
-        public static int gbvB = 0;        public static Item herbItem;        public static bool herb;        public static string[] herbNames = new string[10] { "Daybloom", "Moonglow", "Blinkroot", "Deathweed", "Waterleaf", "Fireblossom", "Shiverthorn", "Bloodberry", "Sweetstem", "Barfbush" };        public static string[] potionNames = new string[53]
+        public static int gbvB = 0;        public static Item herbItem;        public static bool herb;        public static string[] herbNames = new string[10] { "Daybloom", "Moonglow", "Blinkroot", "Deathweed", "Waterleaf", "Fireblossom", "Shiverthorn", "Bloodberry", "Sweetstem", "Barfbush" };        public static string[] potionNames = new string[54]
         {
             "Obsidian Skin",
             "Regeneration",
@@ -58,6 +58,7 @@
             "Titanskin",
             "Invincibility",
             "Force Field",
+            "Fury",
             "Magnet"
         };        public static List<int> beams = new List<int>()
         {
