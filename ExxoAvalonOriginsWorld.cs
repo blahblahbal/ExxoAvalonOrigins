@@ -837,7 +837,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 var temple = tasks.FindIndex(genpass => genpass.Name == "Jungle Temple");
                 if (temple != -1)
                 {
-                    tasks.RemoveAt(temple);
+                    tasks[temple] = new PassLegacy("Tuhrtl Outpost", World.Passes.TuhrtlOutpost.Method);
+                    //tasks.RemoveAt(temple);
                 }
 
                 var hives = tasks.FindIndex(genpass => genpass.Name == "Hives");
@@ -896,8 +897,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 //{
                 //    if (contaigon) WorldGen.crimson = true;
                 //}));
-                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                if (jungleMenuSelection == JungleVariant.tropics)
-                    tasks.Insert(microBiomes + 3, new PassLegacy("Tuhrtl Outpost", World.Passes.TuhrtlOutpost.Method));
+                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 1, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                //if (jungleMenuSelection == JungleVariant.tropics)
+                //    tasks.Insert(microBiomes + 1, new PassLegacy("Tuhrtl Outpost", World.Passes.TuhrtlOutpost.Method));
                 //tasks.Insert(microBiomes + 2, new PassLegacy("Tuhrtl Outpost", delegate (GenerationProgress progress)
                 //{
                 //    if (jungleMenuSelection == JungleVariant.tropics)

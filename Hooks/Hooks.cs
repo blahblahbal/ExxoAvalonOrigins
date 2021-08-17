@@ -33,7 +33,7 @@
             GenPasses.Hook_GenPassWetJungle += Tropics.ILWetJungle;
             GenPasses.Hook_GenPassMudWallsInJungle += Tropics.ILMudWallsInJungle;
             GenPasses.Hook_GenPassWallVariety += Tropics.ILWallVariety;
-            //GenPasses.Hook_GenPassIceWalls += Tropics.ILIceWalls;
+            GenPasses.Hook_GenPassIceWalls += Tropics.ILIceWalls;
             GenPasses.Hook_GenPassGrassWall += Tropics.ILGrassWall;
             GenPasses.Hook_GenPassJunglePlants += Tropics.ILJunglePlants;
             GenPasses.Hook_GenPassMudCavesToGrass += Tropics.ILMudCavesToGrass;
@@ -42,7 +42,10 @@
             IL.Terraria.WorldGen.GrowUndergroundTree += Tropics.ILGrowUndergroundTree;
             On.Terraria.WorldGen.SpreadGrass += Tropics.OnSpreadGrass;
 
-            On.Terraria.WorldGen.Spread.Wall2 += Tropics.OnSpreadWall2;
+            IL.Terraria.GameContent.Generation.TrackGenerator.CanTrackBePlaced += MicroBiomes.ILTrackGeneratorTrackCanBePlaced;
+
+            IL.Terraria.WorldGen.Spread.Wall += Tropics.ILSpreadWall;
+            IL.Terraria.WorldGen.Spread.Wall2 += Tropics.ILSpreadWall2;
             On.Terraria.WorldGen.TileRunner += BacciliteReplacement.OnTileRunner;
         }
     }

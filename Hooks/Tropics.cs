@@ -69,7 +69,6 @@ namespace ExxoAvalonOrigins.Hooks
             Utils.AddAlternativeIDCheck(il, TileID.Mud, (ushort)ModContent.TileType<Tiles.TropicalMud>());
             ReplaceIDIfTropics(il, TileID.JungleGrass, (ushort)ModContent.TileType<Tiles.TropicalGrass>());
         }
-        // RETURNS THING - 256 FOR SOME REASON SO THAT OBSIDIAN WALL IDK WHY
         public static void ILIceWalls(ILContext il)
         {
             Utils.AddAlternativeIDCheck(il, WallID.JungleUnsafe, (ushort)ModContent.WallType<Walls.TropicalGrassWall>());
@@ -78,14 +77,20 @@ namespace ExxoAvalonOrigins.Hooks
         public static void ILGrassWall(ILContext il)
         {
             Utils.AddAlternativeIDCheck(il, WallID.MudUnsafe, (ushort)ModContent.WallType<Walls.TropicalMudWall>());
-            Debug.OutputIL(il);
         }
-        public static void OnSpreadWall2(On.Terraria.WorldGen.Spread.orig_Wall2 orig, int x, int y, int wallType)
+        public static void ILSpreadWall(ILContext il)
         {
-            if (wallType == (ushort)ModContent.WallType<Walls.TropicalMudWall>())
-            {
-                orig(x, y, wallType);
-            } 
+            Instruction loadWall = Instruction.Create(OpCodes.Ldloc_0);
+            Instruction loadWallType = Instruction.Create(OpCodes.Ldarg_2);
+
+            Utils.SoftReplaceAllMatchingInstructions(il, loadWall, loadWallType);
+        }
+        public static void ILSpreadWall2(ILContext il)
+        {
+            Instruction loadB = Instruction.Create(OpCodes.Ldloc_0);
+            Instruction loadWallType = Instruction.Create(OpCodes.Ldarg_2);
+
+            Utils.SoftReplaceAllMatchingInstructions(il, loadB, loadWallType);
         }
         public static void OnSpreadGrass(On.Terraria.WorldGen.orig_SpreadGrass orig, int i, int j, int dirt, int grass, bool repeat, byte color)
         {

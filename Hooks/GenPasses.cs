@@ -115,15 +115,19 @@ namespace ExxoAvalonOrigins.Hooks
             c.RemoveRange(endCrimsonIndex - c.Index);
             c.Emit(OpCodes.Pop);
 
+            FieldReference dungeonSideField = null;
+
             if (!c.TryGotoNext(i => i.MatchRet()))
                 return;
-            if (!c.TryGotoPrev(i => i.MatchLdcI4(1)))
+            if (!c.TryGotoPrev(i => i.MatchStfld(out dungeonSideField)))
                 return;
-            c.Index++;
+            if (!c.TryGotoNext(i => i.MatchRet()))
+                return;
 
-            c.EmitDelegate<Func<int, int>>((dungeonSide) => {
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldfld, dungeonSideField);
+            c.EmitDelegate<Action<int>>((dungeonSide) => {
                 ExxoAvalonOriginsWorld.dungeonSide = dungeonSide;
-                return dungeonSide;
             });
         }
         private static MethodInfo GetGenPassInfo(ILContext il, string name)

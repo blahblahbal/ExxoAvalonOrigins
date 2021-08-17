@@ -71,5 +71,49 @@ namespace ExxoAvalonOrigins.Hooks
                 }
             }
         }
+        public static void SoftReplaceAllMatchingInstructions(ILContext il, Instruction i1, Instruction i2)
+        {
+            var c = new ILCursor(il);
+
+            while (c.TryGotoNext(i => i.OpCode == i1.OpCode && (i1.Operand == null || i.Operand == i1.Operand)))
+            {
+                // Ensure not replacing anything added by an IL hook
+                if (c.Next.Offset != 0)
+                {
+                    c.Index++;
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(i2.OpCode, i2.Operand);
+                }
+            }
+        }
+        public static void HardReplaceAllMatchingInstructions(ILContext il, Instruction i1, Instruction i2)
+        {
+            var c = new ILCursor(il);
+
+            while (c.TryGotoNext(i => i.OpCode == i1.OpCode && (i1.Operand == null || i.Operand == i1.Operand)))
+            {
+                // Ensure not replacing anything added by an IL hook
+                if (c.Next.Offset != 0)
+                {
+                    c.Remove();
+                    c.Emit(i2.OpCode, i2.Operand);
+                }
+            }
+        }
+        public static void SoftReplaceAllMatchingInstructionsWithMethod(ILContext il, Instruction i1, MethodBase method)
+        {
+            var c = new ILCursor(il);
+
+            while (c.TryGotoNext(i => i.OpCode == i1.OpCode && (i1.Operand == null || i.Operand == i1.Operand)))
+            {
+                // Ensure not replacing anything added by an IL hook
+                if (c.Next.Offset != 0)
+                {
+                    c.Index++;
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(OpCodes.Call, method);
+                }
+            }
+        }
     }
 }
