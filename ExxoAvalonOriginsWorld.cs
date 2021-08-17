@@ -830,36 +830,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 contaigon = true;
                 WorldGen.crimson = false;
             }
-        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks[reset] = new PassLegacy("Reset", World.Passes.ResetOverride.Method);                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));            }            var vines = tasks.FindIndex(genpass => genpass.Name == "Vines");            if (jungleMenuSelection == JungleVariant.tropics)
+        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));            }            var vines = tasks.FindIndex(genpass => genpass.Name == "Vines");            if (jungleMenuSelection == JungleVariant.tropics)
             {
-                // good
-                var dirtwall = tasks.FindIndex(genpass => genpass.Name == "Dirt Wall Backgrounds");
-                if (dirtwall != -1)
-                {
-                    tasks[dirtwall] = new PassLegacy("Dirt Walls", World.Passes.TropicsDirtWall.Method);
-                }
-
-                // good
-                var jungle = tasks.FindIndex(genpass => genpass.Name == "Jungle");
-                if (jungle != -1)
-                {
-                    tasks[jungle] = new PassLegacy("Jungle or Tropics", World.Passes.Tropics.Method);
-                }
-
-                // good
-                var dirt = tasks.FindIndex(genpass => genpass.Name == "Clean Up Dirt");
-                if (dirt != -1)
-                {
-                    tasks[dirt] = new PassLegacy("Clean Up Dirt", World.Passes.TropicsCleanUpDirt.Method);
-                }
-
-                // good
-                var wetjungle = tasks.FindIndex(genpass => genpass.Name == "Wet Jungle");
-                if (wetjungle != -1)
-                {
-                    tasks[wetjungle] = new PassLegacy("Wet Jungle", World.Passes.WetJungle.Method);
-                }
-
                 var temple = tasks.FindIndex(genpass => genpass.Name == "Jungle Temple");
                 if (temple != -1)
                 {
@@ -884,43 +856,16 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     tasks.RemoveAt(jtemple2);
                 }
 
-                // implement
-                var jtrees = tasks.FindIndex(genpass => genpass.Name == "Jungle Trees");
-                if (jtrees != -1)
-                {
-                    tasks[jtrees] = new PassLegacy("Avalon Jungle Trees", World.Passes.JungleTrees.Method);
-                }
-
                 var jplants = tasks.FindIndex(genpass => genpass.Name == "Jungle Plants");
                 if (jplants != -1)
                 {
                     tasks.RemoveAt(jplants);
                 }
 
-                // good
                 if (vines != -1)
                 {
                     tasks.Insert(vines + 1, new PassLegacy("TropicalVines", World.Passes.TropicalVines.Method));
                 }
-
-                var mudwalls = tasks.FindIndex(genpass => genpass.Name == "Muds Walls In Jungle");
-                if (mudwalls != -1)
-                {
-                    tasks[mudwalls] = new PassLegacy("Avalon Tropics/Jungle Walls", World.Passes.JungleMudWalls.Method);
-                }
-
-                var wallVariety = tasks.FindIndex(genpass => genpass.Name == "Wall Variety");
-                if (wallVariety != -1)
-                {
-                    tasks[wallVariety] = new PassLegacy("Wall Variety", World.Passes.JungleWallVariety.Method);
-                }
-
-                // TODO: Implement Tropics WorldGen.AddGenerationPass("Cave Walls", delegate(GenerationProgress progress, GameConfiguration passConfig)
-                //var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");
-                //if (iceWalls != -1)
-                //{
-                //    tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Ice Shrines", World.Passes.IceShrine.Method));
-                //}
             }
             if (vines != -1)
             {
@@ -943,10 +888,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
 
             var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");            if (gems != -1)            {                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", World.Passes.Gems.Method));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", World.Passes.SmoothWorld.Method));            }            var lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");            if (lifecrystals != -1)            {                tasks.Insert(lifecrystals + 1, new PassLegacy("Adding Mana Crystals", World.Passes.ManaCrystal.Method));            }            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");            if (iceWalls != -1)            {                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Ice Shrines", World.Passes.IceShrine.Method));            }
 
-
-
             var weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");            if (weeds != -1)            {                tasks.Insert(weeds + 1, new PassLegacy("Contagion weeds", World.Passes.Plants.Method));            }
-                        var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);
+                        var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);
                 //tasks.Insert(microBiomes, new PassLegacy("Avalon Contaigon fix 1", delegate (GenerationProgress progress)
                 //{
                 //    if (contaigon) WorldGen.crimson = true;
