@@ -22,13 +22,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			{
 				return;
 			}
-			int num2 = -1;
-			int num3 = 1500;
-			if (Main.player[Main.myPlayer].ghostDmg > (float)num3)
-			{
-				return;
-			}
-			Main.player[Main.myPlayer].ghostDmg += num;
 			int[] array = new int[200];
 			int num4 = 0;
 			_ = new int[200];
@@ -56,7 +49,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			}
 			if (num4 != 0 || num5 != 0)
 			{
-				num2 = ((num5 <= 0) ? array[Main.rand.Next(num4)] : array[Main.rand.Next(num5)]);
+				int num2 = ((num5 <= 0) ? array[Main.rand.Next(num4)] : array[Main.rand.Next(num5)]);
 				float num7 = Main.rand.Next(-100, 101);
 				float num8 = Main.rand.Next(-100, 101);
 				float num9 = (float)Math.Sqrt(num7 * num7 + num8 * num8);

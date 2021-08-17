@@ -241,6 +241,7 @@ namespace ExxoAvalonOrigins
         public bool reckoning;
         public int reckoningLevel;
         public int reckoningTimeLeft;
+        public bool curseOfIcarus;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -292,6 +293,7 @@ namespace ExxoAvalonOrigins
             frozen = false;
             liaB = false;
             reckoning = false;
+            curseOfIcarus = false;
 
             if (screenShake > 0)
             {
@@ -1444,6 +1446,12 @@ namespace ExxoAvalonOrigins
 
 		        tpCD++;
 	        }
+
+            if (curseOfIcarus)
+            {
+                player.wingTime = 0;
+                player.wingTimeMax = 0;
+            }
         }
 
 		public static void stayInBounds(Vector2 pos)
