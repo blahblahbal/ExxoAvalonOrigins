@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using Terraria.ID;
+using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -80,9 +81,22 @@ namespace ExxoAvalonOrigins.Projectiles
                             WorldGen.KillTile(xpos, ypos);
                             WorldGen.KillTile(xpos + 1, ypos);
                             WorldGen.KillTile(xpos - 1, ypos);
+
+                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                            {
+                                NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos, ypos, 0);
+                                NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos + 1, ypos, 0);
+                                NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos - 1, ypos, 0);
+                            }
                         }
                     }
                     WorldGen.PlaceTile(xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), false, true);
+
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), 0);
+                    }
+
                     if (Main.tile[xpos, ypos].active())
                     {
                         projectile.Kill();
