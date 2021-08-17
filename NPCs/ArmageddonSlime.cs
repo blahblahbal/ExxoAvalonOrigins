@@ -13,6 +13,7 @@ namespace ExxoAvalonOrigins.NPCs
 {
 	public class ArmageddonSlime : ModNPC
 	{
+        bool cindersOnce;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Armageddon Slime");
@@ -43,21 +44,226 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[mod.BuffType("Freeze")] = true;
             //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
             bossBag = ModContent.ItemType<Items.ArmageddonSlimeBossBag>();
+
+            cindersOnce = false;
 		}
 
         public override void AI()
         {
+            float num236 = 1f;
+            bool teleporting = false;
+            bool dontCreateDust = false;
             npc.aiAction = 0;
             if (npc.ai[3] == 0f && npc.life > 0)
             {
                 npc.ai[3] = npc.lifeMax;
             }
-            if (npc.ai[2] == 0f)
+            if (npc.localAI[3] == 0f)
             {
                 npc.ai[0] = -100f;
-                npc.ai[2] = 1f;
+                npc.localAI[3] = 1f;
                 npc.TargetClosest(true);
+                npc.netUpdate = true;
             }
+            if (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000f)
+            {
+                npc.TargetClosest();
+                if (Main.player[npc.target].dead || Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 3000f)
+                {
+                    if (npc.timeLeft > 10)
+                        npc.timeLeft = 10;
+
+                    if (Main.player[npc.target].Center.X < npc.Center.X)
+                    {
+                        npc.direction = 1;
+                    }
+                    else
+                    {
+                        npc.direction = -1;
+                    }
+                    if (Main.netMode != 1 && npc.ai[1] != 5f)
+                    {
+                        npc.netUpdate = true;
+                        npc.ai[2] = 0f;
+                        npc.ai[0] = 0f;
+                        npc.ai[1] = 5f;
+                        npc.localAI[1] = Main.maxTilesX * 16;
+                        npc.localAI[2] = Main.maxTilesY * 16;
+                    }
+                }
+            }
+            #region teleport
+            if (!Main.player[npc.target].dead && npc.timeLeft > 10 && npc.ai[2] >= 300f && npc.ai[1] < 5f && npc.velocity.Y == 0) // king slime teleport reqs
+            {
+                npc.ai[2] = 0f;
+                npc.ai[0] = 0f;
+                npc.ai[1] = 5f;
+                if (Main.netMode != 1)
+                {
+                    npc.TargetClosest(false);
+                    Point npcTileCenter = npc.Center.ToTileCoordinates();
+                    Point playerTileCenter = Main.player[npc.target].Center.ToTileCoordinates();
+                    Vector2 distance = Main.player[npc.target].Center - npc.Center;
+
+                    int teleportSpeed = 0;
+                    bool done = false;
+
+                    if (npc.localAI[0] >= 360f || distance.Length() > 2000f) // skip finding destination if despawning
+                    {
+                        if (npc.localAI[0] >= 360f)
+                            npc.localAI[0] = 360f;
+
+                        done = true;
+                        teleportSpeed = 100;
+                    }
+
+                    while (!done && teleportSpeed < 100) // finding destination to teleport to
+                    {
+                        teleportSpeed++;
+                        Vector2 randomTarget = new Vector2(Main.rand.Next(playerTileCenter.X - 10, playerTileCenter.X + 11), Main.rand.Next(playerTileCenter.Y - 10, playerTileCenter.Y + 1));
+
+                        if (((int)randomTarget.Y >= playerTileCenter.Y - 7 && (int)randomTarget.Y <= playerTileCenter.Y + 7 && (int)randomTarget.X >= playerTileCenter.X - 7 && (int)randomTarget.X <= playerTileCenter.X + 7) || ((int)randomTarget.Y >= npcTileCenter.Y && (int)randomTarget.Y <= playerTileCenter.Y && (int)randomTarget.X >= playerTileCenter.X && (int)randomTarget.X <= playerTileCenter.X) || Main.tile[(int)randomTarget.X, (int)randomTarget.Y].nactive())
+                            continue;
+
+                        int randomTargetYWhy = (int)randomTarget.Y;
+                        int tileCounter = 0;
+
+                        if (Main.tile[(int)randomTarget.X, randomTargetYWhy].nactive() && Main.tileSolid[Main.tile[(int)randomTarget.X, randomTargetYWhy].type] && !Main.tileSolidTop[Main.tile[(int)randomTarget.X, randomTargetYWhy].type])
+                        {
+                            tileCounter = 1;
+                        }
+                        else
+                        {
+                            for (; tileCounter < 150 && randomTargetYWhy + tileCounter < Main.maxTilesY; tileCounter++)
+                            {
+                                int total = randomTargetYWhy + tileCounter;
+                                if (Main.tile[(int)randomTarget.X, total].nactive() && Main.tileSolid[Main.tile[(int)randomTarget.X, total].type] && !Main.tileSolidTop[Main.tile[(int)randomTarget.X, total].type])
+                                {
+                                    tileCounter--;
+                                    break;
+                                }
+                            }
+                        }
+                        randomTarget.Y += tileCounter;
+                        bool foundDestination = true;
+
+                        if (foundDestination && Main.tile[(int)randomTarget.X, (int)randomTarget.Y].lava())
+                            foundDestination = false;
+
+                        if (foundDestination && !Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0))
+                            foundDestination = false;
+
+                        if (foundDestination)
+                        {
+                            npc.localAI[1] = randomTarget.X * 16 + 8;
+                            npc.localAI[2] = randomTarget.Y * 16 + 16;
+                            done = true;
+                            break;
+                        }
+                    }
+
+                    if (teleportSpeed >= 100)
+                    {
+                        Vector2 playerBottom = Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Bottom;
+                        npc.localAI[1] = playerBottom.X;
+                        npc.localAI[2] = playerBottom.Y;
+                    }
+                }
+            }
+
+            if (!Collision.CanHitLine(npc.Center, 0, 0, Main.player[npc.target].Center, 0, 0) || Math.Abs(npc.Top.Y - Main.player[npc.target].Bottom.Y) > 160f)
+            {
+                npc.ai[2]++;
+
+                if (Main.netMode != 1)
+                    npc.localAI[0]++;
+            }
+            else if (Main.netMode != 1)
+            {
+                npc.localAI[0]--;
+
+                if (npc.localAI[0] < 0)
+                    npc.localAI[0] = 0;
+            }
+            if (npc.timeLeft < 10 && (npc.ai[0] != 0f || npc.ai[1] != 0f))
+            {
+                npc.ai[0] = 0f;
+                npc.ai[1] = 0f;
+                npc.netUpdate = true;
+                teleporting = false;
+            }
+            Dust teleportDust;
+            int dustType;
+            if (Main.rand.NextBool(2))
+                dustType = 58;
+            else
+                dustType = 36;
+            if (npc.ai[1] == 5f)
+            {
+                teleporting = true;
+                npc.aiAction = 1;
+                npc.ai[0]++;
+                num236 = MathHelper.Clamp((60f - npc.ai[0]) / 60f, 0f, 1f);
+                num236 = 0.5f + num236 * 0.5f;
+
+                if (npc.ai[0] >= 60f)
+                    dontCreateDust = true;
+
+                if (npc.ai[0] >= 60f && Main.netMode != 1)
+                {
+                    FireProjectiles(1, Main.player[npc.target]);
+                    npc.Bottom = new Vector2(npc.localAI[1], npc.localAI[2]);
+                    npc.ai[1] = 6f;
+                    npc.ai[0] = 0f;
+                    npc.netUpdate = true;
+                }
+                if (Main.netMode == 1 && npc.ai[0] >= 120)
+                {
+                    npc.ai[1] = 6f;
+                    npc.ai[0] = 0f;
+                }
+                if (!dontCreateDust)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        int newTeleportDust = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, dustType, npc.velocity.X, npc.velocity.Y, 150, default(Color), 2f);
+                        Main.dust[newTeleportDust].noGravity = true;
+                        teleportDust = Main.dust[newTeleportDust];
+                        teleportDust.velocity *= 0.5f;
+                    }
+                }
+            }
+            else if (npc.ai[1] == 6f)
+            {
+                teleporting = true;
+                npc.aiAction = 0;
+                npc.ai[0]++;
+                num236 = MathHelper.Clamp(npc.ai[0] / 30f, 0f, 1f);
+                num236 = 0.5f + num236 * 0.5f;
+
+                if (npc.ai[0] >= 30f && Main.netMode != 1)
+                {
+                    npc.ai[1] = 0f;
+                    npc.ai[0] = 0f;
+                    npc.netUpdate = true;
+                    npc.TargetClosest();
+                }
+                if (Main.netMode == 1 && npc.ai[0] >= 60f)
+                {
+                    npc.ai[1] = 0f;
+                    npc.ai[0] = 0f;
+                    npc.TargetClosest();
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    int newTeleportDust = Dust.NewDust(npc.position + Vector2.UnitX * -20f, npc.width + 40, npc.height, dustType, npc.velocity.X, npc.velocity.Y, 150, default(Color), 2f);
+                    Main.dust[newTeleportDust].noGravity = true;
+                    teleportDust = Main.dust[newTeleportDust];
+                    teleportDust.velocity *= 2f;
+                }
+            }
+            npc.dontTakeDamage = (npc.hide = dontCreateDust);
+            #endregion
             if (npc.velocity.Y == 0f)
             {
                 npc.velocity.X = npc.velocity.X * 0.8f;
@@ -65,71 +271,77 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     npc.velocity.X = 0f;
                 }
-                npc.ai[0] += 2f;
-                if (npc.life < npc.lifeMax * 0.8)
-                {
-                    npc.ai[0] += 1f;
-                }
-                if (npc.life < npc.lifeMax * 0.6)
-                {
-                    npc.ai[0] += 1f;
-                }
-                if (npc.life < npc.lifeMax * 0.4)
+                if (!teleporting)
                 {
                     npc.ai[0] += 2f;
-                }
-                if (npc.life < npc.lifeMax * 0.2)
-                {
-                    npc.ai[0] += 3f;
-                }
-                if (npc.life < npc.lifeMax * 0.1)
-                {
-                    npc.ai[0] += 4f;
-                }
-                if (npc.ai[0] >= 0f)
-                {
-                    npc.netUpdate = true;
-                    npc.TargetClosest(true);
-                    if (npc.ai[1] == 3f)
+                    if (npc.life < npc.lifeMax * 0.8)
                     {
-                        npc.velocity.Y = -13f;
-                        npc.velocity.X = npc.velocity.X + 3.5f * npc.direction;
-                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
-                        {
-                            npc.velocity.X = npc.velocity.X + 7f * npc.direction;
-                        }
-                        ExxoAvalonOrigins.armaRO = false;
-                        npc.ai[0] = -200f;
-                        npc.ai[1] = 0f;
+                        npc.ai[0] += 1f;
                     }
-                    else if (npc.ai[1] == 2f)
+                    if (npc.life < npc.lifeMax * 0.6)
                     {
-                        npc.velocity.Y = -6f;
-                        npc.velocity.X = npc.velocity.X + 4.5f * npc.direction;
-                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
-                        {
-                            npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
-                        }
-                        ExxoAvalonOrigins.armaRO = false;
-                        npc.ai[0] = -120f;
-                        npc.ai[1] += 1f;
+                        npc.ai[0] += 1f;
                     }
-                    else
+                    if (npc.life < npc.lifeMax * 0.4)
                     {
-                        npc.velocity.Y = -8f;
-                        npc.velocity.X = npc.velocity.X + 4f * npc.direction;
-                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
-                        {
-                            npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
-                        }
-                        ExxoAvalonOrigins.armaRO = false;
-                        npc.ai[0] = -120f;
-                        npc.ai[1] += 1f;
+                        npc.ai[0] += 2f;
                     }
-                }
-                else if (npc.ai[0] >= -30f)
-                {
-                    npc.aiAction = 1;
+                    if (npc.life < npc.lifeMax * 0.2)
+                    {
+                        npc.ai[0] += 3f;
+                    }
+                    if (npc.life < npc.lifeMax * 0.1)
+                    {
+                        npc.ai[0] += 4f;
+                    }
+                    if (npc.ai[0] >= 0f)
+                    {
+                        npc.netUpdate = true;
+                        npc.TargetClosest(true);
+                        if (npc.ai[1] == 3f)
+                        {
+                            npc.velocity.Y = -13f;
+                            npc.velocity.X = npc.velocity.X + 3.5f * npc.direction;
+                            if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                            {
+                                npc.velocity.X = npc.velocity.X + 7f * npc.direction;
+                            }
+                            ExxoAvalonOrigins.armaRO = false;
+                            cindersOnce = false;
+                            npc.ai[0] = -200f;
+                            npc.ai[1] = 0f;
+                        }
+                        else if (npc.ai[1] == 2f)
+                        {
+                            npc.velocity.Y = -6f;
+                            npc.velocity.X = npc.velocity.X + 4.5f * npc.direction;
+                            if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                            {
+                                npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
+                            }
+                            ExxoAvalonOrigins.armaRO = false;
+                            cindersOnce = false;
+                            npc.ai[0] = -120f;
+                            npc.ai[1] += 1f;
+                        }
+                        else
+                        {
+                            npc.velocity.Y = -8f;
+                            npc.velocity.X = npc.velocity.X + 4f * npc.direction;
+                            if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                            {
+                                npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
+                            }
+                            ExxoAvalonOrigins.armaRO = false;
+                            cindersOnce = false;
+                            npc.ai[0] = -120f;
+                            npc.ai[1] += 1f;
+                        }
+                    }
+                    else if (npc.ai[0] >= -30f)
+                    {
+                        npc.aiAction = 1;
+                    }
                 }
             }
             else if (npc.target < 255 && ((npc.direction == 1 && npc.velocity.X < 3f) || (npc.direction == -1 && npc.velocity.X > -3f)))
@@ -143,6 +355,17 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.X = npc.velocity.X * 0.93f;
                 }
             }
+            #region projectiles / slime spawn
+            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, (int)(npc.width * npc.scale), (int)(npc.height * npc.scale)) && npc.oldVelocity.Y > 0f && ExxoAvalonOrigins.armaRO && cindersOnce == false)
+            {
+                for (int i = 0; i < 4 + Main.rand.Next(3); i++)
+                {
+                    Vector2 origin = new Vector2(npc.Center.X + Main.rand.Next(-(npc.width / 2), (npc.width / 2) + 1), npc.Center.Y + (npc.height / 2));
+                    Vector2 velocity = new Vector2(npc.velocity.X / 4, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6)));
+                    Projectile.NewProjectile(origin, velocity, ModContent.ProjectileType<Projectiles.DarkCinder>(), npc.damage / 4, 0.5f, npc.target);
+                }
+                cindersOnce = true;
+            }
             var dust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, npc.velocity.X, npc.velocity.Y, 255, new Color(0, 80, 255, 80), npc.scale * 1.2f);
             Main.dust[dust].noGravity = true;
             Main.dust[dust].velocity *= 0.5f;
@@ -152,6 +375,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             var lifeFraction = npc.life / (float)npc.lifeMax;
             lifeFraction = lifeFraction * 0.5f + 0.75f;
+            lifeFraction *= num236;
             if (lifeFraction != npc.scale)
             {
                 npc.position.X = npc.position.X + npc.width / 2;
@@ -179,6 +403,32 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.npc[newNPC].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
                     Main.npc[newNPC].velocity.Y = Main.rand.Next(-30, 1) * 0.1f;
                     Main.npc[newNPC].ai[1] = Main.rand.Next(3);
+                    int rand = Main.rand.Next(1, 2); // currently only selects attack 1
+                    switch (rand)
+                    {
+                        case 4:
+                            FireProjectiles(2, Main.player[npc.target]);
+                            break;
+                        default:
+                            FireProjectiles(1, Main.player[npc.target]);
+                            break;
+                    }
+                    npc.ai[1] = -90f;
+                    if (Main.netMode == NetmodeID.Server && newNPC < 200)
+                    {
+                        NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), newNPC, 0f, 0f, 0f, 0);
+                    }
+                }
+                return;
+            }
+            return;
+            #endregion
+        }
+        public void FireProjectiles(int attackType, Player target)
+        {
+            switch (attackType)
+            {
+                case 1:
                     var vector155 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num1166 = (float)Math.Atan2(vector155.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector155.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
@@ -196,18 +446,13 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num1168].tileCollide = false;
                         if (Main.netMode != 0)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
+                        NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
                         }
                     }
-                    npc.ai[1] = -90f;
-                    if (Main.netMode == NetmodeID.Server && newNPC < 200)
-                    {
-                        NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), newNPC, 0f, 0f, 0f, 0);
-                    }
-                }
-                return;
-            }
-            return;
+                    break;
+                case 2:                    
+                    break;
+            }   
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -289,7 +534,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
+            target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 300);
         }
     }
 }

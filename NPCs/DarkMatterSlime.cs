@@ -108,5 +108,9 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = 0;
             }
         }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 300);
+        }
     }
 }
