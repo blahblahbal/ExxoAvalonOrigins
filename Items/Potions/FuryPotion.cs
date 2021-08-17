@@ -29,5 +29,16 @@ namespace ExxoAvalonOrigins.Items.Potions
             item.height = dims.Height;
             item.buffTime = 14400;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Ickfish>());
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ModContent.ItemType<FuryPotion>());
+            recipe.AddRecipe();
+        }
     }
 }

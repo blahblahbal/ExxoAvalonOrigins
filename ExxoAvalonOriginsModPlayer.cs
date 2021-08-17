@@ -384,7 +384,7 @@ namespace ExxoAvalonOrigins
         }
         public bool HasItemInArmor(int type)
         {
-            for (var i = 0; i < 20; i++)
+            for (var i = 0; i < player.armor.Length; i++)
             {
                 if (type == player.armor[i].type)
                 {
@@ -735,22 +735,22 @@ namespace ExxoAvalonOrigins
         {
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
             if (blahArmor) drawInfo.shadow = 0f;
-            if (mermanLava)
-            {
-                Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
-                Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
-                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
-                Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
-                Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
-            }
-            else
-            {
-                Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
-                Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
-                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
-                Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
-                Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
-            }
+            //if (mermanLava)
+            //{
+            //    Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
+            //    Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
+            //    Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
+            //    Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
+            //    Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
+            //}
+            //else
+            //{
+            //    Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
+            //    Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
+            //    Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
+            //    Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
+            //    Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
+            //}
             if (frozen)
             {
                 if (drawInfo.bodyColor == baseSkinTone)
