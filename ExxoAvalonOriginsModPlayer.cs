@@ -884,8 +884,7 @@ namespace ExxoAvalonOrigins
                     Rectangle value = new Rectangle((int)(Main.npc[arma].position.X + (float)(Main.npc[arma].width / 2)) - radius, (int)(Main.npc[arma].position.Y + (float)(Main.npc[arma].height / 2)) - radius, radius * 2, radius * 2);
                     if (rectangle.Intersects(value))
                     {
-                        player.wingTime = 0;
-                        player.wingsLogic = 0;
+                        player.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
                     }
                 }
             }
