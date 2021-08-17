@@ -788,7 +788,7 @@ namespace ExxoAvalonOrigins.World.Structures
 
             MakeArea2(x, y); // 239 blocks tall, 228 blocks wide
 
-            int style = WorldGen.genRand.Next(2);
+            int style = 1; // WorldGen.genRand.Next(2);
 
             if (style == 0)
             {
@@ -838,9 +838,9 @@ namespace ExxoAvalonOrigins.World.Structures
             else if (style == 1)
             {
                 List<Vector2> room1 = MediumRoom(x + WorldGen.genRand.Next(130, 151), y + WorldGen.genRand.Next(10, 16));
-                startPoints.Add(room1[0]);
-                startTunnel = room1[1];
-                startTunnelEnd = new Vector2(x + 228, y + WorldGen.genRand.Next(10, 16));
+                //startPoints.Add(room1[0]); // left side of first room (1s)
+                startTunnel = room1[1]; // right side of first room (starting)
+                startTunnelEnd = new Vector2(x + 228, y + WorldGen.genRand.Next(10, 16)); //
 
                 if (WorldGen.genRand.Next(3) == 0)
                 {
@@ -850,7 +850,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 }
 
                 List<Vector2> room2 = LargeRoom(x + WorldGen.genRand.Next(20, 60), y + WorldGen.genRand.Next(50, 67));
-                startPoints.Add(room2[1]);
+                startPoints.Add(room2[1]); // right side of second room (
                 endPoints.Add(room1[0]);
 
                 List<Vector2> room3 = LargerRoom(x + WorldGen.genRand.Next(110, 125), y + WorldGen.genRand.Next(62, 81));
