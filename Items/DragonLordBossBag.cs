@@ -32,6 +32,7 @@ namespace ExxoAvalonOrigins.Items
             player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11));
+            player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.DragonsBondage>());
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.DragonLordHead>();
