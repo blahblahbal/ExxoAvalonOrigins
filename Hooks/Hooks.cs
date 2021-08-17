@@ -33,7 +33,7 @@
             GenPasses.Hook_GenPassWetJungle += Tropics.ILWetJungle;
             GenPasses.Hook_GenPassMudWallsInJungle += Tropics.ILMudWallsInJungle;
             GenPasses.Hook_GenPassWallVariety += Tropics.ILWallVariety;
-            GenPasses.Hook_GenPassIceWalls += Tropics.ILIceWalls;
+            //GenPasses.Hook_GenPassIceWalls += Tropics.ILIceWalls;
             GenPasses.Hook_GenPassGrassWall += Tropics.ILGrassWall;
             GenPasses.Hook_GenPassJunglePlants += Tropics.ILJunglePlants;
             GenPasses.Hook_GenPassMudCavesToGrass += Tropics.ILMudCavesToGrass;

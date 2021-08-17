@@ -70,12 +70,11 @@ namespace ExxoAvalonOrigins.Hooks
             ReplaceIDIfTropics(il, TileID.JungleGrass, (ushort)ModContent.TileType<Tiles.TropicalGrass>());
         }
         // RETURNS THING - 256 FOR SOME REASON SO THAT OBSIDIAN WALL IDK WHY
-        //public static void ILIceWalls(ILContext il)
-        //{
-        //    Utils.AddAlternativeIDCheck(il, WallID.JungleUnsafe, (ushort)ModContent.WallType<Walls.TropicalGrassWall>());
-        //    ReplaceIDIfTropics(il, WallID.MudUnsafe, (ushort)ModContent.WallType<Walls.TropicalMudWall>());
-        //}
-        // g
+        public static void ILIceWalls(ILContext il)
+        {
+            Utils.AddAlternativeIDCheck(il, WallID.JungleUnsafe, (ushort)ModContent.WallType<Walls.TropicalGrassWall>());
+            ReplaceIDIfTropics(il, WallID.MudUnsafe, (ushort)ModContent.WallType<Walls.TropicalMudWall>());
+        }
         public static void ILGrassWall(ILContext il)
         {
             Utils.AddAlternativeIDCheck(il, WallID.MudUnsafe, (ushort)ModContent.WallType<Walls.TropicalMudWall>());
