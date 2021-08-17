@@ -336,7 +336,7 @@ namespace ExxoAvalonOrigins.World.Structures
             return list;
         }
 
-        public static List<Vector2> BossRoom2(int x, int y)
+        public static List<Vector2> LargerRoom(int x, int y)
         {
             int[,] _structure = {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -783,40 +783,102 @@ namespace ExxoAvalonOrigins.World.Structures
         {
             List<Vector2> startPoints = new List<Vector2>();
             List<Vector2> endPoints = new List<Vector2>();
-            Vector2 startTunnel;
+            Vector2 startTunnel = new Vector2();
             Vector2 startTunnelEnd = new Vector2(x, y + 7);
 
             MakeArea2(x, y); // 239 blocks tall, 228 blocks wide
 
+            int style = WorldGen.genRand.Next(2);
+
+            if (style == 0)
+            {
+                List<Vector2> tiny1 = SmallRoom(x + 20, y + 10);
+                startPoints.Add(tiny1[1]); // right side
+                startTunnel = tiny1[0];
+
+                List<Vector2> med1 = MediumRoom(x + WorldGen.genRand.Next(60, 80), y + WorldGen.genRand.Next(15, 25));
+                endPoints.Add(med1[0]); // endpoint of first room tunnel (0e)
+                startPoints.Add(med1[0]); // left side of first medium room (1s)
+                startPoints.Add(med1[1]); // right side of first medium room (2s)
+
+                List<Vector2> small1 = SmallRoom(x + WorldGen.genRand.Next(30, 41), y + WorldGen.genRand.Next(49, 56));
+                endPoints.Add(small1[1]); // right side of first small room (1e)
+                startPoints.Add(small1[0]); // left side of first small room (3s)
+
+                List<Vector2> small2 = SmallRoom(x + WorldGen.genRand.Next(150, 171), y + WorldGen.genRand.Next(35, 46));
+                endPoints.Add(small2[0]); // left side of second small room (2e)
+
+                List<Vector2> big1 = SmallRoom(x + WorldGen.genRand.Next(35, 51), y + WorldGen.genRand.Next(85, 99));
+                endPoints.Add(big1[0]); // left side of big room (3e)
+                startPoints.Add(big1[1]); // right side of big room (4s)
+
+                List<Vector2> med2 = LargeRoom_old(x + WorldGen.genRand.Next(105, 126), y + WorldGen.genRand.Next(110, 136));
+                endPoints.Add(med2[0]); // left side of second medium room (4e)
+                startPoints.Add(med2[1]); // right side of second medium room (5s)
 
 
-            List<Vector2> tiny1 = SmallRoom(x + 20, y + 10);
-            startPoints.Add(tiny1[1]); // right side
-            startTunnel = tiny1[0];
 
-            List<Vector2> med1 = MediumRoom(x + WorldGen.genRand.Next(60, 80), y + WorldGen.genRand.Next(15, 25));
-            endPoints.Add(med1[0]); // endpoint of first room tunnel (0e)
-            startPoints.Add(med1[0]); // left side of first medium room (1s)
-            startPoints.Add(med1[1]); // right side of first medium room (2s)
+                endPoints.Add(LargeRoom(x + WorldGen.genRand.Next(110, 140), y + WorldGen.genRand.Next(170, 181))[1]); // boss room (5e)
+                
 
-            List<Vector2> small1 = SmallRoom(x + WorldGen.genRand.Next(30, 41), y + WorldGen.genRand.Next(49, 56));
-            endPoints.Add(small1[1]); // right side of first small room (1e)
-            startPoints.Add(small1[0]); // left side of first small room (3s)
+                if (WorldGen.genRand.Next(2) == 0) //2
+                {
+                    List<Vector2> opt1 = SmallRoom(x + WorldGen.genRand.Next(50, 75), y + WorldGen.genRand.Next(130, 140));
+                    startPoints.Add(opt1[1]); // right side of optional room 1
+                    endPoints.Add(med2[0]); // left side of second medium room
+                }
 
-            List<Vector2> small2 = SmallRoom(x + WorldGen.genRand.Next(150, 171), y + WorldGen.genRand.Next(35, 46));
-            endPoints.Add(small2[0]); // left side of second small room (2e)
+                if (WorldGen.genRand.Next(3) == 0) //3
+                {
+                    List<Vector2> opt2 = SmallRoom(x + WorldGen.genRand.Next(170, 175), y + WorldGen.genRand.Next(90, 110));
+                    startPoints.Add(opt2[0]); // left side of optional room 2
+                    endPoints.Add(small2[1]);
+                }
+            }
+            else if (style == 1)
+            {
+                List<Vector2> room1 = MediumRoom(x + WorldGen.genRand.Next(130, 151), y + WorldGen.genRand.Next(10, 16));
+                startPoints.Add(room1[0]);
+                startTunnel = room1[1];
+                startTunnelEnd = new Vector2(x + 228, y + WorldGen.genRand.Next(10, 16));
 
-            List<Vector2> big1 = SmallRoom(x + WorldGen.genRand.Next(35, 51), y + WorldGen.genRand.Next(85, 99));
-            endPoints.Add(big1[0]); // left side of big room (3e)
-            startPoints.Add(big1[1]); // right side of big room (4s)
+                if (WorldGen.genRand.Next(3) == 0)
+                {
+                    List<Vector2> opt1 = SmallRoom(x + WorldGen.genRand.Next(30, 55), y + WorldGen.genRand.Next(20, 31));
+                    startPoints.Add(opt1[1]);
+                    endPoints.Add(room1[0]);
+                }
 
-            List<Vector2> med2 = LargeRoom_old(x + WorldGen.genRand.Next(105, 126), y + WorldGen.genRand.Next(110, 136));
-            endPoints.Add(med2[0]); // left side of second medium room (4e)
-            startPoints.Add(med2[1]); // right side of second medium room (5s)
+                List<Vector2> room2 = LargeRoom(x + WorldGen.genRand.Next(20, 60), y + WorldGen.genRand.Next(50, 67));
+                startPoints.Add(room2[1]);
+                endPoints.Add(room1[0]);
 
+                List<Vector2> room3 = LargerRoom(x + WorldGen.genRand.Next(110, 125), y + WorldGen.genRand.Next(62, 81));
+                startPoints.Add(room3[0]);
+                endPoints.Add(room2[1]);
 
+                if (WorldGen.genRand.Next(2) == 0)
+                {
+                    List<Vector2> opt2 = SmallRoom(x + WorldGen.genRand.Next(10, 15), y + WorldGen.genRand.Next(56, 64));
+                    startPoints.Add(opt2[1]);
+                    endPoints.Add(room2[0]);
+                }
 
-            endPoints.Add(LargeRoom(x + WorldGen.genRand.Next(110, 140), y + WorldGen.genRand.Next(170, 181))[1]); // boss room (5e)
+                if (WorldGen.genRand.Next(4) == 0)
+                {
+                    List<Vector2> opt3 = SmallRoom(x + WorldGen.genRand.Next(150, 160), y + WorldGen.genRand.Next(52, 65));
+                    startPoints.Add(opt3[0]);
+                    endPoints.Add(room2[1]);
+                }
+
+                List<Vector2> room4 = LargeRoom(x + WorldGen.genRand.Next(105, 125), y + WorldGen.genRand.Next(100, 130));
+                startPoints.Add(room4[1]);
+                endPoints.Add(room3[0]);
+
+                startPoints.Add(room3[1]);
+                endPoints.Add(new Vector2(x + WorldGen.genRand.Next(165, 175), y + 173));
+
+            }
             for (int q = x + 40; q < x + 180; q++)
             {
                 for (int z = y + 170; z < y + 220; z++)
@@ -824,26 +886,11 @@ namespace ExxoAvalonOrigins.World.Structures
                     Main.tile[q, z].active(false);
                 }
             }
-
-            if (WorldGen.genRand.Next(1) == 0) //2
-            {
-                List<Vector2> opt1 = SmallRoom(x + WorldGen.genRand.Next(50, 75), y + WorldGen.genRand.Next(130, 140));
-                startPoints.Add(opt1[1]); // right side of optional room 1
-                endPoints.Add(med2[0]); // left side of second medium room
-            }
-
-            if (WorldGen.genRand.Next(1) == 0) //3
-            {
-                List<Vector2> opt2 = SmallRoom(x + WorldGen.genRand.Next(170, 175), y + WorldGen.genRand.Next(90, 110));
-                startPoints.Add(opt2[0]); // left side of optional room 2
-                endPoints.Add(small2[1]);
-            }
-
             for (int i = 0; i < startPoints.Count; i++)
             {
                 BoreTunnel((int)startPoints[i].X, (int)startPoints[i].Y, (int)endPoints[i].X, (int)endPoints[i].Y, 4, 65535);
             }
-            BoreTunnel((int)startTunnel.X, (int)startTunnel.Y, (int)startTunnelEnd.X, (int)startTunnelEnd.Y, 2, 65535);
+            BoreTunnel((int)startTunnel.X, (int)startTunnel.Y, (int)startTunnelEnd.X, (int)startTunnelEnd.Y, 1, 65535);
         }
     }
 }
