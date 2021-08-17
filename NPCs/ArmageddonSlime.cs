@@ -286,5 +286,10 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
         }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
+        }
     }
 }

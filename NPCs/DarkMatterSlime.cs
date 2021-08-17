@@ -39,11 +39,25 @@ namespace ExxoAvalonOrigins.NPCs
 
 		public override void NPCLoot()
 		{
+            bool canDrop = true;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC scannedNPC = Main.npc[i];
+                if (scannedNPC.type == ModContent.NPCType<NPCs.ArmageddonSlime>())
+                {
+                    if (Vector2.Distance(npc.Center, scannedNPC.Center) < 5000)
+                    {
+                        canDrop = false;
+                        npc.value = 0;
+                    }
+                }
+            }
+
 			if (Main.rand.Next(75) == 0)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SixHundredWattLightbulb>(), 1, false, -2, false);
 			}
-			if (npc.type == ModContent.NPCType<NPCs.DarkMatterSlime>())
+			if (npc.type == ModContent.NPCType<NPCs.DarkMatterSlime>() && canDrop)
 			{
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterGel>(), Main.rand.Next(2) + 2, false, 0, false);
 			}

@@ -241,6 +241,7 @@ namespace ExxoAvalonOrigins
         public bool reckoning;
         public int reckoningLevel;
         public int reckoningTimeLeft;
+        public bool curseOfIcarus;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -292,6 +293,7 @@ namespace ExxoAvalonOrigins
             frozen = false;
             liaB = false;
             reckoning = false;
+            curseOfIcarus = false;
 
             if (screenShake > 0)
             {
@@ -1444,6 +1446,12 @@ namespace ExxoAvalonOrigins
 
 		        tpCD++;
 	        }
+
+            if (curseOfIcarus)
+            {
+                player.wingTime = 0;
+                player.wingTimeMax = 0;
+            }
         }
 
 		public static void stayInBounds(Vector2 pos)
@@ -1773,8 +1781,17 @@ namespace ExxoAvalonOrigins
 				}
 			}
 	    }
+        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+        {
+            if (junk)
+                return;
 
-	    public void UpdateStaminaRegen()
+            #region Contagion Fish
+            if (zoneBooger && Main.rand.NextBool(10))
+                caughtType = ModContent.ItemType<Items.Fish.NauSeaFish>();
+            #endregion
+        }
+        public void UpdateStaminaRegen()
 	    {
 		    if (stamRegenDelay > 0)
 		    {
