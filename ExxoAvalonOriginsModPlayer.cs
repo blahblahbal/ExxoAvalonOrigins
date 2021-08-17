@@ -1158,12 +1158,15 @@ namespace ExxoAvalonOrigins
                             {
                                 case 7:
                                     texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
+                                    num31 *= 1.5f;
                                     break;
                                 case 8:
                                     texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
+                                    num31 *= 1.5f;
                                     break;
                                 case 9:
                                     texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
+                                    num31 *= 1.5f;
                                     break;
                             }
                         }
