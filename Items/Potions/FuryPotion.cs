@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fury Potion");
-            Tooltip.SetDefault("Increases critical strike damage by 30%");
+            Tooltip.SetDefault("Increases critical strike damage by 20%");
         }
 
         public override void SetDefaults()
@@ -28,6 +28,17 @@ namespace ExxoAvalonOrigins.Items.Potions
             item.useAnimation = 15;
             item.height = dims.Height;
             item.buffTime = 14400;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Ickfish>());
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ModContent.ItemType<FuryPotion>());
+            recipe.AddRecipe();
         }
     }
 }

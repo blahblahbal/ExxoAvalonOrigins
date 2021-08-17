@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.World.Structures
 {
     public class TuhrtlOutpost
     {
-
+        // 20 tall, 43 wide
         /// <summary>
         /// Tiny room for Tuhrtl Outpost.
         /// </summary>
@@ -90,6 +90,7 @@ namespace ExxoAvalonOrigins.World.Structures
         }
 
         // Large room
+        // 27 tall, 60 wide
         public static List<Vector2> LargeRoom(int x, int y)
         {
             int[,] _structure = {
@@ -168,6 +169,7 @@ namespace ExxoAvalonOrigins.World.Structures
         }
 
         // Medium room
+        // 26 tall, 70 wide
         public static List<Vector2> MediumRoom(int x, int y)
         {
             int[,] _structure = {
@@ -336,6 +338,7 @@ namespace ExxoAvalonOrigins.World.Structures
             return list;
         }
 
+        // 43 tall, 78 wide
         public static List<Vector2> LargerRoom(int x, int y)
         {
             int[,] _structure = {
@@ -842,7 +845,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 startTunnel = room1[1]; // right side of first room (starting)
                 startTunnelEnd = new Vector2(x + 228, y + WorldGen.genRand.Next(10, 16)); //
 
-                if (WorldGen.genRand.Next(3) == 0)
+                if (WorldGen.genRand.Next(1) == 0) // 3
                 {
                     List<Vector2> opt1 = SmallRoom(x + WorldGen.genRand.Next(30, 55), y + WorldGen.genRand.Next(20, 31));
                     startPoints.Add(opt1[1]);
@@ -857,21 +860,21 @@ namespace ExxoAvalonOrigins.World.Structures
                 startPoints.Add(room3[0]);
                 endPoints.Add(room2[1]);
 
-                if (WorldGen.genRand.Next(2) == 0)
+                if (WorldGen.genRand.Next(1) == 0) // 2
                 {
                     List<Vector2> opt2 = SmallRoom(x + WorldGen.genRand.Next(10, 15), y + WorldGen.genRand.Next(56, 64));
                     startPoints.Add(opt2[1]);
                     endPoints.Add(room2[0]);
                 }
 
-                if (WorldGen.genRand.Next(4) == 0)
+                if (WorldGen.genRand.Next(1) == 0) // 4
                 {
                     List<Vector2> opt3 = SmallRoom(x + WorldGen.genRand.Next(150, 160), y + WorldGen.genRand.Next(52, 65));
                     startPoints.Add(opt3[0]);
                     endPoints.Add(room2[1]);
                 }
 
-                List<Vector2> room4 = LargeRoom(x + WorldGen.genRand.Next(105, 125), y + WorldGen.genRand.Next(100, 130));
+                List<Vector2> room4 = LargeRoom(x + WorldGen.genRand.Next(35, 40), y + WorldGen.genRand.Next(100, 130));
                 startPoints.Add(room4[1]);
                 endPoints.Add(room3[0]);
 
