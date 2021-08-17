@@ -10,7 +10,7 @@ using ExxoAvalonOrigins.World.Passes;
 
 namespace ExxoAvalonOrigins.World.Structures
 {
-    class TuhrtlOutpost
+    public class TuhrtlOutpost
     {
 
         /// <summary>

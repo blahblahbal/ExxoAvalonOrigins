@@ -953,29 +953,16 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 //{
                 //    if (contaigon) WorldGen.crimson = true;
                 //}));
-                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Tuhrtl Outpost", delegate (GenerationProgress progress)
-                {
-                    if (jungleMenuSelection == JungleVariant.tropics)
-                    {
-                        World.Structures.TuhrtlOutpost.CreateTuhrtlOutpost(Main.maxTilesX / 2, 300);
-                    }
-                }));
-                //tasks.Insert(microBiomes + 3, new PassLegacy("Generating Tropics", delegate (GenerationProgress progress)                //{                //    if (jungleMenuSelection == JungleVariant.tropics)
+                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 2, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                if (jungleMenuSelection == JungleVariant.tropics)
+                    tasks.Insert(microBiomes + 3, new PassLegacy("Tuhrtl Outpost", World.Passes.TuhrtlOutpost.Method));
+                //tasks.Insert(microBiomes + 2, new PassLegacy("Tuhrtl Outpost", delegate (GenerationProgress progress)
+                //{
+                //    if (jungleMenuSelection == JungleVariant.tropics)
                 //    {
-                //        for (int num272 = 0; num272 < Main.maxTilesX; num272++)
-                //        {
-                //            for (int num273 = 0; num273 < Main.worldSurface - 150; num273++)
-                //            {
-                //                if (Main.tile[num272, num273] != null)
-                //                {
-                //                    if (Main.tile[num272, num273].wall == 2 || Main.tile[num272, num273].wall == 59)
-                //                    {
-                //                        Main.tile[num272, num273].wall = 0;
-                //                    }
-                //                }
-                //            }
-                //        }
-                //    }                //}));            }        }        public void SpreadXanthophyte(int x, int y)
+                //        World.Structures.TuhrtlOutpost.CreateTuhrtlOutpost(Main.maxTilesX / 2, 300);
+                //    }
+                //}));
+            }        }        public void SpreadXanthophyte(int x, int y)
         {
             if (Main.tile[x, y].inActive())
                 return;
