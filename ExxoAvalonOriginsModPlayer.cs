@@ -884,8 +884,7 @@ namespace ExxoAvalonOrigins
                     Rectangle value = new Rectangle((int)(Main.npc[arma].position.X + (float)(Main.npc[arma].width / 2)) - radius, (int)(Main.npc[arma].position.Y + (float)(Main.npc[arma].height / 2)) - radius, radius * 2, radius * 2);
                     if (rectangle.Intersects(value))
                     {
-                        player.wingTime = 0;
-                        player.wingsLogic = 0;
+                        player.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
                     }
                 }
             }
@@ -1159,12 +1158,15 @@ namespace ExxoAvalonOrigins
                             {
                                 case 7:
                                     texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
+                                    num31 *= 1.5f;
                                     break;
                                 case 8:
                                     texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
+                                    num31 *= 1.5f;
                                     break;
                                 case 9:
                                     texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
+                                    num31 *= 1.5f;
                                     break;
                             }
                         }
