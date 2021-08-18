@@ -66,6 +66,9 @@ namespace ExxoAvalonOrigins.World.Structures
                                         if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
                                         if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
                                         if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.NestWall>();
+                                        tile.liquid = 0;
+                                        tile.lava(false);
+                                        tile.honey(true);
                                     }
                                     break;
                             }
@@ -78,6 +81,29 @@ namespace ExxoAvalonOrigins.World.Structures
 
         public static void CreateWaspNest(int x, int y)
         {
+            //int num = 150;
+            //for (int i = x - num; i < x + num; i += 10)
+            //{
+            //    if (i <= 0 || i > Main.maxTilesX - 1)
+            //    {
+            //        continue;
+            //    }
+            //    for (int j = y - num; j < y + num; j += 10)
+            //    {
+            //        if (j > 0 && j <= Main.maxTilesY - 1)
+            //        {
+            //            if (Main.tile[i, j].active() && Main.tile[i, j].type == (ushort)ModContent.TileType<Tiles.TuhrtlBrick>())
+            //            {
+            //                return;
+            //            }
+            //            if (Main.tile[i, j].wall == (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() || Main.tile[i, j].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>() || Main.tile[i, j].wall == 3 || Main.tile[i, j].wall == 83)
+            //            {
+            //                return;
+            //            }
+            //        }
+            //    }
+            //}
+
             MakeCell(x, y);
 
             int rightSide = WorldGen.genRand.Next(2);
