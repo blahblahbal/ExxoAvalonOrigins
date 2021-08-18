@@ -404,7 +404,7 @@ namespace ExxoAvalonOrigins
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
-            
+
             StingerProbeMinion.activeIds.Clear();
         }
 
@@ -738,36 +738,42 @@ namespace ExxoAvalonOrigins
         }
         public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
         {
-            if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
-            if (blahArmor) drawInfo.shadow = 0f;
-            //if (mermanLava)
-            //{
-            //    Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
-            //    Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
-            //    Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
-            //    Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
-            //    Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
-            //}
-            //else
-            //{
-            //    Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
-            //    Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
-            //    Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
-            //    Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
-            //    Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
-            //}
-            if (frozen)
+            if (HasItemInArmor(ModContent.ItemType<ShadowRing>()))
             {
-                if (drawInfo.bodyColor == baseSkinTone)
-                    drawInfo.bodyColor = new Color(0f, baseSkinTone.G * 0.639f, default, default);
+                drawInfo.shadow = 0f;
+            }
+            if (blahArmor)
+            {
+                drawInfo.shadow = 0f;
+            }
+            if (mermanLava)
+            {
+                Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
+                Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
+                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
+                Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
+                Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
             }
             else
             {
-                if (drawInfo.bodyColor != baseSkinTone)
-                    drawInfo.bodyColor = baseSkinTone;
-                else
-                    baseSkinTone = drawInfo.bodyColor;
+                Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
+                Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
+                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
+                Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
+                Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
             }
+            //if (frozen)
+            //{
+            //    if (drawInfo.bodyColor == baseSkinTone)
+            //        drawInfo.bodyColor = new Color(0f, baseSkinTone.G * 0.639f, default, default);
+            //}
+            //else
+            //{
+            //    if (drawInfo.bodyColor != baseSkinTone && baseSkinTone != new Color())
+            //        drawInfo.bodyColor = baseSkinTone;
+            //    else
+            //        baseSkinTone = drawInfo.bodyColor;
+            //}
         }
 
         public override void UpdateLifeRegen()

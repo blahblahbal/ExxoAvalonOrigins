@@ -12,7 +12,12 @@ namespace ExxoAvalonOrigins.Hooks
 {
     public class WorldCreationMenus
     {        
-        public static bool finishedMenus = false;
+        private static bool finishedMenus;
+        private static bool runBeforeMenus;
+        private static bool skipMenus;
+        private static int count;
+        private static bool isFirst;
+        private static readonly bool replacingEvilMenu = true;
         public static void ILDrawMenu(ILContext il)
         {
             var c = new ILCursor(il);
@@ -26,14 +31,31 @@ namespace ExxoAvalonOrigins.Hooks
                 return;
             c.Index++;
 
+            // Reset variables and go to menumode that we've centred our logic around
+            c.EmitDelegate<Action>(() => {
+                finishedMenus = false;
+                runBeforeMenus = true;
+                isFirst = false;
+                count = 0;
+                skipMenus = false;
+                if (replacingEvilMenu)
+                {
+                    Main.menuMode = 7;
+                }
+            });
+
             ILLabel nextMenu = c.DefineLabel();
 
-            if (c.Next.Offset != 0)
+            // Skip all vanilla evil menu logic
+            if (replacingEvilMenu)
             {
-                c.EmitDelegate<Action>(() => {
-                    Main.menuMode = 7;
-                });
-                c.Emit(OpCodes.Br, nextMenu);
+                if (!(c.Instrs[c.Index].MatchLdcI4(out _) &&
+                    c.Instrs[c.Index + 1].MatchCall(out _) &&
+                    c.Instrs[c.Index + 2].MatchCallvirt(out _) &&
+                    c.Instrs[c.Index + 3].MatchBr(out _)))
+                {
+                    c.Emit(OpCodes.Br, nextMenu);
+                }
             }
 
             if (!c.TryGotoNext(i => i.MatchCall(typeof(Main).GetMethod(nameof(Main.clrInput)))))
@@ -44,28 +66,75 @@ namespace ExxoAvalonOrigins.Hooks
                 return;
             if (!c.TryGotoNext(i => i.MatchBneUn(out _)))
                 return;
+
             if (!c.TryGotoNext(i => i.MatchLdsfld(out _)))
                 return;
 
+            ILLabel skipMenu = c.DefineLabel();
+
+            // Check for another delegate and unique nop placed before to signify another mods ui to work around
+            if (c.Instrs[c.Index-2].MatchCallvirt(out _) && c.Instrs[c.Index-3].MatchCall(out _) && c.Instrs[c.Index-4].MatchLdcI4(out _) && c.Instrs[c.Index-5].MatchNop())
+            {
+                if (!c.TryGotoPrev(i => i.MatchLdcI4(out _)))
+                    return;
+                // Allows control over if the previous menu should be skipped or not
+                c.EmitDelegate<Func<bool>>(() =>
+                {
+                    return runBeforeMenus;
+                });
+                c.Emit(OpCodes.Brfalse, skipMenu);
+
+                if (!c.TryGotoNext(i => i.MatchLdsfld(out _)))
+                    return;
+            }
+
+            // Main menu logic
+            c.MarkLabel(skipMenu);
+            c.Emit(OpCodes.Nop);
             c.EmitDelegate<Func<bool>>(() => {
+                runBeforeMenus = false;
+                // Determines if this is the first menu element by if it hasn't been skipped by any other ui before running
+                if (count == 0)
+                {
+                    isFirst = true;
+                }
+
+                // Used to move logic to the next menu ui so that it can lock this method out of operation
+                if (skipMenus)
+                {
+                    skipMenus = false;
+                    return true;
+                }
+
                 if (!finishedMenus)
                 {
+                    // First menu to run
                     EvilMenu();
                     return false;
                 }
                 else
                 {
+                    // Last menu if mod menu ahead decides go back from their position ahead and call this method
                     finishedMenus = false;
-                    return true;
+                    OsmiumMenu();
+                    return false;
                 }
             });
+
             ILLabel skip = c.DefineLabel();
+            // Skip to end of sequence if returning false 
             c.Emit(OpCodes.Brfalse, skip);
             if (!c.TryGotoNext(i => i.MatchLdcI4(888)))
                 return;
             c.MarkLabel(skip);
+            c.Index++;
+            // Incrementing count every time a ui menu has been called
+            c.EmitDelegate<Action>(() =>
+            {
+                count++;
+            });
         }
-        public static void EvilMenu()
+        private static void EvilMenu()
         {
             UIList optionsList = new UIList();
             optionsList.Add(new UI.ListItem(Language.GetTextValue("LegacyMisc.101"), TextureManager.Load("Images/UI/IconCorruption"), delegate {
@@ -85,10 +154,18 @@ namespace ExxoAvalonOrigins.Hooks
                 TropicsMenu();
             }));
             Main.MenuUI.SetState(new UI.GenericSelectionMenu(Language.GetTextValue("LegacyMisc.100"), optionsList, delegate {
-                Main.menuMode = -7;
+                if (isFirst)
+                {
+                    Main.menuMode = -7;
+                }
+                else
+                {
+                    runBeforeMenus = true;
+                    Main.menuMode = 7;
+                }
             }));
         }
-        public static void TropicsMenu()
+        private static void TropicsMenu()
         {
             UIList optionsList = new UIList();
             optionsList.Add(new UI.ListItem("Jungle", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconJungle"), delegate {
@@ -103,11 +180,11 @@ namespace ExxoAvalonOrigins.Hooks
                 ExxoAvalonOriginsWorld.jungleMenuSelection = ExxoAvalonOriginsWorld.JungleVariant.random;
                 OsmiumMenu();
             }));
-            Main.MenuUI.SetState(new UI.GenericSelectionMenu("Choose World Wilderness", optionsList, delegate {
+            Main.MenuUI.SetState(new UI.GenericSelectionMenu("Pick World Wilderness", optionsList, delegate {
                 EvilMenu();
             }));
         }
-        public static void OsmiumMenu()
+        private static void OsmiumMenu()
         {
             UIList optionsList = new UIList();
             optionsList.Add(new UI.ListItem("Rhodium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRhodium"), delegate {
@@ -122,18 +199,19 @@ namespace ExxoAvalonOrigins.Hooks
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.iridium;
                 FinishedMenu();
             }));
-            optionsList.Add(new UI.ListItem("Random", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Random", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconOreRandom"), delegate {
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.random;
                 FinishedMenu();
             }));
-            Main.MenuUI.SetState(new UI.GenericSelectionMenu("Choose World Shinies", optionsList, delegate {
+            Main.MenuUI.SetState(new UI.GenericSelectionMenu("Pick World Shinies", optionsList, delegate {
                 TropicsMenu();
             }));
         }
-        public static void FinishedMenu()
+        private static void FinishedMenu()
         {
-            Main.menuMode = 7;
+            skipMenus = true;
             finishedMenus = true;
+            Main.menuMode = 7;
         }
     }
 }

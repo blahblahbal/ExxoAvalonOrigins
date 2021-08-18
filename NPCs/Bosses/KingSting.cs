@@ -63,6 +63,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 			npc.defense = 15;
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
+            npc.timeLeft = 1000;
 			npc.boss = true;
 			npc.lifeMax = 3400;
 			npc.scale = 1;
