@@ -404,7 +404,7 @@ namespace ExxoAvalonOrigins
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
-            
+
             StingerProbeMinion.activeIds.Clear();
         }
 
@@ -738,8 +738,10 @@ namespace ExxoAvalonOrigins
         }
         public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
         {
-            if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
-            if (blahArmor) drawInfo.shadow = 0f;
+            if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) 
+                drawInfo.shadow = 0f;
+            if (blahArmor) 
+                drawInfo.shadow = 0f;
             //if (mermanLava)
             //{
             //    Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
@@ -763,7 +765,7 @@ namespace ExxoAvalonOrigins
             }
             else
             {
-                if (drawInfo.bodyColor != baseSkinTone)
+                if (drawInfo.bodyColor != baseSkinTone && baseSkinTone != new Color())
                     drawInfo.bodyColor = baseSkinTone;
                 else
                     baseSkinTone = drawInfo.bodyColor;

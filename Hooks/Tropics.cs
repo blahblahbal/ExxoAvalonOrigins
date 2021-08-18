@@ -96,7 +96,7 @@ namespace ExxoAvalonOrigins.Hooks
         {
             if (ExxoAvalonOriginsWorld.jungleMenuSelection == ExxoAvalonOriginsWorld.JungleVariant.tropics)
             {
-                if (dirt == TileID.Mud)
+                if (dirt == TileID.Mud && grass != TileID.MushroomGrass)
                 {
                     dirt = ModContent.TileType<Tiles.TropicalMud>();
                 }
