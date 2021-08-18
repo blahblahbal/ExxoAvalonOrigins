@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.World.Structures
             int PosY = y;
 
             //i = vertical, j = horizontal
-            for (int confirmPlatforms = 0; confirmPlatforms < 2; confirmPlatforms++)    //Increase the iterations on this outermost for loop if tabletop-objects are not properly spawning
+            for (int confirmPlatforms = 0; confirmPlatforms < 1; confirmPlatforms++)    //Increase the iterations on this outermost for loop if tabletop-objects are not properly spawning
             {
                 for (int i = 0; i < _structure.GetLength(0); i++)
                 {
@@ -78,10 +78,40 @@ namespace ExxoAvalonOrigins.World.Structures
         public static void CreateWaspNest(int x, int y)
         {
             MakeCell(x, y);
-            int radius = 15;
-            int xoff1 = (int)(x + radius * (float)Math.Cos(2 * 120 * Math.PI / 180f));
-            int yoff1 = (int)(y + radius * (float)Math.Sin(2 * 120 * Math.PI / 180f));
+
+            int rightSide = WorldGen.genRand.Next(3);
+            int leftSide = WorldGen.genRand.Next(3);
+
+            //int radius = 15;
+
+            if (rightSide == 0)
+            {
+                Vector2 rSideM = MakeCell(x + 18, y);
+
+                int xOffR = (int)(rSideM.X + 19 * (float)Math.Cos(2 * 60 * Math.PI / 180f));
+                int yOffR = (int)(rSideM.Y + 19 * (float)Math.Sin(2 * 60 * Math.PI / 180f));
+
+                MakeCell(xOffR, yOffR);
+            }
+
+            if (leftSide == 0)
+            {
+                Vector2 lSideM = MakeCell(x - 18, y);
+                int xOffL = (int)(lSideM.X + 19 * (float)Math.Cos(1 * 60 * Math.PI / 180f));
+                int yOffL = (int)(lSideM.Y + 19 * (float)Math.Sin(1 * 60 * Math.PI / 180f));
+
+                MakeCell(xOffL, yOffL);
+            }
+            
+            
+            
+            int xoff1 = (int)(x + 16 * (float)Math.Cos(1 * 60 * Math.PI / 180f));
+            int yoff1 = (int)(y + 16 * (float)Math.Sin(1 * 60 * Math.PI / 180f));
             MakeCell(xoff1, yoff1);
+
+            int xoff2 = (int)(x + 15 * (float)Math.Cos(2 * 60 * Math.PI / 180f));
+            int yoff2 = (int)(y + 15 * (float)Math.Sin(2 * 60 * Math.PI / 180f));
+            MakeCell(xoff2, yoff2);
         }
     }
 }
