@@ -31,5 +31,6 @@
                 case 19:                    toDrop = ModContent.ItemType<Items.NickelBar>();                    break;
                 case 20:                    toDrop = ModContent.ItemType<Items.ZincBar>();                    break;
                 case 21:                    toDrop = ModContent.ItemType<Items.BismuthBar>();                    break;
-                case 22:                    toDrop = ModContent.ItemType<Items.IridiumBar>();                    break;            }            Item.NewItem(i * 16, j * 16, 16, 16, toDrop);
+                case 22:                    toDrop = ModContent.ItemType<Items.IridiumBar>();                    break;
+                case 23:                    toDrop = ModContent.ItemType<Items.Placeable.XanthophyteBar>();                    break;            }            Item.NewItem(i * 16, j * 16, 16, 16, toDrop);
         }    }}

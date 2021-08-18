@@ -844,7 +844,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 var hives = tasks.FindIndex(genpass => genpass.Name == "Hives");
                 if (hives != -1)
                 {
-                    tasks.RemoveAt(hives);
+                    tasks[hives] = new PassLegacy("Wasp Nests", World.Passes.WaspNest.Method);
+                    //tasks.RemoveAt(hives);
                 }
 
                 var jchests = tasks.FindIndex(genpass => genpass.Name == "Jungle Chests");
@@ -900,7 +901,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 1, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));
 
                 //tasks.Insert(microBiomes + 1, new PassLegacy("Nest Test", World.Passes.TuhrtlOutpost.Method));
-                tasks.Insert(microBiomes + 1, new PassLegacy("Nest", World.Passes.WaspNest.Method));
+                //tasks.Insert(microBiomes + 1, new PassLegacy("Nest", World.Passes.WaspNest.Method));
             }        }        public void SpreadXanthophyte(int x, int y)
         {
             if (Main.tile[x, y].inActive())
