@@ -206,6 +206,9 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             {
                 if (!NPC.downedMechBossAny)
                 {
+                    if ((npc.type == NPCID.Spazmatism && NPC.AnyNPCs(NPCID.Retinazer)) || (npc.type == NPCID.Retinazer && NPC.AnyNPCs(NPCID.Spazmatism)))
+                        return base.PreNPCLoot(npc);
+
                     int amount = 0;
                     double num5 = Main.rockLayer;
                     int xloc = -100 + Main.maxTilesX - 100;

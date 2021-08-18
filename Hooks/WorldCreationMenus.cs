@@ -199,7 +199,7 @@ namespace ExxoAvalonOrigins.Hooks
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.iridium;
                 FinishedMenu();
             }));
-            optionsList.Add(new UI.ListItem("Random", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Random", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconOreRandom"), delegate {
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.random;
                 FinishedMenu();
             }));
