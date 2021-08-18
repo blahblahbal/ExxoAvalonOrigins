@@ -258,6 +258,10 @@ namespace ExxoAvalonOrigins
         public Vector2[] endpoint = new Vector2[4];
         #endregion
 
+        #region Draggon's Bondage AI vars
+        public bool dragonsBondage;
+        #endregion
+
         public int herbX;
         public int herbY;
         public int herbTier;
@@ -289,6 +293,7 @@ namespace ExxoAvalonOrigins
             darkInferno = false;
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
+            dragonsBondage = false;
             necroticAura = false;
             frozen = false;
             liaB = false;
@@ -1498,6 +1503,28 @@ namespace ExxoAvalonOrigins
             if (bloodCast)
             {
                 player.statManaMax2 += player.statLifeMax2;
+            }
+            if (dragonsBondage)
+            {
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DragonBall>()] == 0)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int newBall = Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.DragonBall>(), (player.HeldItem.damage / 2) * 3, 1f, player.whoAmI);
+                        Main.projectile[newBall].localAI[0] = i;
+                    }
+                }
+            }
+            else
+            {
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DragonBall>()] != 0)
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].type == ModContent.ProjectileType<Projectiles.DragonBall>() && Main.projectile[i].owner == player.whoAmI)
+                            Main.projectile[i].Kill();
+                    }
+                }
             }
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }

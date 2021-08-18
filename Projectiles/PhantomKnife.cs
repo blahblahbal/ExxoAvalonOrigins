@@ -56,7 +56,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				num9 = 4f / num9;
 				num7 *= num9;
 				num8 *= num9;
-				Projectile.NewProjectile(Position, new Vector2(num7, num8), ProjectileID.SpectreWrath, num, 0f, projectile.owner, num2);
+				Projectile.NewProjectile(Position, new Vector2(num7, num8), ModContent.ProjectileType<Projectiles.SpectreSplit>(), num, 0f, projectile.owner, num2);
 			}
 		}
 	}}
