@@ -621,7 +621,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
-                        SpreadXanthophyte(num5, num6);
+                        if (Main.hardMode) SpreadXanthophyte(num5, num6);
                         if (ExxoAvalonOrigins.superHardmode && totalDark2 < 250000)
                         {
                             //DarkMatterSpread(num5, num6);
