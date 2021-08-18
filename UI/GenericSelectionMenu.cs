@@ -61,11 +61,17 @@ namespace ExxoAvalonOrigins.UI
 			uITextPanel2.Top.Set(-45f, 0f);
 			uITextPanel2.OnMouseOver += FadedMouseOver;
 			uITextPanel2.OnMouseOut += FadedMouseOut;
+			uITextPanel2.OnClick += BackAction;
 			uITextPanel2.OnClick += cancelAction;
 			uIElement.Append(uITextPanel2);
 			backPanel = uITextPanel2;
 
 			base.Append(uIElement);
+		}
+
+		private void BackAction(UIMouseEvent evt, UIElement listeningElement)
+		{
+			Main.PlaySound(SoundID.MenuClose);
 		}
 
 		private void FadedMouseOver(UIMouseEvent evt, UIElement listeningElement)

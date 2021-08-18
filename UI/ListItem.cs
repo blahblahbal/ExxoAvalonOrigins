@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
+using Terraria.ID;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
@@ -22,6 +23,7 @@ namespace ExxoAvalonOrigins.UI
 			itemName = name;
 			LoadTextures();
 
+			base.OnClick += ClickAction;
 			base.OnClick += submitEvent;
 
 			worldIcon = new UIImage(tex);
@@ -46,9 +48,15 @@ namespace ExxoAvalonOrigins.UI
 			textColor = Color.White * 0.9f;
 		}
 
+		private void ClickAction(UIMouseEvent evt, UIElement listeningElement)
+		{
+			Main.PlaySound(SoundID.MenuOpen);
+		}
+
 		public override void MouseOver(UIMouseEvent evt)
 		{
 			base.MouseOver(evt);
+			Main.PlaySound(SoundID.MenuTick);
 			BackgroundColor = new Color(73, 94, 171);
 			BorderColor = new Color(89, 116, 213);
 			textColor = new Color(255, 215, 0);
