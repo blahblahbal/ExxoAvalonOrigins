@@ -72,9 +72,9 @@ namespace ExxoAvalonOrigins.Hooks
 			var path = Path.ChangeExtension(data.Path, ".twld");
 
 			ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();
-			Dictionary<string, bool> newDict = config.GetWorldContagionStatus();
+			Dictionary<string, ExxoAvalonOriginsConfig.WorldDataValues> tempDict = config.GetWorldData();
 
-			if (!config.GetWorldContagionStatus().ContainsKey(path))
+			if (!tempDict.ContainsKey(path))
 			{
 				if (!FileUtilities.Exists(path, data.IsCloudSave))
 				{
@@ -90,6 +90,7 @@ namespace ExxoAvalonOrigins.Hooks
 
 				var stream = new MemoryStream(buf);
 				var tag = TagIO.FromStream(stream);
+				bool containsMod = false;
 
 				if (tag.ContainsKey("modData"))
 				{
@@ -98,29 +99,39 @@ namespace ExxoAvalonOrigins.Hooks
 						if (modDataTag.Get<string>("mod") == ExxoAvalonOrigins.mod.Name)
 						{
 							TagCompound dataTag = modDataTag.Get<TagCompound>("data");
-							newDict[path] = dataTag.Get<bool>("ExxoAvalonOrigins:Contagion");
+							ExxoAvalonOriginsConfig.WorldDataValues worldData;
+
+							worldData.contagion = dataTag.Get<bool>("ExxoAvalonOrigins:Contagion");
+							worldData.jungleType = dataTag.Get<int>("ExxoAvalonOrigins:JungleType");
+							tempDict[path] = worldData;
+
+							containsMod = true;
+
 							break;
 						}
 					}
-					if (!config.GetWorldContagionStatus().ContainsKey(path))
-					{
-						newDict[path] = false;
+					
+					if (!containsMod)
+                    {
+						ExxoAvalonOriginsConfig.WorldDataValues worldData;
+
+						worldData.contagion = false;
+						worldData.jungleType = (int)ExxoAvalonOriginsWorld.JungleVariant.jungle;
+						tempDict[path] = worldData;
 					}
-					config.SetWorldContagionStatus(newDict);
+
+					config.SetWorldData(tempDict);
 					ExxoAvalonOriginsConfig.Save(config);
 				}
 			}
 
-			if (config.GetWorldContagionStatus().ContainsKey(path) && config.GetWorldContagionStatus()[path])
+			if (tempDict.ContainsKey(path))
 			{
-				if (data.IsHardMode)
-				{
-					return ExxoAvalonOrigins.mod.GetTexture("Sprites/IconHallowContagion");
-				}
-				else
-				{
-					return ExxoAvalonOrigins.mod.GetTexture("Sprites/IconContagion");
-				}
+				string iconPath = "Sprites/Icon";
+				iconPath += data.IsHardMode ? "Hallow" : "";
+				iconPath += tempDict[path].contagion ? "Contagion" : (data.HasCrimson ? "Crimson" : "Corruption");
+				iconPath += (ExxoAvalonOriginsWorld.JungleVariant)tempDict[path].jungleType == ExxoAvalonOriginsWorld.JungleVariant.tropics ? "Tropics" : "Jungle";
+				return ExxoAvalonOrigins.mod.GetTexture(iconPath);
 			}
 			else
 			{
@@ -131,12 +142,13 @@ namespace ExxoAvalonOrigins.Hooks
 		public static void OnEraseWorld(On.Terraria.Main.orig_EraseWorld orig, int i)
         {
 			ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();
-			Dictionary<string, bool> newDict = config.GetWorldContagionStatus();
+			Dictionary<string, ExxoAvalonOriginsConfig.WorldDataValues> tempDict = config.GetWorldData();
 			var path = Path.ChangeExtension(Main.WorldList[i].Path, ".twld");
-			if (newDict.ContainsKey(path))
+
+			if (tempDict.ContainsKey(path))
             {
-				newDict.Remove(path);
-				config.SetWorldContagionStatus(newDict);
+				tempDict.Remove(path);
+				config.SetWorldData(tempDict);
 				ExxoAvalonOriginsConfig.Save(config);
 			}
 			orig(i);
