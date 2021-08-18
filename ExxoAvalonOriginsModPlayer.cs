@@ -258,6 +258,10 @@ namespace ExxoAvalonOrigins
         public Vector2[] endpoint = new Vector2[4];
         #endregion
 
+        #region Draggon's Bondage AI vars
+        public bool dragonsBondage;
+        #endregion
+
         public int herbX;
         public int herbY;
         public int herbTier;
@@ -289,6 +293,7 @@ namespace ExxoAvalonOrigins
             darkInferno = false;
             melting = false;
             stingerProbeMinion = false; // gotta be here for effect reset
+            dragonsBondage = false;
             necroticAura = false;
             frozen = false;
             liaB = false;
@@ -384,7 +389,7 @@ namespace ExxoAvalonOrigins
         }
         public bool HasItemInArmor(int type)
         {
-            for (var i = 0; i < 20; i++)
+            for (var i = 0; i < player.armor.Length; i++)
             {
                 if (type == player.armor[i].type)
                 {
@@ -735,22 +740,22 @@ namespace ExxoAvalonOrigins
         {
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) drawInfo.shadow = 0f;
             if (blahArmor) drawInfo.shadow = 0f;
-            if (mermanLava)
-            {
-                Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
-                Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
-                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
-                Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
-                Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
-            }
-            else
-            {
-                Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
-                Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
-                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
-                Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
-                Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
-            }
+            //if (mermanLava)
+            //{
+            //    Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
+            //    Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
+            //    Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
+            //    Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
+            //    Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
+            //}
+            //else
+            //{
+            //    Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
+            //    Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
+            //    Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
+            //    Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
+            //    Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
+            //}
             if (frozen)
             {
                 if (drawInfo.bodyColor == baseSkinTone)
@@ -858,10 +863,14 @@ namespace ExxoAvalonOrigins
                                 if (screenShake == 1) Main.PlaySound(2, (int)Main.npc[armaID].position.X, (int)Main.npc[armaID].position.Y, 14);
                             }
                         }
+
+                        if (Vector2.Distance(Main.npc[armaID].Center, player.Center) < 5000)
+                        {
+                            player.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
+                        }
                     }
                 }
             }
-
 
             Vector2 pposTile = player.Center / 16;
             for (int xpos = (int)pposTile.X - 4; xpos <= (int)pposTile.X + 4; xpos++)
@@ -874,20 +883,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
-            {
-                int arma = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
-                if (arma != -1)
-                {
-                    Rectangle rectangle = new Rectangle((int)Main.screenPosition.X + (int)player.position.X, (int)Main.screenPosition.Y + (int)player.position.Y, Main.screenWidth, Main.screenHeight);
-                    int radius = 5000;
-                    Rectangle value = new Rectangle((int)(Main.npc[arma].position.X + (float)(Main.npc[arma].width / 2)) - radius, (int)(Main.npc[arma].position.Y + (float)(Main.npc[arma].height / 2)) - radius, radius * 2, radius * 2);
-                    if (rectangle.Intersects(value))
-                    {
-                        player.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
-                    }
-                }
-            }
+
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
 
@@ -1451,8 +1447,7 @@ namespace ExxoAvalonOrigins
 
             if (curseOfIcarus)
             {
-                player.wingTime = 0;
-                player.wingTimeMax = 0;
+                player.wingsLogic = 0;
             }
         }
 
@@ -1508,6 +1503,28 @@ namespace ExxoAvalonOrigins
             if (bloodCast)
             {
                 player.statManaMax2 += player.statLifeMax2;
+            }
+            if (dragonsBondage)
+            {
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DragonBall>()] == 0)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int newBall = Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.DragonBall>(), (player.HeldItem.damage / 2) * 3, 1f, player.whoAmI);
+                        Main.projectile[newBall].localAI[0] = i;
+                    }
+                }
+            }
+            else
+            {
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DragonBall>()] != 0)
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].type == ModContent.ProjectileType<Projectiles.DragonBall>() && Main.projectile[i].owner == player.whoAmI)
+                            Main.projectile[i].Kill();
+                    }
+                }
             }
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }

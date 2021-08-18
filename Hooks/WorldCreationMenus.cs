@@ -91,11 +91,11 @@ namespace ExxoAvalonOrigins.Hooks
         public static void TropicsMenu()
         {
             UIList optionsList = new UIList();
-            optionsList.Add(new UI.ListItem("Jungle", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Jungle", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconJungle"), delegate {
                 ExxoAvalonOriginsWorld.jungleMenuSelection = ExxoAvalonOriginsWorld.JungleVariant.jungle;
                 OsmiumMenu();
             }));
-            optionsList.Add(new UI.ListItem("Tropics", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Tropics", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconTropics"), delegate {
                 ExxoAvalonOriginsWorld.jungleMenuSelection = ExxoAvalonOriginsWorld.JungleVariant.tropics;
                 OsmiumMenu();
             }));
@@ -110,15 +110,15 @@ namespace ExxoAvalonOrigins.Hooks
         public static void OsmiumMenu()
         {
             UIList optionsList = new UIList();
-            optionsList.Add(new UI.ListItem("Rhodium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Rhodium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRhodium"), delegate {
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.rhodium;
                 FinishedMenu();
             }));
-            optionsList.Add(new UI.ListItem("Osmium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Osmium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconOsmium"), delegate {
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.osmium;
                 FinishedMenu();
             }));
-            optionsList.Add(new UI.ListItem("Iridium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconRandom"), delegate {
+            optionsList.Add(new UI.ListItem("Iridium", ExxoAvalonOrigins.mod.GetTexture("Sprites/IconIridium"), delegate {
                 ExxoAvalonOriginsWorld.osmiumOre = ExxoAvalonOriginsWorld.OsmiumVariant.iridium;
                 FinishedMenu();
             }));
