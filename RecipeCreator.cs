@@ -1,4 +1,10 @@
 using System;using Terraria;using Terraria.ID;using Terraria.ModLoader;using System.Linq;namespace ExxoAvalonOrigins{	public static class RecipeCreator	{		public static void CreateRecipes(Mod mod)		{			var recipe = new ModRecipe(mod);			recipe = new ModRecipe(mod);			recipe.AddIngredient(ItemID.Torch, 33);			recipe.AddIngredient(ModContent.ItemType<Items.Pathogen>());			recipe.SetResult(ModContent.ItemType<Items.PathogenTorch>(), 33);			recipe.AddRecipe();            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Silk, 5);
+            recipe.AddIngredient(ModContent.ItemType<Items.FleshyTendril>(), 5);
+            recipe.AddIngredient(ItemID.SoulofNight, 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ItemID.GuideVoodooDoll);
+            recipe.AddRecipe();            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.HallowedOre>(), 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ItemID.HallowedBar);

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.useStyle = 1;
             item.value = 0;			item.height = dims.Height;		}        public override bool UseItem(Player player)
         {
-            World.Structures.Nest.CreateWaspNest((int)player.position.X / 16, (int)player.position.Y / 16);
+            //World.Structures.Nest.CreateWaspNest((int)player.position.X / 16, (int)player.position.Y / 16);
             return true;
         }
     }}

@@ -851,7 +851,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 var jchests = tasks.FindIndex(genpass => genpass.Name == "Jungle Chests");
                 if (jchests != -1)
                 {
-                    tasks.RemoveAt(jchests);
+                    tasks[jchests] = new PassLegacy("Sanctums", World.Passes.TropicsSanctum.Method);
+                    //tasks.RemoveAt(jchests);
                 }
 
                 var jtemple2 = tasks.FindIndex(genpass => genpass.Name == "Temple");
