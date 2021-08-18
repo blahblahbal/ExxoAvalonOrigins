@@ -18,7 +18,7 @@
             projectile.light = 0.8f;
             projectile.alpha = 0;
             projectile.scale = 1.2f;
-            projectile.timeLeft = 1200;
+            projectile.timeLeft = 300;
             projectile.ranged = true;
             aiType = ProjectileID.DeathLaser;
         }

@@ -19,9 +19,9 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
 		// Movement vars
 		bool dontContinue;
+		bool dontFlip;
 		float acceleration;
 		float maxVel;
-		int movementPhase;
 		int facingType;
 		Vector2 trueDestination;
 		Vector2 destination;
@@ -41,11 +41,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 		{
 			DisplayName.SetDefault("King Sting");
 			Main.npcFrameCount[npc.type] = 3;
+
+			NPCID.Sets.TrailCacheLength[npc.type] = 4;
+			NPCID.Sets.TrailingMode[npc.type] = 3;
 		}
 
 		public override void SetDefaults()
 		{
-			npc.npcSlots = 150;
+			npc.npcSlots = 150f;
 			animationType = NPCID.Hornet;
 			npc.height = 174;
 			npc.width = 88;
@@ -53,8 +56,9 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 			npc.netAlways = true;
 			npc.noGravity = true;
 			npc.noTileCollide = true;
+			npc.timeLeft = 1000;
 			npc.value = 50000;
-			npc.aiStyle = 5;
+			npc.aiStyle = -1;
 			npc.damage = 40;
 			npc.defense = 15;
 			npc.HitSound = SoundID.NPCHit1;
@@ -70,7 +74,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
 			// Movement vars
 			dontContinue = false;
-			movementPhase = 0;
+			dontFlip = false;
 			facingType = 0;
 			trueDestination = Vector2.Zero;
 			destination = Vector2.Zero;
@@ -91,91 +95,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 		}
 		public override void AI()
 		{
-			#region Old AI
-			/*npc.ai[0]++;
-			npc.ai[1]++;
-			npc.rotation = 0f;
-			if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
-			{
-				npc.TargetClosest(true);
-			}
-			if (npc.justHit)
-			{
-				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Vile, 0.2f, 0.2f, 100, default(Color), 1f);
-				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Vile, 0.2f, 0.2f, 100, default(Color), 1f);
-				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Vile, 0.2f, 0.2f, 100, default(Color), 1f);
-			}
-			if (npc.ai[1] < 300)
-			{
-				if (Main.player[npc.target].position.X < npc.position.X)
-				{
-					if (npc.velocity.X > -8) npc.velocity.X -= 0.22f;
-				}
-
-				if (Main.player[npc.target].position.X > npc.position.X)
-				{
-					if (npc.velocity.X < 8) npc.velocity.X += 0.22f;
-				}
-
-				if (Main.player[npc.target].position.Y < npc.position.Y + 250)
-				{
-					if (npc.velocity.Y < 0)
-					{
-						if (npc.velocity.Y > -3) npc.velocity.Y -= 0.6f;
-					}
-					else npc.velocity.Y -= 0.5f;
-				}
-
-				if (Main.player[npc.target].position.Y > npc.position.Y + 250)
-				{
-					if (npc.velocity.Y > 0)
-					{
-						if (npc.velocity.Y < 4) npc.velocity.Y += 0.7f;
-					}
-					else npc.velocity.Y += 0.6f;
-				}
-			}
-			else if (npc.ai[1] >= 300 && npc.ai[1] < 330)
-			{
-				npc.velocity.X *= 0.98f;
-				npc.velocity.Y *= 0.98f;
-				Vector2 vector8 = new Vector2(npc.position.X + (npc.width * 0.5f), npc.position.Y + (npc.height / 2));
-				if ((npc.velocity.X < 2f) && (npc.velocity.X > -2f) && (npc.velocity.Y < 2f) && (npc.velocity.Y > -2f))
-				{
-					float rotation = (float)Math.Atan2((vector8.Y) - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), (vector8.X) - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-					npc.velocity.X = (float)(Math.Cos(rotation) * 25) * -1;
-					npc.velocity.Y = (float)(Math.Sin(rotation) * 25) * -1;
-				}
-			}
-			else npc.ai[1] = 0;
-			if (npc.ai[0] >= 120)
-			{
-				float Speed = 12f;
-				Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-				int damage = 20;
-				Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 17);
-				float rotation = (float)Math.Atan2(vector8.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), vector8.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-				int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), 55, damage, 0f, 0);
-				npc.ai[0] = 0;
-			}
-			if (Main.player[npc.target].dead)
-			{
-				npc.velocity.Y -= 0.04f;
-				if (npc.timeLeft > 10)
-				{
-					npc.timeLeft = 10;
-					return;
-				}
-			}
-			if (npc.life <= 0)
-			{
-				//	Item.NewItem((int)npc.position.X,(int)npc.position.Y,16,18,"Stinger",209,false,2);
-				//	Item.NewItem((int)npc.position.X,(int)npc.position.Y,18,18,"Heart",58,false,10);
-				//	Item.NewItem((int)npc.position.X,(int)npc.position.Y,20,26,"Lesser Healing Potion",28,false,7);
-				//  Main.NewText("King Sting has been defeated!", 175, 75, 255);
-			}*/
-			#endregion
-
 			if (phase == 0)
             {
 				npc.TargetClosest();
@@ -183,15 +102,17 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             }
 
 			Player player = Main.player[npc.target];
-
-			if (player.dead || Vector2.Distance(npc.Center, player.Center) > 3000f)
+			if (player.dead || !player.active)
 			{
 				npc.TargetClosest();
-				if (player.dead || Vector2.Distance(npc.Center, player.Center) > 3000f)
+				if (player.dead || !player.active)
 				{
+					npc.velocity.Y = npc.velocity.Y - 0.04f;
 					if (npc.timeLeft > 10)
+					{
 						npc.timeLeft = 10;
-					npc.velocity.Y -= 0.04f;
+						return;
+					}
 				}
 			}
 
@@ -225,25 +146,28 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 				}
 			}
 
-			float lOrR = (npc.Center.X <= player.Center.X) ? 1 : (-1);
-			npc.direction = npc.spriteDirection = (int)lOrR; // direction set to left or right
+			float lOrR = (npc.Center.X <= player.Center.X) ? 1 : (-1); // Based on pos
+			float lOrR2 = (npc.velocity.X <= 0f) ? 1 : (-1); // Based on vel
+			// 1 is left -1 is right
+
+			if (!dontFlip)
+			{
+				if (facingType != 3)
+					npc.direction = npc.spriteDirection = (int)lOrR;
+				else
+					npc.direction = npc.spriteDirection = (int)-lOrR2;
+			}
 
 			switch (facingType)
 			{
 				case 1: // Face towards the player (capped angle)
-					npc.rotation = npc.rotation.AngleLerp((player.Center - npc.Center).ToRotation(), 0.1f) * 0.08f;
+					npc.rotation = npc.rotation.AngleLerp((player.Center - npc.Center).ToRotation(), 0.1f) * -0.08f;
 					break;
 				case 2: // Face towards the player (uncapped)
 					npc.rotation = npc.rotation.AngleLerp((player.Center - npc.Center).ToRotation(), 0.1f);
 					break;
 				case 3: // Face towards velocity (capped angle)
-					npc.rotation = npc.velocity.ToRotation() * 0.2f;
-					break;
-				case 4: // Face Upright
-					if (npc.rotation != 0)
-						npc.rotation += 0.06f;
-					if (Math.Abs(npc.rotation) <= 0.1f)
-						npc.rotation = 0;
+					npc.rotation = npc.velocity.X * 0.02f;
 					break;
 			}
 
@@ -274,7 +198,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 				if (attackTimer >= 90)
                 {
 					float rotation = (float)Math.Atan2(npc.Center.Y - trueDestination.Y, npc.Center.X - trueDestination.X);
-					float speed = 20f;
+					float speed = 15f + maxVel;
 					npc.velocity = new Vector2((float)Math.Cos(rotation) * speed, (float)Math.Sin(rotation) * speed) * -1f;
 					attackCounter += 1;
 					attackTimer = 0;
@@ -327,7 +251,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 					Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 17);
 					Vector2 rotation = (player.Center - npc.Center).SafeNormalize(-Vector2.UnitY);
 					float speed = 8f;
-					Projectile.NewProjectile(npc.Center, rotation * speed, ProjectileID.Stinger, 25, 1.5f, Main.myPlayer);
+					Projectile.NewProjectile(npc.Center, rotation * speed, ProjectileID.Stinger, 20, 1.5f, Main.myPlayer);
 					attackTimer = 0;
                 }
 
@@ -337,60 +261,52 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 					attackType = 0;
                 }
 			}
-			else if (attackType == 3)
+			else if (attackType == 3 || attackType == 4)
 			{
 				attackTimer++;
 
 				trueDestination = new Vector2(player.Center.X, player.Center.Y - 400f);
 				destination = trueDestination;
 				Vector2 desiredVelocity = npc.DirectionTo(destination) * maxVel;
-				FlyTo(desiredVelocity, acceleration);
 
 				if (Vector2.Distance(destination, npc.Center) < 100)
 				{
+					dontFlip = true;
 					npc.velocity *= 0.98f;
-					StandStillIfSlow(0.1f);
+					StandStillIfSlow(0.2f);
+				}
+				else
+                {
+					FlyTo(desiredVelocity, acceleration);
+					dontFlip = false;
 				}
 
-				if (attackTimer >= 60)
+				if (attackType == 3)
 				{
-					NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.Hornet);
-					attackTimer = 0;
-				}
-
-				if (masterTimer >= 360)
-				{
-					pickInit = false;
-					attackType = 0;
-				}
-			}
-			else if (attackType == 4)
-			{
-				attackTimer++;
-
-				trueDestination = new Vector2(player.Center.X, player.Center.Y - 400f);
-				destination = trueDestination;
-				Vector2 desiredVelocity = npc.DirectionTo(destination) * maxVel;
-				FlyTo(desiredVelocity, acceleration);
-
-				if (Vector2.Distance(destination, npc.Center) < 100)
-				{
-					npc.velocity *= 0.98f;
-					StandStillIfSlow(0.1f);
-				}
-
-				if (attackTimer >= 120)
-				{
-					for (int i = 0; i < 3; i++)
+					if (attackTimer >= 60)
 					{
-						Vector2 velocity = new Vector2(0f, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-35, 36)));
-						Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.DarkCinder>(), 30, 0.5f, npc.target);
+						Vector2 velocity = new Vector2(Main.rand.Next(-100, 101) * 0.03f, Main.rand.Next(-100, 101) * 0.03f);
+						int larvae = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<NPCs.Larvae>(), default, default, default, default, default, npc.target);
+						Main.npc[larvae].velocity = velocity;
+						attackTimer = 0;
 					}
-					attackTimer = 0;
+				}
+				else if (attackType == 4)
+                {
+					if (attackTimer >= 120)
+					{
+						for (int i = 0; i < 3; i++)
+						{
+							Vector2 velocity = new Vector2(0f, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-35, 36)));
+							Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.ToxinBall>(), 25, 0.5f, npc.target);
+						}
+						attackTimer = 0;
+					}
 				}
 
 				if (masterTimer >= 360)
 				{
+					dontFlip = false;
 					pickInit = false;
 					attackType = 0;
 				}
@@ -474,6 +390,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 						break;
 				}
 
+				//npc.TargetClosest();
 				attackCounter = 0;
 				masterTimer = 0;
 				attackTimer = 0;
@@ -505,17 +422,23 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 			Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/KingStingBody"), 1f);
 			Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/KingStingStinger"), 1f);
 		}
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) // Not working? Not sure why it's not
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) // Not flipping? Not sure why it's not
 		{
 			if (afterImage)
 			{
 				Vector2 drawOrigin = Main.npcTexture[npc.type].Size() / new Vector2(2, (Main.npcFrameCount[npc.type] * 2));
 
+				SpriteEffects spriteEffect;
+				if (npc.spriteDirection == 1)
+					spriteEffect = SpriteEffects.FlipHorizontally;
+				else
+					spriteEffect = SpriteEffects.None;
+
 				for (int i = 0; i < npc.oldPos.Length; i++)
 				{
 					Vector2 drawPos = npc.oldPos[i] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
 					Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - i) / (float)npc.oldPos.Length);
-					spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, npc.frame, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+					spriteBatch.Draw(Main.npcTexture[npc.type], drawPos, npc.frame, color, npc.rotation, drawOrigin, npc.scale, spriteEffect, 0f);
 				}
 			}
 			return true;
