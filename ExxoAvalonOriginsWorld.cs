@@ -897,15 +897,10 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 //{
                 //    if (contaigon) WorldGen.crimson = true;
                 //}));
-                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 1, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));                //if (jungleMenuSelection == JungleVariant.tropics)
-                //    tasks.Insert(microBiomes + 1, new PassLegacy("Tuhrtl Outpost", World.Passes.TuhrtlOutpost.Method));
-                //tasks.Insert(microBiomes + 2, new PassLegacy("Tuhrtl Outpost", delegate (GenerationProgress progress)
-                //{
-                //    if (jungleMenuSelection == JungleVariant.tropics)
-                //    {
-                //        World.Structures.TuhrtlOutpost.CreateTuhrtlOutpost(Main.maxTilesX / 2, 300);
-                //    }
-                //}));
+                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 1, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));
+
+                //tasks.Insert(microBiomes + 1, new PassLegacy("Nest Test", World.Passes.TuhrtlOutpost.Method));
+                tasks.Insert(microBiomes + 1, new PassLegacy("Nest", World.Passes.WaspNest.Method));
             }        }        public void SpreadXanthophyte(int x, int y)
         {
             if (Main.tile[x, y].inActive())
