@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Caesium Spatha");
+			DisplayName.SetDefault("Caesium Scimitar");
 			Tooltip.SetDefault("Explodes foes on hit");
 		}
 		public override void SetDefaults()
@@ -36,8 +36,12 @@ namespace ExxoAvalonOrigins.Items
 			item.height = dims.Height;
 		}
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-			Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType<Projectiles.CaesiumExplosion>(), damage, knockBack, player.whoAmI, 0f, 0f);
+		{
+			Main.PlaySound(SoundID.Item14, target.position);
+			for (int i = 0; i < 5; i++)
+            {
+				Projectile.NewProjectile(target.Center.X, target.Center.Y, Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), ModContent.ProjectileType<Projectiles.CaesiumExplosion>(), damage, knockBack, player.whoAmI, 0f, 0f);
+			}
 		}
-    }
+	}
 }
