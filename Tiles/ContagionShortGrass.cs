@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileLavaDeath[Type] = true;
             Main.tileWaterDeath[Type] = true;
             Main.tileFrameImportant[Type] = true;
-            dustType = 184;
+            dustType = ModContent.DustType<Dusts.ContagionDust>();
             soundStyle = 1;
             soundType = 6;
             AddMapEntry(new Color(147, 166, 42));

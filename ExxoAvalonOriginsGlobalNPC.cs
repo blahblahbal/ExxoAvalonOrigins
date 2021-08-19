@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;using System.Linq;using ExxoAvalonOrigins.Items;using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.Localization;
+﻿using System;
+using System.Collections.Generic;using System.Linq;using ExxoAvalonOrigins.Items;using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.Localization;
 using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalNPC : GlobalNPC    {        public static float endoSpawnRate = 0.25f;        public static bool stoppedArmageddon = false;        public static bool oblivionDead = false;        public static int oblivionTimes = 0;        public static bool downedPhantasm = false;        public static bool initialised = false;        public static List<int> slimes = new List<int>();        public static List<int> toxic = new List<int>();        public static List<int> undead = new List<int>();        public static List<int> fiery = new List<int>();        public static List<int> watery = new List<int>();        public static List<int> earthen = new List<int>();        public static List<int> flyer = new List<int>();        public static List<int> frozen = new List<int>();        public static List<int> wicked = new List<int>();        public static List<int> arcane = new List<int>();        public static int boogerBoss = 0;        public static int boogerBossCounter = 0;        public static bool savedIceman = false;        public static int slimeLife = 10000;        public static List<int> hornets = new List<int> {            NPCID.Hornet,            NPCID.MossHornet,            NPCID.HornetFatty,            NPCID.HornetHoney,            NPCID.HornetLeafy,            NPCID.HornetSpikey,            NPCID.HornetStingy        };        //public override void SetupTravelShop(int[] shop, ref int nextSlot)
         //{
         //    shop[nextSlot] = ModContent.ItemType<TomeForge>();
@@ -202,6 +203,18 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                 Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
             }
         }        public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)        {            if (hornets.Contains(npc.type) && target.GetModPlayer<ExxoAvalonOriginsModPlayer>().beeRepel)            {                return false;            }            if (slimes.Contains(npc.type) && target.GetModPlayer<ExxoAvalonOriginsModPlayer>().slimeImmune)            {                return false;            }            return true;        }        public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit)        {            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().oblivionKill && Main.rand.Next(35) == 0 && !npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill)            {                npc.life = 0;                npc.NPCLoot();                npc.checkDead();            }        }        public override void SetDefaults(NPC npc)        {            int[] vanillaNoOneHitKills = {                NPCID.Everscream,                NPCID.IceQueen,                NPCID.SantaNK1,                NPCID.MourningWood,                NPCID.Pumpking,                NPCID.PumpkingBlade,                NPCID.DungeonGuardian            };            if (npc.boss || vanillaNoOneHitKills.Contains(npc.type))            {                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill = true;            }        }        public override bool PreNPCLoot(NPC npc)        {
+            if (npc.type == NPCID.Golem && !NPC.downedGolemBoss)
+            {
+                for (int a = 0; a < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.00008); a++)
+                {
+                    int x = WorldGen.genRand.Next(100, (int)Main.maxTilesX - 100);
+                    int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
+                    WorldGen.OreRunner(x, y, WorldGen.genRand.Next(4, 7), WorldGen.genRand.Next(4, 8), (ushort)ModContent.TileType<Tiles.SolariumOre>());
+                }
+                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText("Your world has been energized with Solarium!", 244, 167, 0);
+                else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been energized with Solarium!"), new Color(244, 167, 0));
+            }
+
             if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism || npc.type == NPCID.SkeletronPrime)
             {
                 if (!NPC.downedMechBossAny)

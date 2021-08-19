@@ -740,6 +740,36 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             }
                         }
                     }
+
+                    if ((Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>() || Main.tile[num5, num6].type == ModContent.TileType<ContagionVines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].active() && !Main.tile[num5, num6 + 1].lava())
+                    {
+                        bool flag10 = false;
+                        for (int num47 = num6; num47 > num6 - 10; num47--)
+                        {
+                            if (Main.tile[num5, num47].bottomSlope())
+                            {
+                                flag10 = false;
+                                break;
+                            }
+                            if (Main.tile[num5, num47].active() && Main.tile[num5, num47].type == ModContent.TileType<Ickgrass>() && !Main.tile[num5, num47].bottomSlope())
+                            {
+                                flag10 = true;
+                                break;
+                            }
+                        }
+                        if (flag10)
+                        {
+                            int num48 = num5;
+                            int num49 = num6 + 1;
+                            Main.tile[num48, num49].type = (ushort)ModContent.TileType<ContagionVines>();
+                            Main.tile[num48, num49].active(true);
+                            WorldGen.SquareTileFrame(num48, num49, true);
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendTileSquare(-1, num48, num49, 3);
+                            }
+                        }
+                    }
                 }
                 num4++;
             }
@@ -875,6 +905,10 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             if (vines != -1)
             {
                 tasks.Insert(vines + 1, new PassLegacy("Impvines", World.Passes.Impvines.Method));
+            }            if (vines != -1)
+            {
+                if (contaigon)
+                    tasks.Insert(vines + 1, new PassLegacy("ContagionVines", World.Passes.ContagionVines.Method));
             }            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");            if (shinies != -1)            {                tasks[shinies] = new PassLegacy("Avalon PHM Ore Gen", World.Passes.OreGenPreHardMode.Method);            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", World.Passes.Underworld.Method));            }            if (contaigon)
             {
                 var corruptionTask = tasks.FindIndex(genpass => genpass.Name == "Corruption");
@@ -891,7 +925,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 }
             }
 
-            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");            if (gems != -1)            {                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", World.Passes.Gems.Method));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", World.Passes.SmoothWorld.Method));            }            var lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");            if (lifecrystals != -1)            {                tasks.Insert(lifecrystals + 1, new PassLegacy("Adding Mana Crystals", World.Passes.ManaCrystal.Method));            }            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");            if (iceWalls != -1)            {                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Ice Shrine", World.Passes.IceShrine.Method));                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Lava Shrine", World.Passes.LavaShrine.Method));            }
+            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");            if (gems != -1)            {                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", World.Passes.Gems.Method));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", World.Passes.SmoothWorld.Method));            }            var lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");            if (lifecrystals != -1)            {                tasks.Insert(lifecrystals + 1, new PassLegacy("Adding Mana Crystals", World.Passes.ManaCrystal.Method));            }            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");            if (iceWalls != -1)            {                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Shrines", World.Passes.Shrines.Method));            }
 
             var weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");            if (weeds != -1)            {                tasks.Insert(weeds + 1, new PassLegacy("Contagion weeds", World.Passes.Plants.Method));            }
                         var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);

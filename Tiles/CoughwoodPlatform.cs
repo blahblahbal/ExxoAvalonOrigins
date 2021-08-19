@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = ModContent.ItemType<Items.CoughwoodPlatform>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Platforms };
-            dustType = 184;
+            dustType = ModContent.DustType<Dusts.ContagionDust>();
         }
 
         public override void PostSetDefaults()

@@ -42,8 +42,8 @@ namespace ExxoAvalonOrigins.World.Passes
                 ModContent.WallType<Walls.OrangeSlabUnsafe>(),
                 WallID.IceBrick,
             };
-            var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
-            var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
+            var x10 = WorldGen.genRand.Next(250, Main.maxTilesX - 250);
+            var y6 = WorldGen.genRand.Next(WorldGen.lavaLine, Main.maxTilesY - 210);
             while (noTiles.Contains(Main.tile[x10, y6].type) || noWalls.Contains(Main.tile[x10, y6].wall))
             {
                 if (x10 > (Main.maxTilesY / 2))
