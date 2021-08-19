@@ -288,6 +288,8 @@ namespace ExxoAvalonOrigins
             advBattleBuff = false;
             advCalmingBuff = false;
             advCrateBuff = false;
+            lucky = false;
+            enemySpawns2 = false;
             bloodCast = false;
             mermanLava = false;
             bubbleBoost = false;
