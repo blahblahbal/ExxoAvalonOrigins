@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items
 
         public override void OpenBossBag(Player player)
         {
-            player.TryGettingDevArmor();
+            //player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ModContent.ItemType<Items.ToxinShard>(), Main.rand.Next(50, 81));
             if (Main.rand.Next(0, 10) < 3)
