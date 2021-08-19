@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items
 
         public override void OpenBossBag(Player player)
         {
-            player.TryGettingDevArmor();
+            //player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ItemID.SandBlock, Main.rand.Next(22, 55));
             player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4));

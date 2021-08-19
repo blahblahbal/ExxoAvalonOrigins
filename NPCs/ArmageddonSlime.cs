@@ -403,7 +403,7 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.npc[newNPC].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
                     Main.npc[newNPC].velocity.Y = Main.rand.Next(-30, 1) * 0.1f;
                     Main.npc[newNPC].ai[1] = Main.rand.Next(3);
-                    int rand = Main.rand.Next(1, 2); // currently only selects attack 1
+                    int rand = Main.rand.Next(1, 5);
                     switch (rand)
                     {
                         case 4:
@@ -450,7 +450,24 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                     }
                     break;
-                case 2:                    
+                case 2:
+                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    int increments = 9; // Old spray had ~25? weird pattern tho
+                    float degrees = 45f;
+                    float offset = (float)((float)(degrees / increments) / 2f); // IF YOU WANT THE ATTACK TO BE AIMED WITH EVEN INCREMENTS, REMOVE OFFSET FROM THE VELOCITY CALCULATION
+                    Vector2 rotation = (target.Center - npc.Center).SafeNormalize(-Vector2.UnitY);
+                    float speed = 12f;
+                    for (int i = 0; i < increments; i++)
+                    {
+                        Vector2 velocity = rotation.RotatedBy(MathHelper.ToRadians(((float)(degrees / 2f) * -1f) + ((float)(degrees / increments) * i) + offset)) * speed;
+                        int spray = Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.DarkFlame>(), 70, 0f, npc.target, 0f, 0f);
+                        Main.projectile[spray].timeLeft = 600;
+                        Main.projectile[spray].tileCollide = false;
+                        if (Main.netMode != 0)
+                        {
+                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, spray);
+                        }
+                    }
                     break;
             }   
         }
