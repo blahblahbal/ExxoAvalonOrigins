@@ -27,5 +27,13 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Sys
 				0f
 			);
 		}
-		/*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)		{			int shotProjectile =				Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack);			Main.projectile[shotProjectile].GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().lightOnFire =				true;			return false;		}*/
-	}}
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            if (type == ProjectileID.Bullet)
+            {
+                type = ProjectileID.ExplosiveBullet;
+                return false;
+            }
+            return true;
+        }
+    }}
