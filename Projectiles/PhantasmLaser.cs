@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Projectiles{
             projectile.friendly = false;
             projectile.hostile = true;
             projectile.timeLeft = 3600;
-            projectile.tileCollide = true;
+            projectile.tileCollide = false;
         }
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Projectiles{
             Texture2D texture2D20 = ExxoAvalonOrigins.BeamStartTexture;
             float num204 = projectile.localAI[1];
 
-            colorArray[0] = new Color(88, 219, 255, 180) * 0.9f;
+            colorArray[0] = new Color(88, 219, 255, 180) * 0.9f; // TODO: make the laser shift colors better
             colorArray[1] = new Color(59, 219, 234, 180) * 0.9f;
             colorArray[2] = new Color(30, 220, 214, 180) * 0.9f;
 

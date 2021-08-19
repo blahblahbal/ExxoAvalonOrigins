@@ -6,7 +6,7 @@ using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
-    class IceShrine
+    class LavaShrine
     {
         public static void Method(GenerationProgress progress)
         {
@@ -21,6 +21,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 ModContent.TileType<Tiles.TropicalGrass>(),
                 ModContent.TileType<Tiles.TropicalMud>(),
                 TileID.Mud,
+                TileID.IceBrick,
                 TileID.JungleGrass
             };
             List<int> noWalls = new List<int>()
@@ -38,7 +39,8 @@ namespace ExxoAvalonOrigins.World.Passes
                 ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(),
                 ModContent.WallType<Walls.OrangeBrickUnsafe>(),
                 ModContent.WallType<Walls.OrangeTiledUnsafe>(),
-                ModContent.WallType<Walls.OrangeSlabUnsafe>()
+                ModContent.WallType<Walls.OrangeSlabUnsafe>(),
+                WallID.IceBrick,
             };
             var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
             var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
@@ -71,7 +73,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 else
                     x10++;
             }
-            Structures.IceShrine.Generate(x10, y6);
+            Structures.LavaShrine.AddLavaShrine(x10, y6);
         }
     }
 }

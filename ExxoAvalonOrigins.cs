@@ -216,6 +216,12 @@
             if (Main.musicVolume == 0f || Main.myPlayer == -1 || Main.gameMenu) return;
             Terraria.Player player = Main.LocalPlayer;
             if (!player.active) return;
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
+            {
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics");
+                else music = MusicID.Jungle;
+                priority = MusicPriority.BiomeMedium;
+            }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
             {
                 if (Main.player[Main.myPlayer].position.Y > Main.worldSurface * 16.0 + (Main.screenHeight / 2))
@@ -236,12 +242,6 @@
                 if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hellcastle");
                 else music = MusicID.Dungeon;
                 priority = MusicPriority.Environment;
-            }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
-            {
-                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics");
-                else music = MusicID.Jungle;
-                priority = MusicPriority.BiomeMedium;
             }
             Rectangle rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
             int dist = 5000;

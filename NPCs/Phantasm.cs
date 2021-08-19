@@ -269,7 +269,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 num1275 = 1f;
                             }
                             velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
-                            int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y + npc.width / 3, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 45, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
+                            int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y + npc.width / 3, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 70, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
                             npc.localAI[1] += 0.05f;
                             if (npc.localAI[1] > 1f)
                             {
@@ -380,7 +380,7 @@ namespace ExxoAvalonOrigins.NPCs
                             num1275 = 1f;
                         }
                         velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
-                        int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 45, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
+                        int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 70, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
                         Main.projectile[p2].localAI[0] += 120;
                         npc.localAI[1] += 0.05f;
                         if (npc.localAI[1] > 1f)
