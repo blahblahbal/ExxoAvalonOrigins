@@ -403,15 +403,18 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.npc[newNPC].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
                     Main.npc[newNPC].velocity.Y = Main.rand.Next(-30, 1) * 0.1f;
                     Main.npc[newNPC].ai[1] = Main.rand.Next(3);
-                    int rand = Main.rand.Next(1, 5);
-                    switch (rand)
+                    if (i == 1) // seems to be doing multiple projectile attacks sometimes because of the for loop, this is the fix I made
                     {
-                        case 4:
-                            FireProjectiles(2, Main.player[npc.target]);
-                            break;
-                        default:
-                            FireProjectiles(1, Main.player[npc.target]);
-                            break;
+                        int rand = Main.rand.Next(1, 4);
+                        switch (rand)
+                        {
+                            case 3:
+                                FireProjectiles(2, Main.player[npc.target]);
+                                break;
+                            default:
+                                FireProjectiles(1, Main.player[npc.target]);
+                                break;
+                        }
                     }
                     npc.ai[1] = -90f;
                     if (Main.netMode == NetmodeID.Server && newNPC < 200)

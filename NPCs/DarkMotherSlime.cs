@@ -76,6 +76,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.life = npc.lifeMax / 4;
                     npc.dontTakeDamage = true;
                     npc.chaseable = false;
+                    npc.wet = false;
                     if (suicideTimer < 0)
                         suicideTimer = 0;
                     else
@@ -84,13 +85,11 @@ namespace ExxoAvalonOrigins.NPCs
                     if (Main.expertMode && flashCounter == 4 && suicideTimer >= 25 && suicideTimer < 30 && Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 150)
                     {
                         npc.TargetClosest(true);
-                        Player target = Main.player[npc.target];
                         npc.velocity = new Vector2(8f * npc.direction, -6f);
                     }
                     else if (suicideTimer <= 30)
                     {
                         npc.ai[0] = -30;
-                        npc.wet = false;
                         npc.aiAction = 1;
                     }
 
