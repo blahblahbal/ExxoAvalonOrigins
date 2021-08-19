@@ -648,6 +648,22 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             }
                         }
                     }
+                    if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
+                    {
+                        int num14 = (int)Main.tile[num5, num6].type;
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(23) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
+                        {
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Sweetstem>(), true, false, -1, 0);
+                            if (Main.tile[num5, num9].active())
+                            {
+                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                            }
+                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }
+                    }
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -655,6 +671,18 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
                             Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
+                            if (Main.tile[num5, num9].active())
+                            {
+                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                            }
+                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(25) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        {
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Barfbush>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
