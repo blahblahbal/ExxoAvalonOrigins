@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             splitTimer++;
 
-            npc.velocity.X *= 0.98f;
+            npc.velocity.X *= 0.8f;
 
             int threshold;
 
