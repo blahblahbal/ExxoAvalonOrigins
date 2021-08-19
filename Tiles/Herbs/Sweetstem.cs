@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -18,6 +19,8 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Main.tileFrameImportant[Type] = true;
             Main.tileCut[Type] = true;
             Main.tileNoFail[Type] = true;
+            Main.tileSpelunker[Type] = true;
+            AddMapEntry(new Color(216, 161, 50), LanguageManager.Instance.GetText("Sweetstem"));
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
 
