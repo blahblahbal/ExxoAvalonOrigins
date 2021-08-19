@@ -16,7 +16,6 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.height = 4;
             projectile.aiStyle = -1;
             projectile.alpha = 255;
-            projectile.magic = true;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
 			projectile.friendly = false;

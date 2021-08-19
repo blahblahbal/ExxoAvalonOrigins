@@ -432,19 +432,25 @@ namespace ExxoAvalonOrigins.NPCs
             switch (attackType)
             {
                 case 1:
+                    float increment;
+                    if (Main.expertMode)
+                        increment = 0.2f;
+                    else
+                        increment = 0.4f;
+
                     var vector155 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num1166 = (float)Math.Atan2(vector155.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector155.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
-                    for (var num1167 = 0f; num1167 <= 3.6f; num1167 += 0.4f)
+                    for (var num1167 = 0f; num1167 <= 3.6f; num1167 += increment)
                     {
-                        var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 12f * -1.0), (float)(Math.Sin(num1166 + num1167) * 12f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 50, 0f, npc.target, 0f, 0f);
+                        var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 16f * -1.0), (float)(Math.Sin(num1166 + num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
                         if (Main.netMode != 0)
                         {
                             NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
                         }
-                        num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 12f * -1.0), (float)(Math.Sin(num1166 - num1167) * 12f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 50, 0f, npc.target, 0f, 0f);
+                        num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 16f * -1.0), (float)(Math.Sin(num1166 - num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
                         if (Main.netMode != 0)
@@ -455,11 +461,17 @@ namespace ExxoAvalonOrigins.NPCs
                     break;
                 case 2:
                     Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
-                    int increments = 9; // Old spray had ~25? weird pattern tho
+
+                    int increments; // Old spray had ~25? weird pattern tho
+                    if (Main.expertMode)
+                        increments = 11;
+                    else
+                        increments = 7;
+
                     float degrees = 45f;
                     float offset = (float)((float)(degrees / increments) / 2f); // IF YOU WANT THE ATTACK TO BE AIMED WITH EVEN INCREMENTS, REMOVE OFFSET FROM THE VELOCITY CALCULATION
                     Vector2 rotation = (target.Center - npc.Center).SafeNormalize(-Vector2.UnitY);
-                    float speed = 12f;
+                    float speed = 16f;
                     for (int i = 0; i < increments; i++)
                     {
                         Vector2 velocity = rotation.RotatedBy(MathHelper.ToRadians(((float)(degrees / 2f) * -1f) + ((float)(degrees / increments) * i) + offset)) * speed;

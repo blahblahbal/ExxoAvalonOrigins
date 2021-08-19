@@ -142,6 +142,7 @@ namespace ExxoAvalonOrigins
         public bool frontReflect = false;
         public bool slimeBand;
         public bool defDebuff;
+        public int defDebuffBonusDef;
         public bool luckTome;
         public float rot;
         public byte qsMode = 1;
@@ -295,6 +296,8 @@ namespace ExxoAvalonOrigins
             stingerProbeMinion = false; // gotta be here for effect reset
             dragonsBondage = false;
             necroticAura = false;
+            defDebuff = false;
+            defDebuffBonusDef = 0;
             frozen = false;
             liaB = false;
             reckoning = false;
@@ -1438,10 +1441,12 @@ namespace ExxoAvalonOrigins
 				        break;
 			        }
 		        }
-                if (flag) player.statDefense += 12;
+                if (flag) defDebuffBonusDef = 12; // defDebuffBonusDef is here to avoid the def buff sticking around 24/7 because of terraria code jank
+                else defDebuffBonusDef = 0;
             }
+            player.statDefense += defDebuffBonusDef; // outside of the if statement to remove extra defense
 
-	        if (teleportV)
+            if (teleportV)
 	        {
 		        if (tpCD > 300)
 		        {
@@ -1454,6 +1459,14 @@ namespace ExxoAvalonOrigins
             if (curseOfIcarus)
             {
                 player.wingsLogic = 0;
+                if (player.mount.CanFly || player.mount.CanHover) // Setting player.mount._flyTime does not work for all mounts. Bye-bye mounts!
+                    player.mount.Dismount(player);
+
+                // Alternative code which limits flight time instead of disabling it
+                /*
+                if (player.wingTime > 30)
+                    player.wingTime = 30;
+                */
             }
         }
 

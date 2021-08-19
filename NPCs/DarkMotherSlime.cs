@@ -82,7 +82,7 @@ namespace ExxoAvalonOrigins.NPCs
                     else
                         suicideTimer--;
 
-                    if (Main.expertMode && flashCounter == 4 && suicideTimer >= 25 && suicideTimer < 30 && Vector2.Distance(npc.Center, Main.player[npc.target].Center) > 150)
+                    if (Main.expertMode && flashCounter == 4 && suicideTimer >= 25 && suicideTimer < 30 && Math.Abs(npc.Center.X - Main.player[npc.target].Center.X) > 150)
                     {
                         npc.TargetClosest(true);
                         npc.velocity = new Vector2(8f * npc.direction, -6f);
