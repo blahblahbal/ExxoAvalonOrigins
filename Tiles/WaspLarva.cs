@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            // TODO: Add King sting spawn
+            NPC.SpawnOnPlayer(Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16), ModContent.NPCType<NPCs.Bosses.KingSting>());
         }
 
         public override void AnimateTile(ref int frame, ref int frameCounter)
