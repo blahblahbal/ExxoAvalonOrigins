@@ -854,6 +854,18 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdate()
         {
+            if (herbTotal < 250) herbTier = 0;
+            else if (herbTotal >= 250 && herbTotal < 750) herbTier = 1;
+            else if (herbTotal >= 750 && herbTotal < 1500)
+            {
+                if (Main.hardMode) herbTier = 2;
+                else herbTier = 1;
+            }
+            else
+            {
+                if (Main.hardMode) herbTier = 3;
+                else herbTier = 1;
+            }
             //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
