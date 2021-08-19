@@ -22,10 +22,11 @@ namespace ExxoAvalonOrigins.Hooks
 
             Utils.SoftReplaceAllMatchingInstructionsWithMethod(il, c.Next, typeof(MicroBiomes).GetMethod(nameof(ReturnInvalidWalls)));
 
-            Instruction i1 = Instruction.Create(OpCodes.Ldelem_U1);
-            Instruction i2 = Instruction.Create(OpCodes.Ldelem_U2);
+            if (!c.TryGotoNext(i => i.MatchLdelemU1()))
+                return;
 
-            Utils.HardReplaceAllMatchingInstructions(il, i1, i2);
+            c.Remove();
+            c.Emit(OpCodes.Ldelem_U2);
         }
         public static ushort[] ReturnInvalidWalls()
         {
