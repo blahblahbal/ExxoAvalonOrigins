@@ -21,15 +21,14 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Main.tileNoFail[Type] = true;
             Main.tileSpelunker[Type] = true;
             AddMapEntry(Color.IndianRed, LanguageManager.Instance.GetText("Bloodberry"));
-
+            soundStyle = 1;
+            soundType = 6;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
-
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 TileID.FleshGrass,
                 TileID.Crimstone
             };
-
             TileObjectData.newTile.AnchorAlternateTiles = new int[]
             {
                 TileID.ClayPot,
@@ -62,7 +61,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             PlantStage stage = GetStage(i, j); //The current stage of the herb
 
             //Only grow to the next stage if there is a next stage. We dont want our tile turning pink!
-            if (stage == PlantStage.Planted)
+            if (stage == PlantStage.Planted && Main.rand.Next(5) == 0)
             {
                 tile.frameX += FrameWidth;
                 if (Main.netMode != NetmodeID.SinglePlayer)

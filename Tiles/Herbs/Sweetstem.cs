@@ -21,9 +21,9 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Main.tileNoFail[Type] = true;
             Main.tileSpelunker[Type] = true;
             AddMapEntry(new Color(216, 161, 50), LanguageManager.Instance.GetText("Sweetstem"));
-
+            soundStyle = 1;
+            soundType = 6;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
-
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 ModContent.TileType<Nest>(),
@@ -62,7 +62,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             PlantStage stage = GetStage(i, j); //The current stage of the herb
 
             //Only grow to the next stage if there is a next stage. We dont want our tile turning pink!
-            if (stage != PlantStage.Grown)
+            if (stage != PlantStage.Grown && Main.rand.Next(5) == 0)
             {
                 //Increase the x frame to change the stage
                 tile.frameX += FrameWidth;

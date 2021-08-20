@@ -16,9 +16,12 @@ namespace ExxoAvalonOrigins.Buffs
             player.immune = true;
             player.immuneAlpha = 100;
             player.noItems = true;
+            player.thorns = 0f;
+
 
             foreach (NPC n in Main.npc)
             {
+                if (n.townNPC || n.dontTakeDamage) continue;
                 if (player.getRect().Intersects(n.getRect()))
                 {
                     n.AddBuff(ModContent.BuffType<AstralCurse>(), 999999);

@@ -715,6 +715,10 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
+            {
+                damage *= 3;
+            }
             if (hyperMelee && proj.melee)
             {
                 hyperBar++;

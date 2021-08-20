@@ -29,7 +29,8 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Main.tileNoFail[Type] = true;
             Main.tileSpelunker[Type] = true;
             AddMapEntry(new Color(0, 200, 50), LanguageManager.Instance.GetText("Barfbush"));
-
+            soundStyle = 1;
+            soundType = 6;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
 
             TileObjectData.newTile.AnchorValidTiles = new int[]
@@ -68,8 +69,8 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
         {
             Tile tile = Framing.GetTileSafely(i, j); //Safe way of getting a tile instance
             PlantStage stage = GetStage(i, j); //The current stage of the herb
-
-            if (stage == PlantStage.Planted)
+            
+            if (stage == PlantStage.Planted && Main.rand.Next(5) == 0)
             {
                 tile.frameX += FrameWidth;
                 if (Main.netMode != NetmodeID.SinglePlayer)
