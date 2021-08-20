@@ -202,6 +202,10 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             {
                 Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
             }
+            if (npc.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
+            {
+                Dust.NewDust(npc.position, npc.width, npc.height, DustID.DungeonSpirit);
+            }
         }        public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)        {            if (hornets.Contains(npc.type) && target.GetModPlayer<ExxoAvalonOriginsModPlayer>().beeRepel)            {                return false;            }            if (slimes.Contains(npc.type) && target.GetModPlayer<ExxoAvalonOriginsModPlayer>().slimeImmune)            {                return false;            }            return true;        }        public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit)        {            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().oblivionKill && Main.rand.Next(35) == 0 && !npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill)            {                npc.life = 0;                npc.NPCLoot();                npc.checkDead();            }        }        public override void SetDefaults(NPC npc)        {            int[] vanillaNoOneHitKills = {                NPCID.Everscream,                NPCID.IceQueen,                NPCID.SantaNK1,                NPCID.MourningWood,                NPCID.Pumpking,                NPCID.PumpkingBlade,                NPCID.DungeonGuardian            };            if (npc.boss || vanillaNoOneHitKills.Contains(npc.type))            {                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill = true;            }        }        public override bool PreNPCLoot(NPC npc)        {
             if (npc.type == NPCID.Golem && !NPC.downedGolemBoss)
             {

@@ -274,7 +274,7 @@ namespace ExxoAvalonOrigins
         private bool[] ownedLargeGems = new bool[10];
 
         // Crit damage multiplyer vars
-        public float critDamageMult = 0f;
+        public float critDamageMult = 1f;
 
         #endregion
 
@@ -317,7 +317,7 @@ namespace ExxoAvalonOrigins
                 player.extraAccessorySlots++;
             }
 
-            critDamageMult = 0f;
+            critDamageMult = 1f;
         }
         public override void UpdateDead()
         {

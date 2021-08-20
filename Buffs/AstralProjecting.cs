@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Buffs
             {
                 if (player.getRect().Intersects(n.getRect()))
                 {
-                    n.AddBuff(ModContent.BuffType<AstralCurse>(), int.MaxValue);
+                    n.AddBuff(ModContent.BuffType<AstralCurse>(), 999999);
                 }
             }
         }
