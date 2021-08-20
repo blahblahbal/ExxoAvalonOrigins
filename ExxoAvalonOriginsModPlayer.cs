@@ -102,6 +102,16 @@ namespace ExxoAvalonOrigins
             ModContent.NPCType<NPCs.VampireHarpy>(),
             ModContent.NPCType<NPCs.Dragonfly>()
         };
+        public List<int> minionProjectile = new List<int>()
+        {
+            ProjectileID.HornetStinger,
+            ProjectileID.ImpFireball,
+            ProjectileID.MiniRetinaLaser,
+            ProjectileID.PygmySpear,
+            ProjectileID.UFOLaser,
+            ProjectileID.MiniSharkron,
+            ProjectileID.StardustCellMinionShot
+        };
         public bool armorStealth = false;
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
@@ -195,7 +205,7 @@ namespace ExxoAvalonOrigins
         public bool shadowTele;
         public bool teleportV = false;
         public int tpCD;
-        public bool oblivionKill = false;
+        public bool oblivionKill;
         public bool splitProj;
         public bool minionFreeze;
         public int deliriumDuration = 300;
@@ -303,6 +313,8 @@ namespace ExxoAvalonOrigins
             frozen = false;
             liaB = false;
             reckoning = false;
+            oblivionKill = false;
+            splitProj = false;
             curseOfIcarus = false;
 
             if (screenShake > 0)
@@ -412,7 +424,6 @@ namespace ExxoAvalonOrigins
 
             StingerProbeMinion.activeIds.Clear();
         }
-
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
             if (tomeItem.stack > 0)
@@ -606,6 +617,11 @@ namespace ExxoAvalonOrigins
             if (crit && Main.rand.Next(8) == 0)
                 if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
                     reckoningLevel += 1;
+
+            if (minionFreeze)
+                if (proj.minion || minionProjectile.Contains(proj.type))
+                    if (CanBeFrozen.CanFreeze(target))
+                        target.AddBuff(ModContent.BuffType<Buffs.Frozen>(), 60);
         }
         public override void OnHitPvp(Item item, Player target, int damage, bool crit)
         {
@@ -618,6 +634,10 @@ namespace ExxoAvalonOrigins
             if (crit && Main.rand.Next(8) == 0)
                 if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
                     reckoningLevel += 1;
+
+            if (minionFreeze)
+                if (proj.minion || minionProjectile.Contains(proj.type))
+                    target.AddBuff(BuffID.Frozen, 60);
         }
         public void vampireHeal(int dmg, Vector2 Position)
         {

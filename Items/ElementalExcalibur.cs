@@ -25,6 +25,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			else if (randomNum == 3) target.AddBuff(39, 300);
 			else if (randomNum == 4) target.AddBuff(44, 300);
 			else if (randomNum == 5) target.AddBuff(70, 240);
-			else if (randomNum == 6) target.AddBuff(69, 300);			else if (randomNum == 7) target.AddBuff(ModContent.BuffType<Buffs.Frozen>(), 60);
+			else if (randomNum == 6) target.AddBuff(69, 300);			else if (randomNum == 7) target.AddBuff(BuffID.Frozen, 60);
 		}
 	}}
