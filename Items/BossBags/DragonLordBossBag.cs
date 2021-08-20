@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items
+namespace ExxoAvalonOrigins.Items.BossBags
 {
-    public class KingStingBossBag : ModItem
+    public class DragonLordBossBag : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,15 +29,12 @@ namespace ExxoAvalonOrigins.Items
 
         public override void OpenBossBag(Player player)
         {
-            //player.TryGettingDevArmor();
+            player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.ToxinShard>(), Main.rand.Next(50, 81));
-            if (Main.rand.Next(0, 10) < 3)
-                player.QuickSpawnItem(ItemID.BottledHoney, Main.rand.Next(5, 9));
-            if (Main.rand.Next(0, 25) < 23)
-                player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(20, 31));
+            player.QuickSpawnItem(ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11));
+            player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.DragonsBondage>());
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.KingSting>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.DragonLordHead>();
     }
 }

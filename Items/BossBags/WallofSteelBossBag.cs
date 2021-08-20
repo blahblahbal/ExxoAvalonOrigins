@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items
+namespace ExxoAvalonOrigins.Items.BossBags
 {
-    public class DragonLordBossBag : ModItem
+    public class WallofSteelBossBag : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -31,10 +31,18 @@ namespace ExxoAvalonOrigins.Items
         {
             player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11));
-            player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.DragonsBondage>());
+            int drop = Main.rand.Next(4);
+            if (drop == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Items.FleshBoiler>(), 1);
+            }
+            if (drop == 1)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Items.MagicCleaver>(), 1);
+            }
+            player.QuickSpawnItem(ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26));
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.DragonLordHead>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.WallofSteel>();
     }
 }

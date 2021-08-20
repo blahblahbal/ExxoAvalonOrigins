@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.boss = true;
             npc.lifeMax = 82000;
             npc.scale = 1.2f;
-            bossBag = ModContent.ItemType<Items.MechastingBossBag>();
+            bossBag = ModContent.ItemType<Items.BossBags.MechastingBossBag>();
             
         }
         public override void BossLoot(ref string name, ref int potionType)

@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Poisoned] = true;
 			npc.buffImmune[BuffID.Frostburn] = true;
             drawOffsetY = 55;
-            bossBag = ModContent.ItemType<Items.DragonLordBossBag>();
+            bossBag = ModContent.ItemType<Items.BossBags.DragonLordBossBag>();
 		}
         public override Color? GetAlpha(Color drawColor)
         {

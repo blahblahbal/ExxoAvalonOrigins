@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items
+namespace ExxoAvalonOrigins.Items.BossBags
 {
-    public class WallofSteelBossBag : ModItem
+    public class KingStingBossBag : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,20 +29,15 @@ namespace ExxoAvalonOrigins.Items
 
         public override void OpenBossBag(Player player)
         {
-            player.TryGettingDevArmor();
+            //player.TryGettingDevArmor();
 
-            int drop = Main.rand.Next(4);
-            if (drop == 0)
-            {
-                player.QuickSpawnItem(ModContent.ItemType<Items.FleshBoiler>(), 1);
-            }
-            if (drop == 1)
-            {
-                player.QuickSpawnItem(ModContent.ItemType<Items.MagicCleaver>(), 1);
-            }
-            player.QuickSpawnItem(ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26));
+            player.QuickSpawnItem(ModContent.ItemType<Items.ToxinShard>(), Main.rand.Next(50, 81));
+            if (Main.rand.Next(0, 10) < 3)
+                player.QuickSpawnItem(ItemID.BottledHoney, Main.rand.Next(5, 9));
+            if (Main.rand.Next(0, 25) < 23)
+                player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(20, 31));
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.WallofSteel>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.KingSting>();
     }
 }

@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins
         public bool herb = false;
         public bool teleportVWasTriggered = false;
         public int screenShake;
+        public bool astralProject;
         public enum ShadowMirrorModes
         {
             Spawn,
@@ -292,7 +293,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             //trapImmune = false;
-
+            astralProject = false;
             advAmmoBuff = false;
             advArcheryBuff = false;
             advBattleBuff = false;
@@ -681,6 +682,11 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
+            {
+                damage *= 3;
+            }
+
             if (hyperMelee)
             {
                 hyperBar++;
@@ -874,6 +880,18 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdate()
         {
+            if (herbTotal < 250) herbTier = 0;
+            else if (herbTotal >= 250 && herbTotal < 750) herbTier = 1;
+            else if (herbTotal >= 750 && herbTotal < 1500)
+            {
+                if (Main.hardMode) herbTier = 2;
+                else herbTier = 1;
+            }
+            else
+            {
+                if (Main.hardMode) herbTier = 3;
+                else herbTier = 1;
+            }
             //player.statMana = statMana;
             if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
             {
@@ -1611,6 +1629,10 @@ namespace ExxoAvalonOrigins
                 {
                     Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.1f);
                 }
+            }
+            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
+            {
+                player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
             }
 
 	        if (ExxoAvalonOrigins.sprintHotkey.JustPressed)

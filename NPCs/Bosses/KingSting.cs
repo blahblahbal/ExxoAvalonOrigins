@@ -67,7 +67,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 			npc.boss = true;
 			npc.lifeMax = 3400;
 			npc.scale = 1;
-			bossBag = ModContent.ItemType<Items.KingStingBossBag>();
+			bossBag = ModContent.ItemType<Items.BossBags.KingStingBossBag>();
 
 			// Misc vars
 			phase = 0;

@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit8;
 	        npc.DeathSound = SoundID.NPCDeath10;
 			npc.knockBackResist = 0f;
-            bossBag = ModContent.ItemType<Items.BacteriumPrimeBossBag>();
+            bossBag = ModContent.ItemType<Items.BossBags.BacteriumPrimeBossBag>();
         }
 
         public override void NPCLoot()

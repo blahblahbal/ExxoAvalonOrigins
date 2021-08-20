@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit28;
 	        npc.DeathSound = SoundID.NPCDeath31;
 			npc.buffImmune[mod.BuffType("Freeze")] = true;
-            bossBag = ModContent.ItemType<Items.DesertBeakBossBag>();
+            bossBag = ModContent.ItemType<Items.BossBags.DesertBeakBossBag>();
         }
 
 		public override void NPCLoot()
