@@ -1,0 +1,26 @@
+using Terraria;using Terraria.ModLoader;using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Buffs{	public class BlessingofAvalon : ModBuff	{		public override void SetDefaults()		{			DisplayName.SetDefault("Blessing of Avalon");			Description.SetDefault("You are immune to almost all debuffs"				+ "\nYour stats are greatly increased");		}		public override void Update(Player player, ref int k)		{		
+			for (int i = 0; i < player.buffType.Length; i++)
+            {
+				int buffID = player.buffType[i];
+				if (Main.debuff[buffID])
+				{
+					if (buffID != BuffID.Horrified || 
+						buffID != BuffID.TheTongue || 
+						buffID != BuffID.MoonLeech || 
+						buffID != BuffID.PotionSickness ||
+						buffID != BuffID.ManaSickness ||
+						buffID != ModContent.BuffType<CurseofIcarus>())
+                    {
+						player.ClearBuff(buffID);
+                    }
+				}
+            }			player.allDamage += 0.2f;
+			player.meleeCrit += 10;
+			player.magicCrit += 10;
+			player.rangedCrit += 10;
+			player.thrownCrit += 10;
+			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.3f;
+			player.statDefense += 10;
+			player.lifeRegen += 3;			player.manaRegen += 3;			player.armorPenetration += 10;			player.manaCost -= 0.2f;		}	}}

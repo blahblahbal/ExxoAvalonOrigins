@@ -209,10 +209,14 @@ namespace ExxoAvalonOrigins
         public int astralCD;
         public int bubbleCD;
         public bool oblivionKill;
+        public bool goBerserk;
         public bool splitProj;
         public bool spectrumSpeed;
         public bool spectrumBlur;
         public bool minionFreeze;
+        public bool leafStorm;
+        public bool avalonRestoration;
+        public bool avalonRetribution;
         public int deliriumDuration = 300;
         public bool mermanLava;
         public int quadroCount;
@@ -322,10 +326,14 @@ namespace ExxoAvalonOrigins
             hyperMelee = false;
             hyperRanged = false;
             oblivionKill = false;
+            goBerserk = false;
             splitProj = false;
             spectrumSpeed = false;
             spectrumBlur = false;
             minionFreeze = false;
+            leafStorm = false;
+            avalonRestoration = false;
+            avalonRetribution = false;
             curseOfIcarus = false;
 
             if (screenShake > 0)
@@ -619,36 +627,59 @@ namespace ExxoAvalonOrigins
                 }
             }
 
-            if (crit && Main.rand.Next(8) == 0)
-                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
-                    reckoningLevel += 1;
+            if (crit)
+            {
+                if (Main.rand.Next(8) == 0)
+                    if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                        reckoningLevel += 1;
+
+                if (avalonRestoration)
+                    player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+            }
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (crit && Main.rand.Next(8) == 0)
-                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
-                    reckoningLevel += 1;
-
             if (minionFreeze)
                 if (proj.minion || minionProjectile.Contains(proj.type))
                     if (CanBeFrozen.CanFreeze(target))
                         target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
+            if (crit)
+            {
+                if (Main.rand.Next(8) == 0)
+                    if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                        reckoningLevel += 1;
+
+                if (avalonRestoration)
+                    player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+            }
         }
         public override void OnHitPvp(Item item, Player target, int damage, bool crit)
         {
-            if (crit && Main.rand.Next(8) == 0)
-                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
-                    reckoningLevel += 1;
+            if (crit)
+            {
+                if (Main.rand.Next(8) == 0)
+                    if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                        reckoningLevel += 1;
+
+                if (avalonRestoration)
+                    player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+            }
         }
         public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
         {
-            if (crit && Main.rand.Next(8) == 0)
-                if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
-                    reckoningLevel += 1;
-
             if (minionFreeze)
                 if (proj.minion || minionProjectile.Contains(proj.type))
                     target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
+
+            if (crit)
+            {
+                if (Main.rand.Next(8) == 0)
+                    if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                        reckoningLevel += 1;
+
+                if (avalonRestoration)
+                    player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+            }
         }
         public void vampireHeal(int dmg, Vector2 Position)
         {
@@ -688,6 +719,10 @@ namespace ExxoAvalonOrigins
             {
                 npc.StrikeNPC(npc.damage * 2, 2f, 1);
             }
+            if (avalonRetribution && damage > 0)
+            {
+                npc.AddBuff(ModContent.BuffType<Buffs.CurseofAvalon>(), 100);
+            }
         }
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
@@ -695,6 +730,11 @@ namespace ExxoAvalonOrigins
             if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
             {
                 damage *= 3;
+            }
+            if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()))
+            {
+                damage *= 4;
+                target.DelBuff(target.FindBuffIndex(ModContent.BuffType<Buffs.CurseofAvalon>()));
             }
 
             if (hyperMelee)
@@ -728,6 +768,11 @@ namespace ExxoAvalonOrigins
             if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
             {
                 damage *= 3;
+            }
+            if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()))
+            {
+                damage *= 4;
+                target.DelBuff(target.FindBuffIndex(ModContent.BuffType<Buffs.CurseofAvalon>()));
             }
 
             if (hyperMelee && proj.melee)
@@ -1871,10 +1916,76 @@ namespace ExxoAvalonOrigins
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			if (liaB)
-			{
-				Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 60f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
-			}
+            if (damage > 0)
+            {
+                if (liaB)
+                {
+                    //Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 60f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
+
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<Projectiles.LightningBolt>(), 80, 6f, Main.myPlayer);
+                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
+                }
+
+                if (goBerserk)
+                {
+                    if (damage > 50)
+                        player.AddBuff(ModContent.BuffType<Buffs.Berserk>(), 180);
+                }
+
+                if (leafStorm)
+                {
+                    int[] dust = { 0, 0, 0, 0 };
+                    int[] dust2 = { 0, 0, 0, 0 };
+                    for (int k = 0; k < 10; k++)
+                    {
+                        dust[0] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        dust[1] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        dust[2] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        dust[3] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 0 || i == 1)
+                            {
+                                Main.dust[dust[i]].velocity.X *= 1.1f;
+                            }
+                            if (i == 0 || i == 2)
+                            {
+                                Main.dust[dust[i]].velocity.Y *= 1.1f;
+                            }
+                            if (i == 1 || i == 3)
+                            {
+                                Main.dust[dust[i]].velocity.Y *= -1.1f;
+                            }
+                            if (i == 2 || i == 3)
+                            {
+                                Main.dust[dust[i]].velocity.X *= -1.1f;
+                            }
+                        }
+                        for (int j = 0; j < 4; j++)
+                        {
+                            Projectile.NewProjectile(Main.dust[dust[j]].position.X, Main.dust[dust[j]].position.Y, Main.dust[dust[j]].velocity.X, Main.dust[dust[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 10, 2, Main.myPlayer);
+                        }
+                    }
+                    for (int m = 0; m < 10; m++)
+                    {
+                        dust2[0] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        dust2[1] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        dust2[2] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        dust2[3] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 0) Main.dust[dust2[i]].velocity.Y *= -1.1f;
+                            if (i == 1) Main.dust[dust2[i]].velocity.X *= -1.1f;
+                            if (i == 2) Main.dust[dust2[i]].velocity.Y *= 1.1f;
+                            if (i == 3) Main.dust[dust2[i]].velocity.X *= 1.1f;
+                        }
+                        for (int j = 0; j < 4; j++)
+                        {
+                            Projectile.NewProjectile(Main.dust[dust2[j]].position.X, Main.dust[dust2[j]].position.Y, Main.dust[dust2[j]].velocity.X, Main.dust[dust2[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 10, 2, Main.myPlayer);
+                        }
+                    }
+                }
+            }
 		}
 
 	    public override void PostUpdateRunSpeeds()
