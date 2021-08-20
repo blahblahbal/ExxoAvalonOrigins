@@ -262,6 +262,10 @@ namespace ExxoAvalonOrigins
         public int reckoningLevel;
         public int reckoningTimeLeft;
         public bool curseOfIcarus;
+        public bool undeadTalisman;
+        public bool cOmega;
+        public bool pOmega;
+        public bool noSticky;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -300,7 +304,12 @@ namespace ExxoAvalonOrigins
         {
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
-            //trapImmune = false;
+            trapImmune = false;
+            undeadTalisman = false;
+            cOmega = false;
+            pOmega = false;
+            slimeBand = false;
+            noSticky = false;
             astralProject = false;
             advAmmoBuff = false;
             advArcheryBuff = false;
@@ -1354,7 +1363,7 @@ namespace ExxoAvalonOrigins
             if (player.whoAmI == Main.myPlayer && incDef)
             {
                 int time = 300;
-                if (HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()))
+                if (cOmega)
                 {
                     time = 600;
                 }
@@ -1364,7 +1373,7 @@ namespace ExxoAvalonOrigins
             if (player.whoAmI == Main.myPlayer && regenStrike)
             {
                 int hpHealed = 5;
-                if (HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()))
+                if (pOmega)
                 {
                     hpHealed = 10;
                 }
@@ -1685,7 +1694,7 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateMiscEffects()
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()) || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+            if (noSticky)
             {
                 player.sticky = false;
             }
@@ -1738,7 +1747,7 @@ namespace ExxoAvalonOrigins
                 float damagePercent;
                 float maxSpeed;
 
-                if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()))
+                if (noSticky)
                     maxSpeed = 10f;
                 else
                     maxSpeed = player.maxRunSpeed;
@@ -2018,7 +2027,7 @@ namespace ExxoAvalonOrigins
 		    }
 			if (activateSprint)
 			{
-				if (player.controlLeft && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
+				if (player.controlLeft && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
 				{
 					bool flag16 = true;
 					staminaCD2 += 1;
@@ -2057,7 +2066,7 @@ namespace ExxoAvalonOrigins
 						}
 					}
 				}
-				if (player.controlRight && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
+				if (player.controlRight && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
 				{
 					bool flag17 = true;
 					staminaCD2 += 1;
@@ -2192,7 +2201,7 @@ namespace ExxoAvalonOrigins
             }
             if (num3 > -1)
             {
-                if (num3 == 229 && !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                if (num3 == 229 && !noSticky)
                 {
                     player.sticky = true;
                 }
@@ -2200,7 +2209,7 @@ namespace ExxoAvalonOrigins
                 {
                     player.sticky = false;
                 }
-                if (HasItemInArmor(ModContent.ItemType<Items.BandofSlime>()))
+                if (slimeBand)
                 {
                     player.slippy = true;
                     player.slippy2 = true;
@@ -2214,7 +2223,7 @@ namespace ExxoAvalonOrigins
         }
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (HasItemInArmor(ModContent.ItemType<UndeadTalisman>()) || HasItemInArmor(ModContent.ItemType<ImmunityCharm>()))
+            if (undeadTalisman)
             {
                 int dmgPlaceholder = npc.damage;
                 if (undead.Contains(npc.type))
@@ -2225,7 +2234,7 @@ namespace ExxoAvalonOrigins
                         player.immune = true;
                         player.immuneAlpha = 0;
                     }
-                    else damage = dmgPlaceholder;
+                    else damage = dmgPlaceholder - (player.statDefense / 2 - 10);
                 }
             }
 

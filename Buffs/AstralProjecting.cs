@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Buffs
         public override void Update(Player player, ref int k)
         {
             player.immune = true;
-            player.immuneAlpha = 100;
+            player.immuneAlpha = 130;
             player.noItems = true;
             player.thorns = 0f;
 
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Buffs
                 if (n.townNPC || n.dontTakeDamage) continue;
                 if (player.getRect().Intersects(n.getRect()))
                 {
-                    n.AddBuff(ModContent.BuffType<AstralCurse>(), 999999);
+                    n.AddBuff(ModContent.BuffType<AstralCurse>(), 60 * 30);
                 }
             }
         }

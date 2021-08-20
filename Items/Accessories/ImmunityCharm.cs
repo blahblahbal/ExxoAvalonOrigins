@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class ImmunityCharm : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Immunity Charm");			Tooltip.SetDefault("Provides immunity to slimes and flying creatures\nProvides 20 defense against undead monsters\nReduces damage taken by 10% and negates fall damage");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/ImmunityCharm");			item.rare = 9;			item.width = dims.Width;			item.value = Item.sellPrice(0, 7, 25, 0);			item.accessory = true;			item.height = dims.Height;		}        public override void AddRecipes()
+using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items.Accessories{	class ImmunityCharm : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Immunity Charm");			Tooltip.SetDefault("Provides immunity to slimes and flying creatures\nProvides 20 defense against undead monsters\nReduces damage taken by 10% and negates fall damage");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/ImmunityCharm");			item.rare = 9;			item.width = dims.Width;			item.value = Item.sellPrice(0, 7, 25, 0);			item.accessory = true;			item.height = dims.Height;		}        public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<StickyCharm>());
@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             r.AddRecipe();
         }        public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().undeadTalisman = true;
             player.endurance += 0.1f;
             player.noFallDmg = true;
             player.npcTypeNoAggro[1] = true;
