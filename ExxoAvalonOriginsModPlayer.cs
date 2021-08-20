@@ -266,6 +266,7 @@ namespace ExxoAvalonOrigins
         public bool cOmega;
         public bool pOmega;
         public bool noSticky;
+        public bool astralStart;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -306,6 +307,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + slimeBand.ToString());
             trapImmune = false;
             undeadTalisman = false;
+            astralStart = false;
             cOmega = false;
             pOmega = false;
             slimeBand = false;
@@ -449,7 +451,7 @@ namespace ExxoAvalonOrigins
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
-
+            astralCD = 3600;
             StingerProbeMinion.activeIds.Clear();
         }
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
@@ -1809,14 +1811,20 @@ namespace ExxoAvalonOrigins
             }
             if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
             {
-                if (player.HasBuff(ModContent.BuffType<Buffs.AstralProjecting>()))
+                if (astralStart)
                 {
-                    player.ClearBuff(ModContent.BuffType<Buffs.AstralProjecting>());
+                    if (player.HasBuff(ModContent.BuffType<Buffs.AstralProjecting>()))
+                    {
+                        player.ClearBuff(ModContent.BuffType<Buffs.AstralProjecting>());
+                    }
                 }
-                else if (astralCD >= 3600)
+                Main.NewText(astralStart);
+                Main.NewText(astralCD);
+                if (astralCD >= 3600)
                 {
+                    Main.NewText("a");
                     astralCD = 0;
-                    player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
+                    if (!astralStart) player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
                 }
             }
 
