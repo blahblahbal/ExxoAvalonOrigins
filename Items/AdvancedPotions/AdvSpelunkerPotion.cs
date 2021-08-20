@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Spelunker Potion");
+            DisplayName.SetDefault("Spelunker Elixir");
             Tooltip.SetDefault("Shows the location of treasure and ore");
         }
 

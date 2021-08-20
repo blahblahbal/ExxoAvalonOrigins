@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Blood Cast Potion");
+            DisplayName.SetDefault("Blood Cast Elixir");
             Tooltip.SetDefault("Adds your max life to your max mana");
         }
 

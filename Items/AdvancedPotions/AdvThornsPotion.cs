@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Thorns Potion");
+            DisplayName.SetDefault("Thorns Elixir");
             Tooltip.SetDefault("Attackers also take damage");
         }
 

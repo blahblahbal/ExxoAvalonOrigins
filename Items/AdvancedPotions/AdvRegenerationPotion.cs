@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Regeneration Potion");
+            DisplayName.SetDefault("Regeneration Elixir");
             Tooltip.SetDefault("Provides life regeneration");
         }
 

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Archery Potion");
+            DisplayName.SetDefault("Archery Elixir");
             Tooltip.SetDefault("40% increased arrow speed and damage");
         }
 

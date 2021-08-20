@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Hunter Potion");
+            DisplayName.SetDefault("Hunter Elixir");
             Tooltip.SetDefault("Shows the location of enemies");
         }
 

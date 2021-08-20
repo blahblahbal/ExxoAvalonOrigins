@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced GPS Potion");
+            DisplayName.SetDefault("GPS Elixir");
             Tooltip.SetDefault("GPS Effect");
         }
 

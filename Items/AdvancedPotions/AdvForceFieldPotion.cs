@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Force Field Potion");
+            DisplayName.SetDefault("Force Field Elixir");
             Tooltip.SetDefault("Enables a projectile-reflecting force field");
         }
 

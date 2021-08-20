@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Ammo Reservation Potion");
+            DisplayName.SetDefault("Ammo Reservation Elixir");
             Tooltip.SetDefault("Gives 30% chance to not consume ammo");
         }
 

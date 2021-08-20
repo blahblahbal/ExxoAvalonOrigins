@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Invincibility Potion");
+            DisplayName.SetDefault("Invincibility Elixir");
             Tooltip.SetDefault("Grants invincibility");
         }
 

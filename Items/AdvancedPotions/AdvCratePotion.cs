@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Crate Potion");
+            DisplayName.SetDefault("Crate Elixir");
             Tooltip.SetDefault("Increases chance to get a crate");
         }
 

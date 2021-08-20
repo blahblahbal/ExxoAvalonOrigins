@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Night Owl Potion");
+            DisplayName.SetDefault("Night Owl Elixir");
             Tooltip.SetDefault("Increases night vision");
         }
 

@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Fury Potion");
+            DisplayName.SetDefault("Fury Elixir");
             Tooltip.SetDefault("Increases critical strike damage by 40%");
         }
 

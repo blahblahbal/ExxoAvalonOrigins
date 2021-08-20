@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Vision Potion");
+            DisplayName.SetDefault("Vision Elixir");
             Tooltip.SetDefault("Open caves light up");
         }
 

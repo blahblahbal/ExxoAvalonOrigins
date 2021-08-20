@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Dangersense Potion");
+            DisplayName.SetDefault("Dangersense Elixir");
             Tooltip.SetDefault("Allows you to see nearby traps");
         }
 

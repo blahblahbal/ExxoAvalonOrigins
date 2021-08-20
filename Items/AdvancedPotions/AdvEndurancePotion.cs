@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Endurance Potion");
+            DisplayName.SetDefault("Endurance Elixir");
             Tooltip.SetDefault("Reduces damage taken by 20%");
         }
 

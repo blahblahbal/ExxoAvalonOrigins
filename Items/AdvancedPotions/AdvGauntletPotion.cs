@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Gauntlet Potion");
+            DisplayName.SetDefault("Gauntlet Elixir");
             Tooltip.SetDefault("-6 defense, +25% melee damage");
         }
 

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Builder Potion");
+            DisplayName.SetDefault("Builder Elixir");
             Tooltip.SetDefault("Increased placement speed and range");
         }
 

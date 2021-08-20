@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Gills Potion");
+            DisplayName.SetDefault("Gills Elixir");
             Tooltip.SetDefault("Breathe water instead of air");
         }
 

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Inferno Potion");
+            DisplayName.SetDefault("Inferno Elixir");
             Tooltip.SetDefault("Ignites nearby enemies");
         }
 

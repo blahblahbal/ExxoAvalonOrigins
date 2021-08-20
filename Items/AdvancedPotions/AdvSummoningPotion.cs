@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Summoning Potion");
+            DisplayName.SetDefault("Summoning Elixir");
             Tooltip.SetDefault("Increases your max number of minions");
         }
 

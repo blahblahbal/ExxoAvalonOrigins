@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Sonar Potion");
+            DisplayName.SetDefault("Sonar Elixir");
             Tooltip.SetDefault("Detects hooked fish");
         }
 

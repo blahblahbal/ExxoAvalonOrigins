@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Strength Potion");
+            DisplayName.SetDefault("Strength Elixir");
             Tooltip.SetDefault("Increases all stats");
         }
 

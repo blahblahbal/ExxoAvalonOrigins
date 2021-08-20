@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Mana Regeneration Potion");
+            DisplayName.SetDefault("Mana Regeneration Elixir");
             Tooltip.SetDefault("Increased mana regeneration");
         }
 

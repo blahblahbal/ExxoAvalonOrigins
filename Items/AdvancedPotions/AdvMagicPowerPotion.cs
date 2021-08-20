@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Magic Power Potion");
+            DisplayName.SetDefault("Magic Power Elixir");
             Tooltip.SetDefault("40% increased magic damage");
         }
 

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Invisibility Potion");
+            DisplayName.SetDefault("Invisibility Elixir");
             Tooltip.SetDefault("Grants invisibility");
         }
 

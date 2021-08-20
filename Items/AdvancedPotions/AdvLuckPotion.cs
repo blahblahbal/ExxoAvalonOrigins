@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Luck Potion");
+            DisplayName.SetDefault("Luck Elixir");
             Tooltip.SetDefault("Doubles rare drop chance");
         }
 
