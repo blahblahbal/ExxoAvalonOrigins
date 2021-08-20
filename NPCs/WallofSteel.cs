@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.scale = 1.4f;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
-            npc.buffImmune[BuffID.Confused] = npc.buffImmune[ModContent.BuffType<Buffs.Freeze>()] = npc.buffImmune[BuffID.Poisoned] =
+            npc.buffImmune[BuffID.Confused] = npc.buffImmune[ModContent.BuffType<Buffs.Frozen>()] = npc.buffImmune[BuffID.Poisoned] =
             npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
             npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
             bossBag = ModContent.ItemType<Items.BossBags.WallofSteelBossBag>();
