@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Buffs
                 if (n.townNPC || n.dontTakeDamage) continue;
                 if (player.getRect().Intersects(n.getRect()))
                 {
-                    n.AddBuff(ModContent.BuffType<AstralCurse>(), 60 * 30);
+                    n.AddBuff(ModContent.BuffType<AstralCurse>(), 60 * 45);
                 }
             }
         }

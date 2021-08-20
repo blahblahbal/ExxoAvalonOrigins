@@ -516,7 +516,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                int drop = Main.rand.Next(4);
+                int drop = Main.rand.Next(5);
                 if (drop == 0)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.FleshBoiler>(), 1, false, -1, false);
@@ -524,6 +524,10 @@ namespace ExxoAvalonOrigins.NPCs
                 if (drop == 1)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.MagicCleaver>(), 1, false, -1, false);
+                }
+                if (drop == 2)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.BubbleBoost>(), 1, false, -1, false);
                 }
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(40, 56), false, 0, false);
             }

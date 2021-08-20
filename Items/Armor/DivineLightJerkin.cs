@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			DisplayName.SetDefault("Divine Light Jerkin");
 			Tooltip.SetDefault("10% increased critical strike chance" +
-				"\n25% increased critical strike damage");
+				"\n25% increased critical damage");
 		}
 
 		public override void SetDefaults()
