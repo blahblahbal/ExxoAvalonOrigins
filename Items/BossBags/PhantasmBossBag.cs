@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items
+namespace ExxoAvalonOrigins.Items.BossBags
 {
     public class PhantasmBossBag : ModItem
     {
@@ -30,6 +30,7 @@ namespace ExxoAvalonOrigins.Items
         public override void OpenBossBag(Player player)
         {
             player.TryGettingDevArmor();
+            player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.AstrallineArtifact>());
             int drop = Main.rand.Next(3);
             if (drop == 0)
             {

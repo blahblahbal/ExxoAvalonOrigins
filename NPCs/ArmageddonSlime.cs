@@ -43,7 +43,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Frostburn] = true;
 			npc.buffImmune[mod.BuffType("Freeze")] = true;
             //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
-            bossBag = ModContent.ItemType<Items.ArmageddonSlimeBossBag>();
+            bossBag = ModContent.ItemType<Items.BossBags.ArmageddonSlimeBossBag>();
 
             cindersOnce = false;
 		}

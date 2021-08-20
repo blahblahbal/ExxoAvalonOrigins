@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins
         public bool herb = false;
         public bool teleportVWasTriggered = false;
         public int screenShake;
+        public bool astralProject;
         public enum ShadowMirrorModes
         {
             Spawn,
@@ -282,7 +283,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             //trapImmune = false;
-
+            astralProject = false;
             advAmmoBuff = false;
             advArcheryBuff = false;
             advBattleBuff = false;
@@ -661,6 +662,11 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
+            {
+                damage *= 3;
+            }
+
             if (hyperMelee)
             {
                 hyperBar++;
@@ -1603,6 +1609,10 @@ namespace ExxoAvalonOrigins
                 {
                     Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.1f);
                 }
+            }
+            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
+            {
+                player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
             }
 
 	        if (ExxoAvalonOrigins.sprintHotkey.JustPressed)

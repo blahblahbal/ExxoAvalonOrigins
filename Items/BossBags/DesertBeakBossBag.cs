@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items
+namespace ExxoAvalonOrigins.Items.BossBags
 {
-    public class BacteriumPrimeBossBag : ModItem
+    public class DesertBeakBossBag : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -31,9 +31,18 @@ namespace ExxoAvalonOrigins.Items
         {
             //player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41));
+            player.QuickSpawnItem(ItemID.SandBlock, Main.rand.Next(22, 55));
+            player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4));
+            if (Main.rand.Next(10) <= 5)
+            {
+                player.QuickSpawnItem(ExxoAvalonOriginsWorld.osmiumOre.GetItemOre(), Main.rand.Next(15, 26));   
+            }
+            if (Main.rand.Next(3) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<TomeoftheDistantPast>(), 1);
+            }
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.BacteriumPrime>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.DesertBeak>();
     }
 }

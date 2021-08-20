@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
 	        npc.DeathSound = SoundID.NPCDeath14;
-            bossBag = ModContent.ItemType<Items.OblivionBossBag>();
+            bossBag = ModContent.ItemType<Items.BossBags.OblivionBossBag>();
 		}
         public override void BossLoot(ref string name, ref int potionType)
         {
