@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             PlantStage stage = GetStage(i, j); //The current stage of the herb
 
             //Only grow to the next stage if there is a next stage. We dont want our tile turning pink!
-            if (stage == PlantStage.Planted && Main.rand.Next(5) == 0)
+            if (stage == PlantStage.Planted && Main.rand.Next(8) == 0)
             {
                 tile.frameX += FrameWidth;
                 if (Main.netMode != NetmodeID.SinglePlayer)

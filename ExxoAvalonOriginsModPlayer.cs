@@ -1485,85 +1485,87 @@ namespace ExxoAvalonOrigins
 			{
 				player.stealth = 1f;
 			}
-	        
-	        if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump)
+
+            #region bubble boost
+            if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump)
 	        {
+                #region bubble timer and spawn bubble gores/sound
                 bubbleCD++;
                 if (bubbleCD == 20)
                 {
-                    for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < 3; i++)
                     {
                         int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/Bubble"), 1f);
-                        Main.gore[g1].velocity.X *= 0.5f;
-                        Main.gore[g1].velocity.Y *= 0f;
-                        //Main.gore[g1].timeLeft = 60;
-                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubble"));
+                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
                     }
                 }
-                if (bubbleCD == 35)
+                if (bubbleCD == 30)
                 {
                     for (int i = 0; i < 2; i++)
                     {
                         int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/LargeBubble"), 1f);
-                        Main.gore[g1].velocity.X *= 0.5f;
-                        Main.gore[g1].velocity.Y *= 0f;
-                        //Main.gore[g1].timeLeft = 60;
-                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubble"));
+                        //Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
                     }
                 }
-                if (bubbleCD == 55)
+                if (bubbleCD == 40)
                 {
-                    for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < 4; i++)
                     {
                         int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/SmallBubble"), 1f);
                         Main.gore[g1].velocity.X *= 0.5f;
                         Main.gore[g1].velocity.Y *= 0f;
                         //Main.gore[g1].timeLeft = 60;
-                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubble"));
+                        //Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
                     }
                     bubbleCD = 0;
                 }
+                #endregion
+                #region down
                 if (player.controlDown && player.controlJump)
 		        {
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.controlLeft)
 			        {
-				        player.velocity.X = -10f;
+				        player.velocity.X = -15f;
 			        }
 			        else if (player.controlRight)
 			        {
-				        player.velocity.X = 10f;
+				        player.velocity.X = 15f;
 			        }
 			        else
 			        {
 				        player.velocity.X = 0f;
 			        }
-			        player.velocity.Y = 10f;
+			        player.velocity.Y = 15f;
 			        bubbleBoostActive = true;
 		        }
-		        else if (player.controlUp && player.controlJump)
+                #endregion
+                #region up
+                else if (player.controlUp && player.controlJump)
 		        {
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.controlLeft)
 			        {
-				        player.velocity.X = -10f;
+				        player.velocity.X = -15f;
 			        }
 			        else if (player.controlRight)
 			        {
-				        player.velocity.X = 10f;
+				        player.velocity.X = 15f;
 			        }
 			        else
 			        {
 				        player.velocity.X = 0f;
 			        }
-			        player.velocity.Y = -10f;
+			        player.velocity.Y = -15f;
 			        bubbleBoostActive = true;
 		        }
-		        else if (player.controlLeft && player.controlJump)
+                #endregion
+                #region left
+                else if (player.controlLeft && player.controlJump)
 		        {
-			        player.velocity.X = -10f;
+			        player.velocity.X = -15f;
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.gravDir == 1f && player.velocity.Y > -player.gravity)
@@ -1574,12 +1576,13 @@ namespace ExxoAvalonOrigins
                     {
                         player.velocity.Y = player.gravity + 1E-06f;
                     }
-                    //player.velocity.Y += 0.45f;
                     bubbleBoostActive = true;
 		        }
-		        else if (player.controlRight && player.controlJump)
+                #endregion
+                #region right
+                else if (player.controlRight && player.controlJump)
 		        {
-			        player.velocity.X = 10f;
+			        player.velocity.X = 15f;
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.gravDir == 1f && player.velocity.Y > -player.gravity)
@@ -1590,13 +1593,14 @@ namespace ExxoAvalonOrigins
                     {
                         player.velocity.Y = player.gravity + 1E-06f;
                     }
-                    //player.velocity.Y -= 0.45f;
                     bubbleBoostActive = true;
 		        }
-		        stayInBounds(player.position);
-	        }        
-	        
-	        if (chaosCharm)
+                #endregion
+                stayInBounds(player.position);
+	        }
+            #endregion
+
+            if (chaosCharm)
 	        {
 		        int modCrit = 2 * (int)Math.Floor(((double) player.statLifeMax2 - (double) player.statLife) /
 		                      (double) player.statLifeMax2 * 10.0);
