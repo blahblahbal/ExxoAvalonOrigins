@@ -778,7 +778,11 @@ namespace ExxoAvalonOrigins
             {
                 damage *= 3;
             }
-            if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()))
+            if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()) && 
+                proj.type != ProjectileID.HallowStar && 
+                proj.type != ModContent.ProjectileType<Projectiles.Leaves>() && 
+                proj.type != ModContent.ProjectileType<Projectiles.LightningBolt>() && 
+                proj.type != ModContent.ProjectileType<Projectiles.LightningTrail>())
             {
                 damage *= 4;
                 target.DelBuff(target.FindBuffIndex(ModContent.BuffType<Buffs.CurseofAvalon>()));
@@ -1976,7 +1980,7 @@ namespace ExxoAvalonOrigins
                         }
                         for (int j = 0; j < 4; j++)
                         {
-                            Projectile.NewProjectile(Main.dust[dust[j]].position.X, Main.dust[dust[j]].position.Y, Main.dust[dust[j]].velocity.X, Main.dust[dust[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 10, 2, Main.myPlayer);
+                            Projectile.NewProjectile(Main.dust[dust[j]].position.X, Main.dust[dust[j]].position.Y, Main.dust[dust[j]].velocity.X, Main.dust[dust[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 45, 2, Main.myPlayer);
                         }
                     }
                     for (int m = 0; m < 10; m++)
@@ -1994,7 +1998,7 @@ namespace ExxoAvalonOrigins
                         }
                         for (int j = 0; j < 4; j++)
                         {
-                            Projectile.NewProjectile(Main.dust[dust2[j]].position.X, Main.dust[dust2[j]].position.Y, Main.dust[dust2[j]].velocity.X, Main.dust[dust2[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 10, 2, Main.myPlayer);
+                            Projectile.NewProjectile(Main.dust[dust2[j]].position.X, Main.dust[dust2[j]].position.Y, Main.dust[dust2[j]].velocity.X, Main.dust[dust2[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 45, 2, Main.myPlayer);
                         }
                     }
                 }
