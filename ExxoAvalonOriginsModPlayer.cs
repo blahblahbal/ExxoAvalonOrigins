@@ -1811,10 +1811,17 @@ namespace ExxoAvalonOrigins
                     Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.1f);
                 }
             }
-            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject && astralCD >= 3600)
+            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
             {
-                astralCD = 0;
-                player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
+                if (player.HasBuff(ModContent.BuffType<Buffs.AstralProjecting>()))
+                {
+                    player.ClearBuff(ModContent.BuffType<Buffs.AstralProjecting>());
+                }
+                else if (astralCD >= 3600)
+                {
+                    astralCD = 0;
+                    player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
+                }
             }
 
 	        if (ExxoAvalonOrigins.sprintHotkey.JustPressed)

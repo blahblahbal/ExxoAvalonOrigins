@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Buffs
             player.immuneAlpha = 130;
             player.noItems = true;
             player.thorns = 0f;
-
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().astralCD = 0;
 
             foreach (NPC n in Main.npc)
             {

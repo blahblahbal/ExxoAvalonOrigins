@@ -11,6 +11,16 @@ namespace ExxoAvalonOrigins.World.Structures
 {
     public class TropicsSanctum
     {
+        public static void MakeSanctum2(int x, int y)
+        {
+            ushort t = (ushort)WorldGen.genRand.Next(3);
+            if (t == 0) t = TileID.IridescentBrick;
+            else if (t == 1) t = (ushort)ModContent.TileType<Tiles.BismuthBrick>();
+            else if (t == 2) t = (ushort)ModContent.TileType<Tiles.Loamstone>();
+
+
+        }
+
         public static void MakeSanctum(int x, int y)
         {
             int[,] _structure = {
@@ -33,8 +43,8 @@ namespace ExxoAvalonOrigins.World.Structures
             int PosY = y;
             ushort t = (ushort)WorldGen.genRand.Next(3);
             if (t == 0) t = TileID.IridescentBrick;
-            else if (t == 1) t = TileID.PlatinumBrick;
-            else if (t == 2) t = TileID.Mudstone;
+            else if (t == 1) t = (ushort)ModContent.TileType<Tiles.BismuthBrick>();
+            else if (t == 2) t = (ushort)ModContent.TileType<Tiles.Loamstone>();
             //i = vertical, j = horizontal
             for (int confirmPlatforms = 0; confirmPlatforms < 2; confirmPlatforms++)    //Increase the iterations on this outermost for loop if tabletop-objects are not properly spawning
             {
