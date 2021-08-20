@@ -206,8 +206,12 @@ namespace ExxoAvalonOrigins
         public bool shadowTele;
         public bool teleportV = false;
         public int tpCD;
+        public int astralCD;
+        public int bubbleCD;
         public bool oblivionKill;
         public bool splitProj;
+        public bool spectrumSpeed;
+        public bool spectrumBlur;
         public bool minionFreeze;
         public int deliriumDuration = 300;
         public bool mermanLava;
@@ -314,8 +318,14 @@ namespace ExxoAvalonOrigins
             frozen = false;
             liaB = false;
             reckoning = false;
+            hyperMagic = false;
+            hyperMelee = false;
+            hyperRanged = false;
             oblivionKill = false;
             splitProj = false;
+            spectrumSpeed = false;
+            spectrumBlur = false;
+            minionFreeze = false;
             curseOfIcarus = false;
 
             if (screenShake > 0)
@@ -622,7 +632,7 @@ namespace ExxoAvalonOrigins
             if (minionFreeze)
                 if (proj.minion || minionProjectile.Contains(proj.type))
                     if (CanBeFrozen.CanFreeze(target))
-                        target.AddBuff(ModContent.BuffType<Buffs.Frozen>(), 60);
+                        target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
         }
         public override void OnHitPvp(Item item, Player target, int damage, bool crit)
         {
@@ -638,7 +648,7 @@ namespace ExxoAvalonOrigins
 
             if (minionFreeze)
                 if (proj.minion || minionProjectile.Contains(proj.type))
-                    target.AddBuff(BuffID.Frozen, 60);
+                    target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
         }
         public void vampireHeal(int dmg, Vector2 Position)
         {
@@ -719,6 +729,7 @@ namespace ExxoAvalonOrigins
             {
                 damage *= 3;
             }
+
             if (hyperMelee && proj.melee)
             {
                 hyperBar++;
@@ -746,6 +757,12 @@ namespace ExxoAvalonOrigins
                     if (hyperBar == 25) hyperBar = 0;
                 }
             }
+
+            if (minionFreeze)
+                if (proj.minion || minionProjectile.Contains(proj.type))
+                    if (target.HasBuff(ModContent.BuffType<Buffs.MinionFrozen>()) || !CanBeFrozen.CanFreeze(target))
+                        damage = (int)(damage * 1.10f);
+
             if (crit)
             {
                 damage += MultiplyCritDamage(damage);
@@ -760,6 +777,11 @@ namespace ExxoAvalonOrigins
         }
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
+            if (minionFreeze)
+                if (proj.minion || minionProjectile.Contains(proj.type))
+                    if (target.HasBuff(ModContent.BuffType<Buffs.MinionFrozen>()))
+                        damage = (int)(damage * 1.10f);
+
             if (crit)
             {
                 damage += MultiplyCritDamage(damage);
@@ -780,6 +802,10 @@ namespace ExxoAvalonOrigins
             if (blahArmor)
             {
                 drawInfo.shadow = 0f;
+            }
+            if (spectrumBlur)
+            {
+                player.eocDash = 1;
             }
             if (mermanLava)
             {
@@ -876,6 +902,11 @@ namespace ExxoAvalonOrigins
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (ExxoAvalonOrigins.godMode) return false;
+            if (spectrumBlur && player.whoAmI == Main.myPlayer && Main.rand.Next(10) == 0)
+            {
+                SpectrumDodge();
+                return false;
+            }
             return true;
         }
         public override void PreUpdateMovement()
@@ -1412,9 +1443,46 @@ namespace ExxoAvalonOrigins
 	        
 	        if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump)
 	        {
-		        if (player.controlDown && player.controlJump)
+                bubbleCD++;
+                if (bubbleCD == 20)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/Bubble"), 1f);
+                        Main.gore[g1].velocity.X *= 0.5f;
+                        Main.gore[g1].velocity.Y *= 0f;
+                        //Main.gore[g1].timeLeft = 60;
+                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubble"));
+                    }
+                }
+                if (bubbleCD == 35)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/LargeBubble"), 1f);
+                        Main.gore[g1].velocity.X *= 0.5f;
+                        Main.gore[g1].velocity.Y *= 0f;
+                        //Main.gore[g1].timeLeft = 60;
+                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubble"));
+                    }
+                }
+                if (bubbleCD == 55)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/SmallBubble"), 1f);
+                        Main.gore[g1].velocity.X *= 0.5f;
+                        Main.gore[g1].velocity.Y *= 0f;
+                        //Main.gore[g1].timeLeft = 60;
+                        Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubble"));
+                    }
+                    bubbleCD = 0;
+                }
+                if (player.controlDown && player.controlJump)
 		        {
-			        if (player.controlLeft)
+                    player.wingsLogic = 0;
+                    player.rocketBoots = 0;
+                    if (player.controlLeft)
 			        {
 				        player.velocity.X = -10f;
 			        }
@@ -1431,7 +1499,9 @@ namespace ExxoAvalonOrigins
 		        }
 		        else if (player.controlUp && player.controlJump)
 		        {
-			        if (player.controlLeft)
+                    player.wingsLogic = 0;
+                    player.rocketBoots = 0;
+                    if (player.controlLeft)
 			        {
 				        player.velocity.X = -10f;
 			        }
@@ -1449,14 +1519,34 @@ namespace ExxoAvalonOrigins
 		        else if (player.controlLeft && player.controlJump)
 		        {
 			        player.velocity.X = -10f;
-			        player.velocity.Y = -0.42f;
-			        bubbleBoostActive = true;
+                    player.wingsLogic = 0;
+                    player.rocketBoots = 0;
+                    if (player.gravDir == 1f && player.velocity.Y > -player.gravity)
+                    {
+                        player.velocity.Y = -(player.gravity + 1E-06f);
+                    }
+                    else if (player.gravDir == -1f && player.velocity.Y < player.gravity)
+                    {
+                        player.velocity.Y = player.gravity + 1E-06f;
+                    }
+                    //player.velocity.Y += 0.45f;
+                    bubbleBoostActive = true;
 		        }
 		        else if (player.controlRight && player.controlJump)
 		        {
 			        player.velocity.X = 10f;
-			        player.velocity.Y = -0.42f;
-			        bubbleBoostActive = true;
+                    player.wingsLogic = 0;
+                    player.rocketBoots = 0;
+                    if (player.gravDir == 1f && player.velocity.Y > -player.gravity)
+                    {
+                        player.velocity.Y = -(player.gravity + 1E-06f);
+                    }
+                    else if (player.gravDir == -1f && player.velocity.Y < player.gravity)
+                    {
+                        player.velocity.Y = player.gravity + 1E-06f;
+                    }
+                    //player.velocity.Y -= 0.45f;
+                    bubbleBoostActive = true;
 		        }
 		        stayInBounds(player.position);
 	        }        
@@ -1496,9 +1586,14 @@ namespace ExxoAvalonOrigins
 		        {
 			        tpCD = 300;
 		        }
-
 		        tpCD++;
 	        }
+
+            if (astralProject)
+            {
+                if (astralCD > 3600) astralCD = 3600;
+                astralCD++;
+            }
 
             if (curseOfIcarus)
             {
@@ -1589,6 +1684,26 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+            if (spectrumSpeed)
+            {
+                float damagePercent;
+                float maxSpeed;
+
+                if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<InertiaBoots>()))
+                    maxSpeed = 10f;
+                else
+                    maxSpeed = player.maxRunSpeed;
+
+                damagePercent = (-25f * (float)(Math.Abs(player.velocity.X) / maxSpeed)) + 25f;
+
+                if (damagePercent < 0)
+                    damagePercent = 0;
+
+                if (Math.Abs(player.velocity.X) >= maxSpeed)
+                    player.AddBuff(ModContent.BuffType<Buffs.SpectrumBlur>(), 5);
+
+                player.rangedDamage += damagePercent / 100f;
+            }
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }
 
@@ -1634,8 +1749,9 @@ namespace ExxoAvalonOrigins
                     Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.1f);
                 }
             }
-            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
+            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject && astralCD >= 3600)
             {
+                astralCD = 0;
                 player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
             }
 
@@ -2117,5 +2233,20 @@ namespace ExxoAvalonOrigins
 				Dust.NewDust(player.position, player.width, player.height, d, 0f, 0f, 150, default(Color), 1.5f);
 			}
 	    }
+        public void SpectrumDodge()
+        {
+            player.immune = true;
+            if (player.longInvince)
+                player.immuneTime = 60;
+            else
+                player.immuneTime = 30;
+            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Item/SpectrumDodge.ogg"), player.position);
+            for (int i = 0; i < player.hurtCooldowns.Length; i++)
+            {
+                player.hurtCooldowns[i] = player.immuneTime;
+            }
+            if (player.whoAmI == Main.myPlayer)
+                NetMessage.SendData(MessageID.Dodge, -1, -1, null, player.whoAmI, 1f, 0f, 0f, 0, 0, 0);
+        }
     }
 }
