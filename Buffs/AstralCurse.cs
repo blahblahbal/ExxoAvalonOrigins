@@ -9,6 +9,7 @@ namespace ExxoAvalonOrigins.Buffs
         {
             DisplayName.SetDefault("Astral Curse");
             Description.SetDefault("You take triple damage");
+            Main.debuff[Type] = true;
         }
     }
 }

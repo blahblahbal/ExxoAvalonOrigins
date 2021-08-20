@@ -14,6 +14,7 @@ namespace ExxoAvalonOrigins.Buffs
         {
             DisplayName.SetDefault("Electrified");
             Description.SetDefault("Losing more life when moving");
+            Main.debuff[Type] = true;
         }
         public override void Update(Player player, ref int buffIndex)
         {
