@@ -455,7 +455,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num1168].tileCollide = false;
                         if (Main.netMode != 0)
                         {
-                        NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
+                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
                         }
                     }
                     break;

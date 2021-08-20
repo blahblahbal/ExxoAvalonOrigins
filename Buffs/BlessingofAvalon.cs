@@ -1,17 +1,33 @@
 using Terraria;using Terraria.ModLoader;using Terraria.ID;
+using System.Collections.Generic;
 
-namespace ExxoAvalonOrigins.Buffs{	public class BlessingofAvalon : ModBuff	{		public override void SetDefaults()		{			DisplayName.SetDefault("Blessing of Avalon");			Description.SetDefault("You are immune to almost all debuffs"				+ "\nYour stats are greatly increased");		}		public override void Update(Player player, ref int k)		{		
+namespace ExxoAvalonOrigins.Buffs{	public class BlessingofAvalon : ModBuff	{		List<int> dontRemove = new List<int>()
+		{
+			BuffID.Horrified,
+			BuffID.TheTongue,
+			BuffID.MoonLeech,
+			BuffID.PotionSickness,
+			BuffID.ManaSickness,
+			BuffID.Merfolk,
+			BuffID.Werewolf,
+			BuffID.ChaosState,
+			ModContent.BuffType<CurseofIcarus>()
+		};		public override void SetDefaults()		{			DisplayName.SetDefault("Blessing of Avalon");			Description.SetDefault("You are immune to almost all debuffs"				+ "\nYour stats are greatly increased");		}		public override void Update(Player player, ref int k)		{		
 			for (int i = 0; i < player.buffType.Length; i++)
             {
 				int buffID = player.buffType[i];
 				if (Main.debuff[buffID])
 				{
-					if (buffID != BuffID.Horrified || 
+					/*if (buffID != BuffID.Horrified || 
 						buffID != BuffID.TheTongue || 
 						buffID != BuffID.MoonLeech || 
 						buffID != BuffID.PotionSickness ||
 						buffID != BuffID.ManaSickness ||
-						buffID != ModContent.BuffType<CurseofIcarus>())
+						buffID != BuffID.Merfolk ||
+						buffID != BuffID.Werewolf ||
+						buffID != BuffID.ChaosState ||
+						buffID != ModContent.BuffType<CurseofIcarus>())*/
+					if (!dontRemove.Contains(buffID))
                     {
 						player.ClearBuff(buffID);
                     }
