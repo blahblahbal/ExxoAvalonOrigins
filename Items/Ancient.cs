@@ -61,5 +61,32 @@ namespace ExxoAvalonOrigins.Items
 
 			return false;
 		}
-	}
+        public override void HoldItem(Player player)
+        {
+			Item ancient = item;
+			int baseCost = 19;
+			if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientLessCost)
+            {
+				foreach (Item item in player.inventory)
+				{
+					if (item.type == ancient.type)
+					{
+						item.mana = 9;
+						break;
+					}
+				}
+			}
+			else
+            {
+				foreach (Item item in player.inventory)
+                {
+					if (item.type == ancient.type)
+                    {
+						item.mana = baseCost;
+						break;
+                    }
+                }
+            }
+        }
+    }
 }

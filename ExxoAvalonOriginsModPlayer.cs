@@ -208,7 +208,13 @@ namespace ExxoAvalonOrigins
         public int tpCD;
         public int astralCD;
         public int bubbleCD;
-        public bool ancientSandstorms;
+        public bool ancientLessCost;
+        public bool ancientGunslinger;
+        public int ancientGunslingerTimer;
+        public int ancientGunslingerStatAdd;
+        public int baseUseTime;
+        public int baseUseAnim;
+        public bool oldLeftClick;
         public bool oblivionKill;
         public bool goBerserk;
         public bool splitProj;
@@ -340,7 +346,8 @@ namespace ExxoAvalonOrigins
             hyperMagic = false;
             hyperMelee = false;
             hyperRanged = false;
-            ancientSandstorms = false;
+            ancientLessCost = false;
+            ancientGunslinger = false;
             oblivionKill = false;
             goBerserk = false;
             splitProj = false;
@@ -407,6 +414,7 @@ namespace ExxoAvalonOrigins
                 player.lifeRegen -= 32;
             }
         }
+
         public override void UpdateBiomes()
         {
             zoneHellcastle = false;
@@ -755,17 +763,6 @@ namespace ExxoAvalonOrigins
             if (avalonRetribution && damage > 0)
             {
                 npc.AddBuff(ModContent.BuffType<Buffs.CurseofAvalon>(), 100);
-            }
-            if (ancientSandstorms)
-            {
-                if  (damage > 0 && Main.rand.Next(4) == 0)
-                {
-                    Vector2 pos = new Vector2(player.Center.X + Main.rand.Next(-300, 301), player.Center.Y);
-                    if (Main.tile[(int)(pos.X / 16), (int)(pos.Y / 16)].active())
-                        pos.Y--;
-                    else
-                        Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<Projectiles.AncientSandnado>(), 80, 0.6f, Main.myPlayer);
-                }
             }
         }
 
@@ -1808,6 +1805,57 @@ namespace ExxoAvalonOrigins
                 else
                     roseMagicCooldown = 0;
             }
+            
+            // Broken completely. If you wanna fix be my guest.
+            /*
+            if (ancientGunslinger)
+            {
+                if (player.controlUseItem && !oldLeftClick) // acts as justPressed
+                {
+                    baseUseTime = player.HeldItem.useTime;
+                    baseUseAnim = player.HeldItem.useAnimation;
+                }
+                oldLeftClick = player.controlUseItem;
+                if (player.controlUseItem && baseUseTime != -1)
+                {
+                    if (player.HeldItem.ranged)
+                    {
+                        ancientGunslingerTimer++;
+
+                        ancientGunslingerStatAdd = ancientGunslingerTimer / 30;
+
+                        if (ancientGunslingerStatAdd > player.HeldItem.useTime - 5)
+                            ancientGunslingerStatAdd = player.HeldItem.useTime - 5;
+
+                        if (ancientGunslingerTimer > 600)
+                            ancientGunslingerTimer = 600;
+                    }
+                }
+                if (!player.controlUseItem)
+                {
+                    player.HeldItem.useTime = baseUseTime;
+                    player.HeldItem.useAnimation = baseUseAnim;
+                    baseUseTime = -1;
+                    baseUseAnim = -1;
+                    ancientGunslingerStatAdd = 0;
+                    ancientGunslingerTimer = 0;
+                }
+
+                player.HeldItem.useTime -= ancientGunslingerStatAdd;
+                player.HeldItem.useAnimation -= ancientGunslingerStatAdd;
+            }
+            else
+            {
+                player.HeldItem.useTime = baseUseTime;
+                player.HeldItem.useAnimation += baseUseAnim;
+                baseUseTime = -1;
+                baseUseAnim = -1;
+                ancientGunslingerStatAdd = 0;
+                ancientGunslingerTimer = 0;
+            }
+            Main.NewText(player.HeldItem.useTime);
+            Main.NewText(player.HeldItem.useAnimation);
+            */
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }
 
