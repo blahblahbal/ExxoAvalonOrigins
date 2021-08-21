@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 815;
             soundType = SoundID.Tink;
+            minPick = 210;
             soundStyle = 1;
             dustType = 1;
         }

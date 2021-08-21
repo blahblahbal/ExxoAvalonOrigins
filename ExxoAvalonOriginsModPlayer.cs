@@ -315,6 +315,7 @@ namespace ExxoAvalonOrigins
         {
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
+            Player.defaultItemGrabRange = 38;
             trapImmune = false;
             undeadTalisman = false;
             astralStart = false;
@@ -1005,6 +1006,7 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdate()
         {
+            if (magnet) Player.defaultItemGrabRange = 114;
             if (herbTotal < 250) herbTier = 0;
             else if (herbTotal >= 250 && herbTotal < 750) herbTier = 1;
             else if (herbTotal >= 750 && herbTotal < 1500)
