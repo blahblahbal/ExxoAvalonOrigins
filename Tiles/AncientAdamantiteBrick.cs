@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = ModContent.ItemType<Items.Placeable.AncientAdamantiteBrick>();
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = DustID.Adamantite;
+            dustType = DustID.Adamantine;
 		}
 	}
 }

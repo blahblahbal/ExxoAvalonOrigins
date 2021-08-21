@@ -9,7 +9,7 @@
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/AncientWorkbench");
+            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Placeable/AncientWorkbench");
             item.autoReuse = true;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.AncientWorkbench>();

@@ -220,6 +220,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, 19, true, true, -1, 9);
                                     tile.slope(0);
                                     tile.halfBrick(false);
+                                    tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     break;
                                 case 11:
                                     tile.active(true);
@@ -235,6 +236,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, 93, true, true, -1, 10);
+                                        tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     }
                                     break;
                                 case 13:
