@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 {0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0},
                 {0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0},
                 {0,0,1,1,1,1,2,2,2,1,1,1,1,3,3,0,0,0,0,0,3,3,1,1,1,1,2,2,2,1,1,1,1,0,0},
-                {0,0,0,1,1,1,1,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,0,0,0},
+                {0,0,0,1,1,1,1,1,1,1,15,15,15,3,3,3,3,3,3,3,3,3,15,15,15,1,1,1,1,1,1,1,0,0,0},
                 {0,0,0,0,1,1,1,1,1,1,1,3,3,3,3,3,4,4,4,3,3,3,3,3,1,1,1,1,1,1,1,0,0,0,0},
                 {0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,3,3,5,6,6,6,6,7,6,6,6,6,6,7,6,6,6,6,5,3,3,0,0,0,0,0,0,0},
@@ -210,7 +210,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 9:
                                     tile.active(true);
-                                    tile.type = 152;
+                                    tile.type = (ushort)ModContent.TileType<Tiles.ChunkstoneBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -255,8 +255,14 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
-                                        AddEvilChest(k, l);
+                                        AddEvilChest(k + 1, l);
                                     }
+                                    break;
+                                case 15:
+                                    tile.active(true);
+                                    tile.type = (ushort)ModContent.TileType<Tiles.BacciliteOre>();
+                                    tile.slope(0);
+                                    tile.halfBrick(false);
                                     break;
                             }
                         }
