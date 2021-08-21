@@ -1549,7 +1549,6 @@ namespace ExxoAvalonOrigins
                     for (int i = 0; i < 2; i++)
                     {
                         int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/LargeBubble"), 1f);
-                        //Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
                     }
                 }
                 if (bubbleCD == 40)
@@ -1557,10 +1556,6 @@ namespace ExxoAvalonOrigins
                     for (int i = 0; i < 4; i++)
                     {
                         int g1 = Gore.NewGore(player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), player.velocity, mod.GetGoreSlot("Gores/SmallBubble"), 1f);
-                        Main.gore[g1].velocity.X *= 0.5f;
-                        Main.gore[g1].velocity.Y *= 0f;
-                        //Main.gore[g1].timeLeft = 60;
-                        //Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
                     }
                     bubbleCD = 0;
                 }
