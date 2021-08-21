@@ -62,7 +62,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
             projectile.alpha = 255 - (projectile.timeLeft * 2) - (int)(25 * projectile.scale);
             if (projectile.alpha < 100) projectile.alpha = 0;
             //if (Main.tileSolid[Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].type] && Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active)
-            if (!Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].inActive())
+            if (!Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active())
             {
                 projectile.tileCollide = true;
             }        }    }}

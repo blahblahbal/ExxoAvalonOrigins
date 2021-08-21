@@ -17,15 +17,15 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			DisplayName.SetDefault("Avalon Helmet");
 			Tooltip.SetDefault("32% increased damage"
-				+ "\n10% increased melee speed"
 				+ "\n20% decreased mana usage"
-				+ "\nSummons a leaf storm when damaged");
+				+ "\nIncreases maximum mana by 280"
+				+ "\nOccasionally summons a leaf storm when damaged");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Armor/AvalonHelmet");
-			item.defense = 70;
+			item.defense = 40;
 			item.rare = ItemRarityID.Yellow;
 			item.width = dims.Width;
 			item.value = Item.sellPrice(0, 41, 0, 0);
@@ -54,8 +54,8 @@ namespace ExxoAvalonOrigins.Items.Armor
 		public override void UpdateEquip(Player player)
 		{
 			player.allDamage += 0.32f;
-			player.meleeSpeed += 0.10f;
 			player.manaCost -= 0.20f;
+			player.statManaMax2 += 280;
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().leafStorm = true;
 		}
 	}
