@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Flipper Potion");
+            DisplayName.SetDefault("Flipper Elixir");
             Tooltip.SetDefault("Lets you move swiftly in liquids");
         }
 

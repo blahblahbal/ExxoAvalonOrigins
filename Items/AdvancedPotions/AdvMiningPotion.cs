@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Mining Potion");
+            DisplayName.SetDefault("Mining Elixir");
             Tooltip.SetDefault("Increases mining speed");
         }
 

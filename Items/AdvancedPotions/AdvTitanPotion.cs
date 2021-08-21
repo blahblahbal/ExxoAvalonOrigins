@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Titan Potion");
+            DisplayName.SetDefault("Titan Elixir");
             Tooltip.SetDefault("Increases knockback");
         }
 

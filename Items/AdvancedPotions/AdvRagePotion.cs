@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Rage Potion");
+            DisplayName.SetDefault("Rage Elixir");
             Tooltip.SetDefault("Increases critical strike chance by 20%");
         }
 

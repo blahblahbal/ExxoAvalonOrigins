@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Shine Potion");
+            DisplayName.SetDefault("Shine Elixir");
             Tooltip.SetDefault("Emits an aura of light");
         }
 

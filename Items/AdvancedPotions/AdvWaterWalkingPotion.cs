@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced WaterWalking Potion");
+            DisplayName.SetDefault("Water Walking Elixir");
             Tooltip.SetDefault("Allows the ability to walk on liquids");
         }
 

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Lifeforce Potion");
+            DisplayName.SetDefault("Lifeforce Elixir");
             Tooltip.SetDefault("Increases max life by 40%");
         }
 

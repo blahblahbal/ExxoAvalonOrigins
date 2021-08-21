@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Battle Potion");
+            DisplayName.SetDefault("Battle Elixir");
             Tooltip.SetDefault("Increases enemy spawn rate");
         }
 

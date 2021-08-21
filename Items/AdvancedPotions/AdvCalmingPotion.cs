@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Calming Potion");
+            DisplayName.SetDefault("Calming Elixir");
             Tooltip.SetDefault("Reduces enemy aggression and spawn rate");
         }
 

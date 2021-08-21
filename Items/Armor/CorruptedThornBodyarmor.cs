@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			DisplayName.SetDefault("Corrupted Thorn Bodyarmor");
 			Tooltip.SetDefault("10% increased critical strike chance" +
-				"\n50% increased critical strike damage" +
+				"\n50% increased critical damage" +
 				"\nMax life increased by 100");
 		}
 

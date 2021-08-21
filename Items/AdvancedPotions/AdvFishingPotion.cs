@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Fishing Potion");
+            DisplayName.SetDefault("Fishing Elixir");
             Tooltip.SetDefault("Increases fishing skill");
         }
 

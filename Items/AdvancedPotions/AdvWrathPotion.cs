@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Wrath Potion");
+            DisplayName.SetDefault("Wrath Elixir");
             Tooltip.SetDefault("Increases damage by 20%");
         }
 

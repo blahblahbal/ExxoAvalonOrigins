@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Heartreach Potion");
+            DisplayName.SetDefault("Heartreach Elixir");
             Tooltip.SetDefault("Increases pickup range for life hearts");
         }
 

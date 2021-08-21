@@ -1862,11 +1862,11 @@ namespace ExxoAvalonOrigins
                         player.ClearBuff(ModContent.BuffType<Buffs.AstralProjecting>());
                     }
                 }
-                Main.NewText(astralStart);
-                Main.NewText(astralCD);
+                //Main.NewText(astralStart);
+                //Main.NewText(astralCD);
                 if (astralCD >= 3600)
                 {
-                    Main.NewText("a");
+                    //Main.NewText("a");
                     astralCD = 0;
                     if (!astralStart) player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
                 }

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Swiftness Potion");
+            DisplayName.SetDefault("Swiftness Elixir");
             Tooltip.SetDefault("50% increased movement speed");
         }
 

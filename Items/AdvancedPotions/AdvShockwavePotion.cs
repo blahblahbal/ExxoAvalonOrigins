@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Shockwave Potion");
+            DisplayName.SetDefault("Shockwave Elixir");
             Tooltip.SetDefault("Enemies take damage when you land");
         }
 

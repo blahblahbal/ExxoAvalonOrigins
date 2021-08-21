@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Obsidian Skin Potion");
+            DisplayName.SetDefault("Obsidian Skin Elixir");
             Tooltip.SetDefault("Provides immunity to lava");
         }
 

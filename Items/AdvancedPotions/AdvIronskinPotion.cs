@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Ironskin Potion");
+            DisplayName.SetDefault("Ironskin Elixir");
             Tooltip.SetDefault("Increases defense by 16");
         }
 

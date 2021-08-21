@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Warmth Potion");
+            DisplayName.SetDefault("Warmth Elixir");
             Tooltip.SetDefault("Reduces damage from cold sources");
         }
 

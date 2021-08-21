@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Gravitation Potion");
+            DisplayName.SetDefault("Gravitation Elixir");
             Tooltip.SetDefault("Allows the control of gravity");
         }
 

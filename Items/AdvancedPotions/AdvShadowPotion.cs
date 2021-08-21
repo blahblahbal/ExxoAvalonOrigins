@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Shadow Potion");
+            DisplayName.SetDefault("Shadow Elixir");
             Tooltip.SetDefault("Enables teleportation to the cursor");
         }
 

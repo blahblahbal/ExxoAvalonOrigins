@@ -49,7 +49,7 @@ namespace ExxoAvalonOrigins.World.Passes
             {
                 var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
                 var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
-                if (q == 2) y6 = WorldGen.genRand.Next(WorldGen.lavaLine, Main.maxTilesY - 210);
+                if (q == 2) y6 = WorldGen.genRand.Next(WorldGen.lavaLine, Main.maxTilesY - 250);
                 while (noTiles.Contains(Main.tile[x10, y6].type) || noWalls.Contains(Main.tile[x10, y6].wall))
                 {
                     if (x10 > (Main.maxTilesY / 2))

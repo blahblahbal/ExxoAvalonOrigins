@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Titanskin Potion");
+            DisplayName.SetDefault("Titanskin Elixir");
             Tooltip.SetDefault("Increases pickup range for life hearts");
         }
 

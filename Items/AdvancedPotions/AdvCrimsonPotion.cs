@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Crimson Potion");
+            DisplayName.SetDefault("Crimson Elixir");
             Tooltip.SetDefault("Enemies within a forty tile radius take damage");
         }
 

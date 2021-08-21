@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Rogue Potion");
+            DisplayName.SetDefault("Rogue Elixir");
             Tooltip.SetDefault("-5% ranged damage, 25% chance to not consume ammo");
         }
 

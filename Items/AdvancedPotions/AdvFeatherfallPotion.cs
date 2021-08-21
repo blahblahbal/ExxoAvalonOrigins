@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Featherfall Potion");
+            DisplayName.SetDefault("Featherfall Elixir");
             Tooltip.SetDefault("Slows falling speed");
         }
 

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Wisdom Potion");
+            DisplayName.SetDefault("Wisdom Elixir");
             Tooltip.SetDefault("-4% magic damage, +120 mana");
         }
 

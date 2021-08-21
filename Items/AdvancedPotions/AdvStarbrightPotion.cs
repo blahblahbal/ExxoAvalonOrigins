@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Starbright Potion");
+            DisplayName.SetDefault("Starbright Elixir");
             Tooltip.SetDefault("Fallen stars fall even more frequently");
         }
 
