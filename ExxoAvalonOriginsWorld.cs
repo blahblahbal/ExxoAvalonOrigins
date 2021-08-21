@@ -636,7 +636,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
                             if (num9 > Main.worldSurface && WorldGen.genRand.Next(15) == 0)
                             {
-                                Main.tile[num5, num9].frameX = 8;
+                                Main.tile[num5, num9].frameX = 8 * 18;
                             }
                             if (Main.tile[num5, num9].active())
                             {
