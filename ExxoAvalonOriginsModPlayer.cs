@@ -208,6 +208,7 @@ namespace ExxoAvalonOrigins
         public int tpCD;
         public int astralCD;
         public int bubbleCD;
+        public bool ancientSandstorms;
         public bool oblivionKill;
         public bool goBerserk;
         public bool splitProj;
@@ -215,6 +216,9 @@ namespace ExxoAvalonOrigins
         public bool spectrumBlur;
         public bool minionFreeze;
         public bool leafStorm;
+        public bool thornMagic;
+        public bool roseMagic;
+        public int roseMagicCooldown;
         public bool avalonRestoration;
         public bool avalonRetribution;
         public int deliriumDuration = 300;
@@ -336,6 +340,7 @@ namespace ExxoAvalonOrigins
             hyperMagic = false;
             hyperMelee = false;
             hyperRanged = false;
+            ancientSandstorms = false;
             oblivionKill = false;
             goBerserk = false;
             splitProj = false;
@@ -343,6 +348,8 @@ namespace ExxoAvalonOrigins
             spectrumBlur = false;
             minionFreeze = false;
             leafStorm = false;
+            thornMagic = false;
+            roseMagic = false;
             avalonRestoration = false;
             avalonRetribution = false;
             curseOfIcarus = false;
@@ -654,6 +661,21 @@ namespace ExxoAvalonOrigins
                 if (proj.minion || minionProjectile.Contains(proj.type))
                     if (CanBeFrozen.CanFreeze(target))
                         target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
+
+            if (roseMagic)
+            {
+                if (proj.magic)
+                {
+                    if (Main.rand.Next(8) == 0 && roseMagicCooldown <= 0)
+                    {
+                        int num36 = Item.NewItem((int)target.position.X, (int)target.position.Y, target.width, target.height, ModContent.ItemType<Items.Rosebud>());
+                        Main.item[num36].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
+                        Main.item[num36].velocity.X = (float)Main.rand.Next(10, 31) * 0.2f * (float)player.direction;
+                        roseMagicCooldown = 20;
+                    }
+                }
+            }
+
             if (crit)
             {
                 if (Main.rand.Next(8) == 0)
@@ -733,6 +755,17 @@ namespace ExxoAvalonOrigins
             if (avalonRetribution && damage > 0)
             {
                 npc.AddBuff(ModContent.BuffType<Buffs.CurseofAvalon>(), 100);
+            }
+            if (ancientSandstorms)
+            {
+                if  (damage > 0 && Main.rand.Next(4) == 0)
+                {
+                    Vector2 pos = new Vector2(player.Center.X + Main.rand.Next(-300, 301), player.Center.Y);
+                    if (Main.tile[(int)(pos.X / 16), (int)(pos.Y / 16)].active())
+                        pos.Y--;
+                    else
+                        Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<Projectiles.AncientSandnado>(), 80, 0.6f, Main.myPlayer);
+                }
             }
         }
 
@@ -1768,6 +1801,13 @@ namespace ExxoAvalonOrigins
 
                 player.rangedDamage += damagePercent / 100f;
             }
+            if (roseMagic)
+            {
+                if (roseMagicCooldown > 0)
+                    roseMagicCooldown--;
+                else
+                    roseMagicCooldown = 0;
+            }
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }
 
@@ -1966,55 +2006,14 @@ namespace ExxoAvalonOrigins
 
                 if (leafStorm)
                 {
-                    int[] dust = { 0, 0, 0, 0 };
-                    int[] dust2 = { 0, 0, 0, 0 };
-                    for (int k = 0; k < 10; k++)
+                    if (damage > 0 && Main.rand.Next(5) == 0)
                     {
-                        dust[0] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        dust[1] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        dust[2] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        dust[3] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        for (int i = 0; i < 4; i++)
+                        Vector2 pos = new Vector2(player.Center.X + Main.rand.Next(-500, 501), player.Center.Y);
+                        while (Main.tile[(int)(pos.X / 16), (int)(pos.Y / 16)].active())
                         {
-                            if (i == 0 || i == 1)
-                            {
-                                Main.dust[dust[i]].velocity.X *= 1.1f;
-                            }
-                            if (i == 0 || i == 2)
-                            {
-                                Main.dust[dust[i]].velocity.Y *= 1.1f;
-                            }
-                            if (i == 1 || i == 3)
-                            {
-                                Main.dust[dust[i]].velocity.Y *= -1.1f;
-                            }
-                            if (i == 2 || i == 3)
-                            {
-                                Main.dust[dust[i]].velocity.X *= -1.1f;
-                            }
+                            pos.Y--;
                         }
-                        for (int j = 0; j < 4; j++)
-                        {
-                            Projectile.NewProjectile(Main.dust[dust[j]].position.X, Main.dust[dust[j]].position.Y, Main.dust[dust[j]].velocity.X, Main.dust[dust[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 45, 2, Main.myPlayer);
-                        }
-                    }
-                    for (int m = 0; m < 10; m++)
-                    {
-                        dust2[0] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        dust2[1] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        dust2[2] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        dust2[3] = Dust.NewDust(player.position, player.width, player.height, 3, (player.velocity.X * 0.2f) + (player.direction * 3), player.velocity.Y * 1.2f, 100, new Color(), 1f);
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (i == 0) Main.dust[dust2[i]].velocity.Y *= -1.1f;
-                            if (i == 1) Main.dust[dust2[i]].velocity.X *= -1.1f;
-                            if (i == 2) Main.dust[dust2[i]].velocity.Y *= 1.1f;
-                            if (i == 3) Main.dust[dust2[i]].velocity.X *= 1.1f;
-                        }
-                        for (int j = 0; j < 4; j++)
-                        {
-                            Projectile.NewProjectile(Main.dust[dust2[j]].position.X, Main.dust[dust2[j]].position.Y, Main.dust[dust2[j]].velocity.X, Main.dust[dust2[j]].velocity.Y, ModContent.ProjectileType<Projectiles.Leaves>(), 45, 2, Main.myPlayer);
-                        }
+                        Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<Projectiles.LeafStorm>(), 80, 0.6f, Main.myPlayer);
                     }
                 }
             }

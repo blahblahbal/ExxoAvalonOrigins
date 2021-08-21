@@ -16,16 +16,15 @@ namespace ExxoAvalonOrigins.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Avalon Cuisses");
-			Tooltip.SetDefault("5% increased movement speed"
-				+ "\nReduces the cooldown of healing potions"
-				+ "\nIncreases maximum mana by 200"
+			Tooltip.SetDefault("30% increased critical damage"
+				+ "\n10% increased melee speed"
 				+ "\nLightning strikes when damaged");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Armor/AvalonCuisses");
-			item.defense = 36;
+			item.defense = 38;
 			item.rare = ItemRarityID.Yellow;
 			item.width = dims.Width;
 			item.value = Item.sellPrice(0, 41, 0, 0);
@@ -34,9 +33,8 @@ namespace ExxoAvalonOrigins.Items.Armor
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed += 0.05f;
-			player.pStone = true;
-			player.statManaMax2 += 200;
+			player.moveSpeed += 0.15f;
+			player.meleeSpeed += 0.10f;
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().liaB = true;
 		}
 	}
