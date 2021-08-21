@@ -618,6 +618,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     {
                         GrowLargeHerb(num5, num6);
                     }
+                    #region hardmode/superhardmode stuff
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
@@ -627,6 +628,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             //DarkMatterSpread(num5, num6);
                         }
                     }
+                    #endregion
+                    #region tropical short grass
                     if (Main.tile[num5, num6].type == ModContent.TileType<TropicalGrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -648,6 +651,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             }
                         }
                     }
+                    #endregion
+                    #region sweetstem spawning
                     if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -664,6 +669,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             }
                         }
                     }
+                    #endregion
+                    #region contagion shortgrass/barfbush spawning
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -739,6 +746,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             NetMessage.SendTileSquare(-1, num5, num6, 3);
                         }
                     }
+                    #endregion
+                    #region impvines growing
                     if ((Main.tile[num5, num6].type == ModContent.TileType<Impgrass>() || Main.tile[num5, num6].type == ModContent.TileType<Impvines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].active() && !Main.tile[num5, num6 + 1].lava())
                     {
                         bool flag10 = false;
@@ -768,7 +777,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             }
                         }
                     }
-
+                    #endregion
+                    #region contagion vines growing
                     if ((Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>() || Main.tile[num5, num6].type == ModContent.TileType<ContagionVines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].active() && !Main.tile[num5, num6 + 1].lava())
                     {
                         bool flag10 = false;
@@ -798,6 +808,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             }
                         }
                     }
+                    #endregion
                 }
                 num4++;
             }
