@@ -47,6 +47,26 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
             }
         }        public override void HoldItem(Item item, Player player)
         {
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
+            {
+                if (item.summon && ExxoAvalonOrigins.minionGuidingHotkey.Current)
+                {
+                    foreach (Projectile proj in Main.projectile)
+                    {
+                        if (proj.owner == player.whoAmI && proj.minion)
+                        {
+                            float posX = Main.mouseX + Main.screenPosition.X - proj.Center.X;
+                            float posY = Main.mouseY + Main.screenPosition.Y - proj.Center.Y;
+                            if (player.gravDir == -1)
+                            {
+                                posY = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - proj.Center.Y;
+                            }
+                            proj.velocity.X = posX;
+                            proj.velocity.Y = posY;
+                        }
+                    }
+                }
+            }
             float num70 = Main.mouseX + Main.screenPosition.X - player.Center.X;
             float num71 = Main.mouseY + Main.screenPosition.Y - player.Center.Y;
             Vector2 center = player.Center;
@@ -93,7 +113,23 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
             if (item.type == ItemID.ManaCrystal && player.statManaMax >= 200)
                 return false;
             return base.CanUseItem(item, player);
-        }        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)        {            TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");            if (tooltipLine != null)
+        }        //public override bool UseItem(Item item, Player player)
+        //{
+        //    if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
+        //    {
+        //        if (item.summon && ExxoAvalonOrigins.minionGuidingHotkey.Current)
+        //        {
+        //            foreach (Projectile proj in Main.projectile)
+        //            {
+        //                if (proj.owner == player.whoAmI && proj.minion)
+        //                {
+        //                    proj.velocity = Vector2.Normalize(proj.position - new Vector2(Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y)) * 8f;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return base.UseItem(item, player);
+        //}        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)        {            TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");            if (tooltipLine != null)
             {
                 if (item.type == ItemID.CoinGun) tooltipLine.text = "Spend Shot";
                 if (item.type == ItemID.HighTestFishingLine) tooltipLine.text = tooltipLine.text.Replace("Test", "Tensile");

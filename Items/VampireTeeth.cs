@@ -16,4 +16,8 @@
             item.value = Item.sellPrice(0, 10, 0, 0);
             item.height = dims.Height;
         }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().vampireTeeth = true;
+        }
     }}

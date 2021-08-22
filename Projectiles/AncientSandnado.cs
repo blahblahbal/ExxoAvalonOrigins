@@ -1,4 +1,6 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Ancient's Sandstorm");		}		public override void SetDefaults()		{
+using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using Terraria.ID;using System;
+
+namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Ancient's Sandstorm");		}		public override void SetDefaults()		{
             projectile.width = 10;
             projectile.height = 10;
             projectile.aiStyle = -1;
@@ -15,7 +17,27 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using T
 				projectile.soundDelay = -1;
 				Main.PlaySound(SoundID.Item82, projectile.Center);
 			}
-			projectile.ai[0]++;
+            foreach (NPC n in Main.npc)
+            {
+                float posX = projectile.Center.X;
+                float posY = projectile.Center.Y;
+                Point c = projectile.Center.ToTileCoordinates();
+                while (!Main.tile[c.X, c.Y].active())
+                {
+                    c.Y++;
+                    if (Main.tile[c.X, c.Y].active()) break;
+                }
+                Vector2 newPos = new Vector2(c.X, c.Y) * 16f;
+                if (Math.Abs(Vector2.Distance(n.Center, newPos)) < 500f)
+                {
+                    if (!n.townNPC && !n.friendly && !n.dontTakeDamage && !n.boss)
+                    {
+                        n.velocity = Vector2.Normalize(n.position - newPos) * -4.5f;
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n.whoAmI);
+                    }
+                }
+            }
+            projectile.ai[0]++;
 			if (projectile.ai[0] >= num998)
 			{
 				projectile.Kill();

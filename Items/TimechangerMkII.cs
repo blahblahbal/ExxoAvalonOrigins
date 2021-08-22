@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items{	class TimechangerMkII : ModItem	{		enum T
 				if (Main.netMode == NetmodeID.SinglePlayer)
 					Main.NewText(String.Format("Mode set to {0}.", selectedString), 50, 255, 130, false);
 				else if (Main.netMode == NetmodeID.Server)
-					NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral(String.Format("Mode set to {0}.", selectedString)), 255, 50f, 255f, 130f, 0);			}			else
+					NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("Mode set to {0}.", selectedString)), new Color(50, 255, 130));			}			else
             {
 				switch (selectedTime)
 				{
@@ -46,5 +46,5 @@ namespace ExxoAvalonOrigins.Items{	class TimechangerMkII : ModItem	{		enum T
 				if (Main.netMode == NetmodeID.SinglePlayer)
 					Main.NewText(String.Format("It is now {0}.", selectedString), 50, 255, 130, false);
 				else if (Main.netMode == NetmodeID.Server)
-					NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral(String.Format("It is now {0}.", selectedString)), 255, 50f, 255f, 130f, 0);
+					NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", selectedString)), new Color(50, 255, 130));
 			}			return true;		}	}}

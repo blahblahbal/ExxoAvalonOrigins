@@ -208,6 +208,8 @@ namespace ExxoAvalonOrigins
         public int bubbleCD;
         public bool ancientLessCost;
         public bool ancientGunslinger;
+        public bool ancientMinionGuide;
+        public bool ancientSandVortex;
         public int ancientGunslingerTimer;
         public int ancientGunslingerStatAdd;
         public int baseUseTime;
@@ -275,6 +277,7 @@ namespace ExxoAvalonOrigins
         public bool pOmega;
         public bool noSticky;
         public bool astralStart;
+        public bool vampireTeeth;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -316,6 +319,7 @@ namespace ExxoAvalonOrigins
             Player.defaultItemGrabRange = 38;
             trapImmune = false;
             undeadTalisman = false;
+            vampireTeeth = false;
             astralStart = false;
             cOmega = false;
             pOmega = false;
@@ -347,6 +351,8 @@ namespace ExxoAvalonOrigins
             hyperRanged = false;
             ancientLessCost = false;
             ancientGunslinger = false;
+            ancientMinionGuide = false;
+            ancientSandVortex = false;
             oblivionKill = false;
             goBerserk = false;
             splitProj = false;
@@ -643,7 +649,11 @@ namespace ExxoAvalonOrigins
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (HasItemInArmor(ModContent.ItemType<VampireTeeth>()))
+            if (ancientSandVortex && Main.rand.Next(10) == 0)
+            {
+                Projectile.NewProjectile(target.position, Vector2.Zero, ModContent.ProjectileType<AncientSandnado>(), 0, 0);
+            }
+            if (vampireTeeth)
             {
                 if (item.melee)
                 {
@@ -2035,10 +2045,10 @@ namespace ExxoAvalonOrigins
             {
                 if (liaB)
                 {
-                    //Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 60f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 60f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
 
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<Projectiles.LightningBolt>(), 80, 6f, Main.myPlayer);
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
+                    //Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<Projectiles.LightningBolt>(), 80, 6f, Main.myPlayer);
+                    //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
                 }
 
                 if (goBerserk)
