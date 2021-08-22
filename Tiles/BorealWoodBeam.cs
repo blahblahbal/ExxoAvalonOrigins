@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
 		public override void SetDefaults()
 		{
             drop = mod.ItemType("BorealWoodBeam");
-            AddMapEntry(new Color(73, 51, 36));
+            AddMapEntry(new Color(85, 68, 57));
             Main.tileSolid[Type] = false;
             Main.tileNoAttach[Type] = false;
             Main.tileFrameImportant[Type] = false;

@@ -3,7 +3,6 @@
     {
         public override void SetDefaults()
         {            AddMapEntry(new Color(39, 31, 28));
-            drop = mod.ItemType("TuhrtlBrickWall");
-            dustType = 1;
+            drop = mod.ItemType("TuhrtlBrickWall");            dustType = 53;
         }
     }}

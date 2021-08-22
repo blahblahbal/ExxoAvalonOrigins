@@ -11,8 +11,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-            AddMapEntry(new Color(233, 211, 123));
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Resistant Wood Candle");            AddMapEntry(new Color(253, 221, 3), name);
             dustType = 54;
         }
 

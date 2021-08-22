@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-            AddMapEntry(new Color(200, 200, 200));
+            AddMapEntry(new Color(191, 142, 111));
             drop = ModContent.ItemType<Items.CoughwoodPlatform>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Platforms };

@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(new Color(73, 51, 36));
+			AddMapEntry(new Color(99, 49, 52));
 			drop = mod.ItemType("RichMahoganyBeam");
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
