@@ -278,6 +278,7 @@ namespace ExxoAvalonOrigins
         public bool noSticky;
         public bool astralStart;
         public bool vampireTeeth;
+        public bool riftGoggles;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -317,6 +318,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            riftGoggles = false;
             trapImmune = false;
             undeadTalisman = false;
             vampireTeeth = false;
@@ -1074,6 +1076,46 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.PyroscoricOre>())
                     {
                         player.AddBuff(ModContent.BuffType<Buffs.Melting>(), 60);
+                    }
+                }
+            }
+            if (player.ZoneCrimson || player.ZoneCorrupt || zoneBooger)
+            {
+                if (Main.rand.Next(2400) == 0 && riftGoggles)
+                {
+                    Vector2 pposTile2 = player.position + new Vector2(Main.rand.Next(-20 * 16, 21 * 16), Main.rand.Next(-20 * 16, 21 * 16));
+                    Point pt = pposTile2.ToTileCoordinates();
+                    if (!Main.tile[pt.X, pt.Y].active())
+                    {
+                        int proj = NPC.NewNPC(pt.X, pt.Y, ModContent.NPCType<NPCs.Rift>(), 0);
+                        for (int i = 0; i < 20; i++)
+                        {
+                            int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, 58, 0f, 0f, 0, default, 1f);
+                            Main.dust[num893].velocity *= 2f;
+                            Main.dust[num893].scale = 0.9f;
+                            Main.dust[num893].noGravity = true;
+                            Main.dust[num893].fadeIn = 3f;
+                        }
+                    }
+                }
+            }
+            if (riftGoggles && Main.rand.Next(500) == 0)
+            {
+                if (player.ZoneRockLayerHeight)
+                {
+                    Vector2 pposTile2 = player.position + new Vector2(Main.rand.Next(-35 * 16, 35 * 16), Main.rand.Next(-35 * 16, 35 * 16));
+                    Point pt = pposTile2.ToTileCoordinates();
+                    if (Main.tile[pt.X, pt.Y].active())
+                    {
+                        int proj = NPC.NewNPC(pt.X, pt.Y, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
+                        for (int i = 0; i < 20; i++)
+                        {
+                            int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, 58, 0f, 0f, 0, default, 1f);
+                            Main.dust[num893].velocity *= 2f;
+                            Main.dust[num893].scale = 0.9f;
+                            Main.dust[num893].noGravity = true;
+                            Main.dust[num893].fadeIn = 3f;
+                        }
                     }
                 }
             }
@@ -2055,10 +2097,10 @@ namespace ExxoAvalonOrigins
             {
                 if (liaB)
                 {
-                    Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 60f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 90f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
 
                     //Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<Projectiles.LightningBolt>(), 80, 6f, Main.myPlayer);
-                    //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
+                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
                 }
 
                 if (goBerserk)
