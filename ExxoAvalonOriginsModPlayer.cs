@@ -1077,7 +1077,7 @@ namespace ExxoAvalonOrigins
                     Point pt = pposTile2.ToTileCoordinates();
                     if (!Main.tile[pt.X, pt.Y].active())
                     {
-                        int proj = NPC.NewNPC(pt.X, pt.Y, ModContent.NPCType<NPCs.Rift>(), 0);
+                        int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), 0);
                         for (int i = 0; i < 20; i++)
                         {
                             int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, 58, 0f, 0f, 0, default, 1f);
@@ -1091,13 +1091,13 @@ namespace ExxoAvalonOrigins
             }
             if (riftGoggles && Main.rand.Next(500) == 0)
             {
-                if (player.ZoneRockLayerHeight)
+                if (player.position.Y > Main.rockLayer)
                 {
                     Vector2 pposTile2 = player.position + new Vector2(Main.rand.Next(-35 * 16, 35 * 16), Main.rand.Next(-35 * 16, 35 * 16));
                     Point pt = pposTile2.ToTileCoordinates();
-                    if (Main.tile[pt.X, pt.Y].active())
-                    {
-                        int proj = NPC.NewNPC(pt.X, pt.Y, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
+                    //if (Main.tile[pt.X, pt.Y].active())
+                    //{
+                        int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
                         for (int i = 0; i < 20; i++)
                         {
                             int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, 58, 0f, 0f, 0, default, 1f);
@@ -1106,7 +1106,7 @@ namespace ExxoAvalonOrigins
                             Main.dust[num893].noGravity = true;
                             Main.dust[num893].fadeIn = 3f;
                         }
-                    }
+                    //}
                 }
             }
 
