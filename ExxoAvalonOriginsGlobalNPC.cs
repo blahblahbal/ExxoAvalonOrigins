@@ -1,10 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;using System.Linq;using ExxoAvalonOrigins.Items;using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.Localization;
-using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalNPC : GlobalNPC    {        public static float endoSpawnRate = 0.25f;        public static bool stoppedArmageddon = false;        public static bool oblivionDead = false;        public static int oblivionTimes = 0;        public static bool downedPhantasm = false;        public static bool initialised = false;        public static List<int> slimes = new List<int>();        public static List<int> toxic = new List<int>();        public static List<int> undead = new List<int>();        public static List<int> fiery = new List<int>();        public static List<int> watery = new List<int>();        public static List<int> earthen = new List<int>();        public static List<int> flyer = new List<int>();        public static List<int> frozen = new List<int>();        public static List<int> wicked = new List<int>();        public static List<int> arcane = new List<int>();        public static int boogerBoss = 0;        public static int boogerBossCounter = 0;        public static bool savedIceman = false;        public static int slimeLife = 10000;        public static List<int> hornets = new List<int> {            NPCID.Hornet,            NPCID.MossHornet,            NPCID.HornetFatty,            NPCID.HornetHoney,            NPCID.HornetLeafy,            NPCID.HornetSpikey,            NPCID.HornetStingy        };        //public override void SetupTravelShop(int[] shop, ref int nextSlot)
+using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlobalNPC : GlobalNPC    {        public static float endoSpawnRate = 0.25f;        public static bool stoppedArmageddon = false;        public static bool oblivionDead = false;        public static int oblivionTimes = 0;        public static bool downedPhantasm = false;        public static bool initialised = false;        public static List<int> slimes = new List<int>();        public static List<int> toxic = new List<int>();        public static List<int> undead = new List<int>();        public static List<int> fiery = new List<int>();        public static List<int> watery = new List<int>();        public static List<int> earthen = new List<int>();        public static List<int> flyer = new List<int>();        public static List<int> frozen = new List<int>();        public static List<int> wicked = new List<int>();        public static List<int> arcane = new List<int>();        public static int boogerBoss = 0;        public static int boogerBossCounter = 0;        public static bool savedIceman = false;        public static int slimeLife = 10000;        public static List<int> hornets = new List<int> {            NPCID.Hornet,            NPCID.MossHornet,            NPCID.HornetFatty,            NPCID.HornetHoney,            NPCID.HornetLeafy,            NPCID.HornetSpikey,            NPCID.HornetStingy        };
+        //public override void SetupTravelShop(int[] shop, ref int nextSlot)
         //{
         //    shop[nextSlot] = ModContent.ItemType<TomeForge>();
         //    nextSlot++;
-        //}        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        //}
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+            {
+                pool.Clear();
+                pool.Add(ModContent.NPCType<NPCs.Bactus>(), 1f);
+                pool.Add(ModContent.NPCType<NPCs.PyrasiteHead>(), 0.1f);
+                if (Main.hardMode)
+                {
+                    pool.Add(ModContent.NPCType<NPCs.Cougher>(), 0.8f);
+                    pool.Add(ModContent.NPCType<NPCs.Ickslime>(), 0.7f);
+                    if (spawnInfo.player.ZoneRockLayerHeight)
+                    {
+                        pool.Add(ModContent.NPCType<NPCs.Virus>(), 1f);
+                        pool.Add(ModContent.NPCType<NPCs.GrossyFloat>(), 0.6f);
+                    }
+                    if (spawnInfo.player.ZoneDesert)
+                    {
+                        pool.Add(NPCID.DarkMummy, 0.3f);
+                    }
+                }
+            }
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
+            {
+                pool.Clear();
+                pool.Add(NPCID.Demon, 0.2f);
+                pool.Add(NPCID.RedDevil, 0.2f);
+                pool.Add(ModContent.NPCType<NPCs.EctoHand>(), 1f);
+                pool.Add(ModContent.NPCType<NPCs.HellboundLizard>(), 1f);
+                pool.Add(ModContent.NPCType<NPCs.Gargoyle>(), 1f);
+                if (ExxoAvalonOrigins.superHardmode) pool.Add(ModContent.NPCType<NPCs.ArmoredHellTortoise>(), 1f);
+            }
+        }        public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
             if (type == 19 && ExxoAvalonOrigins.superHardmode && Main.hardMode)
             {
@@ -27,24 +61,28 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                 spawnRate = (int)(spawnRate * 1.5f);
                 maxSpawns = (int)(maxSpawns * 0.65f);
             }            if (ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                spawnRate = (int) (spawnRate * 0.6);                maxSpawns += 3;                if (player.position.Y <= Main.worldSurface * 16.0 + NPC.sHeight)                {                    spawnRate = (int) (spawnRate * 0.55);                    maxSpawns = (int) (maxSpawns * 1.11);                }            }            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().enemySpawns2)            {                spawnRate = (int)(spawnRate * 0.2);                maxSpawns = (int)(maxSpawns * 3f);            }            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)            {                spawnRate = (int)(spawnRate * 0.65f);
-                maxSpawns = (int)(maxSpawns * 1.3f);            }            else if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
+                maxSpawns = (int)(maxSpawns * 1.3f);                if (player.ZoneRockLayerHeight)
+                {
+                    spawnRate = (int)(spawnRate * 0.65f);
+                    maxSpawns = (int)(maxSpawns * 1.3f);
+                }            }            else if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
             {
                 spawnRate = (int)(spawnRate * 0.4f);
                 maxSpawns = (int)(maxSpawns * 1.7f);
-            }        }        public override bool PreAI(NPC npc)
-        {
-            if ((npc.type == NPCID.LavaSlime || npc.type == NPCID.FireImp || npc.type == NPCID.Hellbat || npc.type == NPCID.Lavabat || npc.type == NPCID.BoneSerpentHead) && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
-            {
-                npc.active = false;
-                return false;
-            }
-            if (npc.type == NPCID.BlueSlime && npc.type == NPCID.DemonEye && npc.type == NPCID.DemonEye2 && npc.type == NPCID.DemonEyeOwl && npc.type == NPCID.DemonEyeSpaceship && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
-            {
-                npc.active = false;
-                return false;
-            }
-            return base.PreAI(npc);
-        }
+            }        }        //public override bool PreAI(NPC npc)
+        //{
+        //    if ((npc.type == NPCID.LavaSlime || npc.type == NPCID.FireImp || npc.type == NPCID.Hellbat || npc.type == NPCID.Lavabat || npc.type == NPCID.BoneSerpentHead) && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
+        //    {
+        //        npc.active = false;
+        //        return false;
+        //    }
+        //    if (npc.type == NPCID.BlueSlime && npc.type == NPCID.DemonEye && npc.type == NPCID.DemonEye2 && npc.type == NPCID.DemonEyeOwl && npc.type == NPCID.DemonEyeSpaceship && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+        //    {
+        //        npc.active = false;
+        //        return false;
+        //    }
+        //    return base.PreAI(npc);
+        //}
         /// <summary>
         /// Spawns the Wall of Steel at the given position.
         /// </summary>

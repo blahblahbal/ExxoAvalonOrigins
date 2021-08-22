@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using ExxoAvalonOrigins.Items;
 using ExxoAvalonOrigins.Projectiles;
-using ExxoAvalonOrigins.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -813,9 +811,9 @@ namespace ExxoAvalonOrigins
             }
             if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()) && 
                 proj.type != ProjectileID.HallowStar && 
-                proj.type != ModContent.ProjectileType<Projectiles.Leaves>() && 
-                proj.type != ModContent.ProjectileType<Projectiles.LightningBolt>() && 
-                proj.type != ModContent.ProjectileType<Projectiles.LightningTrail>())
+                proj.type != ModContent.ProjectileType<Leaves>() && 
+                proj.type != ModContent.ProjectileType<LightningBolt>() && 
+                proj.type != ModContent.ProjectileType<LightningTrail>())
             {
                 damage *= 4;
                 target.DelBuff(target.FindBuffIndex(ModContent.BuffType<Buffs.CurseofAvalon>()));
