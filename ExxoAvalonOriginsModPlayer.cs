@@ -663,7 +663,6 @@ namespace ExxoAvalonOrigins
                     else vampireHeal(damage, target.Center);
                 }
             }
-
             if (crit)
             {
                 if (Main.rand.Next(8) == 0)
@@ -691,6 +690,17 @@ namespace ExxoAvalonOrigins
                         Main.item[num36].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
                         Main.item[num36].velocity.X = (float)Main.rand.Next(10, 31) * 0.2f * (float)player.direction;
                         roseMagicCooldown = 20;
+                    }
+                }
+            }
+
+            if (target.life <= 0)
+            {
+                if (ancientGunslinger)
+                {
+                    if (proj.owner == Main.myPlayer && proj.ranged)
+                    {
+                        Projectile.NewProjectile(target.position, Vector2.Zero, ModContent.ProjectileType<SandyExplosion>(), damage * 2, knockback);
                     }
                 }
             }
