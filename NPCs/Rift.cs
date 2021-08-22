@@ -9,6 +9,10 @@ namespace ExxoAvalonOrigins.NPCs
 {
     public class Rift : ModNPC
     {
+        bool[,] copperDone = new bool[21, 21];
+        bool[,] ironDone = new bool[21, 21];
+        bool[,] silverDone = new bool[21, 21];
+        bool[,] goldDone = new bool[21, 21];
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rift");
@@ -148,7 +152,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 {
                                     int t = Main.rand.Next(2);
                                     if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.DevourerHead);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
                                     //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                                 }
                             }
@@ -181,7 +185,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 {
                                     int t = Main.rand.Next(2);
                                     if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.DevourerHead);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
                                     //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                                 }
                             }
@@ -228,86 +232,87 @@ namespace ExxoAvalonOrigins.NPCs
                 Point tile = npc.position.ToTileCoordinates();
                 for (int x = tile.X - 10; x < tile.X + 10; x++)
                 {
-                    for (int y = tile.Y - 10; x < tile.Y + 10; y++)
+                    for (int y = tile.Y - 10; y < tile.Y + 10; y++)
                     {
                         #region phm ore tier 1
-                        if (Main.tile[x, y].type == TileID.Copper)
+                        if (Main.tile[x, y].type == TileID.Copper && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Tin;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == TileID.Tin)
+                        if (Main.tile[x, y].type == TileID.Tin && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.BronzeOre>();
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BronzeOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BronzeOre>() && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Copper;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
                         #endregion
                         #region phm ore tier 2
-                        if (Main.tile[x, y].type == TileID.Iron)
+                        if (Main.tile[x, y].type == TileID.Iron && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Lead;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            //continue;
                         }
-                        if (Main.tile[x, y].type == TileID.Lead)
+                        if (Main.tile[x, y].type == TileID.Lead && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.NickelOre>();
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.NickelOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.NickelOre>() && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Iron;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
                         #endregion
                         #region phm ore tier 3
-                        if (Main.tile[x, y].type == TileID.Silver)
+                        if (Main.tile[x, y].type == TileID.Silver && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Tungsten;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == TileID.Tungsten)
+                        if (Main.tile[x, y].type == TileID.Tungsten && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.ZincOre>();
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ZincOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ZincOre>() && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Silver;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
                         #endregion
                         #region phm ore tier 4
-                        if (Main.tile[x, y].type == TileID.Gold)
+                        if (Main.tile[x, y].type == TileID.Gold && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Platinum;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == TileID.Platinum)
+                        if (Main.tile[x, y].type == TileID.Platinum && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.BismuthOre>();
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BismuthOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BismuthOre>() && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Gold;
                             WorldGen.SquareTileFrame(x, y);
-                            continue;
+                            goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                         }
                         #endregion
                         #region phm ore tier 5
@@ -332,6 +337,7 @@ namespace ExxoAvalonOrigins.NPCs
                         #endregion
                     }
                 }
+                npc.ai[1] = 4;
             }
             if (npc.ai[0] >= 200) npc.active = false;
         }

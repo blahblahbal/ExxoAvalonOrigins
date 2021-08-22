@@ -1099,9 +1099,9 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            if (riftGoggles && Main.rand.Next(500) == 0)
+            if (riftGoggles && Main.rand.Next(5000) == 0)
             {
-                if (player.position.Y > Main.rockLayer)
+                if (player.ZoneRockLayerHeight)
                 {
                     Vector2 pposTile2 = player.position + new Vector2(Main.rand.Next(-35 * 16, 35 * 16), Main.rand.Next(-35 * 16, 35 * 16));
                     Point pt = pposTile2.ToTileCoordinates();
