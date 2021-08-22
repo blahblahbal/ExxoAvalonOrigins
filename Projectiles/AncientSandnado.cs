@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModPro
                     if (!n.townNPC && !n.friendly && !n.dontTakeDamage && !n.boss)
                     {
                         n.velocity = Vector2.Normalize(n.position - newPos) * -4.5f;
-                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n.whoAmI);
+                        if (Main.netMode == NetmodeID.Server) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n.whoAmI);
                     }
                 }
             }
