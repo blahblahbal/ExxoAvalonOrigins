@@ -881,6 +881,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 jungleMenuSelection = (JungleVariant)WorldGen.genRand.Next(2);
             }
 
+            contaigon = false;
             WorldGen.crimson = WorldGen.genRand.Next(2) == 0;
             if (WorldGen.WorldGenParam_Evil == 0)
             {
