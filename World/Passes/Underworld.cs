@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
                 {
                     if ((Main.tile[q, z].type == TileID.Ash || Main.tile[q, z].type == TileID.Hellstone) && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                    if ((z < Main.maxTilesY - 90 && z > Main.maxTilesY - 120) || (z < Main.maxTilesY - 160 && z > Main.maxTilesY - 190))
+                    if (z < Main.maxTilesY - 90 && z > Main.maxTilesY - 120)
                     {
                         if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
@@ -55,10 +55,23 @@ namespace ExxoAvalonOrigins.World.Passes
                         {
                             if (WorldGen.genRand.Next(30) == 0)
                             {
-                                Structures.CaesiumSpike.CreateSpike(q, z);
+                                Structures.CaesiumSpike.CreateSpike(q, z - 5);
                             }
                         }
                     }
+                    //if (z < Main.maxTilesY - 160 && z > Main.maxTilesY - 190)
+                    //{
+                    //    if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
+                    //        Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
+                    //        Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
+                    //        Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
+                    //    {
+                    //        if (WorldGen.genRand.Next(40) == 0)
+                    //        {
+                    //            Structures.CaesiumSpike.CreateSpike(q, z);
+                    //        }
+                    //    }
+                    //}
                 }
             }
             progress.Message = "Generating Hellcastle and Ashen Overgrowth";
