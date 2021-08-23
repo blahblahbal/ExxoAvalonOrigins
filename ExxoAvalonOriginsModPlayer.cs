@@ -18,8 +18,8 @@ namespace ExxoAvalonOrigins
     public class ExxoAvalonOriginsModPlayer : ModPlayer
     {
         #region fields
-        public int statStamMax = 300;
-        public int statStamMax2 = 300;
+        public int statStamMax = 30;
+        public int statStamMax2;
         public int statStam = 100;
         public int spiritPoppyUseCount;
         public bool shmAcc = false;
@@ -378,6 +378,8 @@ namespace ExxoAvalonOrigins
             }
 
             critDamageMult = 1f;
+
+            statStamMax2 = statStamMax;
         }
         public override void UpdateDead()
         {
@@ -445,7 +447,7 @@ namespace ExxoAvalonOrigins
             flags[3] = zoneTropics;
             writer.Write(flags);
         }
-        
+
         public override void ReceiveCustomBiomes(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
@@ -576,11 +578,11 @@ namespace ExxoAvalonOrigins
             if (advAmmoBuff && Main.rand.Next(10) < 3)
                 consume = false;
 
-            if (tomeItem.type == ModContent.ItemType<CreatorsTome>() && Main.rand.Next(4) == 0) 
+            if (tomeItem.type == ModContent.ItemType<CreatorsTome>() && Main.rand.Next(4) == 0)
                 consume = false;
-            if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>())&& Main.rand.Next(5) == 0) 
+            if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>())&& Main.rand.Next(5) == 0)
                 consume = false;
-            if ((tomeItem.type == ModContent.ItemType<ThePlumHarvest>() || tomeItem.type == ModContent.ItemType<Emperor>()) && Main.rand.Next(10) < 3) 
+            if ((tomeItem.type == ModContent.ItemType<ThePlumHarvest>() || tomeItem.type == ModContent.ItemType<Emperor>()) && Main.rand.Next(10) < 3)
                 consume = false;
             if (!consume)
             {
@@ -819,10 +821,10 @@ namespace ExxoAvalonOrigins
             {
                 damage *= 3;
             }
-            if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()) && 
-                proj.type != ProjectileID.HallowStar && 
-                proj.type != ModContent.ProjectileType<Leaves>() && 
-                proj.type != ModContent.ProjectileType<LightningBolt>() && 
+            if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()) &&
+                proj.type != ProjectileID.HallowStar &&
+                proj.type != ModContent.ProjectileType<Leaves>() &&
+                proj.type != ModContent.ProjectileType<LightningBolt>() &&
                 proj.type != ModContent.ProjectileType<LightningTrail>())
             {
                 damage *= 4;
@@ -888,7 +890,7 @@ namespace ExxoAvalonOrigins
         }
         public int MultiplyCritDamage(int dmg) // dmg = damage befor crit application
         {
-            int bonusDmg = -dmg; 
+            int bonusDmg = -dmg;
             bonusDmg += (int)((dmg * (critDamageMult + 1f)) / 2);
             return bonusDmg;
         }
@@ -1207,13 +1209,13 @@ namespace ExxoAvalonOrigins
                                     target.Center.Y >= player.Center.Y - 320 &&
                                     target.Center.Y <= player.Center.Y + 320)
                                 {
-                                    if (!target.active || 
-                                        target.dontTakeDamage || 
-                                        target.townNPC || 
-                                        target.life < 1 || 
-                                        target.boss || 
-                                        target.target == ModContent.NPCType<NPCs.Juggernaut>() || 
-                                        target.realLife >= 0) 
+                                    if (!target.active ||
+                                        target.dontTakeDamage ||
+                                        target.townNPC ||
+                                        target.life < 1 ||
+                                        target.boss ||
+                                        target.target == ModContent.NPCType<NPCs.Juggernaut>() ||
+                                        target.realLife >= 0)
                                         continue;
                                     target.AddBuff(ModContent.BuffType<Buffs.NecroticDrain>(), 2);
                                     //target.StrikeNPCNoInteraction(3 + (int)(target.defense / 2), 0f, 1, default, true);
@@ -1350,7 +1352,7 @@ namespace ExxoAvalonOrigins
                                     break;
                             }
                         }
-                        
+
                         value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
                         list.Add(value);
                     }
@@ -1379,8 +1381,8 @@ namespace ExxoAvalonOrigins
                 {
                     for (int i = 0; i < 59; i++)
                     {
-                        if (player.inventory[i].stack > 0 && 
-                            (player.inventory[i].type == ModContent.ItemType<LargeZircon>() || 
+                        if (player.inventory[i].stack > 0 &&
+                            (player.inventory[i].type == ModContent.ItemType<LargeZircon>() ||
                             player.inventory[i].type == ModContent.ItemType<LargeTourmaline>() ||
                             player.inventory[i].type == ModContent.ItemType<LargePeridot>()))
                         {
@@ -1658,7 +1660,7 @@ namespace ExxoAvalonOrigins
 				player.magicCrit += modCrit;
 				player.rangedCrit += modCrit;
 	        }
-	        
+
 	        if (defDebuff)
 	        {
                 bool flag = false;
@@ -1810,7 +1812,7 @@ namespace ExxoAvalonOrigins
                 else
                     roseMagicCooldown = 0;
             }
-            
+
             // Broken completely. If you wanna fix be my guest.
             /*
             if (ancientGunslinger)
@@ -2098,46 +2100,7 @@ namespace ExxoAvalonOrigins
 		    }
 			if (activateSprint)
 			{
-				if (player.controlLeft && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
-				{
-					bool flag16 = true;
-					staminaCD2 += 1;
-					stamRegenCount = 0;
-					if (staminaCD2 >= 15)
-					{
-						statStam -= 2;
-						if (statStam <= 0)
-						{
-							statStam = 0;
-							flag16 = false;
-						}
-						staminaCD2 = 0;
-					}
-					if (flag16)
-					{
-						if (!HasItemInArmor(ItemID.HermesBoots) && !HasItemInArmor(ItemID.FlurryBoots) && !HasItemInArmor(ItemID.SpectreBoots) && !HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) && !HasItemInArmor(ItemID.SailfishBoots))
-						{
-							player.accRunSpeed = 6f;
-						}
-						else if (!HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots))
-						{
-							player.accRunSpeed = 6.75f;
-						}
-						else
-						{
-							player.accRunSpeed = 10.29f;
-							if (player.velocity.X > -4f)
-							{
-								player.velocity.X = player.velocity.X - 0.31f;
-							}
-							if (player.velocity.X < -4f && player.velocity.X > -8f)
-							{
-								player.velocity.X = player.velocity.X - 0.29f;
-							}
-						}
-					}
-				}
-				if (player.controlRight && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
+				if ((player.controlRight || player.controlLeft) && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
 				{
 					bool flag17 = true;
 					staminaCD2 += 1;
@@ -2165,14 +2128,14 @@ namespace ExxoAvalonOrigins
 						else
 						{
 							player.accRunSpeed = 10.29f;
-							if (player.velocity.X < 4f)
+							if ((player.velocity.X < 4f && player.controlRight) || (player.velocity.X > -4f && player.controlLeft))
 							{
-								player.velocity.X = player.velocity.X + 0.31f;
+								player.velocity.X = player.velocity.X + (player.controlRight ? 0.31f : -0.31f);
 							}
-							if (player.velocity.X > 4f && player.velocity.X < 8f)
-							{
-								player.velocity.X = player.velocity.X + 0.29f;
-							}
+                            else if ((player.velocity.X < 8f && player.controlRight) || (player.velocity.X > -8f && player.controlLeft))
+                            {
+                                player.velocity.X = player.velocity.X + (player.controlRight ? 0.29f : -0.29f);
+                            }
 						}
 					}
 				}

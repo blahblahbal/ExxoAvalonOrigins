@@ -12,6 +12,7 @@
             TomeEquip.UpdateVanity += TomeEquip.OnUpdateVanity;
             On.Terraria.Main.DrawInterface_Resources_Life += ExtraHealth.OnDrawInterface_Resources_Life;
             On.Terraria.Main.DrawInterface_Resources_Mana += ExtraHealth.OnDrawInterface_Resources_Mana;
+            IL.Terraria.Main.GUIBarsMouseOverMana += ExtraHealth.ILGUIBarsMouseOverMana;
             On.Terraria.Collision.HurtTiles += TrapCollision.OnHurtTiles;
             On.Terraria.WorldGen.SmashAltar += EvilAltar.OnSmashAltar;
             IL.Terraria.Main.DrawMenu += WorldCreationMenus.ILDrawMenu;

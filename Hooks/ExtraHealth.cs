@@ -1,3 +1,4 @@
+using System;
 using System.Net.NetworkInformation;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -255,7 +256,6 @@ namespace ExxoAvalonOrigins.Hooks
 					}
 				}
 			}
-			DrawStaminaBar();
         }
 
 		public static void ILUpdate(ILContext il)
@@ -273,62 +273,25 @@ namespace ExxoAvalonOrigins.Hooks
 			c.RemoveRange(3);
 		}
 
-        private static void DrawStaminaBar()
+		public static void ILGUIBarsMouseOverMana(ILContext il)
         {
-			ExxoAvalonOrigins.barStamina = 20;
-			if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2 > 0)
+			var c = new ILCursor(il);
+
+			// Move il cursor into positon
+			if (!c.TryGotoNext(i => i.MatchDiv()))
+				return;
+			if (!c.TryGotoNext(i => i.MatchStloc(1)))
+				return;
+
+			c.EmitDelegate<Func<int, int>>((amountDisplayStars) =>
 			{
-				int num21 = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax / 20;
-				int num22 = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2 - Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax;
-				ExxoAvalonOrigins.barStamina += num22 / num21;
-				int num23 = (int)((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2 / (float)ExxoAvalonOrigins.barStamina);
-				if (num23 >= 15)
-				{
-				}
-				for (int k = 1; k < (int)((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2 / (float)ExxoAvalonOrigins.barStamina) + 1; k++)
-				{
-					float num24 = 1f;
-					bool flag3 = false;
-					int num25;
-					if ((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam >= (float)k * (float)ExxoAvalonOrigins.barStamina)
-					{
-						num25 = 255;
-						if ((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam == (float)k * (float)ExxoAvalonOrigins.barStamina)
-						{
-							flag3 = true;
-						}
-					}
-					else
-					{
-						float num26 = ((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam - (float)(k - 1) * (float)ExxoAvalonOrigins.barStamina) / (float)ExxoAvalonOrigins.barStamina;
-						num25 = (int)(30f + 225f * num26);
-						if (num25 < 30)
-						{
-							num25 = 30;
-						}
-						num24 = num26 / 4f + 0.75f;
-						if ((double)num24 < 0.75)
-						{
-							num24 = 0.75f;
-						}
-						if (num26 > 0f)
-						{
-							flag3 = true;
-						}
-					}
-					if (flag3)
-					{
-						num24 += Main.cursorScale - 1f;
-					}
-					int num27 = 0;
-					int num28 = 0;
-					int num29 = (int)((double)((float)num25) * 0.9);
-					if (!Main.player[Main.myPlayer].ghost && ExxoAvalonOrigins.subInterface)
-					{
-						Main.spriteBatch.Draw(ExxoAvalonOrigins.stamTexture, new Vector2((float)(50 + 26 * (k - 1) + num27 + ExxoAvalonOrigins.sX + ExxoAvalonOrigins.stamTexture.Width / 2), (float)(Main.screenHeight - 75) + ((float)ExxoAvalonOrigins.stamTexture.Height - (float)ExxoAvalonOrigins.stamTexture.Height * num24) / 2f + (float)num28 + (float)(ExxoAvalonOrigins.stamTexture.Height / 2)), new Rectangle?(new Rectangle(0, 0, ExxoAvalonOrigins.stamTexture.Width, ExxoAvalonOrigins.stamTexture.Height)), new Color(num25, num25, num25, num29), 0f, new Vector2((float)(ExxoAvalonOrigins.stamTexture.Width / 2), (float)(ExxoAvalonOrigins.stamTexture.Height / 2)), num24, SpriteEffects.None, 0f);
-					}
-				}
-			}
-        }
+				// 28 (spacing) * 10 (stars)
+				if (amountDisplayStars > 280)
+                {
+					return 280;
+                }
+				return amountDisplayStars;
+			});
+		}
     }
 }
