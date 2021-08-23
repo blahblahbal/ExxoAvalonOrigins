@@ -1079,6 +1079,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+            #region rift goggles
             if (player.ZoneCrimson || player.ZoneCorrupt || zoneBooger)
             {
                 if (Main.rand.Next(2400) == 0 && riftGoggles)
@@ -1119,7 +1120,7 @@ namespace ExxoAvalonOrigins
                     //}
                 }
             }
-
+            #endregion
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
 

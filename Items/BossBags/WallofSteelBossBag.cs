@@ -31,16 +31,21 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             player.TryGettingDevArmor();
 
-            int drop = Main.rand.Next(4);
+            int drop = Main.rand.Next(5);
             if (drop == 0)
             {
-                player.QuickSpawnItem(ModContent.ItemType<Items.FleshBoiler>(), 1);
+                player.QuickSpawnItem(ModContent.ItemType<FleshBoiler>(), 1);
             }
             if (drop == 1)
             {
-                player.QuickSpawnItem(ModContent.ItemType<Items.MagicCleaver>(), 1);
+                player.QuickSpawnItem(ModContent.ItemType<MagicCleaver>(), 1);
             }
-            player.QuickSpawnItem(ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(20, 26));
+            if (drop == 2)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Accessories.BubbleBoost>(), 1);
+            }
+            player.QuickSpawnItem(ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(40, 56));
+            player.QuickSpawnItem(ModContent.ItemType<Items.HellsteelPlate>(), Main.rand.Next(20, 26));
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.WallofSteel>();
