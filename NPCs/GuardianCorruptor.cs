@@ -206,13 +206,13 @@ namespace ExxoAvalonOrigins.NPCs
                         var player5 = Main.player[npc.target];
                         var vector158 = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
                         var num1191 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f + 40f), vector158.X - (player5.position.X + player5.width * 0.5f + 40f));
-                        var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ProjectileID.PhasicWarpEjector, 70, 1f, npc.target, 0f, 0f);
+                        var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ModContent.ProjectileType<Projectiles.VileSpit>(), 70, 1f, npc.target, 0f, 0f);
                         if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
                         }
                         var num1192 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f - 40f), vector158.X - (player5.position.X + player5.width * 0.5f - 40f));
-                        var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ProjectileID.PhasicWarpEjector, 70, 1f, npc.target, 0f, 0f);
+                        var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.VileSpit>(), 70, 1f, npc.target, 0f, 0f);
                         var expr_4284B_cp_0 = Main.projectile[num1193];
                         expr_4284B_cp_0.velocity.X = expr_4284B_cp_0.velocity.X * 7f;
                         var expr_4286B_cp_0 = Main.projectile[num1193];
@@ -221,7 +221,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
                         }
-                        NPC.NewNPC((int)(npc.position.X + npc.width / 2 + npc.velocity.X), (int)(npc.position.Y + npc.height / 2 + npc.velocity.Y), 112, 0);
+                        NPC.NewNPC((int)(npc.position.X + npc.width / 2 + npc.velocity.X), (int)(npc.position.Y + npc.height / 2 + npc.velocity.Y), NPCID.VileSpit, 0);
                     }
                     npc.localAI[0] = 0f;
                 }
