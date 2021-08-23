@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.DeathSound = SoundID.NPCDeath7;
 			npc.lifeMax = 970;
 			npc.scale = 0.9f;
-			npc.knockBackResist = 0.45f;
+			npc.knockBackResist = 0.05f;
 			npc.noGravity = true;
 			npc.noTileCollide = false;
 			npc.value = 6500;
@@ -195,7 +195,7 @@ namespace ExxoAvalonOrigins.NPCs
 					npc.velocity.Y = -2f;
 				}
 			}
-			if (Main.netMode != 1 && !Main.player[npc.target].dead)
+			if (Main.netMode != NetmodeID.MultiplayerClient && !Main.player[npc.target].dead)
 			{
 				if (npc.justHit)
 				{

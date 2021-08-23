@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.value = Item.buyPrice(0, 1, 0, 0);
 			npc.timeLeft = 750;
 			npc.height = 40;
-			npc.knockBackResist = 0.3f;
+			npc.knockBackResist = 0.1f;
             npc.HitSound = SoundID.NPCHit2;
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Confused] = true;

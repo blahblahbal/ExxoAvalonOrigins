@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.width = 24;
 			npc.value = Item.buyPrice(0, 0, 45, 0);
 			npc.timeLeft = 750;
-			npc.knockBackResist = 0.5f;
+			npc.knockBackResist = 0.3f;
 			npc.height = 32;
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath6;

@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.aiStyle = 3;
 			npc.value = 1000f;
 			npc.height = 40;
-			npc.knockBackResist = 0.4f;
+			npc.knockBackResist = 0.15f;
             npc.HitSound = SoundID.NPCHit2;
 	        npc.DeathSound = SoundID.NPCDeath2;
 			npc.buffImmune[BuffID.Confused] = true;

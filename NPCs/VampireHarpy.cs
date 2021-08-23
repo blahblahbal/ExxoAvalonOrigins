@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.value = 10000f;
 			npc.timeLeft = 750;
 			npc.height = 34;
-			npc.knockBackResist = 0.4f;
+			npc.knockBackResist = 0.1f;
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.buffImmune[BuffID.Confused] = true;
@@ -53,11 +53,6 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.spriteDirection = -1;
             }
             npc.rotation = npc.velocity.X * 0.1f;
-            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
-            {
-                npc.frameCounter += 1.0;
-                npc.rotation = npc.velocity.X * 0.2f;
-            }
             npc.frameCounter += 1.0;
             if (npc.frameCounter >= 6.0)
             {
