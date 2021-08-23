@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileMergeDirt[Type] = true;
 			Main.tileShine[Type] = 1150;
             Main.tileBlockLight[Type] = true;
-            drop = ModContent.ItemType<Items.BlackBlaststone>();
+            drop = ModContent.ItemType<Items.Placeable.BlackBlaststone>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = 54;

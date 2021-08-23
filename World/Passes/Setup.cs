@@ -46,10 +46,6 @@ namespace ExxoAvalonOrigins.World.Passes
                 WorldGen.GoldTierOre = (ushort)ModContent.TileType<Tiles.BismuthOre>();
                 WorldGen.goldBar = ModContent.ItemType<Items.BismuthBar>();
             }
-            ExxoAvalonOriginsWorld.phmOreTier1 = WorldGen.CopperTierOre;
-            ExxoAvalonOriginsWorld.phmOreTier2 = WorldGen.IronTierOre;
-            ExxoAvalonOriginsWorld.phmOreTier3 = WorldGen.SilverTierOre;
-            ExxoAvalonOriginsWorld.phmOreTier4 = WorldGen.GoldTierOre;
         }
     }
 }

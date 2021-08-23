@@ -16,17 +16,20 @@ namespace ExxoAvalonOrigins.World.Passes
             //}
             for (int q = Main.maxTilesX - Main.maxTilesX / 4; q < Main.maxTilesX - 20; q++)
             {
-                for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 10; z++)
+                for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
                 {
                     if ((Main.tile[q, z].type == TileID.Ash || Main.tile[q, z].type == TileID.Hellstone) && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                    if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
-                        Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
-                        Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
-                        Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
+                    if ((z < Main.maxTilesY - 70 && z > Main.maxTilesY - 100) || (z < Main.maxTilesY - 140 && z > Main.maxTilesY - 175))
                     {
-                        if (WorldGen.genRand.Next(20) == 0)
+                        if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
                         {
-                            Structures.CaesiumSpike.CreateSpike(q, z);
+                            if (WorldGen.genRand.Next(50) == 0)
+                            {
+                                Structures.CaesiumSpike.CreateSpike(q, z);
+                            }
                         }
                     }
                 }

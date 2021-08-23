@@ -46,173 +46,164 @@ namespace ExxoAvalonOrigins.NPCs
                     Player p = Main.player[Player.FindClosest(npc.position, npc.width, npc.height)];
                     if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contaigon) // corruption world
                     {
-                        if (p.ZoneCorrupt)
+                        if (Main.rand.Next(2) == 0) // crimson mobs
                         {
-                            if (Main.rand.Next(2) == 0) // crimson mobs
+                            if (Main.hardMode)
                             {
-                                if (Main.hardMode)
-                                {
-                                    if (p.position.Y < Main.worldSurface)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimslime);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Herpling);
-                                    }
-                                    else if (p.ZoneRockLayerHeight)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IchorSticker);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FloatyGross);
-                                    }
-                                }
-                                else
-                                {
-                                    int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimera);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FaceMonster);
-                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
-                                }
-                            }
-                            else // contagion mobs
-                            {
-                                if (Main.hardMode)
-                                {
-                                    if (p.position.Y < Main.worldSurface)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Cougher>());
-                                    }
-                                    else if (p.ZoneRockLayerHeight)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
-                                    }
-                                }
-                                else
+                                if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
-                                    //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimslime);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Herpling);
                                 }
+                                else if (p.ZoneRockLayerHeight)
+                                {
+                                    int t = Main.rand.Next(2);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IchorSticker);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FloatyGross);
+                                }
+                            }
+                            else
+                            {
+                                int t = Main.rand.Next(3);
+                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimera);
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FaceMonster);
+                                if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                            }
+                        }
+                        else // contagion mobs
+                        {
+                            if (Main.hardMode)
+                            {
+                                if (p.position.Y < Main.worldSurface)
+                                {
+                                    int t = Main.rand.Next(2);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                }
+                                else if (p.ZoneRockLayerHeight)
+                                {
+                                    int t = Main.rand.Next(2);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                }
+                            }
+                            else
+                            {
+                                int t = Main.rand.Next(2);
+                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
                     }
                     else if (!WorldGen.crimson && ExxoAvalonOriginsWorld.contaigon) // contagion world
                     {
-                        if (p.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+                        if (Main.rand.Next(2) == 0) // crimson mobs
                         {
-                            if (Main.rand.Next(2) == 0) // crimson mobs
+                            if (Main.hardMode)
                             {
-                                if (Main.hardMode)
-                                {
-                                    if (p.position.Y < Main.worldSurface)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimslime);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Herpling);
-                                    }
-                                    else if (p.ZoneRockLayerHeight)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IchorSticker);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FloatyGross);
-                                    }
-                                }
-                                else
-                                {
-                                    int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimera);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FaceMonster);
-                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
-                                }
-                            }
-                            else // corruption mobs
-                            {
-                                if (Main.hardMode)
-                                {
-                                    if (p.position.Y < Main.worldSurface)
-                                    {
-                                        int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Slimer);
-                                        if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
-                                    }
-                                    else if (p.ZoneRockLayerHeight)
-                                    {
-                                        int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.SeekerHead);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                        if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
-                                    }
-                                }
-                                else
+                                if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
-                                    //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimslime);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Herpling);
                                 }
+                                else if (p.ZoneRockLayerHeight)
+                                {
+                                    int t = Main.rand.Next(2);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IchorSticker);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FloatyGross);
+                                }
+                            }
+                            else
+                            {
+                                int t = Main.rand.Next(3);
+                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimera);
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FaceMonster);
+                                if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                            }
+                        }
+                        else // corruption mobs
+                        {
+                            if (Main.hardMode)
+                            {
+                                if (p.position.Y < Main.worldSurface)
+                                {
+                                    int t = Main.rand.Next(3);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Slimer);
+                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
+                                }
+                                else if (p.ZoneRockLayerHeight)
+                                {
+                                    int t = Main.rand.Next(3);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.SeekerHead);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
+                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
+                                }
+                            }
+                            else
+                            {
+                                int t = Main.rand.Next(2);
+                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
+                                //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
                     }
                     else if (WorldGen.crimson) // crimson
                     {
-                        if (p.ZoneCrimson)
+                        if (Main.rand.Next(2) == 0) // corruption mobs
                         {
-                            if (Main.rand.Next(2) == 0) // corruption mobs
+                            if (Main.hardMode)
                             {
-                                if (Main.hardMode)
+                                if (p.position.Y < Main.worldSurface)
                                 {
-                                    if (p.position.Y < Main.worldSurface)
-                                    {
-                                        int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Slimer);
-                                        if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
-                                    }
-                                    else if (p.ZoneRockLayerHeight)
-                                    {
-                                        int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.SeekerHead);
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                        if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
-                                    }
+                                    int t = Main.rand.Next(3);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Slimer);
+                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
                                 }
-                                else
+                                else if (p.ZoneRockLayerHeight)
                                 {
-                                    int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
-                                    //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                                    int t = Main.rand.Next(3);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.SeekerHead);
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
+                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
                                 }
                             }
-                            else // contagion mobs
+                            else
                             {
-                                if (Main.hardMode)
-                                {
-                                    if (p.position.Y < Main.worldSurface)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Cougher>());
-                                    }
-                                    else if (p.ZoneRockLayerHeight)
-                                    {
-                                        int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                        if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
-                                    }
-                                }
-                                else
+                                int t = Main.rand.Next(2);
+                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
+                                //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                            }
+                        }
+                        else // contagion mobs
+                        {
+                            if (Main.hardMode)
+                            {
+                                if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
-                                    //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                 }
+                                else if (p.ZoneRockLayerHeight)
+                                {
+                                    int t = Main.rand.Next(2);
+                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                }
+                            }
+                            else
+                            {
+                                int t = Main.rand.Next(2);
+                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
                     }
