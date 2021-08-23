@@ -249,6 +249,7 @@ namespace ExxoAvalonOrigins
         public bool zoneHellcastle;
         public bool zoneDarkMatter;
         public bool zoneTropics;
+        public bool zoneCaesium;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -439,6 +440,7 @@ namespace ExxoAvalonOrigins
             zoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
             zoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
             zoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
+            zoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
         }
         public override void SendCustomBiomes(BinaryWriter writer)
         {
@@ -447,6 +449,7 @@ namespace ExxoAvalonOrigins
             flags[1] = zoneBooger;
             flags[2] = zoneDarkMatter;
             flags[3] = zoneTropics;
+            flags[4] = zoneCaesium;
             writer.Write(flags);
         }
 
@@ -457,6 +460,7 @@ namespace ExxoAvalonOrigins
             zoneBooger = flags[1];
             zoneDarkMatter = flags[2];
             zoneTropics = flags[3];
+            zoneCaesium = flags[4];
         }
         public bool HasItemInArmor(int type)
         {

@@ -28,6 +28,15 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                     }
                 }
             }
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium)
+            {
+                if (Main.hardMode)
+                {
+                    pool.Clear();
+                    pool.Add(ModContent.NPCType<NPCs.CaesiumBrute>(), 1f);
+                    pool.Add(ModContent.NPCType<NPCs.CaesiumSeekerHead>(), 0.2f);
+                }
+            }
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
             {
                 pool.Clear();
