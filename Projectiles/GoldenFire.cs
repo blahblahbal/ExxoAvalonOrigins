@@ -121,8 +121,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				return;
 			}
 			projectile.timeLeft = 0;
-
-			Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 14);
+			Main.PlaySound(SoundID.Item, projectile.position, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Fireball"));
 
 			float len = 4f;
 			int flam = ModContent.ProjectileType<GoldenFlamelet>();

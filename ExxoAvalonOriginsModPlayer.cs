@@ -2451,7 +2451,7 @@ namespace ExxoAvalonOrigins
                 player.immuneTime = 60;
             else
                 player.immuneTime = 30;
-            Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Item/SpectrumDodge.ogg"), player.position);
+            Main.PlaySound(SoundID.Item, player.position, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/SpectrumDodge"));
             for (int i = 0; i < player.hurtCooldowns.Length; i++)
             {
                 player.hurtCooldowns[i] = player.immuneTime;
