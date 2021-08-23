@@ -166,7 +166,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else if (Main.rand.Next(20) == 0)
             {
-                var num1182 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 18, npc.velocity.X, 2f, 75, npc.color, npc.scale);
+                var num1182 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Vile, npc.velocity.X, 2f, 75, npc.color, npc.scale);
                 var dust52 = Main.dust[num1182];
                 dust52.velocity.X = dust52.velocity.X * 0.5f;
                 var dust53 = Main.dust[num1182];
@@ -174,7 +174,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else if (Main.rand.Next(40) == 0)
             {
-                var num1183 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 5, npc.velocity.X, 2f, 0, default(Color), 1f);
+                var num1183 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Blood, npc.velocity.X, 2f, 0, default(Color), 1f);
                 var dust54 = Main.dust[num1183];
                 dust54.velocity.X = dust54.velocity.X * 0.5f;
                 var dust55 = Main.dust[num1183];
@@ -206,20 +206,20 @@ namespace ExxoAvalonOrigins.NPCs
                         var player5 = Main.player[npc.target];
                         var vector158 = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
                         var num1191 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f + 40f), vector158.X - (player5.position.X + player5.width * 0.5f + 40f));
-                        var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, 457, 70, 1f, npc.target, 0f, 0f);
+                        var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ProjectileID.PhasicWarpEjector, 70, 1f, npc.target, 0f, 0f);
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
                         }
                         var num1192 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f - 40f), vector158.X - (player5.position.X + player5.width * 0.5f - 40f));
-                        var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), 457, 70, 1f, npc.target, 0f, 0f);
+                        var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ProjectileID.PhasicWarpEjector, 70, 1f, npc.target, 0f, 0f);
                         var expr_4284B_cp_0 = Main.projectile[num1193];
                         expr_4284B_cp_0.velocity.X = expr_4284B_cp_0.velocity.X * 7f;
                         var expr_4286B_cp_0 = Main.projectile[num1193];
                         expr_4286B_cp_0.velocity.Y = expr_4286B_cp_0.velocity.Y * 7f;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
                         }
                         NPC.NewNPC((int)(npc.position.X + npc.width / 2 + npc.velocity.X), (int)(npc.position.Y + npc.height / 2 + npc.velocity.Y), 112, 0);
                     }

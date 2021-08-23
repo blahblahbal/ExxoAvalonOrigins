@@ -24,7 +24,7 @@
                     {
                         for (var m = 0; m < 5; m++)
                         {
-                            var num = Dust.NewDust(projectile2.position, projectile2.width, projectile2.height, 15, 0f, 0f, 100, default(Color), 1f);
+                            var num = Dust.NewDust(projectile2.position, projectile2.width, projectile2.height, DustID.MagicMirror, 0f, 0f, 100, default(Color), 1f);
                             Main.dust[num].noGravity = true;
                         }
                         projectile2.hostile = false;
@@ -47,7 +47,7 @@
                     {
                         for (var n = 0; n < 5; n++)
                         {
-                            var num2 = Dust.NewDust(nPC.position, nPC.width, nPC.height, 15, 0f, 0f, 100, default(Color), 1f);
+                            var num2 = Dust.NewDust(nPC.position, nPC.width, nPC.height, DustID.MagicMirror, 0f, 0f, 100, default(Color), 1f);
                             Main.dust[num2].noGravity = true;
                         }
                         nPC.friendly = true;

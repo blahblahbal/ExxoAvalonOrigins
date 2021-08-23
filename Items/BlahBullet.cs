@@ -14,7 +14,7 @@
             item.ammo = AmmoID.Bullet;
             item.ranged = true;
             item.consumable = true;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.width = dims.Width;
             item.knockBack = 4f;
             item.shoot = ModContent.ProjectileType<Projectiles.BlahBullet>();

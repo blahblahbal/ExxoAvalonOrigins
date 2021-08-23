@@ -29,10 +29,10 @@ namespace ExxoAvalonOrigins.Items
 			item.createTile = ModContent.TileType<Tiles.BiomeBombs>();
 			item.placeStyle = 1;
 			item.consumable = true;
-			item.rare = 4;
+			item.rare = ItemRarityID.LightRed;
 			item.width = dims.Width;
 			item.useTime = 15;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}

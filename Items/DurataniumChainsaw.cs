@@ -26,14 +26,14 @@ namespace ExxoAvalonOrigins.Items
 			item.channel = true;
 			item.axe = 15;
 			item.shootSpeed = 40f;
-			item.rare = 4;
+			item.rare = ItemRarityID.LightRed;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 6;
 			item.knockBack = 3.5f;
 			item.shoot = ModContent.ProjectileType<Projectiles.DurataniumChainsaw>();
 			item.melee = true;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 88000;
 			item.useAnimation = 25;
 			item.height = dims.Height;

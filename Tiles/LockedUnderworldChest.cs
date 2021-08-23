@@ -84,7 +84,7 @@
             {
                 return;
             }
-            Main.PlaySound(22, X * 16, Y * 16, 1);
+            Main.PlaySound(SoundID.Unlock, X * 16, Y * 16, 1);
             for (int i = X; i <= X + 1; i++)
             {
                 for (int j = Y; j <= Y + 1; j++)
@@ -92,7 +92,7 @@
                     Main.tile[i, j].type = (ushort)ModContent.TileType<UnderworldChest>();
                     for (int k = 0; k < 4; k++)
                     {
-                        Dust.NewDust(new Vector2((float)(i * 16), (float)(j * 16)), 16, 16, 6, 0f, 0f, 0, default(Color), 1f);
+                        Dust.NewDust(new Vector2((float)(i * 16), (float)(j * 16)), 16, 16, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
                     }
                 }
             }
@@ -120,7 +120,7 @@
                     Unlock(num148, num149);
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        NetMessage.SendData(52, -1, -1, NetworkText.Empty, player.whoAmI, 1f, (float)num148, (float)num149, 0);
+                        NetMessage.SendData(MessageID.Unlock, -1, -1, NetworkText.Empty, player.whoAmI, 1f, (float)num148, (float)num149, 0);
                     }
                 }
             }

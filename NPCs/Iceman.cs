@@ -403,7 +403,7 @@ namespace ExxoAvalonOrigins.NPCs
                     if (flag25)
                     {
                         npc.closeDoor = false;
-                        NetMessage.SendData(19, -1, -1, NetworkText.FromLiteral(""), 1, npc.doorX, npc.doorY, npc.direction, 0);
+                        NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 1, npc.doorX, npc.doorY, npc.direction, 0);
                     }
                     if ((npc.position.X + npc.width / 2) / 16f > npc.doorX + 4 || (npc.position.X + npc.width / 2) / 16f < npc.doorX - 4 || (npc.position.Y + npc.height / 2) / 16f > npc.doorY + 4 || (npc.position.Y + npc.height / 2) / 16f < npc.doorY - 4)
                     {
@@ -560,7 +560,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 npc.closeDoor = true;
                                 npc.doorX = num229;
                                 npc.doorY = num230 - 2;
-                                NetMessage.SendData(19, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, npc.direction, 0);
+                                NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, npc.direction, 0);
                                 npc.netUpdate = true;
                                 npc.ai[1] += 80f;
                                 return;
@@ -570,7 +570,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 npc.closeDoor = true;
                                 npc.doorX = num229;
                                 npc.doorY = num230 - 2;
-                                NetMessage.SendData(19, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, -npc.direction, 0);
+                                NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, -npc.direction, 0);
                                 npc.netUpdate = true;
                                 npc.ai[1] += 80f;
                                 return;

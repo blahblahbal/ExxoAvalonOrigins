@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Items
 			item.shoot = ModContent.ProjectileType<Projectiles.BlahBeam>();
 			item.UseSound = SoundID.Item1;
 			item.melee = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.sellPrice(3, 0, 0, 0);
 			item.useAnimation = 14;
 			item.height = dims.Height;

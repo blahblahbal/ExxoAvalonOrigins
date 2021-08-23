@@ -108,7 +108,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.velocity.Y = -vector165.Y;
             }
-            if (npc.type == 397)
+            if (npc.type == NPCID.MoonLordHand)
             {
                 npc.rotation = (float)Math.Atan2(num1223, num1222) - 1.57f;
             }

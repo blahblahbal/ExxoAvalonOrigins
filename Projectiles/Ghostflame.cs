@@ -23,7 +23,7 @@
         {
             if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.ShadowCurse>(), 240);
         }        public override void AI()        {
-            int num890 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 180, 0f, 0f, 0, default(Color), 1f);
+            int num890 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
             Main.dust[num890].velocity *= 0.1f;
             Main.dust[num890].scale = 1.3f;
             Main.dust[num890].noGravity = true;

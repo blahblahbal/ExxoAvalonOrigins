@@ -46,7 +46,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Sys
             {
                 num1 = 0.5f;
             }
-            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, num1, num1, default, default, 2f);
+            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, num1, num1, default, default, 2f);
             Main.dust[dust].noGravity = true;
             if (Main.rand.Next(3) == 0)
             {

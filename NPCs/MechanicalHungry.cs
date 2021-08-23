@@ -165,7 +165,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 for (int num192 = 0; num192 < 5; num192++)
                 {
-                    Dust.NewDust(npc.position, npc.width, npc.height, 4, (float)hitDirection, -1f, 0, default(Color), 1f);
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, (float)hitDirection, -1f, 0, default(Color), 1f);
                 }
                 return;
             }
@@ -174,13 +174,13 @@ namespace ExxoAvalonOrigins.NPCs
                 NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)npc.height), ModContent.NPCType<MechanicalHungry2>(), 0);
                 for (int num193 = 0; num193 < 10; num193++)
                 {
-                    Dust.NewDust(npc.position, npc.width, npc.height, 4, (float)hitDirection, -1f, 0, default(Color), 1f);
+                    Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, (float)hitDirection, -1f, 0, default(Color), 1f);
                 }
                 return;
             }
             for (int num194 = 0; num194 < 20; num194++)
             {
-                Dust.NewDust(npc.position, npc.width, npc.height, 4, (float)hitDirection, -1f, 0, default(Color), 1f);
+                Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, (float)hitDirection, -1f, 0, default(Color), 1f);
             }
         }
         public override void FindFrame(int frameHeight)

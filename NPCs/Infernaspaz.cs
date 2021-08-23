@@ -105,7 +105,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(5) == 0)
             {
-                var num528 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 5, npc.velocity.X, 2f, 0, default(Color), 1f);
+                var num528 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Blood, npc.velocity.X, 2f, 0, default(Color), 1f);
                 var dust42 = Main.dust[num528];
                 dust42.velocity.X = dust42.velocity.X * 0.5f;
                 var dust43 = Main.dust[num528];
@@ -300,7 +300,7 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     else
                     {
-                        Main.PlaySound(3, (int)npc.position.X, (int)npc.position.Y, 1);
+                        Main.PlaySound(SoundID.NPCHit, (int)npc.position.X, (int)npc.position.Y, 1);
                         for (var num543 = 0; num543 < 2; num543++)
                         {
                             Gore.NewGore(npc.position, new Vector2(Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f), 144, 1f);
@@ -309,12 +309,12 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         for (var num544 = 0; num544 < 20; num544++)
                         {
-                            Dust.NewDust(npc.position, npc.width, npc.height, 5, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
+                            Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
                         }
-                        Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                        Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
                     }
                 }
-                Dust.NewDust(npc.position, npc.width, npc.height, 5, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
+                Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
                 npc.velocity.X = npc.velocity.X * 0.98f;
                 npc.velocity.Y = npc.velocity.Y * 0.98f;
                 if (npc.velocity.X > -0.1 && npc.velocity.X < 0.1)
@@ -398,7 +398,7 @@ namespace ExxoAvalonOrigins.NPCs
                     if (npc.localAI[2] > 22f)
                     {
                         npc.localAI[2] = 0f;
-                        Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 34);
+                        Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 34);
                     }
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
@@ -448,7 +448,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (npc.ai[1] == 1f)
                     {
-                        Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                        Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
                         npc.rotation = num526;
                         var num554 = 14f;
                         var vector53 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);

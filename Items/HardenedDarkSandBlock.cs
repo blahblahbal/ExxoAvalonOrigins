@@ -15,7 +15,7 @@
             item.width = dims.Width;
             item.useTurn = true;
             item.useTime = 10;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 999;
             item.useAnimation = 15;
             item.height = dims.Height;

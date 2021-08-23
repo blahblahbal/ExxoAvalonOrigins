@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Tiles
 			drop = ModContent.ItemType<Items.BacciliteOre>();
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = 44;
+            dustType = DustID.JungleSpore;
             minPick = 55;
 		}
 		

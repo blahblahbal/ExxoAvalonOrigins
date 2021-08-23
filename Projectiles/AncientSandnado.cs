@@ -101,7 +101,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModPro
 				value73.X *= -1f;
 				Vector2 value74 = new Vector2(6f, 10f);
 				Vector2 position9 = vector105 + value70 * value73 * 0.5f + value74;
-				Dust dust48 = Main.dust[Dust.NewDust(position9, 0, 0, 269)];
+				Dust dust48 = Main.dust[Dust.NewDust(position9, 0, 0, DustID.Sandnado)];
 				dust48.position = position9;
 				dust48.customData = vector105 + value74;
 				dust48.fadeIn = 1f;

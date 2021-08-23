@@ -63,14 +63,14 @@ namespace ExxoAvalonOrigins.NPCs
 			var num9 = 0.4f;
 			for (var i = 1; i <= num8; i++)
 			{
-				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 6, 0f, 0f, 100, default(Color), 2f);
+				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.Fire, 0f, 0f, 100, default(Color), 2f);
 				Main.dust[num10].noGravity = true;
 				Main.dust[num10].velocity.X = num9 * (Main.dust[num10].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num10].velocity.Y = num9 * (Main.dust[num10].position.Y - (npc.position.Y + npc.height / 2));
 			}
 			for (var j = 1; j <= num8; j++)
 			{
-				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 54, 0f, 0f, 100, default(Color), 1f);
+				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.Wraith, 0f, 0f, 100, default(Color), 1f);
 				Main.dust[num11].noGravity = true;
 				Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));
@@ -173,7 +173,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(20) == 0)
             {
-                var num1225 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 6, npc.velocity.X, 2f, 75, npc.color, npc.scale);
+                var num1225 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Fire, npc.velocity.X, 2f, 75, npc.color, npc.scale);
                 var dust56 = Main.dust[num1225];
                 dust56.velocity.X = dust56.velocity.X * 0.5f;
                 var dust57 = Main.dust[num1225];
@@ -181,7 +181,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(40) == 0)
             {
-                var num1226 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 55, npc.velocity.X, 2f, 0, default(Color), 1f);
+                var num1226 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Pixie, npc.velocity.X, 2f, 0, default(Color), 1f);
                 var dust58 = Main.dust[num1226];
                 dust58.velocity.X = dust58.velocity.X * 0.5f;
                 var dust59 = Main.dust[num1226];
@@ -236,7 +236,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.spriteDirection = -1;
             }
             npc.rotation = npc.velocity.X * 0.1f;
-            if (npc.type == 210 || npc.type == 211)
+            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
             {
                 npc.frameCounter += 1.0;
                 npc.rotation = npc.velocity.X * 0.2f;

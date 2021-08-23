@@ -190,7 +190,7 @@ namespace ExxoAvalonOrigins
             if (syncData)
             {
                 RemoteClient.CheckSection(player.whoAmI, player.position, 1);
-                NetMessage.SendData(65, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, 3, 0, 0);
+                NetMessage.SendData(MessageID.Teleport, -1, -1, null, 0, (float)player.whoAmI, pos.X, pos.Y, 3, 0, 0);
             }
         }
     }

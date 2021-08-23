@@ -27,14 +27,14 @@ namespace ExxoAvalonOrigins.Items
 			item.channel = true;
 			item.shootSpeed = 32f;
 			item.pick = 110;
-			item.rare = 4;
+			item.rare = ItemRarityID.LightRed;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 13;
 			item.knockBack = 0f;
 			item.shoot = ModContent.ProjectileType<Projectiles.DurataniumDrill>();
 			item.melee = true;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 54000;
 			item.useAnimation = 25;
 			item.height = dims.Height;

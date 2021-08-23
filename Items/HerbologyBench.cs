@@ -13,11 +13,11 @@
             item.autoReuse = true;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.HerbologyBench>();
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.width = dims.Width;
             item.useTurn = true;
             item.useTime = 10;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 99;
             item.value = Item.sellPrice(0, 0, 20);
             item.useAnimation = 15;

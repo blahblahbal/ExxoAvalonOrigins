@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/BubbleBoost");
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
             item.width = dims.Width;
             item.accessory = true;
             item.value = Item.sellPrice(0, 15, 0, 0);

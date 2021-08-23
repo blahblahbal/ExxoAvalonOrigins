@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
             TileObjectData.addTile(Type);
-            dustType = 22;
+            dustType = DustID.Pot;
         }
 
         public override bool CanPlace(int i, int j)

@@ -15,11 +15,11 @@
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.PlacedBars>();
             item.placeStyle = 17;
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
             item.width = dims.Width;
             item.useTime = 10;
             item.value = Item.sellPrice(0, 1, 0, 0);
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
         }

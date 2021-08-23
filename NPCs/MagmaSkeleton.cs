@@ -80,7 +80,7 @@ namespace ExxoAvalonOrigins.NPCs
             Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.9f, 0.25f, 0.05f);
             if (Main.rand.Next(7) == 0)
             {
-                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, 6, 0f, 0f, 0, default(Color), 1.2f);
+                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1.2f);
                 Main.dust[num10].noGravity = true;
             }
         }
@@ -92,7 +92,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (int i = 0; i < 20; i++)
             {
-                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, 6, 0f, 0f, 0, default(Color), 1f);
+                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num890].velocity *= 5f;
                 Main.dust[num890].scale = 1.2f;
                 Main.dust[num890].noGravity = true;

@@ -22,20 +22,20 @@
             projectile.ignoreWater = true;
         }        public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 10);
+            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
             return true;
         }        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 240);
         }        public override void AI()        {
-            int num40 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, 54, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
-            int D3 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, 58, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
+            int num40 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Wraith, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
+            int D3 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
             Main.dust[num40].noGravity = true;
             Main.dust[D3].noGravity = true;
             if (Main.rand.Next(10) == 0)
             {
-                num40 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 54, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.4f);
-                D3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 58, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.4f);
+                num40 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Wraith, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.4f);
+                D3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.4f);
             }
             if (projectile.ai[1] >= 20f)
             {

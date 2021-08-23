@@ -25,7 +25,7 @@
             int num4;
             for (int num280 = 0; num280 < num279; num280 = num4 + 1)
             {
-                int num281 = Dust.NewDust(projectile.Center, 0, 0, 233, 0f, 0f, 100, default(Color), 0.5f);
+                int num281 = Dust.NewDust(projectile.Center, 0, 0, DustID.GoldCritter_LessOutline, 0f, 0f, 100, default(Color), 0.5f);
                 Dust dust = Main.dust[num281];
                 dust.velocity *= 1.6f;
                 Main.dust[num281].velocity.Y -= 1f;
@@ -38,7 +38,7 @@
                 if (projectile.ai[1] == 0f)
                 {
                     projectile.ai[1] = 1f;
-                    Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 12);
+                    Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 12);
                 }
                 projectile.alpha -= 40;
                 if (projectile.alpha < 0)

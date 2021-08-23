@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Main.tileSpelunker[Type] = true;
             AddMapEntry(Color.IndianRed, LanguageManager.Instance.GetText("Bloodberry"));
             soundStyle = 1;
-            soundType = 6;
+            soundType = SoundID.Grass;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {

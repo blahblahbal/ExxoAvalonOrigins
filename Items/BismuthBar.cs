@@ -15,11 +15,11 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.PlacedBars>();
             item.placeStyle = 21;
-            item.rare = 0;
+            item.rare = ItemRarityID.White;
             item.width = dims.Width;
             item.useTime = 10;
             item.value = Item.sellPrice(0, 0, 8, 0);
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
         }

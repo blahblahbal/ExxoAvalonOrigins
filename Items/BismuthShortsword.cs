@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.useTime = 10;
             item.knockBack = 4f;
             item.melee = true;
-            item.useStyle = 3;
+            item.useStyle = ItemUseStyleID.Stabbing;
             item.value = 4600;
             item.useAnimation = 10;
             item.height = dims.Height;            item.UseSound = SoundID.Item1;

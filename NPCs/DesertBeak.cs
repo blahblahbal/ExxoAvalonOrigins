@@ -139,9 +139,9 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     var num1152 = 8f;
                     var vector151 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 17);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 17);
                     var num1153 = (float)Math.Atan2(vector151.Y - (vector150.Y + Main.player[npc.target].height * 0.5f), vector151.X - (vector150.X + Main.player[npc.target].width * 0.5f));
-                    Projectile.NewProjectile(vector151.X, vector151.Y, (float)(Math.Cos(num1153) * num1152 * -1.0), (float)(Math.Sin(num1153) * num1152 * -1.0), 83, 20, 0f, 0, 0f, 0f);
+                    Projectile.NewProjectile(vector151.X, vector151.Y, (float)(Math.Cos(num1153) * num1152 * -1.0), (float)(Math.Sin(num1153) * num1152 * -1.0), ProjectileID.EyeLaser, 20, 0f, 0, 0f, 0f);
                     npc.ai[1] = 0f;
                     return;
                 }
@@ -221,9 +221,9 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     var num1155 = 5f;
                     var vector154 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 11);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 11);
                     var num1156 = (float)Math.Atan2(vector154.Y - (vector153.Y + Main.player[npc.target].height * 0.5f), vector154.X - (vector153.X + Main.player[npc.target].width * 0.5f));
-                    Projectile.NewProjectile(vector154.X, vector154.Y, (float)(Math.Cos(num1156) * num1155 * -1.0), (float)(Math.Sin(num1156) * num1155 * -1.0), 102, 20, 0f, 0, 0f, 0f);
+                    Projectile.NewProjectile(vector154.X, vector154.Y, (float)(Math.Cos(num1156) * num1155 * -1.0), (float)(Math.Sin(num1156) * num1155 * -1.0), ProjectileID.BombSkeletronPrime, 20, 0f, 0, 0f, 0f);
                     npc.ai[2] = 0f;
                     return;
                 }

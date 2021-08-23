@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins.Tiles{
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), new Color(50, 255, 130));
                     }
                 }
-                Main.PlaySound(4, i * 16, j * 16, 1);
+                Main.PlaySound(SoundID.NPCKilled, i * 16, j * 16, 1);
             }
         }
     }}

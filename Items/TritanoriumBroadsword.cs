@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(255, 255, 255, 200);
-		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/TritanoriumBroadsword");			item.damage = 110;			item.autoReuse = true;			item.useTurn = true;			item.scale = 1.2f;			item.rare = 11;			item.width = dims.Width;			item.useTime = 16;			item.knockBack = 15f;			item.melee = true;			item.useStyle = 1;			item.value = Item.sellPrice(2, 10, 0, 0);			item.useAnimation = 16;			item.height = dims.Height;            item.UseSound = SoundID.Item1;
+		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/TritanoriumBroadsword");			item.damage = 110;			item.autoReuse = true;			item.useTurn = true;			item.scale = 1.2f;			item.rare = ItemRarityID.Purple;			item.width = dims.Width;			item.useTime = 16;			item.knockBack = 15f;			item.melee = true;			item.useStyle = ItemUseStyleID.SwingThrow;			item.value = Item.sellPrice(2, 10, 0, 0);			item.useAnimation = 16;			item.height = dims.Height;            item.UseSound = SoundID.Item1;
 			item.shoot = ModContent.ProjectileType<Projectiles.TritonWave>();
 			item.shootSpeed = 20;
         }

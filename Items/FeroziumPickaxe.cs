@@ -25,12 +25,12 @@ namespace ExxoAvalonOrigins.Items
 			item.useTurn = true;
 			item.crit += 6;
 			item.pick = 195;
-			item.rare = 7;
+			item.rare = ItemRarityID.Lime;
 			item.width = dims.Width;
 			item.useTime = 15;
 			item.knockBack = 3f;
 			item.melee = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = 250000;
 			item.useAnimation = 15;
 			item.height = dims.Height;

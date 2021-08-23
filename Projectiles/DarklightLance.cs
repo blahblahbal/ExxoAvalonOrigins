@@ -37,4 +37,4 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			{
 				projectile.rotation -= MathHelper.ToRadians(90f);
 			}
-			int num313 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, 58, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);			Main.dust[num313].noGravity = true;			Main.dust[num313].fadeIn = 1.25f;			Main.dust[num313].velocity *= 0.25f;		}	}}
+			int num313 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);			Main.dust[num313].noGravity = true;			Main.dust[num313].fadeIn = 1.25f;			Main.dust[num313].velocity *= 0.25f;		}	}}

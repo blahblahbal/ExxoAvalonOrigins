@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
 		public override void SetDefaults()
 		{
             Main.tileLighted[Type] = true;
-            soundType = 0;
+            soundType = SoundID.Dig;
             drop = mod.ItemType("LivingLightningBlock");
             AddMapEntry(new Color(196, 142, 238));
             animationFrameHeight = 90;

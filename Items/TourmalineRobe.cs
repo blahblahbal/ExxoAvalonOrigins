@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/TourmalineRobe");
 			item.defense = 5;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.width = dims.Width;
 			item.value = Item.sellPrice(0, 0, 50, 0) * 3;
 			item.height = dims.Height;

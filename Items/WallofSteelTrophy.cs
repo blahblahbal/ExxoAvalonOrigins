@@ -21,10 +21,10 @@ namespace ExxoAvalonOrigins.Items
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.BossTrophy>();
             item.placeStyle = 6;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.width = dims.Width;
             item.useTime = 10;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 1, 0, 0);
             item.useAnimation = 15;
             item.height = dims.Height;

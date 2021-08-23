@@ -10,7 +10,7 @@
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/FakeFourLeafClover");
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.width = dims.Width;
             item.maxStack = 999;
             item.value = Item.sellPrice(0, 0, 30);

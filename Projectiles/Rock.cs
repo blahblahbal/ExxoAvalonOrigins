@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Projectiles
             if (projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 5f)
             {
                 Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
-                Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1);
+                Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y, 1);
                 projectile.velocity.Y = -oldVelocity.Y * 0.2f;
             }
             if (projectile.velocity.X != oldVelocity.X)

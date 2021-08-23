@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items
 			item.noUseGraphic = true;
 			item.scale = 1f;
 			item.shootSpeed = 4f;
-			item.rare = 8;
+			item.rare = ItemRarityID.Yellow;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 22;
@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items
 			item.shoot = ModContent.ProjectileType<Projectiles.DarklightLance>();
 			item.melee = true;
 			item.autoReuse = true;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = Item.sellPrice(0, 40, 0, 0);
 			item.height = dims.Height;
 		}

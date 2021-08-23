@@ -28,12 +28,12 @@ namespace ExxoAvalonOrigins.Items
 			item.shootSpeed = 16f;
 			item.ranged = true;
 			item.noMelee = true;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.width = dims.Width;
 			item.useTime = 16;
 			item.knockBack = 2.75f;
-			item.shoot = 1;
-			item.useStyle = 5;
+			item.shoot = ProjectileID.WoodenArrowFriendly;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 75000;
 			item.useAnimation = 16;
 			item.height = dims.Height;

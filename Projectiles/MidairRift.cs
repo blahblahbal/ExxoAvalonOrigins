@@ -201,13 +201,13 @@
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        int num893 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 58, 0f, 0f, 0, default, 1f);
+                        int num893 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
                         Main.dust[num893].velocity *= 2f;
                         Main.dust[num893].scale = 0.9f;
                         Main.dust[num893].noGravity = true;
                         Main.dust[num893].fadeIn = 3f;
                     }
-                    Main.PlaySound(2, projectile.position, 8);
+                    Main.PlaySound(SoundID.Item, projectile.position, 8);
                 }
             }
             else if (projectile.ai[1] == 1)

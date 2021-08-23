@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 14);
+            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 14);
             projectile.position.X = projectile.position.X + (float)(projectile.width / 2);
             projectile.position.Y = projectile.position.Y + (float)(projectile.height / 2);
             projectile.width = 22;
@@ -37,15 +37,15 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
             for (int num369 = 0; num369 < 20; num369++)
             {
-                int num370 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
+                int num370 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
                 Main.dust[num370].velocity *= 1.4f;
             }
             for (int num371 = 0; num371 < 10; num371++)
             {
-                int num372 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2.5f);
+                int num372 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 2.5f);
                 Main.dust[num372].noGravity = true;
                 Main.dust[num372].velocity *= 5f;
-                num372 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 1.5f);
+                num372 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 1.5f);
                 Main.dust[num372].velocity *= 3f;
             }
             int num373 = Gore.NewGore(new Vector2(projectile.position.X, projectile.position.Y), default(Vector2), Main.rand.Next(61, 64), 1f);
@@ -113,10 +113,10 @@ namespace ExxoAvalonOrigins.Projectiles
                 if (projectile.ai[0] == 45)
                 {
                     Vector2 dustPoint = projectile.Center;
-                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, 6, projectile.direction * -0.4f, -1.4f);
-                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, 31, projectile.direction * -0.4f, -1.4f, Scale: 1.5f);
-                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, 6, projectile.direction * -0.4f, 1.4f);
-                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, 31, projectile.direction * -0.4f, 1.4f, Scale: 1.5f);
+                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, DustID.Fire, projectile.direction * -0.4f, -1.4f);
+                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, DustID.Smoke, projectile.direction * -0.4f, -1.4f, Scale: 1.5f);
+                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, DustID.Fire, projectile.direction * -0.4f, 1.4f);
+                    Dust.NewDust(dustPoint - projectile.velocity, projectile.width, projectile.height, DustID.Smoke, projectile.direction * -0.4f, 1.4f, Scale: 1.5f);
 
                     projectile.velocity = projectile.localAI[1].ToRotationVector2() * projectile.localAI[0] * 2.1f;
                 }
@@ -127,7 +127,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         float num127 = projectile.velocity.X / 3f * (float)num126;
                         float num128 = projectile.velocity.Y / 3f * (float)num126;
                         int num129 = 4;
-                        int num130 = Dust.NewDust(new Vector2(projectile.position.X + (float)num129, projectile.position.Y + (float)num129), projectile.width - num129 * 2, projectile.height - num129 * 2, 6, 0f, 0f, 100, default(Color), 1.2f);
+                        int num130 = Dust.NewDust(new Vector2(projectile.position.X + (float)num129, projectile.position.Y + (float)num129), projectile.width - num129 * 2, projectile.height - num129 * 2, DustID.Fire, 0f, 0f, 100, default(Color), 1.2f);
                         Main.dust[num130].noGravity = true;
                         Main.dust[num130].velocity *= 0.1f;
                         Main.dust[num130].velocity += projectile.velocity * 0.1f;
@@ -139,7 +139,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     if (Main.rand.Next(5) == 0)
                     {
                         int num131 = 4;
-                        int num132 = Dust.NewDust(new Vector2(projectile.position.X + (float)num131, projectile.position.Y + (float)num131), projectile.width - num131 * 2, projectile.height - num131 * 2, 31, 0f, 0f, 100, default(Color), 0.6f);
+                        int num132 = Dust.NewDust(new Vector2(projectile.position.X + (float)num131, projectile.position.Y + (float)num131), projectile.width - num131 * 2, projectile.height - num131 * 2, DustID.Smoke, 0f, 0f, 100, default(Color), 0.6f);
                         Main.dust[num132].velocity *= 0.25f;
                         Main.dust[num132].velocity += projectile.velocity * 0.5f;
                     }
@@ -154,7 +154,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     int num25;
                     if (projectile.type == 207)
                     {
-                        num25 = Dust.NewDust(new Vector2(x2, y2), 1, 1, 75, 0f, 0f, 0, default(Color), 1f);
+                        num25 = Dust.NewDust(new Vector2(x2, y2), 1, 1, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
                         Main.dust[num25].alpha = projectile.alpha;
                         Main.dust[num25].position.X = x2;
                         Main.dust[num25].position.Y = y2;
@@ -163,7 +163,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                     else if (projectile.type == 428)
                     {
-                        num25 = Dust.NewDust(new Vector2(x2, y2), 1, 1, 119, 0f, 0f, 0, default(Color), 1f);
+                        num25 = Dust.NewDust(new Vector2(x2, y2), 1, 1, DustID.Ice_Pink, 0f, 0f, 0, default(Color), 1f);
                         Main.dust[num25].alpha = projectile.alpha;
                         Main.dust[num25].position.X = x2;
                         Main.dust[num25].position.Y = y2;
@@ -172,7 +172,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                     else if (projectile.type == 622 || projectile.type == 623)
                     {
-                        num25 = Dust.NewDust(new Vector2(x2, y2), 1, 1, 6, 0f, 0f, 0, default(Color), 1f);
+                        num25 = Dust.NewDust(new Vector2(x2, y2), 1, 1, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
                         Main.dust[num25].alpha = projectile.alpha;
                         Main.dust[num25].position.X = x2;
                         Main.dust[num25].position.Y = y2;

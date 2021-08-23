@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/IridiumGreatsword");
             item.damage = 30;
             item.crit = 6;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.autoReuse = true;
             item.useTurn = true;
             item.scale = 1.4f;
@@ -19,7 +19,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.useTime = 18;
             item.knockBack = 5.4f;
             item.melee = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = 50000;
             item.useAnimation = 18;
             item.height = dims.Height;            item.UseSound = SoundID.Item1;

@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjec
 					Vector2 spinningpoint4 = Vector2.Normalize(projectile.velocity) * new Vector2(projectile.width, projectile.height) / 2f;
 					spinningpoint4 = spinningpoint4.RotatedBy((double)(num587 - (num586 / 2 - 1)) * Math.PI / (double)num586) + projectile.Center;
 					Vector2 vector54 = ((float)(Main.rand.NextDouble() * 3.1415927410125732) - (float)Math.PI / 2f).ToRotationVector2() * Main.rand.Next(3, 8);
-					int num588 = Dust.NewDust(spinningpoint4 + vector54, 0, 0, 107, vector54.X * 2f, vector54.Y * 2f, 100, default(Color), 1.4f);
+					int num588 = Dust.NewDust(spinningpoint4 + vector54, 0, 0, DustID.TerraBlade, vector54.X * 2f, vector54.Y * 2f, 100, default(Color), 1.4f);
 					Main.dust[num588].noGravity = true;
 					Main.dust[num588].noLight = true;
 					Dust dust = Main.dust[num588];

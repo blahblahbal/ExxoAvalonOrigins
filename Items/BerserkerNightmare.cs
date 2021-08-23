@@ -27,14 +27,14 @@ namespace ExxoAvalonOrigins.Items
 			item.scale = 1.1f;
 			item.shootSpeed = 10f;
 			item.noMelee = true;
-			item.rare = 9;
+			item.rare = ItemRarityID.Cyan;
 			item.width = dims.Width;
 			item.useTime = 38;
 			item.knockBack = 10f;
 			item.shoot = ModContent.ProjectileType<Projectiles.BerserkerSphere>();
 			item.UseSound = SoundID.Item1;
 			item.melee = true;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = Item.sellPrice(0, 50, 0, 0);
 			item.useAnimation = 38;
 			item.height = dims.Height;

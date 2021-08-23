@@ -373,22 +373,22 @@ namespace ExxoAvalonOrigins.NPCs
                     int dmg = Main.expertMode ? 75 : 60;
                     Vector2 laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
                     float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-                    Main.PlaySound(2, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     while (f <= .1f)
                     {
-                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 96, dmg, 6f);
+                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                         }
-                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 96, dmg, 6f);
+                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                         }
                         f += .034f;
                     }
@@ -397,12 +397,12 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[2]++;
                 if (npc.ai[2] == 100)
                 {
-                    int laser = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosB, npc.velocity.X, npc.velocity.Y, 100, Main.expertMode ? 70 : 55, 4f);
+                    int laser = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosB, npc.velocity.X, npc.velocity.Y, ProjectileID.DeathLaser, Main.expertMode ? 70 : 55, 4f);
                     Main.projectile[laser].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosB)) * 5f;
                     Main.projectile[laser].hostile = true;
                     Main.projectile[laser].friendly = false;
                     Main.projectile[laser].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(27, -1, -1, NetworkText.Empty, laser);
+                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, laser);
                     npc.ai[2] = 0;
                 }
                 if (npc.ai[2] == 90)
@@ -411,20 +411,20 @@ namespace ExxoAvalonOrigins.NPCs
                     float f = 0f;
                     Vector2 laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
                     float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-                    Main.PlaySound(2, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     //while (f <= .1f)
                     //{
-                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), 95, Main.expertMode ? 70 : 55, 6f);
+                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                     }
-                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), 95, Main.expertMode ? 70 : 55, 6f);
+                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                     }
                     f += .1f;
                     //}
@@ -442,7 +442,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (npc.ai[3] == 60)
                     {
-                        Main.PlaySound(2, (int)npc.position.X, (int)npc.Center.Y, 33);
+                        Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.Center.Y, 33);
                         npc.ai[1] = (npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width);
                         npc.ai[2] = npc.Center.Y;
                         npc.localAI[1] = npc.velocity.X;
@@ -452,15 +452,15 @@ namespace ExxoAvalonOrigins.NPCs
                     if (npc.velocity.X > 0) Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
                     else if (npc.velocity.X < 0) Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
                     Main.projectile[wide].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(27, -1, -1, NetworkText.Empty, wide);
+                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, wide);
                 }
                 if (npc.ai[3] > 100 && npc.ai[3] < 150)
                 {
                     npc.defense = 55;
-                    int fire = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT, npc.velocity.X, npc.velocity.Y, 101, 45, 4f);
+                    int fire = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT, npc.velocity.X, npc.velocity.Y, ProjectileID.EyeFire, 45, 4f);
                     Main.projectile[fire].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
                     Main.projectile[fire].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(27, -1, -1, NetworkText.Empty, fire);
+                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                 }
                 if (npc.ai[3] > 300)
                 {

@@ -27,13 +27,13 @@ namespace ExxoAvalonOrigins.Items
 			item.hammer = 250;
 			item.useTurn = true;
 			item.scale = 1.15f;
-			item.rare = 10;
+			item.rare = ItemRarityID.Red;
 			item.width = dims.Width;
 			item.useTime = 9;
 			item.knockBack = 20f;
 			item.melee = true;
 			item.tileBoost += 6;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = 1016000;
 			item.useAnimation = 9;
 			item.height = dims.Height;

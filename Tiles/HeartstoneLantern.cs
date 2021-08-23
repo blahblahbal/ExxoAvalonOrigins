@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             TileObjectData.addTile(Type);
             dustType = -1;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Heartstone Lantern");            AddMapEntry(new Color(251, 235, 127), name);            dustType = 141;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Heartstone Lantern");            AddMapEntry(new Color(251, 235, 127), name);            dustType = DustID.Confetti_Pink;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

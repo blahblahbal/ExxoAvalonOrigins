@@ -71,7 +71,7 @@ namespace ExxoAvalonOrigins.World.Passes
                         {
                             Main.tile[k, l].type = type;
                             WorldGen.SquareTileFrame(k, l, true);
-                            if (Main.netMode == 2)
+                            if (Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendTileSquare(-1, k, l, 1);
                             }

@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items
             item.useTime = 17;
             item.knockBack = 4f;
             item.melee = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = 1500;
             item.UseSound = SoundID.Item1;
             item.useAnimation = 25;

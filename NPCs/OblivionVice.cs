@@ -379,7 +379,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     vector10.X += num36 * num38 - 16f;
                     vector10.Y += num37 * num38 - 6f;
-                    var num39 = Dust.NewDust(new Vector2(vector10.X, vector10.Y), 30, 10, 6, num36 * 0.02f, num37 * 0.02f, 0, default(Color), 2.5f);
+                    var num39 = Dust.NewDust(new Vector2(vector10.X, vector10.Y), 30, 10, DustID.Fire, num36 * 0.02f, num37 * 0.02f, 0, default(Color), 2.5f);
                     Main.dust[num39].noGravity = true;
                 }
             }

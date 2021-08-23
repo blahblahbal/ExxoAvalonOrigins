@@ -131,7 +131,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.npc[num185].realLife = npc.whoAmI;
                         Main.npc[num185].ai[1] = num182;
                         Main.npc[num182].ai[0] = num185;
-                        NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), num185, 0f, 0f, 0f, 0);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), num185, 0f, 0f, 0f, 0);
                         num182 = num185;
                     }
                 }
@@ -149,7 +149,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (!npc.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(28, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
                 }
             }
             var num193 = (int)(npc.position.X / 16f) - 1;
@@ -175,7 +175,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (Main.rand.Next(275) == 0)
             {
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath = true;
-                Main.PlaySound(15, -1, -1, 0);
+                Main.PlaySound(SoundID.Roar, -1, -1, 0);
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath)
             {
@@ -188,7 +188,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath = false;
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD = 90;
-                Main.PlaySound(2, -1, -1, 20);
+                Main.PlaySound(SoundID.Item, -1, -1, 20);
             }
             if (npc.velocity.X < 0f)
             {

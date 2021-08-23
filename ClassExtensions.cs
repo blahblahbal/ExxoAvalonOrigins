@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins
         }
         public static bool exists(this Item item)
         {
-            return item.type > 0 && item.stack > 0;
+            return item.type > ItemID.None && item.stack > 0;
         }
         public static int RemoveAtIndex(this List<int> list, int index)
         {

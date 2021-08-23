@@ -9,7 +9,7 @@
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/GhostintheMachine");
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
             item.width = dims.Width;
             item.maxStack = 999;
             item.value = Item.sellPrice(0, 0, 50, 0);

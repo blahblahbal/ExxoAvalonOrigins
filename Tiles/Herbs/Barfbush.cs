@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Main.tileSpelunker[Type] = true;
             AddMapEntry(new Color(0, 200, 50), LanguageManager.Instance.GetText("Barfbush"));
             soundStyle = 1;
-            soundType = 6;
+            soundType = SoundID.Grass;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
 
             TileObjectData.newTile.AnchorValidTiles = new int[]

@@ -17,7 +17,7 @@
             item.useTurn = true;
             item.maxStack = 999;
             item.value = 50;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
         }

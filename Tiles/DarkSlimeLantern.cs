@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             dustType = -1;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Dark Slime Lantern");
-            AddMapEntry(new Color(251, 235, 127), name);            dustType = 52;
+            AddMapEntry(new Color(251, 235, 127), name);            dustType = DustID.UnholyWater;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

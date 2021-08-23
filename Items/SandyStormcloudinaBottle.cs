@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Items
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/SandyStormcloudinaBottle");
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.width = dims.Width;
 			item.accessory = true;
 			item.value = Item.sellPrice(0, 3, 0, 0);

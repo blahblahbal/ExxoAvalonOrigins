@@ -541,7 +541,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (int i = 0; i < 20; i++)
             {
-                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, 6, 0f, 0f, 0, default(Color), 1f);
+                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num890].velocity *= 5f;
                 Main.dust[num890].scale = 1.2f;
                 Main.dust[num890].noGravity = true;

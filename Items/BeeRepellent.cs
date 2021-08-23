@@ -24,10 +24,10 @@ namespace ExxoAvalonOrigins.Items
 			item.buffType = ModContent.BuffType<Buffs.BeeSweet>();
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.width = dims.Width;
 			item.useTime = 15;
-			item.useStyle = 2;
+			item.useStyle = ItemUseStyleID.EatingUsing;
 			item.maxStack = 100;
 			item.useAnimation = 15;
 			item.height = dims.Height;

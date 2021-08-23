@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Items
 			item.useTime = 20;
 			item.knockBack = 5.5f;
 			item.melee = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = 50;
 			item.useAnimation = 30;
 			item.height = dims.Height;

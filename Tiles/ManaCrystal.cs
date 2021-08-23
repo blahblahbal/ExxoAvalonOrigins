@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             animationFrameHeight = 38;            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);            TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
-            Main.tileFrameImportant[Type] = true;            dustType = 80;            soundType = SoundID.Shatter;            soundStyle = 1;		}        public override void AnimateTile(ref int frame, ref int frameCounter)        {            frameCounter++;            if (frameCounter > 6)            {                frameCounter = 0;                frame++;                if (frame >= 7) frame = 0;            }
+            Main.tileFrameImportant[Type] = true;            dustType = DustID.Ice;            soundType = SoundID.Shatter;            soundStyle = 1;		}        public override void AnimateTile(ref int frame, ref int frameCounter)        {            frameCounter++;            if (frameCounter > 6)            {                frameCounter = 0;                frame++;                if (frame >= 7) frame = 0;            }
         }        public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 32, 16, ItemID.ManaCrystal);

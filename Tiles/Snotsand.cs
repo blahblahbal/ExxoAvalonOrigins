@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			TileID.Sets.TouchDamageSands[Type] = 15;
 			TileID.Sets.Conversion.Sand[Type] = true;
 			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
-			TileID.Sets.Falling[Type] = true;			drop = mod.ItemType("SnotsandBlock");            SetModPalmTree(new ContagionPalmTree());            dustType = 184;
+			TileID.Sets.Falling[Type] = true;			drop = mod.ItemType("SnotsandBlock");            SetModPalmTree(new ContagionPalmTree());            dustType = DustID.ScourgeOfTheCorruptor;
         }		//public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
 		//{
 		//	if (WorldGen.noTileActions)

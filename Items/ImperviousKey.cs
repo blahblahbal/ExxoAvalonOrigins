@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items
             item.width = dims.Width;
             item.value = 0;
             item.height = dims.Height;
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
         }
         public override void AddRecipes()
         {

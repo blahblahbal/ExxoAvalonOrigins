@@ -27,13 +27,13 @@ namespace ExxoAvalonOrigins.Items
 			item.channel = true;
 			item.shootSpeed = 6f;
 			item.mana = 17;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 23;
 			item.knockBack = 4f;
 			item.shoot = ModContent.ProjectileType<Projectiles.CursedFlamelash>();
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = 250000;
 			item.useAnimation = 23;
 			item.height = dims.Height;

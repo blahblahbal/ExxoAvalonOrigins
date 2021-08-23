@@ -471,7 +471,7 @@ namespace ExxoAvalonOrigins
         }
         public override void OnEnterWorld(Player player)
         {
-            if (tomeItem.type <= 0) tomeItem.SetDefaults();
+            if (tomeItem.type <= ItemID.None) tomeItem.SetDefaults();
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
@@ -493,7 +493,7 @@ namespace ExxoAvalonOrigins
             {
                 if (player.buffType[k] == 37)
                 {
-                    if (Main.wof >= 0 && Main.npc[Main.wof].type == 113 || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                    if (Main.wof >= 0 && Main.npc[Main.wof].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
                     {
                         player.gross = true;
                         player.buffTime[k] = 10;
@@ -758,7 +758,7 @@ namespace ExxoAvalonOrigins
             }
             player.lifeSteal -= num;
             int num2 = player.whoAmI;
-            Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, 305, 0, 0f, player.whoAmI, (float)num2, num);
+            Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, player.whoAmI, (float)num2, num);
         }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
@@ -774,7 +774,7 @@ namespace ExxoAvalonOrigins
                         N2.StrikeNPC(damage, 5f, 1);
                         if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
-                            NetMessage.SendData(28, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, (float)damage, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, (float)damage, 0f, 0f, 0);
                         }
                     }
                 }
@@ -1058,7 +1058,7 @@ namespace ExxoAvalonOrigins
                             }
                             if (ExxoAvalonOrigins.armaRO)
                             {
-                                if (screenShake == 1) Main.PlaySound(2, (int)Main.npc[armaID].position.X, (int)Main.npc[armaID].position.Y, 14);
+                                if (screenShake == 1) Main.PlaySound(SoundID.Item, (int)Main.npc[armaID].position.X, (int)Main.npc[armaID].position.Y, 14);
                             }
                         }
 
@@ -1093,7 +1093,7 @@ namespace ExxoAvalonOrigins
                         int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), 0);
                         for (int i = 0; i < 20; i++)
                         {
-                            int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, 58, 0f, 0f, 0, default, 1f);
+                            int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
                             Main.dust[num893].velocity *= 2f;
                             Main.dust[num893].scale = 0.9f;
                             Main.dust[num893].noGravity = true;
@@ -1113,7 +1113,7 @@ namespace ExxoAvalonOrigins
                         int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
                         for (int i = 0; i < 20; i++)
                         {
-                            int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, 58, 0f, 0f, 0, default, 1f);
+                            int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
                             Main.dust[num893].velocity *= 2f;
                             Main.dust[num893].scale = 0.9f;
                             Main.dust[num893].noGravity = true;
@@ -1132,7 +1132,7 @@ namespace ExxoAvalonOrigins
                 int num10 = (int)((player.position.Y + player.height * 0.5) / 16.0);
                 if (num9 < herbX - Player.tileRangeX || num9 > herbX + Player.tileRangeX + 1 || num10 < herbY - Player.tileRangeY || num10 > herbY + Player.tileRangeY + 1)
                 {
-                    Main.PlaySound(11, -1, -1, 1);
+                    Main.PlaySound(SoundID.MenuClose, -1, -1, 1);
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
                     player.dropItemCheck();
                 }
@@ -1201,12 +1201,12 @@ namespace ExxoAvalonOrigins
                 gemCount = 0;
                 for (int num27 = 0; num27 <= 58; num27++)
                 {
-                    if (player.inventory[num27].type == 0 || player.inventory[num27].stack == 0)
+                    if (player.inventory[num27].type == ItemID.None || player.inventory[num27].stack == 0)
                     {
                         player.inventory[num27].TurnToAir();
                     }
                     // Vanilla gems
-                    if (player.inventory[num27].type >= 1522 && player.inventory[num27].type <= 1527)
+                    if (player.inventory[num27].type >= ItemID.LargeAmethyst && player.inventory[num27].type <= ItemID.LargeDiamond)
                     {
                         player.gem = player.inventory[num27].type - 1522;
                         ownedLargeGems[player.gem] = true;
@@ -1450,7 +1450,7 @@ namespace ExxoAvalonOrigins
                             Main.item[num].newAndShiny = false;
                             if (Main.netMode == NetmodeID.MultiplayerClient)
                             {
-                                NetMessage.SendData(21, -1, -1, null, num);
+                                NetMessage.SendData(MessageID.SyncItem, -1, -1, null, num);
                             }
                             player.inventory[i].SetDefaults();
                         }
@@ -1952,13 +1952,13 @@ namespace ExxoAvalonOrigins
                 tpCD = 0;
                 for (var m = 0; m < 70; m++)
                 {
-                    Dust.NewDust(player.position, player.width, player.height, 15, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.1f);
+                    Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.1f);
                 }
                 player.position.X = Main.mouseX + Main.screenPosition.X;
                 player.position.Y = Main.mouseY + Main.screenPosition.Y;
                 for (var n = 0; n < 70; n++)
                 {
-                    Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.1f);
+                    Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.1f);
                 }
             }
             if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
@@ -2243,10 +2243,10 @@ namespace ExxoAvalonOrigins
 			    {
 				    if (player.whoAmI == Main.myPlayer && flag)
 				    {
-					    Main.PlaySound(25, -1, -1, 1);
+					    Main.PlaySound(SoundID.MaxMana, -1, -1, 1);
 					    for (int i = 0; i < 5; i++)
 					    {
-						    int num2 = Dust.NewDust(player.position, player.width, player.height, 45, 0f, 0f, 255, default(Color), Main.rand.Next(20, 26) * 0.1f);
+						    int num2 = Dust.NewDust(player.position, player.width, player.height, DustID.ManaRegeneration, 0f, 0f, 255, default(Color), Main.rand.Next(20, 26) * 0.1f);
 						    Main.dust[num2].noLight = true;
 						    Main.dust[num2].noGravity = true;
 						    Main.dust[num2].velocity *= 0.5f;
@@ -2355,7 +2355,7 @@ namespace ExxoAvalonOrigins
                     ShadowTeleport.Teleport(0);
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(13, number: player.whoAmI);
+                        NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
 				    break;
@@ -2367,7 +2367,7 @@ namespace ExxoAvalonOrigins
                     ShadowTeleport.Teleport(1);
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(13, number: player.whoAmI);
+                        NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
@@ -2377,7 +2377,7 @@ namespace ExxoAvalonOrigins
                     ShadowTeleport.Teleport(2);
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(13, number: player.whoAmI);
+                        NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
@@ -2387,7 +2387,7 @@ namespace ExxoAvalonOrigins
                     ShadowTeleport.Teleport(3);
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(13, number: player.whoAmI);
+                        NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
@@ -2397,7 +2397,7 @@ namespace ExxoAvalonOrigins
                     ShadowTeleport.Teleport(4);
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(13, number: player.whoAmI);
+                        NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
                     break;
@@ -2409,7 +2409,7 @@ namespace ExxoAvalonOrigins
 				    }
 				    else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
 				    {
-					    NetMessage.SendData(73, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
+					    NetMessage.SendData(MessageID.TeleportationPotion, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
 				    }
 
 				    break;

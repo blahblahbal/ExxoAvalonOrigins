@@ -15,11 +15,11 @@
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.MusicBoxes>();
             item.placeStyle = 5;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.useTime = 10;
             item.value = Item.sellPrice(0, 2, 0, 0);
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
         }

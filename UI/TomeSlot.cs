@@ -64,34 +64,34 @@ namespace ExxoAvalonOrigins.UI
                     Main.armorHide = true;
                     if (Main.mouseLeftRelease && Main.mouseLeft)
                     {
-                        if (Main.mouseItem.stack == 1 && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == 0 && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type != Main.mouseItem.type)
+                        if (Main.mouseItem.stack == 1 && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == ItemID.None && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type != Main.mouseItem.type)
                         {
-                            Main.PlaySound(7, -1, -1, 1);
+                            Main.PlaySound(SoundID.Grab, -1, -1, 1);
                             Item item6 = Main.mouseItem;
                             Main.mouseItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = item6;
                         }
-                        else if (Main.mouseItem.type == 0 && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > 0)
+                        else if (Main.mouseItem.type == ItemID.None && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > ItemID.None)
                         {
                             Item item7 = Main.mouseItem;
                             Main.mouseItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = item7;
-                            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == 0 || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.stack < 1)
+                            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == ItemID.None || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.stack < 1)
                             {
                                 Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = new Item();
                             }
-                            if (Main.mouseItem.type == 0 || Main.mouseItem.stack < 1)
+                            if (Main.mouseItem.type == ItemID.None || Main.mouseItem.stack < 1)
                             {
                                 Main.mouseItem = new Item();
                             }
-                            if (Main.mouseItem.type > 0 || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > 0)
+                            if (Main.mouseItem.type > ItemID.None || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > ItemID.None)
                             {
                                 Recipe.FindRecipes();
-                                Main.PlaySound(7, -1, -1, 1);
+                                Main.PlaySound(SoundID.Grab, -1, -1, 1);
                             }
                         }
                     }
-                    Main.hoverItemName = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > 0 ? Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Name : "Tome";
+                    Main.hoverItemName = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > ItemID.None ? Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Name : "Tome";
                     Main.HoverItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Clone();
                 }
                 ssa[0] = tmpItem;

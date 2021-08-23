@@ -72,7 +72,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Main.npc[num562].target = npc.target;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Astigmatazer has awoken!"), 255, 175f, 75f, 255f, 0);
+                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Astigmatazer has awoken!"), 255, 175f, 75f, 255f, 0);
                 }
                 else Main.NewText("Astigmatazer has awoken!", 175, 75, 255);
                 NPC.SpawnOnPlayer(npc.target, NPCID.TheDestroyer);
@@ -87,7 +87,7 @@ namespace ExxoAvalonOrigins.NPCs
                     var vector54 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     var num564 = 60;
                     int num565 = ProjectileID.BombSkeletronPrime;
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num566 = (float)Math.Atan2(vector54.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector54.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
                     for (var num567 = 0f; num567 <= 4f; num567 += 0.4f)
                     {
@@ -96,14 +96,14 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num568].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num568, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num568, 0f, 0f, 0f, 0);
                         }
                         num568 = Projectile.NewProjectile(vector54.X, vector54.Y, (float)(Math.Cos(num566 - num567) * num563 * -1.0), (float)(Math.Sin(num566 - num567) * num563 * -1.0), num565, num564, 0f, 0, 0f, 0f);
                         Main.projectile[num568].timeLeft = 600;
                         Main.projectile[num568].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num568, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num568, 0f, 0f, 0f, 0);
                         }
                     }
                     npc.localAI[0] = 0f;
@@ -185,7 +185,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.ai[2] += 1f;
                     if (npc.ai[2] == 2f)
                     {
-                        Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                        Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
                     }
                     if (npc.ai[2] >= 400f)
                     {

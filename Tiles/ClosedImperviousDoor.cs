@@ -35,7 +35,7 @@
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };
             openDoorID = mod.TileType("OpenImperviousDoor");
-            dustType = 54;
+            dustType = DustID.Wraith;
         }
 
         public override bool HasSmartInteract()

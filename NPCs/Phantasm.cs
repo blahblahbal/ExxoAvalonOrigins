@@ -58,7 +58,7 @@ namespace ExxoAvalonOrigins.NPCs
         private static void TeleportPhantasm(Vector2 coords, bool sync = false, int whoAmI = 0)
         {
             Main.npc[whoAmI].position = coords;
-            if (sync) NetMessage.SendData(23, -1, -1, null, whoAmI);
+            if (sync) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, whoAmI);
         }
         private static void SyncPhantasmRelocate(Vector2 coords)
         {
@@ -130,7 +130,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[p].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                         }
                         p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                         Main.projectile[p].timeLeft = 600;
@@ -139,7 +139,7 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[p].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                         }
                         f += 0.1f;
                     }
@@ -238,7 +238,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 float Speed = 9f;
                                 int damage = 50;
-                                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33, 0.8f);
+                                Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33, 0.8f);
                                 /*Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
                                 float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
                                 int num54 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), damage, 0f, 0);
@@ -330,7 +330,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
+                                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation2 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation2 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
@@ -339,7 +339,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
+                                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation3 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation3 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
@@ -348,7 +348,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
+                                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation4 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation4 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
@@ -357,7 +357,7 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.projectile[p].tileCollide = false;
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(27, -1, -1, NetworkText.Empty, p);
+                                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
                             if (npc.ai[2] >= 7.2f)
                             {
@@ -420,7 +420,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("The spirits are stirring in the depths!"), 255, 50f, 255f, 130f, 0);
+                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The spirits are stirring in the depths!"), 255, 50f, 255f, 130f, 0);
                 }
                 ExxoAvalonOriginsWorld.downedPhantasm = true;
             }
@@ -451,7 +451,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             for (int i = 0; i < 40; i++)
             {
-                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, 180, 0f, 0f, 0, default(Color), 1f);
+                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num890].velocity *= 5f;
                 Main.dust[num890].scale = 1.5f;
                 Main.dust[num890].noGravity = true;
@@ -459,7 +459,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             for (int i = 0; i < 20; i++)
             {
-                int num893 = Dust.NewDust(npc.position, npc.width, npc.height, 180, 0f, 0f, 0, default(Color), 1f);
+                int num893 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num893].velocity *= 2f;
                 Main.dust[num893].scale = 1.5f;
                 Main.dust[num893].noGravity = true;
@@ -467,7 +467,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             for (int i = 0; i < 40; i++)
             {
-                int num892 = Dust.NewDust(npc.position, npc.width, npc.height, 175, 0f, 0f, 0, default(Color), 1f);
+                int num892 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.SpectreStaff, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num892].velocity *= 5f;
                 Main.dust[num892].scale = 1.5f;
                 Main.dust[num892].noGravity = true;
@@ -475,7 +475,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             for (int i = 0; i < 40; i++)
             {
-                int num891 = Dust.NewDust(npc.position, npc.width, npc.height, 180, 0f, 0f, 0, default(Color), 1f);
+                int num891 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num891].velocity *= 10f;
                 Main.dust[num891].scale = 1.5f;
                 Main.dust[num891].noGravity = true;

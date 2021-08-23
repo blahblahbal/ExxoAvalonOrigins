@@ -74,7 +74,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             if (projectile.type == ModContent.ProjectileType<BlahBeam>())
             {
-                Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 10);
+                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
                 projectile.ai[0] += 1f;
                 if (projectile.ai[0] >= 4f)
                 {
@@ -111,10 +111,10 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             if (projectile.localAI[1] > 7f)
             {
-                var num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, 6, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
+                var num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, DustID.Fire, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
                 Main.dust[num483].velocity *= -0.25f;
                 Main.dust[num483].noGravity = true;
-                num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, 6, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
+                num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, DustID.Fire, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
                 Main.dust[num483].velocity *= -0.25f;
                 Main.dust[num483].position -= projectile.velocity * 0.5f;
                 Main.dust[num483].noGravity = true;

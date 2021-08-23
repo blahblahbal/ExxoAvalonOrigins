@@ -28,13 +28,13 @@ namespace ExxoAvalonOrigins.Items
 			item.scale = 0.9f;
 			item.shootSpeed = 1.2f;
 			item.mana = 16;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 20;
 			item.knockBack = 4.75f;
 			item.shoot = ModContent.ProjectileType<Projectiles.DevilScythe>();
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 40000;
 			item.useAnimation = 20;
 			item.height = dims.Height;

@@ -104,7 +104,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.ai[0] = -200f;
                 }
             }
-            if (num152 < 150f && (npc.type == 447 || npc.type == 448))
+            if (num152 < 150f && (npc.type == NPCID.GoldMouse || npc.type == NPCID.GoldWorm))
             {
                 npc.velocity.X = npc.velocity.X + num149 * 0.007f;
                 npc.velocity.Y = npc.velocity.Y + num150 * 0.007f;
@@ -183,9 +183,9 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y = -2f;
                 }
             }
-            else if (npc.type == 428)
+            else if (npc.type == NPCID.VortexLarva)
             {
-                var num159 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, 15, npc.velocity.X * 0.2f, npc.velocity.Y * 0.2f, 100, default(Color), 2f);
+                var num159 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, DustID.MagicMirror, npc.velocity.X * 0.2f, npc.velocity.Y * 0.2f, 100, default(Color), 2f);
                 Main.dust[num159].noGravity = true;
                 var dust11 = Main.dust[num159];
                 dust11.velocity.X = dust11.velocity.X * 0.3f;

@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Tiles{	public class CrimstoneColumn : ModTile	{	
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
             TileObjectData.addTile(Type);
-            dustType = 115;
+            dustType = DustID.CrimtaneWeapons;
         }
         public override bool CanPlace(int i, int j)
         {

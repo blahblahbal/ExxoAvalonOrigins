@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
                             nPC.StrikeNPC(num3, 0f, 0, false, false);
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(28, -1, -1, NetworkText.Empty, l, (float)num3, 0f, 0f, 0);
+                                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.Empty, l, (float)num3, 0f, 0f, 0);
                             }
                         }
                     }
@@ -54,7 +54,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
                                 p.Hurt(PlayerDeathReason.ByPlayer(player.whoAmI), num3, 0, true);
                                 if (Main.netMode != NetmodeID.SinglePlayer)
                                 {
-                                    NetMessage.SendData(26, -1, -1, NetworkText.FromLiteral(PlayerDeathReason.ByPlayer(player.whoAmI).ToString()), m, 0f, (float)num3, 1f, 0);
+                                    NetMessage.SendData(MessageID.HurtPlayer, -1, -1, NetworkText.FromLiteral(PlayerDeathReason.ByPlayer(player.whoAmI).ToString()), m, 0f, (float)num3, 1f, 0);
                                 }
                             }
                         }

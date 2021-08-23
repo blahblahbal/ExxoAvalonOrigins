@@ -57,10 +57,10 @@ namespace ExxoAvalonOrigins.NPCs
             if (npc.ai[0] == 2f)
             {
                 npc.position += npc.velocity;
-                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 20);
+                Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 20);
                 for (var num285 = 0; num285 < 20; num285++)
                 {
-                    var num286 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, 6, 0f, 0f, 100, default(Color), 1.8f);
+                    var num286 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.Fire, 0f, 0f, 100, default(Color), 1.8f);
                     Main.dust[num286].velocity *= 1.3f;
                     Main.dust[num286].velocity += npc.velocity;
                     Main.dust[num286].noGravity = true;
@@ -133,7 +133,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             for (var num292 = 0; num292 < 2; num292++)
             {
-                var num302 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, 6, npc.velocity.X * 0.1f, npc.velocity.Y * 0.1f, 80, default(Color), 1.3f);
+                var num302 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.Fire, npc.velocity.X * 0.1f, npc.velocity.Y * 0.1f, 80, default(Color), 1.3f);
                 Main.dust[num302].velocity *= 0.3f;
                 Main.dust[num302].noGravity = true;
             }

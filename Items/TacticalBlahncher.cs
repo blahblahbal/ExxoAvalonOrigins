@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Items{	class TacticalBlahncher : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Tactical Blahncher");			Tooltip.SetDefault("Launches homing blahckets\n75% chance to not consume ammo");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/TacticalBlahncher");			item.damage = 160;			item.autoReuse = true;			item.useTurn = false;			item.useAmmo = AmmoID.Rocket;			item.shootSpeed = 11f;			item.crit += 1;			item.ranged = true;			item.rare = 12;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
-            item.noMelee = true;			item.width = dims.Width;			item.knockBack = 5f;			item.useTime = 9;			item.shoot = ModContent.ProjectileType<Projectiles.Blahcket>();			item.value = Item.sellPrice(1, 0, 0, 0);			item.useStyle = 5;			item.useAnimation = 9;			item.height = dims.Height;            item.UseSound = SoundID.Item11;        }
+            item.noMelee = true;			item.width = dims.Width;			item.knockBack = 5f;			item.useTime = 9;			item.shoot = ModContent.ProjectileType<Projectiles.Blahcket>();			item.value = Item.sellPrice(1, 0, 0, 0);			item.useStyle = ItemUseStyleID.HoldingOut;			item.useAnimation = 9;			item.height = dims.Height;            item.UseSound = SoundID.Item11;        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

@@ -2,6 +2,6 @@
     public class TropicalGrassWall : ModWall
     {
         public override void SetDefaults()
-        {            AddMapEntry(new Color(35, 76, 0));            soundType = SoundID.Grass;            soundStyle = 1;            dustType = 3;
+        {            AddMapEntry(new Color(35, 76, 0));            soundType = SoundID.Grass;            soundStyle = 1;            dustType = DustID.GrassBlades;
         }
     }}

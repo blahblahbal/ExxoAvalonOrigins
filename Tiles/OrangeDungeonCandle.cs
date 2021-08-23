@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Orange Dungeon Candle");            AddMapEntry(new Color(253, 221, 3), name);            dustType = 225;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Orange Dungeon Candle");            AddMapEntry(new Color(253, 221, 3), name);            dustType = DustID.Coralstone;
         }
 
         public override void MouseOver(int i, int j)

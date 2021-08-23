@@ -23,11 +23,11 @@ namespace ExxoAvalonOrigins.Items
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/BloodyAmulet");
 			item.UseSound = SoundID.Item4;
 			item.consumable = true;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.width = dims.Width;
 			item.useTime = 40;
 			item.shoot = ModContent.ProjectileType<Projectiles.BloodyAmulet>();
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.maxStack = 20;
 			item.useAnimation = 40;
 			item.height = dims.Height;

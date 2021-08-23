@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.autoReuse = true;
             item.shootSpeed = 7.75f;
             item.mana = 9;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.useTime = 23;
             item.useAnimation = 23;
             item.knockBack = 4.75f;

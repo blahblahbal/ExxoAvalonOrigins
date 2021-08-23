@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/IridiumPlateMail");
             item.defense = 9;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.value = Item.sellPrice(0, 1, 40, 0);
             item.height = dims.Height;

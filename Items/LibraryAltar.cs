@@ -12,11 +12,11 @@
             item.autoReuse = true;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.LibraryAltar>();
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.width = dims.Width;
             item.useTime = 10;
             item.useTurn = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 999;
             item.useAnimation = 15;
             item.height = dims.Height;

@@ -29,12 +29,12 @@ namespace ExxoAvalonOrigins.Items
 			item.shootSpeed = 8f;
 			item.mana = 8;
 			item.noMelee = true;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.width = dims.Width;
 			item.useTime = 25;
 			item.knockBack = 4f;
 			item.shoot = ModContent.ProjectileType<Projectiles.ChaosBolt>();
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 18400;
 			item.useAnimation = 25;
 			item.height = dims.Height;

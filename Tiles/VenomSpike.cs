@@ -6,7 +6,7 @@
             AddMapEntry(new Color(132, 65, 172), LanguageManager.Instance.GetText("Venom Spike"));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("VenomSpike");            soundType = SoundID.Tink;            soundStyle = 1;            dustType = 62;        }
+            drop = mod.ItemType("VenomSpike");            soundType = SoundID.Tink;            soundStyle = 1;            dustType = DustID.PurpleTorch;        }
         public override bool Slope(int i, int j)
         {
             return false;

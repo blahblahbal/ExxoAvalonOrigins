@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class Minisphere : ModProjecti
 			for (int num237 = 0; num237 < 20; num237++)
 			{
 				int num238 = 10;
-				int num239 = Dust.NewDust(projectile.Center - Vector2.One * num238, num238 * 2, num238 * 2, 212);
+				int num239 = Dust.NewDust(projectile.Center - Vector2.One * num238, num238 * 2, num238 * 2, DustID.BubbleBurst_White);
 				Dust dust30 = Main.dust[num239];
 				Vector2 vector30 = Vector2.Normalize(dust30.position - projectile.Center);
 				dust30.position = projectile.Center + vector30 * num238 * projectile.scale;

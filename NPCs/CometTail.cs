@@ -152,7 +152,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                var num159 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, 15, npc.velocity.X * 0.2f, npc.velocity.Y * 0.2f, 100, default(Color), 2f);
+                var num159 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, DustID.MagicMirror, npc.velocity.X * 0.2f, npc.velocity.Y * 0.2f, 100, default(Color), 2f);
                 Main.dust[num159].noGravity = true;
                 var dust11 = Main.dust[num159];
                 dust11.velocity.X = dust11.velocity.X * 0.3f;

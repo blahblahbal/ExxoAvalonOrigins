@@ -24,12 +24,12 @@ namespace ExxoAvalonOrigins.Items
 			item.melee = true;
 			item.autoReuse = true;
 			item.useTurn = true;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.width = dims.Width;
 			item.height = dims.Height;
 			item.useTime = 30;
 			item.useAnimation = 20;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.knockBack = 5f;
 			item.shoot = ModContent.ProjectileType<Projectiles.AeonBeam2>();
 			item.shootSpeed = 9f;

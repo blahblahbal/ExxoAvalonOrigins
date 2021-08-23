@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items
 			item.noUseGraphic = true;
 			item.scale = 1.1f;
 			item.shootSpeed = 5f;
-			item.rare = 4;
+			item.rare = ItemRarityID.LightRed;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 22;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items
 			item.knockBack = 5.1f;
 			item.shoot = ModContent.ProjectileType<Projectiles.DurataniumGlaive>();
 			item.melee = true;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 105000;
 			item.height = dims.Height;
 		}

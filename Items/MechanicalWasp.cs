@@ -11,10 +11,10 @@
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/MechanicalWasp");
             item.consumable = true;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.value = 0;
             item.maxStack = 20;
             item.useAnimation = 45;

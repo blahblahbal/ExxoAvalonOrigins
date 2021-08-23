@@ -20,9 +20,9 @@ namespace ExxoAvalonOrigins.Tiles
             animationFrameHeight = 54;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.addTile(Type);
-            dustType = 1;
+            dustType = DustID.Stone;
             soundStyle = 1;
-            soundType = 4;
+            soundType = SoundID.NPCKilled;
             AddMapEntry(new Color(172, 154, 131));
         }
 

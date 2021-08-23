@@ -14,13 +14,13 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.autoReuse = true;
             item.useTurn = true;
             item.scale = 1f;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.pick = 85;
             item.width = dims.Width;
             item.useTime = 15;
             item.knockBack = 2.6f;
             item.melee = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 1, 0, 0);
             item.useAnimation = 15;
             item.height = dims.Height;

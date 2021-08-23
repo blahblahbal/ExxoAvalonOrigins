@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/TroxiniumHelmet");
 			item.defense = 23;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.width = dims.Width;
 			item.value = Item.sellPrice(0, 3, 40, 0);
 			item.height = dims.Height;

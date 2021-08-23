@@ -18,7 +18,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.useTime = 12;
             item.knockBack = 2f;
             item.melee = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = 850;
             item.useAnimation = 19;
             item.height = dims.Height;

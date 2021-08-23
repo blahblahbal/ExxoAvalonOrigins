@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Hooks
 {
@@ -14,7 +15,7 @@ namespace ExxoAvalonOrigins.Hooks
         public static void OnEquipPage(On.Terraria.UI.ItemSlot.orig_EquipPage orig, Item item)
         {
             orig(item);
-            if (item.type > 0 && item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome)
+            if (item.type > ItemID.None && item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome)
             {
                 Main.EquipPage = 2;
             }

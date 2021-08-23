@@ -23,9 +23,9 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.addTile(Type);
-            dustType = 2;
+            dustType = DustID.Grass;
             soundStyle = 1;
-            soundType = 6;
+            soundType = SoundID.Grass;
             AddMapEntry(new Color(58, 188, 32));
         }
 

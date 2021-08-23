@@ -14,7 +14,7 @@
         {
             Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<Items.DevilsScythe>(), prefixGiven: -1);
             Main.tile[i, j].active(false);
-            Main.PlaySound(0, new Vector2(i * 16, j * 16), 1);
+            Main.PlaySound(SoundID.Dig, new Vector2(i * 16, j * 16), 1);
             return true;
         }
         public override void MouseOver(int i, int j)

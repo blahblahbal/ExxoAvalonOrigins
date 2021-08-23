@@ -148,7 +148,7 @@ namespace ExxoAvalonOrigins.Projectiles{
             if (Main.rand.Next(5) == 0)
             {
                 Vector2 value42 = projectile.velocity.RotatedBy(1.5707963705062866) * ((float)Main.rand.NextDouble() - 0.5f) * (float)projectile.width;
-                int num837 = Dust.NewDust(vector58 + value42 - Vector2.One * 4f, 8, 8, 31, 0f, 0f, 100, default(Color), 1.5f);
+                int num837 = Dust.NewDust(vector58 + value42 - Vector2.One * 4f, 8, 8, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
                 Dust dust = Main.dust[num837];
                 dust.velocity *= 0.5f;
                 Main.dust[num837].velocity.Y = 0f - Math.Abs(Main.dust[num837].velocity.Y);

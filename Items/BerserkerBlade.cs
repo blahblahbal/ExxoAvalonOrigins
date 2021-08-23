@@ -15,12 +15,12 @@
             item.UseSound = SoundID.Item1;
             item.useTurn = true;
             item.scale = 1.2f;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
             item.useTime = 10;
             item.knockBack = 5f;
             item.melee = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 12);
             item.useAnimation = 10;
             item.height = dims.Height;

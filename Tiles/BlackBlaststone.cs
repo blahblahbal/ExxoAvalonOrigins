@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = ModContent.ItemType<Items.Placeable.BlackBlaststone>();
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = 54;
+            dustType = DustID.Wraith;
 		}
 	}
 }

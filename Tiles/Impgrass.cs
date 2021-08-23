@@ -9,7 +9,7 @@
             Main.tileBrick[Type] = true;
             Main.tileBlockLight[Type] = true;            Main.tileBlendAll[Type] = true;            Main.tileMergeDirt[Type] = true;
             drop = ItemID.AshBlock;
-            dustType = 53;
+            dustType = DustID.Silt;
         }
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {

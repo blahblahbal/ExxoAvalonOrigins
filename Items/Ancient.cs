@@ -27,14 +27,14 @@ namespace ExxoAvalonOrigins.Items
 			item.shootSpeed = 10f;
 			item.crit += 2;
 			item.mana = 19;
-			item.rare = 8;
+			item.rare = ItemRarityID.Yellow;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 25;
 			item.knockBack = 4f;
 			item.shoot = ModContent.ProjectileType<Projectiles.AncientSandstorm>();
 			item.UseSound = SoundID.Item34;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = Item.sellPrice(0, 25, 0, 0);
 			item.useAnimation = 25;
 			item.height = dims.Height;

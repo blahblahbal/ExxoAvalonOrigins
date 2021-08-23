@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Ectoplasm Candelabra");            AddMapEntry(new Color(253, 221, 3), name);            dustType = 156;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Ectoplasm Candelabra");            AddMapEntry(new Color(253, 221, 3), name);            dustType = DustID.Ultrabright;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

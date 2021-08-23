@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Items
             item.useTurn = true;
             item.useTime = 10;
             item.scale = 1f;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 999;
             item.useAnimation = 15;
             item.height = dims.Height;

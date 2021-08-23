@@ -25,12 +25,12 @@ namespace ExxoAvalonOrigins.Items
 			item.autoReuse = false;
 			item.noMelee = true;
 			item.useTurn = false;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.width = dims.Width;
 			item.height = dims.Height;
 			item.useTime = 35;
 			item.useAnimation = 35;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.knockBack = 2f;
 			item.mana = 3;
 			item.shoot = ModContent.ProjectileType<Projectiles.Tear>();

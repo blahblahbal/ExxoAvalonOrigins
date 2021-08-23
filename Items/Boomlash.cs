@@ -27,14 +27,14 @@ namespace ExxoAvalonOrigins.Items
 			item.channel = true;
 			item.shootSpeed = 4f;
 			item.mana = 40;
-			item.rare = 8;
+			item.rare = ItemRarityID.Yellow;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.knockBack = 12f;
 			item.useTime = 30;
 			item.shoot = ModContent.ProjectileType<Projectiles.Boomlash>();
 			item.value = Item.sellPrice(0, 2, 0, 0);
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useAnimation = 30;
 			item.height = dims.Height;
 		}

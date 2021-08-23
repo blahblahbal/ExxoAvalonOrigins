@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Statue");
             AddMapEntry(new Color(144, 148, 144), name);
-            dustType = 11;
+            dustType = DustID.Silver;
             disableSmartCursor = true;
         }
 

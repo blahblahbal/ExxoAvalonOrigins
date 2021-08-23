@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.PlacedBars>();
             item.placeStyle = 15;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.width = dims.Width;
             item.useTime = 10;
             item.value = Item.sellPrice(0, 1, 30, 0);
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;		}	}}

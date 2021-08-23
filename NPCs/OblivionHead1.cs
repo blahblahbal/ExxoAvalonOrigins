@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Main.npc[num561].target = npc.target;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Infernaspaz has awoken!"), 255, 175f, 75f, 255f, 0);
+                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Infernaspaz has awoken!"), 255, 175f, 75f, 255f, 0);
                 }
                 else Main.NewText("Infernaspaz has awoken!", 175, 75, 255);
                 NPC.SpawnOnPlayer(npc.target, NPCID.Retinazer);
@@ -109,7 +109,7 @@ namespace ExxoAvalonOrigins.NPCs
                     var vector55 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     var num570 = 100;
                     int num571 = ProjectileID.DeathLaser;
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num572 = (float)Math.Atan2(vector55.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector55.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
                     for (var num573 = 0f; num573 <= 4f; num573 += 0.4f)
                     {
@@ -118,14 +118,14 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num574].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
                         }
                         num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 - num573) * num569 * -1.0), (float)(Math.Sin(num572 - num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
                         Main.projectile[num574].timeLeft = 600;
                         Main.projectile[num574].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
                         }
                     }
                     npc.localAI[0] = 0f;
@@ -203,7 +203,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.ai[2] += 1f;
                     if (npc.ai[2] == 2f)
                     {
-                        Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                        Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
                     }
                     if (npc.ai[2] >= 400f)
                     {

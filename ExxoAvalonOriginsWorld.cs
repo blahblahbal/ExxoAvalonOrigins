@@ -645,7 +645,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
                             }
-                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
                             {
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
@@ -663,7 +663,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
                             }
-                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
                             {
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
@@ -682,7 +682,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
                             }
-                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
                             {
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
@@ -694,7 +694,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                             {
                                 Main.tile[num5, num9].color(Main.tile[num5, num6].color());
                             }
-                            if (Main.netMode == 2 && Main.tile[num5, num9].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
                             {
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
@@ -869,7 +869,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     num72 = (float)num67 / num72;
                     num70 *= num72;
                     num71 *= num72;
-                    Projectile.NewProjectile(vector.X, vector.Y, num70, num71, 12, 1000, 10f, Main.myPlayer);
+                    Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
                 }
             }
         }        public override void PreUpdate()        {            if (!retroGenned)            {                if (ExxoAvalonOrigins.lastOpenedVersion == null || ExxoAvalonOrigins.lastOpenedVersion < ExxoAvalonOrigins.version)                {                    RetroGen();                    retroGenned = true;                }            }            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                DropComet(ModContent.TileType<Tiles.HydrolythOre>());            }        }        public override void PreWorldGen()
@@ -1546,7 +1546,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                         }
                     }
                     WorldGen.RangeFrame(i - 2, j + heightOfTree - 1, i + 2, j + 1);
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, i, (int)((double)j - (double)heightOfTree * 0.5), heightOfTree + 1);
                     }

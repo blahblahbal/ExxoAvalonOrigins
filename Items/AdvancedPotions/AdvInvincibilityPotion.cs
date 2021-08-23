@@ -24,10 +24,10 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
             item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvInvincibility>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
             item.width = dims.Width;
             item.useTime = 15;
-            item.useStyle = 2;
+            item.useStyle = ItemUseStyleID.EatingUsing;
             item.maxStack = 100;
             item.value = Item.sellPrice(0, 0, 4, 0);
             item.useAnimation = 15;

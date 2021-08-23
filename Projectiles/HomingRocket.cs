@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Projectiles{
                     P.Hurt(PlayerDeathReason.ByProjectile(P.whoAmI, projectile.whoAmI), projectile.damage, 0);
                 }
             }
-            Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 14);
+            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 14);
             projectile.position.X = projectile.position.X + (float)(projectile.width / 2);
             projectile.position.Y = projectile.position.Y + (float)(projectile.height / 2);
             projectile.width = 22;
@@ -35,15 +35,15 @@ namespace ExxoAvalonOrigins.Projectiles{
             projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
             for (int num341 = 0; num341 < 30; num341++)
             {
-                int num342 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
+                int num342 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
                 Main.dust[num342].velocity *= 1.4f;
             }
             for (int num343 = 0; num343 < 20; num343++)
             {
-                int num344 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3.5f);
+                int num344 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 3.5f);
                 Main.dust[num344].noGravity = true;
                 Main.dust[num344].velocity *= 7f;
-                num344 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 1.5f);
+                num344 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 1.5f);
                 Main.dust[num344].velocity *= 3f;
             }
             for (int num345 = 0; num345 < 2; num345++)
@@ -92,11 +92,11 @@ namespace ExxoAvalonOrigins.Projectiles{
                         num265 = projectile.velocity.X * 0.5f;
                         num266 = projectile.velocity.Y * 0.5f;
                     }
-                    int num267 = Dust.NewDust(new Vector2(projectile.position.X + 3f + num265, projectile.position.Y + 3f + num266) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 6, 0f, 0f, 100, default(Color), 1f);
+                    int num267 = Dust.NewDust(new Vector2(projectile.position.X + 3f + num265, projectile.position.Y + 3f + num266) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, DustID.Fire, 0f, 0f, 100, default(Color), 1f);
                     Main.dust[num267].scale *= 2f + (float)Main.rand.Next(10) * 0.1f;
                     Main.dust[num267].velocity *= 0.2f;
                     Main.dust[num267].noGravity = true;
-                    num267 = Dust.NewDust(new Vector2(projectile.position.X + 3f + num265, projectile.position.Y + 3f + num266) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 31, 0f, 0f, 100, default(Color), 0.5f);
+                    num267 = Dust.NewDust(new Vector2(projectile.position.X + 3f + num265, projectile.position.Y + 3f + num266) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, DustID.Smoke, 0f, 0f, 100, default(Color), 0.5f);
                     Main.dust[num267].fadeIn = 1f + (float)Main.rand.Next(5) * 0.1f;
                     Main.dust[num267].velocity *= 0.05f;
                 }

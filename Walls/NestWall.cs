@@ -2,6 +2,6 @@
     public class NestWall : ModWall
     {
         public override void SetDefaults()
-        {            AddMapEntry(new Color(130, 113, 96));            dustType = 241;
+        {            AddMapEntry(new Color(130, 113, 96));            dustType = DustID.MarblePot;
         }
     }}

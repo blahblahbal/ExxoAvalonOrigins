@@ -23,11 +23,11 @@ namespace ExxoAvalonOrigins.Items
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/SpiritPoppy");
             item.UseSound = SoundID.Item4;
             item.consumable = true;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
             item.useTime = 30;
             item.maxStack = 999;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.value = Item.sellPrice(0, 0, 50, 0);
             item.useAnimation = 30;
             item.height = dims.Height;

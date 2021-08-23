@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins
 {
@@ -34,7 +35,7 @@ namespace ExxoAvalonOrigins
                 if (texture != null && drawPlayer.itemAnimation > 0)
                 {
                     Vector2 value2 = drawInfo.itemLocation;
-                    if (item.useStyle == 5)
+                    if (item.useStyle == ItemUseStyleID.HoldingOut)
                     {
                         bool flag14 = Item.staff[item.type];
                         if (flag14)

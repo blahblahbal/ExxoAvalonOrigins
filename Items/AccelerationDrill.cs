@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Items
 			item.scale = 1f;
 			item.shootSpeed = 32f;
 			item.pick = 400;
-			item.rare = 10;
+			item.rare = ItemRarityID.Red;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 7;
@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items
 			item.UseSound = SoundID.Item23;
 			item.melee = true;
 			item.tileBoost += 6;
-			item.useStyle = 5;
+			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.value = 1016000;
 			item.useAnimation = 9;
 			item.height = dims.Height;
@@ -76,7 +76,7 @@ namespace ExxoAvalonOrigins.Items
                                     WorldGen.KillTile(x, y);
                                     if (Main.netMode == NetmodeID.MultiplayerClient)
                                     {
-                                        NetMessage.SendData(17, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
+                                        NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
                                     }
                                 }
                             }

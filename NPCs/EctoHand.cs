@@ -88,7 +88,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 for (int num34 = 0; num34 < 50; num34++)
                 {
-                    int num35 = Dust.NewDust(npc.position, npc.width, npc.height, 180, npc.velocity.X, npc.velocity.Y, 0, default(Color), 1f);
+                    int num35 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.DungeonSpirit, npc.velocity.X, npc.velocity.Y, 0, default(Color), 1f);
                     Main.dust[num35].velocity *= 2f;
                     Main.dust[num35].noGravity = true;
                     Main.dust[num35].scale = 1.4f;

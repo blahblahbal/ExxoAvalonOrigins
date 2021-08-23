@@ -51,7 +51,7 @@
                     for (int num316 = 0; num316 < 1; num316++)
                     {
                         int num317 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, num315, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
-                        if (projectile.type == ModContent.ProjectileType<DarkMatterFlamethrower>()) Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 54, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
+                        if (projectile.type == ModContent.ProjectileType<DarkMatterFlamethrower>()) Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Wraith, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
                         if (Main.rand.Next(3) != 0 || (num315 == 75 && Main.rand.Next(3) == 0))
                         {
                             Main.dust[num317].noGravity = true;

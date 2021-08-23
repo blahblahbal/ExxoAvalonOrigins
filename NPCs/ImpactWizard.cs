@@ -58,10 +58,10 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.ai[2] != 0f && npc.ai[3] != 0f)
             {
-                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
+                Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 8);
                 for (var num231 = 0; num231 < 50; num231++)
                 {
-                    var num234 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 173, 0f, 0f, 0, default(Color), 1f);
+                    var num234 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.ShadowbeamStaff, 0f, 0f, 0, default(Color), 1f);
                     Main.dust[num234].velocity *= 2f;
                     Main.dust[num234].scale = 1.4f;
                 }
@@ -71,10 +71,10 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.velocity.Y = 0f;
                 npc.ai[2] = 0f;
                 npc.ai[3] = 0f;
-                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
+                Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 8);
                 for (var num239 = 0; num239 < 50; num239++)
                 {
-                    var num243 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 173, 0f, 0f, 0, default(Color), 1f);
+                    var num243 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, DustID.ShadowbeamStaff, 0f, 0f, 0, default(Color), 1f);
                     Main.dust[num243].velocity *= 2f;
                     Main.dust[num243].scale = 1.4f;
                 }
@@ -168,7 +168,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(2) == 0)
             {
-                var num275 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, 173, 0f, 0f, 0, default(Color), 1f);
+                var num275 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.ShadowbeamStaff, 0f, 0f, 0, default(Color), 1f);
                 var dust23 = Main.dust[num275];
                 dust23.velocity.X = dust23.velocity.X * 0.5f;
                 var dust24 = Main.dust[num275];

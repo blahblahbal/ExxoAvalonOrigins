@@ -24,12 +24,12 @@ namespace ExxoAvalonOrigins.Items
 			item.damage = 29;
 			item.useTurn = true;
 			item.scale = 1f;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.width = dims.Width;
 			item.useTime = 27;
 			item.knockBack = 3f;
 			item.melee = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.sellPrice(0, 0, 54, 0);
 			item.useAnimation = 27;
 			item.height = dims.Height;

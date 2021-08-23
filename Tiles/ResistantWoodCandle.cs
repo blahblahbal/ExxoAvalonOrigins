@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.addTile(Type);
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Resistant Wood Candle");            AddMapEntry(new Color(253, 221, 3), name);
-            dustType = 54;
+            dustType = DustID.Wraith;
         }
 
         public override void MouseOver(int i, int j)

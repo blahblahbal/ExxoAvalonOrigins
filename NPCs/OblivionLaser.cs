@@ -183,7 +183,7 @@ namespace ExxoAvalonOrigins.NPCs
                     var vector71 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     var num628 = 100;
                     int num629 = ProjectileID.DeathLaser;
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num630 = (float)Math.Atan2(vector71.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector71.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
                     for (var num631 = 0f; num631 <= 4f; num631 += 0.4f)
                     {
@@ -192,14 +192,14 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num632].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num632, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num632, 0f, 0f, 0f, 0);
                         }
                         num632 = Projectile.NewProjectile(vector71.X, vector71.Y, (float)(Math.Cos(num630 - num631) * num627 * -1.0), (float)(Math.Sin(num630 - num631) * num627 * -1.0), num629, num628, 0f, 0, 0f, 0f);
                         Main.projectile[num632].timeLeft = 600;
                         Main.projectile[num632].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num632, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num632, 0f, 0f, 0f, 0);
                         }
                     }
                     npc.localAI[0] = 0f;
@@ -267,7 +267,7 @@ namespace ExxoAvalonOrigins.NPCs
                     var vector73 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
                     var num640 = 50;
                     int num641 = ProjectileID.DeathLaser;
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num642 = (float)Math.Atan2(vector73.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector73.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
                     for (var num643 = 0f; num643 <= 4f; num643 += 0.4f)
                     {
@@ -276,14 +276,14 @@ namespace ExxoAvalonOrigins.NPCs
                         Main.projectile[num644].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num644, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num644, 0f, 0f, 0f, 0);
                         }
                         num644 = Projectile.NewProjectile(vector73.X, vector73.Y, (float)(Math.Cos(num642 - num643) * num639 * -1.0), (float)(Math.Sin(num642 - num643) * num639 * -1.0), num641, num640, 0f, 0, 0f, 0f);
                         Main.projectile[num644].timeLeft = 600;
                         Main.projectile[num644].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.FromLiteral(""), num644, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num644, 0f, 0f, 0f, 0);
                         }
                     }
                     npc.localAI[0] = 0f;
@@ -331,7 +331,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     vector10.X += num36 * num38 - 16f;
                     vector10.Y += num37 * num38 - 6f;
-                    var num39 = Dust.NewDust(new Vector2(vector10.X, vector10.Y), 30, 10, 6, num36 * 0.02f, num37 * 0.02f, 0, default(Color), 2.5f);
+                    var num39 = Dust.NewDust(new Vector2(vector10.X, vector10.Y), 30, 10, DustID.Fire, num36 * 0.02f, num37 * 0.02f, 0, default(Color), 2.5f);
                     Main.dust[num39].noGravity = true;
                 }
             }

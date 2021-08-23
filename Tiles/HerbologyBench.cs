@@ -37,8 +37,8 @@ namespace ExxoAvalonOrigins.Tiles
             Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbX = Player.tileTargetX;
             Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbY = Player.tileTargetY;
             Main.mouseRightRelease = false;
-            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) Main.PlaySound(10, -1, -1, 1);
-            else Main.PlaySound(11, -1, -1, 1);
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) Main.PlaySound(SoundID.MenuOpen, -1, -1, 1);
+            else Main.PlaySound(SoundID.MenuClose, -1, -1, 1);
             return true;
         }
 

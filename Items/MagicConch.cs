@@ -9,12 +9,12 @@
 
         public override void SetDefaults()
         {
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.width = 24;
             item.useTime = 90;
             item.useTurn = true;
             item.value = Item.sellPrice(0, 1);
-            item.useStyle = 4;            item.UseSound = SoundID.Item6;
+            item.useStyle = ItemUseStyleID.HoldingUp;            item.UseSound = SoundID.Item6;
             item.useAnimation = 90;
             item.height = 24;
         }        public override void HoldItem(Player player)
@@ -23,7 +23,7 @@
             {
                 if (Main.rand.Next(2) == 0)
                 {
-                    Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.1f);
+                    Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.1f);
                 }
                 if (player.itemTime == 0)
                 {
@@ -33,7 +33,7 @@
                 {
                     for (int num365 = 0; num365 < 70; num365++)
                     {
-                        Dust.NewDust(player.position, player.width, player.height, 15, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.5f);
+                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.5f);
                     }
                     player.grappling[0] = -1;
                     player.grapCount = 0;
@@ -50,7 +50,7 @@
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = false;
                     for (int num367 = 0; num367 < 70; num367++)
                     {
-                        Dust.NewDust(player.position, player.width, player.height, 15, 0f, 0f, 150, default(Color), 1.5f);
+                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.5f);
                     }
                 }
             }

@@ -182,7 +182,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else if (Main.rand.Next(40) == 0)
             {
-                var num162 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 5, npc.velocity.X, 2f, 0, default(Color), 1f);
+                var num162 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Blood, npc.velocity.X, 2f, 0, default(Color), 1f);
                 var dust15 = Main.dust[num162];
                 dust15.velocity.X = dust15.velocity.X * 0.5f;
                 var dust16 = Main.dust[num162];

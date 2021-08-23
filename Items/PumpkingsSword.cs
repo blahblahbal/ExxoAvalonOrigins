@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items
 			item.autoReuse = true;
 			item.UseSound = SoundID.Item1;
 			item.scale = 1.15f;
-			item.rare = 10;
+			item.rare = ItemRarityID.Red;
 			item.width = dims.Width;
 			item.useTime = 36;
 			item.useAnimation = 16;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items
 			item.shoot = ModContent.ProjectileType<Projectiles.PumpkingsBeam>();
             item.shootSpeed = 12f;
 			item.melee = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.sellPrice(0, 40, 0, 0);
 			item.height = dims.Height;
             item.UseSound = SoundID.Item1;

@@ -103,7 +103,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.life = 0;
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
                     }
                 }
             }
@@ -111,18 +111,18 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 if (npc.localAI[2] == 0f)
                 {
-                    Main.PlaySound(3, (int)npc.position.X, (int)npc.position.Y, 1);
+                    Main.PlaySound(SoundID.NPCHit, (int)npc.position.X, (int)npc.position.Y, 1);
                     npc.localAI[2] = 1f;
                     for (var num903 = 0; num903 < 20; num903++)
                     {
-                        Dust.NewDust(npc.position, npc.width, npc.height, 5, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
+                        Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, Main.rand.Next(-30, 31) * 0.2f, Main.rand.Next(-30, 31) * 0.2f, 0, default(Color), 1f);
                     }
                     if (npc.type == ModContent.NPCType<BacteriumPrime>())
                     {
                         npc.lifeMax = 1500;
                         npc.life = 1500;
                     }
-                    Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                    Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
                 }
                 npc.dontTakeDamage = false;
                 npc.knockBackResist = 0.5f;
@@ -197,7 +197,7 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.alpha = 255;
                         npc.position.X = npc.ai[1] * 16f - npc.width / 2;
                         npc.position.Y = npc.ai[2] * 16f - npc.height / 2;
-                        Main.PlaySound(2, (int)npc.Center.X, (int)npc.Center.Y, 8);
+                        Main.PlaySound(SoundID.Item, (int)npc.Center.X, (int)npc.Center.Y, 8);
                         npc.ai[0] = -3f;
                         return;
                     }
@@ -305,7 +305,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.alpha += 5;
                     if (npc.alpha >= 255)
                     {
-                        Main.PlaySound(2, (int)npc.Center.X, (int)npc.Center.Y, 8);
+                        Main.PlaySound(SoundID.Item, (int)npc.Center.X, (int)npc.Center.Y, 8);
                         npc.alpha = 255;
                         npc.position.X = npc.ai[1] * 16f - npc.width / 2;
                         npc.position.Y = npc.ai[2] * 16f - npc.height / 2;

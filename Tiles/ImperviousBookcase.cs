@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Tiles
 			var name = CreateMapEntryName();
 			name.SetDefault("Resistant Wood Bookcase");
             AddMapEntry(new Color(191, 142, 111), name);
-            dustType = 54;
+            dustType = DustID.Wraith;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

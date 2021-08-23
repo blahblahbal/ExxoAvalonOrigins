@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items
             item.width = dims.Width;
             item.value = 0;
             item.height = dims.Height;
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
         }
     }
 }

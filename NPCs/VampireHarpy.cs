@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.spriteDirection = -1;
             }
             npc.rotation = npc.velocity.X * 0.1f;
-            if (npc.type == 210 || npc.type == 211)
+            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
             {
                 npc.frameCounter += 1.0;
                 npc.rotation = npc.velocity.X * 0.2f;

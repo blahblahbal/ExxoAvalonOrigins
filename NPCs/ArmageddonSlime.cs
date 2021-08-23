@@ -81,7 +81,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         npc.direction = -1;
                     }
-                    if (Main.netMode != 1 && npc.ai[1] != 5f)
+                    if (Main.netMode != NetmodeID.MultiplayerClient && npc.ai[1] != 5f)
                     {
                         npc.netUpdate = true;
                         npc.ai[2] = 0f;
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[2] = 0f;
                 npc.ai[0] = 0f;
                 npc.ai[1] = 5f;
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.TargetClosest(false);
                     Point npcTileCenter = npc.Center.ToTileCoordinates();
@@ -175,10 +175,10 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 npc.ai[2]++;
 
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                     npc.localAI[0]++;
             }
-            else if (Main.netMode != 1)
+            else if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.localAI[0]--;
 
@@ -209,7 +209,7 @@ namespace ExxoAvalonOrigins.NPCs
                 if (npc.ai[0] >= 60f)
                     dontCreateDust = true;
 
-                if (npc.ai[0] >= 60f && Main.netMode != 1)
+                if (npc.ai[0] >= 60f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     FireProjectiles(1, Main.player[npc.target]);
                     npc.Bottom = new Vector2(npc.localAI[1], npc.localAI[2]);
@@ -217,7 +217,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.ai[0] = 0f;
                     npc.netUpdate = true;
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 120)
+                if (Main.netMode == NetmodeID.MultiplayerClient && npc.ai[0] >= 120)
                 {
                     npc.ai[1] = 6f;
                     npc.ai[0] = 0f;
@@ -241,14 +241,14 @@ namespace ExxoAvalonOrigins.NPCs
                 num236 = MathHelper.Clamp(npc.ai[0] / 30f, 0f, 1f);
                 num236 = 0.5f + num236 * 0.5f;
 
-                if (npc.ai[0] >= 30f && Main.netMode != 1)
+                if (npc.ai[0] >= 30f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     npc.ai[1] = 0f;
                     npc.ai[0] = 0f;
                     npc.netUpdate = true;
                     npc.TargetClosest();
                 }
-                if (Main.netMode == 1 && npc.ai[0] >= 60f)
+                if (Main.netMode == NetmodeID.MultiplayerClient && npc.ai[0] >= 60f)
                 {
                     npc.ai[1] = 0f;
                     npc.ai[0] = 0f;
@@ -419,7 +419,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.ai[1] = -90f;
                     if (Main.netMode == NetmodeID.Server && newNPC < 200)
                     {
-                        NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), newNPC, 0f, 0f, 0f, 0);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), newNPC, 0f, 0f, 0f, 0);
                     }
                 }
                 return;
@@ -439,28 +439,28 @@ namespace ExxoAvalonOrigins.NPCs
                         increment = 0.4f;
 
                     var vector155 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
                     var num1166 = (float)Math.Atan2(vector155.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector155.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
                     for (var num1167 = 0f; num1167 <= 3.6f; num1167 += increment)
                     {
                         var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 16f * -1.0), (float)(Math.Sin(num1166 + num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num1168);
                         }
                         num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 16f * -1.0), (float)(Math.Sin(num1166 - num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, npc.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, num1168);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num1168);
                         }
                     }
                     break;
                 case 2:
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
 
                     int increments; // Old spray had ~25? weird pattern tho
                     if (Main.expertMode)
@@ -478,9 +478,9 @@ namespace ExxoAvalonOrigins.NPCs
                         int spray = Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.DarkFlame>(), 70, 0f, npc.target, 0f, 0f);
                         Main.projectile[spray].timeLeft = 600;
                         Main.projectile[spray].tileCollide = false;
-                        if (Main.netMode != 0)
+                        if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(27, -1, -1, NetworkText.Empty, spray);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, spray);
                         }
                     }
                     break;

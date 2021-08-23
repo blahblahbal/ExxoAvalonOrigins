@@ -83,7 +83,7 @@ namespace ExxoAvalonOrigins.NPCs
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         npc.netUpdate = true;
-                        NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
                     }
                 }
                 else if (npc.ai[1] > 0f)
@@ -95,7 +95,7 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
                     npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
                     npc.netUpdate = true;
-                    NetMessage.SendData(23, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
                 }
                 npc.velocity.Y = npc.velocity.Y + 0.3f;
                 if (npc.velocity.Y > 10f)

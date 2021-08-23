@@ -138,7 +138,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
 			for (int i = 0; i < 1; i++)
 			{
-				int num421 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 135, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default, 3f);
+				int num421 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.IceTorch, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default, 3f);
 				Main.dust[num421].velocity.X *= 3f;
 				Main.dust[num421].velocity.Y *= 3.5f;
 				Main.dust[num421].noGravity = true;

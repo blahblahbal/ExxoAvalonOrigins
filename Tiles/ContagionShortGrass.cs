@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileFrameImportant[Type] = true;
             dustType = ModContent.DustType<Dusts.ContagionDust>();
             soundStyle = 1;
-            soundType = 6;
+            soundType = SoundID.Grass;
             AddMapEntry(new Color(133, 150, 39));
         }
 

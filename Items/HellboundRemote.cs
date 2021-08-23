@@ -10,7 +10,7 @@
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/HellboundRemote");
-            item.rare = 6;
+            item.rare = ItemRarityID.LightPurple;
             item.width = dims.Width;
             item.maxStack = 1;
             item.value = 0;

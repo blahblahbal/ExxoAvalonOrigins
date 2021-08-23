@@ -53,9 +53,9 @@ namespace ExxoAvalonOrigins.Projectiles
 				{
 					for (int num420 = 0; num420 < 1; num420++)
 					{
-						var num150 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, 58, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
+						var num150 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
 						Main.dust[num150].noGravity = true;
-						var num151 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, 36, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
+						var num151 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Ash, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
 						Main.dust[num151].noGravity = true;
 						var randomDust = 0;
 						Dust dust98;

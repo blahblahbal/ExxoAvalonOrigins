@@ -23,12 +23,12 @@ namespace ExxoAvalonOrigins.Items
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/BlueDungeonWand");
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.width = dims.Width;
 			item.useTurn = true;
 			item.useTime = 10;
 			item.createWall = WallID.BlueDungeonUnsafe;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}

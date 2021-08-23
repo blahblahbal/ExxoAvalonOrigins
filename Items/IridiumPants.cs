@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/IridiumPants");
             item.defense = 8;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.value = Item.sellPrice(0, 0, 9, 75);
             item.height = dims.Height;

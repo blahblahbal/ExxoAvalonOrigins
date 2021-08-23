@@ -5,6 +5,6 @@
         {            AddMapEntry(new Color(39, 31, 28));
             Main.wallHouse[Type] = true;
             drop = mod.ItemType("TuhrtlBrickWall");
-            dustType = 53;
+            dustType = DustID.Silt;
         }
     }}

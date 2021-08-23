@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Tiles
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };
             minPick = 2000;
-            dustType = 53;
+            dustType = DustID.Silt;
         }
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
@@ -95,7 +95,7 @@ namespace ExxoAvalonOrigins.Tiles
                 }
             }
             //}
-            Main.PlaySound(22, i * 16, num * 16 + 16, 1);
+            Main.PlaySound(SoundID.Unlock, i * 16, num * 16 + 16, 1);
             for (int k = num; k <= num + 2; k++)
             {
                 if (Main.tile[i, k] == null)
@@ -105,7 +105,7 @@ namespace ExxoAvalonOrigins.Tiles
                 Main.tile[i, k].type = (ushort)ModContent.TileType<ClosedTuhrtlDoor>();
                 for (int l = 0; l < 4; l++)
                 {
-                    Dust.NewDust(new Vector2((float)(i * 16), (float)(k * 16)), 16, 16, 11, 0f, 0f, 0, default(Color), 1f);
+                    Dust.NewDust(new Vector2((float)(i * 16), (float)(k * 16)), 16, 16, DustID.Silver, 0f, 0f, 0, default(Color), 1f);
                 }
             }
         }

@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items
             item.useTurn = true;
             item.scale = 1;
             item.shootSpeed = 8f;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
             item.useTime = 30;
             item.knockBack = 5f;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items
             item.shoot = ModContent.ProjectileType<Projectiles.Rock>();
             item.UseSound = SoundID.Item20;
             item.magic = true;
-            item.useStyle = 5;
+            item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = Item.sellPrice(0, 10, 0, 0);
             item.useAnimation = 30;
             item.height = dims.Height;

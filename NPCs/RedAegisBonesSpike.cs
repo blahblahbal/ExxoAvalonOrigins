@@ -58,7 +58,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (npc.velocity.X == 0f)
                 {
-                    if (npc.type == 140)
+                    if (npc.type == NPCID.PossessedArmor)
                     {
                         npc.frame.Y = frameHeight;
                         npc.frameCounter = 0.0;

@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.width = dims.Width;
             item.useTime = 10;
             item.useTurn = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 999;
             item.value = Item.sellPrice(0, 0, 1, 0);
             item.useAnimation = 15;

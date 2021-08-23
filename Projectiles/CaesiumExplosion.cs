@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class CaesiumExplosion : ModPr
 			{
 				Dust dust;
 				Vector2 position = projectile.Center;
-				dust = Main.dust[Dust.NewDust(position, 0, 0, 75, Main.rand.Next(-5, 6), Main.rand.Next(-5, 6), 0, new Color(255, 255, 255), 3.552631f)];
+				dust = Main.dust[Dust.NewDust(position, 0, 0, DustID.CursedTorch, Main.rand.Next(-5, 6), Main.rand.Next(-5, 6), 0, new Color(255, 255, 255), 3.552631f)];
 				dust.noGravity = true;
 				dust.noLight = true;
 			}

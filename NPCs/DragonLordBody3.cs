@@ -79,7 +79,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (!npc.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(28, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
                 }
             }
             var num193 = (int)(npc.position.X / 16f) - 1;
@@ -117,7 +117,7 @@ namespace ExxoAvalonOrigins.NPCs
                             if (npc.position.X + npc.width > vector20.X && npc.position.X < vector20.X + 16f && npc.position.Y + npc.height > vector20.Y && npc.position.Y < vector20.Y + 16f)
                             {
                                 flag18 = true;
-                                if (Main.rand.Next(100) == 0 && npc.type != 117 && Main.tile[num197, num198].nactive())
+                                if (Main.rand.Next(100) == 0 && npc.type != NPCID.LeechHead && Main.tile[num197, num198].nactive())
                                 {
                                     WorldGen.KillTile(num197, num198, true, true, false);
                                 }
@@ -239,7 +239,7 @@ namespace ExxoAvalonOrigins.NPCs
                             num208 = 20f;
                         }
                         npc.soundDelay = (int)num208;
-                        Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 1);
+                        Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 1);
                     }
                     num206 = (float)Math.Sqrt(num204 * num204 + num205 * num205);
                     var num209 = Math.Abs(num204);

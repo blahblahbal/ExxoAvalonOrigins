@@ -11,7 +11,7 @@ using System;namespace ExxoAvalonOrigins.Projectiles{	public class MagicClea
         public override void AI()		{
 			if (Main.rand.Next(4) == 0)
 			{
-				int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, 57, projectile.velocity.X * 0.2f + (float)(projectile.direction * 3), projectile.velocity.Y * 0.2f, 100, default(Color), 0.5f);
+				int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, projectile.velocity.X * 0.2f + (float)(projectile.direction * 3), projectile.velocity.Y * 0.2f, 100, default(Color), 0.5f);
 				Main.dust[num].velocity.X *= 0.1f;
 				Main.dust[num].velocity.Y *= 0.1f;
 			}		}
@@ -19,7 +19,7 @@ using System;namespace ExxoAvalonOrigins.Projectiles{	public class MagicClea
         {
 			for (int num410 = 0; num410 < 5; num410++)
 			{
-				int num411 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 57, 0f, 0f, 100, default(Color), 1f);
+				int num411 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, 0f, 0f, 100, default(Color), 1f);
 				Main.dust[num411].velocity *= 1f;
 			}
 		}
@@ -31,10 +31,10 @@ using System;namespace ExxoAvalonOrigins.Projectiles{	public class MagicClea
 		}
         public override void Kill(int timeLeft)
         {
-			Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y);
+			Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y);
 			for (int num410 = 0; num410 < 10; num410++)
 			{
-				int num411 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 57, 0f, 0f, 100, default(Color), 1f);
+				int num411 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, 0f, 0f, 100, default(Color), 1f);
 				Main.dust[num411].velocity *= 1f;
 			}
 		}

@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Items/ReflexShield");
 			item.defense = 6;
-			item.rare = 9;
+			item.rare = ItemRarityID.Cyan;
 			item.width = dims.Width;
 			item.accessory = true;
 			item.value = Item.sellPrice(0, 17, 45, 0);
@@ -72,7 +72,7 @@ namespace ExxoAvalonOrigins.Items
                     {
                         for (int thingy = 0; thingy < 5; thingy++)
                         {
-                            int dust = Dust.NewDust(Pr.position, Pr.width, Pr.height, 15, 0f, 0f, 100, new Color(), 1f);
+                            int dust = Dust.NewDust(Pr.position, Pr.width, Pr.height, DustID.MagicMirror, 0f, 0f, 100, new Color(), 1f);
                             Main.dust[dust].noGravity = true;
                         }
                         Pr.hostile = false;
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.Items
                     {
                         for (int varlex = 0; varlex < 5; varlex++)
                         {
-                            int dust = Dust.NewDust(N.position, N.width, N.height, 15, 0f, 0f, 100, new Color(), 1f);
+                            int dust = Dust.NewDust(N.position, N.width, N.height, DustID.MagicMirror, 0f, 0f, 100, new Color(), 1f);
                             Main.dust[dust].noGravity = true;
                         }
                         N.friendly = true;

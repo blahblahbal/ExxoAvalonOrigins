@@ -209,13 +209,13 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        int num893 = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, default, 1f);
+                        int num893 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
                         Main.dust[num893].velocity *= 2f;
                         Main.dust[num893].scale = 0.9f;
                         Main.dust[num893].noGravity = true;
                         Main.dust[num893].fadeIn = 3f;
                     }
-                    Main.PlaySound(2, npc.position, 8);
+                    Main.PlaySound(SoundID.Item, npc.position, 8);
                 }
             }
             else if (npc.ai[1] == 1)

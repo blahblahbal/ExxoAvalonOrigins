@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (Main.rand.Next(40) == 0)
             {
-                int num306 = Dust.NewDust(new Vector2(j * 16 - 4, i * 16 - 6), 8, 6, 6, 0f, 0f, 100);
+                int num306 = Dust.NewDust(new Vector2(j * 16 - 4, i * 16 - 6), 8, 6, DustID.Fire, 0f, 0f, 100);
                 if (Main.rand.Next(3) != 0)
                 {
                     Main.dust[num306].noGravity = true;

@@ -108,7 +108,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     {
                         for (int thingy = 0; thingy < 5; thingy++)
                         {
-                            int dust = Dust.NewDust(Pr.position, Pr.width, Pr.height, 15, 0f, 0f, 100, new Color(), 1f);
+                            int dust = Dust.NewDust(Pr.position, Pr.width, Pr.height, DustID.MagicMirror, 0f, 0f, 100, new Color(), 1f);
                             Main.dust[dust].noGravity = true;
                         }
                         Pr.hostile = false;
@@ -136,7 +136,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     {
                         for (int varlex = 0; varlex < 5; varlex++)
                         {
-                            int dust = Dust.NewDust(N.position, N.width, N.height, 15, 0f, 0f, 100, new Color(), 1f);
+                            int dust = Dust.NewDust(N.position, N.width, N.height, DustID.MagicMirror, 0f, 0f, 100, new Color(), 1f);
                             Main.dust[dust].noGravity = true;
                         }
                         N.friendly = true;

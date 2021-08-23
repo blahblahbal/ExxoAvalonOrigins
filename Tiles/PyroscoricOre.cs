@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = mod.ItemType("PyroscoricOre");
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = 174;
+            dustType = DustID.InfernoFork;
             minPick = 210;
         }
         public override bool CanExplode(int i, int j)
@@ -68,7 +68,7 @@ namespace ExxoAvalonOrigins.Tiles
             }
             if (Main.rand.Next(120) == 1)
             {
-                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 6, 0f, 0f, 0, default(Color), 2f);
+                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Fire, 0f, 0f, 0, default(Color), 2f);
                 Main.dust[num162].noGravity = true;
                 Main.dust[num162].velocity *= 4f;
                 Main.dust[num162].noLight = true;

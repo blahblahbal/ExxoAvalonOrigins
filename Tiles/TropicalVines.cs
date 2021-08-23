@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileNoFail[Type] = true;
             Main.tileNoAttach[Type] = true;
             soundType = SoundID.Grass;
-            dustType = 2;
+            dustType = DustID.Grass;
 
             AddMapEntry(new Color(45, 153, 26));
         }

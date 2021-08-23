@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items
 			item.scale = 1f;
 			item.knockBack = 3f;
 			item.melee = true;
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.sellPrice(0, 0, 4, 0);
 			item.useAnimation = 18;
 			item.height = dims.Height;

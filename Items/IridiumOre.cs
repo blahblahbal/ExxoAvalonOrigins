@@ -12,11 +12,11 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.autoReuse = true;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.IridiumOre>();
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.width = dims.Width;
             item.useTime = 10;
             item.useTurn = true;
-            item.useStyle = 1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 999;
             item.value = Item.sellPrice(0, 0, 5, 0);
             item.useAnimation = 15;
