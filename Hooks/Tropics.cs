@@ -3,6 +3,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using System.Reflection;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -78,6 +79,15 @@ namespace ExxoAvalonOrigins.Hooks
         {
             Utils.AddAlternativeIDCheck(il, WallID.MudUnsafe, (ushort)ModContent.WallType<Walls.TropicalMudWall>());
         }
+        public static void ILPots(ILContext il)
+        {
+            Utils.AddAlternativeIDCheck(il, TileID.LihzahrdBrick, (ushort)ModContent.TileType<Tiles.TuhrtlBrick>());
+        }
+        public static void ILPiles(ILContext il)
+        {
+            Utils.AddAlternativeIDCheck(il, WallID.LihzahrdBrickUnsafe, (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>());
+            Utils.AddAlternativeIDCheck(il, TileID.LihzahrdBrick, (ushort)ModContent.TileType<Tiles.TuhrtlBrick>());
+        }
         public static void ILSpreadWall(ILContext il)
         {
             Instruction loadWall = Instruction.Create(OpCodes.Ldloc_0);
@@ -91,6 +101,10 @@ namespace ExxoAvalonOrigins.Hooks
             Instruction loadWallType = Instruction.Create(OpCodes.Ldarg_2);
 
             Utils.SoftReplaceAllMatchingInstructions(il, loadB, loadWallType);
+        }
+        public static void ILHitWireSingle(ILContext il)
+        {
+            Utils.AddAlternativeIDCheck(il, WallID.LihzahrdBrickUnsafe, (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>());
         }
         public static void OnSpreadGrass(On.Terraria.WorldGen.orig_SpreadGrass orig, int i, int j, int dirt, int grass, bool repeat, byte color)
         {
@@ -106,6 +120,59 @@ namespace ExxoAvalonOrigins.Hooks
                 }
             }
             orig(i, j, dirt, grass, repeat, color);
+        }
+        public static bool OnActuate(On.Terraria.Wiring.orig_Actuate orig, int i, int j)
+        {
+            if (Main.tile[i, j].type == ModContent.TileType<Tiles.TuhrtlBrick>())
+            {
+                return true;
+            }
+            return orig(i, j);
+        }
+
+        public static void OnActuateForced(On.Terraria.Wiring.orig_ActuateForced orig, int i, int j)
+        {
+            if (Main.tile[i, j].type == ModContent.TileType<Tiles.TuhrtlBrick>())
+            {
+                return;
+            }
+            orig(i, j);
+        }
+        public static bool Actuate(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            if (!tile.actuator())
+            {
+                return false;
+            }
+            if ((tile.type != 226 || !((double)j > Main.worldSurface) || NPC.downedPlantBoss) && (!((double)j > Main.worldSurface) || NPC.downedGolemBoss || Main.tile[i, j - 1].type != 237))
+            {
+                if (tile.inActive())
+                {
+                    Wiring.ReActive(i, j);
+                }
+                else
+                {
+                    Wiring.DeActive(i, j);
+                }
+            }
+            return true;
+        }
+
+        public static void ActuateForced(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            if (tile.type != 226 || !((double)j > Main.worldSurface) || NPC.downedPlantBoss)
+            {
+                if (tile.inActive())
+                {
+                    Wiring.ReActive(i, j);
+                }
+                else
+                {
+                    Wiring.DeActive(i, j);
+                }
+            }
         }
         private static void ReplaceIDIfTropics(ILContext il, ushort val1, ushort val2)
         {

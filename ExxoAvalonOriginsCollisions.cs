@@ -12,7 +12,6 @@ namespace ExxoAvalonOrigins
 {
     public class ExxoAvalonOriginsCollisions
     {
-
         public static bool SolidCollisionArma(Vector2 Position, int Width, int Height)
         {
             int num = (int)(Position.X / 16f) - 1;
@@ -105,7 +104,6 @@ namespace ExxoAvalonOrigins
 			}
 			return false;
 		}
-
 		public static bool SpikeCollision2(Vector2 Position, int Width, int Height)
 		{
 			int num = (int)((Position.X - 2f) / 16f);

@@ -36,5 +36,10 @@ namespace ExxoAvalonOrigins.Hooks
                     83, 87, (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(), 86
                 };
         }
+        public static void OnCaveHouseBiome(On.Terraria.GameContent.Biomes.CaveHouseBiome.orig_cctor orig)
+        {
+            orig();
+            Terraria.GameContent.Biomes.CaveHouseBiome._blacklistedTiles = Terraria.ID.TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, ModContent.TileType<Tiles.TuhrtlBrick>(), 203, 112, 25, 151);
+        }
     }
 }

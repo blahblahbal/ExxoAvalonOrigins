@@ -1,8 +1,9 @@
-﻿using ExxoAvalonOrigins.Items;using ExxoAvalonOrigins.Tiles;using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.IO;
+﻿using ExxoAvalonOrigins.Items;using ExxoAvalonOrigins.World;using ExxoAvalonOrigins.Tiles;using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.IO;
 using System.Threading;
 using Terraria;using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;using Terraria.ModLoader.IO;using Terraria.Utilities;
-using Terraria.World.Generation;
+using Terraria.World.Generation;using Utils = ExxoAvalonOrigins.World.Utils;
+
 namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld    {        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int hallowedAltarCount = 0;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static int tropicTiles = 0;        public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
@@ -872,6 +873,34 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
                 }
             }
+            for (int thing = 0; thing < Main.npc.Length; thing++)
+            {
+                NPC npc1 = Main.npc[thing];
+                if ((npc1.type == NPCID.Corruptor || npc1.type == ModContent.NPCType<NPCs.GuardianCorruptor>()) && npc1.active)
+                {
+                    for (int thing2 = 0; thing2 < Main.npc.Length; thing2++)
+                    {
+                        NPC npc2 = Main.npc[thing2];
+                        if ((npc2.type == ModContent.NPCType<NPCs.Hallowor>() || npc2.type == ModContent.NPCType<NPCs.AegisHallowor>()) && npc2.active)
+                        {
+                            int radius;
+                            string text;
+                            if (npc1.type == NPCID.Corruptor && npc2.type == ModContent.NPCType<NPCs.Hallowor>())
+                            {
+                                radius = 2;
+                                text = "Dark and light have been obliterated...";
+                                MakeOblivionOre(npc1, npc2, text, radius);
+                            }
+                            else if (npc1.type == ModContent.NPCType<NPCs.GuardianCorruptor>() && npc2.type == ModContent.NPCType<NPCs.AegisHallowor>())
+                            {
+                                radius = 3;
+                                text = "Dark and light have been eliminated...";
+                                MakeOblivionOre(npc1, npc2, text, radius);
+                            }
+                        }
+                    }
+                }
+            }
         }        public override void PreUpdate()        {            if (!retroGenned)            {                if (ExxoAvalonOrigins.lastOpenedVersion == null || ExxoAvalonOrigins.lastOpenedVersion < ExxoAvalonOrigins.version)                {                    RetroGen();                    retroGenned = true;                }            }            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                DropComet(ModContent.TileType<Tiles.HydrolythOre>());            }        }        public override void PreWorldGen()
         {
             ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;
@@ -1615,6 +1644,29 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
                 WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(5, 8), (ushort)ModContent.TileType<Tiles.PrimordialOre>());
+            }
+        }        public void MakeOblivionOre(NPC npc1, NPC npc2, string text, int radius)
+        {
+            if (Collision.CheckAABBvAABBCollision(npc1.Center, new Vector2(npc1.width, npc1.height), npc2.Center, new Vector2(npc2.width, npc2.height)))
+            {
+                Utils.MakeCircle((int)(npc1.position.X / 16f), (int)(npc1.position.Y / 16f), radius, ModContent.TileType<Tiles.OblivionOre>());
+                npc1.life = 0;
+                npc1.NPCLoot();
+                npc1.active = false;
+                Main.PlaySound(npc1.DeathSound.SoundId, (int)npc1.position.X, (int)npc1.position.Y);
+                npc2.life = 0;
+                npc2.NPCLoot();
+                npc2.active = false;
+                Main.PlaySound(npc2.DeathSound.SoundId, (int)npc2.position.X, (int)npc2.position.Y);
+                Color color = new Color(135, 78, 0);
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText(text, color);
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), color);
+                }
             }
         }        public override TagCompound Save()        {            var toSave = new TagCompound            {                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },                { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },                { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },                { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },                { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },                { "ExxoAvalonOrigins:Contagion", contaigon },                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
                 { "ExxoAvalonOrigins:OsmiumOre", (int)osmiumOre },

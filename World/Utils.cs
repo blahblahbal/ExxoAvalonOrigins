@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
 
 namespace ExxoAvalonOrigins.World
 {
@@ -69,6 +70,36 @@ namespace ExxoAvalonOrigins.World
                 }
             }
             return 0;
+        }
+
+        public static void MakeCircle(int x, int y, int radius, int tileType, bool walls = false, int wallType = WallID.Dirt)
+        {
+            for (int k = x - radius; k <= x + radius; k++)
+            {
+                for (int l = y - radius; l <= y + radius; l++)
+                {
+                    float dist = Vector2.Distance(new Vector2(k, l), new Vector2(x, y));
+                    if (dist <= radius && dist >= (radius - 29))
+                    {
+                        Main.tile[k, l].active(false);
+                    }
+                    if ((dist <= radius && dist >= radius - 7) || (dist <= (float)(radius - 22) && dist >= (float)(radius - 29)))
+                    {
+                        Main.tile[k, l].active(true);
+                        Main.tile[k, l].halfBrick(false);
+                        Main.tile[k, l].slope(0);
+                        Main.tile[k, l].type = (ushort)tileType;
+                        WorldGen.SquareTileFrame(k, l);
+                    }
+                    if (walls)
+                    {
+                        if (dist <= radius - 6 && dist >= radius - 23)
+                        {
+                            Main.tile[k, l].wall = (ushort)wallType;
+                        }
+                    }
+                }
+            }
         }
     }
 }
