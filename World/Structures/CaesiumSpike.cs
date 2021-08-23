@@ -13,8 +13,8 @@ namespace ExxoAvalonOrigins.World.Structures
     {
         public static void CreateSpike(int x, int y)
         {
-            int xStep = 3;
-            int yStep = 10;
+            int xStep = 2;
+            int yStep = 6;
 
             while (xStep < 5)
             {
@@ -35,8 +35,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 y += WorldGen.genRand.Next(10, 15);
             }
             else y -= WorldGen.genRand.Next(10, 15);
-            int xStep2 = 3;
-            int yStep2 = 10;
+            int xStep2 = 2;
+            int yStep2 = 6;
             while (xStep2 < 5)
             {
                 for (int i = x + xStep2 + 1; i > x - xStep2 + 1; i--)

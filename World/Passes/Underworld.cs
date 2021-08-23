@@ -14,39 +14,25 @@ namespace ExxoAvalonOrigins.World.Passes
             //{
             //    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<Tiles.CaesiumOre>());
             //}
-            for (int q = (Main.maxTilesX - Main.maxTilesX / 4) - 15; q < Main.maxTilesX - Main.maxTilesX / 4; q++)
+            for (int q = (Main.maxTilesX - Main.maxTilesX / 5) - 15; q < Main.maxTilesX - Main.maxTilesX / 5; q++)
             {
                 for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
                 {
-                    if (q > (Main.maxTilesX - Main.maxTilesX / 4) - 10)
+                    if (q > (Main.maxTilesX - Main.maxTilesX / 5) - 10)
                     {
-                        if (WorldGen.genRand.Next(3) == 0 && Main.tile[q, z].active())
-                        {
-                            Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                        }
-                    }
-                    else if (q > (Main.maxTilesX - Main.maxTilesX / 4) - 5 && q <= (Main.maxTilesX - Main.maxTilesX / 4) - 10)
-                    {
-                        if (WorldGen.genRand.Next(8) == 0 && Main.tile[q, z].active())
-                        {
-                            Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                        }
-                    }
-                    else if (q > (Main.maxTilesX - Main.maxTilesX / 4) && q <= (Main.maxTilesX - Main.maxTilesX / 4) - 5)
-                    {
-                        if (WorldGen.genRand.Next(14) == 0 && Main.tile[q, z].active())
+                        if (WorldGen.genRand.Next(10) == 0 && Main.tile[q, z].active() && Main.tile[q, z].type == TileID.Ash)
                         {
                             Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
                         }
                     }
                 }
             }
-            for (int q = Main.maxTilesX - Main.maxTilesX / 4; q < Main.maxTilesX - 20; q++)
+            for (int q = Main.maxTilesX - Main.maxTilesX / 5; q < Main.maxTilesX - 20; q++)
             {
                 for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
                 {
                     if ((Main.tile[q, z].type == TileID.Ash || Main.tile[q, z].type == TileID.Hellstone) && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                    if (z < Main.maxTilesY - 90 && z > Main.maxTilesY - 120)
+                    if (z < Main.maxTilesY - 110 && z > Main.maxTilesY - 150)
                     {
                         if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
@@ -55,7 +41,7 @@ namespace ExxoAvalonOrigins.World.Passes
                         {
                             if (WorldGen.genRand.Next(30) == 0)
                             {
-                                Structures.CaesiumSpike.CreateSpike(q, z - 5);
+                                Structures.CaesiumSpike.CreateSpike(q, z);
                             }
                         }
                     }
