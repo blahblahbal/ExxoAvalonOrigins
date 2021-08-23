@@ -34,8 +34,7 @@
             AddMapEntry(new Color(119, 105, 79), name);
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };
-            openDoorID = mod.TileType("OpenTuhrtlDoor");
-            dustType = 1;
+            openDoorID = mod.TileType("OpenTuhrtlDoor");            dustType = 53;
         }
 
         public override bool HasSmartInteract()

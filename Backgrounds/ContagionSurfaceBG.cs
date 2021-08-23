@@ -38,7 +38,10 @@ namespace ExxoAvalonOrigins.Backgrounds
         {
             return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG2");
         }
-
+        public override int ChooseMiddleTexture()
+        {
+            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG3");
+        }
         //private static int SurfaceFrameCounter;
         //private static int SurfaceFrame;
         //public override int ChooseMiddleTexture()

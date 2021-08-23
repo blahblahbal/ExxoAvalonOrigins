@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = ModContent.ItemType<Items.IridiumOre>();
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = 2;
+            dustType = ModContent.DustType<Dusts.IridiumDust>();
 		}
 	}
 }

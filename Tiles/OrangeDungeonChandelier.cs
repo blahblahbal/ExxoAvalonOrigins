@@ -15,8 +15,7 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             TileObjectData.addTile(Type);
             dustType = -1;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-            Main.tileLighted[Type] = true;
-            AddMapEntry(new Color(233, 211, 123));            dustType = 144;
+            Main.tileLighted[Type] = true;			var name = CreateMapEntryName();			name.SetDefault("Orange Dungeon Chandelier");            AddMapEntry(new Color(235, 166, 135), name);            dustType = 225;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

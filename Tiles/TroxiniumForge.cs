@@ -15,7 +15,9 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(new Color(255, 216, 0));
+			var name = CreateMapEntryName();
+			name.SetDefault("Troxinium Forge");
+			AddMapEntry(new Color(255, 216, 0), name);
             animationFrameHeight = 38;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.CoordinateHeights = new int[]

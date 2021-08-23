@@ -20,7 +20,9 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-            AddMapEntry(new Color(191, 142, 111));
+			var name = CreateMapEntryName();
+			name.SetDefault("Resistant Wood Bookcase");
+            AddMapEntry(new Color(191, 142, 111), name);
             dustType = 54;
         }
 

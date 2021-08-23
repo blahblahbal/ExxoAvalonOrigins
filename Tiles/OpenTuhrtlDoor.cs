@@ -64,7 +64,7 @@ namespace ExxoAvalonOrigins.Tiles
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.OpenDoor };
             closeDoorID = mod.TileType("ClosedTuhrtlDoor");
-            dustType = 1;
+            dustType = 53;
         }
 
         public override bool HasSmartInteract()

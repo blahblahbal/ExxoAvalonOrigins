@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.ObjectData;
+using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -15,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
     {
         public override void SetDefaults()
         {
-            AddMapEntry(new Color(241, 129, 249));
+            AddMapEntry(new Color(66, 66, 255), LanguageManager.Instance.GetText("Naquadah Anvil"));
             TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.CoordinateWidth = 16;

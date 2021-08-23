@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Tiles
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };
             minPick = 2000;
-            dustType = 1;
+            dustType = 53;
         }
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)

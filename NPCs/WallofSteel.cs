@@ -530,6 +530,7 @@ namespace ExxoAvalonOrigins.NPCs
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.BubbleBoost>(), 1, false, -1, false);
                 }
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(40, 56), false, 0, false);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.HellsteelPlate>(), Main.rand.Next(20, 26), false, 0, false);
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {

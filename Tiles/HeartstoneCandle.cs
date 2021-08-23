@@ -11,8 +11,7 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-            AddMapEntry(new Color(233, 211, 123));            dustType = 141;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Heartstone Candelabra");            AddMapEntry(new Color(253, 221, 3), name);            dustType = 141;
         }
 
         public override void MouseOver(int i, int j)

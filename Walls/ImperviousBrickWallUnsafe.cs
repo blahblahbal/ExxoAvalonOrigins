@@ -5,7 +5,7 @@
         {
             Main.wallHouse[Type] = false;
             AddMapEntry(new Color(51, 44, 48));
-            drop = mod.ItemType("ImperviousBrickWall");
+            drop = mod.ItemType("ImperviousBrickWall");            dustType = 54;
         }
         public override void KillWall(int i, int j, ref bool fail)
         {

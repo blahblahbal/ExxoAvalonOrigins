@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			Main.tileMerge[TileID.Stone][Type] = true;
 			Main.tileMerge[Type][ModContent.TileType<TropicalMud>()] = true;
 			Main.tileMerge[ModContent.TileType<TropicalMud>()][Type] = true;
-			drop = mod.ItemType("LoamstoneBrick");            soundType = SoundID.Tink;            soundStyle = 1;            //dustType = ModContent.DustType<Dusts.ContagionDust>();
+			drop = mod.ItemType("LoamstoneBrick");            soundType = SoundID.Tink;            soundStyle = 1;            dustType = ModContent.DustType<Dusts.TropicalMudDust>();
         }	}}
 
 

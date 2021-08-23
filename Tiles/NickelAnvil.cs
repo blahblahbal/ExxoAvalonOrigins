@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
     {
         public override void SetDefaults()
         {
-            AddMapEntry(new Color(241, 129, 249), LanguageManager.Instance.GetText("Anvil"));
+            AddMapEntry(new Color(140, 130, 116), LanguageManager.Instance.GetText("Anvil"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.LavaDeath = false;

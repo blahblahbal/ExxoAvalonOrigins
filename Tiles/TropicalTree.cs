@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override int CreateDust()
         {
-            return 1;
+            return 51;
         }
         public override Texture2D GetTopTextures(int i, int j, ref int frame, ref int frameWidth, ref int frameHeight, ref int xOffsetLeft, ref int yOffset)
         {

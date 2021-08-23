@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles
             soundType = SoundID.Grass;
             dustType = ModContent.DustType<Dusts.ContagionDust>();
 
-            AddMapEntry(new Color(238, 102, 70));
+            AddMapEntry(new Color(117, 131, 37));
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
