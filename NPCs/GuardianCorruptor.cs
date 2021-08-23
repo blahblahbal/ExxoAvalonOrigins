@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.value = 6500f;
 			npc.timeLeft = 1750;
 			npc.height = 100;
-			npc.knockBackResist = 0.55f;
+			npc.knockBackResist = 0.15f;
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.buffImmune[BuffID.Confused] = true;

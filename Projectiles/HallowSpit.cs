@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;using System;using Terraria;using Terraria.ModL
 			}
 			for (int num168 = 0; num168 < 2; num168++)
 			{
-				int num171 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height, 58, projectile.velocity.X * 0.1f, projectile.velocity.Y * 0.1f, 80, default(Color), 1.3f);
+				int num171 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X * 0.1f, projectile.velocity.Y * 0.1f, 80, default(Color), 1.3f);
 				Main.dust[num171].velocity *= 0.3f;
 				Main.dust[num171].noGravity = true;
 			}			if (projectile.ai[0] >= 15f)			{				projectile.ai[0] = 15f;				projectile.velocity.Y = projectile.velocity.Y + 0.1f;			}			projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;			if (projectile.velocity.Y > 16f)			{				projectile.velocity.Y = 16f;			}		}		public override void Kill(int timeLeft)		{			Main.PlaySound(SoundID.NPCKilled, (int)projectile.position.X, (int)projectile.position.Y, 9);			projectile.active = false;		}	}}

@@ -638,9 +638,10 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<TropicalShortGrass>(), true, false, -1, 0);
                             Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
-                            if (num9 > Main.worldSurface && WorldGen.genRand.Next(15) == 0)
+                            if (num9 > Main.worldSurface && WorldGen.genRand.Next(60) == 0)
                             {
                                 Main.tile[num5, num9].frameX = 8 * 18;
+                                Main.tileLighted[Main.tile[num5, num9].type] = true;
                             }
                             if (Main.tile[num5, num9].active())
                             {
@@ -651,6 +652,22 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
                         }
+                        if (!Main.tile[num5, num9].nactive())
+                        {
+                            return;
+                        }
+                        /*if (Main.tile[num5, num9].type == ModContent.TileType<TropicalShortGrass>() && WorldGen.genRand.Next(3) == 0 && Main.tile[num5, num9].frameX < 144)
+                        {
+                            if (Main.rand.Next(4) == 0)
+                            {
+                                Main.tile[num5, num9].frameX = (short)(162 + WorldGen.genRand.Next(8) * 18);
+                            }
+                            Main.tile[num5, num9].type = 74;
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }*/
                     }
                     #endregion
                     #region sweetstem spawning
