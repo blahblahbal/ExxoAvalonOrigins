@@ -42,5 +42,5 @@ namespace ExxoAvalonOrigins.Items
 		{
 			return player.ownedProjectileCounts[item.shoot] < 1;
 		}
-	}
+    }
 }
