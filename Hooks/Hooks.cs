@@ -42,6 +42,10 @@
             IL.Terraria.GameContent.Biomes.DesertBiome.FindStart += Tropics.ILFindStart;
             IL.Terraria.WorldGen.GrowUndergroundTree += Tropics.ILGrowUndergroundTree;
             On.Terraria.WorldGen.SpreadGrass += Tropics.OnSpreadGrass;
+            On.Terraria.GameContent.Biomes.CaveHouseBiome.cctor += MicroBiomes.OnCaveHouseBiome;
+            On.Terraria.Wiring.Actuate += Tropics.OnActuate;
+            On.Terraria.Wiring.ActuateForced += Tropics.OnActuateForced;
+            IL.Terraria.Wiring.HitWireSingle += Tropics.ILHitWireSingle;
 
             IL.Terraria.GameContent.Generation.TrackGenerator.CanTrackBePlaced += MicroBiomes.ILTrackGeneratorTrackCanBePlaced;
 

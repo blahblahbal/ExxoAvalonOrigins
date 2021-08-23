@@ -22,6 +22,8 @@ namespace ExxoAvalonOrigins.Hooks
         private static MethodInfo grassWallInfo;
         private static MethodInfo junglePlantsInfo;
         private static MethodInfo mudCavesToGrassInfo;
+        private static MethodInfo potsInfo;
+        private static MethodInfo pilesInfo;
         public static event ILContext.Manipulator Hook_GenPassReset
         {
             add => HookEndpointManager.Modify(resetInfo, value);
@@ -77,10 +79,20 @@ namespace ExxoAvalonOrigins.Hooks
             add => HookEndpointManager.Modify(mudCavesToGrassInfo, value);
             remove => HookEndpointManager.Unmodify(mudCavesToGrassInfo, value);
         }
+        public static event ILContext.Manipulator Hook_GenPassPots
+        {
+            add => HookEndpointManager.Modify(potsInfo, value);
+            remove => HookEndpointManager.Unmodify(potsInfo, value);
+        }
+        public static event ILContext.Manipulator Hook_GenPassPiles
+        {
+            add => HookEndpointManager.Modify(pilesInfo, value);
+            remove => HookEndpointManager.Unmodify(pilesInfo, value);
+        }
         public static void ILGenerateWorld(ILContext il)
         {
             assembly = typeof(Main).Assembly;
-            
+
             resetInfo = GetGenPassInfo(il, "Reset");
             dirtWallBackgroundsInfo = GetGenPassInfo(il, "Dirt Wall Backgrounds");
             jungleInfo = GetGenPassInfo(il, "Jungle");
@@ -92,6 +104,8 @@ namespace ExxoAvalonOrigins.Hooks
             grassWallInfo = GetGenPassInfo(il, "Grass Wall");
             junglePlantsInfo = GetGenPassInfo(il, "Jungle Plants");
             mudCavesToGrassInfo = GetGenPassInfo(il, "Mud Caves To Grass");
+            potsInfo = GetGenPassInfo(il, "Pots");
+            pilesInfo = GetGenPassInfo(il, "Piles");
         }
         public static void ILGenPassReset(ILContext il)
         {
