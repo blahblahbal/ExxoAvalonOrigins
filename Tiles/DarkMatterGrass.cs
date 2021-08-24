@@ -4,4 +4,13 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             style = 0;
             return ModContent.TileType<DarkMatterSapling>();
         }
+
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (!fail)
+            {
+                ExxoAvalonOriginsWorld.WorldDarkMatterTiles--;
+            }
+            base.KillTile(i, j, ref fail, ref effectOnly, ref noItem);
+        }
     }}

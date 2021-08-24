@@ -52,6 +52,7 @@
             IL.Terraria.WorldGen.Spread.Wall += Tropics.ILSpreadWall;
             IL.Terraria.WorldGen.Spread.Wall2 += Tropics.ILSpreadWall2;
             On.Terraria.WorldGen.TileRunner += BacciliteReplacement.OnTileRunner;
+            On.Terraria.WorldGen.SquareTileFrame += TileCount.OnSquareTileFrame;
         }
     }
 }

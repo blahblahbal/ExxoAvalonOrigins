@@ -4,7 +4,7 @@ using Terraria;using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;using Terraria.ModLoader.IO;using Terraria.Utilities;
 using Terraria.World.Generation;using Utils = ExxoAvalonOrigins.World.Utils;
 
-namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld    {        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int totalDark2;        public static int hallowedAltarCount = 0;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static int tropicTiles = 0;        public static int caesiumTiles = 0;        public static Vector2 LoK = Vector2.Zero;
+namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld    {        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int WorldDarkMatterTiles = 0;        public static int hallowedAltarCount = 0;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static int tropicTiles = 0;        public static int caesiumTiles = 0;        public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
         public static int wosF = 0;
@@ -568,26 +568,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }
         }        public override void PostUpdate()
         {
-            totalDark2 = WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterSoil>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatter>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterSand>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.Darksandstone>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.HardenedDarkSand>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.DarkMatterGrass>()] + WorldGen.tileCounts[ModContent.TileType<Tiles.BlackIce>()];
-            //Main.NewText(totalDark2);
-            //totalDark2 = 0;
             float num2 = 3E-05f * (float)Main.worldRate;
             //float num3 = 1.5E-05f * (float)Main.worldRate;
-            //totalDark2 = 0;
-            //int darkSpread = 0;
-            //while (darkSpread < (Main.maxTilesX * Main.maxTilesY) * num2)
-            //{
-            //    int i = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
-            //    int j = WorldGen.genRand.Next(10, Main.maxTilesY - 200);
-            //    if (Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatterSoil>() || Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatter>() ||
-            //       Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatterSand>() || Main.tile[i, j].type == ModContent.TileType<Tiles.Darksandstone>() ||
-            //       Main.tile[i, j].type == ModContent.TileType<Tiles.HardenedDarkSand>() || Main.tile[i, j].type == ModContent.TileType<Tiles.DarkMatterGrass>() ||
-            //       Main.tile[i, j].type == ModContent.TileType<Tiles.BlackIce>())
-            //    {
-            //        totalDark2++;
-            //    }
-            //    darkSpread++;
-            //}
             int num4 = 0;
             while ((float)num4 < (float)(Main.maxTilesX * Main.maxTilesY) * num2)
             {
@@ -625,9 +607,9 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     {
                         ContagionHardmodeSpread(num5, num6);
                         if (Main.hardMode) SpreadXanthophyte(num5, num6);
-                        if (ExxoAvalonOrigins.superHardmode && totalDark2 < 250000)
+                        if (ExxoAvalonOrigins.superHardmode && WorldDarkMatterTiles < 250000)
                         {
-                            //DarkMatterSpread(num5, num6);
+                            DarkMatterSpread(num5, num6);
                         }
                     }
                     #endregion
@@ -1688,7 +1670,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }
         }        public override TagCompound Save()        {            var toSave = new TagCompound            {                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },                { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },                { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },                { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },                { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },                { "ExxoAvalonOrigins:Contagion", contaigon },                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
                 { "ExxoAvalonOrigins:OsmiumOre", (int)osmiumOre },
-                { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },                { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },            };            // Update config cache values on save world            ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();            var tempDict = config.GetWorldData();            ExxoAvalonOriginsConfig.WorldDataValues worldData;            worldData.contagion = contaigon;
+                { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },                { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },                { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },            };            // Update config cache values on save world            ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();            var tempDict = config.GetWorldData();            ExxoAvalonOriginsConfig.WorldDataValues worldData;            worldData.contagion = contaigon;
             worldData.jungleType = (int)jungleMenuSelection;
 
             string path = Path.ChangeExtension(Main.worldPathName, ".twld");
@@ -1702,4 +1684,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonX"))            {                ExxoAvalonOrigins.dungeonEx = tag.GetAsInt("ExxoAvalonOrigins:DungeonX");            }            else
             {
                 ExxoAvalonOrigins.dungeonEx = dungeonSide == -1 ? Main.maxTilesX / 3 : Main.maxTilesX - Main.maxTilesX / 3;
-            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))            {                shmOreTier1 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier1");            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier2"))            {                shmOreTier2 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier2");            }            if (tag.ContainsKey("ExxoAvalonOrigins:OsmiumOre"))            {                osmiumOre = (OsmiumVariant)tag.GetAsInt("ExxoAvalonOrigins:OsmiumOre");            }            if (tag.ContainsKey("ExxoAvalonOrigins:HallowAltarCount"))            {                hallowAltarCount = tag.GetAsInt("ExxoAvalonOrigins:HallowAltarCount");            }        }    }}
+            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))            {                shmOreTier1 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier1");            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier2"))            {                shmOreTier2 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier2");            }            if (tag.ContainsKey("ExxoAvalonOrigins:OsmiumOre"))            {                osmiumOre = (OsmiumVariant)tag.GetAsInt("ExxoAvalonOrigins:OsmiumOre");            }            if (tag.ContainsKey("ExxoAvalonOrigins:HallowAltarCount"))            {                hallowAltarCount = tag.GetAsInt("ExxoAvalonOrigins:HallowAltarCount");            }            if (tag.ContainsKey("ExxoAvalonOrigins:WorldDarkMatterTiles"))            {                WorldDarkMatterTiles = tag.GetAsInt("ExxoAvalonOrigins:WorldDarkMatterTiles");                if (WorldDarkMatterTiles < 0)
+                {
+                    WorldDarkMatterTiles = 0;
+                }            }        }    }}
