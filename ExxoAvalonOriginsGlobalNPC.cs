@@ -25,6 +25,7 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                     if (spawnInfo.player.ZoneDesert)
                     {
                         pool.Add(NPCID.DarkMummy, 0.3f);
+                        pool.Add(ModContent.NPCType<NPCs.CorruptVulture>(), 0.4f);
                     }
                 }
             }
@@ -34,7 +35,7 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                 {
                     pool.Clear();
                     pool.Add(ModContent.NPCType<NPCs.CaesiumBrute>(), 1f);
-                    pool.Add(ModContent.NPCType<NPCs.CaesiumSeekerHead>(), 0.2f);
+                    pool.Add(ModContent.NPCType<NPCs.CaesiumSeekerHead>(), 0.05f);
                     pool.Add(ModContent.NPCType<NPCs.CaesiumStalker>(), 0.9f);
                 }
             }
@@ -43,10 +44,10 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                 pool.Clear();
                 pool.Add(NPCID.Demon, 0.2f);
                 pool.Add(NPCID.RedDevil, 0.2f);
-                pool.Add(ModContent.NPCType<NPCs.EctoHand>(), 1f);
+                pool.Add(ModContent.NPCType<NPCs.EctoHand>(), 0.5f);
                 pool.Add(ModContent.NPCType<NPCs.HellboundLizard>(), 1f);
                 pool.Add(ModContent.NPCType<NPCs.Gargoyle>(), 1f);
-                if (ExxoAvalonOrigins.superHardmode) pool.Add(ModContent.NPCType<NPCs.ArmoredHellTortoise>(), 1f);
+                if (ExxoAvalonOrigins.superHardmode && Main.hardMode) pool.Add(ModContent.NPCType<NPCs.ArmoredHellTortoise>(), 1f);
             }
         }        public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {

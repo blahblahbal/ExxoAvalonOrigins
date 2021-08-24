@@ -58,7 +58,8 @@ namespace ExxoAvalonOrigins.Items
                     Pr.type != ProjectileID.FrostHydra && Pr.type != ProjectileID.InfernoFriendlyBolt &&
                     Pr.type != ProjectileID.InfernoFriendlyBlast && Pr.type != ProjectileID.FlyingPiggyBank &&                    Pr.type != ProjectileID.PhantasmalDeathray && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>() &&
                     Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() && Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>())
+                    Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() && Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>())
                 {
                     Rectangle proj2 = new Rectangle((int)Pr.position.X, (int)Pr.position.Y, Pr.width, Pr.height);
                     bool reflect = false, check = false;

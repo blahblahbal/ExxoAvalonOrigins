@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.85f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.65f);
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -499,7 +499,7 @@ namespace ExxoAvalonOrigins.NPCs
             Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore13"), npc.scale);
             Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore14"), npc.scale);
             ExxoAvalonOriginsWorld.wos = -1;
-            if (!ExxoAvalonOrigins.superHardmode)
+            if (!ExxoAvalonOrigins.superHardmode && Main.hardMode)
             {
                 //int numplayers = 0;
                 //for (int i = 0; i < 255; i++)

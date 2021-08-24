@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.CursedInferno] = true;
 			npc.buffImmune[BuffID.Confused] = true;
             //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.BlazeBanner>();
+            //bannerItem = ModContent.ItemType<Items.Banners.CaesiumStalkerBanner>();
         }
         //public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         //{
@@ -206,6 +206,7 @@ namespace ExxoAvalonOrigins.NPCs
                         var mainproj = (float)Math.Atan2(npc.Center.Y - (Main.player[npc.target].Center.Y), npc.Center.X - (Main.player[npc.target].Center.X));
                         int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumCrystal>(), 50, 1f, npc.target, 0f, 0f);
                         Main.projectile[p].velocity *= 7f;
+                        Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
                     }
                     npc.localAI[0] = 0f;
                     npc.localAI[1] = 0f;

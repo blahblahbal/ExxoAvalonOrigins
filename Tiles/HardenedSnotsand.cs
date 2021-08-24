@@ -11,6 +11,8 @@
             Main.tileMerge[TileID.HardenedSand][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<HardenedSnotsand>()] = true;
             Main.tileMerge[ModContent.TileType<HardenedSnotsand>()][Type] = true;
+            Main.tileMerge[ModContent.TileType<Snotsand>()][Type] = true;
+            Main.tileMerge[Type][ModContent.TileType<Snotsand>()] = true;
             TileID.Sets.Conversion.HardenedSand[Type] = true;
             drop = mod.ItemType("HardenedSnotsandBlock");            dustType = DustID.ScourgeOfTheCorruptor;        }
     }}

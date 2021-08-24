@@ -24,6 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.DeathSound = SoundID.NPCDeath1;
             npc.noGravity = true;
             npc.noTileCollide = true;
+            npc.value = 1000;
             npc.knockBackResist = 0f;
             npc.behindTiles = true;
             npc.buffImmune[BuffID.OnFire] = true;
@@ -32,14 +33,21 @@ namespace ExxoAvalonOrigins.NPCs
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium && spawnInfo.player.ZoneUnderworldHeight)
-                return 1;
+                return 0.7f;
             return 0;
+        }
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
+            }
         }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"), 2f);
             }
         }
         public override void Init()
@@ -78,7 +86,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"), 2f);
             }
         }
     }
@@ -110,7 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"), 2f);
             }
         }
         public override void Init()
@@ -133,8 +141,8 @@ namespace ExxoAvalonOrigins.NPCs
             tailType = ModContent.NPCType<CaesiumSeekerTail>();
             bodyType = ModContent.NPCType<CaesiumSeekerBody>();
             headType = ModContent.NPCType<CaesiumSeekerHead>();
-            speed = 5.5f;
-            turnSpeed = 0.045f;
+            speed = 10f;
+            turnSpeed = 0.075f;
         }
     }
 }

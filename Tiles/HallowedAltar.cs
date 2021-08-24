@@ -40,12 +40,12 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            if (!ExxoAvalonOrigins.superHardmode) blockDamaged = false;
-                return ExxoAvalonOrigins.superHardmode;
+            if (!ExxoAvalonOrigins.superHardmode && !Main.hardMode) blockDamaged = false;
+            return ExxoAvalonOrigins.superHardmode && Main.hardMode;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            if (ExxoAvalonOrigins.superHardmode) 
+            if (ExxoAvalonOrigins.superHardmode && Main.hardMode) 
                 SmashHallowAltar(i, j);
         }
         public override void NearbyEffects(int i, int j, bool closer)

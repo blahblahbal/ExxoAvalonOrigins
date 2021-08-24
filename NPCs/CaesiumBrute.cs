@@ -78,6 +78,7 @@ namespace ExxoAvalonOrigins.NPCs
                     var mainproj = (float)Math.Atan2(npc.Center.Y - (player5.Center.Y), npc.Center.X - (player5.Center.X));
                     int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
                     Main.projectile[p].velocity *= 7f;
+                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
                 }
                 npc.ai[0] = 0;
             }
