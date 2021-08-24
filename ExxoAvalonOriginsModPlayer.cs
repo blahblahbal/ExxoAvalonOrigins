@@ -1602,7 +1602,7 @@ namespace ExxoAvalonOrigins
 			}
 
             #region bubble boost
-            if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump)
+            if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump && !NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
 	        {
                 #region bubble timer and spawn bubble gores/sound
                 bubbleCD++;
