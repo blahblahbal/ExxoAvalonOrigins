@@ -70,7 +70,7 @@ namespace ExxoAvalonOrigins.UI
             int staminaThreshold = maxStaminaBars * staminaPerBar;
 
             int remainingStamina = (player.statStam % staminaThreshold);
-            if (remainingStamina == 0)
+            if (remainingStamina == 0 && !(player.statStam == 0))
             {
                 remainingStamina = staminaThreshold;
             }
