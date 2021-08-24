@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Statue");
             AddMapEntry(new Color(144, 148, 144), name);
-            dustType = DustID.Silver;
+			dustType = DustID.Stone;
             disableSmartCursor = true;
         }
 
@@ -73,6 +73,28 @@ namespace ExxoAvalonOrigins.Tiles
                 Item.NewItem(i * 16, j * 16, 48, 48, item);
             }
         }
+		
+		public override bool CreateDust(int i, int j, ref int type)
+		{
+			switch (Main.tile[i, j].frameX / 36)
+			{
+				case 2:
+				case 9:
+				case 10:
+					Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Ice);
+				return false;
+				break;
+				case 3:
+					Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Coralstone);
+				return false;
+				break;
+				case 6:
+					Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.t_Granite);
+				return false;
+				break;
+			}
+			return base.CreateDust(i, j, ref type);
+		}
     }
     //public class ExampleStatueItem : ModItem
     //{
