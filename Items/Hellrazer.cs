@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class Hellrazer : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Hellrazer");			Tooltip.SetDefault("Fires a powerful, high velocity bullet\nMost bullets turn into Explosive rounds");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Hellrazer");			item.UseSound = SoundID.Item11;			item.damage = 110;			item.autoReuse = true;			item.useTurn = false;			item.useAmmo = AmmoID.Bullet;			item.shootSpeed = 8f;			item.crit += 10;			item.ranged = true;			item.rare = ItemRarityID.Yellow;			item.noMelee = true;			item.width = dims.Width;			item.knockBack = 12f;			item.useTime = 30;			item.shoot = ProjectileID.Bullet;			item.value = Item.sellPrice(0, 30, 0, 0);			item.useStyle = ItemUseStyleID.HoldingOut;			item.useAnimation = 30;			item.height = dims.Height;
+using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class Hellrazer : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Hellrazer");			Tooltip.SetDefault("Fires a powerful, high velocity bullet\nNusket Balls turn into Explosive rounds");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Hellrazer");			item.UseSound = SoundID.Item11;			item.damage = 110;			item.autoReuse = true;			item.useTurn = false;			item.useAmmo = AmmoID.Bullet;			item.shootSpeed = 8f;			item.crit += 10;			item.ranged = true;			item.rare = ItemRarityID.Yellow;			item.noMelee = true;			item.width = dims.Width;			item.knockBack = 12f;			item.useTime = 30;			item.shoot = ProjectileID.Bullet;			item.value = Item.sellPrice(0, 30, 0, 0);			item.useStyle = ItemUseStyleID.HoldingOut;			item.useAnimation = 30;			item.height = dims.Height;
             item.UseSound = SoundID.Item40;
             if (!Main.dedServ)
 			{
@@ -32,7 +32,6 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Sys
             if (type == ProjectileID.Bullet)
             {
                 type = ProjectileID.ExplosiveBullet;
-                return false;
             }
             return true;
         }

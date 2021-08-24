@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             if (type == ProjectileID.Bullet)
             {
                 type = ModContent.ProjectileType<Projectiles.PeeBullet>();
-                return false;
             }
             return true;
         }
