@@ -35,6 +35,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.knockBackResist = 0.4f;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.lavaImmune = true;
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<Items.Banners.BactusBanner>();
         }
@@ -62,20 +63,20 @@ namespace ExxoAvalonOrigins.NPCs
                     var player5 = Main.player[npc.target];
                     var vector158 = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
                     var num1191 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f + 40f), vector158.X - (player5.position.X + player5.width * 0.5f + 40f));
-                    var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 80, 1f, npc.target, 0f, 0f);
+                    var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
                     }
                     var num1192 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f - 40f), vector158.X - (player5.position.X + player5.width * 0.5f - 40f));
-                    var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 80, 1f, npc.target, 0f, 0f);
+                    var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
                     Main.projectile[num1193].velocity *= 7f;
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
                     }
                     var mainproj = (float)Math.Atan2(npc.Center.Y - (player5.Center.Y), npc.Center.X - (player5.Center.X));
-                    int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 80, 1f, npc.target, 0f, 0f);
+                    int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
                     Main.projectile[p].velocity *= 7f;
                 }
                 npc.ai[0] = 0;

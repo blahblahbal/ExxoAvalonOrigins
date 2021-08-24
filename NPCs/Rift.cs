@@ -147,7 +147,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 int t = Main.rand.Next(2);
                                 if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.DevourerHead);
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -177,7 +177,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 int t = Main.rand.Next(2);
                                 if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.DevourerHead>());
+                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.DevourerHead);
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }

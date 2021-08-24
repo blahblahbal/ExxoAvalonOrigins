@@ -174,7 +174,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(20) == 0)
             {
-                var num1225 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Fire, npc.velocity.X, 2f, 75, npc.color, npc.scale);
+                var num1225 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), ModContent.DustType<Dusts.CaesiumDust>(), npc.velocity.X, 2f, 75, npc.color, npc.scale);
                 var dust56 = Main.dust[num1225];
                 dust56.velocity.X = dust56.velocity.X * 0.5f;
                 var dust57 = Main.dust[num1225];
@@ -182,7 +182,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(40) == 0)
             {
-                var num1226 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), DustID.Pixie, npc.velocity.X, 2f, 0, default(Color), 1f);
+                var num1226 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), ModContent.DustType<Dusts.CaesiumDust>(), npc.velocity.X, 2f, 0, default(Color), 1f);
                 var dust58 = Main.dust[num1226];
                 dust58.velocity.X = dust58.velocity.X * 0.5f;
                 var dust59 = Main.dust[num1226];
@@ -203,7 +203,9 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                     {
-                        NPC.NewNPC((int)(npc.position.X + npc.width / 2 + npc.velocity.X), (int)(npc.position.Y + npc.height / 2 + npc.velocity.Y), ModContent.NPCType<BlazeOrb>(), 0);
+                        var mainproj = (float)Math.Atan2(npc.Center.Y - (Main.player[npc.target].Center.Y), npc.Center.X - (Main.player[npc.target].Center.X));
+                        int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumCrystal>(), 50, 1f, npc.target, 0f, 0f);
+                        Main.projectile[p].velocity *= 7f;
                     }
                     npc.localAI[0] = 0f;
                     npc.localAI[1] = 0f;

@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             {
                 float num950 = projectile.oldVelocity.X * (30f / (float)num949);
                 float num951 = projectile.oldVelocity.Y * (30f / (float)num949);
-                int num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, DustID.RuneWizard, projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.8f);
+                int num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, ModContent.DustType<Dusts.CaesiumDust>(), projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.8f);
                 Main.dust[num952].noGravity = true;
                 Dust dust = Main.dust[num952];
                 dust.velocity *= 0.5f;
-                num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, DustID.RuneWizard, projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.4f);
+                num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, ModContent.DustType<Dusts.CaesiumDust>(), projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.4f);
                 dust = Main.dust[num952];
                 dust.velocity *= 0.05f;
                 Main.dust[num952].noGravity = true;
@@ -29,11 +29,11 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             {
                 float num950 = projectile.oldVelocity.X * (30f / (float)num949);
                 float num951 = projectile.oldVelocity.Y * (30f / (float)num949);
-                int num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, DustID.RuneWizard, projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.8f);
+                int num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, ModContent.DustType<Dusts.CaesiumDust>(), projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.8f);
                 Main.dust[num952].noGravity = true;
                 Dust dust = Main.dust[num952];
                 dust.velocity *= 0.5f;
-                num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, DustID.RuneWizard, projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.4f);
+                num952 = Dust.NewDust(new Vector2(projectile.oldPosition.X - num950, projectile.oldPosition.Y - num951), 8, 8, ModContent.DustType<Dusts.CaesiumDust>(), projectile.oldVelocity.X, projectile.oldVelocity.Y, 255, default, 1.4f);
                 dust = Main.dust[num952];
                 dust.velocity *= 0.05f;
                 Main.dust[num952].noGravity = true;
