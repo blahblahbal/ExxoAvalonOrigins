@@ -289,12 +289,12 @@ namespace ExxoAvalonOrigins
         public bool advCrateBuff;
 
         #region Stinger Probe Minion AI vars
-        public bool stingerProbeMinion = false;
-        public float rotTimer;
-        public int spawnProbeTimer;
-        public int probeID;
-        public Vector2[] endpoint = new Vector2[4];
+        public float StingerProbeRotTimer = 0;
+        public int StingerProbeTimer = 0;
+        public List<bool> StingerProbeActiveIds = new List<bool>();
         #endregion
+
+        public Vector2 MousePosition = default(Vector2);
 
         #region Draggon's Bondage AI vars
         public bool dragonsBondage;
@@ -313,6 +313,8 @@ namespace ExxoAvalonOrigins
         public float critDamageMult = 1f;
 
         #endregion
+
+        public override bool CloneNewInstances => false;
 
         public override void ResetEffects()
         {
@@ -341,7 +343,6 @@ namespace ExxoAvalonOrigins
             bubbleBoost = false;
             darkInferno = false;
             melting = false;
-            stingerProbeMinion = false; // gotta be here for effect reset
             dragonsBondage = false;
             necroticAura = false;
             defDebuff = false;
@@ -480,7 +481,6 @@ namespace ExxoAvalonOrigins
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
             astralCD = 3600;
-            StingerProbeMinion.activeIds.Clear();
         }
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
@@ -721,6 +721,7 @@ namespace ExxoAvalonOrigins
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
             }
         }
+
         public override void OnHitPvp(Item item, Player target, int damage, bool crit)
         {
             if (crit)

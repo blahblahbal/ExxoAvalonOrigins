@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
 {
     public class StingerProbe : ModBuff
     {
-        public bool stingerProbeMinion = false;
-        public int spawnProbeTimer;
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Stinger Probe");
@@ -18,30 +18,44 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
+            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
-            Projectiles.StingerProbeMinion.rotTimer += 0.5f;
-            if (Projectiles.StingerProbeMinion.rotTimer >= 360)
-                Projectiles.StingerProbeMinion.rotTimer = 0;
-
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] > 0)
-            {
-                player.buffTime[buffIndex] = 18000;
-            }
-            else
+            if (player.dead || !player.active || !modPlayer.HasItemInArmor(ModContent.ItemType<Items.AIController>()))
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;
+                return;
+            }
+
+            modPlayer.StingerProbeRotTimer += 0.5f;
+            if (modPlayer.StingerProbeRotTimer >= 360)
+                modPlayer.StingerProbeRotTimer = 0;
+
+            if (player.whoAmI != Main.myPlayer)
+            {
+                return;
+            }
+
+            Vector2 mousePosition = Main.MouseWorld;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                modPlayer.MousePosition = mousePosition;
+                Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
+            }
+            else if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                modPlayer.MousePosition = mousePosition;
             }
 
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 4)
-                spawnProbeTimer++;
+                modPlayer.StingerProbeTimer++;
             else
-                spawnProbeTimer = 0;
+                modPlayer.StingerProbeTimer = 0;
 
-            if (spawnProbeTimer >= 300)
+            if (modPlayer.StingerProbeTimer >= 300)
             {
                 Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI);
-                spawnProbeTimer = 0;
+                modPlayer.StingerProbeTimer = 0;
             }
         }
     }

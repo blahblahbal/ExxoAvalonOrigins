@@ -52,20 +52,13 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                SyncPhantasmRelocate(coords);
+                Network.Phantasm.SendPacket(coords);
             }
         }
         private static void TeleportPhantasm(Vector2 coords, bool sync = false, int whoAmI = 0)
         {
             Main.npc[whoAmI].position = coords;
             if (sync) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, whoAmI);
-        }
-        private static void SyncPhantasmRelocate(Vector2 coords)
-        {
-            var netMessage = ExxoAvalonOrigins.mod.GetPacket();
-            netMessage.Write((byte)AvalonMessageID.PhantasmRelocate);
-            netMessage.WriteVector2(coords);
-            netMessage.Send();
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -153,7 +146,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     npc.dontTakeDamage = true;
                     Vector2 libraryCenter = new Vector2(Main.maxTilesX / 3 + 183, Main.maxTilesY - 140 + 57) * 16;
-                    
+
                     if (Vector2.Distance(libraryCenter, npc.Center) <= 5)
                     {
                         npc.velocity = Vector2.Zero;

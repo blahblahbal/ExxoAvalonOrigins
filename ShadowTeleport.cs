@@ -1,17 +1,12 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.Localization;
 
 namespace ExxoAvalonOrigins
 {
     public class ShadowTeleport : GlobalItem
     {
-
         public static void Teleport(int teleportType = 0, bool forceHandle = false, int whoAmI = 0)
         {
             bool syncData = forceHandle || Main.netMode == NetmodeID.SinglePlayer;
@@ -21,16 +16,8 @@ namespace ExxoAvalonOrigins
             }
             else
             {
-                SyncTeleport(teleportType);
+                Network.ShadowTeleport.SendPacket(teleportType);
             }
-        }
-
-        private static void SyncTeleport(int teleportType = 0)
-        {
-            var netMessage = ExxoAvalonOrigins.mod.GetPacket();
-            netMessage.Write((byte)AvalonMessageID.ShadowTeleport);
-            netMessage.Write(teleportType);
-            netMessage.Send();
         }
 
         private static void TeleportPlayer(int teleportType = 0, bool syncData = false, int whoAmI = 0)
@@ -49,18 +36,23 @@ namespace ExxoAvalonOrigins
                 case 0:
                     DungeonTeleport(player, syncData);
                     break;
+
                 case 1:
                     JungleTeleport(player, syncData);
                     break;
+
                 case 2:
                     LeftOceanTeleport(player, syncData);
                     break;
+
                 case 3:
                     RightOceanTeleport(player, syncData);
                     break;
+
                 case 4:
                     UnderworldTeleport(player, syncData);
                     break;
+
                 default:
                     break;
             }
@@ -91,6 +83,7 @@ namespace ExxoAvalonOrigins
             }
             else return;
         }
+
         private static void RightOceanTeleport(Player player, bool syncData = false)
         {
             Vector2 previousPos = player.position;

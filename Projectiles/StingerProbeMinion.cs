@@ -12,11 +12,9 @@ namespace ExxoAvalonOrigins.Projectiles
 {
     public class StingerProbeMinion : ModProjectile
     {
-        int projTimer;
         bool initialised = false;
         int id;
-        public static List<bool> activeIds = new List<bool>();
-        public static float rotTimer;
+        int projTimer;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stinger Probe");
@@ -42,58 +40,52 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-
-            if (player.dead || !player.active || !player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<Items.AIController>()))
-            {
-                player.ClearBuff(ModContent.BuffType<Buffs.StingerProbe>());
-            }
+            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
             if (player.HasBuff(ModContent.BuffType<Buffs.StingerProbe>()))
             {
                 projectile.timeLeft = 2;
             }
-       
+
+            #region Get ID
             if (!initialised)
             {
-                if (activeIds == null)
-                {
-                    activeIds = new List<bool>();
-                }
                 bool found = false;
-                for (int i = 0; i < activeIds.Count; i++)
+                for (int i = 0; i < modPlayer.StingerProbeActiveIds.Count; i++)
                 {
-                    if (!activeIds[i])
+                    if (!modPlayer.StingerProbeActiveIds[i])
                     {
                         id = i;
-                        activeIds[i] = true;
+                        modPlayer.StingerProbeActiveIds[i] = true;
                         found = true;
                         break;
                     }
                 }
                 if (!found)
                 {
-                    id = activeIds.Count;
-                    activeIds.Add(true);
+                    id = modPlayer.StingerProbeActiveIds.Count;
+                    modPlayer.StingerProbeActiveIds.Add(true);
                 }
                 initialised = true;
             }
+            #endregion
 
             #region reflect
             // yoinked from reflex charm
             var projWS = new Rectangle((int)projectile.Center.X - 32, (int)projectile.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {
-                if (!Pr.friendly && !Pr.bobber && 
+                if (!Pr.friendly && !Pr.bobber &&
                     Pr.type != ProjectileID.RainCloudMoving && Pr.type != ProjectileID.RainCloudRaining &&
-                    Pr.type != ProjectileID.BloodCloudMoving && Pr.type != ProjectileID.BloodCloudRaining && 
-                    Pr.type != 50 && Pr.type != ProjectileID.Stinger && 
+                    Pr.type != ProjectileID.BloodCloudMoving && Pr.type != ProjectileID.BloodCloudRaining &&
+                    Pr.type != 50 && Pr.type != ProjectileID.Stinger &&
                     Pr.type != 53 && Pr.type != 358 &&
                     Pr.type != ProjectileID.FrostHydra && Pr.type != ProjectileID.InfernoFriendlyBolt &&
                     Pr.type != ProjectileID.InfernoFriendlyBlast && Pr.type != ProjectileID.FlyingPiggyBank &&
                     Pr.type != ProjectileID.PhantasmalDeathray && Pr.type != ProjectileID.SpiritHeal &&
-                    Pr.type != ProjectileID.SpectreWrath && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>() && 
-                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() && 
-                    Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() && 
+                    Pr.type != ProjectileID.SpectreWrath && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() &&
                     Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
                     Pr.type != ModContent.ProjectileType<Projectiles.SpectreSplit>())
                 {
@@ -151,17 +143,16 @@ namespace ExxoAvalonOrigins.Projectiles
 
             #region movement
             int radius = 75;
-            float speed = 1f;
-            Vector2 target = player.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(((360f / activeIds.Where(i => i == true).Count()) * id) + rotTimer)) * radius;
+            float speed = 0.1f;
+            Vector2 target = player.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(((360f / modPlayer.StingerProbeActiveIds.Where(i => i == true).Count()) * id) + modPlayer.StingerProbeRotTimer)) * radius;
             Vector2 error = target - projectile.Center;
 
-            projectile.velocity = (error * speed);
+            projectile.velocity = player.velocity + (error * speed);
             //projectile.Center = target;
             #endregion
 
             #region projectile
-            Vector2 cursor = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            Vector2 dirToCursor = (cursor - projectile.Center).SafeNormalize(-Vector2.UnitY);
+            Vector2 dirToCursor = (modPlayer.MousePosition - projectile.Center).SafeNormalize(-Vector2.UnitY);
             projectile.rotation = dirToCursor.ToRotation() + MathHelper.ToRadians(180f);
 
             if (projTimer-- < 0)
@@ -181,6 +172,9 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void Kill(int timeLeft)
         {
+            Player player = Main.player[projectile.owner];
+            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+
             Main.PlaySound(SoundID.NPCKilled, projectile.position, 14);
 
             for (int i = 0; i < 2; i++)
@@ -194,12 +188,11 @@ namespace ExxoAvalonOrigins.Projectiles
                 Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
                 Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
             }
-            if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().stingerProbeMinion)
-            {
-                int bomb = Projectile.NewProjectile(projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
-                Main.projectile[bomb].timeLeft = 1;
-            }
-            activeIds[id] = false;
+            int bomb = Projectile.NewProjectile(projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
+            Main.projectile[bomb].timeLeft = 1;
+
+            modPlayer.StingerProbeActiveIds[id] = false;
+            base.Kill(timeLeft);
         }
     }
 }

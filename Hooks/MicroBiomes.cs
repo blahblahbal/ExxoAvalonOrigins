@@ -11,7 +11,12 @@ namespace ExxoAvalonOrigins.Hooks
 {
     class MicroBiomes
     {
-        public static void ILTrackGeneratorTrackCanBePlaced(ILContext il)
+        private static readonly ushort[] invalidWalls = new ushort[]
+            {
+                7, 94, 95, 8, 98, 99, 9, 96, 97, 3,
+                83, 87, (ushort) ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(), 86
+            };
+    public static void ILTrackGeneratorTrackCanBePlaced(ILContext il)
         {
             var c = new ILCursor(il);
 
@@ -30,11 +35,7 @@ namespace ExxoAvalonOrigins.Hooks
         }
         public static ushort[] ReturnInvalidWalls()
         {
-            return new ushort[]
-                {
-                    7, 94, 95, 8, 98, 99, 9, 96, 97, 3,
-                    83, 87, (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(), 86
-                };
+            return invalidWalls;
         }
         public static void OnCaveHouseBiome(On.Terraria.GameContent.Biomes.CaveHouseBiome.orig_cctor orig)
         {
