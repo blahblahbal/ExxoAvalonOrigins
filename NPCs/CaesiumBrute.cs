@@ -60,25 +60,21 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 if (Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                 {
-                    var player5 = Main.player[npc.target];
-                    var vector158 = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
-                    var num1191 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f + 40f), vector158.X - (player5.position.X + player5.width * 0.5f + 40f));
-                    var number2 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
-                    if (Main.netMode == NetmodeID.Server)
+                    int increments = 3;
+                    float degrees = 15f;
+                    float offset = (float)((float)(degrees / increments) / 2f); // IF YOU WANT THE ATTACK TO BE AIMED WITH EVEN INCREMENTS, REMOVE OFFSET FROM THE VELOCITY CALCULATION
+                    Vector2 rotation = (Main.player[npc.target].Center - npc.Center).SafeNormalize(-Vector2.UnitY);
+                    float speed = 7f;
+                    for (int i = 0; i < increments; i++)
                     {
-                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+                        Vector2 velocity = rotation.RotatedBy(MathHelper.ToRadians(((float)(degrees / 2f) * -1f) + ((float)(degrees / increments) * i) + offset)) * speed;
+                        int spray = Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 0f, npc.target, 1f, 0f);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, spray);
+                        }
                     }
-                    var num1192 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f - 40f), vector158.X - (player5.position.X + player5.width * 0.5f - 40f));
-                    var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
-                    Main.projectile[num1193].velocity *= 7f;
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
-                    }
-                    var mainproj = (float)Math.Atan2(npc.Center.Y - (player5.Center.Y), npc.Center.X - (player5.Center.X));
-                    int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 55, 1f, npc.target, 0f, 0f);
-                    Main.projectile[p].velocity *= 7f;
-                    Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
+                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 8);
                 }
                 npc.ai[0] = 0;
             }
@@ -88,19 +84,15 @@ namespace ExxoAvalonOrigins.NPCs
         {
             npc.spriteDirection = npc.direction;
             npc.rotation = npc.velocity.X * 0.1f;
+            int num226 = 5;
+            int num227 = 5;
             npc.frameCounter += 1.0;
-            if (npc.frameCounter < 6.0)
+            if (npc.frameCounter >= (double)(num226 * num227))
             {
-                npc.frame.Y = 0;
+                npc.frameCounter = 0.0;
             }
-            else
-            {
-                npc.frame.Y = frameHeight;
-                if (npc.frameCounter >= 11.0)
-                {
-                    npc.frameCounter = 0.0;
-                }
-            }
+            int num228 = (int)(npc.frameCounter / (double)num226);
+            npc.frame.Y = num228 * frameHeight;
         }
 
         public override void HitEffect(int hitDirection, double damage)
