@@ -28,7 +28,6 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[1] { 16 };
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
-            //TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.AlternateTile | AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.HookCheck = new PlacementHook(CanPlaceAlter, -1, 0, processedCoordinates: true);
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
@@ -38,7 +37,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override bool CanPlace(int i, int j)
         {
-            return (Main.tile[i, j - 1].active() || Main.tile[i - 1, j].active() || Main.tile[i, j + 1].active() || Main.tile[i + 1, j].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
+            return (Main.tile[i, j - 1].active() || Main.tile[i, j + 1].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
         }
 
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)

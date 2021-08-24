@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Tiles{	public class CrimstoneColumn : ModTile	{	
         }
         public override bool CanPlace(int i, int j)
         {
-            return (Main.tile[i, j - 1].active() || Main.tile[i - 1, j].active() || Main.tile[i, j + 1].active() || Main.tile[i + 1, j].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
+            return (Main.tile[i, j - 1].active() || Main.tile[i, j + 1].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
         }
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)
         {

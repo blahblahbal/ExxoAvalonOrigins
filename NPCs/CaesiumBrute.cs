@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void NPCLoot()
         {
-            if (Main.rand.Next(10) == 0)
+            if (Main.rand.Next(6) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CaesiumOre>(), Main.rand.Next(3, 7), false, 0, false);
             }
@@ -69,16 +69,14 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     var num1192 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f - 40f), vector158.X - (player5.position.X + player5.width * 0.5f - 40f));
                     var num1193 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 80, 1f, npc.target, 0f, 0f);
-                    var expr_4284B_cp_0 = Main.projectile[num1193];
-                    expr_4284B_cp_0.velocity.X = expr_4284B_cp_0.velocity.X * 7f;
-                    var expr_4286B_cp_0 = Main.projectile[num1193];
-                    expr_4286B_cp_0.velocity.Y = expr_4286B_cp_0.velocity.Y * 7f;
+                    Main.projectile[num1193].velocity *= 7f;
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
                     }
                     var mainproj = (float)Math.Atan2(npc.Center.Y - (player5.Center.Y), npc.Center.X - (player5.Center.X));
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 80, 1f, npc.target, 0f, 0f);
+                    int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumFireball>(), 80, 1f, npc.target, 0f, 0f);
+                    Main.projectile[p].velocity *= 7f;
                 }
                 npc.ai[0] = 0;
             }
