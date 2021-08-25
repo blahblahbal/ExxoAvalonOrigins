@@ -1975,11 +1975,8 @@ namespace ExxoAvalonOrigins
                         player.ClearBuff(ModContent.BuffType<Buffs.AstralProjecting>());
                     }
                 }
-                //Main.NewText(astralStart);
-                //Main.NewText(astralCD);
                 if (astralCD >= 3600)
                 {
-                    //Main.NewText("a");
                     astralCD = 0;
                     if (!astralStart) player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
                 }
@@ -2021,7 +2018,7 @@ namespace ExxoAvalonOrigins
 		        Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
 	        }
 
-	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.accDrillModeHotkey.JustPressed)
+	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
 	        {
 		        speed = !speed; //TODO: implement speed
 		        if (!speed)
@@ -2035,7 +2032,7 @@ namespace ExxoAvalonOrigins
 	        }
 
 	        if (Main.netMode != NetmodeID.SinglePlayer && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
-	            ExxoAvalonOrigins.mirrorModeHotkey.JustPressed)
+	            ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
 	        {
 		        int newPlayer = teleportToPlayer;
 		        int numPlayersCounted = 0;
@@ -2065,7 +2062,7 @@ namespace ExxoAvalonOrigins
 	        if (player.inventory[player.selectedItem].type == ModContent.ItemType<ShadowMirror>())
 	        {
 		        player.noFallDmg = true; //TODO: Replace with better anti-fall-damage mechanism.
-		        if (ExxoAvalonOrigins.mirrorModeHotkey.JustPressed)
+		        if (ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
 		        {
 			        shadowWP++;
 			        shadowWP %= 7;
@@ -2078,7 +2075,7 @@ namespace ExxoAvalonOrigins
 					        Main.NewText("Mirror Mode: Dungeon");
 					        break;
 				        case 2:
-					        Main.NewText("Mirror Mode: Jungle" + (ExxoAvalonOriginsWorld.jungleLocationKnown ? "" : " (approx. pos)"));
+					        Main.NewText("Mirror Mode: Jungle/Tropics" + (ExxoAvalonOriginsWorld.jungleLocationKnown ? "" : " (approx. pos)"));
 					        break;
 				        case 3:
 					        Main.NewText("Mirror Mode: Left Ocean");

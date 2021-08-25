@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Acceleration Drill");
-			Tooltip.SetDefault("\"Vroom vroom\"");
+			Tooltip.SetDefault("'Vroom vroom'");
 		}
 
 		public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.Items
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
-			var assignedKeys = ExxoAvalonOrigins.accDrillModeHotkey.GetAssignedKeys();
+			var assignedKeys = ExxoAvalonOrigins.modeChangeHotkey.GetAssignedKeys();
 
 			var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change mining modes");
 			tooltips.Add(assignedKeyInfo);
@@ -85,28 +85,5 @@ namespace ExxoAvalonOrigins.Items
                 }
             }
         }
-
-  //      public override bool UseItem(Player player)
-		//{
-		//	if (player.controlUseItem && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().speed && player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost <= (float)Player.tileTargetX && (player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f >= (float)Player.tileTargetX && player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost <= (float)Player.tileTargetY && (player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f >= (float)Player.tileTargetY)
-		//	{
-		//		for (int num360 = Player.tileTargetX - 1; num360 <= Player.tileTargetX + 1; num360++)
-		//		{
-		//			for (int num361 = Player.tileTargetY - 1; num361 <= Player.tileTargetY + 1; num361++)
-		//			{
-		//				if (Main.tile[num360, num361].active() && !Main.tileHammer[(int)Main.tile[num360, num361].type] && !Main.tileAxe[(int)Main.tile[num360, num361].type])
-		//				{
-		//					WorldGen.KillTile(num360, num361, false, false, false);
-		//					if (Main.netMode == NetmodeID.MultiplayerClient)
-		//					{
-		//						NetMessage.SendData(17, -1, -1, NetworkText.FromLiteral(""), 0, (float)num360, (float)num361, 0f, 0);
-		//					}
-		//				}
-		//			}
-		//		}
-		//	}
-
-		//	return true;
-		//}
 	}
 }
