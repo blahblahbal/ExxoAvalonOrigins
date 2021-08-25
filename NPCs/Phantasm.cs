@@ -236,7 +236,7 @@ namespace ExxoAvalonOrigins.NPCs
                         //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
                         if (npc.ai[1] % 75 == 0)
                         {
-                            Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
+                            Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
                             // fire laser
                             Vector2 velocityOfProj = Main.player[npc.target].Center - npc.Center;
                             velocityOfProj.Normalize();

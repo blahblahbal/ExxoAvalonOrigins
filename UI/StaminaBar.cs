@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.UI
 
             CalculatedStyle dimensions = GetDimensions();
             // Draw labelText above stamina bar
-            DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, labelText, new Vector2((float)(Main.screenWidth - labelDimensions.X - 5), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor,Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, labelText, new Vector2((Main.screenWidth - labelDimensions.X + 15), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor,Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 0.7f, SpriteEffects.None, 0f);
 
             var player = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
