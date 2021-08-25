@@ -26,6 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons
 			item.autoReuse = true;
 			item.useTurn = true;
 			item.rare = ItemRarityID.Lime;
+            item.noMelee = true;
 			item.width = dims.Width;
             item.channel = true;
 			item.height = dims.Height;
