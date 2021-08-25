@@ -20,8 +20,10 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 32;
-            projectile.height = 34;
+            Main.projFrames[projectile.type] = 4;
+			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TheSun");
+            projectile.width = dims.Width * 30 / 40;
+            projectile.height = dims.Height * 30 / 40 / Main.projFrames[projectile.type];
             projectile.alpha = 0;
             projectile.scale = 1.4f;
             projectile.aiStyle = -1;
@@ -34,7 +36,6 @@ namespace ExxoAvalonOrigins.Projectiles
             //projectile.ownerHitCheck = true;
             projectile.tileCollide = false;
             projectile.magic = true;
-            Main.projFrames[projectile.type] = 4;
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
