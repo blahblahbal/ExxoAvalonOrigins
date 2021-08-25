@@ -1,9 +1,6 @@
-﻿using Mono.Cecil;
-using Mono.Cecil.Cil;
+﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using MonoMod.RuntimeDetour.HookGen;
 using System;
-using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -16,7 +13,8 @@ namespace ExxoAvalonOrigins.Hooks
                 7, 94, 95, 8, 98, 99, 9, 96, 97, 3,
                 83, 87, (ushort) ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(), 86
             };
-    public static void ILTrackGeneratorTrackCanBePlaced(ILContext il)
+
+        public static void ILTrackGeneratorTrackCanBePlaced(ILContext il)
         {
             var c = new ILCursor(il);
 
@@ -33,10 +31,61 @@ namespace ExxoAvalonOrigins.Hooks
             c.Remove();
             c.Emit(OpCodes.Ldelem_U2);
         }
+
         public static ushort[] ReturnInvalidWalls()
         {
             return invalidWalls;
         }
+
+        public static void ILMiningExplosivesBiomePlace(ILContext il)
+        {
+            var c = new ILCursor(il);
+
+            if (!c.TryGotoNext(i => i.MatchConvU2()))
+                return;
+            if (!c.TryGotoNext(i => i.MatchStelemI2()))
+                return;
+
+            c.Emit(OpCodes.Pop);
+            c.EmitDelegate<Func<ushort>>(() =>
+            {
+                return WorldGen.GoldTierOre;
+            });
+
+            if (!c.TryGotoNext(i => i.MatchConvU2()))
+                return;
+            if (!c.TryGotoNext(i => i.MatchStelemI2()))
+                return;
+
+            c.Emit(OpCodes.Pop);
+            c.EmitDelegate<Func<ushort>>(() =>
+            {
+                return WorldGen.SilverTierOre;
+            });
+
+            if (!c.TryGotoNext(i => i.MatchConvU2()))
+                return;
+            if (!c.TryGotoNext(i => i.MatchStelemI2()))
+                return;
+
+            c.Emit(OpCodes.Pop);
+            c.EmitDelegate<Func<ushort>>(() =>
+            {
+                return WorldGen.IronTierOre;
+            });
+
+            if (!c.TryGotoNext(i => i.MatchConvU2()))
+                return;
+            if (!c.TryGotoNext(i => i.MatchStelemI2()))
+                return;
+
+            c.Emit(OpCodes.Pop);
+            c.EmitDelegate<Func<ushort>>(() =>
+            {
+                return WorldGen.CopperTierOre;
+            });
+        }
+
         public static void OnCaveHouseBiome(On.Terraria.GameContent.Biomes.CaveHouseBiome.orig_cctor orig)
         {
             orig();

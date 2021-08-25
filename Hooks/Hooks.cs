@@ -48,6 +48,7 @@
             IL.Terraria.Wiring.HitWireSingle += Tropics.ILHitWireSingle;
 
             IL.Terraria.GameContent.Generation.TrackGenerator.CanTrackBePlaced += MicroBiomes.ILTrackGeneratorTrackCanBePlaced;
+            IL.Terraria.GameContent.Biomes.MiningExplosivesBiome.Place += MicroBiomes.ILMiningExplosivesBiomePlace;
 
             IL.Terraria.WorldGen.Spread.Wall += Tropics.ILSpreadWall;
             IL.Terraria.WorldGen.Spread.Wall2 += Tropics.ILSpreadWall2;

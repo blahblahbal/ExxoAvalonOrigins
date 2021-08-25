@@ -39,22 +39,6 @@ namespace ExxoAvalonOrigins.NPCs
         {
             potionType = ItemID.GreaterHealingPotion;
         }
-        public static void Teleport(Vector2 coords, bool forceHandle = false, int whoAmI = 0)
-        {
-            bool syncData = forceHandle || Main.netMode == NetmodeID.SinglePlayer;
-            if (whoAmI == -1)
-            {
-                whoAmI = NPC.FindFirstNPC(ModContent.NPCType<Phantasm>());
-            }
-            if (syncData)
-            {
-                TeleportPhantasm(coords, forceHandle, whoAmI);
-            }
-            else
-            {
-                Network.Phantasm.SendPacket(coords);
-            }
-        }
         private static void TeleportPhantasm(Vector2 coords, bool sync = false, int whoAmI = 0)
         {
             Main.npc[whoAmI].position = coords;

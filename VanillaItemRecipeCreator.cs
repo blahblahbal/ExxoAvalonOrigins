@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
@@ -12,7 +7,7 @@ namespace ExxoAvalonOrigins
     {
         public static void CreateRecipes(Mod mod)
         {
-            var recipe = new ModRecipe(mod);
+            ModRecipe recipe;
 
             recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup(ItemID.CopperBar, 6);

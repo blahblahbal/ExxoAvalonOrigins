@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExxoAvalonOrigins
 {
@@ -21,7 +17,7 @@ namespace ExxoAvalonOrigins
             this.fix = fix;
         }
 
-        public Version(String version)
+        public Version(string version)
         {
             var vStrs = version.Split('.');
             rewrite = int.Parse(vStrs[0]);
@@ -35,7 +31,7 @@ namespace ExxoAvalonOrigins
             return String.Format("{0}.{1}.{2}.{3}", rewrite, major, minor, fix);
         }
 
-        public static bool operator< (Version v1, Version v2)
+        public static bool operator <(Version v1, Version v2)
         {
             if (v2 == null) return false;
             if (v1 == null) return true;
