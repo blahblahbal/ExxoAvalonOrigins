@@ -32,16 +32,19 @@ namespace ExxoAvalonOrigins.World.Passes
                 for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
                 {
                     if ((Main.tile[q, z].type == TileID.Ash || Main.tile[q, z].type == TileID.Hellstone) && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                    if (z < Main.maxTilesY - 110 && z > Main.maxTilesY - 150)
+                    if (z < Main.maxTilesY - 110 && z > Main.maxTilesY - 150 || z < Main.maxTilesY - 190 && z > Main.maxTilesY - 200)
                     {
                         if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
                             Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
                         {
-                            if (WorldGen.genRand.Next(30) == 0)
+                            if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
                             {
-                                Structures.CaesiumSpike.CreateSpike(q, z);
+                                if (WorldGen.genRand.Next(25) == 0)
+                                {
+                                    Structures.CaesiumSpike.CreateSpike(q, z);
+                                }
                             }
                         }
                     }

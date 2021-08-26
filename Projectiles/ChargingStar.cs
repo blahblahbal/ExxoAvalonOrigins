@@ -16,9 +16,6 @@ namespace ExxoAvalonOrigins.Projectiles
         int Pindex = -1;
         Color Color1 = Color.Yellow;
         Color Color2 = Color.Orange;
-        int DT = 15;
-        float dustSpeed = 1f;
-        bool DrawLazer = true;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Charging Star");
