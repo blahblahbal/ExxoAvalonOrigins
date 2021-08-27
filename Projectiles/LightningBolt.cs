@@ -26,9 +26,9 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
                     int lightning = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningBolt>(), 80, 0f, projectile.owner);
                     Projectile newLightning = Main.projectile[lightning];
                     newLightning.scale = projectile.scale * (Main.rand.Next(100) / 100f);
-                    if (randRot > 1)
+                    if (randRot < 2.5f)
                         newLightning.rotation = randRot - projectile.ai[1];
-                    else if (randRot < -1)
+                    else if (randRot > -2.5f)
                         newLightning.rotation = randRot + projectile.ai[1];
                     Vector2 fakePos = projectile.position;
                     fakePos.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
@@ -37,25 +37,23 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
                     fakePos.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
                     if (fakePos.Y >= projectile.localAI[1])
                     {
-                        if (newLightning.rotation > 1)
+                        if (newLightning.rotation < 2.5f)
                         {
-                            newLightning.rotation -= 0.01f * projectile.ai[0];
+                            newLightning.rotation += 0.01f;
                         }
-                        else if (newLightning.rotation < -1)
+                        else if (newLightning.rotation > -2.5f)
                         {
-                            newLightning.rotation += 0.01f * projectile.ai[0];
+                            newLightning.rotation -= 0.01f;
                         }
                         Main.NewText(newLightning.rotation);
                     }
                     else
                     {
                         newLightning.timeLeft = projectile.timeLeft;
-                        //newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
-                        //newLightning.position.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
-                        //newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
-                        //newLightning.position.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
-                        newLightning.position.X += Main.rand.Next(-40, 41);
-                        newLightning.position.Y += Main.rand.Next(20, 51);
+                        newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
+                        newLightning.position.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
+                        newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
+                        newLightning.position.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
                         newLightning.ai[0] = 10;
                         newLightning.ai[1] = randRot * 2;
                         newLightning.localAI[0] = projectile.position.X;

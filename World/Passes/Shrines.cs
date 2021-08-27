@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 WallID.IceBrick,
                 ModContent.WallType<Walls.ObsidianLavaTube>()
             };
-            for (int q = 0; q < 3; q++)
+            for (int q = 0; q < 4; q++)
             {
                 var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
                 var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
@@ -82,6 +82,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 if (q == 0) Structures.IceShrine.Generate(x10, y6);
                 else if (q == 1) Structures.EvilShrine.GenerateEvilShrine(x10, y6);
                 else if (q == 2) Structures.LavaShrine.AddLavaShrine(x10, y6);
+                else if (q == 3) Structures.ObserverTemple.MakeObserverTemple(x10, y6);
             }
         }
     }

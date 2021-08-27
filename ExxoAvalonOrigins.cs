@@ -205,6 +205,12 @@
                     priority = MusicPriority.BiomeHigh;
                 }
             }
+            if (Main.tile[(int)player.position.X / 16, (int)player.position.Y / 16].wall == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && ExxoAvalonOriginsWorld.tropicTiles > 50)
+            {
+                if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/TuhrtlOutpost");
+                else music = MusicID.Temple;
+                priority = MusicPriority.BiomeHigh;
+            }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
             {
                 if (musicMod != null) music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hellcastle");
