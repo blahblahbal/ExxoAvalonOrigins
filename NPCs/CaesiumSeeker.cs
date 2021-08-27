@@ -12,10 +12,10 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 6;
-            npc.scale = 2f;
+            npc.scale = 1f;
             npc.netAlways = true;
             npc.damage = 65;
             npc.defense = 15;
@@ -65,12 +65,12 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 6;
             npc.netAlways = true;
             npc.damage = 60;
-            npc.scale = 2f;
+            npc.scale = 1f;
             npc.defense = 13;
             npc.lifeMax = 1400;
             npc.HitSound = SoundID.NPCHit1;
@@ -97,10 +97,10 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 6;
-            npc.scale = 2f;
+            npc.scale = 1f;
             npc.netAlways = true;
             npc.damage = 49;
             npc.defense = 15;
