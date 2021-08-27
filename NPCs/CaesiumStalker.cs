@@ -64,14 +64,14 @@ namespace ExxoAvalonOrigins.NPCs
 			var num9 = 0.4f;
 			for (var i = 1; i <= num8; i++)
 			{
-				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.RuneWizard, 0f, 0f, 100, default, 2f);
+				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, ModContent.DustType<Dusts.CaesiumDust>(), 0f, 0f, 100, default, 2f);
 				Main.dust[num10].noGravity = true;
 				Main.dust[num10].velocity.X = num9 * (Main.dust[num10].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num10].velocity.Y = num9 * (Main.dust[num10].position.Y - (npc.position.Y + npc.height / 2));
 			}
 			for (var j = 1; j <= num8; j++)
 			{
-				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.RuneWizard, 0f, 0f, 100, default, 1f);
+				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, ModContent.DustType<Dusts.CaesiumDust>(), 0f, 0f, 100, default, 1f);
 				Main.dust[num11].noGravity = true;
 				Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));

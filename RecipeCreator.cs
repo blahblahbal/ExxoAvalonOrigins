@@ -939,5 +939,12 @@ using System;using Terraria;using Terraria.ID;using Terraria.ModLoader;using
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightTreads>());
 			#endregion
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ModContent.ItemType<Items.TropicalShroomCap>(), 12);
+			recipe.AddIngredient(ModContent.ItemType<Items.MosquitoProboscis>(), 12);
+			recipe.AddTile(TileID.Anvils);
+			recipe.SetResult(ModContent.ItemType<Items.Weapons.TropicalBlade>());
+			recipe.AddRecipe();
 		}
     }}

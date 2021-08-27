@@ -258,6 +258,18 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
                     damage = 3;
                 }
             }
+            if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().malaria)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 30;
+                if (damage < 1)
+                {
+                    damage = 1;
+                }
+            }
         }        public override void DrawEffects(NPC npc, ref Color drawColor)
         {
             if (npc.HasBuff(ModContent.BuffType<Buffs.NecroticDrain>()))
