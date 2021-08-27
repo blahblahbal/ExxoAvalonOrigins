@@ -16,10 +16,11 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(new Color(204, 138, 174), LanguageManager.Instance.GetText("Bismuth"));
+			AddMapEntry(new Color(187, 89, 192), LanguageManager.Instance.GetText("Bismuth"));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
-			Main.tileShine[Type] = 1150;
+			Main.tileShine2[Type] = true;
+			Main.tileShine[Type] = 1000;
             Main.tileValue[Type] = 275;
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;

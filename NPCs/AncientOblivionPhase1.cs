@@ -10,11 +10,11 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class OblivionPhase1 : ModNPC
+	public class AncientOblivionPhase1 : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Oblivion");
+			DisplayName.SetDefault("Ancient Oblivion");
 			Main.npcFrameCount[npc.type] = 6;
 		}
 
@@ -523,7 +523,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void NPCLoot()
         {
-            NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<OblivionPhase1Dead>(), 0);
+            NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<AncientOblivionPhase1Dead>(), 0);
         }
 
         public override void FindFrame(int frameHeight)

@@ -85,7 +85,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 150), // Ycoord of tile
                     WorldGen.genRand.Next(4, 5), // Quantity
                     WorldGen.genRand.Next(5, 7),
-                    ExxoAvalonOriginsWorld.osmiumOre.GetTile(), //Tile to spawn
+                    ExxoAvalonOriginsWorld.rhodiumOre.GetTile(), //Tile to spawn
                     false, 0f, 0f, false, true); //last input overrides existing tiles
             }
             for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)

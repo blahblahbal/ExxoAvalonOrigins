@@ -11,11 +11,11 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class OblivionHead1 : ModNPC
+	public class AncientOblivionHead1 : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Oblivion");
+			DisplayName.SetDefault("Ancient Oblivion");
 			Main.npcFrameCount[npc.type] = 3;
 		}
 
@@ -53,27 +53,27 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.TargetClosest(true);
                 npc.ai[0] = 1f;
                 instance.infernaSpawned = false;
-                var num559 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionHead2>(), npc.whoAmI);
+                var num559 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionHead2>(), npc.whoAmI);
                 Main.npc[num559].ai[3] = npc.whoAmI;
                 Main.npc[num559].target = npc.target;
                 Main.npc[num559].netUpdate = true;
-                var num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionCannon>(), npc.whoAmI);
+                var num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionCannon>(), npc.whoAmI);
                 Main.npc[num560].ai[0] = -1f;
                 Main.npc[num560].ai[1] = npc.whoAmI;
                 Main.npc[num560].target = npc.target;
                 Main.npc[num560].netUpdate = true;
-                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionLaser>(), npc.whoAmI);
+                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionLaser>(), npc.whoAmI);
                 Main.npc[num560].ai[0] = 1f;
                 Main.npc[num560].ai[1] = npc.whoAmI;
                 Main.npc[num560].target = npc.target;
                 Main.npc[num560].netUpdate = true;
-                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionSaw>(), npc.whoAmI);
+                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionSaw>(), npc.whoAmI);
                 Main.npc[num560].ai[0] = -1f;
                 Main.npc[num560].ai[1] = npc.whoAmI;
                 Main.npc[num560].target = npc.target;
                 Main.npc[num560].ai[3] = 150f;
                 Main.npc[num560].netUpdate = true;
-                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionVice>(), npc.whoAmI);
+                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionVice>(), npc.whoAmI);
                 Main.npc[num560].ai[0] = 1f;
                 Main.npc[num560].ai[1] = npc.whoAmI;
                 Main.npc[num560].target = npc.target;
@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Main.npc[num561].target = npc.target;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Infernaspaz has awoken!"), 255, 175f, 75f, 255f, 0);
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Infernaspaz has awoken!"), new Color(175, 75, 255));
                 }
                 else Main.NewText("Infernaspaz has awoken!", 175, 75, 255);
                 NPC.SpawnOnPlayer(npc.target, NPCID.Retinazer);

@@ -19,7 +19,8 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(new Color(82, 112, 122), LanguageManager.Instance.GetText("Nickel"));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
-			Main.tileShine[Type] = 1150;
+			Main.tileShine2[Type] = true;
+			Main.tileShine[Type] = 1050;
             Main.tileValue[Type] = 235;
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;

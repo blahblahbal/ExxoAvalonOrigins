@@ -31,17 +31,6 @@ namespace ExxoAvalonOrigins.Hooks
             switch (currentOreTier)
             {
                 case 0:
-                    // Set ore tier if not set
-                    if (WorldGen.oreTier1 == -1)
-                    {
-                        WorldGen.oreTier1 = TileID.Cobalt;
-                        int ore = WorldGen.genRand.Next(3);
-                        if (ore == 0) 
-                            WorldGen.oreTier1 = TileID.Palladium;
-                        else if (ore == 1) 
-                            WorldGen.oreTier1 = ModContent.TileType<DurataniumOre>();
-                    }
-
                     if (WorldGen.oreTier1 == TileID.Palladium || WorldGen.oreTier1 == ModContent.TileType<DurataniumOre>())
                     {
                         amountOreToSpawn *= 0.9f;
@@ -50,26 +39,26 @@ namespace ExxoAvalonOrigins.Hooks
                     // Message players
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        if (WorldGen.oreTier1 == TileID.Cobalt) 
+                        if (WorldGen.oreTier1 == TileID.Cobalt)
                             Main.NewText("Your world has been blessed with Cobalt!", 26, 105, 161, false);
-                        else if (WorldGen.oreTier1 == TileID.Palladium) 
+                        else if (WorldGen.oreTier1 == TileID.Palladium)
                             Main.NewText("Your world has been blessed with Palladium!", 235, 87, 47, false);
                         else if (WorldGen.oreTier1 == ModContent.TileType<DurataniumOre>())
                             Main.NewText("Your world has been blessed with Duratanium!", 137, 81, 89, false);
 
-                        if (WorldGen.altarCount == 0) 
+                        if (WorldGen.altarCount == 0)
                             Main.NewText("The underground smells like rotten eggs...", 210, 183, 4, false);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        if (WorldGen.oreTier1 == TileID.Cobalt) 
+                        if (WorldGen.oreTier1 == TileID.Cobalt)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Cobalt!"), new Color(26, 105, 161));
-                        else if (WorldGen.oreTier1 == TileID.Palladium) 
+                        else if (WorldGen.oreTier1 == TileID.Palladium)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Palladium!"), new Color(235, 87, 47));
                         else if (WorldGen.oreTier1 == ModContent.TileType<DurataniumOre>())
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Duratanium!"), new Color(137, 81, 89));
 
-                        if (WorldGen.altarCount == 0) 
+                        if (WorldGen.altarCount == 0)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
                     }
 
@@ -78,17 +67,6 @@ namespace ExxoAvalonOrigins.Hooks
                     amountOreToSpawn *= 1.05f;
                     break;
                 case 1:
-                    // Set ore tier if not set
-                    if (WorldGen.oreTier2 == -1)
-                    {
-                        WorldGen.oreTier2 = TileID.Mythril;
-                        int ore = WorldGen.genRand.Next(3);
-                        if (ore == 0) 
-                            WorldGen.oreTier2 = TileID.Orichalcum;
-                        else if (ore == 1) 
-                            WorldGen.oreTier2 = ModContent.TileType<NaquadahOre>();
-                    }
-
                     if (WorldGen.oreTier2 == TileID.Orichalcum || WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>())
                     {
                         amountOreToSpawn *= 0.9f;
@@ -96,37 +74,26 @@ namespace ExxoAvalonOrigins.Hooks
 
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        if (WorldGen.oreTier2 == TileID.Mythril) 
+                        if (WorldGen.oreTier2 == TileID.Mythril)
                             Main.NewText("Your world has been blessed with Mythril!", 93, 147, 88, false);
-                        else if (WorldGen.oreTier2 == TileID.Orichalcum) 
+                        else if (WorldGen.oreTier2 == TileID.Orichalcum)
                             Main.NewText("Your world has been blessed with Orichalcum!", 163, 22, 158, false);
-                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>()) 
+                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>())
                             Main.NewText("Your world has been blessed with Naquadah!", 0, 38, 255, false);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        if (WorldGen.oreTier2 == TileID.Mythril) 
+                        if (WorldGen.oreTier2 == TileID.Mythril)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Mythril!"), new Color(93, 147, 88));
-                        else if (WorldGen.oreTier2 == TileID.Orichalcum) 
+                        else if (WorldGen.oreTier2 == TileID.Orichalcum)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Orichalcum!"), new Color(163, 22, 158));
-                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>()) 
+                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>())
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Naquadah!"), new Color(0, 38, 255));
                     }
 
                     currentOreTier = WorldGen.oreTier2;
                     break;
                 case 2:
-                    // Set ore tier if not set
-                    if (WorldGen.oreTier3 == -1)
-                    {
-                        WorldGen.oreTier3 = TileID.Adamantite;
-                        int ore = WorldGen.genRand.Next(3);
-                        if (ore == 0) 
-                            WorldGen.oreTier3 = TileID.Titanium;
-                        else if (ore == 1) 
-                            WorldGen.oreTier3 = ModContent.TileType<TroxiniumOre>();
-                    }
-
                     if (WorldGen.oreTier3 == TileID.Titanium || WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>())
                     {
                         amountOreToSpawn *= 0.9f;
@@ -134,20 +101,20 @@ namespace ExxoAvalonOrigins.Hooks
 
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        if (WorldGen.oreTier3 == TileID.Adamantite) 
+                        if (WorldGen.oreTier3 == TileID.Adamantite)
                             Main.NewText("Your world has been blessed with Adamantite!", 221, 85, 152, false);
-                        else if (WorldGen.oreTier3 == TileID.Titanium) 
+                        else if (WorldGen.oreTier3 == TileID.Titanium)
                             Main.NewText("Your world has been blessed with Titanium!", 185, 194, 215, false);
-                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>()) 
+                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>())
                             Main.NewText("Your world has been blessed with Troxinium!", 193, 218, 72, false);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        if (WorldGen.oreTier3 == TileID.Adamantite) 
+                        if (WorldGen.oreTier3 == TileID.Adamantite)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Adamantite!"), new Color(221, 85, 152));
-                        else if (WorldGen.oreTier3 == TileID.Titanium) 
+                        else if (WorldGen.oreTier3 == TileID.Titanium)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Titanium!"), new Color(185, 194, 215));
-                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>()) 
+                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>())
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Troxinium!"), new Color(193, 218, 72));
                     }
 
@@ -206,7 +173,7 @@ namespace ExxoAvalonOrigins.Hooks
                     }
                     else if (ExxoAvalonOriginsWorld.contaigon)
                     {
-                        Main.tile[x, y].type = (ushort)ModContent.TileType<Chunkstone>();  
+                        Main.tile[x, y].type = (ushort)ModContent.TileType<Chunkstone>();
                     }
                     else
                     {

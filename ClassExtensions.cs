@@ -69,29 +69,29 @@ namespace ExxoAvalonOrigins
 
             return dims;
         }
-        public static int GetTile(this ExxoAvalonOriginsWorld.OsmiumVariant osmiumVariant)
+        public static int GetTile(this ExxoAvalonOriginsWorld.RhodiumVariant osmiumVariant)
         {
             switch (osmiumVariant)
             {
-                case ExxoAvalonOriginsWorld.OsmiumVariant.osmium:
+                case ExxoAvalonOriginsWorld.RhodiumVariant.osmium:
                     return ModContent.TileType<Tiles.OsmiumOre>();
-                case ExxoAvalonOriginsWorld.OsmiumVariant.rhodium:
+                case ExxoAvalonOriginsWorld.RhodiumVariant.rhodium:
                     return ModContent.TileType<Tiles.RhodiumOre>();
-                case ExxoAvalonOriginsWorld.OsmiumVariant.iridium:
+                case ExxoAvalonOriginsWorld.RhodiumVariant.iridium:
                     return ModContent.TileType<Tiles.IridiumOre>();
                 default:
                     return -1;
             }
         }
-        public static int GetItemOre(this ExxoAvalonOriginsWorld.OsmiumVariant osmiumVariant)
+        public static int GetItemOre(this ExxoAvalonOriginsWorld.RhodiumVariant osmiumVariant)
         {
             switch (osmiumVariant)
             {
-                case ExxoAvalonOriginsWorld.OsmiumVariant.osmium:
+                case ExxoAvalonOriginsWorld.RhodiumVariant.osmium:
                     return ModContent.ItemType<Items.OsmiumOre>();
-                case ExxoAvalonOriginsWorld.OsmiumVariant.rhodium:
+                case ExxoAvalonOriginsWorld.RhodiumVariant.rhodium:
                     return ModContent.ItemType<Items.RhodiumOre>();
-                case ExxoAvalonOriginsWorld.OsmiumVariant.iridium:
+                case ExxoAvalonOriginsWorld.RhodiumVariant.iridium:
                     return ModContent.ItemType<Items.IridiumOre>();
                 default:
                     return -1;

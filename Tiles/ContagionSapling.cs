@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Tiles
             ModTranslation modTranslation = CreateMapEntryName();
             modTranslation.SetDefault("Sapling");
             AddMapEntry(new Color(200, 200, 200), modTranslation);
-            dustType = ModContent.DustType<Dusts.ContagionDust>();
+            dustType = ModContent.DustType<Dusts.CoughwoodDust>();
             adjTiles = new int[1] { TileID.Saplings };
         }
 

@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class OblivionSaw : ModNPC
+	public class AncientOblivionSaw : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Oblivion Saw");
+			DisplayName.SetDefault("Ancient Oblivion Saw");
 			Main.npcFrameCount[npc.type] = 1;
 		}
 
@@ -64,7 +64,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[2] = 0f;
             }
             npc.spriteDirection = -(int)npc.ai[0];
-            if (!Main.npc[(int)npc.ai[1]].active || !(Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<OblivionHead1>() || Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<OblivionHead2>()))
+            if (!Main.npc[(int)npc.ai[1]].active || !(Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<AncientOblivionHead1>() || Main.npc[(int)npc.ai[1]].type == ModContent.NPCType<AncientOblivionHead2>()))
             {
                 npc.ai[2] += 10f;
                 if (npc.ai[2] > 50f || Main.netMode != NetmodeID.Server)

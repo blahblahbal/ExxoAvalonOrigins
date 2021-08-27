@@ -12,10 +12,10 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 6;
-            npc.scale = 2f;
+            npc.scale = 1f;
             npc.netAlways = true;
             npc.damage = 65;
             npc.defense = 15;
@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void NPCLoot()
         {
-            if (Main.rand.Next(10) == 0)
+            if (Main.rand.Next(10) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
             }
@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"), 2f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"), 0.7f);
             }
         }
         public override void Init()
@@ -65,12 +65,12 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 6;
             npc.netAlways = true;
             npc.damage = 60;
-            npc.scale = 2f;
+            npc.scale = 1f;
             npc.defense = 13;
             npc.lifeMax = 1400;
             npc.HitSound = SoundID.NPCHit1;
@@ -86,7 +86,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"), 2f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"), 0.7f);
             }
         }
     }
@@ -97,10 +97,10 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
+            npc.width = 28;
+            npc.height = 28;
             npc.aiStyle = 6;
-            npc.scale = 2f;
+            npc.scale = 1f;
             npc.netAlways = true;
             npc.damage = 49;
             npc.defense = 15;
@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"), 2f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"), 0.7f);
             }
         }
         public override void Init()

@@ -493,8 +493,52 @@ namespace ExxoAvalonOrigins
         }
         public override void PreUpdateBuffs()
         {
+            //int[] array = new int[Main.maxProjectileTypes];
+            //for (int j = 0; j < Main.projectile.Length; j++)
+            //{
+            //    if (Main.projectile[j].active && Main.projectile[j].owner == player.whoAmI)
+            //    {
+            //        array[Main.projectile[j].type]++;
+            //    }
+            //}
+
             for (int k = 0; k < player.buffType.Length; k++)
             {
+                //if (player.buffType[k] == ModContent.BuffType<Buffs.Hungry>())
+                //{
+                //    if (array[ModContent.ProjectileType<HungrySummon>()] > 0)
+                //    {
+                //        hungryMinion = true;
+                //    }
+                //    if (!hungryMinion)
+                //    {
+                //        player.DelBuff(k);
+                //        k--;
+                //    }
+                //    else
+                //    {
+                //        player.buffTime[k] = 18000;
+                //    }
+                //}
+                //if (player.buffType[k] == ModContent.BuffType<Buffs.PrimeArms>())
+                //{
+                //    if (array[ModContent.ProjectileType<PriminiCannon>()] > 0 ||
+                //        array[ModContent.ProjectileType<PriminiLaser>()] > 0 ||
+                //        array[ModContent.ProjectileType<PriminiSaw>()] > 0 ||
+                //        array[ModContent.ProjectileType<PriminiVice>()] > 0)
+                //    {
+                //        primeMinion = true;
+                //    }
+                //    if (!primeMinion)
+                //    {
+                //        player.DelBuff(k);
+                //        k--;
+                //    }
+                //    else
+                //    {
+                //        player.buffTime[k] = 18000;
+                //    }
+                //}
                 if (player.buffType[k] == 37)
                 {
                     if (Main.wof >= 0 && Main.npc[Main.wof].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
@@ -2020,7 +2064,7 @@ namespace ExxoAvalonOrigins
 
 	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
 	        {
-		        speed = !speed; //TODO: implement speed
+		        speed = !speed;
 		        if (!speed)
 		        {
 			        Main.NewText("Acceleration Drill Mode: Normal");
