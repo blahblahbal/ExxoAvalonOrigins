@@ -11,11 +11,11 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class OblivionPhase1Dead : ModNPC
+	public class AncientOblivionPhase1Dead : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Oblivion");
+			DisplayName.SetDefault("Ancient Oblivion");
 			Main.npcFrameCount[npc.type] = 1;
 		}
 
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void NPCLoot()
         {
-            NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<OblivionHead1>(), 0);
+            NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<AncientOblivionHead1>(), 0);
             Main.NewText("Oblivion has been reborn!", 175, 75, 255, false);
             if (Main.netMode == NetmodeID.Server)
             {

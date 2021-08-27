@@ -11,34 +11,33 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class OblivionHead1 : ModNPC
+	public class AncientOblivionHead2 : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Oblivion");
+			DisplayName.SetDefault("Ancient Oblivion");
 			Main.npcFrameCount[npc.type] = 3;
 		}
 
 		public override void SetDefaults()
 		{
-			npc.damage = 180;
+			npc.damage = 120;
 			npc.boss = true;
 			npc.netAlways = true;
 			npc.noTileCollide = true;
-			npc.lifeMax = 150000;
-			npc.defense = 95;
+			npc.lifeMax = 100000;
+			npc.defense = 80;
 			npc.noGravity = true;
 			npc.width = 80;
 			npc.aiStyle = -1;
 			npc.npcSlots = 10f;
-			npc.value = 2500000f;
+			npc.value = 50000f;
 			npc.timeLeft = 22500;
 			npc.height = 102;
 			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
 	        npc.DeathSound = SoundID.NPCDeath14;
-            bossBag = ModContent.ItemType<Items.BossBags.OblivionBossBag>();
-		}
+        }
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ModContent.ItemType<Items.ElixirofLife>();
@@ -48,37 +47,16 @@ namespace ExxoAvalonOrigins.NPCs
             var instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();
             npc.damage = npc.defDamage;
             npc.defense = npc.defDefense;
+            Vector2 head1Pos = Main.npc[(int)npc.ai[3]].position;
             if (npc.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest(true);
                 npc.ai[0] = 1f;
-                instance.infernaSpawned = false;
-                var num559 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionHead2>(), npc.whoAmI);
-                Main.npc[num559].ai[3] = npc.whoAmI;
-                Main.npc[num559].target = npc.target;
-                Main.npc[num559].netUpdate = true;
-                var num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionCannon>(), npc.whoAmI);
-                Main.npc[num560].ai[0] = -1f;
-                Main.npc[num560].ai[1] = npc.whoAmI;
-                Main.npc[num560].target = npc.target;
-                Main.npc[num560].netUpdate = true;
-                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionLaser>(), npc.whoAmI);
-                Main.npc[num560].ai[0] = 1f;
-                Main.npc[num560].ai[1] = npc.whoAmI;
-                Main.npc[num560].target = npc.target;
-                Main.npc[num560].netUpdate = true;
-                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionSaw>(), npc.whoAmI);
-                Main.npc[num560].ai[0] = -1f;
-                Main.npc[num560].ai[1] = npc.whoAmI;
-                Main.npc[num560].target = npc.target;
-                Main.npc[num560].ai[3] = 150f;
-                Main.npc[num560].netUpdate = true;
-                num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<OblivionVice>(), npc.whoAmI);
-                Main.npc[num560].ai[0] = 1f;
-                Main.npc[num560].ai[1] = npc.whoAmI;
-                Main.npc[num560].target = npc.target;
-                Main.npc[num560].netUpdate = true;
-                Main.npc[num560].ai[3] = 150f;
+                instance.astigSpawned = false;
+                if (Vector2.Distance(head1Pos, npc.position) < 160)
+                {
+                    npc.velocity = Vector2.Normalize(npc.position - head1Pos) * 3f;
+                }
             }
             if (Main.player[npc.target].dead || Math.Abs(npc.position.X - Main.player[npc.target].position.X) > 6000f || Math.Abs(npc.position.Y - Main.player[npc.target].position.Y) > 6000f)
             {
@@ -88,44 +66,44 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.ai[1] = 3f;
                 }
             }
-            if (npc.life < npc.lifeMax / 2 && !instance.infernaSpawned)
+            if (npc.life < npc.lifeMax / 2 && !instance.astigSpawned)
             {
-                var num561 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Infernaspaz>(), 0);
-                Main.npc[num561].target = npc.target;
+                var num562 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Astigmatazer>(), 0);
+                Main.npc[num562].target = npc.target;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Infernaspaz has awoken!"), 255, 175f, 75f, 255f, 0);
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Astigmatazer has awoken!"), new Color(175, 75, 255));
                 }
-                else Main.NewText("Infernaspaz has awoken!", 175, 75, 255);
-                NPC.SpawnOnPlayer(npc.target, NPCID.Retinazer);
-                instance.infernaSpawned = true;
+                else Main.NewText("Astigmatazer has awoken!", 175, 75, 255);
+                NPC.SpawnOnPlayer(npc.target, NPCID.TheDestroyer);
+                instance.astigSpawned = true;
             }
-            if (npc.life < 50000)
+            if (npc.life < 40000)
             {
                 npc.localAI[0] += 1f;
                 if (npc.localAI[0] >= 500f)
                 {
-                    var num569 = 12f;
-                    var vector55 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    var num570 = 100;
-                    int num571 = ProjectileID.DeathLaser;
+                    var num563 = 12f;
+                    var vector54 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
+                    var num564 = 60;
+                    int num565 = ProjectileID.BombSkeletronPrime;
                     Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
-                    var num572 = (float)Math.Atan2(vector55.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector55.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
-                    for (var num573 = 0f; num573 <= 4f; num573 += 0.4f)
+                    var num566 = (float)Math.Atan2(vector54.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector54.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
+                    for (var num567 = 0f; num567 <= 4f; num567 += 0.4f)
                     {
-                        var num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 + num573) * num569 * -1.0), (float)(Math.Sin(num572 + num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
-                        Main.projectile[num574].timeLeft = 600;
-                        Main.projectile[num574].tileCollide = false;
+                        var num568 = Projectile.NewProjectile(vector54.X, vector54.Y, (float)(Math.Cos(num566 + num567) * num563 * -1.0), (float)(Math.Sin(num566 + num567) * num563 * -1.0), num565, num564, 0f, 0, 0f, 0f);
+                        Main.projectile[num568].timeLeft = 600;
+                        Main.projectile[num568].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num568, 0f, 0f, 0f, 0);
                         }
-                        num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 - num573) * num569 * -1.0), (float)(Math.Sin(num572 - num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
-                        Main.projectile[num574].timeLeft = 600;
-                        Main.projectile[num574].tileCollide = false;
+                        num568 = Projectile.NewProjectile(vector54.X, vector54.Y, (float)(Math.Cos(num566 - num567) * num563 * -1.0), (float)(Math.Sin(num566 - num567) * num563 * -1.0), num565, num564, 0f, 0, 0f, 0f);
+                        Main.projectile[num568].timeLeft = 600;
+                        Main.projectile[num568].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num574, 0f, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num568, 0f, 0f, 0f, 0);
                         }
                     }
                     npc.localAI[0] = 0f;
@@ -134,7 +112,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (npc.ai[1] == 0f)
             {
                 npc.ai[2] += 1f;
-                if (npc.ai[2] >= 600f)
+                if (npc.ai[2] >= 400f)
                 {
                     npc.ai[2] = 0f;
                     npc.ai[1] = 1f;
@@ -191,6 +169,10 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     npc.velocity.X = -8f;
                     return;
+                }
+                if (Vector2.Distance(head1Pos, npc.position) < 160)
+                {
+                    npc.velocity = Vector2.Normalize(npc.position - head1Pos) * 3f;
                 }
                 return;
             }
@@ -251,40 +233,6 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 return;
             }
-        }
-
-        public override void NPCLoot()
-        {
-            ExxoAvalonOriginsGlobalNPC.oblivionDead = true;
-            if (Main.rand.Next(7) == 0)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionTrophy>(), 1, false, 0, false);
-            }
-            if (Main.expertMode)
-            {
-                npc.DropBossBags();
-            }
-            else
-            {
-                if (Main.rand.Next(4) == 0)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CurseofOblivion>(), 1, false, 0, false);
-                }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.AccelerationDrill>(), 1, false, -2, false);
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofTorture>(), Main.rand.Next(60, 121), false, 0, false);
-                if (Main.rand.Next(5) > 0)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 1, false, 0, false);
-                }
-                else
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 2, false, 0, false);
-                }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
-            }
-
-            if (!ExxoAvalonOriginsWorld.downedOblivion)
-                ExxoAvalonOriginsWorld.downedOblivion = true;
         }
 
         public override void FindFrame(int frameHeight)
