@@ -2064,7 +2064,7 @@ namespace ExxoAvalonOrigins
 
 	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
 	        {
-		        speed = !speed; //TODO: implement speed
+		        speed = !speed;
 		        if (!speed)
 		        {
 			        Main.NewText("Acceleration Drill Mode: Normal");
