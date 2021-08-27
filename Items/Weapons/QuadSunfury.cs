@@ -18,7 +18,6 @@ namespace ExxoAvalonOrigins.Items.Weapons
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Quad Sunfury");
-            Tooltip.SetDefault("Press N to change modes");
         }
         public override void SetDefaults()
         {
@@ -57,16 +56,16 @@ namespace ExxoAvalonOrigins.Items.Weapons
             if (ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
             {
                 mode++;
+                if (mode == 1) Main.NewText("Mode: Volley attack");
+                if (mode == 2) Main.NewText("Mode: X spread");
+                if (mode == 3) Main.NewText("Mode: Mega flail");
+                if (mode == 4) Main.NewText("Mode: Spread attack");
             }
             if (mode > 4)
             {
                 mode = 1;
                 done = false;
             }
-            if (mode == 1) Main.NewText("Mode: Volley attack");
-            if (mode == 2) Main.NewText("Mode: X spread");
-            if (mode == 3) Main.NewText("Mode: Mega flail");
-            if (mode == 2) Main.NewText("Mode: Spread attack");
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
