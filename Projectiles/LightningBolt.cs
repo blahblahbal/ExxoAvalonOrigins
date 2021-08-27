@@ -50,10 +50,12 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
                     else
                     {
                         newLightning.timeLeft = projectile.timeLeft;
-                        newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
-                        newLightning.position.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
-                        newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
-                        newLightning.position.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
+                        //newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
+                        //newLightning.position.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
+                        //newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
+                        //newLightning.position.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
+                        newLightning.position.X += Main.rand.Next(-40, 41);
+                        newLightning.position.Y += Main.rand.Next(20, 51);
                         newLightning.ai[0] = 10;
                         newLightning.ai[1] = randRot * 2;
                         newLightning.localAI[0] = projectile.position.X;

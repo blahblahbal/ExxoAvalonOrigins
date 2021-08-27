@@ -500,7 +500,7 @@
                     (
                     "AddBoss",
                     20f,
-                    ModContent.NPCType<NPCs.OblivionHead1>(),
+                    ModContent.NPCType<NPCs.AncientOblivionHead1>(),
                     this,
                     "Oblivion",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedOblivion),

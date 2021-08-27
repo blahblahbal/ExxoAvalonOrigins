@@ -48,6 +48,6 @@ namespace ExxoAvalonOrigins.Items.BossBags
             player.QuickSpawnItem(ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(100, 201));
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.OblivionHead1>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.AncientOblivionHead1>();
     }
 }
