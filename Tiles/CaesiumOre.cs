@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Tiles
             minPick = 200;
             ExxoAvalonOrigins.MergeWith(Type, TileID.Ash);
             ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<Impgrass>());
-            dustType = DustID.RuneWizard;
+            dustType = ModContent.DustType<Dusts.CaesiumDust>();
             //ExxoAvalonOrigins.MergeWith(TileID.Ash, Type);
         }
         public override bool CanExplode(int i, int j)

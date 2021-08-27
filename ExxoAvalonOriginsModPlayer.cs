@@ -280,6 +280,7 @@ namespace ExxoAvalonOrigins
         public bool astralStart;
         public bool vampireTeeth;
         public bool riftGoggles;
+        public bool malaria;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -340,6 +341,7 @@ namespace ExxoAvalonOrigins
             enemySpawns2 = false;
             bloodCast = false;
             mermanLava = false;
+            magnet = false;
             bubbleBoost = false;
             darkInferno = false;
             melting = false;
@@ -369,6 +371,7 @@ namespace ExxoAvalonOrigins
             avalonRestoration = false;
             avalonRetribution = false;
             curseOfIcarus = false;
+            malaria = false;
 
             if (screenShake > 0)
             {
@@ -423,6 +426,15 @@ namespace ExxoAvalonOrigins
                 }
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 32;
+            }
+            if (malaria)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                }
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 30;
             }
         }
 

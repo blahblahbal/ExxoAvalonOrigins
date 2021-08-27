@@ -91,6 +91,14 @@ namespace ExxoAvalonOrigins
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Cloud, 25);
+            recipe.AddIngredient(ModContent.ItemType<Items.BreezeShard>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<Items.TropicalShroomCap>(), 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.AnkletoftheWind);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bottle);
             recipe.AddIngredient(ItemID.Cloud, 30);
             recipe.AddIngredient(ItemID.Feather, 2);
