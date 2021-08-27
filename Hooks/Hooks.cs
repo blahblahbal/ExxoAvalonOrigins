@@ -57,6 +57,9 @@
             IL.Terraria.NPC.AI_006_Worms += AIChanges.ILAI_006_Worms;
 
             On.Terraria.UI.Chat.ChatManager.DrawColorCodedStringWithShadow_SpriteBatch_DynamicSpriteFont_string_Vector2_Color_float_Vector2_Vector2_float_float += UIChanges.OnDrawColorCodedStringWithShadow;
+            // Character list stamina stat addition
+            IL.Terraria.GameContent.UI.Elements.UICharacterListItem.DrawSelf += UIChanges.ILUICharacterListItemDrawSelf;
+            IL.Terraria.GameContent.UI.Elements.UICharacterListItem.ctor += UIChanges.ILUICharacterListItemCtor;
         }
     }
 }
