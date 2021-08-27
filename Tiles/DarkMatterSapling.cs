@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[2] { 16, 18 };
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
-            TileObjectData.newTile.AnchorValidTiles = new int[1] { ModContent.TileType<Ickgrass>() };
+            TileObjectData.newTile.AnchorValidTiles = new int[1] { ModContent.TileType<DarkMatterGrass>() };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.DrawFlipHorizontal = true;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Tiles
             ModTranslation modTranslation = CreateMapEntryName();
             modTranslation.SetDefault("Sapling");
             AddMapEntry(new Color(200, 200, 200), modTranslation);
-            dustType = ModContent.DustType<Dusts.DarkMatterDust>();
+            dustType = ModContent.DustType<Dusts.DarkMatterWoodDust>();
             adjTiles = new int[1] { TileID.Saplings };
         }
 

@@ -19,7 +19,8 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(new Color(168, 155, 168));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
-			Main.tileShine[Type] = 1150;
+			Main.tileShine2[Type] = true;
+			Main.tileShine[Type] = 1950;
             Main.tileBlockLight[Type] = true;
             drop = ModContent.ItemType<Items.ZincBrick>();
             soundType = SoundID.Tink;

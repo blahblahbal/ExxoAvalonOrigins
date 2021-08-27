@@ -16,10 +16,9 @@ namespace ExxoAvalonOrigins.Tiles
 	{
 		public override void SetDefaults()
 		{
-			AddMapEntry(new Color(204, 138, 174));
+			AddMapEntry(new Color(187, 89, 192));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
-			Main.tileShine[Type] = 1150;
             Main.tileBlockLight[Type] = true;
             drop = ModContent.ItemType<Items.BismuthBrick>();
             soundType = SoundID.Tink;
