@@ -67,56 +67,30 @@ namespace ExxoAvalonOrigins.UI
                 stamBars = maxStaminaBars;
             }
 
-            int staminaThreshold = maxStaminaBars * staminaPerBar;
+            int staminaThreshold = staminaPerBar * maxStaminaBars;
+            int amountBars = player.statStamMax2 / staminaPerBar;
+            int amountHighestTierBars = ((amountBars - 1) % maxStaminaBars) + 1;
+            int highestStatLevel = ((player.statStamMax2 - 1) / staminaThreshold) + 1;
 
-            int remainingStamina = (player.statStam % staminaThreshold);
-            if (remainingStamina == 0 && !(player.statStam == 0))
-            {
-                remainingStamina = staminaThreshold;
-            }
+            int staminaCounter = 0;
+            bool activeFound = false;
 
-            int activeIndex = (remainingStamina / staminaPerBar) + 1;
-            if (remainingStamina % staminaPerBar == 0)
+            for (var i = 1; i < stamBars + 1; i++)
             {
-                activeIndex -= 1;
-            }
-
-            for (var i = 1; i <= stamBars; i++)
-            {
+                int intensity;
                 float scale = 1f;
                 bool activeBar = false;
-                int intensity;
 
-                int statLevel = player.statStam / staminaThreshold;
-                if (remainingStamina == staminaThreshold)
+                int statLevel = highestStatLevel;
+                if (!(i <= amountHighestTierBars))
                 {
-                    statLevel -= 1;
+                    statLevel--;
                 }
 
-                if (i < activeIndex)
+                if (!activeFound && staminaCounter + statLevel * staminaPerBar >= player.statStam)
                 {
-                    intensity = 255;
-                }
-                else if (i == activeIndex)
-                {
-                    float barProgress = (player.statStam % staminaPerBar) / (float)staminaPerBar;
-                    if (barProgress == 0)
-                    {
-                        barProgress = 1;
-                    }
-                    if (statLevel > 0)
-                    {
-                        if (barProgress < 0.5f)
-                        {
-                            statLevel -= 1;
-                            barProgress = 1 - barProgress;
-                        }
-                        if (barProgress < 0.8f)
-                        {
-                            barProgress = 0.8f;
-                        }
-                    }
-                    intensity = (int)(staminaPerBar + 225f * barProgress);
+                    float barProgress = (player.statStam - staminaCounter) / (float)(statLevel * staminaPerBar);
+                    intensity = (int)(30 + 225f * barProgress);
                     if (intensity < 30)
                     {
                         intensity = 30;
@@ -126,21 +100,21 @@ namespace ExxoAvalonOrigins.UI
                     {
                         scale = 0.75f;
                     }
+
                     activeBar = true;
+                    activeFound = true;
+                }
+                else if (!activeFound)
+                {
+                    intensity = 255;
                 }
                 else
                 {
-                    if (player.statStam <= staminaThreshold)
-                    {
-                        intensity = 30;
-                        scale = 0.75f;
-                    }
-                    else
-                    {
-                        statLevel -= 1;
-                        intensity = 255;
-                    }
+                    intensity = 30;
+                    scale = 0.75f;
                 }
+
+                staminaCounter += statLevel * staminaPerBar;
 
                 // Bobs the scale of the active bar with the cursor bobbing
                 if (activeBar)
@@ -151,19 +125,20 @@ namespace ExxoAvalonOrigins.UI
                 Texture2D texture;
                 switch (statLevel)
                 {
-                    case 0:
+                    case 1:
                         texture = staminaTexture1;
                         break;
-                    case 1:
+                    case 2:
                         texture = staminaTexture2;
                         break;
-                    case 2:
+                    case 3:
                         texture = staminaTexture3;
                         break;
                     default:
                         texture = staminaTexture1;
                         break;
                 }
+
                 int alpha = (int)(intensity * 0.9f);
                 int scaleOffsetX = (int)((texture.Width - texture.Width * scale) / 2f);
                 var origin = new Vector2(texture.Width / 2f, texture.Height / 2f);

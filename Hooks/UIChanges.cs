@@ -78,22 +78,22 @@ namespace ExxoAvalonOrigins.Hooks
                     return;
                 }
 
-                Texture2D staminaTexture;
-                switch ((modPlayer.statStamMax - 1) / 150)
-                {
-                    case 0:
-                        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
-                        break;
-                    case 1:
-                        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina2");
-                        break;
-                    case 2:
-                        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina3");
-                        break;
-                    default:
-                        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
-                        break;
-                }
+                Texture2D staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
+                //switch ((modPlayer.statStamMax - 1) / 150)
+                //{
+                //    case 0:
+                //        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
+                //        break;
+                //    case 1:
+                //        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina2");
+                //        break;
+                //    case 2:
+                //        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina3");
+                //        break;
+                //    default:
+                //        staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
+                //        break;
+                //}
 
                 spriteBatch.Draw(staminaTexture, vector2 + new Vector2(5f, 2f + characterUIStaminaYOffset), Color.White);
                 vector2.X += 10f + (float)Main.heartTexture.Width;
