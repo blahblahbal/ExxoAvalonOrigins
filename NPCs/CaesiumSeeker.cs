@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"), 2f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"));
             }
         }
         public override void Init()
@@ -86,7 +86,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"), 2f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"));
             }
         }
     }
@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"), 2f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"));
             }
         }
         public override void Init()

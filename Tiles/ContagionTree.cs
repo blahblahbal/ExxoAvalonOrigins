@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override int CreateDust()
         {
-            return ModContent.DustType<Dusts.ContagionDust>();
+            return ModContent.DustType<Dusts.CoughwoodDust>();
         }
         public override Texture2D GetTopTextures(int i, int j, ref int frame, ref int frameWidth, ref int frameHeight, ref int xOffsetLeft, ref int yOffset)
         {

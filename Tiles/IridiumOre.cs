@@ -19,6 +19,7 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(new Color(146, 167, 123), LanguageManager.Instance.GetText("Iridium"));
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
+			Main.tileShine2[Type] = true;
 			Main.tileShine[Type] = 1150;
             Main.tileValue[Type] = 440;
             Main.tileSpelunker[Type] = true;

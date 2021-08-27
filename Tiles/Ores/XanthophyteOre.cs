@@ -14,8 +14,8 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             AddMapEntry(xanthophyteColor, LanguageManager.Instance.GetText("Xanthophyte"));
             Main.tileSolid[Type] = true;
             ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalMud>());
-            ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalGrass>());
-            Main.tileShine[Type] = 1150;
+            ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalGrass>());			Main.tileShine2[Type] = true;
+            Main.tileShine[Type] = 775;
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileValue[Type] = 705;

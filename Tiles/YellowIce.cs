@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             Main.tileMerge[Type][TileID.CorruptIce] = true;
             Main.tileMerge[TileID.CorruptIce][Type] = true;
             Main.tileMerge[Type][TileID.FleshIce] = true;
-            Main.tileMerge[TileID.FleshIce][Type] = true;
+            Main.tileMerge[TileID.FleshIce][Type] = true;			Main.tileShine2[Type] = true;
             TileID.Sets.Conversion.Ice[Type] = true;
             drop = mod.ItemType("YellowIceBlock");
             ExxoAvalonOrigins.MergeWith(Type, TileID.SnowBlock);            soundType = SoundID.Item;            soundStyle = 50;            dustType = ModContent.DustType<Dusts.Dust237>();        }

@@ -20,7 +20,8 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileShine[Type] = 1150;
+			Main.tileShine2[Type] = true;
+            Main.tileShine[Type] = 2000;
 			drop = ModContent.ItemType<Items.NickelBrick>();
             soundType = SoundID.Tink;
             soundStyle = 1;

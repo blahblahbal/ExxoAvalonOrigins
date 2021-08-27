@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.StyleWrapLimit = 36;
-            TileObjectData.newTile.LavaDeath = false;
+            TileObjectData.newTile.LavaDeath = false;            TileObjectData.newTile.CoordinateHeights = new int[] { 20 };            TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Resistant Wood Candle");            AddMapEntry(new Color(253, 221, 3), name);
@@ -62,7 +62,7 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             int frameX = Main.tile[i, j].frameX;
             int frameY = Main.tile[i, j].frameY;
             int width = 18;
-            int offsetY = 0;
+            int offsetY = -4;
             int height = 20;
             int offsetX = 1;
             Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);

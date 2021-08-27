@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.World.Generation;
+using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -23,11 +24,35 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Statue");
-            AddMapEntry(new Color(144, 148, 144), name);
+            AddMapEntry(new Color(144, 148, 144), Language.GetText("MapObject.Statue"));
+            name.SetDefault("Sculpture");
+			AddMapEntry(new Color(175, 216, 235), name);
+			AddMapEntry(new Color(201, 188, 170), Language.GetText("MapObject.Vase"));
+			AddMapEntry(new Color(13, 47, 84));
 			dustType = DustID.Stone;
             disableSmartCursor = true;
         }
+		
+		public override ushort GetMapOption(int i, int j)
+		{
+			switch (Main.tile[i, j].frameX / 36)
+			{
+				case 2:
+				case 9:
+				case 10:
+				return 1;
+				break;
+				
+				case 3:
+				return 2;
+				break;
+				
+				case 6:
+				return 3;
+				break;
+			}
+			return 0;
+		}
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
