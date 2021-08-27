@@ -143,7 +143,7 @@ namespace ExxoAvalonOrigins
                 for (int x = 0; x < Main.maxTilesX; ++x)
                 {
                     if (Main.tile[x, y] == null) continue;
-                    if (Main.tile[x, y].type != 233) continue;
+                    if (Main.tile[x, y].type != 233 || Main.tile[x, y].type != ModContent.TileType<Tiles.TropicalShortGrass>()) continue;
                     pos = new Vector2((x) * 16, (y - 2) * 16);
                     break;
                 }

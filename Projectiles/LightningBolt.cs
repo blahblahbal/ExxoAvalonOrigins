@@ -5,14 +5,14 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
                 projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
                 if (Main.time % 6 <= 1 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int num54 = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<Projectiles.LightningTrail>(), 60, 0f, projectile.owner);
+                    int num54 = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningTrail>(), 60, 0f, projectile.owner);
                     Main.projectile[num54].rotation = projectile.rotation;
                     Main.projectile[num54].timeLeft = projectile.timeLeft;
                     projectile.rotation += (Main.rand.Next(200) - 100) / 100f;
                     projectile.velocity.Y = (float)Math.Sin(projectile.rotation) * 10;
                     projectile.velocity.X = (float)Math.Cos(projectile.rotation) * 10;
 
-                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num54);
                     }
@@ -20,42 +20,50 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
             }
             if (((Main.rand.Next(15) == 0 && projectile.ai[0] > 0) || projectile.scale == 1.0) && projectile.scale > 0.4f)
             {
-                float randRot = projectile.rotation + Main.rand.Next(-100, 101) / 100f;
-                int lightning = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<Projectiles.LightningBolt>(), 80, 0f, projectile.owner);
-                Projectile newLightning = Main.projectile[lightning];
-                newLightning.scale = projectile.scale * (Main.rand.Next(100) / 100f);
-                if (randRot > 0)
-                    newLightning.rotation = randRot - projectile.ai[1];
-                else
-                    newLightning.rotation = randRot + projectile.ai[1];
-                Vector2 fakePos = projectile.position;
-                fakePos.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
-                fakePos.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
-                fakePos.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
-                fakePos.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
-                if (fakePos.Y <= projectile.localAI[1] + 15)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    if (newLightning.rotation > 0)
-                        newLightning.rotation--;
+                    float randRot = projectile.rotation + Main.rand.Next(-100, 100) / 100f;
+                    int lightning = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningBolt>(), 80, 0f, projectile.owner);
+                    Projectile newLightning = Main.projectile[lightning];
+                    newLightning.scale = projectile.scale * (Main.rand.Next(100) / 100f);
+                    if (randRot > 1)
+                        newLightning.rotation = randRot - projectile.ai[1];
+                    else if (randRot < -1)
+                        newLightning.rotation = randRot + projectile.ai[1];
+                    Vector2 fakePos = projectile.position;
+                    fakePos.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
+                    fakePos.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
+                    fakePos.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
+                    fakePos.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
+                    if (fakePos.Y >= projectile.localAI[1])
+                    {
+                        if (newLightning.rotation > 1)
+                        {
+                            newLightning.rotation -= 0.01f * projectile.ai[0];
+                        }
+                        else if (newLightning.rotation < -1)
+                        {
+                            newLightning.rotation += 0.01f * projectile.ai[0];
+                        }
+                        Main.NewText(newLightning.rotation);
+                    }
                     else
-                        newLightning.rotation++;
-                }
-                else
-                {
-                    newLightning.timeLeft = projectile.timeLeft;
-                    newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
-                    newLightning.position.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
-                    newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
-                    newLightning.position.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
-                    newLightning.ai[0] = 10;
-                    newLightning.ai[1] = randRot * 2;
-                    newLightning.localAI[0] = projectile.position.X;
-                    newLightning.localAI[1] = projectile.position.Y;
-                }
+                    {
+                        newLightning.timeLeft = projectile.timeLeft;
+                        newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
+                        newLightning.position.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
+                        newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
+                        newLightning.position.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
+                        newLightning.ai[0] = 10;
+                        newLightning.ai[1] = randRot * 2;
+                        newLightning.localAI[0] = projectile.position.X;
+                        newLightning.localAI[1] = projectile.position.Y;
+                    }
 
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, lightning);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, lightning);
+                    }
                 }
             }
             projectile.ai[0]--;
