@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            if (ExxoAvalonOrigins.superHardmode && Main.hardMode) 
+            if (ExxoAvalonOrigins.superHardmode && Main.hardMode)
                 SmashHallowAltar(i, j);
         }
         public override void NearbyEffects(int i, int j, bool closer)
@@ -84,15 +84,6 @@ namespace ExxoAvalonOrigins.Tiles
             num3 /= (float)num2;
             if (num == 0)
             {
-                if (ExxoAvalonOriginsWorld.shmOreTier1 == -1)
-                {
-                    ExxoAvalonOriginsWorld.shmOreTier1 = ModContent.TileType<Tiles.TritanoriumOre>();
-                    int num5 = WorldGen.genRand.Next(2);
-                    if (num5 == 0)
-                    {
-                        ExxoAvalonOriginsWorld.shmOreTier1 = ModContent.TileType<Tiles.PyroscoricOre>();
-                    }
-                }
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     if (ExxoAvalonOriginsWorld.shmOreTier1 == ModContent.TileType<Tiles.TritanoriumOre>()) Main.NewText("Your world has been invigorated with Tritanorium!", 117, 158, 107, false);
@@ -108,15 +99,6 @@ namespace ExxoAvalonOrigins.Tiles
             }
             else if (num == 1)
             {
-                if (ExxoAvalonOriginsWorld.shmOreTier2 == -1)
-                {
-                    ExxoAvalonOriginsWorld.shmOreTier2 = ModContent.TileType<Tiles.UnvolanditeOre>();
-                    int num7 = WorldGen.genRand.Next(2);
-                    if (num7 == 0)
-                    {
-                        ExxoAvalonOriginsWorld.shmOreTier2 = ModContent.TileType<Tiles.VorazylcumOre>();
-                    }
-                }
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     if (ExxoAvalonOriginsWorld.shmOreTier2 == ModContent.TileType<Tiles.UnvolanditeOre>()) Main.NewText("Your world has been blessed with Unvolandite!", 171, 119, 75, false);

@@ -15,16 +15,17 @@ namespace ExxoAvalonOrigins.UI
 		private UIList optionList;
 		private UITextPanel<LocalizedText> backPanel;
 		private UIPanel containerPanel;
+		private UIElement uIElement;
 
 		private bool skipDraw;
 
-		public GenericSelectionMenu(string title, UIList list, UIElement.MouseEvent cancelAction)
+		public GenericSelectionMenu(string title, UIList list, MouseEvent cancelAction)
         {
-			UIElement uIElement = new UIElement();
+			uIElement = new UIElement();
 			uIElement.Width.Set(0f, 0.8f);
 			uIElement.MaxWidth.Set(400f, 0f);
 			uIElement.Top.Set(220f, 0f);
-			uIElement.Height.Set(-520f, 1f);
+			uIElement.Height.Set(-(220), 1f);
 			uIElement.HAlign = 0.5f;
 
 			UIPanel uIPanel = new UIPanel();
@@ -54,19 +55,36 @@ namespace ExxoAvalonOrigins.UI
 			uITextPanel.BackgroundColor = new Color(73, 94, 171);
 			uIElement.Append(uITextPanel);
 
-			UITextPanel<LocalizedText> uITextPanel2 = new UITextPanel<LocalizedText>(Language.GetText("UI.Back"), 0.7f, large: true);
-			uITextPanel2.Width.Set(-10f, 1f);
-			uITextPanel2.Height.Set(50f, 0f);
-			uITextPanel2.VAlign = 1f;
-			uITextPanel2.Top.Set(-45f, 0f);
-			uITextPanel2.OnMouseOver += FadedMouseOver;
-			uITextPanel2.OnMouseOut += FadedMouseOut;
-			uITextPanel2.OnClick += BackAction;
-			uITextPanel2.OnClick += cancelAction;
-			uIElement.Append(uITextPanel2);
-			backPanel = uITextPanel2;
+			backPanel = new UITextPanel<LocalizedText>(Language.GetText("UI.Back"), 0.7f, large: true);
+			backPanel.Width.Set(-10f, 1f);
+			backPanel.Height.Set(50f, 0f);
+			backPanel.VAlign = 1f;
+			backPanel.Top.Set(-45f, 0f);
+			backPanel.OnMouseOver += FadedMouseOver;
+			backPanel.OnMouseOut += FadedMouseOut;
+			backPanel.OnClick += BackAction;
+			backPanel.OnClick += cancelAction;
+			uIElement.Append(backPanel);
 
 			base.Append(uIElement);
+		}
+
+		public GenericSelectionMenu(string title, UIList list, MouseEvent cancelAction, MouseEvent submitAction) : this(title, list, cancelAction)
+		{
+			backPanel.Width.Set(-10f, 0.5f);
+
+			UITextPanel<LocalizedText> submitPanel = new UITextPanel<LocalizedText>(Language.GetText("UI.Submit"), 0.7f, large: true);
+			submitPanel.CopyStyle(backPanel);
+			submitPanel.HAlign = 1f;
+			submitPanel.OnMouseOver += FadedMouseOver;
+			submitPanel.OnMouseOut += FadedMouseOut;
+			submitPanel.OnClick += SubmitAction;
+			submitPanel.OnClick += submitAction;
+			uIElement.Append(submitPanel);
+		}
+		private void SubmitAction(UIMouseEvent evt, UIElement listeningElement)
+		{
+			Main.PlaySound(SoundID.MenuOpen);
 		}
 
 		private void BackAction(UIMouseEvent evt, UIElement listeningElement)

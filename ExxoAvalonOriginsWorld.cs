@@ -11,18 +11,79 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         public static int wos = -1;
         public static bool downedBacteriumPrime = false;
         public static bool downedDesertBeak = false;
-        public static bool downedPhantasm = false;        public static bool downedDragonLord = false;        public static bool downedMechasting = false;        public static bool downedOblivion = false;        public enum JungleVariant
+        public static bool downedPhantasm = false;        public static bool downedDragonLord = false;        public static bool downedMechasting = false;        public static bool downedOblivion = false;
+
+        #region WorldGen Variants        public enum JungleVariant
         {
             jungle,
             tropics,
             random
-        }        public enum OsmiumVariant
+        }        public enum CopperVariant
+        {
+            copper,
+            tin,
+            bronze,
+            random
+        }        public enum IronVariant
+        {
+            iron,
+            lead,
+            nickel,
+            random
+        }        public enum SilverVariant
+        {
+            silver,
+            tungsten,
+            zinc,
+            random
+        }        public enum GoldVariant
+        {
+            gold,
+            platinum,
+            bismuth,
+            random
+        }        public enum RhodiumVariant
         {
             rhodium,
             osmium,
             iridium,
             random
-        }        public static JungleVariant jungleMenuSelection = JungleVariant.random;        public static OsmiumVariant osmiumOre = OsmiumVariant.random;        public override void ChooseWaterStyle(ref int style)
+        }        public enum CobaltVariant
+        {
+            cobalt,
+            palladium,
+            duratanium,
+            random
+        }        public enum MythrilVariant
+        {
+            mythril,
+            orichalcum,
+            naquadah,
+            random
+        }        public enum AdamantiteVariant
+        {
+            adamantite,
+            titanium,
+            troxinium,
+            random
+        }        public enum SHMTier1Variant
+        {
+            tritanorium,
+            pyroscoric,
+            random
+        }        public enum SHMTier2Variant
+        {
+            unvolandite,
+            vorazylcum,
+            random
+        }        public static JungleVariant jungleMenuSelection = JungleVariant.random;        public static CopperVariant copperOre = CopperVariant.random;        public static IronVariant ironOre = IronVariant.random;        public static SilverVariant silverOre = SilverVariant.random;        public static GoldVariant goldOre = GoldVariant.random;        public static RhodiumVariant rhodiumOre = RhodiumVariant.random;
+        public static CobaltVariant cobaltOre = CobaltVariant.random;
+        public static MythrilVariant mythrilOre = MythrilVariant.random;
+        public static AdamantiteVariant adamantiteOre = AdamantiteVariant.random;
+        public static SHMTier1Variant shmTier1Ore = SHMTier1Variant.random;
+        public static SHMTier2Variant shmTier2Ore = SHMTier2Variant.random;
+        #endregion
+        public override void ChooseWaterStyle(ref int style)
         {
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
@@ -40,7 +101,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         }
 
         public void RetroGen()        {            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 0, 0))            {
-                osmiumOre = (OsmiumVariant)WorldGen.genRand.Next(2);                for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)                {                    var i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer3 = Main.rockLayer;                    var j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);                    WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)osmiumOre.GetTile());                }                Main.NewText("Retrogenned Rhodium/Osmium/Iridium");
+                rhodiumOre = (RhodiumVariant)WorldGen.genRand.Next(2);                for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)                {                    var i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer3 = Main.rockLayer;                    var j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);                    WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)rhodiumOre.GetTile());                }                Main.NewText("Retrogenned Rhodium/Osmium/Iridium");
                 //Caesium
                 for (var num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)                {                    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<Tiles.CaesiumOre>());
                     //WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), ModContent.TileType<CaesiumOre>(), false, 0f, 0f, false, true);
@@ -1669,7 +1730,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 }
             }
         }        public override TagCompound Save()        {            var toSave = new TagCompound            {                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },                { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },                { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },                { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },                { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },                { "ExxoAvalonOrigins:Contagion", contaigon },                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
-                { "ExxoAvalonOrigins:OsmiumOre", (int)osmiumOre },
+                { "ExxoAvalonOrigins:OsmiumOre", (int)rhodiumOre },
                 { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },                { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },                { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },            };            // Update config cache values on save world            ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();            var tempDict = config.GetWorldData();            ExxoAvalonOriginsConfig.WorldDataValues worldData;            worldData.contagion = contaigon;
             worldData.jungleType = (int)jungleMenuSelection;
 
@@ -1684,7 +1745,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonX"))            {                ExxoAvalonOrigins.dungeonEx = tag.GetAsInt("ExxoAvalonOrigins:DungeonX");            }            else
             {
                 ExxoAvalonOrigins.dungeonEx = dungeonSide == -1 ? Main.maxTilesX / 3 : Main.maxTilesX - Main.maxTilesX / 3;
-            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))            {                shmOreTier1 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier1");            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier2"))            {                shmOreTier2 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier2");            }            if (tag.ContainsKey("ExxoAvalonOrigins:OsmiumOre"))            {                osmiumOre = (OsmiumVariant)tag.GetAsInt("ExxoAvalonOrigins:OsmiumOre");            }            if (tag.ContainsKey("ExxoAvalonOrigins:HallowAltarCount"))            {                hallowAltarCount = tag.GetAsInt("ExxoAvalonOrigins:HallowAltarCount");            }            if (tag.ContainsKey("ExxoAvalonOrigins:WorldDarkMatterTiles"))            {                WorldDarkMatterTiles = tag.GetAsInt("ExxoAvalonOrigins:WorldDarkMatterTiles");                if (WorldDarkMatterTiles < 0)
+            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))            {                shmOreTier1 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier1");            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier2"))            {                shmOreTier2 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier2");            }            if (tag.ContainsKey("ExxoAvalonOrigins:OsmiumOre"))            {                rhodiumOre = (RhodiumVariant)tag.GetAsInt("ExxoAvalonOrigins:OsmiumOre");            }            if (tag.ContainsKey("ExxoAvalonOrigins:HallowAltarCount"))            {                hallowAltarCount = tag.GetAsInt("ExxoAvalonOrigins:HallowAltarCount");            }            if (tag.ContainsKey("ExxoAvalonOrigins:WorldDarkMatterTiles"))            {                WorldDarkMatterTiles = tag.GetAsInt("ExxoAvalonOrigins:WorldDarkMatterTiles");                if (WorldDarkMatterTiles < 0)
                 {
                     WorldDarkMatterTiles = 0;
                 }            }        }    }}

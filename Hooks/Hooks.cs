@@ -55,6 +55,8 @@
             On.Terraria.WorldGen.TileRunner += BacciliteReplacement.OnTileRunner;
             On.Terraria.WorldGen.SquareTileFrame += TileCount.OnSquareTileFrame;
             IL.Terraria.NPC.AI_006_Worms += AIChanges.ILAI_006_Worms;
+
+            On.Terraria.UI.Chat.ChatManager.DrawColorCodedStringWithShadow_SpriteBatch_DynamicSpriteFont_string_Vector2_Color_float_Vector2_Vector2_float_float += UIChanges.OnDrawColorCodedStringWithShadow;
         }
     }
 }

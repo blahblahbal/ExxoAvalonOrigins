@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
             player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4));
             if (Main.rand.Next(10) <= 5)
             {
-                player.QuickSpawnItem(ExxoAvalonOriginsWorld.osmiumOre.GetItemOre(), Main.rand.Next(15, 26));   
+                player.QuickSpawnItem(ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26));   
             }
             if (Main.rand.Next(3) == 0)
             {

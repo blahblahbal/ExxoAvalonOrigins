@@ -60,7 +60,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
                 if (Main.rand.Next(10) <= 5)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ExxoAvalonOriginsWorld.osmiumOre.GetItemOre(), Main.rand.Next(15, 26), false, 0, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26), false, 0, false);
                 }
                 if (Main.rand.Next(3) == 0)
                 {
