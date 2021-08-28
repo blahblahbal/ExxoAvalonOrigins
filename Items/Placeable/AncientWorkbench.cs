@@ -23,14 +23,14 @@
             item.useAnimation = 15;
             item.height = dims.Height;
         }
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HeavyWorkBench);
-            recipe.AddIngredient(ItemID.Marble, 10);
-            recipe.AddIngredient(ModContent.ItemType<EarthShard>(), 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
+        //public override void AddRecipes()
+        //{
+        //    ModRecipe recipe = new ModRecipe(mod);
+        //    recipe.AddIngredient(ItemID.HeavyWorkBench);
+        //    recipe.AddIngredient(ItemID.Marble, 10);
+        //    recipe.AddIngredient(ModContent.ItemType<EarthShard>(), 3);
+        //    recipe.AddTile(TileID.Anvils);
+        //    recipe.SetResult(this);
+        //    recipe.AddRecipe();
+        //}
     }}

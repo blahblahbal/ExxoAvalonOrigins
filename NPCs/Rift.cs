@@ -231,18 +231,21 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.tile[x, y].type = TileID.Tin;
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == TileID.Tin && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.BronzeOre>();
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BronzeOre>() && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Copper;
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 2
@@ -251,19 +254,21 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.tile[x, y].type = TileID.Lead;
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
-                            //continue;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == TileID.Lead && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.NickelOre>();
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.NickelOre>() && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Iron;
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 3
@@ -272,18 +277,21 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.tile[x, y].type = TileID.Tungsten;
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == TileID.Tungsten && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.ZincOre>();
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ZincOre>() && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Silver;
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 4
@@ -292,18 +300,21 @@ namespace ExxoAvalonOrigins.NPCs
                             Main.tile[x, y].type = TileID.Platinum;
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == TileID.Platinum && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.BismuthOre>();
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BismuthOre>() && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Gold;
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 5
@@ -311,18 +322,21 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.OsmiumOre>();
                             WorldGen.SquareTileFrame(x, y);
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
                         if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.OsmiumOre>())
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.IridiumOre>();
                             WorldGen.SquareTileFrame(x, y);
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
                         if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.IridiumOre>())
                         {
                             Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.RhodiumOre>();
                             WorldGen.SquareTileFrame(x, y);
+                            if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
                         #endregion
