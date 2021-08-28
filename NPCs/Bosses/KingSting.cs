@@ -405,6 +405,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 		}
         public override void NPCLoot()
 		{
+            ExxoAvalonOriginsWorld.downedKingSting = true;
 			if (Main.expertMode)
 			{
 				npc.DropBossBags();

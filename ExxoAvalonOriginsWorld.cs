@@ -12,6 +12,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
         public static bool downedBacteriumPrime = false;
         public static bool downedDesertBeak = false;
         public static bool downedPhantasm = false;        public static bool downedDragonLord = false;        public static bool downedMechasting = false;        public static bool downedOblivion = false;
+        public static bool downedKingSting = false;
 
         #region WorldGen Variants        public enum JungleVariant
         {
@@ -964,7 +965,7 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             }
         }        public override void PreUpdate()        {            if (!retroGenned)            {                if (ExxoAvalonOrigins.lastOpenedVersion == null || ExxoAvalonOrigins.lastOpenedVersion < ExxoAvalonOrigins.version)                {                    RetroGen();                    retroGenned = true;                }            }            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                DropComet(ModContent.TileType<Tiles.HydrolythOre>());            }        }        public override void PreWorldGen()
         {
-            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            hiddenTemplePos = Vector2.Zero;
+            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            downedBacteriumPrime = false;            downedDesertBeak = false;            downedDragonLord = false;            downedMechasting = false;            downedOblivion = false;            downedPhantasm = false;            downedKingSting = false;            hiddenTemplePos = Vector2.Zero;
 
             if (jungleMenuSelection == JungleVariant.random)
             {

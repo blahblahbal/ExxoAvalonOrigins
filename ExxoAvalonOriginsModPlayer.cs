@@ -2164,7 +2164,7 @@ namespace ExxoAvalonOrigins
                 {
                     Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 90f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
 
-                    //Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<Projectiles.LightningBolt>(), 80, 6f, Main.myPlayer);
+                    //Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<LightningBolt>(), 80, 6f, Main.myPlayer, 10);
                     Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
                 }
 

@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.autoReuse = true;
             item.useTurn = true;
             item.scale = 1f;
-            item.pick = 62;
+            item.pick = 59;
             item.width = dims.Width;
             item.useTime = 10;
             item.knockBack = 2f;
