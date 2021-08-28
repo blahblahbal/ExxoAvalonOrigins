@@ -113,6 +113,7 @@ namespace ExxoAvalonOrigins.Hooks
                 //}
 
                 player.ResetEffects();
+                modPlayer.UpdateMana();
                 player.UpdateEquips(Main.myPlayer);
                 player.UpdateArmorSets(Main.myPlayer);
 

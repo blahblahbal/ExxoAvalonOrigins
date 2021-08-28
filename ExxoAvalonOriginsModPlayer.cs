@@ -1976,6 +1976,11 @@ namespace ExxoAvalonOrigins
             Main.NewText(player.HeldItem.useTime);
             Main.NewText(player.HeldItem.useAnimation);
             */
+            UpdateMana();
+        }
+
+        public void UpdateMana()
+        {
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }
 
