@@ -63,7 +63,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MechanicalDiggerBody"), 1f);
             }
         }
-
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
+        }
         public override void SetDefaults()
         {
             npc.damage = 90;
@@ -98,7 +101,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MechanicalDiggerTail"), 1f);
             }
         }
-
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
+        }
         public override void SetDefaults()
         {
             npc.damage = 120;

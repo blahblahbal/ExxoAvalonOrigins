@@ -42,7 +42,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyrasiteHead"), 1f);
             }
         }
-
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.YuckyBit>(), 1, false, 0, false);
+        }
         public override void Init()
         {
             base.Init();
@@ -72,6 +75,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
+        }
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
         }
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -112,7 +119,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyrasiteTail"), 1f);
             }
         }
-
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
+        }
         public override void Init()
         {
             base.Init();

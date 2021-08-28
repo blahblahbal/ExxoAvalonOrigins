@@ -82,6 +82,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
         }
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
@@ -113,6 +117,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.behindTiles = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
+        }
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
         }
         public override void HitEffect(int hitDirection, double damage)
         {

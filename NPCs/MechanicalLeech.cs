@@ -39,7 +39,10 @@ namespace ExxoAvalonOrigins.NPCs
     internal class MechanicalLeechBody : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechBody";
-
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
+        }
         public override void SetDefaults()
         {
             npc.width = 14;
@@ -61,7 +64,10 @@ namespace ExxoAvalonOrigins.NPCs
     internal class MechanicalLeechTail : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechTail";
-
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        {
+            return false;
+        }
         public override void SetDefaults()
         {
             npc.width = 14;

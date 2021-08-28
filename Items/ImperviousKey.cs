@@ -22,11 +22,11 @@ namespace ExxoAvalonOrigins.Items
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TempleKey, 10);
+            recipe.AddIngredient(ItemID.TempleKey, 2);
             recipe.AddIngredient(ItemID.Ectoplasm, 10);
             recipe.AddIngredient(ModContent.ItemType<EarthStone>());
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
+            recipe.SetResult(this, 2);
             recipe.AddRecipe();
         }
     }
