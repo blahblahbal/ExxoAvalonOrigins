@@ -6,6 +6,7 @@ using MonoMod.Cil;
 using ReLogic.Graphics;
 using System;
 using Terraria;
+using Terraria.Graphics;
 using Terraria.UI.Chat;
 
 namespace ExxoAvalonOrigins.Hooks
@@ -51,6 +52,7 @@ namespace ExxoAvalonOrigins.Hooks
             if (!c.TryGotoNext(i => i.MatchLdarg(1)))
                 return;
 
+            #region lazyfix for panel size height
             c.Emit(OpCodes.Ldarg_0);
             c.Emit(OpCodes.Ldarg_1);
             c.Emit(OpCodes.Ldloc, 6);
@@ -63,6 +65,20 @@ namespace ExxoAvalonOrigins.Hooks
                 return characterUIStaminaPanelWidth;
             });
             c.Emit(OpCodes.Call, drawPanel);
+
+            c.Emit(OpCodes.Ldarg_0);
+            c.Emit(OpCodes.Ldarg_1);
+            c.Emit(OpCodes.Ldloc, 6);
+            c.EmitDelegate<Func<Vector2, Vector2>>((vector2) =>
+            {
+                return vector2 + new Vector2(0f, characterUIStaminaYOffset - 10f);
+            });
+            c.EmitDelegate<Func<float>>(() =>
+            {
+                return characterUIStaminaPanelWidth;
+            });
+            c.Emit(OpCodes.Call, drawPanel);
+            #endregion
 
             c.Emit(OpCodes.Ldarg_1);
             c.Emit(OpCodes.Ldloc, 6);
@@ -79,6 +95,7 @@ namespace ExxoAvalonOrigins.Hooks
                 }
 
                 Texture2D staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
+                Texture2D defenceTexture = TextureManager.Load("Images/UI/Bestiary/Stat_Defense");
                 //switch ((modPlayer.statStamMax - 1) / 150)
                 //{
                 //    case 0:
@@ -95,9 +112,18 @@ namespace ExxoAvalonOrigins.Hooks
                 //        break;
                 //}
 
+                player.ResetEffects();
+                player.UpdateEquips(Main.myPlayer);
+                player.UpdateArmorSets(Main.myPlayer);
+
                 spriteBatch.Draw(staminaTexture, vector2 + new Vector2(5f, 2f + characterUIStaminaYOffset), Color.White);
                 vector2.X += 10f + (float)Main.heartTexture.Width;
-                Terraria.Utils.DrawBorderString(spriteBatch, modPlayer.statStamMax + " SP", vector2 + new Vector2(0f, 3f + characterUIStaminaYOffset), Color.White);
+                Terraria.Utils.DrawBorderString(spriteBatch, modPlayer.statStamMax2 + " SP", vector2 + new Vector2(0f, 3f + characterUIStaminaYOffset), Color.White);
+
+                vector2.X += 65f;
+                spriteBatch.Draw(defenceTexture, vector2 + new Vector2(5f, characterUIStaminaYOffset), new Rectangle(3, 3, 26, 26), Color.White);
+                vector2.X += 10f + (float)Main.manaTexture.Width;
+                Terraria.Utils.DrawBorderString(spriteBatch, player.statDefense + " DP", vector2 + new Vector2(0f, 3f + characterUIStaminaYOffset), Color.White);
             });
         }
         public static void ILUICharacterListItemCtor(ILContext il)
@@ -109,7 +135,7 @@ namespace ExxoAvalonOrigins.Hooks
             c.Index++;
             c.EmitDelegate<Func<float, float>>((origHeight) =>
             {
-                return origHeight + characterUIStaminaYOffset;
+                return origHeight + characterUIStaminaYOffset - 2f;
             });
         }
     }

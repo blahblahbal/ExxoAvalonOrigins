@@ -110,6 +110,30 @@ namespace ExxoAvalonOrigins.UI
             }
 		}
 
+		public void DrawFromExternal(SpriteBatch spriteBatch)
+        {
+			base.Draw(spriteBatch);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+			if (!IsMouseHovering || Active)
+            {
+				base.Draw(spriteBatch);
+			}
+
+			if (Active)
+			{
+				foreach (UIImageButtonCustom sibling in siblings)
+				{
+					if (sibling.IsMouseHovering)
+					{
+						sibling.DrawFromExternal(spriteBatch);
+					}
+				}
+			}
+		}
+
         protected override void DrawSelf(SpriteBatch spriteBatch)
 		{
 			if (firstDraw)

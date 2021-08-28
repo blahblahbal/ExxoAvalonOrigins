@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.UI
 			optionList.Width.Set(0, 1f);
 			optionList.Height.Set(0f, 1f);
 			optionList.Top.Set(0f, 0);
-			optionList.MarginY = 40f;
+			optionList.MarginY = 55f;
 			optionList.ListPadding = 5f;
 			Append(optionList);
 		}
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.UI
 		private void InitializeAppearance()
 		{
 			Width.Set(0f, 1f);
-			SetPadding(6f);
+			SetPadding(3f);
 			Recalculate();
 
 			Height.Set(optionList.GetTotalHeight() + PaddingTop + PaddingBottom, 0f);
