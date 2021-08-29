@@ -18,7 +18,6 @@ namespace ExxoAvalonOrigins.NPCs
 			DisplayName.SetDefault("Caesium Brute");
 			Main.npcFrameCount[npc.type] = 5;
 		}
-
 		public override void SetDefaults()
 		{
 			npc.damage = 62;
@@ -30,16 +29,15 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.npcSlots = 2f;
 			npc.value = 15000f;
 			npc.height = 48;
-            npc.HitSound = SoundID.NPCHit1;
+            //npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.4f;
+			npc.knockBackResist = 0.1f;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.lavaImmune = true;
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<Items.Banners.BactusBanner>();
         }
-
         public override void NPCLoot()
         {
             if (Main.rand.Next(6) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
@@ -79,7 +77,6 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[0] = 0;
             }
         }
-
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
@@ -94,9 +91,12 @@ namespace ExxoAvalonOrigins.NPCs
             int num228 = (int)(npc.frameCounter / (double)num226);
             npc.frame.Y = num228 * frameHeight;
         }
-
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (npc.life > 0)
+            {
+                Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y, 21, 1.2f, -0.5f);
+            }
             if (npc.life <= 0)
             {
                 Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/CaesiumBruteHead"), 1f);

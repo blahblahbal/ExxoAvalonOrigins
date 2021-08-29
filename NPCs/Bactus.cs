@@ -35,6 +35,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.knockBackResist = 0.5f;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BactusBanner>();
+            drawOffsetY = 10;
         }
 
         public override void NPCLoot()

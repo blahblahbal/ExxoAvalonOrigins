@@ -18,7 +18,6 @@ namespace ExxoAvalonOrigins.NPCs
 			DisplayName.SetDefault("Caesium Stalker");
 			Main.npcFrameCount[npc.type] = 4;
 		}
-
 		public override void SetDefaults()
 		{
 			npc.damage = 73;
@@ -32,10 +31,10 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.width = 24;
 			npc.value = Item.buyPrice(0, 0, 45, 0);
 			npc.timeLeft = 750;
-			npc.knockBackResist = 0.2f;
+			npc.knockBackResist = 0f;
 			npc.height = 32;
-            npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath6;
+            //npc.HitSound = SoundID.NPCHit1;
+	        //npc.DeathSound = SoundID.NPCDeath6;
 			npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
 			npc.buffImmune[BuffID.Confused] = true;
@@ -76,7 +75,7 @@ namespace ExxoAvalonOrigins.NPCs
 				Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));
 			}
-			var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, 0, 0f, npc.target, 0f, 0f);
+            var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, npc.damage, 0f, npc.target, 0f, 0f);
 			Main.projectile[num12].Kill();
 		}
 
@@ -231,20 +230,20 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.X > 0f)
+            /*if (npc.velocity.X > 0f)
             {
                 npc.spriteDirection = 1;
             }
             if (npc.velocity.X < 0f)
             {
                 npc.spriteDirection = -1;
-            }
+            }*/
             npc.rotation = npc.velocity.X * 0.1f;
-            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            /*if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall) the hell is this lol
             {
                 npc.frameCounter += 1.0;
                 npc.rotation = npc.velocity.X * 0.2f;
-            }
+            }*/
             npc.frameCounter += 1.0;
             if (npc.frameCounter >= 6.0)
             {
@@ -256,7 +255,34 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = 0;
             }
         }
-
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life > 0)
+            {
+                Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y, 4, 1f, -0.5f);
+            }
+            if (npc.life <= 0)
+            {
+                Main.PlaySound(SoundID.Item, (int)npc.Center.X, (int)npc.Center.Y, 27, 1.2f, -0.5f);
+            }
+        }
+        int counter = 0;
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Texture2D texture = mod.GetTexture("NPCs/CaesiumStalker");
+            Vector2 origin = new Vector2(texture.Width * 0.5f, npc.height * 0.5f);
+            Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition, npc.frame, Color.White * ((255f - npc.alpha) / 255f), npc.rotation, origin, npc.scale, SpriteEffects.None, 0);
+            counter++;
+            if (counter > 22)
+                counter = 0;
+            for (int j = 0; j < 2; j++)
+            {
+                float bonusAlphaMult = 1 - 1 * (counter / 12f);
+                float dir = j * 2 - 1;
+                Vector2 offset = new Vector2(counter * 0.8f * dir, 0).RotatedBy(npc.rotation);
+                Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition + offset, npc.frame, new Color(100, 100, 100, 0) * bonusAlphaMult * ((255f - npc.alpha) / 255f), npc.rotation, origin, 1.00f, SpriteEffects.None, 0.0f);
+            }
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium && Main.hardMode ? 0.3f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
