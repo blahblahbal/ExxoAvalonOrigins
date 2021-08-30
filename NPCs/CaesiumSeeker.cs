@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.netAlways = true;
             npc.damage = 65;
             npc.defense = 15;
-            npc.lifeMax = 1400;
+            npc.lifeMax = 1800;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.noGravity = true;
@@ -29,11 +29,12 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Daybreak] = true;
+            drawOffsetY = 25;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium && spawnInfo.player.ZoneUnderworldHeight)
-                return 0.7f;
+                return 0.6f;
             return 0;
         }
         public override void NPCLoot()
@@ -72,7 +73,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.damage = 60;
             npc.scale = 0.8f;
             npc.defense = 45;
-            npc.lifeMax = 1400;
+            npc.lifeMax = 1800;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.noGravity = true;
@@ -82,6 +83,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Daybreak] = true;
+            drawOffsetY = 25;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -109,7 +111,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.netAlways = true;
             npc.damage = 49;
             npc.defense = 15;
-            npc.lifeMax = 1400;
+            npc.lifeMax = 1800;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.noGravity = true;
@@ -119,6 +121,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Daybreak] = true;
+            drawOffsetY = 25;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
