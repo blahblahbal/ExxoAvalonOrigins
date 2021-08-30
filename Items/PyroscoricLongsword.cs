@@ -6,7 +6,12 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
         public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/PyroscoricLongsword");			item.damage = 131;			item.autoReuse = true;			item.useTurn = true;			item.scale = 1.3f;			item.rare = ItemRarityID.Yellow;			item.width = dims.Width;			item.useTime = 25;
 			item.useAnimation = 20;			item.knockBack = 7f;			item.melee = true;			item.useStyle = ItemUseStyleID.SwingThrow;			item.shoot = ModContent.ProjectileType<Projectiles.FireWave>();			item.shootSpeed = 25f;			item.value = Item.sellPrice(0, 7, 63, 0);			item.height = dims.Height;            item.UseSound = SoundID.Item1;
         }
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+			Main.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 20, 0.8f, 0.25f);
+			return true;
+		}
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.Next(2) == 0)
 			{

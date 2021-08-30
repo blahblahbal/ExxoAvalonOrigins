@@ -9,7 +9,6 @@ namespace ExxoAvalonOrigins.NPCs
     internal class CaesiumSeekerHead : CaesiumSeekerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/CaesiumSeekerHead";
-
         public override void SetDefaults()
         {
             npc.width = 50;
@@ -29,6 +28,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.behindTiles = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Daybreak] = true;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -71,7 +71,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.netAlways = true;
             npc.damage = 60;
             npc.scale = 0.8f;
-            npc.defense = 13;
+            npc.defense = 45;
             npc.lifeMax = 1400;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -81,6 +81,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.behindTiles = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Daybreak] = true;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -117,6 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.behindTiles = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Daybreak] = true;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {

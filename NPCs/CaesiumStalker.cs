@@ -35,9 +35,14 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.height = 32;
             //npc.HitSound = SoundID.NPCHit1;
 	        //npc.DeathSound = SoundID.NPCDeath6;
-			npc.buffImmune[BuffID.OnFire] = true;
+			/*npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
 			npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.Daybreak] = true;*/
+            for(int i = 0; i < npc.buffImmune.Length; i++)
+            {
+                npc.buffImmune[i] = true;
+            }
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<Items.Banners.CaesiumStalkerBanner>();
         }
@@ -59,18 +64,17 @@ namespace ExxoAvalonOrigins.NPCs
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
 			}
 			var rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + (npc.height - npc.width) / 2), npc.width, npc.width);
-			var num8 = 50;
 			var num9 = 0.4f;
-			for (var i = 1; i <= num8; i++)
+			for (var i = 1; i <= 15; i++)
 			{
 				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, ModContent.DustType<Dusts.CaesiumDust>(), 0f, 0f, 100, default, 2f);
 				Main.dust[num10].noGravity = true;
 				Main.dust[num10].velocity.X = num9 * (Main.dust[num10].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num10].velocity.Y = num9 * (Main.dust[num10].position.Y - (npc.position.Y + npc.height / 2));
 			}
-			for (var j = 1; j <= num8; j++)
+			for (var j = 1; j <= 15; j++)
 			{
-				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, ModContent.DustType<Dusts.CaesiumDust>(), 0f, 0f, 100, default, 1f);
+				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 110, 0f, 0f, 100, default, 1f);
 				Main.dust[num11].noGravity = true;
 				Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
 				Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));
@@ -171,21 +175,14 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y = -2f;
                 }
             }
-            if (Main.rand.Next(20) == 0)
+            if (Main.rand.Next(40) == 0)
             {
-                var num1225 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), ModContent.DustType<Dusts.CaesiumDust>(), npc.velocity.X, 2f, 75, npc.color, npc.scale);
+                var num1225 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), 110, npc.velocity.X, 2f, 75, npc.color, npc.scale);
                 var dust56 = Main.dust[num1225];
+                dust56.noGravity = true;
                 dust56.velocity.X = dust56.velocity.X * 0.5f;
                 var dust57 = Main.dust[num1225];
                 dust57.velocity.Y = dust57.velocity.Y * 0.1f;
-            }
-            if (Main.rand.Next(40) == 0)
-            {
-                var num1226 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + npc.height * 0.25f), npc.width, (int)(npc.height * 0.5f), ModContent.DustType<Dusts.CaesiumDust>(), npc.velocity.X, 2f, 0, default(Color), 1f);
-                var dust58 = Main.dust[num1226];
-                dust58.velocity.X = dust58.velocity.X * 0.5f;
-                var dust59 = Main.dust[num1226];
-                dust59.velocity.Y = dust59.velocity.Y * 0.1f;
             }
             if (npc.wet && !npc.lavaWet)
             {
@@ -259,11 +256,19 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life > 0)
             {
-                Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y, 4, 1f, -0.5f);
+                Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y, 4, 0.9f, -0.5f);
+                Main.PlaySound(SoundID.Item, (int)npc.Center.X, (int)npc.Center.Y, 30, 0.2f, -0.5f);
             }
             if (npc.life <= 0)
             {
                 Main.PlaySound(SoundID.Item, (int)npc.Center.X, (int)npc.Center.Y, 27, 1.2f, -0.5f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore1"), 1.2f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore2"), 1.2f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore3"), 1.2f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore4"), 1.2f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore5"), 1.2f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore5"), 1.2f);
+                Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore6"), 1.2f);
             }
         }
         int counter = 0;
