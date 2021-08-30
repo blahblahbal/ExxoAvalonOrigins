@@ -44,6 +44,7 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
                         break;
                 }
                 player.QuickSpawnItem(drop);
+                player.QuickSpawnItem(ModContent.ItemType<Items.EarthStone>(), Main.rand.Next(1, 4));
             }
         }        public override void HoldItem(Item item, Player player)
         {
