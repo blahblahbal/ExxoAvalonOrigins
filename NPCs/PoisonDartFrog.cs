@@ -17,14 +17,14 @@ namespace ExxoAvalonOrigins.NPCs
         {
             npc.damage = 65;
             npc.scale = 1f;
-            npc.lifeMax = 500;
-            npc.defense = 20;
-            npc.width = 22;
+            npc.lifeMax = 310;
+            npc.defense = 24;
+            npc.width = 36;
             npc.aiStyle = -1;
             npc.npcSlots = 1f;
-            npc.value = 0f;
+            npc.value = 1000f;
             npc.timeLeft = 750;
-            npc.height = 22;
+            npc.height = 36;
             npc.knockBackResist = 0.2f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -70,7 +70,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
 
             // Ready to jump
-            if (AITimer >= 150)
+            if (AITimer >= 100)
             {
                 int jumpType = Main.rand.Next(2);
 
@@ -120,7 +120,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, npc.width, npc.height))
+            if (npc.collideY && npc.velocity.Y >= 0 && ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, npc.width, npc.height))
             {
                 npc.frame.Y = 0;
             }
@@ -128,15 +128,26 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 if (AIFrame == 0)
                 {
-                    npc.frame.Y = frameHeight * 1;
+                    npc.frame.Y = frameHeight * 2;
                 }
-                else npc.frame.Y = frameHeight * 2;
+                else npc.frame.Y = frameHeight * 3;
             }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics && Main.hardMode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore2"), 1f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore2"), 1f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore3"), 1f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore3"), 1f);
+            }
         }
     }
 }

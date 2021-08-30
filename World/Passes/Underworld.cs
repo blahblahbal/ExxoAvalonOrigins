@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     {
                         if (WorldGen.genRand.Next(10) == 0 && Main.tile[q, z].active() && Main.tile[q, z].type == TileID.Ash)
                         {
-                            Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
+                            WorldGen.TileRunner(q, z, WorldGen.genRand.Next(6, 8), WorldGen.genRand.Next(6, 8), ModContent.TileType<Tiles.BlackBlaststone>());
                         }
                     }
                 }

@@ -2155,7 +2155,10 @@ namespace ExxoAvalonOrigins
 		        }
 	        }
         }
-
+        public bool InPillarZone()
+        {
+            return player.ZoneTowerNebula || player.ZoneTowerSolar || player.ZoneTowerStardust || player.ZoneTowerVortex;
+        }
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
             if (damage > 0)

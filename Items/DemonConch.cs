@@ -17,6 +17,15 @@
             item.useStyle = ItemUseStyleID.HoldingUp;            item.UseSound = SoundID.Item6;
             item.useAnimation = 90;
             item.height = 24;
+        }        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.MagicMirror);
+            r.AddIngredient(ItemID.ShadowKey);
+            r.AddIngredient(ItemID.LivingFireBlock, 50);
+            r.AddTile(TileID.TinkerersWorkbench);
+            r.SetResult(this);
+            r.AddRecipe();
         }        public override void HoldItem(Player player)
         {
             if (player.itemAnimation > 0 && player.whoAmI == Main.myPlayer)
