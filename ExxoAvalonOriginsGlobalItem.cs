@@ -245,7 +245,7 @@ using Terraria.UI;namespace ExxoAvalonOrigins{    class ExxoAvalonOriginsGlo
         {
             if (item.lavaWet)
             {
-                if (item.type == ModContent.ItemType<Items.HellboundRemote>())
+                if (item.type == ModContent.ItemType<Items.HellboundRemote>() && Main.hardMode && ExxoAvalonOriginsWorld.downedPhantasm)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {

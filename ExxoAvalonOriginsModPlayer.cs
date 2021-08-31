@@ -2166,7 +2166,17 @@ namespace ExxoAvalonOrigins
                 if (LightningInABottle)
                 {
                     Vector2 cloudPosition = new Vector2(player.Center.X + 0f, player.Center.Y - 150f);
-                    Vector2 targetPosition = new Vector2(player.Center.X + (-20f * hitDirection), player.Center.Y);
+                    Vector2 targetPosition = new Vector2(player.Center.X/* + (-20f * hitDirection)*/, player.Center.Y);
+                    Vector2 targetPosition2 = new Vector2(player.Center.X + Main.rand.Next(-40, -20), player.Center.Y);
+                    Vector2 targetPosition3 = new Vector2(player.Center.X + Main.rand.Next(-40, -20), player.Center.Y);
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        targetPosition2 = new Vector2(player.Center.X + Main.rand.Next(20, 40), player.Center.Y);
+                    }
+                    if (Main.rand.Next(2) == 0)
+                    {
+                        targetPosition3 = new Vector2(player.Center.X + Main.rand.Next(20, 40), player.Center.Y);
+                    }
 
                     Projectile.NewProjectile(cloudPosition, Vector2.Zero, ModContent.ProjectileType<LightningCloud>(), 0, 0f, player.whoAmI);
 
@@ -2175,7 +2185,21 @@ namespace ExxoAvalonOrigins
                         Vector2 vectorBetween = targetPosition - cloudPosition;
                         float randomSeed = Main.rand.Next(100);
                         Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
-                        Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 40, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                        Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                    }
+                    for (int i = 0; i < 1; i++)
+                    {
+                        Vector2 vectorBetween = targetPosition2 - cloudPosition;
+                        float randomSeed = Main.rand.Next(100);
+                        Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
+                        Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                    }
+                    for (int i = 0; i < 1; i++)
+                    {
+                        Vector2 vectorBetween = targetPosition3 - cloudPosition;
+                        float randomSeed = Main.rand.Next(100);
+                        Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
+                        Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
                     }
                 }
 
