@@ -80,20 +80,7 @@ using Terraria.ModLoader;namespace ExxoAvalonOrigins{    class ExxoAvalonOri
             {
                 spawnRate = (int)(spawnRate * 0.4f);
                 maxSpawns = (int)(maxSpawns * 1.7f);
-            }        }        //public override bool PreAI(NPC npc)
-        //{
-        //    if ((npc.type == NPCID.LavaSlime || npc.type == NPCID.FireImp || npc.type == NPCID.Hellbat || npc.type == NPCID.Lavabat || npc.type == NPCID.BoneSerpentHead) && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
-        //    {
-        //        npc.active = false;
-        //        return false;
-        //    }
-        //    if (npc.type == NPCID.BlueSlime && npc.type == NPCID.DemonEye && npc.type == NPCID.DemonEye2 && npc.type == NPCID.DemonEyeOwl && npc.type == NPCID.DemonEyeSpaceship && Main.player[npc.target].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
-        //    {
-        //        npc.active = false;
-        //        return false;
-        //    }
-        //    return base.PreAI(npc);
-        //}
+            }        }
         /// <summary>
         /// Spawns the Wall of Steel at the given position.
         /// </summary>

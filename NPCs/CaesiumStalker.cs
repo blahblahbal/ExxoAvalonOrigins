@@ -64,23 +64,15 @@ namespace ExxoAvalonOrigins.NPCs
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
 			}
 			var rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + (npc.height - npc.width) / 2), npc.width, npc.width);
-			var num9 = 0.4f;
-			for (var i = 1; i <= 15; i++)
+			for (var j = 1; j <= 25; j++)
 			{
-				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, ModContent.DustType<Dusts.CaesiumDust>(), 0f, 0f, 100, default, 2f);
-				Main.dust[num10].noGravity = true;
-				Main.dust[num10].velocity.X = num9 * (Main.dust[num10].position.X - (npc.position.X + npc.width / 2));
-				Main.dust[num10].velocity.Y = num9 * (Main.dust[num10].position.Y - (npc.position.Y + npc.height / 2));
-			}
-			for (var j = 1; j <= 15; j++)
-			{
-				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 110, 0f, 0f, 100, default, 1f);
+				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 110, 0f, 0f, 100, default, 0.6f);
 				Main.dust[num11].noGravity = true;
-				Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
-				Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));
-			}
-            var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, npc.damage, 0f, npc.target, 0f, 0f);
-			Main.projectile[num12].Kill();
+                Main.dust[num11].velocity *= 2.5f;
+                Main.dust[num11].fadeIn = 1.1f;
+            }
+            //var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, npc.damage, 0f, npc.target, 0f, 0f);
+			//Main.projectile[num12].Kill();
 		}
 
         public override void AI()
@@ -200,8 +192,8 @@ namespace ExxoAvalonOrigins.NPCs
                     if (Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                     {
                         var mainproj = (float)Math.Atan2(npc.Center.Y - (Main.player[npc.target].Center.Y), npc.Center.X - (Main.player[npc.target].Center.X));
-                        int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumCrystal>(), 50, 1f, npc.target, 0f, 0f);
-                        Main.projectile[p].velocity *= 7f;
+                        int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ModContent.ProjectileType<Projectiles.CaesiumSpike>(), 50, 1f, npc.target, 0f, 0f);
+                        Main.projectile[p].velocity *= 13f;
                         Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
                     }
                     npc.localAI[0] = 0f;
@@ -262,6 +254,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (npc.life <= 0)
             {
                 Main.PlaySound(SoundID.Item, (int)npc.Center.X, (int)npc.Center.Y, 27, 1.2f, -0.5f);
+                Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y, 5, 1f, -0.5f);
                 Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore1"), 1.2f);
                 Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore2"), 1.2f);
                 Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore3"), 1.2f);
@@ -269,6 +262,14 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore5"), 1.2f);
                 Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore5"), 1.2f);
                 Gore.NewGore(npc.position, npc.velocity * 0f, mod.GetGoreSlot("Gores/StalkerGore6"), 1.2f);
+                /*for (int k = 0; k < 7; k++)
+                {
+                    Vector2 value14 = new Vector2(Main.rand.Next(-10, 10), Main.rand.Next(-10, 10));
+                    value14.Normalize();
+                    value14 *= 13;
+                    int p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, value14.X, value14.Y, ModContent.ProjectileType<Projectiles.CaesiumSpike>(), 50, 1f, npc.target, 0f);
+                    Main.projectile[p].timeLeft = 30;
+                }*/
             }
         }
         int counter = 0;
@@ -290,7 +291,9 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium && Main.hardMode ? 0.3f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium && spawnInfo.player.ZoneUnderworldHeight)
+                return 1f;
+            return 0;
         }
     }
 }

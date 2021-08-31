@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneCaesium && spawnInfo.player.ZoneUnderworldHeight)
-               return 1;
+            return 0.8f;
             return 0;
         }
         public override void AI()
