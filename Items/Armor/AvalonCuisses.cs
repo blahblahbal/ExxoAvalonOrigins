@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			player.moveSpeed += 0.15f;
 			player.meleeSpeed += 0.10f;
-			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().liaB = true;
+			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().LightningInABottle = true;
 		}
 	}
 }

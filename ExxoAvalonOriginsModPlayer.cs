@@ -256,7 +256,7 @@ namespace ExxoAvalonOrigins
         public int stamRegenCount;
         public int stamRegenDelay;
         public bool ammoCost70;
-        public bool liaB;
+        public bool LightningInABottle;
         public bool longInvince2;
         public float kbIncrease;
         public bool accDivingSuit;
@@ -350,7 +350,7 @@ namespace ExxoAvalonOrigins
             defDebuff = false;
             defDebuffBonusDef = 0;
             frozen = false;
-            liaB = false;
+            LightningInABottle = false;
             reckoning = false;
             hyperMagic = false;
             hyperMelee = false;
@@ -2160,12 +2160,20 @@ namespace ExxoAvalonOrigins
 		{
             if (damage > 0)
             {
-                if (liaB)
+                if (LightningInABottle)
                 {
-                    Projectile.NewProjectile(player.position.X + 20f, player.position.Y - 90f, 0f, 0f, ModContent.ProjectileType<LightningCloud>(), 45, 4f, player.whoAmI, 0f, 0f);
+                    Vector2 cloudPosition = new Vector2(player.Center.X + 0f, player.Center.Y - 150f);
+                    Vector2 targetPosition = new Vector2(player.Center.X + (-20f * hitDirection), player.Center.Y);
 
-                    //Projectile.NewProjectile(player.Center.X, player.Center.Y - 200, 0f, 4f, ModContent.ProjectileType<LightningBolt>(), 80, 6f, Main.myPlayer, 10);
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)player.position.X, (int)player.position.Y);
+                    Projectile.NewProjectile(cloudPosition, Vector2.Zero, ModContent.ProjectileType<LightningCloud>(), 0, 0f, player.whoAmI);
+
+                    for (int i = 0; i < 1; i++)
+                    {
+                        Vector2 vectorBetween = targetPosition - cloudPosition;
+                        float randomSeed = Main.rand.Next(100);
+                        Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
+                        Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 40, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                    }
                 }
 
                 if (goBerserk)
