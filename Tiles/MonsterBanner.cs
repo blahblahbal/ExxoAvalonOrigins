@@ -152,6 +152,12 @@ namespace ExxoAvalonOrigins.Tiles
                 case 41:
                     item = ModContent.ItemType<Items.Banners.TroxiniumSlimeBanner>();
                     break;
+                case 42:
+                    item = ModContent.ItemType<Items.Banners.UnstableAnomalyBanner>();
+                    break;
+                case 43:
+                    item = ModContent.ItemType<Items.Banners.MatterManBanner>();
+                    break;
                 case 44:
                     item = ModContent.ItemType<Items.Banners.BronzeSlimeBanner>();
                     break;
@@ -166,6 +172,9 @@ namespace ExxoAvalonOrigins.Tiles
                     break;
                 case 48:
                     item = ModContent.ItemType<Items.Banners.IridiumSlimeBanner>();
+                    break;
+                case 49:
+                    item = ModContent.ItemType<Items.Banners.HalloworBanner>();
                     break;
                 case 51:
                     item = ModContent.ItemType<Items.Banners.IrateBonesBanner>();

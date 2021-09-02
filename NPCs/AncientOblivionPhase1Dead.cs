@@ -54,10 +54,10 @@ namespace ExxoAvalonOrigins.NPCs
         public override void NPCLoot()
         {
             NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<AncientOblivionHead1>(), 0);
-            Main.NewText("Oblivion has been reborn!", 175, 75, 255, false);
+            Main.NewText("Ancient Oblivion has been reborn!", 175, 75, 255, false);
             if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Oblivion has been reborn!"), new Color(175, 75, 255));
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Ancient Oblivion has been reborn!"), new Color(175, 75, 255));
             }
         }
     }

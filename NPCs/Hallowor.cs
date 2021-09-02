@@ -37,9 +37,9 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.noTileCollide = false;
 			npc.value = 900;
 			npc.buffImmune[BuffID.Confused] = true;
-			//banner = npc.type;
-			//bannerItem = ModContent.ItemType<Items.Banners.HalloworBanner>();
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.HalloworBanner>();
+        }
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			return Main.hardMode && spawnInfo.player.ZoneHoly && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 1f : 0f;
