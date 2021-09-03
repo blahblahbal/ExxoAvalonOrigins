@@ -247,7 +247,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneCorrupt && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.066f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneCorrupt && Main.hardMode && ExxoAvalonOrigins.superHardmode && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() ? 0.066f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }
