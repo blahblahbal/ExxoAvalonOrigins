@@ -46,8 +46,8 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode)
-                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.hardMode) ? 0.7f : 0f;
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && Main.hardMode)
+                return (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && Main.hardMode) ? 0.7f : 0f;
             return 0f;
         }
         public override void FindFrame(int frameHeight)
