@@ -27,7 +27,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.boss = npc.noTileCollide = npc.noGravity = npc.behindTiles = true;
             npc.npcSlots = 100f;
             npc.damage = 135;
-            npc.lifeMax = 750000;
+            npc.lifeMax = 75000;
+            npc.timeLeft = 750000;
             npc.defense = 55;
             npc.aiStyle = -1;
             npc.value = Item.buyPrice(0, 10);
