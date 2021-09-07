@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
@@ -44,25 +43,25 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
         public enum State
         {
             Follow,
-            DashFindInitialNode,
-            DashGotoNodeSlow,
-            DashFindNode,
-            DashGotoNode,
-            DashGotoNodeCircle,
-            LaserPreTransform,
-            Transform
+            StageDash,
+            FlurryDashBegin,
+            FlurryDash,
+            FlurryDashEnd,
+            StalkBegin,
+            Stalk,
+            StalkEnd,
+            XDashBegin,
+            XDashToNodeSlow,
+            XDashToNode,
+            XDashFindNextNode,
+            StageLaser,
+            StageTransform,
         }
 
-        private const int AISlotState = 0;
-        private const int AISlotTimer = 1;
-        private const int AISlotNodePositionX = 2;
-        private const int AISlotNodePositionY = 3;
-
-        public State AIState
-        {
-            get => (State)npc.ai[AISlotState];
-            set => npc.ai[AISlotState] = (float)value;
-        }
+        private const int AISlotTimer = 0;
+        private const int AISlotFrameOffset = 1;
+        private const int AISlotState = 2;
+        private const int AISlotStalkRotation = 3;
 
         public float AITimer
         {
@@ -70,57 +69,79 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             set => npc.ai[AISlotTimer] = value;
         }
 
-        public Vector2 AINodePosition
+        public int AIFrameOffset
         {
-            get => new Vector2(npc.ai[AISlotNodePositionX], npc.ai[AISlotNodePositionY]);
+            get => (int)npc.ai[AISlotFrameOffset];
+            set => npc.ai[AISlotFrameOffset] = value;
+        }
+
+        public State AIState
+        {
+            get => (State)npc.ai[AISlotState];
             set
             {
-                npc.ai[AISlotNodePositionX] = value.X;
-                npc.ai[AISlotNodePositionY] = value.Y;
+                npc.ai[AISlotState] = (float)value;
+                AITimer = 0;
             }
         }
 
-        public int AIStalkRotation { get; set; }
-        public int AIRemainingDashes { get; set; }
-        public bool AICircleToNextNode { get; set; }
-        public bool AINodeRelativeToPlayer { get; set; }
+        public float AIStalkRotation
+        {
+            get => npc.ai[AISlotStalkRotation];
+            set => npc.ai[AISlotStalkRotation] = value;
+        }
+
+        private BitsByte AINetworkOptimisedBooleans = new BitsByte();
+        private const int AIBoolSlotCircleToNextNode = 0;
+        private const int AIBoolSlotNodeRelativeToPlayer = 1;
+
+        public bool AICircleToNextNode
+        {
+            get => AINetworkOptimisedBooleans[AIBoolSlotCircleToNextNode];
+            set => AINetworkOptimisedBooleans[AIBoolSlotCircleToNextNode] = value;
+        }
+
+        public bool AINodeRelativeToPlayer
+        {
+            get => AINetworkOptimisedBooleans[AIBoolSlotNodeRelativeToPlayer];
+            set => AINetworkOptimisedBooleans[AIBoolSlotNodeRelativeToPlayer] = value;
+        }
+
         public Vector2 AITargetedPosition { get; set; }
+        public Vector2 AINodePosition { get; set; }
+        public int AIRemainingDashes { get; set; }
+        public int AIRemainingFlurryDashes { get; set; }
+        public int AIActiveDrones { get; set; }
+
         private float followDistance = 16f * 15f;
         private float dashNodeRadius = 16f * 45f;
-        private float dashNodeActivationRadius = 16f * 5f;
+        private float dashNodeActivationRadius = 16f * 1f;
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(AIStalkRotation);
-            writer.Write(AIRemainingDashes);
-            writer.Write(AICircleToNextNode);
-            writer.Write(AINodeRelativeToPlayer);
             writer.WriteVector2(AITargetedPosition);
+            writer.WriteVector2(AINodePosition);
+            writer.Write(AIRemainingDashes);
+            writer.Write(AIRemainingFlurryDashes);
+            writer.Write(AIActiveDrones);
+            writer.Write(AINetworkOptimisedBooleans);
+
             base.SendExtraAI(writer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            AIStalkRotation = reader.ReadInt32();
-            AIRemainingDashes = reader.ReadInt32();
-            AICircleToNextNode = reader.ReadBoolean();
-            AINodeRelativeToPlayer = reader.ReadBoolean();
             AITargetedPosition = reader.ReadVector2();
+            AINodePosition = reader.ReadVector2();
+            AIRemainingDashes = reader.ReadInt32();
+            AIRemainingFlurryDashes = reader.ReadInt32();
+            AIActiveDrones = reader.ReadInt32();
+            AINetworkOptimisedBooleans = reader.ReadByte();
+
             base.ReceiveExtraAI(reader);
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
-        {
-            //Texture2D texture = ExxoAvalonOrigins.mod.GetTexture("NPCs/Bosses/OblivionPhase1Shadow");
-            //Vector2 origin = new Vector2(texture.Width / 2, (texture.Height / Main.npcFrameCount[npc.type]) / 2);
-            //Player player = Main.player[npc.target];
-            //Vector2 vectorToPlayer = player.Center - npc.Center;
-            //Vector2 unitVectorToPlayer = vectorToPlayer;
-            //unitVectorToPlayer.Normalize();
-            //Vector2 position = npc.position - unitVectorToPlayer * 25f;
-            //spriteBatch.Draw(texture, position - Main.screenPosition + origin, new Rectangle(0, npc.frame.Y, texture.Width, texture.Height / Main.npcFrameCount[npc.type]), drawColor * 1f, npc.rotation, origin, 1f, SpriteEffects.None, 0f);
-            return base.PreDraw(spriteBatch, drawColor);
-        }
+        public override string[] AltTextures => new string[] { ExxoAvalonOrigins.mod.Name + "/NPCs/Bosses/OblivionPhase1Shadow" };
 
         public override void AI()
         {
@@ -132,8 +153,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             AITimer++;
 
             Vector2 vectorToPlayer = player.Center - npc.Center;
-            Vector2 unitVectorToPlayer = vectorToPlayer;
-            unitVectorToPlayer.Normalize();
+            Vector2 unitVectorToPlayer = vectorToPlayer.SafeNormalize(Vector2.UnitX);
 
             npc.rotation = (float)Math.Atan2(unitVectorToPlayer.Y, unitVectorToPlayer.X) - (float)(Math.PI / 2);
 
@@ -141,40 +161,118 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             {
                 case State.Follow:
                     {
+                        if (npc.life > npc.lifeMax * 3 / 4)
+                        {
+                            AIState = State.StageDash;
+                        }
+                        else if (npc.life > npc.lifeMax / 3)
+                        {
+                            AIState = State.StageLaser;
+                        }
+                        else
+                        {
+                            AIState = State.StageTransform;
+                        }
+
+                        break;
+                    }
+                case State.StageDash:
+                    {
+                        AIRemainingDashes = 4;
+                        AIRemainingFlurryDashes = 5;
+                        AIState = State.FlurryDashBegin;
+                        break;
+                    }
+                case State.FlurryDashBegin:
+                    {
+                        AIRemainingFlurryDashes--;
+                        AINodePosition = (unitVectorToPlayer * 12 * 16f).RotatedByRandom(Math.PI / 2);
+                        AITargetedPosition = npc.Center;
+                        AIState = State.FlurryDash;
+                        break;
+                    }
+                case State.FlurryDash:
+                    {
+                        float speed = 0.2f;
+                        float projectileSpeed = 25f;
+
+                        Vector2 unitVectorToNode = AINodePosition.SafeNormalize(Vector2.UnitX);
+
+                        // Shoot
+                        if (Main.netMode != NetmodeID.MultiplayerClient && AIRemainingFlurryDashes <= 0)
+                        {
+                            if (AIRemainingDashes > 0)
+                            {
+                                if (AITimer == 1)
+                                {
+                                    Projectile.NewProjectile(npc.Center + unitVectorToNode * Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2, unitVectorToPlayer * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
+                                }
+                            }
+                            else
+                            {
+                                if (AITimer < 5)
+                                {
+                                    Projectile.NewProjectile(npc.Center + unitVectorToNode * Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2, unitVectorToPlayer * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
+                                }
+                            }
+                        }
+
+                        Vector2 vectorToNode = AITargetedPosition + AINodePosition - npc.Center;
+                        npc.velocity = vectorToNode * speed;
+
+                        if (vectorToNode.Length() < dashNodeActivationRadius)
+                        {
+                            AIState = State.FlurryDashEnd;
+                        }
+
+                        break;
+                    }
+                case State.FlurryDashEnd:
+                    {
+                        if (AIRemainingFlurryDashes > 0)
+                        {
+                            AIState = State.FlurryDashBegin;
+                        }
+                        else
+                        {
+                            if (AIRemainingDashes > 0)
+                            {
+                                AIRemainingDashes--;
+                                AIRemainingFlurryDashes = 5;
+                                AIState = State.FlurryDashBegin;
+                            }
+                            else
+                            {
+                                AIState = State.StalkBegin;
+                            }
+                        }
+
+                        break;
+                    }
+                case State.StalkBegin:
+                    {
+                        if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
+                        {
+                            Color tintColor = new Color(80, 0, 120);
+                            Filters.Scene.Activate(Effects.Effects.SceneKeyOblivionDarkenScreen).GetShader().UseColor(tintColor);
+                            npc.altTexture = 1;
+                        }
+                        AIStalkRotation = (float)Math.Atan2(unitVectorToPlayer.Y, unitVectorToPlayer.X);
+
+                        AIState = State.Stalk;
+                        break;
+                    }
+                case State.Stalk:
+                    {
                         float speed = 0.05f;
-
-                        // First update
-                        if (AITimer == 1)
-                        {
-                            if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
-                            {
-                                Color tintColor = new Color(80, 0, 120);
-                                Filters.Scene.Activate("OblivionDarkenScreen").GetShader().UseColor(tintColor);
-                                Main.npcTexture[npc.type] = ExxoAvalonOrigins.mod.GetTexture("NPCs/Bosses/OblivionPhase1Shadow");
-                            }
-                            AIStalkRotation = (int)MathHelper.ToDegrees((float)Math.Atan2(unitVectorToPlayer.Y, unitVectorToPlayer.X));
-                        }
-
-                        // After 250 seconds begin dashing
-                        if (AITimer > 250)
-                        {
-                            AIState = State.DashFindInitialNode;
-                            AITimer = 0;
-                            if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
-                            {
-                                Filters.Scene["OblivionDarkenScreen"].Deactivate();
-                                Main.npcTexture[npc.type] = ExxoAvalonOrigins.mod.GetTexture("NPCs/Bosses/OblivionPhase1");
-                            }
-                            break;
-                        }
 
                         // Every n seconds, change stalk rotation, ensuring rotation is atleast a 45 degree difference to the current rotation
                         if (AITimer % 45 == 0)
                         {
-                            AIStalkRotation += Main.rand.Next(270) + 45;
-                            AIStalkRotation %= 360;
-                            npc.alpha = 240;
-                            npc.position = player.Center + (player.Center - npc.Center).Length() * new Vector2(-1, 0).RotatedBy(MathHelper.ToRadians(AIStalkRotation));
+                            AIStalkRotation += (float)((Main.rand.NextFloat() * Math.PI * 6 / 4) + Math.PI / 4);
+                            AIStalkRotation %= (float)(Math.PI * 2);
+                            npc.alpha = 255;
+                            npc.position = player.Center + Vector2.UnitY.RotatedBy(AIStalkRotation) * vectorToPlayer.Length();
                         }
 
                         // Fade back alpha
@@ -184,72 +282,89 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         }
 
                         // Go to target position relative to player
-                        Vector2 targetPosition = player.Center + new Vector2(-1, 0).RotatedBy(MathHelper.ToRadians(AIStalkRotation)) * followDistance;
+                        Vector2 targetPosition = player.Center + Vector2.UnitY.RotatedBy(AIStalkRotation) * followDistance;
                         npc.velocity = player.velocity + (targetPosition - npc.Center) * speed;
+
+                        if (AITimer > 250)
+                        {
+                            AIState = State.StalkEnd;
+                            break;
+                        }
 
                         break;
                     }
-                case State.DashFindInitialNode:
+                case State.StalkEnd:
                     {
-                        Vector2 unitVectorToNode = new Vector2(0, -1);
+                        if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
+                        {
+                            Filters.Scene[Effects.Effects.SceneKeyOblivionDarkenScreen].Deactivate();
+                            npc.altTexture = 0;
+                        }
+                        npc.alpha = 0;
+                        AIState = State.XDashBegin;
+                        break;
+                    }
+                case State.XDashBegin:
+                    {
+                        Vector2 unitVectorToNode = (-Vector2.UnitY).RotatedBy(Math.PI / 4);
                         if (npc.Center.Y < player.Center.Y && npc.Center.X > player.Center.X)
                         {
-                            unitVectorToNode = unitVectorToNode.RotatedBy(MathHelper.ToRadians(45));
                         }
                         else if (npc.Center.Y > player.Center.Y && npc.Center.X > player.Center.X)
                         {
-                            unitVectorToNode = unitVectorToNode.RotatedBy(MathHelper.ToRadians(135));
+                            unitVectorToNode = unitVectorToNode.RotatedBy(Math.PI / 2);
                         }
                         else if (npc.Center.Y > player.Center.Y && npc.Center.X < player.Center.X)
                         {
-                            unitVectorToNode = unitVectorToNode.RotatedBy(MathHelper.ToRadians(225));
+                            unitVectorToNode = unitVectorToNode.RotatedBy(Math.PI);
                         }
                         else if (npc.Center.Y < player.Center.Y && npc.Center.X < player.Center.X)
                         {
-                            unitVectorToNode = unitVectorToNode.RotatedBy(MathHelper.ToRadians(315));
+                            unitVectorToNode = unitVectorToNode.RotatedBy(-Math.PI / 2);
                         }
 
                         AICircleToNextNode = false;
-                        AINodePosition = unitVectorToNode * dashNodeRadius;
                         AINodeRelativeToPlayer = true;
+                        AINodePosition = unitVectorToNode * dashNodeRadius;
                         AIRemainingDashes = 3;
-                        AIState = State.DashGotoNodeSlow;
-                        AITimer = 0;
+                        AIState = State.XDashToNodeSlow;
 
                         break;
                     }
-                case State.DashGotoNodeSlow:
+                case State.XDashToNodeSlow:
                     {
                         float speed = 0.1f;
+                        float minSpeed = 8f;
 
-                        Vector2 vectorToNode;
+                        Vector2 vectorToNode = AINodePosition - npc.Center;
+                        npc.velocity = Vector2.Zero;
                         if (AINodeRelativeToPlayer)
                         {
-                            vectorToNode = (player.Center + AINodePosition) - npc.Center;
-                            npc.velocity = player.velocity + vectorToNode * speed;
+                            vectorToNode += player.Center;
+                            npc.velocity = player.velocity;
                         }
                         else
                         {
-                            vectorToNode = (AITargetedPosition + AINodePosition) - npc.Center;
-                            npc.velocity = vectorToNode * speed;
+                            vectorToNode += AITargetedPosition;
                         }
+                        npc.velocity += vectorToNode * speed;
+
+                        Vector2 unit = vectorToNode.SafeNormalize(Vector2.UnitX);
+                        npc.velocity += unit * minSpeed;
 
                         if (vectorToNode.Length() < dashNodeActivationRadius)
                         {
-                            AITimer = 0;
-                            AIState = State.DashFindNode;
+                            AIState = State.XDashFindNextNode;
                         }
 
                         break;
                     }
-                case State.DashFindNode:
+                case State.XDashFindNextNode:
                     {
-                        AITimer = 0;
-
                         if (AICircleToNextNode)
                         {
                             AINodeRelativeToPlayer = true;
-                            AINodePosition = new Vector2(-1, 1) * unitVectorToPlayer * dashNodeRadius;
+                            AINodePosition = new Vector2(-unitVectorToPlayer.X, unitVectorToPlayer.Y) * dashNodeRadius;
                         }
                         else
                         {
@@ -258,10 +373,10 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             AINodePosition = unitVectorToPlayer * dashNodeRadius;
                         }
 
-                        AIState = State.DashGotoNode;
+                        AIState = State.XDashToNode;
                         break;
                     }
-                case State.DashGotoNode:
+                case State.XDashToNode:
                     {
                         float speed = 0.1f;
                         float railSpeed = 2.5f;
@@ -280,14 +395,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             }
                         }
 
-                        Vector2 vectorToNode;
+                        Vector2 vectorToNode = AINodePosition - npc.Center;
                         if (AINodeRelativeToPlayer)
                         {
-                            vectorToNode = (player.Center + AINodePosition) - npc.Center;
+                            vectorToNode += player.Center;
                         }
                         else
                         {
-                            vectorToNode = (AITargetedPosition + AINodePosition) - npc.Center;
+                            vectorToNode += AITargetedPosition;
                         }
 
                         // Go to node
@@ -315,7 +430,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         // At node
                         if (vectorToNode.Length() < dashNodeActivationRadius || (AICircleToNextNode && railSpeed * AITimer > 90))
                         {
-                            AITimer = 0;
                             if (!AICircleToNextNode)
                                 AIRemainingDashes--;
                             if (AIRemainingDashes > 0)
@@ -324,11 +438,11 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                                 if (AICircleToNextNode)
                                 {
                                     AINodeRelativeToPlayer = true;
-                                    AIState = State.DashGotoNodeSlow;
+                                    AIState = State.XDashToNodeSlow;
                                 }
                                 else
                                 {
-                                    AIState = State.DashFindNode;
+                                    AIState = State.XDashFindNextNode;
                                 }
                             }
                             else
@@ -339,12 +453,34 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
                         break;
                     }
-                case State.LaserPreTransform:
+                case State.StageLaser:
                     {
-                        break;
-                    }
-                case State.Transform:
-                    {
+                        if (AITimer == 1)
+                        {
+                            AIFrameOffset = 1;
+                        }
+
+                        // Move above player head moving slow to follow distance
+                        float speed = 0.1f;
+                        AINodePosition = -Vector2.UnitY * followDistance;
+                        Vector2 vectorToNode = AINodePosition + player.Center - npc.Center;
+                        npc.velocity = vectorToNode * speed;
+
+                        // Spawn defence drones
+                        if (AITimer == 1 || AITimer % 1800 == 0)
+                        {
+                            int amountDrones = 8;
+                            for (var i = 0; i < amountDrones; i++)
+                            {
+                                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<NPCs.AncientOblivionCannon>(), 0, npc.whoAmI);
+                            }
+                        }
+
+                        // Sweep laser
+                        if (AITimer % 600 == 0)
+                        {
+                            AITargetedPosition = player.Center;
+                        }
                         break;
                     }
             }
@@ -370,10 +506,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 npc.frameCounter = 0.0;
                 npc.frame.Y = 0;
             }
-            //if (npc.ai[0] > 1f)
-            //{
-            //	npc.frame.Y = npc.frame.Y + frameHeight * 3;
-            //}
+            npc.frame.Y += frameHeight * 3 * AIFrameOffset;
         }
 
         public override void NPCLoot()

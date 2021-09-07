@@ -7,8 +7,9 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Effects
 {
-    class Effects
+    public class Effects
     {
+        public const string SceneKeyOblivionDarkenScreen = "OblivionDarkenScreen";
         public static void Load()
         {
             if (Main.netMode == NetmodeID.Server)
@@ -17,7 +18,7 @@ namespace ExxoAvalonOrigins.Effects
             }
 
             Ref<Effect> refOblivionDarkenScreen = new Ref<Effect>(ExxoAvalonOrigins.mod.GetEffect("Effects/OblivionDarkenScreen"));
-            Filters.Scene["OblivionDarkenScreen"] = new Filter(new ScreenShaderData(refOblivionDarkenScreen, "OblivionDarkenScreen"), EffectPriority.VeryHigh);
+            Filters.Scene[SceneKeyOblivionDarkenScreen] = new Filter(new ScreenShaderData(refOblivionDarkenScreen, SceneKeyOblivionDarkenScreen), EffectPriority.VeryHigh);
         }
     }
 }

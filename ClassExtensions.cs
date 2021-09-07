@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins
             context.Body.Variables.Add(new VariableDefinition(context.Import(type)));
             return context.Body.Variables.Count - 1;
         }
-        
+
         public static int GetArgumentIndex(this ILContext context, string name)
         {
             ParameterDefinition def = context.Method.Parameters.FirstOrDefault(parameter => parameter.Name == name);
@@ -59,12 +59,12 @@ namespace ExxoAvalonOrigins
         {
             return item.mod.GetTexture(GetTexturePath(item));
         }
-        public static Rectangle GetDims(this ModItem item) 
+        public static Rectangle GetDims(this ModItem item)
         {
             Rectangle dims;
             if (Main.netMode == NetmodeID.Server)
                 return new Rectangle(0, 0, 1, 1);
-                
+
             dims = item.GetTexture().Bounds;
 
             return dims;
