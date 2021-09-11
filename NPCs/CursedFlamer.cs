@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return Main.hardMode && spawnInfo.player.ZoneCorrupt && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 1f : 0f;
+			return Main.hardMode && spawnInfo.player.ZoneCorrupt && spawnInfo.spawnTileY < (Main.maxTilesY - 200) && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() ? 1f : 0f;
 		}
         public override void FindFrame(int frameHeight)
         {

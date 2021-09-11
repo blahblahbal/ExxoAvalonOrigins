@@ -41,7 +41,14 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.VampireHarpyBanner>();
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ExxoAvalonOrigins.superHardmode)
+            {
+                return 1f;
+            }
+            return 0f;
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.X > 0f)

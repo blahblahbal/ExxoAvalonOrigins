@@ -36,8 +36,15 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.DarkMatterSlimeBanner>();
         }
-
-		public override void NPCLoot()
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ExxoAvalonOrigins.superHardmode)
+            {
+                return 1f;
+            }
+            return 0f;
+        }
+        public override void NPCLoot()
 		{
             bool canDrop = true;
             for (int i = 0; i < Main.maxNPCs; i++)
