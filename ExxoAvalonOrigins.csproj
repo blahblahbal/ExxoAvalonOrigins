@@ -16,4 +16,7 @@
   <ItemGroup>
     <Folder Include="Items\BossBags\" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
 </Project>

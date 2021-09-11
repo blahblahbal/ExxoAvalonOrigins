@@ -36,26 +36,40 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.buffImmune[BuffID.Frostburn] = true;
-
-            mainState = new MainState(this);
         }
 
         private const int AISlotFrameOffset = 0;
+
         public int AIFrameOffset
         {
             get => (int)npc.ai[AISlotFrameOffset];
             set => npc.ai[AISlotFrameOffset] = value;
         }
 
-        private BitsByte AINetworkOptimisedBooleans = new BitsByte();
-
         public override string[] AltTextures => new string[] { ExxoAvalonOrigins.mod.Name + "/NPCs/Bosses/OblivionPhase1Shadow" };
-
 
         private MainState mainState;
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            mainState.Write(writer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            if (mainState == null)
+            {
+                mainState = new MainState(this, null);
+            }
+            mainState.Read(reader);
+        }
+
         public override void AI()
         {
+            if (mainState == null)
+            {
+                mainState = new MainState(this, null);
+            }
             mainState.Update(this);
         }
 
@@ -84,52 +98,57 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public override void NPCLoot()
         {
-            if (Main.netMode != NetmodeID.Server && Filters.Scene["OblivionDarkenScreen"].IsActive()) // This all needs to happen client-side!
-            {
-                Filters.Scene["OblivionDarkenScreen"].Deactivate();
-                Main.npcTexture[npc.type] = ExxoAvalonOrigins.mod.GetTexture("NPCs/Bosses/OblivionPhase1");
-            }
+            mainState?.Unload();
         }
 
         private class MainState : StateParent
         {
-            private bool inStage;
             private bool firstRun;
-            private float finishedFrame;
-            private OblivionPhase1 oblivionPhase1;
 
-            public MainState(OblivionPhase1 oblivionPhase1, Action destroyAction = null) : base(oblivionPhase1, destroyAction)
+            public override void Write(BinaryWriter writer)
             {
-                this.oblivionPhase1 = oblivionPhase1;
+                base.Write(writer);
+                writer.Write(firstRun);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                firstRun = reader.ReadBoolean();
+            }
+
+            public override Type[] UsedTypes => new Type[] { typeof(DashState) };
+
+            public MainState() : base() { }
+            public MainState(ModNPC modNPC, StateParent parent, State nextState = null) : base(modNPC, parent, nextState)
+            {
             }
 
             protected override void PostStart()
             {
-                inStage = false;
                 firstRun = true;
+            }
+
+            protected override void InactiveUpdate()
+            {
+                if (npc.life > npc.lifeMax * 3 / 4)
+                {
+                    if (firstRun || framesInactive == 1)
+                    {
+                        firstRun = false;
+                        SetFirstState(new DashState(ModNPC, this));
+                    }
+                }
+                else if (npc.life > npc.lifeMax / 3)
+                {
+                    (ModNPC as OblivionPhase1).AIFrameOffset = 1;
+                }
             }
 
             protected override void PostUpdate()
             {
                 FindTarget();
                 LookAtTarget();
-
-                if (npc.life > npc.lifeMax * 3 / 4)
-                {
-                    if (firstRun || (!inStage && currentFrame - finishedFrame == 1))
-                    {
-                        firstRun = false;
-                        states.Add(new DashState(modNPC, delegate
-                        {
-                            inStage = false;
-                            finishedFrame = currentFrame;
-                        }));
-                    }
-                }
-                else if (npc.life > npc.lifeMax / 3)
-                {
-                    oblivionPhase1.AIFrameOffset = 1;
-                }
                 base.PostUpdate();
             }
 
@@ -149,22 +168,21 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public class DashState : StateParent
         {
-            public DashState(ModNPC modNPC, Action destroyAction = null) : base(modNPC, destroyAction)
+            public DashState() : base() { }
+            public DashState(ModNPC modNPC, StateParent parent, State nextState = null) : base(modNPC, parent, nextState)
             {
             }
 
+            public override Type[] UsedTypes => new Type[] { typeof(FlurryDash), typeof(Stalk), typeof(XDash) };
+
             protected override void PostStart()
             {
-                states.Add(new FlurryDash(modNPC, delegate
-                {
-                    states.Add(new Stalk(modNPC, delegate
-                    {
-                        states.Add(new XDash(modNPC, delegate
-                        {
-                            Destroy();
-                        }));
-                    }));
-                }));
+                SetFirstState(new FlurryDash(ModNPC, this, new Stalk(ModNPC, this, new XDash(ModNPC, this))));
+            }
+
+            protected override void InactiveUpdate()
+            {
+                Destroy();
             }
         }
 
@@ -179,17 +197,37 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             private Vector2 nodePosition;
             private Vector2 targetedPosition;
 
-            public FlurryDash(ModNPC modNPC, Action destroyAction = null) : base(modNPC, destroyAction)
+            public FlurryDash() : base() { }
+            public FlurryDash(ModNPC modNPC, StateParent parent, State nextState = null) : base(modNPC, parent, nextState)
             {
                 remainingDashes = 4;
                 remainingFlurryDashes = 5;
             }
 
+            public override void Write(BinaryWriter writer)
+            {
+                base.Write(writer);
+                writer.Write(remainingDashes);
+                writer.Write(remainingFlurryDashes);
+                writer.WriteVector2(nodePosition);
+                writer.WriteVector2(targetedPosition);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                remainingDashes = reader.ReadInt32();
+                remainingFlurryDashes = reader.ReadInt32();
+                nodePosition = reader.ReadVector2();
+                targetedPosition = reader.ReadVector2();
+            }
+
             protected override void PostStart()
             {
                 remainingFlurryDashes--;
-                nodePosition = (unitVectorToTarget * dashDistance).RotatedByRandom(Math.PI / 2);
-                targetedPosition = modNPC.npc.Center;
+                float random = 0.5f;
+                nodePosition = (unitVectorToTarget * dashDistance).RotatedBy((random * Math.PI / 2) - (Math.PI / 4));
+                targetedPosition = ModNPC.npc.Center;
             }
 
             protected override void PostUpdate()
@@ -200,16 +238,17 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 {
                     if (remainingDashes > 0)
                     {
-                        if (currentFrame == 1)
+                        if (CurrentFrame == 1)
                         {
-                            Projectile.NewProjectile(npc.Center + unitVectorToNode * Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2, unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
+                            // replace with non texutre
+                            Projectile.NewProjectile(npc.Center + unitVectorToNode * npc.height / 2, unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
                         }
                     }
                     else
                     {
-                        if (currentFrame < 5)
+                        if (CurrentFrame < 5)
                         {
-                            Projectile.NewProjectile(npc.Center + unitVectorToNode * Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2, unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center + unitVectorToNode * npc.height / 2, unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
                         }
                     }
                 }
@@ -221,15 +260,15 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 {
                     if (remainingFlurryDashes > 0)
                     {
-                        Start();
+                        Restart();
                     }
                     else
                     {
                         if (remainingDashes > 0)
                         {
+                            Restart();
                             remainingDashes--;
                             remainingFlurryDashes = 5;
-                            Start();
                         }
                         else
                         {
@@ -245,19 +284,32 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             private float stalkRotation;
             private readonly float followDistance = 16f * 15f;
 
-            public Stalk(ModNPC modNPC, Action destroyAction = null) : base(modNPC, destroyAction)
+            public Stalk() : base() { }
+            public Stalk(ModNPC modNPC, StateParent parent, State nextState = null) : base(modNPC, parent, nextState)
             {
+                stalkRotation = (float)Math.Atan2(unitVectorToTarget.Y, unitVectorToTarget.X);
             }
 
-            protected override void PostStart()
+            public override void Write(BinaryWriter writer)
+            {
+                base.Write(writer);
+                writer.Write(stalkRotation);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                stalkRotation = reader.ReadSingle();
+            }
+
+            public override void Load()
             {
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
                     Color tintColor = new Color(80, 0, 120);
                     Filters.Scene.Activate(Effects.Effects.SceneKeyOblivionDarkenScreen).GetShader().UseColor(tintColor);
-                    modNPC.npc.altTexture = 1;
+                    ModNPC.npc.altTexture = 1;
                 }
-                stalkRotation = (float)Math.Atan2(unitVectorToTarget.Y, unitVectorToTarget.X);
             }
 
             protected override void PostUpdate()
@@ -265,12 +317,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 float speed = 0.05f;
 
                 // Every n seconds, change stalk rotation, ensuring rotation is atleast a 45 degree difference to the current rotation
-                if (currentFrame % 45 == 0)
+                if (CurrentFrame % 45 == 0)
                 {
-                    stalkRotation += (float)((Main.rand.NextFloat() * Math.PI * 6 / 4) + Math.PI / 4);
+                    float random = 0.5f;
+                    stalkRotation += (float)((random * Math.PI * 6 / 4) + Math.PI / 4);
                     stalkRotation %= (float)(Math.PI * 2);
-                    npc.alpha = 255;
                     npc.position = target.Center + Vector2.UnitY.RotatedBy(stalkRotation) * vectorToTarget.Length();
+                    npc.alpha = 255;
                 }
 
                 // Fade back alpha
@@ -283,81 +336,110 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 Vector2 targetPosition = target.Center + Vector2.UnitY.RotatedBy(stalkRotation) * followDistance;
                 npc.velocity = target.velocity + (targetPosition - npc.Center) * speed;
 
-                if (currentFrame > 250)
+                if (CurrentFrame > 250)
                 {
                     Destroy();
                 }
             }
 
-            protected override void PreDestroy()
+            public override void Unload()
             {
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
                     Filters.Scene[Effects.Effects.SceneKeyOblivionDarkenScreen].Deactivate();
-                    modNPC.npc.altTexture = 0;
+                    ModNPC.npc.altTexture = 0;
                 }
-                modNPC.npc.alpha = 0;
+                ModNPC.npc.alpha = 0;
             }
         }
 
         public class XDash : StateParent
         {
-            private bool inDash;
+            private bool firstDash;
+            private int remainingDashes;
             private Vector2 nodePosition;
             private Vector2 targetedPosition;
-            private int remainingDashes;
             private float dashNodeRadius = 16f * 45f;
-            private readonly float dashNodeActivationRadius = 16f;
 
-            public XDash(ModNPC modNPC, Action destroyAction = null) : base(modNPC, destroyAction)
+            public override void Write(BinaryWriter writer)
+            {
+                base.Write(writer);
+                writer.Write(firstDash);
+                writer.Write(remainingDashes);
+                writer.WriteVector2(nodePosition);
+                writer.WriteVector2(targetedPosition);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                firstDash = reader.ReadBoolean();
+                remainingDashes = reader.ReadInt32();
+                nodePosition = reader.ReadVector2();
+                targetedPosition = reader.ReadVector2();
+            }
+
+            public XDash() : base() { }
+            public XDash(ModNPC modNPC, StateParent parent, State nextState = null) : base(modNPC, parent, nextState)
             {
             }
+
+            public override Type[] UsedTypes => new Type[] { typeof(XDashToNodeSlow), typeof(XDashToNode), typeof(XDashCircleToNode) };
 
             protected override void PostStart()
             {
-                inDash = true;
                 remainingDashes = 3;
-
-                FindInitialNode();
-
-                states.Add(new XDashToNodeSlow(modNPC, nodePosition, targetedPosition, true, delegate
-                {
-                    FindNextDashNode();
-                    states.Add(new XDashToNode(modNPC, nodePosition, targetedPosition, false, delegate
-                    {
-                        remainingDashes--;
-                        inDash = false;
-                    }));
-                }));
+                firstDash = true;
             }
 
-            protected override void PostUpdate()
+            protected override void InactiveUpdate()
             {
-                if (!inDash)
+                if (remainingDashes > 0)
                 {
-                    inDash = true;
-                    if (remainingDashes > 0)
+                    remainingDashes--;
+                    if (firstDash)
                     {
-                        states.Add(new XDashToNodeSlow(modNPC, nodePosition, targetedPosition, true, delegate
-                        {
-                            FindNextCircleToNode();
-                            states.Add(new XDashCircleToNode(modNPC, nodePosition, targetedPosition, true, delegate
-                            {
-                                FindNextDashNode();
-                                states.Add(new XDashToNode(modNPC, nodePosition, targetedPosition, false, delegate
-                                {
-                                    remainingDashes--;
-                                    inDash = false;
-                                }));
-                            }));
-                        }));
+                        FindInitialNode();
+                        SetFirstState(new XDashToNodeSlow(ModNPC, this, nodePosition, targetedPosition, true));
                     }
                     else
                     {
-                        Destroy();
+                        SetFirstState(new XDashToNodeSlow(ModNPC, this, nodePosition, targetedPosition, true));
                     }
                 }
-                base.PostUpdate();
+                else
+                {
+                    Destroy();
+                }
+            }
+
+            protected override void PreAdvanceState()
+            {
+                if (firstDash)
+                {
+                    if (statePosition == 1)
+                    {
+                        FindNextDashNode();
+                        SetState(new XDashToNode(ModNPC, this, nodePosition, targetedPosition, false));
+                    }
+                    else if (statePosition == 2)
+                    {
+                        firstDash = false;
+                    }
+                }
+                else
+                {
+                    if (statePosition == 1)
+                    {
+                        FindNextCircleToNode();
+                        SetState(new XDashCircleToNode(ModNPC, this, nodePosition, targetedPosition, true));
+                    }
+                    else if (statePosition == 2)
+                    {
+                        FindNextDashNode();
+                        SetState(new XDashToNode(ModNPC, this, nodePosition, targetedPosition, false));
+                    }
+                }
             }
 
             private void FindInitialNode()
@@ -402,16 +484,33 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             private readonly float minSpeed = 8f;
             private readonly float dashNodeActivationRadius = 16f;
 
-            public XDashToNodeSlow(ModNPC modNPC, Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget, Action destroyAction = null) : base(modNPC, destroyAction)
+            public XDashToNodeSlow() : base() { }
+            public XDashToNodeSlow(ModNPC modNPC, StateParent parent, Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget, State nextState = null) : base(modNPC, parent, nextState)
             {
                 this.nodePosition = nodePosition;
                 this.targetedPosition = targetedPosition;
                 this.relativeToTarget = relativeToTarget;
             }
 
+            public override void Write(BinaryWriter writer)
+            {
+                base.Write(writer);
+                writer.Write(relativeToTarget);
+                writer.WriteVector2(nodePosition);
+                writer.WriteVector2(targetedPosition);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                relativeToTarget = reader.ReadBoolean();
+                nodePosition = reader.ReadVector2();
+                targetedPosition = reader.ReadVector2();
+            }
+
             protected override void PostUpdate()
             {
-                NPC npc = modNPC.npc;
+                NPC npc = ModNPC.npc;
 
                 Vector2 vectorToNode = nodePosition;
                 npc.velocity = Vector2.Zero;
@@ -445,21 +544,38 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             private readonly float speed = 0.1f;
             private readonly float dashNodeActivationRadius = 16f;
 
-            public XDashToNode(ModNPC modNPC, Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget, Action destroyAction = null) : base(modNPC, destroyAction)
+            public XDashToNode() : base() { }
+            public XDashToNode(ModNPC modNPC, StateParent parent, Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget, State nextState = null) : base(modNPC, parent, nextState)
             {
                 this.nodePosition = nodePosition;
                 this.targetedPosition = targetedPosition;
                 this.relativeToTarget = relativeToTarget;
             }
 
+            public override void Write(BinaryWriter writer)
+            {
+                base.Write(writer);
+                writer.Write(relativeToTarget);
+                writer.WriteVector2(nodePosition);
+                writer.WriteVector2(targetedPosition);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                relativeToTarget = reader.ReadBoolean();
+                nodePosition = reader.ReadVector2();
+                targetedPosition = reader.ReadVector2();
+            }
+
             protected override void PostUpdate()
             {
-                if (currentFrame < 15)
+                if (CurrentFrame < 15)
                 {
                     return;
                 }
 
-                if (currentFrame == 15)
+                if (CurrentFrame == 15)
                 {
                     Main.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1);
                 }
@@ -494,7 +610,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             private readonly float dashNodeActivationRadius = 16f;
             private bool clockWise;
 
-            public XDashCircleToNode(ModNPC modNPC, Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget, Action destroyAction = null) : base(modNPC, destroyAction)
+            public XDashCircleToNode() : base() { }
+            public XDashCircleToNode(ModNPC modNPC, StateParent parent, Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget, State nextState = null) : base(modNPC, parent, nextState)
             {
                 this.nodePosition = nodePosition;
                 this.targetedPosition = targetedPosition;
@@ -505,6 +622,24 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 {
                     clockWise = true;
                 }
+            }
+
+            public override void Write(BinaryWriter writer)
+            {
+                base.Write(writer);
+                writer.Write(relativeToTarget);
+                writer.Write(clockWise);
+                writer.WriteVector2(nodePosition);
+                writer.WriteVector2(targetedPosition);
+            }
+
+            public override void Read(BinaryReader reader)
+            {
+                base.Read(reader);
+                relativeToTarget = reader.ReadBoolean();
+                clockWise = reader.ReadBoolean();
+                nodePosition = reader.ReadVector2();
+                targetedPosition = reader.ReadVector2();
             }
 
             protected override void PostUpdate()
@@ -521,13 +656,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
                 // Go to node
 
-                float radians = MathHelper.ToRadians((90 - (railSpeed * currentFrame)) * (clockWise ? 1 : -1));
+                float radians = MathHelper.ToRadians((90 - (railSpeed * CurrentFrame)) * (clockWise ? 1 : -1));
 
                 npc.velocity = Vector2.Zero;
                 npc.position = (target.Center + nodePosition.RotatedBy(radians));
 
                 // At node
-                if (vectorToNode.Length() < dashNodeActivationRadius || (railSpeed * currentFrame > 90))
+                if (vectorToNode.Length() < dashNodeActivationRadius || (railSpeed * CurrentFrame > 90))
                 {
                     Destroy();
                 }
