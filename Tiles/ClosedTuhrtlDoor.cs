@@ -1,4 +1,13 @@
-﻿using Microsoft.Xna.Framework;using Terraria;using Terraria.DataStructures;using Terraria.Enums;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
     public class ClosedTuhrtlDoor : ModTile
     {
         public override void SetDefaults()
@@ -34,7 +43,8 @@
             AddMapEntry(new Color(119, 105, 79), name);
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };
-            openDoorID = mod.TileType("OpenTuhrtlDoor");            dustType = DustID.Silt;
+            openDoorID = mod.TileType("OpenTuhrtlDoor");
+            dustType = DustID.Silt;
         }
 
         public override bool HasSmartInteract()
@@ -54,4 +64,5 @@
             player.showItemIcon = true;
             player.showItemIcon2 = ModContent.ItemType<Items.TuhrtlDoor>();
         }
-    }}
+    }
+}

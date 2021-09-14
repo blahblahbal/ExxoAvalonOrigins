@@ -1,6 +1,33 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace ExxoAvalonOrigins.Projectiles{	public class CaesiumSpike : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Caesium Spike");		}		public override void SetDefaults()		{			projectile.penetrate = 1;			projectile.width = 18;			projectile.height = 18;			projectile.aiStyle = -1;			projectile.friendly = false;			projectile.hostile = true;			projectile.timeLeft = 90;			projectile.scale = 1.2f;		}
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class CaesiumSpike : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Caesium Spike");
+		}
+		public override void SetDefaults()
+		{
+			projectile.penetrate = 1;
+			projectile.width = 18;
+			projectile.height = 18;
+			projectile.aiStyle = -1;
+			projectile.friendly = false;
+			projectile.hostile = true;
+			projectile.timeLeft = 90;
+			projectile.scale = 1.2f;
+		}
         public override void AI()
         {
 			projectile.spriteDirection = projectile.direction;
@@ -58,4 +85,6 @@ namespace ExxoAvalonOrigins.Projectiles{	public class CaesiumSpike : ModProjec
 				Dust dust30 = Main.dust[num239];
 				dust30.noGravity = true;
 			}
-		}    }}
+		}
+    }
+}

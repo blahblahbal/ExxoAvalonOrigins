@@ -1,4 +1,16 @@
-using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class TritonWave : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -93,4 +105,5 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Sys
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, new Color(50, 50, 50, 50), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0.0f);
             return true;
         }
-    }}
+    }
+}

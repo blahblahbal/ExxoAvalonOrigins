@@ -1,4 +1,10 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Items
+{
     class TheOasisRemembered : ModItem
     {
         public override void SetStaticDefaults()
@@ -13,8 +19,15 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
             item.value = Item.sellPrice(0, 0, 40);
-            item.height = dims.Height;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
-        }        public override void UpdateAccessory(Player player, bool hideVisual)        {            player.minionDamage += 0.2f;            player.minionKB += 0.2f;        }
+            item.height = dims.Height;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.minionDamage += 0.2f;
+            player.minionKB += 0.2f;
+        }
 
         public override void AddRecipes()
         {
@@ -26,4 +39,6 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }    }}
+        }
+    }
+}

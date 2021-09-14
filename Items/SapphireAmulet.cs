@@ -1,5 +1,39 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class SapphireAmulet : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Sapphire Amulet");			Tooltip.SetDefault("Increases maximum mana by 40");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/SapphireAmulet");			item.rare = ItemRarityID.Blue;			item.width = dims.Width;			item.accessory = true;			item.value = Item.sellPrice(0, 0, 30);			item.height = dims.Height;		}		public override void UpdateAccessory(Player player, bool hideVisual)		{
-            player.statManaMax2 += 40;		}        public override void AddRecipes()
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
+	class SapphireAmulet : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Sapphire Amulet");
+			Tooltip.SetDefault("Increases maximum mana by 40");
+		}
+
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Items/SapphireAmulet");
+			item.rare = ItemRarityID.Blue;
+			item.width = dims.Width;
+			item.accessory = true;
+			item.value = Item.sellPrice(0, 0, 30);
+			item.height = dims.Height;
+		}
+
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+            player.statManaMax2 += 40;
+		}
+
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Sapphire, 12);
@@ -8,4 +42,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             recipe.AddTile(TileID.Anvils);
             recipe.AddRecipe();
         }
-    }}
+    }
+}

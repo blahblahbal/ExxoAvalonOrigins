@@ -1,7 +1,18 @@
-using ExxoAvalonOrigins.Items;using ExxoAvalonOrigins.Tiles;using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.IO;
+using ExxoAvalonOrigins.Items;
+using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
-using Terraria;using Terraria.GameContent.Biomes;
-using Terraria.GameContent.Generation;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;using Terraria.ModLoader.IO;using Terraria.Utilities;
+using Terraria;
+using Terraria.GameContent.Biomes;
+using Terraria.GameContent.Generation;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Terraria.Utilities;
 using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
@@ -14,7 +25,8 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             AddMapEntry(xanthophyteColor, LanguageManager.Instance.GetText("Xanthophyte"));
             Main.tileSolid[Type] = true;
             ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalMud>());
-            ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalGrass>());			Main.tileShine2[Type] = true;
+            ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalGrass>());
+			Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 775;
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;

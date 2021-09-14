@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class Ghostflame : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -19,10 +30,13 @@
             projectile.penetrate = -1;
             projectile.magic = true;
             projectile.ignoreWater = true;
-        }        public override void OnHitPlayer(Player target, int damage, bool crit)
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.ShadowCurse>(), 240);
-        }        public override void AI()        {
+        }
+        public override void AI()
+        {
             int num890 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
             Main.dust[num890].velocity *= 0.1f;
             Main.dust[num890].scale = 1.3f;
@@ -35,4 +49,7 @@
             if (projectile.velocity.Y > 16f)
             {
                 projectile.velocity.Y = 16f;
-            }        }    }}
+            }
+        }
+    }
+}

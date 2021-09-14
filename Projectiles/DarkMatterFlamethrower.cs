@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class DarkMatterFlamethrower : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -21,10 +32,13 @@
             projectile.alpha = 255;
             projectile.magic = true;
             projectile.ignoreWater = true;
-        }        public override void OnHitPlayer(Player target, int damage, bool crit)
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 120);
-        }        public override void AI()        {
+        }
+        public override void AI()
+        {
             if (projectile.timeLeft > 60)
             {
                 projectile.timeLeft = 60;
@@ -86,4 +100,7 @@
             {
                 projectile.ai[0] += 1f;
             }
-            projectile.rotation += 0.3f * (float)projectile.direction;        }    }}
+            projectile.rotation += 0.3f * (float)projectile.direction;
+        }
+    }
+}

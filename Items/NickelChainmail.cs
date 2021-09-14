@@ -1,4 +1,15 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
     [AutoloadEquip(EquipType.Body)]
     class NickelChainmail : ModItem
     {
@@ -15,4 +26,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.value = Item.sellPrice(0, 0, 0, 70);
             item.height = dims.Height;
         }
-    }}
+    }
+}

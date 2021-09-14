@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
     class Omnibag : ModItem
     {
         public override void SetStaticDefaults()
@@ -126,7 +137,10 @@
                 dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.IceTorch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
             }
-        }        public override void UpdateVanity(Player player, EquipType type)        {
+        }
+
+        public override void UpdateVanity(Player player, EquipType type)
+        {
             if (player.controlRight)
             {
                 int dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Fire, 0, 0, 100, Color.White, 2f);
@@ -221,4 +235,5 @@
                 Main.dust[dust].noGravity = true;
             }
         }
-    }}
+    }
+}

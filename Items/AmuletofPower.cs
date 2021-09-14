@@ -1,4 +1,36 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class AmuletofPower : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Amulet of Power");            Tooltip.SetDefault("Increases all stats");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/AmuletofPower");			item.rare = ItemRarityID.LightRed;			item.width = dims.Width;			item.accessory = true;			item.value = Item.sellPrice(0, 0, 90);			item.height = dims.Height;            item.defense = 3;		}		public override void UpdateAccessory(Player player, bool hideVisual)		{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
+	class AmuletofPower : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Amulet of Power");
+            Tooltip.SetDefault("Increases all stats");
+		}
+
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Items/AmuletofPower");
+			item.rare = ItemRarityID.LightRed;
+			item.width = dims.Width;
+			item.accessory = true;
+			item.value = Item.sellPrice(0, 0, 90);
+			item.height = dims.Height;
+            item.defense = 3;
+		}
+
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
             player.magicDamage += 0.03f;
             player.meleeDamage += 0.03f;
             player.rangedDamage += 0.03f;
@@ -10,7 +42,9 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             player.thrownCrit += 3;
             player.statManaMax2 += 40;
             player.statLifeMax2 += 40;
-        }        public override void AddRecipes()
+        }
+
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<AmethystAmulet>());
@@ -26,4 +60,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-    }}
+    }
+}

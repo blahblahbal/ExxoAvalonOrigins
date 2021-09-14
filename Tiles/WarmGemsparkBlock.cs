@@ -1,6 +1,29 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace ExxoAvalonOrigins.Tiles{	public class WarmGemsparkBlock : ModTile	{		public override void SetDefaults()		{			AddMapEntry(Color.OrangeRed);			Main.tileSolid[Type] = true;			Main.tileBrick[Type] = true;			drop = mod.ItemType("WarmGemsparkBlock");            dustType = DustID.Crimstone;        }        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+namespace ExxoAvalonOrigins.Tiles
+{
+	public class WarmGemsparkBlock : ModTile
+	{
+		public override void SetDefaults()
+		{
+			AddMapEntry(Color.OrangeRed);
+			Main.tileSolid[Type] = true;
+			Main.tileBrick[Type] = true;
+			drop = mod.ItemType("WarmGemsparkBlock");
+            dustType = DustID.Crimstone;
+        }
+
+        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
             Texture2D texture;
@@ -19,4 +42,5 @@ namespace ExxoAvalonOrigins.Tiles{	public class WarmGemsparkBlock : ModTile	{
             }
             Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(255, ExxoAvalonOrigins.royG, 0), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
         }
-    }}
+    }
+}

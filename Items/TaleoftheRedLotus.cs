@@ -1,4 +1,10 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Items
+{
     class TaleoftheRedLotus : ModItem
     {
         public override void SetStaticDefaults()
@@ -13,7 +19,15 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.value = 5000;
-            item.height = dims.Height;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;        }        public override void UpdateAccessory(Player player, bool hideVisual)        {            player.rangedDamage += 0.05f;            player.statLifeMax2 += 20;        }
+            item.height = dims.Height;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.rangedDamage += 0.05f;
+            player.statLifeMax2 += 20;
+        }
 
         public override void AddRecipes()
         {
@@ -26,4 +40,6 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }    }}
+        }
+    }
+}

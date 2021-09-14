@@ -1,4 +1,33 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class BloodyTear : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Bloody Tear");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BloodyTear");			projectile.penetrate = 1;			projectile.width = 12;			projectile.height = 12;			projectile.aiStyle = 1;			projectile.friendly = true;			projectile.magic = true;			projectile.timeLeft = 70;			projectile.scale = 1.4f;		}
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class BloodyTear : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bloody Tear");
+		}
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BloodyTear");
+			projectile.penetrate = 1;
+			projectile.width = 12;
+			projectile.height = 12;
+			projectile.aiStyle = 1;
+			projectile.friendly = true;
+			projectile.magic = true;
+			projectile.timeLeft = 70;
+			projectile.scale = 1.4f;
+		}
         public override void AI()
         {
 			projectile.scale *= 0.99f;
@@ -28,4 +57,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				dust30.noGravity = false;
 				dust30.scale = 1f;
 			}
-		}    }}
+		}
+    }
+}

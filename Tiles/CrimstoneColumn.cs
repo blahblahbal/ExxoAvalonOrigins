@@ -1,6 +1,26 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+using Terraria.DataStructures;
 
-namespace ExxoAvalonOrigins.Tiles{	public class CrimstoneColumn : ModTile	{		public override void SetDefaults()		{			AddMapEntry(new Color(73, 51, 36));			drop = mod.ItemType("CrimstoneColumn");            soundType = SoundID.Tink;            soundStyle = 1;            TileObjectData.newTile.Width = 1;
+namespace ExxoAvalonOrigins.Tiles
+{
+	public class CrimstoneColumn : ModTile
+	{
+		public override void SetDefaults()
+		{
+			AddMapEntry(new Color(73, 51, 36));
+			drop = mod.ItemType("CrimstoneColumn");
+            soundType = SoundID.Tink;
+            soundStyle = 1;
+            TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);
             TileObjectData.newTile.CoordinateHeights = new int[1] { 16 };
@@ -28,4 +48,5 @@ namespace ExxoAvalonOrigins.Tiles{	public class CrimstoneColumn : ModTile	{	
             }
             return 1;
         }
-    }}
+    }
+}

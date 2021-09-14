@@ -1,4 +1,29 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.DataStructures;namespace ExxoAvalonOrigins.Buffs{	public class ForceField : ModBuff	{		public override void SetDefaults()		{			DisplayName.SetDefault("Force Field");			Description.SetDefault("A force field surrounds you");		}		public override void Update(Player player, ref int k)		{			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().forceField = true;			var value = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);			var projectile = Main.projectile;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.DataStructures;
+
+namespace ExxoAvalonOrigins.Buffs
+{
+	public class ForceField : ModBuff
+	{
+		public override void SetDefaults()
+		{
+			DisplayName.SetDefault("Force Field");
+			Description.SetDefault("A force field surrounds you");
+		}
+
+		public override void Update(Player player, ref int k)
+		{
+			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().forceField = true;
+			var value = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
+			var projectile = Main.projectile;
             for (var l = 0; l < projectile.Length; l++)
             {
                 var projectile2 = projectile[l];
@@ -25,7 +50,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                         expr_61D_cp_0.velocity.Y = expr_61D_cp_0.velocity.Y * -1f;
                     }
                 }
-            }		    var npc = Main.npc;
+            }
+		    var npc = Main.npc;
             for (var l = 0; l < npc.Length; l++)
             {
                 var nPC = npc[l];
@@ -46,4 +72,7 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                         expr_739_cp_0.velocity.Y = expr_739_cp_0.velocity.Y * -1f;
                     }
                 }
-            }		}	}}
+            }
+		}
+	}
+}

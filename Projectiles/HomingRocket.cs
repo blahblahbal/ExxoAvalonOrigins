@@ -1,6 +1,16 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.DataStructures;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.DataStructures;
 
-namespace ExxoAvalonOrigins.Projectiles{
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class HomingRocket : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -17,7 +27,8 @@ namespace ExxoAvalonOrigins.Projectiles{
             projectile.hostile = true;
             projectile.ranged = true;
             projectile.penetrate = 1;
-        }        public override void Kill(int timeLeft)
+        }
+        public override void Kill(int timeLeft)
         {
             foreach (Player P in Main.player)
             {
@@ -78,10 +89,14 @@ namespace ExxoAvalonOrigins.Projectiles{
                 Gore expr_A2B9_cp_0 = Main.gore[num346];
                 expr_A2B9_cp_0.velocity.Y = expr_A2B9_cp_0.velocity.Y - 1f;
             }
-        }        //public override void ModifyDamageHitbox(ref Rectangle hitbox)
+        }
+        //public override void ModifyDamageHitbox(ref Rectangle hitbox)
         //{
         //    base.ModifyDamageHitbox(ref hitbox);
-        //}        public override void AI()        {            if (Math.Abs(projectile.velocity.X) >= 5f || Math.Abs(projectile.velocity.Y) >= 5f)
+        //}
+        public override void AI()
+        {
+            if (Math.Abs(projectile.velocity.X) >= 5f || Math.Abs(projectile.velocity.Y) >= 5f)
             {
                 for (int num264 = 0; num264 < 2; num264++)
                 {
@@ -127,7 +142,8 @@ namespace ExxoAvalonOrigins.Projectiles{
                 projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
                 projectile.knockBack = 8f;
                 projectile.Kill();
-            }            float num26 = (float)Math.Sqrt((double)(projectile.velocity.X * projectile.velocity.X + projectile.velocity.Y * projectile.velocity.Y));
+            }
+            float num26 = (float)Math.Sqrt((double)(projectile.velocity.X * projectile.velocity.X + projectile.velocity.Y * projectile.velocity.Y));
             float num27 = projectile.localAI[0];
             if (num27 == 0f)
             {
@@ -141,7 +157,8 @@ namespace ExxoAvalonOrigins.Projectiles{
             if (projectile.alpha < 0)
             {
                 projectile.alpha = 0;
-            }            float num28 = projectile.position.X;
+            }
+            float num28 = projectile.position.X;
             float num29 = projectile.position.Y;
             float num30 = 250f;
             bool flag = false;
@@ -170,7 +187,8 @@ namespace ExxoAvalonOrigins.Projectiles{
                     projectile.ai[1] = (float)(num31 + 1);
                 }
                 flag = false;
-            }            if (projectile.ai[1] != 0f)
+            }
+            if (projectile.ai[1] != 0f)
             {
                 int num36 = (int)(projectile.ai[1] - 1f);
                 if (Main.player[num36].active)
@@ -200,4 +218,6 @@ namespace ExxoAvalonOrigins.Projectiles{
                 projectile.velocity.X = (projectile.velocity.X * (float)(num44 - 1) + num41) / (float)num44;
                 projectile.velocity.Y = (projectile.velocity.Y * (float)(num44 - 1) + num42) / (float)num44;
             }
-        }    }}
+        }
+    }
+}

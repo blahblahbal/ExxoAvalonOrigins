@@ -1,7 +1,17 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.DataStructures;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace ExxoAvalonOrigins.Projectiles{
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class PhantasmLaser : ModProjectile
     {
         Color laserColor;
@@ -154,4 +164,5 @@ namespace ExxoAvalonOrigins.Projectiles{
                 Main.dust[num837].velocity.Y = 0f - Math.Abs(Main.dust[num837].velocity.Y);
             }
         }
-    }}
+    }
+}

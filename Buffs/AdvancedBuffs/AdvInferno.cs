@@ -1,6 +1,17 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.DataStructures;using Terraria.Localization;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.DataStructures;
+using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
+{
     public class AdvInferno : ModBuff
     {
         public override void SetDefaults()
@@ -62,4 +73,5 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
                 }
             }
         }
-    }}
+    }
+}

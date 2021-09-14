@@ -1,5 +1,26 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class ZirconStaff : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Zircon Staff");            Item.staff[item.type] = true;
-        }		public override void SetDefaults()		{			item.CloneDefaults(ItemID.SapphireStaff);
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
+	class ZirconStaff : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Zircon Staff");
+            Item.staff[item.type] = true;
+        }
+
+		public override void SetDefaults()
+		{
+			item.CloneDefaults(ItemID.SapphireStaff);
 			Item.staff[item.type] = true;
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/ZirconStaff");
             item.width = dims.Width;
@@ -15,4 +36,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.shoot = ModContent.ProjectileType<Projectiles.ZirconBolt>();
             item.value = Item.buyPrice(0, 3, 60, 0);
             item.UseSound = SoundID.Item43;
-        }	}}
+        }
+	}
+}

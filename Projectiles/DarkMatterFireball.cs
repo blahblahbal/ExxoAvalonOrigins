@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class DarkMatterFireball : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -20,14 +31,18 @@
             projectile.penetrate = -1;
             projectile.magic = true;
             projectile.ignoreWater = true;
-        }        public override bool OnTileCollide(Vector2 oldVelocity)
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
             return true;
-        }        public override void OnHitPlayer(Player target, int damage, bool crit)
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.Next(2) == 0) target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 240);
-        }        public override void AI()        {
+        }
+        public override void AI()
+        {
             int num40 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Wraith, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
             int D3 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
             Main.dust[num40].noGravity = true;
@@ -45,4 +60,7 @@
             if (projectile.velocity.Y > 16f)
             {
                 projectile.velocity.Y = 16f;
-            }        }    }}
+            }
+        }
+    }
+}

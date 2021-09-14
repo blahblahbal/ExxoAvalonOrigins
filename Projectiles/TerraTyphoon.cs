@@ -1,11 +1,42 @@
-using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
 
-namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Terra Typhoon");
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class TerraTyphoon : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Terra Typhoon");
 			Main.projFrames[projectile.type] = 3;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 1;		}		public override void SetDefaults()		{			projectile.width = 63;			projectile.height = 63;			projectile.alpha = 255;			projectile.friendly = true;			projectile.timeLeft = 540;			projectile.penetrate = -1;			projectile.tileCollide = true;
-			projectile.MaxUpdates = 2;			projectile.scale = 1f;			projectile.magic = true;		}
-		public override Color? GetAlpha(Color lightColor)		{			return new Color(255, 255, 255, 200);		}
+			ProjectileID.Sets.TrailingMode[projectile.type] = 1;
+		}
+		public override void SetDefaults()
+		{
+			projectile.width = 63;
+			projectile.height = 63;
+			projectile.alpha = 255;
+			projectile.friendly = true;
+			projectile.timeLeft = 540;
+			projectile.penetrate = -1;
+			projectile.tileCollide = true;
+			projectile.MaxUpdates = 2;
+			projectile.scale = 1f;
+			projectile.magic = true;
+		}
+		public override Color? GetAlpha(Color lightColor)
+		{
+			return new Color(255, 255, 255, 200);
+		}
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
 			if (projectile.velocity.Y != oldVelocity.Y)
@@ -24,7 +55,8 @@ namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjec
 			width = 30;
 			return true;
 		}
-		public override void AI()		{
+		public override void AI()
+		{
 			projectile.frameCounter++;
 			if (projectile.frameCounter >= 3)
 			{
@@ -132,7 +164,8 @@ namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjec
 			}
 			float num600 = projectile.velocity.Length();
 			projectile.velocity.Normalize();
-			projectile.velocity *= num600 + 0.0025f;		}
+			projectile.velocity *= num600 + 0.0025f;
+		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
@@ -144,4 +177,5 @@ namespace ExxoAvalonOrigins.Projectiles{	public class TerraTyphoon : ModProjec
 			}
 			return true;
 		}
-	}}
+	}
+}

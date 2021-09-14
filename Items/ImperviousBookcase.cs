@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
     class ImperviousBookcase : ModItem
     {
         public override void SetStaticDefaults()
@@ -21,4 +32,5 @@
             item.useAnimation = 15;
             item.height = dims.Height;
         }
-    }}
+    }
+}

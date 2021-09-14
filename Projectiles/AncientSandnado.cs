@@ -1,6 +1,20 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using Terraria.ID;using System;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using System;
 
-namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Ancient's Sandstorm");		}		public override void SetDefaults()		{
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class AncientSandnado : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Ancient's Sandstorm");
+		}
+
+		public override void SetDefaults()
+		{
             projectile.width = 10;
             projectile.height = 10;
             projectile.aiStyle = -1;
@@ -10,7 +24,10 @@ namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModPro
             projectile.usesLocalNPCImmunity = true;
 			projectile.alpha = 255;
             projectile.timeLeft = 1200;
-        }        public override void AI()        {
+        }
+
+        public override void AI()
+        {
 			float num998 = 900f;
 			if (projectile.soundDelay == 0)
 			{
@@ -122,4 +139,6 @@ namespace ExxoAvalonOrigins.Projectiles{	public class AncientSandnado : ModPro
 				Main.player[projectile.owner].statLife += healingAmount;
 				Main.player[projectile.owner].HealEffect(healingAmount, true);
 			}
-        }    }}
+        }
+    }
+}

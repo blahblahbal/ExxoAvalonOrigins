@@ -1,4 +1,15 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
     class NickelBroadsword : ModItem
     {
         public override void SetStaticDefaults()
@@ -19,6 +30,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = 1000;
             item.useAnimation = 21;
-            item.height = dims.Height;            item.UseSound = SoundID.Item1;
+            item.height = dims.Height;
+            item.UseSound = SoundID.Item1;
         }
-    }}
+    }
+}

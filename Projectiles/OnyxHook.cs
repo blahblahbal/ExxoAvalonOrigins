@@ -1,4 +1,26 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.Localization;namespace ExxoAvalonOrigins.Projectiles{	public class OnyxHook : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Onyx Hook");		}		public override void SetDefaults()		{			projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.Localization;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class OnyxHook : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Onyx Hook");
+		}
+
+		public override void SetDefaults()
+		{
+			projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
 			//Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/OnyxHook");
 			//projectile.netImportant = true;
 			//projectile.width = dims.Width;
@@ -211,8 +233,12 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 		public override float GrappleRange()
 		{
 			return 450f;
-		}		public override void NumGrappleHooks(Player player, ref int numHooks)
+		}
+
+		public override void NumGrappleHooks(Player player, ref int numHooks)
 		{
 			numHooks = 1;
 		}
-	}}
+
+	}
+}

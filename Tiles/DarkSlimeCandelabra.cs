@@ -1,5 +1,14 @@
-using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
-    public class DarkSlimeCandelabra : ModTile    {
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
+    public class DarkSlimeCandelabra : ModTile
+    {
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -12,8 +21,11 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Dark Slime Candelabra");
-            AddMapEntry(new Color(253, 221, 3), name);            dustType = DustID.UnholyWater;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+			var name = CreateMapEntryName();
+			name.SetDefault("Dark Slime Candelabra");
+            AddMapEntry(new Color(253, 221, 3), name);
+            dustType = DustID.UnholyWater;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

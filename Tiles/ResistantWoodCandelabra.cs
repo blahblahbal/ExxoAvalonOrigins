@@ -1,5 +1,14 @@
-using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
-    public class ResistantWoodCandelabra : ModTile    {
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
+    public class ResistantWoodCandelabra : ModTile
+    {
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -8,12 +17,17 @@ using Microsoft.Xna.Framework;using Microsoft.Xna.Framework.Graphics;using Ter
             TileObjectData.newTile.StyleHorizontal = true;
             //TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.Table, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.StyleWrapLimit = 36;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };            TileObjectData.newTile.LavaDeath = false;
+            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
+            TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Resistant Wood Candelabra");            AddMapEntry(new Color(253, 221, 3), name);            dustType = DustID.Wraith;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+			var name = CreateMapEntryName();
+			name.SetDefault("Resistant Wood Candelabra");
+            AddMapEntry(new Color(253, 221, 3), name);
+            dustType = DustID.Wraith;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

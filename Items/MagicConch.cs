@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
     class MagicConch : ModItem
     {
         public override void SetStaticDefaults()
@@ -14,10 +25,12 @@
             item.useTime = 90;
             item.useTurn = true;
             item.value = Item.sellPrice(0, 1);
-            item.useStyle = ItemUseStyleID.HoldingUp;            item.UseSound = SoundID.Item6;
+            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.UseSound = SoundID.Item6;
             item.useAnimation = 90;
             item.height = 24;
-        }        public override void HoldItem(Player player)
+        }
+        public override void HoldItem(Player player)
         {
             if (player.itemAnimation > 0 && player.whoAmI == Main.myPlayer)
             {
@@ -55,4 +68,5 @@
                 }
             }
         }
-    }}
+    }
+}

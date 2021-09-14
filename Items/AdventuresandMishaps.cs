@@ -1,4 +1,10 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Items
+{
     class AdventuresandMishaps : ModItem
     {
         public override void SetStaticDefaults()
@@ -13,9 +19,24 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             item.rare = ItemRarityID.Lime;
             item.width = dims.Width;
             item.value = 20000;
-            item.height = dims.Height;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;        }        public override void UpdateAccessory(Player player, bool hideVisual)        {            player.statLifeMax2 += 60;            player.magicDamage += 0.05f;            player.minionDamage += 0.05f;            player.meleeDamage += 0.05f;            player.rangedDamage += 0.05f;            player.thrownDamage += 0.05f;            player.manaCost -= 0.1f;        }
+            item.height = dims.Height;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+        }
 
-        public override void AddRecipes()        {            ModRecipe recipe = new ModRecipe(mod);
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.statLifeMax2 += 60;
+            player.magicDamage += 0.05f;
+            player.minionDamage += 0.05f;
+            player.meleeDamage += 0.05f;
+            player.rangedDamage += 0.05f;
+            player.thrownDamage += 0.05f;
+            player.manaCost -= 0.1f;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LifeCrystal, 2);
             recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 10);
             recipe.AddIngredient(ModContent.ItemType<CarbonSteel>(), 5);
@@ -23,4 +44,7 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
-            recipe.AddRecipe();        }    }}
+            recipe.AddRecipe();
+        }
+    }
+}

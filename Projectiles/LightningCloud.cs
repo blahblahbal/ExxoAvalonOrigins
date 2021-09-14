@@ -1,5 +1,9 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;
-namespace ExxoAvalonOrigins.Projectiles{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class LightningCloud : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -39,4 +43,5 @@ namespace ExxoAvalonOrigins.Projectiles{
                 }
             }
         }
-    }}
+    }
+}

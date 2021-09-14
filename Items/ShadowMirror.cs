@@ -1,11 +1,45 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class ShadowMirror : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Shadow Mirror");			Tooltip.SetDefault("Gaze in the mirror to return home");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/ShadowMirror");			item.rare = ItemRarityID.Lime;			item.width = dims.Width;			item.useTime = 90;			item.useTurn = true;			item.value = 500000;			item.useStyle = ItemUseStyleID.HoldingUp;            item.UseSound = SoundID.Item6;			item.useAnimation = 90;			item.height = dims.Height;		}        public override void UpdateInventory(Player player)
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
+	class ShadowMirror : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Shadow Mirror");
+			Tooltip.SetDefault("Gaze in the mirror to return home");
+		}
+
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Items/ShadowMirror");
+			item.rare = ItemRarityID.Lime;
+			item.width = dims.Width;
+			item.useTime = 90;
+			item.useTurn = true;
+			item.value = 500000;
+			item.useStyle = ItemUseStyleID.HoldingUp;
+            item.UseSound = SoundID.Item6;
+			item.useAnimation = 90;
+			item.height = dims.Height;
+		}
+        public override void UpdateInventory(Player player)
         {
             player.accThirdEye = player.accFishFinder = player.accWeatherRadio = player.accCalendar = player.accCritterGuide = player.accDreamCatcher =
                 player.accJarOfSouls = player.accStopwatch = player.accOreFinder = true;
             player.accWatch = 3;
             player.accDepthMeter = 1;
             player.accCompass = 1;
-        }        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             var assignedKeys = ExxoAvalonOrigins.modeChangeHotkey.GetAssignedKeys();
 
@@ -17,7 +51,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                 var unboundKeyInfo = new TooltipLine(mod, "Controls:PromptKeyInfo", "[c/900C3F:Please bind hotkey in the settings to change teleportation modes!]");
                 tooltips.Add(unboundKeyInfo);
             }
-        }        public override bool UseItem(Player player)
+        }
+        public override bool UseItem(Player player)
         {
             if (player.whoAmI == Main.myPlayer)
             {
@@ -69,4 +104,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             }
             return true;
         }
-    }}
+    }
+}

@@ -1,4 +1,38 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class HoneyXeradonBucket : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Honey Xeradon Bucket");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/HoneyXeradonBucket");			item.autoReuse = true;			item.width = dims.Width;			item.useTurn = true;			item.useTime = 10;			item.useStyle = ItemUseStyleID.SwingThrow;			item.maxStack = 99;			item.useAnimation = 15;			item.height = dims.Height;		}		public override bool UseItem(Player player)		{            if (player.whoAmI == Main.myPlayer)
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
+	class HoneyXeradonBucket : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Honey Xeradon Bucket");
+		}
+
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Items/HoneyXeradonBucket");
+			item.autoReuse = true;
+			item.width = dims.Width;
+			item.useTurn = true;
+			item.useTime = 10;
+			item.useStyle = ItemUseStyleID.SwingThrow;
+			item.maxStack = 99;
+			item.useAnimation = 15;
+			item.height = dims.Height;
+		}
+
+		public override bool UseItem(Player player)
+		{
+            if (player.whoAmI == Main.myPlayer)
             {
                 if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 &&
                     (!Main.tile[Player.tileTargetX, Player.tileTargetY].nactive() ||
@@ -63,4 +97,9 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
                             }
                         }
                     }
-                }            }			return false;		}	}}
+                }
+            }
+			return false;
+		}
+	}
+}

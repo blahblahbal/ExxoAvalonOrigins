@@ -1,4 +1,10 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Items
+{
     class TheHeavenlyScent : ModItem
     {
         public override void SetStaticDefaults()
@@ -13,7 +19,14 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             item.rare = ItemRarityID.Lime;
             item.width = dims.Width;
             item.value = 150000;
-            item.height = dims.Height;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;        }        public override void UpdateAccessory(Player player, bool hideVisual)        {            player.lifeRegen += 2;        }
+            item.height = dims.Height;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.lifeRegen += 2;
+        }
 
         public override void AddRecipes()
         {
@@ -26,4 +39,6 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }    }}
+        }
+    }
+}

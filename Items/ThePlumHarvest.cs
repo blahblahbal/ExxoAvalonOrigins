@@ -1,4 +1,9 @@
-using Microsoft.Xna.Framework;using Terraria.ID;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Items
+{
     class ThePlumHarvest : ModItem
     {
         public override void SetStaticDefaults()
@@ -13,7 +18,9 @@ using Microsoft.Xna.Framework;using Terraria.ID;using Terraria.ModLoader;nam
             item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
             item.value = 150000;
-            item.height = dims.Height;            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;        }
+            item.height = dims.Height;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+        }
 
         //Update Accs not needed - ammo done in ModPlayer
 
@@ -28,4 +35,7 @@ using Microsoft.Xna.Framework;using Terraria.ID;using Terraria.ModLoader;nam
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }    }}
+        }
+
+    }
+}

@@ -1,11 +1,23 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Terraria.Localization;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.Tiles{
+namespace ExxoAvalonOrigins.Tiles
+{
     public class SnotOrb : ModTile
     {
         public override void SetDefaults()
         {
-            AddMapEntry(new Color(144, 160, 38), LanguageManager.Instance.GetText("Snot Orb"));            Main.tileFrameImportant[Type] = true;
+            AddMapEntry(new Color(144, 160, 38), LanguageManager.Instance.GetText("Snot Orb"));
+            Main.tileFrameImportant[Type] = true;
             animationFrameHeight = 36;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.newTile.Width = 2;
@@ -15,13 +27,15 @@ namespace ExxoAvalonOrigins.Tiles{
             TileObjectData.addTile(Type);
             Main.tileLighted[Type] = true;
             Main.tileHammer[Type] = true;
-        }        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        }
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             var brightness = Main.rand.Next(-5, 6) * 0.0025f;
             r = 0f;
             g = 0.9f + brightness * 2f;
             b = 0f;
-        }        public override void AnimateTile(ref int frame, ref int frameCounter)
+        }
+        public override void AnimateTile(ref int frame, ref int frameCounter)
         {
             frameCounter++;
             if (frameCounter > 4)
@@ -97,4 +111,5 @@ namespace ExxoAvalonOrigins.Tiles{
                 Main.PlaySound(SoundID.NPCKilled, i * 16, j * 16, 1);
             }
         }
-    }}
+    }
+}

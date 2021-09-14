@@ -1,6 +1,32 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class CaesiumFireball : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Caesium Fireball");		}		public override void SetDefaults()		{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class CaesiumFireball : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Caesium Fireball");
+		}
+
+		public override void SetDefaults()
+		{
             projectile.width = 28;
-            projectile.height = 28;			projectile.aiStyle = -1;			projectile.melee = true;			projectile.alpha = 0;			projectile.friendly = false;            projectile.hostile = true;		}
+            projectile.height = 28;
+			projectile.aiStyle = -1;
+			projectile.melee = true;
+			projectile.alpha = 0;
+			projectile.friendly = false;
+            projectile.hostile = true;
+		}
         public override void AI()
         {
             projectile.rotation++;
@@ -50,4 +76,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             //    Main.dust[num952].noGravity = true;
             //}
         }
-	}}
+	}
+}

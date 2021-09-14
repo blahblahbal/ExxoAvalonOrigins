@@ -1,4 +1,8 @@
-﻿using Terraria;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
+﻿using Terraria;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
+{
     public class AdvBloodCast : ModBuff
     {
         public override void SetDefaults()
@@ -11,4 +15,5 @@
         {
             player.statManaMax2 += player.statLifeMax2;
         }
-    }}
+    }
+}

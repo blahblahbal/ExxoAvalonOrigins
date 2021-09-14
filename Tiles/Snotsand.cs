@@ -1,4 +1,24 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{	public class Snotsand : ModTile	{		public override void SetDefaults()		{			AddMapEntry(new Color(136, 157, 56));			Main.tileSolid[Type] = true;			Main.tileBlockLight[Type] = true;            Main.tileMergeDirt[Type] = true;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
+	public class Snotsand : ModTile
+	{
+		public override void SetDefaults()
+		{
+			AddMapEntry(new Color(136, 157, 56));
+			Main.tileSolid[Type] = true;
+			Main.tileBlockLight[Type] = true;
+            Main.tileMergeDirt[Type] = true;
 			//Merge with Sand
 			Main.tileMerge[Type][TileID.Sand] = true;
 			Main.tileMerge[TileID.Sand][Type] = true;
@@ -15,8 +35,12 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			TileID.Sets.TouchDamageSands[Type] = 15;
 			TileID.Sets.Conversion.Sand[Type] = true;
 			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
-			TileID.Sets.Falling[Type] = true;			drop = mod.ItemType("SnotsandBlock");            SetModPalmTree(new ContagionPalmTree());            dustType = DustID.ScourgeOfTheCorruptor;
-        }		//public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+			TileID.Sets.Falling[Type] = true;
+			drop = mod.ItemType("SnotsandBlock");
+            SetModPalmTree(new ContagionPalmTree());
+            dustType = DustID.ScourgeOfTheCorruptor;
+        }
+		//public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
 		//{
 		//	if (WorldGen.noTileActions)
 		//		return true;
@@ -79,9 +103,11 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 		{
 			return Main.rand.Next(3) == 0;
 		}
-		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;        public override int SaplingGrowthType(ref int style)
+		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+        public override int SaplingGrowthType(ref int style)
         {
             style = 0;
             return ModContent.TileType<ContagionPalmSapling>();
         }
-    }}
+    }
+}

@@ -1,4 +1,27 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class GoldenFire : ModProjectile	{		bool initalize;		int channeling;		Vector2 destination;		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Golden Fire");		}		public override void SetDefaults()		{			projectile.width = 12;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class GoldenFire : ModProjectile
+	{
+		bool initalize;
+		int channeling;
+		Vector2 destination;
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Golden Fire");
+		}
+		public override void SetDefaults()
+		{
+			projectile.width = 12;
 			projectile.height = 12;
 			projectile.scale = 1.5f;
 			projectile.alpha = 50;
@@ -10,7 +33,13 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			projectile.magic = true;
 			projectile.tileCollide = true;
 			projectile.damage = 45;
-			projectile.knockBack = 9f;			initalize = false;			destination = Vector2.Zero;			channeling = -1;		}		public override void AI()
+			projectile.knockBack = 9f;
+
+			initalize = false;
+			destination = Vector2.Zero;
+			channeling = -1;
+		}
+		public override void AI()
 		{
 			if (!initalize)
             {
@@ -114,7 +143,8 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				Main.dust[particle2].noLight = true;
 				Main.dust[particle2].fadeIn = 3f;
 			}
-		}		public override void Kill(int timeLeft)
+		}
+		public override void Kill(int timeLeft)
 		{
 			if (!projectile.active)
 			{
@@ -173,4 +203,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				velY *= 4f;
 				int p = Dust.NewDust(new Vector2(projectile.position.X - (float)(projectile.width >> 1), projectile.position.Y - (float)(projectile.height >> 1)), projectile.width, projectile.height, DustID.Enchanted_Gold, velX, velY, 160, default(Color), 1.5f);
 			}
-		}	}}
+		}
+	}
+}

@@ -1,6 +1,31 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class AeonBeam : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Aeon Beam");		}		public override void SetDefaults()		{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class AeonBeam : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Aeon Beam");
+		}
+
+		public override void SetDefaults()
+		{
             projectile.width = 16;
-            projectile.height = 16;			projectile.aiStyle = 27;			projectile.melee = true;			projectile.alpha = 255;			projectile.friendly = true;		}
+            projectile.height = 16;
+			projectile.aiStyle = 27;
+			projectile.melee = true;
+			projectile.alpha = 255;
+			projectile.friendly = true;
+		}
 		public override Color? GetAlpha(Color lightColor)
 		{
 			if (this.projectile.localAI[1] >= 15f)
@@ -31,4 +56,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				Main.dust[num952].noGravity = true;
 			}
 		}
-	}}
+	}
+}

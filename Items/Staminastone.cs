@@ -1,6 +1,10 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using Terraria.ID;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
 
-namespace ExxoAvalonOrigins.Items{
+namespace ExxoAvalonOrigins.Items
+{
     class Staminastone : ModItem
     {
         public override void SetStaticDefaults()
@@ -24,4 +28,5 @@ namespace ExxoAvalonOrigins.Items{
             item.useAnimation = 15;
             item.height = dims.Height;
         }
-    }}
+    }
+}

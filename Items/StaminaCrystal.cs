@@ -1,6 +1,10 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ModLoader;using Terraria.ID;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
 
-namespace ExxoAvalonOrigins.Items{
+namespace ExxoAvalonOrigins.Items
+{
     class StaminaCrystal : ModItem
     {
         public override void SetStaticDefaults()
@@ -36,4 +40,5 @@ namespace ExxoAvalonOrigins.Items{
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam += 30;
             return true;
         }
-    }}
+    }
+}

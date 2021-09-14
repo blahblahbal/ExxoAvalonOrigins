@@ -1,4 +1,15 @@
-﻿using System;using Microsoft.Xna.Framework;using Terraria;using Terraria.DataStructures;using Terraria.Enums;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+﻿using System;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
     public class LockedUnderworldChest : ModTile
     {
         public override void SetDefaults()
@@ -169,4 +180,5 @@
                 player.showItemIcon2 = 0;
             }
         }
-    }}
+    }
+}

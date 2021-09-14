@@ -1,11 +1,17 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.DataStructures;
-using Terraria.ID;using Terraria.ModLoader;
-namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Items
+{
     class DragonOrb : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dragon Orb");            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 8));
+            DisplayName.SetDefault("Dragon Orb");
+            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 8));
             ItemID.Sets.ItemNoGravity[item.type] = true;
         }
 
@@ -34,4 +40,5 @@ namespace ExxoAvalonOrigins.Items{
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-    }}
+    }
+}

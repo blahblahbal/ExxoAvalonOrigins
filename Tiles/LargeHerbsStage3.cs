@@ -1,4 +1,16 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
     public class LargeHerbsStage3 : ModTile
     {
         public override void SetDefaults()
@@ -11,13 +23,16 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.addTile(Type);            Main.tileFrameImportant[Type] = true;
-        }        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+            TileObjectData.addTile(Type);
+            Main.tileFrameImportant[Type] = true;
+        }
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
             ExxoAvalonOriginsWorld.CheckLargeHerb(i, j, Type);
             noBreak = true;
             return true;
-        }        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             int item = 0;
             switch (frameX / 18)
@@ -56,4 +71,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             }
             if (item > 0) Item.NewItem(i * 16, j * 16, 16, 48, item);
         }
-    }}
+    }
+}

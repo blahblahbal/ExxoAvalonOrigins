@@ -1,5 +1,35 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{	class DragonStone : ModItem	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Dragon Stone");			Tooltip.SetDefault("Provides immunity to flying creatures");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Items/DragonStone");			item.rare = ItemRarityID.Lime;			item.width = dims.Width;			item.value = Item.sellPrice(0, 4, 0, 0);			item.accessory = true;			item.height = dims.Height;		}        public override void UpdateAccessory(Player player, bool hideVisual)
-        {            player.npcTypeNoAggro[NPCID.DemonEye] = true;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
+	class DragonStone : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Dragon Stone");
+			Tooltip.SetDefault("Provides immunity to flying creatures");
+		}
+
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Items/DragonStone");
+			item.rare = ItemRarityID.Lime;
+			item.width = dims.Width;
+			item.value = Item.sellPrice(0, 4, 0, 0);
+			item.accessory = true;
+			item.height = dims.Height;
+		}
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.npcTypeNoAggro[NPCID.DemonEye] = true;
             player.npcTypeNoAggro[NPCID.EaterofSouls] = true;
             player.npcTypeNoAggro[NPCID.Harpy] = true;
             player.npcTypeNoAggro[NPCID.CaveBat] = true;
@@ -19,4 +49,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             player.npcTypeNoAggro[ModContent.NPCType<NPCs.VampireHarpy>()] = true;
             player.npcTypeNoAggro[ModContent.NPCType<NPCs.Dragonfly>()] = true;
         }
-    }}
+    }
+}

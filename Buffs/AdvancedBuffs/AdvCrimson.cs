@@ -1,6 +1,9 @@
-﻿using Terraria;using Terraria.ModLoader;using Terraria.ID;
+﻿using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
+{
     public class AdvCrimson : ModBuff
     {
         public override void SetDefaults()
@@ -35,4 +38,5 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
                 }
             }
         }
-    }}
+    }
+}

@@ -1,4 +1,15 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Items{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Items
+{
     [AutoloadEquip(EquipType.Head)]
     class IridiumHat : ModItem
     {
@@ -34,4 +45,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             player.meleeSpeed += 0.14f;
             player.rangedDamage += 0.11f;
         }
-    }}
+    }
+}

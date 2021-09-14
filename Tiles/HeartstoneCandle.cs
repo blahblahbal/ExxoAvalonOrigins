@@ -1,4 +1,11 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
     public class HeartstoneCandle : ModTile
     {
         public override void SetDefaults()
@@ -7,11 +14,17 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             Main.tileLavaDeath[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.StyleWrapLimit = 36;            TileObjectData.newTile.CoordinateHeights = new int[] { 20 };            TileObjectData.newTile.DrawYOffset = -4;
+            TileObjectData.newTile.StyleWrapLimit = 36;
+            TileObjectData.newTile.CoordinateHeights = new int[] { 20 };
+            TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Heartstone Candelabra");            AddMapEntry(new Color(253, 221, 3), name);            dustType = DustID.Confetti_Pink;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+			var name = CreateMapEntryName();
+			name.SetDefault("Heartstone Candelabra");
+            AddMapEntry(new Color(253, 221, 3), name);
+            dustType = DustID.Confetti_Pink;
         }
 
         public override void MouseOver(int i, int j)

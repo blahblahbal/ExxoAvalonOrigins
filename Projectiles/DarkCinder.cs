@@ -1,4 +1,15 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class DarkCinder : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -19,10 +30,17 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             projectile.tileCollide = true;
             projectile.ignoreWater = true;
             projectile.timeLeft = 300;
-        }        public override void AI()        {            int randomDust;            if (Main.rand.NextBool(2))
+        }
+
+        public override void AI()
+        {
+            int randomDust;
+            if (Main.rand.NextBool(2))
                 randomDust = 58;
             else
-                randomDust = 36;            projectile.ai[0] += 1f;
+                randomDust = 36;
+
+            projectile.ai[0] += 1f;
             if (projectile.ai[0] > 5f)
             {
                 projectile.ai[0] = 5f;
@@ -71,4 +89,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 120);
-        }    }}
+        }
+    }
+}

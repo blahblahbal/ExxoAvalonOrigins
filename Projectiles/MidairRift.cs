@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class MidairRift : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -14,12 +25,15 @@
             projectile.melee = true;
             projectile.penetrate = -1;
             projectile.light = 0.7f;
-            projectile.friendly = true;            projectile.tileCollide = false;        }
+            projectile.friendly = true;
+            projectile.tileCollide = false;
+        }
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255);
         }
-        public override void AI()        {
+        public override void AI()
+        {
             projectile.velocity *= 0f;
             projectile.ai[0]++;
             if (projectile.ai[1] == 0)
@@ -248,4 +262,5 @@
         //        Main.dust[num398].noGravity = true;
         //    }
         //}
-    }}
+    }
+}

@@ -1,4 +1,11 @@
-using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria.ModLoader;using Terraria.ObjectData;namespace ExxoAvalonOrigins.Tiles{
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace ExxoAvalonOrigins.Tiles
+{
     public class HeartstoneCandelabra : ModTile
     {
         public override void SetDefaults()
@@ -14,7 +21,11 @@ using Microsoft.Xna.Framework;using Terraria;using Terraria.ID;using Terraria
             TileObjectData.addTile(Type);
             dustType = 7;
             Main.tileLighted[Type] = true;
-            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);			var name = CreateMapEntryName();			name.SetDefault("Heartstone Candelabra");            AddMapEntry(new Color(253, 221, 3), name);            dustType = DustID.Confetti_Pink;
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+			var name = CreateMapEntryName();
+			name.SetDefault("Heartstone Candelabra");
+            AddMapEntry(new Color(253, 221, 3), name);
+            dustType = DustID.Confetti_Pink;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

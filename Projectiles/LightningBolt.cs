@@ -1,6 +1,42 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProjectile	{        float rot = 0f;		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Lightning");		}		public override void SetDefaults()		{			projectile.width = 8;			projectile.height = 8;			projectile.scale = 1f;			projectile.alpha = 100;			projectile.aiStyle = -1;			projectile.timeLeft = 50;			projectile.friendly = true;			projectile.penetrate = 1;			projectile.light = 1f;			projectile.ignoreWater = true;			projectile.tileCollide = false;		}        public override void AI()        {            // Disgusting spaghetticode, my apologies. The checks I implemented for the lighning to make it always move down do not work always so if you want to give this a try, be my guest            if (projectile.scale == 1.0)
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class LightningBolt : ModProjectile
+	{
+        float rot = 0f;
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Lightning");
+		}
+
+		public override void SetDefaults()
+		{
+			projectile.width = 8;
+			projectile.height = 8;
+			projectile.scale = 1f;
+			projectile.alpha = 100;
+			projectile.aiStyle = -1;
+			projectile.timeLeft = 50;
+			projectile.friendly = true;
+			projectile.penetrate = 1;
+			projectile.light = 1f;
+			projectile.ignoreWater = true;
+			projectile.tileCollide = false;
+		}
+        public override void AI()
+        {
+            // Disgusting spaghetticode, my apologies. The checks I implemented for the lighning to make it always move down do not work always so if you want to give this a try, be my guest
+            if (projectile.scale == 1.0)
             {
                 projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
                 if (Main.time % 6 <= 1 && Main.netMode != NetmodeID.MultiplayerClient)
@@ -92,4 +128,7 @@ namespace ExxoAvalonOrigins.Projectiles{	public class LightningBolt : ModProje
             if (!Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active())
             {
                 projectile.tileCollide = true;
-            }        }    }}
+            }
+        }
+    }
+}

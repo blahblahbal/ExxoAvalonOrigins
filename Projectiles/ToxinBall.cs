@@ -1,4 +1,15 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class ToxinBall : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -18,7 +29,10 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
             projectile.tileCollide = true;
             projectile.ignoreWater = true;
             projectile.timeLeft = 300;
-        }        public override void AI()        {            projectile.ai[0] += 1f;
+        }
+        public override void AI()
+        {
+            projectile.ai[0] += 1f;
             if (projectile.ai[0] > 5f)
             {
                 projectile.ai[0] = 5f;
@@ -48,4 +62,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.Poisoned, 180);
-        }    }}
+        }
+    }
+}

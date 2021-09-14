@@ -1,8 +1,35 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;using Terraria.ObjectData;using Terraria.Localization;using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.ObjectData;
+using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace ExxoAvalonOrigins.Tiles{	public class TritanoriumOre : ModTile	{		public override void SetDefaults()		{			AddMapEntry(Color.DarkGreen, LanguageManager.Instance.GetText("Tritanorium Ore"));			Main.tileSolid[Type] = true;
-            Main.tileMergeDirt[Type] = true;            Main.tileSpelunker[Type] = true;
-            Main.tileLighted[Type] = true;            Main.tileValue[Type] = 830;            drop = mod.ItemType("TritanoriumOre");            soundType = SoundID.Tink;            soundStyle = 1;            minPick = 210;            dustType = DustID.Stone;        }        public override bool CanExplode(int i, int j)
+namespace ExxoAvalonOrigins.Tiles
+{
+	public class TritanoriumOre : ModTile
+	{
+		public override void SetDefaults()
+		{
+			AddMapEntry(Color.DarkGreen, LanguageManager.Instance.GetText("Tritanorium Ore"));
+			Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
+            Main.tileSpelunker[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileValue[Type] = 830;
+            drop = mod.ItemType("TritanoriumOre");
+            soundType = SoundID.Tink;
+            soundStyle = 1;
+            minPick = 210;
+            dustType = DustID.Stone;
+        }
+        public override bool CanExplode(int i, int j)
         {
             return false;
         }
@@ -60,4 +87,5 @@ namespace ExxoAvalonOrigins.Tiles{	public class TritanoriumOre : ModTile	{		
                 Main.dust[num162].noLight = true;
             }
         }
-    }}
+    }
+}

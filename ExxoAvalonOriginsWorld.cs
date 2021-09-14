@@ -1,96 +1,164 @@
-﻿using ExxoAvalonOrigins.Items;using ExxoAvalonOrigins.World;using ExxoAvalonOrigins.Tiles;using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.IO;
+﻿using ExxoAvalonOrigins.Items;
+using ExxoAvalonOrigins.World;
+using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading;
-using Terraria;using Terraria.GameContent.Biomes;
-using Terraria.GameContent.Generation;using Terraria.ID;using Terraria.Localization;using Terraria.ModLoader;using Terraria.ModLoader.IO;using Terraria.Utilities;
-using Terraria.World.Generation;using Utils = ExxoAvalonOrigins.World.Utils;
+using Terraria;
+using Terraria.GameContent.Biomes;
+using Terraria.GameContent.Generation;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Terraria.Utilities;
+using Terraria.World.Generation;
+using Utils = ExxoAvalonOrigins.World.Utils;
 
-namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld    {        public static int shmOreTier1 = -1;        public static int shmOreTier2 = -1;        public static int hallowAltarCount;        public static bool contaigon = false;        public static int WorldDarkMatterTiles = 0;        public static int hallowedAltarCount = 0;        public static bool stopCometDrops = false;        public static Vector2 hiddenTemplePos;        public static bool retroGenned = false;        public static bool jungleLocationKnown = false;        public static bool generatingBaccilite = false;        public static int dungeonSide = 0;        public static int jungleX = 0;        public static int grassSpread = 0;        public static bool contaigonSet = false;        public static int hellcastleTiles = 0;        public static int ickyTiles = 0;        public static int darkTiles = 0;        public static int tropicTiles = 0;        public static int caesiumTiles = 0;        public static Vector2 LoK = Vector2.Zero;
+namespace ExxoAvalonOrigins
+{
+    public class ExxoAvalonOriginsWorld : ModWorld
+    {
+        public static int shmOreTier1 = -1;
+        public static int shmOreTier2 = -1;
+        public static int hallowAltarCount;
+        public static bool contaigon = false;
+        public static int WorldDarkMatterTiles = 0;
+        public static int hallowedAltarCount = 0;
+        public static bool stopCometDrops = false;
+        public static Vector2 hiddenTemplePos;
+        public static bool retroGenned = false;
+        public static bool jungleLocationKnown = false;
+        public static bool generatingBaccilite = false;
+        public static int dungeonSide = 0;
+        public static int jungleX = 0;
+        public static int grassSpread = 0;
+        public static bool contaigonSet = false;
+        public static int hellcastleTiles = 0;
+        public static int ickyTiles = 0;
+        public static int darkTiles = 0;
+        public static int tropicTiles = 0;
+        public static int caesiumTiles = 0;
+        public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
         public static int wosF = 0;
         public static int wos = -1;
         public static bool downedBacteriumPrime = false;
         public static bool downedDesertBeak = false;
-        public static bool downedPhantasm = false;        public static bool downedDragonLord = false;        public static bool downedMechasting = false;        public static bool downedOblivion = false;
+        public static bool downedPhantasm = false;
+        public static bool downedDragonLord = false;
+        public static bool downedMechasting = false;
+        public static bool downedOblivion = false;
         public static bool downedKingSting = false;
 
-        #region WorldGen Variants        public enum JungleVariant
+        #region WorldGen Variants
+        public enum JungleVariant
         {
             jungle,
             tropics,
             random
-        }        public enum CopperVariant
+        }
+
+        public enum CopperVariant
         {
             copper,
             tin,
             bronze,
             random
-        }        public enum IronVariant
+        }
+
+        public enum IronVariant
         {
             iron,
             lead,
             nickel,
             random
-        }        public enum SilverVariant
+        }
+        public enum SilverVariant
         {
             silver,
             tungsten,
             zinc,
             random
-        }        public enum GoldVariant
+        }
+        public enum GoldVariant
         {
             gold,
             platinum,
             bismuth,
             random
-        }        public enum RhodiumVariant
+        }
+
+        public enum RhodiumVariant
         {
             rhodium,
             osmium,
             iridium,
             random
-        }        public enum CobaltVariant
+        }
+
+        public enum CobaltVariant
         {
             cobalt,
             palladium,
             duratanium,
             random
-        }        public enum MythrilVariant
+        }
+
+        public enum MythrilVariant
         {
             mythril,
             orichalcum,
             naquadah,
             random
-        }        public enum AdamantiteVariant
+        }
+
+        public enum AdamantiteVariant
         {
             adamantite,
             titanium,
             troxinium,
             random
-        }        public enum SHMTier1Variant
+        }
+
+        public enum SHMTier1Variant
         {
             tritanorium,
             pyroscoric,
             random
-        }        public enum SHMTier2Variant
+        }
+
+        public enum SHMTier2Variant
         {
             unvolandite,
             vorazylcum,
             random
-        }        public static JungleVariant jungleMenuSelection = JungleVariant.random;        public static CopperVariant copperOre = CopperVariant.random;        public static IronVariant ironOre = IronVariant.random;        public static SilverVariant silverOre = SilverVariant.random;        public static GoldVariant goldOre = GoldVariant.random;        public static RhodiumVariant rhodiumOre = RhodiumVariant.random;
+        }
+
+        public static JungleVariant jungleMenuSelection = JungleVariant.random;
+        public static CopperVariant copperOre = CopperVariant.random;
+        public static IronVariant ironOre = IronVariant.random;
+        public static SilverVariant silverOre = SilverVariant.random;
+        public static GoldVariant goldOre = GoldVariant.random;
+        public static RhodiumVariant rhodiumOre = RhodiumVariant.random;
         public static CobaltVariant cobaltOre = CobaltVariant.random;
         public static MythrilVariant mythrilOre = MythrilVariant.random;
         public static AdamantiteVariant adamantiteOre = AdamantiteVariant.random;
         public static SHMTier1Variant shmTier1Ore = SHMTier1Variant.random;
         public static SHMTier2Variant shmTier2Ore = SHMTier2Variant.random;
-        #endregion
+        #endregion
+
         public override void ChooseWaterStyle(ref int style)
         {
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
                 style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
-        }        public override void TileCountsAvailable(int[] tileCounts)
+        }
+        public override void TileCountsAvailable(int[] tileCounts)
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
             ickyTiles = tileCounts[ModContent.TileType<Chunkstone>()] + tileCounts[ModContent.TileType<HardenedSnotsand>()] + tileCounts[ModContent.TileType<Snotsandstone>()] + tileCounts[ModContent.TileType<Ickgrass>()] + tileCounts[ModContent.TileType<Snotsand>()] + tileCounts[ModContent.TileType<YellowIce>()];
@@ -101,12 +169,88 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
         }
 
-        public void RetroGen()        {            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 0, 0))            {
-                rhodiumOre = (RhodiumVariant)WorldGen.genRand.Next(2);                for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)                {                    var i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer3 = Main.rockLayer;                    var j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);                    WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)rhodiumOre.GetTile());                }                Main.NewText("Retrogenned Rhodium/Osmium/Iridium");
+        public void RetroGen()
+        {
+            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 0, 0))
+            {
+                rhodiumOre = (RhodiumVariant)WorldGen.genRand.Next(2);
+                for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)
+                {
+                    var i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                    var rockLayer3 = Main.rockLayer;
+                    var j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);
+                    WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)rhodiumOre.GetTile());
+                }
+                Main.NewText("Retrogenned Rhodium/Osmium/Iridium");
                 //Caesium
-                for (var num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)                {                    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<Tiles.CaesiumOre>());
+                for (var num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)
+                {
+                    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<Tiles.CaesiumOre>());
                     //WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), ModContent.TileType<CaesiumOre>(), false, 0f, 0f, false, true);
-                }                Main.NewText("Retrogenned Caesium");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 1, 0))            {                for (var num284 = 69; num284 < 72; num284++)                {                    var type8 = 0;                    float num285 = 0;                    if (num284 == 69)                    {                        type8 = ModContent.TileType<Tiles.Tourmaline>();                        num285 = Main.maxTilesX * 0.2f;                    }                    else if (num284 == 70)                    {                        type8 = ModContent.TileType<Tiles.Peridot>();                        num285 = Main.maxTilesX * 0.2f;                    }                    else if (num284 == 71)                    {                        type8 = ModContent.TileType<Tiles.Zircon>();                        num285 = Main.maxTilesX * 0.2f;                    }                    num285 *= 0.2f;                    var num286 = 0;                    while (num286 < num285)                    {                        var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                        var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                        while (Main.tile[num287, num288].type != 1)                        {                            num287 = WorldGen.genRand.Next(0, Main.maxTilesX);                            num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);                        }                        WorldGen.TileRunner(num287, num288, WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), type8, false, 0f, 0f, false, true);                        num286++;                    }                }                Main.NewText("Retrogenned Tourmaline, Peridot and Zircon");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))            {                for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)                {                    var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);                    var rockLayer = Main.rockLayer;                    var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);                    World.Passes.OreGenPreHardMode.GenerateHearts(i8, j8, ModContent.TileType<Tiles.Heartstone>());                }                Main.NewText("Retrogenned Heartstone");            }            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))            {                for (var num721 = 0; num721 < 3; num721++)                {                    var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);                    var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);                    World.Structures.IceShrine.Generate(x10, y6);                }                Main.NewText("Retrogenned Ice Shrines");            }        }        public static void CheckLargeHerb(int x, int y, int type)
+                }
+                Main.NewText("Retrogenned Caesium");
+            }
+            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 1, 0))
+            {
+                for (var num284 = 69; num284 < 72; num284++)
+                {
+                    var type8 = 0;
+                    float num285 = 0;
+                    if (num284 == 69)
+                    {
+                        type8 = ModContent.TileType<Tiles.Tourmaline>();
+                        num285 = Main.maxTilesX * 0.2f;
+                    }
+                    else if (num284 == 70)
+                    {
+                        type8 = ModContent.TileType<Tiles.Peridot>();
+                        num285 = Main.maxTilesX * 0.2f;
+                    }
+                    else if (num284 == 71)
+                    {
+                        type8 = ModContent.TileType<Tiles.Zircon>();
+                        num285 = Main.maxTilesX * 0.2f;
+                    }
+                    num285 *= 0.2f;
+                    var num286 = 0;
+                    while (num286 < num285)
+                    {
+                        var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
+                        var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);
+                        while (Main.tile[num287, num288].type != 1)
+                        {
+                            num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
+                            num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);
+                        }
+                        WorldGen.TileRunner(num287, num288, WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 7), type8, false, 0f, 0f, false, true);
+                        num286++;
+                    }
+                }
+                Main.NewText("Retrogenned Tourmaline, Peridot and Zircon");
+            }
+            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))
+            {
+                for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)
+                {
+                    var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                    var rockLayer = Main.rockLayer;
+                    var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
+                    World.Passes.OreGenPreHardMode.GenerateHearts(i8, j8, ModContent.TileType<Tiles.Heartstone>());
+                }
+                Main.NewText("Retrogenned Heartstone");
+            }
+            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))
+            {
+                for (var num721 = 0; num721 < 3; num721++)
+                {
+                    var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
+                    var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
+                    World.Structures.IceShrine.Generate(x10, y6);
+                }
+                Main.NewText("Retrogenned Ice Shrines");
+            }
+        }
+        public static void CheckLargeHerb(int x, int y, int type)
         {
             if (WorldGen.destroyObject)
             {
@@ -210,7 +354,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 }
                 WorldGen.destroyObject = false;
             }
-        }        public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
+        }
+        public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
         {
             Tile tile = Main.tile[x, y];
             int type = tile.type;
@@ -328,7 +473,9 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     NetMessage.SendTileSquare(-1, x, y, 1);
                 }
             }
-        }        public override void ModifyHardmodeTasks(List<GenPass> list)
+        }
+
+        public override void ModifyHardmodeTasks(List<GenPass> list)
         {
             int index = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Good"));
             int index2 = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Evil"));
@@ -341,7 +488,9 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 list.RemoveAt(index2);
             }
             list.Insert(index + 2, (GenPass)new PassLegacy("Hardmode snow ore generation", new WorldGenLegacyMethod(World.Passes.SnowHardMode.Method)));
-        }        public override void NetSend(BinaryWriter writer)
+        }
+
+        public override void NetSend(BinaryWriter writer)
         {
             var flags = new BitsByte();
             flags[0] = ExxoAvalonOrigins.superHardmode;
@@ -358,7 +507,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             writer.Write(shmOreTier1);
             writer.Write(shmOreTier2);
             writer.Write(hallowAltarCount);
-        }        public override void NetReceive(BinaryReader reader)
+        }
+        public override void NetReceive(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
             ExxoAvalonOrigins.superHardmode = flags[0];
@@ -374,7 +524,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
             shmOreTier1 = reader.ReadInt32();
             shmOreTier2 = reader.ReadInt32();
             hallowAltarCount = reader.ReadInt32();
-        }        public static void GrowLargeHerb(int x, int y)
+        }
+        public static void GrowLargeHerb(int x, int y)
         {
             if (Main.tile[x, y].active())
             {
@@ -546,7 +697,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     }
                 }
             }
-        }        public static void ContagionHardmodeSpread(int i, int j)
+        }
+        public static void ContagionHardmodeSpread(int i, int j)
         {
             if (!Main.hardMode || Main.tile[i, j].inActive())
             {
@@ -628,7 +780,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     }
                 }
             }
-        }        public override void PostUpdate()
+        }
+        public override void PostUpdate()
         {
             float num2 = 3E-05f * (float)Main.worldRate;
             //float num3 = 1.5E-05f * (float)Main.worldRate;
@@ -963,9 +1116,36 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     }
                 }
             }
-        }        public override void PreUpdate()        {            if (!retroGenned)            {                if (ExxoAvalonOrigins.lastOpenedVersion == null || ExxoAvalonOrigins.lastOpenedVersion < ExxoAvalonOrigins.version)                {                    RetroGen();                    retroGenned = true;                }            }            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ExxoAvalonOrigins.superHardmode && Main.hardMode)            {                DropComet(ModContent.TileType<Tiles.HydrolythOre>());            }        }        public override void PreWorldGen()
+        }
+        public override void PreUpdate()
         {
-            ExxoAvalonOrigins.superHardmode = false;            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;            downedBacteriumPrime = false;            downedDesertBeak = false;            downedDragonLord = false;            downedMechasting = false;            downedOblivion = false;            downedPhantasm = false;            downedKingSting = false;            hiddenTemplePos = Vector2.Zero;
+            if (!retroGenned)
+            {
+                if (ExxoAvalonOrigins.lastOpenedVersion == null || ExxoAvalonOrigins.lastOpenedVersion < ExxoAvalonOrigins.version)
+                {
+                    RetroGen();
+                    retroGenned = true;
+                }
+            }
+            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ExxoAvalonOrigins.superHardmode && Main.hardMode)
+            {
+                DropComet(ModContent.TileType<Tiles.HydrolythOre>());
+            }
+        }
+        public override void PreWorldGen()
+        {
+            ExxoAvalonOrigins.superHardmode = false;
+            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;
+            ExxoAvalonOriginsGlobalNPC.oblivionDead = false;
+            ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;
+            downedBacteriumPrime = false;
+            downedDesertBeak = false;
+            downedDragonLord = false;
+            downedMechasting = false;
+            downedOblivion = false;
+            downedPhantasm = false;
+            downedKingSting = false;
+            hiddenTemplePos = Vector2.Zero;
 
             if (jungleMenuSelection == JungleVariant.random)
             {
@@ -993,7 +1173,19 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 contaigon = true;
                 WorldGen.crimson = false;
             }
-        }        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)        {            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");            if (reset != -1)            {                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));            }            var vines = tasks.FindIndex(genpass => genpass.Name == "Vines");            if (jungleMenuSelection == JungleVariant.tropics)
+        }
+
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        {
+            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");
+            if (reset != -1)
+            {
+                tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));
+            }
+
+            var vines = tasks.FindIndex(genpass => genpass.Name == "Vines");
+
+            if (jungleMenuSelection == JungleVariant.tropics)
             {
                 var temple = tasks.FindIndex(genpass => genpass.Name == "Jungle Temple");
                 if (temple != -1)
@@ -1032,15 +1224,32 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 {
                     tasks.Insert(vines + 1, new PassLegacy("TropicalVines", World.Passes.TropicalVines.Method));
                 }
-            }
+            }
+
             if (vines != -1)
             {
                 tasks.Insert(vines + 1, new PassLegacy("Impvines", World.Passes.Impvines.Method));
-            }            if (vines != -1)
+            }
+
+            if (vines != -1)
             {
                 if (contaigon)
                     tasks.Insert(vines + 1, new PassLegacy("ContagionVines", World.Passes.ContagionVines.Method));
-            }            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");            if (shinies != -1)            {                tasks[shinies] = new PassLegacy("Avalon PHM Ore Gen", World.Passes.OreGenPreHardMode.Method);            }            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");            if (underworld != -1)            {                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", World.Passes.Underworld.Method));            }            if (contaigon)
+            }
+
+            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");
+            if (shinies != -1)
+            {
+                tasks[shinies] = new PassLegacy("Avalon PHM Ore Gen", World.Passes.OreGenPreHardMode.Method);
+            }
+
+            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");
+            if (underworld != -1)
+            {
+                tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", World.Passes.Underworld.Method));
+            }
+
+            if (contaigon)
             {
                 var corruptionTask = tasks.FindIndex(genpass => genpass.Name == "Corruption");
                 if (corruptionTask != -1)
@@ -1056,19 +1265,52 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 }
             }
 
-            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");            if (gems != -1)            {                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", World.Passes.Gems.Method));            }            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");            if (smoothWorld != -1)            {                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", World.Passes.SmoothWorld.Method));            }            var lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");            if (lifecrystals != -1)            {                tasks.Insert(lifecrystals + 1, new PassLegacy("Adding Mana Crystals", World.Passes.ManaCrystal.Method));            }            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");            if (iceWalls != -1)            {                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Shrines", World.Passes.Shrines.Method));            }
+            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");
+            if (gems != -1)
+            {
+                tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", World.Passes.Gems.Method));
+            }
 
-            var weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");            if (weeds != -1)            {                tasks.Insert(weeds + 1, new PassLegacy("Contagion weeds", World.Passes.Plants.Method));            }
-            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");            if (microBiomes != -1)            {                tasks.RemoveAt(microBiomes);
+            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");
+            if (smoothWorld != -1)
+            {
+                tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", World.Passes.SmoothWorld.Method));
+            }
+
+            var lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");
+            if (lifecrystals != -1)
+            {
+                tasks.Insert(lifecrystals + 1, new PassLegacy("Adding Mana Crystals", World.Passes.ManaCrystal.Method));
+            }
+
+            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");
+            if (iceWalls != -1)
+            {
+                tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Shrines", World.Passes.Shrines.Method));
+            }
+
+            var weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");
+            if (weeds != -1)
+            {
+                tasks.Insert(weeds + 1, new PassLegacy("Contagion weeds", World.Passes.Plants.Method));
+            }
+
+            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");
+            if (microBiomes != -1)
+            {
+                tasks.RemoveAt(microBiomes);
                 //tasks.Insert(microBiomes, new PassLegacy("Avalon Contaigon fix 1", delegate (GenerationProgress progress)
                 //{
                 //    if (contaigon) WorldGen.crimson = true;
                 //}));
-                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));                tasks.Insert(microBiomes + 1, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));
+                tasks.Insert(microBiomes + 1, new PassLegacy("Avalon Micro Biomes Fix", World.Passes.MicroBiomes.Method));
+                tasks.Insert(microBiomes + 1, new PassLegacy("Replacing items in chests", World.Passes.ReplaceChestItems.Method));
 
                 //tasks.Insert(microBiomes + 1, new PassLegacy("Nest Test", World.Passes.TuhrtlOutpost.Method));
                 //tasks.Insert(microBiomes + 1, new PassLegacy("Nest", World.Passes.WaspNest.Method));
-            }        }        public void SpreadXanthophyte(int x, int y)
+            }
+        }
+        public void SpreadXanthophyte(int x, int y)
         {
             if (Main.tile[x, y].inActive())
                 return;
@@ -1191,7 +1433,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     }
                 }*/
             }
-        }        public static bool GrowHellTree(int i, int y)
+        }
+        public static bool GrowHellTree(int i, int y)
         {
             int j;
             for (j = y; TileLoader.IsSapling(Main.tile[i, j].type); j--)
@@ -1646,12 +1889,193 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 }
             }
             return false;
-        }        public void DropComet(int tile)        {            var flag = true;            var num = 0;            if (Main.netMode == NetmodeID.MultiplayerClient)            {                return;            }            for (var i = 0; i < 255; i++)            {                if (Main.player[i].active)                {                    flag = false;                    break;                }            }            var num2 = 0;            float num3 = Main.maxTilesX / 4200;            var num4 = (int)(400f * num3);            for (var j = 5; j < Main.maxTilesX - 5; j++)            {                var num5 = 5;                while (num5 < Main.worldSurface)                {                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)                    {                        num2++;                        if (num2 > num4)                        {                            return;                        }                    }                    num5++;                }            }            while (!flag)            {                var num6 = Main.maxTilesX * 0.08f;                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)                {                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);                }                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)                {                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])                    {                        flag = Comet(num7, k, tile);                        break;                    }                }                num++;                if (num >= 100)                {                    return;                }            }        }        public bool Comet(int i, int j, int tile)        {            if (i < 50 || i > Main.maxTilesX - 50)            {                return false;            }            if (j < 50 || j > Main.maxTilesY - 50)            {                return false;            }            var num = 25;            var rectangle = new Rectangle((i - num) * 16, (j - num) * 16, num * 2 * 16, num * 2 * 16);            for (var k = 0; k < 255; k++)            {                if (Main.player[k].active)                {                    var value = new Rectangle((int)(Main.player[k].position.X + Main.player[k].width / 2 - NPC.sWidth / 2 - NPC.safeRangeX), (int)(Main.player[k].position.Y + Main.player[k].height / 2 - NPC.sHeight / 2 - NPC.safeRangeY), NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);                    if (rectangle.Intersects(value))                    {                        return false;                    }                }            }            for (var l = 0; l < 200; l++)            {                if (Main.npc[l].active)                {                    var value2 = new Rectangle((int)Main.npc[l].position.X, (int)Main.npc[l].position.Y, Main.npc[l].width, Main.npc[l].height);                    if (rectangle.Intersects(value2))                    {                        return false;                    }                }            }            for (var m = i - num; m < i + num; m++)            {                for (var n = j - num; n < j + num; n++)                {                    if (Main.tile[m, n].active() && Main.tile[m, n].type == 21 || Main.tile[m, n].type == TileID.Containers2)                    {                        return false;                    }                }            }            stopCometDrops = true;            num = 15;            for (var num2 = i - num; num2 < i + num; num2++)            {                for (var num3 = j - num; num3 < j + num; num3++)                {                    if (num3 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num2) + Math.Abs(j - num3) < num * 1.5 + Main.rand.Next(-5, 5))                    {                        if (!Main.tileSolid[Main.tile[num2, num3].type])                        {                            Main.tile[num2, num3].active(false);                        }                        Main.tile[num2, num3].type = (ushort)tile;                    }                }            }            num = 10;            for (var num4 = i - num; num4 < i + num; num4++)            {                for (var num5 = j - num; num5 < j + num; num5++)                {                    if (num5 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num4) + Math.Abs(j - num5) < num + Main.rand.Next(-3, 4))                    {                        Main.tile[num4, num5].active(false);                    }                }            }            num = 16;            for (var num6 = i - num; num6 < i + num; num6++)            {                for (var num7 = j - num; num7 < j + num; num7++)                {                    if (Main.tile[num6, num7].type == 5 || Main.tile[num6, num7].type == 32)                    {                        WorldGen.KillTile(num6, num7, false, false, false);                    }                    WorldGen.SquareTileFrame(num6, num7, true);                    WorldGen.SquareWallFrame(num6, num7, true);                }            }            num = 23;            for (var num8 = i - num; num8 < i + num; num8++)            {                for (var num9 = j - num; num9 < j + num; num9++)                {                    if (Main.tile[num8, num9].active() && Main.rand.Next(10) == 0 && Math.Abs(i - num8) + Math.Abs(j - num9) < num * 1.3)                    {                        if (Main.tile[num8, num9].type == 5 || Main.tile[num8, num9].type == 32)                        {                            WorldGen.KillTile(num8, num9, false, false, false);                        }                        Main.tile[num8, num9].type = (ushort)tile;                        WorldGen.SquareTileFrame(num8, num9, true);                    }                }            }            stopCometDrops = false;            if (Main.netMode == NetmodeID.SinglePlayer)            {                Main.NewText("A comet has struck ground!", 0, 201, 190, false);            }            else if (Main.netMode == NetmodeID.Server)            {                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A comet has struck ground!"), new Color(0, 201, 190));            }            if (Main.netMode != NetmodeID.MultiplayerClient)            {                NetMessage.SendTileSquare(-1, i, j, 30);            }            return true;        }        public static void InitiateSuperHardmode()        {            ThreadPool.QueueUserWorkItem(new WaitCallback(shmCallback), 1);        }
+        }
+
+        public void DropComet(int tile)
+        {
+            var flag = true;
+            var num = 0;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
+            }
+            for (var i = 0; i < 255; i++)
+            {
+                if (Main.player[i].active)
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            var num2 = 0;
+            float num3 = Main.maxTilesX / 4200;
+            var num4 = (int)(400f * num3);
+            for (var j = 5; j < Main.maxTilesX - 5; j++)
+            {
+                var num5 = 5;
+                while (num5 < Main.worldSurface)
+                {
+                    if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)
+                    {
+                        num2++;
+                        if (num2 > num4)
+                        {
+                            return;
+                        }
+                    }
+                    num5++;
+                }
+            }
+            while (!flag)
+            {
+                var num6 = Main.maxTilesX * 0.08f;
+                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);
+                while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)
+                {
+                    num7 = Main.rand.Next(50, Main.maxTilesX - 50);
+                }
+                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)
+                {
+                    if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])
+                    {
+                        flag = Comet(num7, k, tile);
+                        break;
+                    }
+                }
+                num++;
+                if (num >= 100)
+                {
+                    return;
+                }
+            }
+        }
+
+        public bool Comet(int i, int j, int tile)
+        {
+            if (i < 50 || i > Main.maxTilesX - 50)
+            {
+                return false;
+            }
+            if (j < 50 || j > Main.maxTilesY - 50)
+            {
+                return false;
+            }
+            var num = 25;
+            var rectangle = new Rectangle((i - num) * 16, (j - num) * 16, num * 2 * 16, num * 2 * 16);
+            for (var k = 0; k < 255; k++)
+            {
+                if (Main.player[k].active)
+                {
+                    var value = new Rectangle((int)(Main.player[k].position.X + Main.player[k].width / 2 - NPC.sWidth / 2 - NPC.safeRangeX), (int)(Main.player[k].position.Y + Main.player[k].height / 2 - NPC.sHeight / 2 - NPC.safeRangeY), NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);
+                    if (rectangle.Intersects(value))
+                    {
+                        return false;
+                    }
+                }
+            }
+            for (var l = 0; l < 200; l++)
+            {
+                if (Main.npc[l].active)
+                {
+                    var value2 = new Rectangle((int)Main.npc[l].position.X, (int)Main.npc[l].position.Y, Main.npc[l].width, Main.npc[l].height);
+                    if (rectangle.Intersects(value2))
+                    {
+                        return false;
+                    }
+                }
+            }
+            for (var m = i - num; m < i + num; m++)
+            {
+                for (var n = j - num; n < j + num; n++)
+                {
+                    if (Main.tile[m, n].active() && Main.tile[m, n].type == 21 || Main.tile[m, n].type == TileID.Containers2)
+                    {
+                        return false;
+                    }
+                }
+            }
+            stopCometDrops = true;
+            num = 15;
+            for (var num2 = i - num; num2 < i + num; num2++)
+            {
+                for (var num3 = j - num; num3 < j + num; num3++)
+                {
+                    if (num3 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num2) + Math.Abs(j - num3) < num * 1.5 + Main.rand.Next(-5, 5))
+                    {
+                        if (!Main.tileSolid[Main.tile[num2, num3].type])
+                        {
+                            Main.tile[num2, num3].active(false);
+                        }
+                        Main.tile[num2, num3].type = (ushort)tile;
+                    }
+                }
+            }
+            num = 10;
+            for (var num4 = i - num; num4 < i + num; num4++)
+            {
+                for (var num5 = j - num; num5 < j + num; num5++)
+                {
+                    if (num5 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num4) + Math.Abs(j - num5) < num + Main.rand.Next(-3, 4))
+                    {
+                        Main.tile[num4, num5].active(false);
+                    }
+                }
+            }
+            num = 16;
+            for (var num6 = i - num; num6 < i + num; num6++)
+            {
+                for (var num7 = j - num; num7 < j + num; num7++)
+                {
+                    if (Main.tile[num6, num7].type == 5 || Main.tile[num6, num7].type == 32)
+                    {
+                        WorldGen.KillTile(num6, num7, false, false, false);
+                    }
+                    WorldGen.SquareTileFrame(num6, num7, true);
+                    WorldGen.SquareWallFrame(num6, num7, true);
+                }
+            }
+            num = 23;
+            for (var num8 = i - num; num8 < i + num; num8++)
+            {
+                for (var num9 = j - num; num9 < j + num; num9++)
+                {
+                    if (Main.tile[num8, num9].active() && Main.rand.Next(10) == 0 && Math.Abs(i - num8) + Math.Abs(j - num9) < num * 1.3)
+                    {
+                        if (Main.tile[num8, num9].type == 5 || Main.tile[num8, num9].type == 32)
+                        {
+                            WorldGen.KillTile(num8, num9, false, false, false);
+                        }
+                        Main.tile[num8, num9].type = (ushort)tile;
+                        WorldGen.SquareTileFrame(num8, num9, true);
+                    }
+                }
+            }
+            stopCometDrops = false;
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText("A comet has struck ground!", 0, 201, 190, false);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A comet has struck ground!"), new Color(0, 201, 190));
+            }
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NetMessage.SendTileSquare(-1, i, j, 30);
+            }
+            return true;
+        }
+
+        public static void InitiateSuperHardmode()
+        {
+            ThreadPool.QueueUserWorkItem(new WaitCallback(shmCallback), 1);
+        }
         public static void shmCallback(object threadContext)
         {
             if (ExxoAvalonOrigins.superHardmode) return;
             GenerateSHMOres();
-            ExxoAvalonOrigins.superHardmode = true;            if (Main.netMode == NetmodeID.SinglePlayer)
+            ExxoAvalonOrigins.superHardmode = true;
+            if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText("The ancient souls have been disturbed...", 255, 60, 0);
                 Main.NewText("The heavens above are rumbling...", 50, 255, 130);
@@ -1662,11 +2086,13 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ancient souls have been disturbed..."), new Color(255, 60, 0));
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The heavens above are rumbling..."), new Color(50, 255, 130));
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with the elements!"), new Color(0, 255, 0));
-            }            if (Main.netMode == NetmodeID.Server)
+            }
+            if (Main.netMode == NetmodeID.Server)
             {
                 Netplay.ResetSections();
             }
-        }        public static void GenerateSHMOres()
+        }
+        public static void GenerateSHMOres()
         {
             if (Main.rand == null)
             {
@@ -1707,7 +2133,8 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
                 WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(5, 8), (ushort)ModContent.TileType<Tiles.PrimordialOre>());
             }
-        }        public void MakeOblivionOre(NPC npc1, NPC npc2, string text, int radius)
+        }
+        public void MakeOblivionOre(NPC npc1, NPC npc2, string text, int radius)
         {
             if (Collision.CheckAABBvAABBCollision(npc1.Center, new Vector2(npc1.width, npc1.height), npc2.Center, new Vector2(npc2.width, npc2.height)))
             {
@@ -1730,23 +2157,134 @@ namespace ExxoAvalonOrigins{    public class ExxoAvalonOriginsWorld : ModWorld
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), color);
                 }
             }
-        }        public override TagCompound Save()        {            var toSave = new TagCompound            {                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },                { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },                { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },                { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },                { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },                { "ExxoAvalonOrigins:Contagion", contaigon },                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
+        }
+        public override TagCompound Save()
+        {
+            var toSave = new TagCompound
+            {
+                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },
+                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },
+                { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },
+                { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },
+                { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },
+                { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },
+                { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },
+                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },
+                { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },
+                { "ExxoAvalonOrigins:Contagion", contaigon },
+                { "ExxoAvalonOrigins:DungeonSide", dungeonSide },
+                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },
+                { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },
+                { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
                 { "ExxoAvalonOrigins:OsmiumOre", (int)rhodiumOre },
-                { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },                { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },                { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },            };            // Update config cache values on save world            ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();            var tempDict = config.GetWorldData();            ExxoAvalonOriginsConfig.WorldDataValues worldData;            worldData.contagion = contaigon;
+                { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },
+                { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },
+                { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },
+            };
+
+            // Update config cache values on save world
+            ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();
+            var tempDict = config.GetWorldData();
+            ExxoAvalonOriginsConfig.WorldDataValues worldData;
+
+            worldData.contagion = contaigon;
             worldData.jungleType = (int)jungleMenuSelection;
 
             string path = Path.ChangeExtension(Main.worldPathName, ".twld");
-            tempDict[path] = worldData;            config.SetWorldData(tempDict);
+            tempDict[path] = worldData;
+            config.SetWorldData(tempDict);
 
-            ExxoAvalonOriginsConfig.Save(config);            return toSave;        }        public override void Load(TagCompound tag)        {            if (tag.ContainsKey("ExxoAvalonOrigins:LastOpenedVersion"))            {                ExxoAvalonOrigins.lastOpenedVersion = new Version(tag["ExxoAvalonOrigins:LastOpenedVersion"].ToString());            }            if (tag.ContainsKey("ExxoAvalonOrigins:SuperHardMode"))            {                ExxoAvalonOrigins.superHardmode = tag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedBacteriumPrime"))            {                downedBacteriumPrime = tag.Get<bool>("ExxoAvalonOrigins:DownedBacteriumPrime");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedDesertBeak"))            {                downedDesertBeak = tag.Get<bool>("ExxoAvalonOrigins:DownedDesertBeak");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedPhantasm"))            {                downedPhantasm = tag.Get<bool>("ExxoAvalonOrigins:DownedPhantasm");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedDragonLord"))            {                downedDragonLord = tag.Get<bool>("ExxoAvalonOrigins:DownedDragonLord");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedMechasting"))            {                downedMechasting = tag.Get<bool>("ExxoAvalonOrigins:DownedMechasting");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DownedOblivion"))            {                downedOblivion = tag.Get<bool>("ExxoAvalonOrigins:DownedOblivion");            }            if (tag.ContainsKey("ExxoAvalonOrigins:LibraryofKnowledge"))            {                LoK = tag.Get<Vector2>("ExxoAvalonOrigins:LibraryofKnowledge");            }            if (tag.ContainsKey("ExxoAvalonOrigins:Contagion"))            {                contaigon = tag.Get<bool>("ExxoAvalonOrigins:Contagion");            }            if (tag.ContainsKey("ExxoAvalonOrigins:JungleType"))            {                jungleMenuSelection = (JungleVariant)tag.GetAsInt("ExxoAvalonOrigins:JungleType");            }            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonSide"))
+            ExxoAvalonOriginsConfig.Save(config);
+
+            return toSave;
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            if (tag.ContainsKey("ExxoAvalonOrigins:LastOpenedVersion"))
+            {
+                ExxoAvalonOrigins.lastOpenedVersion = new Version(tag["ExxoAvalonOrigins:LastOpenedVersion"].ToString());
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SuperHardMode"))
+            {
+                ExxoAvalonOrigins.superHardmode = tag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DownedBacteriumPrime"))
+            {
+                downedBacteriumPrime = tag.Get<bool>("ExxoAvalonOrigins:DownedBacteriumPrime");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DownedDesertBeak"))
+            {
+                downedDesertBeak = tag.Get<bool>("ExxoAvalonOrigins:DownedDesertBeak");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DownedPhantasm"))
+            {
+                downedPhantasm = tag.Get<bool>("ExxoAvalonOrigins:DownedPhantasm");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DownedDragonLord"))
+            {
+                downedDragonLord = tag.Get<bool>("ExxoAvalonOrigins:DownedDragonLord");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DownedMechasting"))
+            {
+                downedMechasting = tag.Get<bool>("ExxoAvalonOrigins:DownedMechasting");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DownedOblivion"))
+            {
+                downedOblivion = tag.Get<bool>("ExxoAvalonOrigins:DownedOblivion");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:LibraryofKnowledge"))
+            {
+                LoK = tag.Get<Vector2>("ExxoAvalonOrigins:LibraryofKnowledge");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:Contagion"))
+            {
+                contaigon = tag.Get<bool>("ExxoAvalonOrigins:Contagion");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:JungleType"))
+            {
+                jungleMenuSelection = (JungleVariant)tag.GetAsInt("ExxoAvalonOrigins:JungleType");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonSide"))
             {
                 dungeonSide = tag.GetAsInt("ExxoAvalonOrigins:DungeonSide");
-            }            else            {
+            }
+            else
+            {
                 dungeonSide = -1;
-            }            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonX"))            {                ExxoAvalonOrigins.dungeonEx = tag.GetAsInt("ExxoAvalonOrigins:DungeonX");            }            else
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonX"))
+            {
+                ExxoAvalonOrigins.dungeonEx = tag.GetAsInt("ExxoAvalonOrigins:DungeonX");
+            }
+            else
             {
                 ExxoAvalonOrigins.dungeonEx = dungeonSide == -1 ? Main.maxTilesX / 3 : Main.maxTilesX - Main.maxTilesX / 3;
-            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))            {                shmOreTier1 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier1");            }            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier2"))            {                shmOreTier2 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier2");            }            if (tag.ContainsKey("ExxoAvalonOrigins:OsmiumOre"))            {                rhodiumOre = (RhodiumVariant)tag.GetAsInt("ExxoAvalonOrigins:OsmiumOre");            }            if (tag.ContainsKey("ExxoAvalonOrigins:HallowAltarCount"))            {                hallowAltarCount = tag.GetAsInt("ExxoAvalonOrigins:HallowAltarCount");            }            if (tag.ContainsKey("ExxoAvalonOrigins:WorldDarkMatterTiles"))            {                WorldDarkMatterTiles = tag.GetAsInt("ExxoAvalonOrigins:WorldDarkMatterTiles");                if (WorldDarkMatterTiles < 0)
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))
+            {
+                shmOreTier1 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier1");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier2"))
+            {
+                shmOreTier2 = tag.GetAsInt("ExxoAvalonOrigins:SHMOreTier2");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:OsmiumOre"))
+            {
+                rhodiumOre = (RhodiumVariant)tag.GetAsInt("ExxoAvalonOrigins:OsmiumOre");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HallowAltarCount"))
+            {
+                hallowAltarCount = tag.GetAsInt("ExxoAvalonOrigins:HallowAltarCount");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:WorldDarkMatterTiles"))
+            {
+                WorldDarkMatterTiles = tag.GetAsInt("ExxoAvalonOrigins:WorldDarkMatterTiles");
+                if (WorldDarkMatterTiles < 0)
                 {
                     WorldDarkMatterTiles = 0;
-                }            }        }    }}
+                }
+            }
+        }
+    }
+}

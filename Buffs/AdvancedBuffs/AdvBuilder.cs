@@ -1,4 +1,8 @@
-﻿using Terraria;using Terraria.ModLoader;namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs{
+﻿using Terraria;
+using Terraria.ModLoader;
+
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
+{
     public class AdvBuilder : ModBuff
     {
         public override void SetDefaults()
@@ -13,4 +17,5 @@
             player.wallSpeed += 0.5f;
             player.blockRange += 2;
         }
-    }}
+    }
+}

@@ -1,9 +1,42 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class DarklightLance : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Darklight Lance");		}		public override void SetDefaults()		{			projectile.width = 18;			projectile.height = 18;			projectile.aiStyle = 19;			projectile.friendly = true;			projectile.penetrate = -1;			projectile.tileCollide = false;			projectile.scale = 1.2f;			projectile.hide = true;			projectile.ownerHitCheck = true;			projectile.melee = true;		}
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class DarklightLance : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Darklight Lance");
+		}
+
+		public override void SetDefaults()
+		{
+			projectile.width = 18;
+			projectile.height = 18;
+			projectile.aiStyle = 19;
+			projectile.friendly = true;
+			projectile.penetrate = -1;
+			projectile.tileCollide = false;
+			projectile.scale = 1.2f;
+			projectile.hide = true;
+			projectile.ownerHitCheck = true;
+			projectile.melee = true;
+		}
 		public float movementFactor
 		{
 			get => projectile.ai[0];
 			set => projectile.ai[0] = value;
-		}		public override void AI()		{
+		}
+		public override void AI()
+		{
 			Player projOwner = Main.player[projectile.owner];
 			Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
 			projectile.direction = projOwner.direction;
@@ -37,4 +70,10 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 			{
 				projectile.rotation -= MathHelper.ToRadians(90f);
 			}
-			int num313 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);			Main.dust[num313].noGravity = true;			Main.dust[num313].fadeIn = 1.25f;			Main.dust[num313].velocity *= 0.25f;		}	}}
+			int num313 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);
+			Main.dust[num313].noGravity = true;
+			Main.dust[num313].fadeIn = 1.25f;
+			Main.dust[num313].velocity *= 0.25f;
+		}
+	}
+}

@@ -1,4 +1,15 @@
-﻿using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
     public class ElectricBolt : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -16,10 +27,12 @@
             projectile.magic = true;
             projectile.penetrate = 2;
             Main.projFrames[projectile.type] = 4;
-        }        public override void OnHitPlayer(Player target, int damage, bool crit)
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.Next(8) == 0) target.AddBuff(ModContent.BuffType<Buffs.Electrified>(), 60 * 6);
-        }        public override void Kill(int timeLeft)
+        }
+        public override void Kill(int timeLeft)
         {
             int num279 = Main.rand.Next(5, 10);
             int num4;
@@ -33,7 +46,10 @@
                 Main.dust[num281].noGravity = true;
                 num4 = num280;
             }
-        }        public override void AI()        {            if (projectile.type == ModContent.ProjectileType<ElectricBolt>())
+        }
+        public override void AI()
+        {
+            if (projectile.type == ModContent.ProjectileType<ElectricBolt>())
             {
                 if (projectile.ai[1] == 0f)
                 {
@@ -67,4 +83,7 @@
                 {
                     projectile.velocity.Y = 16f;
                 }
-            }        }    }}
+            }
+        }
+    }
+}

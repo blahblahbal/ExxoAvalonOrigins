@@ -1,8 +1,38 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class LeafStorm : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("LeafStorm");		}		public override void SetDefaults()		{
-            projectile.width = 10;            projectile.height = 10;            projectile.aiStyle = -1;            projectile.friendly = true;            projectile.tileCollide = false;            projectile.penetrate = -1;            projectile.usesLocalNPCImmunity = true;
-            projectile.alpha = 255;            projectile.timeLeft = 1200;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class LeafStorm : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("LeafStorm");
+		}
+
+		public override void SetDefaults()
+		{
+            projectile.width = 10;
+            projectile.height = 10;
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.tileCollide = false;
+            projectile.penetrate = -1;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.alpha = 255;
+            projectile.timeLeft = 1200;
             projectile.magic = true;
-        }        public override void AI()        {
+        }
+
+        public override void AI()
+        {
 			float num998 = 900f;
 			if (projectile.soundDelay == 0)
 			{
@@ -85,4 +115,6 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				dust48.velocity.Y = Main.rand.NextFloat() * -0.5f - 1f;
 				Projectile.NewProjectile(dust48.position + new Vector2(20 + Main.rand.Next(-10, 11), (55 + Main.rand.Next(-10, 11)) * -1f), new Vector2((float)(Main.rand.Next(-500, 501) / 100), (float)(Main.rand.Next(-500, 501) / 100)), ModContent.ProjectileType<Projectiles.Leaves>(), projectile.damage, projectile.knockBack, projectile.owner);
 			}
-		}    }}
+		}
+    }
+}

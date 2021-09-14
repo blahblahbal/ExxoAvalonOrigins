@@ -36,7 +36,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.DeathSound = SoundID.NPCDeath39;
         }
 
-        public override void AI()        {
+        public override void AI()
+        {
             npc.velocity *= 0f;
             npc.ai[0]++;
             if (npc.ai[1] == 0)

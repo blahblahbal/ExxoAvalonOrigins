@@ -1,6 +1,74 @@
-using Microsoft.Xna.Framework;using System;using System.Collections.Generic;using System.Linq;using System.Text;using System.Threading.Tasks;using Terraria;using Terraria.ModLoader;using Terraria.ID;namespace ExxoAvalonOrigins.Projectiles{	public class PhantomKnife : ModProjectile	{		public override void SetStaticDefaults()		{			DisplayName.SetDefault("Phantom Knife");		}		public override void SetDefaults()		{			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PhantomKnife");			projectile.width = 30;			projectile.height = 30;			projectile.aiStyle = -1;			projectile.friendly = true;			projectile.penetrate = 1;			projectile.magic = true;			projectile.ignoreWater = true;			projectile.extraUpdates = 0;		}		public override void AI()		{
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+namespace ExxoAvalonOrigins.Projectiles
+{
+	public class PhantomKnife : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Phantom Knife");
+		}
+
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PhantomKnife");
+			projectile.width = 30;
+			projectile.height = 30;
+			projectile.aiStyle = -1;
+			projectile.friendly = true;
+			projectile.penetrate = 1;
+			projectile.magic = true;
+			projectile.ignoreWater = true;
+			projectile.extraUpdates = 0;
+		}
+		public override void AI()
+		{
 			projectile.localAI[1]++;
-			projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.03f * projectile.direction;			if (projectile.type == ModContent.ProjectileType<PhantomKnife>())			{				projectile.ai[0] += 1f;				if (projectile.ai[0] >= 30f)				{					projectile.alpha += 10;					if (projectile.alpha >= 255)					{						projectile.active = false;					}				}				if (projectile.ai[0] < 30f)				{					projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;				}			}			else			{				projectile.ai[0] += 1f;				if (projectile.ai[0] >= 20f)				{					projectile.velocity.Y = projectile.velocity.Y + 0.4f;					projectile.velocity.X = projectile.velocity.X * 0.97f;				}				else if (projectile.type == ProjectileID.ThrowingKnife || projectile.type == ProjectileID.PoisonedKnife || projectile.type == ProjectileID.MagicDagger)				{					projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;				}			}			if (projectile.velocity.Y > 16f)			{				projectile.velocity.Y = 16f;			}		}
+
+			projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.03f * projectile.direction;
+
+			if (projectile.type == ModContent.ProjectileType<PhantomKnife>())
+			{
+				projectile.ai[0] += 1f;
+				if (projectile.ai[0] >= 30f)
+				{
+					projectile.alpha += 10;
+					if (projectile.alpha >= 255)
+					{
+						projectile.active = false;
+					}
+				}
+				if (projectile.ai[0] < 30f)
+				{
+					projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
+				}
+			}
+			else
+			{
+				projectile.ai[0] += 1f;
+				if (projectile.ai[0] >= 20f)
+				{
+					projectile.velocity.Y = projectile.velocity.Y + 0.4f;
+					projectile.velocity.X = projectile.velocity.X * 0.97f;
+				}
+				else if (projectile.type == ProjectileID.ThrowingKnife || projectile.type == ProjectileID.PoisonedKnife || projectile.type == ProjectileID.MagicDagger)
+				{
+					projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
+				}
+			}
+			if (projectile.velocity.Y > 16f)
+			{
+				projectile.velocity.Y = 16f;
+			}
+		}
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
 			ghostHurt(projectile.damage, projectile.position);
@@ -59,4 +127,5 @@ using Microsoft.Xna.Framework;using System;using System.Collections.Generic;u
 				Projectile.NewProjectile(Position, new Vector2(num7, num8), ModContent.ProjectileType<Projectiles.SpectreSplit>(), num, 0f, projectile.owner, num2);
 			}
 		}
-	}}
+	}
+}
