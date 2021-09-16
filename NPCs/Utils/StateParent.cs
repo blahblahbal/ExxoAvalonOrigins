@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Terraria.ModLoader;
+﻿using System.IO;
 
 namespace ExxoAvalonOrigins.NPCs.Utils
 {
@@ -9,54 +7,39 @@ namespace ExxoAvalonOrigins.NPCs.Utils
     /// </summary>
     public abstract class StateParent : State
     {
+        /// <summary>
+        /// The current state being executed
+        /// </summary>
         public State CurrentState { get; private set; }
+        /// <summary>
+        /// Reference to the current state tree being executed by this parent
+        /// </summary>
+        protected uint TreeID { get; private set; }
+        /// <summary>
+        /// The position within the current state tree starting from 0
+        /// </summary>
+        protected uint StatePosition { get; private set; }
+        /// <summary>
+        /// Whether or not to destroy after first tree has finished
+        /// </summary>
+        public abstract bool AutoDestroyOnFinish { get; }
 
         /// <summary>
-        /// <para>An array of all the state types that the parent uses.</para>
-        /// <para>Ensures minimal bandwidth is used in serialization of type</para>
+        /// Frame counter for the inactive update when no tree is running, starting at 1
         /// </summary>
-        public abstract Type[] UsedTypes { get; }
-
-        protected uint framesInactive;
-        protected uint statePosition;
-
-        public StateParent() : base()
-        {
-        }
-
-        public StateParent(ModNPC modNPC, StateParent parent) : base(modNPC, parent)
-        {
-        }
-
-        public StateParent(ModNPC modNPC, StateParent parent, State nextState = null) : base(modNPC, parent, nextState)
-        {
-        }
-
-        public byte GetTypeIndex(Type type)
-        {
-            var arr = UsedTypes;
-            int typeIndex;
-            for (typeIndex = 0; typeIndex < arr.Length; typeIndex++)
-            {
-                if (type == arr[typeIndex])
-                {
-                    break;
-                }
-            }
-            return (byte)typeIndex;
-        }
+        protected uint FramesInactive { get; private set; }
 
         public override void Write(BinaryWriter writer)
         {
             base.Write(writer);
-            writer.Write(framesInactive);
-            writer.Write(statePosition);
+            writer.Write(FramesInactive);
+            writer.Write(StatePosition);
+            writer.Write(TreeID);
 
-            bool hasCurrentState = CurrentState != null;
-            writer.Write(hasCurrentState);
-            if (hasCurrentState)
+            bool currentStateActive = CurrentState != null && CurrentState.Active;
+            writer.Write(currentStateActive);
+            if (currentStateActive)
             {
-                writer.Write(GetTypeIndex(CurrentState.Type));
                 CurrentState.Write(writer);
             }
         }
@@ -64,77 +47,104 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         public override void Read(BinaryReader reader)
         {
             base.Read(reader);
-            framesInactive = reader.ReadUInt32();
-            statePosition = reader.ReadUInt32();
+            FramesInactive = reader.ReadUInt32();
+            StatePosition = reader.ReadUInt32();
+            TreeID = reader.ReadUInt32();
 
-            bool hasCurrentState = reader.ReadBoolean();
-            if (hasCurrentState)
+            bool currentStateActive = reader.ReadBoolean();
+            if (currentStateActive)
             {
-                Type type = UsedTypes[reader.ReadByte()];
-                dynamic state = StateFactory.GetDynamicState(this, type);
-                state.Read(reader);
-                if (type != CurrentState?.Type)
+                State oldState = CurrentState;
+                HandleAdvanceState();
+                CurrentState.UpdateBaseData(ModNPC);
+                CurrentState.Read(reader);
+                if (oldState != null)
                 {
-                    CurrentState?.Unload();
+                    if (CurrentState.Type != oldState.Type)
+                    {
+                        oldState.Unload();
+                    }
+                    else
+                    {
+                        CurrentState.HasLoaded = oldState.HasLoaded;
+                    }
                 }
-                else
-                {
-                    (state as State).HasLoaded = true;
-                }
-                CurrentState = state;
             }
         }
 
+        /// <summary>
+        /// Sets the current state to the specified state
+        /// </summary>
+        /// <param name="state">The state to start</param>
         protected void SetState(State state)
         {
+            state.Parent = this;
             CurrentState = state;
         }
 
-        protected void SetFirstState(State state)
+        /// <summary>
+        /// Start the specified tree at state position 0
+        /// </summary>
+        /// <param name="treeID">The identifier for the state tree</param>
+        protected void StartTree(uint treeID)
         {
-            statePosition = 0;
-            SetState(state);
+            TreeID = treeID;
+            StatePosition = 0;
+            HandleAdvanceState();
         }
 
-        protected override void PostUpdate()
+        /// <summary>
+        /// Method to get run before every update
+        /// </summary>
+        protected virtual void PreUpdate()
         {
+        }
+
+        protected sealed override void Update()
+        {
+            PreUpdate();
+
             if (CurrentState == null)
             {
-                framesInactive++;
+                FramesInactive++;
                 InactiveUpdate();
                 return;
             }
 
             if (CurrentState.Active)
             {
-                framesInactive = 0;
-                CurrentState.Update(ModNPC);
-            }
-            else if (CurrentState.NextState != null)
-            {
-                statePosition++;
-                PreAdvanceState();
-                CurrentState = CurrentState.NextState;
-                CurrentState.Update(ModNPC);
+                FramesInactive = 0;
+                CurrentState.StartUpdate(ModNPC);
             }
             else
             {
-                if (framesInactive == 0)
+                if (FramesInactive == 0)
                 {
-                    statePosition++;
-                    PreAdvanceState();
+                    StatePosition++;
+                    HandleAdvanceState();
+                    if (CurrentState.Active)
+                    {
+                        CurrentState.StartUpdate(ModNPC);
+                    }
+                    else
+                    {
+                        if (AutoDestroyOnFinish)
+                        {
+                            Destroy();
+                        }
+                        else
+                        {
+                            FramesInactive++;
+                            InactiveUpdate();
+                        }
+                    }
                 }
-                if (!CurrentState.Active)
+                else
                 {
-                    framesInactive++;
+                    FramesInactive++;
                     InactiveUpdate();
                 }
             }
-        }
-
-        protected override void PreDestroy()
-        {
-            CurrentState?.Destroy();
         }
 
         public override void Unload()
@@ -142,12 +152,21 @@ namespace ExxoAvalonOrigins.NPCs.Utils
             CurrentState?.Unload();
         }
 
+        protected override void PreDestroy()
+        {
+            CurrentState?.Destroy();
+        }
+
+        /// <summary>
+        /// Method to run while no state is being run
+        /// </summary>
         protected virtual void InactiveUpdate()
         {
         }
 
-        protected virtual void PreAdvanceState()
-        {
-        }
+        /// <summary>
+        /// Method that gets run after a state has finished, use to implement logic and modify state within a tree
+        /// </summary>
+        protected abstract void HandleAdvanceState();
     }
 }

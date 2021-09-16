@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         public bool Active { get; private set; }
 
         /// <summary>
-        /// A frame time reference with value 1 on first state update.
+        /// A frame time reference with value 1 on first update.
         /// </summary>
         public uint CurrentFrame { get; private set; }
 
@@ -27,33 +27,37 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         /// <summary>
         /// The state parent controlling this state
         /// </summary>
-        public StateParent Parent { get; private set; }
+        public StateParent Parent { get; set; }
 
-        /// <summary>
-        /// The next state to be executed after destruction
-        /// </summary>
-        public State NextState { get; private set; }
-
-        public bool HasNextState { get; private set; }
         protected ModNPC ModNPC { get; private set; }
         protected NPC npc;
         protected Entity target;
         protected Vector2 vectorToTarget;
         protected Vector2 unitVectorToTarget;
-        // TODO: Implement random number syncing
-        //private bool seedSet;
-        //private int syncedSeed;
-        //protected int SyncedSeed
-        //{
-        //    get => syncedSeed;
-        //    private set
-        //    {
-        //        syncedSeed = value;
-        //        syncedRandom = new Random(syncedSeed);
-        //        seedSet = true;
-        //    }
-        //}
-        //protected Random syncedRandom;
+        private int syncedRandomSeed;
+        private bool syncedRandomSet;
+
+        private int SyncedRandomSeed
+        {
+            get => syncedRandomSeed;
+            set
+            {
+                syncedRandomSeed = value;
+
+                syncedRandomSet = true;
+                syncedRandom = new Random(syncedRandomSeed);
+                if (this is StateParent && (this as StateParent).CurrentState != null)
+                {
+                    (this as StateParent).CurrentState.SyncedRandomSeed = SyncedRandomSeed;
+                }
+            }
+        }
+
+        /// <summary>
+        /// An instance of random that is synced on the network
+        /// </summary>
+        protected Random syncedRandom;
+
         public bool HasLoaded;
 
         public State()
@@ -61,20 +65,7 @@ namespace ExxoAvalonOrigins.NPCs.Utils
             Type = GetType();
             Active = true;
             HasLoaded = false;
-            //seedSet = false;
-        }
-
-        public State(ModNPC modNPC, StateParent parent) : this()
-        {
-            ModNPC = modNPC;
-            Parent = parent;
-            HasNextState = false;
-        }
-
-        public State(ModNPC modNPC, StateParent parent, State nextState = null) : this(modNPC, parent)
-        {
-            NextState = nextState;
-            HasNextState = (NextState != null);
+            syncedRandomSet = false;
         }
 
         public virtual void Write(BinaryWriter writer)
@@ -82,39 +73,23 @@ namespace ExxoAvalonOrigins.NPCs.Utils
             writer.Write(CurrentFrame);
             if (Parent == null)
             {
-                //SyncedSeed = Main.rand.Next();
-                //writer.Write(SyncedSeed);
-            }
-
-            writer.Write(HasNextState);
-            if (HasNextState)
-            {
-                writer.Write(Parent.GetTypeIndex(NextState.Type));
-                dynamic state = Convert.ChangeType(NextState, NextState.Type);
-                state.Write(writer);
+                SyncedRandomSeed = Main.rand.Next();
+                writer.Write(SyncedRandomSeed);
             }
         }
 
         public virtual void Read(BinaryReader reader)
         {
             CurrentFrame = reader.ReadUInt32();
-            //if (Parent == null)
-            //{
-                //SyncedSeed = reader.ReadInt32();
-            //}
-
-            HasNextState = reader.ReadBoolean();
-            if (HasNextState)
+            if (Parent == null)
             {
-                Type type = Parent.UsedTypes[reader.ReadByte()];
-                dynamic state = StateFactory.GetDynamicState(Parent, type);
-                state.Read(reader);
-                NextState = state;
+                SyncedRandomSeed = reader.ReadInt32();
             }
         }
 
-        private void UpdateData()
+        public void UpdateBaseData(ModNPC modNPC)
         {
+            ModNPC = modNPC;
             npc = ModNPC.npc;
             if (!ModNPC.npc.HasValidTarget)
             {
@@ -131,12 +106,25 @@ namespace ExxoAvalonOrigins.NPCs.Utils
             }
             vectorToTarget = target.Center - ModNPC.npc.Center;
             unitVectorToTarget = vectorToTarget.SafeNormalize(Vector2.UnitX);
+
+            if (!syncedRandomSet)
+            {
+                if (Parent == null)
+                {
+                    SyncedRandomSeed = Main.rand.Next();
+                }
+                else
+                {
+                    SyncedRandomSeed = Parent.SyncedRandomSeed;
+                }
+            }
         }
 
-        private void Start()
+        /// <summary>
+        /// Method that is run on first update when CurrentFrame = 1
+        /// </summary>
+        protected virtual void Start()
         {
-            UpdateData();
-            PostStart();
         }
 
         /// <summary>
@@ -148,29 +136,14 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         }
 
         /// <summary>
-        /// Method that is run on first update when CurrentFrame = 1
+        /// External method to be called by a continually updating method in another class
         /// </summary>
-        protected virtual void PostStart()
+        /// <param name="modNPC"></param>
+        public void StartUpdate(ModNPC modNPC)
         {
-        }
-
-        public void Update(ModNPC modNPC)
-        {
-            ModNPC = modNPC;
-            UpdateData();
+            UpdateBaseData(modNPC);
             CurrentFrame++;
 
-            //if (!seedSet)
-            //{
-            //    if (Parent != null)
-            //    {
-            //        SyncedSeed = Parent.SyncedSeed;
-            //    }
-            //    else
-            //    {
-            //        SyncedSeed = Main.rand.Next();
-            //    }
-            //}
             if (!HasLoaded)
             {
                 Load();
@@ -181,47 +154,45 @@ namespace ExxoAvalonOrigins.NPCs.Utils
                 Start();
             }
 
-            PostUpdate();
+            Update();
         }
 
-        protected virtual void PostUpdate()
+        /// <summary>
+        /// The main update method which is called every frame
+        /// </summary>
+        protected virtual void Update()
         {
         }
 
+        /// <summary>
+        /// External method that destroys and unloads the state
+        /// </summary>
         public void Destroy()
         {
-            Unload();
             PreDestroy();
+            Unload();
             Active = false;
         }
 
+        /// <summary>
+        /// Method that is run before state is destroyed
+        /// </summary>
         protected virtual void PreDestroy()
         {
         }
 
-        public void AssignFactoryValues(StateParent parent)
-        {
-            Parent = parent;
-            ModNPC = parent.ModNPC;
-        }
-
+        /// <summary>
+        /// Use this method to load any resources or effects used by this state
+        /// </summary>
         public virtual void Load()
         {
         }
 
+        /// <summary>
+        /// Use this method to unload any resources or effects used by this state
+        /// </summary>
         public virtual void Unload()
         {
-        }
-    }
-
-    public static class StateFactory
-    {
-        public static dynamic GetDynamicState(StateParent parent, Type type)
-        {
-            dynamic state = Activator.CreateInstance(type);
-            (state as State).AssignFactoryValues(parent);
-
-            return state;
         }
     }
 }

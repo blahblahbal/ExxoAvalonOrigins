@@ -8,24 +8,20 @@ namespace ExxoAvalonOrigins.UI
 {
     class StaminaBar : UIState
     {
-        private bool mouseIsOver;
-        private readonly int staminaPerBar = 30;
-        private readonly int maxStaminaBars = 5;
-        private readonly int barSpacing = 26;
-        private readonly string labelText = "Stamina";
+        private const int staminaPerBar = 30;
+        private const int maxStaminaBars = 5;
+        private const int barSpacing = 26;
+        private const string labelText = "Stamina";
         private float textYOffset;
         private Vector2 labelDimensions;
-        private static Texture2D staminaTexture1;
-        private static Texture2D staminaTexture2;
-        private static Texture2D staminaTexture3;
-        public StaminaBar(Vector2 position)
+        private Texture2D staminaTexture1;
+        private Texture2D staminaTexture2;
+        private Texture2D staminaTexture3;
+        public StaminaBar()
         {
-            if (staminaTexture1 == null)
-            {
-                staminaTexture1 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
-                staminaTexture2 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina2");
-                staminaTexture3 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina3");
-            }
+            staminaTexture1 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
+            staminaTexture2 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina2");
+            staminaTexture3 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina3");
 
             int manaStarSpacing = 28;
             textYOffset = manaStarSpacing * 11 + 30;
@@ -34,18 +30,6 @@ namespace ExxoAvalonOrigins.UI
 
             Top.Set(textYOffset + labelDimensions.Y, 0);
             Width.Set(staminaTexture1.Width, 0);
-        }
-
-        public override void MouseOver(UIMouseEvent evt)
-        {
-            mouseIsOver = true;
-            base.MouseOver(evt);
-        }
-
-        public override void MouseOut(UIMouseEvent evt)
-        {
-            mouseIsOver = false;
-            base.MouseOut(evt);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -147,18 +131,10 @@ namespace ExxoAvalonOrigins.UI
                 spriteBatch.Draw(texture, position, null, new Color(intensity, intensity, intensity, alpha), 0f, origin, scale, SpriteEffects.None, 0f);
             }
 
-            if (mouseIsOver)
+            if (IsMouseHovering)
             {
-                //int X = Main.mouseX + 10;
-                //int Y = Main.mouseY + 10;
-                //if (Main.ThickMouse)
-                //{
-                //    X += 6;
-                //    Y += 6;
-                //}
                 string mouseText = string.Format("{0}/{1}", player.statStam, player.statStamMax2);
                 Main.instance.MouseTextHackZoom(mouseText);
-                //Utils.DrawBorderString(spriteBatch, string.Format("{0}/{1}", player.statStam, player.statStamMax2), new Vector2(X, Y), Color.White, 1f);
             }
 
             Left.Set(Main.screenWidth - 25 - (staminaTexture1.Width / 2f), 0);
