@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace ExxoAvalonOrigins.NPCs.Utils
 {
@@ -14,48 +15,56 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         /// <summary>
         /// Reference to the current state tree being executed by this parent
         /// </summary>
-        protected uint TreeID { get; private set; }
+        protected byte TreeID { get; private set; }
         /// <summary>
         /// The position within the current state tree starting from 0
         /// </summary>
-        protected uint StatePosition { get; private set; }
+        protected byte StatePosition { get; private set; }
         /// <summary>
         /// Whether or not to destroy after first tree has finished
         /// </summary>
-        public abstract bool AutoDestroyOnFinish { get; }
+        protected abstract bool AutoDestroyOnFinish { get; }
 
         /// <summary>
         /// Frame counter for the inactive update when no tree is running, starting at 1
         /// </summary>
         protected uint FramesInactive { get; private set; }
+        public ushort RepeatTimes { get; private set; }
 
-        public override void Write(BinaryWriter writer)
+        public virtual void PreWrite(BinaryWriter writer) { }
+        public virtual void PreRead(BinaryReader reader) { }
+
+        public sealed override void Write(BinaryWriter writer)
         {
+            PreWrite(writer);
             base.Write(writer);
             writer.Write(FramesInactive);
             writer.Write(StatePosition);
             writer.Write(TreeID);
 
-            bool currentStateActive = CurrentState != null && CurrentState.Active;
+            bool currentStateActive = CurrentState?.Active != null && CurrentState.Active;
             writer.Write(currentStateActive);
             if (currentStateActive)
             {
                 CurrentState.Write(writer);
             }
+
+            writer.Write(RepeatTimes);
         }
 
-        public override void Read(BinaryReader reader)
+        public sealed override void Read(BinaryReader reader)
         {
+            PreRead(reader);
             base.Read(reader);
             FramesInactive = reader.ReadUInt32();
-            StatePosition = reader.ReadUInt32();
-            TreeID = reader.ReadUInt32();
+            StatePosition = reader.ReadByte();
+            TreeID = reader.ReadByte();
 
             bool currentStateActive = reader.ReadBoolean();
             if (currentStateActive)
             {
                 State oldState = CurrentState;
-                HandleAdvanceState();
+                HandleAdvanceState(false);
                 CurrentState.UpdateBaseData(ModNPC);
                 CurrentState.Read(reader);
                 if (oldState != null)
@@ -70,14 +79,16 @@ namespace ExxoAvalonOrigins.NPCs.Utils
                     }
                 }
             }
+            RepeatTimes = reader.ReadUInt16();
         }
 
         /// <summary>
         /// Sets the current state to the specified state
         /// </summary>
         /// <param name="state">The state to start</param>
-        protected void SetState(State state)
+        protected void SetState(State state, ushort repeatTimes = 0)
         {
+            RepeatTimes = repeatTimes;
             state.Parent = this;
             CurrentState = state;
         }
@@ -86,11 +97,11 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         /// Start the specified tree at state position 0
         /// </summary>
         /// <param name="treeID">The identifier for the state tree</param>
-        protected void StartTree(uint treeID)
+        protected void StartTree(byte treeID)
         {
             TreeID = treeID;
             StatePosition = 0;
-            HandleAdvanceState();
+            HandleAdvanceState(true);
         }
 
         /// <summary>
@@ -120,22 +131,34 @@ namespace ExxoAvalonOrigins.NPCs.Utils
             {
                 if (FramesInactive == 0)
                 {
-                    StatePosition++;
-                    HandleAdvanceState();
-                    if (CurrentState.Active)
+                    if (RepeatTimes > 0)
                     {
-                        CurrentState.StartUpdate(ModNPC);
+                        RepeatTimes--;
+                        bool hasLoaded = CurrentState.HasLoaded;
+                        ushort repeatTimes = RepeatTimes;
+                        HandleAdvanceState(true);
+                        RepeatTimes = repeatTimes;
+                        CurrentState.HasLoaded = hasLoaded;
                     }
                     else
                     {
-                        if (AutoDestroyOnFinish)
+                        StatePosition++;
+                        HandleAdvanceState(true);
+                        if (CurrentState.Active)
                         {
-                            Destroy();
+                            CurrentState.StartUpdate(ModNPC);
                         }
                         else
                         {
-                            FramesInactive++;
-                            InactiveUpdate();
+                            if (AutoDestroyOnFinish)
+                            {
+                                Destroy();
+                            }
+                            else
+                            {
+                                FramesInactive++;
+                                InactiveUpdate();
+                            }
                         }
                     }
                 }
@@ -165,8 +188,34 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         }
 
         /// <summary>
-        /// Method that gets run after a state has finished, use to implement logic and modify state within a tree
+        /// Important method that gets run to determine the current state of the parent, use to implement logic and modify state within a tree
         /// </summary>
-        protected abstract void HandleAdvanceState();
+        protected abstract void HandleAdvanceState(bool isNewState);
+
+        public T FindState<T>() where T : State
+        {
+            if (CurrentState is T t)
+            {
+                return t;
+            }
+            else if (CurrentState is StateParent stateParent)
+            {
+                return stateParent.FindState<T>();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public override void PreDraw(SpriteBatch spriteBatch)
+        {
+            CurrentState?.PreDraw(spriteBatch);
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch)
+        {
+            CurrentState?.PostDraw(spriteBatch);
+        }
     }
 }

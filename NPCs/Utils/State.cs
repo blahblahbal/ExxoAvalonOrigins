@@ -1,5 +1,6 @@
 ﻿using ExxoAvalonOrigins.Network;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
@@ -22,7 +23,7 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         /// </summary>
         public uint CurrentFrame { get; private set; }
 
-        public Type Type { get; private set; }
+        public Type Type { get; }
 
         /// <summary>
         /// The state parent controlling this state
@@ -46,9 +47,10 @@ namespace ExxoAvalonOrigins.NPCs.Utils
 
                 syncedRandomSet = true;
                 syncedRandom = new Random(syncedRandomSeed);
-                if (this is StateParent && (this as StateParent).CurrentState != null)
+                var stateParent = this as StateParent;
+                if (stateParent?.CurrentState != null)
                 {
-                    (this as StateParent).CurrentState.SyncedRandomSeed = SyncedRandomSeed;
+                    stateParent.CurrentState.SyncedRandomSeed = SyncedRandomSeed;
                 }
             }
         }
@@ -60,7 +62,7 @@ namespace ExxoAvalonOrigins.NPCs.Utils
 
         public bool HasLoaded;
 
-        public State()
+        protected State()
         {
             Type = GetType();
             Active = true;
@@ -130,7 +132,7 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         /// <summary>
         /// Restarts the state from frame zero and as a result also recalls Start()
         /// </summary>
-        protected void Restart()
+        public void Restart()
         {
             CurrentFrame = 0;
         }
@@ -157,6 +159,14 @@ namespace ExxoAvalonOrigins.NPCs.Utils
             Update();
         }
 
+        public virtual void PreDraw(SpriteBatch spriteBatch)
+        {
+        }
+
+        public virtual void PostDraw(SpriteBatch spriteBatch)
+        {
+        }
+
         /// <summary>
         /// The main update method which is called every frame
         /// </summary>
@@ -170,7 +180,10 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         public void Destroy()
         {
             PreDestroy();
-            Unload();
+            if (Parent == null || Parent.RepeatTimes <= 0)
+            {
+                Unload();
+            }
             Active = false;
         }
 

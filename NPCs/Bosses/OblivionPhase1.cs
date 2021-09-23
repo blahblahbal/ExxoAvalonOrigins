@@ -1,6 +1,7 @@
 ﻿using ExxoAvalonOrigins.NPCs.Utils;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
-    class OblivionPhase1 : ModNPC
+    public class OblivionPhase1 : AdvancedModNPC<OblivionPhase1.MainState>
     {
         public override void SetStaticDefaults()
         {
@@ -43,109 +44,82 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
         public int AIFrameOffset
         {
             get => (int)npc.ai[AISlotFrameOffset];
-            set => npc.ai[AISlotFrameOffset] = value;
-        }
-
-        public override string[] AltTextures => new string[] { ExxoAvalonOrigins.mod.Name + "/NPCs/Bosses/OblivionPhase1Shadow" };
-
-        private MainState mainState;
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            mainState.Write(writer);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            if (mainState == null)
+            set
             {
-                mainState = new MainState();
-                mainState.UpdateBaseData(this);
+                npc.ai[AISlotFrameOffset] = value;
+                switch (value)
+                {
+                    case 1:
+                        npc.HitSound = SoundID.NPCHit4;
+                        break;
+                    default:
+                        npc.HitSound = SoundID.NPCHit1;
+                        break;
+                }
             }
-            mainState.Read(reader);
         }
 
-        public override void AI()
+        public override string[] AltTextures => new string[]
         {
-            if (mainState == null)
-            {
-                mainState = new MainState();
-            }
-            mainState.StartUpdate(this);
-        }
+            Texture + "_Shadow"
+        };
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter < 7.0)
-            {
-                npc.frame.Y = 0;
-            }
-            else if (npc.frameCounter < 14.0)
-            {
-                npc.frame.Y = frameHeight;
-            }
-            else if (npc.frameCounter < 21.0)
-            {
-                npc.frame.Y = frameHeight * 2;
-            }
-            else
-            {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = 0;
-            }
+            npc.frameCounter++;
+            npc.frameCounter %= 21;
+            npc.frame.Y = frameHeight * (int)(npc.frameCounter / 7);
             npc.frame.Y += frameHeight * 3 * AIFrameOffset;
         }
 
-        public override void NPCLoot()
+        public class MainState : StateParent
         {
-            mainState?.Unload();
-        }
-
-        private class MainState : StateParent
-        {
-            protected override void Start()
-            {
-                if (npc.life > npc.lifeMax * 3 / 4)
-                {
-                    StartTree(treeFirstStage);
-                }
-            }
-
-            public override bool AutoDestroyOnFinish => false;
-            private const int treeFirstStage = 0;
+            protected override bool AutoDestroyOnFinish => false;
+            private const byte TreeDashStage = 0;
+            private const byte TreeLaserStage = 1;
 
             protected override void InactiveUpdate()
             {
                 if (npc.life > npc.lifeMax * 3 / 4)
                 {
-                    if (FramesInactive == 1)
-                    {
-                        StartTree(treeFirstStage);
-                    }
+                    StartTree(TreeDashStage);
                 }
                 else if (npc.life > npc.lifeMax / 3)
                 {
-                    (ModNPC as OblivionPhase1).AIFrameOffset = 1;
+                    StartTree(TreeLaserStage);
                 }
             }
 
-            protected override void HandleAdvanceState()
+            protected override void HandleAdvanceState(bool isNewState)
             {
                 switch (TreeID)
                 {
-                    case treeFirstStage:
-                        HandleFirstStageTree();
+                    case TreeDashStage:
+                        HandleDashStageTree();
+                        break;
+
+                    case TreeLaserStage:
+                        HandleLaserStageTree();
                         break;
                 }
             }
 
-            private void HandleFirstStageTree()
+            private void HandleDashStageTree()
             {
                 switch (StatePosition)
                 {
                     case 0:
                         SetState(new DashState());
+                        break;
+                }
+            }
+
+            private void HandleLaserStageTree()
+            {
+                switch (StatePosition)
+                {
+                    case 0:
+                        SetState(new LaserState());
                         break;
                 }
             }
@@ -172,27 +146,27 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public class DashState : StateParent
         {
-            public override bool AutoDestroyOnFinish => true;
+            protected override bool AutoDestroyOnFinish => true;
 
             protected override void Start()
             {
                 StartTree(0);
             }
 
-            protected override void HandleAdvanceState()
+            protected override void HandleAdvanceState(bool isNewState)
             {
                 switch (StatePosition)
                 {
                     case 0:
-                        SetState(new FlurryDash());
+                        SetState(new FlurryDash(8), 4);
                         break;
 
                     case 1:
-                        SetState(new Stalk());
+                        SetState(new Stalk(250));
                         break;
 
                     case 2:
-                        SetState(new XDash());
+                        SetState(new XDash(3));
                         break;
                 }
             }
@@ -200,26 +174,23 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public class FlurryDash : State
         {
-            private const float dashNodeActivationRadius = 16f;
-            private const float dashDistance = 12 * 16f;
-            private const float speed = 0.2f;
-            private const float projectileSpeed = 25f;
+            private const float DashNodeActivationRadius = 16f;
+            private const float DashDistance = 12 * 16f;
+            private const float Speed = 0.2f;
+            private const float ProjectileSpeed = 25f;
             private int remainingDashes;
-            private int remainingFlurryDashes;
             private Vector2 nodePosition;
             private Vector2 targetedPosition;
 
-            public FlurryDash() : base()
+            public FlurryDash(int dashes)
             {
-                remainingDashes = 4;
-                remainingFlurryDashes = 5;
+                remainingDashes = dashes;
             }
 
             public override void Write(BinaryWriter writer)
             {
                 base.Write(writer);
                 writer.Write(remainingDashes);
-                writer.Write(remainingFlurryDashes);
                 writer.WriteVector2(nodePosition);
                 writer.WriteVector2(targetedPosition);
             }
@@ -228,15 +199,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             {
                 base.Read(reader);
                 remainingDashes = reader.ReadInt32();
-                remainingFlurryDashes = reader.ReadInt32();
                 nodePosition = reader.ReadVector2();
                 targetedPosition = reader.ReadVector2();
             }
 
             protected override void Start()
             {
-                remainingFlurryDashes--;
-                nodePosition = (unitVectorToTarget * dashDistance).RotatedBy((syncedRandom.NextDouble() * Math.PI / 2) - (Math.PI / 4));
+                remainingDashes--;
+                nodePosition = (unitVectorToTarget * DashDistance).RotatedBy((syncedRandom.NextDouble() * Math.PI / 2) - (Math.PI / 4));
                 targetedPosition = ModNPC.npc.Center;
             }
 
@@ -244,45 +214,36 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             {
                 Vector2 unitVectorToNode = nodePosition.SafeNormalize(Vector2.UnitX);
 
-                if (Main.netMode != NetmodeID.MultiplayerClient && remainingFlurryDashes <= 0)
+                if (Main.netMode != NetmodeID.MultiplayerClient && remainingDashes <= 0)
                 {
-                    if (remainingDashes > 0)
+                    if (Parent.RepeatTimes > 0)
                     {
                         if (CurrentFrame == 1)
                         {
-                            Projectile.NewProjectile(npc.Center + unitVectorToNode * npc.height / 2, unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center + (unitVectorToNode * npc.height / 2), unitVectorToTarget * ProjectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
                         }
                     }
                     else
                     {
                         if (CurrentFrame < 5)
                         {
-                            Projectile.NewProjectile(npc.Center + unitVectorToNode * npc.height / 2, unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center + (unitVectorToNode * npc.height / 2), unitVectorToTarget * ProjectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
                         }
                     }
                 }
 
                 Vector2 vectorToNode = targetedPosition + nodePosition - npc.Center;
-                npc.velocity = vectorToNode * speed;
+                npc.velocity = vectorToNode * Speed;
 
-                if (vectorToNode.Length() < dashNodeActivationRadius)
+                if (vectorToNode.Length() < DashNodeActivationRadius)
                 {
-                    if (remainingFlurryDashes > 0)
+                    if (remainingDashes > 0)
                     {
                         Restart();
                     }
                     else
                     {
-                        if (remainingDashes > 0)
-                        {
-                            Restart();
-                            remainingDashes--;
-                            remainingFlurryDashes = 5;
-                        }
-                        else
-                        {
-                            Destroy();
-                        }
+                        Destroy();
                     }
                 }
             }
@@ -290,11 +251,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public class Stalk : State
         {
-            private const float followDistance = 16f * 15f;
+            private const float FollowDistance = 16f * 15f;
+            private const float Speed = 0.05f;
+            private readonly int duration;
             private float stalkRotation;
 
-            public Stalk() : base()
+            public Stalk(int duration)
             {
+                this.duration = duration;
                 stalkRotation = (float)Math.Atan2(unitVectorToTarget.Y, unitVectorToTarget.X);
             }
 
@@ -322,14 +286,12 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
             protected override void Update()
             {
-                float speed = 0.05f;
-
                 // Every n seconds, change stalk rotation, ensuring rotation is atleast a 45 degree difference to the current rotation
                 if (CurrentFrame % 45 == 0)
                 {
-                    stalkRotation += (float)((syncedRandom.NextDouble() * Math.PI * 6 / 4) + Math.PI / 4);
+                    stalkRotation += (float)((syncedRandom.NextDouble() * Math.PI * 6 / 4) + (Math.PI / 4));
                     stalkRotation %= (float)(Math.PI * 2);
-                    npc.position = target.Center + Vector2.UnitY.RotatedBy(stalkRotation) * vectorToTarget.Length();
+                    npc.position = target.Center + (Vector2.UnitY.RotatedBy(stalkRotation) * vectorToTarget.Length());
                     npc.alpha = 255;
                 }
 
@@ -340,10 +302,10 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
 
                 // Go to target position relative to player
-                Vector2 targetPosition = target.Center + Vector2.UnitY.RotatedBy(stalkRotation) * followDistance;
-                npc.velocity = target.velocity + (targetPosition - npc.Center) * speed;
+                Vector2 targetPosition = target.Center + (Vector2.UnitY.RotatedBy(stalkRotation) * FollowDistance);
+                npc.velocity = target.velocity + ((targetPosition - npc.Center) * Speed);
 
-                if (CurrentFrame > 250)
+                if (CurrentFrame > duration)
                 {
                     Destroy();
                 }
@@ -362,43 +324,46 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public class XDash : StateParent
         {
-            private const float dashNodeRadius = 16f * 45f;
+            private const float DashNodeRadius = 16f * 45f;
             private int remainingDashes;
             private Vector2 nodePosition;
             private Vector2 targetedPosition;
 
-            public override void Write(BinaryWriter writer)
+            public XDash(int dashes)
             {
-                base.Write(writer);
+                remainingDashes = dashes;
+            }
+
+            public override void PreWrite(BinaryWriter writer)
+            {
                 writer.Write(remainingDashes);
                 writer.WriteVector2(nodePosition);
                 writer.WriteVector2(targetedPosition);
             }
 
-            public override void Read(BinaryReader reader)
+            public override void PreRead(BinaryReader reader)
             {
-                base.Read(reader);
                 remainingDashes = reader.ReadInt32();
                 nodePosition = reader.ReadVector2();
                 targetedPosition = reader.ReadVector2();
             }
 
-            public override bool AutoDestroyOnFinish => false;
-            private const int treeFirstDash = 0;
-            private const int treeSuccessorDash = 1;
+            protected override bool AutoDestroyOnFinish => false;
+            private const int TreeFirstDash = 0;
+            private const int TreeSuccessorDash = 1;
 
             protected override void Start()
             {
-                remainingDashes = 3;
-
-                StartTree(treeFirstDash);
+                remainingDashes--;
+                StartTree(TreeFirstDash);
             }
 
             protected override void InactiveUpdate()
             {
                 if (remainingDashes > 0)
                 {
-                    StartTree(treeSuccessorDash);
+                    remainingDashes--;
+                    StartTree(TreeSuccessorDash);
                 }
                 else
                 {
@@ -406,54 +371,64 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
             }
 
-            protected override void HandleAdvanceState()
+            protected override void HandleAdvanceState(bool isNewState)
             {
                 switch (TreeID)
                 {
-                    case treeFirstDash:
-                        HandleFirstDashTree();
+                    case TreeFirstDash:
+                        HandleFirstDashTree(isNewState);
                         break;
 
-                    case treeSuccessorDash:
-                        HandleSuccessorDashTree();
-                        break;
-                }
-            }
-
-            private void HandleFirstDashTree()
-            {
-                switch (StatePosition)
-                {
-                    case 0:
-                        remainingDashes--;
-                        FindInitialNode();
-                        SetState(new XDashToNodeSlow(nodePosition, targetedPosition, true));
-                        break;
-
-                    case 1:
-                        FindNextDashNode();
-                        SetState(new XDashToNode(nodePosition, targetedPosition, false));
+                    case TreeSuccessorDash:
+                        HandleSuccessorDashTree(isNewState);
                         break;
                 }
             }
 
-            private void HandleSuccessorDashTree()
+            private void HandleFirstDashTree(bool isNewState)
             {
                 switch (StatePosition)
                 {
                     case 0:
-                        remainingDashes--;
-                        SetState(new XDashToNodeSlow(nodePosition, targetedPosition, true));
+                        if (isNewState)
+                        {
+                            FindInitialNode();
+                        }
+                        SetState(new Utils.States.MoveToPosition(nodePosition, 0.1f, 8, true));
                         break;
 
                     case 1:
-                        FindNextCircleToNode();
+                        if (isNewState)
+                        {
+                            FindNextDashNode();
+                        }
+                        SetState(new XDashToNode(nodePosition, targetedPosition, 0.1f, 0, 15));
+                        break;
+                }
+            }
+
+            private void HandleSuccessorDashTree(bool isNewState)
+            {
+                switch (StatePosition)
+                {
+                    case 0:
+                        SetState(new Utils.States.MoveToPosition(nodePosition, 0.1f, 8, true));
+                        break;
+
+                    case 1:
+                        if (isNewState)
+                        {
+                            FindNextCircleToNode();
+                        }
                         SetState(new XDashCircleToNode(nodePosition, targetedPosition, true));
                         break;
 
                     case 2:
-                        FindNextDashNode();
-                        SetState(new XDashToNode(nodePosition, targetedPosition, false));
+                        if (isNewState)
+                        {
+                            FindNextDashNode();
+                        }
+                        SetState(new XDashToNode(nodePosition, targetedPosition, 0.1f, 0, 15));
                         break;
                 }
             }
@@ -476,155 +451,54 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 {
                     unitVectorToNode = unitVectorToNode.RotatedBy(-Math.PI / 2);
                 }
-                nodePosition = unitVectorToNode * dashNodeRadius;
+                nodePosition = unitVectorToNode * DashNodeRadius;
             }
 
             private void FindNextDashNode()
             {
                 targetedPosition = target.Center;
-                nodePosition = unitVectorToTarget * dashNodeRadius;
+                nodePosition = unitVectorToTarget * DashNodeRadius;
             }
 
             private void FindNextCircleToNode()
             {
-                nodePosition = new Vector2(-unitVectorToTarget.X, unitVectorToTarget.Y) * dashNodeRadius;
+                nodePosition = new Vector2(-unitVectorToTarget.X, unitVectorToTarget.Y) * DashNodeRadius;
             }
         }
 
-        public class XDashToNodeSlow : State
+        public class XDashToNode : Utils.States.MoveToPosition
         {
-            private bool relativeToTarget;
-            private Vector2 nodePosition;
-            private Vector2 targetedPosition;
-            private const float speed = 0.1f;
-            private const float minSpeed = 8f;
-            private const float dashNodeActivationRadius = 16f;
-
-            public XDashToNodeSlow(Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget) : base()
+            private readonly uint waitTime;
+            public XDashToNode(Vector2 position, Vector2 targetedPosition, float speed, float minSpeed, uint waitTime) : base(position, targetedPosition, speed, minSpeed)
             {
-                this.nodePosition = nodePosition;
-                this.targetedPosition = targetedPosition;
-                this.relativeToTarget = relativeToTarget;
+                this.waitTime = waitTime;
             }
-
-            public override void Write(BinaryWriter writer)
-            {
-                base.Write(writer);
-                writer.Write(relativeToTarget);
-                writer.WriteVector2(nodePosition);
-                writer.WriteVector2(targetedPosition);
-            }
-
-            public override void Read(BinaryReader reader)
-            {
-                base.Read(reader);
-                relativeToTarget = reader.ReadBoolean();
-                nodePosition = reader.ReadVector2();
-                targetedPosition = reader.ReadVector2();
-            }
-
             protected override void Update()
             {
-                NPC npc = ModNPC.npc;
-
-                Vector2 vectorToNode = nodePosition;
-                npc.velocity = Vector2.Zero;
-                if (relativeToTarget)
-                {
-                    vectorToNode += target.Center;
-                    npc.velocity = target.velocity;
-                }
-                else
-                {
-                    vectorToNode += targetedPosition;
-                }
-                vectorToNode -= npc.Center;
-                npc.velocity += (vectorToNode) * speed;
-
-                Vector2 unit = vectorToNode.SafeNormalize(Vector2.UnitX);
-                npc.velocity += unit * minSpeed;
-
-                if (vectorToNode.Length() < dashNodeActivationRadius)
-                {
-                    Destroy();
-                }
-            }
-        }
-
-        public class XDashToNode : State
-        {
-            private bool relativeToTarget;
-            private Vector2 nodePosition;
-            private Vector2 targetedPosition;
-            private const float speed = 0.1f;
-            private const float dashNodeActivationRadius = 16f;
-
-            public XDashToNode(Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget) : base()
-            {
-                this.nodePosition = nodePosition;
-                this.targetedPosition = targetedPosition;
-                this.relativeToTarget = relativeToTarget;
-            }
-
-            public override void Write(BinaryWriter writer)
-            {
-                base.Write(writer);
-                writer.Write(relativeToTarget);
-                writer.WriteVector2(nodePosition);
-                writer.WriteVector2(targetedPosition);
-            }
-
-            public override void Read(BinaryReader reader)
-            {
-                base.Read(reader);
-                relativeToTarget = reader.ReadBoolean();
-                nodePosition = reader.ReadVector2();
-                targetedPosition = reader.ReadVector2();
-            }
-
-            protected override void Update()
-            {
-                if (CurrentFrame < 15)
+                if (CurrentFrame < waitTime)
                 {
                     return;
                 }
 
-                if (CurrentFrame == 15)
+                if (CurrentFrame == waitTime)
                 {
                     Main.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1);
                 }
 
-                Vector2 vectorToNode = nodePosition - npc.Center;
-                if (relativeToTarget)
-                {
-                    vectorToNode += target.Center;
-                }
-                else
-                {
-                    vectorToNode += targetedPosition;
-                }
-
-                // Go to node
-                npc.velocity = vectorToNode * speed;
-
-                // At node
-                if (vectorToNode.Length() < dashNodeActivationRadius)
-                {
-                    Destroy();
-                }
+                base.Update();
             }
         }
 
         public class XDashCircleToNode : State
         {
-            private bool relativeToTarget;
-            private Vector2 nodePosition;
-            private Vector2 targetedPosition;
-            private const float railSpeed = 2.5f;
-            private const float dashNodeActivationRadius = 16f;
-            private bool clockWise;
+            private const float RailSpeed = 2.5f;
+            private const float DashNodeActivationRadius = 16f;
+            private readonly bool relativeToTarget;
+            private readonly Vector2 nodePosition;
+            private readonly Vector2 targetedPosition;
+            private readonly bool clockWise;
 
-            public XDashCircleToNode(Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget) : base()
+            public XDashCircleToNode(Vector2 nodePosition, Vector2 targetedPosition, bool relativeToTarget)
             {
                 this.nodePosition = nodePosition;
                 this.targetedPosition = targetedPosition;
@@ -637,24 +511,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
             }
 
-            public override void Write(BinaryWriter writer)
-            {
-                base.Write(writer);
-                writer.Write(relativeToTarget);
-                writer.Write(clockWise);
-                writer.WriteVector2(nodePosition);
-                writer.WriteVector2(targetedPosition);
-            }
-
-            public override void Read(BinaryReader reader)
-            {
-                base.Read(reader);
-                relativeToTarget = reader.ReadBoolean();
-                clockWise = reader.ReadBoolean();
-                nodePosition = reader.ReadVector2();
-                targetedPosition = reader.ReadVector2();
-            }
-
             protected override void Update()
             {
                 Vector2 vectorToNode = nodePosition - npc.Center;
@@ -668,53 +524,241 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
 
                 // Go to node
-
-                float radians = MathHelper.ToRadians((90 - (railSpeed * CurrentFrame)) * (clockWise ? 1 : -1));
+                float radians = MathHelper.ToRadians((90 - (RailSpeed * CurrentFrame)) * (clockWise ? 1 : -1));
 
                 npc.velocity = Vector2.Zero;
                 npc.position = (target.Center + nodePosition.RotatedBy(radians));
 
                 // At node
-                if (vectorToNode.Length() < dashNodeActivationRadius || (railSpeed * CurrentFrame > 90))
+                if (vectorToNode.Length() < DashNodeActivationRadius || (RailSpeed * CurrentFrame > 90))
                 {
                     Destroy();
                 }
             }
         }
 
-        //public class Laser : State
-        //{
-        //    protected override void OnUpdate(ModNPC modNPC)
-        //    {
-        //        if (AITimer == 1)
-        //        {
-        //            AIFrameOffset = 1;
-        //        }
+        public class LaserState : StateParent
+        {
+            protected override bool AutoDestroyOnFinish => false;
+            private const byte TreeSpinTransform = 0;
+            private const byte TreeLaserAttack = 1;
+            private const int MaxDrones = 10;
+            public List<int> ActiveDrones { get; set; }
+            public LaserState()
+            {
+                ActiveDrones = new List<int>();
+            }
+            protected override void Start()
+            {
+                StartTree(TreeSpinTransform);
+            }
+            protected override void PreUpdate()
+            {
+                Vector2 desiredPosition = (-Vector2.UnitY * 16f * 25) + target.position;
+                npc.velocity = (desiredPosition - npc.position) * 0.1f;
+            }
+            protected override void InactiveUpdate()
+            {
+                StartTree(TreeLaserAttack);
+            }
+            protected override void HandleAdvanceState(bool isNewState)
+            {
+                switch (TreeID)
+                {
+                    case TreeSpinTransform:
+                        HandleSpinTransformTree();
+                        break;
+                    case TreeLaserAttack:
+                        HandleLaserAttackTree(isNewState);
+                        break;
+                }
+            }
 
-        //        // Move above player head moving slow to follow distance
-        //        float speed = 0.1f;
-        //        AINodePosition = -Vector2.UnitY * followDistance;
-        //        Vector2 vectorToNode = AINodePosition + player.Center - npc.Center;
-        //        npc.velocity = vectorToNode * speed;
+            private void HandleSpinTransformTree()
+            {
+                switch (StatePosition)
+                {
+                    case 0:
+                        SetState(new SpinTransform(200, (float)Math.PI * 16f));
+                        break;
+                    case 1:
+                        SetState(new Utils.States.MoveToPosition(-Vector2.UnitY * 16f * 25, 0.1f, 8, true));
+                        break;
+                }
+            }
 
-        //        // Spawn defence drones
-        //        if (AITimer == 1 || AITimer % 1800 == 0)
-        //        {
-        //            int amountDrones = 8;
-        //            for (var i = 0; i < amountDrones; i++)
-        //            {
-        //                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<NPCs.AncientOblivionCannon>(), 0, npc.whoAmI);
-        //            }
-        //        }
+            private void HandleLaserAttackTree(bool isNewState)
+            {
+                switch (StatePosition)
+                {
+                    case 0:
+                        if (isNewState)
+                        {
+                            CheckDrones();
+                        }
+                        SetState(new LaserAttack(), 6);
+                        break;
+                }
+            }
 
-        //        // Sweep laser
-        //        if (AITimer % 600 == 0)
-        //        {
-        //            AITargetedPosition = player.Center;
-        //        }
-        //        break;
-        //        base.OnUpdate(modNPC);
-        //    }
-        //}
+            private void CheckDrones()
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    for (var i = ActiveDrones.Count; i < MaxDrones; i++)
+                    {
+                        ActiveDrones.Add(NPC.NewNPC((int)npc.position.X, (int)npc.position.Y,
+                                ModContent.NPCType<Oblivion.ShieldDrone>(), 0,
+                                npc.whoAmI, i, MaxDrones));
+                    }
+
+                    for (var i = 0; i < ActiveDrones.Count; i++)
+                    {
+                        if (!Main.npc[ActiveDrones[i]].active)
+                        {
+                            ActiveDrones[i] = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y,
+                                ModContent.NPCType<Oblivion.ShieldDrone>(), 0,
+                                npc.whoAmI, i, MaxDrones);
+                        }
+                    }
+                }
+            }
+
+            protected override void PreDestroy()
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    foreach (int id in ActiveDrones)
+                    {
+                        Main.npc[id].active = false;
+                    }
+                }
+            }
+
+            public override void Unload()
+            {
+                if (ModNPC is OblivionPhase1 oblivionPhase1)
+                {
+                    oblivionPhase1.AIFrameOffset = 0;
+                }
+            }
+        }
+
+        public class LaserAttack : StateParent
+        {
+            protected override bool AutoDestroyOnFinish => true;
+            protected override void Start()
+            {
+                StartTree(0);
+            }
+            protected override void HandleAdvanceState(bool isNewState)
+            {
+                switch (StatePosition)
+                {
+                    case 0:
+                        SetState(new ChargeLaser(180));
+                        break;
+                    case 1:
+                        SetState(new FireLaser());
+                        break;
+                }
+            }
+        }
+
+        public class SpinTransform : State
+        {
+            private readonly int duration;
+            private readonly float totalRotation;
+            public SpinTransform(int duration, float totalRotation)
+            {
+                this.duration = duration;
+                this.totalRotation = totalRotation;
+            }
+            protected override void Start()
+            {
+                npc.velocity = Vector2.Zero;
+            }
+            protected override void Update()
+            {
+                npc.rotation += totalRotation * CubicEase.InOut(CurrentFrame / (float)duration);
+
+                // Transform
+                if (CurrentFrame == duration / 2)
+                {
+                    if (ModNPC is OblivionPhase1 oblivionPhase1)
+                    {
+                        oblivionPhase1.AIFrameOffset = 1;
+                    }
+
+                    Main.PlaySound(SoundID.NPCHit, (int)npc.position.X, (int)npc.position.Y);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Gore.NewGore(npc.position, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 8);
+                        Gore.NewGore(npc.position, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 7);
+                        Gore.NewGore(npc.position, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 6);
+                    }
+                    for (int num855 = 0; num855 < 20; num855++)
+                    {
+                        Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f);
+                    }
+                    Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
+                }
+
+                if (CurrentFrame > duration)
+                {
+                    Destroy();
+                }
+            }
+        }
+
+        public class ChargeLaser : State
+        {
+            private readonly int duration;
+            public ChargeLaser(int duration)
+            {
+                this.duration = duration;
+            }
+
+            protected override void Update()
+            {
+                if (CurrentFrame > duration)
+                {
+                    Destroy();
+                }
+
+                if (CurrentFrame % 60 == 0)
+                {
+                    Main.NewText("Charge Pulse");
+                }
+            }
+        }
+
+        public class FireLaser : State
+        {
+            protected override void Start()
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 spinningPoint = (target.Center - npc.Center).SafeNormalize(Vector2.UnitX);
+                    float direction = -1f;
+                    if (spinningPoint.X < 0f)
+                    {
+                        direction = 1f;
+                    }
+                    spinningPoint = spinningPoint.RotatedBy(-direction * ((float)Math.PI * 2f) / 6f);
+
+                    Projectile.NewProjectile(npc.Center, spinningPoint,
+                        ModContent.ProjectileType<Projectiles.OblivionLaser>(), 50, 0f,
+                        Main.myPlayer, direction * ((float)Math.PI * 2f) / 540f, npc.whoAmI);
+                }
+            }
+            protected override void Update()
+            {
+                if (CurrentFrame > Projectiles.OblivionLaser.LifeTime)
+                {
+                    Destroy();
+                }
+            }
+        }
     }
 }
