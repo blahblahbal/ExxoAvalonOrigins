@@ -8,7 +8,7 @@ using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.NPCs.Bosses
+namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 {
     public class OblivionPhase1 : AdvancedModNPC<OblivionPhase1.MainState>
     {
