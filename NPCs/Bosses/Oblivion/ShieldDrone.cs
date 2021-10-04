@@ -94,15 +94,15 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
             }
 
             // Set rotation outwards from parent
-            Vector2 unitVector = (npc.position - parentNPC.position).SafeNormalize(Vector2.UnitX);
+            Vector2 unitVector = (npc.Center - parentNPC.Center).SafeNormalize(Vector2.UnitX);
             npc.rotation = (float)Math.Atan2(unitVector.Y, unitVector.X) + (float)(Math.PI / 2);
 
             // Set velocity and position to go in circular motion
             Vector2 desiredPosition = Vector2.UnitX.RotatedBy((Math.PI * 2 * AIPosition / AIMaxDrones) + (AITimer * 0.01f));
             desiredPosition *= 16f * 8;
-            desiredPosition += parentNPC.position;
+            desiredPosition += parentNPC.Center;
 
-            npc.position = desiredPosition;
+            npc.Center = desiredPosition;
         }
     }
 }

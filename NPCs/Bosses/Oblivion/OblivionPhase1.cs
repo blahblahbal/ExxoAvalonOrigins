@@ -601,7 +601,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 }
             }
 
-            private void CheckDrones()
+            private void CheckDrones() // COuld use an ID check to spawn only drones who are missing from the list. I'd write it myself but my style of code would clash pretty bad
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
