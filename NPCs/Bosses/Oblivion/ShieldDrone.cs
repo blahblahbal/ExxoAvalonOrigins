@@ -69,8 +69,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 texture,
                 new Vector2
                 (
-                    npc.position.X - Main.screenPosition.X + npc.width * 0.5f,
-                    npc.position.Y - Main.screenPosition.Y + npc.height - texture.Height * 0.5f + 2f
+                    npc.position.X - Main.screenPosition.X + (npc.width * 0.5f),
+                    npc.position.Y - Main.screenPosition.Y + npc.height - (texture.Height * 0.5f) + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,

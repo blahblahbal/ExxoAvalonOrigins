@@ -1,53 +1,91 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.IO;
 
 namespace ExxoAvalonOrigins.NPCs.Utils.States
 {
     public class MoveToPosition : State
     {
-        private const float DashNodeActivationRadius = 16f;
-        private readonly float speed;
-        private readonly float minSpeed;
+        private readonly uint frameDuration;
+        private readonly Func<float, float> easeFunction;
         private readonly bool relativeToTarget;
+        private readonly bool relativeToTargetedPosition;
         private readonly Vector2 position;
         private readonly Vector2 targetedPosition;
+        private Vector2Tween movementTween;
 
-        public MoveToPosition(Vector2 position, float speed, float minSpeed, bool relativeToTarget = false)
+        public MoveToPosition(Vector2 position, uint frameDuration, Func<float, float> easeFunction, bool relativeToTarget = false)
         {
-            this.position = position;
-            this.speed = speed;
-            this.minSpeed = minSpeed;
+            this.frameDuration = frameDuration;
+            this.easeFunction = easeFunction;
             this.relativeToTarget = relativeToTarget;
+            relativeToTargetedPosition = false;
+
+            this.position = position;
             targetedPosition = Vector2.Zero;
         }
 
-        public MoveToPosition(Vector2 position, Vector2 targetedPosition, float speed, float minSpeed) : this(position, speed, minSpeed)
+        public MoveToPosition(Vector2 position, uint frameDuration, Func<float, float> easeFunction, Vector2 targetedPosition) : this(position, frameDuration, easeFunction, false)
         {
             this.targetedPosition = targetedPosition;
+            relativeToTargetedPosition = true;
+        }
+
+        public override void Write(BinaryWriter writer)
+        {
+            base.Write(writer);
+            movementTween.Write(writer);
+        }
+
+        public override void Read(BinaryReader reader)
+        {
+            base.Read(reader);
+            movementTween = new Vector2Tween(frameDuration, easeFunction, Vector2.Zero, Vector2.Zero);
+            movementTween.Read(reader);
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch)
+        {
+            if (movementTween != null)
+            {
+                Utils.Debug.DrawIndicator(spriteBatch, movementTween.EndPosition);
+            }
+        }
+
+        protected override void Start()
+        {
+            if (relativeToTarget)
+            {
+                movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center - target.Center, position);
+            }
+            else
+            {
+                if (relativeToTargetedPosition)
+                {
+                    movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center, position + targetedPosition);
+                }
+                else
+                {
+                    movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center, position);
+                }
+            }
         }
 
         protected override void Update()
         {
             npc.velocity = Vector2.Zero;
-            Vector2 vectorToNode = position;
 
             if (relativeToTarget)
             {
-                vectorToNode += target.Center;
-                npc.velocity = target.velocity;
+                npc.Center = target.Center + movementTween.Update();
             }
-            else if (targetedPosition != Vector2.Zero)
+            else
             {
-                vectorToNode += targetedPosition;
+                npc.Center = movementTween.Update();
             }
 
-            vectorToNode -= npc.Center;
-            npc.velocity += vectorToNode * speed;
-
-            Vector2 unit = vectorToNode.SafeNormalize(Vector2.UnitX);
-            npc.velocity += unit * minSpeed;
-
-            if (vectorToNode.Length() < DashNodeActivationRadius)
+            if (movementTween.Finished)
             {
                 Destroy();
             }
