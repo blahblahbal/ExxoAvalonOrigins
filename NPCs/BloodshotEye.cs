@@ -51,7 +51,11 @@ namespace ExxoAvalonOrigins.NPCs
 				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye2"), 1f);
 			}
 		}
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.6f);
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.X > 0f)

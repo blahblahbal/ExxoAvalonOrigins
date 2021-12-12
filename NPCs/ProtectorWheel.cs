@@ -40,7 +40,11 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.Confused] = true;
 			npc.buffImmune[BuffID.CursedInferno] = true;
 		}
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
         public override void AI()
         {
             if (npc.ai[0] == 0f)

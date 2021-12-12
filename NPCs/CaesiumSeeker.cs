@@ -37,6 +37,11 @@ namespace ExxoAvalonOrigins.NPCs
                 return 0.6f;
             return 0;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void NPCLoot()
         {
             if (Main.rand.Next(10) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
@@ -89,6 +94,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return false;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)
@@ -126,6 +136,11 @@ namespace ExxoAvalonOrigins.NPCs
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             return false;
+        }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void HitEffect(int hitDirection, double damage)
         {

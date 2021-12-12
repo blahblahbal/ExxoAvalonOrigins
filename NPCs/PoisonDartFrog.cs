@@ -117,7 +117,11 @@ namespace ExxoAvalonOrigins.NPCs
                 AIInJump = false;
             }
         }
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.collideY && npc.velocity.Y >= 0 && ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, npc.width, npc.height))

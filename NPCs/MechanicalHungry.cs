@@ -32,6 +32,11 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.66f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.4f);
+        }
         public override void AI()
         {
             if (npc.justHit)

@@ -29,6 +29,11 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.PyrasiteBanner>();
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && spawnInfo.player.ZoneOverworldHeight)

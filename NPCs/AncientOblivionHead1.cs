@@ -43,6 +43,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             potionType = ModContent.ItemType<Items.ElixirofLife>();
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.45f);
+        }
         public override void AI()
         {
             var instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();

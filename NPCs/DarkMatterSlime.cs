@@ -44,6 +44,11 @@ namespace ExxoAvalonOrigins.NPCs
             }
             return 0f;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void NPCLoot()
 		{
             bool canDrop = true;

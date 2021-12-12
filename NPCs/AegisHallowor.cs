@@ -40,7 +40,12 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			return spawnInfo.player.ZoneHoly && spawnInfo.spawnTileY < (Main.maxTilesY - 200) && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.066f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
 		}
-		public override void NPCLoot()
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.45f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.4f);
+        }
+        public override void NPCLoot()
 		{
 			Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ItemID.PixieDust, Main.rand.Next(3) + 1);
 			if (Main.rand.Next(25) == 0)

@@ -47,6 +47,11 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			return Main.hardMode && spawnInfo.player.ZoneCorrupt && spawnInfo.spawnTileY < (Main.maxTilesY - 200) && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() ? 1f : 0f;
 		}
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void FindFrame(int frameHeight)
         {
             npc.frameCounter += 1.0;

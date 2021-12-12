@@ -41,6 +41,11 @@ namespace ExxoAvalonOrigins.NPCs
             bannerItem = ModContent.ItemType<Items.Banners.BlazeBanner>();
             drawOffsetY = 10;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.62f);
+        }
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             SpriteEffects effects = SpriteEffects.None;

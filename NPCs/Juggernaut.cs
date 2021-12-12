@@ -53,7 +53,11 @@ namespace ExxoAvalonOrigins.NPCs
 				//NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
 			}
 		}
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.45f);
+        }
         public override void AI()
         {
             var num441 = 30;

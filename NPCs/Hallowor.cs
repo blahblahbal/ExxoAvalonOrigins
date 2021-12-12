@@ -40,7 +40,12 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.HalloworBanner>();
         }
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			return Main.hardMode && spawnInfo.player.ZoneHoly && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 1f : 0f;
 		}

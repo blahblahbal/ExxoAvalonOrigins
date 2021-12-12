@@ -38,7 +38,11 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IridiumOre>(), Main.rand.Next(10, 16), false, 0, false);
         }
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.45f);
+        }
         public override void FindFrame(int frameHeight)
         {
             var num2 = 0;

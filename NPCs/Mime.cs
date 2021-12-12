@@ -36,8 +36,12 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.MimeBanner>();
         }
-
-		public override void NPCLoot()
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.75f);
+        }
+        public override void NPCLoot()
 		{
 			if (Main.rand.Next(3) == 0)
 			{

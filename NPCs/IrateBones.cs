@@ -34,6 +34,11 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.IrateBonesBanner>();
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)

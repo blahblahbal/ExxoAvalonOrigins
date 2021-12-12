@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.width = npc.height = 70;
             npc.boss = npc.noTileCollide = npc.noGravity = true;
             npc.npcSlots = 100f;
-            npc.damage = 65;
+            npc.damage = 75;
             npc.lifeMax = 47800;
             npc.defense = 55;
             npc.aiStyle = -1;
@@ -43,6 +43,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             Main.npc[whoAmI].position = coords;
             if (sync) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, whoAmI);
+        }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.75f);
         }
         public override Color? GetAlpha(Color lightColor)
         {

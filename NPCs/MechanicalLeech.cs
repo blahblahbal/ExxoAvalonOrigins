@@ -26,7 +26,11 @@ namespace ExxoAvalonOrigins.NPCs
             npc.knockBackResist = 0f;
             npc.behindTiles = true;
         }
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
         public override void Init()
         {
             base.Init();
@@ -59,6 +63,11 @@ namespace ExxoAvalonOrigins.NPCs
             npc.knockBackResist = 0f;
             npc.behindTiles = true;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
     }
 
     internal class MechanicalLeechTail : MechanicalLeechWorm
@@ -84,7 +93,11 @@ namespace ExxoAvalonOrigins.NPCs
             npc.knockBackResist = 0f;
             npc.behindTiles = true;
         }
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
         public override void Init()
         {
             base.Init();

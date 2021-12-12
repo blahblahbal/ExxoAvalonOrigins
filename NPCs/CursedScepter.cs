@@ -35,6 +35,11 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.CursedScepterBanner>();
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.75f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.ai[0] == 2f)

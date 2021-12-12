@@ -57,6 +57,11 @@ namespace ExxoAvalonOrigins.NPCs
         //    Vector2 vector13 = new Vector2((float)(Main.npcTexture[npc.type].Width / 2), (float)(Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2));
         //    Main.spriteBatch.Draw(mod.GetTexture("Sprites/BlazeGlow"), new Vector2(npc.position.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + vector13.X * npc.scale, npc.position.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + vector13.Y * npc.scale + num66), new Rectangle?(npc.frame), new Color(200, 200, 200, 0), npc.rotation, vector13, npc.scale, effects, 0f);
         //}
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override void NPCLoot()
 		{
 			if (Main.rand.Next(10) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)

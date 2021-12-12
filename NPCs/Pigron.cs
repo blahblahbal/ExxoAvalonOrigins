@@ -32,7 +32,11 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath30;
 			npc.buffImmune[BuffID.Confused] = true;
 		}
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.8f);
+        }
         public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;

@@ -38,6 +38,11 @@ namespace ExxoAvalonOrigins.NPCs
 	        npc.DeathSound = SoundID.NPCDeath14;
 			npc.buffImmune[BuffID.Frostburn] = true;
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.45f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.35f);
+        }
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ModContent.ItemType<Items.ElixirofLife>();

@@ -40,11 +40,16 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[BuffID.OnFire] = true;
 		    npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill = true;
 		}
-
-		public override void NPCLoot()
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.35f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.3f);
+        }
+        public override void NPCLoot()
 		{
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart, Main.rand.Next(3, 6), false, 0, false);
-		}
+            if (Main.expertMode) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart, Main.rand.Next(5, 8), false, 0, false);
+        }
 
         public override void AI()
         {

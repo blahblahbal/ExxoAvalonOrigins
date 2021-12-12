@@ -35,8 +35,12 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.buffImmune[mod.BuffType("Freeze")] = true;
             bossBag = ModContent.ItemType<Items.BossBags.DesertBeakBossBag>();
         }
-
-		public override void NPCLoot()
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.57f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.55f);
+        }
+        public override void NPCLoot()
 		{
 			if (Main.rand.Next(7) == 0)
 			{

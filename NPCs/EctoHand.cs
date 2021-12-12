@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
 		}
 		public override void SetDefaults()
 		{
-			npc.damage = 36;
+			npc.damage = 66;
 			npc.lifeMax = 1600;
 			npc.defense = 30;
 			npc.width = 30;
@@ -39,6 +39,11 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.noTileCollide = true;
 			npc.behindTiles = false;
 		}
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override Color? GetAlpha(Color drawColor)
         {
             return Color.White;

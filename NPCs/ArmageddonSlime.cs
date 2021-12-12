@@ -44,7 +44,11 @@ namespace ExxoAvalonOrigins.NPCs
 
             cindersOnce = false;
 		}
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.25f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.25f);
+        }
         public override void AI()
         {
             float num236 = 1f;

@@ -46,7 +46,11 @@ namespace ExxoAvalonOrigins.NPCs
 				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SpikedBlastShell>(), 1, false, 0, false);
 			}
 		}
-
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.35f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return Main.hardMode && ExxoAvalonOrigins.superHardmode && spawnInfo.player.ZoneUnderworldHeight ? 0.125f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;

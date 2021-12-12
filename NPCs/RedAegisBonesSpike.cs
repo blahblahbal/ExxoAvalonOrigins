@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.NPCs
 		public override void SetDefaults()
 		{
 			npc.damage = 120;
-			npc.lifeMax = 2000;
+			npc.lifeMax = 1500;
 			npc.defense = 67;
 			npc.width = 18;
 			npc.aiStyle = 3;
@@ -35,8 +35,12 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.RedAegisBonesBanner>();
         }
-
-		public override void NPCLoot()
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.65f);
+        }
+        public override void NPCLoot()
 		{
 			if (Main.rand.Next(50) == 0)
 			{

@@ -45,6 +45,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return new Color(255, 255, 255);
         }
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.7f);
+        }
         public override void NPCLoot()
 		{
 			if (Main.rand.Next(75) == 0)
