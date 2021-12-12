@@ -1,5 +1,6 @@
 ﻿using ExxoAvalonOrigins.NPCs.Utils;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -158,7 +159,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 switch (StatePosition)
                 {
                     case 0:
-                        SetState(new FlurryDash(8), 4);
+                        SetState(new FlurryDash(8, 25, CubicEase.Out), 4);
                         break;
 
                     case 1:
@@ -174,68 +175,81 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
         public class FlurryDash : State
         {
-            private const float DashNodeActivationRadius = 16f;
-            private const float DashDistance = 12 * 16f;
-            private const float Speed = 0.2f;
-            private const float ProjectileSpeed = 25f;
-            private int remainingDashes;
-            private Vector2 nodePosition;
-            private Vector2 targetedPosition;
+            private readonly float dashDistance = 8 * 16f;
+            private readonly float projectileSpeed = 25f;
+            private readonly uint dashFrameDuration;
+            private readonly Func<float, float> easeFunction;
 
-            public FlurryDash(int dashes)
+            private uint remainingDashes;
+            private Vector2 nodePosition;
+            private Vector2Tween movementTween;
+
+            public FlurryDash(uint dashes, uint dashFrameDuration, Func<float, float> easeFunction)
             {
                 remainingDashes = dashes;
+                this.dashFrameDuration = dashFrameDuration;
+                this.easeFunction = easeFunction;
+            }
+
+            public override void PostDraw(SpriteBatch spriteBatch)
+            {
+                if (movementTween != null)
+                {
+                    Utils.Debug.DrawIndicator(spriteBatch, movementTween.EndPosition);
+                }
             }
 
             public override void Write(BinaryWriter writer)
             {
                 base.Write(writer);
                 writer.Write(remainingDashes);
-                writer.WriteVector2(nodePosition);
-                writer.WriteVector2(targetedPosition);
+                movementTween.Write(writer);
             }
 
             public override void Read(BinaryReader reader)
             {
                 base.Read(reader);
-                remainingDashes = reader.ReadInt32();
-                nodePosition = reader.ReadVector2();
-                targetedPosition = reader.ReadVector2();
+                remainingDashes = reader.ReadUInt32();
+                movementTween = new Vector2Tween(dashFrameDuration, easeFunction, Vector2.Zero, Vector2.Zero);
+                movementTween.Read(reader);
             }
 
             protected override void Start()
             {
                 remainingDashes--;
-                nodePosition = (unitVectorToTarget * DashDistance).RotatedBy((syncedRandom.NextDouble() * Math.PI / 2) - (Math.PI / 4));
-                targetedPosition = ModNPC.npc.Center;
+
+                nodePosition = (unitVectorToTarget * dashDistance).RotatedBy(syncedRandom.NextDouble() * Math.PI * 2);
+                //nodePosition = (unitVectorToTarget * dashDistance).RotatedBy((syncedRandom.NextDouble() * Math.PI / 2) - (Math.PI / 4));
+                movementTween = new Vector2Tween(dashFrameDuration, easeFunction, npc.Center, target.Center + nodePosition);
             }
 
             protected override void Update()
             {
-                Vector2 unitVectorToNode = nodePosition.SafeNormalize(Vector2.UnitX);
-
+                // Fire shot 
                 if (Main.netMode != NetmodeID.MultiplayerClient && remainingDashes <= 0)
                 {
+                    Vector2 unitVectorToNode = nodePosition.SafeNormalize(Vector2.UnitX);
+
                     if (Parent.RepeatTimes > 0)
                     {
                         if (CurrentFrame == 1)
                         {
-                            Projectile.NewProjectile(npc.Center + (unitVectorToNode * npc.height / 2), unitVectorToTarget * ProjectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center + (unitVectorToNode * npc.height / 2), unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFireball>(), 25, 0f, Main.myPlayer, 0f, 0f);
                         }
                     }
                     else
                     {
                         if (CurrentFrame < 5)
                         {
-                            Projectile.NewProjectile(npc.Center + (unitVectorToNode * npc.height / 2), unitVectorToTarget * ProjectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
+                            Projectile.NewProjectile(npc.Center + (unitVectorToNode * npc.height / 2), unitVectorToTarget * projectileSpeed, ModContent.ProjectileType<Projectiles.DarkMatterFlamethrower>(), 30, 0f, Main.myPlayer, 0f, 0f);
                         }
                     }
                 }
 
-                Vector2 vectorToNode = targetedPosition + nodePosition - npc.Center;
-                npc.velocity = vectorToNode * Speed;
+                npc.velocity = Vector2.Zero;
+                npc.Center = movementTween.Update();
 
-                if (vectorToNode.Length() < DashNodeActivationRadius)
+                if (movementTween.Finished)
                 {
                     if (remainingDashes > 0)
                     {
@@ -251,34 +265,62 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
         public class Stalk : State
         {
-            private const float FollowDistance = 16f * 15f;
-            private const float Speed = 0.05f;
-            private readonly int duration;
+            private readonly float followDistance = 16f * 15f;
+            private readonly Color tintColor = new Color(80, 0, 120);
+            private readonly uint duration;
+            private readonly uint tweenFrameDuration = 40;
+            private readonly Func<float, float> tweenFunction = CubicEase.Out;
             private float stalkRotation;
+            private Vector2Tween movementTween;
 
-            public Stalk(int duration)
+            public Stalk(uint duration)
             {
                 this.duration = duration;
-                stalkRotation = (float)Math.Atan2(unitVectorToTarget.Y, unitVectorToTarget.X);
+            }
+
+            protected override void Start()
+            {
+                stalkRotation = npc.rotation;
+                movementTween = new Vector2Tween(tweenFrameDuration, tweenFunction, npc.Center - target.Center, Vector2.UnitY.RotatedBy(stalkRotation) * followDistance);
             }
 
             public override void Write(BinaryWriter writer)
             {
                 base.Write(writer);
                 writer.Write(stalkRotation);
+                movementTween.Write(writer);
             }
 
             public override void Read(BinaryReader reader)
             {
                 base.Read(reader);
                 stalkRotation = reader.ReadSingle();
+                movementTween = new Vector2Tween(tweenFrameDuration, tweenFunction, Vector2.Zero, Vector2.Zero);
+                movementTween.Read(reader);
+            }
+
+            public override void PostDraw(SpriteBatch spriteBatch)
+            {
+                Texture2D texture = ExxoAvalonOrigins.mod.GetTexture("NPCs/Bosses/Oblivion/OblivionPhase1_Shadow_Glow");
+                spriteBatch.Draw
+                (
+                    texture,
+                    npc.Center - Main.screenPosition,
+                    npc.frame,
+                    Color.White * (1 - (npc.alpha / 255f)),
+                    npc.rotation,
+                    ModNPC.
+                    npc.frame.Size() * 0.5f,
+                    npc.scale,
+                    SpriteEffects.None,
+                    0f
+                );
             }
 
             public override void Load()
             {
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
-                    Color tintColor = new Color(80, 0, 120);
                     Filters.Scene.Activate(Effects.Effects.SceneKeyOblivionDarkenScreen).GetShader().UseColor(tintColor);
                     ModNPC.npc.altTexture = 1;
                 }
@@ -291,7 +333,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 {
                     stalkRotation += (float)((syncedRandom.NextDouble() * Math.PI * 6 / 4) + (Math.PI / 4));
                     stalkRotation %= (float)(Math.PI * 2);
-                    npc.position = target.Center + (Vector2.UnitY.RotatedBy(stalkRotation) * vectorToTarget.Length());
+                    npc.Center = target.Center + (Vector2.UnitY.RotatedBy(stalkRotation) * vectorToTarget.Length());
+                    movementTween = new Vector2Tween(tweenFrameDuration, tweenFunction, npc.Center - target.Center, Vector2.UnitY.RotatedBy(stalkRotation) * followDistance);
                     npc.alpha = 255;
                 }
 
@@ -301,9 +344,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                     npc.alpha -= 7;
                 }
 
-                // Go to target position relative to player
-                Vector2 targetPosition = target.Center + (Vector2.UnitY.RotatedBy(stalkRotation) * FollowDistance);
-                npc.velocity = target.velocity + ((targetPosition - npc.Center) * Speed);
+                npc.velocity = Vector2.Zero;
+                npc.Center = target.Center + movementTween.Update();
 
                 if (CurrentFrame > duration)
                 {
@@ -350,7 +392,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
             protected override bool AutoDestroyOnFinish => false;
             private const int TreeFirstDash = 0;
-            private const int TreeSuccessorDash = 1;
+            private const int TreeNextDash = 1;
 
             protected override void Start()
             {
@@ -363,7 +405,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 if (remainingDashes > 0)
                 {
                     remainingDashes--;
-                    StartTree(TreeSuccessorDash);
+                    StartTree(TreeNextDash);
                 }
                 else
                 {
@@ -379,8 +421,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         HandleFirstDashTree(isNewState);
                         break;
 
-                    case TreeSuccessorDash:
-                        HandleSuccessorDashTree(isNewState);
+                    case TreeNextDash:
+                        HandleNextDashTree(isNewState);
                         break;
                 }
             }
@@ -394,7 +436,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         {
                             FindInitialNode();
                         }
-                        SetState(new Utils.States.MoveToPosition(nodePosition, 0.1f, 8, true));
+                        SetState(new Utils.States.MoveToPosition(nodePosition, 30, CubicEase.Out, true));
                         break;
 
                     case 1:
@@ -402,17 +444,17 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         {
                             FindNextDashNode();
                         }
-                        SetState(new XDashToNode(nodePosition, targetedPosition, 0.1f, 0, 15));
+                        SetState(new XDashToNode(nodePosition, 40, CubicEase.Out, targetedPosition, 15));
                         break;
                 }
             }
 
-            private void HandleSuccessorDashTree(bool isNewState)
+            private void HandleNextDashTree(bool isNewState)
             {
                 switch (StatePosition)
                 {
                     case 0:
-                        SetState(new Utils.States.MoveToPosition(nodePosition, 0.1f, 8, true));
+                        SetState(new Utils.States.MoveToPosition(nodePosition, 30, CubicEase.Out, true));
                         break;
 
                     case 1:
@@ -428,7 +470,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         {
                             FindNextDashNode();
                         }
-                        SetState(new XDashToNode(nodePosition, targetedPosition, 0.1f, 0, 15));
+                        SetState(new XDashToNode(nodePosition, 40, CubicEase.Out, targetedPosition, 15));
                         break;
                 }
             }
@@ -468,21 +510,21 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
         public class XDashToNode : Utils.States.MoveToPosition
         {
-            private readonly uint waitTime;
-            public XDashToNode(Vector2 position, Vector2 targetedPosition, float speed, float minSpeed, uint waitTime) : base(position, targetedPosition, speed, minSpeed)
+            private readonly uint waitFrameDuration;
+            public XDashToNode(Vector2 position, uint frameDuration, Func<float, float> easeFunction, Vector2 targetedPosition, uint waitFrameDuration) : base(position, frameDuration, easeFunction, targetedPosition)
             {
-                this.waitTime = waitTime;
+                this.waitFrameDuration = waitFrameDuration;
             }
             protected override void Update()
             {
-                if (CurrentFrame < waitTime)
+                if (CurrentFrame < waitFrameDuration)
                 {
                     return;
                 }
 
-                if (CurrentFrame == waitTime)
+                if (CurrentFrame == waitFrameDuration)
                 {
-                    Main.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1);
+                    Main.PlaySound(SoundID.ForceRoar, (int)npc.Center.X, (int)npc.Center.Y, -1);
                 }
 
                 base.Update();
@@ -527,7 +569,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 float radians = MathHelper.ToRadians((90 - (RailSpeed * CurrentFrame)) * (clockWise ? 1 : -1));
 
                 npc.velocity = Vector2.Zero;
-                npc.position = (target.Center + nodePosition.RotatedBy(radians));
+                npc.Center = (target.Center + nodePosition.RotatedBy(radians));
 
                 // At node
                 if (vectorToNode.Length() < DashNodeActivationRadius || (RailSpeed * CurrentFrame > 90))
@@ -554,8 +596,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
             }
             protected override void PreUpdate()
             {
-                Vector2 desiredPosition = (-Vector2.UnitY * 16f * 25) + target.position;
-                npc.velocity = (desiredPosition - npc.position) * 0.1f;
+                Vector2 desiredPosition = (-Vector2.UnitY * 16f * 25) + target.Center;
+                npc.velocity = (desiredPosition - npc.Center) * 0.1f;
             }
             protected override void InactiveUpdate()
             {
@@ -582,7 +624,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         SetState(new SpinTransform(200, (float)Math.PI * 16f));
                         break;
                     case 1:
-                        SetState(new Utils.States.MoveToPosition(-Vector2.UnitY * 16f * 25, 0.1f, 8, true));
+                        SetState(new Utils.States.MoveToPosition(-Vector2.UnitY * 16f * 25, 50, CubicEase.Out, true));
                         break;
                 }
             }
@@ -607,7 +649,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 {
                     for (var i = ActiveDrones.Count; i < MaxDrones; i++)
                     {
-                        ActiveDrones.Add(NPC.NewNPC((int)npc.position.X, (int)npc.position.Y,
+                        ActiveDrones.Add(NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y,
                                 ModContent.NPCType<Oblivion.ShieldDrone>(), 0,
                                 npc.whoAmI, i, MaxDrones));
                     }
@@ -616,7 +658,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                     {
                         if (!Main.npc[ActiveDrones[i]].active)
                         {
-                            ActiveDrones[i] = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y,
+                            ActiveDrones[i] = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y,
                                 ModContent.NPCType<Oblivion.ShieldDrone>(), 0,
                                 npc.whoAmI, i, MaxDrones);
                         }
@@ -690,18 +732,18 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         oblivionPhase1.AIFrameOffset = 1;
                     }
 
-                    Main.PlaySound(SoundID.NPCHit, (int)npc.position.X, (int)npc.position.Y);
+                    Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y);
                     for (int i = 0; i < 2; i++)
                     {
-                        Gore.NewGore(npc.position, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 8);
-                        Gore.NewGore(npc.position, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 7);
-                        Gore.NewGore(npc.position, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 6);
+                        Gore.NewGore(npc.Center, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 8);
+                        Gore.NewGore(npc.Center, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 7);
+                        Gore.NewGore(npc.Center, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 6);
                     }
                     for (int num855 = 0; num855 < 20; num855++)
                     {
-                        Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f);
+                        Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Blood, syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f);
                     }
-                    Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
+                    Main.PlaySound(SoundID.Roar, (int)npc.Center.X, (int)npc.Center.Y, 0);
                 }
 
                 if (CurrentFrame > duration)

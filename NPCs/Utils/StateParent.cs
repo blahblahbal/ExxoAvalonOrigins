@@ -189,7 +189,10 @@ namespace ExxoAvalonOrigins.NPCs.Utils
 
         /// <summary>
         /// Important method that gets run to determine the current state of the parent, use to implement logic and modify state within a tree
+        /// Use TreeID and StatePosition as means of branching to the correct state,
+        /// Use SetState to set the state to be run for a particular branch,
         /// </summary>
+        /// <param name="isNewState">Should be used to run any additional code accompanying a SetState if present</param>
         protected abstract void HandleAdvanceState(bool isNewState);
 
         public T FindState<T>() where T : State
