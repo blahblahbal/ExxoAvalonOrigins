@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Items
 			item.width = dims.Width;
 			item.knockBack = 5f;
 			item.useTime = 9;
-			item.shoot = ModContent.ProjectileType<Projectiles.Blahcket>() - 9;
+			item.shoot = ProjectileID.RocketI;
 			item.value = Item.sellPrice(1, 0, 0, 0);
 			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.useAnimation = 9;
@@ -73,7 +73,7 @@ namespace ExxoAvalonOrigins.Items
                     num78 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                     num79 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                 }
-                Projectile.NewProjectile(position.X, position.Y, num78, num79, type, damage, knockBack, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockBack, player.whoAmI, 0f, 0f);
             }
             return false;
         }
