@@ -778,6 +778,123 @@ namespace ExxoAvalonOrigins.World.Structures
             }
         }
 
+        public static void CreateOutpost(int x, int y)
+        {
+            ushort brick = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+            ushort wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+
+            
+
+            int mod1 = WorldGen.genRand.Next(9, 13);
+            int sideMod1 = WorldGen.genRand.Next(10, 16); // height 20-26
+            int sideMod2 = WorldGen.genRand.Next(25, 35); // 25-35
+            int topHeight = WorldGen.genRand.Next(7, 13); // top section height
+            int secondSlopeHeight = WorldGen.genRand.Next(5, 10);
+            int thirdSlopeHeight = WorldGen.genRand.Next(12, 17);
+            int midMiddleHeight = WorldGen.genRand.Next(35, 46);
+            int mult = 1;
+            int pstep = WorldGen.genRand.Next(11, 20); // width 50-76
+            int pstep2 = pstep;
+
+            // top
+            for (int topX = x - pstep + sideMod2 + 1; topX <= x + pstep + sideMod2; topX++)
+            {
+                for (int topY = y - topHeight; topY < y; topY++)
+                {
+                    Main.tile[topX, topY].active(true);
+                    Main.tile[topX, topY].type = brick;
+                    Main.tile[topX, topY].wall = wall;
+                    World.Utils.SquareTileFrame(topX, topY, resetSlope: true);
+                }
+            }
+            // top slope
+            for (int topSlopeY = y; topSlopeY <= y + mult + sideMod1; topSlopeY++)
+            {
+                for (int topSlopeX = x - pstep + sideMod2; topSlopeX <= x + pstep + sideMod2; topSlopeX++)
+                {
+                    Main.tile[topSlopeX + 1, topSlopeY].active(true);
+                    Main.tile[topSlopeX + 1, topSlopeY].type = brick;
+                    Main.tile[topSlopeX + 1, topSlopeY].wall = wall;
+                    World.Utils.SquareTileFrame(topSlopeX + 1, topSlopeY, resetSlope: true);
+                }
+                if (topSlopeY % 2 == 0) pstep++;
+            }
+            // middle straight area
+            for (int mid1X = x - pstep + sideMod2 + 1; mid1X <= x + pstep + sideMod2; mid1X++)
+            {
+                for (int mid1Y = y + mult + sideMod1; mid1Y <= y + mult + sideMod1 + secondSlopeHeight; mid1Y++)
+                {
+                    Main.tile[mid1X, mid1Y].active(true);
+                    Main.tile[mid1X, mid1Y].type = brick;
+                    Main.tile[mid1X, mid1Y].wall = wall;
+                    World.Utils.SquareTileFrame(mid1X, mid1Y, resetSlope: true);
+                }
+            }
+            // second slope
+            pstep = pstep2;
+            for (int secondTopSlopeY = y + mult + sideMod1 + secondSlopeHeight; secondTopSlopeY <= y + mult + sideMod1 + secondSlopeHeight + thirdSlopeHeight; secondTopSlopeY++)
+            {
+                for (int secondTopSlopeX = x - pstep + sideMod2 - (pstep2 / 2); secondTopSlopeX <= x + pstep + sideMod2 + (pstep2 / 2); secondTopSlopeX++)
+                {
+                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].active(true);
+                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].type = brick;
+                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].wall = wall;
+                    World.Utils.SquareTileFrame(secondTopSlopeX + 1, secondTopSlopeY, resetSlope: true);
+                }
+                pstep++;
+            }
+            // actual middle
+            for (int mid1X = x - pstep + sideMod2 + 1 - (pstep2 / 2); mid1X <= x + pstep + sideMod2 + (pstep2 / 2); mid1X++)
+            {
+                for (int mid1Y = y + mult + sideMod1 + secondSlopeHeight + thirdSlopeHeight; mid1Y <= y + mult + sideMod1 + midMiddleHeight; mid1Y++)
+                {
+                    Main.tile[mid1X, mid1Y].active(true);
+                    Main.tile[mid1X, mid1Y].type = brick;
+                    Main.tile[mid1X, mid1Y].wall = wall;
+                    World.Utils.SquareTileFrame(mid1X, mid1Y, resetSlope: true);
+                }
+            }
+            // bottom slope 1
+            pstep = pstep2;
+            for (int bottomSlope1Y = y + mult + sideMod1 + midMiddleHeight; bottomSlope1Y <= y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight; bottomSlope1Y++)
+            {
+                for (int bottomSlope1X = x + pstep + sideMod2 + pstep2 + 5; bottomSlope1X >= x - pstep + sideMod2 - pstep2 - 5; bottomSlope1X--)
+                {
+                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].active(true);
+                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].type = brick;
+                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].wall = wall;
+                    World.Utils.SquareTileFrame(bottomSlope1X + 1, bottomSlope1Y, resetSlope: true);
+                }
+                pstep--;
+            }
+            pstep = pstep2;
+            // bottom slope 2
+            for (int bottomSlopeY = y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight; bottomSlopeY <= y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight + sideMod1; bottomSlopeY++)
+            {
+                for (int bottomSlopeX = x + pstep + sideMod2; bottomSlopeX >= x - pstep + sideMod2; bottomSlopeX--)
+                {
+                    Main.tile[bottomSlopeX + 1, bottomSlopeY].active(true);
+                    Main.tile[bottomSlopeX + 1, bottomSlopeY].type = brick;
+                    Main.tile[bottomSlopeX + 1, bottomSlopeY].wall = wall;
+                    World.Utils.SquareTileFrame(bottomSlopeX + 1, bottomSlopeY, resetSlope: true);
+                }
+                if (bottomSlopeY % 2 == 0) pstep--;
+            }
+
+            // bottom area
+            pstep = pstep2;
+            for (int bottomX = x - pstep + sideMod2 + 1; bottomX <= x + pstep + sideMod2; bottomX++)
+            {
+                for (int topY = y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight + sideMod1; topY <= y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight + sideMod1 + topHeight; topY++)
+                {
+                    Main.tile[bottomX, topY].active(true);
+                    Main.tile[bottomX, topY].type = brick;
+                    Main.tile[bottomX, topY].wall = wall;
+                    World.Utils.SquareTileFrame(bottomX, topY, resetSlope: true);
+                }
+            }
+        }
+
         public static void CreateTuhrtlOutpost(int x, int y)
         {
             List<Vector2> startPoints = new List<Vector2>();

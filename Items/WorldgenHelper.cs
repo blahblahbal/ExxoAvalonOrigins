@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items
 
         public override bool UseItem(Player player)
         {
-            //World.Structures.CaesiumSpike.CreateSpike((int)player.position.X / 16, (int)player.position.Y / 16);
+            World.Structures.TuhrtlOutpost.CreateOutpost((int)player.position.X / 16, (int)player.position.Y / 16);
             return true;
         }
     }
