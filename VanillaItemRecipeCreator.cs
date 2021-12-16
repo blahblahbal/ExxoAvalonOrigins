@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
-    public class VanillaItemRecipeCreator
+    public static class VanillaItemRecipeCreator
     {
         public static void CreateRecipes(Mod mod)
         {
@@ -66,7 +66,9 @@ namespace ExxoAvalonOrigins
             recipe.AddIngredient(ItemID.FallenStar, 20);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ItemID.Starfury);
-            recipe.AddRecipe();            recipe = new ModRecipe(mod);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PlatinumBroadsword);
             recipe.AddIngredient(ItemID.MeteoriteBar, 10);
             recipe.AddIngredient(ItemID.FallenStar, 20);

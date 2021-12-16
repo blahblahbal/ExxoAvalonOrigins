@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.Items.Weapons
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            var assignedKeys = ExxoAvalonOrigins.modeChangeHotkey.GetAssignedKeys();
+            var assignedKeys = ExxoAvalonOrigins.mod.modeChangeHotkey.GetAssignedKeys();
 
             var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change attack modes");
             tooltips.Add(assignedKeyInfo);
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Items.Weapons
         }
         public override void HoldItem(Player player)
         {
-            if (ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
+            if (ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
             {
                 mode++;
                 if (mode == 1) Main.NewText("Mode: Volley attack");

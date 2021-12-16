@@ -21,6 +21,7 @@ namespace ExxoAvalonOrigins
 {
     public class ExxoAvalonOriginsWorld : ModWorld
     {
+        private Version worldVersion;
         public static int shmOreTier1 = -1;
         public static int shmOreTier2 = -1;
         public static int hallowAltarCount;
@@ -171,7 +172,7 @@ namespace ExxoAvalonOrigins
 
         public void RetroGen()
         {
-            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 0, 0))
+            if (worldVersion < new Version(0, 1, 0, 0))
             {
                 rhodiumOre = (RhodiumVariant)WorldGen.genRand.Next(2);
                 for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)
@@ -190,7 +191,7 @@ namespace ExxoAvalonOrigins
                 }
                 Main.NewText("Retrogenned Caesium");
             }
-            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 1, 1, 0))
+            if (worldVersion < new Version(0, 1, 1, 0))
             {
                 for (var num284 = 69; num284 < 72; num284++)
                 {
@@ -228,7 +229,7 @@ namespace ExxoAvalonOrigins
                 }
                 Main.NewText("Retrogenned Tourmaline, Peridot and Zircon");
             }
-            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))
+            if (worldVersion < new Version(0, 3, 0, 0))
             {
                 for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)
                 {
@@ -239,7 +240,7 @@ namespace ExxoAvalonOrigins
                 }
                 Main.NewText("Retrogenned Heartstone");
             }
-            if (ExxoAvalonOrigins.lastOpenedVersion < new Version(0, 3, 0, 0))
+            if (worldVersion < new Version(0, 3, 0, 0))
             {
                 for (var num721 = 0; num721 < 3; num721++)
                 {
@@ -1121,7 +1122,7 @@ namespace ExxoAvalonOrigins
         {
             if (!retroGenned)
             {
-                if (ExxoAvalonOrigins.lastOpenedVersion == null || ExxoAvalonOrigins.lastOpenedVersion < ExxoAvalonOrigins.version)
+                if (worldVersion == null || worldVersion < ExxoAvalonOrigins.mod.version)
                 {
                     RetroGen();
                     retroGenned = true;
@@ -2162,7 +2163,7 @@ namespace ExxoAvalonOrigins
         {
             var toSave = new TagCompound
             {
-                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.version.ToString() },
+                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.mod.version.ToString() },
                 { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },
                 { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },
                 { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },
@@ -2203,7 +2204,7 @@ namespace ExxoAvalonOrigins
         {
             if (tag.ContainsKey("ExxoAvalonOrigins:LastOpenedVersion"))
             {
-                ExxoAvalonOrigins.lastOpenedVersion = new Version(tag["ExxoAvalonOrigins:LastOpenedVersion"].ToString());
+                worldVersion = new Version(tag["ExxoAvalonOrigins:LastOpenedVersion"].ToString());
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:SuperHardMode"))
             {

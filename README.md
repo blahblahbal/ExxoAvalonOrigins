@@ -1,5 +1,17 @@
-##Todo List:
-###Pre-Release:
+# Exxo Avalon Origins
+
+Exxo Avalon Origins is the tModLoader reimplementation of the tConfig Terraria Avalon mod.
+
+Stay updated and join the discord community: <https://discord.gg/rtm99Uq>
+
+## Todo List
+
+### General
+
+* Update to-do list
+
+### Pre-Release
+
 * Fix even more consumables
 * Fix more buffs
 * Do late-game world gen
@@ -18,7 +30,9 @@
 * Fix Oblivion
 * FIX ISSUES
 * Remove items that were added in vanilla 1.3
-###Extra:
+
+### Extra
+
 * Redo Desert Beak and Bacterium Prime
 * Add Wall of Steel
 * Get many sprites updated
@@ -33,5 +47,7 @@
 * Moar campfires, heart lanterns and such
 * Add and implement Contaigon
 * Add the Tropics
-###Easier Recipes:
+
+### Easier Recipes
+
 * Chlorophyte armor and weapons

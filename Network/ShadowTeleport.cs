@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Network
 {
-    public class ShadowTeleport
+    public static class ShadowTeleport
     {
         public static void SendPacket(int teleportType = 0)
         {

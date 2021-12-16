@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
-    public class ShadowTeleport : GlobalItem
+    public static class ShadowTeleport
     {
         public static void Teleport(int teleportType = 0, bool forceHandle = false, int whoAmI = 0)
         {
@@ -81,7 +81,10 @@ namespace ExxoAvalonOrigins
             {
                 RunTeleport(player, new Vector2(pos.X, pos.Y), syncData, false);
             }
-            else return;
+            else
+            {
+                return;
+            }
         }
 
         private static void RightOceanTeleport(Player player, bool syncData = false)
@@ -102,14 +105,17 @@ namespace ExxoAvalonOrigins
             {
                 RunTeleport(player, new Vector2(pos.X, pos.Y), syncData, false);
             }
-            else return;
+            else
+            {
+                return;
+            }
         }
 
         private static void UnderworldTeleport(Player player, bool syncData = false)
         {
             Vector2 previousPos = player.position;
             Vector2 pos = previousPos;
-            for (int x = Main.maxTilesX / 2 - 100; x < Main.maxTilesX / 2 + 100; ++x)
+            for (int x = (Main.maxTilesX / 2) - 100; x < (Main.maxTilesX / 2) + 100; ++x)
             {
                 for (int y = 0; y < Main.tile.GetLength(1); ++y)
                 {
@@ -131,7 +137,10 @@ namespace ExxoAvalonOrigins
             {
                 RunTeleport(player, new Vector2(pos.X, pos.Y), syncData, false);
             }
-            else return;
+            else
+            {
+                return;
+            }
         }
 
         private static void JungleTeleport(Player player, bool syncData = false)
@@ -144,7 +153,7 @@ namespace ExxoAvalonOrigins
                 {
                     if (Main.tile[x, y] == null) continue;
                     if (Main.tile[x, y].type != 233 || Main.tile[x, y].type != ModContent.TileType<Tiles.TropicalShortGrass>()) continue;
-                    pos = new Vector2((x) * 16, (y - 2) * 16);
+                    pos = new Vector2(x * 16, (y - 2) * 16);
                     break;
                 }
             }
@@ -152,7 +161,10 @@ namespace ExxoAvalonOrigins
             {
                 RunTeleport(player, new Vector2(pos.X, pos.Y), syncData, false);
             }
-            else return;
+            else
+            {
+                return;
+            }
         }
 
         private static void RunTeleport(Player player, Vector2 pos, bool syncData = false, bool convertFromTiles = false)
@@ -161,7 +173,7 @@ namespace ExxoAvalonOrigins
             int postImmuneTime = player.immuneTime;
 
             if (convertFromTiles)
-                pos = new Vector2(pos.X * 16 + 8 - player.width / 2, pos.Y * 16 - player.height);
+                pos = new Vector2((pos.X * 16) + 8 - (player.width / 2), (pos.Y * 16) - player.height);
 
             //Kill hooks
             player.grappling[0] = -1;

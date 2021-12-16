@@ -489,7 +489,7 @@ namespace ExxoAvalonOrigins
         public override void OnEnterWorld(Player player)
         {
             if (tomeItem.type <= ItemID.None) tomeItem.SetDefaults();
-            Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.version.ToString());
+            Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.mod.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
             astralCD = 3600;
@@ -1075,7 +1075,7 @@ namespace ExxoAvalonOrigins
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (ExxoAvalonOrigins.godMode) return false;
+            if (ExxoAvalonOrigins.GodMode) return false;
             if (spectrumBlur && player.whoAmI == Main.myPlayer && Main.rand.Next(10) == 0)
             {
                 SpectrumDodge();
@@ -2011,7 +2011,7 @@ namespace ExxoAvalonOrigins
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (ExxoAvalonOrigins.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
+            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
             {
 	            teleportVWasTriggered = false;
                 tpCD = 0;
@@ -2026,7 +2026,7 @@ namespace ExxoAvalonOrigins
                     Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.1f);
                 }
             }
-            if (ExxoAvalonOrigins.astralHotkey.JustPressed && astralProject)
+            if (ExxoAvalonOrigins.mod.astralHotkey.JustPressed && astralProject)
             {
                 if (astralStart)
                 {
@@ -2042,43 +2042,43 @@ namespace ExxoAvalonOrigins
                 }
             }
 
-	        if (ExxoAvalonOrigins.sprintHotkey.JustPressed)
+	        if (ExxoAvalonOrigins.mod.sprintHotkey.JustPressed)
 	        {
 		        activateSprint = !activateSprint;
 		        Main.NewText(!activateSprint ? "Sprinting Off" : "Sprinting On");
 	        }
 
-	        if (ExxoAvalonOrigins.dashHotkey.JustPressed)
+	        if (ExxoAvalonOrigins.mod.dashHotkey.JustPressed)
 	        {
 		        stamDashKey = !stamDashKey;
 		        Main.NewText(!stamDashKey ? "Dashing Off" : "Dashing On");
 	        }
 
-	        if (ExxoAvalonOrigins.quintupleHotkey.JustPressed)
+	        if (ExxoAvalonOrigins.mod.quintupleHotkey.JustPressed)
 	        {
 		        quintJump = !quintJump;
 		        Main.NewText(!quintJump ? "Quintuple Jump Off" : "Quintuple Jump On");
 	        }
 
-	        if (ExxoAvalonOrigins.swimHotkey.JustPressed)
+	        if (ExxoAvalonOrigins.mod.swimHotkey.JustPressed)
 	        {
 		        activateSwim = !activateSwim;
 		        Main.NewText(!activateSwim ? "Swimming Off" : "Swimming On");
 	        }
 
-	        if (ExxoAvalonOrigins.wallSlideHotkey.JustPressed)
+	        if (ExxoAvalonOrigins.mod.wallSlideHotkey.JustPressed)
 	        {
 		        activateSlide = !activateSlide;
 		        Main.NewText(!activateSlide ? "Wall Sliding Off" : "Wall Sliding On");
 	        }
 
-	        if (ExxoAvalonOrigins.bubbleBoostHotkey.JustPressed)
+	        if (ExxoAvalonOrigins.mod.bubbleBoostHotkey.JustPressed)
 	        {
 		        activateBubble = !activateBubble;
 		        Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
 	        }
 
-	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
+	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
 	        {
 		        speed = !speed;
 		        if (!speed)
@@ -2092,7 +2092,7 @@ namespace ExxoAvalonOrigins
 	        }
 
 	        if (Main.netMode != NetmodeID.SinglePlayer && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
-	            ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
+	            ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
 	        {
 		        int newPlayer = teleportToPlayer;
 		        int numPlayersCounted = 0;
@@ -2122,7 +2122,7 @@ namespace ExxoAvalonOrigins
 	        if (player.inventory[player.selectedItem].type == ModContent.ItemType<ShadowMirror>())
 	        {
 		        player.noFallDmg = true; //TODO: Replace with better anti-fall-damage mechanism.
-		        if (ExxoAvalonOrigins.modeChangeHotkey.JustPressed)
+		        if (ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
 		        {
 			        shadowWP++;
 			        shadowWP %= 7;

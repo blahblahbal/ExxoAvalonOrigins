@@ -754,7 +754,7 @@ namespace ExxoAvalonOrigins
         {
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
             {
-                if (item.summon && ExxoAvalonOrigins.minionGuidingHotkey.Current)
+                if (item.summon && ExxoAvalonOrigins.mod.minionGuidingHotkey.Current)
                 {
                     foreach (Projectile proj in Main.projectile)
                     {
@@ -1014,7 +1014,7 @@ namespace ExxoAvalonOrigins
         {
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().splitProj &&
                 item.ranged &&
-                Main.rand.Next(7) == 0 && 
+                Main.rand.Next(7) == 0 &&
                 type != ModContent.ProjectileType<Projectiles.EnchantedShuriken>())
             {
                 for (int num221 = 0; num221 < 1; num221++)
@@ -1026,7 +1026,7 @@ namespace ExxoAvalonOrigins
                     Projectile.NewProjectile(position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);
                 }
             }
-            
+
             /*if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientGunslinger &&
                 item.ranged &&
                 inaccurateGuns.Contains(item.type))

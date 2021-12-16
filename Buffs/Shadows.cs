@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Buffs
 					player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd = 300;
 				}
 				player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd++;
-				if (ExxoAvalonOrigins.shadowHotkey.JustPressed && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
+				if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
 				{
 					player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd = 0;
 					for (var num10 = 0; num10 < 70; num10++)
