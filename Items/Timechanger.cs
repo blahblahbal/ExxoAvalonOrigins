@@ -32,16 +32,16 @@ namespace ExxoAvalonOrigins.Items
 
 		public override bool UseItem(Player player)
 		{
-			Main.dayTime = !Main.dayTime;
-			Main.time = 0;
+			if (Main.dayTime) Main.time = 53999;
+			else Main.time = 32399;
 
 			if (Main.netMode == NetmodeID.SinglePlayer)
 			{
-				Main.NewText(String.Format("It is now {0}.", Main.dayTime ? "Day" : "Night"), 50, 255, 130, false);
+				Main.NewText(String.Format("It is now {0}.", Main.dayTime ? "Night" : "Day"), 50, 255, 130, false);
 			}
 			else if (Main.netMode == NetmodeID.Server)
 			{
-				NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", Main.dayTime ? "Day" : "Night")), new Color(50, 255, 130));
+				NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", Main.dayTime ? "Night" : "Day")), new Color(50, 255, 130));
 			}
 
 			return true;

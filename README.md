@@ -34,7 +34,6 @@ Stay updated and join the discord community: <https://discord.gg/rtm99Uq>
 ### Extra
 
 * Redo Desert Beak and Bacterium Prime
-* Add Wall of Steel
 * Get many sprites updated
 * Add better boss health bars (using event progress bars)
 * Add Ultrablivion and other TConfig only stuff
@@ -45,7 +44,7 @@ Stay updated and join the discord community: <https://discord.gg/rtm99Uq>
 * Cross mod compatibility
 * Potion campfires
 * Moar campfires, heart lanterns and such
-* Add and implement Contaigon
+* Add and implement Contagion
 * Add the Tropics
 
 ### Easier Recipes
