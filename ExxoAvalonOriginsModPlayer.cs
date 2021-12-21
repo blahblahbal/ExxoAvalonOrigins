@@ -118,6 +118,9 @@ namespace ExxoAvalonOrigins
             ProjectileID.StardustCellMinionShot
         };
 
+        public static Texture2D[] lavaMermanTextures;
+        public static Texture2D[] originalMermanTextures;
+
         public bool armorStealth = false;
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
@@ -1002,19 +1005,19 @@ namespace ExxoAvalonOrigins
             }
             if (mermanLava)
             {
-                Main.armorArmTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[2];
-                Main.armorBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[1];
-                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.lavaMermanTextures[3];
-                Main.armorHeadTexture[39] = ExxoAvalonOrigins.lavaMermanTextures[0];
-                Main.armorLegTexture[21] = ExxoAvalonOrigins.lavaMermanTextures[4];
+                Main.armorHeadTexture[39] = lavaMermanTextures[0];
+                Main.armorBodyTexture[22] = lavaMermanTextures[1];
+                Main.armorArmTexture[22] = lavaMermanTextures[2];
+                Main.femaleBodyTexture[22] = lavaMermanTextures[3];
+                Main.armorLegTexture[21] = lavaMermanTextures[4];
             }
             else
             {
-                Main.armorArmTexture[22] = ExxoAvalonOrigins.originalMermanTextures[2];
-                Main.armorBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[1];
-                Main.femaleBodyTexture[22] = ExxoAvalonOrigins.originalMermanTextures[3];
-                Main.armorHeadTexture[39] = ExxoAvalonOrigins.originalMermanTextures[0];
-                Main.armorLegTexture[21] = ExxoAvalonOrigins.originalMermanTextures[4];
+                Main.armorHeadTexture[39] = originalMermanTextures[0];
+                Main.armorBodyTexture[22] = originalMermanTextures[1];
+                Main.armorArmTexture[22] = originalMermanTextures[2];
+                Main.femaleBodyTexture[22] = originalMermanTextures[3];
+                Main.armorLegTexture[21] = originalMermanTextures[4];
             }
             //if (frozen)
             //{
@@ -1379,123 +1382,123 @@ namespace ExxoAvalonOrigins
 
         // Large gem player layer logic
         public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo)
-                    {
-                        if (drawInfo.shadow != 0f)
-                        {
-                            return;
-                        }
-                        Player drawPlayer = drawInfo.drawPlayer;
-                        bool[] ownedLargeGems = drawPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ownedLargeGems;
-                        if (ownedLargeGems.Length > 0)
-                        {
-                            bool flag2 = false;
-                            DrawData value = default(DrawData);
-                            float numGems = 0f;
-                            for (int num23 = 0; num23 < 10; num23++)
-                            {
-                                if (ownedLargeGems[num23])
-                                {
-                                    numGems += 1f;
-                                }
-                            }
-                            float num25 = 1f - numGems * 0.06f;
-                            float num26 = (numGems - 1f) * 4f;
-                            switch ((int)numGems)
-                            {
-                                case 2:
-                                    num26 += 10f;
-                                    break;
+                          {
+                              if (drawInfo.shadow != 0f)
+                              {
+                                  return;
+                              }
+                              Player drawPlayer = drawInfo.drawPlayer;
+                              bool[] ownedLargeGems = drawPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ownedLargeGems;
+                              if (ownedLargeGems.Length > 0)
+                              {
+                                  bool flag2 = false;
+                                  DrawData value = default(DrawData);
+                                  float numGems = 0f;
+                                  for (int num23 = 0; num23 < 10; num23++)
+                                  {
+                                      if (ownedLargeGems[num23])
+                                      {
+                                          numGems += 1f;
+                                      }
+                                  }
+                                  float num25 = 1f - numGems * 0.06f;
+                                  float num26 = (numGems - 1f) * 4f;
+                                  switch ((int)numGems)
+                                  {
+                                      case 2:
+                                          num26 += 10f;
+                                          break;
 
-                                case 3:
-                                    num26 += 8f;
-                                    break;
+                                      case 3:
+                                          num26 += 8f;
+                                          break;
 
-                                case 4:
-                                    num26 += 6f;
-                                    break;
+                                      case 4:
+                                          num26 += 6f;
+                                          break;
 
-                                case 5:
-                                    num26 += 6f;
-                                    break;
+                                      case 5:
+                                          num26 += 6f;
+                                          break;
 
-                                case 6:
-                                    num26 += 2f;
-                                    break;
+                                      case 6:
+                                          num26 += 2f;
+                                          break;
 
-                                case 7:
-                                    num26 += 0f;
-                                    break;
+                                      case 7:
+                                          num26 += 0f;
+                                          break;
 
-                                case 8:
-                                    num26 += 0f;
-                                    break;
+                                      case 8:
+                                          num26 += 0f;
+                                          break;
 
-                                case 9:
-                                    num26 += 0f;
-                                    break;
+                                      case 9:
+                                          num26 += 0f;
+                                          break;
 
-                                case 10:
-                                    num26 += 0f;
-                                    break;
-                            }
-                            float rotSpeed = (float)drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
-                            if (numGems > 0f)
-                            {
-                                float spacing = (float)Math.PI * 2f / numGems;
-                                float num29 = 0f;
-                                Vector2 ringSize = new Vector2(1.5f, 0.85f);
-                                List<DrawData> list = new List<DrawData>();
-                                for (int num30 = 0; num30 < 10; num30++)
-                                {
-                                    if (!ownedLargeGems[num30])
-                                    {
-                                        num29 += 1f;
-                                        continue;
-                                    }
-                                    Vector2 value14 = (rotSpeed + spacing * ((float)num30 - num29)).ToRotationVector2();
-                                    float num31 = num25;
-                                    if (flag2)
-                                    {
-                                        num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
-                                    }
+                                      case 10:
+                                          num26 += 0f;
+                                          break;
+                                  }
+                                  float rotSpeed = (float)drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
+                                  if (numGems > 0f)
+                                  {
+                                      float spacing = (float)Math.PI * 2f / numGems;
+                                      float num29 = 0f;
+                                      Vector2 ringSize = new Vector2(1.5f, 0.85f);
+                                      List<DrawData> list = new List<DrawData>();
+                                      for (int num30 = 0; num30 < 10; num30++)
+                                      {
+                                          if (!ownedLargeGems[num30])
+                                          {
+                                              num29 += 1f;
+                                              continue;
+                                          }
+                                          Vector2 value14 = (rotSpeed + spacing * ((float)num30 - num29)).ToRotationVector2();
+                                          float num31 = num25;
+                                          if (flag2)
+                                          {
+                                              num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
+                                          }
 
-                                    Texture2D texture2D4 = null;
-                                    if (num30 < 7)
-                                    {
-                                        texture2D4 = Main.gemTexture[num30];
-                                    }
-                                    else
-                                    {
-                                        switch (num30)
-                                        {
-                                            case 7:
-                                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
-                                                num31 *= 1.5f;
-                                                break;
+                                          Texture2D texture2D4 = null;
+                                          if (num30 < 7)
+                                          {
+                                              texture2D4 = Main.gemTexture[num30];
+                                          }
+                                          else
+                                          {
+                                              switch (num30)
+                                              {
+                                                  case 7:
+                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
+                                                      num31 *= 1.5f;
+                                                      break;
 
-                                            case 8:
-                                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
-                                                num31 *= 1.5f;
-                                                break;
+                                                  case 8:
+                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
+                                                      num31 *= 1.5f;
+                                                      break;
 
-                                            case 9:
-                                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
-                                                num31 *= 1.5f;
-                                                break;
-                                        }
-                                    }
+                                                  case 9:
+                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
+                                                      num31 *= 1.5f;
+                                                      break;
+                                              }
+                                          }
 
-                                    value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
-                                    list.Add(value);
-                                }
-                                if (flag2)
-                                {
-                                    list.Sort(DelegateMethods.CompareDrawSorterByYScale);
-                                }
-                                Main.playerDrawData.AddRange(list);
-                            }
-                        }
-                    });
+                                          value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
+                                          list.Add(value);
+                                      }
+                                      if (flag2)
+                                      {
+                                          list.Sort(DelegateMethods.CompareDrawSorterByYScale);
+                                      }
+                                      Main.playerDrawData.AddRange(list);
+                                  }
+                              }
+                          });
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {

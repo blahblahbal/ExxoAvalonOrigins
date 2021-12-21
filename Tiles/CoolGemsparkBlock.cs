@@ -12,14 +12,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class CoolGemsparkBlock : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(Color.DarkCyan);
-			Main.tileSolid[Type] = true;
-			Main.tileBrick[Type] = true;
-			drop = mod.ItemType("CoolGemsparkBlock");
+    public class CoolGemsparkBlock : ModTile
+    {
+        public static int R { get; private set; } = 160;
+        public static int G { get; private set; } = 0;
+        public static int B { get; private set; } = 0;
+        private static int style = 0;
+
+        public override void SetDefaults()
+        {
+            AddMapEntry(Color.DarkCyan);
+            Main.tileSolid[Type] = true;
+            Main.tileBrick[Type] = true;
+            drop = mod.ItemType("CoolGemsparkBlock");
             dustType = DustID.Ebonwood;
         }
 
@@ -40,7 +45,63 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 zero = Vector2.Zero;
             }
-            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(ExxoAvalonOrigins.gbvR, ExxoAvalonOrigins.gbvG, ExxoAvalonOrigins.gbvB), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(R, G, B), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+        }
+
+        public static void StaticUpdate()
+        {
+            if (style == 0)
+            {
+                R -= 5;
+                if (R <= 0)
+                {
+                    R = 0;
+                    style = 1;
+                }
+            }
+            if (style == 1)
+            {
+                G += 5;
+                if (G >= 255)
+                {
+                    G = 255;
+                }
+                if (G >= 160)
+                {
+                    B -= 5;
+                    if (B <= 0)
+                    {
+                        B = 0;
+                        style = 2;
+                    }
+                }
+            }
+            if (style == 2)
+            {
+                G -= 5;
+                if (G <= 0)
+                {
+                    G = 0;
+                }
+                if (G <= 160)
+                {
+                    B += 5;
+                    if (B >= 255)
+                    {
+                        B = 255;
+                        style = 3;
+                    }
+                }
+            }
+            if (style == 3)
+            {
+                R += 5;
+                if (R >= 160)
+                {
+                    R = 160;
+                    style = 0;
+                }
+            }
         }
     }
 }

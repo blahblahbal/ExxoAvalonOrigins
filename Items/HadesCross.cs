@@ -1,48 +1,53 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items
 {
-	class HadesCross : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Hades' Cross");
-			Tooltip.SetDefault("Provides the ability to breathe in, and free movement in lava\nNegates damage from lava");
-		}
+    internal class HadesCross : ModItem
+    {
+        public static Texture2D[] lavaMermanTextures = new Texture2D[]
+        {
+            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Head"),
+            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Body"),
+            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Arms"),
+            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
+            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Legs")
+        };
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Items/HadesCross");
-			item.defense = 3;
-			item.rare = ItemRarityID.LightPurple;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 9, 72, 0);
-			item.accessory = true;
-			item.height = dims.Height;
-		}
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Hades' Cross");
+            Tooltip.SetDefault("Provides the ability to breathe in, and free movement in lava\nNegates damage from lava");
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
-			var flag = Collision.LavaCollision(player.position, player.width, player.height);
-			if (flag)
-			{
-				player.GetModPlayer<ExxoAvalonOriginsModPlayer>().mermanLava = true;
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Items/HadesCross");
+            item.defense = 3;
+            item.rare = ItemRarityID.LightPurple;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 9, 72, 0);
+            item.accessory = true;
+            item.height = dims.Height;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            bool flag = Collision.LavaCollision(player.position, player.width, player.height);
+            if (flag)
+            {
+                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().mermanLava = true;
                 player.merman = true;
-				player.accFlipper = true;
-				player.ignoreWater = true;
-				player.lavaImmune = true;
-			}
-			player.lavaImmune = true;
-			player.fireWalk = true;
-			player.waterWalk = true;
-		}
-	}
+                player.accFlipper = true;
+                player.ignoreWater = true;
+                player.lavaImmune = true;
+            }
+            player.lavaImmune = true;
+            player.fireWalk = true;
+            player.waterWalk = true;
+        }
+    }
 }

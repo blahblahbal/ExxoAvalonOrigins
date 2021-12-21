@@ -75,12 +75,27 @@ namespace ExxoAvalonOrigins.UI
             // Magnet Potion
         };
 
+        public static readonly int[] Herbs = new int[]
+        {
+                ItemID.Daybloom,
+                ItemID.Moonglow,
+                ItemID.Blinkroot,
+                ItemID.Deathweed,
+                ItemID.Waterleaf,
+                ItemID.Fireblossom,
+                ItemID.Shiverthorn,
+                ModContent.ItemType<Items.Bloodberry>(),
+                ModContent.ItemType<Items.Sweetstem>(),
+                ModContent.ItemType<Items.Barfbush>()
+        };
+
+        private Item herbItem = new Item();
         public UIPanel herbologyBenchDisplay;
         public UIPanel button;
         public UIText text;
         internal float scale = 1f;
-        private Texture2D background = ExxoAvalonOrigins.tomeSlotBackgroundTexture;
-        private Texture2D herbButton = ExxoAvalonOrigins.herbButtonTexture;
+        private Texture2D background = TomeSlot.BackgroundTexture;
+        private static Texture2D herbButton = ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton");
 
         internal event Action<Item, Item> OnItemChange;
 
@@ -158,44 +173,44 @@ namespace ExxoAvalonOrigins.UI
             int ypos3 = 810;
             int num67 = xpos + 50 + 286;
             int num68 = ypos + 30 + 26;
-            if (ExxoAvalonOrigins.herbItem.type > ItemID.None)
+            if (herbItem.type > ItemID.None)
             {
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Daybloom)
+                if (herbItem.type == ItemID.Daybloom)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Moonglow)
+                if (herbItem.type == ItemID.Moonglow)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Blinkroot)
+                if (herbItem.type == ItemID.Blinkroot)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Deathweed)
+                if (herbItem.type == ItemID.Deathweed)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Waterleaf)
+                if (herbItem.type == ItemID.Waterleaf)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Fireblossom)
+                if (herbItem.type == ItemID.Fireblossom)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ItemID.Shiverthorn)
+                if (herbItem.type == ItemID.Shiverthorn)
                 {
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += ExxoAvalonOrigins.herbItem.stack;
-                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack;
+                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.BlahPotion>())
+                if (herbItem.type == ModContent.ItemType<Items.BlahPotion>())
                 {
                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += 2500;
                 }
@@ -217,9 +232,9 @@ namespace ExxoAvalonOrigins.UI
                     if (Main.hardMode) Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 3; // tier 4; Blah Potion exchange
                     else Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
                 }
-                ItemText.NewText(ExxoAvalonOrigins.herbItem, ExxoAvalonOrigins.herbItem.stack, false, false);
-                ExxoAvalonOrigins.herbItem = new Item();
-                ExxoAvalonOrigins.herbItem.stack = 0;
+                ItemText.NewText(herbItem, herbItem.stack, false, false);
+                herbItem = new Item();
+                herbItem.stack = 0;
                 Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
             }
         }
@@ -257,9 +272,9 @@ namespace ExxoAvalonOrigins.UI
                     var mouseLoc = new Point(Main.mouseX, Main.mouseY);
                     var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
                     Main.inventoryScale = 0.85f;
-                    var tmpItem = ExxoAvalonOrigins.herbItem;
+                    var tmpItem = herbItem;
                     //var mH = 0;
-                    itemInSlot = ExxoAvalonOrigins.herbItem.type > ItemID.None;
+                    itemInSlot = herbItem.type > ItemID.None;
                     r.X = xpos + 286;
                     r.Y = ypos + 16;
                     if (r.Contains(mouseLoc))
@@ -268,35 +283,35 @@ namespace ExxoAvalonOrigins.UI
                         Main.armorHide = true;
                         if (Main.mouseLeftRelease && Main.mouseLeft)
                         {
-                            if (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name)) && ExxoAvalonOrigins.herbItem.type == ItemID.None)
+                            if (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name)) && herbItem.type == ItemID.None)
                             {
                                 Main.PlaySound(SoundID.Grab, -1, -1, 1);
                                 Item item6 = Main.mouseItem;
-                                Main.mouseItem = ExxoAvalonOrigins.herbItem;
-                                ExxoAvalonOrigins.herbItem = item6;
+                                Main.mouseItem = herbItem;
+                                herbItem = item6;
                             }
-                            else if (Main.mouseItem.type == ItemID.None && ExxoAvalonOrigins.herbItem.type > ItemID.None)
+                            else if (Main.mouseItem.type == ItemID.None && herbItem.type > ItemID.None)
                             {
                                 Item item7 = Main.mouseItem;
-                                Main.mouseItem = ExxoAvalonOrigins.herbItem;
-                                ExxoAvalonOrigins.herbItem = item7;
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.None || ExxoAvalonOrigins.herbItem.stack < 1)
+                                Main.mouseItem = herbItem;
+                                herbItem = item7;
+                                if (herbItem.type == ItemID.None || herbItem.stack < 1)
                                 {
-                                    ExxoAvalonOrigins.herbItem = new Item();
+                                    herbItem = new Item();
                                 }
                                 if (Main.mouseItem.type == ItemID.None || Main.mouseItem.stack < 1)
                                 {
                                     Main.mouseItem = new Item();
                                 }
-                                if (Main.mouseItem.type > ItemID.None || ExxoAvalonOrigins.herbItem.type > ItemID.None)
+                                if (Main.mouseItem.type > ItemID.None || herbItem.type > ItemID.None)
                                 {
                                     Recipe.FindRecipes();
                                     Main.PlaySound(SoundID.Grab, -1, -1, 1);
                                 }
                             }
                         }
-                        Main.hoverItemName = ExxoAvalonOrigins.herbItem.type > ItemID.None ? ExxoAvalonOrigins.herbItem.Name : "";
-                        Main.HoverItem = ExxoAvalonOrigins.herbItem.Clone();
+                        Main.hoverItemName = herbItem.type > ItemID.None ? herbItem.Name : "";
+                        Main.HoverItem = herbItem.Clone();
                     }
                     ssa[0] = tmpItem;
                     ItemSlot.Draw(spriteBatch, ssa, 10, 0, new Vector2(r.X, r.Y));
@@ -307,7 +322,7 @@ namespace ExxoAvalonOrigins.UI
 
                     #region adding to herb/potion total
 
-                    if (ExxoAvalonOrigins.herbItem.type > ItemID.None)
+                    if (herbItem.type > ItemID.None)
                     {
                         spriteBatch.Draw(herbButton, new Vector2((float)num67, (float)num68), new Rectangle?(new Rectangle(0, 0, herbButton.Width, herbButton.Height)), Color.White, 0f, new Vector2((float)(herbButton.Width / 2), (float)(herbButton.Height / 2)), 1f, SpriteEffects.None, 0f);
                         if (Main.mouseX > num67 - herbButton.Width / 2 && Main.mouseX < num67 + herbButton.Width / 2 && Main.mouseY > num68 - herbButton.Height / 2 && Main.mouseY < num68 + herbButton.Height / 2)
@@ -316,172 +331,172 @@ namespace ExxoAvalonOrigins.UI
                             Main.player[Main.myPlayer].mouseInterface = true;
                             if (Main.mouseLeftRelease && Main.mouseLeft)
                             {
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Daybloom)
+                                if (herbItem.type == ItemID.Daybloom)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Moonglow)
+                                if (herbItem.type == ItemID.Moonglow)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Blinkroot)
+                                if (herbItem.type == ItemID.Blinkroot)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Deathweed)
+                                if (herbItem.type == ItemID.Deathweed)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Waterleaf)
+                                if (herbItem.type == ItemID.Waterleaf)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Fireblossom)
+                                if (herbItem.type == ItemID.Fireblossom)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ItemID.Shiverthorn)
+                                if (herbItem.type == ItemID.Shiverthorn)
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.Bloodberry>())
+                                if (herbItem.type == ModContent.ItemType<Items.Bloodberry>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.Sweetstem>())
+                                if (herbItem.type == ModContent.ItemType<Items.Sweetstem>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.Barfbush>())
+                                if (herbItem.type == ModContent.ItemType<Items.Barfbush>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += ExxoAvalonOrigins.herbItem.stack;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeDaybloom>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeDaybloom>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeDaybloomSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeDaybloomSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeMoonglow>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeMoonglow>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeMoonglowSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeMoonglowSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeBlinkroot>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeBlinkroot>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeBlinkrootSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeBlinkrootSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeDeathweed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeDeathweed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeDeathweedSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeDeathweedSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeWaterleaf>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeWaterleaf>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeWaterleafSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeWaterleafSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeFireblossom>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeFireblossom>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeFireblossomSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeFireblossomSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeShiverthorn>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeShiverthorn>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeShiverthornSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeShiverthornSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeBloodberry>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeBloodberry>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeBloodberrySeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeBloodberrySeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeSweetstem>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeSweetstem>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeSweetstemSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeSweetstemSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeBarfbush>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeBarfbush>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += ExxoAvalonOrigins.herbItem.stack * 20;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += herbItem.stack * 20;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LargeBarfbushSeed>())
+                                if (herbItem.type == ModContent.ItemType<Items.LargeBarfbushSeed>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += ExxoAvalonOrigins.herbItem.stack * 15;
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += ExxoAvalonOrigins.herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += herbItem.stack * 15;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if ((ExxoAvalonOrigins.herbItem.type >= ItemID.ObsidianSkinPotion && ExxoAvalonOrigins.herbItem.type <= ItemID.GravitationPotion) || (ExxoAvalonOrigins.herbItem.type >= ItemID.MiningPotion && ExxoAvalonOrigins.herbItem.type <= ItemID.TrapsightPotion) ||
-                                    (ExxoAvalonOrigins.herbItem.type >= ItemID.AmmoReservationPotion && ExxoAvalonOrigins.herbItem.type <= ItemID.WrathPotion) || (ExxoAvalonOrigins.herbItem.type >= ItemID.FishingPotion && ExxoAvalonOrigins.herbItem.type <= ItemID.CratePotion) ||
-                                    ExxoAvalonOrigins.herbItem.type == ItemID.WarmthPotion || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.CrimsonPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.ShockwavePotion>() ||
-                                    ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.LuckPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.BloodCastPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.StarbrightPotion>() ||
-                                    ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.VisionPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.StrengthPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.GPSPotion>() ||
-                                    ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.TimeShiftPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.ShadowPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.RoguePotion>() ||
-                                    ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.WisdomPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.GauntletPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.TitanskinPotion>() ||
-                                    ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.InvincibilityPotion>() || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.ForceFieldPotion>()) // || ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.MagnetPotion>())
+                                if ((herbItem.type >= ItemID.ObsidianSkinPotion && herbItem.type <= ItemID.GravitationPotion) || (herbItem.type >= ItemID.MiningPotion && herbItem.type <= ItemID.TrapsightPotion) ||
+                                    (herbItem.type >= ItemID.AmmoReservationPotion && herbItem.type <= ItemID.WrathPotion) || (herbItem.type >= ItemID.FishingPotion && herbItem.type <= ItemID.CratePotion) ||
+                                    herbItem.type == ItemID.WarmthPotion || herbItem.type == ModContent.ItemType<Items.CrimsonPotion>() || herbItem.type == ModContent.ItemType<Items.ShockwavePotion>() ||
+                                    herbItem.type == ModContent.ItemType<Items.LuckPotion>() || herbItem.type == ModContent.ItemType<Items.BloodCastPotion>() || herbItem.type == ModContent.ItemType<Items.StarbrightPotion>() ||
+                                    herbItem.type == ModContent.ItemType<Items.VisionPotion>() || herbItem.type == ModContent.ItemType<Items.StrengthPotion>() || herbItem.type == ModContent.ItemType<Items.GPSPotion>() ||
+                                    herbItem.type == ModContent.ItemType<Items.TimeShiftPotion>() || herbItem.type == ModContent.ItemType<Items.ShadowPotion>() || herbItem.type == ModContent.ItemType<Items.RoguePotion>() ||
+                                    herbItem.type == ModContent.ItemType<Items.WisdomPotion>() || herbItem.type == ModContent.ItemType<Items.GauntletPotion>() || herbItem.type == ModContent.ItemType<Items.TitanskinPotion>() ||
+                                    herbItem.type == ModContent.ItemType<Items.InvincibilityPotion>() || herbItem.type == ModContent.ItemType<Items.ForceFieldPotion>()) // || herbItem.type == ModContent.ItemType<Items.MagnetPotion>())
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += ExxoAvalonOrigins.herbItem.stack;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += herbItem.stack;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.Name.Contains("Advanced") && ExxoAvalonOrigins.herbItem.Name.Contains("Potion"))
+                                if (herbItem.Name.Contains("Advanced") && herbItem.Name.Contains("Potion"))
                                 {
-                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += ExxoAvalonOrigins.herbItem.stack * 10;
+                                    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += herbItem.stack * 10;
                                 }
-                                if (ExxoAvalonOrigins.herbItem.type == ModContent.ItemType<Items.BlahPotion>())
+                                if (herbItem.type == ModContent.ItemType<Items.BlahPotion>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += 2500;
                                 }
@@ -503,9 +518,9 @@ namespace ExxoAvalonOrigins.UI
                                     if (Main.hardMode) Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 3; // tier 4; Blah Potion exchange
                                     else Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
                                 }
-                                ItemText.NewText(ExxoAvalonOrigins.herbItem, ExxoAvalonOrigins.herbItem.stack, false, false);
-                                ExxoAvalonOrigins.herbItem = new Item();
-                                ExxoAvalonOrigins.herbItem.stack = 0;
+                                ItemText.NewText(herbItem, herbItem.stack, false, false);
+                                herbItem = new Item();
+                                herbItem.stack = 0;
                                 Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
                             }
                         }
@@ -527,23 +542,23 @@ namespace ExxoAvalonOrigins.UI
                     //        if (Main.mouseLeftRelease && Main.mouseLeft && Main.player[Main.myPlayer].itemTime == 0)
                     //        {
                     //            Item item9 = Main.mouseItem;
-                    //            Main.mouseItem = ExxoAvalonOrigins.herbItem;
-                    //            ExxoAvalonOrigins.herbItem = item9;
-                    //            if (ExxoAvalonOrigins.herbItem.type == 0 || ExxoAvalonOrigins.herbItem.stack < 1)
+                    //            Main.mouseItem = herbItem;
+                    //            herbItem = item9;
+                    //            if (herbItem.type == 0 || herbItem.stack < 1)
                     //            {
-                    //                ExxoAvalonOrigins.herbItem = new Item();
+                    //                herbItem = new Item();
                     //            }
-                    //            if (Main.mouseItem.IsTheSameAs(Main.reforgeItem) && ExxoAvalonOrigins.herbItem.stack != ExxoAvalonOrigins.herbItem.maxStack && Main.mouseItem.stack != Main.mouseItem.maxStack)
+                    //            if (Main.mouseItem.IsTheSameAs(Main.reforgeItem) && herbItem.stack != herbItem.maxStack && Main.mouseItem.stack != Main.mouseItem.maxStack)
                     //            {
-                    //                if (Main.mouseItem.stack + ExxoAvalonOrigins.herbItem.stack <= Main.mouseItem.maxStack)
+                    //                if (Main.mouseItem.stack + herbItem.stack <= Main.mouseItem.maxStack)
                     //                {
-                    //                    ExxoAvalonOrigins.herbItem.stack += Main.mouseItem.stack;
+                    //                    herbItem.stack += Main.mouseItem.stack;
                     //                    Main.mouseItem.stack = 0;
                     //                }
                     //                else
                     //                {
-                    //                    int num69 = Main.mouseItem.maxStack - ExxoAvalonOrigins.herbItem.stack;
-                    //                    ExxoAvalonOrigins.herbItem.stack += num69;
+                    //                    int num69 = Main.mouseItem.maxStack - herbItem.stack;
+                    //                    herbItem.stack += num69;
                     //                    Main.mouseItem.stack -= num69;
                     //                }
                     //            }
@@ -551,24 +566,24 @@ namespace ExxoAvalonOrigins.UI
                     //            {
                     //                Main.mouseItem = new Item();
                     //            }
-                    //            if (Main.mouseItem.type > 0 || ExxoAvalonOrigins.herbItem.type > 0)
+                    //            if (Main.mouseItem.type > 0 || herbItem.type > 0)
                     //            {
                     //                Recipe.FindRecipes();
                     //                Main.PlaySound(7, -1, -1, 1);
                     //            }
                     //        }
-                    //        else if (Main.stackSplit <= 1 && Main.mouseRight && (Main.mouseItem.IsTheSameAs(ExxoAvalonOrigins.herbItem) || Main.mouseItem.type == 0) && (Main.mouseItem.stack < Main.mouseItem.maxStack || Main.mouseItem.type == 0))
+                    //        else if (Main.stackSplit <= 1 && Main.mouseRight && (Main.mouseItem.IsTheSameAs(herbItem) || Main.mouseItem.type == 0) && (Main.mouseItem.stack < Main.mouseItem.maxStack || Main.mouseItem.type == 0))
                     //        {
                     //            if (Main.mouseItem.type == 0)
                     //            {
-                    //                Main.mouseItem = ExxoAvalonOrigins.herbItem.Clone();
+                    //                Main.mouseItem = herbItem.Clone();
                     //                Main.mouseItem.stack = 0;
                     //            }
                     //            Main.mouseItem.stack++;
-                    //            ExxoAvalonOrigins.herbItem.stack--;
-                    //            if (ExxoAvalonOrigins.herbItem.stack <= 0)
+                    //            herbItem.stack--;
+                    //            if (herbItem.stack <= 0)
                     //            {
-                    //                ExxoAvalonOrigins.herbItem = new Item();
+                    //                herbItem = new Item();
                     //            }
                     //            Recipe.FindRecipes();
                     //            Main.soundInstanceMenuTick.Stop();
@@ -584,16 +599,16 @@ namespace ExxoAvalonOrigins.UI
                     //            }
                     //        }
                     //    }
-                    //    Main.hoverItemName = ExxoAvalonOrigins.herbItem.Name;
-                    //    Main.HoverItem = ExxoAvalonOrigins.herbItem.Clone();
-                    //    if (ExxoAvalonOrigins.herbItem.stack > 1)
+                    //    Main.hoverItemName = herbItem.Name;
+                    //    Main.HoverItem = herbItem.Clone();
+                    //    if (herbItem.stack > 1)
                     //    {
                     //        object obj = Main.hoverItemName;
                     //        Main.hoverItemName = string.Concat(new object[]
                     //        {
                     //            obj,
                     //            " (",
-                    //            ExxoAvalonOrigins.herbItem.stack,
+                    //            herbItem.stack,
                     //            ")"
                     //        });
                     //    }
@@ -2246,7 +2261,7 @@ namespace ExxoAvalonOrigins.UI
                         if (Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                         {
                             Main.player[Main.myPlayer].mouseInterface = true;
-                            Main.hoverItemName = ExxoAvalonOrigins.herbNames[xoff] + ": " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[xoff].ToString() + "\nClick to exchange";
+                            Main.hoverItemName = Lang.GetItemName(Herbs[xoff]).Value + ": " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[xoff].ToString() + "\nClick to exchange";
                         }
                         switch (xoff)
                         {
@@ -2593,9 +2608,9 @@ namespace ExxoAvalonOrigins.UI
         //    var mouseLoc = new Point(Main.mouseX, Main.mouseY);
         //    var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
         //    Main.inventoryScale = 0.85f;
-        //    var tmpItem = ExxoAvalonOrigins.herbItem;
+        //    var tmpItem = herbItem;
         //    var mH = 0;
-        //    itemInSlot = ExxoAvalonOrigins.herbItem.type > 0;
+        //    itemInSlot = herbItem.type > 0;
         //    r.X = xpos + 10 + 286;
         //    r.Y = ypos + 26;
         //    if (r.Contains(mouseLoc))
@@ -2604,35 +2619,35 @@ namespace ExxoAvalonOrigins.UI
         //        Main.armorHide = true;
         //        if (Main.mouseLeftRelease && Main.mouseLeft)
         //        {
-        //            if (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type)) && ExxoAvalonOrigins.herbItem.type == 0)
+        //            if (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type)) && herbItem.type == 0)
         //            {
         //                Main.PlaySound(7, -1, -1, 1);
         //                Item item6 = Main.mouseItem;
-        //                Main.mouseItem = ExxoAvalonOrigins.herbItem;
-        //                ExxoAvalonOrigins.herbItem = item6;
+        //                Main.mouseItem = herbItem;
+        //                herbItem = item6;
         //            }
-        //            else if (Main.mouseItem.type == 0 && ExxoAvalonOrigins.herbItem.type > 0)
+        //            else if (Main.mouseItem.type == 0 && herbItem.type > 0)
         //            {
         //                Item item7 = Main.mouseItem;
-        //                Main.mouseItem = ExxoAvalonOrigins.herbItem;
-        //                ExxoAvalonOrigins.herbItem = item7;
-        //                if (ExxoAvalonOrigins.herbItem.type == 0 || ExxoAvalonOrigins.herbItem.stack < 1)
+        //                Main.mouseItem = herbItem;
+        //                herbItem = item7;
+        //                if (herbItem.type == 0 || herbItem.stack < 1)
         //                {
-        //                    ExxoAvalonOrigins.herbItem = new Item();
+        //                    herbItem = new Item();
         //                }
         //                if (Main.mouseItem.type == 0 || Main.mouseItem.stack < 1)
         //                {
         //                    Main.mouseItem = new Item();
         //                }
-        //                if (Main.mouseItem.type > 0 || ExxoAvalonOrigins.herbItem.type > 0)
+        //                if (Main.mouseItem.type > 0 || herbItem.type > 0)
         //                {
         //                    Recipe.FindRecipes();
         //                    Main.PlaySound(7, -1, -1, 1);
         //                }
         //            }
         //        }
-        //        Main.hoverItemName = ExxoAvalonOrigins.herbItem.type > 0 ? ExxoAvalonOrigins.herbItem.Name : "";
-        //        Main.HoverItem = ExxoAvalonOrigins.herbItem.Clone();
+        //        Main.hoverItemName = herbItem.type > 0 ? herbItem.Name : "";
+        //        Main.HoverItem = herbItem.Clone();
         //    }
         //    ssa[0] = tmpItem;
         //    ItemSlot.Draw(spriteBatch, ssa, 10, 0, new Vector2(r.X, r.Y));

@@ -16,6 +16,7 @@ namespace ExxoAvalonOrigins.NPCs
     public class WallofSteel : ModNPC
     {
         private static Texture2D wosTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/WallofSteel");
+        private static Texture2D mechaHungryChainTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/MechaHungryChain");
 
         public override void SetStaticDefaults()
         {
@@ -143,7 +144,7 @@ namespace ExxoAvalonOrigins.NPCs
                             num9 = num6 - vector2.X;
                             num10 = num7 - vector2.Y;
                             Color color2 = Lighting.GetColor((int)vector2.X / 16, (int)(vector2.Y / 16f));
-                            Main.spriteBatch.Draw(ExxoAvalonOrigins.mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, ExxoAvalonOrigins.mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2((float)ExxoAvalonOrigins.mechaHungryChainTexture.Width * 0.5f, (float)ExxoAvalonOrigins.mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
+                            Main.spriteBatch.Draw(mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2((float)mechaHungryChainTexture.Width * 0.5f, (float)mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
                         }
                     }
                 }

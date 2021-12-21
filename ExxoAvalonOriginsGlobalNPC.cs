@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ExxoAvalonOrigins.Items;
 using Microsoft.Xna.Framework;
@@ -10,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
-    class ExxoAvalonOriginsGlobalNPC : GlobalNPC
+    internal class ExxoAvalonOriginsGlobalNPC : GlobalNPC
     {
         public static float endoSpawnRate = 0.25f;
         public static bool stoppedArmageddon = false;
@@ -89,7 +88,10 @@ namespace ExxoAvalonOrigins
                 pool.Add(ModContent.NPCType<NPCs.EctoHand>(), 0.5f);
                 pool.Add(ModContent.NPCType<NPCs.HellboundLizard>(), 1f);
                 pool.Add(ModContent.NPCType<NPCs.Gargoyle>(), 1f);
-                if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode) pool.Add(ModContent.NPCType<NPCs.ArmoredHellTortoise>(), 1f);
+                if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
+                {
+                    pool.Add(ModContent.NPCType<NPCs.ArmoredHellTortoise>(), 1f);
+                }
             }
         }
 
@@ -125,7 +127,7 @@ namespace ExxoAvalonOrigins
             {
                 spawnRate = (int)(spawnRate * 0.6);
                 maxSpawns += 3;
-                if (player.position.Y <= Main.worldSurface * 16.0 + NPC.sHeight)
+                if (player.position.Y <= (Main.worldSurface * 16.0) + NPC.sHeight)
                 {
                     spawnRate = (int)(spawnRate * 0.55);
                     maxSpawns = (int)(maxSpawns * 1.11);
@@ -161,7 +163,7 @@ namespace ExxoAvalonOrigins
         /// <param name="essence">Whether or not the method will broadcast the "has awoken!" message.</param>
         public static void SpawnWOS(Vector2 pos, bool essence = false)
         {
-            if (pos.Y / 16f < (float)(Main.maxTilesY - 205))
+            if (pos.Y / 16f < Main.maxTilesY - 205)
             {
                 return;
             }
@@ -174,7 +176,7 @@ namespace ExxoAvalonOrigins
                 return;
             }
             int num = 1;
-            if (pos.X / 16f > (float)(Main.maxTilesX / 2))
+            if (pos.X / 16f > Main.maxTilesX / 2)
             {
                 num = -1;
             }
@@ -185,7 +187,7 @@ namespace ExxoAvalonOrigins
                 flag = true;
                 for (int i = 0; i < 255; i++)
                 {
-                    if (Main.player[i].active && Main.player[i].position.X > (float)(num2 - 1200) && Main.player[i].position.X < (float)(num2 + 1200))
+                    if (Main.player[i].active && Main.player[i].position.X > num2 - 1200 && Main.player[i].position.X < num2 + 1200)
                     {
                         num2 -= num * 16;
                         flag = false;
@@ -216,7 +218,7 @@ namespace ExxoAvalonOrigins
             catch
             {
             }
-        IL_162:
+IL_162:
             num3 = num5 * 16;
             int num7 = NPC.NewNPC(num2, num3, ModContent.NPCType<NPCs.WallofSteel>(), 0);
             if (Main.netMode == NetmodeID.Server && num7 < 200)
@@ -249,11 +251,11 @@ namespace ExxoAvalonOrigins
         /// <returns>Returns the int in the Main.npc[] array.</returns>
         public static int FindClosest(Vector2 pos, float dist)
         {
-            var result = -1;
-            var num = dist;
-            for (var i = 0; i < Main.npc.Length; i++)
+            int result = -1;
+            float num = dist;
+            for (int i = 0; i < Main.npc.Length; i++)
             {
-                var nPC = Main.npc[i];
+                NPC nPC = Main.npc[i];
                 if (nPC.active && !nPC.townNPC && nPC.lifeMax > 5 && Vector2.Distance(pos, nPC.Center) < num)
                 {
                     num = Vector2.Distance(pos, nPC.Center);
@@ -263,7 +265,7 @@ namespace ExxoAvalonOrigins
             return result;
         }
 
-        public void InitialiseNPCGroups()
+        public static void InitialiseNPCGroups()
         {
             slimes.Add(NPCID.BlueSlime);
             slimes.Add(NPCID.MotherSlime);
@@ -458,13 +460,11 @@ namespace ExxoAvalonOrigins
                 InitialiseNPCGroups();
                 initialised = true;
             }
-            var maxValue = 100;
-            var maxValue2 = 200;
-            var maxValue3 = 1000;
+            int maxValue = 100;
+            int maxValue3 = 1000;
             if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)
             {
                 maxValue = 50;
-                maxValue2 = 100;
                 maxValue3 = 500;
             }
             if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.rand.Next(5) == 0 && npc.lifeMax > 5 && !npc.friendly && Main.hardMode)
@@ -494,7 +494,7 @@ namespace ExxoAvalonOrigins
                 }
                 else
                 {
-                    List<int> list = new List<int>
+                    var list = new List<int>
                     {
                         ItemID.Stynger,
                         ItemID.StaffofEarth,
@@ -540,7 +540,7 @@ namespace ExxoAvalonOrigins
             }
             if (Main.rand.Next(600) == 0)
             {
-                var potionToDrop = 0;
+                int potionToDrop = 0;
                 switch (Main.rand.Next(22))
                 {
                     case 0:
@@ -677,7 +677,7 @@ namespace ExxoAvalonOrigins
             }
             if (npc.type == NPCID.HellArmoredBones || npc.type == NPCID.HellArmoredBonesSpikeShield || npc.type == NPCID.HellArmoredBonesMace || npc.type == NPCID.HellArmoredBonesSword)
             {
-                var hellArmourToDrop = Main.rand.Next(66);
+                int hellArmourToDrop = Main.rand.Next(66);
                 if (hellArmourToDrop == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HellArmoredHelmet>());
@@ -943,7 +943,7 @@ namespace ExxoAvalonOrigins
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BirthofaMonster>(), 1, false, 0, false);
             }
-            if (npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || npc.type == NPCID.EnchantedSword && Main.rand.Next(80) == 0)
+            if (npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || (npc.type == NPCID.EnchantedSword && Main.rand.Next(80) == 0))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Clash>(), 1, false, 0, false);
             }
@@ -963,7 +963,7 @@ namespace ExxoAvalonOrigins
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ACometHasStruckGround>(), 1, false, 0, false);
             }
-            if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < Main.worldSurface * 16.0 + Main.screenHeight / 2 && (Main.rand.Next(500) == 0 || (Main.rand.Next(400) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
+            if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < (Main.worldSurface * 16.0) + (Main.screenHeight / 2) && (Main.rand.Next(500) == 0 || (Main.rand.Next(400) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EclipseofDoom>(), 1, false, 0, false);
             }
@@ -981,7 +981,7 @@ namespace ExxoAvalonOrigins
             }
             if (npc.type == NPCID.PossessedArmor)
             {
-                var possessedArmourToDrop = Main.rand.Next(111);
+                int possessedArmourToDrop = Main.rand.Next(111);
                 if (possessedArmourToDrop == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PossessedArmorHelmet>(), 1, false, 0, false);
@@ -1025,7 +1025,7 @@ namespace ExxoAvalonOrigins
             }
             if (npc.type == NPCID.DungeonSpirit)
             {
-                var phantomeItemToDrop = Main.rand.Next(40);
+                int phantomeItemToDrop = Main.rand.Next(40);
                 if (phantomeItemToDrop == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PhantomMask>(), 1, false, 0, false);
@@ -1099,7 +1099,7 @@ namespace ExxoAvalonOrigins
                 }
             }
             if ((Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().ethHeart && Main.rand.Next(30) == 0) ||
-                (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem && Main.rand.Next(50) == 0) && npc.lifeMax > 5)
+                (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem && Main.rand.Next(50) == 0 && npc.lifeMax > 5))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PlatinumHeart>(), 1, false, 0, false);
             }
@@ -1115,16 +1115,16 @@ namespace ExxoAvalonOrigins
         {
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().lavaWalk)
             {
-                npc.velocity = ExxoAvalonOrigins.LavaCollision(npc.position, npc.velocity, npc.width, npc.height, false, false, npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().lavaWalk);
+                npc.velocity = ExxoAvalonOrigins.LavaCollision(npc.position, npc.velocity, npc.width, npc.height, false);
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().electrified && !npc.buffImmune[BuffID.Electrified])
             {
-                npc.velocity.X = npc.velocity.X * 0.05f;
+                npc.velocity.X *= 0.05f;
                 npc.color = new Color(20, 240, 0, 100);
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().frozen && !npc.buffImmune[ModContent.BuffType<Buffs.Frozen>()])
             {
-                npc.velocity.X = npc.velocity.X * 0.2f;
+                npc.velocity.X *= 0.2f;
                 npc.color = new Color(0, 144, 255, 100);
             }
         }
@@ -1234,14 +1234,20 @@ namespace ExxoAvalonOrigins
         {
             if (npc.type == NPCID.Golem && !NPC.downedGolemBoss)
             {
-                for (int a = 0; a < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 0.00008); a++)
+                for (int a = 0; a < (int)(Main.maxTilesX * Main.maxTilesY * 0.00008); a++)
                 {
-                    int x = WorldGen.genRand.Next(100, (int)Main.maxTilesX - 100);
+                    int x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                     int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
                     WorldGen.OreRunner(x, y, WorldGen.genRand.Next(4, 7), WorldGen.genRand.Next(4, 8), (ushort)ModContent.TileType<Tiles.SolariumOre>());
                 }
-                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText("Your world has been energized with Solarium!", 244, 167, 0);
-                else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been energized with Solarium!"), new Color(244, 167, 0));
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText("Your world has been energized with Solarium!", 244, 167, 0);
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been energized with Solarium!"), new Color(244, 167, 0));
+                }
             }
 
             if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism || npc.type == NPCID.SkeletronPrime)
@@ -1249,24 +1255,30 @@ namespace ExxoAvalonOrigins
                 if (!NPC.downedMechBossAny)
                 {
                     if ((npc.type == NPCID.Spazmatism && NPC.AnyNPCs(NPCID.Retinazer)) || (npc.type == NPCID.Retinazer && NPC.AnyNPCs(NPCID.Spazmatism)))
+                    {
                         return base.PreNPCLoot(npc);
+                    }
 
-                    int amount = 0;
                     double num5 = Main.rockLayer;
                     int xloc = -100 + Main.maxTilesX - 100;
                     int yloc = -(int)num5 + Main.maxTilesY - 200;
                     int sum = xloc * yloc;
-                    amount = (sum / 10000) * 10;
+                    int amount = (sum / 10000) * 10;
                     for (int zz = 0; zz < amount; zz++)
                     {
                         int i2 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
-                        double num6;
-                        num6 = Main.rockLayer;
+                        double num6 = Main.rockLayer;
                         int j2 = WorldGen.genRand.Next((int)num6, Main.maxTilesY - 200);
-                        WorldGen.OreRunner(i2, j2, (double)WorldGen.genRand.Next(WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(4, 6)), WorldGen.genRand.Next(WorldGen.genRand.Next(3, 5), WorldGen.genRand.Next(4, 8)), (ushort)ModContent.TileType<Tiles.HallowedOre>());
+                        WorldGen.OreRunner(i2, j2, WorldGen.genRand.Next(WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(4, 6)), WorldGen.genRand.Next(WorldGen.genRand.Next(3, 5), WorldGen.genRand.Next(4, 8)), (ushort)ModContent.TileType<Tiles.HallowedOre>());
                     }
-                    if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText("Your world has been blessed with Hallowed Ore!", 220, 170, 0);
-                    else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Hallowed Ore!"), new Color(220, 170, 0));
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText("Your world has been blessed with Hallowed Ore!", 220, 170, 0);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Hallowed Ore!"), new Color(220, 170, 0));
+                    }
                 }
             }
             if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contaigon)
@@ -1283,7 +1295,7 @@ namespace ExxoAvalonOrigins
             npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().spikeTimer++;
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().spikeTimer >= 60 && !npc.townNPC && npc.lifeMax > 5 && !npc.dontTakeDamage && !npc.noTileCollide && ExxoAvalonOriginsCollisions.SpikeCollision2(npc.position, npc.width, npc.height))
             {
-                npc.StrikeNPC(30 + npc.defense / 2, 0f, 0, false, false);
+                npc.StrikeNPC(30 + (npc.defense / 2), 0f, 0, false, false);
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().spikeTimer = 0;
             }
         }
