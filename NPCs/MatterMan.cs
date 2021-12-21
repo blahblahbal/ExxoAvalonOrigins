@@ -12,42 +12,45 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class MatterMan : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Matter Man");
-			Main.npcFrameCount[npc.type] = 5;
-		}
+    public class MatterMan : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Matter Man");
+            Main.npcFrameCount[npc.type] = 5;
+        }
+
         public override void SetDefaults()
-		{
-			npc.damage = 100;
-			npc.netAlways = true;
-			npc.scale = 1f;
-			npc.lifeMax = 1200;
-			npc.defense = 40;
-			npc.width = 18;
-			npc.aiStyle = -1;
-			npc.value = Item.buyPrice(0, 1, 0, 0);
-			npc.height = 40;
-			npc.knockBackResist = 0.3f;
+        {
+            npc.damage = 100;
+            npc.netAlways = true;
+            npc.scale = 1f;
+            npc.lifeMax = 1200;
+            npc.defense = 40;
+            npc.width = 18;
+            npc.aiStyle = -1;
+            npc.value = Item.buyPrice(0, 1, 0, 0);
+            npc.height = 40;
+            npc.knockBackResist = 0.3f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.MatterManBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.6f);
         }
+
         public override void NPCLoot()
-		{
-			
-		}
+        {
+        }
+
         public override void AI()
         {
             bool flag3 = false;
@@ -471,14 +474,16 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.ai[2] = 0f;
             }
         }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ExxoAvalonOrigins.superHardmode)
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
             {
                 return 1f;
             }
             return 0f;
         }
+
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.X > 0f)

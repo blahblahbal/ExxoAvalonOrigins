@@ -1,9 +1,9 @@
-﻿using ExxoAvalonOrigins.NPCs.Utils;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ExxoAvalonOrigins.NPCs.Utils;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
@@ -225,7 +225,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
             protected override void Update()
             {
-                // Fire shot 
+                // Fire shot
                 if (Main.netMode != NetmodeID.MultiplayerClient && remainingDashes <= 0)
                 {
                     Vector2 unitVectorToNode = nodePosition.SafeNormalize(Vector2.UnitX);
@@ -321,7 +321,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
             {
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
-                    Filters.Scene.Activate(Effects.Effects.SceneKeyOblivionDarkenScreen).GetShader().UseColor(tintColor);
+                    Filters.Scene.Activate(Effects.EffectsManager.SceneKeyOblivionDarkenScreen).GetShader().UseColor(tintColor);
                     ModNPC.npc.altTexture = 1;
                 }
             }
@@ -357,7 +357,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
             {
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
-                    Filters.Scene[Effects.Effects.SceneKeyOblivionDarkenScreen].Deactivate();
+                    Filters.Scene[Effects.EffectsManager.SceneKeyOblivionDarkenScreen].Deactivate();
                     ModNPC.npc.altTexture = 0;
                 }
                 ModNPC.npc.alpha = 0;
@@ -647,14 +647,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    for (var i = ActiveDrones.Count; i < MaxDrones; i++)
+                    for (int i = ActiveDrones.Count; i < MaxDrones; i++)
                     {
                         ActiveDrones.Add(NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y,
                                 ModContent.NPCType<Oblivion.ShieldDrone>(), 0,
                                 npc.whoAmI, i, MaxDrones));
                     }
 
-                    for (var i = 0; i < ActiveDrones.Count; i++)
+                    for (int i = 0; i < ActiveDrones.Count; i++)
                     {
                         if (!Main.npc[ActiveDrones[i]].active)
                         {

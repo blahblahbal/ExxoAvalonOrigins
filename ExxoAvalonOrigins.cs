@@ -1,14 +1,11 @@
-﻿using ExxoAvalonOrigins.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
-using System.Text;
+using ExxoAvalonOrigins.UI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -25,8 +22,8 @@ namespace ExxoAvalonOrigins
         public readonly Version version = new Version(0, 9, 5, 0, DevMode);
 
         // Hotkeys
-        public ModHotKey shadowHotkey;
 
+        public ModHotKey shadowHotkey;
         public ModHotKey sprintHotkey;
         public ModHotKey dashHotkey;
         public ModHotKey quintupleHotkey;
@@ -37,121 +34,17 @@ namespace ExxoAvalonOrigins
         public ModHotKey astralHotkey;
         public ModHotKey minionGuidingHotkey;
 
-        public static bool armaRO = false; //TODO: Move out and make better implementation
-        public static int dungeonEx = 0; //TODO: implement X catch in worldgen
-        public static int jungleEx = 0; //TODO: implement X catch in worldgen
-        public static bool superHardmode;
-        public static Texture2D BeamVTexture;
-        public static Texture2D BeamStartTexture;
-        public static Texture2D BeamEndTexture;
-        public static Texture2D wosTexture;
-        public static Texture2D mechaHungryChainTexture;
-        public static Texture2D[] lavaMermanTextures = new Texture2D[5];
-        public static Texture2D[] originalMermanTextures = new Texture2D[5];
+        // UI
 
-        //public static Texture2D impTreeTexture;
-
-        public static Texture2D heart3Texture;
-        public static Texture2D mana2Texture;
-        public static Texture2D mana3Texture;
-        public static Texture2D mana4Texture;
-        public static Texture2D mana5Texture;
-        public static Texture2D mana6Texture;
-        public static Texture2D tomeSlotBackgroundTexture;
-        public static Texture2D herbButtonTexture;
+        private UserInterface staminaInterface;
         private UserInterface tomeSlotUserInterface;
         private UserInterface herbologyUserInterface;
-
-        public int royStyle;
-        public static int royG = 0;
-        public int gbvStyle;
-        public static int gbvR = 160;
-        public static int gbvG = 0;
-        public static int gbvB = 0;
-
-        public static Item herbItem;
-        public static string[] herbNames = new string[10] { "Daybloom", "Moonglow", "Blinkroot", "Deathweed", "Waterleaf", "Fireblossom", "Shiverthorn", "Bloodberry", "Sweetstem", "Barfbush" };
-
-        public static string[] potionNames = new string[54]
-        {
-            "Obsidian Skin",
-            "Regeneration",
-            "Swiftness",
-            "Gills",
-            "Ironskin",
-            "Mana Regeneration",
-            "Magic Power",
-            "Featherfall",
-            "Spelunker",
-            "Invisibility",
-            "Shine",
-            "Night Owl",
-            "Battle",
-            "Thorns",
-            "Water Walking",
-            "Archery",
-            "Hunter",
-            "Gravitation",
-            "Mining",
-            "Heartreach",
-            "Calming",
-            "Builder",
-            "Titan",
-            "Flipper",
-            "Summoning",
-            "Dangersense",
-            "Ammo Reservation",
-            "Lifeforce",
-            "Endurance",
-            "Rage",
-            "Inferno",
-            "Wrath",
-            "Fishing",
-            "Sonar",
-            "Crate",
-            "Warmth",
-            "Crimson",
-            "Shockwave",
-            "Luck",
-            "Blood Cast",
-            "Starbright",
-            "Vision",
-            "Strength",
-            "GPS",
-            "Time Shift",
-            "Shadow",
-            "Rogue",
-            "Gauntlet",
-            "Wisdom",
-            "Titanskin",
-            "Invincibility",
-            "Force Field",
-            "Fury",
-            "Magnet"
-        };
-
-        public static List<int> beams = new List<int>()
-        {
-            TileID.WoodenBeam,
-            ModContent.TileType<Tiles.BorealWoodBeam>(),
-            ModContent.TileType<Tiles.PearlwoodBeam>(),
-            ModContent.TileType<Tiles.ChunkstoneColumn>(),
-            ModContent.TileType<Tiles.PearlstoneColumn>(),
-            ModContent.TileType<Tiles.CrimstoneColumn>(),
-            ModContent.TileType<Tiles.EbonstoneColumn>(),
-            ModContent.TileType<Tiles.EbonwoodBeam>(),
-            ModContent.TileType<Tiles.SandstoneColumn>(),
-            ModContent.TileType<Tiles.CoughwoodBeam>(),
-            ModContent.TileType<Tiles.RichMahoganyBeam>(),
-            ModContent.TileType<Tiles.ShadewoodBeam>()
-        };
-
-        internal TomeSlot tomeSlot;
-        internal HerbologyBenchUI herbology;
         private StaminaBar staminaBar;
-        private UserInterface staminaInterface;
-        public bool subInterface = true;
-        public static ExxoAvalonOrigins mod;
+        private TomeSlot tomeSlot;
+        private HerbologyBenchUI herbology;
+
+        // Reference to the main instance of the mod
+        public static ExxoAvalonOrigins mod { get; private set; }
 
         public ExxoAvalonOrigins()
         {
@@ -160,7 +53,6 @@ namespace ExxoAvalonOrigins
 
         public override void Load()
         {
-            //Validate();
             if (!Main.dedServ)
             {
                 Mod musicMod = ModLoader.GetMod("AvalonMusic");
@@ -174,6 +66,26 @@ namespace ExxoAvalonOrigins
                     AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics"), ItemType("MusicBoxTropics"), TileType("MusicBoxes"), 36 * 5);
                     AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Phantasm"), ItemType("MusicBoxPhantasm"), TileType("MusicBoxes"), 36 * 6);
                 }
+
+                ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Texture2D[]
+                {
+                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Head"),
+                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Body"),
+                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Arms"),
+                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
+                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Legs")
+                };
+
+                ExxoAvalonOriginsModPlayer.originalMermanTextures = new Texture2D[]
+                {
+                    Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Head_39"),
+                    Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Body_22"),
+                    Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Arm_22"),
+                    Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Female_Body_22"),
+                    Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Legs_21")
+                };
+
+                // Vanilla Texture replacements
 
                 Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
                 Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");
@@ -190,31 +102,10 @@ namespace ExxoAvalonOrigins
                 Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");
                 Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
                 Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
-                lavaMermanTextures[0] = GetTexture("Sprites/LavaMerman_Head");
-                lavaMermanTextures[1] = GetTexture("Sprites/LavaMerman_Body");
-                lavaMermanTextures[2] = GetTexture("Sprites/LavaMerman_Arms");
-                lavaMermanTextures[3] = GetTexture("Sprites/LavaMerman_FemaleBody");
-                lavaMermanTextures[4] = GetTexture("Sprites/LavaMerman_Legs");
-                originalMermanTextures[0] = GetTexture("Sprites/Armor_Head_39");
-                originalMermanTextures[1] = GetTexture("Sprites/Armor_Body_22");
-                originalMermanTextures[2] = GetTexture("Sprites/Armor_Arm_22");
-                originalMermanTextures[3] = GetTexture("Sprites/Female_Body_22");
-                originalMermanTextures[4] = GetTexture("Sprites/Armor_Legs_21");
-                heart3Texture = GetTexture("Sprites/Heart3");
-                mana2Texture = GetTexture("Sprites/Mana2");
-                mana3Texture = GetTexture("Sprites/Mana3");
-                mana4Texture = GetTexture("Sprites/Mana4");
-                mana5Texture = GetTexture("Sprites/Mana5");
-                mana6Texture = GetTexture("Sprites/Mana6");
-                BeamVTexture = GetTexture("Sprites/BeamVenoshock");
-                BeamStartTexture = GetTexture("Sprites/BeamStart");
-                BeamEndTexture = GetTexture("Sprites/BeamEnd");
-                wosTexture = GetTexture("Sprites/WallofSteel");
-                mechaHungryChainTexture = GetTexture("Sprites/MechaHungryChain");
-                tomeSlotBackgroundTexture = GetTexture("Sprites/TomeSlotBackground");
-                //impTreeTexture = GetTexture("Sprites/ResistantTree");
-                herbButtonTexture = GetTexture("Sprites/HerbButton");
-                shadowHotkey = RegisterHotKey("Shadow Teleport", "V");//implemented TODO: Fix implementation of hotkeys
+
+                // Hotkeys
+
+                shadowHotkey = RegisterHotKey("Shadow Teleport", "V");
                 sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");//implemented?
                 dashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");
                 quintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
@@ -224,11 +115,13 @@ namespace ExxoAvalonOrigins
                 modeChangeHotkey = RegisterHotKey("Change Modes", "N");
                 astralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
                 minionGuidingHotkey = RegisterHotKey("Ancient Minion Guiding", "Mouse2");
+
+                // UI
+
                 tomeSlot = new TomeSlot();
                 tomeSlot.Activate();
                 tomeSlotUserInterface = new UserInterface();
                 tomeSlotUserInterface.SetState(tomeSlot);
-                herbItem = new Item();
                 herbology = new HerbologyBenchUI();
                 herbology.Activate();
                 herbologyUserInterface = new UserInterface();
@@ -237,32 +130,11 @@ namespace ExxoAvalonOrigins
                 staminaBar = new StaminaBar();
                 staminaInterface.SetState(staminaBar);
             }
-            /*for (int i = 0; i < Main.maxTileSets; i++)
-            {
-                minPick[i] = 0;
-            }
-            minPick[211] = 200;
-            minPick[mod.TileType("ShroomiteOre")] = 205;
-            minPick[TileID.Ebonstone] = minPick[TileID.Crimstone] = minPick[TileID.Pearlstone] = minPick[mod.TileType("Chunkstone")] =
-            minPick[TileID.Obsidian] = minPick[mod.TileType("RhodiumOre")] = minPick[mod.TileType("OsmiumOre")] = 60;
-            minPick[TileID.Meteorite] = 50;
-            minPick[TileID.Demonite] = minPick[TileID.Crimtane] = minPick[mod.TileType("BacciliteOre")] = minPick[mod.TileType("Tourmaline")] = minPick[mod.TileType("Peridot")] = minPick[mod.TileType("Zircon")] = 55;
-            minPick[TileID.LihzahrdBrick] = minPick[TileID.LihzahrdAltar] = minPick[mod.TileType("TritanoriumOre")] = minPick[mod.TileType("PyroscoricOre")] = minPick[mod.TileType("SolariumOre")] = 210;
-            minPick[TileID.Hellstone] = 65;
-            minPick[TileID.Cobalt] = minPick[TileID.Palladium] = minPick[mod.TileType("DurataniumOre")] = 100;
-            minPick[mod.TileType("BlueLihzahrdBrick")] = 400;
-            minPick[mod.TileType("UnvolanditeOre")] = minPick[mod.TileType("VorazylcumOre")] = 250;
-            minPick[TileID.Mythril] = minPick[TileID.Orichalcum] = minPick[mod.TileType("NaquadahOre")] = 110;
-            minPick[TileID.Adamantite] = minPick[TileID.Titanium] = minPick[mod.TileType("TroxiniumOre")] = 150;
-            minPick[mod.TileType("SolariumShrine")] = 9999;
-            minPick[mod.TileType("CaesiumOre")] = minPick[mod.TileType("Opal")] = 200;
-            minPick[mod.TileType("OblivionOre")] = minPick[mod.TileType("HydrolythOre")] = 300;
-            minPick[mod.TileType("FeroziumOre")] = 180;*/
 
-            Hooks.Hooks.AddHooks();
+            Hooks.HooksManager.Load();
+            Effects.EffectsManager.Load();
+
             Main.chTitle = true;
-            Effects.Effects.Load();
-
             //AddAvalonAlts();
         }
 
@@ -270,8 +142,6 @@ namespace ExxoAvalonOrigins
         {
             Main.logoTexture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
             Main.logo2Texture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo2");
-            base.Unload();
-            Main.chTitle = true;
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -281,76 +151,8 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateEverything()
         {
-            if (royStyle == 0)
-            {
-                royG += 5;
-                if (royG >= 255)
-                {
-                    royG = 255;
-                    royStyle = 1;
-                }
-            }
-            if (royStyle == 1)
-            {
-                royG -= 5;
-                if (royG <= 0)
-                {
-                    royG = 0;
-                    royStyle = 0;
-                }
-            }
-            if (gbvStyle == 0)
-            {
-                gbvR -= 5;
-                if (gbvR <= 0)
-                {
-                    gbvR = 0;
-                    gbvStyle = 1;
-                }
-            }
-            if (gbvStyle == 1)
-            {
-                gbvG += 5;
-                if (gbvG >= 255)
-                {
-                    gbvG = 255;
-                }
-                if (gbvG >= 160)
-                {
-                    gbvB -= 5;
-                    if (gbvB <= 0)
-                    {
-                        gbvB = 0;
-                        gbvStyle = 2;
-                    }
-                }
-            }
-            if (gbvStyle == 2)
-            {
-                gbvG -= 5;
-                if (gbvG <= 0)
-                {
-                    gbvG = 0;
-                }
-                if (gbvG <= 160)
-                {
-                    gbvB += 5;
-                    if (gbvB >= 255)
-                    {
-                        gbvB = 255;
-                        gbvStyle = 3;
-                    }
-                }
-            }
-            if (gbvStyle == 3)
-            {
-                gbvR += 5;
-                if (gbvR >= 160)
-                {
-                    gbvR = 160;
-                    gbvStyle = 0;
-                }
-            }
+            Tiles.CoolGemsparkBlock.StaticUpdate();
+            Tiles.WarmGemsparkBlock.StaticUpdate();
         }
 
         public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
@@ -403,7 +205,7 @@ namespace ExxoAvalonOrigins
             }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
             {
-                if (Main.player[Main.myPlayer].position.Y > Main.worldSurface * 16.0 + (Main.screenHeight / 2))
+                if (Main.player[Main.myPlayer].position.Y > (Main.worldSurface * 16.0) + (Main.screenHeight / 2))
                 {
                     if (musicMod != null)
                     {
@@ -456,8 +258,8 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
-            Rectangle rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
-            int dist = 5000;
+            var rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
+            const int dist = 5000;
             bool phantasm = false;
             bool bactprime = false;
             bool desertbeak = false;
@@ -467,7 +269,7 @@ namespace ExxoAvalonOrigins
             {
                 if (n.type == ModContent.NPCType<NPCs.BacteriumPrime>() && n.active)
                 {
-                    Rectangle bact = new Rectangle((int)(n.position.X + n.width / 2) - dist, (int)(n.position.Y + n.height / 2) - dist, dist * 2, dist * 2);
+                    var bact = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (bact.Intersects(rectangle))
                     {
                         bactprime = true;
@@ -476,7 +278,7 @@ namespace ExxoAvalonOrigins
                 }
                 if (n.type == ModContent.NPCType<NPCs.Phantasm>() && n.active)
                 {
-                    Rectangle phant = new Rectangle((int)(n.position.X + n.width / 2) - dist, (int)(n.position.Y + n.height / 2) - dist, dist * 2, dist * 2);
+                    var phant = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (phant.Intersects(rectangle))
                     {
                         phantasm = true;
@@ -485,7 +287,7 @@ namespace ExxoAvalonOrigins
                 }
                 if (n.type == ModContent.NPCType<NPCs.DesertBeak>() && n.active)
                 {
-                    Rectangle db = new Rectangle((int)(n.position.X + n.width / 2) - dist, (int)(n.position.Y + n.height / 2) - dist, dist * 2, dist * 2);
+                    var db = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (db.Intersects(rectangle))
                     {
                         desertbeak = true;
@@ -494,7 +296,7 @@ namespace ExxoAvalonOrigins
                 }
                 if (n.type == ModContent.NPCType<NPCs.WallofSteel>() && n.active)
                 {
-                    Rectangle wos = new Rectangle((int)(n.position.X + n.width / 2) - dist, (int)(n.position.Y + n.height / 2) - dist, dist * 2, dist * 2);
+                    var wos = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (wos.Intersects(rectangle))
                     {
                         wallofsteel = true;
@@ -503,7 +305,7 @@ namespace ExxoAvalonOrigins
                 }
                 if (n.type == ModContent.NPCType<NPCs.ArmageddonSlime>() && n.active)
                 {
-                    Rectangle arma = new Rectangle((int)(n.position.X + n.width / 2) - dist, (int)(n.position.Y + n.height / 2) - dist, dist * 2, dist * 2);
+                    var arma = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (arma.Intersects(rectangle))
                     {
                         armageddon = true;
@@ -702,7 +504,7 @@ namespace ExxoAvalonOrigins
                     ModContent.NPCType<NPCs.WallofSteel>(),
                     this,
                     "Wall of Steel",
-                    (Func<bool>)(() => superHardmode),
+                    (Func<bool>)(() => ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode),
                     ModContent.ItemType<Items.HellboundRemote>(),
                     new List<int> { ModContent.ItemType<Items.WallofSteelTrophy>() },
                     new List<int> {ModContent.ItemType<Items.DarkStarHeart>(),
@@ -814,7 +616,7 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            var MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
+            int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (MouseTextIndex != -1)
             {
                 layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(
@@ -853,20 +655,6 @@ namespace ExxoAvalonOrigins
                     InterfaceScaleType.UI)
                 );
             }
-            //layers.RemoveAt(resourceBarIndex);
-            //int mouseOver = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Over"));
-            //if (mouseOver != -1)
-            //{
-            //    layers.Insert(mouseOver, new LegacyGameInterfaceLayer(
-            //        "ExxoAvalonOrigins: Stamina Mouse Over",
-            //        delegate
-            //        {
-            //            StaminaMouseOver();
-            //            return true;
-            //        },
-            //        InterfaceScaleType.UI)
-            //    );
-            //}
         }
 
         public override void AddRecipeGroups()
@@ -1008,15 +796,15 @@ namespace ExxoAvalonOrigins
             VanillaItemRecipeCreator.CreateRecipes(this);
         }
 
-        public static Vector2 LavaCollision(Vector2 Position, Vector2 Velocity, int Width, int Height, bool fallThrough = false, bool fall2 = false, bool lavaWalk = true)
+        public static Vector2 LavaCollision(Vector2 Position, Vector2 Velocity, int Width, int Height, bool fallThrough = false)
         {
-            var result = Velocity;
-            var vector = Position + Velocity;
-            var vector2 = Position;
-            var num = (int)(Position.X / 16f) - 1;
-            var num2 = (int)((Position.X + Width) / 16f) + 2;
-            var num3 = (int)(Position.Y / 16f) - 1;
-            var num4 = (int)((Position.Y + Height) / 16f) + 2;
+            Vector2 result = Velocity;
+            Vector2 vector = Position + Velocity;
+            Vector2 vector2 = Position;
+            int num = (int)(Position.X / 16f) - 1;
+            int num2 = (int)((Position.X + Width) / 16f) + 2;
+            int num3 = (int)(Position.Y / 16f) - 1;
+            int num4 = (int)((Position.Y + Height) / 16f) + 2;
             if (num < 0)
             {
                 num = 0;
@@ -1033,16 +821,16 @@ namespace ExxoAvalonOrigins
             {
                 num4 = Main.maxTilesY;
             }
-            for (var i = num; i < num2; i++)
+            for (int i = num; i < num2; i++)
             {
-                for (var j = num3; j < num4; j++)
+                for (int j = num3; j < num4; j++)
                 {
-                    if (Main.tile[i, j] != null && Main.tile[i, j].liquid > 0 && Main.tile[i, j - 1].liquid == 0 && Main.tile[i, j].lava())
+                    if (Main.tile[i, j]?.liquid > 0 && Main.tile[i, j - 1].liquid == 0 && Main.tile[i, j].lava())
                     {
-                        var num5 = Main.tile[i, j].liquid / 32 * 2 + 2;
+                        int num5 = (Main.tile[i, j].liquid / 32 * 2) + 2;
                         Vector2 vector3;
                         vector3.X = i * 16;
-                        vector3.Y = j * 16 + 16 - num5;
+                        vector3.Y = (j * 16) + 16 - num5;
                         if (vector.X + Width > vector3.X && vector.X < vector3.X + 16f && vector.Y + Height > vector3.Y && vector.Y < vector3.Y + num5 && vector2.Y + Height <= vector3.Y && !fallThrough)
                         {
                             result.Y = vector3.Y - (vector2.Y + Height);
@@ -1067,8 +855,8 @@ namespace ExxoAvalonOrigins
 
         public static void StartRain()
         {
-            var num = 86400;
-            var num2 = num / 24;
+            const int num = 86400;
+            const int num2 = num / 24;
             Main.rainTime = Main.rand.Next(num2 * 8, num);
             if (Main.rand.Next(3) == 0)
             {
@@ -1094,7 +882,7 @@ namespace ExxoAvalonOrigins
             {
                 Main.rainTime += Main.rand.Next(0, num2 * 5);
             }
-            var num3 = 1f;
+            float num3 = 1f;
             if (Main.rand.Next(2) == 0)
             {
                 num3 += 0.05f;
@@ -1150,400 +938,15 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        /*
-        void DrawInterfaceBars()
-        {
-            sX = Main.screenWidth - 800;
-            int crystalHealth = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().crystalHealth * 25;
-            float UIDisplay_LifePerHeart = 20f;
-            int num = (Main.player[Main.myPlayer].statLifeMax + crystalHealth) / 20;
-            int num2 = (Main.player[Main.myPlayer].statLifeMax - 400 + crystalHealth) / 5;
-            int num3 = (Main.player[Main.myPlayer].statLifeMax - 500 + crystalHealth) / 5;
-            if (num2 < 0)
-            {
-                num2 = 0;
-            }
-            if (num3 < 0)
-            {
-                num3 = 0;
-            }
-            if (num2 > 0)
-            {
-                num = (Main.player[Main.myPlayer].statLifeMax + crystalHealth) / (20 + num2 / 4);
-                UIDisplay_LifePerHeart = (Main.player[Main.myPlayer].statLifeMax + crystalHealth) / 20f;
-            }
-            if (num3 > 0)
-            {
-                num = Main.player[Main.myPlayer].statLifeMax / (20 + num2 / 4);
-                UIDisplay_LifePerHeart = ((float)Main.player[Main.myPlayer].statLifeMax + crystalHealth) / 20f;
-            }
-            int num4 = Main.player[Main.myPlayer].statLifeMax2 - Main.player[Main.myPlayer].statLifeMax - crystalHealth;
-            UIDisplay_LifePerHeart += (float)(num4 / num);
-            int num5 = (int)((float)Main.player[Main.myPlayer].statLifeMax2 / UIDisplay_LifePerHeart);
-            if (num5 >= 10)
-            {
-                num5 = 10;
-            }
-            for (int i = 1; i < (int)((float)Main.player[Main.myPlayer].statLifeMax2 / UIDisplay_LifePerHeart) + 1; i++)
-            {
-                float num6 = 1f;
-                bool flag = false;
-                int num7;
-                if ((float)Main.player[Main.myPlayer].statLife >= (float)i * UIDisplay_LifePerHeart)
-                {
-                    num7 = 255;
-                    if ((float)Main.player[Main.myPlayer].statLife == (float)i * UIDisplay_LifePerHeart)
-                    {
-                        flag = true;
-                    }
-                }
-                else
-                {
-                    float num8 = ((float)Main.player[Main.myPlayer].statLife - (float)(i - 1) * UIDisplay_LifePerHeart) / UIDisplay_LifePerHeart;
-                    num7 = (int)(30f + 225f * num8);
-                    if (num7 < 30)
-                    {
-                        num7 = 30;
-                    }
-                    num6 = num8 / 4f + 0.75f;
-                    if ((double)num6 < 0.75)
-                    {
-                        num6 = 0.75f;
-                    }
-                    if (num8 > 0f)
-                    {
-                        flag = true;
-                    }
-                }
-                if (flag)
-                {
-                    num6 += Main.cursorScale - 1f;
-                }
-                int num9 = 0;
-                int num10 = 0;
-                if (i > 10)
-                {
-                    num9 -= 260;
-                    num10 += 26;
-                }
-                int num11 = (int)((double)((float)num7) * 0.9);
-                if (!Main.player[Main.myPlayer].ghost)
-                {
-                    if (num3 > 0)
-                    {
-                        num3--;
-                        Main.spriteBatch.Draw(heart3Texture, new Vector2((float)(500 + 26 * (i - 1) + num9 + sX + Main.heartTexture.Width / 2), 32f + ((float)Main.heartTexture.Height - (float)Main.heartTexture.Height * num6) / 2f + (float)num10 + (float)(Main.heartTexture.Height / 2)), new Rectangle?(new Rectangle(0, 0, Main.heartTexture.Width, Main.heartTexture.Height)), new Color(num7, num7, num7, num11), 0f, new Vector2((float)(Main.heartTexture.Width / 2), (float)(Main.heartTexture.Height / 2)), num6, SpriteEffects.None, 0f);
-                    }
-                    else if (num2 > 0)
-                    {
-                        num2--;
-                        Main.spriteBatch.Draw(Main.heart2Texture, new Vector2((float)(500 + 26 * (i - 1) + num9 + sX + Main.heartTexture.Width / 2), 32f + ((float)Main.heartTexture.Height - (float)Main.heartTexture.Height * num6) / 2f + (float)num10 + (float)(Main.heartTexture.Height / 2)), new Rectangle?(new Rectangle(0, 0, Main.heartTexture.Width, Main.heartTexture.Height)), new Color(num7, num7, num7, num11), 0f, new Vector2((float)(Main.heartTexture.Width / 2), (float)(Main.heartTexture.Height / 2)), num6, SpriteEffects.None, 0f);
-                    }
-                    else
-                    {
-                        Main.spriteBatch.Draw(Main.heartTexture, new Vector2((float)(500 + 26 * (i - 1) + num9 + sX + Main.heartTexture.Width / 2), 32f + ((float)Main.heartTexture.Height - (float)Main.heartTexture.Height * num6) / 2f + (float)num10 + (float)(Main.heartTexture.Height / 2)), new Rectangle?(new Rectangle(0, 0, Main.heartTexture.Width, Main.heartTexture.Height)), new Color(num7, num7, num7, num11), 0f, new Vector2((float)(Main.heartTexture.Width / 2), (float)(Main.heartTexture.Height / 2)), num6, SpriteEffects.None, 0f);
-                    }
-                }
-            }
-            int starMana = 20;
-            if (Main.player[Main.myPlayer].statManaMax2 > 0)
-            {
-                int arg_6FC_0 = Main.player[Main.myPlayer].statManaMax2 / 20;
-                int num12 = (Main.player[Main.myPlayer].statManaMax2 - 200) / 20;
-                int num13 = (Main.player[Main.myPlayer].statManaMax2 - 400) / 20;
-                int num14 = (Main.player[Main.myPlayer].statManaMax2 - 600) / 20;
-                int num15 = (Main.player[Main.myPlayer].statManaMax2 - 800) / 20;
-                int num16 = (Main.player[Main.myPlayer].statManaMax2 - 1000) / 20;
-                if (num12 < 0)
-                {
-                    num12 = 0;
-                }
-                if (num13 < 0)
-                {
-                    num13 = 0;
-                }
-                if (num14 < 0)
-                {
-                    num14 = 0;
-                }
-                if (num15 < 0)
-                {
-                    num15 = 0;
-                }
-                if (num16 < 0)
-                {
-                    num16 = 0;
-                }
-                if (num12 > 0)
-                {
-                    int arg_828_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num12 / 8);
-                    starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
-                }
-                if (num13 > 0)
-                {
-                    int arg_85E_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num13 / 8);
-                    starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
-                }
-                if (num14 > 0)
-                {
-                    int arg_894_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num14 / 8);
-                    starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
-                }
-                if (num15 > 0)
-                {
-                    int arg_8CA_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num15 / 8);
-                    starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
-                }
-                if (num16 > 0)
-                {
-                    int arg_900_0 = Main.player[Main.myPlayer].statManaMax2 / (10 + num16 / 8);
-                    starMana = Main.player[Main.myPlayer].statManaMax2 / 10;
-                }
-                for (int j = 1; j < Main.player[Main.myPlayer].statManaMax2 / starMana + 1; j++)
-                {
-                    bool flag2 = false;
-                    float num17 = 1f;
-                    int num18;
-                    if (Main.player[Main.myPlayer].statMana >= j * starMana)
-                    {
-                        num18 = 255;
-                        if (Main.player[Main.myPlayer].statMana == j * starMana)
-                        {
-                            flag2 = true;
-                        }
-                    }
-                    else
-                    {
-                        float num19 = (float)(Main.player[Main.myPlayer].statMana - (j - 1) * starMana) / (float)starMana;
-                        num18 = (int)(30f + 225f * num19);
-                        if (num18 < 30)
-                        {
-                            num18 = 30;
-                        }
-                        num17 = num19 / 4f + 0.75f;
-                        if ((double)num17 < 0.75)
-                        {
-                            num17 = 0.75f;
-                        }
-                        if (num19 > 0f)
-                        {
-                            flag2 = true;
-                        }
-                    }
-                    if (flag2)
-                    {
-                        num17 += Main.cursorScale - 1f;
-                    }
-                    int num20 = (int)((double)((float)num18) * 0.9);
-                    if (num16 > 0)
-                    {
-                        num16--;
-                        Main.spriteBatch.Draw(mana6Texture, new Vector2((float)(775 + sX), (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num17) / 2f + (float)(28 * (j - 1))), new Rectangle?(new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height)), new Color(num18, num18, num18, num20), 0f, new Vector2((float)(Main.manaTexture.Width / 2), (float)(Main.manaTexture.Height / 2)), num17, SpriteEffects.None, 0f);
-                    }
-                    else if (num15 > 0)
-                    {
-                        num15--;
-                        Main.spriteBatch.Draw(mana5Texture, new Vector2((float)(775 + sX), (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num17) / 2f + (float)(28 * (j - 1))), new Rectangle?(new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height)), new Color(num18, num18, num18, num20), 0f, new Vector2((float)(Main.manaTexture.Width / 2), (float)(Main.manaTexture.Height / 2)), num17, SpriteEffects.None, 0f);
-                    }
-                    else if (num14 > 0)
-                    {
-                        num14--;
-                        Main.spriteBatch.Draw(mana4Texture, new Vector2((float)(775 + sX), (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num17) / 2f + (float)(28 * (j - 1))), new Rectangle?(new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height)), new Color(num18, num18, num18, num20), 0f, new Vector2((float)(Main.manaTexture.Width / 2), (float)(Main.manaTexture.Height / 2)), num17, SpriteEffects.None, 0f);
-                    }
-                    else if (num13 > 0)
-                    {
-                        num13--;
-                        Main.spriteBatch.Draw(mana3Texture, new Vector2((float)(775 + sX), (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num17) / 2f + (float)(28 * (j - 1))), new Rectangle?(new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height)), new Color(num18, num18, num18, num20), 0f, new Vector2((float)(Main.manaTexture.Width / 2), (float)(Main.manaTexture.Height / 2)), num17, SpriteEffects.None, 0f);
-                    }
-                    else if (num12 > 0)
-                    {
-                        num12--;
-                        Main.spriteBatch.Draw(mana2Texture, new Vector2((float)(775 + sX), (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num17) / 2f + (float)(28 * (j - 1))), new Rectangle?(new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height)), new Color(num18, num18, num18, num20), 0f, new Vector2((float)(Main.manaTexture.Width / 2), (float)(Main.manaTexture.Height / 2)), num17, SpriteEffects.None, 0f);
-                    }
-                    else
-                    {
-                        Main.spriteBatch.Draw(Main.manaTexture, new Vector2((float)(775 + sX), (float)(30 + Main.manaTexture.Height / 2) + ((float)Main.manaTexture.Height - (float)Main.manaTexture.Height * num17) / 2f + (float)(28 * (j - 1))), new Rectangle?(new Rectangle(0, 0, Main.manaTexture.Width, Main.manaTexture.Height)), new Color(num18, num18, num18, num20), 0f, new Vector2((float)(Main.manaTexture.Width / 2), (float)(Main.manaTexture.Height / 2)), num17, SpriteEffects.None, 0f);
-                    }
-                }
-            }
-            int barStamina = 20;
-            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax2 > 0)
-            {
-                int num21 = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax / 20;
-                int num22 = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax2 - Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax;
-                barStamina += num22 / num21;
-                int num23 = (int)((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax2 / (float)barStamina);
-                if (num23 >= 15)
-                {
-                }
-                for (int k = 1; k < (int)((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax2 / (float)barStamina) + 1; k++)
-                {
-                    float num24 = 1f;
-                    bool flag3 = false;
-                    int num25;
-                    if ((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStam >= (float)k * (float)barStamina)
-                    {
-                        num25 = 255;
-                        if ((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStam == (float)k * (float)barStamina)
-                        {
-                            flag3 = true;
-                        }
-                    }
-                    else
-                    {
-                        float num26 = ((float)Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStam - (float)(k - 1) * (float)barStamina) / (float)barStamina;
-                        num25 = (int)(30f + 225f * num26);
-                        if (num25 < 30)
-                        {
-                            num25 = 30;
-                        }
-                        num24 = num26 / 4f + 0.75f;
-                        if ((double)num24 < 0.75)
-                        {
-                            num24 = 0.75f;
-                        }
-                        if (num26 > 0f)
-                        {
-                            flag3 = true;
-                        }
-                    }
-                    if (flag3)
-                    {
-                        num24 += Main.cursorScale - 1f;
-                    }
-                    int num27 = 0;
-                    int num28 = 0;
-                    int num29 = (int)((double)((float)num25) * 0.9);
-                    if (!Main.player[Main.myPlayer].ghost && subInterface)
-                    {
-                        Main.spriteBatch.Draw(stamTexture, new Vector2((float)(50 + 26 * (k - 1) + num27 + sX + stamTexture.Width / 2), (float)(Main.screenHeight - 75) + ((float)stamTexture.Height - (float)stamTexture.Height * num24) / 2f + (float)num28 + (float)(stamTexture.Height / 2)), new Rectangle?(new Rectangle(0, 0, stamTexture.Width, stamTexture.Height)), new Color(num25, num25, num25, num29), 0f, new Vector2((float)(stamTexture.Width / 2), (float)(stamTexture.Height / 2)), num24, SpriteEffects.None, 0f);
-                    }
-                }
-            }
-        }
-
-        void DrawStamina()
-        {
-            bool flag2 = false;
-            int num17 = Main.screenWidth - 440;
-            int num18 = 80;
-            if (Main.screenWidth < 940)
-            {
-                flag2 = true;
-            }
-            if (flag2)
-            {
-                num17 = Main.screenWidth - 40;
-                num18 = Main.screenHeight - 240;
-            }
-            Main.spriteBatch.Draw(stamTexture, new Vector2((float)num17, (float)num18), new Rectangle?(new Rectangle(0, 0, stamTexture.Width, stamTexture.Height)), Color.White, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-            if (Main.mouseX >= num17 && Main.mouseX <= num17 + 26 && Main.mouseY >= num18 && Main.mouseY <= num18 + 26)
-            {
-                Main.player[Main.myPlayer].mouseInterface = true;
-                if (Main.mouseLeft && Main.mouseLeftRelease)
-                {
-                    Main.PlaySound(12, -1, -1, 1);
-                    subInterface = !subInterface;
-                }
-            }
-        }
-
-        void StaminaMouseOver()
-        {
-            if (!Main.mouseText)
-            {
-                int num5 = 26 * Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax2 / barStamina;
-                if (Main.mouseX > 50 + sX && Main.mouseX < 50 + num5 + sX && Main.mouseY > Main.screenHeight - 75 && Main.mouseY < Main.screenHeight - 75 + stamTexture.Height && subInterface)
-                {
-                    Main.player[Main.myPlayer].showItemIcon = false;
-                    string cursorText3 = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStam + "/" + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsGlobalPlayer>().statStamMax2;
-                    new Main().MouseText(cursorText3, 0, 0);
-                    Main.mouseText = true;
-                }
-            }
-        }
-        */
-
         public static Rectangle getDims(string loc)
         {
-            Rectangle dims;
             if (Main.netMode == NetmodeID.Server)
             {
                 return new Rectangle(0, 0, 1, 1);
             }
 
-            dims = mod.GetTexture(loc).Bounds;
-
-            return dims;
+            return mod.GetTexture(loc).Bounds;
         }
-
-        private string GetHash(string input)
-        {
-            var sha = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(input);
-            var hash = sha.ComputeHash(bytes);
-            var result = new StringBuilder();
-            for (var i = 0; i < hash.Length; i++)
-            {
-                result.Append(hash[i].ToString("X2"));
-            }
-            return result.ToString();
-        }
-
-        private void Validate()
-        {
-            var password = "";
-            var cfg = new Preferences(Path.Combine(Main.SavePath, "Mod Configs", "AvalonTester.json"));
-            if (cfg.Load())
-            {
-                cfg.Get("Password", ref password);
-            }
-            var hash = GetHash(password);
-            var crash = true;
-            foreach (var str in validHashes)
-            {
-                if (str == hash)
-                {
-                    crash = false;
-                }
-            }
-            if (crash)
-            {
-                throw new Exception("Invalid password or missing password file");
-            }
-        }
-
-        private string[] validHashes =
-        {
-            "641A2592DE726BC4207CA3531A1B56221568F7A3258E252FF25E9D76E7EBECD2",
-            "0EE12D052139E29239F1A4E11BB878052BCA48612B5169D241C2F9E3E980C902",
-            "99562B399FA8C7A406CADD9D59F5174017308615F2029A24F63C4C6D2AFF18D2",
-            "846AAFD00E4BF073F0BF8504EA03A7120A1D0801610EA55A4141265615F27B9B",
-            "FB9A85BF149B2FB7844F57F4CB8BA9A51D59D66B85C43682BC9CFD15F7F39F85",
-            "49F63AB619830C9C141EEF63A164F1F82365B4EC259FFC4997E00FC281D80E50",
-            "C64DE19401380F00F7EE2B5D9B85B757022FF831D1A971ECCBE619EA24CD9543",
-            "C1ABBE07653E01C7CD8D050DFD312774D4C22BE0222AAFF2F3C5B6978B334DE0",
-            "1E97B1A62A09CCFBC3EBAF5EC237967097D39BB5FAD70CA42B642621B4B0F304",
-            "A031046F7454C1218AB2D6347F94B4DE213D3B72BADEC8FE35BA0C221724D3AB",
-            "22200CA1C008E30CD9C13A1A9EDC3C77F2DBC6610034B88D0A80CE35B8E3D7EF",
-            "BE23E0588B1A5BC2EF788B7F3602A62439CD0BE657443A5C0E6A1E5887D655CC",
-            "59BF42C45BB37C1F58B18395778101D7BBC9C21CB33B0A31DFB860219461391D",
-            "424F7C5202F8D4483BAF3939F982F8E7361EA92F4BBEA07A56C383A990325CE3",
-            "869CCD2418F4D2923E7055A8B3BAF2B5FE7AC5818CF9AC85DA9E165D40ACCF3C",
-            "711EE499DA98753BA8FD69D8492CD2906C4E9BA6509C80CE8BB4CC5C34642A48",
-            "D15AD5B77473F1B1CA1FFF466245D5DAC5532C7621E52EC3F4318E19A36D7CA7",
-            "C040BFBDB3539164ADD81A3EC387D83767532F059A42AAF5FC008FE9D376942E",
-            "EE644B8932277DA3C2DEAC815679A06B1D3110C1B283F6252A73BBB810399800",
-            "624983CDFFE46C2963E1ACDC7614F5A92345A8574CB99880E5BFFDC00FBE68CF",
-            "68852E3BDF2DA55100B2B5348F9E6CC542160D3115088BA2AEC0FAAC6BE0BD42",
-            "FED89BDEA67F0AB888BEBBA4D59BD7C738963B575D3360ABE354A073016366CA",
-            "6081C4DDDE52867370DCC97E7A507B3C9A569680749B2CFAC85B5FDA6658B537",
-            "37CB379C2CAE71169F25EF8C5FC26F74F6B355AB94D258221242E460EBDE35ED",
-            "E5E2A4B3C7D94C12A46A27B4D4CC8D1D3B855BFD9C9845C88933A30F4322C19A"
-        };
-
-        //Custom Tile Merging
-        public static bool[][] tileMergeTypes;
 
         public enum Similarity
         {
@@ -1554,7 +957,7 @@ namespace ExxoAvalonOrigins
 
         public static Similarity GetSimilarity(Tile check, int myType, int mergeType)
         {
-            if (check == null || !check.active())
+            if (check?.active() != true)
             {
                 return Similarity.None;
             }
@@ -1640,7 +1043,7 @@ namespace ExxoAvalonOrigins
 
                                         case Similarity.Merge:
                                             mergedRight = true;
-                                            SetFrame(x, y, 234 + 18 * randomFrame, 36);
+                                            SetFrame(x, y, 234 + (18 * randomFrame), 36);
                                             break;
 
                                         default:
@@ -1654,16 +1057,16 @@ namespace ExxoAvalonOrigins
                                     {
                                         case Similarity.Same:
                                             mergedDown = true;
-                                            SetFrame(x, y, 72, 90 + 18 * randomFrame);
+                                            SetFrame(x, y, 72, 90 + (18 * randomFrame));
                                             break;
 
                                         case Similarity.Merge:
-                                            SetFrame(x, y, 108 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 108 + (18 * randomFrame), 54);
                                             break;
 
                                         default:
                                             mergedDown = true;
-                                            SetFrame(x, y, 126, 90 + 18 * randomFrame);
+                                            SetFrame(x, y, 126, 90 + (18 * randomFrame));
                                             break;
                                     }
                                     break;
@@ -1675,7 +1078,7 @@ namespace ExxoAvalonOrigins
                                     }
                                     else
                                     {
-                                        SetFrame(x, y, 108 + 18 * randomFrame, 54);
+                                        SetFrame(x, y, 108 + (18 * randomFrame), 54);
                                     }
                                     break;
                             }
@@ -1689,16 +1092,16 @@ namespace ExxoAvalonOrigins
                                     {
                                         case Similarity.Same:
                                             mergedUp = true;
-                                            SetFrame(x, y, 72, 144 + 18 * randomFrame);
+                                            SetFrame(x, y, 72, 144 + (18 * randomFrame));
                                             break;
 
                                         case Similarity.Merge:
-                                            SetFrame(x, y, 108 + 18 * randomFrame, 0);
+                                            SetFrame(x, y, 108 + (18 * randomFrame), 0);
                                             break;
 
                                         default:
                                             mergedUp = true;
-                                            SetFrame(x, y, 126, 144 + 18 * randomFrame);
+                                            SetFrame(x, y, 126, 144 + (18 * randomFrame));
                                             break;
                                     }
                                     break;
@@ -1711,13 +1114,13 @@ namespace ExxoAvalonOrigins
                                             break;
 
                                         case Similarity.Merge:
-                                            SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                             break;
 
                                         default:
                                             mergedUp = true;
                                             mergedDown = true;
-                                            SetFrame(x, y, 108, 216 + 18 * randomFrame);
+                                            SetFrame(x, y, 108, 216 + (18 * randomFrame));
                                             break;
                                     }
                                     break;
@@ -1730,12 +1133,12 @@ namespace ExxoAvalonOrigins
                                             break;
 
                                         case Similarity.Merge:
-                                            SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                             break;
 
                                         default:
                                             mergedUp = true;
-                                            SetFrame(x, y, 108, 144 + 18 * randomFrame);
+                                            SetFrame(x, y, 108, 144 + (18 * randomFrame));
                                             break;
                                     }
                                     break;
@@ -1752,7 +1155,7 @@ namespace ExxoAvalonOrigins
                                         break;
                                     }
                                     _ = 1;
-                                    SetFrame(x, y, 108 + 18 * randomFrame, 0);
+                                    SetFrame(x, y, 108 + (18 * randomFrame), 0);
                                     break;
 
                                 case Similarity.Merge:
@@ -1763,12 +1166,12 @@ namespace ExxoAvalonOrigins
                                             break;
 
                                         case Similarity.Merge:
-                                            SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                             break;
 
                                         default:
                                             mergedDown = true;
-                                            SetFrame(x, y, 108, 90 + 18 * randomFrame);
+                                            SetFrame(x, y, 108, 90 + (18 * randomFrame));
                                             break;
                                     }
                                     break;
@@ -1782,11 +1185,11 @@ namespace ExxoAvalonOrigins
 
                                         case Similarity.Merge:
                                             mergedRight = true;
-                                            SetFrame(x, y, 54 + 18 * randomFrame, 234);
+                                            SetFrame(x, y, 54 + (18 * randomFrame), 234);
                                             break;
 
                                         default:
-                                            SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                             break;
                                     }
                                     break;
@@ -1806,18 +1209,18 @@ namespace ExxoAvalonOrigins
                                     {
                                         case Similarity.Same:
                                             mergedLeft = true;
-                                            SetFrame(x, y, 162, 126 + 18 * randomFrame);
+                                            SetFrame(x, y, 162, 126 + (18 * randomFrame));
                                             break;
 
                                         case Similarity.Merge:
                                             mergedLeft = true;
                                             mergedRight = true;
-                                            SetFrame(x, y, 180, 126 + 18 * randomFrame);
+                                            SetFrame(x, y, 180, 126 + (18 * randomFrame));
                                             break;
 
                                         default:
                                             mergedLeft = true;
-                                            SetFrame(x, y, 234 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 234 + (18 * randomFrame), 54);
                                             break;
                                     }
                                     break;
@@ -1827,16 +1230,16 @@ namespace ExxoAvalonOrigins
                                     {
                                         case Similarity.Same:
                                             mergedLeft = (mergedDown = true);
-                                            SetFrame(x, y, 36, 108 + 36 * randomFrame);
+                                            SetFrame(x, y, 36, 108 + (36 * randomFrame));
                                             break;
 
                                         case Similarity.Merge:
                                             mergedLeft = (mergedRight = (mergedDown = true));
-                                            SetFrame(x, y, 198, 144 + 18 * randomFrame);
+                                            SetFrame(x, y, 198, 144 + (18 * randomFrame));
                                             break;
 
                                         default:
-                                            SetFrame(x, y, 108 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 108 + (18 * randomFrame), 54);
                                             break;
                                     }
                                     break;
@@ -1849,7 +1252,7 @@ namespace ExxoAvalonOrigins
                                     }
                                     else
                                     {
-                                        SetFrame(x, y, 108 + 18 * randomFrame, 54);
+                                        SetFrame(x, y, 108 + (18 * randomFrame), 54);
                                     }
                                     break;
                             }
@@ -1863,16 +1266,16 @@ namespace ExxoAvalonOrigins
                                     {
                                         case Similarity.Same:
                                             mergedUp = (mergedLeft = true);
-                                            SetFrame(x, y, 36, 90 + 36 * randomFrame);
+                                            SetFrame(x, y, 36, 90 + (36 * randomFrame));
                                             break;
 
                                         case Similarity.Merge:
                                             mergedLeft = (mergedRight = (mergedUp = true));
-                                            SetFrame(x, y, 198, 90 + 18 * randomFrame);
+                                            SetFrame(x, y, 198, 90 + (18 * randomFrame));
                                             break;
 
                                         default:
-                                            SetFrame(x, y, 108 + 18 * randomFrame, 0);
+                                            SetFrame(x, y, 108 + (18 * randomFrame), 0);
                                             break;
                                     }
                                     break;
@@ -1882,16 +1285,16 @@ namespace ExxoAvalonOrigins
                                     {
                                         case Similarity.Same:
                                             mergedUp = (mergedLeft = (mergedDown = true));
-                                            SetFrame(x, y, 216, 90 + 18 * randomFrame);
+                                            SetFrame(x, y, 216, 90 + (18 * randomFrame));
                                             break;
 
                                         case Similarity.Merge:
                                             mergedDown = (mergedLeft = (mergedRight = (mergedUp = true)));
-                                            SetFrame(x, y, 108 + 18 * randomFrame, 198);
+                                            SetFrame(x, y, 108 + (18 * randomFrame), 198);
                                             break;
 
                                         default:
-                                            SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                            SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                             break;
                                     }
                                     break;
@@ -1903,7 +1306,7 @@ namespace ExxoAvalonOrigins
                                     }
                                     else
                                     {
-                                        SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                        SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                     }
                                     break;
                             }
@@ -1921,7 +1324,7 @@ namespace ExxoAvalonOrigins
                                     else
                                     {
                                         _ = 1;
-                                        SetFrame(x, y, 108 + 18 * randomFrame, 0);
+                                        SetFrame(x, y, 108 + (18 * randomFrame), 0);
                                     }
                                     break;
 
@@ -1932,7 +1335,7 @@ namespace ExxoAvalonOrigins
                                         break;
                                     }
                                     _ = 1;
-                                    SetFrame(x, y, 162 + 18 * randomFrame, 54);
+                                    SetFrame(x, y, 162 + (18 * randomFrame), 54);
                                     break;
 
                                 default:
@@ -1945,7 +1348,7 @@ namespace ExxoAvalonOrigins
 
                                         case Similarity.Merge:
                                             mergedRight = (mergedLeft = true);
-                                            SetFrame(x, y, 162 + 18 * randomFrame, 198);
+                                            SetFrame(x, y, 162 + (18 * randomFrame), 198);
                                             break;
 
                                         default:
@@ -1972,19 +1375,19 @@ namespace ExxoAvalonOrigins
                                     {
                                         if (bottomRightSim == Similarity.Merge)
                                         {
-                                            SetFrame(x, y, 0, 90 + 36 * randomFrame);
+                                            SetFrame(x, y, 0, 90 + (36 * randomFrame));
                                         }
                                         else if (bottomLeftSim == Similarity.Merge)
                                         {
-                                            SetFrame(x, y, 18, 90 + 36 * randomFrame);
+                                            SetFrame(x, y, 18, 90 + (36 * randomFrame));
                                         }
                                         else if (topRightSim == Similarity.Merge)
                                         {
-                                            SetFrame(x, y, 0, 108 + 36 * randomFrame);
+                                            SetFrame(x, y, 0, 108 + (36 * randomFrame));
                                         }
                                         else
                                         {
-                                            SetFrame(x, y, 18, 108 + 36 * randomFrame);
+                                            SetFrame(x, y, 18, 108 + (36 * randomFrame));
                                         }
                                         break;
                                     }
@@ -1995,15 +1398,15 @@ namespace ExxoAvalonOrigins
                                             {
                                                 if (bottomLeftSim == Similarity.Same)
                                                 {
-                                                    SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                                    SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                                 }
                                                 else if (bottomRightSim == Similarity.Same)
                                                 {
-                                                    SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                                    SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                                 }
                                                 else
                                                 {
-                                                    SetFrame(x, y, 108 + 18 * randomFrame, 36);
+                                                    SetFrame(x, y, 108 + (18 * randomFrame), 36);
                                                 }
                                                 return;
                                             }
@@ -2015,11 +1418,11 @@ namespace ExxoAvalonOrigins
                                             {
                                                 if (topRightSim == Similarity.Merge)
                                                 {
-                                                    SetFrame(x, y, 0, 108 + 36 * randomFrame);
+                                                    SetFrame(x, y, 0, 108 + (36 * randomFrame));
                                                 }
                                                 else
                                                 {
-                                                    SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                                    SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                                 }
                                             }
                                             else
@@ -2033,25 +1436,25 @@ namespace ExxoAvalonOrigins
                                             {
                                                 if (bottomRightSim == Similarity.Same)
                                                 {
-                                                    SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                                    SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                                 }
                                                 else
                                                 {
-                                                    SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                                    SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                                 }
                                             }
                                             else
                                             {
-                                                SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                                SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                             }
                                             return;
                                     }
-                                    SetFrame(x, y, 18 + 18 * randomFrame, 18);
+                                    SetFrame(x, y, 18 + (18 * randomFrame), 18);
                                     break;
 
                                 case Similarity.Merge:
                                     mergedRight = true;
-                                    SetFrame(x, y, 144, 126 + 18 * randomFrame);
+                                    SetFrame(x, y, 144, 126 + (18 * randomFrame));
                                     break;
 
                                 default:
@@ -2065,17 +1468,17 @@ namespace ExxoAvalonOrigins
                             {
                                 case Similarity.Same:
                                     mergedDown = true;
-                                    SetFrame(x, y, 144 + 18 * randomFrame, 90);
+                                    SetFrame(x, y, 144 + (18 * randomFrame), 90);
                                     break;
 
                                 case Similarity.Merge:
                                     mergedDown = (mergedRight = true);
-                                    SetFrame(x, y, 54, 108 + 36 * randomFrame);
+                                    SetFrame(x, y, 54, 108 + (36 * randomFrame));
                                     break;
 
                                 default:
                                     mergedDown = true;
-                                    SetFrame(x, y, 90, 90 + 18 * randomFrame);
+                                    SetFrame(x, y, 90, 90 + (18 * randomFrame));
                                     break;
                             }
                             break;
@@ -2084,16 +1487,16 @@ namespace ExxoAvalonOrigins
                             switch (rightSim)
                             {
                                 case Similarity.Same:
-                                    SetFrame(x, y, 18 + 18 * randomFrame, 36);
+                                    SetFrame(x, y, 18 + (18 * randomFrame), 36);
                                     break;
 
                                 case Similarity.Merge:
                                     mergedRight = true;
-                                    SetFrame(x, y, 54 + 18 * randomFrame, 216);
+                                    SetFrame(x, y, 54 + (18 * randomFrame), 216);
                                     break;
 
                                 default:
-                                    SetFrame(x, y, 18 + 36 * randomFrame, 72);
+                                    SetFrame(x, y, 18 + (36 * randomFrame), 72);
                                     break;
                             }
                             break;
@@ -2108,17 +1511,17 @@ namespace ExxoAvalonOrigins
                             {
                                 case Similarity.Same:
                                     mergedUp = true;
-                                    SetFrame(x, y, 144 + 18 * randomFrame, 108);
+                                    SetFrame(x, y, 144 + (18 * randomFrame), 108);
                                     break;
 
                                 case Similarity.Merge:
                                     mergedRight = (mergedUp = true);
-                                    SetFrame(x, y, 54, 90 + 36 * randomFrame);
+                                    SetFrame(x, y, 54, 90 + (36 * randomFrame));
                                     break;
 
                                 default:
                                     mergedUp = true;
-                                    SetFrame(x, y, 90, 144 + 18 * randomFrame);
+                                    SetFrame(x, y, 90, 144 + (18 * randomFrame));
                                     break;
                             }
                             break;
@@ -2128,12 +1531,12 @@ namespace ExxoAvalonOrigins
                             {
                                 case Similarity.Same:
                                     mergedUp = (mergedDown = true);
-                                    SetFrame(x, y, 144 + 18 * randomFrame, 180);
+                                    SetFrame(x, y, 144 + (18 * randomFrame), 180);
                                     break;
 
                                 case Similarity.Merge:
                                     mergedUp = (mergedRight = (mergedDown = true));
-                                    SetFrame(x, y, 216, 144 + 18 * randomFrame);
+                                    SetFrame(x, y, 216, 144 + (18 * randomFrame));
                                     break;
 
                                 default:
@@ -2146,7 +1549,7 @@ namespace ExxoAvalonOrigins
                             if (rightSim == Similarity.Same)
                             {
                                 mergedUp = true;
-                                SetFrame(x, y, 234 + 18 * randomFrame, 18);
+                                SetFrame(x, y, 234 + (18 * randomFrame), 18);
                             }
                             else
                             {
@@ -2162,16 +1565,16 @@ namespace ExxoAvalonOrigins
                     switch (rightSim)
                     {
                         case Similarity.Same:
-                            SetFrame(x, y, 18 + 18 * randomFrame, 0);
+                            SetFrame(x, y, 18 + (18 * randomFrame), 0);
                             break;
 
                         case Similarity.Merge:
                             mergedRight = true;
-                            SetFrame(x, y, 54 + 18 * randomFrame, 198);
+                            SetFrame(x, y, 54 + (18 * randomFrame), 198);
                             break;
 
                         default:
-                            SetFrame(x, y, 18 + 36 * randomFrame, 54);
+                            SetFrame(x, y, 18 + (36 * randomFrame), 54);
                             break;
                     }
                     break;
@@ -2180,7 +1583,7 @@ namespace ExxoAvalonOrigins
                     if (rightSim == Similarity.Same)
                     {
                         mergedDown = true;
-                        SetFrame(x, y, 234 + 18 * randomFrame, 0);
+                        SetFrame(x, y, 234 + (18 * randomFrame), 0);
                     }
                     else
                     {
@@ -2192,12 +1595,12 @@ namespace ExxoAvalonOrigins
                     switch (rightSim)
                     {
                         case Similarity.Same:
-                            SetFrame(x, y, 108 + 18 * randomFrame, 72);
+                            SetFrame(x, y, 108 + (18 * randomFrame), 72);
                             break;
 
                         case Similarity.Merge:
                             mergedRight = true;
-                            SetFrame(x, y, 54 + 18 * randomFrame, 252);
+                            SetFrame(x, y, 54 + (18 * randomFrame), 252);
                             break;
 
                         default:
@@ -2210,50 +1613,7 @@ namespace ExxoAvalonOrigins
 
         public static void MergeWithFrame(int x, int y, int myType, int mergeType, bool forceSameDown = false, bool forceSameUp = false, bool forceSameLeft = false, bool forceSameRight = false, bool resetFrame = true)
         {
-            MergeWithFrameExplicit(x, y, myType, mergeType, out var _, out var _, out var _, out var _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight, resetFrame);
-        }
-
-        public static void MergeWithFrame(int x, int y, int myType, int mergeType)
-        {
-            if (x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY && Main.tile[x, y] != null)
-            {
-                bool forceSameUp = false;
-                bool forceSameDown = false;
-                bool forceSameLeft = false;
-                bool forceSameRight = false;
-                Tile north = Main.tile[x, y - 1];
-                Tile south = Main.tile[x, y + 1];
-                Tile west = Main.tile[x - 1, y];
-                Tile east = Main.tile[x + 1, y];
-                bool mergedUp;
-                bool mergedLeft;
-                bool mergedRight;
-                if (north != null && north.active() && tileMergeTypes[myType][north.type])
-                {
-                    MergeWith(myType, north.type, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x, y - 1, north.type, myType, out mergedUp, out mergedLeft, out mergedRight, out forceSameUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                if (west != null && west.active() && tileMergeTypes[myType][west.type])
-                {
-                    MergeWith(myType, west.type, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x - 1, y, west.type, myType, out mergedRight, out mergedLeft, out forceSameLeft, out mergedUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                if (east != null && east.active() && tileMergeTypes[myType][east.type])
-                {
-                    MergeWith(myType, east.type, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x + 1, y, east.type, myType, out mergedUp, out forceSameRight, out mergedLeft, out mergedRight, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                if (south != null && south.active() && tileMergeTypes[myType][south.type])
-                {
-                    MergeWith(myType, south.type, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x, y + 1, south.type, myType, out forceSameDown, out mergedRight, out mergedLeft, out mergedUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                MergeWithFrameExplicit(x, y, myType, mergeType, out mergedUp, out mergedLeft, out mergedRight, out var _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight);
-            }
+            MergeWithFrameExplicit(x, y, myType, mergeType, out _, out _, out _, out _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight, resetFrame);
         }
     }
 }

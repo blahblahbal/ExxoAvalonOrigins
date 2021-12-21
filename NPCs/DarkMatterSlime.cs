@@ -10,47 +10,50 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class DarkMatterSlime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dark Matter Slime");
-			Main.npcFrameCount[npc.type] = 2;
-		}
+    public class DarkMatterSlime : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dark Matter Slime");
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 100;
-			npc.lifeMax = 760;
-			npc.defense = 30;
-			npc.width = 32;
-			npc.aiStyle = 1;
-			npc.scale = 1.4f;
-			npc.value = 1000f;
-			npc.height = 24;
-			npc.knockBackResist = 0.1f;
-			npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.Confused] = true;
+        public override void SetDefaults()
+        {
+            npc.damage = 100;
+            npc.lifeMax = 760;
+            npc.defense = 30;
+            npc.width = 32;
+            npc.aiStyle = 1;
+            npc.scale = 1.4f;
+            npc.value = 1000f;
+            npc.height = 24;
+            npc.knockBackResist = 0.1f;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.DarkMatterSlimeBanner>();
         }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ExxoAvalonOrigins.superHardmode)
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
             {
                 return 1f;
             }
             return 0f;
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.5f);
         }
+
         public override void NPCLoot()
-		{
+        {
             bool canDrop = true;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -65,15 +68,15 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
 
-			if (Main.rand.Next(75) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SixHundredWattLightbulb>(), 1, false, -2, false);
-			}
-			if (npc.type == ModContent.NPCType<NPCs.DarkMatterSlime>() && canDrop)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterGel>(), Main.rand.Next(2) + 2, false, 0, false);
-			}
-		}
+            if (Main.rand.Next(75) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SixHundredWattLightbulb>(), 1, false, -2, false);
+            }
+            if (npc.type == ModContent.NPCType<NPCs.DarkMatterSlime>() && canDrop)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterGel>(), Main.rand.Next(2) + 2, false, 0, false);
+            }
+        }
 
         public override void FindFrame(int frameHeight)
         {
@@ -120,6 +123,7 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.frame.Y = 0;
             }
         }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(ModContent.BuffType<Buffs.DarkInferno>(), 300);

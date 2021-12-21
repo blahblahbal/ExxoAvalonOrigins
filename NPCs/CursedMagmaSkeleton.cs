@@ -11,61 +11,66 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class CursedMagmaSkeleton : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cursed Magma Skeleton");
-			Main.npcFrameCount[npc.type] = 15;
-		}
+    public class CursedMagmaSkeleton : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cursed Magma Skeleton");
+            Main.npcFrameCount[npc.type] = 15;
+        }
+
         public override void SetDefaults()
-		{
-			npc.damage = 120;
-			npc.netAlways = true;
-			npc.scale = 1.35f;
-			npc.lifeMax = 2000;
-			npc.defense = 40;
-			npc.lavaImmune = true;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.npcSlots = 1.1f;
-			npc.value = Item.buyPrice(0, 1, 0, 0);
-			npc.timeLeft = 750;
-			npc.height = 40;
-			npc.knockBackResist = 0.1f;
+        {
+            npc.damage = 120;
+            npc.netAlways = true;
+            npc.scale = 1.35f;
+            npc.lifeMax = 2000;
+            npc.defense = 40;
+            npc.lavaImmune = true;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.npcSlots = 1.1f;
+            npc.value = Item.buyPrice(0, 1, 0, 0);
+            npc.timeLeft = 750;
+            npc.height = 40;
+            npc.knockBackResist = 0.1f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.CursedMagmaSkeletonBanner>();
         }
+
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255);
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.7f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.7f);
         }
+
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(75) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.GreekExtinguisher>(), 1, false, 0, false);
-			}
-			if (Main.rand.Next(10) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(4, 7), false, 0, false);
-			}
-		}
+        {
+            if (Main.rand.Next(75) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.GreekExtinguisher>(), 1, false, 0, false);
+            }
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(4, 7), false, 0, false);
+            }
+        }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && ExxoAvalonOrigins.superHardmode ? 0.03f : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.03f : 0f;
         }
+
         public override void AI()
         {
             Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.6f, 0.87f, 0.0f);
@@ -75,6 +80,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Main.dust[num10].noGravity = true;
             }
         }
+
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)

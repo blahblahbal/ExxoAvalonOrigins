@@ -12,12 +12,6 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 {
     class AdvObsidianSkinPotion : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Obsidian Skin Elixir");
-            Tooltip.SetDefault("Provides immunity to lava");
-        }
-
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvObsidianSkinPotion");

@@ -1,8 +1,8 @@
 ﻿namespace ExxoAvalonOrigins.Hooks
 {
-    class Hooks
+    public static class HooksManager
     {
-        public static void AddHooks()
+        public static void Load()
         {
             On.Terraria.Lang.GetRandomGameTitle += EditTerrariaName.OnGetRandomGameTitle;
             On.Terraria.Player.HasUnityPotion += EideticMirror.OnHasUnityItem;

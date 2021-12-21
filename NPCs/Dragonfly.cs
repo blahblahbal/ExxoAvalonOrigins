@@ -10,34 +10,34 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Dragonfly : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dragonfly");
-			Main.npcFrameCount[npc.type] = 7;
-		}
+    public class Dragonfly : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dragonfly");
+            Main.npcFrameCount[npc.type] = 7;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 130;
-			npc.scale = 1f;
-			npc.lifeMax = 1700;
-			npc.defense = 34;
-			npc.noGravity = true;
-			npc.width = 56;
-			npc.aiStyle = -1;
-			npc.npcSlots = 1f;
-			npc.value = 10000f;
-			npc.timeLeft = 750;
-			npc.height = 12;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 130;
+            npc.scale = 1f;
+            npc.lifeMax = 1700;
+            npc.defense = 34;
+            npc.noGravity = true;
+            npc.width = 56;
+            npc.aiStyle = -1;
+            npc.npcSlots = 1f;
+            npc.value = 10000f;
+            npc.timeLeft = 750;
+            npc.height = 12;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.DragonflyBanner>();
         }
@@ -259,7 +259,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneOverworldHeight && !Main.dayTime && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.05f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneOverworldHeight && !Main.dayTime && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.05f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

@@ -12,14 +12,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class WarmGemsparkBlock : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(Color.OrangeRed);
-			Main.tileSolid[Type] = true;
-			Main.tileBrick[Type] = true;
-			drop = mod.ItemType("WarmGemsparkBlock");
+    public class WarmGemsparkBlock : ModTile
+    {
+        public static int G { get; private set; } = 0;
+        private static int style = 0;
+
+        public override void SetDefaults()
+        {
+            AddMapEntry(Color.OrangeRed);
+            Main.tileSolid[Type] = true;
+            Main.tileBrick[Type] = true;
+            drop = mod.ItemType("WarmGemsparkBlock");
             dustType = DustID.Crimstone;
         }
 
@@ -40,7 +43,29 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 zero = Vector2.Zero;
             }
-            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(255, ExxoAvalonOrigins.royG, 0), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(255, G, 0), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+        }
+
+        public static void StaticUpdate()
+        {
+            if (style == 0)
+            {
+                G += 5;
+                if (G >= 255)
+                {
+                    G = 255;
+                    style = 1;
+                }
+            }
+            if (style == 1)
+            {
+                G -= 5;
+                if (G <= 0)
+                {
+                    G = 0;
+                    style = 0;
+                }
+            }
         }
     }
 }

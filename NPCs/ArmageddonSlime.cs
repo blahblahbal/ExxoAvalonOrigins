@@ -9,46 +9,51 @@ namespace ExxoAvalonOrigins.NPCs
 {
     [AutoloadBossHead]
     public class ArmageddonSlime : ModNPC
-	{
-        bool cindersOnce;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Armageddon Slime");
-			Main.npcFrameCount[npc.type] = 5;
-		}
+    {
+        private bool cindersOnce;
+        private bool newLanding;
 
-		public override void SetDefaults()
-		{
-			npc.damage = 170;
-			npc.boss = true;
-			npc.netAlways = true;
-			npc.scale = 1.8f;
-			npc.lifeMax = 61000;
-			npc.defense = 55;
-			npc.width = 170;
-			npc.aiStyle = -1;
-			npc.npcSlots = 10f;
-			npc.value = 200000f;
-			npc.timeLeft = 750;
-			npc.height = 120;
-			npc.knockBackResist = 0f;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Armageddon Slime");
+            Main.npcFrameCount[npc.type] = 5;
+        }
+
+        public override void SetDefaults()
+        {
+            npc.damage = 170;
+            npc.boss = true;
+            npc.netAlways = true;
+            npc.scale = 1.8f;
+            npc.lifeMax = 61000;
+            npc.defense = 55;
+            npc.width = 170;
+            npc.aiStyle = -1;
+            npc.npcSlots = 10f;
+            npc.value = 200000f;
+            npc.timeLeft = 750;
+            npc.height = 120;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
-			npc.buffImmune[BuffID.Frostburn] = true;
-			npc.buffImmune[mod.BuffType("Freeze")] = true;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.Frostburn] = true;
+            npc.buffImmune[mod.BuffType("Freeze")] = true;
             //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
             bossBag = ModContent.ItemType<Items.BossBags.ArmageddonSlimeBossBag>();
 
             cindersOnce = false;
-		}
+            newLanding = true;
+        }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.25f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.25f);
         }
+
         public override void AI()
         {
             float num236 = 1f;
@@ -93,7 +98,9 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                 }
             }
+
             #region teleport
+
             if (!Main.player[npc.target].dead && npc.timeLeft > 10 && npc.ai[2] >= 300f && npc.ai[1] < 5f && npc.velocity.Y == 0) // king slime teleport reqs
             {
                 npc.ai[2] = 0f;
@@ -264,7 +271,9 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
             npc.dontTakeDamage = (npc.hide = dontCreateDust);
-            #endregion
+
+            #endregion teleport
+
             if (npc.velocity.Y == 0f)
             {
                 npc.velocity.X = npc.velocity.X * 0.8f;
@@ -303,12 +312,6 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             npc.velocity.Y = -13f;
                             npc.velocity.X = npc.velocity.X + 3.5f * npc.direction;
-                            if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
-                            {
-                                npc.velocity.X = npc.velocity.X + 7f * npc.direction;
-                            }
-                            ExxoAvalonOrigins.armaRO = false;
-                            cindersOnce = false;
                             npc.ai[0] = -200f;
                             npc.ai[1] = 0f;
                         }
@@ -316,12 +319,6 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             npc.velocity.Y = -6f;
                             npc.velocity.X = npc.velocity.X + 4.5f * npc.direction;
-                            if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
-                            {
-                                npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
-                            }
-                            ExxoAvalonOrigins.armaRO = false;
-                            cindersOnce = false;
                             npc.ai[0] = -120f;
                             npc.ai[1] += 1f;
                         }
@@ -329,15 +326,15 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             npc.velocity.Y = -8f;
                             npc.velocity.X = npc.velocity.X + 4f * npc.direction;
-                            if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
-                            {
-                                npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
-                            }
-                            ExxoAvalonOrigins.armaRO = false;
-                            cindersOnce = false;
                             npc.ai[0] = -120f;
                             npc.ai[1] += 1f;
                         }
+                        if (Vector2.Distance(Main.player[npc.target].position, npc.position) > 16 * 20)
+                        {
+                            npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
+                        }
+                        cindersOnce = false;
+                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().screenShakeTimer = 0;
                     }
                     else if (npc.ai[0] >= -30f)
                     {
@@ -356,17 +353,39 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.X = npc.velocity.X * 0.93f;
                 }
             }
+
             #region projectiles / slime spawn
-            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, (int)(npc.width * npc.scale), (int)(npc.height * npc.scale)) && npc.oldVelocity.Y > 0f && ExxoAvalonOrigins.armaRO && cindersOnce == false)
+
+            ExxoAvalonOriginsModPlayer myModPlayer = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>();
+
+            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, (int)(npc.width * npc.scale), (int)(npc.height * npc.scale)) && npc.oldVelocity.Y > 0f)
             {
-                for (int i = 0; i < 4 + Main.rand.Next(3); i++)
+                if (newLanding && Vector2.Distance(npc.position, Main.player[Main.myPlayer].position) <= 100 * 16)
                 {
-                    Vector2 origin = new Vector2(npc.Center.X + Main.rand.Next(-(npc.width / 2), (npc.width / 2) + 1), npc.Center.Y + (npc.height / 2));
-                    Vector2 velocity = new Vector2(npc.velocity.X / 4, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6)));
-                    Projectile.NewProjectile(origin, velocity, ModContent.ProjectileType<Projectiles.DarkCinder>(), npc.damage / 4, 0.5f, npc.target);
+                    newLanding = false;
+                    myModPlayer.screenShakeTimer = 10;
                 }
-                cindersOnce = true;
+                if (!cindersOnce)
+                {
+                    for (int i = 0; i < 4 + Main.rand.Next(3); i++)
+                    {
+                        Vector2 origin = new Vector2(npc.Center.X + Main.rand.Next(-(npc.width / 2), (npc.width / 2) + 1), npc.Center.Y + (npc.height / 2));
+                        Vector2 velocity = new Vector2(npc.velocity.X / 4, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6)));
+                        Projectile.NewProjectile(origin, velocity, ModContent.ProjectileType<Projectiles.DarkCinder>(), npc.damage / 4, 0.5f, npc.target);
+                    }
+                    cindersOnce = true;
+                }
             }
+            else
+            {
+                newLanding = true;
+            }
+
+            if (Vector2.Distance(npc.Center, Main.player[Main.myPlayer].Center) < 5000)
+            {
+                Main.player[Main.myPlayer].AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
+            }
+
             var dust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, npc.velocity.X, npc.velocity.Y, 255, new Color(0, 80, 255, 80), npc.scale * 1.2f);
             Main.dust[dust].noGravity = true;
             Main.dust[dust].velocity *= 0.5f;
@@ -412,6 +431,7 @@ namespace ExxoAvalonOrigins.NPCs
                             case 3:
                                 FireProjectiles(2, Main.player[npc.target]);
                                 break;
+
                             default:
                                 FireProjectiles(1, Main.player[npc.target]);
                                 break;
@@ -426,8 +446,10 @@ namespace ExxoAvalonOrigins.NPCs
                 return;
             }
             return;
-            #endregion
+
+            #endregion projectiles / slime spawn
         }
+
         public void FireProjectiles(int attackType, Player target)
         {
             switch (attackType)
@@ -460,6 +482,7 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                     }
                     break;
+
                 case 2:
                     Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
 
@@ -485,15 +508,17 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                     }
                     break;
-            }   
+            }
         }
+
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ModContent.ItemType<Items.ElixirofLife>();
         }
+
         public override void NPCLoot()
-		{
-			ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = true;
+        {
+            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = true;
             if (Main.expertMode)
             {
                 npc.DropBossBags();
@@ -502,15 +527,15 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
             }
-			if (Main.rand.Next(10) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeTrophy>(), 1, false, 0, false);
-			}
-			if (Main.rand.Next(7) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeMask>(), 1, false, 0, false);
-			}
-		}
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeTrophy>(), 1, false, 0, false);
+            }
+            if (Main.rand.Next(7) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeMask>(), 1, false, 0, false);
+            }
+        }
 
         public override void FindFrame(int frameHeight)
         {

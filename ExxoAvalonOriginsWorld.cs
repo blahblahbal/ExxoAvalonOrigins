@@ -22,6 +22,8 @@ namespace ExxoAvalonOrigins
     public class ExxoAvalonOriginsWorld : ModWorld
     {
         private Version worldVersion;
+        public bool SuperHardmode { get; private set; }
+
         public static int shmOreTier1 = -1;
         public static int shmOreTier2 = -1;
         public static int hallowAltarCount;
@@ -56,6 +58,7 @@ namespace ExxoAvalonOrigins
         public static bool downedKingSting = false;
 
         #region WorldGen Variants
+
         public enum JungleVariant
         {
             jungle,
@@ -78,6 +81,7 @@ namespace ExxoAvalonOrigins
             nickel,
             random
         }
+
         public enum SilverVariant
         {
             silver,
@@ -85,6 +89,7 @@ namespace ExxoAvalonOrigins
             zinc,
             random
         }
+
         public enum GoldVariant
         {
             gold,
@@ -150,7 +155,8 @@ namespace ExxoAvalonOrigins
         public static AdamantiteVariant adamantiteOre = AdamantiteVariant.random;
         public static SHMTier1Variant shmTier1Ore = SHMTier1Variant.random;
         public static SHMTier2Variant shmTier2Ore = SHMTier2Variant.random;
-        #endregion
+
+        #endregion WorldGen Variants
 
         public override void ChooseWaterStyle(ref int style)
         {
@@ -159,6 +165,7 @@ namespace ExxoAvalonOrigins
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
                 style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
         }
+
         public override void TileCountsAvailable(int[] tileCounts)
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
@@ -251,6 +258,7 @@ namespace ExxoAvalonOrigins
                 Main.NewText("Retrogenned Ice Shrines");
             }
         }
+
         public static void CheckLargeHerb(int x, int y, int type)
         {
             if (WorldGen.destroyObject)
@@ -284,30 +292,39 @@ namespace ExxoAvalonOrigins
                         case 0:
                             item = ModContent.ItemType<Items.LargeDaybloomSeed>();
                             break;
+
                         case 1:
                             item = ModContent.ItemType<Items.LargeMoonglowSeed>();
                             break;
+
                         case 2:
                             item = ModContent.ItemType<Items.LargeBlinkrootSeed>();
                             break;
+
                         case 3:
                             item = ModContent.ItemType<Items.LargeDeathweedSeed>();
                             break;
+
                         case 4:
                             item = ModContent.ItemType<Items.LargeWaterleafSeed>();
                             break;
+
                         case 5:
                             item = ModContent.ItemType<Items.LargeFireblossomSeed>();
                             break;
+
                         case 6:
                             item = ModContent.ItemType<Items.LargeShiverthornSeed>();
                             break;
+
                         case 7:
                             item = ModContent.ItemType<Items.LargeBloodberrySeed>();
                             break;
+
                         case 8:
                             item = ModContent.ItemType<Items.LargeSweetstemSeed>();
                             break;
+
                         case 9:
                             item = ModContent.ItemType<Items.LargeBarfbushSeed>();
                             break;
@@ -322,30 +339,39 @@ namespace ExxoAvalonOrigins
                         case 0:
                             item = ModContent.ItemType<Items.LargeDaybloom>();
                             break;
+
                         case 1:
                             item = ModContent.ItemType<Items.LargeMoonglow>();
                             break;
+
                         case 2:
                             item = ModContent.ItemType<Items.LargeBlinkroot>();
                             break;
+
                         case 3:
                             item = ModContent.ItemType<Items.LargeDeathweed>();
                             break;
+
                         case 4:
                             item = ModContent.ItemType<Items.LargeWaterleaf>();
                             break;
+
                         case 5:
                             item = ModContent.ItemType<Items.LargeFireblossom>();
                             break;
+
                         case 6:
                             item = ModContent.ItemType<Items.LargeShiverthorn>();
                             break;
+
                         case 7:
                             item = ModContent.ItemType<Items.LargeBloodberry>();
                             break;
+
                         case 8:
                             item = ModContent.ItemType<Items.LargeSweetstem>();
                             break;
+
                         case 9:
                             item = ModContent.ItemType<Items.LargeBarfbush>();
                             break;
@@ -356,6 +382,7 @@ namespace ExxoAvalonOrigins
                 WorldGen.destroyObject = false;
             }
         }
+
         public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
         {
             Tile tile = Main.tile[x, y];
@@ -494,7 +521,7 @@ namespace ExxoAvalonOrigins
         public override void NetSend(BinaryWriter writer)
         {
             var flags = new BitsByte();
-            flags[0] = ExxoAvalonOrigins.superHardmode;
+            flags[0] = SuperHardmode;
             flags[1] = downedPhantasm;
             flags[2] = contaigon;
             flags[3] = downedBacteriumPrime;
@@ -504,15 +531,15 @@ namespace ExxoAvalonOrigins
             flags[7] = downedOblivion;
             writer.Write(flags);
             writer.WriteVector2(LoK);
-            writer.Write(ExxoAvalonOrigins.dungeonEx);
             writer.Write(shmOreTier1);
             writer.Write(shmOreTier2);
             writer.Write(hallowAltarCount);
         }
+
         public override void NetReceive(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
-            ExxoAvalonOrigins.superHardmode = flags[0];
+            SuperHardmode = flags[0];
             downedBacteriumPrime = flags[3];
             downedDesertBeak = flags[4];
             downedPhantasm = flags[1];
@@ -521,11 +548,11 @@ namespace ExxoAvalonOrigins
             downedOblivion = flags[7];
             contaigon = flags[2];
             LoK = reader.ReadVector2();
-            ExxoAvalonOrigins.dungeonEx = reader.ReadInt32();
             shmOreTier1 = reader.ReadInt32();
             shmOreTier2 = reader.ReadInt32();
             hallowAltarCount = reader.ReadInt32();
         }
+
         public static void GrowLargeHerb(int x, int y)
         {
             if (Main.tile[x, y].active())
@@ -617,11 +644,11 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        public static void DarkMatterSpread(int i, int j)
+        public void DarkMatterSpread(int i, int j)
         {
             if (!Main.hardMode || Main.tile[i, j].inActive()) return;
             int type = Main.tile[i, j].type;
-            if (ExxoAvalonOrigins.superHardmode)
+            if (SuperHardmode)
             {
                 if (type == ModContent.TileType<Tiles.DarkMatter>() || type == ModContent.TileType<Tiles.DarkMatterSoil>() || type == ModContent.TileType<DarkMatterGrass>() || type == ModContent.TileType<DarkMatterSand>() || type == ModContent.TileType<HardenedDarkSand>() || type == ModContent.TileType<Darksandstone>() || type == ModContent.TileType<BlackIce>())
                 {
@@ -699,6 +726,7 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
         public static void ContagionHardmodeSpread(int i, int j)
         {
             if (!Main.hardMode || Main.tile[i, j].inActive())
@@ -782,6 +810,7 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
         public override void PostUpdate()
         {
             float num2 = 3E-05f * (float)Main.worldRate;
@@ -818,18 +847,23 @@ namespace ExxoAvalonOrigins
                     {
                         GrowLargeHerb(num5, num6);
                     }
+
                     #region hardmode/superhardmode stuff
+
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
                         if (Main.hardMode) SpreadXanthophyte(num5, num6);
-                        if (ExxoAvalonOrigins.superHardmode && WorldDarkMatterTiles < 250000)
+                        if (SuperHardmode && WorldDarkMatterTiles < 250000)
                         {
                             DarkMatterSpread(num5, num6);
                         }
                     }
-                    #endregion
+
+                    #endregion hardmode/superhardmode stuff
+
                     #region tropical short grass
+
                     if (Main.tile[num5, num6].type == ModContent.TileType<TropicalGrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -868,8 +902,11 @@ namespace ExxoAvalonOrigins
                             }
                         }*/
                     }
-                    #endregion
+
+                    #endregion tropical short grass
+
                     #region sweetstem spawning
+
                     if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -886,8 +923,11 @@ namespace ExxoAvalonOrigins
                             }
                         }
                     }
-                    #endregion
+
+                    #endregion sweetstem spawning
+
                     #region contagion shortgrass/barfbush spawning
+
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = (int)Main.tile[num5, num6].type;
@@ -963,8 +1003,11 @@ namespace ExxoAvalonOrigins
                             NetMessage.SendTileSquare(-1, num5, num6, 3);
                         }
                     }
-                    #endregion
+
+                    #endregion contagion shortgrass/barfbush spawning
+
                     #region impvines growing
+
                     if ((Main.tile[num5, num6].type == ModContent.TileType<Impgrass>() || Main.tile[num5, num6].type == ModContent.TileType<Impvines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].active() && !Main.tile[num5, num6 + 1].lava())
                     {
                         bool flag10 = false;
@@ -994,8 +1037,11 @@ namespace ExxoAvalonOrigins
                             }
                         }
                     }
-                    #endregion
+
+                    #endregion impvines growing
+
                     #region contagion vines growing
+
                     if ((Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>() || Main.tile[num5, num6].type == ModContent.TileType<ContagionVines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].active() && !Main.tile[num5, num6 + 1].lava())
                     {
                         bool flag10 = false;
@@ -1025,7 +1071,8 @@ namespace ExxoAvalonOrigins
                             }
                         }
                     }
-                    #endregion
+
+                    #endregion contagion vines growing
                 }
                 num4++;
             }
@@ -1118,6 +1165,7 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
         public override void PreUpdate()
         {
             if (!retroGenned)
@@ -1128,14 +1176,15 @@ namespace ExxoAvalonOrigins
                     retroGenned = true;
                 }
             }
-            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ExxoAvalonOrigins.superHardmode && Main.hardMode)
+            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && SuperHardmode && Main.hardMode)
             {
                 DropComet(ModContent.TileType<Tiles.HydrolythOre>());
             }
         }
+
         public override void PreWorldGen()
         {
-            ExxoAvalonOrigins.superHardmode = false;
+            SuperHardmode = false;
             ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;
             ExxoAvalonOriginsGlobalNPC.oblivionDead = false;
             ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;
@@ -1311,6 +1360,7 @@ namespace ExxoAvalonOrigins
                 //tasks.Insert(microBiomes + 1, new PassLegacy("Nest", World.Passes.WaspNest.Method));
             }
         }
+
         public void SpreadXanthophyte(int x, int y)
         {
             if (Main.tile[x, y].inActive())
@@ -1435,6 +1485,7 @@ namespace ExxoAvalonOrigins
                 }*/
             }
         }
+
         public static bool GrowHellTree(int i, int y)
         {
             int j;
@@ -1499,6 +1550,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 132; // changed - 110
                                 }
                                 break;
+
                             case 2:
                                 if (num4 == 0)
                                 {
@@ -1516,6 +1568,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 198; // changed - 44
                                 }
                                 break;
+
                             case 3:
                                 if (num4 == 0)
                                 {
@@ -1533,6 +1586,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 132; // changed - 110
                                 }
                                 break;
+
                             case 4:
                                 if (num4 == 0) // changed - 66 88 110
                                 {
@@ -1550,6 +1604,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 132;
                                 }
                                 break;
+
                             case 5:
                                 if (num4 == 0) // changed - 0 22 44
                                 {
@@ -1567,6 +1622,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 198;
                                 }
                                 break;
+
                             case 6:
                                 if (num4 == 0) // changed - 66 88 110
                                 {
@@ -1584,6 +1640,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 132;
                                 }
                                 break;
+
                             case 7:
                                 if (num4 == 0) // 66 88 110
                                 {
@@ -1601,6 +1658,7 @@ namespace ExxoAvalonOrigins
                                     Main.tile[i, k].frameY = 132;
                                 }
                                 break;
+
                             default:
                                 if (num4 == 0) // 0 22 44
                                 {
@@ -1808,6 +1866,7 @@ namespace ExxoAvalonOrigins
                                 Main.tile[i, j - 1].frameY = 66;
                             }
                             break;
+
                         case 1:
                             if (num4 == 0) // 132 154 176
                             {
@@ -1825,6 +1884,7 @@ namespace ExxoAvalonOrigins
                                 Main.tile[i, j - 1].frameY = 66;
                             }
                             break;
+
                         case 2:
                             if (num4 == 0) // 132 154 176
                             {
@@ -2067,15 +2127,16 @@ namespace ExxoAvalonOrigins
             return true;
         }
 
-        public static void InitiateSuperHardmode()
+        public void InitiateSuperHardmode()
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback(shmCallback), 1);
         }
-        public static void shmCallback(object threadContext)
+
+        public void shmCallback(object threadContext)
         {
-            if (ExxoAvalonOrigins.superHardmode) return;
+            if (SuperHardmode) return;
             GenerateSHMOres();
-            ExxoAvalonOrigins.superHardmode = true;
+            SuperHardmode = true;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText("The ancient souls have been disturbed...", 255, 60, 0);
@@ -2093,6 +2154,7 @@ namespace ExxoAvalonOrigins
                 Netplay.ResetSections();
             }
         }
+
         public static void GenerateSHMOres()
         {
             if (Main.rand == null)
@@ -2135,6 +2197,7 @@ namespace ExxoAvalonOrigins
                 WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(5, 8), (ushort)ModContent.TileType<Tiles.PrimordialOre>());
             }
         }
+
         public void MakeOblivionOre(NPC npc1, NPC npc2, string text, int radius)
         {
             if (Collision.CheckAABBvAABBCollision(npc1.Center, new Vector2(npc1.width, npc1.height), npc2.Center, new Vector2(npc2.width, npc2.height)))
@@ -2159,12 +2222,13 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
         public override TagCompound Save()
         {
             var toSave = new TagCompound
             {
                 { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.mod.version.ToString() },
-                { "ExxoAvalonOrigins:SuperHardMode", ExxoAvalonOrigins.superHardmode },
+                { "ExxoAvalonOrigins:SuperHardMode", SuperHardmode },
                 { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },
                 { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },
                 { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },
@@ -2174,7 +2238,6 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },
                 { "ExxoAvalonOrigins:Contagion", contaigon },
                 { "ExxoAvalonOrigins:DungeonSide", dungeonSide },
-                { "ExxoAvalonOrigins:DungeonX", ExxoAvalonOrigins.dungeonEx },
                 { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },
                 { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
                 { "ExxoAvalonOrigins:OsmiumOre", (int)rhodiumOre },
@@ -2208,7 +2271,7 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:SuperHardMode"))
             {
-                ExxoAvalonOrigins.superHardmode = tag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");
+                SuperHardmode = tag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:DownedBacteriumPrime"))
             {
@@ -2253,14 +2316,6 @@ namespace ExxoAvalonOrigins
             else
             {
                 dungeonSide = -1;
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:DungeonX"))
-            {
-                ExxoAvalonOrigins.dungeonEx = tag.GetAsInt("ExxoAvalonOrigins:DungeonX");
-            }
-            else
-            {
-                ExxoAvalonOrigins.dungeonEx = dungeonSide == -1 ? Main.maxTilesX / 3 : Main.maxTilesX - Main.maxTilesX / 3;
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:SHMOreTier1"))
             {

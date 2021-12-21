@@ -15,11 +15,15 @@ namespace ExxoAvalonOrigins.NPCs
     [AutoloadBossHead]
     public class WallofSteel : ModNPC
     {
+        private static Texture2D wosTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/WallofSteel");
+        private static Texture2D mechaHungryChainTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/MechaHungryChain");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall of Steel");
             Main.npcFrameCount[npc.type] = 1;
         }
+
         public override void SetDefaults()
         {
             npc.width = 200;
@@ -41,19 +45,23 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
             bossBag = ModContent.ItemType<Items.BossBags.WallofSteelBossBag>();
         }
+
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ItemID.GreaterHealingPotion;
         }
+
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 255);
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.85f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.65f);
         }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             if (ExxoAvalonOriginsWorld.wos >= 0)
@@ -136,7 +144,7 @@ namespace ExxoAvalonOrigins.NPCs
                             num9 = num6 - vector2.X;
                             num10 = num7 - vector2.Y;
                             Color color2 = Lighting.GetColor((int)vector2.X / 16, (int)(vector2.Y / 16f));
-                            Main.spriteBatch.Draw(ExxoAvalonOrigins.mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, ExxoAvalonOrigins.mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2((float)ExxoAvalonOrigins.mechaHungryChainTexture.Width * 0.5f, (float)ExxoAvalonOrigins.mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
+                            Main.spriteBatch.Draw(mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2((float)mechaHungryChainTexture.Width * 0.5f, (float)mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
                         }
                     }
                 }
@@ -195,9 +203,9 @@ namespace ExxoAvalonOrigins.NPCs
                     int num20 = 0;
                     while (flag5)
                     {
-                        int x = (int)(wosPosX + (float)(ExxoAvalonOrigins.wosTexture.Width / 2)) / 16;
+                        int x = (int)(wosPosX + (float)(wosTexture.Width / 2)) / 16;
                         int y = (int)(num16 + (float)num20) / 16;
-                        Main.spriteBatch.Draw(ExxoAvalonOrigins.wosTexture, new Vector2(wosPosX - Main.screenPosition.X, num16 + (float)num20 - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, num19 + num20, ExxoAvalonOrigins.wosTexture.Width, 16)), Lighting.GetColor(x, y), 0f, default(Vector2), 1f, effects2, 0f);
+                        Main.spriteBatch.Draw(wosTexture, new Vector2(wosPosX - Main.screenPosition.X, num16 + (float)num20 - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, num19 + num20, wosTexture.Width, 16)), Lighting.GetColor(x, y), 0f, default(Vector2), 1f, effects2, 0f);
                         num20 += 16;
                         if ((float)num20 >= num18)
                         {
@@ -213,6 +221,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             return true;
         }
+
         public override void AI()
         {
             bool expert = Main.expertMode;
@@ -500,7 +509,7 @@ namespace ExxoAvalonOrigins.NPCs
             Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore13"), npc.scale);
             Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore14"), npc.scale);
             ExxoAvalonOriginsWorld.wos = -1;
-            if (!ExxoAvalonOrigins.superHardmode && Main.hardMode)
+            if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
             {
                 //int numplayers = 0;
                 //for (int i = 0; i < 255; i++)
@@ -508,7 +517,7 @@ namespace ExxoAvalonOrigins.NPCs
                 //    if (Main.player[i].active) numplayers++;
                 //}
                 npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.DarkStarHeart>());
-                ExxoAvalonOriginsWorld.InitiateSuperHardmode();
+                ModContent.GetInstance<ExxoAvalonOriginsWorld>().InitiateSuperHardmode();
             }
             if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
             if (Main.expertMode)

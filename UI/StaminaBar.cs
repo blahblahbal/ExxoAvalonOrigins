@@ -17,6 +17,7 @@ namespace ExxoAvalonOrigins.UI
         private Texture2D staminaTexture1;
         private Texture2D staminaTexture2;
         private Texture2D staminaTexture3;
+
         public StaminaBar()
         {
             staminaTexture1 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
@@ -34,14 +35,14 @@ namespace ExxoAvalonOrigins.UI
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            if (Main.player[Main.myPlayer].ghost || !ExxoAvalonOrigins.mod.subInterface)
+            if (Main.player[Main.myPlayer].ghost)
             {
                 return;
             }
 
             CalculatedStyle dimensions = GetDimensions();
             // Draw labelText above stamina bar
-            DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, labelText, new Vector2((Main.screenWidth - labelDimensions.X + 15), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor,Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 0.7f, SpriteEffects.None, 0f);
+            DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, labelText, new Vector2((Main.screenWidth - labelDimensions.X + 15), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 0.7f, SpriteEffects.None, 0f);
 
             var player = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
@@ -112,12 +113,15 @@ namespace ExxoAvalonOrigins.UI
                     case 1:
                         texture = staminaTexture1;
                         break;
+
                     case 2:
                         texture = staminaTexture2;
                         break;
+
                     case 3:
                         texture = staminaTexture3;
                         break;
+
                     default:
                         texture = staminaTexture1;
                         break;

@@ -11,50 +11,54 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class UnstableAnomaly : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Unstable Anomaly");
-			Main.npcFrameCount[npc.type] = 8;
-		}
+    public class UnstableAnomaly : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Unstable Anomaly");
+            Main.npcFrameCount[npc.type] = 8;
+        }
+
         public override void SetDefaults()
-		{
-			npc.damage = 108;
-			npc.scale = 1f;
-			npc.lifeMax = 2000;
-			npc.defense = 37;
-			npc.width = 32;
-			npc.aiStyle = 22;
-			npc.value = Item.buyPrice(0, 1, 0, 0);
-			npc.height = 24;
+        {
+            npc.damage = 108;
+            npc.scale = 1f;
+            npc.lifeMax = 2000;
+            npc.defense = 37;
+            npc.width = 32;
+            npc.aiStyle = 22;
+            npc.value = Item.buyPrice(0, 1, 0, 0);
+            npc.height = 24;
             npc.noTileCollide = npc.noGravity = true;
-			npc.knockBackResist = 0.3f;
+            npc.knockBackResist = 0.3f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath6;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = SoundID.NPCDeath6;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.UnstableAnomalyBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.65f);
         }
+
         public override void NPCLoot()
-		{
-			
-		}
+        {
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && ExxoAvalonOrigins.superHardmode)
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
             {
                 return 1f;
             }
             return 0f;
         }
+
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.X > 0f)

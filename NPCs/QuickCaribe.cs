@@ -11,35 +11,37 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class QuickCaribe : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Quick Caribe");
-			Main.npcFrameCount[npc.type] = 6;
-		}
+    public class QuickCaribe : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Quick Caribe");
+            Main.npcFrameCount[npc.type] = 6;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 80;
-			npc.lifeMax = 150;
-			npc.defense = 22;
-			npc.noGravity = true;
-			npc.width = 32;
-			npc.aiStyle = -1;
-			npc.value = Item.buyPrice(0, 0, 50, 0);
-			npc.timeLeft = 750;
-			npc.height = 24;
-			npc.knockBackResist = 0.8f;
-			npc.buffImmune[BuffID.Confused] = true;
+        public override void SetDefaults()
+        {
+            npc.damage = 80;
+            npc.lifeMax = 150;
+            npc.defense = 22;
+            npc.noGravity = true;
+            npc.width = 32;
+            npc.aiStyle = -1;
+            npc.value = Item.buyPrice(0, 0, 50, 0);
+            npc.timeLeft = 750;
+            npc.height = 24;
+            npc.knockBackResist = 0.8f;
+            npc.buffImmune[BuffID.Confused] = true;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-		}
+            npc.DeathSound = SoundID.NPCDeath1;
+        }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.8f);
         }
+
         public override void AI()
         {
             if (npc.direction == 0)
@@ -275,7 +277,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneJungle && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.041f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneJungle && Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.041f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

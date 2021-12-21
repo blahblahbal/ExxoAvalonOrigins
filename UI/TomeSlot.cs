@@ -18,10 +18,13 @@ namespace ExxoAvalonOrigins.UI
     {
         public UIPanel tomeSlotDisplay;
         internal float scale = 1f;
-        Texture2D background = ExxoAvalonOrigins.tomeSlotBackgroundTexture;
+        public static Texture2D BackgroundTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/TomeSlotBackground");
+
         internal event Action<Item, Item> OnItemChange;
+
         internal event Func<Item, bool> CanPutIntoSlot;
-        Item[] ssa = new Item[1];
+
+        private Item[] ssa = new Item[1];
 
         public override void OnInitialize()
         {
@@ -29,8 +32,8 @@ namespace ExxoAvalonOrigins.UI
             tomeSlotDisplay.SetPadding(0);
             tomeSlotDisplay.Left.Set(-100f, 1f);
             tomeSlotDisplay.Top.Set(-100f, 1f);
-            tomeSlotDisplay.Width.Set(background.Width * scale, 0f);
-            tomeSlotDisplay.Height.Set(background.Height * scale, 0f);
+            tomeSlotDisplay.Width.Set(BackgroundTexture.Width * scale, 0f);
+            tomeSlotDisplay.Height.Set(BackgroundTexture.Height * scale, 0f);
             tomeSlotDisplay.BackgroundColor = new Color(73, 94, 171);
             Append(tomeSlotDisplay);
         }
@@ -39,7 +42,6 @@ namespace ExxoAvalonOrigins.UI
         {
             if (Main.playerInventory && Main.EquipPage == 2)
             {
-
                 var mouseLoc = new Point(Main.mouseX, Main.mouseY);
                 var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
                 Main.inventoryScale = 0.85f;
@@ -95,9 +97,9 @@ namespace ExxoAvalonOrigins.UI
                     Main.HoverItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Clone();
                 }
                 ssa[0] = tmpItem;
-                //spriteBatch.Draw(background, r, default(Color));
+                //spriteBatch.Draw(BackgroundTexture, r, default(Color));
                 ItemSlot.Draw(spriteBatch, ssa, 10, 0, new Vector2(r.X, r.Y));
-                //Main.spriteBatch.Draw(background, r, default(Color));
+                //Main.spriteBatch.Draw(BackgroundTexture, r, default(Color));
                 tmpItem = ssa[0];
                 //Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = tmpItem;
             }
