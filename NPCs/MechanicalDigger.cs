@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.073f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.073f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
 
         public override void SetDefaults()
@@ -44,11 +44,13 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.55f);
         }
+
         public override void Init()
         {
             base.Init();
@@ -67,10 +69,12 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MechanicalDiggerBody"), 1f);
             }
         }
+
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             return false;
         }
+
         public override void SetDefaults()
         {
             npc.damage = 90;
@@ -92,6 +96,7 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
@@ -110,10 +115,12 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MechanicalDiggerTail"), 1f);
             }
         }
+
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             return false;
         }
+
         public override void SetDefaults()
         {
             npc.damage = 120;
@@ -135,11 +142,13 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.55f);
         }
+
         public override void Init()
         {
             base.Init();

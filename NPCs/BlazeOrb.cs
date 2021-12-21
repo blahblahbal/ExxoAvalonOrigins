@@ -10,30 +10,30 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class BlazeOrb : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Blaze Orb");
-			Main.npcFrameCount[npc.type] = 1;
-		}
+    public class BlazeOrb : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Blaze Orb");
+            Main.npcFrameCount[npc.type] = 1;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 65;
-			npc.scale = 0.9f;
-			npc.noTileCollide = true;
-			npc.lifeMax = 1;
-			npc.defense = 0;
-			npc.noGravity = true;
-			npc.alpha = 80;
-			npc.width = 16;
-			npc.aiStyle = -1;
-			npc.height = 16;
+        public override void SetDefaults()
+        {
+            npc.damage = 65;
+            npc.scale = 0.9f;
+            npc.noTileCollide = true;
+            npc.lifeMax = 1;
+            npc.defense = 0;
+            npc.noGravity = true;
+            npc.alpha = 80;
+            npc.width = 16;
+            npc.aiStyle = -1;
+            npc.height = 16;
             npc.HitSound = SoundID.NPCHit3;
-	        npc.DeathSound = SoundID.NPCDeath3;
-			npc.knockBackResist = 0f;
-		}
+            npc.DeathSound = SoundID.NPCDeath3;
+            npc.knockBackResist = 0f;
+        }
 
         public override void AI()
         {
@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.NPCs
                 num282 = num279 / num282;
                 npc.velocity.X = num280 * num282;
                 npc.velocity.Y = num281 * num282;
-        }
+            }
             npc.ai[0] += 1f;
             if (npc.ai[0] > 3f)
             {
@@ -86,7 +86,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 }
                                 else
                                 {
-                                    Main.tile[num290, num291].type = (ushort) ModContent.TileType<Tiles.BrimstoneBlock>();
+                                    Main.tile[num290, num291].type = (ushort)ModContent.TileType<Tiles.BrimstoneBlock>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291, true);
                                 if (Main.netMode == NetmodeID.Server)
@@ -96,9 +96,9 @@ namespace ExxoAvalonOrigins.NPCs
                             }
                             else if (tile.type == TileID.Hellstone)
                             {
-                                if (Main.rand.Next(5) == 0 && ExxoAvalonOrigins.superHardmode && Main.hardMode)
+                                if (Main.rand.Next(5) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
                                 {
-                                    Main.tile[num290, num291].type = (ushort) ModContent.TileType<Tiles.CaesiumOre>();
+                                    Main.tile[num290, num291].type = (ushort)ModContent.TileType<Tiles.CaesiumOre>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291);
                                 if (Main.netMode == NetmodeID.Server)

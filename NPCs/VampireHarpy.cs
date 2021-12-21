@@ -10,50 +10,53 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class VampireHarpy : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Vampire Harpy");
-			Main.npcFrameCount[npc.type] = 4;
-		}
+    public class VampireHarpy : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Vampire Harpy");
+            Main.npcFrameCount[npc.type] = 4;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 110;
-			npc.scale = 1.3f;
-			npc.lifeMax = 953;
-			npc.defense = 25;
-			npc.noGravity = true;
-			npc.alpha = 50;
-			npc.width = 38;
-			npc.aiStyle = 14;
-			npc.npcSlots = 2f;
-			npc.value = 10000f;
-			npc.timeLeft = 750;
-			npc.height = 34;
-			npc.knockBackResist = 0.1f;
+        public override void SetDefaults()
+        {
+            npc.damage = 110;
+            npc.scale = 1.3f;
+            npc.lifeMax = 953;
+            npc.defense = 25;
+            npc.noGravity = true;
+            npc.alpha = 50;
+            npc.width = 38;
+            npc.aiStyle = 14;
+            npc.npcSlots = 2f;
+            npc.value = 10000f;
+            npc.timeLeft = 750;
+            npc.height = 34;
+            npc.knockBackResist = 0.1f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.VampireHarpyBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.65f);
         }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ExxoAvalonOrigins.superHardmode)
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
             {
                 return 1f;
             }
             return 0f;
         }
+
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.X > 0f)

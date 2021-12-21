@@ -14,9 +14,13 @@ namespace ExxoAvalonOrigins.Projectiles
 {
     public class PhantasmLaser : ModProjectile
     {
-        Color laserColor;
-        Color[] colorArray = new Color[3];
-        int colorShift;
+        private Color laserColor;
+        private Color[] colorArray = new Color[3];
+        private int colorShift;
+        private static Texture2D texture2D18 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamVenoshock");
+        private static Texture2D texture2D19 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamStart");
+        private static Texture2D texture2D20 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamEnd");
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Phantasm Laser");
@@ -35,12 +39,11 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.timeLeft = 3600;
             projectile.tileCollide = false;
         }
+
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Projectile p = projectile;
-            Texture2D texture2D18 = ExxoAvalonOrigins.BeamEndTexture;
-            Texture2D texture2D19 = ExxoAvalonOrigins.BeamVTexture;
-            Texture2D texture2D20 = ExxoAvalonOrigins.BeamStartTexture;
+
             float num204 = projectile.localAI[1];
 
             colorArray[0] = new Color(88, 219, 255, 180) * 0.9f; // TODO: make the laser shift colors better
@@ -90,6 +93,7 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             spriteBatch.Draw(texture2D20, center2 - Main.screenPosition, null, laserColor, projectile.rotation, texture2D20.Frame().Top(), projectile.scale, SpriteEffects.None, 0f);
         }
+
         public bool Colliding2(Rectangle myRect, Rectangle targetRect)
         {
             float collisionPoint6 = 0f;
@@ -99,6 +103,7 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             return false;
         }
+
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             //Rectangle playerRect = new Rectangle((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, Main.player[Main.myPlayer].width, Main.player[Main.myPlayer].height);
@@ -108,6 +113,7 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             return base.Colliding(projHitbox, targetHitbox);
         }
+
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
             Rectangle playerRect = new Rectangle((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, Main.player[Main.myPlayer].width, Main.player[Main.myPlayer].height);
@@ -116,6 +122,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 Main.player[Main.myPlayer].Hurt(PlayerDeathReason.ByProjectile(Main.myPlayer, projectile.whoAmI), projectile.damage, projectile.direction);
             }
         }
+
         public override void AI()
         {
             Vector2 samplingPoint = projectile.Center;

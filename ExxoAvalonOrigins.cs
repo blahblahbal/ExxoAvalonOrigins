@@ -25,8 +25,8 @@ namespace ExxoAvalonOrigins
         public readonly Version version = new Version(0, 9, 5, 0, DevMode);
 
         // Hotkeys
-        public ModHotKey shadowHotkey;
 
+        public ModHotKey shadowHotkey;
         public ModHotKey sprintHotkey;
         public ModHotKey dashHotkey;
         public ModHotKey quintupleHotkey;
@@ -37,14 +37,6 @@ namespace ExxoAvalonOrigins
         public ModHotKey astralHotkey;
         public ModHotKey minionGuidingHotkey;
 
-        public static bool armaRO = false; //TODO: Move out and make better implementation
-        public static int dungeonEx = 0; //TODO: implement X catch in worldgen
-        public static int jungleEx = 0; //TODO: implement X catch in worldgen
-        public static bool superHardmode;
-        public static Texture2D BeamVTexture;
-        public static Texture2D BeamStartTexture;
-        public static Texture2D BeamEndTexture;
-        public static Texture2D wosTexture;
         public static Texture2D mechaHungryChainTexture;
         public static Texture2D[] lavaMermanTextures = new Texture2D[5];
         public static Texture2D[] originalMermanTextures = new Texture2D[5];
@@ -71,64 +63,6 @@ namespace ExxoAvalonOrigins
 
         public static Item herbItem;
         public static string[] herbNames = new string[10] { "Daybloom", "Moonglow", "Blinkroot", "Deathweed", "Waterleaf", "Fireblossom", "Shiverthorn", "Bloodberry", "Sweetstem", "Barfbush" };
-
-        public static string[] potionNames = new string[54]
-        {
-            "Obsidian Skin",
-            "Regeneration",
-            "Swiftness",
-            "Gills",
-            "Ironskin",
-            "Mana Regeneration",
-            "Magic Power",
-            "Featherfall",
-            "Spelunker",
-            "Invisibility",
-            "Shine",
-            "Night Owl",
-            "Battle",
-            "Thorns",
-            "Water Walking",
-            "Archery",
-            "Hunter",
-            "Gravitation",
-            "Mining",
-            "Heartreach",
-            "Calming",
-            "Builder",
-            "Titan",
-            "Flipper",
-            "Summoning",
-            "Dangersense",
-            "Ammo Reservation",
-            "Lifeforce",
-            "Endurance",
-            "Rage",
-            "Inferno",
-            "Wrath",
-            "Fishing",
-            "Sonar",
-            "Crate",
-            "Warmth",
-            "Crimson",
-            "Shockwave",
-            "Luck",
-            "Blood Cast",
-            "Starbright",
-            "Vision",
-            "Strength",
-            "GPS",
-            "Time Shift",
-            "Shadow",
-            "Rogue",
-            "Gauntlet",
-            "Wisdom",
-            "Titanskin",
-            "Invincibility",
-            "Force Field",
-            "Fury",
-            "Magnet"
-        };
 
         public static List<int> beams = new List<int>()
         {
@@ -206,10 +140,6 @@ namespace ExxoAvalonOrigins
                 mana4Texture = GetTexture("Sprites/Mana4");
                 mana5Texture = GetTexture("Sprites/Mana5");
                 mana6Texture = GetTexture("Sprites/Mana6");
-                BeamVTexture = GetTexture("Sprites/BeamVenoshock");
-                BeamStartTexture = GetTexture("Sprites/BeamStart");
-                BeamEndTexture = GetTexture("Sprites/BeamEnd");
-                wosTexture = GetTexture("Sprites/WallofSteel");
                 mechaHungryChainTexture = GetTexture("Sprites/MechaHungryChain");
                 tomeSlotBackgroundTexture = GetTexture("Sprites/TomeSlotBackground");
                 //impTreeTexture = GetTexture("Sprites/ResistantTree");
@@ -702,7 +632,7 @@ namespace ExxoAvalonOrigins
                     ModContent.NPCType<NPCs.WallofSteel>(),
                     this,
                     "Wall of Steel",
-                    (Func<bool>)(() => superHardmode),
+                    (Func<bool>)(() => ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode),
                     ModContent.ItemType<Items.HellboundRemote>(),
                     new List<int> { ModContent.ItemType<Items.WallofSteelTrophy>() },
                     new List<int> {ModContent.ItemType<Items.DarkStarHeart>(),

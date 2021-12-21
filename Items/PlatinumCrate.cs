@@ -11,23 +11,23 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Items
 {
-	class PlatinumCrate : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Platinum Crate");
-			Tooltip.SetDefault("Right click to open");
-		}
+    class PlatinumCrate : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Platinum Crate");
+            Tooltip.SetDefault("Right click to open");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Items/PlatinumCrate");
-			item.rare = ItemRarityID.Pink;
-			item.width = dims.Width;
-			item.maxStack = 99;
-			item.value = Item.sellPrice(0, 4, 0, 0);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Items/PlatinumCrate");
+            item.rare = ItemRarityID.Pink;
+            item.width = dims.Width;
+            item.maxStack = 99;
+            item.value = Item.sellPrice(0, 4, 0, 0);
+            item.height = dims.Height;
+        }
 
         public override bool CanRightClick()
         {
@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items
             var flag4 = true;
             while (flag4)
             {
-                if (ExxoAvalonOrigins.superHardmode && flag4 && Main.rand.Next(50) == 0)
+                if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && flag4 && Main.rand.Next(50) == 0)
                 {
                     var number19 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<IllegalWeaponInstructions>(), 1, false, 0, false);
                     if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -132,7 +132,7 @@ namespace ExxoAvalonOrigins.Items
                             num12 = ItemID.TitaniumOre;
                         }
                     }
-                    if (ExxoAvalonOrigins.superHardmode && Main.rand.Next(3) == 0)
+                    if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(3) == 0)
                     {
                         num12 = Main.rand.Next(6);
                         if (num12 == 0)
@@ -161,7 +161,7 @@ namespace ExxoAvalonOrigins.Items
                         }
                     }
                     var stack19 = Main.rand.Next(15, 35);
-                    if (ExxoAvalonOrigins.superHardmode)
+                    if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
                     {
                         stack19 = Main.rand.Next(10, 24);
                     }
@@ -237,7 +237,7 @@ namespace ExxoAvalonOrigins.Items
                         }
                         num14 -= Main.rand.Next(2);
                     }
-                    if (ExxoAvalonOrigins.superHardmode && Main.rand.Next(2) == 0)
+                    if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(2) == 0)
                     {
                         num13 = Main.rand.Next(4);
                         if (num13 == 0)
@@ -265,7 +265,7 @@ namespace ExxoAvalonOrigins.Items
                     }
                     flag4 = false;
                 }
-                if (Main.rand.Next(7) == 0 && ExxoAvalonOrigins.superHardmode)
+                if (Main.rand.Next(7) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
                 {
                     var num15 = Main.rand.Next(10);
                     if (num15 == 0)

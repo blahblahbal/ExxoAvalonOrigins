@@ -14,30 +14,30 @@ namespace ExxoAvalonOrigins
     {
         public static bool CanFreeze(NPC npc)
         {
-			if (!Main.hardMode)
-			{
-				if (npc.lifeMax <= 300 && !npc.boss && !npc.dontTakeDamage) // Prehardmode
-					return true;
-				else
-					return false;
-			}
-			else
-			{
-				if (ExxoAvalonOrigins.superHardmode) // Superhardmode
-				{
-					if (npc.lifeMax <= 11000 && !npc.boss && !npc.dontTakeDamage)
-						return true;
-					else
-						return false;
-				}
-				else
-				{
-					if (npc.lifeMax <= 5000 && !npc.boss && !npc.dontTakeDamage) // Hardmode
-						return true;
-					else
-						return false;
-				}
-			}
-		}
+            if (!Main.hardMode)
+            {
+                if (npc.lifeMax <= 300 && !npc.boss && !npc.dontTakeDamage) // Prehardmode
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode) // Superhardmode
+                {
+                    if (npc.lifeMax <= 11000 && !npc.boss && !npc.dontTakeDamage)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                {
+                    if (npc.lifeMax <= 5000 && !npc.boss && !npc.dontTakeDamage) // Hardmode
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
     }
 }

@@ -12,11 +12,11 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class HallowedAltar : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(255, 216, 0), LanguageManager.Instance.GetText("Hallowed Altar"));
+    public class HallowedAltar : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(255, 216, 0), LanguageManager.Instance.GetText("Hallowed Altar"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.CoordinateHeights = new int[]
@@ -26,10 +26,10 @@ namespace ExxoAvalonOrigins.Tiles
             };
             TileObjectData.addTile(Type);
             Main.tileHammer[Type] = true;
-			Main.tileLighted[Type] = true;
-			Main.tileFrameImportant[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileFrameImportant[Type] = true;
             dustType = DustID.HallowedWeapons;
-		}
+        }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
@@ -38,16 +38,19 @@ namespace ExxoAvalonOrigins.Tiles
             g = 0.9f + brightness * 2f;
             b = 0f;
         }
+
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            if (!ExxoAvalonOrigins.superHardmode && !Main.hardMode) blockDamaged = false;
-            return ExxoAvalonOrigins.superHardmode && Main.hardMode;
+            if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !Main.hardMode) blockDamaged = false;
+            return ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode;
         }
+
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            if (ExxoAvalonOrigins.superHardmode && Main.hardMode)
+            if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
                 SmashHallowAltar(i, j);
         }
+
         public override void NearbyEffects(int i, int j, bool closer)
         {
             if (Main.rand.Next(80) == 1)
@@ -57,13 +60,14 @@ namespace ExxoAvalonOrigins.Tiles
                 Main.dust[num162].velocity *= 1f;
             }
         }
+
         public static void SmashHallowAltar(int i, int j)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
-            if (!ExxoAvalonOrigins.superHardmode && !Main.hardMode)
+            if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !Main.hardMode)
             {
                 return;
             }

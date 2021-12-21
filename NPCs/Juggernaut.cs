@@ -11,53 +11,55 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Juggernaut : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Juggernaut");
-			Main.npcFrameCount[npc.type] = 15;
-		}
+    public class Juggernaut : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Juggernaut");
+            Main.npcFrameCount[npc.type] = 15;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 180;
-			npc.scale = 1f;
-			npc.lifeMax = 11000;
-			npc.defense = 70;
-			npc.lavaImmune = true;
-			npc.width = 31;
-			npc.aiStyle = -1;
-			npc.npcSlots = 3f;
-			npc.value = 700000f;
-			npc.timeLeft = 10000;
-			npc.height = 68;
-			npc.knockBackResist = 0.05f;
+        public override void SetDefaults()
+        {
+            npc.damage = 180;
+            npc.scale = 1f;
+            npc.lifeMax = 11000;
+            npc.defense = 70;
+            npc.lavaImmune = true;
+            npc.width = 31;
+            npc.aiStyle = -1;
+            npc.npcSlots = 3f;
+            npc.value = 700000f;
+            npc.timeLeft = 10000;
+            npc.height = 68;
+            npc.knockBackResist = 0.05f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-		}
+            npc.DeathSound = SoundID.NPCDeath2;
+        }
 
-		public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(22, 34), false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IllegalWeaponInstructions>(), 1, false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(3) + 1, false, 0, false);
-			npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = false;
-			if (Main.netMode == NetmodeID.SinglePlayer)
-			{
-				Main.NewText("A Juggernaut has been defeated!", 175, 75, 255, false);
-			}
-			else if (Main.netMode == NetmodeID.Server)
-			{
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(22, 34), false, 0, false);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.IllegalWeaponInstructions>(), 1, false, 0, false);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(3) + 1, false, 0, false);
+            npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = false;
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText("A Juggernaut has been defeated!", 175, 75, 255, false);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has been defeated!"), new Color(175, 75, 255));
-				//NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
-			}
-		}
+                //NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
+            }
+        }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.65f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.45f);
         }
+
         public override void AI()
         {
             var num441 = 30;
@@ -377,7 +379,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.025f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.025f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

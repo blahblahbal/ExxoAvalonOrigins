@@ -10,42 +10,42 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class BombSkeleton : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bomb Skeleton");
-			Main.npcFrameCount[npc.type] = 15;
-		}
+    public class BombSkeleton : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bomb Skeleton");
+            Main.npcFrameCount[npc.type] = 15;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 90;
-			npc.lifeMax = 1000;
-			npc.defense = 50;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 40000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.3f;
+        public override void SetDefaults()
+        {
+            npc.damage = 90;
+            npc.lifeMax = 1000;
+            npc.defense = 50;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 40000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.3f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
         }
 
-		public override void NPCLoot()
-		{
-			var num2 = 13f;
-			var vector = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
-			var num3 = 120;
-			var num4 = ModContent.ProjectileType<Projectiles.SkeletonHeadbomb>();
-			var num5 = (float)Math.Atan2(vector.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
-			var num6 = Projectile.NewProjectile(vector.X, vector.Y, (float)(Math.Cos(num5) * num2 * -1.0), (float)(Math.Sin(num5) * num2 * -1.0), num4, num3, 0f, 0, 0f, 0f);
-			Main.projectile[num6].velocity = Vector2.Normalize(npc.Center - Main.player[npc.target].Center) * 8f;
-			NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<NPCs.BombBones>(), npc.whoAmI);
+        public override void NPCLoot()
+        {
+            var num2 = 13f;
+            var vector = new Vector2(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2);
+            var num3 = 120;
+            var num4 = ModContent.ProjectileType<Projectiles.SkeletonHeadbomb>();
+            var num5 = (float)Math.Atan2(vector.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
+            var num6 = Projectile.NewProjectile(vector.X, vector.Y, (float)(Math.Cos(num5) * num2 * -1.0), (float)(Math.Sin(num5) * num2 * -1.0), num4, num3, 0f, 0, 0f, 0f);
+            Main.projectile[num6].velocity = Vector2.Normalize(npc.Center - Main.player[npc.target].Center) * 8f;
+            NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<NPCs.BombBones>(), npc.whoAmI);
         }
 
         public override void FindFrame(int frameHeight)
@@ -89,7 +89,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return Main.hardMode && ExxoAvalonOrigins.superHardmode && spawnInfo.player.ZoneRockLayerHeight ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && spawnInfo.player.ZoneRockLayerHeight ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

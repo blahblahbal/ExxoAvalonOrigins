@@ -12,12 +12,6 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 {
     class AdvRegenerationPotion : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Regeneration Elixir");
-            Tooltip.SetDefault("Provides life regeneration");
-        }
-
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvRegenerationPotion");

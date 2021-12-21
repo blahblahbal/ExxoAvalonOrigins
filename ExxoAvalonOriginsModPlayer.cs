@@ -18,21 +18,25 @@ namespace ExxoAvalonOrigins
     public class ExxoAvalonOriginsModPlayer : ModPlayer
     {
         #region fields
+
         public int statStamMax = 30;
         public int statStamMax2;
+
         public int statStam = 100;
         public int spiritPoppyUseCount;
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
-        public int screenShake;
+        public int screenShakeTimer;
         public bool astralProject;
+
         public enum ShadowMirrorModes
         {
             Spawn,
             Checkpoints,
             Team
         }
+
         public List<int> undead = new List<int>()
         {
             NPCID.Zombie,
@@ -78,6 +82,7 @@ namespace ExxoAvalonOrigins
             NPCID.ZombieXmas,
             NPCID.ZombieSweater
         };
+
         public List<int> flyer = new List<int>()
         {
             NPCID.DemonEye,
@@ -101,6 +106,7 @@ namespace ExxoAvalonOrigins
             ModContent.NPCType<NPCs.VampireHarpy>(),
             ModContent.NPCType<NPCs.Dragonfly>()
         };
+
         public List<int> minionProjectile = new List<int>()
         {
             ProjectileID.HornetStinger,
@@ -111,6 +117,7 @@ namespace ExxoAvalonOrigins
             ProjectileID.MiniSharkron,
             ProjectileID.StardustCellMinionShot
         };
+
         public bool armorStealth = false;
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
@@ -284,22 +291,27 @@ namespace ExxoAvalonOrigins
 
         // Adv Buffs
         public bool advAmmoBuff;
+
         public bool advArcheryBuff;
         public bool advBattleBuff;
         public bool advCalmingBuff;
         public bool advCrateBuff;
 
         #region Stinger Probe Minion AI vars
+
         public float StingerProbeRotTimer = 0;
         public int StingerProbeTimer = 0;
         public List<bool> StingerProbeActiveIds = new List<bool>();
-        #endregion
+
+        #endregion Stinger Probe Minion AI vars
 
         public Vector2 MousePosition = default(Vector2);
 
         #region Draggon's Bondage AI vars
+
         public bool dragonsBondage;
-        #endregion
+
+        #endregion Draggon's Bondage AI vars
 
         public int herbX;
         public int herbY;
@@ -313,7 +325,7 @@ namespace ExxoAvalonOrigins
         // Crit damage multiplyer vars
         public float critDamageMult = 1f;
 
-        #endregion
+        #endregion fields
 
         public override bool CloneNewInstances => false;
 
@@ -373,11 +385,6 @@ namespace ExxoAvalonOrigins
             curseOfIcarus = false;
             malaria = false;
 
-            if (screenShake > 0)
-            {
-                screenShake--;
-                //if (screenShake == 1) Main.PlaySound(2, (int)arma.position.X, (int)arma.position.Y, 14);
-            }
             if (shmAcc)
             {
                 player.extraAccessory = true;
@@ -388,13 +395,10 @@ namespace ExxoAvalonOrigins
 
             statStamMax2 = statStamMax;
         }
-        public override void UpdateDead()
-        {
-            if (screenShake > 0) screenShake--;
-        }
+
         public override void ModifyScreenPosition()
         {
-            if (screenShake > 0 && ExxoAvalonOrigins.armaRO)
+            if (screenShakeTimer > 0)
             {
                 Main.screenPosition += Main.rand.NextVector2Circular(20, 20);
             }
@@ -455,6 +459,7 @@ namespace ExxoAvalonOrigins
             zoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
             zoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
         }
+
         public override void SendCustomBiomes(BinaryWriter writer)
         {
             BitsByte flags = new BitsByte();
@@ -475,6 +480,7 @@ namespace ExxoAvalonOrigins
             zoneTropics = flags[3];
             zoneCaesium = flags[4];
         }
+
         public bool HasItemInArmor(int type)
         {
             for (var i = 0; i < player.armor.Length; i++)
@@ -486,6 +492,7 @@ namespace ExxoAvalonOrigins
             }
             return false;
         }
+
         public override void OnEnterWorld(Player player)
         {
             if (tomeItem.type <= ItemID.None) tomeItem.SetDefaults();
@@ -494,6 +501,7 @@ namespace ExxoAvalonOrigins
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
             astralCD = 3600;
         }
+
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
             if (tomeItem.stack > 0)
@@ -503,6 +511,7 @@ namespace ExxoAvalonOrigins
                     ref tileRangeBuff);
             }
         }
+
         public override void PreUpdateBuffs()
         {
             //int[] array = new int[Main.maxProjectileTypes];
@@ -566,6 +575,7 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
         public void WOSTongue()
         {
             if (ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].active)
@@ -642,7 +652,7 @@ namespace ExxoAvalonOrigins
 
             if (tomeItem.type == ModContent.ItemType<CreatorsTome>() && Main.rand.Next(4) == 0)
                 consume = false;
-            if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>())&& Main.rand.Next(5) == 0)
+            if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>()) && Main.rand.Next(5) == 0)
                 consume = false;
             if ((tomeItem.type == ModContent.ItemType<ThePlumHarvest>() || tomeItem.type == ModContent.ItemType<Emperor>()) && Main.rand.Next(10) < 3)
                 consume = false;
@@ -677,14 +687,14 @@ namespace ExxoAvalonOrigins
                 if (crystalHealth > 4) crystalHealth = 4;
                 if (player.statLifeMax == 500)
                 {
-	                player.statLifeMax += crystalHealth *= 25;
-	                player.statLifeMax2 += crystalHealth *= 25;
+                    player.statLifeMax += crystalHealth *= 25;
+                    player.statLifeMax2 += crystalHealth *= 25;
                 }
             }
 
             if (tag.ContainsKey("ExxoAvalonOrigins:Stamina"))
             {
-	            statStamMax = tag.GetAsInt("ExxoAvalonOrigins:Stamina");
+                statStamMax = tag.GetAsInt("ExxoAvalonOrigins:Stamina");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:SHMAcc"))
             {
@@ -711,6 +721,7 @@ namespace ExxoAvalonOrigins
                 spiritPoppyUseCount = tag.Get<int>("ExxoAvalonOrigins:SpiritPoppyUseCount");
             }
         }
+
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             if (ancientSandVortex && Main.rand.Next(10) == 0)
@@ -735,6 +746,7 @@ namespace ExxoAvalonOrigins
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
             }
         }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             if (minionFreeze)
@@ -790,6 +802,7 @@ namespace ExxoAvalonOrigins
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
             }
         }
+
         public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
         {
             if (minionFreeze)
@@ -806,6 +819,7 @@ namespace ExxoAvalonOrigins
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
             }
         }
+
         public void vampireHeal(int dmg, Vector2 Position)
         {
             float num = dmg * 0.075f;
@@ -821,6 +835,7 @@ namespace ExxoAvalonOrigins
             int num2 = player.whoAmI;
             Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, player.whoAmI, (float)num2, num);
         }
+
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
             if (auraThorns && !player.immune && !npc.dontTakeDamage)
@@ -942,6 +957,7 @@ namespace ExxoAvalonOrigins
                 damage += MultiplyCritDamage(damage);
             }
         }
+
         public override void ModifyHitPvp(Item item, Player target, ref int damage, ref bool crit)
         {
             if (crit)
@@ -949,6 +965,7 @@ namespace ExxoAvalonOrigins
                 damage += MultiplyCritDamage(damage);
             }
         }
+
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
             if (minionFreeze)
@@ -961,12 +978,14 @@ namespace ExxoAvalonOrigins
                 damage += MultiplyCritDamage(damage);
             }
         }
+
         public int MultiplyCritDamage(int dmg) // dmg = damage befor crit application
         {
             int bonusDmg = -dmg;
             bonusDmg += (int)((dmg * (critDamageMult + 1f)) / 2);
             return bonusDmg;
         }
+
         public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
         {
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>()))
@@ -1013,47 +1032,47 @@ namespace ExxoAvalonOrigins
 
         public override void UpdateLifeRegen()
         {
-	        if (frontReflect && Main.rand.Next(6) == 0)
-	        {
-		        if (player.poisoned)
-		        {
-			        int num = 2;
-			        if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
-			        {
-				        num = 4;
-			        }
+            if (frontReflect && Main.rand.Next(6) == 0)
+            {
+                if (player.poisoned)
+                {
+                    int num = 2;
+                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    {
+                        num = 4;
+                    }
 
-			        player.lifeRegen += num + 4;
-		        }
-		        else if (player.venom || player.frostBurn || player.onFire2)
-		        {
-			        int num2 = 2;
-			        if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
-			        {
-				        num2 = 4;
-			        }
-			        player.lifeRegen += num2 + 12;
-		        }
-		        else if (player.onFire)
-		        {
-			        int num3 = 2;
-			        if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
-			        {
-				        num3 = 4;
-			        }
-			        player.lifeRegen += num3 + 8;
-		        }
-		        else if (darkInferno)
-		        {
-			        int num6 = 4;
-			        if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
-			        {
-				        num6 = 8;
-			        }
-			        player.lifeRegen += num6 + 16;
-		        }
-	        }
-	        UpdateStaminaRegen();
+                    player.lifeRegen += num + 4;
+                }
+                else if (player.venom || player.frostBurn || player.onFire2)
+                {
+                    int num2 = 2;
+                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    {
+                        num2 = 4;
+                    }
+                    player.lifeRegen += num2 + 12;
+                }
+                else if (player.onFire)
+                {
+                    int num3 = 2;
+                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    {
+                        num3 = 4;
+                    }
+                    player.lifeRegen += num3 + 8;
+                }
+                else if (darkInferno)
+                {
+                    int num6 = 4;
+                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    {
+                        num6 = 8;
+                    }
+                    player.lifeRegen += num6 + 16;
+                }
+            }
+            UpdateStaminaRegen();
         }
 
         public override TagCompound Save()
@@ -1083,10 +1102,12 @@ namespace ExxoAvalonOrigins
             }
             return true;
         }
+
         public override void PreUpdateMovement()
         {
-             // TO-DO: LOOK FOR WOS
+            // TO-DO: LOOK FOR WOS
         }
+
         public override void PostUpdate()
         {
             if (magnet) Player.defaultItemGrabRange = 114;
@@ -1102,33 +1123,16 @@ namespace ExxoAvalonOrigins
                 if (Main.hardMode) herbTier = 3;
                 else herbTier = 1;
             }
+            herbTier = 2;
             //player.statMana = statMana;
-            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
-            {
-                int armaID = NPC.FindFirstNPC(ModContent.NPCType<NPCs.ArmageddonSlime>());
-                if (armaID != -1)
-                {
-                    if (Main.npc[armaID].active || Main.npc[armaID].life > 0)
-                    {
-                        if (Vector2.Distance(Main.npc[armaID].position, Main.player[Main.myPlayer].position) <= 100 * 16)
-                        {
-                            if (ExxoAvalonOriginsCollisions.SolidCollisionArma(Main.npc[armaID].position, (int)(Main.npc[armaID].width * Main.npc[armaID].scale), (int)(Main.npc[armaID].height * Main.npc[armaID].scale)) && Main.npc[armaID].oldVelocity.Y > 0f && !ExxoAvalonOrigins.armaRO)
-                            {
-                                ExxoAvalonOrigins.armaRO = true;
-                                screenShake = 10;
-                            }
-                            if (ExxoAvalonOrigins.armaRO)
-                            {
-                                if (screenShake == 1) Main.PlaySound(SoundID.Item, (int)Main.npc[armaID].position.X, (int)Main.npc[armaID].position.Y, 14);
-                            }
-                        }
 
-                        if (Vector2.Distance(Main.npc[armaID].Center, player.Center) < 5000)
-                        {
-                            player.AddBuff(ModContent.BuffType<Buffs.CurseofIcarus>(), 300);
-                        }
-                    }
-                }
+            if (screenShakeTimer == 1)
+            {
+                Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, 14);
+            }
+            if (screenShakeTimer > 0)
+            {
+                screenShakeTimer--;
             }
 
             Vector2 pposTile = player.Center / 16;
@@ -1142,7 +1146,9 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+
             #region rift goggles
+
             if (player.ZoneCrimson || player.ZoneCorrupt || zoneBooger)
             {
                 if (Main.rand.Next(3000) == 0 && riftGoggles)
@@ -1182,7 +1188,9 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            #endregion
+
+            #endregion rift goggles
+
             if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
             if (blahArmor) player.shadow = 0f;
 
@@ -1315,7 +1323,7 @@ namespace ExxoAvalonOrigins
                         int count = 0;
                         if (count++ % 50 == 0)
                         {
-                            foreach(NPC target in Main.npc)
+                            foreach (NPC target in Main.npc)
                             {
                                 if (target.Center.X >= player.Center.X - 320 &&
                                     target.Center.X <= player.Center.X + 320 &&
@@ -1370,113 +1378,124 @@ namespace ExxoAvalonOrigins
         }
 
         // Large gem player layer logic
-        public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo) {
-            if (drawInfo.shadow != 0f)
-            {
-                return;
-            }
-            Player drawPlayer = drawInfo.drawPlayer;
-            bool[] ownedLargeGems = drawPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ownedLargeGems;
-            if (ownedLargeGems.Length > 0)
-            {
-                bool flag2 = false;
-                DrawData value = default(DrawData);
-                float numGems = 0f;
-                for (int num23 = 0; num23 < 10; num23++)
-                {
-                    if (ownedLargeGems[num23])
+        public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo)
                     {
-                        numGems += 1f;
-                    }
-                }
-                float num25 = 1f - numGems * 0.06f;
-                float num26 = (numGems - 1f) * 4f;
-                switch ((int)numGems)
-                {
-                    case 2:
-                        num26 += 10f;
-                        break;
-                    case 3:
-                        num26 += 8f;
-                        break;
-                    case 4:
-                        num26 += 6f;
-                        break;
-                    case 5:
-                        num26 += 6f;
-                        break;
-                    case 6:
-                        num26 += 2f;
-                        break;
-                    case 7:
-                        num26 += 0f;
-                        break;
-                    case 8:
-                        num26 += 0f;
-                        break;
-                    case 9:
-                        num26 += 0f;
-                        break;
-                    case 10:
-                        num26 += 0f;
-                        break;
-                }
-                float rotSpeed = (float)drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
-                if (numGems > 0f)
-                {
-                    float spacing = (float)Math.PI * 2f / numGems;
-                    float num29 = 0f;
-                    Vector2 ringSize = new Vector2(1.5f, 0.85f);
-                    List<DrawData> list = new List<DrawData>();
-                    for (int num30 = 0; num30 < 10; num30++)
-                    {
-                        if (!ownedLargeGems[num30])
+                        if (drawInfo.shadow != 0f)
                         {
-                            num29 += 1f;
-                            continue;
+                            return;
                         }
-                        Vector2 value14 = (rotSpeed + spacing * ((float)num30 - num29)).ToRotationVector2();
-                        float num31 = num25;
-                        if (flag2)
+                        Player drawPlayer = drawInfo.drawPlayer;
+                        bool[] ownedLargeGems = drawPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ownedLargeGems;
+                        if (ownedLargeGems.Length > 0)
                         {
-                            num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
-                        }
-
-                        Texture2D texture2D4 = null;
-                        if (num30 < 7)
-                        {
-                            texture2D4 = Main.gemTexture[num30];
-                        }
-                        else
-                        {
-                            switch (num30)
+                            bool flag2 = false;
+                            DrawData value = default(DrawData);
+                            float numGems = 0f;
+                            for (int num23 = 0; num23 < 10; num23++)
                             {
+                                if (ownedLargeGems[num23])
+                                {
+                                    numGems += 1f;
+                                }
+                            }
+                            float num25 = 1f - numGems * 0.06f;
+                            float num26 = (numGems - 1f) * 4f;
+                            switch ((int)numGems)
+                            {
+                                case 2:
+                                    num26 += 10f;
+                                    break;
+
+                                case 3:
+                                    num26 += 8f;
+                                    break;
+
+                                case 4:
+                                    num26 += 6f;
+                                    break;
+
+                                case 5:
+                                    num26 += 6f;
+                                    break;
+
+                                case 6:
+                                    num26 += 2f;
+                                    break;
+
                                 case 7:
-                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
-                                    num31 *= 1.5f;
+                                    num26 += 0f;
                                     break;
+
                                 case 8:
-                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
-                                    num31 *= 1.5f;
+                                    num26 += 0f;
                                     break;
+
                                 case 9:
-                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
-                                    num31 *= 1.5f;
+                                    num26 += 0f;
+                                    break;
+
+                                case 10:
+                                    num26 += 0f;
                                     break;
                             }
-                        }
+                            float rotSpeed = (float)drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
+                            if (numGems > 0f)
+                            {
+                                float spacing = (float)Math.PI * 2f / numGems;
+                                float num29 = 0f;
+                                Vector2 ringSize = new Vector2(1.5f, 0.85f);
+                                List<DrawData> list = new List<DrawData>();
+                                for (int num30 = 0; num30 < 10; num30++)
+                                {
+                                    if (!ownedLargeGems[num30])
+                                    {
+                                        num29 += 1f;
+                                        continue;
+                                    }
+                                    Vector2 value14 = (rotSpeed + spacing * ((float)num30 - num29)).ToRotationVector2();
+                                    float num31 = num25;
+                                    if (flag2)
+                                    {
+                                        num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
+                                    }
 
-                        value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
-                        list.Add(value);
-                    }
-                    if (flag2)
-                    {
-                        list.Sort(DelegateMethods.CompareDrawSorterByYScale);
-                    }
-                    Main.playerDrawData.AddRange(list);
-                }
-            }
-        });
+                                    Texture2D texture2D4 = null;
+                                    if (num30 < 7)
+                                    {
+                                        texture2D4 = Main.gemTexture[num30];
+                                    }
+                                    else
+                                    {
+                                        switch (num30)
+                                        {
+                                            case 7:
+                                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
+                                                num31 *= 1.5f;
+                                                break;
+
+                                            case 8:
+                                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
+                                                num31 *= 1.5f;
+                                                break;
+
+                                            case 9:
+                                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
+                                                num31 *= 1.5f;
+                                                break;
+                                        }
+                                    }
+
+                                    value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
+                                    list.Add(value);
+                                }
+                                if (flag2)
+                                {
+                                    list.Sort(DelegateMethods.CompareDrawSorterByYScale);
+                                }
+                                Main.playerDrawData.AddRange(list);
+                            }
+                        }
+                    });
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
@@ -1543,123 +1562,126 @@ namespace ExxoAvalonOrigins
                 player.HealEffect(hpHealed, true);
             }
         }
+
         public override void PostUpdateEquips()
         {
             //player.statMana = statManaMax3;
             //statManaMax2 = player.statManaMax2;
-			if (meleeStealth && armorStealth)
-			{
-				if (player.itemAnimation > 0)
-				{
-					player.stealthTimer = 5;
-				}
-				if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
-				{
-					if (player.stealthTimer == 0)
-					{
-						player.stealth -= 0.015f;
-						if ((double)player.stealth < 0.0)
-						{
-							player.stealth = 0f;
-						}
-					}
-				}
-				else
-				{
-					float num23 = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
-					player.stealth += num23 * 0.0075f;
-					if (player.stealth > 1f)
-					{
-						player.stealth = 1f;
-					}
-				}
-				player.meleeDamage += (1f - player.stealth) * 0.4f;
-				player.meleeCrit += (int)((1f - player.stealth) * 8f);
-				player.rangedDamage += (1f - player.stealth) * 0.6f;
-				player.rangedCrit += (int)((1f - player.stealth) * 10f);
-				player.aggro -= (int)((1f - player.stealth) * 750f);
-				if (player.stealthTimer > 0)
-				{
-					player.stealthTimer--;
-				}
-			}
-			else if (armorStealth)
-			{
-				if (player.itemAnimation > 0)
-				{
-					player.stealthTimer = 5;
-				}
-				if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
-				{
-					if (player.stealthTimer == 0)
-					{
-						player.stealth -= 0.015f;
-						if ((double)player.stealth < 0.0)
-						{
-							player.stealth = 0f;
-						}
-					}
-				}
-				else
-				{
-					float num24 = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
-					player.stealth += num24 * 0.0075f;
-					if (player.stealth > 1f)
-					{
-						player.stealth = 1f;
-					}
-				}
-				player.rangedDamage += (1f - player.stealth) * 0.6f;
-				player.rangedCrit += (int)((1f - player.stealth) * 10f);
-				player.aggro -= (int)((1f - player.stealth) * 750f);
-				if (player.stealthTimer > 0)
-				{
-					player.stealthTimer--;
-				}
-			}
-			else if (meleeStealth)
-			{
-				if (player.itemAnimation > 0)
-				{
-					player.stealthTimer = 5;
-				}
-				if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
-				{
-					if (player.stealthTimer == 0)
-					{
-						player.stealth -= 0.015f;
-						if ((double)player.stealth < 0.0)
-						{
-							player.stealth = 0f;
-						}
-					}
-				}
-				else
-				{
-					float num25 = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
-					player.stealth += num25 * 0.0075f;
-					if (player.stealth > 1f)
-					{
-						player.stealth = 1f;
-					}
-				}
-				player.meleeDamage += (1f - player.stealth) * 0.4f;
-				player.meleeCrit += (int)((1f - player.stealth) * 8f);
-				player.aggro -= (int)((1f - player.stealth) * 750f);
-				if (player.stealthTimer > 0)
-				{
-					player.stealthTimer--;
-				}
-			}
-			else
-			{
-				player.stealth = 1f;
-			}
+            if (meleeStealth && armorStealth)
+            {
+                if (player.itemAnimation > 0)
+                {
+                    player.stealthTimer = 5;
+                }
+                if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
+                {
+                    if (player.stealthTimer == 0)
+                    {
+                        player.stealth -= 0.015f;
+                        if ((double)player.stealth < 0.0)
+                        {
+                            player.stealth = 0f;
+                        }
+                    }
+                }
+                else
+                {
+                    float num23 = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+                    player.stealth += num23 * 0.0075f;
+                    if (player.stealth > 1f)
+                    {
+                        player.stealth = 1f;
+                    }
+                }
+                player.meleeDamage += (1f - player.stealth) * 0.4f;
+                player.meleeCrit += (int)((1f - player.stealth) * 8f);
+                player.rangedDamage += (1f - player.stealth) * 0.6f;
+                player.rangedCrit += (int)((1f - player.stealth) * 10f);
+                player.aggro -= (int)((1f - player.stealth) * 750f);
+                if (player.stealthTimer > 0)
+                {
+                    player.stealthTimer--;
+                }
+            }
+            else if (armorStealth)
+            {
+                if (player.itemAnimation > 0)
+                {
+                    player.stealthTimer = 5;
+                }
+                if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
+                {
+                    if (player.stealthTimer == 0)
+                    {
+                        player.stealth -= 0.015f;
+                        if ((double)player.stealth < 0.0)
+                        {
+                            player.stealth = 0f;
+                        }
+                    }
+                }
+                else
+                {
+                    float num24 = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+                    player.stealth += num24 * 0.0075f;
+                    if (player.stealth > 1f)
+                    {
+                        player.stealth = 1f;
+                    }
+                }
+                player.rangedDamage += (1f - player.stealth) * 0.6f;
+                player.rangedCrit += (int)((1f - player.stealth) * 10f);
+                player.aggro -= (int)((1f - player.stealth) * 750f);
+                if (player.stealthTimer > 0)
+                {
+                    player.stealthTimer--;
+                }
+            }
+            else if (meleeStealth)
+            {
+                if (player.itemAnimation > 0)
+                {
+                    player.stealthTimer = 5;
+                }
+                if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
+                {
+                    if (player.stealthTimer == 0)
+                    {
+                        player.stealth -= 0.015f;
+                        if ((double)player.stealth < 0.0)
+                        {
+                            player.stealth = 0f;
+                        }
+                    }
+                }
+                else
+                {
+                    float num25 = Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y);
+                    player.stealth += num25 * 0.0075f;
+                    if (player.stealth > 1f)
+                    {
+                        player.stealth = 1f;
+                    }
+                }
+                player.meleeDamage += (1f - player.stealth) * 0.4f;
+                player.meleeCrit += (int)((1f - player.stealth) * 8f);
+                player.aggro -= (int)((1f - player.stealth) * 750f);
+                if (player.stealthTimer > 0)
+                {
+                    player.stealthTimer--;
+                }
+            }
+            else
+            {
+                player.stealth = 1f;
+            }
 
             #region bubble boost
+
             if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump && !NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
-	        {
+            {
                 #region bubble timer and spawn bubble gores/sound
+
                 bubbleCD++;
                 if (bubbleCD == 20)
                 {
@@ -1684,53 +1706,62 @@ namespace ExxoAvalonOrigins
                     }
                     bubbleCD = 0;
                 }
-                #endregion
+
+                #endregion bubble timer and spawn bubble gores/sound
+
                 #region down
+
                 if (player.controlDown && player.controlJump)
-		        {
+                {
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.controlLeft)
-			        {
-				        player.velocity.X = -15f;
-			        }
-			        else if (player.controlRight)
-			        {
-				        player.velocity.X = 15f;
-			        }
-			        else
-			        {
-				        player.velocity.X = 0f;
-			        }
-			        player.velocity.Y = 15f;
-			        bubbleBoostActive = true;
-		        }
-                #endregion
+                    {
+                        player.velocity.X = -15f;
+                    }
+                    else if (player.controlRight)
+                    {
+                        player.velocity.X = 15f;
+                    }
+                    else
+                    {
+                        player.velocity.X = 0f;
+                    }
+                    player.velocity.Y = 15f;
+                    bubbleBoostActive = true;
+                }
+
+                #endregion down
+
                 #region up
+
                 else if (player.controlUp && player.controlJump)
-		        {
+                {
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.controlLeft)
-			        {
-				        player.velocity.X = -15f;
-			        }
-			        else if (player.controlRight)
-			        {
-				        player.velocity.X = 15f;
-			        }
-			        else
-			        {
-				        player.velocity.X = 0f;
-			        }
-			        player.velocity.Y = -15f;
-			        bubbleBoostActive = true;
-		        }
-                #endregion
+                    {
+                        player.velocity.X = -15f;
+                    }
+                    else if (player.controlRight)
+                    {
+                        player.velocity.X = 15f;
+                    }
+                    else
+                    {
+                        player.velocity.X = 0f;
+                    }
+                    player.velocity.Y = -15f;
+                    bubbleBoostActive = true;
+                }
+
+                #endregion up
+
                 #region left
+
                 else if (player.controlLeft && player.controlJump)
-		        {
-			        player.velocity.X = -15f;
+                {
+                    player.velocity.X = -15f;
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.gravDir == 1f && player.velocity.Y > -player.gravity)
@@ -1742,12 +1773,15 @@ namespace ExxoAvalonOrigins
                         player.velocity.Y = player.gravity + 1E-06f;
                     }
                     bubbleBoostActive = true;
-		        }
-                #endregion
+                }
+
+                #endregion left
+
                 #region right
+
                 else if (player.controlRight && player.controlJump)
-		        {
-			        player.velocity.X = 15f;
+                {
+                    player.velocity.X = 15f;
                     player.wingsLogic = 0;
                     player.rocketBoots = 0;
                     if (player.gravDir == 1f && player.velocity.Y > -player.gravity)
@@ -1759,49 +1793,52 @@ namespace ExxoAvalonOrigins
                         player.velocity.Y = player.gravity + 1E-06f;
                     }
                     bubbleBoostActive = true;
-		        }
-                #endregion
+                }
+
+                #endregion right
+
                 stayInBounds(player.position);
-	        }
-            #endregion
+            }
+
+            #endregion bubble boost
 
             if (chaosCharm)
-	        {
-		        int modCrit = 2 * (int)Math.Floor(((double) player.statLifeMax2 - (double) player.statLife) /
-		                      (double) player.statLifeMax2 * 10.0);
-				player.meleeCrit += modCrit;
-				player.magicCrit += modCrit;
-				player.rangedCrit += modCrit;
-	        }
+            {
+                int modCrit = 2 * (int)Math.Floor(((double)player.statLifeMax2 - (double)player.statLife) /
+                              (double)player.statLifeMax2 * 10.0);
+                player.meleeCrit += modCrit;
+                player.magicCrit += modCrit;
+                player.rangedCrit += modCrit;
+            }
 
-	        if (defDebuff)
-	        {
+            if (defDebuff)
+            {
                 bool flag = false;
-		        for (int num22 = 0; num22 < 22; num22++)
-		        {
-			        if (Main.debuff[player.buffType[num22]] && player.buffType[num22] != BuffID.Horrified &&
-			            player.buffType[num22] != BuffID.PotionSickness && player.buffType[num22] != BuffID.Merfolk &&
-			            player.buffType[num22] != BuffID.Werewolf && player.buffType[num22] != BuffID.TheTongue &&
-			            player.buffType[num22] != BuffID.ManaSickness && player.buffType[num22] != BuffID.Wet &&
-			            player.buffType[num22] != BuffID.Slimed)
-			        {
+                for (int num22 = 0; num22 < 22; num22++)
+                {
+                    if (Main.debuff[player.buffType[num22]] && player.buffType[num22] != BuffID.Horrified &&
+                        player.buffType[num22] != BuffID.PotionSickness && player.buffType[num22] != BuffID.Merfolk &&
+                        player.buffType[num22] != BuffID.Werewolf && player.buffType[num22] != BuffID.TheTongue &&
+                        player.buffType[num22] != BuffID.ManaSickness && player.buffType[num22] != BuffID.Wet &&
+                        player.buffType[num22] != BuffID.Slimed)
+                    {
                         flag = true;
-				        break;
-			        }
-		        }
+                        break;
+                    }
+                }
                 if (flag) defDebuffBonusDef = 12; // defDebuffBonusDef is here to avoid the def buff sticking around 24/7 because of terraria code jank
                 else defDebuffBonusDef = 0;
             }
             player.statDefense += defDebuffBonusDef; // outside of the if statement to remove extra defense
 
             if (teleportV)
-	        {
-		        if (tpCD > 300)
-		        {
-			        tpCD = 300;
-		        }
-		        tpCD++;
-	        }
+            {
+                if (tpCD > 300)
+                {
+                    tpCD = 300;
+                }
+                tpCD++;
+            }
 
             if (astralProject)
             {
@@ -1823,30 +1860,30 @@ namespace ExxoAvalonOrigins
             }
         }
 
-		public static void stayInBounds(Vector2 pos)
-		{
-			if (pos.X > (float)(Main.maxTilesX - 100))
-			{
-				pos.X = (float)(Main.maxTilesX - 100);
-			}
-			if (pos.X < 100f)
-			{
-				pos.X = 100f;
-			}
-			if (pos.Y > (float)Main.maxTilesY)
-			{
-				pos.Y = (float)Main.maxTilesY;
-			}
-			if (pos.Y < 100f)
-			{
-				pos.Y = 100f;
-			}
-		}
+        public static void stayInBounds(Vector2 pos)
+        {
+            if (pos.X > (float)(Main.maxTilesX - 100))
+            {
+                pos.X = (float)(Main.maxTilesX - 100);
+            }
+            if (pos.X < 100f)
+            {
+                pos.X = 100f;
+            }
+            if (pos.Y > (float)Main.maxTilesY)
+            {
+                pos.Y = (float)Main.maxTilesY;
+            }
+            if (pos.Y < 100f)
+            {
+                pos.Y = 100f;
+            }
+        }
 
-		public bool isOnGround()
-		{
-			return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[(int)Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[(int)Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
-		}
+        public bool isOnGround()
+        {
+            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[(int)Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[(int)Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
+        }
 
         public override void PostUpdateMiscEffects()
         {
@@ -1988,12 +2025,12 @@ namespace ExxoAvalonOrigins
         {
             WOSTongue();
             if (teleportV)
-	        {
-		        teleportV = false;
-		        teleportVWasTriggered = true;
-	        }
+            {
+                teleportV = false;
+                teleportVWasTriggered = true;
+            }
 
-	        player.breathMax = 200;
+            player.breathMax = 200;
 
             // Large gem trashing logic
             if (player.whoAmI == Main.myPlayer)
@@ -2013,7 +2050,7 @@ namespace ExxoAvalonOrigins
         {
             if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
             {
-	            teleportVWasTriggered = false;
+                teleportVWasTriggered = false;
                 tpCD = 0;
                 for (var m = 0; m < 70; m++)
                 {
@@ -2042,119 +2079,127 @@ namespace ExxoAvalonOrigins
                 }
             }
 
-	        if (ExxoAvalonOrigins.mod.sprintHotkey.JustPressed)
-	        {
-		        activateSprint = !activateSprint;
-		        Main.NewText(!activateSprint ? "Sprinting Off" : "Sprinting On");
-	        }
+            if (ExxoAvalonOrigins.mod.sprintHotkey.JustPressed)
+            {
+                activateSprint = !activateSprint;
+                Main.NewText(!activateSprint ? "Sprinting Off" : "Sprinting On");
+            }
 
-	        if (ExxoAvalonOrigins.mod.dashHotkey.JustPressed)
-	        {
-		        stamDashKey = !stamDashKey;
-		        Main.NewText(!stamDashKey ? "Dashing Off" : "Dashing On");
-	        }
+            if (ExxoAvalonOrigins.mod.dashHotkey.JustPressed)
+            {
+                stamDashKey = !stamDashKey;
+                Main.NewText(!stamDashKey ? "Dashing Off" : "Dashing On");
+            }
 
-	        if (ExxoAvalonOrigins.mod.quintupleHotkey.JustPressed)
-	        {
-		        quintJump = !quintJump;
-		        Main.NewText(!quintJump ? "Quintuple Jump Off" : "Quintuple Jump On");
-	        }
+            if (ExxoAvalonOrigins.mod.quintupleHotkey.JustPressed)
+            {
+                quintJump = !quintJump;
+                Main.NewText(!quintJump ? "Quintuple Jump Off" : "Quintuple Jump On");
+            }
 
-	        if (ExxoAvalonOrigins.mod.swimHotkey.JustPressed)
-	        {
-		        activateSwim = !activateSwim;
-		        Main.NewText(!activateSwim ? "Swimming Off" : "Swimming On");
-	        }
+            if (ExxoAvalonOrigins.mod.swimHotkey.JustPressed)
+            {
+                activateSwim = !activateSwim;
+                Main.NewText(!activateSwim ? "Swimming Off" : "Swimming On");
+            }
 
-	        if (ExxoAvalonOrigins.mod.wallSlideHotkey.JustPressed)
-	        {
-		        activateSlide = !activateSlide;
-		        Main.NewText(!activateSlide ? "Wall Sliding Off" : "Wall Sliding On");
-	        }
+            if (ExxoAvalonOrigins.mod.wallSlideHotkey.JustPressed)
+            {
+                activateSlide = !activateSlide;
+                Main.NewText(!activateSlide ? "Wall Sliding Off" : "Wall Sliding On");
+            }
 
-	        if (ExxoAvalonOrigins.mod.bubbleBoostHotkey.JustPressed)
-	        {
-		        activateBubble = !activateBubble;
-		        Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
-	        }
+            if (ExxoAvalonOrigins.mod.bubbleBoostHotkey.JustPressed)
+            {
+                activateBubble = !activateBubble;
+                Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
+            }
 
-	        if (player.inventory[player.selectedItem].type == ModContent.ItemType <Items.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
-	        {
-		        speed = !speed;
-		        if (!speed)
-		        {
-			        Main.NewText("Acceleration Drill Mode: Normal");
-		        }
-		        else
-		        {
-			        Main.NewText("Acceleration Drill Mode: Speed");
-		        }
-	        }
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<Items.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+            {
+                speed = !speed;
+                if (!speed)
+                {
+                    Main.NewText("Acceleration Drill Mode: Normal");
+                }
+                else
+                {
+                    Main.NewText("Acceleration Drill Mode: Speed");
+                }
+            }
 
-	        if (Main.netMode != NetmodeID.SinglePlayer && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
-	            ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
-	        {
-		        int newPlayer = teleportToPlayer;
-		        int numPlayersCounted = 0;
-		        while (true)
-		        {
-			        newPlayer++;
-			        if (newPlayer >= 255)
-			        {
-				        newPlayer -= 255;
-			        }
-			        if (Main.player[newPlayer].active && player.whoAmI != newPlayer && !Main.player[newPlayer].dead && Main.player[Main.myPlayer].team > 0 && Main.player[Main.myPlayer].team == Main.player[newPlayer].team)
-			        {
-				        Main.NewText("Teleporting to " + Main.player[newPlayer].name + " ready.", 250, 250, 0);
-				        teleportToPlayer = newPlayer;
-				        break;
-			        }
-			        numPlayersCounted++;
-			        if (numPlayersCounted >= 255)
-			        {
-				        Main.NewText("There are no valid players on your team.", 250, 0, 0);
-				        teleportToPlayer = -1;
-				        break;
-			        }
-		        }
-	        }
+            if (Main.netMode != NetmodeID.SinglePlayer && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
+                ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+            {
+                int newPlayer = teleportToPlayer;
+                int numPlayersCounted = 0;
+                while (true)
+                {
+                    newPlayer++;
+                    if (newPlayer >= 255)
+                    {
+                        newPlayer -= 255;
+                    }
+                    if (Main.player[newPlayer].active && player.whoAmI != newPlayer && !Main.player[newPlayer].dead && Main.player[Main.myPlayer].team > 0 && Main.player[Main.myPlayer].team == Main.player[newPlayer].team)
+                    {
+                        Main.NewText("Teleporting to " + Main.player[newPlayer].name + " ready.", 250, 250, 0);
+                        teleportToPlayer = newPlayer;
+                        break;
+                    }
+                    numPlayersCounted++;
+                    if (numPlayersCounted >= 255)
+                    {
+                        Main.NewText("There are no valid players on your team.", 250, 0, 0);
+                        teleportToPlayer = -1;
+                        break;
+                    }
+                }
+            }
 
-	        if (player.inventory[player.selectedItem].type == ModContent.ItemType<ShadowMirror>())
-	        {
-		        player.noFallDmg = true; //TODO: Replace with better anti-fall-damage mechanism.
-		        if (ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
-		        {
-			        shadowWP++;
-			        shadowWP %= 7;
-			        switch (shadowWP)
-			        {
-				        case 0:
-					        Main.NewText("Mirror Mode: Spawn point");
-					        break;
-				        case 1:
-					        Main.NewText("Mirror Mode: Dungeon");
-					        break;
-				        case 2:
-					        Main.NewText("Mirror Mode: Jungle/Tropics" + (ExxoAvalonOriginsWorld.jungleLocationKnown ? "" : " (approx. pos)"));
-					        break;
-				        case 3:
-					        Main.NewText("Mirror Mode: Left Ocean");
-					        break;
-				        case 4:
-					        Main.NewText("Mirror Mode: Right Ocean");
-					        break;
-				        case 5:
-					        Main.NewText("Mirror Mode: Underworld");
-					        break;
-				        case 6:
-					        Main.NewText("Mirror Mode: Random");
-					        break;
-				        default:
-					        throw new IndexOutOfRangeException("Not quite sure how you've managed this, but your shadow mirror's teleportation function is just wrong. Please contact the devs of Endo Avalon, and give a full bug report of all the details of the circumstances leading up to this error.");
-			        }
-		        }
-	        }
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<ShadowMirror>())
+            {
+                player.noFallDmg = true; //TODO: Replace with better anti-fall-damage mechanism.
+                if (ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+                {
+                    shadowWP++;
+                    shadowWP %= 7;
+                    switch (shadowWP)
+                    {
+                        case 0:
+                            Main.NewText("Mirror Mode: Spawn point");
+                            break;
+
+                        case 1:
+                            Main.NewText("Mirror Mode: Dungeon");
+                            break;
+
+                        case 2:
+                            Main.NewText("Mirror Mode: Jungle/Tropics" + (ExxoAvalonOriginsWorld.jungleLocationKnown ? "" : " (approx. pos)"));
+                            break;
+
+                        case 3:
+                            Main.NewText("Mirror Mode: Left Ocean");
+                            break;
+
+                        case 4:
+                            Main.NewText("Mirror Mode: Right Ocean");
+                            break;
+
+                        case 5:
+                            Main.NewText("Mirror Mode: Underworld");
+                            break;
+
+                        case 6:
+                            Main.NewText("Mirror Mode: Random");
+                            break;
+
+                        default:
+                            throw new IndexOutOfRangeException("Not quite sure how you've managed this, but your shadow mirror's teleportation function is just wrong. Please contact the devs of Endo Avalon, and give a full bug report of all the details of the circumstances leading up to this error.");
+                    }
+                }
+            }
         }
+
         public bool InPillarZone()
         {
             if (player.ZoneTowerNebula || player.ZoneTowerSolar || player.ZoneTowerStardust || player.ZoneTowerVortex)
@@ -2163,8 +2208,9 @@ namespace ExxoAvalonOrigins
             }
             return false;
         }
-		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
-		{
+
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
             if (damage > 0)
             {
                 if (LightningInABottle)
@@ -2226,137 +2272,141 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-		}
+        }
 
-	    public override void PostUpdateRunSpeeds()
-	    {
+        public override void PostUpdateRunSpeeds()
+        {
             //Main.NewText("PostUpdateRunSpeeds " + slimeBand.ToString());
             FloorVisualsAvalon(player.velocity.Y > player.gravity);
-		    if (statStam >= 1 && player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
-		    {
-			    bool flag15 = true;
-			    staminaCD += 1;
-			    stamRegenCount = 0;
-			    if (staminaCD >= 6)
-			    {
-				    statStam--;
-				    if (statStam <= 0)
-				    {
-					    statStam = 0;
-					    flag15 = false;
-				    }
-				    staminaCD = 0;
-			    }
-			    if (flag15)
-			    {
-				    player.accFlipper = true;
-			    }
-		    }
-			if (activateSprint)
-			{
-				if ((player.controlRight || player.controlLeft) && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
-				{
-					bool flag17 = true;
-					staminaCD2 += 1;
-					stamRegenCount = 0;
-					if (staminaCD2 >= 15)
-					{
-						statStam -= 2;
-						if (statStam <= 0)
-						{
-							statStam = 0;
-							flag17 = false;
-						}
-						staminaCD2 = 0;
-					}
-					if (flag17)
-					{
-						if (!HasItemInArmor(ItemID.HermesBoots) && !HasItemInArmor(ItemID.FlurryBoots) && !HasItemInArmor(ItemID.SpectreBoots) && !HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) && !HasItemInArmor(ItemID.SailfishBoots))
-						{
-							player.accRunSpeed = 6f;
-						}
-						else if (!HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots))
-						{
-							player.accRunSpeed = 6.75f;
-						}
-						else
-						{
-							player.accRunSpeed = 10.29f;
-							if ((player.velocity.X < 4f && player.controlRight) || (player.velocity.X > -4f && player.controlLeft))
-							{
-								player.velocity.X = player.velocity.X + (player.controlRight ? 0.31f : -0.31f);
-							}
+            if (statStam >= 1 && player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
+            {
+                bool flag15 = true;
+                staminaCD += 1;
+                stamRegenCount = 0;
+                if (staminaCD >= 6)
+                {
+                    statStam--;
+                    if (statStam <= 0)
+                    {
+                        statStam = 0;
+                        flag15 = false;
+                    }
+                    staminaCD = 0;
+                }
+                if (flag15)
+                {
+                    player.accFlipper = true;
+                }
+            }
+            if (activateSprint)
+            {
+                if ((player.controlRight || player.controlLeft) && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
+                {
+                    bool flag17 = true;
+                    staminaCD2 += 1;
+                    stamRegenCount = 0;
+                    if (staminaCD2 >= 15)
+                    {
+                        statStam -= 2;
+                        if (statStam <= 0)
+                        {
+                            statStam = 0;
+                            flag17 = false;
+                        }
+                        staminaCD2 = 0;
+                    }
+                    if (flag17)
+                    {
+                        if (!HasItemInArmor(ItemID.HermesBoots) && !HasItemInArmor(ItemID.FlurryBoots) && !HasItemInArmor(ItemID.SpectreBoots) && !HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) && !HasItemInArmor(ItemID.SailfishBoots))
+                        {
+                            player.accRunSpeed = 6f;
+                        }
+                        else if (!HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots))
+                        {
+                            player.accRunSpeed = 6.75f;
+                        }
+                        else
+                        {
+                            player.accRunSpeed = 10.29f;
+                            if ((player.velocity.X < 4f && player.controlRight) || (player.velocity.X > -4f && player.controlLeft))
+                            {
+                                player.velocity.X = player.velocity.X + (player.controlRight ? 0.31f : -0.31f);
+                            }
                             else if ((player.velocity.X < 8f && player.controlRight) || (player.velocity.X > -8f && player.controlLeft))
                             {
                                 player.velocity.X = player.velocity.X + (player.controlRight ? 0.29f : -0.29f);
                             }
-						}
-					}
-				}
-			}
-	    }
+                        }
+                    }
+                }
+            }
+        }
+
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
             if (junk)
                 return;
 
             #region Contagion Fish
+
             if (zoneBooger && Main.rand.NextBool(10))
                 caughtType = ModContent.ItemType<Items.Fish.NauSeaFish>();
-            #endregion
+
+            #endregion Contagion Fish
         }
+
         public void UpdateStaminaRegen()
-	    {
-		    if (stamRegenDelay > 0)
-		    {
-			    stamRegenDelay--;
-			    if ((player.velocity.X == 0f && player.velocity.Y == 0f) || player.grappling[0] >= 0)
-			    {
-				    stamRegenDelay--;
-			    }
-		    }
-		    if (stamRegenDelay <= 0)
-		    {
-			    stamRegenDelay = 0;
-			    stamRegen = statStamMax2 / 7 + 1;
-			    if ((player.velocity.X == 0f && player.velocity.Y == 0f) || player.grappling[0] >= 0)
-			    {
-				    stamRegen += statStamMax2 / 2;
-			    }
-			    float num = statStam / (float)statStamMax2 * 0.8f + 0.2f;
-			    stamRegen = (int)(stamRegen * num * 1.15);
-		    }
-		    else
-		    {
-			    stamRegen = 0;
-		    }
-		    stamRegenCount += stamRegen;
-		    while (stamRegenCount >= 1300)
-		    {
-			    bool flag = false;
-			    stamRegenCount -= 1300;
-			    if (statStam < statStamMax2)
-			    {
-				    statStam++;
-				    flag = true;
-			    }
-			    if (statStam >= statStamMax2)
-			    {
-				    if (player.whoAmI == Main.myPlayer && flag)
-				    {
-					    Main.PlaySound(SoundID.MaxMana, -1, -1, 1);
-					    for (int i = 0; i < 5; i++)
-					    {
-						    int num2 = Dust.NewDust(player.position, player.width, player.height, DustID.ManaRegeneration, 0f, 0f, 255, default(Color), Main.rand.Next(20, 26) * 0.1f);
-						    Main.dust[num2].noLight = true;
-						    Main.dust[num2].noGravity = true;
-						    Main.dust[num2].velocity *= 0.5f;
-					    }
-				    }
-				    statStam = statStamMax2;
-			    }
-		    }
-	    }
+        {
+            if (stamRegenDelay > 0)
+            {
+                stamRegenDelay--;
+                if ((player.velocity.X == 0f && player.velocity.Y == 0f) || player.grappling[0] >= 0)
+                {
+                    stamRegenDelay--;
+                }
+            }
+            if (stamRegenDelay <= 0)
+            {
+                stamRegenDelay = 0;
+                stamRegen = statStamMax2 / 7 + 1;
+                if ((player.velocity.X == 0f && player.velocity.Y == 0f) || player.grappling[0] >= 0)
+                {
+                    stamRegen += statStamMax2 / 2;
+                }
+                float num = statStam / (float)statStamMax2 * 0.8f + 0.2f;
+                stamRegen = (int)(stamRegen * num * 1.15);
+            }
+            else
+            {
+                stamRegen = 0;
+            }
+            stamRegenCount += stamRegen;
+            while (stamRegenCount >= 1300)
+            {
+                bool flag = false;
+                stamRegenCount -= 1300;
+                if (statStam < statStamMax2)
+                {
+                    statStam++;
+                    flag = true;
+                }
+                if (statStam >= statStamMax2)
+                {
+                    if (player.whoAmI == Main.myPlayer && flag)
+                    {
+                        Main.PlaySound(SoundID.MaxMana, -1, -1, 1);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            int num2 = Dust.NewDust(player.position, player.width, player.height, DustID.ManaRegeneration, 0f, 0f, 255, default(Color), Main.rand.Next(20, 26) * 0.1f);
+                            Main.dust[num2].noLight = true;
+                            Main.dust[num2].noGravity = true;
+                            Main.dust[num2].velocity *= 0.5f;
+                        }
+                    }
+                    statStam = statStamMax2;
+                }
+            }
+        }
 
         public void FloorVisualsAvalon(bool falling)
         {
@@ -2409,6 +2459,7 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
             if (undeadTalisman)
@@ -2431,6 +2482,7 @@ namespace ExxoAvalonOrigins
                 damage *= 2;
             }
         }
+
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
             if (player.HasBuff(ModContent.BuffType<Buffs.ShadowCurse>()))
@@ -2438,20 +2490,22 @@ namespace ExxoAvalonOrigins
                 damage *= 2;
             }
         }
+
         public void ShadowTP(int mode, int pid)
-	    {
+        {
             if (player.HasBuff(37))
             {
                 player.KillMe(PlayerDeathReason.ByCustomReason(" tried to escape..."), 3000000, 0);
                 return;
             }
             switch (mode)
-		    {
-			    case 0:
+            {
+                case 0:
                     player.Spawn();
-				    break;
-			    case 1: // dungeon
-				    player.noFallDmg = true;
+                    break;
+
+                case 1: // dungeon
+                    player.noFallDmg = true;
                     player.immuneTime = 100;
                     ShadowTeleport.Teleport(0);
                     if (Main.netMode == NetmodeID.Server)
@@ -2459,9 +2513,10 @@ namespace ExxoAvalonOrigins
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                     }
                     player.noFallDmg = false;
-				    break;
-			    case 2: // jungle
-				    player.noFallDmg = true;
+                    break;
+
+                case 2: // jungle
+                    player.noFallDmg = true;
                     player.immuneTime = 100;
                     Vector2 prePos = player.position;
                     Vector2 pos = prePos;
@@ -2472,8 +2527,9 @@ namespace ExxoAvalonOrigins
                     }
                     player.noFallDmg = false;
                     break;
-			    case 3: // left ocean
-				    player.noFallDmg = true;
+
+                case 3: // left ocean
+                    player.noFallDmg = true;
                     player.immuneTime = 300;
                     ShadowTeleport.Teleport(2);
                     if (Main.netMode == NetmodeID.Server)
@@ -2482,7 +2538,8 @@ namespace ExxoAvalonOrigins
                     }
                     player.noFallDmg = false;
                     break;
-			    case 4: // right ocean
+
+                case 4: // right ocean
                     player.noFallDmg = true;
                     player.immuneTime = 300;
                     ShadowTeleport.Teleport(3);
@@ -2492,7 +2549,8 @@ namespace ExxoAvalonOrigins
                     }
                     player.noFallDmg = false;
                     break;
-			    case 5: // hell
+
+                case 5: // hell
                     player.noFallDmg = true;
                     player.immuneTime = 100;
                     ShadowTeleport.Teleport(4);
@@ -2502,49 +2560,56 @@ namespace ExxoAvalonOrigins
                     }
                     player.noFallDmg = false;
                     break;
-			    case 6: // random
-			    {
-				    if (Main.netMode == NetmodeID.SinglePlayer)
-				    {
-					    player.TeleportationPotion();
-				    }
-				    else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
-				    {
-					    NetMessage.SendData(MessageID.TeleportationPotion, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
-				    }
 
-				    break;
-			    }
-		    }
+                case 6: // random
+                    {
+                        if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
+                            player.TeleportationPotion();
+                        }
+                        else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
+                        {
+                            NetMessage.SendData(MessageID.TeleportationPotion, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
+                        }
+
+                        break;
+                    }
+            }
             int d = 15;
             switch (mode)
             {
                 case 0:
                     d = DustID.MagicMirror;
                     break;
+
                 case 1:
                     d = ModContent.DustType<Dusts.DungeonTeleportDust>();
                     break;
+
                 case 2:
                     d = ModContent.DustType<Dusts.JungleTeleportDust>();
                     break;
+
                 case 3:
                 case 4:
                     d = ModContent.DustType<Dusts.OceanTeleportDust>();
                     break;
+
                 case 5:
                     d = ModContent.DustType<Dusts.DemonConchDust>();
                     break;
+
                 default:
                     d = DustID.MagicMirror;
                     break;
             }
 
-		    for (int i = 0; i < 70; i++)
-			{
-				Dust.NewDust(player.position, player.width, player.height, d, 0f, 0f, 150, default(Color), 1.5f);
-			}
-	    }
+            for (int i = 0; i < 70; i++)
+            {
+                Dust.NewDust(player.position, player.width, player.height, d, 0f, 0f, 150, default(Color), 1.5f);
+            }
+        }
+
         public void SpectrumDodge()
         {
             player.immune = true;

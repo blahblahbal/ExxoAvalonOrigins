@@ -1,0 +1,6 @@
+﻿
+ItemName.AdvObsidianSkinPotion=Obsidian Skin Elixir
+ItemTooltip.AdvObsidianSkinPotion={$ItemTooltip.ObsidianSkinPotion}
+
+ItemName.AdvRegenerationPotion=Regeneration Elixir
+ItemTooltip.AdvRegenerationPotion={$ItemTooltip.RegenerationPotion}

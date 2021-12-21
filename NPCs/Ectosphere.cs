@@ -10,35 +10,37 @@ using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Ectosphere : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ectosphere");
-			Main.npcFrameCount[npc.type] = 7;
-		}
+    public class Ectosphere : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ectosphere");
+            Main.npcFrameCount[npc.type] = 7;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 120;
-			npc.lifeMax = 6000;
-			npc.defense = 10;
-			npc.noGravity = true;
-			npc.width = 46;
-			npc.aiStyle = -1;
-			npc.value = 20000f;
-			npc.height = 46;
-			npc.knockBackResist = 0.5f;
+        public override void SetDefaults()
+        {
+            npc.damage = 120;
+            npc.lifeMax = 6000;
+            npc.defense = 10;
+            npc.noGravity = true;
+            npc.width = 46;
+            npc.aiStyle = -1;
+            npc.value = 20000f;
+            npc.height = 46;
+            npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit36;
-	        npc.DeathSound = SoundID.NPCDeath39;
+            npc.DeathSound = SoundID.NPCDeath39;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.EctosphereBanner>();
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.45f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.67f);
         }
+
         public override void NPCLoot()
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Ectoplasm, Main.rand.Next(2, 5), false, 0, false);
@@ -202,7 +204,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneDungeon && Main.hardMode && ExxoAvalonOrigins.superHardmode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneDungeon && Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

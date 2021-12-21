@@ -11,41 +11,43 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class GuardianCorruptor : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Guardian Corruptor");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class GuardianCorruptor : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Guardian Corruptor");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 95;
-			npc.scale = 0.9f;
-			npc.lifeMax = 700;
-			npc.defense = 40;
-			npc.noGravity = true;
-			npc.width = 70;
-			npc.aiStyle = -1;
-			npc.npcSlots = 1f;
-			npc.value = 6500f;
-			npc.timeLeft = 1750;
-			npc.height = 100;
-			npc.knockBackResist = 0.15f;
+        public override void SetDefaults()
+        {
+            npc.damage = 95;
+            npc.scale = 0.9f;
+            npc.lifeMax = 700;
+            npc.defense = 40;
+            npc.noGravity = true;
+            npc.width = 70;
+            npc.aiStyle = -1;
+            npc.npcSlots = 1f;
+            npc.value = 6500f;
+            npc.timeLeft = 1750;
+            npc.height = 100;
+            npc.knockBackResist = 0.15f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Confused] = true;
-		}
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Confused] = true;
+        }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.5f);
         }
+
         public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RottenChunk, Main.rand.Next(3) + 1, false, 0, false);
-		}
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RottenChunk, Main.rand.Next(3) + 1, false, 0, false);
+        }
 
         public override void AI()
         {
@@ -251,7 +253,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneCorrupt && Main.hardMode && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ExxoAvalonOrigins.superHardmode && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() ? 0.066f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneCorrupt && Main.hardMode && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() ? 0.066f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }
