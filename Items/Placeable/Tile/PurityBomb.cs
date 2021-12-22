@@ -1,27 +1,26 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Throw
+namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-	class CorruptionBomb : ModItem
+	class PurityBomb : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Corruption Bomb");
-			Tooltip.SetDefault("Converts tiles to the Corruption in a large radius");
+			DisplayName.SetDefault("Purity Bomb");
+			Tooltip.SetDefault("Converts tiles to the Purity in a large radius");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.useTurn = true;
 			item.maxStack = 999;
 			item.mech = true;
 			item.createTile = ModContent.TileType<Tiles.BiomeBombs>();
-			item.placeStyle = 1;
+			item.placeStyle = 0;
 			item.consumable = true;
 			item.rare = ItemRarityID.LightRed;
 			item.width = dims.Width;

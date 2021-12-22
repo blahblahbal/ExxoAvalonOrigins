@@ -1209,6 +1209,7 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdate()
         {
+            //Main.worldRate = 5;
             if (magnet)
             {
                 Player.defaultItemGrabRange = 114;

@@ -1,6 +1,7 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
@@ -21,7 +22,6 @@ namespace ExxoAvalonOrigins.Items.Consumables
 			item.rare = ItemRarityID.Orange;
 			item.width = dims.Width;
 			item.useTime = 40;
-			item.shoot = ModContent.ProjectileType<Projectiles.BloodyAmulet>();
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.maxStack = 20;
 			item.useAnimation = 40;
@@ -31,7 +31,18 @@ namespace ExxoAvalonOrigins.Items.Consumables
         {
             if (Main.pumpkinMoon) return false;
             if (Main.snowMoon) return false;
-            if (Main.dayTime) return false;
+            return true;
+        }
+        public override bool UseItem(Player player)
+        {
+            Main.dayTime = false;
+            Main.time = 0;
+            Main.bloodMoon = true;
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText("The Blood Moon is rising...", 50, 255, 130);
+            }
+            else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50f, 255f, 130f));
             return true;
         }
     }

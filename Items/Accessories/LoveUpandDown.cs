@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         {
             var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.AdventuresandMishaps>());
+            recipe.AddIngredient(ModContent.ItemType<AdventuresandMishaps>());
             recipe.AddIngredient(ModContent.ItemType<ScrollofTome>(), 3);
             recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 10);
             recipe.AddIngredient(ModContent.ItemType<Gravel>(), 15);

@@ -1,9 +1,9 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Throw
+namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
 	class MagicGrenade : ModItem
 	{

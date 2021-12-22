@@ -33,6 +33,19 @@ namespace ExxoAvalonOrigins
             ItemID.Uzi,
             ItemID.VortexBeater
         };
+        public static List<int> herbSeeds = new List<int>
+        {
+            ItemID.BlinkrootSeeds,
+            ItemID.DaybloomSeeds,
+            ItemID.WaterleafSeeds,
+            ItemID.FireblossomSeeds,
+            ItemID.DeathweedSeeds,
+            ItemID.MoonglowSeeds,
+            ItemID.ShiverthornSeeds,
+            ModContent.ItemType<BarfbushSeeds>(),
+            ModContent.ItemType<BloodberrySeeds>(),
+            ModContent.ItemType<SweetstemSeeds>()
+        };
         public override void SetDefaults(Item item)
         {
             int[] to2000 =
@@ -776,6 +789,13 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
+            if (herbSeeds.Contains(item.type) && Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.BloomingHerbs &&
+                Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.ClayPot && Main.mouseLeft)
+            {
+                WorldGen.KillTile(Player.tileTargetX, Player.tileTargetY);
+                WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile, style: item.placeStyle);
+                item.stack--;
+            }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
             {
                 if (item.summon && ExxoAvalonOrigins.mod.minionGuidingHotkey.Current)

@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Buffs
         {
             ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
-            if (player.dead || !player.active || !modPlayer.HasItemInArmor(ModContent.ItemType<Items.Weapons.Summon.AIController>()))
+            if (player.dead || !player.active || !modPlayer.HasItemInArmor(ModContent.ItemType<Items.Accessories.AIController>()))
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

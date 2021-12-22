@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Magic
+namespace ExxoAvalonOrigins.Items.Accessories
 {
     internal class AdventuresandMishaps : ModItem
     {

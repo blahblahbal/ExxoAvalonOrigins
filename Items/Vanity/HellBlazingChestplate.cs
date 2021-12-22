@@ -1,16 +1,16 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Armor
+namespace ExxoAvalonOrigins.Items.Vanity
 {
-	[AutoloadEquip(EquipType.Legs)]
-	class HellArmoredGreaves : ModItem
+	[AutoloadEquip(EquipType.Body)]
+	class HellBlazingChestplate : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hell Armored Greaves");
+			DisplayName.SetDefault("Hell Armored Chestplate");
 		}
 
 		public override void SetDefaults()

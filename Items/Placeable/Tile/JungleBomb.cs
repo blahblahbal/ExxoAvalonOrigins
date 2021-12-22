@@ -1,27 +1,26 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Throw
+namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-	class ContagionBomb : ModItem
+	class JungleBomb : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Contagion Bomb");
-			Tooltip.SetDefault("Converts tiles to the Contagion in a large radius");
+			DisplayName.SetDefault("Jungle Bomb");
+			Tooltip.SetDefault("Converts tiles to the Jungle in a large radius");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.useTurn = true;
 			item.maxStack = 999;
 			item.mech = true;
 			item.createTile = ModContent.TileType<Tiles.BiomeBombs>();
-			item.placeStyle = 4;
+			item.placeStyle = 2;
 			item.consumable = true;
 			item.rare = ItemRarityID.LightRed;
 			item.width = dims.Width;

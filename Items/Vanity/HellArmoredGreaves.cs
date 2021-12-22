@@ -1,25 +1,25 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Armor
+namespace ExxoAvalonOrigins.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Legs)]
-	class PossessedArmorGreaves : ModItem
+	class HellArmoredGreaves : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Possessed Armor Greaves");
+			DisplayName.SetDefault("Hell Armored Greaves");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightRed;
+			item.rare = ItemRarityID.Yellow;
 			item.width = dims.Width;
 			item.vanity = true;
-			item.value = Item.sellPrice(0, 0, 20, 0);
+			item.value = Item.sellPrice(0, 0, 90, 0);
 			item.height = dims.Height;
 		}
 	}

@@ -1868,7 +1868,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 14);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<HungryStaff>());
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.HungryStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -1904,7 +1904,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.SoulofNight, 5);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<GastropodStaff>());
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.GastropodStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -3302,7 +3302,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.SoulofFright, 20);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<PrimeStaff>());
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.PrimeStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -4439,7 +4439,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 20);
             recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 40);
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
-            recipe.SetResult(ModContent.ItemType<StaffoftheTempestFrigid>());
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.StaffoftheTempestFrigid>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

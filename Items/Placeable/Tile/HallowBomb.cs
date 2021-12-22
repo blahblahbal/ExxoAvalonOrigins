@@ -1,15 +1,15 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Throw
+namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-	class JungleBomb : ModItem
+	class HallowBomb : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Jungle Bomb");
-			Tooltip.SetDefault("Converts tiles to the Jungle in a large radius");
+			DisplayName.SetDefault("Hallow Bomb");
+			Tooltip.SetDefault("Converts tiles to the Hallow in a large radius");
 		}
 
 		public override void SetDefaults()
@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
 			item.maxStack = 999;
 			item.mech = true;
 			item.createTile = ModContent.TileType<Tiles.BiomeBombs>();
-			item.placeStyle = 2;
+			item.placeStyle = 6;
 			item.consumable = true;
 			item.rare = ItemRarityID.LightRed;
 			item.width = dims.Width;

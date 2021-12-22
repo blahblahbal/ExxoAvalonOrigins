@@ -1,9 +1,9 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Armor
+namespace ExxoAvalonOrigins.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Head)]
 	class PossessedArmorHelmet : ModItem

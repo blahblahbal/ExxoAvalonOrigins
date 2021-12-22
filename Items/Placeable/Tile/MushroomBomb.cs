@@ -1,15 +1,15 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Throw
+namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-	class PurityBomb : ModItem
+	class MushroomBomb : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Purity Bomb");
-			Tooltip.SetDefault("Converts tiles to the Purity in a large radius");
+			DisplayName.SetDefault("Mushroom Bomb");
+			Tooltip.SetDefault("Converts tiles to Mushrooms in a large radius\nNot the kind you think.");
 		}
 
 		public override void SetDefaults()
@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
 			item.maxStack = 999;
 			item.mech = true;
 			item.createTile = ModContent.TileType<Tiles.BiomeBombs>();
-			item.placeStyle = 0;
+			item.placeStyle = 5;
 			item.consumable = true;
 			item.rare = ItemRarityID.LightRed;
 			item.width = dims.Width;

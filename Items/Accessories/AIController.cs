@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Summon
+namespace ExxoAvalonOrigins.Items.Accessories
 {
     internal class AIController : ModItem
     {

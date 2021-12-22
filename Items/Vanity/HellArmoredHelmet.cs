@@ -1,16 +1,16 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Armor
+namespace ExxoAvalonOrigins.Items.Vanity
 {
-	[AutoloadEquip(EquipType.Body)]
-	class HellBlazingChestplate : ModItem
+	[AutoloadEquip(EquipType.Head)]
+	class HellArmoredHelmet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hell Armored Chestplate");
+			DisplayName.SetDefault("Hell Armored Helmet");
 		}
 
 		public override void SetDefaults()

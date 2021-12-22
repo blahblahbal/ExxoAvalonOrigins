@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
             player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41));
-            player.QuickSpawnItem(ModContent.ItemType<Items.Weapons.Summon.AIController>(), 1);
+            player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.AIController>(), 1);
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.Mechasting>();
