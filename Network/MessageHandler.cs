@@ -24,6 +24,9 @@ namespace ExxoAvalonOrigins.Network
                 case MessageID.CursorPosition:
                     CursorPosition.HandlePacket(reader, fromWho);
                     break;
+                case MessageID.SyncTime:
+                    SyncTime.HandlePacket(reader, fromWho);
+                    break;
             }
         }
     }

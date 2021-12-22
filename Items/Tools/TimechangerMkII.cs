@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -76,19 +76,23 @@ namespace ExxoAvalonOrigins.Items.Tools
 					case Time.day:
 						Main.dayTime = true;
 						Main.time = 0;
-						break;
+                        Logic.ChangeTime.TimeChange(0, dayTime: true);
+                        break;
 					case Time.midday:
 						Main.dayTime = true;
 						Main.time = 27000;
-						break;
+                        Logic.ChangeTime.TimeChange(27000, dayTime: true);
+                        break;
 					case Time.night:
 						Main.dayTime = false;
 						Main.time = 0;
-						break;
+                        Logic.ChangeTime.TimeChange(0, dayTime: false);
+                        break;
 					case Time.midnight:
 						Main.dayTime = false;
 						Main.time = 16200;
-						break;
+                        Logic.ChangeTime.TimeChange(16200, dayTime: false);
+                        break;
 				}
 
 				if (Main.netMode == NetmodeID.SinglePlayer)

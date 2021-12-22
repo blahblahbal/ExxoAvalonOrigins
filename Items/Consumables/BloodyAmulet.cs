@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             {
                 Main.NewText("The Blood Moon is rising...", 50, 255, 130);
             }
-            else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50f, 255f, 130f));
+            else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50, 255, 130));
             return true;
         }
     }

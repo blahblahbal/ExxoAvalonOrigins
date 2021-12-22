@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Network
     {
         public static void SendPacket(int teleportType = 0)
         {
-            ModPacket message = MessageHandler.GetPacket(MessageID.CursorPosition);
+            ModPacket message = MessageHandler.GetPacket(MessageID.ShadowTeleport);
             message.Write(teleportType);
             message.Send();
         }

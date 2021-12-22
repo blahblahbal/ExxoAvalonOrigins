@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -418,13 +418,12 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 			}
 			else
 			{
-				Item.NewItem(npc.position, ModContent.ItemType<ToxinShard>(), Main.rand.Next(50, 81));
-				if (Main.rand.Next(0, 10) < 3)
-					Item.NewItem(npc.position, ItemID.BottledHoney, Main.rand.Next(5, 9));
-				if (Main.rand.Next(0, 25) < 23)
-					Item.NewItem(npc.position, ItemID.JestersArrow, Main.rand.Next(20, 31));
+                if (Main.rand.Next(7) == 0) Item.NewItem(npc.position, ModContent.ItemType<Items.Vanity.KingStingMask>());
+				Item.NewItem(npc.position, ItemID.BeeWax, Main.rand.Next(16, 27));
+			    Item.NewItem(npc.position, ItemID.BottledHoney, Main.rand.Next(5, 16));
+				if (Main.rand.Next(4) == 0) Item.NewItem(npc.position, ItemID.JestersArrow, Main.rand.Next(20, 31));
 			}
-
+            
 			Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/KingStingHead"), 1f);
 			Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/KingStingWing"), 1f);
 			Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/KingStingBody"), 1f);

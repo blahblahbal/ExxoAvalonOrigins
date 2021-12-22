@@ -32,11 +32,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             //player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<ToxinShard>(), Main.rand.Next(50, 81));
-            if (Main.rand.Next(0, 10) < 3)
-                player.QuickSpawnItem(ItemID.BottledHoney, Main.rand.Next(5, 9));
-            if (Main.rand.Next(0, 25) < 23)
-                player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(20, 31));
+            player.QuickSpawnItem(ItemID.BeeWax, Main.rand.Next(16, 27));
+            player.QuickSpawnItem(ItemID.BottledHoney, Main.rand.Next(5, 16));
+            if (Main.rand.Next(4) == 0) player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(20, 31));
+            if (Main.rand.Next(7) == 0) player.QuickSpawnItem(ModContent.ItemType<Items.Vanity.KingStingMask>());
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.KingSting>();

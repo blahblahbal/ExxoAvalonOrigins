@@ -793,7 +793,15 @@ namespace ExxoAvalonOrigins
                 Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.ClayPot && Main.mouseLeft)
             {
                 WorldGen.KillTile(Player.tileTargetX, Player.tileTargetY);
+                if (!Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
+                }
                 WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile, style: item.placeStyle);
+                if (!Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY);
+                }
                 item.stack--;
             }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
@@ -868,23 +876,7 @@ namespace ExxoAvalonOrigins
 
             return base.CanUseItem(item, player);
         }
-        //public override bool UseItem(Item item, Player player)
-        //{
-        //    if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
-        //    {
-        //        if (item.summon && ExxoAvalonOrigins.minionGuidingHotkey.Current)
-        //        {
-        //            foreach (Projectile proj in Main.projectile)
-        //            {
-        //                if (proj.owner == player.whoAmI && proj.minion)
-        //                {
-        //                    proj.velocity = Vector2.Normalize(proj.position - new Vector2(Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y)) * 8f;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return base.UseItem(item, player);
-        //}
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");

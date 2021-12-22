@@ -53,23 +53,23 @@ namespace ExxoAvalonOrigins.UI
             ModContent.ItemType<Items.AdvancedPotions.AdvSonarPotion>(),
             ModContent.ItemType<Items.AdvancedPotions.AdvCratePotion>(),
             ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>(),
-            ModContent.ItemType<CrimsonPotion>(),
-            ModContent.ItemType<ShockwavePotion>(),
-            ModContent.ItemType<LuckPotion>(),
-            ModContent.ItemType<BloodCastPotion>(),
-            ModContent.ItemType<StarbrightPotion>(),
-            ModContent.ItemType<VisionPotion>(),
-            ModContent.ItemType<StrengthPotion>(),
-            ModContent.ItemType<GPSPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvCrimsonPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvShockwavePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvLuckPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvBloodCastPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvStarbrightPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvVisionPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvStrengthPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvGPSPotion>(),
             ModContent.ItemType<TimeShiftPotion>(),
-            ModContent.ItemType<ShadowPotion>(),
-            ModContent.ItemType<RoguePotion>(),
-            ModContent.ItemType<GauntletPotion>(),
-            ModContent.ItemType<WisdomPotion>(),
-            ModContent.ItemType<TitanskinPotion>(),
-            ModContent.ItemType<InvincibilityPotion>(),
-            ModContent.ItemType<ForceFieldPotion>(),
-            ModContent.ItemType<Items.Potions.FuryPotion>()
+            ModContent.ItemType<Items.AdvancedPotions.AdvShadowPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvRoguePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvGauntletPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvWisdomPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvTitanskinPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvInvincibilityPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvForceFieldPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvFuryPotion>()
             // Magnet Potion
         };
 
@@ -302,7 +302,7 @@ namespace ExxoAvalonOrigins.UI
                     spriteBatch.DrawOutlinedString(Main.fontMouseText, "Potion Total: " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal, new Vector2(xpos - 260 + Main.fontMouseText.MeasureString("Herbology Apprentice").X, (float)ypos - 60), Color.White, Color.Black, 1.2f, 1f);
                     if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 2)
                     {
-                        spriteBatch.DrawOutlinedString(Main.fontMouseText, "Click to obtain a potion (Requires 1 Potion credit); Right-click to obtain an Advanced Potion (requires 5 Potion credits)", new Vector2(xpos - 200 + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 405), Color.White, Color.Black, 1.2f, 1f);
+                        spriteBatch.DrawOutlinedString(Main.fontMouseText, "Click to obtain a potion (Requires 1 Potion credit); Right-click to obtain an Advanced Potion (requires 5 Potion credits); Hold left shift to get 5", new Vector2(xpos - 200 + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 405), Color.White, Color.Black, 1.2f, 1f);
                     }
 
                     if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 3 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
@@ -533,7 +533,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += herbItem.stack;
                                 }
-                                if (herbItem.Name.Contains("Advanced") && herbItem.Name.Contains("Potion"))
+                                if (herbItem.Name.Contains("Elixir") && herbItem.type != ModContent.ItemType<Items.Potions.ElixirofLife>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += herbItem.stack * 10;
                                 }
@@ -714,26 +714,52 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ObsidianSkinPotion, 1);
-                                            Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 5 && Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift))
                                             {
-                                                NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                                int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ObsidianSkinPotion, 5);
+                                                Main.item[x].owner = Main.myPlayer;
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                                }
+                                                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
+                                            else
+                                            {
+                                                int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ItemID.ObsidianSkinPotion, 1);
+                                                Main.item[x].owner = Main.myPlayer;
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                                }
+                                                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal--;
+                                            }
                                         }
                                     }
                                     if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 10)
                                     {
                                         if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>(), 1);
-                                            Main.item[x].owner = Main.myPlayer;
-                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal >= 50 && Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift))
                                             {
-                                                NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                                int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>(), 5);
+                                                Main.item[x].owner = Main.myPlayer;
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                                }
+                                                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 50;
                                             }
-                                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
+                                            else
+                                            {
+                                                int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>(), 1);
+                                                Main.item[x].owner = Main.myPlayer;
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, x, 1f, 0f, 0f, 0);
+                                                }
+                                                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
+                                            }
                                         }
                                     }
                                     spriteBatch.Draw(Main.itemTexture[ItemID.ObsidianSkinPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.ObsidianSkinPotion].Width / 2, Main.itemTexture[ItemID.ObsidianSkinPotion].Height / 2), 1f, SpriteEffects.None, 0f);

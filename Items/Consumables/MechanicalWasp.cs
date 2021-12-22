@@ -39,5 +39,17 @@ namespace ExxoAvalonOrigins.Items.Consumables
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Mechasting>());
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Stinger, 9);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Tile.DragonScale>(), 2);
+            recipe.AddIngredient(ItemID.SoulofFlight, 15);
+            recipe.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }
