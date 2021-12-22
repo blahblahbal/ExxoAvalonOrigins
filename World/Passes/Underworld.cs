@@ -31,8 +31,11 @@ namespace ExxoAvalonOrigins.World.Passes
             {
                 for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
                 {
+                    //if (WorldGen.genRand.Next(20) == 0 && z >= Main.maxTilesY - 250 && z <= Main.maxTilesY - 241 && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
+                    //if (WorldGen.genRand.Next(10) == 0 && z >= Main.maxTilesY - 240 && z <= Main.maxTilesY - 231 && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
+                    //if (WorldGen.genRand.Next(5) == 0 && z >= Main.maxTilesY - 230 && z <= Main.maxTilesY - 221 && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
                     if ((Main.tile[q, z].type == TileID.Ash || Main.tile[q, z].type == TileID.Hellstone) && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                    if (z < Main.maxTilesY - 110 && z > Main.maxTilesY - 150 || z < Main.maxTilesY - 190 && z > Main.maxTilesY - 200)
+                    if (z < Main.maxTilesY - 125 && z > Main.maxTilesY - 165)
                     {
                         if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
@@ -41,9 +44,25 @@ namespace ExxoAvalonOrigins.World.Passes
                         {
                             if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
                             {
-                                if (WorldGen.genRand.Next(25) == 0)
+                                if (q % 30 == 0)
                                 {
-                                    Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpike2(q, z, 0, -2f, 40, 2); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                }
+                            }
+                        }
+                    }
+                    if (z < Main.maxTilesY - 210 && z > Main.maxTilesY - 220)
+                    {
+                        if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
+                        {
+                            if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
+                            {
+                                if (q % 35 == 0)
+                                {
+                                    Structures.CaesiumSpike.CreateSpike2(q, z, 0, 2f, 40, 2); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
                         }

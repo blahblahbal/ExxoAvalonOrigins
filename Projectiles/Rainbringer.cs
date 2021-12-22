@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +41,8 @@ namespace ExxoAvalonOrigins.Projectiles
 					}
 					else if (Main.netMode == NetmodeID.Server)
 					{
-						NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("A rain event has started."), 255, 0f, 148f, 255f, 0);
-					}
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A rain event has started."), new Color(0, 148, 255));
+                    }
 				}
 				else
 				{
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Projectiles
 					}
 					else if (Main.netMode == NetmodeID.Server)
 					{
-						NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The rain has stopped."), 255, 0f, 148f, 255f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The rain has stopped."), new Color(0, 148, 255));
 					}
 				}
 				projectile.active = false;

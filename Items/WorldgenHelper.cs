@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items
 
         public override bool UseItem(Player player)
         {
-            World.Structures.TuhrtlOutpost.CreateOutpost((int)player.position.X / 16, (int)player.position.Y / 16);
+            World.Structures.CaesiumSpike.CreateSpike2((int)player.position.X / 16, (int)player.position.Y / 16, 0, -2f, 40, 2);
             return true;
         }
     }

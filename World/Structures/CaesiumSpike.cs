@@ -63,7 +63,7 @@ namespace ExxoAvalonOrigins.World.Structures
                     {
                         num4 = 1f;
                     }
-                    num += (xDir + num3) * 0.6f;
+                    num += (xDir + num3) * 0.3f;
                     num2 += (yDir + num4) * 0.6f;
                 }
             }

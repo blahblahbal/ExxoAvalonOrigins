@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.width = npc.height = 70;
             npc.boss = npc.noTileCollide = npc.noGravity = true;
             npc.npcSlots = 100f;
-            npc.damage = 75;
+            npc.damage = 95;
             npc.lifeMax = 47800;
             npc.defense = 55;
             npc.aiStyle = -1;
@@ -105,7 +105,7 @@ namespace ExxoAvalonOrigins.NPCs
                     int p;
                     while (f <= 0.3f)
                     {
-                        p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
+                        p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
                         Main.projectile[p].timeLeft = 600;
                         Main.projectile[p].friendly = false;
                         Main.projectile[p].hostile = true;
@@ -114,7 +114,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                         }
-                        p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
+                        p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
                         Main.projectile[p].timeLeft = 600;
                         Main.projectile[p].friendly = false;
                         Main.projectile[p].hostile = true;
@@ -219,7 +219,7 @@ namespace ExxoAvalonOrigins.NPCs
                             if (npc.ai[2] % 20 == 0)
                             {
                                 float Speed = 9f;
-                                int damage = 50;
+                                int damage = 65;
                                 Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33, 0.8f);
                                 /*Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
                                 float rotation = (float)Math.Atan2(npc.Center.Y, npc.Center.X);
@@ -305,7 +305,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         if (npc.ai[2] <= 7.2f)
                         {
-                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
+                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
@@ -314,7 +314,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
-                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation2 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation2 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
+                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation2 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation2 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
@@ -323,7 +323,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
-                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation3 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation3 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
+                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation3 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation3 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;
@@ -332,7 +332,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
-                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation4 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation4 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 40, 0f, npc.target);
+                            p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation4 - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation4 - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].hostile = true;

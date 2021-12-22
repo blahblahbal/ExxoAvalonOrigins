@@ -698,6 +698,27 @@ namespace ExxoAvalonOrigins
                 case ItemID.DukeFishronMask:
                     item.value = Item.sellPrice(0, 2, 0, 0);
                     break;
+                case ItemID.Meowmere:
+                    item.damage = 145;
+                    break;
+                case ItemID.SDMG:
+                    item.damage = 49;
+                    break;
+                case ItemID.StarWrath:
+                    item.damage = 85;
+                    break;
+                case ItemID.LastPrism:
+                    item.damage = 72;
+                    break;
+                case ItemID.Terrarian:
+                    item.damage = 144;
+                    break;
+                case ItemID.LunarFlareBook:
+                    item.damage = 75;
+                    break;
+                case ItemID.RainbowCrystalStaff:
+                    item.damage = 120;
+                    break;
             }
             //if (item.type >= 1615 && item.type <= 1701)
             //{
@@ -747,6 +768,10 @@ namespace ExxoAvalonOrigins
                 }
                 player.QuickSpawnItem(drop);
                 player.QuickSpawnItem(ModContent.ItemType<Items.EarthStone>(), Main.rand.Next(1, 4));
+            }
+            if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Items.LifeDew>(), Main.rand.Next(15, 22));
             }
         }
 

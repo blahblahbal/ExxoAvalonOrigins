@@ -943,7 +943,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BirthofaMonster>(), 1, false, 0, false);
             }
-            if (npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || (npc.type == NPCID.EnchantedSword && Main.rand.Next(80) == 0))
+            if ((npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || npc.type == NPCID.EnchantedSword) && Main.rand.Next(80) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Clash>(), 1, false, 0, false);
             }
@@ -975,7 +975,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ForsakenRelic>(), 1, false, -2, false);
             }
-            if (npc.type == NPCID.Plantera)
+            if (npc.type == NPCID.Plantera && !Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<LifeDew>(), Main.rand.Next(10, 18), false, 0, false);
             }
