@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Coughwood Chest";
-			chestDrop = ModContent.ItemType<Items.CoughwoodChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.CoughwoodChest>();
             dustType = ModContent.DustType<Dusts.ContagionDust>();
         }
 
@@ -181,7 +181,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Coughwood Chest";
 				if (player.showItemIconText == "Coughwood Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.CoughwoodChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.CoughwoodChest>();
 					player.showItemIconText = "";
 				}
 			}

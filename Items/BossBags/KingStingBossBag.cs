@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Material;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             //player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.ToxinShard>(), Main.rand.Next(50, 81));
+            player.QuickSpawnItem(ModContent.ItemType<ToxinShard>(), Main.rand.Next(50, 81));
             if (Main.rand.Next(0, 10) < 3)
                 player.QuickSpawnItem(ItemID.BottledHoney, Main.rand.Next(5, 9));
             if (Main.rand.Next(0, 25) < 23)

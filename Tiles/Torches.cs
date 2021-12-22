@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Placeable.Light;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -54,22 +55,22 @@ namespace ExxoAvalonOrigins.Tiles
             switch (style)
             {
                 case 0:
-                    toDrop = ModContent.ItemType<Items.JungleTorch>();
+                    toDrop = ModContent.ItemType<JungleTorch>();
                     break;
                 case 1:
-                    toDrop = ModContent.ItemType<Items.PathogenTorch>();
+                    toDrop = ModContent.ItemType<PathogenTorch>();
                     break;
                 case 2:
-                    toDrop = ModContent.ItemType<Items.SlimeTorch>();
+                    toDrop = ModContent.ItemType<SlimeTorch>();
                     break;
                 case 3:
-                    toDrop = ModContent.ItemType<Items.CyanTorch>();
+                    toDrop = ModContent.ItemType<CyanTorch>();
                     break;
                 case 4:
-                    toDrop = ModContent.ItemType<Items.LimeTorch>();
+                    toDrop = ModContent.ItemType<LimeTorch>();
                     break;
                 case 5:
-                    toDrop = ModContent.ItemType<Items.BrownTorch>();
+                    toDrop = ModContent.ItemType<BrownTorch>();
                     break;
             }
             Item.NewItem(i * 16, j * 16, 0, 0, toDrop);
@@ -181,22 +182,22 @@ namespace ExxoAvalonOrigins.Tiles
             switch (style)
             {
                 case 0:
-                    player.showItemIcon2 = ModContent.ItemType<Items.JungleTorch>();
+                    player.showItemIcon2 = ModContent.ItemType<JungleTorch>();
                     break;
                 case 1:
-                    player.showItemIcon2 = ModContent.ItemType<Items.PathogenTorch>();
+                    player.showItemIcon2 = ModContent.ItemType<PathogenTorch>();
                     break;
                 case 2:
-                    player.showItemIcon2 = ModContent.ItemType<Items.SlimeTorch>();
+                    player.showItemIcon2 = ModContent.ItemType<SlimeTorch>();
                     break;
                 case 3:
-                    player.showItemIcon2 = ModContent.ItemType<Items.CyanTorch>();
+                    player.showItemIcon2 = ModContent.ItemType<CyanTorch>();
                     break;
                 case 4:
-                    player.showItemIcon2 = ModContent.ItemType<Items.LimeTorch>();
+                    player.showItemIcon2 = ModContent.ItemType<LimeTorch>();
                     break;
                 case 5:
-                    player.showItemIcon2 = ModContent.ItemType<Items.BrownTorch>();
+                    player.showItemIcon2 = ModContent.ItemType<BrownTorch>();
                     break;
             }
         }

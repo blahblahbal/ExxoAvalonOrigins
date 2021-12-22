@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ExxoAvalonOrigins.Items;
+using ExxoAvalonOrigins.Items.Accessories;
 
 namespace ExxoAvalonOrigins.Hooks
 {

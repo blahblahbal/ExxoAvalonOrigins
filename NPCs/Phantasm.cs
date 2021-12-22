@@ -1,5 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -415,21 +419,21 @@ namespace ExxoAvalonOrigins.NPCs
                 int drop = Main.rand.Next(3);
                 if (drop == 0)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantomKnives>(), 1, false, -1);
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<PhantomKnives>(), 1, false, -1);
                 }
                 if (drop == 1)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.EtherealHeart>(), 1, false, -1);
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<EtherealHeart>(), 1, false, -1);
                 }
                 if (drop == 2)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.VampireTeeth>(), 1, false, -1);
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<VampireTeeth>(), 1, false, -1);
                 }
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.GhostintheMachine>(), Main.rand.Next(3, 6), false, 0);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<GhostintheMachine>(), Main.rand.Next(3, 6), false, 0);
             }
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.PhantasmTrophy>(), 1, false, 0);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<PhantasmTrophy>(), 1, false, 0);
             }
             for (int i = 0; i < 40; i++)
             {

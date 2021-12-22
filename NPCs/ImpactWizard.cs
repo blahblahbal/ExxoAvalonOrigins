@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -44,7 +45,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Phantoplasm>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Phantoplasm>(), 1, false, 0, false);
             }
         }
 

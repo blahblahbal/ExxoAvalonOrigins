@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Seed;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -65,23 +68,23 @@ namespace ExxoAvalonOrigins
             {
                 ItemID.Blowpipe,
                 ItemID.Blowgun,
-                ModContent.ItemType<Items.ReinforcedBlowpipe>(),
-                ModContent.ItemType<Items.HallowedBlowpipe>(),
-                ModContent.ItemType<Items.SunsShadow>(),
-                ModContent.ItemType<Items.OrichythrilBlowpipe>(),
-                ModContent.ItemType<Items.HallowedBlowpipe>()
+                ModContent.ItemType<ReinforcedBlowpipe>(),
+                ModContent.ItemType<HallowedBlowpipe>(),
+                ModContent.ItemType<SunsShadow>(),
+                ModContent.ItemType<OrichythrilBlowpipe>(),
+                ModContent.ItemType<HallowedBlowpipe>()
             };
             if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
             {
                 Main.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
                 if (Main.rand.Next(8000) == 0)
                 {
-                    int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.FourLeafClover>(), 1, false, 0);
+                    int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FourLeafClover>(), 1, false, 0);
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
                 }
                 if (Main.rand.Next(500) == 0)
                 {
-                    int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.FakeFourLeafClover>(), 1, false, 0);
+                    int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FakeFourLeafClover>(), 1, false, 0);
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
                 }
             }
@@ -109,14 +112,14 @@ namespace ExxoAvalonOrigins
                     switch (type)
                     {
                         case TileID.CorruptPlants:
-                            number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.CorruptionSeed>(), 1, false, 0, false);
+                            number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<CorruptionSeed>(), 1, false, 0, false);
                             break;
                         case TileID.JunglePlants:
                         case TileID.JunglePlants2:
-                            number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.JungleSeed>(), 1, false, 0, false);
+                            number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<JungleSeed>(), 1, false, 0, false);
                             break;
                         case TileID.FleshWeeds:
-                            number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.CrimsonSeed>(), 1, false, 0, false);
+                            number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<CrimsonSeed>(), 1, false, 0, false);
                             break;
                         case TileID.Plants:
                             number2 = Item.NewItem(i * 16, j * 16, 16, 16, ItemID.Seed, 1, false, 0, false);

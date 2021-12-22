@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.IO;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -49,7 +50,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.YuckyBit>(), 1, false, 0, false);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<YuckyBit>(), 1, false, 0, false);
         }
         public override void Init()
         {

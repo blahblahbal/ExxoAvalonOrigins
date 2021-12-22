@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Dressers };
 			dresser = "Heartstone Dresser";
-			dresserDrop = ModContent.ItemType<Items.HeartstoneDresser>();
+			dresserDrop = ModContent.ItemType<Items.Placeable.Storage.HeartstoneDresser>();
             dustType = DustID.Confetti_Pink;
         }
 
@@ -165,7 +165,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.HeartstoneDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.HeartstoneDresser>();
 					player.showItemIconText = "";
 				}
 			}
@@ -207,7 +207,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.HeartstoneDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.HeartstoneDresser>();
 					player.showItemIconText = "";
 				}
 			}

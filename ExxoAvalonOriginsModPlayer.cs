@@ -1,7 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using ExxoAvalonOrigins.Items;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Tools;
+using ExxoAvalonOrigins.Items.Weapons.Melee;
+using ExxoAvalonOrigins.Logic;
 using ExxoAvalonOrigins.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -465,7 +470,7 @@ namespace ExxoAvalonOrigins
 
         public override void SendCustomBiomes(BinaryWriter writer)
         {
-            BitsByte flags = new BitsByte();
+            var flags = new BitsByte();
             flags[0] = zoneHellcastle;
             flags[1] = zoneBooger;
             flags[2] = zoneDarkMatter;
@@ -486,7 +491,7 @@ namespace ExxoAvalonOrigins
 
         public bool HasItemInArmor(int type)
         {
-            for (var i = 0; i < player.armor.Length; i++)
+            for (int i = 0; i < player.armor.Length; i++)
             {
                 if (type == player.armor[i].type)
                 {
@@ -498,7 +503,11 @@ namespace ExxoAvalonOrigins
 
         public override void OnEnterWorld(Player player)
         {
-            if (tomeItem.type <= ItemID.None) tomeItem.SetDefaults();
+            if (tomeItem.type <= ItemID.None)
+            {
+                tomeItem.SetDefaults();
+            }
+
             Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.mod.version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
@@ -588,30 +597,30 @@ namespace ExxoAvalonOrigins
                 {
                     num -= 96f;
                 }
-                if (player.position.X + (float)player.width > num && player.position.X < num + 140f && player.gross)
+                if (player.position.X + player.width > num && player.position.X < num + 140f && player.gross)
                 {
                     player.noKnockback = false;
                     player.Hurt(PlayerDeathReason.ByNPC(ExxoAvalonOriginsWorld.wos), 50, Main.npc[ExxoAvalonOriginsWorld.wos].direction);
                 }
-                if (!player.gross && player.position.Y > (float)((Main.maxTilesY - 250) * 16) && player.position.X > num - 1920f && player.position.X < num + 1920f)
+                if (!player.gross && player.position.Y > (Main.maxTilesY - 250) * 16 && player.position.X > num - 1920f && player.position.X < num + 1920f)
                 {
                     player.AddBuff(37, 10, true);
                     //Main.PlaySound(4, (int)Main.npc[ExxoAvalonOriginsWorld.wos].position.X, (int)Main.npc[ExxoAvalonOriginsWorld.wos].position.Y, 10);
                 }
                 if (player.gross)
                 {
-                    if (player.position.Y < (float)((Main.maxTilesY - 200) * 16))
+                    if (player.position.Y < (Main.maxTilesY - 200) * 16)
                     {
                         player.AddBuff(38, 10, true);
                     }
                     if (Main.npc[ExxoAvalonOriginsWorld.wos].direction < 0)
                     {
-                        if (player.position.X + (float)(player.width / 2) > Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2) + 40f)
+                        if (player.position.X + player.width / 2 > Main.npc[ExxoAvalonOriginsWorld.wos].position.X + Main.npc[ExxoAvalonOriginsWorld.wos].width / 2 + 40f)
                         {
                             player.AddBuff(38, 10, true);
                         }
                     }
-                    else if (player.position.X + (float)(player.width / 2) < Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2) - 40f)
+                    else if (player.position.X + player.width / 2 < Main.npc[ExxoAvalonOriginsWorld.wos].position.X + Main.npc[ExxoAvalonOriginsWorld.wos].width / 2 - 40f)
                     {
                         player.AddBuff(38, 10, true);
                     }
@@ -627,17 +636,17 @@ namespace ExxoAvalonOrigins
                             Main.projectile[i].Kill();
                         }
                     }
-                    Vector2 vector = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
-                    float num2 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2) - vector.X;
-                    float num3 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].height / 2) - vector.Y;
-                    float num4 = (float)Math.Sqrt((double)(num2 * num2 + num3 * num3));
+                    var vector = new Vector2(player.position.X + player.width * 0.5f, player.position.Y + player.height * 0.5f);
+                    float num2 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + Main.npc[ExxoAvalonOriginsWorld.wos].width / 2 - vector.X;
+                    float num3 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + Main.npc[ExxoAvalonOriginsWorld.wos].height / 2 - vector.Y;
+                    float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
                     if (num4 > 3000f)
                     {
                         //player.lastPosBeforeDeath = this.position;
                         player.KillMe(PlayerDeathReason.ByNPC(ExxoAvalonOriginsWorld.wos), 1000.0, 0, false);
                         return;
                     }
-                    if (Main.npc[ExxoAvalonOriginsWorld.wos].position.X < 608f || Main.npc[ExxoAvalonOriginsWorld.wos].position.X > (float)((Main.maxTilesX - 38) * 16))
+                    if (Main.npc[ExxoAvalonOriginsWorld.wos].position.X < 608f || Main.npc[ExxoAvalonOriginsWorld.wos].position.X > (Main.maxTilesX - 38) * 16)
                     {
                         //this.lastPosBeforeDeath = this.position;
                         player.KillMe(PlayerDeathReason.ByNPC(ExxoAvalonOriginsWorld.wos), 1000.0, 0, false);
@@ -651,14 +660,25 @@ namespace ExxoAvalonOrigins
             bool consume = true;
             // 30% chance to not consume ammo
             if (advAmmoBuff && Main.rand.Next(10) < 3)
+            {
                 consume = false;
+            }
 
             if (tomeItem.type == ModContent.ItemType<CreatorsTome>() && Main.rand.Next(4) == 0)
+            {
                 consume = false;
+            }
+
             if ((tomeItem.type == ModContent.ItemType<TomeofDistance>() || tomeItem.type == ModContent.ItemType<Dominance>() || tomeItem.type == ModContent.ItemType<LoveUpandDown>()) && Main.rand.Next(5) == 0)
+            {
                 consume = false;
+            }
+
             if ((tomeItem.type == ModContent.ItemType<ThePlumHarvest>() || tomeItem.type == ModContent.ItemType<Emperor>()) && Main.rand.Next(10) < 3)
+            {
                 consume = false;
+            }
+
             if (!consume)
             {
                 return false;
@@ -687,7 +707,11 @@ namespace ExxoAvalonOrigins
             if (tag.ContainsKey("ExxoAvalonOrigins:CrystalHealth"))
             {
                 crystalHealth = tag.GetAsInt("ExxoAvalonOrigins:CrystalHealth");
-                if (crystalHealth > 4) crystalHealth = 4;
+                if (crystalHealth > 4)
+                {
+                    crystalHealth = 4;
+                }
+
                 if (player.statLifeMax == 500)
                 {
                     player.statLifeMax += crystalHealth *= 25;
@@ -735,27 +759,45 @@ namespace ExxoAvalonOrigins
             {
                 if (item.melee)
                 {
-                    if (target.boss) vampireHeal(damage / 2, target.Center);
-                    else vampireHeal(damage, target.Center);
+                    if (target.boss)
+                    {
+                        vampireHeal(damage / 2, target.Center);
+                    }
+                    else
+                    {
+                        vampireHeal(damage, target.Center);
+                    }
                 }
             }
             if (crit)
             {
                 if (Main.rand.Next(8) == 0)
+                {
                     if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    {
                         reckoningLevel += 1;
+                    }
+                }
 
                 if (avalonRestoration)
+                {
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+                }
             }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             if (minionFreeze)
+            {
                 if (proj.minion || minionProjectile.Contains(proj.type))
+                {
                     if (CanBeFrozen.CanFreeze(target))
+                    {
                         target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
+                    }
+                }
+            }
 
             if (roseMagic)
             {
@@ -763,9 +805,9 @@ namespace ExxoAvalonOrigins
                 {
                     if (Main.rand.Next(8) == 0 && roseMagicCooldown <= 0)
                     {
-                        int num36 = Item.NewItem((int)target.position.X, (int)target.position.Y, target.width, target.height, ModContent.ItemType<Items.Rosebud>());
-                        Main.item[num36].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
-                        Main.item[num36].velocity.X = (float)Main.rand.Next(10, 31) * 0.2f * (float)player.direction;
+                        int num36 = Item.NewItem((int)target.position.X, (int)target.position.Y, target.width, target.height, ModContent.ItemType<Rosebud>());
+                        Main.item[num36].velocity.Y = Main.rand.Next(-20, 1) * 0.2f;
+                        Main.item[num36].velocity.X = Main.rand.Next(10, 31) * 0.2f * player.direction;
                         roseMagicCooldown = 20;
                     }
                 }
@@ -785,11 +827,17 @@ namespace ExxoAvalonOrigins
             if (crit)
             {
                 if (Main.rand.Next(8) == 0)
+                {
                     if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    {
                         reckoningLevel += 1;
+                    }
+                }
 
                 if (avalonRestoration)
+                {
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+                }
             }
         }
 
@@ -798,28 +846,44 @@ namespace ExxoAvalonOrigins
             if (crit)
             {
                 if (Main.rand.Next(8) == 0)
+                {
                     if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    {
                         reckoningLevel += 1;
+                    }
+                }
 
                 if (avalonRestoration)
+                {
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+                }
             }
         }
 
         public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
         {
             if (minionFreeze)
+            {
                 if (proj.minion || minionProjectile.Contains(proj.type))
+                {
                     target.AddBuff(ModContent.BuffType<Buffs.MinionFrozen>(), 60);
+                }
+            }
 
             if (crit)
             {
                 if (Main.rand.Next(8) == 0)
+                {
                     if (player.whoAmI == Main.myPlayer && reckoningTimeLeft > 0 && reckoningLevel < 10)
+                    {
                         reckoningLevel += 1;
+                    }
+                }
 
                 if (avalonRestoration)
+                {
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
+                }
             }
         }
 
@@ -836,7 +900,7 @@ namespace ExxoAvalonOrigins
             }
             player.lifeSteal -= num;
             int num2 = player.whoAmI;
-            Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, player.whoAmI, (float)num2, num);
+            Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, player.whoAmI, num2, num);
         }
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
@@ -849,11 +913,15 @@ namespace ExxoAvalonOrigins
                 {
                     if (N2.position.X >= x - 620 && N2.position.X <= x + 620 && N2.position.Y >= y - 620 && N2.position.Y <= y + 620)
                     {
-                        if (!N2.active || N2.dontTakeDamage || N2.townNPC || N2.life < 1 || N2.boss || N2.realLife >= 0 || N2.type == ModContent.NPCType<NPCs.Juggernaut>()) continue;
+                        if (!N2.active || N2.dontTakeDamage || N2.townNPC || N2.life < 1 || N2.boss || N2.realLife >= 0 || N2.type == ModContent.NPCType<NPCs.Juggernaut>())
+                        {
+                            continue;
+                        }
+
                         N2.StrikeNPC(damage, 5f, 1);
                         if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
-                            NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, (float)damage, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, damage, 0f, 0f, 0);
                         }
                     }
                 }
@@ -886,7 +954,10 @@ namespace ExxoAvalonOrigins
                 if (hyperBar > 15 && hyperBar <= 25)
                 {
                     crit = true;
-                    if (hyperBar == 25) hyperBar = 0;
+                    if (hyperBar == 25)
+                    {
+                        hyperBar = 0;
+                    }
                 }
             }
             if (confusionTal && Main.rand.Next(100) <= 12)
@@ -928,7 +999,10 @@ namespace ExxoAvalonOrigins
                 if (hyperBar > 15 && hyperBar <= 25)
                 {
                     crit = true;
-                    if (hyperBar == 25) hyperBar = 0;
+                    if (hyperBar == 25)
+                    {
+                        hyperBar = 0;
+                    }
                 }
             }
             if (hyperRanged && proj.ranged)
@@ -937,7 +1011,10 @@ namespace ExxoAvalonOrigins
                 if (hyperBar > 15 && hyperBar <= 25)
                 {
                     crit = true;
-                    if (hyperBar == 25) hyperBar = 0;
+                    if (hyperBar == 25)
+                    {
+                        hyperBar = 0;
+                    }
                 }
             }
             if (hyperMagic && proj.magic)
@@ -946,14 +1023,23 @@ namespace ExxoAvalonOrigins
                 if (hyperBar > 15 && hyperBar <= 25)
                 {
                     crit = true;
-                    if (hyperBar == 25) hyperBar = 0;
+                    if (hyperBar == 25)
+                    {
+                        hyperBar = 0;
+                    }
                 }
             }
 
             if (minionFreeze)
+            {
                 if (proj.minion || minionProjectile.Contains(proj.type))
+                {
                     if (target.HasBuff(ModContent.BuffType<Buffs.MinionFrozen>()) || !CanBeFrozen.CanFreeze(target))
+                    {
                         damage = (int)(damage * 1.10f);
+                    }
+                }
+            }
 
             if (crit)
             {
@@ -972,9 +1058,15 @@ namespace ExxoAvalonOrigins
         public override void ModifyHitPvpWithProj(Projectile proj, Player target, ref int damage, ref bool crit)
         {
             if (minionFreeze)
+            {
                 if (proj.minion || minionProjectile.Contains(proj.type))
+                {
                     if (target.HasBuff(ModContent.BuffType<Buffs.MinionFrozen>()))
+                    {
                         damage = (int)(damage * 1.10f);
+                    }
+                }
+            }
 
             if (crit)
             {
@@ -1097,7 +1189,11 @@ namespace ExxoAvalonOrigins
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (ExxoAvalonOrigins.GodMode) return false;
+            if (ExxoAvalonOrigins.GodMode)
+            {
+                return false;
+            }
+
             if (spectrumBlur && player.whoAmI == Main.myPlayer && Main.rand.Next(10) == 0)
             {
                 SpectrumDodge();
@@ -1113,18 +1209,40 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdate()
         {
-            if (magnet) Player.defaultItemGrabRange = 114;
-            if (herbTotal < 250) herbTier = 0;
-            else if (herbTotal >= 250 && herbTotal < 750) herbTier = 1;
+            if (magnet)
+            {
+                Player.defaultItemGrabRange = 114;
+            }
+
+            if (herbTotal < 250)
+            {
+                herbTier = 0;
+            }
+            else if (herbTotal >= 250 && herbTotal < 750)
+            {
+                herbTier = 1;
+            }
             else if (herbTotal >= 750 && herbTotal < 1500)
             {
-                if (Main.hardMode) herbTier = 2;
-                else herbTier = 1;
+                if (Main.hardMode)
+                {
+                    herbTier = 2;
+                }
+                else
+                {
+                    herbTier = 1;
+                }
             }
             else
             {
-                if (Main.hardMode) herbTier = 3;
-                else herbTier = 1;
+                if (Main.hardMode)
+                {
+                    herbTier = 3;
+                }
+                else
+                {
+                    herbTier = 1;
+                }
             }
             herbTier = 2;
             //player.statMana = statMana;
@@ -1161,7 +1279,11 @@ namespace ExxoAvalonOrigins
                     if (!Main.tile[pt.X, pt.Y].active())
                     {
                         int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), 0);
-                        if (Main.netMode == NetmodeID.Server) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, proj);
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, proj);
+                        }
+
                         for (int i = 0; i < 20; i++)
                         {
                             int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
@@ -1180,7 +1302,11 @@ namespace ExxoAvalonOrigins
                     Vector2 pposTile2 = player.position + new Vector2(Main.rand.Next(-35 * 16, 35 * 16), Main.rand.Next(-35 * 16, 35 * 16));
                     Point pt = pposTile2.ToTileCoordinates();
                     int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
-                    if (Main.netMode == NetmodeID.Server) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, proj);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, proj);
+                    }
+
                     for (int i = 0; i < 20; i++)
                     {
                         int num893 = Dust.NewDust(Main.npc[proj].position, Main.npc[proj].width, Main.npc[proj].height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
@@ -1194,8 +1320,15 @@ namespace ExxoAvalonOrigins
 
             #endregion rift goggles
 
-            if (HasItemInArmor(ModContent.ItemType<ShadowRing>())) player.shadow = 0f;
-            if (blahArmor) player.shadow = 0f;
+            if (HasItemInArmor(ModContent.ItemType<ShadowRing>()))
+            {
+                player.shadow = 0f;
+            }
+
+            if (blahArmor)
+            {
+                player.shadow = 0f;
+            }
 
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
@@ -1208,12 +1341,19 @@ namespace ExxoAvalonOrigins
                     player.dropItemCheck();
                 }
             }
-            if (!Main.playerInventory) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
+            if (!Main.playerInventory)
+            {
+                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
+            }
             //if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
-                var lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
-                if (lvl < 0) lvl = 0;
+                int lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
+                if (lvl < 0)
+                {
+                    lvl = 0;
+                }
+
                 player.meleeCrit += 2 * lvl;
                 player.magicCrit += 2 * lvl;
                 player.rangedCrit += 2 * lvl;
@@ -1226,13 +1366,13 @@ namespace ExxoAvalonOrigins
                 bool flag21 = false;
                 if (ExxoAvalonOriginsWorld.wos >= 0)
                 {
-                    float num159 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2);
-                    num159 += (float)(Main.npc[ExxoAvalonOriginsWorld.wos].direction * 200);
-                    float num160 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].height / 2);
-                    Vector2 vector5 = new Vector2(player.position.X + (float)player.width * 0.5f, player.position.Y + (float)player.height * 0.5f);
+                    float num159 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + Main.npc[ExxoAvalonOriginsWorld.wos].width / 2;
+                    num159 += Main.npc[ExxoAvalonOriginsWorld.wos].direction * 200;
+                    float num160 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + Main.npc[ExxoAvalonOriginsWorld.wos].height / 2;
+                    var vector5 = new Vector2(player.position.X + player.width * 0.5f, player.position.Y + player.height * 0.5f);
                     float num161 = num159 - vector5.X;
                     float num162 = num160 - vector5.Y;
-                    float num163 = (float)Math.Sqrt((double)(num161 * num161 + num162 * num162));
+                    float num163 = (float)Math.Sqrt(num161 * num161 + num162 * num162);
                     float num164 = 11f;
                     float num165;
                     if (num163 > num164)
@@ -1312,12 +1452,18 @@ namespace ExxoAvalonOrigins
                 {
                     NPC npc = Main.npc[i];
                     if (npc.townNPC)
+                    {
                         continue;
+                    }
+
                     if (!npc.active ||
                         npc.dontTakeDamage ||
                         npc.friendly ||
                         npc.life < 1)
+                    {
                         continue;
+                    }
+
                     if (npc.Center.X >= player.Center.X - 320 &&
                         npc.Center.X <= player.Center.X + 320 &&
                         npc.Center.Y >= player.Center.Y - 320 &&
@@ -1340,7 +1486,10 @@ namespace ExxoAvalonOrigins
                                         target.boss ||
                                         target.target == ModContent.NPCType<NPCs.Juggernaut>() ||
                                         target.realLife >= 0)
+                                    {
                                         continue;
+                                    }
+
                                     target.AddBuff(ModContent.BuffType<Buffs.NecroticDrain>(), 2);
                                     //target.StrikeNPCNoInteraction(3 + (int)(target.defense / 2), 0f, 1, default, true);
                                     //target.StrikeNPC(3 + (int)(target.defense / 2), 0f, 1, default, true);
@@ -1357,21 +1506,30 @@ namespace ExxoAvalonOrigins
                 if (player.whoAmI == Main.myPlayer)
                 {
                     if (reckoningTimeLeft > 0)
+                    {
                         reckoningTimeLeft--;
+                    }
                     else
                     {
                         if (reckoningLevel > 1)
+                        {
                             reckoningLevel--;
+                        }
+
                         reckoningTimeLeft = 120;
                     }
 
                     if (reckoningLevel < 1)
+                    {
                         reckoningLevel = 1;
+                    }
 
                     player.rangedCrit += 3 * reckoningLevel;
                 }
                 else
+                {
                     Main.NewText("Good job dummy, you broke the Reckoning set bonus");
+                }
             }
             else
             {
@@ -1392,7 +1550,7 @@ namespace ExxoAvalonOrigins
                               if (ownedLargeGems.Length > 0)
                               {
                                   bool flag2 = false;
-                                  DrawData value = default(DrawData);
+                                  var value = default(DrawData);
                                   float numGems = 0f;
                                   for (int num23 = 0; num23 < 10; num23++)
                                   {
@@ -1441,13 +1599,13 @@ namespace ExxoAvalonOrigins
                                           num26 += 0f;
                                           break;
                                   }
-                                  float rotSpeed = (float)drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
+                                  float rotSpeed = drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
                                   if (numGems > 0f)
                                   {
                                       float spacing = (float)Math.PI * 2f / numGems;
                                       float num29 = 0f;
-                                      Vector2 ringSize = new Vector2(1.5f, 0.85f);
-                                      List<DrawData> list = new List<DrawData>();
+                                      var ringSize = new Vector2(1.5f, 0.85f);
+                                      var list = new List<DrawData>();
                                       for (int num30 = 0; num30 < 10; num30++)
                                       {
                                           if (!ownedLargeGems[num30])
@@ -1455,7 +1613,7 @@ namespace ExxoAvalonOrigins
                                               num29 += 1f;
                                               continue;
                                           }
-                                          Vector2 value14 = (rotSpeed + spacing * ((float)num30 - num29)).ToRotationVector2();
+                                          Vector2 value14 = (rotSpeed + spacing * (num30 - num29)).ToRotationVector2();
                                           float num31 = num25;
                                           if (flag2)
                                           {
@@ -1488,7 +1646,7 @@ namespace ExxoAvalonOrigins
                                               }
                                           }
 
-                                          value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + (float)(drawPlayer.width / 2)), (int)(drawInfo.position.Y - Main.screenPosition.Y + (float)drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, (int)Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, ((float)(int)Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
+                                          value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + drawPlayer.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, (Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
                                           list.Add(value);
                                       }
                                       if (flag2)
@@ -1525,8 +1683,8 @@ namespace ExxoAvalonOrigins
                             Main.item[num].netDefaults(player.inventory[i].netID);
                             Main.item[num].Prefix(player.inventory[i].prefix);
                             Main.item[num].stack = player.inventory[i].stack;
-                            Main.item[num].velocity.Y = (float)Main.rand.Next(-20, 1) * 0.2f;
-                            Main.item[num].velocity.X = (float)Main.rand.Next(-20, 21) * 0.2f;
+                            Main.item[num].velocity.Y = Main.rand.Next(-20, 1) * 0.2f;
+                            Main.item[num].velocity.X = Main.rand.Next(-20, 21) * 0.2f;
                             Main.item[num].noGrabDelay = 100;
                             Main.item[num].favorited = false;
                             Main.item[num].newAndShiny = false;
@@ -1576,12 +1734,12 @@ namespace ExxoAvalonOrigins
                 {
                     player.stealthTimer = 5;
                 }
-                if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
+                if (player.velocity.X > -0.1 && player.velocity.X < 0.1 && player.velocity.Y > -0.1 && player.velocity.Y < 0.1)
                 {
                     if (player.stealthTimer == 0)
                     {
                         player.stealth -= 0.015f;
-                        if ((double)player.stealth < 0.0)
+                        if (player.stealth < 0.0)
                         {
                             player.stealth = 0f;
                         }
@@ -1612,12 +1770,12 @@ namespace ExxoAvalonOrigins
                 {
                     player.stealthTimer = 5;
                 }
-                if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
+                if (player.velocity.X > -0.1 && player.velocity.X < 0.1 && player.velocity.Y > -0.1 && player.velocity.Y < 0.1)
                 {
                     if (player.stealthTimer == 0)
                     {
                         player.stealth -= 0.015f;
-                        if ((double)player.stealth < 0.0)
+                        if (player.stealth < 0.0)
                         {
                             player.stealth = 0f;
                         }
@@ -1646,12 +1804,12 @@ namespace ExxoAvalonOrigins
                 {
                     player.stealthTimer = 5;
                 }
-                if ((double)player.velocity.X > -0.1 && (double)player.velocity.X < 0.1 && (double)player.velocity.Y > -0.1 && (double)player.velocity.Y < 0.1)
+                if (player.velocity.X > -0.1 && player.velocity.X < 0.1 && player.velocity.Y > -0.1 && player.velocity.Y < 0.1)
                 {
                     if (player.stealthTimer == 0)
                     {
                         player.stealth -= 0.015f;
-                        if ((double)player.stealth < 0.0)
+                        if (player.stealth < 0.0)
                         {
                             player.stealth = 0f;
                         }
@@ -1807,8 +1965,8 @@ namespace ExxoAvalonOrigins
 
             if (chaosCharm)
             {
-                int modCrit = 2 * (int)Math.Floor(((double)player.statLifeMax2 - (double)player.statLife) /
-                              (double)player.statLifeMax2 * 10.0);
+                int modCrit = 2 * (int)Math.Floor((player.statLifeMax2 - (double)player.statLife) /
+                              player.statLifeMax2 * 10.0);
                 player.meleeCrit += modCrit;
                 player.magicCrit += modCrit;
                 player.rangedCrit += modCrit;
@@ -1829,8 +1987,14 @@ namespace ExxoAvalonOrigins
                         break;
                     }
                 }
-                if (flag) defDebuffBonusDef = 12; // defDebuffBonusDef is here to avoid the def buff sticking around 24/7 because of terraria code jank
-                else defDebuffBonusDef = 0;
+                if (flag)
+                {
+                    defDebuffBonusDef = 12; // defDebuffBonusDef is here to avoid the def buff sticking around 24/7 because of terraria code jank
+                }
+                else
+                {
+                    defDebuffBonusDef = 0;
+                }
             }
             player.statDefense += defDebuffBonusDef; // outside of the if statement to remove extra defense
 
@@ -1845,7 +2009,11 @@ namespace ExxoAvalonOrigins
 
             if (astralProject)
             {
-                if (astralCD > 3600) astralCD = 3600;
+                if (astralCD > 3600)
+                {
+                    astralCD = 3600;
+                }
+
                 astralCD++;
             }
 
@@ -1853,7 +2021,9 @@ namespace ExxoAvalonOrigins
             {
                 player.wingsLogic = 0;
                 if (player.mount.CanFly || player.mount.CanHover) // Setting player.mount._flyTime does not work for all mounts. Bye-bye mounts!
+                {
                     player.mount.Dismount(player);
+                }
 
                 // Alternative code which limits flight time instead of disabling it
                 /*
@@ -1865,17 +2035,17 @@ namespace ExxoAvalonOrigins
 
         public static void stayInBounds(Vector2 pos)
         {
-            if (pos.X > (float)(Main.maxTilesX - 100))
+            if (pos.X > Main.maxTilesX - 100)
             {
-                pos.X = (float)(Main.maxTilesX - 100);
+                pos.X = Main.maxTilesX - 100;
             }
             if (pos.X < 100f)
             {
                 pos.X = 100f;
             }
-            if (pos.Y > (float)Main.maxTilesY)
+            if (pos.Y > Main.maxTilesY)
             {
-                pos.Y = (float)Main.maxTilesY;
+                pos.Y = Main.maxTilesY;
             }
             if (pos.Y < 100f)
             {
@@ -1885,7 +2055,7 @@ namespace ExxoAvalonOrigins
 
         public bool isOnGround()
         {
-            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[(int)Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[(int)Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
+            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
         }
 
         public override void PostUpdateMiscEffects()
@@ -1934,7 +2104,9 @@ namespace ExxoAvalonOrigins
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
                         if (Main.projectile[i].type == ModContent.ProjectileType<Projectiles.DragonBall>() && Main.projectile[i].owner == player.whoAmI)
+                        {
                             Main.projectile[i].Kill();
+                        }
                     }
                 }
             }
@@ -1944,26 +2116,38 @@ namespace ExxoAvalonOrigins
                 float maxSpeed;
 
                 if (noSticky)
+                {
                     maxSpeed = 10f;
+                }
                 else
+                {
                     maxSpeed = player.maxRunSpeed;
+                }
 
                 damagePercent = (-25f * (float)(Math.Abs(player.velocity.X) / maxSpeed)) + 25f;
 
                 if (damagePercent < 0)
+                {
                     damagePercent = 0;
+                }
 
                 if (Math.Abs(player.velocity.X) >= maxSpeed)
+                {
                     player.AddBuff(ModContent.BuffType<Buffs.SpectrumBlur>(), 5);
+                }
 
                 player.rangedDamage += damagePercent / 100f;
             }
             if (roseMagic)
             {
                 if (roseMagicCooldown > 0)
+                {
                     roseMagicCooldown--;
+                }
                 else
+                {
                     roseMagicCooldown = 0;
+                }
             }
 
             // Broken completely. If you wanna fix be my guest.
@@ -2055,13 +2239,13 @@ namespace ExxoAvalonOrigins
             {
                 teleportVWasTriggered = false;
                 tpCD = 0;
-                for (var m = 0; m < 70; m++)
+                for (int m = 0; m < 70; m++)
                 {
                     Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.1f);
                 }
                 player.position.X = Main.mouseX + Main.screenPosition.X;
                 player.position.Y = Main.mouseY + Main.screenPosition.Y;
-                for (var n = 0; n < 70; n++)
+                for (int n = 0; n < 70; n++)
                 {
                     Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.1f);
                 }
@@ -2078,7 +2262,10 @@ namespace ExxoAvalonOrigins
                 if (astralCD >= 3600)
                 {
                     astralCD = 0;
-                    if (!astralStart) player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
+                    if (!astralStart)
+                    {
+                        player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
+                    }
                 }
             }
 
@@ -2118,7 +2305,7 @@ namespace ExxoAvalonOrigins
                 Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
             }
 
-            if (player.inventory[player.selectedItem].type == ModContent.ItemType<Items.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<Items.Tools.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
             {
                 speed = !speed;
                 if (!speed)
@@ -2218,10 +2405,10 @@ namespace ExxoAvalonOrigins
             {
                 if (LightningInABottle)
                 {
-                    Vector2 cloudPosition = new Vector2(player.Center.X + 0f, player.Center.Y - 150f);
-                    Vector2 targetPosition = new Vector2(player.Center.X/* + (-20f * hitDirection)*/, player.Center.Y);
-                    Vector2 targetPosition2 = new Vector2(player.Center.X + Main.rand.Next(-40, -20), player.Center.Y);
-                    Vector2 targetPosition3 = new Vector2(player.Center.X + Main.rand.Next(-40, -20), player.Center.Y);
+                    var cloudPosition = new Vector2(player.Center.X + 0f, player.Center.Y - 150f);
+                    var targetPosition = new Vector2(player.Center.X/* + (-20f * hitDirection)*/, player.Center.Y);
+                    var targetPosition2 = new Vector2(player.Center.X + Main.rand.Next(-40, -20), player.Center.Y);
+                    var targetPosition3 = new Vector2(player.Center.X + Main.rand.Next(-40, -20), player.Center.Y);
                     if (Main.rand.Next(2) == 0)
                     {
                         targetPosition2 = new Vector2(player.Center.X + Main.rand.Next(20, 40), player.Center.Y);
@@ -2259,14 +2446,16 @@ namespace ExxoAvalonOrigins
                 if (goBerserk)
                 {
                     if (damage > 50)
+                    {
                         player.AddBuff(ModContent.BuffType<Buffs.Berserk>(), 180);
+                    }
                 }
 
                 if (leafStorm)
                 {
                     if (damage > 0 && Main.rand.Next(5) == 0)
                     {
-                        Vector2 pos = new Vector2(player.Center.X + Main.rand.Next(-500, 501), player.Center.Y);
+                        var pos = new Vector2(player.Center.X + Main.rand.Next(-500, 501), player.Center.Y);
                         while (Main.tile[(int)(pos.X / 16), (int)(pos.Y / 16)].active())
                         {
                             pos.Y--;
@@ -2348,12 +2537,16 @@ namespace ExxoAvalonOrigins
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
             if (junk)
+            {
                 return;
+            }
 
             #region Contagion Fish
 
             if (zoneBooger && Main.rand.NextBool(10))
+            {
                 caughtType = ModContent.ItemType<Items.Fish.NauSeaFish>();
+            }
 
             #endregion Contagion Fish
         }
@@ -2413,8 +2606,8 @@ namespace ExxoAvalonOrigins
 
         public void FloorVisualsAvalon(bool falling)
         {
-            int num = (int)((player.position.X + (float)(player.width / 2)) / 16f);
-            int num2 = (int)((player.position.Y + (float)player.height) / 16f);
+            int num = (int)((player.position.X + player.width / 2) / 16f);
+            int num2 = (int)((player.position.Y + player.height) / 16f);
             int num3 = -1;
             if (Main.tile[num - 1, num2] == null)
             {
@@ -2428,17 +2621,17 @@ namespace ExxoAvalonOrigins
             {
                 Main.tile[num, num2] = new Tile();
             }
-            if (Main.tile[num, num2].nactive() && Main.tileSolid[(int)Main.tile[num, num2].type])
+            if (Main.tile[num, num2].nactive() && Main.tileSolid[Main.tile[num, num2].type])
             {
-                num3 = (int)Main.tile[num, num2].type;
+                num3 = Main.tile[num, num2].type;
             }
-            else if (Main.tile[num - 1, num2].nactive() && Main.tileSolid[(int)Main.tile[num - 1, num2].type])
+            else if (Main.tile[num - 1, num2].nactive() && Main.tileSolid[Main.tile[num - 1, num2].type])
             {
-                num3 = (int)Main.tile[num - 1, num2].type;
+                num3 = Main.tile[num - 1, num2].type;
             }
-            else if (Main.tile[num + 1, num2].nactive() && Main.tileSolid[(int)Main.tile[num + 1, num2].type])
+            else if (Main.tile[num + 1, num2].nactive() && Main.tileSolid[Main.tile[num + 1, num2].type])
             {
-                num3 = (int)Main.tile[num + 1, num2].type;
+                num3 = Main.tile[num + 1, num2].type;
             }
             if (num3 > -1)
             {
@@ -2476,7 +2669,10 @@ namespace ExxoAvalonOrigins
                         player.immune = true;
                         player.immuneAlpha = 0;
                     }
-                    else damage = dmgPlaceholder - (player.statDefense / 2 - 10);
+                    else
+                    {
+                        damage = dmgPlaceholder - (player.statDefense / 2 - 10);
+                    }
                 }
             }
 
@@ -2510,7 +2706,7 @@ namespace ExxoAvalonOrigins
                 case 1: // dungeon
                     player.noFallDmg = true;
                     player.immuneTime = 100;
-                    ShadowTeleport.Teleport(0);
+                    Logic.ShadowTeleport.Teleport(0);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
@@ -2523,7 +2719,7 @@ namespace ExxoAvalonOrigins
                     player.immuneTime = 100;
                     Vector2 prePos = player.position;
                     Vector2 pos = prePos;
-                    ShadowTeleport.Teleport(1);
+                    Logic.ShadowTeleport.Teleport(1);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
@@ -2534,7 +2730,7 @@ namespace ExxoAvalonOrigins
                 case 3: // left ocean
                     player.noFallDmg = true;
                     player.immuneTime = 300;
-                    ShadowTeleport.Teleport(2);
+                    Logic.ShadowTeleport.Teleport(2);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
@@ -2545,7 +2741,7 @@ namespace ExxoAvalonOrigins
                 case 4: // right ocean
                     player.noFallDmg = true;
                     player.immuneTime = 300;
-                    ShadowTeleport.Teleport(3);
+                    Logic.ShadowTeleport.Teleport(3);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
@@ -2556,7 +2752,7 @@ namespace ExxoAvalonOrigins
                 case 5: // hell
                     player.noFallDmg = true;
                     player.immuneTime = 100;
-                    ShadowTeleport.Teleport(4);
+                    Logic.ShadowTeleport.Teleport(4);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
@@ -2617,16 +2813,23 @@ namespace ExxoAvalonOrigins
         {
             player.immune = true;
             if (player.longInvince)
+            {
                 player.immuneTime = 60;
+            }
             else
+            {
                 player.immuneTime = 30;
+            }
+
             Main.PlaySound(SoundID.Item, player.position, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/SpectrumDodge"));
             for (int i = 0; i < player.hurtCooldowns.Length; i++)
             {
                 player.hurtCooldowns[i] = player.immuneTime;
             }
             if (player.whoAmI == Main.myPlayer)
+            {
                 NetMessage.SendData(MessageID.Dodge, -1, -1, null, player.whoAmI, 1f, 0f, 0f, 0, 0, 0);
+            }
         }
     }
 }

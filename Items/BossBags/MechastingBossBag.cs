@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Material;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,8 +32,8 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.SoulofDelight>(), Main.rand.Next(20, 41));
-            player.QuickSpawnItem(ModContent.ItemType<Items.AIController>(), 1);
+            player.QuickSpawnItem(ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41));
+            player.QuickSpawnItem(ModContent.ItemType<Items.Weapons.Summon.AIController>(), 1);
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.Mechasting>();

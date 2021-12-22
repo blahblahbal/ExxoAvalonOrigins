@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Tiles
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 			AddMapEntry(new Color(200, 200, 200));
-			drop = ModContent.ItemType<Items.DarkSlimePlatform>();
+			drop = ModContent.ItemType<Items.Placeable.Tile.DarkSlimePlatform>();
 			disableSmartCursor = true;
 			adjTiles = new int[]{ TileID.Platforms };
             dustType = DustID.UnholyWater;

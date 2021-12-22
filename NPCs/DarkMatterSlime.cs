@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -70,11 +72,11 @@ namespace ExxoAvalonOrigins.NPCs
 
             if (Main.rand.Next(75) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SixHundredWattLightbulb>(), 1, false, -2, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SixHundredWattLightbulb>(), 1, false, -2, false);
             }
             if (npc.type == ModContent.NPCType<NPCs.DarkMatterSlime>() && canDrop)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterGel>(), Main.rand.Next(2) + 2, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DarkMatterGel>(), Main.rand.Next(2) + 2, false, 0, false);
             }
         }
 

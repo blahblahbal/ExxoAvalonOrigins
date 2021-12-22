@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.DragonScale>(), Main.rand.Next(5, 11));
+            player.QuickSpawnItem(ModContent.ItemType<DragonScale>(), Main.rand.Next(5, 11));
             player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.DragonsBondage>());
         }
 

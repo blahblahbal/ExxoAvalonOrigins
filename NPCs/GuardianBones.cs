@@ -1,53 +1,49 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class GuardianBones : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Guardian Bones");
-			Main.npcFrameCount[npc.type] = 15;
-		}
+    public class GuardianBones : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Guardian Bones");
+            Main.npcFrameCount[npc.type] = 15;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 140;
-			npc.scale = 1f;
-			npc.lifeMax = 6000;
-			npc.defense = 90;
-			npc.width = 31;
-			npc.aiStyle = 3;
-			npc.npcSlots = 4f;
-			npc.value = 10000f;
-			npc.timeLeft = 750;
-			npc.height = 68;
-			npc.knockBackResist = 0.2f;
+        public override void SetDefaults()
+        {
+            npc.damage = 140;
+            npc.scale = 1f;
+            npc.lifeMax = 6000;
+            npc.defense = 90;
+            npc.width = 31;
+            npc.aiStyle = 3;
+            npc.npcSlots = 4f;
+            npc.value = 10000f;
+            npc.timeLeft = 750;
+            npc.height = 68;
+            npc.knockBackResist = 0.2f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-		}
+            npc.DeathSound = SoundID.NPCDeath2;
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.44f);
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(20) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.AegisofAges>(), 1, false, -2, false);
+        {
+            if (Main.rand.Next(20) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Accessories.AegisofAges>(), 1, false, -2, false);
             }
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Phantoplasm>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Phantoplasm>(), 1, false, 0, false);
             }
         }
 

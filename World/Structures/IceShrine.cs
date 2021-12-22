@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Consumables;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
@@ -376,7 +377,7 @@ namespace ExxoAvalonOrigins.World.Structures
                             }
                             if (num5 == 1)
                             {
-                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<Items.TheBeak>(), false);
+                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<TheBeak>(), false);
                                 Main.chest[num2].item[2].stack = 1;
                             }
                             if (num5 == 2)

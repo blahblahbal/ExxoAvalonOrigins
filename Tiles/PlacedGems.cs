@@ -45,19 +45,19 @@ namespace ExxoAvalonOrigins.Tiles
             switch (Main.tile[i, j].frameX / 18)
             {
                 case 0:
-                    toDrop = ModContent.ItemType<Items.Opal>();
+                    toDrop = ModContent.ItemType<Items.Placeable.Tile.Opal>();
                     break;
                 case 1:
-                    toDrop = ModContent.ItemType<Items.Onyx>();
+                    toDrop = ModContent.ItemType<Items.Placeable.Tile.Onyx>();
                     break;
                 case 2:
-                    toDrop = ModContent.ItemType<Items.Kunzite>();
+                    toDrop = ModContent.ItemType<Items.Placeable.Tile.Kunzite>();
                     break;
                 case 3:
-                    toDrop = ModContent.ItemType<Items.Tourmaline>();
+                    toDrop = ModContent.ItemType<Items.Placeable.Tile.Tourmaline>();
                     break;
                 case 4:
-                    toDrop = ModContent.ItemType<Items.Peridot>();
+                    toDrop = ModContent.ItemType<Items.Placeable.Tile.Peridot>();
                     break;
             }
             if (toDrop > 0) Item.NewItem(i * 16, j * 16, 16, 16, toDrop);

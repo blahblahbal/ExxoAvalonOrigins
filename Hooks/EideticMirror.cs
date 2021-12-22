@@ -12,14 +12,14 @@ namespace ExxoAvalonOrigins.Hooks
     {
         public static void OnTakeUnityItem(On.Terraria.Player.orig_TakeUnityPotion orig, Player self)
         {
-            if (self.HasItem(ModContent.ItemType<Items.EideticMirror>())) return;
+            if (self.HasItem(ModContent.ItemType<Items.Tools.EideticMirror>())) return;
 
             orig(self);
         }
 
         public static bool OnHasUnityItem(On.Terraria.Player.orig_HasUnityPotion orig, Player self)
         {
-            if (self.HasItem(ModContent.ItemType<Items.EideticMirror>())) return true;
+            if (self.HasItem(ModContent.ItemType<Items.Tools.EideticMirror>())) return true;
             return orig(self);
         }
     }

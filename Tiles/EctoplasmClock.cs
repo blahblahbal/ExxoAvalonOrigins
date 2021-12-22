@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Tiles
 			var player = Main.player[Main.myPlayer];
 			player.noThrow = 2;
 			player.showItemIcon = true;
-			player.showItemIcon2 = ModContent.ItemType<Items.EctoplasmClock>();
+			player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Furniture.EctoplasmClock>();
 		}
 
 		public override void RightClick(int x, int y)
@@ -103,7 +103,7 @@ namespace ExxoAvalonOrigins.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.EctoplasmClock>());
+			Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Furniture.EctoplasmClock>());
 		}
 	}
 }

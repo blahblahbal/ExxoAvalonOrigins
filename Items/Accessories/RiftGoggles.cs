@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -71,7 +73,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Goggles);
             r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ModContent.ItemType<Items.TropicalShroomCap>(), 10);
+            r.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10);
             r.AddIngredient(ItemID.CursedFlame, 15);
             r.AddIngredient(ItemID.SoulofNight, 10);
             r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
@@ -82,7 +84,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Goggles);
             r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ModContent.ItemType<Items.TropicalShroomCap>(), 10);
+            r.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10);
             r.AddIngredient(ItemID.Ichor, 15);
             r.AddIngredient(ItemID.SoulofNight, 10);
             r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
@@ -93,7 +95,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Goggles);
             r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ModContent.ItemType<Items.TropicalShroomCap>(), 10);
+            r.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10);
             r.AddIngredient(ModContent.ItemType<Pathogen>(), 15);
             r.AddIngredient(ItemID.SoulofNight, 10);
             r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);

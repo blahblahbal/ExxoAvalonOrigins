@@ -1,4 +1,5 @@
 ﻿using System;
+using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -38,7 +39,7 @@ namespace ExxoAvalonOrigins.Tiles
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Containers };
             chest = "Locked Underworld Chest";
-            chestDrop = ModContent.ItemType<Items.UnderworldChest>();
+            chestDrop = ModContent.ItemType<Items.Placeable.Storage.UnderworldChest>();
         }
 
         public override bool HasSmartInteract()
@@ -121,7 +122,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.mouseRightRelease = false;
             for (int num146 = 0; num146 < player.inventory.Length; num146++)
             {
-                if (player.inventory[num146].type == ModContent.ItemType<Items.UnderworldKey>() && player.inventory[num146].stack > 0)
+                if (player.inventory[num146].type == ModContent.ItemType<UnderworldKey>() && player.inventory[num146].stack > 0)
                 {
                     player.inventory[num146].stack--;
                     if (player.inventory[num146].stack <= 0)
@@ -162,7 +163,7 @@ namespace ExxoAvalonOrigins.Tiles
                 player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Locked Underworld Chest";
                 if (player.showItemIconText == "Locked Underworld Chest")
                 {
-                    player.showItemIcon2 = ModContent.ItemType<Items.UnderworldKey>();
+                    player.showItemIcon2 = ModContent.ItemType<UnderworldKey>();
                     player.showItemIconText = "";
                 }
             }

@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Desert Chest";
-			chestDrop = ModContent.ItemType<Items.DesertChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.DesertChest>();
             dustType = DustID.SandstormInABottle;
         }
 
@@ -183,7 +183,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Desert Chest";
 				if (player.showItemIconText == "Desert Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.DesertChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.DesertChest>();
 					player.showItemIconText = "";
 				}
 			}

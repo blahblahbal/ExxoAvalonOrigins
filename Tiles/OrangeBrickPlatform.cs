@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Tiles
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 			AddMapEntry(new Color(191, 142, 111));
-			drop = ModContent.ItemType<Items.OrangeBrickPlatform>();
+			drop = ModContent.ItemType<Items.Placeable.Tile.OrangeBrickPlatform>();
 			disableSmartCursor = true;
 			adjTiles = new int[]{ TileID.Platforms };
             dustType = DustID.Coralstone;

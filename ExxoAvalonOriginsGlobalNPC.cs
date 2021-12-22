@@ -1,6 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ExxoAvalonOrigins.Items;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Armor;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Crafting;
+using ExxoAvalonOrigins.Items.Placeable.Painting;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Potions;
+using ExxoAvalonOrigins.Items.Tools;
+using ExxoAvalonOrigins.Items.Vanity;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Melee;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -504,9 +516,9 @@ IL_162:
                         ItemID.GolemFist,
                         ItemID.SunStone,
                         ItemID.HeatRay,
-                        ModContent.ItemType<Items.Sunstorm>(),
-                        ModContent.ItemType<Items.EarthenInsignia>(),
-                        ModContent.ItemType<Items.HeartoftheGolem>()
+                        ModContent.ItemType<Sunstorm>(),
+                        ModContent.ItemType<EarthenInsignia>(),
+                        ModContent.ItemType<HeartoftheGolem>()
                     };
                     int item1 = list.RemoveAtIndex(Main.rand.Next(list.Count));
                     //int item2 = list.RemoveAtIndex(Main.rand.Next(list.Count));
@@ -961,7 +973,7 @@ IL_162:
             }
             if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon && Main.rand.Next(300) == 0 && Main.hardMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ACometHasStruckGround>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Placeable.Painting.ACometHasStruckGround>(), 1, false, 0, false);
             }
             if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < (Main.worldSurface * 16.0) + (Main.screenHeight / 2) && (Main.rand.Next(500) == 0 || (Main.rand.Next(400) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
             {

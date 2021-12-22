@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.ResistantWoodLamp>());
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.ResistantWoodLamp>());
         }
 
         public override void HitWire(int i, int j)

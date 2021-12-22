@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = ModContent.ItemType<Items.BismuthBrick>();
+            drop = ModContent.ItemType<Items.Placeable.Tile.BismuthBrick>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.BismuthDust>();

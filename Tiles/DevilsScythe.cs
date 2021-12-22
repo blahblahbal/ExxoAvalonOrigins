@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool NewRightClick(int i, int j)
         {
-            Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<Items.DevilsScythe>(), prefixGiven: -1);
+            Item.NewItem(new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<Items.Weapons.Magic.DevilsScythe>(), prefixGiven: -1);
             Main.tile[i, j].active(false);
             Main.PlaySound(SoundID.Dig, new Vector2(i * 16, j * 16), 1);
             return true;
@@ -29,13 +29,13 @@ namespace ExxoAvalonOrigins.Tiles
             var player = Main.LocalPlayer;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.DevilsScythe>();
+            player.showItemIcon2 = ModContent.ItemType<Items.Weapons.Magic.DevilsScythe>();
         }
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             if (Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
             {
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.DevilsScythe>());
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Weapons.Magic.DevilsScythe>());
             }
         }
     }

@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExxoAvalonOrigins.UI;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Seed;
+using ExxoAvalonOrigins.Items.Potions;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.UI;
 
 namespace ExxoAvalonOrigins
 {
-    class ExxoAvalonOriginsGlobalItem : GlobalItem
+    internal class ExxoAvalonOriginsGlobalItem : GlobalItem
     {
         public static List<int> inaccurateGuns = new List<int>
         {
             ItemID.ChainGun,
             ItemID.Gatligator,
-            ModContent.ItemType<Items.Thompson>()
+            ModContent.ItemType<Thompson>()
         };
         public static List<int> vanillaFastGuns = new List<int>
         {
@@ -318,8 +317,8 @@ namespace ExxoAvalonOrigins
                     break;
                 case ItemID.EnchantedBoomerang:
                     item.rare = ItemRarityID.Green;
-                        break;
-                    case ItemID.RottenChunk:
+                    break;
+                case ItemID.RottenChunk:
                     item.useStyle = ItemUseStyleID.SwingThrow;
                     item.useAnimation = 15;
                     item.useTime = 10;
@@ -371,7 +370,7 @@ namespace ExxoAvalonOrigins
                     item.maxStack = 40;
                     break;
                 case ItemID.Goldfish:
-                    item.makeNPC = (short) ModContent.NPCType<NPCs.ImpactWizard>();
+                    item.makeNPC = (short)ModContent.NPCType<NPCs.ImpactWizard>();
                     break;
                 case ItemID.DivingHelmet:
                     item.value = 10000;
@@ -595,8 +594,8 @@ namespace ExxoAvalonOrigins
                     break;
                 case ItemID.BonePickaxe:
                     item.pick = 55;
-                        break;
-                    case ItemID.Vertebrae:
+                    break;
+                case ItemID.Vertebrae:
                     item.useStyle = ItemUseStyleID.SwingThrow;
                     item.useAnimation = 15;
                     item.useTime = 10;
@@ -757,21 +756,21 @@ namespace ExxoAvalonOrigins
                 switch (Main.rand.Next(3))
                 {
                     case 0:
-                        drop = ModContent.ItemType<Items.Sunstorm>();
+                        drop = ModContent.ItemType<Sunstorm>();
                         break;
                     case 1:
-                        drop = ModContent.ItemType<Items.HeartoftheGolem>();
+                        drop = ModContent.ItemType<HeartoftheGolem>();
                         break;
                     case 2:
-                        drop = ModContent.ItemType<Items.EarthenInsignia>();
+                        drop = ModContent.ItemType<EarthenInsignia>();
                         break;
                 }
                 player.QuickSpawnItem(drop);
-                player.QuickSpawnItem(ModContent.ItemType<Items.EarthStone>(), Main.rand.Next(1, 4));
+                player.QuickSpawnItem(ModContent.ItemType<EarthStone>(), Main.rand.Next(1, 4));
             }
             if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
             {
-                player.QuickSpawnItem(ModContent.ItemType<Items.LifeDew>(), Main.rand.Next(15, 22));
+                player.QuickSpawnItem(ModContent.ItemType<Items.Material.LifeDew>(), Main.rand.Next(15, 22));
             }
         }
 
@@ -803,7 +802,7 @@ namespace ExxoAvalonOrigins
             if (player.whoAmI == Main.myPlayer)
             {
                 bool hasAmmo = false;
-                Item item2 = new Item();
+                var item2 = new Item();
                 if (item.useAmmo > 0)
                 {
                     bool hasAmmoInAmmoSlots = false;
@@ -843,7 +842,10 @@ namespace ExxoAvalonOrigins
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.ManaCrystal && player.statManaMax >= 200)
+            {
                 return false;
+            }
+
             return base.CanUseItem(item, player);
         }
         //public override bool UseItem(Item item, Player player)
@@ -868,13 +870,40 @@ namespace ExxoAvalonOrigins
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");
             if (tooltipLine != null)
             {
-                if (item.type == ItemID.CoinGun) tooltipLine.text = "Spend Shot";
-                if (item.type == ItemID.HighTestFishingLine) tooltipLine.text = tooltipLine.text.Replace("Test", "Tensile");
-                if (item.type == ItemID.BlueSolution) tooltipLine.text = "Cyan Solution";
-                if (item.type == ItemID.DarkBlueSolution) tooltipLine.text = "Blue Solution";
-                if (item.type == ItemID.FrostsparkBoots) tooltipLine.text = tooltipLine.text.Replace("Frostspark", "Sparkfrost");
-                if (item.type == ItemID.BossMaskCultist) tooltipLine.text = "Lunatic Cultist Mask";
-                if (item.type == ItemID.AncientCultistTrophy) tooltipLine.text = "Lunatic Cultist Trophy";
+                if (item.type == ItemID.CoinGun)
+                {
+                    tooltipLine.text = "Spend Shot";
+                }
+
+                if (item.type == ItemID.HighTestFishingLine)
+                {
+                    tooltipLine.text = tooltipLine.text.Replace("Test", "Tensile");
+                }
+
+                if (item.type == ItemID.BlueSolution)
+                {
+                    tooltipLine.text = "Cyan Solution";
+                }
+
+                if (item.type == ItemID.DarkBlueSolution)
+                {
+                    tooltipLine.text = "Blue Solution";
+                }
+
+                if (item.type == ItemID.FrostsparkBoots)
+                {
+                    tooltipLine.text = tooltipLine.text.Replace("Frostspark", "Sparkfrost");
+                }
+
+                if (item.type == ItemID.BossMaskCultist)
+                {
+                    tooltipLine.text = "Lunatic Cultist Mask";
+                }
+
+                if (item.type == ItemID.AncientCultistTrophy)
+                {
+                    tooltipLine.text = "Lunatic Cultist Trophy";
+                }
             }
             if (item.accessory && !item.social)
             {
@@ -977,7 +1006,7 @@ namespace ExxoAvalonOrigins
                     tooltips.Add(new TooltipLine(mod, "Rope", "Can be climbed on"));
                     break;
                 case ItemID.Seed:
-                    for (var i = 0; i < tooltips.Count; i++)
+                    for (int i = 0; i < tooltips.Count; i++)
                     {
                         if (tooltips[i].Name == "Tooltip0")
                         {
@@ -986,7 +1015,7 @@ namespace ExxoAvalonOrigins
                     }
                     break;
                 case ItemID.PoisonDart:
-                    for (var i = 0; i < tooltips.Count; i++)
+                    for (int i = 0; i < tooltips.Count; i++)
                     {
                         if (tooltips[i].Name == "Tooltip1")
                         {
@@ -995,7 +1024,7 @@ namespace ExxoAvalonOrigins
                     }
                     break;
                 case ItemID.CoinGun:
-                    for (var i = 0; i < tooltips.Count; i++)
+                    for (int i = 0; i < tooltips.Count; i++)
                     {
                         if (tooltips[i].Name == "Tooltip0")
                         {
@@ -1008,7 +1037,7 @@ namespace ExxoAvalonOrigins
                     }
                     break;
                 case ItemID.PickaxeAxe:
-                    for (var i = 0; i < tooltips.Count; i++)
+                    for (int i = 0; i < tooltips.Count; i++)
                     {
                         if (tooltips[i].Name == "Tooltip0")
                         {
@@ -1021,7 +1050,7 @@ namespace ExxoAvalonOrigins
                     }
                     break;
                 case ItemID.Drax:
-                    for (var i = 0; i < tooltips.Count; i++)
+                    for (int i = 0; i < tooltips.Count; i++)
                     {
                         if (tooltips[i].Name == "Tooltip0")
                         {
@@ -1046,8 +1075,8 @@ namespace ExxoAvalonOrigins
                 {
                     float num222 = speedX;
                     float num223 = speedY;
-                    num222 += (float) Main.rand.Next(-30, 31) * 0.05f;
-                    num223 += (float) Main.rand.Next(-30, 31) * 0.05f;
+                    num222 += Main.rand.Next(-30, 31) * 0.05f;
+                    num223 += Main.rand.Next(-30, 31) * 0.05f;
                     Projectile.NewProjectile(position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);
                 }
             }
@@ -1073,7 +1102,7 @@ namespace ExxoAvalonOrigins
         {
             if (item.lavaWet)
             {
-                if (item.type == ModContent.ItemType<Items.HellboundRemote>() && Main.hardMode && ExxoAvalonOriginsWorld.downedPhantasm)
+                if (item.type == ModContent.ItemType<HellboundRemote>() && Main.hardMode && ExxoAvalonOriginsWorld.downedPhantasm)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
@@ -1140,28 +1169,28 @@ namespace ExxoAvalonOrigins
         public static bool IsHerb(int t)
         {
             return (t == ItemID.Daybloom || t == ItemID.Moonglow || t == ItemID.Blinkroot || t == ItemID.Deathweed ||
-                t == ItemID.Waterleaf || t == ItemID.Fireblossom || t == ItemID.Shiverthorn || t == ModContent.ItemType<Items.LargeBarfbush>() ||
-                t == ModContent.ItemType<Items.LargeBarfbushSeed>() || t == ModContent.ItemType<Items.LargeDaybloom>() || t == ModContent.ItemType<Items.LargeDaybloomSeed>() ||
-                t == ModContent.ItemType<Items.LargeBlinkroot>() || t == ModContent.ItemType<Items.LargeBlinkrootSeed>() || t == ModContent.ItemType<Items.LargeBloodberry>() ||
-                t == ModContent.ItemType<Items.LargeBloodberrySeed>() || t == ModContent.ItemType<Items.LargeDeathweed>() || t == ModContent.ItemType<Items.LargeDeathweedSeed>() ||
-                t == ModContent.ItemType<Items.LargeFireblossom>() || t == ModContent.ItemType<Items.LargeFireblossomSeed>() || t == ModContent.ItemType<Items.LargeMoonglow>() ||
-                t == ModContent.ItemType<Items.LargeMoonglowSeed>() || t == ModContent.ItemType<Items.LargeShiverthorn>() || t == ModContent.ItemType<Items.LargeShiverthornSeed>() ||
-                t == ModContent.ItemType<Items.LargeSweetstem>() || t == ModContent.ItemType<Items.LargeSweetstemSeed>() || t == ModContent.ItemType<Items.LargeWaterleaf>() ||
-                t == ModContent.ItemType<Items.LargeWaterleafSeed>() || t == ModContent.ItemType<Items.Bloodberry>() || t == ModContent.ItemType<Items.Sweetstem>() ||
-                t == ModContent.ItemType<Items.Barfbush>() || t == ModContent.ItemType<Items.LargeBloodberrySeed>() || t == ModContent.ItemType<Items.LargeSweetstemSeed>() ||
-                t == ModContent.ItemType<Items.LargeBarfbushSeed>() || t == ModContent.ItemType<Items.LargeBloodberry>() || t == ModContent.ItemType<Items.LargeSweetstem>() ||
-                t == ModContent.ItemType<Items.LargeBarfbush>());
+                t == ItemID.Waterleaf || t == ItemID.Fireblossom || t == ItemID.Shiverthorn || t == ModContent.ItemType<LargeBarfbush>() ||
+                t == ModContent.ItemType<LargeBarfbushSeed>() || t == ModContent.ItemType<LargeDaybloom>() || t == ModContent.ItemType<LargeDaybloomSeed>() ||
+                t == ModContent.ItemType<LargeBlinkroot>() || t == ModContent.ItemType<LargeBlinkrootSeed>() || t == ModContent.ItemType<LargeBloodberry>() ||
+                t == ModContent.ItemType<LargeBloodberrySeed>() || t == ModContent.ItemType<LargeDeathweed>() || t == ModContent.ItemType<LargeDeathweedSeed>() ||
+                t == ModContent.ItemType<LargeFireblossom>() || t == ModContent.ItemType<LargeFireblossomSeed>() || t == ModContent.ItemType<LargeMoonglow>() ||
+                t == ModContent.ItemType<LargeMoonglowSeed>() || t == ModContent.ItemType<LargeShiverthorn>() || t == ModContent.ItemType<LargeShiverthornSeed>() ||
+                t == ModContent.ItemType<LargeSweetstem>() || t == ModContent.ItemType<LargeSweetstemSeed>() || t == ModContent.ItemType<LargeWaterleaf>() ||
+                t == ModContent.ItemType<LargeWaterleafSeed>() || t == ModContent.ItemType<Bloodberry>() || t == ModContent.ItemType<Sweetstem>() ||
+                t == ModContent.ItemType<Barfbush>() || t == ModContent.ItemType<LargeBloodberrySeed>() || t == ModContent.ItemType<LargeSweetstemSeed>() ||
+                t == ModContent.ItemType<LargeBarfbushSeed>() || t == ModContent.ItemType<LargeBloodberry>() || t == ModContent.ItemType<LargeSweetstem>() ||
+                t == ModContent.ItemType<LargeBarfbush>());
         }
         public static bool IsPotion(int t)
         {
             return ((t >= 288 && t <= 305) || (t >= 2322 && t <= 2329) ||
                 (t >= 2344 && t <= 2349) || (t >= 2354 && t <= 2356) ||
-                t == 2359 || t == ModContent.ItemType<Items.CrimsonPotion>() || t == ModContent.ItemType<Items.ShockwavePotion>() ||
-                t == ModContent.ItemType<Items.LuckPotion>() || t == ModContent.ItemType<Items.BloodCastPotion>() || t == ModContent.ItemType<Items.StarbrightPotion>() ||
-                t == ModContent.ItemType<Items.VisionPotion>() || t == ModContent.ItemType<Items.StrengthPotion>() || t == ModContent.ItemType<Items.GPSPotion>() ||
-                /*t == ID.ItemID.TimeShiftPotion ||*/ t == ModContent.ItemType<Items.ShadowPotion>() || t == ModContent.ItemType<Items.RoguePotion>() ||
-                t == ModContent.ItemType<Items.WisdomPotion>() || t == ModContent.ItemType<Items.GauntletPotion>() || t == ModContent.ItemType<Items.TitanskinPotion>() ||
-                t == ModContent.ItemType<Items.InvincibilityPotion>() || t == ModContent.ItemType<Items.ForceFieldPotion>() || t == ModContent.ItemType<Items.BlahPotion>() ||
+                t == 2359 || t == ModContent.ItemType<CrimsonPotion>() || t == ModContent.ItemType<ShockwavePotion>() ||
+                t == ModContent.ItemType<LuckPotion>() || t == ModContent.ItemType<BloodCastPotion>() || t == ModContent.ItemType<StarbrightPotion>() ||
+                t == ModContent.ItemType<VisionPotion>() || t == ModContent.ItemType<StrengthPotion>() || t == ModContent.ItemType<GPSPotion>() ||
+                /*t == ID.ItemID.TimeShiftPotion ||*/ t == ModContent.ItemType<ShadowPotion>() || t == ModContent.ItemType<RoguePotion>() ||
+                t == ModContent.ItemType<WisdomPotion>() || t == ModContent.ItemType<GauntletPotion>() || t == ModContent.ItemType<TitanskinPotion>() ||
+                t == ModContent.ItemType<InvincibilityPotion>() || t == ModContent.ItemType<ForceFieldPotion>() || t == ModContent.ItemType<BlahPotion>() ||
                 t == ModContent.ItemType<Items.Potions.FuryPotion>());
         }
         public static bool IsAdvancedPotion(string name)

@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -44,8 +47,8 @@ namespace ExxoAvalonOrigins.Items.BossBags
             {
                 player.QuickSpawnItem(ModContent.ItemType<Accessories.BubbleBoost>(), 1);
             }
-            player.QuickSpawnItem(ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(40, 56));
-            player.QuickSpawnItem(ModContent.ItemType<Items.HellsteelPlate>(), Main.rand.Next(20, 26));
+            player.QuickSpawnItem(ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56));
+            player.QuickSpawnItem(ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 26));
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.WallofSteel>();

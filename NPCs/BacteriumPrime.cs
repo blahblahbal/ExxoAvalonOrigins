@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Vanity;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -44,11 +47,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacteriumPrimeTrophy>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BacteriumPrimeTrophy>(), 1, false, 0, false);
             }
             if (Main.rand.Next(7) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacteriumPrimeMask>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BacteriumPrimeMask>(), 1, false, 0, false);
             }
 
             if (Main.expertMode)
@@ -57,7 +60,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41), false, 0, false);
             }
 
             if (!ExxoAvalonOriginsWorld.downedBacteriumPrime)

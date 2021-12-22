@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ExxoAvalonOrigins.Items.Placeable.Painting;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -39,40 +39,40 @@ namespace ExxoAvalonOrigins.Tiles
             switch (frameY / 72)
             {
                 case 0:
-                    item = ModContent.ItemType<Items.EclipseofDoom>();
+                    item = ModContent.ItemType<EclipseofDoom>();
                     break;
                 case 1:
-                    item = ModContent.ItemType<Items.RuinedCivilization>();
+                    item = ModContent.ItemType<RuinedCivilization>();
                     break;
                 case 2:
-                    item = ModContent.ItemType<Items.Trespassing>();
+                    item = ModContent.ItemType<Trespassing>();
                     break;
                 case 3:
-                    item = ModContent.ItemType<Items.BirthofaMonster>();
+                    item = ModContent.ItemType<BirthofaMonster>();
                     break;
                 case 4:
-                    item = ModContent.ItemType<Items.EvilOuroboros>();
+                    item = ModContent.ItemType<EvilOuroboros>();
                     break;
                 case 5:
-                    item = ModContent.ItemType<Items.ACometHasStruckGround>();
+                    item = ModContent.ItemType<Items.Placeable.Painting.ACometHasStruckGround>();
                     break;
                 case 6:
-                    item = ModContent.ItemType<Items.PlanterasRage>();
+                    item = ModContent.ItemType<PlanterasRage>();
                     break;
                 case 7:
-                    item = ModContent.ItemType<Items.FightoftheBumblebee>();
+                    item = ModContent.ItemType<FightoftheBumblebee>();
                     break;
                 case 8:
-                    item = ModContent.ItemType<Items.FrostySpectacle>();
+                    item = ModContent.ItemType<FrostySpectacle>();
                     break;
                 case 9:
-                    item = ModContent.ItemType<Items.RingofDisgust>();
+                    item = ModContent.ItemType<RingofDisgust>();
                     break;
                 case 10:
-                    item = ModContent.ItemType<Items.CurseofOblivion>();
+                    item = ModContent.ItemType<CurseofOblivion>();
                     break;
                 case 11:
-                    item = ModContent.ItemType<Items.Clash>();
+                    item = ModContent.ItemType<Clash>();
                     break;
             }
             if (item > 0)

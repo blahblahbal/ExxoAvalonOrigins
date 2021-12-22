@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Heartstone Chest";
-			chestDrop = ModContent.ItemType<Items.HeartstoneChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.HeartstoneChest>();
             dustType = DustID.Confetti_Pink;
         }
 
@@ -186,7 +186,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Heartstone Chest";
 				if (player.showItemIconText == "Heartstone Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.HeartstoneChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.HeartstoneChest>();
 					player.showItemIconText = "";
 				}
 			}

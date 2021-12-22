@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -41,34 +42,34 @@ namespace ExxoAvalonOrigins.Tiles
             switch (frameX / 18)
             {
                 case 0:
-                    item = ModContent.ItemType<Items.LargeDaybloom>();
+                    item = ModContent.ItemType<LargeDaybloom>();
                     break;
                 case 1:
-                    item = ModContent.ItemType<Items.LargeMoonglow>();
+                    item = ModContent.ItemType<LargeMoonglow>();
                     break;
                 case 2:
-                    item = ModContent.ItemType<Items.LargeBlinkroot>();
+                    item = ModContent.ItemType<LargeBlinkroot>();
                     break;
                 case 3:
-                    item = ModContent.ItemType<Items.LargeDeathweed>();
+                    item = ModContent.ItemType<LargeDeathweed>();
                     break;
                 case 4:
-                    item = ModContent.ItemType<Items.LargeWaterleaf>();
+                    item = ModContent.ItemType<LargeWaterleaf>();
                     break;
                 case 5:
-                    item = ModContent.ItemType<Items.LargeFireblossom>();
+                    item = ModContent.ItemType<LargeFireblossom>();
                     break;
                 case 6:
-                    item = ModContent.ItemType<Items.LargeShiverthorn>();
+                    item = ModContent.ItemType<LargeShiverthorn>();
                     break;
                 case 7:
-                    item = ModContent.ItemType<Items.LargeBloodberry>();
+                    item = ModContent.ItemType<LargeBloodberry>();
                     break;
                 case 8:
-                    item = ModContent.ItemType<Items.LargeSweetstem>();
+                    item = ModContent.ItemType<LargeSweetstem>();
                     break;
                 case 9:
-                    item = ModContent.ItemType<Items.LargeBarfbush>();
+                    item = ModContent.ItemType<LargeBarfbush>();
                     break;
 
             }

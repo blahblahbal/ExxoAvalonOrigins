@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ExxoAvalonOrigins.Items.Placeable.Furniture;
+using ExxoAvalonOrigins.Items.Placeable.Statue;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Generation;
@@ -60,37 +62,37 @@ namespace ExxoAvalonOrigins.Tiles
             switch (frameX / 36)
             {
                 case 0:
-                    item = ModContent.ItemType<Items.ShellStatue>();
+                    item = ModContent.ItemType<ShellStatue>();
                     break;
                 case 1:
-                    item = ModContent.ItemType<Items.DNAStatue>();
+                    item = ModContent.ItemType<DNAStatue>();
                     break;
                 case 2:
-                    item = ModContent.ItemType<Items.IceSculpture>();
+                    item = ModContent.ItemType<IceSculpture>();
                     break;
                 case 3:
-                    item = ModContent.ItemType<Items.OrangeDungeonVase>();
+                    item = ModContent.ItemType<OrangeDungeonVase>();
                     break;
                 case 4:
-                    item = ModContent.ItemType<Items.TomeStatue>();
+                    item = ModContent.ItemType<TomeStatue>();
                     break;
                 case 5:
-                    item = ModContent.ItemType<Items.HallowStatue>();
+                    item = ModContent.ItemType<HallowStatue>();
                     break;
                 case 6:
-                    item = ModContent.ItemType<Items.BlueLihzahrdStatue>();
+                    item = ModContent.ItemType<BlueLihzahrdStatue>();
                     break;
                 case 7:
-                    item = ModContent.ItemType<Items.ContagionStatue>();
+                    item = ModContent.ItemType<ContagionStatue>();
                     break;
                 case 8:
-                    item = ModContent.ItemType<Items.CrimsonStatue>();
+                    item = ModContent.ItemType<CrimsonStatue>();
                     break;
                 case 9:
-                    item = ModContent.ItemType<Items.AngelSculpture>();
+                    item = ModContent.ItemType<AngelSculpture>();
                     break;
                 case 10:
-                    item = ModContent.ItemType<Items.DNASculpture>();
+                    item = ModContent.ItemType<DNASculpture>();
                     break;
             }
             if (item > 0)

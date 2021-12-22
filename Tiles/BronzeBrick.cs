@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileShine2[Type] = true;
 			Main.tileShine[Type] = 2050;
             Main.tileBlockLight[Type] = true;
-            drop = ModContent.ItemType<Items.BronzeBrick>();
+            drop = ModContent.ItemType<Items.Placeable.Tile.BronzeBrick>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.BronzeDust>();

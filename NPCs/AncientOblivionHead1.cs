@@ -1,47 +1,48 @@
+﻿using System;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Painting;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Potions;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class AncientOblivionHead1 : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ancient Oblivion");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class AncientOblivionHead1 : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient Oblivion");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 180;
-			npc.boss = true;
-			npc.netAlways = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 150000;
-			npc.defense = 95;
-			npc.noGravity = true;
-			npc.width = 80;
-			npc.aiStyle = -1;
-			npc.npcSlots = 10f;
-			npc.value = 2500000f;
-			npc.timeLeft = 22500;
-			npc.height = 102;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 180;
+            npc.boss = true;
+            npc.netAlways = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 150000;
+            npc.defense = 95;
+            npc.noGravity = true;
+            npc.width = 80;
+            npc.aiStyle = -1;
+            npc.npcSlots = 10f;
+            npc.value = 2500000f;
+            npc.timeLeft = 22500;
+            npc.height = 102;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
-	        npc.DeathSound = SoundID.NPCDeath14;
+            npc.DeathSound = SoundID.NPCDeath14;
             bossBag = ModContent.ItemType<Items.BossBags.OblivionBossBag>();
-		}
+        }
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ModContent.ItemType<Items.ElixirofLife>();
+            potionType = ModContent.ItemType<ElixirofLife>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -50,7 +51,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void AI()
         {
-            var instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();
+            ExxoAvalonOriginsGlobalNPCInstance instance = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>();
             npc.damage = npc.defDamage;
             npc.defense = npc.defDefense;
             if (npc.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
@@ -58,11 +59,11 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.TargetClosest(true);
                 npc.ai[0] = 1f;
                 instance.infernaSpawned = false;
-                var num559 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionHead2>(), npc.whoAmI);
+                int num559 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionHead2>(), npc.whoAmI);
                 Main.npc[num559].ai[3] = npc.whoAmI;
                 Main.npc[num559].target = npc.target;
                 Main.npc[num559].netUpdate = true;
-                var num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionCannon>(), npc.whoAmI);
+                int num560 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)npc.position.Y + npc.height / 2, ModContent.NPCType<AncientOblivionCannon>(), npc.whoAmI);
                 Main.npc[num560].ai[0] = -1f;
                 Main.npc[num560].ai[1] = npc.whoAmI;
                 Main.npc[num560].target = npc.target;
@@ -95,13 +96,17 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.life < npc.lifeMax / 2 && !instance.infernaSpawned)
             {
-                var num561 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Infernaspaz>(), 0);
+                int num561 = NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<Infernaspaz>(), 0);
                 Main.npc[num561].target = npc.target;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Infernaspaz has awoken!"), new Color(175, 75, 255));
                 }
-                else Main.NewText("Infernaspaz has awoken!", 175, 75, 255);
+                else
+                {
+                    Main.NewText("Infernaspaz has awoken!", 175, 75, 255);
+                }
+
                 NPC.SpawnOnPlayer(npc.target, NPCID.Retinazer);
                 instance.infernaSpawned = true;
             }
@@ -110,15 +115,15 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.localAI[0] += 1f;
                 if (npc.localAI[0] >= 500f)
                 {
-                    var num569 = 12f;
+                    float num569 = 12f;
                     var vector55 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    var num570 = 100;
+                    int num570 = 100;
                     int num571 = ProjectileID.DeathLaser;
                     Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
-                    var num572 = (float)Math.Atan2(vector55.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector55.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
-                    for (var num573 = 0f; num573 <= 4f; num573 += 0.4f)
+                    float num572 = (float)Math.Atan2(vector55.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector55.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
+                    for (float num573 = 0f; num573 <= 4f; num573 += 0.4f)
                     {
-                        var num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 + num573) * num569 * -1.0), (float)(Math.Sin(num572 + num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
+                        int num574 = Projectile.NewProjectile(vector55.X, vector55.Y, (float)(Math.Cos(num572 + num573) * num569 * -1.0), (float)(Math.Sin(num572 + num573) * num569 * -1.0), num571, num570, 0f, 0, 0f, 0f);
                         Main.projectile[num574].timeLeft = 600;
                         Main.projectile[num574].tileCollide = false;
                         if (Main.netMode == NetmodeID.Server)
@@ -217,9 +222,9 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     npc.rotation += npc.direction * 0.3f;
                     var vector56 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-                    var num575 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector56.X;
-                    var num576 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector56.Y;
-                    var num577 = (float)Math.Sqrt(num575 * num575 + num576 * num576);
+                    float num575 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector56.X;
+                    float num576 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector56.Y;
+                    float num577 = (float)Math.Sqrt(num575 * num575 + num576 * num576);
                     num577 = 2f / num577;
                     npc.velocity.X = num575 * num577;
                     npc.velocity.Y = num576 * num577;
@@ -231,9 +236,9 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.defense = 9999;
                     npc.rotation += npc.direction * 0.3f;
                     var vector57 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-                    var num578 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector57.X;
-                    var num579 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector57.Y;
-                    var num580 = (float)Math.Sqrt(num578 * num578 + num579 * num579);
+                    float num578 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector57.X;
+                    float num579 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector57.Y;
+                    float num580 = (float)Math.Sqrt(num578 * num578 + num579 * num579);
                     num580 = 8f / num580;
                     npc.velocity.X = num578 * num580;
                     npc.velocity.Y = num579 * num580;
@@ -263,7 +268,7 @@ namespace ExxoAvalonOrigins.NPCs
             ExxoAvalonOriginsGlobalNPC.oblivionDead = true;
             if (Main.rand.Next(7) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionTrophy>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<OblivionTrophy>(), 1, false, 0, false);
             }
             if (Main.expertMode)
             {
@@ -273,23 +278,25 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.CurseofOblivion>(), 1, false, 0, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CurseofOblivion>(), 1, false, 0, false);
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.AccelerationDrill>(), 1, false, -2, false);
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofTorture>(), Main.rand.Next(60, 121), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Tools.AccelerationDrill>(), 1, false, -2, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofTorture>(), Main.rand.Next(60, 121), false, 0, false);
                 if (Main.rand.Next(5) > 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 1, false, 0, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<VictoryPiece>(), 1, false, 0, false);
                 }
                 else
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.VictoryPiece>(), 2, false, 0, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<VictoryPiece>(), 2, false, 0, false);
                 }
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
             }
 
             if (!ExxoAvalonOriginsWorld.downedOblivion)
+            {
                 ExxoAvalonOriginsWorld.downedOblivion = true;
+            }
         }
 
         public override void FindFrame(int frameHeight)

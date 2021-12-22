@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -22,7 +23,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileBlockLight[Type] = true;
             Main.tileBlendAll[Type] = true;
             Main.tileMergeDirt[Type] = true;
-            drop = ModContent.ItemType<Items.TropicalMudBlock>();
+            drop = ModContent.ItemType<TropicalMudBlock>();
             // do drop
         }
 

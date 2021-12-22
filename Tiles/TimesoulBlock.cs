@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -17,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			AddMapEntry(Color.LightYellow);
 			Main.tileSolid[Type] = true;
-			drop = ModContent.ItemType<Items.SoulofTime>();
+			drop = ModContent.ItemType<SoulofTime>();
             dustType = ModContent.DustType<Dusts.Dust237>();
         }
 

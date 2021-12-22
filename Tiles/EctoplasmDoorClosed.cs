@@ -1,3 +1,4 @@
+using ExxoAvalonOrigins.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -59,7 +60,7 @@ namespace ExxoAvalonOrigins.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<Items.EctoplasmDoor>());
+			Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<EctoplasmDoor>());
 		}
 
 		public override void MouseOver(int i, int j)
@@ -67,7 +68,7 @@ namespace ExxoAvalonOrigins.Tiles
 			var player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.showItemIcon = true;
-			player.showItemIcon2 = ModContent.ItemType<Items.EctoplasmDoor>();
+			player.showItemIcon2 = ModContent.ItemType<EctoplasmDoor>();
 		}
 	}
 }

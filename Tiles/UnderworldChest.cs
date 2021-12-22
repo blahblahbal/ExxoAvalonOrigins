@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Underworld Chest";
-			chestDrop = ModContent.ItemType<Items.UnderworldChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.UnderworldChest>();
             dustType = DustID.Wraith;
 		}
 
@@ -186,7 +186,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Underworld Chest";
 				if (player.showItemIconText == "Underworld Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.UnderworldChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.UnderworldChest>();
 					player.showItemIconText = "";
 				}
 			}

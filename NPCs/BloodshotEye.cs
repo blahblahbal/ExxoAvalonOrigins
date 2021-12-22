@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -39,7 +40,7 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			if (Main.rand.Next(100) <= 45)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BloodshotLens>(), 1, false, 0, false);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodshotLens>(), 1, false, 0, false);
 			}
 			if (Main.rand.Next(33) == 0)
 			{

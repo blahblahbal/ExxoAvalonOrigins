@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Placeable.Seed;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -40,34 +41,34 @@ namespace ExxoAvalonOrigins.Tiles
             switch (frameX / 18)
             {
                 case 0:
-                    item = ModContent.ItemType<Items.LargeDaybloomSeed>();
+                    item = ModContent.ItemType<LargeDaybloomSeed>();
                     break;
                 case 1:
-                    item = ModContent.ItemType<Items.LargeMoonglowSeed>();
+                    item = ModContent.ItemType<LargeMoonglowSeed>();
                     break;
                 case 2:
-                    item = ModContent.ItemType<Items.LargeBlinkrootSeed>();
+                    item = ModContent.ItemType<LargeBlinkrootSeed>();
                     break;
                 case 3:
-                    item = ModContent.ItemType<Items.LargeDeathweedSeed>();
+                    item = ModContent.ItemType<LargeDeathweedSeed>();
                     break;
                 case 4:
-                    item = ModContent.ItemType<Items.LargeWaterleafSeed>();
+                    item = ModContent.ItemType<LargeWaterleafSeed>();
                     break;
                 case 5:
-                    item = ModContent.ItemType<Items.LargeFireblossomSeed>();
+                    item = ModContent.ItemType<LargeFireblossomSeed>();
                     break;
                 case 6:
-                    item = ModContent.ItemType<Items.LargeShiverthornSeed>();
+                    item = ModContent.ItemType<LargeShiverthornSeed>();
                     break;
                 case 7:
-                    item = ModContent.ItemType<Items.LargeBloodberrySeed>();
+                    item = ModContent.ItemType<LargeBloodberrySeed>();
                     break;
                 case 8:
-                    item = ModContent.ItemType<Items.LargeSweetstemSeed>();
+                    item = ModContent.ItemType<LargeSweetstemSeed>();
                     break;
                 case 9:
-                    item = ModContent.ItemType<Items.LargeBarfbushSeed>();
+                    item = ModContent.ItemType<LargeBarfbushSeed>();
                     break;
 
             }

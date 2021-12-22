@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -39,11 +41,11 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 if (Main.rand.Next(3) != 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Booger>(), Main.rand.Next(1, 4), false, 0, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Booger>(), Main.rand.Next(1, 4), false, 0, false);
                 }
                 if (Main.rand.Next(3) != 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(4, 11), false, 0, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BacciliteOre>(), Main.rand.Next(4, 11), false, 0, false);
                 }
                 if (Main.rand.Next(2) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].statLife < Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].statLifeMax2)
                 {

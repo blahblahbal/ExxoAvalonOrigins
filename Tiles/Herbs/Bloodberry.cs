@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExxoAvalonOrigins.Items.Placeable.Seed;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -51,11 +52,11 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             //Only drop items if the herb is grown
             if (stage == PlantStage.Grown)
             {
-                Item.NewItem(new Vector2(i, j).ToWorldCoordinates(), ModContent.ItemType<Items.BloodberrySeeds>(), Main.rand.Next(3) + 1);
-                Item.NewItem(new Vector2(i, j).ToWorldCoordinates(), ModContent.ItemType<Items.Bloodberry>(), 1);
+                Item.NewItem(new Vector2(i, j).ToWorldCoordinates(), ModContent.ItemType<BloodberrySeeds>(), Main.rand.Next(3) + 1);
+                Item.NewItem(new Vector2(i, j).ToWorldCoordinates(), ModContent.ItemType<Items.Material.Bloodberry>(), 1);
             }
             if (stage == PlantStage.Growing)
-                Item.NewItem(new Vector2(i, j).ToWorldCoordinates(), ModContent.ItemType<Items.Bloodberry>(), 1);
+                Item.NewItem(new Vector2(i, j).ToWorldCoordinates(), ModContent.ItemType<Items.Material.Bloodberry>(), 1);
 
             return false;
         }

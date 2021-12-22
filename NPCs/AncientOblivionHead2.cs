@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Potions;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -40,7 +41,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ModContent.ItemType<Items.ElixirofLife>();
+            potionType = ModContent.ItemType<ElixirofLife>();
         }
         public override void AI()
         {

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Furniture;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -70,7 +72,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.mouseRightRelease = false;
             for (int num146 = 0; num146 < player.inventory.Length; num146++)
             {
-                if (player.inventory[num146].type == ModContent.ItemType<Items.OutpostKey>() && player.inventory[num146].stack > 0)
+                if (player.inventory[num146].type == ModContent.ItemType<OutpostKey>() && player.inventory[num146].stack > 0)
                 {
                     player.inventory[num146].stack--;
                     if (player.inventory[num146].stack <= 0)
@@ -111,7 +113,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<Items.TuhrtlDoor>());
+            Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<TuhrtlDoor>());
         }
 
         public override void MouseOver(int i, int j)
@@ -119,7 +121,7 @@ namespace ExxoAvalonOrigins.Tiles
             var player = Main.LocalPlayer;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.OutpostKey>();
+            player.showItemIcon2 = ModContent.ItemType<OutpostKey>();
         }
     }
 }

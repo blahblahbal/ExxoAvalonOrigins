@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Placeable.Bar;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
@@ -30,7 +31,7 @@ namespace ExxoAvalonOrigins.World.Passes
 
                 case ExxoAvalonOriginsWorld.CopperVariant.bronze:
                     WorldGen.CopperTierOre = (ushort)ModContent.TileType<Tiles.BronzeOre>();
-                    WorldGen.copperBar = ModContent.ItemType<Items.BronzeBar>();
+                    WorldGen.copperBar = ModContent.ItemType<BronzeBar>();
                     break;
             }
 
@@ -53,7 +54,7 @@ namespace ExxoAvalonOrigins.World.Passes
 
                 case ExxoAvalonOriginsWorld.IronVariant.nickel:
                     WorldGen.IronTierOre = (ushort)ModContent.TileType<Tiles.NickelOre>();
-                    WorldGen.ironBar = ModContent.ItemType<Items.NickelBar>();
+                    WorldGen.ironBar = ModContent.ItemType<NickelBar>();
                     break;
             }
 
@@ -76,7 +77,7 @@ namespace ExxoAvalonOrigins.World.Passes
 
                 case ExxoAvalonOriginsWorld.SilverVariant.zinc:
                     WorldGen.SilverTierOre = (ushort)ModContent.TileType<Tiles.ZincOre>();
-                    WorldGen.silverBar = ModContent.ItemType<Items.ZincBar>();
+                    WorldGen.silverBar = ModContent.ItemType<ZincBar>();
                     break;
             }
 
@@ -99,7 +100,7 @@ namespace ExxoAvalonOrigins.World.Passes
 
                 case ExxoAvalonOriginsWorld.GoldVariant.bismuth:
                     WorldGen.GoldTierOre = (ushort)ModContent.TileType<Tiles.BismuthOre>();
-                    WorldGen.goldBar = ModContent.ItemType<Items.BismuthBar>();
+                    WorldGen.goldBar = ModContent.ItemType<BismuthBar>();
                     break;
             }
 

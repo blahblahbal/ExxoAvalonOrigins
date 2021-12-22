@@ -123,7 +123,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			if (projectile.owner == Main.myPlayer)
 			{
 				// Drop a javelin item, 1 in 18 chance (~5.5% chance)
-				Item.NewItem(projectile.getRect(), ModContent.ItemType<Items.EnchantedShuriken>());
+				Item.NewItem(projectile.getRect(), ModContent.ItemType<Items.Weapons.Throw.EnchantedShuriken>());
 			}
 		}
     }

@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Resistant Wood Chest";
-			chestDrop = ModContent.ItemType<Items.ResistantWoodChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.ResistantWoodChest>();
             dustType = DustID.Wraith;
         }
 
@@ -183,7 +183,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Resistant Wood Chest";
 				if (player.showItemIconText == "Resistant Wood Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.ResistantWoodChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ResistantWoodChest>();
 					player.showItemIconText = "";
 				}
 			}

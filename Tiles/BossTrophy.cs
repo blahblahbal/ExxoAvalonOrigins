@@ -1,4 +1,5 @@
 ﻿using System;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -31,31 +32,31 @@ namespace ExxoAvalonOrigins.Tiles
             switch (frameX / 54)
             {
                 case 0:
-                    item = ModContent.ItemType<Items.DesertBeakTrophy>();
+                    item = ModContent.ItemType<DesertBeakTrophy>();
                     break;
                 case 1:
-                    item = ModContent.ItemType<Items.ArmageddonSlimeTrophy>();
+                    item = ModContent.ItemType<ArmageddonSlimeTrophy>();
                     break;
                 case 2:
-                    item = ModContent.ItemType<Items.DragonLordTrophy>();
+                    item = ModContent.ItemType<DragonLordTrophy>();
                     break;
                 case 3:
-                    item = ModContent.ItemType<Items.OblivionTrophy>();
+                    item = ModContent.ItemType<OblivionTrophy>();
                     break;
                 case 4:
-                    item = ModContent.ItemType<Items.BacteriumPrimeTrophy>();
+                    item = ModContent.ItemType<BacteriumPrimeTrophy>();
                     break;
                 case 5:
-                    item = ModContent.ItemType<Items.EggmanTrophy>();
+                    item = ModContent.ItemType<EggmanTrophy>();
                     break;
                 case 6:
-                    item = ModContent.ItemType<Items.WallofSteelTrophy>();
+                    item = ModContent.ItemType<WallofSteelTrophy>();
                     break;
                 case 7:
-                    item = ModContent.ItemType<Items.MechastingTrophy>();
+                    item = ModContent.ItemType<MechastingTrophy>();
                     break;
                 case 8:
-                    item = ModContent.ItemType<Items.PhantasmTrophy>();
+                    item = ModContent.ItemType<PhantasmTrophy>();
                     break;
             }
             if (item > 0)

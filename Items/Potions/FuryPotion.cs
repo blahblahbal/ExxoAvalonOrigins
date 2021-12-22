@@ -1,11 +1,13 @@
+﻿using ExxoAvalonOrigins.Items.Fish;
+using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Potions
 {
-    class FuryPotion : ModItem
+    internal class FuryPotion : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Potions
 
         public override void SetDefaults()
         {
-            Rectangle dims = item.modItem.GetDims();
+            Rectangle dims = this.GetDims();
             item.buffType = ModContent.BuffType<Buffs.Fury>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;
@@ -32,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Potions
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BottledWater);
             recipe.AddIngredient(ModContent.ItemType<Ickfish>());
             recipe.AddIngredient(ModContent.ItemType<Barfbush>());

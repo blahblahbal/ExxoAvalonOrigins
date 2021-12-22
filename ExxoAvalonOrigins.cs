@@ -1,6 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Bar;
+using ExxoAvalonOrigins.Items.Placeable.Painting;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Vanity;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using ExxoAvalonOrigins.Logic;
 using ExxoAvalonOrigins.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -430,12 +441,12 @@ namespace ExxoAvalonOrigins
                     this,
                     "Bacterium Prime",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedBacteriumPrime),
-                    ModContent.ItemType<Items.BacterialTotem>(),
-                    new List<int> {ModContent.ItemType<Items.BacteriumPrimeTrophy>(),
-                        ModContent.ItemType<Items.BacteriumPrimeMask>()},
-                    new List<int> {ModContent.ItemType<Items.BacciliteOre>(),
-                        ModContent.ItemType<Items.Booger>()},
-                    "Use [i:" + ModContent.ItemType<Items.BacterialTotem>() + "] or break three Snot Orbs in a Contagion ring",
+                    ModContent.ItemType<BacterialTotem>(),
+                    new List<int> {ModContent.ItemType<BacteriumPrimeTrophy>(),
+                        ModContent.ItemType<BacteriumPrimeMask>()},
+                    new List<int> {ModContent.ItemType<BacciliteOre>(),
+                        ModContent.ItemType<Booger>()},
+                    "Use [i:" + ModContent.ItemType<BacterialTotem>() + "] or break three Snot Orbs in a Contagion ring",
                     "Bacterium Prime melts back into the ick",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/BacteriumPrimeBossChecklist",
                     "ExxoAvalonOrigins/NPCs/BacteriumPrime_Head_Boss",
@@ -454,16 +465,16 @@ namespace ExxoAvalonOrigins
                     this,
                     "Desert Beak",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDesertBeak),
-                    ModContent.ItemType<Items.TheBeak>(),
-                    new List<int> {ModContent.ItemType<Items.DesertBeakTrophy>(),
-                        ModContent.ItemType<Items.DesertBeakMask>()},
+                    ModContent.ItemType<TheBeak>(),
+                    new List<int> {ModContent.ItemType<DesertBeakTrophy>(),
+                        ModContent.ItemType<DesertBeakMask>()},
                     new List<int> {ItemID.SandBlock,
-                        ModContent.ItemType<Items.DesertFeather>(),
-                        ModContent.ItemType<Items.RhodiumOre>(),
-                        ModContent.ItemType<Items.OsmiumBar>(),
-                        ModContent.ItemType<Items.IridiumBar>(),
-                        ModContent.ItemType<Items.TomeoftheDistantPast>()},
-                    "Use [i:" + ModContent.ItemType<Items.TheBeak>() + "] in the desert",
+                        ModContent.ItemType<DesertFeather>(),
+                        ModContent.ItemType<RhodiumOre>(),
+                        ModContent.ItemType<OsmiumBar>(),
+                        ModContent.ItemType<IridiumBar>(),
+                        ModContent.ItemType<TomeoftheDistantPast>()},
+                    "Use [i:" + ModContent.ItemType<TheBeak>() + "] in the desert",
                     "Desert Beak has retreated into the sky",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/DesertBeakBossChecklist",
                     "ExxoAvalonOrigins/NPCs/DesertBeak_Head_Boss"
@@ -481,13 +492,13 @@ namespace ExxoAvalonOrigins
                     this,
                     "Phantasm",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedPhantasm),
-                    ModContent.ItemType<Items.EctoplasmicBeacon>(),
-                    new List<int> { ModContent.ItemType<Items.PhantasmTrophy>() },
-                    new List<int> {ModContent.ItemType<Items.PhantomKnives>(),
-                        ModContent.ItemType<Items.EtherealHeart>(),
-                        ModContent.ItemType<Items.VampireTeeth>(),
-                        ModContent.ItemType<Items.GhostintheMachine>()},
-                    "Use an [i:" + ModContent.ItemType<Items.EctoplasmicBeacon>() + "] on the Library Alter in the Library of Knowledge",
+                    ModContent.ItemType<EctoplasmicBeacon>(),
+                    new List<int> { ModContent.ItemType<PhantasmTrophy>() },
+                    new List<int> {ModContent.ItemType<PhantomKnives>(),
+                        ModContent.ItemType<EtherealHeart>(),
+                        ModContent.ItemType<VampireTeeth>(),
+                        ModContent.ItemType<GhostintheMachine>()},
+                    "Use an [i:" + ModContent.ItemType<EctoplasmicBeacon>() + "] on the Library Alter in the Library of Knowledge",
                     "The Phantasm fades away",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/PhantasmBossChecklist",
                     "ExxoAvalonOrigins/NPCs/Phantasm_Head_Boss"
@@ -505,13 +516,13 @@ namespace ExxoAvalonOrigins
                     this,
                     "Wall of Steel",
                     (Func<bool>)(() => ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode),
-                    ModContent.ItemType<Items.HellboundRemote>(),
-                    new List<int> { ModContent.ItemType<Items.WallofSteelTrophy>() },
-                    new List<int> {ModContent.ItemType<Items.DarkStarHeart>(),
-                        ModContent.ItemType<Items.FleshBoiler>(),
-                        ModContent.ItemType<Items.MagicCleaver>(),
-                        ModContent.ItemType<Items.SoulofBlight>()},
-                    "Throw a [i:" + ModContent.ItemType<Items.HellboundRemote>() + "] into lava",
+                    ModContent.ItemType<HellboundRemote>(),
+                    new List<int> { ModContent.ItemType<WallofSteelTrophy>() },
+                    new List<int> {ModContent.ItemType<DarkStarHeart>(),
+                        ModContent.ItemType<FleshBoiler>(),
+                        ModContent.ItemType<MagicCleaver>(),
+                        ModContent.ItemType<SoulofBlight>()},
+                    "Throw a [i:" + ModContent.ItemType<HellboundRemote>() + "] into lava",
                     "The Wall of Steel hisses steam and sinks into the lava",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/WallofSteelBossChecklist",
                     "ExxoAvalonOrigins/NPCs/WallofSteel_Head_Boss"
@@ -529,11 +540,11 @@ namespace ExxoAvalonOrigins
                     this,
                     "Armageddon Slime",
                     (Func<bool>)(() => ExxoAvalonOriginsGlobalNPC.stoppedArmageddon),
-                    ModContent.ItemType<Items.DarkMatterChunk>(),
-                    new List<int> {ModContent.ItemType<Items.ArmageddonSlimeTrophy>(),
-                        ModContent.ItemType<Items.ArmageddonSlimeMask>()},
-                    new List<int> { ModContent.ItemType<Items.DarkMatterSoilBlock>() },
-                    "Use a [i:" + ModContent.ItemType<Items.DarkMatterChunk>() + "]",
+                    ModContent.ItemType<DarkMatterChunk>(),
+                    new List<int> {ModContent.ItemType<ArmageddonSlimeTrophy>(),
+                        ModContent.ItemType<ArmageddonSlimeMask>()},
+                    new List<int> { ModContent.ItemType<DarkMatterSoilBlock>() },
+                    "Use a [i:" + ModContent.ItemType<DarkMatterChunk>() + "]",
                     "The Armageddon Slime melts into the earth",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/ArmageddonSlimeBossChecklist",
                     //"ExxoAvalonOrigins/NPCs/ArmageddonSlime_Head_Boss"
@@ -552,10 +563,10 @@ namespace ExxoAvalonOrigins
                     this,
                     "Dragon Lord",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDragonLord),
-                    ModContent.ItemType<Items.DragonSpine>(),
-                    new List<int> { ModContent.ItemType<Items.DragonLordTrophy>() },
-                    new List<int> { ModContent.ItemType<Items.DragonScale>() },
-                    "Use a [i:" + ModContent.ItemType<Items.DragonSpine>() + "]",
+                    ModContent.ItemType<DragonSpine>(),
+                    new List<int> { ModContent.ItemType<DragonLordTrophy>() },
+                    new List<int> { ModContent.ItemType<DragonScale>() },
+                    "Use a [i:" + ModContent.ItemType<DragonSpine>() + "]",
                     "The Dragon Lord flies away",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/DragonLordBossChecklist",
                     //"ExxoAvalonOrigins/NPCs/ArmageddonSlime_Head_Boss"
@@ -574,10 +585,10 @@ namespace ExxoAvalonOrigins
                     this,
                     "Mechasting",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedMechasting),
-                    ModContent.ItemType<Items.MechanicalWasp>(),
-                    new List<int> { ModContent.ItemType<Items.MechastingTrophy>() },
-                    new List<int> { ModContent.ItemType<Items.SoulofDelight>() },
-                    "Use a [i:" + ModContent.ItemType<Items.MechanicalWasp>() + "]",
+                    ModContent.ItemType<MechanicalWasp>(),
+                    new List<int> { ModContent.ItemType<MechastingTrophy>() },
+                    new List<int> { ModContent.ItemType<SoulofDelight>() },
+                    "Use a [i:" + ModContent.ItemType<MechanicalWasp>() + "]",
                     "The Mechasting retreats to it's mechanical hive",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/MechastingBossChecklist"
                     //"ExxoAvalonOrigins/NPCs/Mechasting_Head_Boss"
@@ -595,14 +606,14 @@ namespace ExxoAvalonOrigins
                     this,
                     "Oblivion",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedOblivion),
-                    ModContent.ItemType<Items.EyeofOblivionAncient>(),
-                    new List<int> { ModContent.ItemType<Items.OblivionTrophy>() },
-                    new List<int> {ModContent.ItemType<Items.VictoryPiece>(),
-                        ModContent.ItemType<Items.OblivionOre>(),
-                        ModContent.ItemType<Items.SoulofTorture>(),
-                        ModContent.ItemType<Items.AccelerationDrill>(),
-                        ModContent.ItemType<Items.CurseofOblivion>()},
-                    "Use a [i:" + ModContent.ItemType<Items.EyeofOblivionAncient>() + "] at night",
+                    ModContent.ItemType<EyeofOblivionAncient>(),
+                    new List<int> { ModContent.ItemType<OblivionTrophy>() },
+                    new List<int> {ModContent.ItemType<VictoryPiece>(),
+                        ModContent.ItemType<OblivionOre>(),
+                        ModContent.ItemType<SoulofTorture>(),
+                        ModContent.ItemType<Items.Tools.AccelerationDrill>(),
+                        ModContent.ItemType<CurseofOblivion>()},
+                    "Use a [i:" + ModContent.ItemType<EyeofOblivionAncient>() + "] at night",
                     "Oblivion retreats into the night",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/OblivionBossChecklist"
                     //"ExxoAvalonOrigins/NPCs/Oblivion_Head_Boss",
@@ -663,7 +674,7 @@ namespace ExxoAvalonOrigins
             {
                 int index = RecipeGroup.recipeGroupIDs["Wood"];
                 RecipeGroup group0 = RecipeGroup.recipeGroups[index];
-                group0.ValidItems.Add(ModContent.ItemType<Items.DarkMatterWood>());
+                group0.ValidItems.Add(ModContent.ItemType<DarkMatterWood>());
             }
 
             var groupWings = new RecipeGroup(() => "Any Wings", new int[]
@@ -745,7 +756,7 @@ namespace ExxoAvalonOrigins
             {
                 ItemID.CopperWatch,
                 ItemID.TinWatch,
-                ModContent.ItemType<Items.BronzeWatch>()
+                ModContent.ItemType<BronzeWatch>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:Tier1Watch", groupTier1Watch);
 
@@ -753,7 +764,7 @@ namespace ExxoAvalonOrigins
             {
                 ItemID.SilverWatch,
                 ItemID.TungstenWatch,
-                ModContent.ItemType<Items.ZincWatch>()
+                ModContent.ItemType<ZincWatch>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:Tier2Watch", groupTier2Watch);
 
@@ -761,7 +772,7 @@ namespace ExxoAvalonOrigins
             {
                 ItemID.GoldWatch,
                 ItemID.PlatinumWatch,
-                ModContent.ItemType<Items.BismuthWatch>()
+                ModContent.ItemType<BismuthWatch>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:Tier3Watch", groupTier3Watch);
 
@@ -769,7 +780,7 @@ namespace ExxoAvalonOrigins
             {
                 ItemID.GoldBar,
                 ItemID.PlatinumBar,
-                ModContent.ItemType<Items.BismuthBar>()
+                ModContent.ItemType<BismuthBar>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:GoldBar", groupGoldBar);
 
@@ -777,14 +788,14 @@ namespace ExxoAvalonOrigins
             {
                 int index = RecipeGroup.recipeGroupIDs["IronBar"];
                 RecipeGroup groupWood = RecipeGroup.recipeGroups[index];
-                groupWood.ValidItems.Add(ModContent.ItemType<Items.NickelBar>());
+                groupWood.ValidItems.Add(ModContent.ItemType<NickelBar>());
             }
 
             var groupCopperBar = new RecipeGroup(() => "Any Copper Bar", new int[]
             {
                 ItemID.CopperBar,
                 ItemID.TinBar,
-                ModContent.ItemType<Items.BronzeBar>()
+                ModContent.ItemType<BronzeBar>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:CopperBar", groupCopperBar);
         }

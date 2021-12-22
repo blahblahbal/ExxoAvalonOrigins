@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			AddMapEntry(new Color(195, 61, 40), LanguageManager.Instance.GetText("Bloodied Spike"));
 			Main.tileSolid[Type] = true;
-			drop = ModContent.ItemType<Items.BloodiedSpike>();
+			drop = ModContent.ItemType<Items.Placeable.Tile.BloodiedSpike>();
             dustType = DustID.Palladium;
             soundType = SoundID.Tink;
             soundStyle = 1;

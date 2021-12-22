@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -42,8 +43,8 @@ namespace ExxoAvalonOrigins.NPCs
 		public override void NPCLoot()
 		{
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofFright, Main.rand.Next(5) + 1, false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SouloftheJungle>(), Main.rand.Next(5) + 1, false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LifeDew>(), Main.rand.Next(5) + 1, false, 0, false);
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SouloftheJungle>(), Main.rand.Next(5) + 1, false, 0, false);
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<LifeDew>(), Main.rand.Next(5) + 1, false, 0, false);
 		}
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

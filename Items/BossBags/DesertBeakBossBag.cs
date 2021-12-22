@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

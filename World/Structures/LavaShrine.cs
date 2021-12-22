@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Placeable.Seed;
+using ExxoAvalonOrigins.Items.Potions;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -649,17 +653,17 @@ namespace ExxoAvalonOrigins.World.Structures
                             }
                             else if (rand >= 21 && rand <= 30)
                             {
-                                Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<Items.SunlightKunai>(), false);
+                                Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<SunlightKunai>(), false);
                                 Main.chest[num2].item[1].stack = WorldGen.genRand.Next(77, 125);
                             }
                             else if (rand >= 31 && rand <= 40)
                             {
-                                Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<Items.CrimsonPotion>(), false);
+                                Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<CrimsonPotion>(), false);
                                 Main.chest[num2].item[1].stack = WorldGen.genRand.Next(3) + 1;
                             }
                             else if (rand >= 41 && rand <= 50)
                             {
-                                Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<Items.ShockwavePotion>(), false);
+                                Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<ShockwavePotion>(), false);
                                 Main.chest[num2].item[1].stack = WorldGen.genRand.Next(3) + 1;
                             }
                             int rand2 = WorldGen.genRand.Next(27);
@@ -670,7 +674,7 @@ namespace ExxoAvalonOrigins.World.Structures
                             }
                             else if (rand2 >= 11 && rand2 <= 25)
                             {
-                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<Items.HellstoneSeed>(), false);
+                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<HellstoneSeed>(), false);
                                 Main.chest[num2].item[2].stack = WorldGen.genRand.Next(400, 556);
                             }
                             else if (rand2 == 26)
@@ -686,7 +690,7 @@ namespace ExxoAvalonOrigins.World.Structures
                             }
                             else if (rand3 >= 11 && rand2 <= 25)
                             {
-                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.BagofFire>(), false);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<BagofFire>(), false);
                             }
                             else if (rand3 == 26)
                             {

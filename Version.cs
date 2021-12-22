@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ExxoAvalonOrigins
+﻿namespace ExxoAvalonOrigins
 {
     public class Version
     {
@@ -25,7 +23,7 @@ namespace ExxoAvalonOrigins
 
         public Version(string version)
         {
-            var vStrs = version.Split('.');
+            string[] vStrs = version.Split('.');
             rewrite = int.Parse(vStrs[0]);
             major = int.Parse(vStrs[1]);
             minor = int.Parse(vStrs[2]);
@@ -38,17 +36,41 @@ namespace ExxoAvalonOrigins
 
         public override string ToString()
         {
-            return String.Format("{0}.{1}.{2}.{3}.{4}", rewrite, major, minor, fix, isDev ? "dev" : "rel");
+            return string.Format("{0}.{1}.{2}.{3}.{4}", rewrite, major, minor, fix, isDev ? "dev" : "rel");
         }
 
         public static bool operator <(Version v1, Version v2)
         {
-            if (v2 == null) return false;
-            if (v1 == null) return true;
-            if (v1.rewrite != v2.rewrite) return v1.rewrite < v2.rewrite;
-            if (v1.major != v2.major) return v1.major < v2.major;
-            if (v1.minor != v2.minor) return v1.minor < v2.minor;
-            if (v1.fix != v2.fix) return v1.fix < v2.fix;
+            if (v2 == null)
+            {
+                return false;
+            }
+
+            if (v1 == null)
+            {
+                return true;
+            }
+
+            if (v1.rewrite != v2.rewrite)
+            {
+                return v1.rewrite < v2.rewrite;
+            }
+
+            if (v1.major != v2.major)
+            {
+                return v1.major < v2.major;
+            }
+
+            if (v1.minor != v2.minor)
+            {
+                return v1.minor < v2.minor;
+            }
+
+            if (v1.fix != v2.fix)
+            {
+                return v1.fix < v2.fix;
+            }
+
             return v1.isDev;
         }
 

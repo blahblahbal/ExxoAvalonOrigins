@@ -1,5 +1,9 @@
 using Microsoft.Xna.Framework;
 using System;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Vanity;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -44,11 +48,11 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			if (Main.rand.Next(7) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertBeakMask>(), 1, false, 0, false);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertBeakMask>(), 1, false, 0, false);
 			}
 			if (Main.rand.Next(10) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertBeakTrophy>(), 1, false, 0, false);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertBeakTrophy>(), 1, false, 0, false);
 			}
             if (Main.expertMode)
             {
@@ -57,14 +61,14 @@ namespace ExxoAvalonOrigins.NPCs
             else
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(22, 55), false, 0, false);
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
                 if (Main.rand.Next(10) <= 5)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26), false, 0, false);
                 }
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.TomeoftheDistantPast>(), 1, false, -2, false);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TomeoftheDistantPast>(), 1, false, -2, false);
                 }
             }
 

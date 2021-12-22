@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Potions;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -42,7 +44,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ModContent.ItemType<Items.ElixirofLife>();
+            potionType = ModContent.ItemType<ElixirofLife>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -344,7 +346,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
             }
 
             if (!ExxoAvalonOriginsWorld.downedMechasting)

@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.EctoplasmChandelier>());
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.EctoplasmChandelier>());
         }
 
         public override void HitWire(int i, int j)

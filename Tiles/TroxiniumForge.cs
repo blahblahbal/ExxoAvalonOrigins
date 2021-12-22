@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {   
-            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.TroxiniumForge>());
+            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.TroxiniumForge>());
         }
         public override void RandomUpdate(int i, int j)
         {

@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,7 +33,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             //player.TryGettingDevArmor();
 
-            player.QuickSpawnItem(ModContent.ItemType<Items.BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41));
+            player.QuickSpawnItem(ModContent.ItemType<BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41));
             player.QuickSpawnItem(ModContent.ItemType<Booger>(), Main.rand.Next(10, 20));
         }
 

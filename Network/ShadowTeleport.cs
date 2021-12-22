@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.IO;
-using Terraria;
+﻿using System.IO;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Network
@@ -16,7 +14,7 @@ namespace ExxoAvalonOrigins.Network
 
         public static void HandlePacket(BinaryReader reader, int fromWho)
         {
-            global::ExxoAvalonOrigins.ShadowTeleport.Teleport(reader.ReadInt32(), true, fromWho);
+            Logic.ShadowTeleport.Teleport(reader.ReadInt32(), true, fromWho);
         }
     }
 }

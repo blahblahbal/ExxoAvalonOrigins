@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Fish;
+using ExxoAvalonOrigins.Items.Placeable.Bar;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,7 +37,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                 int q = WorldGen.genRand.Next(3);
                                 if (q == 0) q = ItemID.DemoniteOre;
                                 if (q == 1) q = ItemID.CrimtaneOre;
-                                if (q == 2) q = ModContent.ItemType<Items.BacciliteOre>();
+                                if (q == 2) q = ModContent.ItemType<BacciliteOre>();
                                 Main.chest[num2].item[0].SetDefaults(q, false);
                                 Main.chest[num2].item[0].stack = WorldGen.genRand.Next(41, 68);
                             }
@@ -42,7 +46,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                 int q = WorldGen.genRand.Next(3);
                                 if (q == 0) q = ItemID.DemoniteBar;
                                 if (q == 1) q = ItemID.CrimtaneBar;
-                                if (q == 2) q = ModContent.ItemType<Items.BacciliteBar>();
+                                if (q == 2) q = ModContent.ItemType<BacciliteBar>();
                                 Main.chest[num2].item[0].SetDefaults(q, false);
                                 Main.chest[num2].item[0].stack = WorldGen.genRand.Next(2, 7);
                             }
@@ -62,7 +66,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                 int q = WorldGen.genRand.Next(3);
                                 if (q == 0) q = ItemID.Ebonkoi;
                                 if (q == 1) q = ItemID.Hemopiranha;
-                                if (q == 2) q = ModContent.ItemType<Items.Ickfish>();
+                                if (q == 2) q = ModContent.ItemType<Ickfish>();
                                 Main.chest[num2].item[1].SetDefaults(q, false);
                                 Main.chest[num2].item[1].stack = WorldGen.genRand.Next(4, 8);
                             }
@@ -82,7 +86,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                 int q = WorldGen.genRand.Next(3);
                                 if (q == 0) q = ItemID.BandofStarpower;
                                 if (q == 1) q = ItemID.PanicNecklace;
-                                if (q == 2) q = ModContent.ItemType<Items.BandofStamina>();
+                                if (q == 2) q = ModContent.ItemType<BandofStamina>();
                                 Main.chest[num2].item[2].SetDefaults(q, false);
                                 Main.chest[num2].item[2].Prefix(-1);
                             }
@@ -90,9 +94,9 @@ namespace ExxoAvalonOrigins.World.Structures
                             if (rand3 >= 0 && rand2 <= 25)
                             {
                                 int q = WorldGen.genRand.Next(3);
-                                if (q == 0) q = ModContent.ItemType<Items.BagofShadows>();
-                                if (q == 1) q = ModContent.ItemType<Items.BagofBlood>();
-                                if (q == 2) q = ModContent.ItemType<Items.BagofIck>();
+                                if (q == 0) q = ModContent.ItemType<BagofShadows>();
+                                if (q == 1) q = ModContent.ItemType<BagofBlood>();
+                                if (q == 2) q = ModContent.ItemType<BagofIck>();
                                 Main.chest[num2].item[3].SetDefaults(q, false);
                             }
                             else if (rand3 == 26)

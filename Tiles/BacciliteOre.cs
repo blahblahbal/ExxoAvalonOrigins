@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileBlockLight[Type] = true;
 			Main.tileValue[Type] = 320;
 			Main.tileLighted[Type] = true;
-			drop = ModContent.ItemType<Items.BacciliteOre>();
+			drop = ModContent.ItemType<Items.Placeable.Tile.BacciliteOre>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.JungleSpore;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Accessories;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -73,7 +74,7 @@ namespace ExxoAvalonOrigins.NPCs
 			}
 			if (Main.rand.Next(50) == 0)
             {
-				Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.GreekExtinguisher>(), 1);
+				Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<GreekExtinguisher>(), 1);
 			}
 		}
         public Vector2 RotateAboutOrigin(Vector2 point, Vector2 origin, float rotation)

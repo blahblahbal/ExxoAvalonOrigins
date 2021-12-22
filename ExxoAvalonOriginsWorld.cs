@@ -1,13 +1,13 @@
-﻿using ExxoAvalonOrigins.Items;
-using ExxoAvalonOrigins.World;
-using ExxoAvalonOrigins.Tiles;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Seed;
+using ExxoAvalonOrigins.Logic;
+using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.Localization;
@@ -161,9 +161,14 @@ namespace ExxoAvalonOrigins
         public override void ChooseWaterStyle(ref int style)
         {
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+            {
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
+            }
+
             if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
+            {
                 style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
+            }
         }
 
         public override void TileCountsAvailable(int[] tileCounts)
@@ -182,16 +187,16 @@ namespace ExxoAvalonOrigins
             if (worldVersion < new Version(0, 1, 0, 0))
             {
                 rhodiumOre = (RhodiumVariant)WorldGen.genRand.Next(2);
-                for (var num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)
+                for (int num156 = 0; num156 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); num156++)
                 {
-                    var i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
-                    var rockLayer3 = Main.rockLayer;
-                    var j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);
+                    int i10 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                    double rockLayer3 = Main.rockLayer;
+                    int j10 = WorldGen.genRand.Next((int)rockLayer3, Main.maxTilesY - 150);
                     WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)rhodiumOre.GetTile());
                 }
                 Main.NewText("Retrogenned Rhodium/Osmium/Iridium");
                 //Caesium
-                for (var num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)
+                for (int num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)
                 {
                     WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<Tiles.CaesiumOre>());
                     //WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), ModContent.TileType<CaesiumOre>(), false, 0f, 0f, false, true);
@@ -200,9 +205,9 @@ namespace ExxoAvalonOrigins
             }
             if (worldVersion < new Version(0, 1, 1, 0))
             {
-                for (var num284 = 69; num284 < 72; num284++)
+                for (int num284 = 69; num284 < 72; num284++)
                 {
-                    var type8 = 0;
+                    int type8 = 0;
                     float num285 = 0;
                     if (num284 == 69)
                     {
@@ -220,11 +225,11 @@ namespace ExxoAvalonOrigins
                         num285 = Main.maxTilesX * 0.2f;
                     }
                     num285 *= 0.2f;
-                    var num286 = 0;
+                    int num286 = 0;
                     while (num286 < num285)
                     {
-                        var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
-                        var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);
+                        int num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
+                        int num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);
                         while (Main.tile[num287, num288].type != 1)
                         {
                             num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
@@ -238,21 +243,21 @@ namespace ExxoAvalonOrigins
             }
             if (worldVersion < new Version(0, 3, 0, 0))
             {
-                for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)
+                for (int i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)
                 {
-                    var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
-                    var rockLayer = Main.rockLayer;
-                    var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
+                    int i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                    double rockLayer = Main.rockLayer;
+                    int j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
                     World.Passes.OreGenPreHardMode.GenerateHearts(i8, j8, ModContent.TileType<Tiles.Heartstone>());
                 }
                 Main.NewText("Retrogenned Heartstone");
             }
             if (worldVersion < new Version(0, 3, 0, 0))
             {
-                for (var num721 = 0; num721 < 3; num721++)
+                for (int num721 = 0; num721 < 3; num721++)
                 {
-                    var x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
-                    var y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
+                    int x10 = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
+                    int y6 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 300);
                     World.Structures.IceShrine.Generate(x10, y6);
                 }
                 Main.NewText("Retrogenned Ice Shrines");
@@ -266,10 +271,10 @@ namespace ExxoAvalonOrigins
                 return;
             }
             Tile t = Main.tile[x, y];
-            int style = (int)(t.frameX / 18);
+            int style = t.frameX / 18;
             bool destroy = false;
             int fixedY = y;
-            int yframe = (int)Main.tile[x, y].frameY;
+            int yframe = Main.tile[x, y].frameY;
             fixedY -= yframe / 18;
             if (!WorldGen.SolidTile2(x, fixedY + 3) || !Main.tile[x, fixedY].active() ||
                 !Main.tile[x, fixedY + 1].active() || !Main.tile[x, fixedY + 2].active())
@@ -290,46 +295,49 @@ namespace ExxoAvalonOrigins
                     switch (style)
                     {
                         case 0:
-                            item = ModContent.ItemType<Items.LargeDaybloomSeed>();
+                            item = ModContent.ItemType<LargeDaybloomSeed>();
                             break;
 
                         case 1:
-                            item = ModContent.ItemType<Items.LargeMoonglowSeed>();
+                            item = ModContent.ItemType<LargeMoonglowSeed>();
                             break;
 
                         case 2:
-                            item = ModContent.ItemType<Items.LargeBlinkrootSeed>();
+                            item = ModContent.ItemType<LargeBlinkrootSeed>();
                             break;
 
                         case 3:
-                            item = ModContent.ItemType<Items.LargeDeathweedSeed>();
+                            item = ModContent.ItemType<LargeDeathweedSeed>();
                             break;
 
                         case 4:
-                            item = ModContent.ItemType<Items.LargeWaterleafSeed>();
+                            item = ModContent.ItemType<LargeWaterleafSeed>();
                             break;
 
                         case 5:
-                            item = ModContent.ItemType<Items.LargeFireblossomSeed>();
+                            item = ModContent.ItemType<LargeFireblossomSeed>();
                             break;
 
                         case 6:
-                            item = ModContent.ItemType<Items.LargeShiverthornSeed>();
+                            item = ModContent.ItemType<LargeShiverthornSeed>();
                             break;
 
                         case 7:
-                            item = ModContent.ItemType<Items.LargeBloodberrySeed>();
+                            item = ModContent.ItemType<LargeBloodberrySeed>();
                             break;
 
                         case 8:
-                            item = ModContent.ItemType<Items.LargeSweetstemSeed>();
+                            item = ModContent.ItemType<LargeSweetstemSeed>();
                             break;
 
                         case 9:
-                            item = ModContent.ItemType<Items.LargeBarfbushSeed>();
+                            item = ModContent.ItemType<LargeBarfbushSeed>();
                             break;
                     }// 3710 through 3719 are the seeds
-                    if (item > 0) Item.NewItem(x * 16, fixedY * 16, 16, 48, item);
+                    if (item > 0)
+                    {
+                        Item.NewItem(x * 16, fixedY * 16, 16, 48, item);
+                    }
                 }
                 else
                 {
@@ -337,46 +345,49 @@ namespace ExxoAvalonOrigins
                     switch (style)
                     {
                         case 0:
-                            item = ModContent.ItemType<Items.LargeDaybloom>();
+                            item = ModContent.ItemType<LargeDaybloom>();
                             break;
 
                         case 1:
-                            item = ModContent.ItemType<Items.LargeMoonglow>();
+                            item = ModContent.ItemType<LargeMoonglow>();
                             break;
 
                         case 2:
-                            item = ModContent.ItemType<Items.LargeBlinkroot>();
+                            item = ModContent.ItemType<LargeBlinkroot>();
                             break;
 
                         case 3:
-                            item = ModContent.ItemType<Items.LargeDeathweed>();
+                            item = ModContent.ItemType<LargeDeathweed>();
                             break;
 
                         case 4:
-                            item = ModContent.ItemType<Items.LargeWaterleaf>();
+                            item = ModContent.ItemType<LargeWaterleaf>();
                             break;
 
                         case 5:
-                            item = ModContent.ItemType<Items.LargeFireblossom>();
+                            item = ModContent.ItemType<LargeFireblossom>();
                             break;
 
                         case 6:
-                            item = ModContent.ItemType<Items.LargeShiverthorn>();
+                            item = ModContent.ItemType<LargeShiverthorn>();
                             break;
 
                         case 7:
-                            item = ModContent.ItemType<Items.LargeBloodberry>();
+                            item = ModContent.ItemType<LargeBloodberry>();
                             break;
 
                         case 8:
-                            item = ModContent.ItemType<Items.LargeSweetstem>();
+                            item = ModContent.ItemType<LargeSweetstem>();
                             break;
 
                         case 9:
-                            item = ModContent.ItemType<Items.LargeBarfbush>();
+                            item = ModContent.ItemType<LargeBarfbush>();
                             break;
                     }
-                    if (item > 0) Item.NewItem(x * 16, fixedY * 16, 16, 48, item);
+                    if (item > 0)
+                    {
+                        Item.NewItem(x * 16, fixedY * 16, 16, 48, item);
+                    }
                     // 3700 through 3709 are the large herbs
                 }
                 WorldGen.destroyObject = false;
@@ -505,17 +516,17 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyHardmodeTasks(List<GenPass> list)
         {
-            int index = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Good"));
-            int index2 = list.FindIndex(genpass => ((string)genpass.Name).Equals("Hardmode Evil"));
-            int index3 = list.FindIndex(genpass => ((string)genpass.Name).Equals(""));
+            int index = list.FindIndex(genpass => genpass.Name.Equals("Hardmode Good"));
+            int index2 = list.FindIndex(genpass => genpass.Name.Equals("Hardmode Evil"));
+            int index3 = list.FindIndex(genpass => genpass.Name.Equals(""));
             if (contaigon)
             {
-                list.Insert(index + 1, (GenPass)new PassLegacy("Exxo Avalon Origins: Hardmode Contagion", new WorldGenLegacyMethod(World.Passes.ContagionHardMode.Method)));
+                list.Insert(index + 1, new PassLegacy("Exxo Avalon Origins: Hardmode Contagion", new WorldGenLegacyMethod(World.Passes.ContagionHardMode.Method)));
                 // TODO REPLACE EVIL GEN INSTEAD OF REMOVING
                 list.RemoveAt(index);
                 list.RemoveAt(index2);
             }
-            list.Insert(index + 2, (GenPass)new PassLegacy("Hardmode snow ore generation", new WorldGenLegacyMethod(World.Passes.SnowHardMode.Method)));
+            list.Insert(index + 2, new PassLegacy("Hardmode snow ore generation", new WorldGenLegacyMethod(World.Passes.SnowHardMode.Method)));
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -574,10 +585,26 @@ namespace ExxoAvalonOrigins
                     if (grow)
                     {
                         Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
-                        if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
-                        if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
-                        if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
-                        if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>()) Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
+                        if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>())
+                        {
+                            Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
+                        }
+
+                        if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>())
+                        {
+                            Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
+                        }
+
+                        if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>())
+                        {
+                            Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
+                        }
+
+                        if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>())
+                        {
+                            Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>();
+                        }
+
                         if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, y, 2);
@@ -607,10 +634,26 @@ namespace ExxoAvalonOrigins
                     if (grow)
                     {
                         Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
-                        if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
-                        if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
-                        if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
-                        if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>()) Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
+                        if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>())
+                        {
+                            Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
+                        }
+
+                        if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>())
+                        {
+                            Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
+                        }
+
+                        if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>())
+                        {
+                            Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
+                        }
+
+                        if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>())
+                        {
+                            Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>();
+                        }
+
                         if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, y, 2);
@@ -626,10 +669,26 @@ namespace ExxoAvalonOrigins
                 else if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>() && WorldGen.genRand.Next(5) == 0) // phase 3 to 4
                 {
                     Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
-                    if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
-                    if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
-                    if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
-                    if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>()) Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
+                    if (Main.tile[x, y + 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>())
+                    {
+                        Main.tile[x, y + 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
+                    }
+
+                    if (Main.tile[x, y + 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>())
+                    {
+                        Main.tile[x, y + 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
+                    }
+
+                    if (Main.tile[x, y - 1].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>())
+                    {
+                        Main.tile[x, y - 1].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
+                    }
+
+                    if (Main.tile[x, y - 2].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>())
+                    {
+                        Main.tile[x, y - 2].type = (ushort)ModContent.TileType<Tiles.LargeHerbsStage4>();
+                    }
+
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, x, y, 2);
@@ -646,7 +705,11 @@ namespace ExxoAvalonOrigins
 
         public void DarkMatterSpread(int i, int j)
         {
-            if (!Main.hardMode || Main.tile[i, j].inActive()) return;
+            if (!Main.hardMode || Main.tile[i, j].inActive())
+            {
+                return;
+            }
+
             int type = Main.tile[i, j].type;
             if (SuperHardmode)
             {
@@ -813,10 +876,10 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdate()
         {
-            float num2 = 3E-05f * (float)Main.worldRate;
+            float num2 = 3E-05f * Main.worldRate;
             //float num3 = 1.5E-05f * (float)Main.worldRate;
             int num4 = 0;
-            while ((float)num4 < (float)(Main.maxTilesX * Main.maxTilesY) * num2)
+            while (num4 < Main.maxTilesX * Main.maxTilesY * num2)
             {
                 int num5 = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
                 int num6 = WorldGen.genRand.Next(10, /*(int)Main.worldSurface - 1*/ Main.maxTilesY - 20);
@@ -853,7 +916,11 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
-                        if (Main.hardMode) SpreadXanthophyte(num5, num6);
+                        if (Main.hardMode)
+                        {
+                            SpreadXanthophyte(num5, num6);
+                        }
+
                         if (SuperHardmode && WorldDarkMatterTiles < 250000)
                         {
                             DarkMatterSpread(num5, num6);
@@ -866,7 +933,7 @@ namespace ExxoAvalonOrigins
 
                     if (Main.tile[num5, num6].type == ModContent.TileType<TropicalGrass>())
                     {
-                        int num14 = (int)Main.tile[num5, num6].type;
+                        int num14 = Main.tile[num5, num6].type;
                         if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<TropicalGrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<TropicalShortGrass>(), true, false, -1, 0);
@@ -909,7 +976,7 @@ namespace ExxoAvalonOrigins
 
                     if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
                     {
-                        int num14 = (int)Main.tile[num5, num6].type;
+                        int num14 = Main.tile[num5, num6].type;
                         if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(30) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Sweetstem>(), true, false, -1, 0);
@@ -930,7 +997,7 @@ namespace ExxoAvalonOrigins
 
                     if (Main.tile[num5, num6].type == ModContent.TileType<Ickgrass>())
                     {
-                        int num14 = (int)Main.tile[num5, num6].type;
+                        int num14 = Main.tile[num5, num6].type;
                         if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
@@ -974,7 +1041,7 @@ namespace ExxoAvalonOrigins
                                         {
                                             WorldGen.SpreadGrass(m, n, TileID.HallowedGrass, num14, false, Main.tile[num5, num6].color());
                                         }
-                                        if ((int)Main.tile[m, n].type == num14)
+                                        if (Main.tile[m, n].type == num14)
                                         {
                                             WorldGen.SquareTileFrame(m, n, true);
                                             flag2 = true;
@@ -1078,19 +1145,19 @@ namespace ExxoAvalonOrigins
             }
             if (!Main.dayTime && Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.AdvancedBuffs.AdvStarbright>()) || Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Starbright>()))
             {
-                float num66 = (float)(Main.maxTilesX / 4200);
-                if ((float)Main.rand.Next(4000) < 10f * num66)
+                float num66 = Main.maxTilesX / 4200;
+                if (Main.rand.Next(4000) < 10f * num66)
                 {
                     int num67 = 12;
                     int num68 = Main.rand.Next(Main.maxTilesX - 50) + 100;
                     num68 *= 16;
-                    int num69 = Main.rand.Next((int)((double)Main.maxTilesY * 0.05));
+                    int num69 = Main.rand.Next((int)(Main.maxTilesY * 0.05));
                     num69 *= 16;
-                    Vector2 vector = new Vector2((float)num68, (float)num69);
-                    float num70 = (float)Main.rand.Next(-100, 101);
-                    float num71 = (float)(Main.rand.Next(200) + 100);
-                    float num72 = (float)Math.Sqrt((double)(num70 * num70 + num71 * num71));
-                    num72 = (float)num67 / num72;
+                    var vector = new Vector2(num68, num69);
+                    float num70 = Main.rand.Next(-100, 101);
+                    float num71 = Main.rand.Next(200) + 100;
+                    float num72 = (float)Math.Sqrt(num70 * num70 + num71 * num71);
+                    num72 = num67 / num72;
                     num70 *= num72;
                     num71 *= num72;
                     Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
@@ -1098,19 +1165,19 @@ namespace ExxoAvalonOrigins
             }
             if (!Main.dayTime && Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.AdvancedBuffs.AdvStarbright>()))
             {
-                float num66 = (float)(Main.maxTilesX / 4200);
-                if ((float)Main.rand.Next(4000) < 10f * num66)
+                float num66 = Main.maxTilesX / 4200;
+                if (Main.rand.Next(4000) < 10f * num66)
                 {
                     int num67 = 12;
                     int num68 = Main.rand.Next(Main.maxTilesX - 50) + 100;
                     num68 *= 16;
-                    int num69 = Main.rand.Next((int)((double)Main.maxTilesY * 0.05));
+                    int num69 = Main.rand.Next((int)(Main.maxTilesY * 0.05));
                     num69 *= 16;
-                    Vector2 vector = new Vector2((float)num68, (float)num69);
-                    float num70 = (float)Main.rand.Next(-100, 101);
-                    float num71 = (float)(Main.rand.Next(200) + 100);
-                    float num72 = (float)Math.Sqrt((double)(num70 * num70 + num71 * num71));
-                    num72 = (float)num67 / num72;
+                    var vector = new Vector2(num68, num69);
+                    float num70 = Main.rand.Next(-100, 101);
+                    float num71 = Main.rand.Next(200) + 100;
+                    float num72 = (float)Math.Sqrt(num70 * num70 + num71 * num71);
+                    num72 = num67 / num72;
                     num70 *= num72;
                     num71 *= num72;
                     Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
@@ -1118,19 +1185,19 @@ namespace ExxoAvalonOrigins
             }
             if (!Main.dayTime && Main.bloodMoon)
             {
-                float num66 = (float)(Main.maxTilesX / 4200);
-                if ((float)Main.rand.Next(9000) < 10f * num66)
+                float num66 = Main.maxTilesX / 4200;
+                if (Main.rand.Next(9000) < 10f * num66)
                 {
                     int num67 = 12;
                     int num68 = Main.rand.Next(Main.maxTilesX - 50) + 100;
                     num68 *= 16;
-                    int num69 = Main.rand.Next((int)((double)Main.maxTilesY * 0.05));
+                    int num69 = Main.rand.Next((int)(Main.maxTilesY * 0.05));
                     num69 *= 16;
-                    Vector2 vector = new Vector2((float)num68, (float)num69);
-                    float num70 = (float)Main.rand.Next(-100, 101);
-                    float num71 = (float)(Main.rand.Next(200) + 100);
-                    float num72 = (float)Math.Sqrt((double)(num70 * num70 + num71 * num71));
-                    num72 = (float)num67 / num72;
+                    var vector = new Vector2(num68, num69);
+                    float num70 = Main.rand.Next(-100, 101);
+                    float num71 = Main.rand.Next(200) + 100;
+                    float num72 = (float)Math.Sqrt(num70 * num70 + num71 * num71);
+                    num72 = num67 / num72;
                     num70 *= num72;
                     num71 *= num72;
                     Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
@@ -1216,7 +1283,9 @@ namespace ExxoAvalonOrigins
             {
                 contaigon = WorldGen.genRand.Next(3) == 0;
                 if (contaigon)
+                {
                     WorldGen.crimson = false;
+                }
             }
             if (WorldGen.WorldGenParam_Evil == 2)
             {
@@ -1227,44 +1296,44 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            var reset = tasks.FindIndex(genpass => genpass.Name == "Reset");
+            int reset = tasks.FindIndex(genpass => genpass.Name == "Reset");
             if (reset != -1)
             {
                 tasks.Insert(reset + 1, new PassLegacy("Avalon Setup", World.Passes.Setup.Method));
             }
 
-            var vines = tasks.FindIndex(genpass => genpass.Name == "Vines");
+            int vines = tasks.FindIndex(genpass => genpass.Name == "Vines");
 
             if (jungleMenuSelection == JungleVariant.tropics)
             {
-                var temple = tasks.FindIndex(genpass => genpass.Name == "Jungle Temple");
+                int temple = tasks.FindIndex(genpass => genpass.Name == "Jungle Temple");
                 if (temple != -1)
                 {
                     tasks[temple] = new PassLegacy("Tuhrtl Outpost", World.Passes.TuhrtlOutpost.Method);
                     //tasks.RemoveAt(temple);
                 }
 
-                var hives = tasks.FindIndex(genpass => genpass.Name == "Hives");
+                int hives = tasks.FindIndex(genpass => genpass.Name == "Hives");
                 if (hives != -1)
                 {
                     tasks[hives] = new PassLegacy("Wasp Nests", World.Passes.WaspNest.Method);
                     //tasks.RemoveAt(hives);
                 }
 
-                var jchests = tasks.FindIndex(genpass => genpass.Name == "Jungle Chests");
+                int jchests = tasks.FindIndex(genpass => genpass.Name == "Jungle Chests");
                 if (jchests != -1)
                 {
                     tasks[jchests] = new PassLegacy("Sanctums", World.Passes.TropicsSanctum.Method);
                     //tasks.RemoveAt(jchests);
                 }
 
-                var jtemple2 = tasks.FindIndex(genpass => genpass.Name == "Temple");
+                int jtemple2 = tasks.FindIndex(genpass => genpass.Name == "Temple");
                 if (jtemple2 != -1)
                 {
                     tasks.RemoveAt(jtemple2);
                 }
 
-                var jplants = tasks.FindIndex(genpass => genpass.Name == "Jungle Plants");
+                int jplants = tasks.FindIndex(genpass => genpass.Name == "Jungle Plants");
                 if (jplants != -1)
                 {
                     tasks.RemoveAt(jplants);
@@ -1284,16 +1353,18 @@ namespace ExxoAvalonOrigins
             if (vines != -1)
             {
                 if (contaigon)
+                {
                     tasks.Insert(vines + 1, new PassLegacy("ContagionVines", World.Passes.ContagionVines.Method));
+                }
             }
 
-            var shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");
+            int shinies = tasks.FindIndex(genpass => genpass.Name == "Shinies");
             if (shinies != -1)
             {
                 tasks[shinies] = new PassLegacy("Avalon PHM Ore Gen", World.Passes.OreGenPreHardMode.Method);
             }
 
-            var underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");
+            int underworld = tasks.FindIndex(genpass => genpass.Name == "Underworld");
             if (underworld != -1)
             {
                 tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", World.Passes.Underworld.Method));
@@ -1301,51 +1372,51 @@ namespace ExxoAvalonOrigins
 
             if (contaigon)
             {
-                var corruptionTask = tasks.FindIndex(genpass => genpass.Name == "Corruption");
+                int corruptionTask = tasks.FindIndex(genpass => genpass.Name == "Corruption");
                 if (corruptionTask != -1)
                 {
                     // Replace corruption task with contagion task
                     tasks[corruptionTask] = new PassLegacy("Corruption", World.Passes.Contagion.Method);
                 }
 
-                var altarsTask = tasks.FindIndex(genpass => genpass.Name == "Altars");
+                int altarsTask = tasks.FindIndex(genpass => genpass.Name == "Altars");
                 if (altarsTask != -1)
                 {
                     tasks[altarsTask] = new PassLegacy("Altars", World.Passes.Altars.Method);
                 }
             }
 
-            var gems = tasks.FindIndex(genpass => genpass.Name == "Gems");
+            int gems = tasks.FindIndex(genpass => genpass.Name == "Gems");
             if (gems != -1)
             {
                 tasks.Insert(gems + 1, new PassLegacy("Avalon Gems", World.Passes.Gems.Method));
             }
 
-            var smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");
+            int smoothWorld = tasks.FindIndex(genpass => genpass.Name == "Smooth World");
             if (smoothWorld != -1)
             {
                 tasks.Insert(smoothWorld + 1, new PassLegacy("Unsmoothing Hellcastle", World.Passes.SmoothWorld.Method));
             }
 
-            var lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");
+            int lifecrystals = tasks.FindIndex(genpass => genpass.Name == "Life Crystals");
             if (lifecrystals != -1)
             {
                 tasks.Insert(lifecrystals + 1, new PassLegacy("Adding Mana Crystals", World.Passes.ManaCrystal.Method));
             }
 
-            var iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");
+            int iceWalls = tasks.FindIndex(genpass => genpass.Name == "Ice Walls");
             if (iceWalls != -1)
             {
                 tasks.Insert(iceWalls + 1, new PassLegacy("Avalon Shrines", World.Passes.Shrines.Method));
             }
 
-            var weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");
+            int weeds = tasks.FindIndex(genpass => genpass.Name == "Weeds");
             if (weeds != -1)
             {
                 tasks.Insert(weeds + 1, new PassLegacy("Contagion weeds", World.Passes.Plants.Method));
             }
 
-            var microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");
+            int microBiomes = tasks.FindIndex(genpass => genpass.Name == "Micro Biomes");
             if (microBiomes != -1)
             {
                 tasks.RemoveAt(microBiomes);
@@ -1364,11 +1435,13 @@ namespace ExxoAvalonOrigins
         public void SpreadXanthophyte(int x, int y)
         {
             if (Main.tile[x, y].inActive())
+            {
                 return;
+            }
 
             int type = Main.tile[x, y].type;
 
-            if ((double)y > (Main.worldSurface + Main.rockLayer) / 2.0)
+            if (y > (Main.worldSurface + Main.rockLayer) / 2.0)
             {
                 if ((type == ModContent.TileType<Tiles.TropicalGrass>()/* || type == ModContent.TileType<Tiles.BrownIce>()*/) && WorldGen.genRand.Next(325) == 0)
                 {
@@ -1944,7 +2017,7 @@ namespace ExxoAvalonOrigins
                     WorldGen.RangeFrame(i - 2, j + heightOfTree - 1, i + 2, j + 1);
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendTileSquare(-1, i, (int)((double)j - (double)heightOfTree * 0.5), heightOfTree + 1);
+                        NetMessage.SendTileSquare(-1, i, (int)(j - heightOfTree * 0.5), heightOfTree + 1);
                     }
                     return true;
                 }
@@ -1954,13 +2027,13 @@ namespace ExxoAvalonOrigins
 
         public void DropComet(int tile)
         {
-            var flag = true;
-            var num = 0;
+            bool flag = true;
+            int num = 0;
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
             }
-            for (var i = 0; i < 255; i++)
+            for (int i = 0; i < 255; i++)
             {
                 if (Main.player[i].active)
                 {
@@ -1968,12 +2041,12 @@ namespace ExxoAvalonOrigins
                     break;
                 }
             }
-            var num2 = 0;
+            int num2 = 0;
             float num3 = Main.maxTilesX / 4200;
-            var num4 = (int)(400f * num3);
-            for (var j = 5; j < Main.maxTilesX - 5; j++)
+            int num4 = (int)(400f * num3);
+            for (int j = 5; j < Main.maxTilesX - 5; j++)
             {
-                var num5 = 5;
+                int num5 = 5;
                 while (num5 < Main.worldSurface)
                 {
                     if (Main.tile[j, num5].active() && Main.tile[j, num5].type == tile)
@@ -1989,13 +2062,13 @@ namespace ExxoAvalonOrigins
             }
             while (!flag)
             {
-                var num6 = Main.maxTilesX * 0.08f;
-                var num7 = Main.rand.Next(50, Main.maxTilesX - 50);
+                float num6 = Main.maxTilesX * 0.08f;
+                int num7 = Main.rand.Next(50, Main.maxTilesX - 50);
                 while (num7 > Main.spawnTileX - num6 && num7 < Main.spawnTileX + num6)
                 {
                     num7 = Main.rand.Next(50, Main.maxTilesX - 50);
                 }
-                for (var k = Main.rand.Next(100); k < Main.maxTilesY; k++)
+                for (int k = Main.rand.Next(100); k < Main.maxTilesY; k++)
                 {
                     if (Main.tile[num7, k].active() && Main.tileSolid[Main.tile[num7, k].type])
                     {
@@ -2021,9 +2094,9 @@ namespace ExxoAvalonOrigins
             {
                 return false;
             }
-            var num = 25;
+            int num = 25;
             var rectangle = new Rectangle((i - num) * 16, (j - num) * 16, num * 2 * 16, num * 2 * 16);
-            for (var k = 0; k < 255; k++)
+            for (int k = 0; k < 255; k++)
             {
                 if (Main.player[k].active)
                 {
@@ -2034,7 +2107,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            for (var l = 0; l < 200; l++)
+            for (int l = 0; l < 200; l++)
             {
                 if (Main.npc[l].active)
                 {
@@ -2045,9 +2118,9 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            for (var m = i - num; m < i + num; m++)
+            for (int m = i - num; m < i + num; m++)
             {
-                for (var n = j - num; n < j + num; n++)
+                for (int n = j - num; n < j + num; n++)
                 {
                     if (Main.tile[m, n].active() && Main.tile[m, n].type == 21 || Main.tile[m, n].type == TileID.Containers2)
                     {
@@ -2057,9 +2130,9 @@ namespace ExxoAvalonOrigins
             }
             stopCometDrops = true;
             num = 15;
-            for (var num2 = i - num; num2 < i + num; num2++)
+            for (int num2 = i - num; num2 < i + num; num2++)
             {
-                for (var num3 = j - num; num3 < j + num; num3++)
+                for (int num3 = j - num; num3 < j + num; num3++)
                 {
                     if (num3 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num2) + Math.Abs(j - num3) < num * 1.5 + Main.rand.Next(-5, 5))
                     {
@@ -2072,9 +2145,9 @@ namespace ExxoAvalonOrigins
                 }
             }
             num = 10;
-            for (var num4 = i - num; num4 < i + num; num4++)
+            for (int num4 = i - num; num4 < i + num; num4++)
             {
-                for (var num5 = j - num; num5 < j + num; num5++)
+                for (int num5 = j - num; num5 < j + num; num5++)
                 {
                     if (num5 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num4) + Math.Abs(j - num5) < num + Main.rand.Next(-3, 4))
                     {
@@ -2083,9 +2156,9 @@ namespace ExxoAvalonOrigins
                 }
             }
             num = 16;
-            for (var num6 = i - num; num6 < i + num; num6++)
+            for (int num6 = i - num; num6 < i + num; num6++)
             {
-                for (var num7 = j - num; num7 < j + num; num7++)
+                for (int num7 = j - num; num7 < j + num; num7++)
                 {
                     if (Main.tile[num6, num7].type == 5 || Main.tile[num6, num7].type == 32)
                     {
@@ -2096,9 +2169,9 @@ namespace ExxoAvalonOrigins
                 }
             }
             num = 23;
-            for (var num8 = i - num; num8 < i + num; num8++)
+            for (int num8 = i - num; num8 < i + num; num8++)
             {
-                for (var num9 = j - num; num9 < j + num; num9++)
+                for (int num9 = j - num; num9 < j + num; num9++)
                 {
                     if (Main.tile[num8, num9].active() && Main.rand.Next(10) == 0 && Math.Abs(i - num8) + Math.Abs(j - num9) < num * 1.3)
                     {
@@ -2134,7 +2207,11 @@ namespace ExxoAvalonOrigins
 
         public void shmCallback(object threadContext)
         {
-            if (SuperHardmode) return;
+            if (SuperHardmode)
+            {
+                return;
+            }
+
             GenerateSHMOres();
             SuperHardmode = true;
             if (Main.netMode == NetmodeID.SinglePlayer)
@@ -2211,7 +2288,7 @@ namespace ExxoAvalonOrigins
                 npc2.NPCLoot();
                 npc2.active = false;
                 Main.PlaySound(npc2.DeathSound.SoundId, (int)npc2.position.X, (int)npc2.position.Y);
-                Color color = new Color(135, 78, 0);
+                var color = new Color(135, 78, 0);
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     Main.NewText(text, color);
@@ -2248,7 +2325,7 @@ namespace ExxoAvalonOrigins
 
             // Update config cache values on save world
             ExxoAvalonOriginsConfig config = ModContent.GetInstance<ExxoAvalonOriginsConfig>();
-            var tempDict = config.GetWorldData();
+            Dictionary<string, ExxoAvalonOriginsConfig.WorldDataValues> tempDict = config.GetWorldData();
             ExxoAvalonOriginsConfig.WorldDataValues worldData;
 
             worldData.contagion = contaigon;

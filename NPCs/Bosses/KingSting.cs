@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -417,7 +418,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 			}
 			else
 			{
-				Item.NewItem(npc.position, ModContent.ItemType<Items.ToxinShard>(), Main.rand.Next(50, 81));
+				Item.NewItem(npc.position, ModContent.ItemType<ToxinShard>(), Main.rand.Next(50, 81));
 				if (Main.rand.Next(0, 10) < 3)
 					Item.NewItem(npc.position, ItemID.BottledHoney, Main.rand.Next(5, 9));
 				if (Main.rand.Next(0, 25) < 23)

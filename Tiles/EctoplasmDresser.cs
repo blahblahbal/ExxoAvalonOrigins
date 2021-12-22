@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Dressers };
 			dresser = "Ectoplasm Dresser";
-			dresserDrop = ModContent.ItemType<Items.EctoplasmDresser>();
+			dresserDrop = ModContent.ItemType<Items.Placeable.Storage.EctoplasmDresser>();
             dustType = DustID.Ultrabright;
         }
 
@@ -165,7 +165,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.EctoplasmDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.EctoplasmDresser>();
 					player.showItemIconText = "";
 				}
 			}
@@ -207,7 +207,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.EctoplasmDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.EctoplasmDresser>();
 					player.showItemIconText = "";
 				}
 			}

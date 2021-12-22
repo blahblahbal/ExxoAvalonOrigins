@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ExxoAvalonOrigins.Items.Material;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +27,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (Main.tile[i, j].frameX / 18 == 10)
             {
-                Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.ContaminatedMushroom>());
+                Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<ContaminatedMushroom>());
             }
         }
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)

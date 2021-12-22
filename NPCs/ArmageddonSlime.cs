@@ -1,5 +1,9 @@
 using Microsoft.Xna.Framework;
 using System;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Potions;
+using ExxoAvalonOrigins.Items.Vanity;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -513,7 +517,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = ModContent.ItemType<Items.ElixirofLife>();
+            potionType = ModContent.ItemType<ElixirofLife>();
         }
 
         public override void NPCLoot()
@@ -525,15 +529,15 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
             }
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeTrophy>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArmageddonSlimeTrophy>(), 1, false, 0, false);
             }
             if (Main.rand.Next(7) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ArmageddonSlimeMask>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArmageddonSlimeMask>(), 1, false, 0, false);
             }
         }
 

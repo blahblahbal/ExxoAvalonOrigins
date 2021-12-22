@@ -1,3 +1,4 @@
+using ExxoAvalonOrigins.Items.Placeable.Crafting;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -29,7 +30,7 @@ namespace ExxoAvalonOrigins.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.OrangeDungeonWorkBench>());
+			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<OrangeDungeonWorkBench>());
 		}
 	}
 }

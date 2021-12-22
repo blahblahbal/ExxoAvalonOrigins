@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Dressers };
 			dresser = "Dark Slime Dresser";
-			dresserDrop = ModContent.ItemType<Items.DarkSlimeDresser>();
+			dresserDrop = ModContent.ItemType<Items.Placeable.Storage.DarkSlimeDresser>();
             dustType = DustID.UnholyWater;
         }
 
@@ -165,7 +165,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.DarkSlimeDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.DarkSlimeDresser>();
 					player.showItemIconText = "";
 				}
 			}
@@ -207,7 +207,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.DarkSlimeDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.DarkSlimeDresser>();
 					player.showItemIconText = "";
 				}
 			}

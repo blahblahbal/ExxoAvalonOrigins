@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Seed;
+using ExxoAvalonOrigins.Items.Potions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -55,22 +58,22 @@ namespace ExxoAvalonOrigins.UI
             ModContent.ItemType<Items.AdvancedPotions.AdvSonarPotion>(),
             ModContent.ItemType<Items.AdvancedPotions.AdvCratePotion>(),
             ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>(),
-            ModContent.ItemType<Items.CrimsonPotion>(),
-            ModContent.ItemType<Items.ShockwavePotion>(),
-            ModContent.ItemType<Items.LuckPotion>(),
-            ModContent.ItemType<Items.BloodCastPotion>(),
-            ModContent.ItemType<Items.StarbrightPotion>(),
-            ModContent.ItemType<Items.VisionPotion>(),
-            ModContent.ItemType<Items.StrengthPotion>(),
-            ModContent.ItemType<Items.GPSPotion>(),
-            ModContent.ItemType<Items.TimeShiftPotion>(),
-            ModContent.ItemType<Items.ShadowPotion>(),
-            ModContent.ItemType<Items.RoguePotion>(),
-            ModContent.ItemType<Items.GauntletPotion>(),
-            ModContent.ItemType<Items.WisdomPotion>(),
-            ModContent.ItemType<Items.TitanskinPotion>(),
-            ModContent.ItemType<Items.InvincibilityPotion>(),
-            ModContent.ItemType<Items.ForceFieldPotion>(),
+            ModContent.ItemType<CrimsonPotion>(),
+            ModContent.ItemType<ShockwavePotion>(),
+            ModContent.ItemType<LuckPotion>(),
+            ModContent.ItemType<BloodCastPotion>(),
+            ModContent.ItemType<StarbrightPotion>(),
+            ModContent.ItemType<VisionPotion>(),
+            ModContent.ItemType<StrengthPotion>(),
+            ModContent.ItemType<GPSPotion>(),
+            ModContent.ItemType<TimeShiftPotion>(),
+            ModContent.ItemType<ShadowPotion>(),
+            ModContent.ItemType<RoguePotion>(),
+            ModContent.ItemType<GauntletPotion>(),
+            ModContent.ItemType<WisdomPotion>(),
+            ModContent.ItemType<TitanskinPotion>(),
+            ModContent.ItemType<InvincibilityPotion>(),
+            ModContent.ItemType<ForceFieldPotion>(),
             ModContent.ItemType<Items.Potions.FuryPotion>()
             // Magnet Potion
         };
@@ -84,9 +87,9 @@ namespace ExxoAvalonOrigins.UI
                 ItemID.Waterleaf,
                 ItemID.Fireblossom,
                 ItemID.Shiverthorn,
-                ModContent.ItemType<Items.Bloodberry>(),
-                ModContent.ItemType<Items.Sweetstem>(),
-                ModContent.ItemType<Items.Barfbush>()
+                ModContent.ItemType<Bloodberry>(),
+                ModContent.ItemType<Sweetstem>(),
+                ModContent.ItemType<Barfbush>()
         };
 
         private Item herbItem = new Item();
@@ -210,7 +213,7 @@ namespace ExxoAvalonOrigins.UI
                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack;
                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                 }
-                if (herbItem.type == ModContent.ItemType<Items.BlahPotion>())
+                if (herbItem.type == ModContent.ItemType<BlahPotion>())
                 {
                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += 2500;
                 }
@@ -366,129 +369,129 @@ namespace ExxoAvalonOrigins.UI
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.Bloodberry>())
+                                if (herbItem.type == ModContent.ItemType<Bloodberry>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += herbItem.stack;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.Sweetstem>())
+                                if (herbItem.type == ModContent.ItemType<Sweetstem>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += herbItem.stack;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.Barfbush>())
+                                if (herbItem.type == ModContent.ItemType<Barfbush>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += herbItem.stack;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeDaybloom>())
+                                if (herbItem.type == ModContent.ItemType<LargeDaybloom>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeDaybloomSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeDaybloomSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[0] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeMoonglow>())
+                                if (herbItem.type == ModContent.ItemType<LargeMoonglow>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeMoonglowSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeMoonglowSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[1] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeBlinkroot>())
+                                if (herbItem.type == ModContent.ItemType<LargeBlinkroot>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeBlinkrootSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeBlinkrootSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[2] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeDeathweed>())
+                                if (herbItem.type == ModContent.ItemType<LargeDeathweed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeDeathweedSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeDeathweedSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[3] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeWaterleaf>())
+                                if (herbItem.type == ModContent.ItemType<LargeWaterleaf>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeWaterleafSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeWaterleafSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[4] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeFireblossom>())
+                                if (herbItem.type == ModContent.ItemType<LargeFireblossom>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeFireblossomSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeFireblossomSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[5] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeShiverthorn>())
+                                if (herbItem.type == ModContent.ItemType<LargeShiverthorn>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeShiverthornSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeShiverthornSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[6] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeBloodberry>())
+                                if (herbItem.type == ModContent.ItemType<LargeBloodberry>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeBloodberrySeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeBloodberrySeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[7] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeSweetstem>())
+                                if (herbItem.type == ModContent.ItemType<LargeSweetstem>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeSweetstemSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeSweetstemSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[8] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeBarfbush>())
+                                if (herbItem.type == ModContent.ItemType<LargeBarfbush>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += herbItem.stack * 20;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 20;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.LargeBarfbushSeed>())
+                                if (herbItem.type == ModContent.ItemType<LargeBarfbushSeed>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbCounts[9] += herbItem.stack * 15;
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal += herbItem.stack * 15;
                                 }
                                 if ((herbItem.type >= ItemID.ObsidianSkinPotion && herbItem.type <= ItemID.GravitationPotion) || (herbItem.type >= ItemID.MiningPotion && herbItem.type <= ItemID.TrapsightPotion) ||
                                     (herbItem.type >= ItemID.AmmoReservationPotion && herbItem.type <= ItemID.WrathPotion) || (herbItem.type >= ItemID.FishingPotion && herbItem.type <= ItemID.CratePotion) ||
-                                    herbItem.type == ItemID.WarmthPotion || herbItem.type == ModContent.ItemType<Items.CrimsonPotion>() || herbItem.type == ModContent.ItemType<Items.ShockwavePotion>() ||
-                                    herbItem.type == ModContent.ItemType<Items.LuckPotion>() || herbItem.type == ModContent.ItemType<Items.BloodCastPotion>() || herbItem.type == ModContent.ItemType<Items.StarbrightPotion>() ||
-                                    herbItem.type == ModContent.ItemType<Items.VisionPotion>() || herbItem.type == ModContent.ItemType<Items.StrengthPotion>() || herbItem.type == ModContent.ItemType<Items.GPSPotion>() ||
-                                    herbItem.type == ModContent.ItemType<Items.TimeShiftPotion>() || herbItem.type == ModContent.ItemType<Items.ShadowPotion>() || herbItem.type == ModContent.ItemType<Items.RoguePotion>() ||
-                                    herbItem.type == ModContent.ItemType<Items.WisdomPotion>() || herbItem.type == ModContent.ItemType<Items.GauntletPotion>() || herbItem.type == ModContent.ItemType<Items.TitanskinPotion>() ||
-                                    herbItem.type == ModContent.ItemType<Items.InvincibilityPotion>() || herbItem.type == ModContent.ItemType<Items.ForceFieldPotion>()) // || herbItem.type == ModContent.ItemType<Items.MagnetPotion>())
+                                    herbItem.type == ItemID.WarmthPotion || herbItem.type == ModContent.ItemType<CrimsonPotion>() || herbItem.type == ModContent.ItemType<ShockwavePotion>() ||
+                                    herbItem.type == ModContent.ItemType<LuckPotion>() || herbItem.type == ModContent.ItemType<BloodCastPotion>() || herbItem.type == ModContent.ItemType<StarbrightPotion>() ||
+                                    herbItem.type == ModContent.ItemType<VisionPotion>() || herbItem.type == ModContent.ItemType<StrengthPotion>() || herbItem.type == ModContent.ItemType<GPSPotion>() ||
+                                    herbItem.type == ModContent.ItemType<TimeShiftPotion>() || herbItem.type == ModContent.ItemType<ShadowPotion>() || herbItem.type == ModContent.ItemType<RoguePotion>() ||
+                                    herbItem.type == ModContent.ItemType<WisdomPotion>() || herbItem.type == ModContent.ItemType<GauntletPotion>() || herbItem.type == ModContent.ItemType<TitanskinPotion>() ||
+                                    herbItem.type == ModContent.ItemType<InvincibilityPotion>() || herbItem.type == ModContent.ItemType<ForceFieldPotion>()) // || herbItem.type == ModContent.ItemType<Items.MagnetPotion>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += herbItem.stack;
                                 }
@@ -496,7 +499,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += herbItem.stack * 10;
                                 }
-                                if (herbItem.type == ModContent.ItemType<Items.BlahPotion>())
+                                if (herbItem.type == ModContent.ItemType<BlahPotion>())
                                 {
                                     Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal += 2500;
                                 }
@@ -626,7 +629,7 @@ namespace ExxoAvalonOrigins.UI
                         {
                             if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos3 + 10 - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos3 + 10 + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos3 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos3 + Main.inventoryBack4Texture.Height / 2)
                             {
-                                int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.BlahPotion>(), 1);
+                                int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<BlahPotion>(), 1);
                                 Main.item[x].owner = Main.myPlayer;
                                 if (Main.netMode == NetmodeID.MultiplayerClient)
                                 {
@@ -1736,7 +1739,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.CrimsonPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<CrimsonPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1758,7 +1761,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.CrimsonPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.CrimsonPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.CrimsonPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 37:
@@ -1766,7 +1769,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.ShockwavePotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<ShockwavePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1788,7 +1791,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.ShockwavePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.ShockwavePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.ShockwavePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 38:
@@ -1796,7 +1799,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LuckPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LuckPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1818,7 +1821,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.LuckPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.LuckPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.LuckPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<LuckPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<LuckPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<LuckPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 39:
@@ -1826,7 +1829,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.BloodCastPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<BloodCastPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1848,7 +1851,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.BloodCastPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.BloodCastPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.BloodCastPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 40:
@@ -1856,7 +1859,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.StarbrightPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<StarbrightPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1878,7 +1881,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.StarbrightPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 41:
@@ -1886,7 +1889,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.VisionPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<VisionPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1908,7 +1911,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.VisionPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.VisionPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.VisionPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<VisionPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<VisionPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<VisionPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 42:
@@ -1916,7 +1919,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.StrengthPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<StrengthPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1938,7 +1941,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.StrengthPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.StrengthPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.StrengthPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<StrengthPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<StrengthPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<StrengthPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 43:
@@ -1946,7 +1949,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.GPSPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<GPSPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1968,7 +1971,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.GPSPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.GPSPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.GPSPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<GPSPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<GPSPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<GPSPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 44:
@@ -1976,7 +1979,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.TimeShiftPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<TimeShiftPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -1998,7 +2001,7 @@ namespace ExxoAvalonOrigins.UI
                                     //        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                     //    }
                                     //}
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.TimeShiftPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.TimeShiftPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.TimeShiftPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 45:
@@ -2006,7 +2009,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.ShadowPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<ShadowPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -2028,7 +2031,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.ShadowPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.ShadowPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.ShadowPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ShadowPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<ShadowPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<ShadowPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 46:
@@ -2036,7 +2039,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.RoguePotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<RoguePotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -2058,7 +2061,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.RoguePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.RoguePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.RoguePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<RoguePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<RoguePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<RoguePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 47:
@@ -2066,7 +2069,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.GauntletPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<GauntletPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -2088,7 +2091,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.GauntletPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.GauntletPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.GauntletPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<GauntletPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<GauntletPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<GauntletPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 48:
@@ -2096,7 +2099,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.WisdomPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<WisdomPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -2118,7 +2121,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.WisdomPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.WisdomPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.WisdomPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<WisdomPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<WisdomPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<WisdomPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 49:
@@ -2126,7 +2129,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.TitanskinPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<TitanskinPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -2148,7 +2151,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.TitanskinPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.TitanskinPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.TitanskinPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 50:
@@ -2180,7 +2183,7 @@ namespace ExxoAvalonOrigins.UI
                                             //    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.InvincibilityPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.InvincibilityPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.InvincibilityPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 51:
@@ -2188,7 +2191,7 @@ namespace ExxoAvalonOrigins.UI
                                     {
                                         if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                                         {
-                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.ForceFieldPotion>(), 1);
+                                            int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<ForceFieldPotion>(), 1);
                                             Main.item[x].owner = Main.myPlayer;
                                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
@@ -2210,7 +2213,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.ForceFieldPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.ForceFieldPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.ForceFieldPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 52:
@@ -2284,7 +2287,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeDaybloomSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeDaybloomSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2316,7 +2319,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeMoonglowSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeMoonglowSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2348,7 +2351,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeBlinkrootSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeBlinkrootSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2380,7 +2383,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeDeathweedSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeDeathweedSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2412,7 +2415,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeWaterleafSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeWaterleafSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2444,7 +2447,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeFireblossomSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeFireblossomSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2476,7 +2479,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeShiverthornSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeShiverthornSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2494,7 +2497,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.Bloodberry>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Bloodberry>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2508,7 +2511,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeBloodberrySeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeBloodberrySeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2518,7 +2521,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.Bloodberry>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.Bloodberry>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.Bloodberry>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Bloodberry>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Bloodberry>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Bloodberry>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 8:
@@ -2526,7 +2529,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.Sweetstem>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Sweetstem>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2540,7 +2543,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeSweetstemSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeSweetstemSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2550,7 +2553,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.Sweetstem>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.Sweetstem>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.Sweetstem>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Sweetstem>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Sweetstem>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Sweetstem>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 9:
@@ -2558,7 +2561,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseLeftRelease && Main.mouseLeft && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.Barfbush>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Barfbush>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2572,7 +2575,7 @@ namespace ExxoAvalonOrigins.UI
                                 {
                                     if (Main.mouseRightRelease && Main.mouseRight && Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                                     {
-                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<Items.LargeBarfbushSeed>(), 1);
+                                        int x = Item.NewItem((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, 16, 16, ModContent.ItemType<LargeBarfbushSeed>(), 1);
                                         Main.item[x].owner = Main.myPlayer;
                                         if (Main.netMode == NetmodeID.MultiplayerClient)
                                         {
@@ -2582,7 +2585,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.Barfbush>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.Barfbush>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.Barfbush>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Barfbush>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Barfbush>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Barfbush>()].Height / 2)), 1f, SpriteEffects.None, 0f);
                                 break;
                         }
                         if (xoff % 5 == 4)

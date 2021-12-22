@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Tiles
             var player = Main.player[Main.myPlayer];
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.OrangeDungeonCandle>();
+            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.OrangeDungeonCandle>();
         }
 
         public override bool NewRightClick(int i, int j)
@@ -55,7 +55,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.OrangeDungeonCandle>());
+            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.Light.OrangeDungeonCandle>());
         }
 
         public override void HitWire(int i, int j)

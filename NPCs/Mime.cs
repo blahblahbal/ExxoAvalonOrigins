@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -45,15 +47,15 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			if (Main.rand.Next(3) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
 			}
 			if (Main.rand.Next(100) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ManaCompromise>(), 1, false, -2, false);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ManaCompromise>(), 1, false, -2, false);
 			}
 			if (Main.rand.Next(8) == 0)
 			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.ConfusionTalisman>(), 1, false, -2, false);
+				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ConfusionTalisman>(), 1, false, -2, false);
 			}
 		}
 

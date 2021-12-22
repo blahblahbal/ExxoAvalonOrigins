@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.ResistantWoodTable>());
+			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Furniture.ResistantWoodTable>());
 		}
 	}
 }

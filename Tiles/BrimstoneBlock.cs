@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][ModContent.TileType<Impgrass>()] = true;
             Main.tileMerge[Type][TileID.Ash] = true;
             Main.tileMerge[TileID.Ash][Type] = true;
-            drop = ModContent.ItemType<Items.BrimstoneBlock>();
+            drop = ModContent.ItemType<Items.Placeable.Tile.BrimstoneBlock>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.HeartCrystal;

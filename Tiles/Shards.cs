@@ -1,3 +1,5 @@
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -34,31 +36,31 @@ namespace ExxoAvalonOrigins.Tiles
             switch (style)
             {
                 case 0:
-                    toDrop = ModContent.ItemType<Items.BlastShard>();
+                    toDrop = ModContent.ItemType<BlastShard>();
                     break;
                 case 1:
-                    toDrop = ModContent.ItemType<Items.FrigidShard>();
+                    toDrop = ModContent.ItemType<FrigidShard>();
                     break;
                 case 2:
-                    toDrop = ModContent.ItemType<Items.VenomShard>();
+                    toDrop = ModContent.ItemType<VenomShard>();
                     break;
                 case 3:
-                    toDrop = ModContent.ItemType<Items.CoreShard>();
+                    toDrop = ModContent.ItemType<CoreShard>();
                     break;
                 case 4:
-                    toDrop = ModContent.ItemType<Items.TornadoShard>();
+                    toDrop = ModContent.ItemType<TornadoShard>();
                     break;
                 case 5:
-                    toDrop = ModContent.ItemType<Items.DemonicShard>();
+                    toDrop = ModContent.ItemType<DemonicShard>();
                     break;
                 case 6:
-                    toDrop = ModContent.ItemType<Items.TorrentShard>();
+                    toDrop = ModContent.ItemType<TorrentShard>();
                     break;
                 case 7:
-                    toDrop = ModContent.ItemType<Items.WickedShard>();
+                    toDrop = ModContent.ItemType<WickedShard>();
                     break;
                 case 8:
-                    toDrop = ModContent.ItemType<Items.SacredShard>();
+                    toDrop = ModContent.ItemType<SacredShard>();
                     break;
             }
             Item.NewItem(i * 16, j * 16, 16, 16, toDrop);

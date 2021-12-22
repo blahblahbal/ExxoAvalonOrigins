@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Painting;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -114,13 +120,13 @@ namespace ExxoAvalonOrigins.NPCs
 
             itemIds.Add(ItemID.FrostCore);
             itemIds.Add(ItemID.FrostMinnow);
-            itemIds.Add(ModContent.ItemType<Items.SoulofIce>());
-            if (Main.LocalPlayer.ZoneSnow) itemIds.Add(ModContent.ItemType<Items.Freezethrower>());
-            itemIds.Add(ModContent.ItemType<Items.FrostySpectacle>());
-            itemIds.Add(ModContent.ItemType<Items.BagofFrost>());
+            itemIds.Add(ModContent.ItemType<SoulofIce>());
+            if (Main.LocalPlayer.ZoneSnow) itemIds.Add(ModContent.ItemType<Freezethrower>());
+            itemIds.Add(ModContent.ItemType<FrostySpectacle>());
+            itemIds.Add(ModContent.ItemType<BagofFrost>());
             itemIds.Add(ItemID.IceTorch);
-            if (ExxoAvalonOriginsGlobalNPC.oblivionDead) itemIds.Add(ModContent.ItemType<Items.HydrolythTrace>());
-            if (Main.LocalPlayer.ZoneSnow) itemIds.Add(ModContent.ItemType<Items.FreezeBolt>());
+            if (ExxoAvalonOriginsGlobalNPC.oblivionDead) itemIds.Add(ModContent.ItemType<HydrolythTrace>());
+            if (Main.LocalPlayer.ZoneSnow) itemIds.Add(ModContent.ItemType<FreezeBolt>());
             // convert to a list of items
             var items = new List<Item>();
             foreach (int itemId in itemIds)

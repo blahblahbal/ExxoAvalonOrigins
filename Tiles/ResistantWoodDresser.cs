@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Dressers };
 			dresser = "Resistant Wood Dresser";
-			dresserDrop = ModContent.ItemType<Items.ResistantWoodDresser>();
+			dresserDrop = ModContent.ItemType<Items.Placeable.Storage.ResistantWoodDresser>();
             dustType = DustID.Wraith;
         }
 
@@ -165,7 +165,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.ResistantWoodDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ResistantWoodDresser>();
 					player.showItemIconText = "";
 				}
 			}
@@ -207,7 +207,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.ResistantWoodDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ResistantWoodDresser>();
 					player.showItemIconText = "";
 				}
 			}

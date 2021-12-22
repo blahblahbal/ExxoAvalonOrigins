@@ -1,4 +1,12 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Bar;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Potions;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -250,11 +258,11 @@ namespace ExxoAvalonOrigins.World.Structures
                                         int item = WorldGen.genRand.Next(9);
                                         if (item == 0)
                                         {
-                                            item = ModContent.ItemType<Items.Boomlash>();
+                                            item = ModContent.ItemType<Boomlash>();
                                         }
                                         if (item == 1)
                                         {
-                                            item = ModContent.ItemType<Items.EctoplasmicBeacon>();
+                                            item = ModContent.ItemType<EctoplasmicBeacon>();
                                         }
                                         if (item == 2 || item == 3 || item == 4)
                                         {
@@ -262,19 +270,19 @@ namespace ExxoAvalonOrigins.World.Structures
                                         }
                                         if (item == 5)
                                         {
-                                            item = ModContent.ItemType<Items.CaesiumBar>();
+                                            item = ModContent.ItemType<CaesiumBar>();
                                         }
                                         if (item == 6)
                                         {
-                                            item = ModContent.ItemType<Items.SolariumStar>();
+                                            item = ModContent.ItemType<SolariumStar>();
                                         }
                                         if (item == 7)
                                         {
-                                            item = ModContent.ItemType<Items.EarthStone>();
+                                            item = ModContent.ItemType<EarthStone>();
                                         }
                                         if (item == 8)
                                         {
-                                            item = ModContent.ItemType<Items.Hellrazer>();
+                                            item = ModContent.ItemType<Hellrazer>();
                                         }
                                         AddHellcastleChest(k, l, contain: item);
                                         tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
@@ -564,9 +572,9 @@ namespace ExxoAvalonOrigins.World.Structures
                         {
                             Main.chest[num2].item[0].SetDefaults(contain, false);
                             Main.chest[num2].item[0].Prefix(-1);
-                            if (contain == ModContent.ItemType<Items.CaesiumBar>() || contain == ModContent.ItemType<Items.SolariumStar>()) Main.chest[num2].item[0].stack = WorldGen.genRand.Next(20, 31);
-                            if (contain == ModContent.ItemType<Items.EarthStone>()) Main.chest[num2].item[0].stack = WorldGen.genRand.Next(2, 6);
-                            Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<Items.EctoplasmicBeacon>(), false);
+                            if (contain == ModContent.ItemType<CaesiumBar>() || contain == ModContent.ItemType<SolariumStar>()) Main.chest[num2].item[0].stack = WorldGen.genRand.Next(20, 31);
+                            if (contain == ModContent.ItemType<EarthStone>()) Main.chest[num2].item[0].stack = WorldGen.genRand.Next(2, 6);
+                            Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<EctoplasmicBeacon>(), false);
                             Main.chest[num2].item[1].stack = 1;
                             int rand = WorldGen.genRand.Next(3);
                             if (rand == 0)
@@ -576,43 +584,43 @@ namespace ExxoAvalonOrigins.World.Structures
                             }
                             if (rand == 1)
                             {
-                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<Items.ImperviousBrick>(), false);
+                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<ImperviousBrick>(), false);
                                 Main.chest[num2].item[2].stack = WorldGen.genRand.Next(200, 451);
                             }
                             if (rand == 2)
                             {
-                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<Items.Vortex>(), false);
+                                Main.chest[num2].item[2].SetDefaults(ModContent.ItemType<Vortex>(), false);
                                 Main.chest[num2].item[2].Prefix(-2);
                             }
                             int n2 = WorldGen.genRand.Next(5);
                             if (n2 == 0)
                             {
-                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.BloodCastPotion>(), false);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<BloodCastPotion>(), false);
                                 Main.chest[num2].item[3].stack = WorldGen.genRand.Next(2, 4);
                             }
                             if (n2 == 1)
                             {
-                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.LuckPotion>(), false);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<LuckPotion>(), false);
                                 Main.chest[num2].item[3].stack = WorldGen.genRand.Next(2, 4);
                             }
                             if (n2 == 2)
                             {
-                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.WisdomPotion>(), false);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<WisdomPotion>(), false);
                                 Main.chest[num2].item[3].stack = WorldGen.genRand.Next(2, 4);
                             }
                             if (n2 == 3)
                             {
-                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.RoguePotion>(), false);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<RoguePotion>(), false);
                                 Main.chest[num2].item[3].stack = WorldGen.genRand.Next(2, 4);
                             }
                             if (n2 == 4)
                             {
-                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.GauntletPotion>(), false);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<GauntletPotion>(), false);
                                 Main.chest[num2].item[3].stack = WorldGen.genRand.Next(2, 4);
                             }
                             if (WorldGen.genRand.Next(10) == 0)
                             {
-                                Main.chest[num2].item[4].SetDefaults(ModContent.ItemType<Items.VampireTeeth>(), false);
+                                Main.chest[num2].item[4].SetDefaults(ModContent.ItemType<VampireTeeth>(), false);
                                 Main.chest[num2].item[4].Prefix(-2);
                                 Main.chest[num2].item[5].SetDefaults(ItemID.GoldCoin, false);
                                 Main.chest[num2].item[5].stack = WorldGen.genRand.Next(10, 33);

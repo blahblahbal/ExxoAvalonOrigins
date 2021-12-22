@@ -1,23 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace ExxoAvalonOrigins
 {
-    class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
+    internal class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
     {
-        public override bool InstancePerEntity
-        {
-            get { return true; }
-        }
+        public override bool InstancePerEntity => true;
         public bool invince;
         public int torch = 0;
         public int wallWand = -1;

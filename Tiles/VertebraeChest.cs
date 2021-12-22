@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Vertebrae Chest";
-			chestDrop = ModContent.ItemType<Items.VertebraeChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.VertebraeChest>();
             dustType = DustID.HeartCrystal;
         }
 
@@ -186,7 +186,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Vertebrae Chest";
 				if (player.showItemIconText == "Vertebrae Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.VertebraeChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.VertebraeChest>();
 					player.showItemIconText = "";
 				}
 			}

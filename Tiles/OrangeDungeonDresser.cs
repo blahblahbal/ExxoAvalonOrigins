@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Dressers };
 			dresser = "Orange Dungeon Dresser";
-			dresserDrop = ModContent.ItemType<Items.OrangeDungeonDresser>();
+			dresserDrop = ModContent.ItemType<Items.Placeable.Storage.OrangeDungeonDresser>();
             dustType = DustID.Coralstone;
         }
 
@@ -165,7 +165,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.OrangeDungeonDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.OrangeDungeonDresser>();
 					player.showItemIconText = "";
 				}
 			}
@@ -207,7 +207,7 @@ namespace ExxoAvalonOrigins.Tiles
 				}
 				if (player.showItemIconText == chest)
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.OrangeDungeonDresser>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.OrangeDungeonDresser>();
 					player.showItemIconText = "";
 				}
 			}

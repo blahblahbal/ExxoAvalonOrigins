@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileValue[Type] = 275;
             Main.tileSpelunker[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = ModContent.ItemType<Items.BismuthOre>();
+            drop = ModContent.ItemType<Items.Placeable.Tile.BismuthOre>();
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.BismuthDust>();

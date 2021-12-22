@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -516,10 +521,10 @@ namespace ExxoAvalonOrigins.NPCs
                 //{
                 //    if (Main.player[i].active) numplayers++;
                 //}
-                npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.DarkStarHeart>());
+                npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DarkStarHeart>());
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().InitiateSuperHardmode();
             }
-            if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<Items.WallofSteelTrophy>(), 1, false, 0, false);
+            if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<WallofSteelTrophy>(), 1, false, 0, false);
             if (Main.expertMode)
             {
                 npc.DropBossBags();
@@ -529,18 +534,18 @@ namespace ExxoAvalonOrigins.NPCs
                 int drop = Main.rand.Next(5);
                 if (drop == 0)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.FleshBoiler>(), 1, false, -1, false);
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<FleshBoiler>(), 1, false, -1, false);
                 }
                 if (drop == 1)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.MagicCleaver>(), 1, false, -1, false);
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<MagicCleaver>(), 1, false, -1, false);
                 }
                 if (drop == 2)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.BubbleBoost>(), 1, false, -1, false);
                 }
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SoulofBlight>(), Main.rand.Next(40, 56), false, 0, false);
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.HellsteelPlate>(), Main.rand.Next(20, 26), false, 0, false);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56), false, 0, false);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 26), false, 0, false);
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {

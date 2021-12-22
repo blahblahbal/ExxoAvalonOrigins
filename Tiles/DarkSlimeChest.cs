@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Dark Slime Chest";
-			chestDrop = ModContent.ItemType<Items.DarkSlimeChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.DarkSlimeChest>();
             dustType = DustID.UnholyWater;
         }
 
@@ -186,7 +186,7 @@ namespace ExxoAvalonOrigins.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Dark Slime Chest";
 				if (player.showItemIconText == "Dark Slime Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.DarkSlimeChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.DarkSlimeChest>();
 					player.showItemIconText = "";
 				}
 			}

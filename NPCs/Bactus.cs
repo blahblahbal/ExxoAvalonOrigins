@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
+using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -37,7 +38,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (Main.rand.Next(2) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.YuckyBit>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<YuckyBit>(), 1, false, 0, false);
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
