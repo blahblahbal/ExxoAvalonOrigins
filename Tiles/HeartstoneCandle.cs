@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,15 +21,15 @@ namespace ExxoAvalonOrigins.Tiles
             dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Heartstone Candelabra");
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Heartstone Candelabra");
             AddMapEntry(new Color(253, 221, 3), name);
             dustType = DustID.Confetti_Pink;
         }
 
         public override void MouseOver(int i, int j)
         {
-            var player = Main.player[Main.myPlayer];
+            Player player = Main.player[Main.myPlayer];
             player.noThrow = 2;
             player.showItemIcon = true;
             player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.HeartstoneCandle>();
@@ -38,6 +38,10 @@ namespace ExxoAvalonOrigins.Tiles
         public override bool NewRightClick(int i, int j)
         {
             WorldGen.KillTile(i, j);
+            if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+            }
             return true;
         }
 

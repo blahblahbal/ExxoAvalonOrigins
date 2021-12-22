@@ -10,13 +10,22 @@ namespace ExxoAvalonOrigins.Hooks
 {
     public static class ExtraHealth
     {
-        private static readonly Texture2D heart3Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Heart3");
-        private static readonly Texture2D mana2Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana2");
-        private static readonly Texture2D mana3Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana3");
-        private static readonly Texture2D mana4Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana4");
-        private static readonly Texture2D mana5Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana5");
-        private static readonly Texture2D mana6Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana6");
+        private static Texture2D heart3Texture;
+        private static Texture2D mana2Texture;
+        private static Texture2D mana3Texture;
+        private static Texture2D mana4Texture;
+        private static Texture2D mana5Texture;
+        private static Texture2D mana6Texture;
 
+        public static void Load()
+        {
+            heart3Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Heart3");
+            mana2Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana2");
+            mana3Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana3");
+            mana4Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana4");
+            mana5Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana5");
+            mana6Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana6");
+        }
         public static void OnDrawInterface_Resources_Life(On.Terraria.Main.orig_DrawInterface_Resources_Life orig)
         {
             if (Main.player[Main.myPlayer].statLifeMax <= 500)

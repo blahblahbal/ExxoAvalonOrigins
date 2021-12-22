@@ -1,25 +1,28 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
     public class PhantasmLaser : ModProjectile
     {
         private Color laserColor;
-        private Color[] colorArray = new Color[3];
+        private readonly Color[] colorArray = new Color[3];
         private int colorShift;
-        private static Texture2D texture2D18 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamVenoshock");
-        private static Texture2D texture2D19 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamStart");
-        private static Texture2D texture2D20 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamEnd");
+        private static Texture2D texture2D18;
+        private static Texture2D texture2D19;
+        private static Texture2D texture2D20;
+
+        public static void Load()
+        {
+            texture2D18 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamVenoshock");
+            texture2D19 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamStart");
+            texture2D20 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamEnd");
+        }
 
         public override void SetStaticDefaults()
         {
@@ -52,7 +55,9 @@ namespace ExxoAvalonOrigins.Projectiles
 
             colorShift++;
             if (colorShift > 60)
+            {
                 colorShift = 0;
+            }
 
             if (colorShift <= 15)
             {
@@ -68,22 +73,22 @@ namespace ExxoAvalonOrigins.Projectiles
             }
 
             spriteBatch.Draw(texture2D18, p.Center - Main.screenPosition, null, laserColor, projectile.rotation, texture2D18.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            num204 -= (float)(texture2D18.Height / 2 + texture2D20.Height) * projectile.scale;
+            num204 -= (texture2D18.Height / 2 + texture2D20.Height) * projectile.scale;
             Vector2 center2 = p.Center;
-            center2 += projectile.velocity * projectile.scale * (float)texture2D18.Height / 2f;
+            center2 += projectile.velocity * projectile.scale * texture2D18.Height / 2f;
             if (num204 > 0f)
             {
                 float num205 = 0f;
-                Rectangle rectangle7 = new Rectangle(0, 16 * (projectile.timeLeft / 3 % 5), texture2D19.Width, 16);
+                var rectangle7 = new Rectangle(0, 16 * (projectile.timeLeft / 3 % 5), texture2D19.Width, 16);
                 while (num205 + 1f < num204)
                 {
-                    if (num204 - num205 < (float)rectangle7.Height)
+                    if (num204 - num205 < rectangle7.Height)
                     {
                         rectangle7.Height = (int)(num204 - num205);
                     }
-                    spriteBatch.Draw(texture2D19, center2 - Main.screenPosition, rectangle7, laserColor, projectile.rotation, new Vector2((float)(rectangle7.Width / 2), 0f), projectile.scale, SpriteEffects.None, 0f);
-                    num205 += (float)rectangle7.Height * projectile.scale;
-                    center2 += projectile.velocity * (float)rectangle7.Height * projectile.scale;
+                    spriteBatch.Draw(texture2D19, center2 - Main.screenPosition, rectangle7, laserColor, projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), projectile.scale, SpriteEffects.None, 0f);
+                    num205 += rectangle7.Height * projectile.scale;
+                    center2 += projectile.velocity * rectangle7.Height * projectile.scale;
                     rectangle7.Y += 16;
                     if (rectangle7.Y + rectangle7.Height > texture2D19.Height)
                     {
@@ -116,7 +121,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
-            Rectangle playerRect = new Rectangle((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, Main.player[Main.myPlayer].width, Main.player[Main.myPlayer].height);
+            var playerRect = new Rectangle((int)Main.player[Main.myPlayer].position.X, (int)Main.player[Main.myPlayer].position.Y, Main.player[Main.myPlayer].width, Main.player[Main.myPlayer].height);
             if (projectile.Colliding(hitbox, playerRect))
             {
                 Main.player[Main.myPlayer].Hurt(PlayerDeathReason.ByProjectile(Main.myPlayer, projectile.whoAmI), projectile.damage, projectile.direction);
@@ -126,7 +131,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void AI()
         {
             Vector2 samplingPoint = projectile.Center;
-            Vector2 value35 = new Vector2(40f, 40f); // 27, 59
+            var value35 = new Vector2(40f, 40f); // 27, 59
             Vector2 value36 = Utils.Vector2FromElipse(Main.npc[(int)projectile.ai[1]].localAI[0].ToRotationVector2(), value35 * Main.npc[(int)projectile.ai[1]].localAI[1]);
             projectile.position = Main.npc[(int)projectile.ai[1]].Center + value36 - new Vector2(projectile.width, projectile.height) / 2f;
             projectile.localAI[0]++;
@@ -156,7 +161,7 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 float num834 = projectile.velocity.ToRotation() + ((Main.rand.Next(2) == 1) ? (-1f) : 1f) * 1.57079637f;
                 float num835 = (float)Main.rand.NextDouble() * 2f + 2f;
-                Vector2 vector59 = new Vector2((float)Math.Cos((double)num834) * num835, (float)Math.Sin((double)num834) * num835);
+                var vector59 = new Vector2((float)Math.Cos(num834) * num835, (float)Math.Sin(num834) * num835);
                 int num836 = Dust.NewDust(vector58, 0, 0, DustID.DungeonSpirit, vector59.X, vector59.Y, Scale: 0.7f);
                 Main.dust[num836].noGravity = true;
                 Main.dust[num836].scale = 1.7f;
@@ -164,7 +169,7 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             if (Main.rand.Next(5) == 0)
             {
-                Vector2 value42 = projectile.velocity.RotatedBy(1.5707963705062866) * ((float)Main.rand.NextDouble() - 0.5f) * (float)projectile.width;
+                Vector2 value42 = projectile.velocity.RotatedBy(1.5707963705062866) * ((float)Main.rand.NextDouble() - 0.5f) * projectile.width;
                 int num837 = Dust.NewDust(vector58 + value42 - Vector2.One * 4f, 8, 8, DustID.Smoke, 0f, 0f, 100, default(Color), 1.5f);
                 Dust dust = Main.dust[num837];
                 dust.velocity *= 0.5f;

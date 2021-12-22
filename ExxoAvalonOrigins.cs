@@ -64,7 +64,7 @@ namespace ExxoAvalonOrigins
 
         public override void Load()
         {
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.Server)
             {
                 Mod musicMod = ModLoader.GetMod("AvalonMusic");
                 if (musicMod != null)
@@ -114,6 +114,12 @@ namespace ExxoAvalonOrigins
                 Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
                 Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
 
+                NPCs.WallofSteel.Load();
+                Projectiles.PhantasmLaser.Load();
+
+                Effects.EffectsManager.Load();
+                Hooks.HooksManager.Load();
+
                 // Hotkeys
 
                 shadowHotkey = RegisterHotKey("Shadow Teleport", "V");
@@ -140,19 +146,22 @@ namespace ExxoAvalonOrigins
                 staminaInterface = new UserInterface();
                 staminaBar = new StaminaBar();
                 staminaInterface.SetState(staminaBar);
+
+                Main.chTitle = true;
             }
 
-            Hooks.HooksManager.Load();
-            Effects.EffectsManager.Load();
+            Hooks.HooksManager.ApplyHooks();
 
-            Main.chTitle = true;
             //AddAvalonAlts();
         }
 
         public override void Unload()
         {
-            Main.logoTexture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
-            Main.logo2Texture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo2");
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Main.logoTexture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
+                Main.logo2Texture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo2");
+            }
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

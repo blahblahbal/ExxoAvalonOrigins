@@ -4,6 +4,10 @@
     {
         public static void Load()
         {
+            ExtraHealth.Load();
+        }
+        public static void ApplyHooks()
+        {
             On.Terraria.Lang.GetRandomGameTitle += EditTerrariaName.OnGetRandomGameTitle;
             On.Terraria.Player.HasUnityPotion += EideticMirror.OnHasUnityItem;
             On.Terraria.Player.TakeUnityPotion += EideticMirror.OnTakeUnityItem;

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Seed;
 using ExxoAvalonOrigins.Items.Potions;
@@ -14,11 +10,10 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.UI.Chat;
 
 namespace ExxoAvalonOrigins.UI
 {
-    class HerbologyBenchUI : UIState
+    internal class HerbologyBenchUI : UIState
     {
         public static readonly int[] Potions = new int[]
         {
@@ -97,14 +92,14 @@ namespace ExxoAvalonOrigins.UI
         public UIPanel button;
         public UIText text;
         internal float scale = 1f;
-        private Texture2D background = TomeSlot.BackgroundTexture;
-        private static Texture2D herbButton = ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton");
+        private readonly Texture2D background = TomeSlot.BackgroundTexture;
+        private readonly Texture2D herbButton = ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton");
 
         internal event Action<Item, Item> OnItemChange;
 
         internal event Func<Item, bool> CanPutIntoSlot;
 
-        private Item[] ssa = new Item[1];
+        private readonly Item[] ssa = new Item[1];
         private bool itemInSlot = false;
         public UIText place;
 
@@ -131,7 +126,7 @@ namespace ExxoAvalonOrigins.UI
             herbologyBenchDisplay.BackgroundColor = new Color(73, 94, 171);
             Append(herbologyBenchDisplay);
 
-            UIText header = new UIText("Herbology " + tier);
+            var header = new UIText("Herbology " + tier);
             header.Left.Set(xpos - 260 + Main.fontMouseText.MeasureString("Herbology Apprentice").X, 0);
             header.Top.Set(ypos - 90, 0);
             header.HAlign = 0.5f;
@@ -162,8 +157,14 @@ namespace ExxoAvalonOrigins.UI
             {
                 Main.hoverItemName = "Consume Herb/Potion";
             }
-            if (!itemInSlot) place.SetText("");
-            else place.SetText("Place an herb or potion here");
+            if (!itemInSlot)
+            {
+                place.SetText("");
+            }
+            else
+            {
+                place.SetText("Place an herb or potion here");
+            }
         }
 
         private void OnButtonClick(UIMouseEvent evt, UIElement listeningElement)
@@ -227,17 +228,31 @@ namespace ExxoAvalonOrigins.UI
                 }
                 if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal >= 750 && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal < 1500)
                 {
-                    if (Main.hardMode) Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 2; // tier 3; allows you to obtain advanced potions
-                    else Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                    if (Main.hardMode)
+                    {
+                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 2; // tier 3; allows you to obtain advanced potions
+                    }
+                    else
+                    {
+                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                    }
                 }
                 if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal >= 1500)
                 {
-                    if (Main.hardMode) Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 3; // tier 4; Blah Potion exchange
-                    else Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                    if (Main.hardMode)
+                    {
+                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 3; // tier 4; Blah Potion exchange
+                    }
+                    else
+                    {
+                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                    }
                 }
                 ItemText.NewText(herbItem, herbItem.stack, false, false);
-                herbItem = new Item();
-                herbItem.stack = 0;
+                herbItem = new Item
+                {
+                    stack = 0
+                };
                 Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
             }
         }
@@ -261,21 +276,44 @@ namespace ExxoAvalonOrigins.UI
                 else
                 {
                     string tier = "Novice";
-                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier == 1) tier = "Apprentice";
-                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier == 2) tier = "Expert";
-                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier == 3) tier = "Mastery";
-                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Herbology " + tier, new Vector2((float)(xpos - 260) + Main.fontMouseText.MeasureString("Herbology Apprentice").X, (float)ypos - 90), Color.Goldenrod, Color.Black, 1f, 1f);
-                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Herb Total: " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal, new Vector2((float)(xpos - 50) + Main.fontMouseText.MeasureString("Herb Total:      ").X, (float)ypos - 90), Color.White, Color.Black, 1f, 1f);
-                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Herb Tier: " + (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier + 1).ToString(), new Vector2((float)(xpos - 50) + Main.fontMouseText.MeasureString("Herb Total:      ").X, (float)ypos - 60), Color.White, Color.Black, 1f, 1f);
-                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 1) spriteBatch.DrawOutlinedString(Main.fontMouseText, "Right click to obtain a Large Herb Seed if you have 15 or more of that herb", new Vector2((float)(xpos - 200) + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 100), Color.White, Color.Black, 1.2f, 1f);
-                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Potion Total: " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal, new Vector2((float)(xpos - 260) + Main.fontMouseText.MeasureString("Herbology Apprentice").X, (float)ypos - 60), Color.White, Color.Black, 1.2f, 1f);
-                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 2) spriteBatch.DrawOutlinedString(Main.fontMouseText, "Click to obtain a potion (Requires 1 Potion credit); Right-click to obtain an Advanced Potion (requires 5 Potion credits)", new Vector2((float)(xpos - 200) + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 405), Color.White, Color.Black, 1.2f, 1f);
-                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 3 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode) spriteBatch.DrawOutlinedString(Main.fontMouseText, "Click to obtain a Blah Potion (requires 2500 Potion credits)", new Vector2((float)(xpos - 200) + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 493), Color.White, Color.Black, 1.2f, 1f);
+                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier == 1)
+                    {
+                        tier = "Apprentice";
+                    }
+
+                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier == 2)
+                    {
+                        tier = "Expert";
+                    }
+
+                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier == 3)
+                    {
+                        tier = "Mastery";
+                    }
+
+                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Herbology " + tier, new Vector2(xpos - 260 + Main.fontMouseText.MeasureString("Herbology Apprentice").X, (float)ypos - 90), Color.Goldenrod, Color.Black, 1f, 1f);
+                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Herb Total: " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal, new Vector2(xpos - 50 + Main.fontMouseText.MeasureString("Herb Total:      ").X, (float)ypos - 90), Color.White, Color.Black, 1f, 1f);
+                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Herb Tier: " + (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier + 1).ToString(), new Vector2(xpos - 50 + Main.fontMouseText.MeasureString("Herb Total:      ").X, (float)ypos - 60), Color.White, Color.Black, 1f, 1f);
+                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 1)
+                    {
+                        spriteBatch.DrawOutlinedString(Main.fontMouseText, "Right click to obtain a Large Herb Seed if you have 15 or more of that herb", new Vector2(xpos - 200 + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 100), Color.White, Color.Black, 1.2f, 1f);
+                    }
+
+                    spriteBatch.DrawOutlinedString(Main.fontMouseText, "Potion Total: " + Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal, new Vector2(xpos - 260 + Main.fontMouseText.MeasureString("Herbology Apprentice").X, (float)ypos - 60), Color.White, Color.Black, 1.2f, 1f);
+                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 2)
+                    {
+                        spriteBatch.DrawOutlinedString(Main.fontMouseText, "Click to obtain a potion (Requires 1 Potion credit); Right-click to obtain an Advanced Potion (requires 5 Potion credits)", new Vector2(xpos - 200 + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 405), Color.White, Color.Black, 1.2f, 1f);
+                    }
+
+                    if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 3 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
+                    {
+                        spriteBatch.DrawOutlinedString(Main.fontMouseText, "Click to obtain a Blah Potion (requires 2500 Potion credits)", new Vector2(xpos - 200 + Main.fontMouseText.MeasureString("Herbology Bench").X, (float)ypos + 493), Color.White, Color.Black, 1.2f, 1f);
+                    }
                     //spriteBatch.Draw(Main.inventoryBack3Texture, new Vector2((float)(xpos + 10 + 286), (float)ypos + 26), null, Color.White, 0f, new Vector2((float)(Main.inventoryBack4Texture.Width / 2), (float)(Main.inventoryBack4Texture.Height / 2)), 1f, SpriteEffects.None, 0f);
                     var mouseLoc = new Point(Main.mouseX, Main.mouseY);
                     var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
                     Main.inventoryScale = 0.85f;
-                    var tmpItem = herbItem;
+                    Item tmpItem = herbItem;
                     //var mH = 0;
                     itemInSlot = herbItem.type > ItemID.None;
                     r.X = xpos + 286;
@@ -327,7 +365,7 @@ namespace ExxoAvalonOrigins.UI
 
                     if (herbItem.type > ItemID.None)
                     {
-                        spriteBatch.Draw(herbButton, new Vector2((float)num67, (float)num68), new Rectangle?(new Rectangle(0, 0, herbButton.Width, herbButton.Height)), Color.White, 0f, new Vector2((float)(herbButton.Width / 2), (float)(herbButton.Height / 2)), 1f, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(herbButton, new Vector2(num67, num68), new Rectangle?(new Rectangle(0, 0, herbButton.Width, herbButton.Height)), Color.White, 0f, new Vector2(herbButton.Width / 2, herbButton.Height / 2), 1f, SpriteEffects.None, 0f);
                         if (Main.mouseX > num67 - herbButton.Width / 2 && Main.mouseX < num67 + herbButton.Width / 2 && Main.mouseY > num68 - herbButton.Height / 2 && Main.mouseY < num68 + herbButton.Height / 2)
                         {
                             Main.hoverItemName = "Consume Herb/Potion";
@@ -513,17 +551,31 @@ namespace ExxoAvalonOrigins.UI
                                 }
                                 if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal >= 750 && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal < 1500)
                                 {
-                                    if (Main.hardMode) Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 2; // tier 3; allows you to obtain advanced potions
-                                    else Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                                    if (Main.hardMode)
+                                    {
+                                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 2; // tier 3; allows you to obtain advanced potions
+                                    }
+                                    else
+                                    {
+                                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                                    }
                                 }
                                 if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal >= 1500)
                                 {
-                                    if (Main.hardMode) Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 3; // tier 4; Blah Potion exchange
-                                    else Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                                    if (Main.hardMode)
+                                    {
+                                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 3; // tier 4; Blah Potion exchange
+                                    }
+                                    else
+                                    {
+                                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier = 1;
+                                    }
                                 }
                                 ItemText.NewText(herbItem, herbItem.stack, false, false);
-                                herbItem = new Item();
-                                herbItem.stack = 0;
+                                herbItem = new Item
+                                {
+                                    stack = 0
+                                };
                                 Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
                             }
                         }
@@ -535,7 +587,10 @@ namespace ExxoAvalonOrigins.UI
 
                     #endregion adding to herb/potion total
 
-                    else spriteBatch.DrawOutlinedString(Main.fontMouseText, "Place an herb or potion here", new Vector2(num67, num68 - 40), Color.White, Color.Black, 1.2f, 1f);
+                    else
+                    {
+                        spriteBatch.DrawOutlinedString(Main.fontMouseText, "Place an herb or potion here", new Vector2(num67, num68 - 40), Color.White, Color.Black, 1.2f, 1f);
+                    }
                     //if (Main.mouseX >= xpos + 10 + 286 - Main.inventoryBack4Texture.Width / 2 && (float)Main.mouseX <= (float)xpos + 10 + 286 + (float)Main.inventoryBack4Texture.Width / 2 && Main.mouseY >= ypos + 26 - Main.inventoryBack4Texture.Height / 2 && (float)Main.mouseY <= (float)ypos + 26 + (float)Main.inventoryBack4Texture.Height / 2)
                     //{
                     //    Main.player[Main.myPlayer].mouseInterface = true;
@@ -618,8 +673,8 @@ namespace ExxoAvalonOrigins.UI
                     //}
                     if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= 3 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
                     {
-                        spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2((float)(xpos3 + 10), (float)ypos3), null, Color.White, 0f, new Vector2((float)(Main.inventoryBack4Texture.Width / 2), (float)(Main.inventoryBack4Texture.Height / 2)), 1f, SpriteEffects.None, 0f);
-                        spriteBatch.Draw(ExxoAvalonOrigins.mod.GetTexture("Items/BlahPotion"), new Vector2((float)(xpos3 + 10), (float)ypos3), null, Color.White, 0f, new Vector2((float)(ExxoAvalonOrigins.mod.GetTexture("Items/BlahPotion").Width / 2), (float)(ExxoAvalonOrigins.mod.GetTexture("Items/BlahPotion").Height / 2)), 1f, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2(xpos3 + 10, ypos3), null, Color.White, 0f, new Vector2(Main.inventoryBack4Texture.Width / 2, Main.inventoryBack4Texture.Height / 2), 1f, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(ExxoAvalonOrigins.mod.GetTexture("Items/BlahPotion"), new Vector2(xpos3 + 10, ypos3), null, Color.White, 0f, new Vector2(ExxoAvalonOrigins.mod.GetTexture("Items/BlahPotion").Width / 2, ExxoAvalonOrigins.mod.GetTexture("Items/BlahPotion").Height / 2), 1f, SpriteEffects.None, 0f);
                         if (Main.mouseX > xpos3 + 10 - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos3 + 10 + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos3 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos3 + Main.inventoryBack4Texture.Height / 2)
                         {
                             Main.player[Main.myPlayer].mouseInterface = true;
@@ -646,7 +701,7 @@ namespace ExxoAvalonOrigins.UI
                     {
                         for (int p = 0; p < 53; p++)
                         {
-                            spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.inventoryBack4Texture.Width / 2), (float)(Main.inventoryBack4Texture.Height / 2)), 1f, SpriteEffects.None, 0f);
+                            spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.inventoryBack4Texture.Width / 2, Main.inventoryBack4Texture.Height / 2), 1f, SpriteEffects.None, 0f);
                             if (Main.mouseX > xpos2 + 10 + (p * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos2 + 10 + (p * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos2 - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos2 + Main.inventoryBack4Texture.Height / 2)
                             {
                                 Main.player[Main.myPlayer].mouseInterface = true;
@@ -681,7 +736,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.ObsidianSkinPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ObsidianSkinPotion].Width / 2), (float)(Main.itemTexture[ItemID.ObsidianSkinPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.ObsidianSkinPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.ObsidianSkinPotion].Width / 2, Main.itemTexture[ItemID.ObsidianSkinPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 1:
@@ -711,7 +766,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.RegenerationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.RegenerationPotion].Width / 2), (float)(Main.itemTexture[ItemID.RegenerationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.RegenerationPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.RegenerationPotion].Width / 2, Main.itemTexture[ItemID.RegenerationPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 2:
@@ -741,7 +796,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.SwiftnessPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SwiftnessPotion].Width / 2), (float)(Main.itemTexture[ItemID.SwiftnessPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.SwiftnessPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.SwiftnessPotion].Width / 2, Main.itemTexture[ItemID.SwiftnessPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 3:
@@ -771,7 +826,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.GillsPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.GillsPotion].Width / 2), (float)(Main.itemTexture[ItemID.GillsPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.GillsPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.GillsPotion].Width / 2, Main.itemTexture[ItemID.GillsPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 4:
@@ -801,7 +856,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.IronskinPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.IronskinPotion].Width / 2), (float)(Main.itemTexture[ItemID.IronskinPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.IronskinPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.IronskinPotion].Width / 2, Main.itemTexture[ItemID.IronskinPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 5:
@@ -831,7 +886,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.ManaRegenerationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ManaRegenerationPotion].Width / 2), (float)(Main.itemTexture[ItemID.ManaRegenerationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.ManaRegenerationPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.ManaRegenerationPotion].Width / 2, Main.itemTexture[ItemID.ManaRegenerationPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 6:
@@ -861,7 +916,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.MagicPowerPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.MagicPowerPotion].Width / 2), (float)(Main.itemTexture[ItemID.MagicPowerPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.MagicPowerPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.MagicPowerPotion].Width / 2, Main.itemTexture[ItemID.MagicPowerPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 7:
@@ -891,7 +946,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.FeatherfallPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.FeatherfallPotion].Width / 2), (float)(Main.itemTexture[ItemID.FeatherfallPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.FeatherfallPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.FeatherfallPotion].Width / 2, Main.itemTexture[ItemID.FeatherfallPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 8:
@@ -921,7 +976,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.SpelunkerPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SpelunkerPotion].Width / 2), (float)(Main.itemTexture[ItemID.SpelunkerPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.SpelunkerPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.SpelunkerPotion].Width / 2, Main.itemTexture[ItemID.SpelunkerPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 9:
@@ -951,7 +1006,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.InvisibilityPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.InvisibilityPotion].Width / 2), (float)(Main.itemTexture[ItemID.InvisibilityPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.InvisibilityPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.InvisibilityPotion].Width / 2, Main.itemTexture[ItemID.InvisibilityPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 10:
@@ -981,7 +1036,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.ShinePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ShinePotion].Width / 2), (float)(Main.itemTexture[ItemID.ShinePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.ShinePotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.ShinePotion].Width / 2, Main.itemTexture[ItemID.ShinePotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 11:
@@ -1011,7 +1066,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.NightOwlPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.NightOwlPotion].Width / 2), (float)(Main.itemTexture[ItemID.NightOwlPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.NightOwlPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.NightOwlPotion].Width / 2, Main.itemTexture[ItemID.NightOwlPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 12:
@@ -1041,7 +1096,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.BattlePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.BattlePotion].Width / 2), (float)(Main.itemTexture[ItemID.BattlePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.BattlePotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.BattlePotion].Width / 2, Main.itemTexture[ItemID.BattlePotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 13:
@@ -1071,7 +1126,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.ThornsPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ThornsPotion].Width / 2), (float)(Main.itemTexture[ItemID.ThornsPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.ThornsPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.ThornsPotion].Width / 2, Main.itemTexture[ItemID.ThornsPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 14:
@@ -1101,7 +1156,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.WaterWalkingPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.WaterWalkingPotion].Width / 2), (float)(Main.itemTexture[ItemID.WaterWalkingPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.WaterWalkingPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.WaterWalkingPotion].Width / 2, Main.itemTexture[ItemID.WaterWalkingPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 15:
@@ -1131,7 +1186,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.ArcheryPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.ArcheryPotion].Width / 2), (float)(Main.itemTexture[ItemID.ArcheryPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.ArcheryPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.ArcheryPotion].Width / 2, Main.itemTexture[ItemID.ArcheryPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 16:
@@ -1161,7 +1216,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.HunterPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.HunterPotion].Width / 2), (float)(Main.itemTexture[ItemID.HunterPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.HunterPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.HunterPotion].Width / 2, Main.itemTexture[ItemID.HunterPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 17:
@@ -1191,7 +1246,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.GravitationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.GravitationPotion].Width / 2), (float)(Main.itemTexture[ItemID.GravitationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.GravitationPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.GravitationPotion].Width / 2, Main.itemTexture[ItemID.GravitationPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 18:
@@ -1221,7 +1276,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.MiningPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.MiningPotion].Width / 2), (float)(Main.itemTexture[ItemID.MiningPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.MiningPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.MiningPotion].Width / 2, Main.itemTexture[ItemID.MiningPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 19:
@@ -1251,7 +1306,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.HeartreachPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.HeartreachPotion].Width / 2), (float)(Main.itemTexture[ItemID.HeartreachPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.HeartreachPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.HeartreachPotion].Width / 2, Main.itemTexture[ItemID.HeartreachPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 20:
@@ -1281,7 +1336,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.CalmingPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.CalmingPotion].Width / 2), (float)(Main.itemTexture[ItemID.CalmingPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.CalmingPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.CalmingPotion].Width / 2, Main.itemTexture[ItemID.CalmingPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 21:
@@ -1311,7 +1366,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.BuilderPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.BuilderPotion].Width / 2), (float)(Main.itemTexture[ItemID.BuilderPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.BuilderPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.BuilderPotion].Width / 2, Main.itemTexture[ItemID.BuilderPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 22:
@@ -1341,7 +1396,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.TitanPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.TitanPotion].Width / 2), (float)(Main.itemTexture[ItemID.TitanPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.TitanPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.TitanPotion].Width / 2, Main.itemTexture[ItemID.TitanPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 23:
@@ -1371,7 +1426,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.FlipperPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.FlipperPotion].Width / 2), (float)(Main.itemTexture[ItemID.FlipperPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.FlipperPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.FlipperPotion].Width / 2, Main.itemTexture[ItemID.FlipperPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 24:
@@ -1401,7 +1456,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.SummoningPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SummoningPotion].Width / 2), (float)(Main.itemTexture[ItemID.SummoningPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.SummoningPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.SummoningPotion].Width / 2, Main.itemTexture[ItemID.SummoningPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 25:
@@ -1431,7 +1486,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.TrapsightPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.TrapsightPotion].Width / 2), (float)(Main.itemTexture[ItemID.TrapsightPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.TrapsightPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.TrapsightPotion].Width / 2, Main.itemTexture[ItemID.TrapsightPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 26:
@@ -1461,7 +1516,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.AmmoReservationPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.AmmoReservationPotion].Width / 2), (float)(Main.itemTexture[ItemID.AmmoReservationPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.AmmoReservationPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.AmmoReservationPotion].Width / 2, Main.itemTexture[ItemID.AmmoReservationPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 27:
@@ -1491,7 +1546,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.LifeforcePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.LifeforcePotion].Width / 2), (float)(Main.itemTexture[ItemID.LifeforcePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.LifeforcePotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.LifeforcePotion].Width / 2, Main.itemTexture[ItemID.LifeforcePotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 28:
@@ -1521,7 +1576,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.EndurancePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.EndurancePotion].Width / 2), (float)(Main.itemTexture[ItemID.EndurancePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.EndurancePotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.EndurancePotion].Width / 2, Main.itemTexture[ItemID.EndurancePotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 29:
@@ -1551,7 +1606,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.RagePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.RagePotion].Width / 2), (float)(Main.itemTexture[ItemID.RagePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.RagePotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.RagePotion].Width / 2, Main.itemTexture[ItemID.RagePotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 30:
@@ -1581,7 +1636,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.InfernoPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.InfernoPotion].Width / 2), (float)(Main.itemTexture[ItemID.InfernoPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.InfernoPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.InfernoPotion].Width / 2, Main.itemTexture[ItemID.InfernoPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 31:
@@ -1611,7 +1666,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.WrathPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.WrathPotion].Width / 2), (float)(Main.itemTexture[ItemID.WrathPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.WrathPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.WrathPotion].Width / 2, Main.itemTexture[ItemID.WrathPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 32:
@@ -1641,7 +1696,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.FishingPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.FishingPotion].Width / 2), (float)(Main.itemTexture[ItemID.FishingPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.FishingPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.FishingPotion].Width / 2, Main.itemTexture[ItemID.FishingPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 33:
@@ -1671,7 +1726,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.SonarPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.SonarPotion].Width / 2), (float)(Main.itemTexture[ItemID.SonarPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.SonarPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.SonarPotion].Width / 2, Main.itemTexture[ItemID.SonarPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 34:
@@ -1701,7 +1756,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.CratePotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.CratePotion].Width / 2), (float)(Main.itemTexture[ItemID.CratePotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.CratePotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.CratePotion].Width / 2, Main.itemTexture[ItemID.CratePotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 35:
@@ -1731,7 +1786,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ItemID.WarmthPotion], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.WarmthPotion].Width / 2), (float)(Main.itemTexture[ItemID.WarmthPotion].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ItemID.WarmthPotion], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.WarmthPotion].Width / 2, Main.itemTexture[ItemID.WarmthPotion].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 36:
@@ -1761,7 +1816,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<CrimsonPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<CrimsonPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 37:
@@ -1791,7 +1846,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<ShockwavePotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<ShockwavePotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 38:
@@ -1821,7 +1876,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<LuckPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<LuckPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<LuckPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<LuckPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<LuckPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<LuckPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 39:
@@ -1851,7 +1906,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<BloodCastPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<BloodCastPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 40:
@@ -1881,7 +1936,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<StarbrightPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<StarbrightPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 41:
@@ -1911,7 +1966,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<VisionPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<VisionPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<VisionPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<VisionPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<VisionPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<VisionPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 42:
@@ -1941,7 +1996,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<StrengthPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<StrengthPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<StrengthPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<StrengthPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<StrengthPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<StrengthPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 43:
@@ -1971,7 +2026,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<GPSPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<GPSPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<GPSPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<GPSPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<GPSPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<GPSPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 44:
@@ -2001,7 +2056,7 @@ namespace ExxoAvalonOrigins.UI
                                     //        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                     //    }
                                     //}
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<TimeShiftPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 45:
@@ -2031,7 +2086,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ShadowPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<ShadowPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<ShadowPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ShadowPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<ShadowPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<ShadowPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 46:
@@ -2061,7 +2116,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<RoguePotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<RoguePotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<RoguePotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<RoguePotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<RoguePotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<RoguePotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 47:
@@ -2091,7 +2146,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<GauntletPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<GauntletPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<GauntletPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<GauntletPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<GauntletPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<GauntletPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 48:
@@ -2121,7 +2176,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<WisdomPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<WisdomPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<WisdomPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<WisdomPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<WisdomPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<WisdomPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 49:
@@ -2151,7 +2206,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<TitanskinPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<TitanskinPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 50:
@@ -2183,7 +2238,7 @@ namespace ExxoAvalonOrigins.UI
                                             //    Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 5;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<InvincibilityPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 51:
@@ -2213,7 +2268,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<ForceFieldPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
 
                                 case 52:
@@ -2243,7 +2298,7 @@ namespace ExxoAvalonOrigins.UI
                                             Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().potionTotal -= 10;
                                         }
                                     }
-                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()], new Vector2((float)(xpos2 + 10 + (p * 52)), (float)ypos2), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                    spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()], new Vector2(xpos2 + 10 + (p * 52), ypos2), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()].Width / 2, Main.itemTexture[ModContent.ItemType<Items.Potions.FuryPotion>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                     break;
                             }
                             if (p % 13 == 12)
@@ -2260,7 +2315,7 @@ namespace ExxoAvalonOrigins.UI
 
                     for (int xoff = 0; xoff < 10; xoff++)
                     {
-                        spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.inventoryBack4Texture.Width / 2), (float)(Main.inventoryBack4Texture.Height / 2)), 1f, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(Main.inventoryBack7Texture, new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.inventoryBack4Texture.Width / 2, Main.inventoryBack4Texture.Height / 2), 1f, SpriteEffects.None, 0f);
                         if (Main.mouseX > xpos + 10 + (xoff * 52) - Main.inventoryBack4Texture.Width / 2 && Main.mouseX < xpos + 10 + (xoff * 52) + Main.inventoryBack4Texture.Width / 2 && Main.mouseY > ypos - Main.inventoryBack4Texture.Height / 2 && Main.mouseY < ypos + Main.inventoryBack4Texture.Height / 2)
                         {
                             Main.player[Main.myPlayer].mouseInterface = true;
@@ -2297,7 +2352,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Daybloom], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Daybloom].Width / 2), (float)(Main.itemTexture[ItemID.Daybloom].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Daybloom], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Daybloom].Width / 2, Main.itemTexture[ItemID.Daybloom].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 1:
@@ -2329,7 +2384,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Moonglow], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Moonglow].Width / 2), (float)(Main.itemTexture[ItemID.Moonglow].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Moonglow], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Moonglow].Width / 2, Main.itemTexture[ItemID.Moonglow].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 2:
@@ -2361,7 +2416,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Blinkroot], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Blinkroot].Width / 2), (float)(Main.itemTexture[ItemID.Blinkroot].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Blinkroot], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Blinkroot].Width / 2, Main.itemTexture[ItemID.Blinkroot].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 3:
@@ -2393,7 +2448,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Deathweed], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Deathweed].Width / 2), (float)(Main.itemTexture[ItemID.Deathweed].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Deathweed], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Deathweed].Width / 2, Main.itemTexture[ItemID.Deathweed].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 4:
@@ -2425,7 +2480,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Waterleaf], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Waterleaf].Width / 2), (float)(Main.itemTexture[ItemID.Waterleaf].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Waterleaf], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Waterleaf].Width / 2, Main.itemTexture[ItemID.Waterleaf].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 5:
@@ -2457,7 +2512,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Fireblossom], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Fireblossom].Width / 2), (float)(Main.itemTexture[ItemID.Fireblossom].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Fireblossom], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Fireblossom].Width / 2, Main.itemTexture[ItemID.Fireblossom].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 6:
@@ -2489,7 +2544,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ItemID.Shiverthorn], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ItemID.Shiverthorn].Width / 2), (float)(Main.itemTexture[ItemID.Shiverthorn].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ItemID.Shiverthorn], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ItemID.Shiverthorn].Width / 2, Main.itemTexture[ItemID.Shiverthorn].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 7:
@@ -2521,7 +2576,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Bloodberry>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Bloodberry>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Bloodberry>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Bloodberry>()], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<Bloodberry>()].Width / 2, Main.itemTexture[ModContent.ItemType<Bloodberry>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 8:
@@ -2553,7 +2608,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Sweetstem>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Sweetstem>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Sweetstem>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Sweetstem>()], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<Sweetstem>()].Width / 2, Main.itemTexture[ModContent.ItemType<Sweetstem>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
 
                             case 9:
@@ -2585,7 +2640,7 @@ namespace ExxoAvalonOrigins.UI
                                         Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTotal -= 15;
                                     }
                                 }
-                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Barfbush>()], new Vector2((float)(xpos + 10 + (xoff * 52)), (float)ypos), null, Color.White, 0f, new Vector2((float)(Main.itemTexture[ModContent.ItemType<Barfbush>()].Width / 2), (float)(Main.itemTexture[ModContent.ItemType<Barfbush>()].Height / 2)), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.itemTexture[ModContent.ItemType<Barfbush>()], new Vector2(xpos + 10 + (xoff * 52), ypos), null, Color.White, 0f, new Vector2(Main.itemTexture[ModContent.ItemType<Barfbush>()].Width / 2, Main.itemTexture[ModContent.ItemType<Barfbush>()].Height / 2), 1f, SpriteEffects.None, 0f);
                                 break;
                         }
                         if (xoff % 5 == 4)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -19,18 +19,19 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[] { 20 };
             TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
+            drop = ModContent.ItemType<Items.Placeable.Light.EctoplasmCandle>();
             dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Ectoplasm Candle");
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Ectoplasm Candle");
             AddMapEntry(new Color(253, 221, 3), name);
             dustType = DustID.Ultrabright;
         }
 
         public override void MouseOver(int i, int j)
         {
-            var player = Main.player[Main.myPlayer];
+            Player player = Main.player[Main.myPlayer];
             player.noThrow = 2;
             player.showItemIcon = true;
             player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.EctoplasmCandle>();
@@ -39,6 +40,10 @@ namespace ExxoAvalonOrigins.Tiles
         public override bool NewRightClick(int i, int j)
         {
             WorldGen.KillTile(i, j);
+            if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+            }
             return true;
         }
 
@@ -51,11 +56,6 @@ namespace ExxoAvalonOrigins.Tiles
                 g = 0.45f;
                 b = 0.35f;
             }
-        }
-
-        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
-        {
-            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.Light.EctoplasmCandle>());
         }
 
         public override void HitWire(int i, int j)
@@ -71,23 +71,23 @@ namespace ExxoAvalonOrigins.Tiles
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
             ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)((ulong)i));
-            Color color = new Color(224, 104, 147, 0);
+            var color = new Color(224, 104, 147, 0);
             int frameX = Main.tile[i, j].frameX;
             int frameY = Main.tile[i, j].frameY;
             int width = 18;
             int offsetY = -4;
             int height = 20;
             int offsetX = 1;
-            Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+            var zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
             if (Main.drawToScreen)
             {
                 zero = Vector2.Zero;
             }
             for (int k = 0; k < 7; k++)
             {
-                float x = (float)Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
-                float y = (float)Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/EctoplasmCandle_Flame"), new Vector2((float)(i * 16 - (int)Main.screenPosition.X + offsetX) - (width - 16f) / 2f + x, (float)(j * 16 - (int)Main.screenPosition.Y + offsetY) + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
+                float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
+                Main.spriteBatch.Draw(mod.GetTexture("Tiles/EctoplasmCandle_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
     }

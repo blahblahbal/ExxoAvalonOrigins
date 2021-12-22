@@ -1,27 +1,29 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
     [AutoloadBossHead]
     public class WallofSteel : ModNPC
     {
-        private static Texture2D wosTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/WallofSteel");
-        private static Texture2D mechaHungryChainTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/MechaHungryChain");
+        private static Texture2D wosTexture;
+        private static Texture2D mechaHungryChainTexture;
+
+        public static void Load()
+        {
+            wosTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/WallofSteel");
+            mechaHungryChainTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/MechaHungryChain");
+        }
 
         public override void SetStaticDefaults()
         {
@@ -75,23 +77,23 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (Main.player[i].gross && Main.player[i].active && Main.player[i].tongued && !Main.player[i].dead)
                     {
-                        float num = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2);
-                        float num2 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].height / 2);
-                        Vector2 vector = new Vector2(Main.player[i].position.X + (float)Main.player[i].width * 0.5f, Main.player[i].position.Y + (float)Main.player[i].height * 0.5f);
+                        float num = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + Main.npc[ExxoAvalonOriginsWorld.wos].width / 2;
+                        float num2 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y + Main.npc[ExxoAvalonOriginsWorld.wos].height / 2;
+                        var vector = new Vector2(Main.player[i].position.X + Main.player[i].width * 0.5f, Main.player[i].position.Y + Main.player[i].height * 0.5f);
                         float num3 = num - vector.X;
                         float num4 = num2 - vector.Y;
-                        float rotation = (float)Math.Atan2((double)num4, (double)num3) - 1.57f;
+                        float rotation = (float)Math.Atan2(num4, num3) - 1.57f;
                         bool flag = true;
                         while (flag)
                         {
-                            float num5 = (float)Math.Sqrt((double)(num3 * num3 + num4 * num4));
+                            float num5 = (float)Math.Sqrt(num3 * num3 + num4 * num4);
                             if (num5 < 40f)
                             {
                                 flag = false;
                             }
                             else
                             {
-                                num5 = (float)Main.chain38Texture.Height / num5;
+                                num5 = Main.chain38Texture.Height / num5;
                                 num3 *= num5;
                                 num4 *= num5;
                                 vector.X += num3;
@@ -99,7 +101,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 num3 = num - vector.X;
                                 num4 = num2 - vector.Y;
                                 Color color = Lighting.GetColor((int)vector.X / 16, (int)(vector.Y / 16f));
-                                spriteBatch.Draw(Main.chain8Texture, new Vector2(vector.X - Main.screenPosition.X, vector.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, Main.chain8Texture.Width, Main.chain8Texture.Height)), color, rotation, new Vector2((float)Main.chain8Texture.Width * 0.5f, (float)Main.chain8Texture.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                                spriteBatch.Draw(Main.chain8Texture, new Vector2(vector.X - Main.screenPosition.X, vector.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, Main.chain8Texture.Width, Main.chain8Texture.Height)), color, rotation, new Vector2(Main.chain8Texture.Width * 0.5f, Main.chain8Texture.Height * 0.5f), 1f, SpriteEffects.None, 0f);
                             }
                         }
                     }
@@ -108,19 +110,19 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (Main.npc[j].active && (Main.npc[j].type == ModContent.NPCType<NPCs.MechanicalHungry>() || Main.npc[j].type == ModContent.NPCType<NPCs.MechanicalHungry2>()))
                     {
-                        float num6 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + (float)(Main.npc[ExxoAvalonOriginsWorld.wos].width / 2);
+                        float num6 = Main.npc[ExxoAvalonOriginsWorld.wos].position.X + Main.npc[ExxoAvalonOriginsWorld.wos].width / 2;
                         float num7 = Main.npc[ExxoAvalonOriginsWorld.wos].position.Y;
-                        float num8 = (float)(ExxoAvalonOriginsWorld.wosB - ExxoAvalonOriginsWorld.wosT);
+                        float num8 = ExxoAvalonOriginsWorld.wosB - ExxoAvalonOriginsWorld.wosT;
                         bool flag2 = false;
                         if (Main.npc[j].frameCounter > 7.0)
                         {
                             flag2 = true;
                         }
-                        num7 = (float)ExxoAvalonOriginsWorld.wosT + num8 * Main.npc[j].ai[0];
-                        Vector2 vector2 = new Vector2(Main.npc[j].position.X + (float)(Main.npc[j].width / 2), Main.npc[j].position.Y + (float)(Main.npc[j].height / 2));
+                        num7 = ExxoAvalonOriginsWorld.wosT + num8 * Main.npc[j].ai[0];
+                        var vector2 = new Vector2(Main.npc[j].position.X + Main.npc[j].width / 2, Main.npc[j].position.Y + Main.npc[j].height / 2);
                         float num9 = num6 - vector2.X;
                         float num10 = num7 - vector2.Y;
-                        float rotation2 = (float)Math.Atan2((double)num10, (double)num9) - 1.57f;
+                        float rotation2 = (float)Math.Atan2(num10, num9) - 1.57f;
                         bool flag3 = true;
                         while (flag3)
                         {
@@ -135,7 +137,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 flag2 = true;
                             }
                             int height = 28;
-                            float num11 = (float)Math.Sqrt((double)(num9 * num9 + num10 * num10));
+                            float num11 = (float)Math.Sqrt(num9 * num9 + num10 * num10);
                             if (num11 < 40f)
                             {
                                 height = (int)num11 - 40 + 28;
@@ -149,16 +151,16 @@ namespace ExxoAvalonOrigins.NPCs
                             num9 = num6 - vector2.X;
                             num10 = num7 - vector2.Y;
                             Color color2 = Lighting.GetColor((int)vector2.X / 16, (int)(vector2.Y / 16f));
-                            Main.spriteBatch.Draw(mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2((float)mechaHungryChainTexture.Width * 0.5f, (float)mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
+                            Main.spriteBatch.Draw(mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2(mechaHungryChainTexture.Width * 0.5f, mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
                         }
                     }
                 }
                 int heightOfPartToTile = 120;
-                float num13 = (float)ExxoAvalonOriginsWorld.wosT;
-                float screenYPos = (float)ExxoAvalonOriginsWorld.wosB;
-                screenYPos = Main.screenPosition.Y + (float)Main.screenHeight;
-                float num15 = (float)((int)((num13 - Main.screenPosition.Y) / (float)heightOfPartToTile) + 1);
-                num15 *= (float)heightOfPartToTile;
+                float num13 = ExxoAvalonOriginsWorld.wosT;
+                float screenYPos = ExxoAvalonOriginsWorld.wosB;
+                screenYPos = Main.screenPosition.Y + Main.screenHeight;
+                float num15 = (int)((num13 - Main.screenPosition.Y) / heightOfPartToTile) + 1;
+                num15 *= heightOfPartToTile;
                 if (num15 > 0f)
                 {
                     num13 -= num15;
@@ -200,24 +202,24 @@ namespace ExxoAvalonOrigins.NPCs
                 while (flag4)
                 {
                     num18 = screenYPos - num16;
-                    if (num18 > (float)heightOfPartToTile)
+                    if (num18 > heightOfPartToTile)
                     {
-                        num18 = (float)heightOfPartToTile;
+                        num18 = heightOfPartToTile;
                     }
                     bool flag5 = true;
                     int num20 = 0;
                     while (flag5)
                     {
-                        int x = (int)(wosPosX + (float)(wosTexture.Width / 2)) / 16;
-                        int y = (int)(num16 + (float)num20) / 16;
-                        Main.spriteBatch.Draw(wosTexture, new Vector2(wosPosX - Main.screenPosition.X, num16 + (float)num20 - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, num19 + num20, wosTexture.Width, 16)), Lighting.GetColor(x, y), 0f, default(Vector2), 1f, effects2, 0f);
+                        int x = (int)(wosPosX + wosTexture.Width / 2) / 16;
+                        int y = (int)(num16 + num20) / 16;
+                        Main.spriteBatch.Draw(wosTexture, new Vector2(wosPosX - Main.screenPosition.X, num16 + num20 - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, num19 + num20, wosTexture.Width, 16)), Lighting.GetColor(x, y), 0f, default(Vector2), 1f, effects2, 0f);
                         num20 += 16;
-                        if ((float)num20 >= num18)
+                        if (num20 >= num18)
                         {
                             flag5 = false;
                         }
                     }
-                    num16 += (float)heightOfPartToTile;
+                    num16 += heightOfPartToTile;
                     if (num16 >= screenYPos)
                     {
                         flag4 = false;
@@ -230,7 +232,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override void AI()
         {
             bool expert = Main.expertMode;
-            if (npc.position.X < 160f || npc.position.X > (float)((Main.maxTilesX - 10) * 16))
+            if (npc.position.X < 160f || npc.position.X > (Main.maxTilesX - 10) * 16)
             {
                 npc.active = false;
             }
@@ -241,15 +243,15 @@ namespace ExxoAvalonOrigins.NPCs
                 ExxoAvalonOriginsWorld.wosT = -1;
             }
             npc.localAI[3] += 1f;
-            if (npc.localAI[3] >= (float)(600 + Main.rand.Next(1000)))
+            if (npc.localAI[3] >= 600 + Main.rand.Next(1000))
             {
-                npc.localAI[3] = (float)(-(float)Main.rand.Next(200));
+                npc.localAI[3] = -Main.rand.Next(200);
                 //Main.PlaySound(4, (int)npc.position.X, (int)npc.position.Y, 10);
             }
             ExxoAvalonOriginsWorld.wos = npc.whoAmI;
             int tilePosX = (int)(npc.position.X / 16f);
-            int tilePosXwidth = (int)((npc.position.X + (float)npc.width) / 16f);
-            int tilePosYCenter = (int)((npc.position.Y + (float)(npc.height / 2)) / 16f);
+            int tilePosXwidth = (int)((npc.position.X + npc.width) / 16f);
+            int tilePosYCenter = (int)((npc.position.Y + npc.height / 2) / 16f);
             int num446 = 0;
             int num447 = tilePosYCenter + 7;
             num447 += 4;
@@ -296,7 +298,7 @@ namespace ExxoAvalonOrigins.NPCs
                     ExxoAvalonOriginsWorld.wosT = num447 * 16;
                 }
             }
-            float num450 = (float)((ExxoAvalonOriginsWorld.wosB + ExxoAvalonOriginsWorld.wosT) / 2 - npc.height / 2);
+            float num450 = (ExxoAvalonOriginsWorld.wosB + ExxoAvalonOriginsWorld.wosT) / 2 - npc.height / 2;
             if (npc.Center.Y > Main.player[npc.target].Center.Y)
             {
                 if (npc.velocity.Y > 0)
@@ -304,7 +306,10 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y *= 0.98f;
                 }
                 npc.velocity.Y -= 0.02f;
-                if (npc.velocity.Y < -2.2f) npc.velocity.Y = -2.2f;
+                if (npc.velocity.Y < -2.2f)
+                {
+                    npc.velocity.Y = -2.2f;
+                }
             }
             if (npc.Center.Y < Main.player[npc.target].Center.Y)
             {
@@ -313,25 +318,32 @@ namespace ExxoAvalonOrigins.NPCs
                     npc.velocity.Y *= 0.98f;
                 }
                 npc.velocity.Y += 0.02f;
-                if (npc.velocity.Y > 2.2f) npc.velocity.Y = 2.2f;
+                if (npc.velocity.Y > 2.2f)
+                {
+                    npc.velocity.Y = 2.2f;
+                }
             }
             //npc.velocity.Y = 0f;
             //npc.position.Y = num450;
-            if (npc.position.Y / 16 < Main.maxTilesY - 200) npc.position.Y = (Main.maxTilesY - 200) * 16;
+            if (npc.position.Y / 16 < Main.maxTilesY - 200)
+            {
+                npc.position.Y = (Main.maxTilesY - 200) * 16;
+            }
+
             float num451 = 2.5f;
-            if ((double)npc.life < (double)npc.lifeMax * 0.75)
+            if (npc.life < npc.lifeMax * 0.75)
             {
                 num451 += 0.25f;
             }
-            if ((double)npc.life < (double)npc.lifeMax * 0.5)
+            if (npc.life < npc.lifeMax * 0.5)
             {
                 num451 += 0.4f;
             }
-            if ((double)npc.life < npc.lifeMax * 0.25)
+            if (npc.life < npc.lifeMax * 0.25)
             {
                 num451 += 0.5f;
             }
-            if ((double)npc.life < npc.lifeMax * 0.1)
+            if (npc.life < npc.lifeMax * 0.1)
             {
                 num451 += 0.6f;
             }
@@ -370,15 +382,15 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.velocity.X = num451;
                 npc.direction = 1;
             }
-            if (npc.life > (int)(npc.lifeMax / 3))
+            if (npc.life > npc.lifeMax / 3)
             {
                 npc.ai[1]++;
                 if (npc.ai[1] == 90)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient) // leeches
                     {
-                        int num442 = NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)(npc.height / 2) + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
-                        Main.npc[num442].velocity.X = (float)(npc.direction * 8);
+                        int num442 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height / 2 + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
+                        Main.npc[num442].velocity.X = npc.direction * 8;
                     }
                 }
                 if (npc.ai[1] > 90)
@@ -386,7 +398,7 @@ namespace ExxoAvalonOrigins.NPCs
                     int fire;
                     float f = 0f;
                     int dmg = Main.expertMode ? 75 : 60;
-                    Vector2 laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
+                    var laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
                     float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
                     Main.PlaySound(SoundID.Item, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     while (f <= .1f)
@@ -417,14 +429,18 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.projectile[laser].hostile = true;
                     Main.projectile[laser].friendly = false;
                     Main.projectile[laser].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, laser);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, laser);
+                    }
+
                     npc.ai[2] = 0;
                 }
                 if (npc.ai[2] == 90)
                 {
                     int fire;
                     float f = 0f;
-                    Vector2 laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
+                    var laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
                     float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
                     Main.PlaySound(SoundID.Item, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     //while (f <= .1f)
@@ -464,10 +480,20 @@ namespace ExxoAvalonOrigins.NPCs
                         npc.localAI[2] = npc.velocity.Y;
                     }
                     int wide = Projectile.NewProjectile(npc.ai[1], npc.ai[2], npc.localAI[1], npc.localAI[2], ModContent.ProjectileType<Projectiles.WallofSteelLaser>(), 100, 4f);
-                    if (npc.velocity.X > 0) Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
-                    else if (npc.velocity.X < 0) Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
+                    if (npc.velocity.X > 0)
+                    {
+                        Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
+                    }
+                    else if (npc.velocity.X < 0)
+                    {
+                        Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
+                    }
+
                     Main.projectile[wide].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, wide);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, wide);
+                    }
                 }
                 if (npc.ai[3] > 100 && npc.ai[3] < 150)
                 {
@@ -475,7 +501,10 @@ namespace ExxoAvalonOrigins.NPCs
                     int fire = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT, npc.velocity.X, npc.velocity.Y, ProjectileID.EyeFire, 45, 4f);
                     Main.projectile[fire].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
                     Main.projectile[fire].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
+                    }
                 }
                 if (npc.ai[3] > 300)
                 {
@@ -489,7 +518,7 @@ namespace ExxoAvalonOrigins.NPCs
                 for (int num456 = 0; num456 < 11; num456++)
                 {
                     int hungry = NPC.NewNPC((int)npc.position.X, (int)num450, ModContent.NPCType<NPCs.MechanicalHungry>(), npc.whoAmI);
-                    Main.npc[hungry].ai[0] = (float)num456 * 0.1f - 0.05f;
+                    Main.npc[hungry].ai[0] = num456 * 0.1f - 0.05f;
                 }
                 return;
             }
@@ -524,7 +553,11 @@ namespace ExxoAvalonOrigins.NPCs
                 npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DarkStarHeart>());
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().InitiateSuperHardmode();
             }
-            if (Main.rand.Next(10) == 0) Item.NewItem(npc.getRect(), ModContent.ItemType<WallofSteelTrophy>(), 1, false, 0, false);
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<WallofSteelTrophy>(), 1, false, 0, false);
+            }
+
             if (Main.expertMode)
             {
                 npc.DropBossBags();

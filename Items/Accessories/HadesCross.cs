@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,15 +7,6 @@ namespace ExxoAvalonOrigins.Items.Accessories
 {
     internal class HadesCross : ModItem
     {
-        public static Texture2D[] lavaMermanTextures = new Texture2D[]
-        {
-            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Head"),
-            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Body"),
-            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Arms"),
-            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
-            ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Legs")
-        };
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hades' Cross");

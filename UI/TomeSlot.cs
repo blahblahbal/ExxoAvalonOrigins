@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.UI.Chat;
 
 namespace ExxoAvalonOrigins.UI
 {
-    class TomeSlot : UIState
+    internal class TomeSlot : UIState
     {
         public UIPanel tomeSlotDisplay;
         internal float scale = 1f;
@@ -24,7 +18,7 @@ namespace ExxoAvalonOrigins.UI
 
         internal event Func<Item, bool> CanPutIntoSlot;
 
-        private Item[] ssa = new Item[1];
+        private readonly Item[] ssa = new Item[1];
 
         public override void OnInitialize()
         {
@@ -45,8 +39,8 @@ namespace ExxoAvalonOrigins.UI
                 var mouseLoc = new Point(Main.mouseX, Main.mouseY);
                 var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
                 Main.inventoryScale = 0.85f;
-                var tmpItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
-                var mH = 0;
+                Item tmpItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
+                int mH = 0;
                 if (Main.mapEnabled)
                 {
                     if (!Main.mapFullscreen && Main.mapStyle == 1)
