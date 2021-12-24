@@ -147,6 +147,7 @@ namespace ExxoAvalonOrigins
         public int infectDmg = 0;
         public bool weaponMinion = false;
         public bool primeMinion = false;
+        public bool reflectorMinion = false;
         public int shadowPotCd = 0;
         public bool shockWave = false;
         public int fallStart_old = 0;
@@ -392,6 +393,11 @@ namespace ExxoAvalonOrigins
             avalonRetribution = false;
             curseOfIcarus = false;
             malaria = false;
+            primeMinion = false;
+            hungryMinion = false;
+            gastroMinion = false;
+            reflectorMinion = false;
+            iceGolem = false;
 
             if (shmAcc)
             {

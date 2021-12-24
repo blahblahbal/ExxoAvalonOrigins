@@ -21,158 +21,21 @@ namespace ExxoAvalonOrigins
 
         public static Rectangle drawZoneRect = default(Rectangle);
 
-        public static void AIRotate(Projectile codable, ref float rotation, ref float moveRot, Vector2 rotateCenter, bool absolute = false, float rotDistance = 50f, float rotThreshold = 20f, float rotAmount = 0.024f, bool moveTowards = true)
+        public static int FindClosestHostile(Vector2 pos, float dist)
         {
-            if (absolute)
+            int closest = -1;
+            float last = dist;
+            for (int i = 0; i < Main.projectile.Length; i++)
             {
-                moveRot += rotAmount;
-                var value = RotateVector(default(Vector2), new Vector2(rotDistance, 0f), moveRot) + rotateCenter;
-                codable.position = value - new Vector2(codable.width / 2, codable.height / 2);
-                value.Normalize();
-                rotation = RotationTo(codable.Center, rotateCenter) - 1.57f;
-                codable.velocity *= 0f;
-                return;
-            }
-            var num = Vector2.Distance(codable.Center, rotateCenter);
-            if (num < rotDistance)
-            {
-                if (rotDistance - num > rotThreshold)
+                Projectile p = Main.projectile[i];
+                if (!p.active || !p.hostile) continue;
+                if (Vector2.Distance(pos, p.Center) < last)
                 {
-                    moveRot += rotAmount;
-                    var endPos = RotateVector(default(Vector2), new Vector2(rotDistance, 0f), moveRot) + rotateCenter;
-                    var num2 = RotationTo(codable.Center, endPos);
-                    codable.velocity = RotateVector(default(Vector2), new Vector2(5f, 0f), num2);
-                    rotation = RotationTo(codable.Center, codable.Center + codable.velocity);
-                    return;
-                }
-                moveRot += rotAmount;
-                var endPos2 = RotateVector(default(Vector2), new Vector2(rotDistance, 0f), moveRot) + rotateCenter;
-                var num3 = RotationTo(codable.Center, endPos2);
-                codable.velocity = RotateVector(default(Vector2), new Vector2(5f, 0f), num3);
-                rotation = RotationTo(codable.Center, codable.Center + codable.velocity);
-                return;
-            }
-            else
-            {
-                if (moveTowards)
-                {
-                    codable.velocity = AIVelocityLinear(codable, rotateCenter, rotAmount, rotAmount, true);
-                    rotation = RotationTo(codable.Center, rotateCenter) - 1.57f;
-                    return;
-                }
-                codable.velocity *= 0.95f;
-                return;
-            }
-        }
-
-        public static Vector2 AIVelocityLinear(Projectile codable, Vector2 destVec, float moveInterval, float maxSpeed, bool direct = false)
-        {
-            var result = codable.velocity;
-            var flag = codable.tileCollide;
-            if (direct)
-            {
-                var value = RotateVector(codable.Center, codable.Center + new Vector2(maxSpeed, 0f), RotationTo(codable.Center, destVec));
-                result = value - codable.Center;
-            }
-            else
-            {
-                if (codable.Center.X > destVec.X)
-                {
-                    result.X = Math.Max(-maxSpeed, result.X - moveInterval);
-                }
-                else if (codable.Center.X < destVec.X)
-                {
-                    result.X = Math.Min(maxSpeed, result.X + moveInterval);
-                }
-                if (codable.Center.Y > destVec.Y)
-                {
-                    result.Y = Math.Max(-maxSpeed, result.Y - moveInterval);
-                }
-                else if (codable.Center.Y < destVec.Y)
-                {
-                    result.Y = Math.Min(maxSpeed, result.Y + moveInterval);
+                    last = Vector2.Distance(pos, p.Center);
+                    closest = i;
                 }
             }
-            if (flag)
-            {
-                result = Collision.TileCollision(codable.position, result, codable.width, codable.height, false, false, 1);
-            }
-            return result;
-        }
-
-        public static void AIWeapon(Projectile codable, ref float[] ai, ref float rotation, Vector2 targetPos, bool justHit = false, int rotTime = 120, int moveTime = 100, float maxSpeed = 6f, float movementScalar = 1f, float rotScalar = 1f)
-        {
-            if (ai[0] == 0f)
-            {
-                var vector = codable.Center;
-                var num = targetPos.X - vector.X;
-                var num2 = targetPos.Y - vector.Y;
-                var num3 = (float)Math.Sqrt(num * num + num2 * num2);
-                var num4 = 9f / num3;
-                codable.velocity.X = num * num4 * movementScalar;
-                codable.velocity.Y = num2 * num4 * movementScalar;
-                if (codable.velocity.X > maxSpeed)
-                {
-                    codable.velocity.X = maxSpeed;
-                }
-                if (codable.velocity.X < -maxSpeed)
-                {
-                    codable.velocity.X = -maxSpeed;
-                }
-                if (codable.velocity.Y > maxSpeed)
-                {
-                    codable.velocity.Y = maxSpeed;
-                }
-                if (codable.velocity.Y < -maxSpeed)
-                {
-                    codable.velocity.Y = -maxSpeed;
-                }
-                rotation = (float)Math.Atan2(codable.velocity.Y, codable.velocity.X);
-                ai[0] = 1f;
-                ai[1] = 0f;
-                return;
-            }
-            if (ai[0] == 1f)
-            {
-                if (justHit)
-                {
-                    ai[0] = 2f;
-                    ai[1] = 0f;
-                }
-                codable.velocity *= 0.99f;
-                ai[1] += 1f;
-                if (ai[1] < moveTime)
-                {
-                    return;
-                }
-                ai[0] = 2f;
-                ai[1] = 0f;
-                codable.velocity.X = 0f;
-                codable.velocity.Y = 0f;
-                return;
-            }
-            else
-            {
-                if (justHit)
-                {
-                    ai[0] = 2f;
-                    ai[1] = 0f;
-                }
-                codable.velocity *= 0.96f;
-                ai[1] += 1f;
-                rotation += (float)(0.1 + ai[1] / rotTime * 0.40000000596046448) * codable.direction * rotScalar;
-                if (ai[1] < rotTime)
-                {
-                    return;
-                }
-                if (codable != null)
-                {
-                    codable.netUpdate = true;
-                }
-                ai[0] = 0f;
-                ai[1] = 0f;
-                return;
-            }
+            return closest;
         }
 
         public static int[] GetProjectiles(Vector2 center, int[] projTypes, int owner = -1, int[] projsToExclude = null, float distance = 500f, Func<Projectile, bool> CanAdd = null)

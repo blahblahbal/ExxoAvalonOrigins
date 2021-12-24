@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,17 +160,40 @@ namespace ExxoAvalonOrigins.Projectiles
 					projectile.velocity.Y = -0.05f;
 				}
 			}
-			projectile.frameCounter++;
-			if (projectile.frameCounter > 3)
-			{
-				projectile.frame++;
-				projectile.frameCounter = 0;
-			}
-			if (projectile.frame > 2)
-			{
-				projectile.frame = 0;
-			}
-			if (projectile.ai[1] > 0f)
+            if (projectile.localAI[0] == 0)
+            {
+                projectile.frameCounter++;
+                if (projectile.frameCounter <= 3)
+                {
+                    projectile.frame = 0;
+                }
+                else if (projectile.frameCounter <= 6)
+                {
+                    projectile.frame = 1;
+                }
+            }
+            else if (projectile.localAI[0] > 0)
+            {
+                projectile.localAI[0]++;
+                if (projectile.localAI[0] <= 4)
+                {
+                    projectile.frame = 2;
+                }
+                else if (projectile.localAI[0] <= 6)
+                {
+                    projectile.frame = 3;
+                }
+                else if (projectile.localAI[0] <= 8)
+                {
+                    projectile.frame = 4;
+                }
+                else
+                {
+                    projectile.frame = 0;
+                    projectile.localAI[0] = 0;
+                }
+            }
+            if (projectile.ai[1] > 0f)
 			{
 				projectile.ai[1] += Main.rand.Next(1, 4);
 			}

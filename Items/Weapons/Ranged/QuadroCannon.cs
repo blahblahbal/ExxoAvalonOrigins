@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,7 +33,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.height = dims.Height;
             item.UseSound = SoundID.Item11;
         }
-		public override Vector2? HoldoutOffset()
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
+            recipe.AddIngredient(ItemID.Shotgun);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 10);
+            recipe.AddIngredient(ItemID.SoulofFright);
+            recipe.AddIngredient(ItemID.SoulofSight);
+            recipe.AddIngredient(ItemID.SoulofMight);
+            recipe.AddIngredient(ModContent.ItemType<Material.LensApparatus>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 25);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-10, 0);
 		}

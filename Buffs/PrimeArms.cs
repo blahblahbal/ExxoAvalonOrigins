@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,19 +23,19 @@ namespace ExxoAvalonOrigins.Buffs
 
 		public override void Update(Player player, ref int k)
 		{
-				if (player.ownedProjectileCounts[474] > 0 || player.ownedProjectileCounts[475] > 0 || player.ownedProjectileCounts[476] > 0 || player.ownedProjectileCounts[477] > 0)
-				{
-					player.GetModPlayer<ExxoAvalonOriginsModPlayer>().primeMinion = true;
-				}
-				if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().primeMinion)
-				{
-					player.DelBuff(k);
-					k--;
-				}
-				else
-				{
-					player.buffTime[k] = 18000;
-				}
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiCannon>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiLaser>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiSaw>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiVice>()] > 0)
+			{
+				player.GetModPlayer<ExxoAvalonOriginsModPlayer>().primeMinion = true;
+			}
+			if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().primeMinion)
+			{
+				player.DelBuff(k);
+				k--;
+			}
+			else
+			{
+				player.buffTime[k] = 18000;
+			}
 		}
 	}
 }

@@ -1,4 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,5 +37,9 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 		{
 			return new Vector2(-10, 0);
 		}
-	}
+        public override bool ConsumeAmmo(Player player)
+        {
+            return player.itemAnimation >= item.useAnimation - 4;
+        }
+    }
 }

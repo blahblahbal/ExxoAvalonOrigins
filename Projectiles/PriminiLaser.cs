@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.Projectiles
 				var num954 = ExxoAvalonOriginsGlobalNPC.FindClosest(projectile.position, 640f);
 				if (num954 == -1)
 				{
-					projectile.rotation = -0.7853982f;
+					projectile.rotation = 0.7853982f; // -
 					return;
 				}
 				projectile.rotation = Vector2.Normalize(Main.npc[num954].Center - projectile.Center).ToRotation() + 1.57079637f;
@@ -166,7 +166,7 @@ namespace ExxoAvalonOrigins.Projectiles
 				var num956 = ExxoAvalonOriginsGlobalNPC.FindClosest(projectile.position, 640f);
 				if (num956 == -1)
 				{
-					projectile.rotation = 0.7853982f;
+					projectile.rotation = -0.7853982f; // +
 					return;
 				}
 				projectile.rotation = Vector2.Normalize(Main.npc[num956].Center - projectile.Center).ToRotation() + 1.57079637f;
@@ -238,7 +238,7 @@ namespace ExxoAvalonOrigins.Projectiles
 				var num957 = ExxoAvalonOriginsGlobalNPC.FindClosest(projectile.position, 640f);
 				if (num957 == -1)
 				{
-					projectile.rotation = -2.3561945f;
+                    projectile.rotation = -0.785398164f; // -2.3561945f;
 					return;
 				}
 				projectile.rotation = Vector2.Normalize(Main.npc[num957].Center - projectile.Center).ToRotation() + 1.57079637f;
@@ -321,7 +321,7 @@ namespace ExxoAvalonOrigins.Projectiles
 				var num959 = ExxoAvalonOriginsGlobalNPC.FindClosest(projectile.position, 480f);
 				if (num959 == -1)
 				{
-					projectile.rotation = 2.3561945f;
+                    projectile.rotation = 3.92699082f; // 2.3561945f;
 					return;
 				}
 				if (Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[num959].position, Main.npc[num959].width, Main.npc[num959].height))

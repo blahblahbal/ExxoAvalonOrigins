@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -219,7 +219,7 @@ namespace ExxoAvalonOrigins.Projectiles
 						projectile.frame++;
 						projectile.frameCounter = 0;
 					}
-					if (projectile.ai[2] == 1f)
+					if (projectile.localAI[1] == 1f)
 					{
 						projectile.frame = 6;
 					}

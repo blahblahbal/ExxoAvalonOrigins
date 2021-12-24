@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +22,18 @@ namespace ExxoAvalonOrigins.Buffs
 
 		public override void Update(Player player, ref int k)
 		{
-            player.buffTime[k] = 18000;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion = true;
-            var petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.GastrominiSummon>()] <= 0;
-            if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.GastrominiSummon>()] > 0)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, ModContent.ProjectileType<Projectiles.GastrominiSummon>(), 0, 0f, player.whoAmI, 0f, 0f);
+                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion= true;
+            }
+            if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion)
+            {
+                player.DelBuff(k);
+                k--;
+            }
+            else
+            {
+                player.buffTime[k] = 18000;
             }
         }
 	}

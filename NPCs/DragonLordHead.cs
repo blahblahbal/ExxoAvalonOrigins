@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +81,13 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DragonScale>(), Main.rand.Next(5, 11), false, 0, false);
+                int rand = Main.rand.Next(5);
+                if (rand == 0) Item.NewItem(npc.position, ModContent.ItemType<Items.Accessories.DragonStone>());
+                else if (rand == 1) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
+                else if (rand == 2) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
+                else if (rand == 3) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
+                else if (rand == 4) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DragonScale>(), Main.rand.Next(8, 16), false, 0, false);
             }
 
             if (!ExxoAvalonOriginsWorld.downedDragonLord)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,5 +34,16 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 			item.height = dims.Height;
             item.UseSound = SoundID.Item21;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<FreezeBolt>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 50);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 40);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

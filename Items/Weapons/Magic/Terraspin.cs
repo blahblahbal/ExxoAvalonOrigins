@@ -80,5 +80,17 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             }
             return false;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<DevilsScythe>());
+            recipe.AddIngredient(ModContent.ItemType<TheGoldenFlames>());
+            recipe.AddIngredient(ItemID.RazorbladeTyphoon);
+            recipe.AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 5);
+            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

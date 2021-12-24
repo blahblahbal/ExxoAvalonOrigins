@@ -1,15 +1,15 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tools
 {
-	class ZirconHook : ModItem
+	class TourmalineHook : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Zircon Hook");
+			DisplayName.SetDefault("Tourmaline Hook");
 		}
 
 		public override void SetDefaults()
@@ -18,12 +18,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			item.noUseGraphic = true;
 			item.useTurn = true;
 			item.shootSpeed = 16f;
-			item.rare = ItemRarityID.Green;
+			item.rare = ItemRarityID.Blue;
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 20;
-			item.knockBack = 7f;
-			item.shoot = ModContent.ProjectileType<Projectiles.ZirconHook>();
+			item.shoot = ModContent.ProjectileType<Projectiles.TourmalineHook>();
 			item.value = Item.sellPrice(0, 0, 54, 0);
 			item.useStyle = ItemUseStyleID.HoldingOut;
 			item.useAnimation = 20;

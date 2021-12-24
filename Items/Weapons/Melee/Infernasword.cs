@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,5 +29,17 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.useAnimation = 20;
 			item.height = dims.Height;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.EnchantedSword);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 100);
+            recipe.AddIngredient(ItemID.SoulofMight, 16);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 7);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

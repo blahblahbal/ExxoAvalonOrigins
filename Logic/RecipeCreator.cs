@@ -2187,14 +2187,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.EnchantedSword);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 100);
-            recipe.AddIngredient(ItemID.SoulofMight, 16);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Infernasword>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LaserRifle);
             recipe.AddIngredient(ModContent.ItemType<LensApparatus>());
             recipe.AddIngredient(ItemID.SoulofFright, 16);
@@ -3180,15 +3172,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DevilsScythe>());
-            recipe.AddIngredient(ModContent.ItemType<TheGoldenFlames>());
-            recipe.AddIngredient(ItemID.RazorbladeTyphoon);
-            recipe.AddIngredient(ModContent.ItemType<BrokenVigilanteTome>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
-            recipe.SetResult(ModContent.ItemType<Terraspin>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.HallowedBar, 35);
             recipe.AddIngredient(ItemID.SpellTome);
             recipe.AddIngredient(ItemID.SoulofLight, 20);
@@ -3205,28 +3188,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(ModContent.ItemType<PlanterasFury>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FreezeBolt>());
-            recipe.AddIngredient(ItemID.LavaBucket, 2);
-            recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 50);
-            recipe.AddIngredient(ItemID.Fireblossom, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<MagmafrostBolt>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
-            recipe.AddIngredient(ItemID.Shotgun);
-            recipe.AddIngredient(ItemID.TurtleShell, 2);
-            recipe.AddIngredient(ItemID.SoulofFright);
-            recipe.AddIngredient(ItemID.SoulofSight);
-            recipe.AddIngredient(ItemID.SoulofMight);
-            recipe.AddIngredient(ModContent.ItemType<LensApparatus>());
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 25);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<QuadroCannon>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

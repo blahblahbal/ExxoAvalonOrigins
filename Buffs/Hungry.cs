@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,19 +23,19 @@ namespace ExxoAvalonOrigins.Buffs
 
 		public override void Update(Player player, ref int k)
 		{
-				if (player.ownedProjectileCounts[485] > 0)
-				{
-					player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion = true;
-				}
-				if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion)
-				{
-					player.DelBuff(k);
-					k--;
-				}
-				else
-				{
-					player.buffTime[k] = 18000;
-				}
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.HungrySummon>()] > 0)
+			{
+				player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion = true;
+			}
+			if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion)
+			{
+				player.DelBuff(k);
+				k--;
+			}
+			else
+			{
+				player.buffTime[k] = 18000;
+			}
 		}
 	}
 }
