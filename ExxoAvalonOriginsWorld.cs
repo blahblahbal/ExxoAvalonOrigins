@@ -1247,6 +1247,7 @@ namespace ExxoAvalonOrigins
             {
                 DropComet(ModContent.TileType<Tiles.HydrolythOre>());
             }
+            Main.tileSolidTop[ModContent.TileType<Tiles.FallenStarTile>()] = Main.dayTime;
         }
 
         public override void PreWorldGen()

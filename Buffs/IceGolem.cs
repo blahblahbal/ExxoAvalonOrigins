@@ -1,13 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.Buffs
 {
@@ -18,7 +10,8 @@ namespace ExxoAvalonOrigins.Buffs
 			DisplayName.SetDefault("Ice Golem");
 			Description.SetDefault("The ice golem will fight for you");
 			Main.buffNoTimeDisplay[Type] = true;
-		}
+            Main.buffNoSave[Type] = true;
+        }
 
 		public override void Update(Player player, ref int k)
 		{

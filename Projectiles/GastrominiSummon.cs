@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -15,30 +11,32 @@ namespace ExxoAvalonOrigins.Projectiles
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Gastromini");
-            Main.projPet[projectile.type] = true;
+            Main.projFrames[projectile.type] = 5;
+            //Main.projPet[projectile.type] = true;
         }
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/GastrominiSummon");
 			projectile.netImportant = true;
-			projectile.width = dims.Width * 22 / 132;
-			projectile.height = dims.Height * 22 / 132 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
+			projectile.width = 22;
+			projectile.height = 36;
 			projectile.penetrate = -1;
 			projectile.timeLeft *= 5;
 			projectile.minion = true;
-			projectile.minionSlots = 1f;
+			projectile.minionSlots = 0.25f;
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 			projectile.friendly = true;
-			Main.projFrames[projectile.type] = 5;
-			Main.projPet[projectile.type] = true;
 		}
-
-		public override void AI()
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            return false;
+        }
+        public override void AI()
 		{
-			if (projectile.type == ModContent.ProjectileType<GastrominiSummon>())
+            Main.player[projectile.owner].AddBuff(ModContent.BuffType<Buffs.Gastropod>(), 3600);
+            if (projectile.type == ModContent.ProjectileType<GastrominiSummon>())
 			{
 				if (Main.player[projectile.owner].dead)
 				{
@@ -75,11 +73,11 @@ namespace ExxoAvalonOrigins.Projectiles
 			var vector57 = projectile.position;
 			var num822 = 400f;
 			var flag32 = false;
-			if (projectile.ai[0] != 1f)
-			{
-				projectile.tileCollide = true;
-			}
-			for (var num823 = 0; num823 < 200; num823++)
+            if (projectile.ai[0] != 1f)
+            {
+                projectile.tileCollide = true;
+            }
+            for (var num823 = 0; num823 < 200; num823++)
 			{
 				var nPC5 = Main.npc[num823];
 				if (nPC5.active && !nPC5.dontTakeDamage && !nPC5.friendly && nPC5.lifeMax > 5)

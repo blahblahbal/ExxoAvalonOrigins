@@ -4394,16 +4394,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
-            recipe.AddIngredient(ModContent.ItemType<SoulofIce>(), 75);
-            recipe.AddIngredient(ItemID.FrostCore, 10);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 40);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
-            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.StaffoftheTempestFrigid>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 60);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 75);
             recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 40);
@@ -4438,15 +4428,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TerraBlade);
-            recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
-            recipe.AddIngredient(ModContent.ItemType<SoulofDelight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<ElementShard>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
-            recipe.SetResult(ModContent.ItemType<ElementalExcalibur>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

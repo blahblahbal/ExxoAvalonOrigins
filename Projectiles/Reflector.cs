@@ -25,6 +25,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.timeLeft *= 5;
             projectile.minion = true;
             projectile.tileCollide = false;
+            //Main.projPet[projectile.type] = true;
         }
         public override void AI()
         {
@@ -46,12 +47,14 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 projectile.frame = 0;
             }
-            if (Vector2.Distance(projectile.position, Main.player[projectile.owner].position) > 25 * 16)
-            {
-                if (projectile.velocity.X == 0f || projectile.velocity.Y == 0f) projectile.tileCollide = false;
-            }
-            else projectile.tileCollide = true;
-            if (projectile.type == 606)
+            //if (Vector2.Distance(projectile.position, Main.player[projectile.owner].position) > 25 * 16)
+            //{
+            //    if (projectile.velocity.X == 0f || projectile.velocity.Y == 0f) projectile.tileCollide = false;
+            //}
+            //else projectile.tileCollide = true;
+
+            Main.player[projectile.owner].AddBuff(ModContent.BuffType<Buffs.Reflector>(), 3600);
+            if (projectile.type == ModContent.ProjectileType<Reflector>())
             {
                 if (Main.player[projectile.owner].dead)
                 {
@@ -62,6 +65,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     projectile.timeLeft = 2;
                 }
             }
+            
             int num321 = 10;
             int num322 = 40 * (projectile.minionPos + 1) * Main.player[projectile.owner].direction;
             if (Main.player[projectile.owner].position.X + (float)(Main.player[projectile.owner].width / 2) < projectile.position.X + (float)(projectile.width / 2) - num321 + num322)

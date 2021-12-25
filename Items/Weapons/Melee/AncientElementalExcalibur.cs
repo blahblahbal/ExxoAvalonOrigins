@@ -1,40 +1,44 @@
-﻿using ExxoAvalonOrigins.Logic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-	class ElementalExcalibur : ModItem
+	class AncientElementalExcalibur : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Elemental Excalibur");
+			DisplayName.SetDefault("Ancient Elemental Excalibur");
+			Tooltip.SetDefault("'The unification of the Elements'\n'A relic of the past'");
 		}
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
+			item.UseSound = SoundID.Item1;
 			item.damage = 190;
 			item.autoReuse = true;
-			item.UseSound = SoundID.Item1;
+			item.useTurn = true;
 			item.scale = 1.2f;
-			item.shootSpeed = 13f;
 			item.rare = ItemRarityID.Cyan;
-			item.noMelee = false;
 			item.width = dims.Width;
 			item.useTime = 15;
-			item.knockBack = 8.5f;
-			item.shoot = ModContent.ProjectileType<Projectiles.ElementBeam>();
+			item.knockBack = 7f;
 			item.melee = true;
 			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.value = Item.sellPrice(0, 90, 0, 0);
+			item.value = Item.sellPrice(0, 50, 0, 0);
 			item.useAnimation = 10;
 			item.height = dims.Height;
 		}
-		public override Color? GetAlpha(Color lightColor)
+		public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
-			return new Color(255, 255, 255, 255);
+			if (Main.rand.NextBool(3))
+			{
+				int num313 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Enchanted_Pink);
+				Main.dust[num313].noGravity = true;
+				Main.dust[num313].fadeIn = 1.25f;
+				Main.dust[num313].velocity *= 0.25f;
+			}
 		}
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
@@ -69,13 +73,13 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TerraBlade);
             recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
+            recipe.AddIngredient(ModContent.ItemType<PyroscoricLongsword>());
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15);
+            recipe.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-	}
+    }
 }

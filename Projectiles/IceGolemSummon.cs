@@ -15,7 +15,8 @@ namespace ExxoAvalonOrigins.Projectiles
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ice Golem");
-		}
+            Main.projFrames[projectile.type] = 6;
+        }
 
 		public override void SetDefaults()
 		{
@@ -23,18 +24,18 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.netImportant = true;
 			projectile.width = dims.Width * 22 / 230;
 			projectile.height = dims.Height * 22 / 230 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
 			projectile.penetrate = -1;
 			projectile.timeLeft *= 5;
 			projectile.minion = true;
 			projectile.minionSlots = 1f;
 			projectile.ignoreWater = true;
 			projectile.friendly = true;
-			Main.projFrames[projectile.type] = 6;
-			Main.projPet[projectile.type] = true;
 		}
-
-		public override void AI()
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            return false;
+        }
+        public override void AI()
 		{
 			if (!Main.player[projectile.owner].active)
 			{
@@ -46,7 +47,8 @@ namespace ExxoAvalonOrigins.Projectiles
 			var flag11 = false;
 			var flag12 = false;
 			var num356 = 85;
-			if (projectile.type == ModContent.ProjectileType<IceGolemSummon>())
+            Main.player[projectile.owner].AddBuff(ModContent.BuffType<Buffs.IceGolem>(), 3600);
+            if (projectile.type == ModContent.ProjectileType<IceGolemSummon>())
 			{
 				if (Main.player[projectile.owner].dead)
 				{

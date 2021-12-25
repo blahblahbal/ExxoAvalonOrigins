@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -11,15 +11,16 @@ namespace ExxoAvalonOrigins.Projectiles
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Hungry");
-		}
+            Main.projFrames[projectile.type] = 3;
+        }
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/HungrySummon");
 			projectile.netImportant = true;
-			projectile.width = dims.Width * 22 / 98;
-			projectile.height = dims.Height * 22 / 98 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
+			projectile.width = 22;
+			projectile.height = 36;
+			//projectile.aiStyle = -1;
 			projectile.penetrate = -1;
 			projectile.timeLeft *= 5;
 			projectile.minion = true;
@@ -27,23 +28,26 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 			projectile.friendly = true;
-			Main.projFrames[projectile.type] = 3;
-			Main.projPet[projectile.type] = true;
+			//Main.projPet[projectile.type] = true;
 		}
-
-		public override void AI()
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            return false;
+        }
+        public override void AI()
 		{
-			if (projectile.type == ModContent.ProjectileType<HungrySummon>())
-			{
-				if (Main.player[projectile.owner].dead)
-				{
-					Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion = false;
-				}
-				if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion)
-				{
-					projectile.timeLeft = 2;
-				}
-			}
+            Main.player[projectile.owner].AddBuff(ModContent.BuffType<Buffs.Hungry>(), 3600);
+            if (projectile.type == ModContent.ProjectileType<HungrySummon>())
+            {
+                if (Main.player[projectile.owner].dead)
+                {
+                    Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion = false;
+                }
+                if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion)
+                {
+                    projectile.timeLeft = 2;
+                }
+            }
 			var num820 = 0.05f;
 			for (var num821 = 0; num821 < 1000; num821++)
 			{
@@ -95,10 +99,10 @@ namespace ExxoAvalonOrigins.Projectiles
 			var vector57 = projectile.position;
 			var num822 = 400f;
 			var flag32 = false;
-			if (projectile.ai[0] != 1f)
-			{
-				projectile.tileCollide = true;
-			}
+			//if (projectile.ai[0] != 1f)
+			//{
+			//	projectile.tileCollide = true;
+			//}
 			for (var num823 = 0; num823 < 200; num823++)
 			{
 				var nPC5 = Main.npc[num823];
@@ -213,11 +217,6 @@ namespace ExxoAvalonOrigins.Projectiles
 			{
 				projectile.ai[1] += Main.rand.Next(1, 4);
 			}
-			if (projectile.ai[1] > 90f && (projectile.type == ProjectileID.Retanimini || projectile.type == ModContent.ProjectileType<GastrominiSummon>()))
-			{
-				projectile.ai[1] = 0f;
-				projectile.netUpdate = true;
-			}
 			if ((projectile.ai[1] > 40f && projectile.type == ProjectileID.Spazmamini) || (projectile.ai[1] > 50f && projectile.type == ModContent.ProjectileType<HungrySummon>()))
 			{
 				projectile.ai[1] = 0f;
@@ -225,43 +224,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			}
 			if (projectile.ai[0] == 0f)
 			{
-				if (projectile.type == ProjectileID.Retanimini)
-				{
-					var scaleFactor6 = 8f;
-					int num830 = ProjectileID.MiniRetinaLaser;
-					if (flag32 && projectile.ai[1] == 0f)
-					{
-						projectile.ai[1] += 1f;
-						if (Main.myPlayer == projectile.owner && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, vector57, 0, 0))
-						{
-							var value23 = vector57 - projectile.Center;
-							value23.Normalize();
-							value23 *= scaleFactor6;
-							var num831 = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, value23.X, value23.Y, num830, (int)(projectile.damage * 0.8f), 0f, Main.myPlayer, 0f, 0f);
-							Main.projectile[num831].timeLeft = 300;
-							projectile.netUpdate = true;
-						}
-					}
-				}
-				if (projectile.type == ModContent.ProjectileType<GastrominiSummon>())
-				{
-					var scaleFactor7 = 8f;
-					int num832 = ProjectileID.MiniRetinaLaser;
-					if (flag32 && projectile.ai[1] == 0f)
-					{
-						projectile.ai[1] += 1f;
-						if (Main.myPlayer == projectile.owner && Collision.CanHitLine(projectile.position, projectile.width, projectile.height, vector57, 0, 0))
-						{
-							var value24 = vector57 - projectile.Center;
-							value24.Normalize();
-							value24 *= scaleFactor7;
-							var num833 = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, value24.X, value24.Y, num832, (int)(projectile.damage * 0.8f), 0f, Main.myPlayer, 0f, 0f);
-							Main.projectile[num833].timeLeft = 300;
-							projectile.netUpdate = true;
-						}
-					}
-				}
-				if ((projectile.type == ProjectileID.Spazmamini || projectile.type == ModContent.ProjectileType<HungrySummon>()) && projectile.ai[1] == 0f && flag32 && num822 < 500f)
+				if (projectile.type == ModContent.ProjectileType<HungrySummon>() && projectile.ai[1] == 0f && flag32 && num822 < 500f)
 				{
 					projectile.ai[1] += 1f;
 					if (Main.myPlayer == projectile.owner)
@@ -272,10 +235,6 @@ namespace ExxoAvalonOrigins.Projectiles
 						if (projectile.type == ModContent.ProjectileType<HungrySummon>())
 						{
 							projectile.velocity = value25 * 5f;
-						}
-						else
-						{
-							projectile.velocity = value25 * 8f;
 						}
 						projectile.netUpdate = true;
 					}

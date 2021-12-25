@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Blah's Hauberk");
-			Tooltip.SetDefault("30% decreased mana usage and increases your max number of minions by 9\nIncreases maximum mana by 800");
+			Tooltip.SetDefault("30% decreased mana usage and increases your max number of minions by 12\nIncreases maximum mana by 800");
 		}
 
 		public override void SetDefaults()

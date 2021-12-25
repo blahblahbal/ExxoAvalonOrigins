@@ -20,20 +20,19 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
 			item.summon = true;
 			item.damage = 50;
 			item.shootSpeed = 14f;
-			item.buffType = ModContent.BuffType<Buffs.PrimeArms>();
-            item.buffTime = 3600;
 			item.mana = 14;
 			item.noMelee = true;
 			item.rare = ItemRarityID.Yellow;
 			item.width = dims.Width;
 			item.useTime = 30;
 			item.knockBack = 6.5f;
-			item.shoot = ModContent.ProjectileType<Projectiles.PriminiCannon>();
+			item.shoot = ModContent.ProjectileType<PriminiCannon>();
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.sellPrice(0, 10, 0, 0);
 			item.useAnimation = 30;
 			item.height = dims.Height;
-		}
+            item.UseSound = SoundID.Item44;
+        }
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
 			ref float knockBack)

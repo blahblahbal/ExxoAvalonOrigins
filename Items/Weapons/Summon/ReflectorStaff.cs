@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.width = 38;
             item.height = 36;
             item.UseSound = SoundID.Item44;
-            item.buffType = ModContent.BuffType<Buffs.Reflector>();
+            //item.buffType = ModContent.BuffType<Buffs.Reflector>();
             item.useAnimation = 30;
             item.useTime = 30;
             item.noMelee = true;
@@ -29,6 +29,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.rare = 8;
             item.summon = true;
             item.mana = 30;
+            //item.buffTime = 3600;
         }
     }
 }

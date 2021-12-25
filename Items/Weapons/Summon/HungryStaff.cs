@@ -18,8 +18,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
 			item.summon = true;
 			item.damage = 27;
 			item.shootSpeed = 14f;
-			item.buffType = ModContent.BuffType<Buffs.Hungry>();
-            item.buffTime = 3600;
             item.mana = 15;
 			item.noMelee = true;
 			item.rare = ItemRarityID.LightRed;
@@ -31,12 +29,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
 			item.value = Item.sellPrice(0, 1, 0, 0);
 			item.useAnimation = 30;
 			item.height = dims.Height;
-        }
-
-        public override bool UseItem(Player player)
-        {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion = true;
-            return base.UseItem(player);
+            item.UseSound = SoundID.Item44;
         }
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,

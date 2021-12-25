@@ -169,6 +169,14 @@ namespace ExxoAvalonOrigins
             Network.MessageHandler.HandlePacket(reader, whoAmI);
         }
 
+        public override void PreUpdateEntities()
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                Main.tileSolidTop[ModContent.TileType<Tiles.FallenStarTile>()] = Main.dayTime;
+            }
+        }
+
         public override void PostUpdateEverything()
         {
             Tiles.CoolGemsparkBlock.StaticUpdate();

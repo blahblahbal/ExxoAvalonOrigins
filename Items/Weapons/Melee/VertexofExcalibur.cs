@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,13 +10,13 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Vertex of Excalibur");
-			Tooltip.SetDefault("Deals more damage to foes inflicted by a debuff\n'The unification of dark and light'");
+			Tooltip.SetDefault("Deals more damage to enemies affected by a debuff\n'The unification of dark and light'");
 		}
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
 			item.UseSound = SoundID.Item1;
-			item.damage = 105;
+			item.damage = 97;
 			item.autoReuse = true;
 			item.useTurn = true;
 			item.scale = 1.2f;
@@ -51,7 +51,11 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 					break;
 				}
 			}
-			if (hasDebuff) damage *= 2;
+            if (hasDebuff)
+            {
+                if (target.boss) damage = (int)(damage * 1.2);
+                else damage = (int)(damage * 1.6);
+            }
 		}
 	}
 }

@@ -9,7 +9,9 @@ namespace ExxoAvalonOrigins.Buffs
 		{
 			DisplayName.SetDefault("Reflector");
 			Description.SetDefault("The minions will reflect projectiles for you");
-		}
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.buffNoSave[Type] = false;
+        }
 
 		public override void Update(Player player, ref int k)
 		{

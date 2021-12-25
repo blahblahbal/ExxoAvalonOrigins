@@ -18,7 +18,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
 			item.summon = true;
 			item.damage = 152;
 			item.shootSpeed = 14f;
-			item.buffType = ModContent.BuffType<Buffs.IceGolem>();
 			item.mana = 30;
 			item.noMelee = true;
 			item.rare = ItemRarityID.Yellow;
@@ -30,6 +29,20 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
 			item.value = Item.sellPrice(0, 30, 0, 0);
 			item.useAnimation = 30;
 			item.height = dims.Height;
-		}
-	}
+            item.UseSound = SoundID.Item44;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofIce>(), 75);
+            recipe.AddIngredient(ItemID.FrostCore, 10);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.HydrolythBar>(), 40);
+            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.SetResult(ModContent.ItemType<StaffoftheTempestFrigid>());
+            recipe.AddRecipe();
+        }
+    }
 }
