@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
 			drop = ModContent.ItemType<SoulofBlight>();
             dustType = ModContent.DustType<Dusts.SoulofBlight>();
 		}
-        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
+        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
             if (Main.rand.Next(100) == 0)
             {
