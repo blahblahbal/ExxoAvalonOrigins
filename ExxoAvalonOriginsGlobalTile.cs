@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -58,8 +58,8 @@ namespace ExxoAvalonOrigins
                     fail = true;
                 }
             }
-            if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() ||
-                Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>())
+            if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() && Main.tile[i, j].type != ModContent.TileType<Tiles.IckyAltar>() ||
+                Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>() && Main.tile[i, j].type != ModContent.TileType<Tiles.HallowedAltar>())
             {
                 fail = true;
             }
