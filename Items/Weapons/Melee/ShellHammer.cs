@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
     public class ShellHammer : ModItem
     {
-        int fireDelay = 240;
+        int fireDelay = 90;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shell Hammer");
@@ -23,22 +23,28 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.UseSound = SoundID.Item1;
             item.useStyle = item.maxStack = 1;
             item.useAnimation = item.useTime = 35;
-            item.shoot = ModContent.ProjectileType<Projectiles.Shell>();
+            //item.shoot = ModContent.ProjectileType<Projectiles.Shell>();
             item.shootSpeed = 5.5f;
             item.damage = 87;
             item.value = Item.sellPrice(0, 6, 20, 0);
         }
-        //public override void HoldItem(Player player)
-        //{
-        //    if (player.itemAnimation > 0 && fireDelay > 0)
-        //    {
-        //        fireDelay--;
-        //    }
-        //    if (fireDelay == 0)
-        //    {
-        //        Projectile.NewProjectile(player.position, new Vector2(7f, 6f), ModContent.ProjectileType<Projectiles.Shell>(), (int)(87 * player.meleeDamage), 6f);
-        //        fireDelay = 240;
-        //    }
-        //}
+        public override void HoldItem(Player player)
+        {
+            if (fireDelay > 0 && player.itemAnimation > 0) fireDelay--;
+            if (fireDelay == 0)
+            {
+                float velX = Main.mouseX + Main.screenPosition.X - player.Center.X;
+                float velY = Main.mouseY + Main.screenPosition.Y - player.Center.Y;
+                if (player.gravDir == -1f)
+                {
+                    velY = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - player.Center.Y;
+                }
+                float v = MathHelper.Clamp(velX, -7f, 7f);
+                if (v < 0 && v > -5f) v = -5f;
+                if (v > 0 && v < 5f) v = 5f;
+                Projectile.NewProjectile(player.position.X, player.position.Y, v, -4f, ModContent.ProjectileType<Projectiles.Shell>(), (int)(87 * player.meleeDamage), 6f);
+                fireDelay = 90;
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,15 +28,15 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.aiStyle = -1;
 			projectile.penetrate = 2;
 
-			color = new Color(0, 255, 217) * 0.7f;
-			dustId = 88;
-		}
+			color = new Color(27, 247, 229) * 0.7f;
+            dustId = ModContent.DustType<Dusts.TourmalineDust>();
+        }
 
 		public override void AI()
 		{
 			for (var i = 0; i < 2; i++)
 			{
-				var dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.velocity.X, projectile.velocity.Y, 50, color, 1.2f);
+				var dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.velocity.X, projectile.velocity.Y, 50, default, 1.2f);
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 0.3f;
 			}
@@ -54,7 +54,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y);
 			for (int num453 = 0; num453 < 15; num453++)
 			{
-				int num454 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.oldVelocity.X, projectile.oldVelocity.Y, 50, color, 1.2f);
+				int num454 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.oldVelocity.X, projectile.oldVelocity.Y, 50, default, 1.2f);
 				Main.dust[num454].noGravity = true;
 				Dust dust152 = Main.dust[num454];
 				Dust dust226 = dust152;

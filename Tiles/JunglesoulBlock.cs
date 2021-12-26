@@ -15,12 +15,9 @@ namespace ExxoAvalonOrigins.Tiles
 			drop = ModContent.ItemType<SouloftheJungle>();
             dustType = ModContent.DustType<Dusts.SoulofHumidity>();
 		}
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Main.rand.Next(100) == 0)
-            {
-                Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, ModContent.DustType<Dusts.SoulofHumidity>(), 0f, 0f, 0, default, 1f);
-            }
+            Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, ModContent.DustType<Dusts.SoulofHumidity>(), 0f, 0f, 0, default, 1f);
         }
     }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.penetrate = 6;
 
 			color = new Color(255, 50, 0) * 0.4f;
-			dustId = 262;
+			dustId = 152;
 		}
 
 		public override void AI()
@@ -63,6 +63,11 @@ namespace ExxoAvalonOrigins.Projectiles
 				dust226 = dust152;
 				dust226.velocity *= 0.5f;
 			}
-		}
+            for (int p = 0; p < 8; p++)
+            {
+                int proj = Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X + (Main.rand.Next(-40, 41) * 0.1f), projectile.velocity.Y + (Main.rand.Next(-40, 41) * 0.1f), ModContent.ProjectileType<SolarBoltOffspring>(), (int)(projectile.damage * 0.8), projectile.knockBack, projectile.owner);
+                Main.projectile[proj].timeLeft = 300;
+            }
+        }
 	}
 }

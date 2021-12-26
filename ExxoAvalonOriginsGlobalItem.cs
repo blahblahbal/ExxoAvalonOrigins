@@ -323,6 +323,16 @@ namespace ExxoAvalonOrigins
             };
             switch (item.type)
             {
+                case ItemID.Mushroom:
+                    item.potion = false;
+                    item.healLife = 0;
+                    item.useAnimation = 15;
+                    item.useTime = 10;
+                    item.useTurn = item.autoReuse = true;
+                    item.createTile = ModContent.TileType<Tiles.MushroomTile>();
+                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.UseSound = null;
+                    break;
                 case ItemID.Torch:
                     item.ammo = 8;
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 0;

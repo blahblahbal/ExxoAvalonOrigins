@@ -1,42 +1,58 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class OnyxBolt : ModProjectile
+	public class SolarBoltOffspring : ModProjectile
 	{
 		private Color color;
 		private int dustId;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Onyx Bolt");
+			DisplayName.SetDefault("Solar Bolt Offspring");
 		}
 
 		public override void SetDefaults()
 		{
 			projectile.CloneDefaults(ProjectileID.SapphireBolt);
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/OnyxBolt");
+			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/SolarBoltOffspring");
 			projectile.width = dims.Width * 10 / 16;
 			projectile.height = dims.Height * 10 / 16 / Main.projFrames[projectile.type];
 			projectile.aiStyle = -1;
 			projectile.penetrate = 3;
 
-			color = new Color(104, 104, 104) * 0.7f;
-            dustId = ModContent.DustType<Dusts.SoulofBlight>();
+			color = new Color(255, 50, 0) * 0.4f;
+			dustId = 152;
+		}
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 10);
+            projectile.ai[0]++;
+            if (projectile.ai[0] >= 5f)
+            {
+                projectile.position += projectile.velocity;
+                projectile.Kill();
+            }
+            else
+            {
+                if (projectile.velocity.Y != oldVelocity.Y)
+                {
+                    projectile.velocity.Y = -oldVelocity.Y;
+                }
+                if (projectile.velocity.X != oldVelocity.X)
+                {
+                    projectile.velocity.X = -oldVelocity.X;
+                }
+            }
+            return false;
         }
-
-		public override void AI()
+        public override void AI()
 		{
 			for (var i = 0; i < 2; i++)
 			{
-				var dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.velocity.X, projectile.velocity.Y, 50, default, 1.2f);
+				var dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.velocity.X, projectile.velocity.Y, 50, color, 1.2f);
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 0.3f;
 			}
@@ -54,7 +70,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y);
 			for (int num453 = 0; num453 < 15; num453++)
 			{
-				int num454 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.oldVelocity.X, projectile.oldVelocity.Y, 50, default, 1.2f);
+				int num454 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.oldVelocity.X, projectile.oldVelocity.Y, 50, color, 1.2f);
 				Main.dust[num454].noGravity = true;
 				Dust dust152 = Main.dust[num454];
 				Dust dust226 = dust152;

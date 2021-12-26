@@ -91,7 +91,7 @@ namespace ExxoAvalonOrigins.Hooks
 							if (/*!Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune*/(!Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<BlahsWings>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<GuardianBoots>()) && !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
 								!Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) && !Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == ModContent.TileType<Tiles.VenomSpike>())
 							{
-								num5 = 65;
+								num5 = 90;
 								Main.player[Main.myPlayer].AddBuff(BuffID.Venom, 180, true);
 							}
 							return new Vector2((float)num9, (float)num5);

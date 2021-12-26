@@ -15,13 +15,6 @@ namespace ExxoAvalonOrigins.Tiles
 			drop = ModContent.ItemType<SoulofTorture>();
             dustType = ModContent.DustType<Dusts.SoulofTorture>();
         }
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            if (Main.rand.Next(100) == 0)
-            {
-                Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, ModContent.DustType<Dusts.SoulofTorture>(), 0f, 0f, 0, default, 1f);
-            }
-        }
         public override void NearbyEffects(int i, int j, bool closer)
         {
             int p = Player.FindClosest(new Vector2(i, j), 24, 24);
@@ -35,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
                     Main.player[p].thrownCrit += 6;
                 }
             }
-            base.NearbyEffects(i, j, closer);
+            Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, ModContent.DustType<Dusts.SoulofTorture>(), 0f, 0f, 0, default, 1f);
         }
     }
 }
