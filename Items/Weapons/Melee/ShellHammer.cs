@@ -28,17 +28,17 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.damage = 87;
             item.value = Item.sellPrice(0, 6, 20, 0);
         }
-        public override void HoldItem(Player player)
-        {
-            if (player.itemAnimation > 0 && fireDelay > 0)
-            {
-                fireDelay--;
-            }
-            if (fireDelay == 0)
-            {
-                Projectile.NewProjectile(player.position, new Vector2(7f, 6f), ModContent.ProjectileType<Projectiles.Shell>(), (int)(87 * player.meleeDamage), 6f);
-                fireDelay = 240;
-            }
-        }
+        //public override void HoldItem(Player player)
+        //{
+        //    if (player.itemAnimation > 0 && fireDelay > 0)
+        //    {
+        //        fireDelay--;
+        //    }
+        //    if (fireDelay == 0)
+        //    {
+        //        Projectile.NewProjectile(player.position, new Vector2(7f, 6f), ModContent.ProjectileType<Projectiles.Shell>(), (int)(87 * player.meleeDamage), 6f);
+        //        fireDelay = 240;
+        //    }
+        //}
     }
 }
