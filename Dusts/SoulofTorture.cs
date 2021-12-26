@@ -1,9 +1,9 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Dusts
 {
-	public class Dust236 : ModDust
+	public class SoulofTorture : ModDust
 	{
 		public override bool Update(Dust dust)
 		{

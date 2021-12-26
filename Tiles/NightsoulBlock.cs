@@ -1,13 +1,8 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -18,9 +13,15 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(Color.LightBlue);
 			Main.tileSolid[Type] = true;
             drop = ItemID.SoulofNight;
-            dustType = ModContent.DustType<Dusts.Dust229>();
+            dustType = ModContent.DustType<Dusts.SoulofNight>();
         }
-
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
+        {
+            if (Main.rand.Next(100) == 0)
+            {
+                Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, ModContent.DustType<Dusts.SoulofNight>(), 0f, 0f, 0, default, 1f);
+            }
+        }
         public override void NearbyEffects(int i, int j, bool closer)
         {
             int p = Player.FindClosest(new Vector2(i, j), 24, 24);

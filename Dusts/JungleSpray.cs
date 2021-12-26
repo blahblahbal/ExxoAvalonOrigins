@@ -1,10 +1,10 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Dusts
 {
-	public class Dust226 : ModDust
+	public class JungleSpray : ModDust
 	{
 		public override bool Update(Dust dust)
 		{

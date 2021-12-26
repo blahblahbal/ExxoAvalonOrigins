@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.ObjectData;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -18,9 +19,15 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(Color.Orange);
 			Main.tileSolid[Type] = true;
 			drop = ItemID.SoulofFright;
-            dustType = ModContent.DustType<Dusts.Dust230>();
+            dustType = ModContent.DustType<Dusts.SoulofFright>();
 		}
-
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
+        {
+            if (Main.rand.Next(100) == 0)
+            {
+                Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, ModContent.DustType<Dusts.SoulofFright>(), 0f, 0f, 0, default, 1f);
+            }
+        }
         public override void NearbyEffects(int i, int j, bool closer)
         {
             int p = Player.FindClosest(new Vector2(i, j), 24, 24);

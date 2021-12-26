@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,7 +91,7 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/UnstableAnomalyChair"), 1f);
                 for (int i = 0; i < 30; i++)
                 {
-                    int num890 = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<Dusts.Dust228>(), 0f, 0f, 0, default(Color), 1f);
+                    int num890 = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<Dusts.SoulofLight>(), 0f, 0f, 0, default(Color), 1f);
                     Main.dust[num890].velocity *= 5f;
                     Main.dust[num890].scale = 1f;
                     Main.dust[num890].noGravity = true;

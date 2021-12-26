@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Tiles
             ExxoAvalonOrigins.MergeWith(Type, TileID.SnowBlock);
             soundType = SoundID.Item;
             soundStyle = 50;
-            dustType = ModContent.DustType<Dusts.Dust237>();
+            dustType = ModContent.DustType<Dusts.ContagionSpray>();
         }
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {

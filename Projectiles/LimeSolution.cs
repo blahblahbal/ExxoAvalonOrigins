@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void AI()
         {
 
-            int dustType = ModContent.DustType<Dusts.Dust226>();
+            int dustType = ModContent.DustType<Dusts.JungleSpray>();
 
             if (projectile.timeLeft > 133)
                 projectile.timeLeft = 133;
