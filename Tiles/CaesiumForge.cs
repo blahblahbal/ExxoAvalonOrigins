@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.ObjectData;
 using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -43,5 +44,22 @@ namespace ExxoAvalonOrigins.Tiles
 		{   
 			Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.CaesiumForge>());
 		}
-	}
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            r = 254 / 255;
+            g = 121 / 255;
+            b = 2 / 255;
+        }
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if (Main.rand.Next(40) == 0)
+            {
+                int num56 = Dust.NewDust(new Vector2(j * 16 - 4, i * 16 - 6), 8, 6, 6, 0f, 0f, 100, default, 1f);
+                if (Main.rand.Next(3) != 0)
+                {
+                    Main.dust[num56].noGravity = true;
+                }
+            }
+        }
+    }
 }

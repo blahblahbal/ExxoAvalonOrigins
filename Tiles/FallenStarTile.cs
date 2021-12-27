@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
 			Main.tileFrameImportant[Type] = true;
-            TileID.Sets.Platforms[Type] = true;
+            //TileID.Sets.Platforms[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
             TileObjectData.newTile.UsesCustomCanPlace = false;
             TileObjectData.newTile.LavaDeath = false;

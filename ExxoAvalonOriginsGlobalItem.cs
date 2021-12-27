@@ -12,6 +12,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using System.Reflection;
+using System;
 
 namespace ExxoAvalonOrigins
 {
@@ -321,18 +323,19 @@ namespace ExxoAvalonOrigins
                 ItemID.SoulofSight,
                 ItemID.SoulofFright
             };
+            
             switch (item.type)
             {
-                case ItemID.Mushroom:
-                    item.potion = false;
-                    item.healLife = 0;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.useTurn = item.autoReuse = true;
-                    item.createTile = ModContent.TileType<Tiles.MushroomTile>();
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.UseSound = null;
-                    break;
+                //case ItemID.Mushroom:
+                //    item.potion = false;
+                //    item.healLife = 0;
+                //    item.useAnimation = 15;
+                //    item.useTime = 10;
+                //    item.useTurn = item.autoReuse = true;
+                //    item.createTile = ModContent.TileType<Tiles.MushroomTile>();
+                //    item.useStyle = ItemUseStyleID.SwingThrow;
+                //    item.UseSound = null;
+                //    break;
                 case ItemID.Torch:
                     item.ammo = 8;
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 0;
@@ -742,6 +745,33 @@ namespace ExxoAvalonOrigins
                     item.damage = 120;
                     break;
             }
+            //if (item.type == ItemID.Mushroom)
+            //{
+            //    if (Main.playerInventory)
+            //    {
+            //        if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().placeShroom)
+            //        {
+            //            item.potion = false;
+            //            item.healLife = 0;
+            //            item.useAnimation = 15;
+            //            item.useTime = 10;
+            //            item.useTurn = item.autoReuse = true;
+            //            item.createTile = ModContent.TileType<Tiles.MushroomTile>();
+            //            item.useStyle = ItemUseStyleID.SwingThrow;
+            //            item.UseSound = null;
+            //        }
+            //        else
+            //        {
+            //            item.potion = true;
+            //            item.healLife = 15;
+            //            item.useAnimation = 17;
+            //            item.useTime = 17;
+            //            item.useTurn = item.autoReuse = false;
+            //            item.useStyle = ItemUseStyleID.EatingUsing;
+            //            item.UseSound = SoundID.Item2;
+            //        }
+            //    }
+            //}
             //if (item.type >= 1615 && item.type <= 1701)
             //{
             //    item.maxStack = 999;
@@ -1099,6 +1129,7 @@ namespace ExxoAvalonOrigins
                     float num223 = speedY;
                     num222 += Main.rand.Next(-30, 31) * 0.05f;
                     num223 += Main.rand.Next(-30, 31) * 0.05f;
+                    if (item.type == ModContent.ItemType<TacticalBlahncher>()) type = ModContent.ProjectileType<Projectiles.Blahcket>();
                     Projectile.NewProjectile(position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);
                 }
             }

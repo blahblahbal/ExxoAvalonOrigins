@@ -298,6 +298,8 @@ namespace ExxoAvalonOrigins
         public bool riftGoggles;
         public bool malaria;
 
+        public bool placeShroom;
+
         // Adv Buffs
         public bool advAmmoBuff;
 
@@ -398,6 +400,7 @@ namespace ExxoAvalonOrigins
             gastroMinion = false;
             reflectorMinion = false;
             iceGolem = false;
+            placeShroom = false;
 
             if (shmAcc)
             {

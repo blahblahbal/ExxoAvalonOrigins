@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,6 +33,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 			item.value = 388500;
 			item.useAnimation = 27;
 			item.height = dims.Height;
+            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Beam");
 		}
 	}
 }
