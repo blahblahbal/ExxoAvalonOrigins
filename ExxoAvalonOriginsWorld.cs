@@ -394,6 +394,580 @@ namespace ExxoAvalonOrigins
             }
         }
 
+        public static void BCBConvert(int i, int j, int conversionType, int size = 4)
+        {
+            for (int k = i - size; k <= i + size; k++)
+            {
+                for (int l = j - size; l <= j + size; l++)
+                {
+                    if (!WorldGen.InWorld(k, l, 1))
+                    {
+                        continue;
+                    }
+                    int type = Main.tile[k, l].type;
+                    int wall = Main.tile[k, l].wall;
+                    switch (conversionType)
+                    {
+                        #region crimson
+                        case 4: // crimson
+                            if (WallID.Sets.Conversion.Grass[wall] && wall != 81)
+                            {
+                                Main.tile[k, l].wall = 81;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Stone[wall] && wall != 83)
+                            {
+                                Main.tile[k, l].wall = 83;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != 218)
+                            {
+                                Main.tile[k, l].wall = 218;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Sandstone[wall] && wall != 221)
+                            {
+                                Main.tile[k, l].wall = 221;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != 203)
+                            {
+                                Main.tile[k, l].type = 203;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Grass[type] && type != 199)
+                            {
+                                Main.tile[k, l].type = 199;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Ice[type] && type != 200)
+                            {
+                                Main.tile[k, l].type = 200;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sand[type] && type != 234)
+                            {
+                                Main.tile[k, l].type = 234;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.HardenedSand[type] && type != 399)
+                            {
+                                Main.tile[k, l].type = 399;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sandstone[type] && type != 401)
+                            {
+                                Main.tile[k, l].type = 401;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Thorn[type] && type != 352)
+                            {
+                                Main.tile[k, l].type = 352;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if (type == 59 && (Main.tile[k - 1, l].type == 199 || Main.tile[k + 1, l].type == 199 || Main.tile[k, l - 1].type == 199 || Main.tile[k, l + 1].type == 199))
+                            {
+                                Main.tile[k, l].type = 0;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            continue;
+                        #endregion crimson
+                        #region hallow
+                        case 2:
+                            if (WallID.Sets.Conversion.Grass[wall] && wall != 70)
+                            {
+                                Main.tile[k, l].wall = 70;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Stone[wall] && wall != 28)
+                            {
+                                Main.tile[k, l].wall = 28;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != 219)
+                            {
+                                Main.tile[k, l].wall = 219;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Sandstone[wall] && wall != 222)
+                            {
+                                Main.tile[k, l].wall = 222;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != 117)
+                            {
+                                Main.tile[k, l].type = 117;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Grass[type] && type != 109)
+                            {
+                                Main.tile[k, l].type = 109;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Ice[type] && type != 164)
+                            {
+                                Main.tile[k, l].type = 164;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sand[type] && type != 116)
+                            {
+                                Main.tile[k, l].type = 116;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.HardenedSand[type] && type != 402)
+                            {
+                                Main.tile[k, l].type = 402;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sandstone[type] && type != 403)
+                            {
+                                Main.tile[k, l].type = 403;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Thorn[type])
+                            {
+                                WorldGen.KillTile(k, l);
+                                if (Main.netMode == 1)
+                                {
+                                    NetMessage.SendData(17, -1, -1, null, 0, k, l);
+                                }
+                            }
+                            if (type == 59 && (Main.tile[k - 1, l].type == 109 || Main.tile[k + 1, l].type == 109 || Main.tile[k, l - 1].type == 109 || Main.tile[k, l + 1].type == 109))
+                            {
+                                Main.tile[k, l].type = 0;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            continue;
+                        #endregion hallow
+                        #region corruption
+                        case 1:
+                            if (WallID.Sets.Conversion.Grass[wall] && wall != 69)
+                            {
+                                Main.tile[k, l].wall = 69;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Stone[wall] && wall != 3)
+                            {
+                                Main.tile[k, l].wall = 3;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != 217)
+                            {
+                                Main.tile[k, l].wall = 217;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Sandstone[wall] && wall != 220)
+                            {
+                                Main.tile[k, l].wall = 220;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != 25)
+                            {
+                                Main.tile[k, l].type = 25;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Grass[type] && type != 23)
+                            {
+                                Main.tile[k, l].type = 23;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Ice[type] && type != 163)
+                            {
+                                Main.tile[k, l].type = 163;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sand[type] && type != 112)
+                            {
+                                Main.tile[k, l].type = 112;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.HardenedSand[type] && type != 398)
+                            {
+                                Main.tile[k, l].type = 398;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sandstone[type] && type != 400)
+                            {
+                                Main.tile[k, l].type = 400;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Thorn[type] && type != 32)
+                            {
+                                Main.tile[k, l].type = 32;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if (type == 59 && (Main.tile[k - 1, l].type == 23 || Main.tile[k + 1, l].type == 23 || Main.tile[k, l - 1].type == 23 || Main.tile[k, l + 1].type == 23))
+                            {
+                                Main.tile[k, l].type = 0;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            continue;
+                        #endregion corruption
+                        #region mushrooms
+                        case 3:
+                            if (Main.tile[k, l].wall == 64 || Main.tile[k, l].wall == 15)
+                            {
+                                Main.tile[k, l].wall = 80;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 3);
+                            }
+                            if (Main.tile[k, l].type == 60)
+                            {
+                                Main.tile[k, l].type = 70;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 3);
+                            }
+                            else if (TileID.Sets.Conversion.Thorn[type])
+                            {
+                                WorldGen.KillTile(k, l);
+                                if (Main.netMode == 1)
+                                {
+                                    NetMessage.SendData(17, -1, -1, null, 0, k, l);
+                                }
+                            }
+                            continue;
+                        #endregion mushrooms
+                        #region jungle
+                        case 5:
+                            if (WallID.Sets.Conversion.Grass[wall] && wall != WallID.JungleUnsafe2)
+                            {
+                                Main.tile[k, l].wall = WallID.JungleUnsafe2;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Stone[wall] && wall != WallID.MudUnsafe)
+                            {
+                                Main.tile[k, l].wall = WallID.MudUnsafe;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != WallID.JungleUnsafe1)
+                            {
+                                Main.tile[k, l].wall = WallID.JungleUnsafe1;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Sandstone[wall] && wall != WallID.JungleUnsafe)
+                            {
+                                Main.tile[k, l].wall = WallID.JungleUnsafe;
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != 1)
+                            {
+                                Main.tile[k, l].type = 1;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Grass[type] && type != 60)
+                            {
+                                Main.tile[k, l].type = 60;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Ice[type] && type != (ushort)ModContent.TileType<GreenIce>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<GreenIce>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sand[type] && type != 53)
+                            {
+                                Main.tile[k, l].type = 53;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.HardenedSand[type] && type != TileID.HardenedSand)
+                            {
+                                Main.tile[k, l].type = TileID.HardenedSand;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sandstone[type] && type != TileID.Sandstone)
+                            {
+                                Main.tile[k, l].type = TileID.Sandstone;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Thorn[type] && type != TileID.JungleThorns)
+                            {
+                                Main.tile[k, l].type = TileID.JungleThorns;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            continue;
+                        #endregion jungle
+                        #region contagion
+                        case 6:
+                            if (WallID.Sets.Conversion.Grass[wall] && wall != ModContent.WallType<Walls.ContagionGrassWall>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionGrassWall>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Stone[wall] && wall != ModContent.WallType<Walls.ContagionNaturalWall1>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != ModContent.WallType<Walls.ContagionNaturalWall1>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Sandstone[wall] && wall != ModContent.WallType<Walls.ContagionNaturalWall2>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != ModContent.TileType<Chunkstone>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<Chunkstone>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Grass[type] && type != ModContent.TileType<Ickgrass>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<Ickgrass>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Ice[type] && type != (ushort)ModContent.TileType<YellowIce>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<YellowIce>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sand[type] && type != ModContent.TileType<Snotsand>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<Snotsand>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.HardenedSand[type] && type != ModContent.TileType<HardenedSnotsand>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<HardenedSnotsand>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sandstone[type] && type != ModContent.TileType<Snotsandstone>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<Snotsandstone>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            continue;
+                        #endregion contagion
+                        #region tropics
+                        case 7:
+                            if (WallID.Sets.Conversion.Grass[wall] && wall != ModContent.WallType<Walls.TropicalGrassWall>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Stone[wall] && wall != ModContent.WallType<Walls.TropicalMudWall>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.TropicalMudWall>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != ModContent.WallType<Walls.TropicalMudWall>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.TropicalMudWall>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (WallID.Sets.Conversion.Sandstone[wall] && wall != ModContent.WallType<Walls.TropicalMudWall>())
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.TropicalMudWall>();
+                                WorldGen.SquareWallFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != TileID.Stone)
+                            {
+                                Main.tile[k, l].type = TileID.Stone;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Grass[type] && type != ModContent.TileType<TropicalGrass>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<TropicalGrass>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Ice[type] && type != (ushort)ModContent.TileType<BrownIce>())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<BrownIce>();
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sand[type] && type != TileID.Sand)
+                            {
+                                Main.tile[k, l].type = TileID.Sand;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.HardenedSand[type] && type != TileID.HardenedSand)
+                            {
+                                Main.tile[k, l].type = TileID.HardenedSand;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (TileID.Sets.Conversion.Sandstone[type] && type != TileID.Sandstone)
+                            {
+                                Main.tile[k, l].type = TileID.Sandstone;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            continue;
+                            #endregion tropics
+                    }
+                    if (Main.tile[k, l].wall == 69 || Main.tile[k, l].wall == 70 || Main.tile[k, l].wall == 81)
+                    {
+                        if ((double)l < Main.worldSurface)
+                        {
+                            if (WorldGen.genRand.Next(10) == 0)
+                            {
+                                Main.tile[k, l].wall = 65;
+                            }
+                            else
+                            {
+                                Main.tile[k, l].wall = 63;
+                            }
+                        }
+                        else
+                        {
+                            Main.tile[k, l].wall = 64;
+                        }
+                        WorldGen.SquareWallFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].wall == 3 || Main.tile[k, l].wall == 28 || Main.tile[k, l].wall == 83)
+                    {
+                        Main.tile[k, l].wall = 1;
+                        WorldGen.SquareWallFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].wall == 80)
+                    {
+                        if ((double)l < Main.worldSurface + 4.0 + (double)WorldGen.genRand.Next(3) || (double)l > ((double)Main.maxTilesY + Main.rockLayer) / 2.0 - 3.0 + (double)WorldGen.genRand.Next(3))
+                        {
+                            Main.tile[k, l].wall = 15;
+                            WorldGen.SquareWallFrame(k, l);
+                            NetMessage.SendTileSquare(-1, k, l, 3);
+                        }
+                        else
+                        {
+                            Main.tile[k, l].wall = 64;
+                            WorldGen.SquareWallFrame(k, l);
+                            NetMessage.SendTileSquare(-1, k, l, 3);
+                        }
+                    }
+                    else if (WallID.Sets.Conversion.HardenedSand[wall] && wall != 216)
+                    {
+                        Main.tile[k, l].wall = 216;
+                        WorldGen.SquareWallFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (WallID.Sets.Conversion.Sandstone[wall] && wall != 187)
+                    {
+                        Main.tile[k, l].wall = 187;
+                        WorldGen.SquareWallFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    if (Main.tile[k, l].type == 23 || Main.tile[k, l].type == 109 || Main.tile[k, l].type == 199)
+                    {
+                        Main.tile[k, l].type = 2;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 117 || Main.tile[k, l].type == 25 || Main.tile[k, l].type == 203)
+                    {
+                        Main.tile[k, l].type = 1;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 112 || Main.tile[k, l].type == 116 || Main.tile[k, l].type == 234)
+                    {
+                        Main.tile[k, l].type = 53;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 398 || Main.tile[k, l].type == 402 || Main.tile[k, l].type == 399)
+                    {
+                        Main.tile[k, l].type = 397;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 400 || Main.tile[k, l].type == 403 || Main.tile[k, l].type == 401)
+                    {
+                        Main.tile[k, l].type = 396;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 164 || Main.tile[k, l].type == 163 || Main.tile[k, l].type == 200)
+                    {
+                        Main.tile[k, l].type = 161;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 70)
+                    {
+                        Main.tile[k, l].type = 60;
+                        WorldGen.SquareTileFrame(k, l);
+                        NetMessage.SendTileSquare(-1, k, l, 1);
+                    }
+                    else if (Main.tile[k, l].type == 32 || Main.tile[k, l].type == 352)
+                    {
+                        WorldGen.KillTile(k, l);
+                        if (Main.netMode == 1)
+                        {
+                            NetMessage.SendData(17, -1, -1, null, 0, k, l);
+                        }
+                    }
+                }
+            }
+        }
+
         public static void ConvertFromThings(int x, int y, int convert, bool tileframe = true)
         {
             Tile tile = Main.tile[x, y];
@@ -526,7 +1100,12 @@ namespace ExxoAvalonOrigins
                 list.RemoveAt(index);
                 list.RemoveAt(index2);
             }
+            else
+            {
+
+            }
             list.Insert(index + 2, new PassLegacy("Hardmode snow ore generation", new WorldGenLegacyMethod(World.Passes.SnowHardMode.Method)));
+
         }
 
         public override void NetSend(BinaryWriter writer)
