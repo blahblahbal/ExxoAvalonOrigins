@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ExxoAvalonOrigins.Items;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Tools;
@@ -323,15 +322,24 @@ namespace ExxoAvalonOrigins
 
         public int herbX;
         public int herbY;
-        public int herbTier;
         public int potionTotal;
         public int herbTotal;
-        public int[] herbCounts = new int[10];
+        public Dictionary<int, int> herbCounts = new Dictionary<int, int>();
         private int gemCount = 0;
         private bool[] ownedLargeGems = new bool[10];
 
         // Crit damage multiplyer vars
         public float critDamageMult = 1f;
+
+        public enum HerbTier
+        {
+            Novice,
+            Apprentice,
+            Expert,
+            Master
+        }
+
+        public HerbTier herbTier;
 
         #endregion fields
 
@@ -729,7 +737,7 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:HerbTier"))
             {
-                herbTier = tag.GetAsInt("ExxoAvalonOrigins:HerbTier");
+                herbTier = (HerbTier)tag.GetAsInt("ExxoAvalonOrigins:HerbTier");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:HerbTotal"))
             {
@@ -741,7 +749,19 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:HerbCounts"))
             {
-                herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
+                try
+                {
+                    herbCounts = tag.Get<Dictionary<int, int>>("ExxoAvalonOrigins:HerbCounts");
+                }
+                catch (IOException)
+                {
+                    herbCounts = new Dictionary<int, int>();
+                    int[] arr = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
+                    for (int i = 0; i < arr.Length; i++)
+                    {
+                        herbCounts.Add(UI.HerbologyBenchUI.Herbs[i], arr[i]);
+                    }
+                }
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:SpiritPoppyUseCount"))
             {
@@ -1178,10 +1198,10 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:CrystalHealth", crystalHealth },
                 { "ExxoAvalonOrigins:Stamina", statStamMax},
                 { "ExxoAvalonOrigins:SHMAcc", shmAcc },
-                { "ExxoAvalonOrigins:HerbTier", herbTier },
+                { "ExxoAvalonOrigins:HerbTier", (int)herbTier },
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
-                { "ExxoAvalonOrigins:HerbCounts", herbCounts },
+                //{ "ExxoAvalonOrigins:HerbCounts", herbCounts.GetEnumerator() },
                 { "ExxoAvalonOrigins:SpiritPoppyUseCount", spiritPoppyUseCount }
             };
             return tag;
@@ -1215,37 +1235,6 @@ namespace ExxoAvalonOrigins
                 Player.defaultItemGrabRange = 114;
             }
 
-            if (herbTotal < 250)
-            {
-                herbTier = 0;
-            }
-            else if (herbTotal >= 250 && herbTotal < 750)
-            {
-                herbTier = 1;
-            }
-            else if (herbTotal >= 750 && herbTotal < 1500)
-            {
-                if (Main.hardMode)
-                {
-                    herbTier = 2;
-                }
-                else
-                {
-                    herbTier = 1;
-                }
-            }
-            else
-            {
-                if (Main.hardMode)
-                {
-                    herbTier = 3;
-                }
-                else
-                {
-                    herbTier = 1;
-                }
-            }
-            herbTier = 2;
             //player.statMana = statMana;
 
             if (screenShakeTimer == 1)
@@ -1331,6 +1320,7 @@ namespace ExxoAvalonOrigins
                 player.shadow = 0f;
             }
 
+            // Herbology bench distance check
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
@@ -1346,6 +1336,7 @@ namespace ExxoAvalonOrigins
             {
                 player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
             }
+
             //if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
