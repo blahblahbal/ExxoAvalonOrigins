@@ -119,7 +119,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHoly && Main.hardMode ? 0.5f: 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHoly && Main.hardMode ? 0.14f: 0f;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return Main.hardMode && spawnInfo.player.ZoneHoly && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 1f : 0f;
+			return Main.hardMode && spawnInfo.player.ZoneHoly && !spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().InPillarZone() && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 0.13f : 0f;
 		}
 		public override void NPCLoot()
 		{
