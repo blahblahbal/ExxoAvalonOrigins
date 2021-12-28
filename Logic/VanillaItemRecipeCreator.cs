@@ -293,6 +293,109 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(ItemID.Picksaw);
             recipe.AddRecipe();
+
+            // seed fabricator stuff
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.StoneBlock, 5);
+            recipe.AddIngredient(ItemID.Torch, 2);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.BlinkrootSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Mushroom, 4);
+            recipe.AddIngredient(ItemID.DirtBlock, 6);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.DaybloomSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.DemoniteOre, 5);
+            recipe.AddIngredient(ItemID.EbonstoneBlock, 5);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.DeathweedSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.AshBlock, 8);
+            recipe.AddIngredient(ItemID.Hellstone, 2);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.FireblossomSeeds, 3);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MudBlock, 6);
+            recipe.AddIngredient(ItemID.GlowingMushroom);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.MoonglowSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.SandBlock, 6);
+            recipe.AddIngredient(ItemID.SharkFin);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.WaterleafSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.DirtBlock, 2);
+            recipe.AddIngredient(ItemID.Mushroom);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.GrassSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GrassSeeds, 2);
+            recipe.AddIngredient(ItemID.EbonstoneBlock, 5);
+            recipe.AddIngredient(ItemID.DemoniteOre, 3);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.CorruptSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GrassSeeds, 2);
+            recipe.AddIngredient(ItemID.CrimstoneBlock, 5);
+            recipe.AddIngredient(ItemID.CrimtaneOre, 3);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.CrimsonSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GrassSeeds, 2);
+            recipe.AddIngredient(ItemID.PearlstoneBlock, 5);
+            recipe.AddIngredient(ModContent.ItemType<HallowedOre>(), 3);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.HallowedSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GrassSeeds, 2);
+            recipe.AddIngredient(ItemID.MudBlock, 5);
+            recipe.AddIngredient(ItemID.GlowingMushroom, 6);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.MushroomGrassSeeds, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GrassSeeds, 2);
+            recipe.AddIngredient(ItemID.MudBlock, 5);
+            recipe.AddIngredient(ItemID.JungleSpores, 6);
+            recipe.AddIngredient(ItemID.Seed, 8);
+            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
+            recipe.SetResult(ItemID.JungleGrassSeeds, 2);
+            recipe.AddRecipe();
+            // end seed fabricator stuff
         }
     }
 }
