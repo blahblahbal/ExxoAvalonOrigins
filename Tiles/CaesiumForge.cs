@@ -46,9 +46,9 @@ namespace ExxoAvalonOrigins.Tiles
 		}
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 254f / 255f;
-            g = 121f / 255f;
-            b = 2f / 255f;
+            r = 230f / 255f;
+            g = 155f / 255f;
+            b = 115f / 255f;
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {

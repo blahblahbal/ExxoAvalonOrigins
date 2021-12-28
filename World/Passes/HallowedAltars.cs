@@ -9,7 +9,7 @@ using Terraria.Utilities;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
-    class ContagionHardMode
+    class HallowedAltars
     {
         public static void Method(GenerationProgress progress)
         {
@@ -41,8 +41,8 @@ namespace ExxoAvalonOrigins.World.Passes
                 i2 = (int)(Main.maxTilesX * (1.0 - num2));
             else
                 i1 = (int)(Main.maxTilesX * (1.0 - num2));
-            GERunner(i1, 0, (3 * num3), 5f, true);
-            GERunner(i2, 0, (3 * -num3), 5f, false);
+            GERunner(i1, 0, (3 * -num3), 5f, true);
+            //GERunner(i2, 0, (3 * -num3), 5f, false);
         }
         public static void GERunner(int i, int j, float speedX = 0f, float speedY = 0f, bool good = true)
         {
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.World.Passes
                         }
                         if (good)
                         {
-                            if (Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>())
+                            if (Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>() || Main.tile[k, l].wall == 3 || Main.tile[k, l].wall == 83)
                             {
                                 Main.tile[k, l].wall = 28;
                             }
@@ -116,7 +116,7 @@ namespace ExxoAvalonOrigins.World.Passes
                             }
                             if (Main.tile[k, l].active() && !Main.tile[k, l - 1].active() && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].type != TileID.Containers && Main.tile[k, l - 1].type != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(150) == 0) // hallowed altar gen
                             {
-                                WorldGen.Place3x2(k, l - 1, (ushort)ModContent.TileType<Tiles.HallowedAltar>());
+                                WorldGen.Place3x2(k, l - 1, (ushort)ModContent.TileType<HallowedAltar>());
                             }
                             if (Main.tile[k, l].wall == 3 || Main.tile[k, l].wall == 83)
                             {

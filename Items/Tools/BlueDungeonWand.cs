@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Dungeon Brick Wands");
+			DisplayName.SetDefault("Blue Dungeon Wand");
 			Tooltip.SetDefault("Places unsafe blue dungeon walls");
 		}
 

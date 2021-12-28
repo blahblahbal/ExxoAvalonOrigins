@@ -78,33 +78,15 @@ namespace ExxoAvalonOrigins.Tiles
             player.noThrow = 2;
             player.showItemIcon = true;
             int item = 0;
-            switch (Main.tile[i, j].frameX % 54)
-            {
-                case 0:
-                    item = ModContent.ItemType<Items.Placeable.Tile.PurityBomb>();
-                    break;
-                case 1:
-                    item = ModContent.ItemType<Items.Placeable.Tile.CorruptionBomb>();
-                    break;
-                case 2:
-                    item = ModContent.ItemType<Items.Placeable.Tile.JungleBomb>();
-                    break;
-                case 3:
-                    item = ModContent.ItemType<Items.Placeable.Tile.CrimsonBomb>();
-                    break;
-                case 4:
-                    item = ModContent.ItemType<Items.Placeable.Tile.ContagionBomb>();
-                    break;
-                case 5:
-                    item = ModContent.ItemType<Items.Placeable.Tile.MushroomBomb>();
-                    break;
-                case 6:
-                    item = ModContent.ItemType<Items.Placeable.Tile.HallowBomb>();
-                    break;
-                case 7:
-                    item = ModContent.ItemType<Items.Placeable.Tile.TropicsBomb>();
-                    break;
-            }
+            Tile tile = Main.tile[i, j];
+            if (tile.frameX <= 52) item = ModContent.ItemType<Items.Placeable.Tile.PurityBomb>();
+            else if (tile.frameX >= 54 && tile.frameX <= 106) item = ModContent.ItemType<Items.Placeable.Tile.CorruptionBomb>();
+            else if (tile.frameX >= 108 && tile.frameX <= 160) item = ModContent.ItemType<Items.Placeable.Tile.JungleBomb>();
+            else if (tile.frameX >= 162 && tile.frameX <= 214) item = ModContent.ItemType<Items.Placeable.Tile.CrimsonBomb>();
+            else if (tile.frameX >= 216 && tile.frameX <= 268) item = ModContent.ItemType<Items.Placeable.Tile.ContagionBomb>();
+            else if (tile.frameX >= 270 && tile.frameX <= 322) item = ModContent.ItemType<Items.Placeable.Tile.MushroomBomb>();
+            else if (tile.frameX >= 324 && tile.frameX <= 376) item = ModContent.ItemType<Items.Placeable.Tile.HallowBomb>();
+            else if (tile.frameX >= 378 && tile.frameX <= 430) item = ModContent.ItemType<Items.Placeable.Tile.TropicsBomb>();
             player.showItemIcon2 = item;
         }
         public override void HitWire(int i, int j)

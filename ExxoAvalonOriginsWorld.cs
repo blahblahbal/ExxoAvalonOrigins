@@ -1114,7 +1114,8 @@ namespace ExxoAvalonOrigins
             }
             else
             {
-
+                list.Insert(index + 1, new PassLegacy("Exxo Avalon Origins: Hardmode Good (Hallowed Altars)", new WorldGenLegacyMethod(World.Passes.HallowedAltars.Method)));
+                list.RemoveAt(index);
             }
             list.Insert(index + 2, new PassLegacy("Hardmode snow ore generation", new WorldGenLegacyMethod(World.Passes.SnowHardMode.Method)));
 
