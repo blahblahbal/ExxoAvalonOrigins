@@ -46,15 +46,15 @@ namespace ExxoAvalonOrigins.Tiles
 		}
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 254 / 255;
-            g = 121 / 255;
-            b = 2 / 255;
+            r = 254f / 255f;
+            g = 121f / 255f;
+            b = 2f / 255f;
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {
             if (Main.rand.Next(40) == 0)
             {
-                int num56 = Dust.NewDust(new Vector2(j * 16 - 4, i * 16 - 6), 8, 6, 6, 0f, 0f, 100, default, 1f);
+                int num56 = Dust.NewDust(new Vector2(i * 16 - 4, j * 16 - 6), 8, 6, 6, 0f, 0f, 100, default, 1f);
                 if (Main.rand.Next(3) != 0)
                 {
                     Main.dust[num56].noGravity = true;

@@ -408,7 +408,7 @@ namespace ExxoAvalonOrigins
                     int wall = Main.tile[k, l].wall;
                     switch (conversionType)
                     {
-                        #region crimson
+                        #region crimson (4)
                         case 4: // crimson
                             if (WallID.Sets.Conversion.Grass[wall] && wall != 81)
                             {
@@ -484,7 +484,7 @@ namespace ExxoAvalonOrigins
                             }
                             continue;
                         #endregion crimson
-                        #region hallow
+                        #region hallow (2)
                         case 2:
                             if (WallID.Sets.Conversion.Grass[wall] && wall != 70)
                             {
@@ -562,7 +562,7 @@ namespace ExxoAvalonOrigins
                             }
                             continue;
                         #endregion hallow
-                        #region corruption
+                        #region corruption (1)
                         case 1:
                             if (WallID.Sets.Conversion.Grass[wall] && wall != 69)
                             {
@@ -638,7 +638,7 @@ namespace ExxoAvalonOrigins
                             }
                             continue;
                         #endregion corruption
-                        #region mushrooms
+                        #region mushrooms (3)
                         case 3:
                             if (Main.tile[k, l].wall == 64 || Main.tile[k, l].wall == 15)
                             {
@@ -662,7 +662,7 @@ namespace ExxoAvalonOrigins
                             }
                             continue;
                         #endregion mushrooms
-                        #region jungle
+                        #region jungle (5)
                         case 5:
                             if (WallID.Sets.Conversion.Grass[wall] && wall != WallID.JungleUnsafe2)
                             {
@@ -691,6 +691,12 @@ namespace ExxoAvalonOrigins
                             if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != 1)
                             {
                                 Main.tile[k, l].type = 1;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (type == 0 || type == ModContent.TileType<TropicalMud>())
+                            {
+                                Main.tile[k, l].type = 59;
                                 WorldGen.SquareTileFrame(k, l);
                                 NetMessage.SendTileSquare(-1, k, l, 1);
                             }
@@ -732,7 +738,7 @@ namespace ExxoAvalonOrigins
                             }
                             continue;
                         #endregion jungle
-                        #region contagion
+                        #region contagion (6)
                         case 6:
                             if (WallID.Sets.Conversion.Grass[wall] && wall != ModContent.WallType<Walls.ContagionGrassWall>())
                             {
@@ -796,7 +802,7 @@ namespace ExxoAvalonOrigins
                             }
                             continue;
                         #endregion contagion
-                        #region tropics
+                        #region tropics (7)
                         case 7:
                             if (WallID.Sets.Conversion.Grass[wall] && wall != ModContent.WallType<Walls.TropicalGrassWall>())
                             {
@@ -825,6 +831,12 @@ namespace ExxoAvalonOrigins
                             if ((Main.tileMoss[type] || TileID.Sets.Conversion.Stone[type]) && type != TileID.Stone)
                             {
                                 Main.tile[k, l].type = TileID.Stone;
+                                WorldGen.SquareTileFrame(k, l);
+                                NetMessage.SendTileSquare(-1, k, l, 1);
+                            }
+                            else if (type == 0 || type == 59)
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<TropicalMud>();
                                 WorldGen.SquareTileFrame(k, l);
                                 NetMessage.SendTileSquare(-1, k, l, 1);
                             }
