@@ -45,6 +45,10 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CaesiumOre>(), Main.rand.Next(3, 7), false, 0, false);
             }
+            if (Main.rand.Next(20) == 0)
+            {
+                Projectile.NewProjectile(npc.position, npc.velocity, ModContent.ProjectileType<Projectiles.CaesiumGas>(), 0, 0);
+            }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

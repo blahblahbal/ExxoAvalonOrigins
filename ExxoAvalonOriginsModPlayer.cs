@@ -297,8 +297,8 @@ namespace ExxoAvalonOrigins
         public bool vampireTeeth;
         public bool riftGoggles;
         public bool malaria;
-
-        public bool placeShroom;
+        public bool caesiumPoison;
+        public int caesiumTimer;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -400,7 +400,7 @@ namespace ExxoAvalonOrigins
             gastroMinion = false;
             reflectorMinion = false;
             iceGolem = false;
-            placeShroom = false;
+            caesiumPoison = false;
 
             if (shmAcc)
             {
@@ -437,6 +437,22 @@ namespace ExxoAvalonOrigins
                 else
                 {
                     player.lifeRegen -= 16;
+                }
+            }
+            if (caesiumPoison)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                }
+                player.lifeRegenTime = 0;
+                if (frontReflect && Main.rand.Next(6) == 0)
+                {
+                    player.lifeRegen += HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 3 : 2;
+                }
+                else
+                {
+                    player.lifeRegen -= 8;
                 }
             }
             if (melting)
@@ -1218,6 +1234,23 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdate()
         {
+            //Rectangle rect = player.getRect();
+            //foreach (Projectile p in Main.projectile)
+            //{
+            //    if (p.active && p.type == ModContent.ProjectileType<CaesiumGas>())
+            //    {
+            //        if (p.getRect().Intersects(rect))
+            //        {
+            //            caesiumTimer++;
+            //        }
+            //        else caesiumTimer = 0;
+            //        if (caesiumTimer >= 180) break;
+            //    }
+            //}
+            //if (caesiumTimer >= 180)
+            //{
+            //    player.AddBuff(ModContent.BuffType<Buffs.CaesiumPoison>(), 5 * 60);
+            //}
             //Main.worldRate = 5;
             if (magnet)
             {
@@ -2689,6 +2722,10 @@ namespace ExxoAvalonOrigins
             if (player.HasBuff(ModContent.BuffType<Buffs.ShadowCurse>()))
             {
                 damage *= 2;
+            }
+            if (caesiumPoison)
+            {
+                damage = (int)(damage * 1.15f);
             }
         }
 

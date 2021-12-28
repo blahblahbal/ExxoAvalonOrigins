@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +41,32 @@ namespace ExxoAvalonOrigins.Tiles
         {
             ExxoAvalonOrigins.MergeWithFrame(i, j, Type, TileID.Ash, false, false, false, false, resetFrame);
             return false;
+        }
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if (j > Main.maxTilesY - 190 && i > (Main.maxTilesX - Main.maxTilesX / 5))
+            {
+                if (Main.tile[i, j].active() && !Main.tile[i, j - 1].active() ||
+                    Main.tile[i, j].active() && !Main.tile[i, j + 1].active() ||
+                    Main.tile[i, j].active() && !Main.tile[i - 1, j].active() ||
+                    Main.tile[i, j].active() && !Main.tile[i + 1, j].active())
+                {
+                    if (Main.rand.Next(1000) == 0)
+                    {
+                        Projectile.NewProjectile(new Vector2(i, j) * 16, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), ModContent.ProjectileType<Projectiles.CaesiumGas>(), 0, 0);
+                    }
+                }
+            }
+        }
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (j > Main.maxTilesY - 190 && i > (Main.maxTilesX - Main.maxTilesX / 5))
+            {
+                if (Main.rand.Next(27) == 0)
+                {
+                    int proj = Projectile.NewProjectile(new Vector2(i, j) * 16, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), ModContent.ProjectileType<Projectiles.CaesiumGas>(), 0, 0);
+                }
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Black Blaststone");
+            DisplayName.SetDefault("Blasted Stone");
         }
 
         public override void SetDefaults()

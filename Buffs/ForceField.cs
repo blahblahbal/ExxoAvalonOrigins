@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +28,12 @@ namespace ExxoAvalonOrigins.Buffs
             {
                 var projectile2 = projectile[l];
                 if (!projectile2.friendly && !projectile2.bobber && projectile2.type != 237 && projectile2.type != ProjectileID.Stinger && projectile2.type != 238 && projectile2.type != 243 &&
-                projectile2.type != 244 && projectile2.type != 308 && projectile2.type != 295 && projectile2.type != 296 &&
-                projectile2.type != ProjectileID.PhantasmalDeathray && projectile2.type != ModContent.ProjectileType<Projectiles.Ghostflame>() &&
-                projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && projectile2.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() &&
-                projectile2.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && projectile2.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
-                projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>())
+                    projectile2.type != 244 && projectile2.type != 308 && projectile2.type != 295 && projectile2.type != 296 &&
+                    projectile2.type != ProjectileID.PhantasmalDeathray && projectile2.type != ModContent.ProjectileType<Projectiles.Ghostflame>() &&
+                    projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && projectile2.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() &&
+                    projectile2.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && projectile2.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
+                    projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() &&
+                    projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumGas>())
                 {
                     var rectangle = new Rectangle((int)projectile2.position.X, (int)projectile2.position.Y, projectile2.width, projectile2.height);
                     if (rectangle.Intersects(value))

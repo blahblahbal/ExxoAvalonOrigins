@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 if (!Pr.friendly && !Pr.bobber && Pr.type != 237 && Pr.type != 238 && Pr.type != 243 && Pr.type != 244 && Pr.type != ProjectileID.Stinger && Pr.type != 308 && Pr.type != 295 && Pr.type != 296 && Pr.type != 50 && Pr.type != 53 && Pr.type != 358 &&
                     Pr.type != ProjectileID.PhantasmalDeathray && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>() && Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() &&
                     Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() && Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>())
+                    Pr.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumGas>())
                 {
                     Rectangle proj2 = new Rectangle((int)Pr.position.X, (int)Pr.position.Y, Pr.width, Pr.height);
                     bool reflect = false, check = false;

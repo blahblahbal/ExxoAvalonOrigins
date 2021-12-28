@@ -77,9 +77,13 @@ namespace ExxoAvalonOrigins.NPCs
                 Main.dust[num11].velocity *= 2.5f;
                 Main.dust[num11].fadeIn = 1.1f;
             }
+            if (Main.rand.Next(20) == 0)
+            {
+                Projectile.NewProjectile(npc.position, npc.velocity, ModContent.ProjectileType<Projectiles.CaesiumGas>(), 0, 0);
+            }
             //var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, npc.damage, 0f, npc.target, 0f, 0f);
-			//Main.projectile[num12].Kill();
-		}
+            //Main.projectile[num12].Kill();
+        }
 
         public override void AI()
         {
