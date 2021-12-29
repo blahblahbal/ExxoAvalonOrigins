@@ -452,7 +452,7 @@ namespace ExxoAvalonOrigins
                 }
                 else
                 {
-                    player.lifeRegen -= 8;
+                    player.lifeRegen -= 20;
                 }
             }
             if (melting)

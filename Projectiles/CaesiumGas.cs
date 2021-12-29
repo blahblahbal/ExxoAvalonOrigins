@@ -12,24 +12,34 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 36;
-            projectile.height = 36;
+            projectile.width = 70;
+            projectile.height = 70;
             projectile.aiStyle = -1;
             projectile.penetrate = 1;
             projectile.alpha = 100;
             projectile.friendly = false;
-            projectile.timeLeft = 1200;
+            projectile.timeLeft = 720;
             projectile.ignoreWater = true;
             projectile.hostile = true;
             projectile.tileCollide = false;
-            projectile.scale = 1.4f;
+            projectile.scale = 0.6f;
         }
 
         public override void AI()
         {
+            projectile.ai[0]++;
+            if (projectile.ai[0] > 500)
+            {
+                projectile.alpha++;
+                if (projectile.alpha == 255) projectile.Kill();
+            }
             projectile.velocity *= 0.98f;
-            projectile.rotation += projectile.velocity.ToRotation();
-            if (Main.rand.Next(250) == 0)
+            projectile.rotation += projectile.velocity.ToRotation() / 500;
+            if (projectile.scale < 0.9f)
+            {
+                projectile.scale *= 1.005f;
+            }
+            if (Main.rand.Next(125) == 0)
             {
                 for (int i = 0; i < 3; i++)
                 {
