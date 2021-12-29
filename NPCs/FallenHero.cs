@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using ExxoAvalonOrigins.Items.Armor;
 using Terraria;
@@ -87,6 +87,10 @@ namespace ExxoAvalonOrigins.NPCs
             if (Main.rand.Next(18) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodstainedHelmet>(), 1, false, 0, false);
+            }
+            if (Main.rand.Next(12) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Melee.MinersSword>(), 1, false,-1, false);
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

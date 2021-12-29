@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.defense = 6;
             npc.lifeMax = 300;
             npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCHit14;
+            npc.DeathSound = SoundID.NPCDeath14;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = 0f;
@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.defense = 6;
             npc.lifeMax = 300;
             npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCHit14;
+            npc.DeathSound = SoundID.NPCDeath14;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = 0f;
@@ -87,7 +87,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.defense = 15;
             npc.lifeMax = 300;
             npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCHit14;
+            npc.DeathSound = SoundID.NPCDeath14;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.knockBackResist = 0f;

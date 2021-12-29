@@ -22,11 +22,13 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.ignoreWater = true;
             projectile.hostile = true;
             projectile.tileCollide = false;
+            projectile.scale = 1.4f;
         }
 
         public override void AI()
         {
             projectile.velocity *= 0.98f;
+            projectile.rotation += projectile.velocity.ToRotation();
             if (Main.rand.Next(250) == 0)
             {
                 for (int i = 0; i < 3; i++)
@@ -51,9 +53,5 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             return false;
         }
-        //public override void OnHitPlayer(Player target, int damage, bool crit)
-        //{
-        //    target.AddBuff(ModContent.BuffType<Buffs.CaesiumPoison>(), 5 * 60);
-        //}
     }
 }

@@ -1,13 +1,7 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
 using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles
@@ -33,6 +27,13 @@ namespace ExxoAvalonOrigins.Tiles
         public override bool CanExplode(int i, int j)
         {
             return false;
+        }
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if (Main.rand.Next(1500) == 0)
+            {
+                NPC.NewNPC(i * 16, j * 16, ModContent.NPCType<NPCs.UnvolanditeMiteDigger>());
+            }
         }
     }
 }

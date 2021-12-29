@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Tiles
                     Main.tile[i, j].active() && !Main.tile[i - 1, j].active() ||
                     Main.tile[i, j].active() && !Main.tile[i + 1, j].active())
                 {
-                    if (Main.rand.Next(1000) == 0)
+                    if (Main.rand.Next(2500) == 0)
                     {
                         Projectile.NewProjectile(new Vector2(i, j) * 16, new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), ModContent.ProjectileType<Projectiles.CaesiumGas>(), 0, 0);
                     }

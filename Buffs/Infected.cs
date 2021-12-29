@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Buffs
 					{
 						player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg = 16;
 					}
-					player.Hurt(PlayerDeathReason.ByCustomReason(" was slain..."), player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg, 0, false, false, false);
+					player.Hurt(PlayerDeathReason.ByCustomReason(" was infected."), player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg, 0, false, false, false);
 				}
 		}
 	}

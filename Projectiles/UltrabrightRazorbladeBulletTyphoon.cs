@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.MaxUpdates = 2;
 			projectile.scale = 1f;
 			projectile.ranged = true;
+            projectile.light = 3f;
 		}
 		public override Color? GetAlpha(Color lightColor)
 		{
