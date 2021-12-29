@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override bool UseItem(Player player)
         {
-            World.Structures.CaesiumSpike.CreateSpike2((int)player.position.X / 16, (int)player.position.Y / 16, 0, -2f, 40, 2);
+            World.Passes.OreGenPreHardMode.GenerateStars((int)player.position.X / 16, (int)player.position.Y / 16, (ushort)ModContent.TileType<Tiles.Ores.Starstone>());
             return true;
         }
     }

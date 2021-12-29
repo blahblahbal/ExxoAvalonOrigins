@@ -95,31 +95,120 @@ namespace ExxoAvalonOrigins.World.Passes
                 var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
                 GenerateHearts(i8, j8, ModContent.TileType<Tiles.Heartstone>());
             }
+
+            for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 1E-05); i++)
+            {
+                var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                var rockLayer = Main.rockLayer;
+                var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
+                GenerateStars(i8, j8, (ushort)ModContent.TileType<Tiles.Ores.Starstone>());
+            }
+        }
+        public static void GenerateStars(int x, int y, ushort type)
+        {
+            for (int j = y; j <= y + 1; j++)
+            {
+                Main.tile[x + 7, j].active(true);
+                Main.tile[x + 7, j].type = type;
+                WorldGen.SquareTileFrame(x + 7, j);
+            }
+            for (int i = x + 6; i <= x + 8; i++)
+            {
+                for (int j = y + 2; j <= y + 4; j++)
+                {
+                    Main.tile[i, j].active(true);
+                    Main.tile[i, j].type = type;
+                    WorldGen.SquareTileFrame(i, j);
+                }
+            }
+            for (int i = x + 5; i <= x + 9; i++)
+            {
+                Main.tile[i, y + 4].active(true);
+                Main.tile[i, y + 4].type = type;
+                WorldGen.SquareTileFrame(i, y + 4);
+            }
+            for (int i = x; i <= x + 14; i++)
+            {
+                Main.tile[i, y + 5].active(true);
+                Main.tile[i, y + 5].type = type;
+                WorldGen.SquareTileFrame(i, y + 5);
+            }
+            for (int i = x + 1; i <= x + 13; i++)
+            {
+                Main.tile[i, y + 6].active(true);
+                Main.tile[i, y + 6].type = type;
+                WorldGen.SquareTileFrame(i, y + 6);
+            }
+            for (int i = x + 3; i <= x + 11; i++)
+            {
+                Main.tile[i, y + 7].active(true);
+                Main.tile[i, y + 7].type = type;
+                WorldGen.SquareTileFrame(i, y + 7);
+            }
+            for (int i = x + 4; i <= x + 10; i++)
+            {
+                for (int j = y + 8; j <= y + 9; j++)
+                {
+                    Main.tile[i, j].active(true);
+                    Main.tile[i, j].type = type;
+                    WorldGen.SquareTileFrame(i, j);
+                }
+            }
+            for (int i = x + 2; i <= x + 12; i++)
+            {
+                for (int j = y + 10; j <= y + 13; j++)
+                {
+                    if (((i >= x + 4 && i <= x + 6) || (i >= x + 8 && i <= x + 10)) && j == y + 10)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                        WorldGen.SquareTileFrame(i, j);
+                    }
+                    if (((i >= x + 3 && i <= x + 5) || (i >= x + 9 && i <= x + 11)) && j == y + 11)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                        WorldGen.SquareTileFrame(i, j);
+                    }
+                    if (((i >= x + 3 && i <= x + 4) || (i >= x + 10 && i <= x + 11)) && j == y + 12)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                        WorldGen.SquareTileFrame(i, j);
+                    }
+                    if (((i >= x + 2 && i <= x + 3) || (i >= x + 11 && i <= x + 12)) && j == y + 13)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                        WorldGen.SquareTileFrame(i, j);
+                    }
+                }
+            }
         }
         public static void GenerateHearts(int i, int j, int tile)
         {
-            var num = WorldGen.genRand.Next(2);
-            if (num == 0)
+            var size = WorldGen.genRand.Next(2);
+            if (size == 0)
             {
-                num = 1;
+                size = 1;
             }
-            else if (num == 1)
+            else if (size == 1)
             {
-                num = 3;
+                size = 3;
             }
             if (WorldGen.genRand.Next(20) == 0)
             {
-                num = 5;
+                size = 5;
             }
             var num2 = 1;
             Main.tile[i, j + 1].active(true);
             Main.tile[i, j + 1].type = (ushort)tile;
             WorldGen.SquareTileFrame(i, j + 1);
-            for (var k = j; k >= j - num; k--)
+            for (var k = j; k >= j - size; k--)
             {
                 for (var l = i - num2; l <= i + num2; l++)
                 {
-                    if ((l != i - num2 && l != i + num2) || num2 != num + 1)
+                    if ((l != i - num2 && l != i + num2) || num2 != size + 1)
                     {
                         Main.tile[l, k].active(true);
                         Main.tile[l, k].type = (ushort)tile;
@@ -130,26 +219,26 @@ namespace ExxoAvalonOrigins.World.Passes
             }
             for (var m = i - num2 + 1; m <= i + num2 - 1; m++)
             {
-                Main.tile[m, j - num - 1].active(true);
-                Main.tile[m, j - num - 1].type = (ushort)tile;
-                WorldGen.SquareTileFrame(m, j + num + 1);
+                Main.tile[m, j - size - 1].active(true);
+                Main.tile[m, j - size - 1].type = (ushort)tile;
+                WorldGen.SquareTileFrame(m, j + size + 1);
             }
             for (var n = i - num2 + 2; n <= i + num2 - 2; n++)
             {
                 if (n != i)
                 {
-                    Main.tile[n, j - num - 2].active(true);
-                    Main.tile[n, j - num - 2].type = (ushort)tile;
-                    WorldGen.SquareTileFrame(n, j + num + 2);
+                    Main.tile[n, j - size - 2].active(true);
+                    Main.tile[n, j - size - 2].type = (ushort)tile;
+                    WorldGen.SquareTileFrame(n, j + size + 2);
                 }
             }
             for (var num3 = i - num2 + 3; num3 <= i + num2 - 3; num3++)
             {
                 if (num3 != i && num3 != i + 1 && num3 != i - 1)
                 {
-                    Main.tile[num3, j - num - 3].active(true);
-                    Main.tile[num3, j - num - 3].type = (ushort)tile;
-                    WorldGen.SquareTileFrame(num3, j + num + 3);
+                    Main.tile[num3, j - size - 3].active(true);
+                    Main.tile[num3, j - size - 3].type = (ushort)tile;
+                    WorldGen.SquareTileFrame(num3, j + size + 3);
                 }
             }
         }
