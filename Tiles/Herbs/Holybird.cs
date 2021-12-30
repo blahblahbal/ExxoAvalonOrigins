@@ -9,14 +9,6 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles.Herbs
 {
-    //An enum on the 3 stages of herb growth.
-    public enum PlantStage : byte
-    {
-        Planted,
-        Growing,
-        Grown
-    }
-
     //A plant with 3 stages, planted, growing and grown.
     //Sadly, modded plants are unable to be grown by the flower boots
     public class Holybird : ModTile

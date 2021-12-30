@@ -42,16 +42,11 @@ namespace ExxoAvalonOrigins.Tiles
 				case 2:
 				case 9:
 				case 10:
-				return 1;
-				break;
-				
+				    return 1;
 				case 3:
-				return 2;
-				break;
-				
+				    return 2;
 				case 6:
-				return 3;
-				break;
+				    return 3;
 			}
 			return 0;
 		}
@@ -109,16 +104,13 @@ namespace ExxoAvalonOrigins.Tiles
 				case 9:
 				case 10:
 					Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Ice);
-				return false;
-				break;
+				    return false;
 				case 3:
 					Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Coralstone);
-				return false;
-				break;
+				    return false;
 				case 6:
 					Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.t_Granite);
-				return false;
-				break;
+				    return false;
 			}
 			return base.CreateDust(i, j, ref type);
 		}
