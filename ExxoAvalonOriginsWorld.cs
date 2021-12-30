@@ -1566,22 +1566,22 @@ namespace ExxoAvalonOrigins
 
                     #region holybird spawning
 
-                    if (Main.tile[num5, num6].type == TileID.HallowedGrass || Main.tile[num5, num6].type == TileID.Pearlstone)
-                    {
-                        int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
-                        {
-                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Holybird>(), true, false, -1, 0);
-                            if (Main.tile[num5, num9].active())
-                            {
-                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
-                            }
-                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
-                            {
-                                NetMessage.SendTileSquare(-1, num5, num9, 1);
-                            }
-                        }
-                    }
+                    //if (Main.tile[num5, num6].type == TileID.HallowedGrass || Main.tile[num5, num6].type == TileID.Pearlstone)
+                    //{
+                    //    int num14 = Main.tile[num5, num6].type;
+                    //    if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
+                    //    {
+                    //        WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Holybird>(), true, false, -1, 0);
+                    //        if (Main.tile[num5, num9].active())
+                    //        {
+                    //            Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                    //        }
+                    //        if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
+                    //        {
+                    //            NetMessage.SendTileSquare(-1, num5, num9, 1);
+                    //        }
+                    //    }
+                    //}
 
                     #endregion holybird spawning
 
@@ -1608,22 +1608,22 @@ namespace ExxoAvalonOrigins
 
                     #region bloodberry spawning
 
-                    if (Main.tile[num5, num6].type == TileID.FleshGrass || Main.tile[num5, num6].type == TileID.Crimstone)
-                    {
-                        int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
-                        {
-                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
-                            if (Main.tile[num5, num9].active())
-                            {
-                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
-                            }
-                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
-                            {
-                                NetMessage.SendTileSquare(-1, num5, num9, 1);
-                            }
-                        }
-                    }
+                    //if (Main.tile[num5, num6].type == TileID.FleshGrass || Main.tile[num5, num6].type == TileID.Crimstone)
+                    //{
+                    //    int num14 = Main.tile[num5, num6].type;
+                    //    if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
+                    //    {
+                    //        WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
+                    //        if (Main.tile[num5, num9].active())
+                    //        {
+                    //            Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                    //        }
+                    //        if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
+                    //        {
+                    //            NetMessage.SendTileSquare(-1, num5, num9, 1);
+                    //        }
+                    //    }
+                    //}
 
                     #endregion bloodberry spawning
 
