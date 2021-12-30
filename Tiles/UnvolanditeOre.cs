@@ -30,9 +30,12 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Main.rand.Next(1500) == 0)
+            if (j > Main.rockLayer)
             {
-                NPC.NewNPC(i * 16, j * 16, ModContent.NPCType<NPCs.UnvolanditeMiteDigger>());
+                if (Main.rand.Next(4000) == 0)
+                {
+                    NPC.NewNPC(i * 16, j * 16, ModContent.NPCType<NPCs.UnvolanditeMiteDigger>());
+                }
             }
         }
     }

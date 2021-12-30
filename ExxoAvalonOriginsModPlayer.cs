@@ -1251,7 +1251,7 @@ namespace ExxoAvalonOrigins
             //{
             //    player.AddBuff(ModContent.BuffType<Buffs.CaesiumPoison>(), 5 * 60);
             //}
-            //Main.worldRate = 5;
+            //Main.worldRate = 7;
             if (magnet)
             {
                 Player.defaultItemGrabRange = 114;

@@ -38,7 +38,11 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
 
             TileObjectData.addTile(Type);
         }
-
+        public override bool CanPlace(int i, int j)
+        {
+            return (Main.tile[i, j + 1].type == TileID.ClayPot || Main.tile[i, j + 1].type == TileID.PlanterBox) &&
+                (!Main.tile[i, j].active() || Main.tile[i, j].type == TileID.Plants);
+        }
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
             if (i % 2 == 1)

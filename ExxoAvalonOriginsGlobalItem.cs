@@ -46,7 +46,8 @@ namespace ExxoAvalonOrigins
             ItemID.ShiverthornSeeds,
             ModContent.ItemType<BarfbushSeeds>(),
             ModContent.ItemType<BloodberrySeeds>(),
-            ModContent.ItemType<SweetstemSeeds>()
+            ModContent.ItemType<SweetstemSeeds>(),
+            ModContent.ItemType<HolybirdSeeds>()
         };
         public override void SetDefaults(Item item)
         {
@@ -829,8 +830,13 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
-            if (herbSeeds.Contains(item.type) && Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.BloomingHerbs &&
-                Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.ClayPot && Main.mouseLeft)
+            if (herbSeeds.Contains(item.type) && (Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.BloomingHerbs ||
+                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Barfbush>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36 ||
+                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Bloodberry>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36 ||
+                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Sweetstem>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36 ||
+                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Holybird>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36) &&
+                (Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.ClayPot ||
+                Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.PlanterBox) && Main.mouseLeft)
             {
                 WorldGen.KillTile(Player.tileTargetX, Player.tileTargetY);
                 if (!Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer)

@@ -40,7 +40,11 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
 
             TileObjectData.addTile(Type);
         }
-
+        public override bool CanPlace(int i, int j)
+        {
+            return (Main.tile[i, j + 1].type == TileID.ClayPot || Main.tile[i, j + 1].type == TileID.PlanterBox) &&
+                (!Main.tile[i, j].active() || Main.tile[i, j].type == TileID.Plants);
+        }
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
             if (i % 2 == 1)
@@ -68,7 +72,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             Tile tile = Framing.GetTileSafely(i, j); //Safe way of getting a tile instance
             PlantStage stage = GetStage(i, j); //The current stage of the herb
             
-            if (stage == PlantStage.Planted && Main.rand.Next(12) == 0)
+            if (stage == PlantStage.Planted && Main.rand.Next(8) == 0)
             {
                 tile.frameX += FrameWidth;
                 if (Main.netMode != NetmodeID.SinglePlayer)
@@ -76,11 +80,10 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             }
             if (stage == PlantStage.Growing)
             {
-                if (Main.rand.Next(20) == 0)
+                if (Main.rand.Next(12) == 0)
                 {
                     tile.frameX = 36;
                 }
-                else tile.frameX = 18;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendTileSquare(-1, i, j, 1);
             }
