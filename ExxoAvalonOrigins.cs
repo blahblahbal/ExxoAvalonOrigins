@@ -674,7 +674,7 @@ namespace ExxoAvalonOrigins
                     "ExxoAvalonOrigins: Herbology Bench",
                     delegate
                     {
-                        herbologyUserInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                        herbologyUserInterface.DrawWithoutUpdate(Main.spriteBatch);
                         return true;
                     },
                     InterfaceScaleType.UI)

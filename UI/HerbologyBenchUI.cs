@@ -162,15 +162,16 @@ namespace ExxoAvalonOrigins.UI
         private UITextPanel<string> herbTierText;
         private UITextPanel<string> herbTotalText;
         private UITextPanel<string> potionTotalText;
-        private PanelWrapper<AdvancedUIList> herbExchangeContainer;
+        private PanelWrapper<AdvancedUIList> herbTurnInContainer;
         private BetterUIImageButton herbButton;
         private UIItemSlot herbItemSlot;
-        private PanelWrapper<AdvancedUIList> herbListContainer;
+        private PanelWrapper<AdvancedUIList> herbExchangeContainer;
         private ElementWrapper<AdvancedUIListGrid> herbList;
-        private PanelWrapper<AdvancedUIList> potionsListContainer;
-        private ElementWrapper<AdvancedUIListGrid> potionsList;
+        private PanelWrapper<AdvancedUIList> potionExchangeContainer;
+        private ElementWrapper<AdvancedUIListGrid> potionList;
         private AttachmentManager contextAttachment;
         private PanelWrapper<AdvancedUIList> contextMenu;
+        private NumberInputWithButtons contextInput;
         private bool mouseWasOver;
         private int oldFocusRecipe;
 
@@ -201,11 +202,13 @@ namespace ExxoAvalonOrigins.UI
             MainPanel?.Remove();
             MainPanel = new DraggableUIPanel();
             MainPanel.SetPadding(15);
-            MainPanel.Width.Set(700, 0);
+            MainPanel.Width.Set(720, 0);
             MainPanel.Height.Set(660, 0);
             MainPanel.VAlign = UIAlign.Center;
             MainPanel.HAlign = UIAlign.Center;
-            MainPanel.OnMouseOver += (evt, listeningElement) =>
+
+            // Prevent scrolling from changing recipe focus while mouse is over UI
+            MainPanel.OnMouseOver += delegate
             {
                 if (!mouseWasOver)
                 {
@@ -231,120 +234,145 @@ namespace ExxoAvalonOrigins.UI
             {
                 HAlign = UIAlign.Center,
             };
-            mainContainer.Append(uITextPanel, new UIListItemParams(autoDimensions: false));
+            mainContainer.Append(uITextPanel);
 
-            var craftingContainer = new AdvancedUIList();
-            mainContainer.Append(craftingContainer, new UIListItemParams(fillLength: true));
+            #region herb container
 
             herbContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
+            herbContainer.Width.Set(0, 1);
             herbContainer.InnerElement.Direction = Direction.Horizontal;
-            craftingContainer.Append(herbContainer, new UIListItemParams(fillLength: true));
+            mainContainer.Append(herbContainer, new UIListItemParams(fillLength: true));
 
-            // Herb stats
-
-            herbStatsWrapper = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
-            herbStatsWrapper.InnerElement.FitParentToContentOppDirection = true;
+            herbStatsWrapper = new PanelWrapper<AdvancedUIList>(new AdvancedUIList())
+            {
+                FitToInnerElement = true,
+                VAlign = UIAlign.Center,
+            };
+            herbStatsWrapper.InnerElement.FitWidthToContent = true;
             herbStatsWrapper.InnerElement.Justification = Justification.Center;
             herbContainer.InnerElement.Append(herbStatsWrapper);
 
-            rankTitleText = new UITextPanel<string>("", 1, false)
+            rankTitleText = new UITextPanel<string>("")
             {
-                TextColor = Color.Gold
+                TextColor = Color.Gold,
+                HAlign = UIAlign.Center
             };
-            rankTitleText.HAlign = UIAlign.Center;
-            herbStatsWrapper.InnerElement.Append(rankTitleText, new UIListItemParams(autoDimensions: false));
+            herbStatsWrapper.InnerElement.Append(rankTitleText);
 
-            herbTierText = new UITextPanel<string>("", 1, false)
+            herbTierText = new UITextPanel<string>("")
             {
                 HAlign = UIAlign.Center
             };
-            herbStatsWrapper.InnerElement.Append(herbTierText, new UIListItemParams(autoDimensions: false));
+            herbStatsWrapper.InnerElement.Append(herbTierText);
 
-            herbTotalText = new UITextPanel<string>("", 1, false)
+            herbTotalText = new UITextPanel<string>("")
             {
                 HAlign = UIAlign.Center
             };
-            herbStatsWrapper.InnerElement.Append(herbTotalText, new UIListItemParams(autoDimensions: false));
+            herbStatsWrapper.InnerElement.Append(herbTotalText);
 
-            potionTotalText = new UITextPanel<string>("", 1, false)
+            potionTotalText = new UITextPanel<string>("")
             {
                 HAlign = UIAlign.Center
             };
-            herbStatsWrapper.InnerElement.Append(potionTotalText, new UIListItemParams(autoDimensions: false));
+            herbStatsWrapper.InnerElement.Append(potionTotalText);
+
+            herbTurnInContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList())
+            {
+                FitToInnerElement = true,
+                VAlign = UIAlign.Center,
+            };
+            herbTurnInContainer.InnerElement.Justification = Justification.Center;
+            herbTurnInContainer.InnerElement.FitWidthToContent = true;
+            herbContainer.InnerElement.Append(herbTurnInContainer);
 
             herbExchangeContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
-            herbExchangeContainer.InnerElement.Justification = Justification.Center;
-            herbExchangeContainer.InnerElement.FitParentToContentOppDirection = true;
-            herbContainer.InnerElement.Append(herbExchangeContainer);
+            herbExchangeContainer.Height.Set(0, 1);
+            herbContainer.InnerElement.Append(herbExchangeContainer, new UIListItemParams(fillLength: true));
 
-            herbListContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
-            herbContainer.InnerElement.Append(herbListContainer, new UIListItemParams(fillLength: true));
-
-            var herbExchangeTitle = new UIText("Herb Exchange", 1, false)
+            var herbExchangeTitle = new UIText("Herb Exchange")
             {
                 HAlign = UIAlign.Center,
             };
-            herbListContainer.InnerElement.Append(herbExchangeTitle, new UIListItemParams(autoDimensions: false));
+            herbExchangeContainer.InnerElement.Append(herbExchangeTitle);
 
-            var hr1 = new HorizontalRule
-            {
-                MarginBottom = 5,
-            };
-            herbListContainer.InnerElement.Append(hr1);
+            var herbExchangeTitleUnderline = new HorizontalRule();
+            herbExchangeTitleUnderline.Width.Set(0, 1);
+            herbExchangeContainer.InnerElement.Append(herbExchangeTitleUnderline);
 
             herbList = new ElementWrapper<AdvancedUIListGrid>(new AdvancedUIListGrid())
             {
                 OverflowHidden = true
             };
-            herbListContainer.InnerElement.Append(herbList, new UIListItemParams(fillLength: true));
-
-            herbList.OnScrollWheel += herbList.InnerElement.ScrollWheelListener;
+            herbList.Width.Set(0, 1);
+            herbList.InnerElement.HAlign = UIAlign.Center;
+            herbList.InnerElement.FitWidthToContent = true;
+            herbExchangeContainer.InnerElement.Append(herbList, new UIListItemParams(fillLength: true));
 
             var herbScrollBar = new AdvancedUIScrollbar();
             herbScrollBar.Height.Set(0, 1);
             herbScrollBar.VAlign = UIAlign.Center;
             herbScrollBar.SetPadding(0);
-            herbContainer.InnerElement.Append(herbScrollBar, new UIListItemParams(autoDimensions: false));
+            herbContainer.InnerElement.Append(herbScrollBar);
             herbList.InnerElement.SetScrollbar(herbScrollBar);
+            herbExchangeContainer.OnScrollWheel += herbList.InnerElement.ScrollWheelListener;
 
-            var potionsContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
-            potionsContainer.InnerElement.Direction = Direction.Horizontal;
-            craftingContainer.Append(potionsContainer, new UIListItemParams(fillLength: true));
+            #endregion
 
-            potionsListContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
-            potionsContainer.InnerElement.Append(potionsListContainer, new UIListItemParams(fillLength: true));
+            #region potion container
 
-            var potionExchangeTitle = new UIText("Potion Exchange", 1, false)
+            var potionContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
+            potionContainer.Width.Set(0, 1);
+            potionContainer.InnerElement.Direction = Direction.Horizontal;
+            mainContainer.Append(potionContainer, new UIListItemParams(fillLength: true));
+
+            potionExchangeContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
+            potionExchangeContainer.Height.Set(0, 1);
+            potionExchangeContainer.InnerElement.VAlign = UIAlign.Center;
+            potionContainer.InnerElement.Append(potionExchangeContainer, new UIListItemParams(fillLength: true));
+
+            var potionExchangeTitle = new UIText("Potion Exchange")
             {
                 HAlign = UIAlign.Center,
             };
-            potionsListContainer.InnerElement.Append(potionExchangeTitle, new UIListItemParams(autoDimensions: false));
+            potionExchangeContainer.InnerElement.Append(potionExchangeTitle);
 
-            var hr2 = new HorizontalRule
-            {
-                MarginBottom = 5,
-            };
-            potionsListContainer.InnerElement.Append(hr2);
+            var potionExchangeTitleUnderline = new HorizontalRule();
+            potionExchangeTitleUnderline.Width.Set(0, 1);
+            potionExchangeContainer.InnerElement.Append(potionExchangeTitleUnderline);
 
-            potionsList = new ElementWrapper<AdvancedUIListGrid>(new AdvancedUIListGrid())
+            potionList = new ElementWrapper<AdvancedUIListGrid>(new AdvancedUIListGrid())
             {
                 OverflowHidden = true
             };
-            potionsListContainer.InnerElement.Append(potionsList, new UIListItemParams(fillLength: true));
-
-            potionsList.OnScrollWheel += potionsList.InnerElement.ScrollWheelListener;
+            potionList.Width.Set(0, 1);
+            potionList.InnerElement.HAlign = UIAlign.Center;
+            potionList.InnerElement.FitWidthToContent = true;
+            potionExchangeContainer.InnerElement.Append(potionList, new UIListItemParams(fillLength: true));
 
             var potionScrollBar = new AdvancedUIScrollbar();
             potionScrollBar.Height.Set(0, 1);
             potionScrollBar.VAlign = UIAlign.Center;
             potionScrollBar.SetPadding(0);
-            potionsContainer.InnerElement.Append(potionScrollBar, new UIListItemParams(autoDimensions: false));
-            potionsList.InnerElement.SetScrollbar(potionScrollBar);
+            potionContainer.InnerElement.Append(potionScrollBar);
+            potionList.InnerElement.SetScrollbar(potionScrollBar);
+            potionExchangeContainer.OnScrollWheel += potionList.InnerElement.ScrollWheelListener;
 
-            contextMenu = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
-            contextMenu.InnerElement.FitParentToContentOppDirection = true;
-            contextMenu.InnerElement.FitParentToContentDirection = true;
+            #endregion
+
+            contextMenu = new PanelWrapper<AdvancedUIList>(new AdvancedUIList())
+            {
+                FitToInnerElement = true,
+            };
+            contextMenu.InnerElement.FitHeightToContent = true;
+            contextMenu.InnerElement.FitWidthToContent = true;
             contextMenu.BackgroundColor.A = 255;
+
+            contextInput = new NumberInputWithButtons()
+            {
+                HAlign = UIAlign.Center
+            };
+            contextMenu.InnerElement.Append(contextInput);
 
             var randText = new UIText("Overlay stuff");
             contextMenu.InnerElement.Append(randText);
@@ -382,18 +410,18 @@ namespace ExxoAvalonOrigins.UI
             }
             foreach (int itemID in Potions)
             {
-                potionsList.InnerElement.Append(new UIItemSlot(Main.inventoryBack7Texture, itemID));
+                potionList.InnerElement.Append(new UIItemSlot(Main.inventoryBack7Texture, itemID));
             }
             herbButton = new BetterUIImageButton(ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton"))
             {
                 HAlign = UIAlign.Center
             };
             herbButton.OnClick += OnButtonClick;
-            herbExchangeContainer.InnerElement.Append(herbButton, new UIListItemParams(autoDimensions: false));
+            herbTurnInContainer.InnerElement.Append(herbButton);
             herbItemSlot = new UIItemSlot(Main.inventoryBack7Texture, ItemID.None);
             herbItemSlot.OnClick += (evt, listeningElement) =>
             {
-                if (Main.mouseItem.type == ItemID.None || (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name))))
+                if ((Main.mouseItem.type == ItemID.None && herbItemSlot.Item.type != ItemID.None) || (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name))))
                 {
                     Main.PlaySound(SoundID.Grab);
                     Item item6 = Main.mouseItem;
@@ -402,7 +430,7 @@ namespace ExxoAvalonOrigins.UI
                     Recipe.FindRecipes();
                 }
             };
-            herbExchangeContainer.InnerElement.Append(herbItemSlot, new UIListItemParams(autoDimensions: false));
+            herbTurnInContainer.InnerElement.Append(herbItemSlot);
         }
 
         public override void Update(GameTime gameTime)

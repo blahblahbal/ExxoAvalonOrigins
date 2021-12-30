@@ -11,13 +11,14 @@ namespace ExxoAvalonOrigins.UI
         public HorizontalRule()
         {
             dividerTexture = TextureManager.Load("Images/UI/Divider");
+            Height.Set(dividerTexture.Height, 0);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
             Vector2 position = GetDimensions().Position();
-            spriteBatch.Draw(dividerTexture, position, null, Color.White, 0f, Vector2.Zero, new Vector2(GetDimensions().Width / 8f, 1f), SpriteEffects.None, 0f);
+            spriteBatch.Draw(dividerTexture, position.ToNearestPixel(), null, Color.White, 0f, Vector2.Zero, new Vector2(GetDimensions().Width / 8f, 1f), SpriteEffects.None, 0f);
         }
     }
 }

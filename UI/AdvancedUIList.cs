@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
@@ -19,40 +18,29 @@ namespace ExxoAvalonOrigins.UI
     }
     public struct UIListItemParams
     {
-        public UIListItemParams(bool fillLength = false, bool autoDimensions = true)
+        public UIListItemParams(bool fillLength = false)
         {
             FillLength = fillLength;
-            AutoDimensions = autoDimensions;
         }
-        public static UIListItemParams Default => new UIListItemParams(false, true);
         public readonly bool FillLength;
-        public readonly bool AutoDimensions;
     }
-    public class AdvancedUIList : UIElement
+    public class AdvancedUIList : UIElement, IElementListener
     {
+        public delegate bool ElementSearchMethod(UIElement element);
+
         public Justification Justification = Justification.Start;
         public Direction Direction = Direction.Vertical;
-        public bool FitParentToContentOppDirection;
-        public bool FitParentToContentDirection;
-        public delegate bool ElementSearchMethod(UIElement element);
+        public bool FitHeightToContent;
+        public bool FitWidthToContent;
+        public bool IsRecalculating { get; set; }
+
         public float ListPadding = 5f;
-        protected float TotalLength;
+        public float TotalLength { get; set; }
+
         protected AdvancedUIScrollbar ScrollBar;
-        private readonly List<UIListItemParams> elementParamsList = new List<UIListItemParams>();
+        protected readonly List<UIListItemParams> ElementParamsList = new List<UIListItemParams>();
 
-        public AdvancedUIList()
-        {
-            OverflowHidden = false;
-            Width.Set(0, 1);
-            Height.Set(0, 1);
-        }
-
-        public float GetTotalLength()
-        {
-            return TotalLength;
-        }
-
-        public void Goto(ElementSearchMethod searchMethod)
+        public void ScrollTo(ElementSearchMethod searchMethod)
         {
             int num;
             for (num = 0; num < Elements.Count; num++)
@@ -67,20 +55,13 @@ namespace ExxoAvalonOrigins.UI
 
         public new void Append(UIElement item)
         {
-            Append(item, UIListItemParams.Default);
+            Append(item, new UIListItemParams());
         }
 
         public void Append(UIElement item, UIListItemParams elementParams)
         {
-            elementParamsList.Add(elementParams);
-            if (FitParentToContentOppDirection || FitParentToContentDirection)
-            {
-                Parent.Width.Set(0, 1);
-                Parent.Height.Set(0, 1);
-                Parent.Recalculate();
-            }
+            ElementParamsList.Add(elementParams);
             base.Append(item);
-            Recalculate();
         }
 
         public virtual void AddRange(IEnumerable<UIElement> items)
@@ -89,7 +70,6 @@ namespace ExxoAvalonOrigins.UI
             {
                 Append(item);
             }
-            Recalculate();
         }
 
         public virtual void Remove(UIElement item)
@@ -98,21 +78,31 @@ namespace ExxoAvalonOrigins.UI
             {
                 if (Elements[i] == item)
                 {
-                    elementParamsList.RemoveAt(i);
+                    ElementParamsList.RemoveAt(i);
                     break;
                 }
             }
             RemoveChild(item);
+            Recalculate();
         }
 
         public virtual void Clear()
         {
-            elementParamsList.Clear();
+            ElementParamsList.Clear();
             Elements.Clear();
+            Recalculate();
         }
 
         public override void Recalculate()
         {
+            if (FitHeightToContent)
+            {
+                Height.Set(0, 1);
+            }
+            if (FitWidthToContent)
+            {
+                Width.Set(0, 1);
+            }
             base.Recalculate();
             UpdateScrollbar();
         }
@@ -127,57 +117,60 @@ namespace ExxoAvalonOrigins.UI
 
         public override void RecalculateChildren()
         {
-            base.RecalculateChildren();
-
             float largestOppLength = 0;
-            int count = 0;
-            float total = -ListPadding;
+            int fillLengthCount = 0;
+            float total = 0;
+
             for (int i = 0; i < Elements.Count; i++)
             {
-                total += ListPadding;
-                if (elementParamsList[i].FillLength)
+                if (ElementParamsList[i].FillLength)
                 {
-                    count++;
+                    fillLengthCount++;
                 }
                 else
                 {
                     Elements[i].Recalculate();
                     CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
-                    if (Direction == Direction.Vertical)
-                    {
-                        total += outerDimensions.Height;
-                        if (outerDimensions.Height == 0)
-                        {
-                            total -= ListPadding;
-                        }
-                        largestOppLength = System.Math.Max(outerDimensions.Width, largestOppLength);
-                    }
-                    else
-                    {
-                        total += outerDimensions.Width;
-                        if (outerDimensions.Width == 0)
-                        {
-                            total -= ListPadding;
-                        }
-                        largestOppLength = System.Math.Max(outerDimensions.Height, largestOppLength);
-                    }
+                    float length = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
+                    float oppLength = (Direction == Direction.Vertical) ? outerDimensions.Width : outerDimensions.Height;
+                    total += length;
+                    largestOppLength = System.Math.Max(oppLength, largestOppLength);
                 }
             }
 
             float innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
-            float fillLength = (innerLength - total) / System.Math.Max(1, count);
+            float padding = ListPadding;
 
-            float num = 0f;
+            // List padding
+            if (Justification == Justification.SpaceBetween)
+            {
+                padding = (innerLength - total) / (Elements.Count - 1);
+            }
+
+            for (int i = 0; i < Elements.Count - 1; i++)
+            {
+                if (Direction == Direction.Vertical)
+                {
+                    Elements[i].MarginBottom = padding;
+                }
+                else
+                {
+                    Elements[i].MarginRight = padding;
+                }
+            }
+
+            float fillLength = (innerLength - total) / System.Math.Max(1, fillLengthCount);
+            float offset = 0f;
 
             // Needs checking, offset for centering
             if (Justification == Justification.Center)
             {
-                num = (innerLength / 2) - (total / 2);
+                offset = (innerLength / 2) - (total / 2);
             }
 
             for (int i = 0; i < Elements.Count; i++)
             {
-                if (elementParamsList[i].FillLength)
+                if (ElementParamsList[i].FillLength)
                 {
                     if (Direction == Direction.Vertical)
                     {
@@ -189,42 +182,23 @@ namespace ExxoAvalonOrigins.UI
                     }
                     Elements[i].Recalculate();
                 }
-                CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
-                if (Elements[i] is AdvancedUIList)
-                {
-                    var advancedUIList = (Elements[i] as AdvancedUIList);
-                    if (advancedUIList.Direction == Direction.Vertical)
-                    {
-                        outerDimensions.Height = advancedUIList.GetTotalLength();
-                    }
-                    else
-                    {
-                        outerDimensions.Width = advancedUIList.GetTotalLength();
-                    }
-                }
-                float outerLength = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
 
+                CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
+                float outerLength = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
                 float pixels;
+
                 switch (Justification)
                 {
+                    case Justification.SpaceBetween:
                     case Justification.Start:
-                        pixels = num;
-                        num += outerLength + ListPadding;
+                    case Justification.Center:
+                        pixels = offset;
+                        offset += outerLength;
                         break;
                     case Justification.End:
-                        num += outerLength;
-                        pixels = innerLength - num;
-                        num += ListPadding;
+                        offset += outerLength;
+                        pixels = innerLength - offset;
                         break;
-                    case Justification.Center:
-                        pixels = num;
-                        num += outerLength + ListPadding;
-                        break;
-                    //case Justification.SpaceBetween:
-                    //    GetOuterDimensions().Height - GetTotalHeight();
-                    //    _items[i].Top.Set(num, 0f);
-                    //    num += outerDimensions.Height + ListPadding;
-                    //    break;
                     default:
                         pixels = 0;
                         break;
@@ -233,48 +207,40 @@ namespace ExxoAvalonOrigins.UI
                 if (Direction == Direction.Vertical)
                 {
                     Elements[i].Top.Set(pixels, 0);
-                    if (elementParamsList[i].AutoDimensions)
-                    {
-                        Elements[i].Width.Set(0, 1);
-                    }
                 }
                 else
                 {
                     Elements[i].Left.Set(pixels, 0);
-                    if (elementParamsList[i].AutoDimensions)
-                    {
-                        Elements[i].Height.Set(0, 1);
-                    }
                 }
             }
 
-            TotalLength = num;
-
-            if (FitParentToContentOppDirection)
+            if (FitHeightToContent)
             {
                 if (Direction == Direction.Vertical)
                 {
-                    largestOppLength += Parent.PaddingLeft + Parent.PaddingRight;
-                    Parent.Width.Set(largestOppLength, 0);
+                    Height.Set(offset, 0);
                 }
                 else
                 {
-                    largestOppLength += Parent.PaddingTop + Parent.PaddingBottom;
-                    Parent.Height.Set(largestOppLength, 0);
+                    Height.Set(largestOppLength, 0);
                 }
             }
 
-            if (FitParentToContentDirection)
+            if (FitWidthToContent)
             {
                 if (Direction == Direction.Vertical)
                 {
-                    Parent.Height.Set(total + Parent.PaddingTop + Parent.PaddingBottom, 0);
+                    Width.Set(largestOppLength, 0);
                 }
                 else
                 {
-                    Parent.Width.Set(total + Parent.PaddingLeft + Parent.PaddingRight, 0);
+                    Width.Set(offset, 0);
                 }
             }
+
+            TotalLength = offset;
+
+            this.RecalculateSelf();
         }
 
         public override bool ContainsPoint(Vector2 point)
@@ -289,6 +255,15 @@ namespace ExxoAvalonOrigins.UI
             return false;
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (ScrollBar != null)
+            {
+                Top.Set(0 - ScrollBar.GetValue(), 0f);
+            }
+        }
+
         private void UpdateScrollbar()
         {
             ScrollBar?.SetView(GetInnerDimensions().Height, TotalLength);
@@ -300,13 +275,8 @@ namespace ExxoAvalonOrigins.UI
             UpdateScrollbar();
         }
 
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+        public void PostRecalculate()
         {
-            if (ScrollBar != null)
-            {
-                Top.Set(0f - ScrollBar.GetValue(), 0f);
-            }
-            Recalculate();
         }
     }
 }

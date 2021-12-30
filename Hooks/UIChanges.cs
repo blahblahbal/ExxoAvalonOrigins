@@ -212,6 +212,37 @@ namespace ExxoAvalonOrigins.Hooks
             // Logically elements should actually be checked in reverse as the last elements are drawn over everything below
             c.EmitDelegate<Func<List<UIElement>, List<UIElement>>>((elements) => elements.AsEnumerable().Reverse().ToList());
         }
+
+        // Ensures IElementListeners correctly recalculate when a child has recalculated
+        public static void OnUIElementRecalculate(On.Terraria.UI.UIElement.orig_Recalculate orig, UIElement self)
+        {
+            var selfListener = self as UI.IElementListener;
+            if (selfListener != null)
+            {
+                selfListener.IsRecalculating = true;
+            }
+
+            var parent = self.Parent as UI.IElementListener;
+            if (parent != null && !parent.IsRecalculating)
+            {
+                self.Parent.Recalculate();
+            }
+            else
+            {
+                orig(self);
+                if (selfListener != null)
+                {
+                    selfListener.PostRecalculate();
+                    self.RecalculateChildren();
+                }
+            }
+
+            if (selfListener != null)
+            {
+                selfListener.IsRecalculating = false;
+            }
+        }
+
         public static void OnMainDrawInventory(On.Terraria.Main.orig_DrawInventory orig, Main self)
         {
             Vector2 oldMouseScreen = Main.MouseScreen;
@@ -226,6 +257,16 @@ namespace ExxoAvalonOrigins.Hooks
                 Main.mouseX = (int)oldMouseScreen.X;
                 Main.mouseY = (int)oldMouseScreen.Y;
             }
+        }
+        // Increased clarity of text by drawing on the nearest integer coordinate rather than on a floating point
+        public static Vector2 OnUtilsDrawBorderString(On.Terraria.Utils.orig_DrawBorderString orig, SpriteBatch sb, string text, Vector2 pos, Color color, float scale, float anchorx, float anchory, int maxCharactersDisplayed)
+        {
+            return orig(sb, text, pos.ToNearestPixel(), color, scale, anchorx, anchory, maxCharactersDisplayed);
+        }
+        // Increased clarity of text by drawing on the nearest integer coordinate rather than on a floating point
+        public static Vector2 OnUtilsDrawBorderStringBig(On.Terraria.Utils.orig_DrawBorderStringBig orig, SpriteBatch sb, string text, Vector2 pos, Color color, float scale, float anchorx, float anchory, int maxCharactersDisplayed)
+        {
+            return orig(sb, text, pos.ToNearestPixel(), color, scale, anchorx, anchory, maxCharactersDisplayed);
         }
     }
 }

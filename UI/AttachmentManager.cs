@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.UI
                 element.Left.Set(position.X - parent.PaddingLeft, 0);
                 element.Top.Set(position.Y - parent.PaddingTop, 0);
                 OnAttachTo(element, attachmentHolder);
-                element.Recalculate();
+                //element.Recalculate();
             }
         }
         public bool ContainsPoint(Vector2 position)

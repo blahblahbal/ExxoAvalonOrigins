@@ -33,9 +33,18 @@ namespace ExxoAvalonOrigins.UI
                 }
             }
 
+            if (FitWidthToContent)
+            {
+                Width.Set(largestWidth, 0);
+            }
+            if (FitHeightToContent)
+            {
+                Height.Set(top + largestHeight, 0);
+            }
+
             TotalLength = top + largestHeight;
 
-            Left.Set((Parent.GetInnerDimensions().Width - largestWidth) / 2, 0);
+            this.RecalculateSelf();
         }
     }
 }

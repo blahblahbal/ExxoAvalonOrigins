@@ -67,7 +67,10 @@
             On.Terraria.Main.DrawInterface += UIChanges.OnMainDrawInterface;
             IL.Terraria.UI.UserInterface.Update += UIChanges.ILUserInterfaceUpdate;
             IL.Terraria.UI.UIElement.GetElementAt += UIChanges.ILUIElementGetElementAt;
+            On.Terraria.UI.UIElement.Recalculate += UIChanges.OnUIElementRecalculate;
             On.Terraria.Main.DrawInventory += UIChanges.OnMainDrawInventory;
+            On.Terraria.Utils.DrawBorderString += UIChanges.OnUtilsDrawBorderString;
+            On.Terraria.Utils.DrawBorderStringBig += UIChanges.OnUtilsDrawBorderStringBig;
         }
     }
 }
