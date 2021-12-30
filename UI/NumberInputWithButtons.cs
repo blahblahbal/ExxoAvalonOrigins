@@ -5,24 +5,22 @@ namespace ExxoAvalonOrigins.UI
 {
     internal class NumberInputWithButtons : AdvancedUIList
     {
-        private readonly NumberInput numberInput;
+        public readonly NumberInput NumberInput;
         private readonly AdvancedUIList buttonColumn;
         private readonly BetterUIImageButton incrementButton;
         private readonly BetterUIImageButton decrementButton;
         public int Number { get; set; }
-        public NumberInputWithButtons(int number = 1)
+        public NumberInputWithButtons(int amountNumbers = 3)
         {
-            Number = number;
-
             Direction = Direction.Horizontal;
             FitWidthToContent = true;
             FitHeightToContent = true;
 
-            numberInput = new NumberInput
+            NumberInput = new NumberInput(amountNumbers)
             {
                 VAlign = UIAlign.Center,
             };
-            Append(numberInput);
+            Append(NumberInput);
 
             buttonColumn = new AdvancedUIList
             {
@@ -32,8 +30,16 @@ namespace ExxoAvalonOrigins.UI
             };
 
             incrementButton = new BetterUIImageButton(TextureManager.Load("Images/UI/Minimap/Default/MinimapButton_ZoomIn"));
+            incrementButton.OnClick += delegate
+            {
+                NumberInput.Number++;
+            };
             buttonColumn.Append(incrementButton);
             decrementButton = new BetterUIImageButton(TextureManager.Load("Images/UI/Minimap/Default/MinimapButton_ZoomOut"));
+            decrementButton.OnClick += delegate
+            {
+                NumberInput.Number--;
+            };
             buttonColumn.Append(decrementButton);
             Append(buttonColumn);
         }

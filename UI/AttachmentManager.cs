@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.UI
     {
         private readonly UIElement parent;
         private readonly UIElement element;
-        private UIElement attachmentHolder;
+        public UIElement AttachmentHolder { get; private set; }
         public delegate void AttachToEvent(UIElement attachment, UIElement attachmentHolder);
         public event AttachToEvent OnAttachTo;
         public AttachmentManager(UIElement parent, UIElement uiElement, AttachToEvent attachToEvent)
@@ -18,30 +18,41 @@ namespace ExxoAvalonOrigins.UI
         }
         public virtual void AttachTo(UIElement uiElement)
         {
-            attachmentHolder = uiElement;
-            if (attachmentHolder == null)
+            AttachmentHolder = uiElement;
+            if (AttachmentHolder == null)
             {
-                element.Remove();
+                UIElement topParent = parent;
+                while (topParent.Parent != null)
+                {
+                    topParent = topParent.Parent;
+                }
+                if (topParent is AdvancedUIState)
+                {
+                    (topParent as AdvancedUIState)?.MarkForRemoval(element);
+                }
+                else
+                {
+                    element.Remove();
+                }
             }
             else
             {
                 parent.Append(element);
-                Vector2 position = attachmentHolder.GetDimensions().Position() - parent.GetDimensions().Position();
+                Vector2 position = AttachmentHolder.GetDimensions().Position() - parent.GetDimensions().Position();
                 element.Left.Set(position.X - parent.PaddingLeft, 0);
                 element.Top.Set(position.Y - parent.PaddingTop, 0);
-                OnAttachTo(element, attachmentHolder);
-                //element.Recalculate();
+                OnAttachTo(element, AttachmentHolder);
             }
         }
         public bool ContainsPoint(Vector2 position)
         {
-            if (attachmentHolder == null)
+            if (AttachmentHolder == null)
             {
                 return false;
             }
             else
             {
-                return attachmentHolder.ContainsPoint(position) || element.ContainsPoint(position);
+                return AttachmentHolder.ContainsPoint(position) || element.ContainsPoint(position);
             }
         }
     }

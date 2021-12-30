@@ -12,6 +12,7 @@ using ReLogic.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins
@@ -136,6 +137,30 @@ namespace ExxoAvalonOrigins
             {
                 userInterface.Recalculate();
                 userInterface.CurrentState.Draw(spriteBatch);
+            }
+        }
+
+        public static TagCompound Save<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
+        {
+            TKey[] keys = dictionary.Keys.ToArray();
+            TValue[] values = dictionary.Values.ToArray();
+            var tag = new TagCompound();
+            tag.Set("keys", keys);
+            tag.Set("values", values);
+            return tag;
+        }
+
+        public static void Load<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TagCompound tag)
+        {
+            if (tag.ContainsKey("keys") && tag.ContainsKey("values"))
+            {
+                TKey[] keys = tag.Get<TKey[]>("keys");
+                TValue[] values = tag.Get<TValue[]>("values");
+
+                for (int i = 0; i < keys.Length; i++)
+                {
+                    dictionary[keys[i]] = values[i];
+                }
             }
         }
     }

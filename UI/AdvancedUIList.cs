@@ -18,11 +18,13 @@ namespace ExxoAvalonOrigins.UI
     }
     public struct UIListItemParams
     {
-        public UIListItemParams(bool fillLength = false)
+        public UIListItemParams(bool fillLength = false, bool fillOppLength = false)
         {
             FillLength = fillLength;
+            FillOppLength = fillOppLength;
         }
         public readonly bool FillLength;
+        public readonly bool FillOppLength;
     }
     public class AdvancedUIList : UIElement, IElementListener
     {
@@ -132,9 +134,12 @@ namespace ExxoAvalonOrigins.UI
                     Elements[i].Recalculate();
                     CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
                     float length = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
-                    float oppLength = (Direction == Direction.Vertical) ? outerDimensions.Width : outerDimensions.Height;
                     total += length;
-                    largestOppLength = System.Math.Max(oppLength, largestOppLength);
+                    if (!ElementParamsList[i].FillOppLength)
+                    {
+                        float oppLength = (Direction == Direction.Vertical) ? outerDimensions.Width : outerDimensions.Height;
+                        largestOppLength = System.Math.Max(oppLength, largestOppLength);
+                    }
                 }
             }
 
@@ -170,15 +175,29 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count; i++)
             {
-                if (ElementParamsList[i].FillLength)
+                if (ElementParamsList[i].FillLength || ElementParamsList[i].FillOppLength)
                 {
-                    if (Direction == Direction.Vertical)
+                    if (ElementParamsList[i].FillLength)
                     {
-                        Elements[i].Height.Set(fillLength, 0);
+                        if (Direction == Direction.Vertical)
+                        {
+                            Elements[i].Height.Set(fillLength, 0);
+                        }
+                        else
+                        {
+                            Elements[i].Width.Set(fillLength, 0);
+                        }
                     }
-                    else
+                    if (ElementParamsList[i].FillOppLength)
                     {
-                        Elements[i].Width.Set(fillLength, 0);
+                        if (Direction == Direction.Vertical)
+                        {
+                            Elements[i].Width.Set(largestOppLength, 0);
+                        }
+                        else
+                        {
+                            Elements[i].Height.Set(largestOppLength, 0);
+                        }
                     }
                     Elements[i].Recalculate();
                 }

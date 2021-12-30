@@ -13,7 +13,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class HerbologyBenchUI : UIState
+    internal class HerbologyBenchUI : AdvancedUIState
     {
         public static Dictionary<int, int> AdvancedPotion = new Dictionary<int, int>
         {
@@ -113,46 +113,46 @@ namespace ExxoAvalonOrigins.UI
             // Magnet Potion
         };
 
-        public static readonly int[] Herbs = new int[]
+        public static readonly Dictionary<int, int> Herbs = new Dictionary<int, int>
         {
-            ItemID.Daybloom,
-            ItemID.Moonglow,
-            ItemID.Blinkroot,
-            ItemID.Deathweed,
-            ItemID.Waterleaf,
-            ItemID.Fireblossom,
-            ItemID.Shiverthorn,
-            ModContent.ItemType<Bloodberry>(),
-            ModContent.ItemType<Sweetstem>(),
-            ModContent.ItemType<Barfbush>()
+            { ModContent.ItemType<LargeDaybloom>(), ItemID.Daybloom },
+            { ModContent.ItemType<LargeMoonglow>(), ItemID.Moonglow },
+            { ModContent.ItemType<LargeBlinkroot>(), ItemID.Blinkroot },
+            { ModContent.ItemType<LargeDeathweed>(), ItemID.Deathweed },
+            { ModContent.ItemType<LargeWaterleaf>(), ItemID.Waterleaf },
+            { ModContent.ItemType<LargeFireblossom>(), ItemID.Fireblossom },
+            { ModContent.ItemType<LargeShiverthorn>(), ItemID.Shiverthorn },
+            { ModContent.ItemType<LargeBloodberry>(), ModContent.ItemType<Bloodberry>() },
+            { ModContent.ItemType<LargeSweetstem>(), ModContent.ItemType<Sweetstem>() },
+            { ModContent.ItemType<LargeBarfbush>(), ModContent.ItemType<Barfbush>() }
         };
 
-        public static readonly int[] LargeHerbs = new int[]
+        public static readonly Dictionary<int, int> LargeHerbs = new Dictionary<int, int>
         {
-            ModContent.ItemType<LargeDaybloom>(),
-            ModContent.ItemType<LargeMoonglow>(),
-            ModContent.ItemType<LargeBlinkroot>(),
-            ModContent.ItemType<LargeDeathweed>(),
-            ModContent.ItemType<LargeWaterleaf>(),
-            ModContent.ItemType<LargeFireblossom>(),
-            ModContent.ItemType<LargeShiverthorn>(),
-            ModContent.ItemType<LargeBloodberry>(),
-            ModContent.ItemType<LargeSweetstem>(),
-            ModContent.ItemType<LargeBarfbush>()
+            { ModContent.ItemType<LargeDaybloomSeed>(), ModContent.ItemType<LargeDaybloom>() },
+            { ModContent.ItemType<LargeMoonglowSeed>(), ModContent.ItemType<LargeMoonglow>() },
+            { ModContent.ItemType<LargeBlinkrootSeed>(), ModContent.ItemType<LargeBlinkroot>() },
+            { ModContent.ItemType<LargeDeathweedSeed>(), ModContent.ItemType<LargeDeathweed>() },
+            { ModContent.ItemType<LargeWaterleafSeed>(), ModContent.ItemType<LargeWaterleaf>() },
+            { ModContent.ItemType<LargeFireblossomSeed>(), ModContent.ItemType<LargeFireblossom>() },
+            { ModContent.ItemType<LargeShiverthornSeed>(), ModContent.ItemType<LargeShiverthorn>() },
+            { ModContent.ItemType<LargeBloodberrySeed>(), ModContent.ItemType<LargeBloodberry>() },
+            { ModContent.ItemType<LargeSweetstemSeed>(), ModContent.ItemType<LargeSweetstem>() },
+            { ModContent.ItemType<LargeBarfbushSeed>(), ModContent.ItemType<LargeBarfbush>() }
         };
 
-        public static readonly int[] LargeHerbSeeds = new int[]
+        public static readonly Dictionary<int, int> LargeHerbSeeds = new Dictionary<int, int>
         {
-            ModContent.ItemType<LargeDaybloomSeed>(),
-            ModContent.ItemType<LargeMoonglowSeed>(),
-            ModContent.ItemType<LargeBlinkrootSeed>(),
-            ModContent.ItemType<LargeDeathweedSeed>(),
-            ModContent.ItemType<LargeWaterleafSeed>(),
-            ModContent.ItemType<LargeFireblossomSeed>(),
-            ModContent.ItemType<LargeShiverthornSeed>(),
-            ModContent.ItemType<LargeBloodberrySeed>(),
-            ModContent.ItemType<LargeSweetstemSeed>(),
-            ModContent.ItemType<LargeBarfbushSeed>()
+            { ItemID.Daybloom, ModContent.ItemType<LargeDaybloomSeed>() },
+            { ItemID.Moonglow, ModContent.ItemType<LargeMoonglowSeed>() },
+            { ItemID.Blinkroot, ModContent.ItemType<LargeBlinkrootSeed>() },
+            { ItemID.Deathweed, ModContent.ItemType<LargeDeathweedSeed>() },
+            { ItemID.Waterleaf, ModContent.ItemType<LargeWaterleafSeed>() },
+            { ItemID.Fireblossom, ModContent.ItemType<LargeFireblossomSeed>() },
+            { ItemID.Shiverthorn, ModContent.ItemType<LargeShiverthornSeed>() },
+            { ModContent.ItemType<Bloodberry>(), ModContent.ItemType<LargeBloodberrySeed>() },
+            { ModContent.ItemType<Sweetstem>(), ModContent.ItemType<LargeSweetstemSeed>() },
+            { ModContent.ItemType<Barfbush>(), ModContent.ItemType<LargeBarfbushSeed>() }
         };
 
         public DraggableUIPanel MainPanel;
@@ -174,6 +174,8 @@ namespace ExxoAvalonOrigins.UI
         private NumberInputWithButtons contextInput;
         private bool mouseWasOver;
         private int oldFocusRecipe;
+        private readonly bool purchaseLargeSeed;
+        private readonly bool purchaseAdvancedPotion;
 
         private bool firstUpdate = true;
 
@@ -366,16 +368,44 @@ namespace ExxoAvalonOrigins.UI
             };
             contextMenu.InnerElement.FitHeightToContent = true;
             contextMenu.InnerElement.FitWidthToContent = true;
+            contextMenu.InnerElement.ListPadding = 20;
             contextMenu.BackgroundColor.A = 255;
 
             contextInput = new NumberInputWithButtons()
             {
                 HAlign = UIAlign.Center
             };
+            contextInput.NumberInput.OnKeyboardUpdate += (target, keyboardState) =>
+            {
+                if (keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+                {
+                    contextAttachment.AttachTo(null);
+                }
+                else if (keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter))
+                {
+                    if (PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
+                    {
+                        contextAttachment.AttachTo(null);
+                    }
+                }
+            };
             contextMenu.InnerElement.Append(contextInput);
 
-            var randText = new UIText("Overlay stuff");
-            contextMenu.InnerElement.Append(randText);
+            var button = new PanelButton<UIText>(new UIText("Exchange"))
+            {
+                HAlign = UIAlign.Center,
+                FitToInnerElement = true
+            };
+            button.InnerElement.Height = button.InnerElement.MinHeight;
+            button.InnerElement.HAlign = UIAlign.Center;
+            button.OnClick += delegate
+            {
+                if (PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
+                {
+                    contextAttachment.AttachTo(null);
+                }
+            };
+            contextMenu.InnerElement.Append(button, new UIListItemParams(fillOppLength: true));
 
             contextAttachment = new AttachmentManager(MainPanel, contextMenu, (attachment, attachmentHolder) =>
             {
@@ -383,6 +413,80 @@ namespace ExxoAvalonOrigins.UI
             });
 
             firstUpdate = true;
+        }
+
+        private bool PurchaseItem(Item item, int amount)
+        {
+            Player player = Main.LocalPlayer;
+            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+
+            int herbCharge = 0;
+            int herbType = ItemID.None;
+            bool chargeInventory = false;
+            if (Herbs.ContainsValue(item.type))
+            {
+                herbCharge = amount;
+                herbType = item.type;
+            }
+            else if (LargeHerbSeeds.ContainsValue(item.type))
+            {
+                herbCharge = amount * 15;
+                chargeInventory = true;
+                herbType = Herbs[LargeHerbs[item.type]];
+            }
+
+            if (herbCharge > 0)
+            {
+                if (modPlayer.herbTotal >= herbCharge)
+                {
+                    if (chargeInventory && herbType != ItemID.None && modPlayer.herbCounts[herbType] > herbCharge)
+                    {
+                        modPlayer.herbCounts[herbType] -= herbCharge;
+                    }
+                    else if (chargeInventory)
+                    {
+                        return false;
+                    }
+                    modPlayer.herbTotal -= herbCharge;
+                    Main.mouseItem = item.Clone();
+                    Main.mouseItem.stack = amount;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            int potionCharge = 0;
+            if (Potions.Contains(item.type))
+            {
+                potionCharge = amount;
+            }
+            else if (AdvancedPotion.ContainsValue(item.type))
+            {
+                potionCharge = amount * 5;
+            }
+            else if (item.type == ModContent.ItemType<BlahPotion>())
+            {
+                potionCharge = amount * 2500;
+            }
+
+            if (potionCharge > 0)
+            {
+                if (modPlayer.potionTotal >= potionCharge)
+                {
+                    modPlayer.potionTotal -= potionCharge;
+                    Main.mouseItem = item.Clone();
+                    Main.mouseItem.stack = amount;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         public override void OnActivate()
@@ -399,18 +503,25 @@ namespace ExxoAvalonOrigins.UI
 
         private void FirstUpdate()
         {
-            foreach (int itemID in Herbs)
+            foreach (int itemID in Herbs.Values)
             {
                 var herbItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
                 herbItem.OnClick += (UIMouseEvent evt, UIElement listeningElement) =>
                 {
                     contextAttachment.AttachTo(listeningElement);
+                    contextInput.NumberInput.MaxNumber = herbItem.Item.maxStack;
                 };
                 herbList.InnerElement.Append(herbItem);
             }
             foreach (int itemID in Potions)
             {
-                potionList.InnerElement.Append(new UIItemSlot(Main.inventoryBack7Texture, itemID));
+                var potionItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
+                potionItem.OnClick += (UIMouseEvent evt, UIElement listeningElement) =>
+                {
+                    contextAttachment.AttachTo(listeningElement);
+                    contextInput.NumberInput.MaxNumber = potionItem.Item.maxStack;
+                };
+                potionList.InnerElement.Append(potionItem);
             }
             herbButton = new BetterUIImageButton(ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton"))
             {
@@ -471,26 +582,61 @@ namespace ExxoAvalonOrigins.UI
             Player player = Main.LocalPlayer;
             ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
-            if (herbItemSlot.Item.stack <= 0)
+            if (herbItemSlot.Item.stack <= 0 || herbItemSlot.Item.type == ItemID.None)
             {
-                return;
-            }
-            else if (!Herbs.Contains(herbItemSlot.Item.type))
-            {
-                if (herbItemSlot.Item.type == ModContent.ItemType<BlahPotion>())
-                {
-                    herbItemSlot.Item.stack--;
-                    modPlayer.potionTotal += 2500;
-                }
                 return;
             }
 
-            if (!modPlayer.herbCounts.ContainsKey(herbItemSlot.Item.type))
+            int herbAddition = 0;
+            int herbType = ItemID.None;
+            if (Herbs.ContainsValue(herbItemSlot.Item.type))
             {
-                modPlayer.herbCounts.Add(herbItemSlot.Item.type, 0);
+                herbAddition = 1;
+                herbType = herbItemSlot.Item.type;
             }
-            modPlayer.herbCounts[herbItemSlot.Item.type] += herbItemSlot.Item.stack;
-            modPlayer.herbTotal += herbItemSlot.Item.stack;
+            else if (LargeHerbSeeds.ContainsValue(herbItemSlot.Item.type))
+            {
+                herbAddition = 15;
+                herbType = Herbs[LargeHerbs[herbItemSlot.Item.type]];
+            }
+            else if (LargeHerbs.ContainsValue(herbItemSlot.Item.type))
+            {
+                herbAddition = 20;
+                herbType = Herbs[herbItemSlot.Item.type];
+            }
+
+            if (herbAddition > 0)
+            {
+                if (herbType != ItemID.None)
+                {
+                    if (!modPlayer.herbCounts.ContainsKey(herbType))
+                    {
+                        modPlayer.herbCounts.Add(herbType, 0);
+                    }
+                    modPlayer.herbCounts[herbType] += herbAddition * herbItemSlot.Item.stack;
+                    modPlayer.herbTotal += herbAddition * herbItemSlot.Item.stack;
+                }
+            }
+
+            int potionAddition = 0;
+            if (Potions.Contains(herbItemSlot.Item.type))
+            {
+                potionAddition = 1;
+            }
+            else if (AdvancedPotion.ContainsValue(herbItemSlot.Item.type))
+            {
+                potionAddition = 10;
+            }
+            else if (herbItemSlot.Item.type == ModContent.ItemType<BlahPotion>())
+            {
+                potionAddition = 2500;
+            }
+
+            if (potionAddition > 0)
+            {
+                modPlayer.potionTotal += potionAddition * herbItemSlot.Item.stack;
+            }
+
             herbItemSlot.Item.stack = 0;
 
             UpdateHerbTier(modPlayer);

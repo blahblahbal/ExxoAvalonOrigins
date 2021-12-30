@@ -45,5 +45,13 @@ namespace ExxoAvalonOrigins.UI
                 Main.HoverItem = Item;
             }
         }
+
+        protected override void DrawChildren(SpriteBatch spriteBatch)
+        {
+            if (Item.stack > 0)
+            {
+                base.DrawChildren(spriteBatch);
+            }
+        }
     }
 }
