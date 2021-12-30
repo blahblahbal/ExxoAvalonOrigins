@@ -269,7 +269,13 @@ namespace ExxoAvalonOrigins
             }
             return base.CanHitPlayer(projectile, target);
         }
-
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (projectile.type == ModContent.ProjectileType<Projectiles.OnyxHook>())
+            {
+                damage = Main.player[projectile.owner].statDefense;
+            }
+        }
         public override void Kill(Projectile projectile, int timeLeft)
         {
             var instance = projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>();

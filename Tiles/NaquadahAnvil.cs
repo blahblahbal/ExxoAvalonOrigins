@@ -29,6 +29,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileSolidTop[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
+            Main.placementPreview = true;
             dustType = ModContent.DustType<Dusts.NaquadahDust>();
             adjTiles = new int[] { TileID.Anvils, TileID.MythrilAnvil };
         }

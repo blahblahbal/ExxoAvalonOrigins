@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             int item = 0;
-            switch (frameX % 54)
+            switch (frameX / 54)
             {
                 case 0:
                     item = ModContent.ItemType<Items.Placeable.Tile.PurityBomb>();
@@ -65,11 +65,32 @@ namespace ExxoAvalonOrigins.Tiles
             else if (tile.frameX >= 324 && tile.frameX <= 376) typeC = 2;
             else if (tile.frameX >= 378 && tile.frameX <= 430) typeC = 7;
             ExxoAvalonOriginsWorld.BCBConvert(i, j, typeC, 75);
-            WorldGen.KillTile(i, j, noItem: true);
-            if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+            //WorldGen.KillTile(i, j, noItem: true);
+            for (int x = i - 1; x <= i + 1; x++)
             {
-                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+                for (int y = j - 1; y <= j; y++)
+                {
+                    Main.tile[x, y].active(false);
+                    if (!Main.tile[x, y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);
+                    }
+                    for (int num369 = 0; num369 < 3; num369++)
+                    {
+                        int num370 = Dust.NewDust(new Vector2(x * 16, y * 16), 8, 8, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
+                        Main.dust[num370].velocity *= 1.4f;
+                    }
+                    for (int num371 = 0; num371 < 3; num371++)
+                    {
+                        int num372 = Dust.NewDust(new Vector2(x * 16, y * 16), 8, 8, DustID.Fire, 0f, 0f, 100, default, 2.5f);
+                        Main.dust[num372].noGravity = true;
+                        Main.dust[num372].velocity *= 5f;
+                        num372 = Dust.NewDust(new Vector2(x * 16, y * 16), 8, 8, DustID.Fire, 0f, 0f, 100, default, 1.5f);
+                        Main.dust[num372].velocity *= 3f;
+                    }
+                }
             }
+            Main.PlaySound(2, i * 16, j * 16, 14);
             return true;
         }
         public override void MouseOver(int i, int j)
@@ -102,11 +123,32 @@ namespace ExxoAvalonOrigins.Tiles
             else if (tile.frameX >= 324 && tile.frameX <= 376) typeC = 2;
             else if (tile.frameX >= 378 && tile.frameX <= 430) typeC = 7;
             ExxoAvalonOriginsWorld.BCBConvert(i, j, typeC, 75);
-            WorldGen.KillTile(i, j, noItem: true);
-            if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+            //WorldGen.KillTile(i, j, noItem: true);
+            for (int x = i - 1; x <= i + 1; x++)
             {
-                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+                for (int y = j - 1; y <= j; y++)
+                {
+                    Main.tile[x, y].active(false);
+                    if (!Main.tile[x, y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);
+                    }
+                    for (int num369 = 0; num369 < 3; num369++)
+                    {
+                        int num370 = Dust.NewDust(new Vector2(x * 16, y * 16), 8, 8, DustID.Smoke, 0f, 0f, 100, default, 1.5f);
+                        Main.dust[num370].velocity *= 1.4f;
+                    }
+                    for (int num371 = 0; num371 < 3; num371++)
+                    {
+                        int num372 = Dust.NewDust(new Vector2(x * 16, y * 16), 8, 8, DustID.Fire, 0f, 0f, 100, default, 2.5f);
+                        Main.dust[num372].noGravity = true;
+                        Main.dust[num372].velocity *= 5f;
+                        num372 = Dust.NewDust(new Vector2(x * 16, y * 16), 8, 8, DustID.Fire, 0f, 0f, 100, default, 1.5f);
+                        Main.dust[num372].velocity *= 3f;
+                    }
+                }
             }
+            Main.PlaySound(2, i * 16, j * 16, 14);
         }
     }
 }
