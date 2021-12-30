@@ -1564,12 +1564,33 @@ namespace ExxoAvalonOrigins
 
                     #endregion tropical short grass
 
+                    #region holybird spawning
+
+                    if (Main.tile[num5, num6].type == TileID.HallowedGrass || Main.tile[num5, num6].type == TileID.Pearlstone)
+                    {
+                        int num14 = Main.tile[num5, num6].type;
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
+                        {
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Holybird>(), true, false, -1, 0);
+                            if (Main.tile[num5, num9].active())
+                            {
+                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                            }
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }
+                    }
+
+                    #endregion holybird spawning
+
                     #region sweetstem spawning
 
                     if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(30) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Sweetstem>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1584,6 +1605,27 @@ namespace ExxoAvalonOrigins
                     }
 
                     #endregion sweetstem spawning
+
+                    #region bloodberry spawning
+
+                    if (Main.tile[num5, num6].type == TileID.FleshGrass || Main.tile[num5, num6].type == TileID.Crimstone)
+                    {
+                        int num14 = Main.tile[num5, num6].type;
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(50) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
+                        {
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
+                            if (Main.tile[num5, num9].active())
+                            {
+                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                            }
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }
+                    }
+
+                    #endregion bloodberry spawning
 
                     #region contagion shortgrass/barfbush spawning
 
