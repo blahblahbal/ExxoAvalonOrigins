@@ -479,6 +479,13 @@ IL_162:
                 maxValue = 50;
                 maxValue3 = 500;
             }
+            if (ExxoAvalonOriginsWorld.downedDesertBeak && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDesert && Main.rand.Next(125) == 0)
+            {
+                int item = Main.rand.Next(3);
+                if (item == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumHeadgear>(), 1, false, 0, false);
+                else if (item == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumPlateMail>(), 1, false, 0, false);
+                else Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumGreaves>(), 1, false, 0, false);
+            }
             if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.rand.Next(5) == 0 && npc.lifeMax > 5 && !npc.friendly && Main.hardMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, 0, false);

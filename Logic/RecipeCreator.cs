@@ -392,22 +392,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FakeFourLeafClover>());
-            recipe.AddIngredient(ModContent.ItemType<BottledLava>());
-            recipe.AddIngredient(ItemID.Fireblossom);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<LuckPotion>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FourLeafClover>());
-            recipe.AddIngredient(ModContent.ItemType<BottledLava>(), 20);
-            recipe.AddIngredient(ItemID.Fireblossom, 20);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<LuckPotion>(), 20);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BottledLava>());
             recipe.AddIngredient(ModContent.ItemType<Sweetstem>());
             recipe.AddIngredient(ItemID.Blinkroot);

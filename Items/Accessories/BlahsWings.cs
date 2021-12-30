@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -26,6 +26,23 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			item.accessory = true;
 			item.height = dims.Height;
 		}
+
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 40);
+            r.AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 20);
+            r.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 25);
+            r.AddIngredient(ModContent.ItemType<InertiaBoots>());
+            r.AddIngredient(ModContent.ItemType<GuardianBoots>());
+            r.AddIngredient(ItemID.PhilosophersStone);
+            r.AddIngredient(ModContent.ItemType<SouloftheGolem>());
+            r.AddIngredient(ModContent.ItemType<ForsakenRelic>());
+            r.AddIngredient(ModContent.ItemType<BubbleBoost>());
+            r.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            r.SetResult(this);
+            r.AddRecipe();
+        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
