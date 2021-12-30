@@ -50,7 +50,15 @@ namespace ExxoAvalonOrigins.Items.Accessories
             {
                 if (line.mod == "Terraria" && line.Name == "ItemName")
                 {
-                    line.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                    List<Color> colors = new List<Color>
+                    {
+                        new Color(252, 66, 0),
+                        new Color(203, 203, 203)
+                    };
+                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
+                    Color orange = colors[num];
+                    Color silver = colors[(num + 1) % colors.Count];
+                    line.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
                 }
             }
         }
@@ -84,7 +92,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
             if (player.controlUp && player.controlJump)
             {
-                player.velocity.Y = player.velocity.Y - 0.3f * player.gravDir;
+                player.velocity.Y = player.velocity.Y - 1f * player.gravDir;
                 if (player.gravDir == 1f)
                 {
                     if (player.velocity.Y > 0f)
@@ -93,11 +101,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
                     }
                     else if (player.velocity.Y > -Player.jumpSpeed)
                     {
-                        player.velocity.Y = player.velocity.Y - 0.2f;
+                        player.velocity.Y = player.velocity.Y - 0.5f;
                     }
-                    if (player.velocity.Y < -Player.jumpSpeed * 3f)
+                    if (player.velocity.Y < -Player.jumpSpeed * 6f)
                     {
-                        player.velocity.Y = -Player.jumpSpeed * 3f;
+                        player.velocity.Y = -Player.jumpSpeed * 6f;
                     }
                 }
                 else
@@ -108,11 +116,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
                     }
                     else if (player.velocity.Y < Player.jumpSpeed)
                     {
-                        player.velocity.Y = player.velocity.Y + 0.2f;
+                        player.velocity.Y = player.velocity.Y + 0.5f;
                     }
-                    if (player.velocity.Y > Player.jumpSpeed * 3f)
+                    if (player.velocity.Y > Player.jumpSpeed * 6f)
                     {
-                        player.velocity.Y = Player.jumpSpeed * 3f;
+                        player.velocity.Y = Player.jumpSpeed * 6f;
                     }
                 }
             }

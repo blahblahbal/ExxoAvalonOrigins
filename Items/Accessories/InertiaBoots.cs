@@ -1,9 +1,4 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -40,40 +35,40 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			player.iceSkate = true;
             player.wingTime = 1000;
 
-            if (player.controlUp && player.controlJump)
-            {
-                player.velocity.Y = player.velocity.Y - 0.3f * player.gravDir;
-                if (player.gravDir == 1f)
-                {
-                    if (player.velocity.Y > 0f)
-                    {
-                        player.velocity.Y = player.velocity.Y - 1f;
-                    }
-                    else if (player.velocity.Y > -Player.jumpSpeed)
-                    {
-                        player.velocity.Y = player.velocity.Y - 0.2f;
-                    }
-                    if (player.velocity.Y < -Player.jumpSpeed * 3f)
-                    {
-                        player.velocity.Y = -Player.jumpSpeed * 3f;
-                    }
-                }
-                else
-                {
-                    if (player.velocity.Y < 0f)
-                    {
-                        player.velocity.Y = player.velocity.Y + 1f;
-                    }
-                    else if (player.velocity.Y < Player.jumpSpeed)
-                    {
-                        player.velocity.Y = player.velocity.Y + 0.2f;
-                    }
-                    if (player.velocity.Y > Player.jumpSpeed * 3f)
-                    {
-                        player.velocity.Y = Player.jumpSpeed * 3f;
-                    }
-                }
-            }
+            //if (player.controlUp && player.controlJump)
+            //{
+            //    player.velocity.Y = player.velocity.Y - 0.3f * player.gravDir;
+            //    if (player.gravDir == 1f)
+            //    {
+            //        if (player.velocity.Y > 0f)
+            //        {
+            //            player.velocity.Y = player.velocity.Y - 1f;
+            //        }
+            //        else if (player.velocity.Y > -Player.jumpSpeed)
+            //        {
+            //            player.velocity.Y = player.velocity.Y - 0.2f;
+            //        }
+            //        if (player.velocity.Y < -Player.jumpSpeed * 3f)
+            //        {
+            //            player.velocity.Y = -Player.jumpSpeed * 3f;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (player.velocity.Y < 0f)
+            //        {
+            //            player.velocity.Y = player.velocity.Y + 1f;
+            //        }
+            //        else if (player.velocity.Y < Player.jumpSpeed)
+            //        {
+            //            player.velocity.Y = player.velocity.Y + 0.2f;
+            //        }
+            //        if (player.velocity.Y > Player.jumpSpeed * 3f)
+            //        {
+            //            player.velocity.Y = Player.jumpSpeed * 3f;
+            //        }
+            //    }
+            //}
 
             if (player.controlLeft)
 			{

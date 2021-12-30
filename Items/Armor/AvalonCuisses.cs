@@ -30,8 +30,25 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 41, 0, 0);
 			item.height = dims.Height;
 		}
-
-		public override void UpdateEquip(Player player)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    List<Color> colors = new List<Color>
+                    {
+                        new Color(71, 142, 147),
+                        new Color(255, 242, 0)
+                    };
+                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
+                    Color teal = colors[num];
+                    Color yellow = colors[(num + 1) % colors.Count];
+                    line.overrideColor = Color.Lerp(teal, yellow, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
+                }
+            }
+        }
+        public override void UpdateEquip(Player player)
 		{
 			player.moveSpeed += 0.15f;
 			player.meleeSpeed += 0.10f;

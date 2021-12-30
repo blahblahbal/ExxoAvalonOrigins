@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -41,7 +41,15 @@ namespace ExxoAvalonOrigins.Items.Tools
             {
                 if (line.mod == "Terraria" && line.Name == "ItemName")
                 {
-                    line.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                    List<Color> colors = new List<Color>
+                    {
+                        new Color(252, 66, 0),
+                        new Color(203, 203, 203)
+                    };
+                    int num = (int)(Main.GlobalTime / 2f % (float)colors.Count);
+                    Color orange = colors[num];
+                    Color silver = colors[(num + 1) % colors.Count];
+                    line.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
                 }
             }
         }

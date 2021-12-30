@@ -1229,7 +1229,7 @@ namespace ExxoAvalonOrigins
 
         public override void PreUpdateMovement()
         {
-            // TO-DO: LOOK FOR WOS
+            
         }
 
         public override void PostUpdate()
@@ -1878,6 +1878,45 @@ namespace ExxoAvalonOrigins
             else
             {
                 player.stealth = 1f;
+            }
+
+            if (HasItemInArmor(ModContent.ItemType<BlahsWings>()) || HasItemInArmor(ModContent.ItemType<InertiaBoots>()))
+            {
+                if (player.controlUp && player.controlJump)
+                {
+                    player.wingsLogic = 0;
+                    player.velocity.Y = player.velocity.Y - 0.7f * player.gravDir;
+                    if (player.gravDir == 1f)
+                    {
+                        if (player.velocity.Y > 0f)
+                        {
+                            player.velocity.Y = player.velocity.Y - 1f;
+                        }
+                        else if (player.velocity.Y > -Player.jumpSpeed)
+                        {
+                            player.velocity.Y = player.velocity.Y - 0.5f;
+                        }
+                        if (player.velocity.Y < -Player.jumpSpeed * 3f)
+                        {
+                            player.velocity.Y = -Player.jumpSpeed * 3f;
+                        }
+                    }
+                    else
+                    {
+                        if (player.velocity.Y < 0f)
+                        {
+                            player.velocity.Y = player.velocity.Y + 1f;
+                        }
+                        else if (player.velocity.Y < Player.jumpSpeed)
+                        {
+                            player.velocity.Y = player.velocity.Y + 0.5f;
+                        }
+                        if (player.velocity.Y > Player.jumpSpeed * 3f)
+                        {
+                            player.velocity.Y = Player.jumpSpeed * 3f;
+                        }
+                    }
+                }
             }
 
             #region bubble boost

@@ -1,6 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria;
+using System.Collections.Generic;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
@@ -32,5 +34,23 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.useAnimation = 9;
 			item.height = dims.Height;
 		}
-	}
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips)
+            {
+                if (line.mod == "Terraria" && line.Name == "ItemName")
+                {
+                    List<Color> colors = new List<Color>
+                    {
+                        new Color(252, 66, 0),
+                        new Color(203, 203, 203)
+                    };
+                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
+                    Color orange = colors[num];
+                    Color silver = colors[(num + 1) % colors.Count];
+                    line.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
+                }
+            }
+        }
+    }
 }
