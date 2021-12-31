@@ -21,8 +21,13 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			item.accessory = true;
 			item.value = Item.sellPrice(0, 1, 0, 0);
 			item.height = dims.Height;
-		}
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves = true;
+        }
+        public override void UpdateVanity(Player player, EquipType type)
         {
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves = true;
         }
@@ -31,8 +36,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
             ModRecipe r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Silk, 15);
             r.AddIngredient(ItemID.Cloud, 25);
-            r.AddIngredient(ItemID.SunplateBlock, 10);
+            r.AddIngredient(ItemID.SoulofFlight, 5);
             r.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
+            r.AddIngredient(ItemID.SunplateBlock, 10);
             r.AddTile(TileID.TinkerersWorkbench);
             r.SetResult(this);
             r.AddRecipe();

@@ -89,6 +89,9 @@ namespace ExxoAvalonOrigins.Tiles
                 case 10:
                     item = ModContent.ItemType<DNASculpture>();
                     break;
+                case 11:
+                    item = ModContent.ItemType<TurretStatue>();
+                    break;
             }
             if (item > 0)
             {
@@ -146,16 +149,17 @@ namespace ExxoAvalonOrigins.Tiles
                         return;
                     }
                     // Make space in the statueList array, and then add a Point16 of (TileID, PlaceStyle)
-                    Array.Resize(ref WorldGen.statueList, WorldGen.statueList.Length + 9);
-                    WorldGen.statueList[WorldGen.statueList.Length - 9] = new Point16(ModContent.TileType<Statues>(), 0);
-                    WorldGen.statueList[WorldGen.statueList.Length - 8] = new Point16(ModContent.TileType<Statues>(), 1);
-                    WorldGen.statueList[WorldGen.statueList.Length - 7] = new Point16(ModContent.TileType<Statues>(), 2);
-                    WorldGen.statueList[WorldGen.statueList.Length - 6] = new Point16(ModContent.TileType<Statues>(), 4);
-                    WorldGen.statueList[WorldGen.statueList.Length - 5] = new Point16(ModContent.TileType<Statues>(), 5);
-                    WorldGen.statueList[WorldGen.statueList.Length - 4] = new Point16(ModContent.TileType<Statues>(), 7);
-                    WorldGen.statueList[WorldGen.statueList.Length - 3] = new Point16(ModContent.TileType<Statues>(), 8);
-                    WorldGen.statueList[WorldGen.statueList.Length - 2] = new Point16(ModContent.TileType<Statues>(), 9);
-                    WorldGen.statueList[WorldGen.statueList.Length - 1] = new Point16(ModContent.TileType<Statues>(), 10);
+                    Array.Resize(ref WorldGen.statueList, WorldGen.statueList.Length + 10);
+                    WorldGen.statueList[WorldGen.statueList.Length - 10] = new Point16(ModContent.TileType<Statues>(), 0);
+                    WorldGen.statueList[WorldGen.statueList.Length - 9] = new Point16(ModContent.TileType<Statues>(), 1);
+                    WorldGen.statueList[WorldGen.statueList.Length - 8] = new Point16(ModContent.TileType<Statues>(), 2);
+                    WorldGen.statueList[WorldGen.statueList.Length - 7] = new Point16(ModContent.TileType<Statues>(), 4);
+                    WorldGen.statueList[WorldGen.statueList.Length - 6] = new Point16(ModContent.TileType<Statues>(), 5);
+                    WorldGen.statueList[WorldGen.statueList.Length - 5] = new Point16(ModContent.TileType<Statues>(), 7);
+                    WorldGen.statueList[WorldGen.statueList.Length - 4] = new Point16(ModContent.TileType<Statues>(), 8);
+                    WorldGen.statueList[WorldGen.statueList.Length - 3] = new Point16(ModContent.TileType<Statues>(), 9);
+                    WorldGen.statueList[WorldGen.statueList.Length - 2] = new Point16(ModContent.TileType<Statues>(), 10);
+                    WorldGen.statueList[WorldGen.statueList.Length - 1] = new Point16(ModContent.TileType<Statues>(), 11);
                     //for (int i = WorldGen.statueList.Length - 9; i < WorldGen.statueList.Length; i++)
                     //{
                     //    if (i == )

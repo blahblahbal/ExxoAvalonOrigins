@@ -32,6 +32,14 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Silk, 5);
+            recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 5);
+            recipe.AddIngredient(ItemID.SoulofNight, 5);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.GuideVoodooDoll);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Leather, 6);
             recipe.AddIngredient(ItemID.IronBar, 4);
             recipe.AddIngredient(ModContent.ItemType<FrostShard>(), 2);

@@ -29,6 +29,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
+            projectile.damage = 0;
             bool playerPosLessProj = false;
             bool playerPosGreaterProj = false;
             projectile.spriteDirection = Main.player[projectile.owner].direction;
