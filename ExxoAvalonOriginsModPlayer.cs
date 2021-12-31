@@ -299,6 +299,7 @@ namespace ExxoAvalonOrigins
         public bool malaria;
         public bool caesiumPoison;
         public int caesiumTimer;
+        public bool cloudGloves;
 
         // Adv Buffs
         public bool advAmmoBuff;
@@ -401,6 +402,7 @@ namespace ExxoAvalonOrigins
             reflectorMinion = false;
             iceGolem = false;
             caesiumPoison = false;
+            cloudGloves = false;
 
             if (shmAcc)
             {
@@ -1234,23 +1236,6 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdate()
         {
-            //Rectangle rect = player.getRect();
-            //foreach (Projectile p in Main.projectile)
-            //{
-            //    if (p.active && p.type == ModContent.ProjectileType<CaesiumGas>())
-            //    {
-            //        if (p.getRect().Intersects(rect))
-            //        {
-            //            caesiumTimer++;
-            //        }
-            //        else caesiumTimer = 0;
-            //        if (caesiumTimer >= 180) break;
-            //    }
-            //}
-            //if (caesiumTimer >= 180)
-            //{
-            //    player.AddBuff(ModContent.BuffType<Buffs.CaesiumPoison>(), 5 * 60);
-            //}
             //Main.worldRate = 7;
             if (magnet)
             {

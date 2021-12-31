@@ -923,6 +923,39 @@ namespace ExxoAvalonOrigins
             return base.CanUseItem(item, player);
         }
 
+        public override bool UseItem(Item item, Player player)
+        {
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves)
+            {
+                Vector2 mousePosition = Main.MouseWorld;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+                    Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+                }
+                Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
+                if (item.createTile > -1 && Main.tileSolid[item.createTile] && !Main.tile[mpTile.X, mpTile.Y].lava() && !Main.tile[mpTile.X, mpTile.Y].active())
+                {
+                    Main.tile[mpTile.X, mpTile.Y].active(true);
+                    Main.tile[mpTile.X, mpTile.Y].type = (ushort)item.createTile;
+                    WorldGen.SquareTileFrame(mpTile.X, mpTile.Y);
+                    Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
+                    item.stack--;
+                }
+                if (item.createWall > 0 && Main.tile[mpTile.X, mpTile.Y].wall == 0)
+                {
+                    Main.tile[mpTile.X, mpTile.Y].wall = (ushort)item.createWall;
+                    WorldGen.SquareWallFrame(mpTile.X, mpTile.Y);
+                    Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
+                    item.stack--;
+                }
+            }
+            return base.UseItem(item, player);
+        }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");
