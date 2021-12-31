@@ -277,6 +277,295 @@ IL_162:
             return result;
         }
 
+        /// <summary>
+        /// A method to randomize Town NPC death messages.
+        /// </summary>
+        /// <param name="Type">The Town NPC's type.</param>
+        /// <returns>The string containing the death message.</returns>
+        public static string TownDeathMSG(int Type)
+        {
+            string result = " was slain...";
+            if (Type == NPCID.Merchant)
+            { // merchant
+                int r = Main.rand.Next(4);
+                result = " the Merchant";
+                if (r == 0) result += " tried to sell torches to a zombie.";
+                if (r == 1) result += " made a grave error...";
+                if (r == 2) result += " was slain...";
+                if (r == 3) result += " was hanged with a bug net.";
+                if (r == 4) result += " tried gold dust for the first time.";
+            }
+            else if (Type == NPCID.Nurse)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Nurse";
+                if (r == 0) result += " couldn't heal herself in a timely manner.";
+                if (r == 1) result += " was expected to make a full recovery.";
+                if (r == 2) result += "'s face wasn't sewn on well enough.";
+                if (r == 3) result += " encountered a complication.";
+                if (r == 4) result += "'s surgical strike was in error.";
+            }
+            else if (Type == NPCID.ArmsDealer)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Arms Dealer";
+                if (r == 0) result += "'s gun jammed.";
+                if (r == 1) result += " fired a meteor bullet...";
+                if (r == 2) result += " ran out of ammo.";
+                if (r == 3) result += " was slain...";
+            }
+            else if (Type == NPCID.Dryad)
+            {
+                int r = Main.rand.Next(7);
+                result = " the Dryad";
+                if (r == 0) result += "'s time was up...";
+                if (r == 1) result += " choked on an herb.";
+                if (r == 2) result += " turned into grass.";
+                if (r == 3) result += " died.";
+                if (r == 4) result += " was reduced to a fine paste...";
+                if (r == 5) result += " was mauled by an unknown creature.";
+                if (r == 6) result += " tripped on a corrupt vine.";
+            }
+            else if (Type == NPCID.Guide)
+            {
+                int r = Main.rand.Next(6);
+                result = " the Guide";
+                if (r == 0) result += " let too many zombies in.";
+                if (r == 1) result += " was reading a history book...";
+                if (r == 2) result += " was slain...";
+                if (r == 3) result += " got impaled...";
+                if (r == 4) result += " was the victim of dark magic.";
+                if (r == 5) result += " was voodoo'd.";
+            }
+            else if (Type == NPCID.Demolitionist)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Demolitionist";
+                if (r == 0) result += " blew up.";
+                if (r == 1) result += " threw a bomb at a mob, but it bounced back.";
+                if (r == 2) result += "'s explosives were a little too sensitive...";
+                if (r == 3) result += " made a dirty bomb.";
+                if (r == 4) result += " was bombed.";
+            }
+            else if (Type == NPCID.Clothier)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Clothier";
+                if (r == 0) result += " was unknowningly cursed...";
+                if (r == 1) result += " died from unknown causes.";
+                if (r == 2) result += " was unravelled...";
+                if (r == 3) result += " was slain...";
+            }
+            else if (Type == NPCID.GoblinTinkerer)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Goblin Tinkerer";
+                if (r == 0) result += "'s contraption exploded.";
+                if (r == 1) result += " tinkered with his life.";
+                if (r == 2) result += " was crushed...";
+                if (r == 3) result += " rocketed into the ceiling.";
+            }
+            else if (Type == NPCID.Wizard)
+            {
+                int r = Main.rand.Next(6);
+                result = " the Wizard";
+                if (r == 0) result += " forgot how to live.";
+                if (r == 1) result += " cast too many spells...";
+                if (r == 2) result += " was crushed...";
+                if (r == 3) result += " watched his innards become outards...";
+                if (r == 4) result += " made himself 'disappear.'";
+                if (r == 5) result += " became a frog.";
+            }
+            else if (Type == NPCID.Mechanic)
+            {
+                int r = Main.rand.Next(6);
+                result = " the Mechanic";
+                if (r == 0) result += "'s spine cracked...";
+                if (r == 1) result += "'s engine broke down.";
+                if (r == 2) result += " ran out of wire...";
+                if (r == 3) result += " died.";
+                if (r == 4) result += " dropped her contacts...";
+                if (r == 5) result += " was removed from " + Main.worldName + ".";
+            }
+            else if (Type == NPCID.Truffle)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Truffle";
+                if (r == 0) result += " bit himself.";
+                if (r == 1) result += " was eaten.";
+                if (r == 2) result += " was slain...";
+                if (r == 3) result += " is no longer a fun guy.";
+            }
+            else if (Type == NPCID.Steampunker)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Steampunker";
+                if (r == 0) result += "'s time machine created a paradox...";
+                if (r == 1) result += " slipped a cog.";
+                if (r == 2) result += " died from unknown causes.";
+                if (r == 3) result += " fell off an airship.";
+            }
+            else if (Type == NPCID.DyeTrader)
+            {
+                int r = Main.rand.Next(6);
+                result = " the Dye Trader";
+                if (r == 0) result += " fell into his dye.";
+                if (r == 1) result += " was killed.";
+                if (r == 2) result += " died from unknown causes.";
+                if (r == 3) result += " was decapitated.";
+                if (r == 4) result += " has dyed.";
+                if (r == 5) result += " was dyed a deep chartreuse.";
+            }
+            else if (Type == NPCID.PartyGirl)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Party Girl";
+                if (r == 0) result += " partied too hard.";
+                if (r == 1) result += " inhaled too much confetti...";
+                if (r == 2) result += " was crushed.";
+                if (r == 3) result += " left the party.";
+                if (r == 4) result += " was eaten.";
+            }
+            else if (Type == NPCID.Cyborg)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Cyborg";
+                if (r == 0) result += " was assimilated.";
+                if (r == 1) result += "'s mechanisms were damaged beyond repair.";
+                if (r == 2) result += " was crushed.";
+                if (r == 3) result += " is '404 not found.'";
+                if (r == 4) result += "'s implants were ripped out.";
+            }
+            else if (Type == NPCID.Painter)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Painter";
+                if (r == 0) result += " inhaled paint fumes.";
+                if (r == 1) result += " tried to paint himself.";
+                if (r == 2) result += "'s body was mangled.";
+                if (r == 3) result += "'s paint was ripped off the canvas...";
+                if (r == 4) result += "'s paint cracked.";
+            }
+            else if (Type == NPCID.WitchDoctor)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Witch Doctor";
+                if (r == 0) result += "'s practice lead to his demise.";
+                if (r == 1) result += " tried to embody life.";
+                if (r == 2) result += "'s body was mangled.";
+                if (r == 3) result += " was chopped up.";
+            }
+            else if (Type == NPCID.Pirate)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Pirate";
+                if (r == 0) result += " choked on his gold tooth.";
+                if (r == 1) result += " was hit by a cannonball.";
+                if (r == 2) result += " was eviscerated.";
+                if (r == 3) result += "'s other eye was removed.";
+                if (r == 4) result += " lost his peg leg.";
+            }
+            else if (Type == NPCID.Stylist)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Stylist";
+                if (r == 0) result += " attempted to give a spider a trim.";
+                if (r == 1) result += " was tied up.";
+                if (r == 2) result += " was eviscerated.";
+                if (r == 3) result += " got a little too snippy.";
+                if (r == 4) result += " tried to give Cousin It a trim.";
+            }
+            else if (Type == NPCID.TravellingMerchant)
+            {
+                int r = Main.rand.Next(5);
+                result = " the Travelling Merchant";
+                if (r == 0) result += " has departed...";
+                if (r == 1) result += " had INTERPOL problems.";
+                if (r == 2) result += " was vaporized.";
+                if (r == 3) result += " did not need a monster there.";
+                if (r == 4) result += " tried to sell an exotic pitcher plant...";
+            }
+            else if (Type == NPCID.Angler)
+            {
+                int r = Main.rand.Next(7);
+                result = " the Angler";
+                if (r == 0) result += " has left!";
+                if (r == 1) result += " caught a fish!";
+                if (r == 2) result += " fell into a ditch!";
+                if (r == 3) result += " failed a test!";
+                if (r == 4) result += " lost the game!";
+                if (r == 5) result += " took off!";
+                if (r == 6) result += " died.";
+            }
+            else if (Type == NPCID.TaxCollector)
+            {
+                int r = Main.rand.Next(4);
+                result = " the Tax Collector";
+                if (r == 0) result += " went to the wrong house.";
+                if (r == 1) result += " collected counterfeit money.";
+                if (r == 2) result += " had a hole in his pocket.";
+                if (r == 3) result += " saw the ghost of " + Main.worldName + "'s past.";
+            }
+            else if (Type == ModContent.NPCType<NPCs.Iceman>())
+            {
+                int r = Main.rand.Next(6);
+                result = " the Iceman";
+                if (r == 0) result += " froze.";
+                if (r == 1) result += " melted.";
+                if (r == 2) result += " has died.";
+                if (r == 3) result += "'s ice was cracked.";
+                if (r == 4)
+                {
+                    if (NPC.AnyNPCs(NPCID.ArmsDealer))
+                    {
+                        result += " was used to cool " + Main.npc[FindATypeOfNPC(NPCID.ArmsDealer)].FullName + "'s drink.";
+                    }
+                    else result += " fell into a crevasse.";
+                }
+                if (r == 5) result += " fell into a crevasse";
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Finds a type of NPC.
+        /// </summary>
+        /// <param name="type">The type of NPC to find.</param>
+        /// <returns>The index of the found NPC in the Main.npc[] array.</returns>
+        public static int FindATypeOfNPC(int type)
+        {
+            for (int i = 0; i < 200; i++)
+            {
+                if (type == Main.npc[i].type && Main.npc[i].active)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+        public override bool CheckDead(NPC npc)
+        {
+            if (npc.townNPC && npc.life <= 0)
+            {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText(npc.FullName + TownDeathMSG(npc.type), 178, 0, 90, false);
+                    npc.life = 0;
+                    npc.HitEffect(0, 10);
+                    npc.active = false;
+                    Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
+                }
+                else
+                {
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(npc.FullName + TownDeathMSG(npc.type)), new Color(178, 0, 90));
+                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1);
+                    Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
+                }
+                return false;
+            }
+            return base.CheckDead(npc);
+        }
+
         public static void InitialiseNPCGroups()
         {
             slimes.Add(NPCID.BlueSlime);

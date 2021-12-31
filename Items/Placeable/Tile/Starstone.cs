@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(this, 30);
+            r.AddIngredient(this, 60);
             r.AddTile(TileID.Furnaces);
             r.SetResult(ItemID.ManaCrystal);
             r.AddRecipe();
@@ -39,11 +39,11 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.ManaCrystal);
             r.AddTile(TileID.Furnaces);
-            r.SetResult(this, 30);
+            r.SetResult(this, 60);
             r.AddRecipe();
 
             r = new ModRecipe(mod);
-            r.AddIngredient(this, 10);
+            r.AddIngredient(this, 20);
             r.AddTile(TileID.Furnaces);
             r.SetResult(ItemID.FallenStar);
             r.AddRecipe();

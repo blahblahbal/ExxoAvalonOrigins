@@ -113,81 +113,154 @@ namespace ExxoAvalonOrigins.World.Passes
         }
         public static void GenerateStars(int x, int y, ushort type)
         {
-            for (int j = y; j <= y + 1; j++)
+            int size = WorldGen.genRand.Next(2);
+            if (WorldGen.genRand.Next(20) == 0) size = 2;
+            if (size == 0)
             {
-                Main.tile[x + 7, j].active(true);
-                Main.tile[x + 7, j].type = type;
-                WorldGen.SquareTileFrame(x + 7, j);
-            }
-            for (int i = x + 6; i <= x + 8; i++)
-            {
-                for (int j = y + 2; j <= y + 4; j++)
+                Main.tile[x + 3, y].active(true);
+                Main.tile[x + 3, y].type = type;
+                for (int i = x + 2; i <= x + 4; i++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].type = type;
-                    WorldGen.SquareTileFrame(i, j);
+                    Main.tile[i, y + 1].active(true);
+                    Main.tile[i, y + 1].type = type;
+                }
+                for (int i = x; i <= x + 6; i++)
+                {
+                    Main.tile[i, y + 2].active(true);
+                    Main.tile[i, y + 2].type = type;
+                }
+                for (int i = x + 1; i <= x + 5; i++)
+                {
+                    Main.tile[i, y + 3].active(true);
+                    Main.tile[i, y + 3].type = type;
+                }
+                for (int i = x + 2; i <= x + 4; i++)
+                {
+                    Main.tile[i, y + 4].active(true);
+                    Main.tile[i, y + 4].type = type;
+                }
+                for (int i = x + 1; i <= x + 5; i++)
+                {
+                    if (i != x + 3)
+                    {
+                        Main.tile[i, y + 5].active(true);
+                        Main.tile[i, y + 5].type = type;
+                    }
                 }
             }
-            for (int i = x + 5; i <= x + 9; i++)
+            else if (size == 1)
             {
-                Main.tile[i, y + 4].active(true);
-                Main.tile[i, y + 4].type = type;
-                WorldGen.SquareTileFrame(i, y + 4);
-            }
-            for (int i = x; i <= x + 14; i++)
-            {
-                Main.tile[i, y + 5].active(true);
-                Main.tile[i, y + 5].type = type;
-                WorldGen.SquareTileFrame(i, y + 5);
-            }
-            for (int i = x + 1; i <= x + 13; i++)
-            {
-                Main.tile[i, y + 6].active(true);
-                Main.tile[i, y + 6].type = type;
-                WorldGen.SquareTileFrame(i, y + 6);
-            }
-            for (int i = x + 3; i <= x + 11; i++)
-            {
-                Main.tile[i, y + 7].active(true);
-                Main.tile[i, y + 7].type = type;
-                WorldGen.SquareTileFrame(i, y + 7);
-            }
-            for (int i = x + 4; i <= x + 10; i++)
-            {
-                for (int j = y + 8; j <= y + 9; j++)
+                for (int j = y; j <= y + 1; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].type = type;
-                    WorldGen.SquareTileFrame(i, j);
+                    Main.tile[x + 4, j].active(true);
+                    Main.tile[x + 4, j].type = type;
+                }
+                for (int i = x + 3; i <= x + 5; i++)
+                {
+                    Main.tile[i, y + 2].active(true);
+                    Main.tile[i, y + 2].type = type;
+                }
+                for (int i = x; i <= x + 8; i++)
+                {
+                    Main.tile[i, y + 3].active(true);
+                    Main.tile[i, y + 3].type = type;
+                }
+                for (int i = x + 1; i <= x + 7; i++)
+                {
+                    Main.tile[i, y + 4].active(true);
+                    Main.tile[i, y + 4].type = type;
+                }
+                for (int i = x + 2; i <= x + 6; i++)
+                {
+                    for (int j = y + 5; j <= y + 6; j++)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                    }
+                }
+                for (int i = x + 1; i <= x + 7; i++)
+                {
+                    if (i != x + 4)
+                    {
+                        Main.tile[i, y + 7].active(true);
+                        Main.tile[i, y + 7].type = type;
+                    }
+                }
+                for (int i = x + 1; i <= x + 7; i++)
+                {
+                    if (i <= x + 2 || i >= x + 6)
+                    {
+                        Main.tile[i, y + 7].active(true);
+                        Main.tile[i, y + 7].type = type;
+                    }
                 }
             }
-            for (int i = x + 2; i <= x + 12; i++)
+            else if (size == 2)
             {
-                for (int j = y + 10; j <= y + 13; j++)
+                for (int j = y; j <= y + 1; j++)
                 {
-                    if (((i >= x + 4 && i <= x + 6) || (i >= x + 8 && i <= x + 10)) && j == y + 10)
+                    Main.tile[x + 5, j].active(true);
+                    Main.tile[x + 5, j].type = type;
+                    WorldGen.SquareTileFrame(x + 5, j);
+                }
+                for (int i = x + 4; i <= x + 6; i++)
+                {
+                    Main.tile[i, y + 2].active(true);
+                    Main.tile[i, y + 2].type = type;
+                    WorldGen.SquareTileFrame(i, y + 2);
+                }
+                for (int i = x + 3; i <= x + 7; i++)
+                {
+                    Main.tile[i, y + 3].active(true);
+                    Main.tile[i, y + 3].type = type;
+                    WorldGen.SquareTileFrame(i, y + 3);
+                }
+                for (int i = x; i <= x + 10; i++)
+                {
+                    Main.tile[i, y + 4].active(true);
+                    Main.tile[i, y + 4].type = type;
+                    WorldGen.SquareTileFrame(i, y + 4);
+                }
+                for (int i = x + 1; i <= x + 9; i++)
+                {
+                    Main.tile[i, y + 5].active(true);
+                    Main.tile[i, y + 5].type = type;
+                    WorldGen.SquareTileFrame(i, y + 5);
+                }
+                for (int i = x + 2; i <= x + 8; i++)
+                {
+                    Main.tile[i, y + 6].active(true);
+                    Main.tile[i, y + 6].type = type;
+                    WorldGen.SquareTileFrame(i, y + 6);
+                }
+                for (int i = x + 3; i <= x + 7; i++)
+                {
+                    Main.tile[i, y + 7].active(true);
+                    Main.tile[i, y + 7].type = type;
+                    WorldGen.SquareTileFrame(i, y + 7);
+                }
+                for (int i = x + 2; i <= x + 8; i++)
+                {
+                    Main.tile[i, y + 8].active(true);
+                    Main.tile[i, y + 8].type = type;
+                    WorldGen.SquareTileFrame(i, y + 8);
+                }
+                for (int i = x + 1; i <= x + 9; i++)
+                {
+                    for (int j = y + 9; j <= y + 10; j++)
                     {
-                        Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
-                        WorldGen.SquareTileFrame(i, j);
-                    }
-                    if (((i >= x + 3 && i <= x + 5) || (i >= x + 9 && i <= x + 11)) && j == y + 11)
-                    {
-                        Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
-                        WorldGen.SquareTileFrame(i, j);
-                    }
-                    if (((i >= x + 3 && i <= x + 4) || (i >= x + 10 && i <= x + 11)) && j == y + 12)
-                    {
-                        Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
-                        WorldGen.SquareTileFrame(i, j);
-                    }
-                    if (((i >= x + 2 && i <= x + 3) || (i >= x + 11 && i <= x + 12)) && j == y + 13)
-                    {
-                        Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
-                        WorldGen.SquareTileFrame(i, j);
+                        if (((i >= x + 2 && i <= x + 4) || (i >= x + 6 && i <= x + 8)) && j == y + 9)
+                        {
+                            Main.tile[i, j].active(true);
+                            Main.tile[i, j].type = type;
+                            WorldGen.SquareTileFrame(i, j);
+                        }
+                        if (((i >= x + 1 && i <= x + 3) || (i >= x + 7 && i <= x + 9)) && j == y + 10)
+                        {
+                            Main.tile[i, j].active(true);
+                            Main.tile[i, j].type = type;
+                            WorldGen.SquareTileFrame(i, j);
+                        }
                     }
                 }
             }
@@ -251,74 +324,151 @@ namespace ExxoAvalonOrigins.World.Passes
         }
         public static void GenerateBolts(int x, int y, ushort type)
         {
-            for (int i = x + 2; i <= x + 8; i++)
+            int size = WorldGen.genRand.Next(2);
+            if (WorldGen.genRand.Next(20) == 0) size = 2;
+            if (size == 0)
             {
-                for (int j = y; j <= y + 1; j++)
+                for (int i = x + 1; i <= x + 4; i++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].type = type;
-                    WorldGen.SquareTileFrame(i, j);
+                    for (int j = y; j <= y + 1; j++)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                    }
+                }
+                for (int i = x; i <= x + 3; i++)
+                {
+                    Main.tile[i, y + 2].active(true);
+                    Main.tile[i, y + 2].type = type;
+                }
+                for (int i = x; i <= x + 4; i++)
+                {
+                    Main.tile[i, y + 3].active(true);
+                    Main.tile[i, y + 3].type = type;
+                }
+                for (int i = x + 1; i <= x + 3; i++)
+                {
+                    Main.tile[i, y + 4].active(true);
+                    Main.tile[i, y + 4].type = type;
+                }
+                for (int i = x; i <= x + 2; i++)
+                {
+                    Main.tile[i, y + 5].active(true);
+                    Main.tile[i, y + 5].type = type;
+                }
+                for (int i = x; i <= x + 1; i++)
+                {
+                    Main.tile[i, y + 6].active(true);
+                    Main.tile[i, y + 6].type = type;
                 }
             }
-            for (int i = x + 1; i <= x + 7; i++)
+            else if (size == 1)
             {
-                for (int j = y + 2; j <= y + 3; j++)
+                for (int i = x + 1; i <= x + 5; i++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].type = type;
-                    WorldGen.SquareTileFrame(i, j);
+                    for (int j = y; j <= y + 1; j++)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                    }
+                }
+                for (int i = x; i <= x + 4; i++)
+                {
+                    Main.tile[i, y + 2].active(true);
+                    Main.tile[i, y + 2].type = type;
+                }
+                for (int i = x; i <= x + 5; i++)
+                {
+                    Main.tile[i, y + 3].active(true);
+                    Main.tile[i, y + 3].type = type;
+                }
+                for (int i = x + 2; i <= x + 5; i++)
+                {
+                    Main.tile[i, y + 4].active(true);
+                    Main.tile[i, y + 4].type = type;
+                }
+                for (int i = x + 1; i <= x + 4; i++)
+                {
+                    Main.tile[i, y + 5].active(true);
+                    Main.tile[i, y + 5].type = type;
+                }
+                for (int i = x + 1; i <= x + 3; i++)
+                {
+                    Main.tile[i, y + 6].active(true);
+                    Main.tile[i, y + 6].type = type;
+                }
+                for (int i = x; i <= x + 2; i++)
+                {
+                    Main.tile[i, y + 7].active(true);
+                    Main.tile[i, y + 7].type = type;
+                }
+                for (int i = x; i <= x + 1; i++)
+                {
+                    Main.tile[i, y + 8].active(true);
+                    Main.tile[i, y + 8].type = type;
                 }
             }
-            for (int j = y + 3; j <= y + 4; j++)
+            else if (size == 2)
             {
-                Main.tile[x + 8, j].active(true);
-                Main.tile[x + 8, j].type = type;
-                WorldGen.SquareTileFrame(x + 8, j);
-            }
-            for (int i = x; i <= x + 7; i++)
-            {
-                for (int j = y + 4; j <= y + 5; j++)
+                for (int i = x + 2; i <= x + 8; i++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].type = type;
-                    WorldGen.SquareTileFrame(i, j);
+                    for (int j = y; j <= y + 1; j++)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                    }
                 }
-            }
-            for (int i = x + 2; i <= x + 6; i++)
-            {
-                Main.tile[i, y + 6].active(true);
-                Main.tile[i, y + 6].type = type;
-                WorldGen.SquareTileFrame(i, y + 6);
-            }
-            for (int i = x + 1; i <= x + 5; i++)
-            {
-                Main.tile[i, y + 7].active(true);
-                Main.tile[i, y + 7].type = type;
-                WorldGen.SquareTileFrame(i, y + 7);
-            }
-            for (int i = x + 1; i <= x + 4; i++)
-            {
-                Main.tile[i, y + 8].active(true);
-                Main.tile[i, y + 8].type = type;
-                WorldGen.SquareTileFrame(i, y + 8);
-            }
-            for (int i = x; i <= x + 3; i++)
-            {
-                Main.tile[i, y + 9].active(true);
-                Main.tile[i, y + 9].type = type;
-                WorldGen.SquareTileFrame(i, y + 9);
-            }
-            for (int i = x; i <= x + 2; i++)
-            {
-                Main.tile[i, y + 10].active(true);
-                Main.tile[i, y + 10].type = type;
-                WorldGen.SquareTileFrame(i, y + 10);
-            }
-            for (int i = x; i <= x + 1; i++)
-            {
-                Main.tile[i, y + 11].active(true);
-                Main.tile[i, y + 11].type = type;
-                WorldGen.SquareTileFrame(i, y + 11);
+                for (int i = x + 1; i <= x + 7; i++)
+                {
+                    for (int j = y + 2; j <= y + 3; j++)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                    }
+                }
+                for (int j = y + 3; j <= y + 4; j++)
+                {
+                    Main.tile[x + 8, j].active(true);
+                    Main.tile[x + 8, j].type = type;
+                }
+                for (int i = x; i <= x + 7; i++)
+                {
+                    for (int j = y + 4; j <= y + 5; j++)
+                    {
+                        Main.tile[i, j].active(true);
+                        Main.tile[i, j].type = type;
+                    }
+                }
+                for (int i = x + 2; i <= x + 6; i++)
+                {
+                    Main.tile[i, y + 6].active(true);
+                    Main.tile[i, y + 6].type = type;
+                }
+                for (int i = x + 1; i <= x + 5; i++)
+                {
+                    Main.tile[i, y + 7].active(true);
+                    Main.tile[i, y + 7].type = type;
+                }
+                for (int i = x + 1; i <= x + 4; i++)
+                {
+                    Main.tile[i, y + 8].active(true);
+                    Main.tile[i, y + 8].type = type;
+                }
+                for (int i = x; i <= x + 3; i++)
+                {
+                    Main.tile[i, y + 9].active(true);
+                    Main.tile[i, y + 9].type = type;
+                }
+                for (int i = x; i <= x + 2; i++)
+                {
+                    Main.tile[i, y + 10].active(true);
+                    Main.tile[i, y + 10].type = type;
+                }
+                for (int i = x; i <= x + 1; i++)
+                {
+                    Main.tile[i, y + 11].active(true);
+                    Main.tile[i, y + 11].type = type;
+                }
             }
         }
     }

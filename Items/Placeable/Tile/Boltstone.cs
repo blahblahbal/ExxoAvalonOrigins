@@ -28,5 +28,20 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(this, 35);
+            r.AddTile(TileID.Furnaces);
+            r.SetResult(ModContent.ItemType<Items.Consumables.StaminaCrystal>());
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Items.Consumables.StaminaCrystal>());
+            r.AddTile(TileID.Furnaces);
+            r.SetResult(this, 35);
+            r.AddRecipe();
+        }
+    }
 }
