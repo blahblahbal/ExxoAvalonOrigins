@@ -24,8 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.useTurn = true;
 			item.scale = 1.2f;
 			item.shootSpeed = 13f;
-			item.rare = 12;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+			item.rare = 11;
             item.width = dims.Width;
 			item.useTime = 14;
 			item.knockBack = 20f;
@@ -37,24 +36,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.useAnimation = 14;
 			item.height = dims.Height;
 		}
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            foreach (TooltipLine line in tooltips)
-            {
-                if (line.mod == "Terraria" && line.Name == "ItemName")
-                {
-                    List<Color> colors = new List<Color>
-                    {
-                        new Color(252, 66, 0),
-                        new Color(203, 203, 203)
-                    };
-                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
-                    Color orange = colors[num];
-                    Color silver = colors[(num + 1) % colors.Count];
-                    line.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
-                }
-            }
-        }
         public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(255, 255, 255, 255);

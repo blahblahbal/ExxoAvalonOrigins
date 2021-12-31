@@ -23,8 +23,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.scale = 1.15f;
 			item.axe = 60;
 			item.pick = 700;
-			item.rare = 12;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+			item.rare = 11;
             item.width = dims.Width;
 			item.useTime = 6;
 			item.knockBack = 5.5f;
@@ -35,24 +34,6 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.useAnimation = 6;
 			item.height = dims.Height;
 		}
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            foreach (TooltipLine line in tooltips)
-            {
-                if (line.mod == "Terraria" && line.Name == "ItemName")
-                {
-                    List<Color> colors = new List<Color>
-                    {
-                        new Color(252, 66, 0),
-                        new Color(203, 203, 203)
-                    };
-                    int num = (int)(Main.GlobalTime / 2f % (float)colors.Count);
-                    Color orange = colors[num];
-                    Color silver = colors[(num + 1) % colors.Count];
-                    line.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
-                }
-            }
-        }
         public override void HoldItem(Player player)
         {
             if (player.inventory[player.selectedItem].type == mod.ItemType("BlahsPicksawTierII"))
@@ -60,19 +41,5 @@ namespace ExxoAvalonOrigins.Items.Tools
                 player.pickSpeed -= 0.5f;
             }
         }
-/*        public override bool UseItem(Player player)
-        {
-            if (Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer)
-            {
-                if (Main.tile[Player.tileTargetX, Player.tileTargetY].active())
-                {
-                    int tileId = player.hitTile.HitObject(Player.tileTargetX, Player.tileTargetY, 1);
-                    if (player.inventory[player.selectedItem].pick >= ExxoAvalonOrigins.minPick[Main.tile[Player.tileTargetX, Player.tileTargetY].type])
-                        player.hitTile.AddDamage(tileId, player.inventory[player.selectedItem].pick, true);
-                    return true;
-                }
-            }
-            return false;
-        }*/
     }
 }

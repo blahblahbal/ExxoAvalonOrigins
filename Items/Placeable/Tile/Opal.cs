@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.createTile = ModContent.TileType<Tiles.PlacedGems>();
 			item.placeStyle = 0;
 			item.consumable = true;
-			item.rare = -12;
+			item.rare = 11;
 			item.width = dims.Width;
 			item.useTime = 10;
 			item.value = Item.sellPrice(0, 1, 0, 0);

@@ -974,15 +974,11 @@ namespace ExxoAvalonOrigins
                 if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
                     !Main.tile[mpTile.X, mpTile.Y].lava() && !Main.tile[mpTile.X, mpTile.Y].active())
                 {
-                    //Main.tile[mpTile.X, mpTile.Y].active(true);
-                    //Main.tile[mpTile.X, mpTile.Y].type = (ushort)item.createTile;
                     WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile);
                     if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y);
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, item.createTile);
                     }
-                    //WorldGen.SquareTileFrame(mpTile.X, mpTile.Y);
-                    //Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
                     item.stack--;
                 }
                 if (item.createWall > 0 && Main.tile[mpTile.X, mpTile.Y].wall == 0)
@@ -990,7 +986,7 @@ namespace ExxoAvalonOrigins
                     WorldGen.PlaceWall(mpTile.X, mpTile.Y, item.createWall);
                     if (Main.tile[mpTile.X, mpTile.Y].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, mpTile.X, mpTile.Y);
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, mpTile.X, mpTile.Y, item.createWall);
                     }
                     Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
                     item.stack--;
@@ -1003,6 +999,18 @@ namespace ExxoAvalonOrigins
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");
             if (tooltipLine != null)
             {
+                if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity == Items.AvalonRarity.Blah)
+                {
+                    List<Color> colors = new List<Color>
+                    {
+                        new Color(252, 66, 0),
+                        new Color(203, 203, 203)
+                    };
+                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
+                    Color orange = colors[num];
+                    Color silver = colors[(num + 1) % colors.Count];
+                    tooltipLine.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
+                }
                 if (item.type == ItemID.CoinGun)
                 {
                     tooltipLine.text = "Spend Shot";

@@ -28,8 +28,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.shootSpeed = 11f;
             item.crit += 7;
 			item.ranged = true;
-			item.rare = 12;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+            item.rare = 11;
             item.noMelee = true;
 			item.width = dims.Width;
 			item.knockBack = 5f;
@@ -55,24 +54,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            foreach (TooltipLine line in tooltips)
-            {
-                if (line.mod == "Terraria" && line.Name == "ItemName")
-                {
-                    List<Color> colors = new List<Color>
-                    {
-                        new Color(252, 66, 0),
-                        new Color(203, 203, 203)
-                    };
-                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
-                    Color orange = colors[num];
-                    Color silver = colors[(num + 1) % colors.Count];
-                    line.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
-                }
-            }
         }
         public override Vector2? HoldoutOffset()
         {
