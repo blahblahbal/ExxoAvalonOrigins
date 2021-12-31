@@ -15,10 +15,9 @@ namespace ExxoAvalonOrigins.Logic
             ModRecipe recipe;
 
             recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup(ItemID.CopperBar, 6);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:CopperBar", 6);
             recipe.AddIngredient(ItemID.Wood);
             recipe.anyWood = true;
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:CopperBar");
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ItemID.Aglet);
             recipe.AddRecipe();

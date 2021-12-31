@@ -26,5 +26,16 @@ namespace ExxoAvalonOrigins.Items.Accessories
         {
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves = true;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Silk, 15);
+            r.AddIngredient(ItemID.Cloud, 25);
+            r.AddIngredient(ItemID.SunplateBlock, 10);
+            r.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
+            r.AddTile(TileID.TinkerersWorkbench);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,8 +26,25 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.height = dims.Height;
 			item.UseSound = SoundID.Item6;
 		}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MagicMirror);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 10);
+            recipe.AddIngredient(ModContent.ItemType<Material.BloodshotLens>(), 4);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<EideticMirror>());
+            recipe.AddRecipe();
 
-		public override bool CanUseItem(Player player)
+            //recipe = new ModRecipe(mod);
+            //recipe.AddIngredient(ItemID.MagicMirror);
+            //recipe.AddIngredient(ItemID.PlatinumBar, 10);
+            //recipe.AddIngredient(ModContent.ItemType<Material.BloodshotLens>(), 3);
+            //recipe.AddTile(TileID.Anvils);
+            //recipe.SetResult(ModContent.ItemType<EideticMirror>());
+            //recipe.AddRecipe();
+        }
+        public override bool CanUseItem(Player player)
 		{
 			return true;
 		}

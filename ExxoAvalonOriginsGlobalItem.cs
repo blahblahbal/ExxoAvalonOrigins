@@ -35,6 +35,24 @@ namespace ExxoAvalonOrigins
             ItemID.Uzi,
             ItemID.VortexBeater
         };
+        public static List<int> nonSolidExceptions = new List<int>
+        {
+            TileID.Cobweb,
+            TileID.LivingCursedFire,
+            TileID.LivingDemonFire,
+            TileID.LivingFire,
+            TileID.LivingFrostFire,
+            TileID.LivingIchor,
+            TileID.LivingUltrabrightFire,
+            TileID.ChimneySmoke,
+            TileID.Bubble,
+            TileID.Rope,
+            TileID.SilkRope,
+            TileID.VineRope,
+            TileID.WebRope,
+            ModContent.TileType<Tiles.LivingLightning>(),
+            ModContent.TileType<Tiles.VineRope>()
+        };
         public static List<int> herbSeeds = new List<int>
         {
             ItemID.BlinkrootSeeds,
@@ -830,25 +848,40 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
-            if (herbSeeds.Contains(item.type) && (Main.tile[Player.tileTargetX, Player.tileTargetY].type == TileID.BloomingHerbs ||
-                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Barfbush>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36 ||
-                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Bloodberry>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36 ||
-                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Sweetstem>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36 ||
-                Main.tile[Player.tileTargetX, Player.tileTargetY].type == ModContent.TileType<Tiles.Herbs.Holybird>() && Main.tile[Player.tileTargetX, Player.tileTargetY].frameX == 36) &&
-                (Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.ClayPot ||
-                Main.tile[Player.tileTargetX, Player.tileTargetY + 1].type == TileID.PlanterBox) && Main.mouseLeft)
+            if (herbSeeds.Contains(item.type))
             {
-                WorldGen.KillTile(Player.tileTargetX, Player.tileTargetY);
-                if (!Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer)
+                Vector2 mousePosition = Main.MouseWorld;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+                    Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
                 }
-                WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile, style: item.placeStyle);
-                if (!Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer)
+                else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY);
+                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
                 }
-                item.stack--;
+                Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
+
+                if ((Main.tile[mpTile.X, mpTile.Y].type == TileID.BloomingHerbs ||
+                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Barfbush>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
+                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Bloodberry>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
+                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Sweetstem>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
+                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Holybird>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36) &&
+                    (Main.tile[mpTile.X, mpTile.Y + 1].type == TileID.ClayPot ||
+                    Main.tile[mpTile.X, mpTile.Y + 1].type == TileID.PlanterBox) && Main.mouseLeft)
+                {
+                    WorldGen.KillTile(mpTile.X, mpTile.Y);
+                    if (!Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, mpTile.X, mpTile.Y);
+                    }
+                    WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile, style: item.placeStyle);
+                    if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y);
+                    }
+                    item.stack--;
+                }
             }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
             {
@@ -938,18 +971,27 @@ namespace ExxoAvalonOrigins
                     player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
                 }
                 Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
-                if (item.createTile > -1 && Main.tileSolid[item.createTile] && !Main.tile[mpTile.X, mpTile.Y].lava() && !Main.tile[mpTile.X, mpTile.Y].active())
+                if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
+                    !Main.tile[mpTile.X, mpTile.Y].lava() && !Main.tile[mpTile.X, mpTile.Y].active())
                 {
-                    Main.tile[mpTile.X, mpTile.Y].active(true);
-                    Main.tile[mpTile.X, mpTile.Y].type = (ushort)item.createTile;
-                    WorldGen.SquareTileFrame(mpTile.X, mpTile.Y);
-                    Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
+                    //Main.tile[mpTile.X, mpTile.Y].active(true);
+                    //Main.tile[mpTile.X, mpTile.Y].type = (ushort)item.createTile;
+                    WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile);
+                    if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y);
+                    }
+                    //WorldGen.SquareTileFrame(mpTile.X, mpTile.Y);
+                    //Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
                     item.stack--;
                 }
                 if (item.createWall > 0 && Main.tile[mpTile.X, mpTile.Y].wall == 0)
                 {
-                    Main.tile[mpTile.X, mpTile.Y].wall = (ushort)item.createWall;
-                    WorldGen.SquareWallFrame(mpTile.X, mpTile.Y);
+                    WorldGen.PlaceWall(mpTile.X, mpTile.Y, item.createWall);
+                    if (Main.tile[mpTile.X, mpTile.Y].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, mpTile.X, mpTile.Y);
+                    }
                     Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
                     item.stack--;
                 }

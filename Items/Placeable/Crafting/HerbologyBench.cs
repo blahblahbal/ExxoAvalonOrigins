@@ -32,13 +32,10 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IronBar, 8);
-            recipe.AddIngredient(ItemID.Wood, 45);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 8);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 45);
             recipe.AddIngredient(ItemID.GrassSeeds, 20);
-            recipe.AddIngredient(ItemID.Daybloom, 15);
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:Herbs");
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:Herbs", 15);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

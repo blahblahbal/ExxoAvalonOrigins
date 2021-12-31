@@ -1892,22 +1892,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MagicMirror);
-            recipe.AddIngredient(ItemID.GoldBar, 10);
-            recipe.AddIngredient(ModContent.ItemType<BloodshotLens>(), 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<EideticMirror>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MagicMirror);
-            recipe.AddIngredient(ItemID.PlatinumBar, 10);
-            recipe.AddIngredient(ModContent.ItemType<BloodshotLens>(), 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<EideticMirror>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PlatinumOre);
             recipe.AddIngredient(ItemID.Cloud);
             recipe.AddTile(TileID.Furnaces);
@@ -3695,10 +3679,9 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.DemonWings);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:Wings");
             recipe.AddIngredient(ItemID.FrostsparkBoots);
             recipe.AddIngredient(ItemID.BlackBelt);
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:Wings");
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.InertiaBoots>());
             recipe.AddRecipe();
@@ -5384,11 +5367,9 @@ namespace ExxoAvalonOrigins.Logic
             // catalyzer stuff
             // catalyzer recipe
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 20);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 20);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>(), 30);
             recipe.AddIngredient(ItemID.IronBar, 15);
-            recipe.AddIngredient(ItemID.WorkBench);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
             recipe.AddRecipeGroup("ExxoAvalonOrigins:WorkBenches");
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<Catalyzer>());
