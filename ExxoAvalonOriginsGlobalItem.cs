@@ -878,7 +878,7 @@ namespace ExxoAvalonOrigins
                     WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile, style: item.placeStyle);
                     if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y);
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, item.createTile, item.placeStyle);
                     }
                     item.stack--;
                 }
