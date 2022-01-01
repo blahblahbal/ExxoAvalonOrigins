@@ -284,11 +284,10 @@ IL_162:
         /// <returns>The string containing the death message.</returns>
         public static string TownDeathMSG(int Type)
         {
-            string result = " was slain...";
+            string result = "";
             if (Type == NPCID.Merchant)
-            { // merchant
-                int r = Main.rand.Next(4);
-                result = " the Merchant";
+            {
+                int r = Main.rand.Next(5);
                 if (r == 0) result += " tried to sell torches to a zombie.";
                 if (r == 1) result += " made a grave error...";
                 if (r == 2) result += " was slain...";
@@ -298,7 +297,6 @@ IL_162:
             else if (Type == NPCID.Nurse)
             {
                 int r = Main.rand.Next(5);
-                result = " the Nurse";
                 if (r == 0) result += " couldn't heal herself in a timely manner.";
                 if (r == 1) result += " was expected to make a full recovery.";
                 if (r == 2) result += "'s face wasn't sewn on well enough.";
@@ -307,17 +305,21 @@ IL_162:
             }
             else if (Type == NPCID.ArmsDealer)
             {
-                int r = Main.rand.Next(4);
-                result = " the Arms Dealer";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += "'s gun jammed.";
                 if (r == 1) result += " fired a meteor bullet...";
                 if (r == 2) result += " ran out of ammo.";
                 if (r == 3) result += " was slain...";
+                if (r == 4) result += " shot himself.";
+                if (r == 5)
+                {
+                    if (!Main.dayTime) result += " was caught.";
+                    else result += " shot himself.";
+                }
             }
             else if (Type == NPCID.Dryad)
             {
                 int r = Main.rand.Next(7);
-                result = " the Dryad";
                 if (r == 0) result += "'s time was up...";
                 if (r == 1) result += " choked on an herb.";
                 if (r == 2) result += " turned into grass.";
@@ -328,58 +330,66 @@ IL_162:
             }
             else if (Type == NPCID.Guide)
             {
-                int r = Main.rand.Next(6);
-                result = " the Guide";
+                int r = Main.rand.Next(7);
                 if (r == 0) result += " let too many zombies in.";
                 if (r == 1) result += " was reading a history book...";
                 if (r == 2) result += " was slain...";
                 if (r == 3) result += " got impaled...";
                 if (r == 4) result += " was the victim of dark magic.";
                 if (r == 5) result += " was voodoo'd.";
+                if (r == 6) result += " opened a door.";
             }
             else if (Type == NPCID.Demolitionist)
             {
-                int r = Main.rand.Next(5);
-                result = " the Demolitionist";
+                int r = Main.rand.Next(7);
                 if (r == 0) result += " blew up.";
                 if (r == 1) result += " threw a bomb at a mob, but it bounced back.";
                 if (r == 2) result += "'s explosives were a little too sensitive...";
                 if (r == 3) result += " made a dirty bomb.";
                 if (r == 4) result += " was bombed.";
+                if (r == 5) result += " went out with a bang.";
+                if (r == 6) result += " became a true martyr.";
             }
             else if (Type == NPCID.Clothier)
             {
-                int r = Main.rand.Next(4);
-                result = " the Clothier";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += " was unknowningly cursed...";
                 if (r == 1) result += " died from unknown causes.";
                 if (r == 2) result += " was unravelled...";
-                if (r == 3) result += " was slain...";
+                if (r == 3) result += " was eviscerated...";
+                if (r == 4) result += " went back to the dungeon.";
+                if (r == 5) result += " stitched himself up.";
             }
             else if (Type == NPCID.GoblinTinkerer)
             {
-                int r = Main.rand.Next(4);
-                result = " the Goblin Tinkerer";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += "'s contraption exploded.";
                 if (r == 1) result += " tinkered with his life.";
                 if (r == 2) result += " was crushed...";
                 if (r == 3) result += " rocketed into the ceiling.";
+                if (r == 4) result += " died from platinum poisoning.";
+                if (r == 5) result += " was approached from the north.";
             }
             else if (Type == NPCID.Wizard)
             {
-                int r = Main.rand.Next(6);
-                result = " the Wizard";
+                int r = Main.rand.Next(7);
                 if (r == 0) result += " forgot how to live.";
                 if (r == 1) result += " cast too many spells...";
                 if (r == 2) result += " was crushed...";
                 if (r == 3) result += " watched his innards become outards...";
                 if (r == 4) result += " made himself 'disappear.'";
                 if (r == 5) result += " became a frog.";
+                if (r == 6) result += "'s low armor class failed him.";
+            }
+            else if (Type == NPCID.SantaClaus)
+            {
+                int r = Main.rand.Next(2);
+                if (r == 0) result += " had too much milk and cookies.";
+                if (r == 1) result += " wasn't believed in.";
             }
             else if (Type == NPCID.Mechanic)
             {
                 int r = Main.rand.Next(6);
-                result = " the Mechanic";
                 if (r == 0) result += "'s spine cracked...";
                 if (r == 1) result += "'s engine broke down.";
                 if (r == 2) result += " ran out of wire...";
@@ -390,7 +400,6 @@ IL_162:
             else if (Type == NPCID.Truffle)
             {
                 int r = Main.rand.Next(4);
-                result = " the Truffle";
                 if (r == 0) result += " bit himself.";
                 if (r == 1) result += " was eaten.";
                 if (r == 2) result += " was slain...";
@@ -398,17 +407,16 @@ IL_162:
             }
             else if (Type == NPCID.Steampunker)
             {
-                int r = Main.rand.Next(4);
-                result = " the Steampunker";
+                int r = Main.rand.Next(5);
                 if (r == 0) result += "'s time machine created a paradox...";
                 if (r == 1) result += " slipped a cog.";
                 if (r == 2) result += " died from unknown causes.";
                 if (r == 3) result += " fell off an airship.";
+                if (r == 4) result += " used her teleporter too fast.";
             }
             else if (Type == NPCID.DyeTrader)
             {
                 int r = Main.rand.Next(6);
-                result = " the Dye Trader";
                 if (r == 0) result += " fell into his dye.";
                 if (r == 1) result += " was killed.";
                 if (r == 2) result += " died from unknown causes.";
@@ -418,47 +426,47 @@ IL_162:
             }
             else if (Type == NPCID.PartyGirl)
             {
-                int r = Main.rand.Next(5);
-                result = " the Party Girl";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += " partied too hard.";
                 if (r == 1) result += " inhaled too much confetti...";
                 if (r == 2) result += " was crushed.";
                 if (r == 3) result += " left the party.";
                 if (r == 4) result += " was eaten.";
+                if (r == 5) result += " was dissolved into the punch.";
             }
             else if (Type == NPCID.Cyborg)
             {
-                int r = Main.rand.Next(5);
-                result = " the Cyborg";
+                int r = Main.rand.Next(7);
                 if (r == 0) result += " was assimilated.";
                 if (r == 1) result += "'s mechanisms were damaged beyond repair.";
                 if (r == 2) result += " was crushed.";
                 if (r == 3) result += " is '404 not found.'";
                 if (r == 4) result += "'s implants were ripped out.";
+                if (r == 5) result += " short-circuited.";
+                if (r == 6) result += " malfunctioned.";
             }
             else if (Type == NPCID.Painter)
             {
-                int r = Main.rand.Next(5);
-                result = " the Painter";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += " inhaled paint fumes.";
                 if (r == 1) result += " tried to paint himself.";
                 if (r == 2) result += "'s body was mangled.";
                 if (r == 3) result += "'s paint was ripped off the canvas...";
                 if (r == 4) result += "'s paint cracked.";
+                if (r == 5) result += " inhaled asbestos.";
             }
             else if (Type == NPCID.WitchDoctor)
             {
-                int r = Main.rand.Next(4);
-                result = " the Witch Doctor";
+                int r = Main.rand.Next(5);
                 if (r == 0) result += "'s practice lead to his demise.";
                 if (r == 1) result += " tried to embody life.";
                 if (r == 2) result += "'s body was mangled.";
                 if (r == 3) result += " was chopped up.";
+                if (r == 4) result += " was eaten by an exotic insect.";
             }
             else if (Type == NPCID.Pirate)
             {
                 int r = Main.rand.Next(5);
-                result = " the Pirate";
                 if (r == 0) result += " choked on his gold tooth.";
                 if (r == 1) result += " was hit by a cannonball.";
                 if (r == 2) result += " was eviscerated.";
@@ -467,28 +475,27 @@ IL_162:
             }
             else if (Type == NPCID.Stylist)
             {
-                int r = Main.rand.Next(5);
-                result = " the Stylist";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += " attempted to give a spider a trim.";
                 if (r == 1) result += " was tied up.";
                 if (r == 2) result += " was eviscerated.";
                 if (r == 3) result += " got a little too snippy.";
                 if (r == 4) result += " tried to give Cousin It a trim.";
+                if (r == 5) result += " couldn't take the sight of spiders anymore.";
             }
             else if (Type == NPCID.TravellingMerchant)
             {
-                int r = Main.rand.Next(5);
-                result = " the Travelling Merchant";
+                int r = Main.rand.Next(6);
                 if (r == 0) result += " has departed...";
                 if (r == 1) result += " had INTERPOL problems.";
                 if (r == 2) result += " was vaporized.";
                 if (r == 3) result += " did not need a monster there.";
                 if (r == 4) result += " tried to sell an exotic pitcher plant...";
+                if (r == 5) result += " failed to make any sales.";
             }
             else if (Type == NPCID.Angler)
             {
-                int r = Main.rand.Next(7);
-                result = " the Angler";
+                int r = Main.rand.Next(9);
                 if (r == 0) result += " has left!";
                 if (r == 1) result += " caught a fish!";
                 if (r == 2) result += " fell into a ditch!";
@@ -496,20 +503,37 @@ IL_162:
                 if (r == 4) result += " lost the game!";
                 if (r == 5) result += " took off!";
                 if (r == 6) result += " died.";
+                if (r == 7) result += " found someone better to harass.";
+                if (r == 8)
+                {
+                    if (NPC.AnyNPCs(NPCID.Pirate))
+                    {
+                        result += " was thrown overboard by " + Main.npc[FindATypeOfNPC(NPCID.Pirate)].GivenName + ".";
+                    }
+                    else result += " died.";
+                }
             }
             else if (Type == NPCID.TaxCollector)
             {
-                int r = Main.rand.Next(4);
-                result = " the Tax Collector";
+                int r = Main.rand.Next(5);
                 if (r == 0) result += " went to the wrong house.";
                 if (r == 1) result += " collected counterfeit money.";
                 if (r == 2) result += " had a hole in his pocket.";
                 if (r == 3) result += " saw the ghost of " + Main.worldName + "'s past.";
+                if (r == 4) result += " overtaxed himself.";
+            }
+            else if (Type == NPCID.DD2Bartender)
+            {
+                int r = Main.rand.Next(5);
+                if (r == 0) result += " found himself on the wrong side of the bar.";
+                if (r == 1) result += "'s sentries stopped working.";
+                if (r == 2) result += " spontaneously combusted.";
+                if (r == 3) result += " went through the wrong portal.";
+                if (r == 4) result += " drank his feelings away.";
             }
             else if (Type == ModContent.NPCType<NPCs.Iceman>())
             {
-                int r = Main.rand.Next(6);
-                result = " the Iceman";
+                int r = Main.rand.Next(7);
                 if (r == 0) result += " froze.";
                 if (r == 1) result += " melted.";
                 if (r == 2) result += " has died.";
@@ -518,11 +542,12 @@ IL_162:
                 {
                     if (NPC.AnyNPCs(NPCID.ArmsDealer))
                     {
-                        result += " was used to cool " + Main.npc[FindATypeOfNPC(NPCID.ArmsDealer)].FullName + "'s drink.";
+                        result += " was used to cool " + Main.npc[FindATypeOfNPC(NPCID.ArmsDealer)].GivenName + "'s drink.";
                     }
                     else result += " fell into a crevasse.";
                 }
                 if (r == 5) result += " fell into a crevasse";
+                if (r == 6) result += " slipped.";
             }
             return result;
         }
