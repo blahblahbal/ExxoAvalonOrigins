@@ -193,7 +193,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.BottledHoney, 2);
             recipe.AddIngredient(ItemID.SoulofFlight);
             recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<BeeRepellent>(), 2);
+            recipe.SetResult(ModContent.ItemType<Items.Potions.BeeRepellent>(), 2);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -202,7 +202,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<Sweetstem>(), 2);
             recipe.AddIngredient(ItemID.Hellstone);
             recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<ForceFieldPotion>());
+            recipe.SetResult(ModContent.ItemType<Items.Potions.ForceFieldPotion>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

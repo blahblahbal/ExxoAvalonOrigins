@@ -7,13 +7,13 @@ using ExxoAvalonOrigins.Items.Placeable.Seed;
 using ExxoAvalonOrigins.Items.Potions;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using ExxoAvalonOrigins.Prefixes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using System.Reflection;
-using System;
+using Terraria.Utilities;
 
 namespace ExxoAvalonOrigins
 {
@@ -97,6 +97,22 @@ namespace ExxoAvalonOrigins
             else if (type == ItemID.Topaz) return TileID.Topaz;
             else if (type == ModContent.ItemType<Items.Placeable.Tile.Tourmaline>()) return ModContent.TileType<Tiles.Tourmaline>();
             else if (type == ModContent.ItemType<Zircon>()) return ModContent.TileType<Tiles.Zircon>();
+            return 0;
+        }
+        public static int DungeonWallItemToBackwallID(int type)
+        {
+            if (type == ItemID.BlueBrickWall) return WallID.BlueDungeonUnsafe;
+            else if (type == ItemID.BlueSlabWall) return WallID.BlueDungeonSlabUnsafe;
+            else if (type == ItemID.BlueTiledWall) return WallID.BlueDungeonTileUnsafe;
+            else if (type == ItemID.GreenBrickWall) return WallID.GreenDungeonUnsafe;
+            else if (type == ItemID.GreenSlabWall) return WallID.GreenDungeonSlabUnsafe;
+            else if (type == ItemID.GreenTiledWall) return WallID.GreenDungeonTileUnsafe;
+            else if (type == ItemID.PinkBrickWall) return WallID.PinkDungeonUnsafe;
+            else if (type == ItemID.PinkSlabWall) return WallID.PinkDungeonSlabUnsafe;
+            else if (type == ItemID.PinkTiledWall) return WallID.PinkDungeonTileUnsafe;
+            else if (type == ModContent.ItemType<Items.Placeable.Wall.OrangeBrickWall>()) return ModContent.WallType<Walls.OrangeBrickUnsafe>();
+            else if (type == ModContent.ItemType<Items.Placeable.Wall.OrangeSlabWall>()) return ModContent.WallType<Walls.OrangeSlabUnsafe>();
+            else if (type == ModContent.ItemType<Items.Placeable.Wall.OrangeTiledWall>()) return ModContent.WallType<Walls.OrangeTiledUnsafe>();
             return 0;
         }
         public override void SetDefaults(Item item)
@@ -988,6 +1004,30 @@ namespace ExxoAvalonOrigins
             return base.CanUseItem(item, player);
         }
 
+        public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand)
+        {
+            if (pre == -3 && (ArmorPrefix.IsArmor(item) || ModPrefix.GetPrefix(item.prefix) is ArmorPrefix))
+            {
+                return false;
+            }
+            return base.PrefixChance(item, pre, rand);
+        }
+
+        public override int ChoosePrefix(Item item, UnifiedRandom rand)
+        {
+            if (rand.Next(2) == 0 || item.maxStack > 1 || item.defense == 0 || (item.headSlot == -1 && item.bodySlot == -1 && item.legSlot == -1 && (item.accessory || item.vanity)))
+            {
+                return -1;
+            }
+            WeightedRandom<byte> random = new WeightedRandom<byte>(rand);
+            foreach (ArmorPrefix prefix in from p in ModPrefix.GetPrefixesInCategory(PrefixCategory.Custom).OfType<ArmorPrefix>()
+                where p.CanRoll(item) select p)
+            {
+                random.Add(prefix.Type);
+            }
+            return random.Get();
+        }
+
         public override bool UseItem(Item item, Player player)
         {
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves)
@@ -997,7 +1037,8 @@ namespace ExxoAvalonOrigins
                     player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY &&
                     (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
                 if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
-                    !Main.tile[Player.tileTargetX, Player.tileTargetY].lava() && !Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
+                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
+                    !Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
                 {
                     bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
                     if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)

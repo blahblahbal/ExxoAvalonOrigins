@@ -1,140 +1,270 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Achievements;
+using ExxoAvalonOrigins.Dusts;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class Boomlash : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Boomlash");
-		}
-
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Boomlash");
-			projectile.width = dims.Width / Main.projFrames[projectile.type];
-			projectile.height = dims.Height / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = 1;
-			projectile.light = 0.5f;
-			projectile.alpha = 0;
-			projectile.scale = 1.2f;
-			projectile.timeLeft = 600;
-			projectile.magic = true;
-			projectile.tileCollide = true;
-			projectile.MaxUpdates = 2;
-		}
+    public class Boomlash : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            projectile.width = 10;
+            projectile.height = 10;
+            projectile.friendly = true;
+            projectile.light = 0.8f;
+            projectile.magic = true;
+            drawOriginOffsetY = -6;
+        }
 
         public override void AI()
         {
-            var num161 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Silver, 0f, 0f, 100, default(Color), 1f);
-            Main.dust[num161].noGravity = true;
-            projectile.rotation += 1f;
-            if (projectile.rotation == 360f)
-            {
-                projectile.rotation = 0f;
-            }
             if (projectile.soundDelay == 0 && Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y) > 2f)
             {
                 projectile.soundDelay = 10;
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 9);
+                Main.PlaySound(SoundID.Item9, projectile.position);
             }
-            var num170 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.MagicMirror, 0f, 0f, 100, default(Color), 2f);
-            Main.dust[num170].velocity *= 0.3f;
-            Main.dust[num170].position.X = projectile.position.X + projectile.width / 2 + 4f + Main.rand.Next(-4, 5);
-            Main.dust[num170].position.Y = projectile.position.Y + projectile.height / 2 + Main.rand.Next(-4, 5);
-            Main.dust[num170].noGravity = true;
+
+            Vector2 dustPosition = projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
+            Dust dust = Dust.NewDustPerfect(dustPosition, ModContent.DustType<SoulofBlight>(), null, 100, Color.Black, 0.8f);
+            dust.velocity *= 0.3f;
+            dust.noGravity = true;
+
             if (Main.myPlayer == projectile.owner && projectile.ai[0] == 0f)
             {
-                if (Main.player[projectile.owner].channel)
+
+                Player player = Main.player[projectile.owner];
+                if (player.channel)
                 {
-                    var num171 = 12f;
-                    var vector12 = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
-                    var num172 = Main.mouseX + Main.screenPosition.X - vector12.X;
-                    var num173 = Main.mouseY + Main.screenPosition.Y - vector12.Y;
-                    if (Main.player[projectile.owner].gravDir == -1f)
+                    float maxDistance = 18f;
+                    Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
+                    float distanceToCursor = vectorToCursor.Length();
+
+                    if (distanceToCursor > maxDistance)
                     {
-                        num173 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector12.Y;
+                        distanceToCursor = maxDistance / distanceToCursor;
+                        vectorToCursor *= distanceToCursor;
                     }
-                    var num174 = (float)Math.Sqrt(num172 * num172 + num173 * num173);
-                    num174 = (float)Math.Sqrt(num172 * num172 + num173 * num173);
-                    if (num174 > num171)
+
+                    int velocityXBy1000 = (int)(vectorToCursor.X * 1000f);
+                    int oldVelocityXBy1000 = (int)(projectile.velocity.X * 1000f);
+                    int velocityYBy1000 = (int)(vectorToCursor.Y * 1000f);
+                    int oldVelocityYBy1000 = (int)(projectile.velocity.Y * 1000f);
+
+                    if (velocityXBy1000 != oldVelocityXBy1000 || velocityYBy1000 != oldVelocityYBy1000)
                     {
-                        num174 = num171 / num174;
-                        num172 *= num174;
-                        num173 *= num174;
-                        var num175 = (int)(num172 * 1000f);
-                        var num176 = (int)(projectile.velocity.X * 1000f);
-                        var num177 = (int)(num173 * 1000f);
-                        var num178 = (int)(projectile.velocity.Y * 1000f);
-                        if (num175 != num176 || num177 != num178)
-                        {
-                            projectile.netUpdate = true;
-                        }
-                        projectile.velocity.X = num172;
-                        projectile.velocity.Y = num173;
+                        projectile.netUpdate = true;
                     }
-                    else
-                    {
-                        var num179 = (int)(num172 * 1000f);
-                        var num180 = (int)(projectile.velocity.X * 1000f);
-                        var num181 = (int)(num173 * 1000f);
-                        var num182 = (int)(projectile.velocity.Y * 1000f);
-                        if (num179 != num180 || num181 != num182)
-                        {
-                            projectile.netUpdate = true;
-                        }
-                        projectile.velocity.X = num172;
-                        projectile.velocity.Y = num173;
-                    }
+
+                    projectile.velocity = vectorToCursor;
+
                 }
                 else if (projectile.ai[0] == 0f)
                 {
-                    projectile.ai[0] = 1f;
+
                     projectile.netUpdate = true;
-                    var num183 = 12f;
-                    var vector13 = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
-                    var num184 = Main.mouseX + Main.screenPosition.X - vector13.X;
-                    var num185 = Main.mouseY + Main.screenPosition.Y - vector13.Y;
-                    if (Main.player[projectile.owner].gravDir == -1f)
+
+                    float maxDistance = 14f;
+                    Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
+                    float distanceToCursor = vectorToCursor.Length();
+
+                    if (distanceToCursor == 0f)
                     {
-                        num185 = Main.screenPosition.Y + Main.screenHeight - Main.mouseY - vector13.Y;
+                        vectorToCursor = projectile.Center - player.Center;
+                        distanceToCursor = vectorToCursor.Length();
                     }
-                    var num186 = (float)Math.Sqrt(num184 * num184 + num185 * num185);
-                    if (num186 == 0f)
-                    {
-                        vector13 = new Vector2(Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2, Main.player[projectile.owner].position.Y + Main.player[projectile.owner].height / 2);
-                        num184 = projectile.position.X + projectile.width * 0.5f - vector13.X;
-                        num185 = projectile.position.Y + projectile.height * 0.5f - vector13.Y;
-                        num186 = (float)Math.Sqrt(num184 * num184 + num185 * num185);
-                    }
-                    num186 = num183 / num186;
-                    num184 *= num186;
-                    num185 *= num186;
-                    projectile.velocity.X = num184;
-                    projectile.velocity.Y = num185;
-                    if (projectile.velocity.X == 0f && projectile.velocity.Y == 0f)
+
+                    distanceToCursor = maxDistance / distanceToCursor;
+                    vectorToCursor *= distanceToCursor;
+
+                    projectile.velocity = vectorToCursor;
+
+                    if (projectile.velocity == Vector2.Zero)
                     {
                         projectile.Kill();
                     }
+
+                    projectile.ai[0] = 1f;
                 }
             }
-            else if (projectile.velocity.X != 0f || projectile.velocity.Y != 0f)
+
+            if (projectile.velocity != Vector2.Zero)
             {
-                projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) - 2.355f;
+                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver4;
             }
-            if (projectile.velocity.Y > 16f)
+        }
+        public override void Kill(int timeLeft)
+        {
+            if (projectile.penetrate == 1)
             {
-                projectile.velocity.Y = 16f;
+                projectile.maxPenetrate = -1;
+                projectile.penetrate = -1;
+
+                int explosionArea = 60;
+                Vector2 oldSize = projectile.Size;
+                projectile.position = projectile.Center;
+                projectile.Size += new Vector2(explosionArea);
+                projectile.Center = projectile.position;
+
+                projectile.tileCollide = false;
+                projectile.velocity *= 0.01f;
+                projectile.Damage();
+                projectile.scale = 0.01f;
+
+                projectile.position = projectile.Center;
+                projectile.Size = new Vector2(10);
+                projectile.Center = projectile.position;
+            }
+
+            Main.PlaySound(SoundID.Item10, projectile.position);
+            for (int i = 0; i < 10; i++)
+            {
+                Dust dust = Dust.NewDustDirect(projectile.position - projectile.velocity, projectile.width, projectile.height, ModContent.DustType<SoulofBlight>(), 0, 0, 100, Color.Black, 0.8f);
+                dust.noGravity = true;
+                dust.velocity *= 2f;
+                dust = Dust.NewDustDirect(projectile.position - projectile.velocity, projectile.width, projectile.height, ModContent.DustType<SoulofBlight>(), 0f, 0f, 100, Color.Black, 0.5f);
+            }
+
+            Main.PlaySound(SoundID.Item10, projectile.position);
+
+            for (int i = 0; i < 50; i++)
+            {
+                int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+                Main.dust[dustIndex].velocity *= 1.4f;
+            }
+            for (int i = 0; i < 80; i++)
+            {
+                int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+                Main.dust[dustIndex].noGravity = true;
+                Main.dust[dustIndex].velocity *= 5f;
+                dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+                Main.dust[dustIndex].velocity *= 3f;
+            }
+            for (int g = 0; g < 2; g++)
+            {
+                int goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+                Main.gore[goreIndex].scale = 1.5f;
+                Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+                Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+                goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+                Main.gore[goreIndex].scale = 1.5f;
+                Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+                Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+                goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+                Main.gore[goreIndex].scale = 1.5f;
+                Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+                Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y - 1.5f;
+                goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+                Main.gore[goreIndex].scale = 1.5f;
+                Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+                Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y - 1.5f;
+            }
+            projectile.position.X = projectile.position.X + (float)(projectile.width / 2);
+            projectile.position.Y = projectile.position.Y + (float)(projectile.height / 2);
+            projectile.width = 10;
+            projectile.height = 10;
+            projectile.position.X = projectile.position.X - (float)(projectile.width / 2);
+            projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
+
+            {
+                int explosionRadius = 2; //You can edit the explosion radius for the boomlash
+                {
+                    explosionRadius = 3;
+                }
+                int minTileX = (int)(projectile.position.X / 16f - (float)explosionRadius);
+                int maxTileX = (int)(projectile.position.X / 16f + (float)explosionRadius);
+                int minTileY = (int)(projectile.position.Y / 16f - (float)explosionRadius);
+                int maxTileY = (int)(projectile.position.Y / 16f + (float)explosionRadius);
+                if (minTileX < 0)
+                {
+                    minTileX = 0;
+                }
+                if (maxTileX > Main.maxTilesX)
+                {
+                    maxTileX = Main.maxTilesX;
+                }
+                if (minTileY < 0)
+                {
+                    minTileY = 0;
+                }
+                if (maxTileY > Main.maxTilesY)
+                {
+                    maxTileY = Main.maxTilesY;
+                }
+                bool canKillWalls = false;
+                for (int x = minTileX; x <= maxTileX; x++)
+                {
+                    for (int y = minTileY; y <= maxTileY; y++)
+                    {
+                        float diffX = Math.Abs((float)x - projectile.position.X / 16f);
+                        float diffY = Math.Abs((float)y - projectile.position.Y / 16f);
+                        double distance = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
+                        if (distance < (double)explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].wall == 0)
+                        {
+                            canKillWalls = true;
+                            break;
+                        }
+                    }
+                }
+                AchievementsHelper.CurrentlyMining = true;
+                for (int i = minTileX; i <= maxTileX; i++)
+                {
+                    for (int j = minTileY; j <= maxTileY; j++)
+                    {
+                        float diffX = Math.Abs((float)i - projectile.position.X / 16f);
+                        float diffY = Math.Abs((float)j - projectile.position.Y / 16f);
+                        double distanceToTile = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
+                        if (distanceToTile < (double)explosionRadius)
+                        {
+                            bool canKillTile = true;
+                            if (Main.tile[i, j] != null && Main.tile[i, j].active())
+                            {
+                                canKillTile = true;
+                                if (Main.tileDungeon[(int)Main.tile[i, j].type] || Main.tile[i, j].type == 88 || Main.tile[i, j].type == 21 || Main.tile[i, j].type == 26 || Main.tile[i, j].type == 107 || Main.tile[i, j].type == 108 || Main.tile[i, j].type == 111 || Main.tile[i, j].type == 226 || Main.tile[i, j].type == 237 || Main.tile[i, j].type == 221 || Main.tile[i, j].type == 222 || Main.tile[i, j].type == 223 || Main.tile[i, j].type == 211 || Main.tile[i, j].type == 404)
+                                {
+                                    canKillTile = false;
+                                }
+                                if (!Main.hardMode && Main.tile[i, j].type == 58)
+                                {
+                                    canKillTile = false;
+                                }
+                                if (!TileLoader.CanExplode(i, j))
+                                {
+                                    canKillTile = false;
+                                }
+                                if (canKillTile)
+                                {
+                                    WorldGen.KillTile(i, j, false, false, false);
+                                    if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+                                    {
+                                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);
+                                    }
+                                }
+                            }
+                            if (canKillTile)
+                            {
+                                for (int x = i - 1; x <= i + 1; x++)
+                                {
+                                    for (int y = j - 1; y <= j + 1; y++)
+                                    {
+                                        if (Main.tile[x, y] != null && Main.tile[x, y].wall > 0 && canKillWalls && WallLoader.CanExplode(x, y, Main.tile[x, y].wall))
+                                        {
+                                            WorldGen.KillWall(x, y, false);
+                                            if (Main.tile[x, y].wall == 0 && Main.netMode != NetmodeID.SinglePlayer)
+                                            {
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                AchievementsHelper.CurrentlyMining = false;
             }
         }
     }

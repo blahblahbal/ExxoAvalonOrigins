@@ -5,21 +5,21 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class CloudGloves : ModItem
+	class ObsidianGlove: ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cloud Glove");
-			Tooltip.SetDefault("The wearer can place blocks and walls in midair");
+			DisplayName.SetDefault("Obsidian Glove");
+			Tooltip.SetDefault("The wearer can place blocks and walls in midair and in lava\nProvides immunity to fire blocks");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightRed;
+			item.rare = ItemRarityID.Lime;
 			item.width = dims.Width;
 			item.accessory = true;
-			item.value = Item.sellPrice(0, 1, 0, 0);
+			item.value = Item.sellPrice(0, 2, 0, 0);
 			item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
         }
@@ -34,11 +34,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Silk, 15);
-            r.AddIngredient(ItemID.Cloud, 25);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
-            r.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
-            r.AddIngredient(ItemID.SunplateBlock, 10);
+            r.AddIngredient(ModContent.ItemType<CloudGloves>());
+            r.AddIngredient(ItemID.ObsidianSkull);
             r.AddTile(TileID.TinkerersWorkbench);
             r.SetResult(this);
             r.AddRecipe();

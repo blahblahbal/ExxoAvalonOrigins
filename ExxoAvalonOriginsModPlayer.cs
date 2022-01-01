@@ -7,6 +7,7 @@ using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Tools;
 using ExxoAvalonOrigins.Items.Weapons.Melee;
 using ExxoAvalonOrigins.Logic;
+using ExxoAvalonOrigins.Prefixes;
 using ExxoAvalonOrigins.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -1754,6 +1755,15 @@ namespace ExxoAvalonOrigins
 
         public override void PostUpdateEquips()
         {
+            for (int i = 0; i < 3; i++)
+            {
+                ArmorPrefix prefix;
+                if ((prefix = ModPrefix.GetPrefix(player.armor[i].prefix) as ArmorPrefix) != null)
+                {
+                    player.statDefense += prefix.CalcDefense(player, player.armor[i]);
+                    prefix.UpdateEquip(player);
+                }
+            }
             //player.statMana = statManaMax3;
             //statManaMax2 = player.statManaMax2;
             if (meleeStealth && armorStealth)

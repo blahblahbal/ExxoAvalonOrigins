@@ -43,17 +43,6 @@ namespace ExxoAvalonOrigins.Items.Tools
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                Vector2 mousePosition = Main.MouseWorld;
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
-                    Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
-                }
-                Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
                 for (int q = 0; q < player.inventory.Length; q++)
                 {
                     int t = player.inventory[q].type;

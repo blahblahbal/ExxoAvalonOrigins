@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             recipe.SetResult(this);
             recipe.AddRecipe();
 
-            ModRecipe recipe = new ModRecipe(mod);
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Wall.OsmiumBrickWall>(), 4);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(this);
