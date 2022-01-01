@@ -50,7 +50,26 @@ namespace ExxoAvalonOrigins.Tiles
 			}
 			return 0;
 		}
-
+        public override void HitWire(int i, int j)
+        {
+            if (Main.tile[i, j].frameX >= 396 && Main.tile[i, j].frameX <= 430)
+            {
+                Main.tile[i, j].frameX += 36;
+                WorldGen.SquareTileFrame(i, j);
+            }
+            else if (Main.tile[i, j].frameX >= 432 && Main.tile[i, j].frameX <= 466)
+            {
+                Main.tile[i, j].frameX -= 36;
+                WorldGen.SquareTileFrame(i, j);
+            }
+        }
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if (Main.tile[i, j].frameX >= 432 && Main.tile[i, j].frameX <= 466)
+            {
+                Lighting.AddLight(new Vector2(i * 16, j * 16), new Vector3(1f, 0.1f, 0.1f));
+            }
+        }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             int item = 0;
@@ -90,6 +109,7 @@ namespace ExxoAvalonOrigins.Tiles
                     item = ModContent.ItemType<DNASculpture>();
                     break;
                 case 11:
+                case 12:
                     item = ModContent.ItemType<TurretStatue>();
                     break;
             }
@@ -118,20 +138,6 @@ namespace ExxoAvalonOrigins.Tiles
 			return base.CreateDust(i, j, ref type);
 		}
     }
-    //public class ExampleStatueItem : ModItem
-    //{
-    //    public override void SetStaticDefaults()
-    //    {
-    //        DisplayName.SetDefault("Golden Fish Statue");
-    //    }
-
-    //    public override void SetDefaults()
-    //    {
-    //        item.CloneDefaults(ItemID.ArmorStatue);
-    //        item.createTile = ModContent.TileType<ExampleStatue>();
-    //        item.placeStyle = 0;
-    //    }
-    //}
 
     public class ExampleStatueModWorld : ModWorld
     {
@@ -148,7 +154,7 @@ namespace ExxoAvalonOrigins.Tiles
                     {
                         return;
                     }
-                    // Make space in the statueList array, and then add a Point16 of (TileID, PlaceStyle)
+                    // Make space in the statueList array, and then add a Point16 with (TileID, PlaceStyle)
                     Array.Resize(ref WorldGen.statueList, WorldGen.statueList.Length + 10);
                     WorldGen.statueList[WorldGen.statueList.Length - 10] = new Point16(ModContent.TileType<Statues>(), 0);
                     WorldGen.statueList[WorldGen.statueList.Length - 9] = new Point16(ModContent.TileType<Statues>(), 1);

@@ -278,7 +278,7 @@ IL_162:
         }
 
         /// <summary>
-        /// A method to randomize Town NPC death messages.
+        /// A method to choose a random Town NPC death messages.
         /// </summary>
         /// <param name="Type">The Town NPC's type.</param>
         /// <returns>The string containing the death message.</returns>

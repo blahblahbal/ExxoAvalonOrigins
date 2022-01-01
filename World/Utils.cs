@@ -34,9 +34,27 @@ namespace ExxoAvalonOrigins.World
         /// <param name="lh">Whether or not to use Large Herb logic.</param>
         public static void SquareTileFrameArea(int x, int y, int r, bool lh = false)
         {
-            for (var i = x - r; i < x + r; i++)
+            for (int i = x - r; i < x + r; i++)
             {
-                for (var j = y - r; j < y + r; j++)
+                for (int j = y - r; j < y + r; j++)
+                {
+                    SquareTileFrame(i, j, true, lh);
+                }
+            }
+        }
+        /// <summary>
+        /// A helper method to run WorldGen.SquareTileFrame() over an area.
+        /// </summary>
+        /// <param name="x">The x coordinate.</param>
+        /// <param name="y">The y coordinate.</param>
+        /// <param name="xr">The number of blocks in the X direction.</param>
+        /// <param name="yr">The number of blocks in the Y direction.</param>
+        /// <param name="lh">Whether or not to use Large Herb logic.</param>
+        public static void SquareTileFrameArea(int x, int y, int xr, int yr, bool lh = false)
+        {
+            for (int i = x; i < x + xr; i++)
+            {
+                for (int j = y; j < y + yr; j++)
                 {
                     SquareTileFrame(i, j, true, lh);
                 }
