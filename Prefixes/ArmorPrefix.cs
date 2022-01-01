@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-    public class ArmorPrefix : ModPrefix
+    public abstract class ArmorPrefix : ModPrefix
     {
         public int defense { get; internal set; }
         public static bool IsArmor(Item item)
