@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,5 +28,14 @@ namespace ExxoAvalonOrigins.Items.Ammo
 			item.maxStack = 2000;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.WoodenArrow, 35);
+            recipe.AddIngredient(ModContent.ItemType<Material.Pathogen>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this, 35);
+            recipe.AddRecipe();
+        }
+    }
 }

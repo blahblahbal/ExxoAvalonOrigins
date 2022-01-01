@@ -1,4 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Material
@@ -19,5 +20,14 @@ namespace ExxoAvalonOrigins.Items.Material
 			item.value = 50;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Bottle);
+            recipe.AddIngredient(ItemID.Obsidian);
+            recipe.needLava = true;
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

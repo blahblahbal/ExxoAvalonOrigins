@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,5 +30,13 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.FrostShard>());
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this, 10);
+            recipe.AddRecipe();
+        }
+    }
 }

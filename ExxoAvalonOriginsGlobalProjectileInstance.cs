@@ -34,6 +34,8 @@ namespace ExxoAvalonOrigins
         public bool torch = false;
         public int master = -1;
 
+        public bool piercingUp = false;
+
         public int ballType;
 
         public bool notReflect;

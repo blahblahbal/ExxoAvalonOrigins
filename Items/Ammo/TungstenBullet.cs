@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,5 +26,13 @@ namespace ExxoAvalonOrigins.Items.Ammo
 			item.value = 15;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TungstenBar, 2);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this, 35);
+            recipe.AddRecipe();
+        }
+    }
 }

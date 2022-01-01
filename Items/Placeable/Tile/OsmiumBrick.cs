@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,5 +25,20 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<OsmiumOre>());
+            recipe.AddIngredient(ItemID.StoneBlock);
+            recipe.AddTile(TileID.Furnaces);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Wall.OsmiumBrickWall>(), 4);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

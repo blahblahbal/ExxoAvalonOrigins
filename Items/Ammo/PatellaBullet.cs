@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,5 +28,15 @@ namespace ExxoAvalonOrigins.Items.Ammo
 			item.maxStack = 2000;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MusketBall, 25);
+            recipe.AddIngredient(ModContent.ItemType<Material.Patella>(), 5);
+            recipe.AddIngredient(ItemID.Ichor);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this, 25);
+            recipe.AddRecipe();
+        }
+    }
 }

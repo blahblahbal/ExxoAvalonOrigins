@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,5 +27,14 @@ namespace ExxoAvalonOrigins.Items.Ammo
 			item.value = 100;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.MusketBall, 60);
+            recipe.AddIngredient(ModContent.ItemType<Material.Pathogen>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this, 60);
+            recipe.AddRecipe();
+        }
+    }
 }

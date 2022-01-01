@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,5 +29,15 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.height = dims.Height;
             item.UseSound = SoundID.Item3;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.LifeDew>());
+            recipe.AddIngredient(ItemID.GreaterHealingPotion, 2);
+            recipe.AddIngredient(ItemID.LifeFruit);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,5 +29,16 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.height = dims.Height;
 			item.buffTime = 18000;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LifeCrystal);
+            recipe.AddIngredient(ItemID.ManaCrystal);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ItemID.Ectoplasm);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this, 6);
+            recipe.AddRecipe();
+        }
+    }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +24,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 			item.notAmmo = true;
 			item.flame = true;
 		}
-		public override void HoldItem(Player player)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Torch, 3);
+            recipe.AddIngredient(ModContent.ItemType<Tile.Peridot>());
+            recipe.SetResult(this, 3);
+            recipe.AddRecipe();
+        }
+        public override void HoldItem(Player player)
 		{
 			if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)
 			{

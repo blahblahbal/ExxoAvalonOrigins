@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,5 +28,16 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.buffTime = 32400;
             item.UseSound = SoundID.Item3;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.BottledHoney, 5);
+            recipe.AddIngredient(ItemID.Feather, 8);
+            recipe.AddIngredient(ItemID.FastClock);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this, 5);
+            recipe.AddRecipe();
+        }
+    }
 }

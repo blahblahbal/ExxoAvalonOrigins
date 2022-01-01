@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,5 +27,25 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.buffTime = 14400;
             item.UseSound = SoundID.Item3;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.RhodiumOre>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ItemID.SoulofMight);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.OsmiumOre>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ItemID.SoulofMight);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

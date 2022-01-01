@@ -303,6 +303,13 @@ IL_162:
                 if (r == 3) result += " encountered a complication.";
                 if (r == 4) result += "'s surgical strike was in error.";
             }
+            else if (Type == NPCID.OldMan)
+            {
+                int r = Main.rand.Next(2);
+                if (r == 0) result += " died of old age.";
+                if (r == 1) result += " was slain...";
+
+            }
             else if (Type == NPCID.ArmsDealer)
             {
                 int r = Main.rand.Next(6);
@@ -578,12 +585,14 @@ IL_162:
                     npc.life = 0;
                     npc.HitEffect(0, 10);
                     npc.active = false;
+                    npc.NPCLoot();
                     Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 else
                 {
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(npc.FullName + TownDeathMSG(npc.type)), new Color(178, 0, 90));
                     NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1);
+                    npc.NPCLoot();
                     Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 return false;

@@ -225,6 +225,18 @@ namespace ExxoAvalonOrigins
             return Lighting.GetColor((int)(position.X / 16f), (int)(position.Y / 16f));
         }
 
+        public override void AI(Projectile projectile)
+        {
+            if (Main.player[projectile.owner].HasBuff(ModContent.BuffType<Buffs.Piercing>()) && projectile.penetrate != -1)
+            {
+                if (!projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().piercingUp)
+                {
+                    projectile.penetrate++;
+                    projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().piercingUp = true;
+                }
+            }
+        }
+
         public override void PostAI(Projectile projectile)
         {
             if ((projectile.type != 10 && projectile.type != 145 && projectile.type != ModContent.ProjectileType<Projectiles.LimeSolution>()) || projectile.owner != Main.myPlayer)

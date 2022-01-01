@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -27,6 +27,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Glass, 20);
+            recipe.AddIngredient(ModContent.ItemType<Opal>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this, 20);
+            recipe.AddRecipe();
+        }
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             spriteBatch.Draw(Main.itemTexture[item.type], position, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, origin, scale, SpriteEffects.None, 0f);

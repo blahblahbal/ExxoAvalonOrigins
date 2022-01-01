@@ -25,7 +25,19 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			item.height = dims.Height;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:Wings");
+            recipe.AddIngredient(ItemID.FrostsparkBoots);
+            recipe.AddIngredient(ItemID.BlackBelt);
+            recipe.AddIngredient(ItemID.LunarBar, 10);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().noSticky = true;
 			player.accRunSpeed = 10.29f;

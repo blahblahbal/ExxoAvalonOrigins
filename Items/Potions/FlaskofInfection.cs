@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,5 +29,14 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.height = dims.Height;
 			item.buffTime = 54000;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Material.Pathogen>(), 5);
+            recipe.AddTile(TileID.ImbuingStation);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

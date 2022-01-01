@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,5 +28,14 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this, 5);
+            recipe.AddTile(TileID.AdamantiteForge);
+            recipe.SetResult(ItemID.HallowedBar);
+            recipe.AddRecipe();
+        }
+    }
 }

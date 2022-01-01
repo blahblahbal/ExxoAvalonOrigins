@@ -40,6 +40,188 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Moonglow);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddIngredient(ItemID.FallenStar);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.MagicPowerPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Moonglow);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddIngredient(ItemID.FallenStar);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.MagicPowerPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddIngredient(ItemID.Vertebrae);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.BattlePotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddIngredient(ModContent.ItemType<YuckyBit>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.BattlePotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddIngredient(ItemID.Cactus);
+            recipe.AddIngredient(ItemID.WormTooth);
+            recipe.AddIngredient(ItemID.Stinger);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.ThornsPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Fireblossom);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddIngredient(ItemID.Blinkroot);
+            recipe.AddIngredient(ItemID.Feather);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.GravitationPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Fireblossom);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddIngredient(ItemID.Blinkroot);
+            recipe.AddIngredient(ItemID.Feather);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.GravitationPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Amber);
+            recipe.AddIngredient(ItemID.Moonglow);
+            recipe.AddIngredient(ItemID.Blinkroot);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.CratePotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Amber);
+            recipe.AddIngredient(ItemID.Moonglow);
+            recipe.AddIngredient(ItemID.Blinkroot);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.CratePotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Bone);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddIngredient(ItemID.Shiverthorn);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.TitanPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Bone);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddIngredient(ItemID.Shiverthorn);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.TitanPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Hemopiranha);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.RagePotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Hemopiranha);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.RagePotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Ebonkoi);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.WrathPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Ebonkoi);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.WrathPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.SpecularFish);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.RecallPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.SpecularFish);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.RecallPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledHoney, 2);
+            recipe.AddIngredient(ItemID.SoulofFlight);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ModContent.ItemType<BeeRepellent>(), 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BottledLava>());
+            recipe.AddIngredient(ItemID.SoulofNight, 3);
+            recipe.AddIngredient(ModContent.ItemType<Sweetstem>(), 2);
+            recipe.AddIngredient(ItemID.Hellstone);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ModContent.ItemType<ForceFieldPotion>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Stinkfish);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.StinkPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Stinkfish);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.StinkPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Leather, 6);
             recipe.AddIngredient(ItemID.IronBar, 4);
             recipe.AddIngredient(ModContent.ItemType<FrostShard>(), 2);

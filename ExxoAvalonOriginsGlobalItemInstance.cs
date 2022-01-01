@@ -61,30 +61,46 @@ namespace ExxoAvalonOrigins
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");
-            if (tooltipLine != null)
+            TooltipLine lineKB = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "Knockback" && x.mod == "Terraria");
+            TooltipLine lineSpeed = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "Speed" && x.mod == "Terraria");
+            if (lineKB != null)
             {
-                if (tooltipLine.Name == "Knockback") // && LanguageManager.Instance.ActiveCulture == GameCulture.English)
+                if (LanguageManager.Instance.ActiveCulture == GameCulture.English)
                 {
+                    if (item.knockBack > 0f && item.knockBack < 1.5f)
+                    {
+                        lineKB.text = "Puny knockback";
+                    }
                     if (item.knockBack > 15f)
                     {
-                        tooltipLine.text = "Absurd knockback";
+                        lineKB.text = "Absurd knockback";
                     }
-                    else if(item.knockBack > 17f)
+                    if (item.knockBack > 17f)
                     {
-                        tooltipLine.text = "Ridiculous knockback";
+                        lineKB.text = "Ridiculous knockback";
                     }
-                    else if (item.knockBack > 19f)
+                    if (item.knockBack > 19f)
                     {
-                        tooltipLine.text = "Godly knockback";
+                        lineKB.text = "Godly knockback";
                     }
                 }
-                if (tooltipLine.Name == "Speed" && LanguageManager.Instance.ActiveCulture == GameCulture.English)
+            }
+            if (lineSpeed != null)
+            {
+                if (LanguageManager.Instance.ActiveCulture == GameCulture.English)
                 {
+                    if (item.useAnimation <= 5f)
+                    {
+                        lineSpeed.text = "Lightning speed";
+                    }
                     if (item.useAnimation >= 58f)
                     {
-                        tooltipLine.text = "Slowpoke speed";
+                        lineSpeed.text = "Slowpoke speed";
                     }
                 }
+            }
+            if (tooltipLine != null)
+            {
                 if (blahRarityItems.Contains(item.type))
                 {
                     List<Color> colors = new List<Color>

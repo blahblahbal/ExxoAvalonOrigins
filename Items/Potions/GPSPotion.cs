@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,5 +28,43 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.buffTime = 18000;
             item.UseSound = SoundID.Item3;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Beak>());
+            recipe.AddIngredient(ItemID.IronOre);
+            recipe.AddIngredient(ModContent.ItemType<Material.RottenEye>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Beak>());
+            recipe.AddIngredient(ItemID.LeadOre);
+            recipe.AddIngredient(ModContent.ItemType<Material.RottenEye>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Beak>());
+            recipe.AddIngredient(ItemID.IronOre);
+            recipe.AddIngredient(ModContent.ItemType<Material.Patella>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Beak>());
+            recipe.AddIngredient(ItemID.LeadOre);
+            recipe.AddIngredient(ModContent.ItemType<Material.Patella>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,5 +27,88 @@ namespace ExxoAvalonOrigins.Items.Potions
 			item.buffTime = 18000;
             item.UseSound = SoundID.Item3;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ItemID.Deathweed);
+            recipe.AddIngredient(ItemID.IronOre, 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Bloodberry>());
+            recipe.AddIngredient(ItemID.IronOre, 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ItemID.Deathweed);
+            recipe.AddIngredient(ItemID.LeadOre, 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Bloodberry>());
+            recipe.AddIngredient(ItemID.LeadOre, 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Barfbush>());
+            recipe.AddIngredient(ItemID.IronOre, 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Barfbush>());
+            recipe.AddIngredient(ItemID.LeadOre, 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ItemID.Deathweed);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.NickelOre>(), 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Bloodberry>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.NickelOre>(), 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
+            recipe.AddIngredient(ModContent.ItemType<Material.Barfbush>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.NickelOre>(), 3);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

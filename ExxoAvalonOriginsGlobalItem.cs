@@ -67,6 +67,38 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<SweetstemSeeds>(),
             ModContent.ItemType<HolybirdSeeds>()
         };
+        public static List<int> gems = new List<int>
+        {
+            ItemID.Topaz,
+            ItemID.Ruby,
+            ItemID.Amethyst,
+            ItemID.Diamond,
+            ItemID.Emerald,
+            ItemID.Sapphire,
+            ModContent.ItemType<Items.Placeable.Tile.Onyx>(),
+            ModContent.ItemType<Zircon>(),
+            ModContent.ItemType<Items.Placeable.Tile.Kunzite>(),
+            ModContent.ItemType<Items.Placeable.Tile.Peridot>(),
+            ModContent.ItemType<Items.Placeable.Tile.Tourmaline>(),
+            ModContent.ItemType<Items.Placeable.Tile.Opal>()
+        };
+
+        public static int GemToTile(int type)
+        {
+            if (type == ItemID.Amethyst) return TileID.Amethyst;
+            else if (type == ItemID.Diamond) return TileID.Diamond;
+            else if (type == ItemID.Emerald) return TileID.Emerald;
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Kunzite>()) return ModContent.TileType<Tiles.Kunzite>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Onyx>()) return ModContent.TileType<Tiles.Onyx>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Opal>()) return ModContent.TileType<Tiles.Opal>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Peridot>()) return ModContent.TileType<Tiles.Peridot>();
+            else if (type == ItemID.Ruby) return TileID.Ruby;
+            else if (type == ItemID.Sapphire) return TileID.Sapphire;
+            else if (type == ItemID.Topaz) return TileID.Topaz;
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Tourmaline>()) return ModContent.TileType<Tiles.Tourmaline>();
+            else if (type == ModContent.ItemType<Zircon>()) return ModContent.TileType<Tiles.Zircon>();
+            return 0;
+        }
         public override void SetDefaults(Item item)
         {
             int[] to2000 =
@@ -960,35 +992,28 @@ namespace ExxoAvalonOrigins
         {
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves)
             {
-                Vector2 mousePosition = Main.MouseWorld;
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
-                    Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
-                }
-                Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
+                bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX &&
+                    (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX &&
+                    player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY &&
+                    (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
                 if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
-                    !Main.tile[mpTile.X, mpTile.Y].lava() && !Main.tile[mpTile.X, mpTile.Y].active())
+                    !Main.tile[Player.tileTargetX, Player.tileTargetY].lava() && !Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
                 {
-                    WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile);
-                    if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, item.createTile);
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, item.createTile);
                     }
-                    item.stack--;
+                    if (subtractFromStack) item.stack--;
                 }
-                if (item.createWall > 0 && Main.tile[mpTile.X, mpTile.Y].wall == 0)
+                if (item.createWall > 0 && Main.tile[Player.tileTargetX, Player.tileTargetY].wall == 0 && inrange)
                 {
-                    WorldGen.PlaceWall(mpTile.X, mpTile.Y, item.createWall);
-                    if (Main.tile[mpTile.X, mpTile.Y].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
+                    WorldGen.PlaceWall(Player.tileTargetX, Player.tileTargetY, item.createWall);
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, mpTile.X, mpTile.Y, item.createWall);
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, item.createWall);
                     }
-                    Main.PlaySound(0, mpTile.X * 16, mpTile.Y * 16, 1);
+                    //Main.PlaySound(0, Player.tileTargetX * 16, Player.tileTargetY * 16, 1);
                     item.stack--;
                 }
             }
