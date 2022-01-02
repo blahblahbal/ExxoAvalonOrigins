@@ -196,62 +196,6 @@ namespace ExxoAvalonOrigins
                 ChangeItemToAccessorySortOf(item);
             }
         }
-        //public override bool NewPreReforge(Item item)
-        //{
-        //    if (IsArmor(item))
-        //    {
-        //        switch (Main.rand.Next(15))
-        //        {
-        //            case 0:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Barbaric>();
-        //                break;
-        //            case 1:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Boosted>();
-        //                break;
-        //            case 2:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Busted>();
-        //                break;
-        //            case 3:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Confused>();
-        //                break;
-        //            case 4:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Disgusting>();
-        //                break;
-        //            case 5:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Fluidic>();
-        //                break;
-        //            case 6:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Glorious>();
-        //                break;
-        //            case 7:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Handy>();
-        //                break;
-        //            case 8:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Insane>();
-        //                break;
-        //            case 9:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Loaded>();
-        //                break;
-        //            case 10:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Messy>();
-        //                break;
-        //            case 11:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Mythic>();
-        //                break;
-        //            case 12:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Protective>();
-        //                break;
-        //            case 13:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Silly>();
-        //                break;
-        //            case 14:
-        //                item.prefix = ModContent.PrefixType<Prefixes.Slimy>();
-        //                break;
-        //        }
-        //        return false;
-        //    }
-        //    return base.NewPreReforge(item);
-        //}
         public override void UpdateInventory(Item item, Player player)
         {
             if (item.type != 0)

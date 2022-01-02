@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,6 +38,44 @@ namespace ExxoAvalonOrigins.Items.Consumables
             Main.PlaySound(SoundID.Roar, player.position, 0);
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.DragonLordHead>());
             return true;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 15);
+            r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 10);
+            r.AddIngredient(ItemID.SoulofMight, 10);
+            r.AddIngredient(ItemID.SoulofFlight, 30);
+            r.AddIngredient(ItemID.RottenChunk, 5);
+            r.AddIngredient(ItemID.PearlstoneBlock, 60);
+            r.AddIngredient(ItemID.LivingFireBlock, 30);
+            r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            r.SetResult(this, 2);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 15);
+            r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 10);
+            r.AddIngredient(ItemID.SoulofMight, 10);
+            r.AddIngredient(ItemID.SoulofFlight, 30);
+            r.AddIngredient(ItemID.Vertebrae, 5);
+            r.AddIngredient(ItemID.PearlstoneBlock, 60);
+            r.AddIngredient(ItemID.LivingFireBlock, 30);
+            r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            r.SetResult(this, 2);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 15);
+            r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 10);
+            r.AddIngredient(ItemID.SoulofMight, 10);
+            r.AddIngredient(ItemID.SoulofFlight, 30);
+            r.AddIngredient(ModContent.ItemType<Material.YuckyBit>(), 5);
+            r.AddIngredient(ItemID.PearlstoneBlock, 60);
+            r.AddIngredient(ItemID.LivingFireBlock, 30);
+            r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            r.SetResult(this, 2);
+            r.AddRecipe();
         }
     }
 }
