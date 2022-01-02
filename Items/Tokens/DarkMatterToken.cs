@@ -9,6 +9,7 @@ namespace ExxoAvalonOrigins.Items.Tokens
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Dark Matter Token");
+            Tooltip.SetDefault("Used to make things\nGathered after Armageddon Slime is defeated");
 		}
 
 		public override void SetDefaults()

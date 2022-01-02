@@ -9,7 +9,8 @@ namespace ExxoAvalonOrigins.Items.Tokens
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Hellcastle Token");
-		}
+            Tooltip.SetDefault("Used to make things\nGathered in the Hellcastle after Phantasm is defeated");
+        }
 
 		public override void SetDefaults()
 		{

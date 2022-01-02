@@ -9,7 +9,8 @@ namespace ExxoAvalonOrigins.Items.Tokens
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mechasting Token");
-		}
+            Tooltip.SetDefault("Used to make things\nGathered after Mechasting is defeated");
+        }
 
 		public override void SetDefaults()
 		{

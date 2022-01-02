@@ -805,11 +805,11 @@ IL_162:
             }
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
-                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
+                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !stoppedArmageddon)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.SuperhardmodeToken>());
                 }
-                if (Main.rand.Next(15) == 0 && ExxoAvalonOriginsWorld.downedPhantasm && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
+                if (Main.rand.Next(15) == 0 && NPC.downedMoonlord && ExxoAvalonOriginsWorld.downedPhantasm && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.HellcastleToken>());
                 }
@@ -817,7 +817,7 @@ IL_162:
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.MechastingToken>());
                 }
-                if (Main.rand.Next(15) == 0 && stoppedArmageddon && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
+                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && stoppedArmageddon && !ExxoAvalonOriginsWorld.downedMechasting)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
                 }

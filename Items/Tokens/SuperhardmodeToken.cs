@@ -9,7 +9,8 @@ namespace ExxoAvalonOrigins.Items.Tokens
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Superhardmode Token");
-		}
+            Tooltip.SetDefault("Used to make things\nGathered during the start of Superhardmode");
+        }
 
 		public override void SetDefaults()
 		{
