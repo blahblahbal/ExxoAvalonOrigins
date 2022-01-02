@@ -1,10 +1,10 @@
-using ExxoAvalonOrigins.Items.Armor;
+﻿using ExxoAvalonOrigins.Items.Armor;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Armor
 {
 	[AutoloadEquip(EquipType.Head)]
 	class MiloticCrown : ModItem

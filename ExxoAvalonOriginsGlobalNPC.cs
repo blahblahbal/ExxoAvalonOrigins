@@ -43,6 +43,7 @@ namespace ExxoAvalonOrigins
         public static int boogerBossCounter = 0;
         public static bool savedIceman = false;
         public static int slimeLife = 10000;
+        public static bool imkCompat = false;
 
         public static List<int> hornets = new List<int> {
             NPCID.Hornet,
@@ -802,6 +803,26 @@ IL_162:
                 maxValue = 50;
                 maxValue3 = 500;
             }
+            if (imkCompat)
+            {
+                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.SuperhardmodeToken>());
+                }
+                if (Main.rand.Next(15) == 0 && ExxoAvalonOriginsWorld.downedPhantasm && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.HellcastleToken>());
+                }
+                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && ExxoAvalonOriginsWorld.downedMechasting)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.MechastingToken>());
+                }
+                if (Main.rand.Next(15) == 0 && stoppedArmageddon && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
+                }
+            }
+            
             if (ExxoAvalonOriginsWorld.downedDesertBeak && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDesert && Main.rand.Next(125) == 0)
             {
                 int item = Main.rand.Next(3);

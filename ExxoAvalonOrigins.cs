@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Material;
@@ -66,6 +67,11 @@ namespace ExxoAvalonOrigins
         {
             if (Main.netMode != NetmodeID.Server)
             {
+                Mod imkTokensMod = ModLoader.GetMod("imkSushisMod");
+                if (imkTokensMod != null)
+                {
+                    ExxoAvalonOriginsGlobalNPC.imkCompat = true;
+                }
                 Mod musicMod = ModLoader.GetMod("AvalonMusic");
                 if (musicMod != null)
                 {
@@ -822,6 +828,12 @@ namespace ExxoAvalonOrigins
             RecipeChanger.ChangeRecipes();
             RecipeCreator.CreateRecipes(this);
             VanillaItemRecipeCreator.CreateRecipes(this);
+            Mod imkTokensMod = ModLoader.GetMod("imkSushisMod");
+            if (imkTokensMod != null)
+            {
+                ExxoAvalonOriginsGlobalNPC.imkCompat = true;
+                SushiRecipes.CreateRecipes(mod);
+            }
         }
 
         public static Vector2 LavaCollision(Vector2 Position, Vector2 Velocity, int Width, int Height, bool fallThrough = false)
