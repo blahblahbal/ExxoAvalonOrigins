@@ -297,41 +297,35 @@ namespace ExxoAvalonOrigins
                         case 0:
                             item = ModContent.ItemType<LargeDaybloomSeed>();
                             break;
-
                         case 1:
                             item = ModContent.ItemType<LargeMoonglowSeed>();
                             break;
-
                         case 2:
                             item = ModContent.ItemType<LargeBlinkrootSeed>();
                             break;
-
                         case 3:
                             item = ModContent.ItemType<LargeDeathweedSeed>();
                             break;
-
                         case 4:
                             item = ModContent.ItemType<LargeWaterleafSeed>();
                             break;
-
                         case 5:
                             item = ModContent.ItemType<LargeFireblossomSeed>();
                             break;
-
                         case 6:
                             item = ModContent.ItemType<LargeShiverthornSeed>();
                             break;
-
                         case 7:
                             item = ModContent.ItemType<LargeBloodberrySeed>();
                             break;
-
                         case 8:
                             item = ModContent.ItemType<LargeSweetstemSeed>();
                             break;
-
                         case 9:
                             item = ModContent.ItemType<LargeBarfbushSeed>();
+                            break;
+                        case 10:
+                            item = ModContent.ItemType<LargeHolybirdSeed>();
                             break;
                     }// 3710 through 3719 are the seeds
                     if (item > 0)
@@ -347,41 +341,35 @@ namespace ExxoAvalonOrigins
                         case 0:
                             item = ModContent.ItemType<LargeDaybloom>();
                             break;
-
                         case 1:
                             item = ModContent.ItemType<LargeMoonglow>();
                             break;
-
                         case 2:
                             item = ModContent.ItemType<LargeBlinkroot>();
                             break;
-
                         case 3:
                             item = ModContent.ItemType<LargeDeathweed>();
                             break;
-
                         case 4:
                             item = ModContent.ItemType<LargeWaterleaf>();
                             break;
-
                         case 5:
                             item = ModContent.ItemType<LargeFireblossom>();
                             break;
-
                         case 6:
                             item = ModContent.ItemType<LargeShiverthorn>();
                             break;
-
                         case 7:
                             item = ModContent.ItemType<LargeBloodberry>();
                             break;
-
                         case 8:
                             item = ModContent.ItemType<LargeSweetstem>();
                             break;
-
                         case 9:
                             item = ModContent.ItemType<LargeBarfbush>();
+                            break;
+                        case 10:
+                            item = ModContent.ItemType<LargeHolybird>();
                             break;
                     }
                     if (item > 0)

@@ -114,6 +114,12 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.MechastingToken>(), 45);
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.SetResult(ModContent.ItemType<Items.Accessories.DragonStone>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.MechastingToken>(), 45);
+            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
             recipe.AddRecipe();
 

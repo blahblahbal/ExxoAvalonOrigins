@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.Utilities;
 
 namespace ExxoAvalonOrigins
 {
@@ -56,6 +57,25 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Accessories.TerraClaws>(),
             ModContent.ItemType<Items.Placeable.Trophy.EggmanTrophy>(),
             ModContent.ItemType<Items.Placeable.Tile.OpalGemsparkBlock>(),
+        };
+        Dictionary<int, byte> allowedPrefixes = new Dictionary<int, byte>()
+        {
+            { 0, ModContent.PrefixType<Prefixes.Barbaric>() },
+            { 1, ModContent.PrefixType<Prefixes.Boosted>() },
+            { 2, ModContent.PrefixType<Prefixes.Busted>() },
+            { 3, ModContent.PrefixType<Prefixes.Confused>() },
+            { 4, ModContent.PrefixType<Prefixes.Disgusting>() },
+            { 5, ModContent.PrefixType<Prefixes.Fluidic>() },
+            { 6, ModContent.PrefixType<Prefixes.Glorious>() },
+            { 7, ModContent.PrefixType<Prefixes.Handy>() },
+            { 8, ModContent.PrefixType<Prefixes.Insane>() },
+            { 9, ModContent.PrefixType<Prefixes.Loaded>() },
+            { 10, ModContent.PrefixType<Prefixes.Messy>() },
+            { 11, ModContent.PrefixType<Prefixes.Mythic>() },
+            { 12, ModContent.PrefixType<Prefixes.Protective>() },
+            { 13, ModContent.PrefixType<Prefixes.Silly>() },
+            { 14, ModContent.PrefixType<Prefixes.Slimy>() }
+
         };
         public bool IsArmor(Item item)
         {
@@ -134,6 +154,14 @@ namespace ExxoAvalonOrigins
                 return false;
             }
             return base.CanEquipAccessory(item, player, slot);
+        }
+        public override int ChoosePrefix(Item item, UnifiedRandom rand)
+        {
+            if (IsArmor(item))
+            {
+                return allowedPrefixes[rand.Next(allowedPrefixes.Count)];
+            }
+            return base.ChoosePrefix(item, rand);
         }
         public override void PostReforge(Item item)
         {

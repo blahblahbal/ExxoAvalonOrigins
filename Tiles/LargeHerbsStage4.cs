@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +71,9 @@ namespace ExxoAvalonOrigins.Tiles
                 case 9:
                     item = ModContent.ItemType<LargeBarfbush>();
                     break;
-
+                case 10:
+                    item = ModContent.ItemType<LargeHolybird>();
+                    break;
             }
             if (item > 0) Item.NewItem(i * 16, j * 16, 16, 48, item);
         }

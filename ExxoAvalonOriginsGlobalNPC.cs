@@ -901,7 +901,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CobaltShield, 1, false, -2, false);
             }
-            if (Main.rand.Next(600) == 0)
+            if (Main.rand.Next(600) == 0 && npc.lifeMax > 5 && !npc.townNPC)
             {
                 int potionToDrop = 0;
                 switch (Main.rand.Next(22))
@@ -909,87 +909,66 @@ IL_162:
                     case 0:
                         potionToDrop = ItemID.EndurancePotion;
                         break;
-
                     case 1:
                         potionToDrop = ItemID.GravitationPotion;
                         break;
-
                     case 2:
                         potionToDrop = ItemID.InfernoPotion;
                         break;
-
                     case 3:
                         potionToDrop = ModContent.ItemType<StarbrightPotion>();
                         break;
-
                     case 4:
                         potionToDrop = ModContent.ItemType<StrengthPotion>();
                         break;
-
                     case 5:
                         potionToDrop = ModContent.ItemType<CrimsonPotion>();
                         break;
-
                     case 6:
                         potionToDrop = ItemID.IronskinPotion;
                         break;
-
                     case 7:
                         potionToDrop = ItemID.SwiftnessPotion;
                         break;
-
                     case 8:
                         potionToDrop = ModContent.ItemType<ShockwavePotion>();
                         break;
-
                     case 9:
                         potionToDrop = ItemID.MiningPotion;
                         break;
-
                     case 10:
                         potionToDrop = ItemID.ObsidianSkinPotion;
                         break;
-
                     case 11:
                         potionToDrop = ItemID.NightOwlPotion;
                         break;
-
                     case 12:
                         potionToDrop = ItemID.RagePotion;
                         break;
-
                     case 13:
                         potionToDrop = ItemID.RegenerationPotion;
                         break;
-
                     case 14:
                         potionToDrop = ItemID.SpelunkerPotion;
                         break;
-
                     case 15:
                         potionToDrop = ItemID.SonarPotion;
                         break;
-
                     case 16:
                         potionToDrop = ItemID.WrathPotion;
                         break;
-
                     case 17:
                         potionToDrop = ItemID.SummoningPotion;
                         break;
-
                     case 18:
                         potionToDrop = ItemID.HunterPotion;
                         break;
-
                     case 19:
                         potionToDrop = ItemID.FlipperPotion;
                         break;
-
                     case 20:
                         potionToDrop = ModContent.ItemType<GPSPotion>();
                         break;
-
                     case 21:
                         potionToDrop = ItemID.GillsPotion;
                         break;
@@ -1388,16 +1367,16 @@ IL_162:
             }
             if (npc.type == NPCID.DungeonSpirit)
             {
-                int phantomeItemToDrop = Main.rand.Next(40);
-                if (phantomeItemToDrop == 0)
+                int phantomItemToDrop = Main.rand.Next(40);
+                if (phantomItemToDrop == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PhantomMask>(), 1, false, 0, false);
                 }
-                else if (phantomeItemToDrop == 1)
+                else if (phantomItemToDrop == 1)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PhantomShirt>(), 1, false, 0, false);
                 }
-                else if (phantomeItemToDrop == 2)
+                else if (phantomItemToDrop == 2)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PhantomPants>(), 1, false, 0, false);
                 }
@@ -1455,7 +1434,7 @@ IL_162:
             }
             if (npc.type == NPCID.Plantera)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ChlorophyteOre, Main.rand.Next(60, 121), false, -1, false);
+                if (!Main.expertMode) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ChlorophyteOre, Main.rand.Next(60, 121), false, -1, false);
                 if (Main.rand.Next(15) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PlanterasRage>(), 1, false, -1, false);
@@ -1469,7 +1448,7 @@ IL_162:
 
             if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contaigon)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height,
+                if (!Main.expertMode) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height,
                     ModContent.ItemType<BacciliteOre>(), Main.rand.Next(30, 87), false, 0, false);
             }
         }

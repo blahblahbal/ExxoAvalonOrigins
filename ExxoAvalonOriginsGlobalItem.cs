@@ -883,6 +883,10 @@ namespace ExxoAvalonOrigins
         }
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
+            if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag)
+            {
+
+            }
             if (context == "bossBag" && arg == ItemID.GolemBossBag)
             {
                 int drop = 0;
@@ -903,7 +907,8 @@ namespace ExxoAvalonOrigins
             }
             if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
             {
-                player.QuickSpawnItem(ModContent.ItemType<Items.Material.LifeDew>(), Main.rand.Next(15, 22));
+                player.QuickSpawnItem(ModContent.ItemType<LifeDew>(), Main.rand.Next(15, 22));
+                player.QuickSpawnItem(ItemID.ChlorophyteOre, Main.rand.Next(60, 121));
             }
         }
 
@@ -1588,7 +1593,7 @@ namespace ExxoAvalonOrigins
                 /*t == ID.ItemID.TimeShiftPotion ||*/ t == ModContent.ItemType<ShadowPotion>() || t == ModContent.ItemType<RoguePotion>() ||
                 t == ModContent.ItemType<WisdomPotion>() || t == ModContent.ItemType<GauntletPotion>() || t == ModContent.ItemType<TitanskinPotion>() ||
                 t == ModContent.ItemType<InvincibilityPotion>() || t == ModContent.ItemType<ForceFieldPotion>() || t == ModContent.ItemType<BlahPotion>() ||
-                t == ModContent.ItemType<Items.Potions.FuryPotion>());
+                t == ModContent.ItemType<FuryPotion>());
         }
         public static bool IsAdvancedPotion(string name)
         {
