@@ -1,9 +1,10 @@
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Slimy : ModPrefix
+	public class Slimy : ArmorPrefix
 	{
 		public Slimy()
 		{
@@ -12,7 +13,7 @@ namespace ExxoAvalonOrigins.Prefixes
 
 		public override bool CanRoll(Item item)
 		{
-			return false;
+            return IsArmor(item);
 		}
 
 		public override bool Autoload(ref string name)
@@ -23,14 +24,9 @@ namespace ExxoAvalonOrigins.Prefixes
 			}
 			return false;
 		}
-
-		public override void Apply(Item item)
+        public override void UpdateEquip(Player player)
 		{
-			Main.player[Main.myPlayer].endurance += 0.05f;
-		}
-
-		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-		{
+			player.endurance += 0.05f;
 		}
 	}
 }

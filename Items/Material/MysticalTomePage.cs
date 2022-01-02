@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,10 +26,8 @@ namespace ExxoAvalonOrigins.Items.Material
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FallenStar, 2);
-            recipe.AddIngredient(ItemID.IronBar);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
             recipe.AddRecipeGroup(RecipeGroupID.IronBar);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
             recipe.SetResult(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();

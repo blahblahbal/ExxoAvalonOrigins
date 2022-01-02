@@ -1,9 +1,10 @@
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Silly : ModPrefix
+	public class Silly : ArmorPrefix
 	{
 		public Silly()
 		{
@@ -12,7 +13,7 @@ namespace ExxoAvalonOrigins.Prefixes
 
 		public override bool CanRoll(Item item)
 		{
-			return false;
+            return IsArmor(item);
 		}
 
 		public override void ModifyValue(ref float valueMult)
@@ -28,16 +29,12 @@ namespace ExxoAvalonOrigins.Prefixes
 			}
 			return false;
 		}
-
-		public override void Apply(Item item)
+        public override void UpdateEquip(Player player)
 		{
-			Main.player[Main.myPlayer].magicCrit += 2;
-			Main.player[Main.myPlayer].meleeCrit += 2;
-			Main.player[Main.myPlayer].rangedCrit += 2;
-		}
-
-		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-		{
+			player.magicCrit += 2;
+			player.meleeCrit += 2;
+			player.rangedCrit += 2;
+            player.thrownCrit += 2;
 		}
 	}
 }

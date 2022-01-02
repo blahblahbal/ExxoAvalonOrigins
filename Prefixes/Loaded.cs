@@ -1,9 +1,10 @@
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Loaded : ModPrefix
+	public class Loaded : ArmorPrefix
 	{
 		public Loaded()
 		{
@@ -12,7 +13,7 @@ namespace ExxoAvalonOrigins.Prefixes
 
 		public override bool CanRoll(Item item)
 		{
-			return false;
+            return IsArmor(item);
 		}
 
 		public override void ModifyValue(ref float valueMult)
@@ -28,14 +29,9 @@ namespace ExxoAvalonOrigins.Prefixes
 			}
 			return false;
 		}
-
-		public override void Apply(Item item)
+        public override void UpdateEquip(Player player)
 		{
-			Main.player[Main.myPlayer].statDefense++;
-		}
-
-		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-		{
+			player.statDefense++;
 		}
 	}
 }

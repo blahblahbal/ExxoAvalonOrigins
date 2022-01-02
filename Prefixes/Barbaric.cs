@@ -1,9 +1,10 @@
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Barbaric : ModPrefix
+	public class Barbaric : ArmorPrefix
 	{
 		public Barbaric()
 		{
@@ -12,7 +13,7 @@ namespace ExxoAvalonOrigins.Prefixes
 
 		public override bool CanRoll(Item item)
 		{
-			return false;
+            return IsArmor(item);
 		}
 
 		public override void ModifyValue(ref float valueMult)
@@ -28,18 +29,10 @@ namespace ExxoAvalonOrigins.Prefixes
 			}
 			return false;
 		}
-
-		public override void Apply(Item item)
+        public override void UpdateEquip(Player player)
 		{
-			Main.player[Main.myPlayer].magicDamage += 0.04f;
-			Main.player[Main.myPlayer].meleeDamage += 0.04f;
-			Main.player[Main.myPlayer].minionDamage += 0.04f;
-			Main.player[Main.myPlayer].rangedDamage += 0.04f;
-			item.knockBack += 0.06f;
-		}
-
-		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-		{
+			player.allDamage += 0.04f;
+			player.inventory[player.selectedItem].knockBack += 0.06f;
 		}
 	}
 }

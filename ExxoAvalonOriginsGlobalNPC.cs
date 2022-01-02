@@ -803,7 +803,7 @@ IL_162:
                 maxValue = 50;
                 maxValue3 = 500;
             }
-            if (imkCompat)
+            if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
                 if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
                 {

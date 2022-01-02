@@ -20,17 +20,14 @@ namespace ExxoAvalonOrigins.Prefixes
 		{
 			if (base.Autoload(ref name))
 			{
-				mod.AddPrefix("Confused", new Confused());
+				mod.AddPrefix("Bloated", new Confused());
 			}
 			return false;
 		}
-        public override void InsertTooltips(Item item, List<TooltipLine> tooltips, int index)
-        {
-            tooltips.Insert(index, PrefixLine(true, "[c/BE7878:You are confused]"));
-        }
         public override void UpdateEquip(Player player)
         {
-            player.confused = true;
+            player.meleeDamage += 0.05f;
+            player.meleeSpeed -= 0.02f;
         }
 	}
 }
