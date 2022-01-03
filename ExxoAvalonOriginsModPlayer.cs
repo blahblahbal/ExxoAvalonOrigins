@@ -269,6 +269,7 @@ namespace ExxoAvalonOrigins
         public bool zoneDarkMatter;
         public bool zoneTropics;
         public bool zoneCaesium;
+        public bool zoneOutpost;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -492,9 +493,11 @@ namespace ExxoAvalonOrigins
                     zoneHellcastle = true;
                 }
             }
+            Point tileC = player.position.ToTileCoordinates();
             zoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
             zoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
             zoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
+            zoneOutpost = ExxoAvalonOriginsWorld.tropicTiles > 50 && Main.tile[tileC.X, tileC.Y].wall == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && player.ZoneRockLayerHeight;
             zoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
         }
 
@@ -506,6 +509,7 @@ namespace ExxoAvalonOrigins
             flags[2] = zoneDarkMatter;
             flags[3] = zoneTropics;
             flags[4] = zoneCaesium;
+            flags[5] = zoneOutpost;
             writer.Write(flags);
         }
 
@@ -517,6 +521,7 @@ namespace ExxoAvalonOrigins
             zoneDarkMatter = flags[2];
             zoneTropics = flags[3];
             zoneCaesium = flags[4];
+            zoneOutpost = flags[5];
         }
 
         public bool HasItemInArmor(int type)

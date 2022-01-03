@@ -5,9 +5,57 @@ namespace ExxoAvalonOrigins.Logic
 {
     public static class SushiRecipes
     {
-        public static void CreateRecipes(Mod mod)
+        public static void CreateRecipes(Mod mod, Mod imk)
         {
             ModRecipe recipe;
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.HellcastleToken>());
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(imk.ItemType("LootMartiansToken"));
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(imk.ItemType("UndergroundCorruptionEocToken"));
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(imk.ItemType("UndergroundCrimsonEocToken"));
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(imk.ItemType("UndergroundCrimsonEocToken"));
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ModContent.ItemType<Items.Tokens.ContagionToken>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.ContagionToken>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(imk.ItemType("UndergroundCorruptionEocToken"));
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(imk.ItemType("UndergroundJungleStartToken"));
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(imk.ItemType("UndergroundJungleStartToken"));
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ModContent.ItemType<Items.Tokens.TropicsToken>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>(), 25);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.Thompson>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>(), 25);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.AnkletoftheWind);
+            recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.SuperhardmodeToken>(), 25);

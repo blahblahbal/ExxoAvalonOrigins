@@ -17,7 +17,6 @@ namespace ExxoAvalonOrigins
         public override bool InstancePerEntity => true;
         public bool invince;
         public int torch = 0;
-        public int wallWand = -1;
         public int healStamina;
         public bool tome = false;
         public bool updateInvisibleVanity = false;

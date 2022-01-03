@@ -834,7 +834,7 @@ namespace ExxoAvalonOrigins
             if (imkTokensMod != null)
             {
                 ExxoAvalonOriginsGlobalNPC.imkCompat = true;
-                SushiRecipes.CreateRecipes(mod);
+                SushiRecipes.CreateRecipes(mod, imkTokensMod);
             }
         }
 

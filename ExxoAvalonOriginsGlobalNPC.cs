@@ -806,6 +806,14 @@ IL_162:
             }
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
+                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneOutpost)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.OutpostToken>());
+                }
+                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.TropicsToken>());
+                }
                 if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !stoppedArmageddon)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.SuperhardmodeToken>());
@@ -822,7 +830,7 @@ IL_162:
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
                 }
-                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+                if (Main.rand.Next(15) == 0 && NPC.downedBoss1 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.ContagionToken>());
                 }
@@ -839,7 +847,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, 0, false);
             }
-            if (npc.type == NPCID.DungeonSpirit && Main.rand.Next(7) == 0)
+            if (npc.type == NPCID.DungeonSpirit && Main.rand.Next(7) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon)
             {
                 int proj = Projectile.NewProjectile(npc.position, npc.velocity, ModContent.ProjectileType<Projectiles.SpiritPoppy>(), 0, 0, Main.myPlayer);
                 Main.projectile[proj].velocity.Y = -3.5f;
