@@ -23,6 +23,30 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LightsBane);
+            recipe.AddIngredient(ItemID.Muramasa);
+            recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ItemID.NightsEdge);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BloodButcherer);
+            recipe.AddIngredient(ItemID.Muramasa);
+            recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ItemID.NightsEdge);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Snotsabre>());
+            recipe.AddIngredient(ItemID.Muramasa);
+            recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ItemID.NightsEdge);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.RecallPotion, 3);
             recipe.AddIngredient(ItemID.IronBar, 5);
             recipe.AddIngredient(ItemID.Glass, 20);

@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -30,6 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.npcSlots = 1f;
 			npc.value = 610f;
 			npc.height = 58;
+            npc.scale = 0.6f;
 			npc.knockBackResist = 0.2f;
             npc.HitSound = SoundID.NPCHit18;
 	        npc.DeathSound = SoundID.NPCDeath21;

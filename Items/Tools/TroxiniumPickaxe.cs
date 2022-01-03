@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/TroxiniumPickaxe_Glow");
+            Texture2D texture = mod.GetTexture("Items/Tools/TroxiniumPickaxe_Glow");
             spriteBatch.Draw
             (
                 texture,

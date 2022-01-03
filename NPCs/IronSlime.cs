@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
@@ -22,7 +16,7 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			npc.damage = 15;
 			npc.lifeMax = 253;
-			npc.defense = 10;
+			npc.defense = 5;
 			npc.width = 36;
 			npc.aiStyle = 1;
 			npc.value = 1000f;

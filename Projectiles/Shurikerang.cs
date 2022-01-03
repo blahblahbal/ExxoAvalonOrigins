@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +19,8 @@ namespace ExxoAvalonOrigins.Projectiles
 
 		public override void SetDefaults()
 		{
-			projectile.width = 34;
-			projectile.height = 34;
+			projectile.width = 24;
+			projectile.height = 24;
 			projectile.aiStyle = -1;
 			projectile.friendly = true;
 			projectile.penetrate = -1;

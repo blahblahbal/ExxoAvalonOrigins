@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 			item.mana = 6;
 			item.noMelee = true;
 			item.rare = ItemRarityID.Green;
+            item.UseSound = SoundID.Item1;
 			item.width = dims.Width;
 			item.useTime = 15;
 			item.knockBack = 4f;

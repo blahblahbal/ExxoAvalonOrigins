@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/TroxiniumWaraxe_Glow");
+            Texture2D texture = mod.GetTexture("Items/Weapons/Melee/TroxiniumWaraxe_Glow");
             spriteBatch.Draw
             (
                 texture,

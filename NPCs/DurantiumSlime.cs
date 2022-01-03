@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.NPCs
 		{
 			npc.damage = 41;
 			npc.lifeMax = 500;
-			npc.defense = 40;
+			npc.defense = 10;
 			npc.width = 36;
 			npc.aiStyle = 1;
 			npc.value = 1000f;

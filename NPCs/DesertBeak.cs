@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
@@ -78,7 +78,9 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void AI()
         {
-            npc.ai[0] += 1f;
+            int stageFactor = 30;
+            if (Main.expertMode) stageFactor = 15;
+            npc.ai[0]++;
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
                 npc.TargetClosest(true);
@@ -92,147 +94,145 @@ namespace ExxoAvalonOrigins.NPCs
                     return;
                 }
             }
-            if (npc.ai[0] < 300f)
+            if (npc.ai[0] < stageFactor * 10)
             {
-                var arg_3FD3A_0 = Main.player[npc.target].velocity;
-                var vector150 = Main.player[npc.target].position;
-                if (vector150.X > npc.position.X && npc.velocity.X < 8f)
+                Vector2 pVel = Main.player[npc.target].velocity;
+                Vector2 pPos = Main.player[npc.target].position;
+                if (npc.position.X + npc.width / 2 > Main.player[npc.target].Center.X)
                 {
-                    npc.velocity.X = npc.velocity.X + 0.22f;
+                    npc.direction = -1;
+                    if (npc.velocity.X > 0f)
+                    {
+                        npc.velocity.X *= 0.96f;
+                    }
+                    npc.velocity.X -= 0.05f;
+                    if (npc.velocity.X > 8f) npc.velocity.X = 8f;
                 }
-                if (vector150.X < npc.position.X && npc.velocity.X > -8f)
+                if (npc.position.X + npc.width / 2 < Main.player[npc.target].Center.X)
                 {
-                    npc.velocity.X = npc.velocity.X - 0.22f;
+                    npc.direction = 1;
+                    if (npc.velocity.X < 0f)
+                    {
+                        npc.velocity.X *= 0.96f;
+                    }
+                    npc.velocity.X += 0.05f;
+                    if (npc.velocity.X < -8f) npc.velocity.X = -8f;
                 }
-                if (vector150.Y > npc.position.Y + 300f)
+                if (pPos.Y + 75 < npc.position.Y)
+                {
+                    npc.dontTakeDamage = true;
+                    npc.ai[1]++;
+                    if (npc.ai[1] >= 60)
+                    {
+                        float Speed = 8f;
+                        Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 17);
+                        float rotation = (float)Math.Atan2(npc.Center.Y - (pPos.Y + (Main.player[npc.target].height * 0.5f)), npc.Center.X - (pPos.X + (Main.player[npc.target].width * 0.5f)));
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), 83, 40, 0f, 0);
+                        npc.ai[1] = 0;
+                    }
+                }
+                if (pPos.Y - 250 < npc.position.Y)
+                {
+                    if (npc.velocity.Y > 0)
+                    {
+                        npc.velocity.Y *= 0.98f;
+                    }
+                    npc.velocity.Y -= 0.02f;
+                    if (npc.velocity.Y > 2.2f) npc.velocity.Y = 2.2f;
+                }
+                if (pPos.Y - 250 > npc.position.Y)
                 {
                     npc.dontTakeDamage = false;
-                    if (npc.velocity.Y > 0f)
+                    if (npc.velocity.Y < 0)
                     {
-                        if (npc.velocity.Y < 4f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y + 0.7f;
-                        }
+                        npc.velocity.Y *= 0.98f;
                     }
-                    else
-                    {
-                        npc.velocity.Y = npc.velocity.Y + 0.6f;
-                    }
+                    npc.velocity.Y += 0.02f;
+                    if (npc.velocity.Y < -2.2f) npc.velocity.Y = -2.2f;
                 }
-                if (vector150.Y < npc.position.Y + 200f)
-                {
-                    if (npc.velocity.Y < 0f)
-                    {
-                        if (npc.velocity.Y > -3f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y - 0.6f;
-                        }
-                    }
-                    else
-                    {
-                        npc.velocity.Y = npc.velocity.Y - 0.5f;
-                    }
-                }
-                if (vector150.Y + 75f >= npc.position.Y)
-                {
-                    return;
-                }
-                npc.dontTakeDamage = true;
-                npc.ai[1] += 1f;
-                if (npc.ai[1] >= 60f)
-                {
-                    var num1152 = 8f;
-                    var vector151 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 17);
-                    var num1153 = (float)Math.Atan2(vector151.Y - (vector150.Y + Main.player[npc.target].height * 0.5f), vector151.X - (vector150.X + Main.player[npc.target].width * 0.5f));
-                    Projectile.NewProjectile(vector151.X, vector151.Y, (float)(Math.Cos(num1153) * num1152 * -1.0), (float)(Math.Sin(num1153) * num1152 * -1.0), ProjectileID.EyeLaser, 20, 0f, 0, 0f, 0f);
-                    npc.ai[1] = 0f;
-                    return;
-                }
-                return;
             }
-            else if (npc.ai[0] >= 300f && npc.ai[0] < 330f)
+            else if (npc.ai[0] >= stageFactor * 10 && npc.ai[0] < stageFactor * 11)
             {
                 npc.dontTakeDamage = false;
-                if (npc.velocity.X == 0f)
+                float num131 = 6f;
+                Vector2 vector14 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
+                float num132 = Main.player[npc.target].position.X + (Main.player[npc.target].width / 2) - vector14.X;
+                float num133 = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - vector14.Y;
+                float num134 = (float)Math.Sqrt(num132 * num132 + num133 * num133);
+                num134 = num131 / num134;
+                npc.velocity.X = num132 * num134;
+                npc.velocity.Y = num133 * num134;
+                if (Main.expertMode && npc.ai[3] < 3)
                 {
-                    npc.velocity.X = 1f;
-                }
-                if (npc.velocity.Y == 0f)
-                {
-                    npc.velocity.Y = 1f;
-                }
-                npc.velocity.X = npc.velocity.X * 0.95f;
-                npc.velocity.Y = npc.velocity.Y * 0.95f;
-                var vector152 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                if (npc.velocity.X < 2f && npc.velocity.X > -2f && npc.velocity.Y < 2f && npc.velocity.Y > -2f)
-                {
-                    var num1154 = (float)Math.Atan2(vector152.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector152.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
-                    npc.velocity.X = (float)(Math.Cos(num1154) * 25.0) * -1f;
-                    npc.velocity.Y = (float)(Math.Sin(num1154) * 25.0) * -1f;
+                    npc.ai[0] = stageFactor * 10;
+                    npc.ai[3]++;
                     return;
                 }
-                return;
             }
-            else
+            else if (npc.ai[0] >= stageFactor * 11 && npc.ai[0] < stageFactor * 20)
             {
-                if (npc.ai[0] < 330f || npc.ai[0] >= 600f)
-                {
-                    npc.ai[0] = 0f;
-                    return;
-                }
                 npc.dontTakeDamage = false;
-                var arg_4031B_0 = Main.player[npc.target].velocity;
-                var vector153 = Main.player[npc.target].position;
-                if (vector153.X > npc.position.X && npc.velocity.X < 7f)
+                npc.ai[3] = 0;
+                Vector2 pVel = Main.player[npc.target].velocity;
+                Vector2 pPos = Main.player[npc.target].position;
+                if (npc.position.X + npc.width / 2 > Main.player[npc.target].Center.X)
                 {
-                    npc.velocity.X = npc.velocity.X + 0.22f;
-                }
-                if (vector153.X < npc.position.X && npc.velocity.X > -7f)
-                {
-                    npc.velocity.X = npc.velocity.X - 0.22f;
-                }
-                if (vector153.Y > npc.position.Y + 300f)
-                {
-                    if (npc.velocity.Y > 0f)
+                    npc.direction = -1;
+                    if (npc.velocity.X > 0f)
                     {
-                        if (npc.velocity.Y < 4f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y + 0.7f;
-                        }
+                        npc.velocity.X *= 0.98f;
                     }
-                    else
-                    {
-                        npc.velocity.Y = npc.velocity.Y + 0.6f;
-                    }
+                    npc.velocity.X -= 0.05f;
+                    if (npc.velocity.X > 8f) npc.velocity.X = 8f;
                 }
-                if (vector153.Y < npc.position.Y + 250f)
+                if (npc.position.X + npc.width / 2 < Main.player[npc.target].Center.X)
                 {
-                    if (npc.velocity.Y < 0f)
+                    npc.direction = 1;
+                    if (npc.velocity.X < 0f)
                     {
-                        if (npc.velocity.Y > -3f)
-                        {
-                            npc.velocity.Y = npc.velocity.Y - 0.6f;
-                        }
+                        npc.velocity.X *= 0.98f;
                     }
-                    else
-                    {
-                        npc.velocity.Y = npc.velocity.Y - 0.5f;
-                    }
+                    npc.velocity.X += 0.05f;
+                    if (npc.velocity.X < -8f) npc.velocity.X = -8f;
                 }
-                npc.ai[2] += 1f;
-                if (npc.ai[2] >= 90f)
+                if (pPos.Y - 250 < npc.position.Y)
                 {
-                    var num1155 = 5f;
-                    var vector154 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
-                    Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 11);
-                    var num1156 = (float)Math.Atan2(vector154.Y - (vector153.Y + Main.player[npc.target].height * 0.5f), vector154.X - (vector153.X + Main.player[npc.target].width * 0.5f));
-                    Projectile.NewProjectile(vector154.X, vector154.Y, (float)(Math.Cos(num1156) * num1155 * -1.0), (float)(Math.Sin(num1156) * num1155 * -1.0), ProjectileID.BombSkeletronPrime, 20, 0f, 0, 0f, 0f);
-                    npc.ai[2] = 0f;
-                    return;
+                    if (npc.velocity.Y > 0)
+                    {
+                        npc.velocity.Y *= 0.98f;
+                    }
+                    npc.velocity.Y -= 0.02f;
+                    if (npc.velocity.Y > 2.2f) npc.velocity.Y = 2.2f;
                 }
-                return;
+                if (pPos.Y - 250 > npc.position.Y)
+                {
+                    npc.dontTakeDamage = false;
+                    if (npc.velocity.Y < 0)
+                    {
+                        npc.velocity.Y *= 0.98f;
+                    }
+                    npc.velocity.Y += 0.02f;
+                    if (npc.velocity.Y < -2.2f) npc.velocity.Y = -2.2f;
+                }
+                npc.ai[2]++;
+                if (npc.ai[2] >= 90)
+                {
+                    for (int i = 0; i < (Main.expertMode ? 4 : 1); i++)
+                    {
+                        float Speed = 5f;
+                        Vector2 npcPosRefined = new Vector2(npc.position.X + (npc.width * 0.5f), npc.position.Y + (npc.height / 2));
+                        float rotation = (float)Math.Atan2(npcPosRefined.Y - (pPos.Y + (Main.player[npc.target].height * 0.5f)), npcPosRefined.X - (pPos.X + (Main.player[npc.target].width * 0.5f)));
+                        float speedX = (float)((Math.Cos(rotation) * Speed) * -1);
+                        float speedY = (float)((Math.Sin(rotation) * Speed) * -1);
+                        float num78 = speedX + Main.rand.Next(-50, 51) * 0.05f;
+                        float num79 = speedY + Main.rand.Next(-50, 51) * 0.05f;
+                        Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 11);
+                        int bomb = Projectile.NewProjectile(npcPosRefined.X, npcPosRefined.Y, num78, num79, 102, 20, 0f, 0);
+                    }
+                    npc.ai[2] = 0;
+                }
             }
+            else npc.ai[0] = 0;
         }
 
         public override void FindFrame(int frameHeight)

@@ -698,6 +698,8 @@ namespace ExxoAvalonOrigins
                 int index = RecipeGroup.recipeGroupIDs["Wood"];
                 RecipeGroup group0 = RecipeGroup.recipeGroups[index];
                 group0.ValidItems.Add(ModContent.ItemType<DarkMatterWood>());
+                group0.ValidItems.Add(ModContent.ItemType<Coughwood>());
+                group0.ValidItems.Add(ModContent.ItemType<TropicalWood>());
             }
 
             var groupWings = new RecipeGroup(() => "Any Wings", new int[]

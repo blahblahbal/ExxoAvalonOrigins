@@ -29,5 +29,16 @@ namespace ExxoAvalonOrigins.Items.Ammo
 			item.value = Item.sellPrice(0, 0, 2);
 			item.height = dims.Height;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.MusketBall, 250);
+            r.AddIngredient(ItemID.UltrabrightTorch, 250);
+            r.AddIngredient(ItemID.RazorbladeTyphoon);
+            r.AddTile(TileID.MythrilAnvil);
+            r.SetResult(this, 250);
+            r.AddRecipe();
+        }
+    }
 }
