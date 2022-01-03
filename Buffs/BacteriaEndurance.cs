@@ -10,13 +10,14 @@ namespace ExxoAvalonOrigins.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Bacterial Endurance");
-			Description.SetDefault("Almost feels like little bacteria defending you.");
+			Description.SetDefault("Thorns effect and increased damage and jump speed");
 		}
 		
 		public override void Update(Player player, ref int k)
 		{
 			player.thorns += 0.8f; //effects of this will mostlikely change
-            player.endurance += 0.25f;
+            player.jumpSpeedBoost += 0.2f;
+
 		}
 	}
 }

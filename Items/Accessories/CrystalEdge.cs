@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Crystal Edge");
-			Tooltip.SetDefault("Increases damage by 25%");
+			Tooltip.SetDefault("Increases damage by 15");
 		}
 
 		public override void SetDefaults()
@@ -25,11 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.25f;
-            player.meleeDamage += 0.25f;
-            player.minionDamage += 0.25f;
-            player.thrownDamage += 0.25f;
-            player.rangedDamage += 0.25f;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().crystalEdge = true;
         }
     }
 }

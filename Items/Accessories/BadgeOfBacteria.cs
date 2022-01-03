@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Badge of Bacteria");
-            Tooltip.SetDefault("Reduces damage taken for a short time after being hit\nAttackers also take damage for a short time after you are hit");
+            Tooltip.SetDefault("Increases damage by 8 after being hit\nAttackers also take damage for a short time after you are hit");
         }
 
         public override void SetDefaults()

@@ -27,6 +27,7 @@ namespace ExxoAvalonOrigins.Items.Material
             recipe.AddIngredient(ItemID.TempleKey, 2);
             recipe.AddIngredient(ItemID.Ectoplasm, 10);
             recipe.AddIngredient(ModContent.ItemType<EarthStone>());
+            recipe.AddIngredient(ItemID.LunarBar, 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this, 2);
             recipe.AddRecipe();

@@ -304,7 +304,7 @@ namespace ExxoAvalonOrigins
         public bool caesiumPoison;
         public int caesiumTimer;
         public bool cloudGloves;
-
+        public bool crystalEdge;
         // Adv Buffs
         public bool advAmmoBuff;
 
@@ -350,6 +350,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            crystalEdge = false;
             riftGoggles = false;
             trapImmune = false;
             undeadTalisman = false;
@@ -973,6 +974,14 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            if (crystalEdge)
+            {
+                damage += 15;
+            }
+            if (player.HasBuff(ModContent.BuffType<Buffs.BacteriaEndurance>()))
+            {
+                damage += 8;
+            }
             if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
             {
                 damage *= 3;
@@ -1760,8 +1769,7 @@ namespace ExxoAvalonOrigins
             }
 			if (player.whoAmI == Main.myPlayer && bOfBacteria)
 			{
-			    int time = 120;
-				player.AddBuff(ModContent.BuffType<BacteriaEndurance>(), time, true);
+				player.AddBuff(ModContent.BuffType<BacteriaEndurance>(), 6 * 60, true);
 			}
         }
 
@@ -1772,7 +1780,6 @@ namespace ExxoAvalonOrigins
                 ArmorPrefix prefix;
                 if ((prefix = ModPrefix.GetPrefix(player.armor[i].prefix) as ArmorPrefix) != null)
                 {
-                    player.statDefense += prefix.CalcDefense(player, player.armor[i]);
                     prefix.UpdateEquip(player);
                 }
             }
