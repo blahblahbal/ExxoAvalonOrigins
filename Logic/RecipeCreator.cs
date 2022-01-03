@@ -1,4 +1,4 @@
-﻿using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Ammo;
 using ExxoAvalonOrigins.Items.Armor;
 using ExxoAvalonOrigins.Items.Consumables;
@@ -979,18 +979,25 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.PlatinumBroadsword);
             recipe.AddIngredient(ItemID.BugNet);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<SwordNet>());
+            recipe.SetResult(ModContent.ItemType<PlatinumSwordNet>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.GoldBroadsword);
             recipe.AddIngredient(ItemID.BugNet);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<SwordNet>());
+            recipe.SetResult(ModContent.ItemType<GoldSwordNet>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<SwordNet>());
+            recipe.AddIngredient(ModContent.ItemType<GoldSwordNet>());
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<ExcaliburNet>());
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<PlatinumSwordNet>());
             recipe.AddIngredient(ItemID.HallowedBar, 10);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ExcaliburNet>());

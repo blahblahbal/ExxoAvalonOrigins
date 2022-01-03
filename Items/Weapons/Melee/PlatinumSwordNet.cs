@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-	class SwordNet : ModItem
+	class PlatinumSwordNet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sword Net");
+			DisplayName.SetDefault("Platinum Sword Net");
 		}
 
 		public override void SetDefaults()
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.autoReuse = true;
 			item.width = dims.Width;
 			item.useTurn = true;
-			item.knockBack = 1.2f;
+			item.knockBack = 5f;
 			item.useTime = 23;
 			item.melee = true;
 			item.useStyle = ItemUseStyleID.SwingThrow;

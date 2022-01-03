@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Achievements;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -17,233 +18,238 @@ namespace ExxoAvalonOrigins.Projectiles
 			DisplayName.SetDefault("Sand Bomb");
 		}
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/SandBomb");
-			projectile.width = dims.Width;
-			projectile.height = dims.Height * 22 / 30 / Main.projFrames[projectile.type];
+		public override void SetDefaults() {
+			projectile.width = 20;
+			projectile.height = 20;
 			projectile.friendly = true;
-			projectile.tileCollide = true;
-			projectile.ranged = true;
-			projectile.hostile = false;
-			projectile.penetrate = 1;
-			projectile.aiStyle = -1;
-			projectile.timeLeft = 240;
-			projectile.MaxUpdates = 2;
+			projectile.penetrate = -1;
+
+			projectile.timeLeft = 300;
+
+			drawOffsetX = 5;
+			drawOriginOffsetY = 5;
 		}
 
-		public override void AI()
-		{
-			if (projectile.type == ProjectileID.Spike)
-			{
-				if (projectile.localAI[1] == 0f)
-				{
-					projectile.localAI[1] = 1f;
-				}
-				projectile.alpha += (int)(25f * projectile.localAI[1]);
-				if (projectile.alpha <= 0)
-				{
-					projectile.alpha = 0;
-					projectile.localAI[1] = 1f;
-				}
-				else if (projectile.alpha >= 255)
-				{
-					projectile.alpha = 255;
-					projectile.localAI[1] = -1f;
-				}
-				projectile.scale += projectile.localAI[1] * 0.01f;
+		public override bool OnTileCollide(Vector2 oldVelocity) {
+			if (projectile.ai[1] != 0) {
+				return true;
 			}
-			if (projectile.type == ProjectileID.OrnamentHostile)
-			{
-				if (projectile.localAI[0] == 0f)
-				{
-					projectile.localAI[0] = 1f;
-					Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 1);
-				}
-				projectile.frame = (int)projectile.ai[1];
-				if (projectile.owner == Main.myPlayer && projectile.timeLeft == 1)
-				{
-					for (var num230 = 0; num230 < 5; num230++)
-					{
-						var num231 = 10f;
-						var vector17 = new Vector2(projectile.Center.X, projectile.Center.Y);
-						float num232 = Main.rand.Next(-20, 21);
-						float num233 = Main.rand.Next(-20, 0);
-						var num234 = (float)Math.Sqrt(num232 * num232 + num233 * num233);
-						num234 = num231 / num234;
-						num232 *= num234;
-						num233 *= num234;
-						num232 *= 1f + Main.rand.Next(-30, 31) * 0.01f;
-						num233 *= 1f + Main.rand.Next(-30, 31) * 0.01f;
-						Projectile.NewProjectile(vector17.X, vector17.Y, num232, num233, ProjectileID.OrnamentHostileShrapnel, 40, 0f, Main.myPlayer, 0f, projectile.ai[1]);
-					}
+			return false;
+		}
+
+		public override void AI() {
+			if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3) {
+				projectile.tileCollide = false;
+				projectile.alpha = 255;
+				projectile.position = projectile.Center;
+				projectile.width = 250;
+				projectile.height = 250;
+				projectile.Center = projectile.position;
+				projectile.damage = 250;
+				projectile.knockBack = 10f;
+			}
+			else {
+				if (Main.rand.NextBool()) {
+					int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 1f);
+					Main.dust[dustIndex].scale = 0.1f + (float)Main.rand.Next(5) * 0.1f;
+					Main.dust[dustIndex].fadeIn = 1.5f + (float)Main.rand.Next(5) * 0.1f;
+					Main.dust[dustIndex].noGravity = true;
+					Main.dust[dustIndex].position = projectile.Center + new Vector2(0f, (float)(-(float)projectile.height / 2)).RotatedBy((double)projectile.rotation, default(Vector2)) * 1.1f;
+					dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 1f);
+					Main.dust[dustIndex].scale = 1f + (float)Main.rand.Next(5) * 0.1f;
+					Main.dust[dustIndex].noGravity = true;
+					Main.dust[dustIndex].position = projectile.Center + new Vector2(0f, (float)(-(float)projectile.height / 2 - 6)).RotatedBy((double)projectile.rotation, default(Vector2)) * 1.1f;
 				}
 			}
-			if (projectile.type == ProjectileID.SmokeBomb)
-			{
-				var num235 = Main.rand.Next(1, 3);
-				for (var num236 = 0; num236 < num235; num236++)
-				{
-					var num237 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 1f);
-					Main.dust[num237].alpha += Main.rand.Next(100);
-					Main.dust[num237].velocity *= 0.3f;
-					var dust31 = Main.dust[num237];
-					dust31.velocity.X = dust31.velocity.X + Main.rand.Next(-10, 11) * 0.025f;
-					var dust32 = Main.dust[num237];
-					dust32.velocity.Y = dust32.velocity.Y - (0.4f + Main.rand.Next(-3, 14) * 0.15f);
-					Main.dust[num237].fadeIn = 1.25f + Main.rand.Next(20) * 0.15f;
+			projectile.ai[0] += 1f;
+			if (projectile.ai[0] > 5f) {
+				projectile.ai[0] = 10f;
+				if (projectile.velocity.Y == 0f && projectile.velocity.X != 0f) {
+					projectile.velocity.X = projectile.velocity.X * 0.97f;
+					{
+						projectile.velocity.X = projectile.velocity.X * 0.99f;
+					}
+					if ((double)projectile.velocity.X > -0.01 && (double)projectile.velocity.X < 0.01) {
+						projectile.velocity.X = 0f;
+						projectile.netUpdate = true;
+					}
 				}
+				projectile.velocity.Y = projectile.velocity.Y + 0.2f;
 			}
-			if (projectile.type == ProjectileID.StickyGlowstick)
+			projectile.rotation += projectile.velocity.X * 0.1f;
+			return;
+		}
+
+		public override void Kill(int timeLeft) {
+		    if (Main.myPlayer != projectile.owner)
 			{
-				try
+				return;
+			}
+			int choice = Main.rand.Next(1);
+			if (choice == 0)
+			{
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+			}
+			
+			int num = Main.rand.Next(1);
+			if (num == 0)
+			{
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+			}
+			
+			int num2 = Main.rand.Next(1);
+			if (num2 == 0)
+			{
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+			}
+			
+			int num3 = Main.rand.Next(1);
+			if (num3 == 0)
+			{
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+			}
+				
+			int num4 = Main.rand.Next(1);
+			if (num4 == 0)
+			{
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), ProjectileID.SandBallFalling, 24, 1f, Main.myPlayer, 0f, 0f);
+		    }
+			for (int i = 0; i < 50; i++) {
+				int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+				Main.dust[dustIndex].velocity *= 1.4f;
+			}
+			for (int i = 0; i < 80; i++) {
+				int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+				Main.dust[dustIndex].noGravity = true;
+				Main.dust[dustIndex].velocity *= 5f;
+				dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+				Main.dust[dustIndex].velocity *= 3f;
+			}
+			for (int g = 0; g < 2; g++) {
+				int goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+				Main.gore[goreIndex].scale = 1.5f;
+				Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+				Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+				goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+				Main.gore[goreIndex].scale = 1.5f;
+				Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+				Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;
+				goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+				Main.gore[goreIndex].scale = 1.5f;
+				Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
+				Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y - 1.5f;
+				goreIndex = Gore.NewGore(new Vector2(projectile.position.X + (float)(projectile.width / 2) - 24f, projectile.position.Y + (float)(projectile.height / 2) - 24f), default(Vector2), Main.rand.Next(61, 64), 1f);
+				Main.gore[goreIndex].scale = 1.5f;
+				Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X - 1.5f;
+				Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y - 1.5f;
+			}
+			projectile.position.X = projectile.position.X + (float)(projectile.width / 2);
+			projectile.position.Y = projectile.position.Y + (float)(projectile.height / 2);
+			projectile.width = 10;
+			projectile.height = 10;
+			projectile.position.X = projectile.position.X - (float)(projectile.width / 2);
+			projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
+
+			{
+				int explosionRadius = 4;
 				{
-					Collision.TileCollision(projectile.position, projectile.velocity, projectile.width, projectile.height, false, false, 1);
-					var num238 = (int)(projectile.position.X / 16f) - 1;
-					var num239 = (int)((projectile.position.X + projectile.width) / 16f) + 2;
-					var num240 = (int)(projectile.position.Y / 16f) - 1;
-					var num241 = (int)((projectile.position.Y + projectile.height) / 16f) + 2;
-					if (num238 < 0)
-					{
-						num238 = 0;
+					explosionRadius = 5;
+				}
+				int minTileX = (int)(projectile.position.X / 16f - (float)explosionRadius);
+				int maxTileX = (int)(projectile.position.X / 16f + (float)explosionRadius);
+				int minTileY = (int)(projectile.position.Y / 16f - (float)explosionRadius);
+				int maxTileY = (int)(projectile.position.Y / 16f + (float)explosionRadius);
+				if (minTileX < 0) {
+					minTileX = 0;
+				}
+				if (maxTileX > Main.maxTilesX) {
+					maxTileX = Main.maxTilesX;
+				}
+				if (minTileY < 0) {
+					minTileY = 0;
+				}
+				if (maxTileY > Main.maxTilesY) {
+					maxTileY = Main.maxTilesY;
+				}
+				bool canKillWalls = false;
+				for (int x = minTileX; x <= maxTileX; x++) {
+					for (int y = minTileY; y <= maxTileY; y++) {
+						float diffX = Math.Abs((float)x - projectile.position.X / 16f);
+						float diffY = Math.Abs((float)y - projectile.position.Y / 16f);
+						double distance = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
+						if (distance < (double)explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].wall == 0) {
+							canKillWalls = true;
+							break;
+						}
 					}
-					if (num239 > Main.maxTilesX)
-					{
-						num239 = Main.maxTilesX;
-					}
-					if (num240 < 0)
-					{
-						num240 = 0;
-					}
-					if (num241 > Main.maxTilesY)
-					{
-						num241 = Main.maxTilesY;
-					}
-					for (var num242 = num238; num242 < num239; num242++)
-					{
-						for (var num243 = num240; num243 < num241; num243++)
-						{
-							if (Main.tile[num242, num243] != null && Main.tile[num242, num243].nactive() && (Main.tileSolid[Main.tile[num242, num243].type] || (Main.tileSolidTop[Main.tile[num242, num243].type] && Main.tile[num242, num243].frameY == 0)))
-							{
-								Vector2 vector18;
-								vector18.X = num242 * 16;
-								vector18.Y = num243 * 16;
-								if (projectile.position.X + projectile.width > vector18.X && projectile.position.X < vector18.X + 16f && projectile.position.Y + projectile.height > vector18.Y && projectile.position.Y < vector18.Y + 16f)
-								{
-									projectile.velocity.X = 0f;
-									projectile.velocity.Y = -0.2f;
+				}
+				AchievementsHelper.CurrentlyMining = true;
+				for (int i = minTileX; i <= maxTileX; i++) {
+					for (int j = minTileY; j <= maxTileY; j++) {
+						float diffX = Math.Abs((float)i - projectile.position.X / 16f);
+						float diffY = Math.Abs((float)j - projectile.position.Y / 16f);
+						double distanceToTile = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
+						if (distanceToTile < (double)explosionRadius) {
+							bool canKillTile = true;
+							if (Main.tile[i, j] != null && Main.tile[i, j].active()) {
+								canKillTile = true;
+								if (Main.tileDungeon[(int)Main.tile[i, j].type] || Main.tile[i, j].type == 88 || Main.tile[i, j].type == 21 || Main.tile[i, j].type == 26 || Main.tile[i, j].type == 107 || Main.tile[i, j].type == 108 || Main.tile[i, j].type == 111 || Main.tile[i, j].type == 226 || Main.tile[i, j].type == 237 || Main.tile[i, j].type == 221 || Main.tile[i, j].type == 222 || Main.tile[i, j].type == 223 || Main.tile[i, j].type == 211 || Main.tile[i, j].type == 404) {
+									canKillTile = false;
+								}
+								if (!Main.hardMode && Main.tile[i, j].type == 58) {
+									canKillTile = false;
+								}
+								if (!TileLoader.CanExplode(i, j)) {
+									canKillTile = false;
+								}
+								if (canKillTile) {
+									WorldGen.KillTile(i, j, false, false, false);
+									if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer) {
+										NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);
+									}
+								}
+							}
+							if (canKillTile) {
+								for (int x = i - 1; x <= i + 1; x++) {
+									for (int y = j - 1; y <= j + 1; y++) {
+										if (Main.tile[x, y] != null && Main.tile[x, y].wall > 0 && canKillWalls && WallLoader.CanExplode(x, y, Main.tile[x, y].wall)) {
+											WorldGen.KillWall(x, y, false);
+											if (Main.tile[x, y].wall == 0 && Main.netMode != NetmodeID.SinglePlayer) {
+												NetMessage.SendData(MessageID.TileChange, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);
+											}
+										}
+									}
 								}
 							}
 						}
 					}
 				}
-				catch
-				{
-				}
-			}
-			if (projectile.type == ProjectileID.ThornBall && projectile.alpha > 0)
-			{
-				projectile.alpha -= 30;
-				if (projectile.alpha < 0)
-				{
-					projectile.alpha = 0;
-				}
-			}
-            if (projectile.type == ProjectileID.SpiderEgg)
-			{
-				if (projectile.localAI[0] == 0f)
-				{
-					Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 17);
-					projectile.localAI[0] += 1f;
-				}
-				var rectangle2 = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
-				for (var num244 = 0; num244 < 200; num244++)
-				{
-					if (Main.npc[num244].active && !Main.npc[num244].friendly && Main.npc[num244].lifeMax > 5)
-					{
-						var value5 = new Rectangle((int)Main.npc[num244].position.X, (int)Main.npc[num244].position.Y, Main.npc[num244].width, Main.npc[num244].height);
-						if (rectangle2.Intersects(value5))
-						{
-							projectile.Kill();
-							return;
-						}
-					}
-				}
-				projectile.ai[0] += 1f;
-				if (projectile.ai[0] > 10f)
-				{
-					projectile.ai[0] = 90f;
-					if (projectile.velocity.Y == 0f && projectile.velocity.X != 0f)
-					{
-						projectile.velocity.X = projectile.velocity.X * 0.96f;
-						if (projectile.velocity.X > -0.01 && projectile.velocity.X < 0.01)
-						{
-							projectile.Kill();
-						}
-					}
-					projectile.velocity.Y = projectile.velocity.Y + 0.2f;
-				}
-				projectile.rotation += projectile.velocity.X * 0.1f;
-			}
-			else
-			{
-				projectile.ai[0] += 1f;
-				if (projectile.ai[0] > 5f)
-				{
-					projectile.ai[0] = 5f;
-					if (projectile.velocity.Y == 0f && projectile.velocity.X != 0f)
-					{
-						projectile.velocity.X = projectile.velocity.X * 0.97f;
-						if (projectile.velocity.X > -0.01 && projectile.velocity.X < 0.01)
-						{
-							projectile.velocity.X = 0f;
-							projectile.netUpdate = true;
-						}
-					}
-					projectile.velocity.Y = projectile.velocity.Y + 0.2f;
-				}
-				projectile.rotation += projectile.velocity.X * 0.1f;
-			}
-			if ((projectile.type >= ProjectileID.GreekFire1 && projectile.type <= ProjectileID.GreekFire3))
-			{
-				if (projectile.wet)
-				{
-					projectile.Kill();
-				}
-				if (projectile.ai[1] == 0f && projectile.type >= ProjectileID.GreekFire1 && projectile.type <= ProjectileID.GreekFire3)
-				{
-					projectile.ai[1] = 1f;
-					Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 13);
-				}
-				var num245 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 1f);
-				var dust33 = Main.dust[num245];
-				dust33.position.X = dust33.position.X - 2f;
-				var dust34 = Main.dust[num245];
-				dust34.position.Y = dust34.position.Y + 2f;
-				Main.dust[num245].scale += Main.rand.Next(50) * 0.01f;
-				Main.dust[num245].noGravity = true;
-				var dust35 = Main.dust[num245];
-				dust35.velocity.Y = dust35.velocity.Y - 2f;
-				if (Main.rand.Next(2) == 0)
-				{
-					var num246 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire, 0f, 0f, 100, default(Color), 1f);
-					var dust36 = Main.dust[num246];
-					dust36.position.X = dust36.position.X - 2f;
-					var dust37 = Main.dust[num246];
-					dust37.position.Y = dust37.position.Y + 2f;
-					Main.dust[num246].scale += 0.3f + Main.rand.Next(50) * 0.01f;
-					Main.dust[num246].noGravity = true;
-					Main.dust[num246].velocity *= 0.1f;
-				}
-				if (projectile.velocity.Y < 0.25 && projectile.velocity.Y > 0.15)
-				{
-					projectile.velocity.X = projectile.velocity.X * 0.8f;
-				}
-				projectile.rotation = -projectile.velocity.X * 0.05f;
-			}
-			if (projectile.velocity.Y > 16f)
-			{
-				projectile.velocity.Y = 16f;
+				AchievementsHelper.CurrentlyMining = false;
 			}
 		}
 	}

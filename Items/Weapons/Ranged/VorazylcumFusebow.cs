@@ -33,5 +33,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.height = dims.Height;
             item.UseSound = SoundID.Item5;
         }
+		
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+		if (type == ProjectileID.WoodenArrowFriendly)
+			{
+				type = ProjectileID.ShadowBeamFriendly;
+			}
+		return true;
+		}
 	}
 }

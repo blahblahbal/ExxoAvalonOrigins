@@ -1,4 +1,4 @@
-﻿using ExxoAvalonOrigins.Logic;
+using ExxoAvalonOrigins.Logic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hellrazer");
-            Tooltip.SetDefault("Fires a powerful, high velocity bullet\nNusket Balls turn into Explosive rounds");
+            Tooltip.SetDefault("Fires a powerful, high velocity bullet\nMusket Balls turn into Explosive rounds"); //Nusket
         }
         public override void SetDefaults()
         {

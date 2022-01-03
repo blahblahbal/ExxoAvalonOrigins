@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using ExxoAvalonOrigins.Items;
@@ -992,7 +992,7 @@ namespace ExxoAvalonOrigins
             {
                 target.AddBuff(BuffID.Confused, 540);
             }
-            if (player.inventory[player.selectedItem].type == ModContent.ItemType<SwordNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<ExcaliburNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<Oblivionet>())
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<GoldSwordNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<ExcaliburNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<Oblivionet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<PlatinumSwordNet>())
             {
                 if (target.catchItem > 0)
                 {
