@@ -1163,7 +1163,8 @@ namespace ExxoAvalonOrigins
                     {
                         tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "-1 defense")
                         {
-                            isModifier = false
+                            isModifier = true,
+                            isModifierBad = true
                         });
                     }
                 }
@@ -1173,13 +1174,15 @@ namespace ExxoAvalonOrigins
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+2 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "-2 defense")
                         {
-                            isModifier = false
+                            isModifier = true,
+                            isModifierBad = true
                         });
                         tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "Stink potion effect")
                         {
-                            isModifier = false
+                            isModifier = true,
+                            isModifierBad = true
                         });
                     }
                 }
@@ -1231,7 +1234,8 @@ namespace ExxoAvalonOrigins
                     {
                         tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "-5% damage")
                         {
-                            isModifier = false
+                            isModifier = true,
+                            isModifierBad = true
                         });
                     }
                 }
@@ -1307,7 +1311,8 @@ namespace ExxoAvalonOrigins
                         });
                         tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "-2% melee speed")
                         {
-                            isModifier = true
+                            isModifier = true,
+                            isModifierBad = true
                         });
                     }
                 }
