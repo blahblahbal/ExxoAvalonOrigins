@@ -592,8 +592,9 @@ IL_162:
                 else
                 {
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(npc.FullName + TownDeathMSG(npc.type)), new Color(178, 0, 90));
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1);
-                    npc.NPCLoot();
+                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, 100000);
+                    //NetMessage.SendData(MessageID.SyncNPC)
+                    //npc.NPCLoot();
                     Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 return false;
@@ -820,6 +821,10 @@ IL_162:
                 if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && stoppedArmageddon && !ExxoAvalonOriginsWorld.downedMechasting)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
+                }
+                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.ContagionToken>());
                 }
             }
             
@@ -1345,7 +1350,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GoldenShield>(), 1, false, -1, false);
             }
-            if (npc.boss && Main.rand.Next(7) == 0)
+            if (npc.boss && Main.rand.Next(7) == 0 && !Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StaminaCrystal>(), 1, false, 0, false);
             }

@@ -34,6 +34,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             player.TryGettingDevArmor();
 
+            if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.DarkStarHeart>());
+            }
             int drop = Main.rand.Next(5);
             if (drop == 0)
             {
@@ -49,6 +53,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
             }
             player.QuickSpawnItem(ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56));
             player.QuickSpawnItem(ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 26));
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.WallofSteel>();

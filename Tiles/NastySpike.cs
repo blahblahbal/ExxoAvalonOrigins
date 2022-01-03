@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +18,10 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			AddMapEntry(new Color(89, 69, 53), LanguageManager.Instance.GetText("Nasty Spike"));
 			Main.tileSolid[Type] = true;
-			drop = mod.ItemType("NastySpike");
+            drop = ModContent.ItemType<Items.Placeable.Tile.NastySpike>();
             dustType = DustID.ScourgeOfTheCorruptor;
+            soundType = SoundID.Tink;
+            soundStyle = 1;
         }
 	}
 }

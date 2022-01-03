@@ -36,6 +36,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
             player.QuickSpawnItem(ItemID.BottledHoney, Main.rand.Next(5, 16));
             if (Main.rand.Next(4) == 0) player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(20, 31));
             if (Main.rand.Next(7) == 0) player.QuickSpawnItem(ModContent.ItemType<Items.Vanity.KingStingMask>());
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.KingSting>();

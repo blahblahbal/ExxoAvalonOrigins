@@ -40,6 +40,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
             else if (rand == 2) player.QuickSpawnItem(ModContent.ItemType<Weapons.Ranged.QuadroCannon>());
             else if (rand == 3) player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.MagmafrostBolt>());
             else if (rand == 4) player.QuickSpawnItem(ModContent.ItemType<Weapons.Summon.ReflectorStaff>());
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.DragonLordHead>();

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,14 +9,14 @@ namespace ExxoAvalonOrigins.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Badge of Baceria");
-            Tooltip.SetDefault("Once hit the next time you are struck the attacker will take damage.");
+            DisplayName.SetDefault("Badge of Bacteria");
+            Tooltip.SetDefault("Reduces damage taken for a short time after being hit\nAttackers also take damage for a short time after you are hit");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/BadgeOfBacteria");
-            item.rare = -12;
+            item.rare = 2;
             item.width = dims.Width;
             item.accessory = true;
             item.value = Item.sellPrice(0, 1, 0, 0);

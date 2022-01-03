@@ -883,9 +883,12 @@ namespace ExxoAvalonOrigins
         }
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
-            if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag)
+            if (context == "bossBag")
             {
-
+                if (Main.rand.Next(4) == 0)
+                {
+                    player.QuickSpawnItem(ModContent.ItemType<StaminaCrystal>());
+                }
             }
             if (context == "bossBag" && arg == ItemID.GolemBossBag)
             {

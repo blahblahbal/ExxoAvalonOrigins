@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +18,10 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			AddMapEntry((Color.Indigo), LanguageManager.Instance.GetText("Demon Spikescale"));
 			Main.tileSolid[Type] = true;
-			drop = mod.ItemType("DemonSpikescale");
+            drop = ModContent.ItemType<Items.Placeable.Tile.DemonSpikeScale>();
             dustType = DustID.CorruptionThorns;
-		}
+            soundType = SoundID.Tink;
+            soundStyle = 1;
+        }
 	}
 }

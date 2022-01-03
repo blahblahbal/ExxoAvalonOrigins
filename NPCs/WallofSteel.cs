@@ -550,7 +550,7 @@ namespace ExxoAvalonOrigins.NPCs
                 //{
                 //    if (Main.player[i].active) numplayers++;
                 //}
-                npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DarkStarHeart>());
+                //npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DarkStarHeart>());
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().InitiateSuperHardmode();
             }
             if (Main.rand.Next(10) == 0)

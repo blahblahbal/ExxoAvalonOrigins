@@ -88,6 +88,45 @@ namespace ExxoAvalonOrigins.World.Passes
                     ExxoAvalonOriginsWorld.rhodiumOre.GetTile(), //Tile to spawn
                     false, 0f, 0f, false, true); //last input overrides existing tiles
             }
+            #region motherloads
+            if (WorldGen.genRand.Next(3) == 0)
+            {
+                // heartstone
+                int i6 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                double stuff;
+                stuff = Main.rockLayer - 75f;
+                int j6 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
+                WorldGen.OreRunner(i6, j6, (double)WorldGen.genRand.Next(20, 29), WorldGen.genRand.Next(20, 29), (ushort)ModContent.TileType<Tiles.Heartstone>());
+            }
+            for (int asdfasdf = 0; asdfasdf < 2; asdfasdf++)
+            {
+                // copper
+                int i6 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                double stuff;
+                stuff = Main.rockLayer - 75f;
+                int j6 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
+                WorldGen.OreRunner(i6, j6, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.CopperTierOre);
+
+                // iron
+                int i3 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                int j3 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
+                WorldGen.OreRunner(i3, j3, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.IronTierOre);
+
+                // silver
+                int i4 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                int j4 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
+                WorldGen.OreRunner(i4, j4, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.SilverTierOre);
+
+                // gold
+                int i5 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                int j5 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
+                WorldGen.OreRunner(i5, j5, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.GoldTierOre);
+                // rhodium/osmium
+                int i7 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                int j7 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
+                WorldGen.OreRunner(i7, j7, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), (ushort)ExxoAvalonOriginsWorld.rhodiumOre.GetTile());
+            }
+            #endregion motherloads
             for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 2E-05); i++)
             {
                 var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);

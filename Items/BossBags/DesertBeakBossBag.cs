@@ -34,14 +34,18 @@ namespace ExxoAvalonOrigins.Items.BossBags
             //player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ItemID.SandBlock, Main.rand.Next(22, 55));
-            player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4));
+            player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(6, 11));
             if (Main.rand.Next(10) <= 5)
             {
-                player.QuickSpawnItem(ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26));   
+                player.QuickSpawnItem(ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26));
             }
             if (Main.rand.Next(3) == 0)
             {
                 player.QuickSpawnItem(ModContent.ItemType<TomeoftheDistantPast>(), 1);
+            }
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
             }
         }
 

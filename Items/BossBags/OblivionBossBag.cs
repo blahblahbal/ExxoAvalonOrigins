@@ -49,6 +49,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
                 player.QuickSpawnItem(ModContent.ItemType<VictoryPiece>(), 2);
             }
             player.QuickSpawnItem(ModContent.ItemType<OblivionOre>(), Main.rand.Next(100, 201));
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.AncientOblivionHead1>();

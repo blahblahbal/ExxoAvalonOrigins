@@ -48,6 +48,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
                 player.QuickSpawnItem(ModContent.ItemType<EtherealHeart>());
             }
             player.QuickSpawnItem(ModContent.ItemType<GhostintheMachine>(), Main.rand.Next(3, 6));
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.Phantasm>();

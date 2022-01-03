@@ -2,22 +2,23 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Material
+namespace ExxoAvalonOrigins.Items.Tokens
 {
-	class SpikedBlastShell : ModItem
+	class ContagionToken : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Spiked Blast Shell");
+			DisplayName.SetDefault("Contagion Token");
+            Tooltip.SetDefault("Used to make things\nGathered in the Contagion");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Purple;
 			item.width = dims.Width;
-			item.value = 5000;
+            item.rare = ItemRarityID.Blue;
 			item.maxStack = 999;
+			item.value = 0;
 			item.height = dims.Height;
 		}
 	}

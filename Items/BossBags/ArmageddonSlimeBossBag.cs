@@ -1,4 +1,5 @@
-﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
+﻿using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,6 +34,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
             player.TryGettingDevArmor();
 
             player.QuickSpawnItem(ModContent.ItemType<DarkMatterSoilBlock>(), Main.rand.Next(100, 210));
+            if (Main.rand.Next(4) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<StaminaCrystal>());
+            }
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.ArmageddonSlime>();

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using ExxoAvalonOrigins.Items;
@@ -1755,8 +1755,8 @@ namespace ExxoAvalonOrigins
             }
 			if (player.whoAmI == Main.myPlayer && bOfBacteria)
 			{
-			    int time = 150;
-				player.AddBuff(ModContent.BuffType<BacteriaEndurence>(), time, true);
+			    int time = 120;
+				player.AddBuff(ModContent.BuffType<BacteriaEndurance>(), time, true);
 			}
         }
 
