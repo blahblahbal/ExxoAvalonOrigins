@@ -905,6 +905,29 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
+            Item tempItem = new Item();
+            tempItem.netDefaults(item.netID);
+            tempItem = tempItem.CloneWithModdedDataFrom(item);
+            float kbDiff = 0f;
+            if (item.prefix == PrefixID.Superior || item.prefix == PrefixID.Savage || item.prefix == PrefixID.Bulky ||
+                item.prefix == PrefixID.Taboo || item.prefix == PrefixID.Celestial || item.prefix == ModContent.PrefixType<Horrific>()) kbDiff = 0.1f;
+            else if (item.prefix == PrefixID.Forceful || item.prefix == PrefixID.Strong || item.prefix == PrefixID.Unpleasant ||
+                item.prefix == PrefixID.Godly || item.prefix == PrefixID.Heavy || item.prefix == PrefixID.Legendary ||
+                item.prefix == PrefixID.Intimidating || item.prefix == PrefixID.Staunch || item.prefix == PrefixID.Unreal ||
+                item.prefix == PrefixID.Furious || item.prefix == PrefixID.Mythical) kbDiff = 0.15f;
+            else if (item.prefix == PrefixID.Broken || item.prefix == PrefixID.Weak || item.prefix == PrefixID.Shameful ||
+                item.prefix == PrefixID.Awkward) kbDiff = -0.2f;
+            else if (item.prefix == PrefixID.Nasty || item.prefix == PrefixID.Ruthless || item.prefix == PrefixID.Unhappy ||
+                item.prefix == PrefixID.Light || item.prefix == PrefixID.Awful || item.prefix == PrefixID.Deranged ||
+                item.prefix == ModContent.PrefixType<Excited>()) kbDiff = -0.1f;
+            else if (item.prefix == PrefixID.Shoddy || item.prefix == PrefixID.Terrible) kbDiff = -0.15f;
+            else if (item.prefix == PrefixID.Deadly || item.prefix == PrefixID.Masterful) kbDiff = 0.05f;
+            else if (item.prefix == ModContent.PrefixType<Fantastic>() || item.prefix == ModContent.PrefixType<Awestruck>() ||
+                item.prefix == ModContent.PrefixType<Phantasmal>()) kbDiff = 0.2f;
+            else if (item.prefix == ModContent.PrefixType<Drunken>() || item.prefix == ModContent.PrefixType<Hectic>()) kbDiff = -0.07f;
+            else if (item.prefix == ModContent.PrefixType<Stupid>()) kbDiff = 0.16f;
+            item.knockBack = tempItem.knockBack * (1 + kbDiff);
+            item.knockBack *= player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bonusKB;
             if (herbSeeds.Contains(item.type))
             {
                 Vector2 mousePosition = Main.MouseWorld;
@@ -1045,6 +1068,14 @@ namespace ExxoAvalonOrigins
             }
             return base.UseItem(item, player);
         }
+        public bool IsArmor(Item item)
+        {
+            if (item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1)
+            {
+                return !item.vanity;
+            }
+            return false;
+        }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");
@@ -1097,20 +1128,8 @@ namespace ExxoAvalonOrigins
                     tooltipLine.text = "Lunatic Cultist Trophy";
                 }
             }
-            if (item.accessory && !item.social)
+            if (IsArmor(item) && !item.social)
             {
-                if (item.prefix == ModContent.PrefixType<Magical>())
-                {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
-                        && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
-                    if (index != -1)
-                    {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+40 mana")
-                        {
-                            isModifier = true
-                        });
-                    }
-                }
                 if (item.prefix == ModContent.PrefixType<Fluidic>())
                 {
                     int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
@@ -1313,6 +1332,21 @@ namespace ExxoAvalonOrigins
                         {
                             isModifier = true,
                             isModifierBad = true
+                        });
+                    }
+                }
+            }
+            if (item.accessory && !item.social)
+            {
+                if (item.prefix == ModContent.PrefixType<Magical>())
+                {
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                        && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
+                    if (index != -1)
+                    {
+                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+40 mana")
+                        {
+                            isModifier = true
                         });
                     }
                 }

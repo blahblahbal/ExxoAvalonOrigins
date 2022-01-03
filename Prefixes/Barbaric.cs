@@ -32,7 +32,8 @@ namespace ExxoAvalonOrigins.Prefixes
         public override void UpdateEquip(Player player)
 		{
 			player.allDamage += 0.04f;
-			player.inventory[player.selectedItem].knockBack += 0.06f;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bonusKB = 1.06f;
+			//player.inventory[player.selectedItem].knockBack += 0.06f;
 		}
 	}
 }

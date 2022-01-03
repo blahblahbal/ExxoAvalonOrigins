@@ -305,6 +305,7 @@ namespace ExxoAvalonOrigins
         public int caesiumTimer;
         public bool cloudGloves;
         public bool crystalEdge;
+        public float bonusKB = 1f;
         // Adv Buffs
         public bool advAmmoBuff;
 
@@ -408,6 +409,7 @@ namespace ExxoAvalonOrigins
             iceGolem = false;
             caesiumPoison = false;
             cloudGloves = false;
+            bonusKB = 1f;
 
             if (shmAcc)
             {
@@ -1780,6 +1782,7 @@ namespace ExxoAvalonOrigins
                 ArmorPrefix prefix;
                 if ((prefix = ModPrefix.GetPrefix(player.armor[i].prefix) as ArmorPrefix) != null)
                 {
+                    //int kb = prefix.PreUpdateEquip(player);
                     prefix.UpdateEquip(player);
                 }
             }
