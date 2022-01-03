@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +35,12 @@ namespace ExxoAvalonOrigins.NPCs
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
         }
-
-		public override void NPCLoot()
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.35f);
+            npc.damage = (int)(npc.damage * 0.5f);
+        }
+        public override void NPCLoot()
 		{
 			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bomb, Main.rand.Next(10, 16), false, 0, false);
         }

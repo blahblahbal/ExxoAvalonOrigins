@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
             npc.damage = (int)(npc.damage * 0.55f);
         }
         public override void NPCLoot()
@@ -48,7 +48,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Phantoplasm>(), 1, false, 0, false);
             }
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return Main.hardMode && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && spawnInfo.player.ZoneDungeon ? 0.2f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
         public override void AI()
         {
             npc.TargetClosest(true);

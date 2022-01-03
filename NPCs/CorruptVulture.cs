@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.5f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.5f);
             npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void NPCLoot()

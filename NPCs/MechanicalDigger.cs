@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
             npc.damage = (int)(npc.damage * 0.55f);
         }
 
@@ -99,7 +99,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
             npc.damage = (int)(npc.damage * 0.55f);
         }
     }
@@ -145,7 +145,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
             npc.damage = (int)(npc.damage * 0.55f);
         }
 

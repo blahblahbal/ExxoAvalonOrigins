@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
+            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
             npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void FindFrame(int frameHeight)
@@ -84,13 +84,36 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void NPCLoot()
         {
+
             if (Main.rand.Next(18) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodstainedHelmet>(), 1, false, 0, false);
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodstainedHelmet>(), 1, false, 0, false);
+                        break;
+                    case 1:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Vanity.BloodstainedChestplate>(), 1, false, 0, false);
+                        break;
+                    case 2:
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Vanity.BloodstainedGreaves>(), 1, false, 0, false);
+                        break;
+                }
             }
             if (Main.rand.Next(12) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Melee.MinersSword>(), 1, false,-1, false);
+            }
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FallenHeroGore1"), 0.9f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FallenHeroGore2"), 0.9f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FallenHeroGore2"), 0.9f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FallenHeroGore3"), 0.9f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/FallenHeroGore3"), 0.9f);
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

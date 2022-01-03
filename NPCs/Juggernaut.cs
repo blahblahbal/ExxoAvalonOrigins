@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +52,6 @@ namespace ExxoAvalonOrigins.NPCs
             else if (Main.netMode == NetmodeID.Server)
             {
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has been defeated!"), new Color(175, 75, 255));
-                //NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("A Juggernaut has been defeated!"), 255, 175f, 75f, 255f, 0);
             }
         }
 
