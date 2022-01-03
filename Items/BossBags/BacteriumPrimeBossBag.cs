@@ -1,5 +1,6 @@
-﻿using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
+using ExxoAvalonOrigins.Items.Accessories;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,6 +36,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
 
             player.QuickSpawnItem(ModContent.ItemType<BacciliteOre>(), Main.rand.Next(15, 41) + Main.rand.Next(15, 41));
             player.QuickSpawnItem(ModContent.ItemType<Booger>(), Main.rand.Next(10, 20));
+			player.QuickSpawnItem(ModContent.ItemType<BadgeOfBacteria>());
         }
 
         public override int BossBagNPC => ModContent.NPCType<NPCs.BacteriumPrime>();

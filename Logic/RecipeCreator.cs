@@ -988,6 +988,13 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<GoldSwordNet>());
             recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthBroadsword>());
+            recipe.AddIngredient(ItemID.BugNet);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<BismuthSwordNet>());
+            recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<GoldSwordNet>());
@@ -998,6 +1005,13 @@ namespace ExxoAvalonOrigins.Logic
 			
 			recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<PlatinumSwordNet>());
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<ExcaliburNet>());
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthSwordNet>());
             recipe.AddIngredient(ItemID.HallowedBar, 10);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ExcaliburNet>());
@@ -2505,6 +2519,34 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bomb, 2);
             recipe.AddIngredient(ItemID.SandBlock, 30);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<SandBomb>(), 2);
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Bomb, 2);
+            recipe.AddIngredient(ItemID.EbonsandBlock, 30);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<EbonsandBomb>(), 2);
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Bomb, 2);
+            recipe.AddIngredient(ItemID.CrimsandBlock, 30);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<CrimsandBomb>(), 2);
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Bomb, 2);
+            recipe.AddIngredient(ItemID.PearlsandBlock, 30);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<PearlsandBomb>(), 2);
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Bomb, 2);
+            recipe.AddIngredient(ModContent.ItemType<SnotsandBlock>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<SandBomb>(), 2);
             recipe.AddRecipe();
@@ -4544,6 +4586,19 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<BismuthWatch>());
             recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 5);
+            recipe.AddIngredient(ItemID.Ruby);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<BismuthCrown>());
+            recipe.AddRecipe();
+			
+			recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthCrown>(), 1);
+            recipe.AddIngredient(ItemID.Gel, 20);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ItemID.SlimeCrown);
             // end Bismuth stuff
 
             // Iridium

@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Throw
 {
-	class SandBomb : ModItem
+	class PearlsandBomb : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sand Bomb");
-			Tooltip.SetDefault("An explosion of sand that will destroy tiles");
+			DisplayName.SetDefault("Pearlsand Bomb");
+			Tooltip.SetDefault("An explosion of pearlsand that will not destroy tiles");
 		}
 
 		public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.useTime = 25;
-			item.shoot = ModContent.ProjectileType<Projectiles.SandBomb>();
+			item.shoot = ModContent.ProjectileType<Projectiles.PearlsandBomb>();
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.buyPrice(0, 0, 4, 0);
 			item.useAnimation = 25;

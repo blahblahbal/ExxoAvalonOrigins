@@ -9,6 +9,7 @@ using ExxoAvalonOrigins.Items.Weapons.Melee;
 using ExxoAvalonOrigins.Logic;
 using ExxoAvalonOrigins.Prefixes;
 using ExxoAvalonOrigins.Projectiles;
+using ExxoAvalonOrigins.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -165,6 +166,7 @@ namespace ExxoAvalonOrigins
         public bool thunderBolt;
         public bool incDef;
         public bool regenStrike;
+		public bool bOfBacteria;
         public bool frontReflect = false;
         public bool slimeBand;
         public bool defDebuff;
@@ -992,7 +994,7 @@ namespace ExxoAvalonOrigins
             {
                 target.AddBuff(BuffID.Confused, 540);
             }
-            if (player.inventory[player.selectedItem].type == ModContent.ItemType<GoldSwordNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<ExcaliburNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<Oblivionet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<PlatinumSwordNet>())
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<GoldSwordNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<ExcaliburNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<Oblivionet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<PlatinumSwordNet>() || player.inventory[player.selectedItem].type == ModContent.ItemType<BismuthSwordNet>())
             {
                 if (target.catchItem > 0)
                 {
@@ -1751,6 +1753,11 @@ namespace ExxoAvalonOrigins
                 player.statLife += hpHealed;
                 player.HealEffect(hpHealed, true);
             }
+			if (player.whoAmI == Main.myPlayer && bOfBacteria)
+			{
+			    int time = 150;
+				player.AddBuff(ModContent.BuffType<BacteriaEndurence>(), time, true);
+			}
         }
 
         public override void PostUpdateEquips()
