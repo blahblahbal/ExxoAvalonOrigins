@@ -85,13 +85,6 @@ namespace ExxoAvalonOrigins
             }
             return false;
         }
-        public void ChangeItemToAccessorySortOf(Item item)
-        {
-            if (IsArmor(item) && !item.accessory)
-            {
-                item.accessory = true;
-            }
-        }
 
         public override void OnCraft(Item item, Recipe recipe)
         {
@@ -147,13 +140,13 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-        public override bool CanEquipAccessory(Item item, Player player, int slot)
+        public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand)
         {
-            if (IsArmor(item))
+            if (IsArmor(item) && pre == -3)
             {
-                return false;
+                return true;
             }
-            return base.CanEquipAccessory(item, player, slot);
+            return base.PrefixChance(item, pre, rand);
         }
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
@@ -215,20 +208,6 @@ namespace ExxoAvalonOrigins
                         item.prefix = ModContent.PrefixType<Prefixes.Slimy>();
                         break;
                 }
-            }
-        }
-        public override void UpdateEquip(Item item, Player player)
-        {
-            if (item.type != 0)
-            {
-                ChangeItemToAccessorySortOf(item);
-            }
-        }
-        public override void UpdateInventory(Item item, Player player)
-        {
-            if (item.type != 0)
-            {
-                ChangeItemToAccessorySortOf(item);
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

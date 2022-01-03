@@ -868,18 +868,6 @@ namespace ExxoAvalonOrigins
             {
                 item.notAmmo = true;
             }
-            if (IsArmor(item))
-            {
-                item.accessory = true;
-            }
-        }
-        public bool IsArmor(Item item)
-        {
-            if (item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1)
-            {
-                return !item.vanity;
-            }
-            return false;
         }
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
