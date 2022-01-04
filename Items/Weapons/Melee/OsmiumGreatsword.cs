@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,5 +30,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.height = dims.Height;
             item.UseSound = SoundID.Item1;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OsmiumBar>(), 14);
+            recipe.AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 3);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

@@ -885,38 +885,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BlueBrick, 50);
-            recipe.AddIngredient(ItemID.GoldenKey, 2);
-            recipe.AddIngredient(ItemID.Bone, 20);
-            recipe.AddTile(TileID.BoneWelder);
-            recipe.SetResult(ModContent.ItemType<BlueDungeonWand>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GreenBrick, 50);
-            recipe.AddIngredient(ItemID.GoldenKey, 2);
-            recipe.AddIngredient(ItemID.Bone, 20);
-            recipe.AddTile(TileID.BoneWelder);
-            recipe.SetResult(ModContent.ItemType<GreenDungeonWand>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PinkBrick, 50);
-            recipe.AddIngredient(ItemID.GoldenKey, 2);
-            recipe.AddIngredient(ItemID.Bone, 20);
-            recipe.AddTile(TileID.BoneWelder);
-            recipe.SetResult(ModContent.ItemType<PinkDungeonWand>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OrangeBrick>(), 50);
-            recipe.AddIngredient(ItemID.GoldenKey, 2);
-            recipe.AddIngredient(ItemID.Bone, 20);
-            recipe.AddTile(TileID.BoneWelder);
-            recipe.SetResult(ModContent.ItemType<OrangeDungeonWand>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BlueBrick);
             recipe.AddTile(TileID.BoneWelder);
             recipe.SetResult(ItemID.BlueBrickWall, 4);
@@ -935,158 +903,37 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Robe);
-            recipe.AddIngredient(ModContent.ItemType<Tourmaline>(), 10);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(ModContent.ItemType<TourmalineRobe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Robe);
-            recipe.AddIngredient(ModContent.ItemType<Peridot>(), 10);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(ModContent.ItemType<PeridotRobe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Robe);
-            recipe.AddIngredient(ModContent.ItemType<Zircon>(), 10);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(ModContent.ItemType<ZirconRobe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BlueLihzahrdBrick>(), 25);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<BlueLihzahrdStatue>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SilverBar, 5);
-            recipe.AddIngredient(ItemID.Blowpipe);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ReinforcedBlowpipe>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TungstenBar, 5);
-            recipe.AddIngredient(ItemID.Blowpipe);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ReinforcedBlowpipe>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OsmiumOre>(), 4);
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<OsmiumBar>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OsmiumBar>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<OsmiumHelmet>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OsmiumBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 6);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<OsmiumJerkin>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OsmiumBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<OsmiumTreads>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OsmiumBar>(), 13);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<OsmiumPickaxe>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OsmiumBar>(), 14);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<OsmiumGreatsword>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumOre>(), 4);
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<RhodiumBar>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumBar>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<RhodiumHeadgear>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 6);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<RhodiumPlateMail>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<RhodiumGreaves>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumBar>(), 13);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<RhodiumPickaxe>());
-            recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumBar>(), 14);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<RhodiumGreatsword>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RhodiumBar>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<DesertFeather>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<RhodiumHamaxe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<FleshCap>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 16);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<FleshWrappings>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<FleshPants>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 14);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.HungryStaff>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.CrystalBall);
@@ -1103,11 +950,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Cloud);
-            recipe.SetResult(ItemID.RainCloud);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<LivingLightningBlock>(), 80);
             recipe.AddIngredient(ItemID.Cloud, 50);
             recipe.AddIngredient(ItemID.RainCloud, 80);
@@ -1116,130 +958,10 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HallowedBar, 14);
-            recipe.AddIngredient(ItemID.Gel, 100);
-            recipe.AddIngredient(ItemID.SoulofLight, 20);
-            recipe.AddIngredient(ItemID.SoulofNight, 5);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.GastropodStaff>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PlatinumOre);
             recipe.AddIngredient(ItemID.Cloud);
             recipe.AddTile(TileID.Furnaces);
             recipe.SetResult(ModContent.ItemType<MoonplateBlock>(), 2);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteOre>(), 4);
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<BacciliteBar>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ViruthornHelmet>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ViruthornScalemail>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ViruthornGreaves>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<TheCell>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<Snotsabre>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 12);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 6);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<GoldminePickaxe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<AxeofSickness>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 11);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<MucusHammer>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 9);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<Wheezebow>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Zircon>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 8);
-            recipe.AddIngredient(ModContent.ItemType<Booger>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ZirconStaff>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddIngredient(ModContent.ItemType<Booger>());
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<NastySpike>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Tourmaline>(), 15);
-            recipe.AddIngredient(ItemID.DemoniteBar, 20);
-            recipe.AddIngredient(ItemID.ShadowScale, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<TourmalineStaff>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddIngredient(ItemID.ShadowScale);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<DemonSpikeScale>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Peridot>(), 15);
-            recipe.AddIngredient(ItemID.CrimtaneBar, 20);
-            recipe.AddIngredient(ItemID.TissueSample, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<PeridotStaff>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddIngredient(ItemID.TissueSample);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BloodiedSpike>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -1373,18 +1095,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(ModContent.ItemType<OnyxHook>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Tourmaline>(), 15);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<LargeTourmaline>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Peridot>(), 15);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<LargePeridot>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

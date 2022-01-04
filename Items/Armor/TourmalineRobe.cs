@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +26,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
             return body.type == ModContent.ItemType<TourmalineRobe>() && (head.type == ItemID.WizardHat || head.type == ItemID.MagicHat);
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Robe);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Tourmaline>(), 10);
+            recipe.AddTile(TileID.Loom);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
         public override void UpdateArmorSet(Player player)
         {

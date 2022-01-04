@@ -26,7 +26,16 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
-        
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BlueBrick, 50);
+            recipe.AddIngredient(ItemID.GoldenKey, 2);
+            recipe.AddIngredient(ItemID.Bone, 20);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override bool UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,8 +23,16 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 0, 54, 0);
 			item.height = dims.Height;
 		}
-
-		public override bool IsArmorSet(Item head, Item body, Item legs)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 15);
+            recipe.AddIngredient(ModContent.ItemType<Material.Booger>(), 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<ViruthornScalemail>() && legs.type == ModContent.ItemType<ViruthornGreaves>();
 		}

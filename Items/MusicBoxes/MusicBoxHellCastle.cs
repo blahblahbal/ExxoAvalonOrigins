@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.MusicBoxes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Music Box (Hell Castle)");
+            DisplayName.SetDefault("Music Box (Hellcastle)");
         }
 
         public override void SetDefaults()

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,8 +23,16 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 1, 20, 0);
 			item.height = dims.Height;
 		}
-
-		public override void UpdateEquip(Player player)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OsmiumBar>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 6);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void UpdateEquip(Player player)
 		{
 			player.meleeDamage += 0.15f;
 			player.meleeSpeed += 0.15f;

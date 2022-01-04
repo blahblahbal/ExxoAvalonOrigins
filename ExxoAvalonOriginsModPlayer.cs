@@ -1475,17 +1475,17 @@ namespace ExxoAvalonOrigins
                         ownedLargeGems[player.gem] = true;
                     }
                     // Modded gems
-                    else if (player.inventory[num27].type == ModContent.ItemType<LargeZircon>())
+                    else if (player.inventory[num27].type == ModContent.ItemType<Items.Other.LargeZircon>())
                     {
                         player.gem = 7;
                         ownedLargeGems[player.gem] = true;
                     }
-                    else if (player.inventory[num27].type == ModContent.ItemType<LargeTourmaline>())
+                    else if (player.inventory[num27].type == ModContent.ItemType<Items.Other.LargeTourmaline>())
                     {
                         player.gem = 8;
                         ownedLargeGems[player.gem] = true;
                     }
-                    else if (player.inventory[num27].type == ModContent.ItemType<LargePeridot>())
+                    else if (player.inventory[num27].type == ModContent.ItemType<Items.Other.LargePeridot>())
                     {
                         player.gem = 9;
                         ownedLargeGems[player.gem] = true;
@@ -1677,17 +1677,17 @@ namespace ExxoAvalonOrigins
                                               switch (num30)
                                               {
                                                   case 7:
-                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeZircon>()).GetTexture();
+                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeZircon>()).GetTexture();
                                                       num31 *= 1.5f;
                                                       break;
 
                                                   case 8:
-                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargeTourmaline>()).GetTexture();
+                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeTourmaline>()).GetTexture();
                                                       num31 *= 1.5f;
                                                       break;
 
                                                   case 9:
-                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<LargePeridot>()).GetTexture();
+                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargePeridot>()).GetTexture();
                                                       num31 *= 1.5f;
                                                       break;
                                               }
@@ -1722,9 +1722,9 @@ namespace ExxoAvalonOrigins
                     for (int i = 0; i < 59; i++)
                     {
                         if (player.inventory[i].stack > 0 &&
-                            (player.inventory[i].type == ModContent.ItemType<LargeZircon>() ||
-                            player.inventory[i].type == ModContent.ItemType<LargeTourmaline>() ||
-                            player.inventory[i].type == ModContent.ItemType<LargePeridot>()))
+                            (player.inventory[i].type == ModContent.ItemType<Items.Other.LargeZircon>() ||
+                            player.inventory[i].type == ModContent.ItemType<Items.Other.LargeTourmaline>() ||
+                            player.inventory[i].type == ModContent.ItemType<Items.Other.LargePeridot>()))
                         {
                             int num = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, player.inventory[i].type);
                             Main.item[num].netDefaults(player.inventory[i].netID);
@@ -2322,9 +2322,9 @@ namespace ExxoAvalonOrigins
             if (player.whoAmI == Main.myPlayer)
             {
                 if (
-                    player.trashItem.type == ModContent.ItemType<LargeZircon>() ||
-                    player.trashItem.type == ModContent.ItemType<LargeTourmaline>() ||
-                    player.trashItem.type == ModContent.ItemType<LargePeridot>()
+                    player.trashItem.type == ModContent.ItemType<Items.Other.LargeZircon>() ||
+                    player.trashItem.type == ModContent.ItemType<Items.Other.LargeTourmaline>() ||
+                    player.trashItem.type == ModContent.ItemType<Items.Other.LargePeridot>()
                 )
                 {
                     player.trashItem.SetDefaults();
