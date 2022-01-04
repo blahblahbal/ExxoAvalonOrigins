@@ -1369,11 +1369,11 @@ IL_162:
             }
             if (Main.hardMode && (Main.rand.Next(2500) == 0 || (Main.rand.Next(1250) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)) && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y > (Main.maxTilesY - 190) * 16f)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<UnderworldKey>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.UnderworldKey>(), 1, false, 0, false);
             }
             if (Main.hardMode && (Main.rand.Next(2000) == 0 || (Main.rand.Next(1000) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)) && Main.sandTiles > 50)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertKey>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.DesertKey>(), 1, false, 0, false);
             }
             if (Main.xMas && npc.lifeMax > 1 && npc.damage > 0 && !npc.friendly && npc.type != NPCID.Slimer && npc.value > 0f && Main.rand.Next(60) == 0)
             {
@@ -1461,7 +1461,7 @@ IL_162:
             if ((Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().ethHeart && Main.rand.Next(30) == 0) ||
                 (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem && Main.rand.Next(50) == 0 && npc.lifeMax > 5))
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PlatinumHeart>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.PlatinumHeart>(), 1, false, 0, false);
             }
 
             if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contaigon)

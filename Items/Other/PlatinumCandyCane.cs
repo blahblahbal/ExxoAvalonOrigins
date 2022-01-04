@@ -1,15 +1,15 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Consumables
+namespace ExxoAvalonOrigins.Items.Other
 {
-	class PlatinumHeart : ModItem
+	class PlatinumCandyCane : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Platinum Heart");
+			DisplayName.SetDefault("Platinum Candy Cane");
 		}
 
 		public override void SetDefaults()
@@ -18,7 +18,6 @@ namespace ExxoAvalonOrigins.Items.Consumables
 			item.width = dims.Width;
 			item.height = dims.Height;
 		}
-
         public override bool CanPickup(Player player)
         {
             return true;

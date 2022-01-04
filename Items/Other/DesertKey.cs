@@ -1,21 +1,21 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Material
+namespace ExxoAvalonOrigins.Items.Other
 {
-	class UnderworldKeyMold : ModItem
+	class DesertKey : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Underworld Key Mold");
-			Tooltip.SetDefault("Used for crafting an Underworld Key");
+			DisplayName.SetDefault("Desert Key");
+			Tooltip.SetDefault("Unlocks a Desert Chest in the dungeon");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Purple;
+			item.rare = ItemRarityID.Cyan;
 			item.width = dims.Width;
 			item.maxStack = 999;
 			item.height = dims.Height;
