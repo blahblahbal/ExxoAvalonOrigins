@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Clown Bomb");
-			Tooltip.SetDefault("An explosion that will not destroy tiles.");
+			Tooltip.SetDefault("An explosion that will not destroy tiles");
 		}
 
 		public override void SetDefaults()
