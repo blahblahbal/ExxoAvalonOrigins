@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -82,6 +82,9 @@ namespace ExxoAvalonOrigins
                     AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/UndergroundContagion"), ItemType("MusicBoxUndergroundContagion"), TileType("MusicBoxes"), 36 * 4);
                     AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics"), ItemType("MusicBoxTropics"), TileType("MusicBoxes"), 36 * 5);
                     AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Phantasm"), ItemType("MusicBoxPhantasm"), TileType("MusicBoxes"), 36 * 6);
+					//AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/DarkMatter"), ItemType("MusicBoxDarkMatter"), TileType("MusicBoxes"), 36 * 7);
+					AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hellcastle"), ItemType("MusicBoxHellCastle"), TileType("MusicBoxes"), 36 * 8);
+					AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/TuhrtlOutpost"), ItemType("MusicBoxTuhrtlOutpost"), TileType("MusicBoxes"), 36 * 9);
                 }
 
                 ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Texture2D[]
