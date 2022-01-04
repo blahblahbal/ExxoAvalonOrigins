@@ -23,6 +23,12 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Cloud);
+            recipe.needWater = true;
+            recipe.SetResult(ItemID.RainCloud);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LightsBane);
             recipe.AddIngredient(ItemID.Muramasa);
             recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,8 +23,15 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 1, 0, 0);
 			item.height = dims.Height;
 		}
-
-		public override void UpdateEquip(Player player)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.FleshyTendril>(), 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void UpdateEquip(Player player)
 		{
 			player.maxMinions += 2;
 		}

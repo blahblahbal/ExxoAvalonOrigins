@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,5 +33,15 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 			
             item.UseSound = SoundID.Item43;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Peridot>(), 15);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 20);
+            recipe.AddIngredient(ItemID.TissueSample, 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

@@ -31,8 +31,15 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
 			item.height = dims.Height;
             item.UseSound = SoundID.Item44;
         }
-
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.FleshyTendril>(), 14);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
 			ref float knockBack)
 		{
 			float posX = (float)Main.mouseX + Main.screenPosition.X;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,5 +32,15 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             item.value = Item.buyPrice(0, 3, 60, 0);
             item.UseSound = SoundID.Item43;
         }
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.Zircon>(), 15);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<Material.Booger>(), 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }
