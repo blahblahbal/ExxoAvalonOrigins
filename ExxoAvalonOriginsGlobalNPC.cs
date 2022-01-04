@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Armor;
@@ -13,6 +13,7 @@ using ExxoAvalonOrigins.Items.Vanity;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Melee;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using ExxoAvalonOrigins.Items.Weapons.Throw;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -1245,6 +1246,10 @@ IL_162:
             if ((npc.type == NPCID.Corruptor) && Main.rand.Next(3) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RottenEye>(), Main.rand.Next(2) + 1, false, 0, false);
+            }
+			if ((npc.type == NPCID.Clown) && Main.rand.Next(3) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ClownBomb>(), Main.rand.Next(5) + 1, false, 0, false);
             }
             if ((npc.type == NPCID.SeekerHead) && Main.rand.Next(3) == 0)
             {
