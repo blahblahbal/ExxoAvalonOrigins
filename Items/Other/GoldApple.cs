@@ -1,9 +1,9 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Consumables
+namespace ExxoAvalonOrigins.Items.Other
 {
 	class GoldApple : ModItem
 	{

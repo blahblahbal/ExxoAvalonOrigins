@@ -1,15 +1,15 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Material
+namespace ExxoAvalonOrigins.Items.Other
 {
-	class ContagionKey : ModItem
+	class ContagionKeyMold : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Contagion Key");
-			Tooltip.SetDefault("Opens a Contagion Chest in the Dungeon");
+			DisplayName.SetDefault("Contagion Key Mold");
+			Tooltip.SetDefault("Used for crafting a Contagion Key");
 		}
 
 		public override void SetDefaults()

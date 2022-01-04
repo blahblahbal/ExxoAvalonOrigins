@@ -32,32 +32,32 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TempleKey);
-            recipe.AddIngredient(ModContent.ItemType<UnderworldKeyMold>());
+            recipe.AddIngredient(ModContent.ItemType<Items.Other.UnderworldKeyMold>());
             recipe.AddIngredient(ItemID.SoulofFright, 5);
             recipe.AddIngredient(ItemID.SoulofMight, 5);
             recipe.AddIngredient(ItemID.SoulofSight, 5);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<UnderworldKey>());
+            recipe.SetResult(ModContent.ItemType<Items.Other.UnderworldKey>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TempleKey);
-            recipe.AddIngredient(ModContent.ItemType<DesertKeyMold>());
+            recipe.AddIngredient(ModContent.ItemType<Items.Other.DesertKeyMold>());
             recipe.AddIngredient(ItemID.SoulofFright, 5);
             recipe.AddIngredient(ItemID.SoulofMight, 5);
             recipe.AddIngredient(ItemID.SoulofSight, 5);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<DesertKey>());
+            recipe.SetResult(ModContent.ItemType<Items.Other.DesertKey>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TempleKey);
-            recipe.AddIngredient(ModContent.ItemType<ContagionKeyMold>());
+            recipe.AddIngredient(ModContent.ItemType<Items.Other.ContagionKeyMold>());
             recipe.AddIngredient(ItemID.SoulofFright, 5);
             recipe.AddIngredient(ItemID.SoulofMight, 5);
             recipe.AddIngredient(ItemID.SoulofSight, 5);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<ContagionKey>());
+            recipe.SetResult(ModContent.ItemType<Items.Other.ContagionKey>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
