@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hallowed Helmet");
+			DisplayName.SetDefault("Hallowed Crown");
 			Tooltip.SetDefault("12% increased minion damage and knockback\nIncreases your max number of minions by 2");
 		}
 
