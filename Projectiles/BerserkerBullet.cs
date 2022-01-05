@@ -35,7 +35,6 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void AI()
         {
-            projectile.ai[0] += 1f;
             if (projectile.alpha < 170)
             {
                 for (var num26 = 0; num26 < 10; num26++)
@@ -68,9 +67,9 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             var projPosStoredX = projectile.position.X;
             var projPosStoredY = projectile.position.Y;
-            var num32 = 300f;
+            var distance = 300f;
             var flag = false;
-            var num33 = 0;
+            var npcArrayIndexStored = 0;
             if (projectile.ai[1] == 0f)
             {
                 for (var npcArrayIndex = 0; npcArrayIndex < 200; npcArrayIndex++)
@@ -80,35 +79,35 @@ namespace ExxoAvalonOrigins.Projectiles
                         var npcCenterX = Main.npc[npcArrayIndex].position.X + Main.npc[npcArrayIndex].width / 2;
                         var npcCenterY = Main.npc[npcArrayIndex].position.Y + Main.npc[npcArrayIndex].height / 2;
                         var num37 = Math.Abs(projectile.position.X + projectile.width / 2 - npcCenterX) + Math.Abs(projectile.position.Y + projectile.height / 2 - npcCenterY);
-                        if (num37 < num32 && Collision.CanHit(new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2), 1, 1, Main.npc[npcArrayIndex].position, Main.npc[npcArrayIndex].width, Main.npc[npcArrayIndex].height))
+                        if (num37 < distance && Collision.CanHit(new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2), 1, 1, Main.npc[npcArrayIndex].position, Main.npc[npcArrayIndex].width, Main.npc[npcArrayIndex].height))
                         {
-                            num32 = num37;
+                            distance = num37;
                             projPosStoredX = npcCenterX;
                             projPosStoredY = npcCenterY;
                             flag = true;
-                            num33 = npcArrayIndex;
+                            npcArrayIndexStored = npcArrayIndex;
                         }
                     }
                 }
                 if (flag)
                 {
-                    projectile.ai[1] = num33 + 1;
+                    projectile.ai[1] = npcArrayIndexStored + 1;
                 }
                 flag = false;
             }
             if (projectile.ai[1] != 0f)
             {
-                var num38 = (int)(projectile.ai[1] - 1f);
-                if (Main.npc[num38].active)
+                var npcArrayIndexAgain = (int)(projectile.ai[1] - 1f);
+                if (Main.npc[npcArrayIndexAgain].active)
                 {
-                    var num39 = Main.npc[num38].position.X + Main.npc[num38].width / 2;
-                    var num40 = Main.npc[num38].position.Y + Main.npc[num38].height / 2;
-                    var num41 = Math.Abs(projectile.position.X + projectile.width / 2 - num39) + Math.Abs(projectile.position.Y + projectile.height / 2 - num40);
+                    var npcCenterX = Main.npc[npcArrayIndexAgain].position.X + Main.npc[npcArrayIndexAgain].width / 2;
+                    var npcCenterY = Main.npc[npcArrayIndexAgain].position.Y + Main.npc[npcArrayIndexAgain].height / 2;
+                    var num41 = Math.Abs(projectile.position.X + projectile.width / 2 - npcCenterX) + Math.Abs(projectile.position.Y + projectile.height / 2 - npcCenterY);
                     if (num41 < 1000f)
                     {
                         flag = true;
-                        projPosStoredX = Main.npc[num38].position.X + Main.npc[num38].width / 2;
-                        projPosStoredY = Main.npc[num38].position.Y + Main.npc[num38].height / 2;
+                        projPosStoredX = Main.npc[npcArrayIndexAgain].position.X + Main.npc[npcArrayIndexAgain].width / 2;
+                        projPosStoredY = Main.npc[npcArrayIndexAgain].position.Y + Main.npc[npcArrayIndexAgain].height / 2;
                     }
                 }
             }

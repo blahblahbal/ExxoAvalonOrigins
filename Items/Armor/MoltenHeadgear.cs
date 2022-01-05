@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             item.value = 30000;
 			item.height = dims.Height;
 		}
-        public override AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
             r.AddIngredient(ItemID.HellstoneBar, 10);

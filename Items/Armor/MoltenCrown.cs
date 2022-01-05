@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			return body.type == ItemID.MoltenBreastplate && legs.type == ItemID.MoltenGreaves;
 		}
-        public override AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
             r.AddIngredient(ItemID.HellstoneBar, 10);
