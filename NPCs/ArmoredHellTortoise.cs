@@ -53,7 +53,18 @@ namespace ExxoAvalonOrigins.NPCs
             npc.lifeMax = (int)(npc.lifeMax * 0.35f);
             npc.damage = (int)(npc.damage * 0.5f);
         }
-
+	public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ArmoredHellTortoiseGore1"), 0.9f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ArmoredHellTortoiseGore2"), 0.9f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ArmoredHellTortoiseGore3"), 0.9f);
+		Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ArmoredHellTortoiseGore3"), 0.9f);
+		Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ArmoredHellTortoiseGore3"), 0.9f);
+		Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/ArmoredHellTortoiseGore3"), 0.9f);
+            }
+        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && spawnInfo.player.ZoneUnderworldHeight ? 0.125f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
