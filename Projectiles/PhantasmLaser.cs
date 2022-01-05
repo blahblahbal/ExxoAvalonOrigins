@@ -72,10 +72,10 @@ namespace ExxoAvalonOrigins.Projectiles
                 laserColor = colorArray[2];
             }
 
-            spriteBatch.Draw(texture2D18, p.Center - Main.screenPosition, null, laserColor, projectile.rotation, texture2D18.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            num204 -= (texture2D18.Height / 2 + texture2D20.Height) * projectile.scale;
+            spriteBatch.Draw(texture2D19, p.Center - Main.screenPosition, null, laserColor, projectile.rotation, texture2D19.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            num204 -= (texture2D19.Height / 2 + texture2D20.Height) * projectile.scale;
             Vector2 center2 = p.Center;
-            center2 += projectile.velocity * projectile.scale * texture2D18.Height / 2f;
+            center2 += projectile.velocity * projectile.scale * texture2D19.Height / 2f;
             if (num204 > 0f)
             {
                 float num205 = 0f;
@@ -86,11 +86,11 @@ namespace ExxoAvalonOrigins.Projectiles
                     {
                         rectangle7.Height = (int)(num204 - num205);
                     }
-                    spriteBatch.Draw(texture2D19, center2 - Main.screenPosition, rectangle7, laserColor, projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), projectile.scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture2D18, center2 - Main.screenPosition, rectangle7, laserColor, projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), projectile.scale, SpriteEffects.None, 0f);
                     num205 += rectangle7.Height * projectile.scale;
                     center2 += projectile.velocity * rectangle7.Height * projectile.scale;
                     rectangle7.Y += 16;
-                    if (rectangle7.Y + rectangle7.Height > texture2D19.Height)
+                    if (rectangle7.Y + rectangle7.Height > texture2D18.Height)
                     {
                         rectangle7.Y = 0;
                     }

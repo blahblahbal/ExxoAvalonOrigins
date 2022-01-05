@@ -223,6 +223,7 @@ namespace ExxoAvalonOrigins
         public bool blahArmor;
         public bool shadowTele;
         public bool teleportV = false;
+        public bool tpStam = true;
         public int tpCD;
         public int astralCD;
         public int bubbleCD;
@@ -352,7 +353,9 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            bOfBacteria = false;
             crystalEdge = false;
+            tpStam = true;
             riftGoggles = false;
             trapImmune = false;
             undeadTalisman = false;
@@ -2098,7 +2101,7 @@ namespace ExxoAvalonOrigins
             }
             player.statDefense += defDebuffBonusDef; // outside of the if statement to remove extra defense
 
-            if (teleportV)
+            if (teleportV || tpStam)
             {
                 if (tpCD > 300)
                 {
@@ -2311,6 +2314,7 @@ namespace ExxoAvalonOrigins
         public override void PreUpdate()
         {
             WOSTongue();
+            tpStam = !teleportV;
             if (teleportV)
             {
                 teleportV = false;
@@ -2335,15 +2339,31 @@ namespace ExxoAvalonOrigins
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered || statStam >= 90) && tpCD >= 300)
+            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && tpStam && statStam >= 90 && tpCD >= 300)
             {
-                if (statStam >= 90 && !teleportV)
+                statStam -= 90;
+                tpCD = 0;
+                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>() &&
+                    Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != WallID.LihzahrdBrickUnsafe)
                 {
-                    statStam -= 90;
+                    for (int m = 0; m < 70; m++)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default, 1.1f);
+                    }
+                    player.position.X = Main.mouseX + Main.screenPosition.X;
+                    player.position.Y = Main.mouseY + Main.screenPosition.Y;
+                    for (int n = 0; n < 70; n++)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.1f);
+                    }
                 }
+            }
+            else if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
+            {
                 teleportVWasTriggered = false;
                 tpCD = 0;
-                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X), (int)(Main.mouseY + Main.screenPosition.Y)].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>() &&
+                    Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != WallID.LihzahrdBrickUnsafe)
                 {
                     for (int m = 0; m < 70; m++)
                     {
