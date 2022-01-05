@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,27 +66,27 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 projectile.alpha = 0;
             }
-            var num30 = projectile.position.X;
-            var num31 = projectile.position.Y;
+            var projPosStoredX = projectile.position.X;
+            var projPosStoredY = projectile.position.Y;
             var num32 = 300f;
             var flag = false;
             var num33 = 0;
             if (projectile.ai[1] == 0f)
             {
-                for (var num34 = 0; num34 < 200; num34++)
+                for (var npcArrayIndex = 0; npcArrayIndex < 200; npcArrayIndex++)
                 {
-                    if (Main.npc[num34].active && !Main.npc[num34].dontTakeDamage && !Main.npc[num34].friendly && Main.npc[num34].lifeMax > 5 && (projectile.ai[1] == 0f || projectile.ai[1] == num34 + 1))
+                    if (Main.npc[npcArrayIndex].active && !Main.npc[npcArrayIndex].dontTakeDamage && !Main.npc[npcArrayIndex].friendly && Main.npc[npcArrayIndex].lifeMax > 5 && (projectile.ai[1] == 0f || projectile.ai[1] == npcArrayIndex + 1))
                     {
-                        var num35 = Main.npc[num34].position.X + Main.npc[num34].width / 2;
-                        var num36 = Main.npc[num34].position.Y + Main.npc[num34].height / 2;
-                        var num37 = Math.Abs(projectile.position.X + projectile.width / 2 - num35) + Math.Abs(projectile.position.Y + projectile.height / 2 - num36);
-                        if (num37 < num32 && Collision.CanHit(new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2), 1, 1, Main.npc[num34].position, Main.npc[num34].width, Main.npc[num34].height))
+                        var npcCenterX = Main.npc[npcArrayIndex].position.X + Main.npc[npcArrayIndex].width / 2;
+                        var npcCenterY = Main.npc[npcArrayIndex].position.Y + Main.npc[npcArrayIndex].height / 2;
+                        var num37 = Math.Abs(projectile.position.X + projectile.width / 2 - npcCenterX) + Math.Abs(projectile.position.Y + projectile.height / 2 - npcCenterY);
+                        if (num37 < num32 && Collision.CanHit(new Vector2(projectile.position.X + projectile.width / 2, projectile.position.Y + projectile.height / 2), 1, 1, Main.npc[npcArrayIndex].position, Main.npc[npcArrayIndex].width, Main.npc[npcArrayIndex].height))
                         {
                             num32 = num37;
-                            num30 = num35;
-                            num31 = num36;
+                            projPosStoredX = npcCenterX;
+                            projPosStoredY = npcCenterY;
                             flag = true;
-                            num33 = num34;
+                            num33 = npcArrayIndex;
                         }
                     }
                 }
@@ -107,17 +107,17 @@ namespace ExxoAvalonOrigins.Projectiles
                     if (num41 < 1000f)
                     {
                         flag = true;
-                        num30 = Main.npc[num38].position.X + Main.npc[num38].width / 2;
-                        num31 = Main.npc[num38].position.Y + Main.npc[num38].height / 2;
+                        projPosStoredX = Main.npc[num38].position.X + Main.npc[num38].width / 2;
+                        projPosStoredY = Main.npc[num38].position.Y + Main.npc[num38].height / 2;
                     }
                 }
             }
             if (flag)
             {
                 var num42 = num29;
-                var vector = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
-                var num43 = num30 - vector.X;
-                var num44 = num31 - vector.Y;
+                var projCenter = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
+                var num43 = projPosStoredX - projCenter.X;
+                var num44 = projPosStoredY - projCenter.Y;
                 var num45 = (float)Math.Sqrt(num43 * num43 + num44 * num44);
                 num45 = num42 / num45;
                 num43 *= num45;
