@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Armor;
@@ -261,7 +261,7 @@ IL_162:
         /// Finds the closest NPC to the given position.
         /// </summary>
         /// <param name="pos">The origin position.</param>
-        /// <param name="dist">The desired distance for the method to find the NPC from.</param>
+        /// <param name="dist">The desired distance for the method to find the NPC from (in pixels).</param>
         /// <returns>Returns the int in the Main.npc[] array.</returns>
         public static int FindClosest(Vector2 pos, float dist)
         {
@@ -271,6 +271,29 @@ IL_162:
             {
                 NPC nPC = Main.npc[i];
                 if (nPC.active && !nPC.townNPC && nPC.lifeMax > 5 && Vector2.Distance(pos, nPC.Center) < num)
+                {
+                    num = Vector2.Distance(pos, nPC.Center);
+                    result = i;
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Finds the closest NPC to the given position, excluding the given index of the NPC array.
+        /// </summary>
+        /// <param name="pos">The origin position.</param>
+        /// <param name="dist">The desired distance for the method to find the NPC from (in pixels).</param>
+        /// <param name="indexToExclude">The index of the NPC array to exclude.</param>
+        /// <returns></returns>
+        public static int FindClosestExcludeAnIndex(Vector2 pos, float dist, int indexToExclude)
+        {
+            int result = -1;
+            float num = dist;
+            for (int i = 0; i < Main.npc.Length; i++)
+            {
+                NPC nPC = Main.npc[i];
+                if (nPC.active && !nPC.townNPC && nPC.lifeMax > 5 && Vector2.Distance(pos, nPC.Center) < num && nPC.whoAmI != indexToExclude)
                 {
                     num = Vector2.Distance(pos, nPC.Center);
                     result = i;

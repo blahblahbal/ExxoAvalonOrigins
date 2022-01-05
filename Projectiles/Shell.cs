@@ -26,6 +26,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.penetrate = -1;
             projectile.tileCollide = true;
             projectile.timeLeft = 900;
+            projectile.damage = 87;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

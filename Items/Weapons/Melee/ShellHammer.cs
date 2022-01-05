@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
                 float v = MathHelper.Clamp(velX, -7f, 7f);
                 if (v < 0 && v > -5f) v = -5f;
                 if (v > 0 && v < 5f) v = 5f;
-                Projectile.NewProjectile(player.position.X, player.position.Y, v, -4f, ModContent.ProjectileType<Projectiles.Shell>(), (int)(87 * player.meleeDamage), 6f);
+                Projectile.NewProjectile(player.position.X, player.position.Y, v, -4f, ModContent.ProjectileType<Projectiles.Shell>(), 87, 6f);
                 fireDelay = 90;
             }
         }
