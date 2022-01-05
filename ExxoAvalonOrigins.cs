@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,6 +45,7 @@ namespace ExxoAvalonOrigins
         public ModHotKey modeChangeHotkey;
         public ModHotKey astralHotkey;
         public ModHotKey minionGuidingHotkey;
+        public ModHotKey rocketJumpHotkey;
 
         // UI
 
@@ -141,6 +142,7 @@ namespace ExxoAvalonOrigins
                 modeChangeHotkey = RegisterHotKey("Change Modes", "N");
                 astralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
                 minionGuidingHotkey = RegisterHotKey("Ancient Minion Guiding", "Mouse2");
+                rocketJumpHotkey = RegisterHotKey("Stamina Rocket Jump", "C");
 
                 // UI
 

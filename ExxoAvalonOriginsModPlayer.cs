@@ -202,6 +202,7 @@ namespace ExxoAvalonOrigins
         public bool activateSprint;
         public bool activateSwim;
         public bool activateSlide;
+        public bool activateRocketJump;
         public bool stamDashKey;
         public bool quintJump;
         public bool shadowRing;
@@ -1260,7 +1261,7 @@ namespace ExxoAvalonOrigins
             {
                 Player.defaultItemGrabRange = 114;
             }
-
+           
             if (herbTotal < 250)
             {
                 herbTier = 0;
@@ -2334,19 +2335,26 @@ namespace ExxoAvalonOrigins
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
+            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered || statStam >= 90) && tpCD >= 300)
             {
+                if (statStam >= 90 && !teleportV)
+                {
+                    statStam -= 90;
+                }
                 teleportVWasTriggered = false;
                 tpCD = 0;
-                for (int m = 0; m < 70; m++)
+                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X), (int)(Main.mouseY + Main.screenPosition.Y)].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
                 {
-                    Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.1f);
-                }
-                player.position.X = Main.mouseX + Main.screenPosition.X;
-                player.position.Y = Main.mouseY + Main.screenPosition.Y;
-                for (int n = 0; n < 70; n++)
-                {
-                    Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.1f);
+                    for (int m = 0; m < 70; m++)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default, 1.1f);
+                    }
+                    player.position.X = Main.mouseX + Main.screenPosition.X;
+                    player.position.Y = Main.mouseY + Main.screenPosition.Y;
+                    for (int n = 0; n < 70; n++)
+                    {
+                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.1f);
+                    }
                 }
             }
             if (ExxoAvalonOrigins.mod.astralHotkey.JustPressed && astralProject)
@@ -2366,6 +2374,12 @@ namespace ExxoAvalonOrigins
                         player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
                     }
                 }
+            }
+
+            if (ExxoAvalonOrigins.mod.rocketJumpHotkey.JustPressed)
+            {
+                activateRocketJump = !activateRocketJump;
+                Main.NewText(!activateRocketJump ? "Rocket Jump Off" : "Rocket Jump On");
             }
 
             if (ExxoAvalonOrigins.mod.sprintHotkey.JustPressed)
@@ -2569,6 +2583,35 @@ namespace ExxoAvalonOrigins
         {
             //Main.NewText("PostUpdateRunSpeeds " + slimeBand.ToString());
             FloorVisualsAvalon(player.velocity.Y > player.gravity);
+            if (activateRocketJump)
+            {
+                if (player.controlUp && player.releaseUp && statStam >= 50)
+                {
+                    if (isOnGround())
+                    {
+                        float yDestination = player.position.Y - 360f;
+                        int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                        Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                        Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                        num6 = Gore.NewGore(new Vector2(player.position.X - 36f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                        Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                        Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                        num6 = Gore.NewGore(new Vector2(player.position.X + player.width + 4f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                        Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                        Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                        Main.PlaySound(2, player.Center, 11);
+                        player.velocity.Y -= 16.5f;
+                        statStam -= 50;
+                    }
+                }
+                if (player.velocity.Y < 0)
+                {
+                    for (int x = 0; x < 5; x++)
+                    {
+                        int d = Dust.NewDust(new Vector2(player.Center.X, player.position.Y + player.height), 10, 10, DustID.Smoke);
+                    }
+                }
+            }
             if (statStam >= 1 && player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
             {
                 bool flag15 = true;
@@ -2676,10 +2719,10 @@ namespace ExxoAvalonOrigins
                 stamRegen = 0;
             }
             stamRegenCount += stamRegen;
-            while (stamRegenCount >= 1300)
+            while (stamRegenCount >= 1000)
             {
                 bool flag = false;
-                stamRegenCount -= 1300;
+                stamRegenCount -= 1000;
                 if (statStam < statStamMax2)
                 {
                     statStam++;
