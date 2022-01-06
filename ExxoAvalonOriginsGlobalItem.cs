@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Seed;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Potions;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
@@ -900,6 +901,23 @@ namespace ExxoAvalonOrigins
             {
                 player.QuickSpawnItem(ModContent.ItemType<LifeDew>(), Main.rand.Next(15, 22));
                 player.QuickSpawnItem(ItemID.ChlorophyteOre, Main.rand.Next(60, 121));
+            }
+			if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag) //keeping it this way because we might add unholy arrow alt
+            {
+                if (ExxoAvalonOriginsWorld.contaigon)
+                {
+                    NPCLoader.blockLoot.Add(ItemID.UnholyArrow);
+                    NPCLoader.blockLoot.Add(ItemID.DemoniteOre);
+                    NPCLoader.blockLoot.Add(ItemID.CorruptSeeds);
+                    player.QuickSpawnItem(ModContent.ItemType<BacciliteOre>(), Main.rand.Next(30, 81));
+                    player.QuickSpawnItem(ModContent.ItemType<IckgrassSeeds>(), Main.rand.Next(1, 3));
+                    //player.QuickSpawnItem(ModContent.ItemType<ShitArrow>(), Main.rand.Next(20, 50));
+                }
+                if (WorldGen.crimson)
+                {
+				    //NPCLoader.blockLoot.Add(ItemID.UnholyArrow);
+                    //player.QuickSpawnItem(ModContent.ItemType<BloodStainedArrow>(), Main.rand.Next(20, 50));
+                }
             }
         }
 
