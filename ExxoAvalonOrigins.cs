@@ -478,7 +478,7 @@ namespace ExxoAvalonOrigins
                     "Bacterium Prime melts back into the ick",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/BacteriumPrimeBossChecklist",
                     "ExxoAvalonOrigins/NPCs/BacteriumPrime_Head_Boss",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.contaigon)
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.contagion)
                     );
 
                 #endregion BacteriumPrime

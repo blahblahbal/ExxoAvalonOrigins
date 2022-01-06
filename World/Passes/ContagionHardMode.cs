@@ -168,7 +168,7 @@ namespace ExxoAvalonOrigins.World.Passes
                                 Utils.SquareTileFrame(k, l);
                             }
                         }
-                        else if (ExxoAvalonOriginsWorld.contaigon)
+                        else if (ExxoAvalonOriginsWorld.contagion)
                         {
                             if (Main.tile[k, l].wall == 28)
                             {

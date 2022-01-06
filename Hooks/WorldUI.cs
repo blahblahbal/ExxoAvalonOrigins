@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Hooks
             c.Emit(OpCodes.Ldloc, 4);
             c.EmitDelegate<Func<Color, Color>>((color) =>
             {
-                if (ExxoAvalonOriginsWorld.contaigon)
+                if (ExxoAvalonOriginsWorld.contagion)
                 {
                     Color contagionBarColor = new Color(175, 148, 199);
                     return contagionBarColor;
@@ -72,7 +72,7 @@ namespace ExxoAvalonOrigins.Hooks
             c.Index++;
             c.EmitDelegate<Func<Texture2D, Texture2D>>((corruptTexture) =>
             {
-                if (ExxoAvalonOriginsWorld.contaigon)
+                if (ExxoAvalonOriginsWorld.contagion)
                 {
                     return ExxoAvalonOrigins.mod.GetTexture("Sprites/Outer_Contagion");
                 }

@@ -82,7 +82,7 @@ namespace ExxoAvalonOrigins.World.Passes
             }
             progress.Message = Lang.gen[76]?.ToString() + "..Corruption Pits";
             progress.Set(0.4f);
-            if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contaigon)
+            if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contagion)
             {
                 int num14 = (int)((float)WorldGen.genRand.Next(1, 3) * num);
                 int num15 = 0;

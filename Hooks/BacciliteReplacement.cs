@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Hooks
     {
         public static void OnTileRunner(On.Terraria.WorldGen.orig_TileRunner orig, int i, int j, double strength, int steps, int type, bool addtile, float speedx, float speedy, bool noychange, bool @override)
         {
-            if (ExxoAvalonOriginsWorld.contaigon && type == TileID.Demonite)
+            if (ExxoAvalonOriginsWorld.contagion && type == TileID.Demonite)
             {
                 type = ModContent.TileType<Tiles.BacciliteOre>();
             }

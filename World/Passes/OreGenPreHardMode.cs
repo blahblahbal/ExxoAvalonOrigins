@@ -63,14 +63,14 @@ namespace ExxoAvalonOrigins.World.Passes
                     WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), TileID.Crimtane);
                 }
             }
-            else if (ExxoAvalonOriginsWorld.contaigon)
+            else if (ExxoAvalonOriginsWorld.contagion)
             {
                 for (int num571 = 0; num571 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num571++)
                 {
                     WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), (ushort)ModContent.TileType<Tiles.BacciliteOre>());
                 }
             }
-            else if (!ExxoAvalonOriginsWorld.contaigon && !WorldGen.crimson)
+            else if (!ExxoAvalonOriginsWorld.contagion && !WorldGen.crimson)
             {
                 for (int num571 = 0; num571 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num571++)
                 {

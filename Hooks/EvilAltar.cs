@@ -171,7 +171,7 @@ namespace ExxoAvalonOrigins.Hooks
                     {
                         Main.tile[x, y].type = TileID.Crimstone;
                     }
-                    else if (ExxoAvalonOriginsWorld.contaigon)
+                    else if (ExxoAvalonOriginsWorld.contagion)
                     {
                         Main.tile[x, y].type = (ushort)ModContent.TileType<Chunkstone>();
                     }

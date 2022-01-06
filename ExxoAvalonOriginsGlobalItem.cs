@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
@@ -904,7 +904,7 @@ namespace ExxoAvalonOrigins
             }
 			if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag) //keeping it this way because we might add unholy arrow alt
             {
-                if (ExxoAvalonOriginsWorld.contaigon)
+                if (ExxoAvalonOriginsWorld.contagion)
                 {
                     NPCLoader.blockLoot.Add(ItemID.UnholyArrow);
                     NPCLoader.blockLoot.Add(ItemID.DemoniteOre);

@@ -1528,7 +1528,7 @@ IL_162:
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.PlatinumHeart>(), 1, false, 0, false);
             }
 
-            if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contaigon)
+            if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contagion)
             {
                 if (!Main.expertMode) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height,
                     ModContent.ItemType<BacciliteOre>(), Main.rand.Next(30, 87), false, 0, false);
@@ -1705,7 +1705,7 @@ IL_162:
                     }
                 }
             }
-            if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contaigon)
+            if (npc.type == NPCID.EyeofCthulhu && ExxoAvalonOriginsWorld.contagion)
             {
                 NPCLoader.blockLoot.Add(ItemID.DemoniteOre);
                 NPCLoader.blockLoot.Add(ItemID.CorruptSeeds);

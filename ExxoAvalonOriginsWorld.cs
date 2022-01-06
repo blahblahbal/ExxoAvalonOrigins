@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins
         public static int shmOreTier1 = -1;
         public static int shmOreTier2 = -1;
         public static int hallowAltarCount;
-        public static bool contaigon = false;
+        public static bool contagion = false;
         public static int WorldDarkMatterTiles = 0;
         public static int hallowedAltarCount = 0;
         public static bool stopCometDrops = false;
@@ -1093,7 +1093,7 @@ namespace ExxoAvalonOrigins
             int index = list.FindIndex(genpass => genpass.Name.Equals("Hardmode Good"));
             int index2 = list.FindIndex(genpass => genpass.Name.Equals("Hardmode Evil"));
             int index3 = list.FindIndex(genpass => genpass.Name.Equals(""));
-            if (contaigon)
+            if (contagion)
             {
                 list.Insert(index + 1, new PassLegacy("Exxo Avalon Origins: Hardmode Contagion", new WorldGenLegacyMethod(World.Passes.ContagionHardMode.Method)));
                 // TODO REPLACE EVIL GEN INSTEAD OF REMOVING
@@ -1114,7 +1114,7 @@ namespace ExxoAvalonOrigins
             var flags = new BitsByte();
             flags[0] = SuperHardmode;
             flags[1] = downedPhantasm;
-            flags[2] = contaigon;
+            flags[2] = contagion;
             flags[3] = downedBacteriumPrime;
             flags[4] = downedDesertBeak;
             flags[5] = downedDragonLord;
@@ -1137,7 +1137,7 @@ namespace ExxoAvalonOrigins
             downedDragonLord = flags[5];
             downedMechasting = flags[6];
             downedOblivion = flags[7];
-            contaigon = flags[2];
+            contagion = flags[2];
             LoK = reader.ReadVector2();
             shmOreTier1 = reader.ReadInt32();
             shmOreTier2 = reader.ReadInt32();
@@ -1892,7 +1892,7 @@ namespace ExxoAvalonOrigins
                 jungleMenuSelection = (JungleVariant)WorldGen.genRand.Next(2);
             }
 
-            contaigon = false;
+            contagion = false;
             WorldGen.crimson = WorldGen.genRand.Next(2) == 0;
             if (WorldGen.WorldGenParam_Evil == 0)
             {
@@ -1904,15 +1904,15 @@ namespace ExxoAvalonOrigins
             }
             if (WorldGen.WorldGenParam_Evil == -1)
             {
-                contaigon = WorldGen.genRand.Next(3) == 0;
-                if (contaigon)
+                contagion = WorldGen.genRand.Next(3) == 0;
+                if (contagion)
                 {
                     WorldGen.crimson = false;
                 }
             }
             if (WorldGen.WorldGenParam_Evil == 2)
             {
-                contaigon = true;
+                contagion = true;
                 WorldGen.crimson = false;
             }
         }
@@ -1975,7 +1975,7 @@ namespace ExxoAvalonOrigins
 
             if (vines != -1)
             {
-                if (contaigon)
+                if (contagion)
                 {
                     tasks.Insert(vines + 1, new PassLegacy("ContagionVines", World.Passes.ContagionVines.Method));
                 }
@@ -1993,7 +1993,7 @@ namespace ExxoAvalonOrigins
                 tasks.Insert(underworld + 1, new PassLegacy("Avalon Underworld", World.Passes.Underworld.Method));
             }
 
-            if (contaigon)
+            if (contagion)
             {
                 int corruptionTask = tasks.FindIndex(genpass => genpass.Name == "Corruption");
                 if (corruptionTask != -1)
@@ -2936,7 +2936,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },
                 { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },
                 { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },
-                { "ExxoAvalonOrigins:Contagion", contaigon },
+                { "ExxoAvalonOrigins:Contagion", contagion },
                 { "ExxoAvalonOrigins:DungeonSide", dungeonSide },
                 { "ExxoAvalonOrigins:SHMOreTier1", shmOreTier1 },
                 { "ExxoAvalonOrigins:SHMOreTier2", shmOreTier2 },
@@ -2951,7 +2951,7 @@ namespace ExxoAvalonOrigins
             Dictionary<string, ExxoAvalonOriginsConfig.WorldDataValues> tempDict = config.GetWorldData();
             ExxoAvalonOriginsConfig.WorldDataValues worldData;
 
-            worldData.contagion = contaigon;
+            worldData.contagion = contagion;
             worldData.jungleType = (int)jungleMenuSelection;
 
             string path = Path.ChangeExtension(Main.worldPathName, ".twld");
@@ -3003,7 +3003,7 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:Contagion"))
             {
-                contaigon = tag.Get<bool>("ExxoAvalonOrigins:Contagion");
+                contagion = tag.Get<bool>("ExxoAvalonOrigins:Contagion");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:JungleType"))
             {

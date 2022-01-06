@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 if (projectile.ai[0] % 60 == 0)
                 {
                     Player p = Main.player[Player.FindClosest(projectile.position, projectile.width, projectile.height)];
-                    if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contaigon) // corruption world
+                    if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contagion) // corruption world
                     {
                         if (p.ZoneCorrupt)
                         {
@@ -97,7 +97,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             }
                         }
                     }
-                    else if (!WorldGen.crimson && ExxoAvalonOriginsWorld.contaigon) // contagion world
+                    else if (!WorldGen.crimson && ExxoAvalonOriginsWorld.contagion) // contagion world
                     {
                         if (p.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
                         {
