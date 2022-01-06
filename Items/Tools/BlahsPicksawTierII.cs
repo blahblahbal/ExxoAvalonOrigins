@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 		}
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == mod.ItemType("BlahsPicksawTierII"))
+            if (player.inventory[player.selectedItem].type == item.type)
             {
                 player.pickSpeed -= 0.5f;
             }

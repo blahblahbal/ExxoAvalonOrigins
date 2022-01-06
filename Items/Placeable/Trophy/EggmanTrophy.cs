@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Trophy
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.BossTrophy>();
             item.placeStyle = 5;
-            item.rare = -12;
+            item.rare = ItemRarityID.Purple;
             item.width = dims.Width;
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;

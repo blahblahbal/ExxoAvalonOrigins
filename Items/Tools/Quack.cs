@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 		{
 			Rectangle dims = this.GetDims();
 			item.noUseGraphic = true;
-			item.rare = 12;
+			item.rare = ItemRarityID.Red;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
             item.width = dims.Width;
 			item.useTurn = true;

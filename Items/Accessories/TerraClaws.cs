@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.rare = 12;
+			item.rare = 11;
 			item.width = dims.Width;
 			item.accessory = true;
 			item.value = Item.sellPrice(0, 15, 0, 0);

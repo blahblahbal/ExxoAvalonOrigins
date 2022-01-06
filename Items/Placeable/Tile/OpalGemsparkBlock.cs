@@ -26,6 +26,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.maxStack = 999;
 			item.useAnimation = 15;
 			item.height = dims.Height;
+            item.rare = ItemRarityID.Purple;
 		}
         public override void AddRecipes()
         {
