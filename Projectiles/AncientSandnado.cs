@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     if (!n.townNPC && !n.friendly && !n.dontTakeDamage && !n.boss)
                     {
                         n.velocity = Vector2.Normalize(n.position - newPos) * -4.5f;
-                        if (Main.netMode == NetmodeID.Server) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n.whoAmI);
+                        if (Main.netMode != NetmodeID.SinglePlayer) NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n.whoAmI);
                     }
                 }
             }
