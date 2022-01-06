@@ -34,5 +34,7 @@ namespace ExxoAvalonOrigins
         public bool noOneHitKill = false;
         public int spikeTimer;
         public bool malaria;
+        public bool bleeding;
+        public int bleedStacks = 0;
     }
 }

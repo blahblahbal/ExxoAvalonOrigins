@@ -1576,6 +1576,18 @@ IL_162:
                     damage = 3;
                 }
             }
+            if (npc.HasBuff(ModContent.BuffType<Buffs.Bleeding>()))
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 4 * npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks;
+                if (damage < npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks)
+                {
+                    damage = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks;
+                }
+            }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().malaria)
             {
                 if (npc.lifeRegen > 0)
@@ -1599,6 +1611,10 @@ IL_162:
             if (npc.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
             {
                 Dust.NewDust(npc.position, npc.width, npc.height, DustID.DungeonSpirit);
+            }
+            if (npc.HasBuff(ModContent.BuffType<Buffs.Bleeding>()))
+            {
+                Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
             }
 
             // This code breaks so much that I just commented it out
@@ -1725,6 +1741,7 @@ IL_162:
 
         public override void ResetEffects(NPC npc)
         {
+            //npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleeding = false;
             npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().spikeTimer++;
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().spikeTimer >= 60 && !npc.townNPC && npc.lifeMax > 5 && !npc.dontTakeDamage && !npc.noTileCollide && ExxoAvalonOriginsCollisions.SpikeCollision2(npc.position, npc.width, npc.height))
             {

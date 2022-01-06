@@ -23,6 +23,8 @@ namespace ExxoAvalonOrigins
         {
             return base.NewInstance(projectile);
         }
+        public Vector2 bloodArrowPos = Vector2.Zero;
+
         public int Pindex = -1;
         public Vector2 StartReal = new Vector2(0f, 0f);
         public int CHARGE = 0;
