@@ -48,6 +48,33 @@ namespace ExxoAvalonOrigins
             }
             return base.Slope(i, j, type);
         }
+        //public override bool Drop(int i, int j, int type)
+        //{
+        //    if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
+        //    {
+        //        int[] blowPipes =
+        //        {
+        //            ItemID.Blowpipe,
+        //            ItemID.Blowgun,
+        //            ModContent.ItemType<ReinforcedBlowpipe>(),
+        //            ModContent.ItemType<HallowedBlowpipe>(),
+        //            ModContent.ItemType<SunsShadow>(),
+        //            ModContent.ItemType<OrichythrilBlowpipe>(),
+        //            ModContent.ItemType<HallowedBlowpipe>()
+        //        };
+        //        bool flag = false;
+
+        //        for (int q = 0; q < Main.LocalPlayer.inventory.Length; q++)
+        //        {
+        //            Item item = Main.LocalPlayer.inventory[q];
+        //            if (item != null && item.type != ItemID.None && blowPipes.Contains(item.type))
+        //            {
+
+        //            }
+        //        }
+        //    }
+        //    return base.Drop(i, j, type);
+        //}
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             if (type == ModContent.TileType<Tiles.ImperviousBrick>())

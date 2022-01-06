@@ -94,12 +94,21 @@ namespace ExxoAvalonOrigins
                     pool.Add(ModContent.NPCType<NPCs.CaesiumStalker>(), 0.9f);
                 }
             }
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
+            {
+                pool.Clear();
+                pool.Add(ModContent.NPCType<NPCs.DarkMotherSlime>(), 0.5f);
+                pool.Add(ModContent.NPCType<NPCs.DarkMatterSlime>(), 0.9f);
+                pool.Add(ModContent.NPCType<NPCs.VampireHarpy>(), 0.9f);
+                pool.Add(ModContent.NPCType<NPCs.MatterMan>(), 0.9f);
+                pool.Add(ModContent.NPCType<NPCs.UnstableAnomaly>(), 0.9f);
+            }
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
             {
                 pool.Clear();
                 pool.Add(NPCID.Demon, 0.2f);
                 pool.Add(NPCID.RedDevil, 0.2f);
-                pool.Add(ModContent.NPCType<NPCs.EctoHand>(), 0.5f);
+                pool.Add(ModContent.NPCType<NPCs.EctoHand>(), 0.3f);
                 pool.Add(ModContent.NPCType<NPCs.HellboundLizard>(), 1f);
                 pool.Add(ModContent.NPCType<NPCs.Gargoyle>(), 1f);
                 if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
@@ -973,7 +982,7 @@ IL_162:
             }
             if ((npc.type == NPCID.Duck || npc.type == NPCID.Duck2 || npc.type == NPCID.DuckWhite || npc.type == NPCID.DuckWhite2) && Main.rand.Next(maxValue3) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Quack>());
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.Quack>());
             }
             if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon && Main.hardMode && Main.rand.Next(120) == 0)
             {

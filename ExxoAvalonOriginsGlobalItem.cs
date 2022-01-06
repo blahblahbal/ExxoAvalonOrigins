@@ -1099,48 +1099,34 @@ namespace ExxoAvalonOrigins
             TooltipLine tooltipLine = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.mod == "Terraria");
             if (tooltipLine != null)
             {
-                if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity == Items.AvalonRarity.Blah)
-                {
-                    List<Color> colors = new List<Color>
-                    {
-                        new Color(252, 66, 0),
-                        new Color(203, 203, 203)
-                    };
-                    int num = (int)(Main.GlobalTime / 2f % colors.Count);
-                    Color orange = colors[num];
-                    Color silver = colors[(num + 1) % colors.Count];
-                    tooltipLine.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
-                }
                 if (item.type == ItemID.CoinGun)
                 {
                     tooltipLine.text = "Spend Shot";
                 }
-
+                if (item.type == ItemID.PurpleMucos)
+                {
+                    tooltipLine.text = "Purple Mucus";
+                }
                 if (item.type == ItemID.HighTestFishingLine)
                 {
                     tooltipLine.text = tooltipLine.text.Replace("Test", "Tensile");
                 }
-
                 if (item.type == ItemID.BlueSolution)
                 {
                     tooltipLine.text = "Cyan Solution";
                 }
-
                 if (item.type == ItemID.DarkBlueSolution)
                 {
                     tooltipLine.text = "Blue Solution";
                 }
-
                 if (item.type == ItemID.FrostsparkBoots)
                 {
                     tooltipLine.text = tooltipLine.text.Replace("Frostspark", "Sparkfrost");
                 }
-
                 if (item.type == ItemID.BossMaskCultist)
                 {
                     tooltipLine.text = "Lunatic Cultist Mask";
                 }
-
                 if (item.type == ItemID.AncientCultistTrophy)
                 {
                     tooltipLine.text = "Lunatic Cultist Trophy";

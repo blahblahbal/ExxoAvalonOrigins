@@ -49,7 +49,7 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Armor.BlahsHelmet>(),
             ModContent.ItemType<Items.Armor.BlahsBodyarmor>(),
             ModContent.ItemType<Items.Armor.BlahsCuisses>(),
-            ModContent.ItemType<Items.Tools.Quack>(),
+            ModContent.ItemType<Items.Other.Quack>(),
             ModContent.ItemType<Items.Accessories.TitanGauntlets>(),
             ModContent.ItemType<Items.Material.SpikedBlastShell>(),
             ModContent.ItemType<Items.Tools.BlahsPicksaw>(),

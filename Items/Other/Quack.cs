@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Tools
+namespace ExxoAvalonOrigins.Items.Other
 {
 	class Quack : ModItem
 	{
