@@ -916,7 +916,7 @@ namespace ExxoAvalonOrigins
                 if (WorldGen.crimson)
                 {
 				    //NPCLoader.blockLoot.Add(ItemID.UnholyArrow);
-                    //player.QuickSpawnItem(ModContent.ItemType<BloodStainedArrow>(), Main.rand.Next(20, 50));
+                    //player.QuickSpawnItem(ModContent.ItemType<BloodyArrow>(), Main.rand.Next(20, 50));
                 }
             }
         }
