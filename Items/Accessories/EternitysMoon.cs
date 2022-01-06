@@ -1,4 +1,4 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Eternity's Moon");
-            Tooltip.SetDefault("+20 mana, -5% mana cost");
+            Tooltip.SetDefault("Tome\n+20 mana, -5% mana cost");
         }
 
         public override void SetDefaults()

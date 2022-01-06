@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             recipe.AddRecipeGroup("ExxoAvalonOrigins:Wings");
             recipe.AddIngredient(ItemID.FrostsparkBoots);
             recipe.AddIngredient(ItemID.BlackBelt);
-            recipe.AddIngredient(ItemID.LunarBar, 10);
+            recipe.AddIngredient(ItemID.LunarBar, 2);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

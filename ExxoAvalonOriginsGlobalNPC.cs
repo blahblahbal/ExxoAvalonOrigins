@@ -581,6 +581,7 @@ IL_162:
                 if (r == 5) result += " fell into a crevasse";
                 if (r == 6) result += " slipped.";
             }
+            else result += " was slain...";
             return result;
         }
 
@@ -616,9 +617,49 @@ IL_162:
                 else
                 {
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(npc.FullName + TownDeathMSG(npc.type)), new Color(178, 0, 90));
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, 100000);
-                    //NetMessage.SendData(MessageID.SyncNPC)
-                    //npc.NPCLoot();
+                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1);
+                    int t = 0;
+                    int s = 1;
+                    switch (npc.type)
+                    {
+                        case NPCID.Guide:
+                            if (npc.GivenName == "Andrew") t = ItemID.GreenCap;
+                            break;
+                        case NPCID.DyeTrader:
+                            if (Main.rand.Next(8) == 0) t = ItemID.DyeTradersScimitar;
+                            break;
+                        case NPCID.Painter:
+                            if (Main.rand.Next(10) == 0) t = ItemID.PainterPaintballGun;
+                            break;
+                        case NPCID.DD2Bartender:
+                            if (Main.rand.Next(8) == 0) t = ItemID.AleThrowingGlove;
+                            break;
+                        case NPCID.Stylist:
+                            if (Main.rand.Next(8) == 0) t = ItemID.StylistKilLaKillScissorsIWish;
+                            break;
+                        case NPCID.Clothier:
+                            t = ItemID.RedHat;
+                            break;
+                        case NPCID.PartyGirl:
+                            if (Main.rand.Next(4) == 0)
+                            {
+                                t = ItemID.PartyGirlGrenade;
+                                s = Main.rand.Next(30, 61);
+                            }
+                            break;
+                        case NPCID.TaxCollector:
+                            if (Main.rand.Next(8) == 0) t = 3351;
+                            break;
+                        case NPCID.TravellingMerchant:
+                            t = ItemID.PeddlersHat;
+                            break;
+                    }
+                    if (t > 0)
+                    {
+                        int a = Item.NewItem(npc.position, 16, 16, t, s, false);
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a);
+                    }
+                    //Main.npc[npc.whoAmI].NPCLoot();
                     Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 return false;

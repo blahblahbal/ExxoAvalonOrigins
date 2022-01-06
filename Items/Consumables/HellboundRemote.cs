@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddIngredient(ItemID.LunarBar, 10);
             recipe.AddIngredient(ModContent.ItemType<GhostintheMachine>());
             recipe.AddIngredient(ItemID.GuideVoodooDoll);
             recipe.AddIngredient(ModContent.ItemType<FleshyTendril>(), 5);

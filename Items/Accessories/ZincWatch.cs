@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,7 +16,16 @@ namespace ExxoAvalonOrigins.Items.Accessories
         {
             item.CloneDefaults(ItemID.SilverWatch);
         }
-
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.ZincBar>(), 10);
+            recipe.AddIngredient(ItemID.Chain);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddTile(TileID.Chairs);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (player.accWatch < 1) player.accWatch = 1;

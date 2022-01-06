@@ -1106,18 +1106,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IronOre, 30);
-            recipe.AddTile(TileID.Hellforge);
-            recipe.SetResult(ModContent.ItemType<CarbonSteel>(), 10);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LeadOre, 30);
-            recipe.AddTile(TileID.Hellforge);
-            recipe.SetResult(ModContent.ItemType<CarbonSteel>(), 10);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SandBlock, 10);
             recipe.AddIngredient(ItemID.StoneBlock, 10);
             recipe.AddTile(TileID.Hellforge);
@@ -2577,41 +2565,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<SandCastle>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GuideVoodooDoll);
-            recipe.AddIngredient(ItemID.Cobweb, 50);
-            recipe.AddIngredient(ItemID.SilverOre, 5);
-            recipe.AddIngredient(ItemID.GoldBar, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<GuideSummonDoll>(), 5);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GuideVoodooDoll);
-            recipe.AddIngredient(ItemID.Cobweb, 50);
-            recipe.AddIngredient(ItemID.TungstenOre, 5);
-            recipe.AddIngredient(ItemID.GoldBar, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<GuideSummonDoll>(), 5);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GuideVoodooDoll);
-            recipe.AddIngredient(ItemID.Cobweb, 50);
-            recipe.AddIngredient(ItemID.SilverOre, 5);
-            recipe.AddIngredient(ItemID.PlatinumBar, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<GuideSummonDoll>(), 5);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GuideVoodooDoll);
-            recipe.AddIngredient(ItemID.Cobweb, 50);
-            recipe.AddIngredient(ItemID.TungstenOre, 5);
-            recipe.AddIngredient(ItemID.PlatinumBar, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<GuideSummonDoll>(), 5);
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FireGauntlet);
@@ -3935,13 +3889,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<BronzeGreaves>());
             recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 10);
-            recipe.AddIngredient(ItemID.Chain);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BronzeWatch>());
-            recipe.AddRecipe();
             // end bronze stuff
 
             // Nickel
@@ -4144,13 +4091,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ZincGreaves>());
             recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 10);
-            recipe.AddIngredient(ItemID.Chain);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ZincWatch>());
-            recipe.AddRecipe();
             // end Zinc stuff
 
             // Bismuth
@@ -4239,13 +4179,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 30);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<BismuthGreaves>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 10);
-            recipe.AddIngredient(ItemID.Chain);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthWatch>());
             recipe.AddRecipe();
 			
 			recipe = new ModRecipe(mod);

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             recipe.AddIngredient(ModContent.ItemType<TourmalineAmulet>());
             recipe.AddIngredient(ModContent.ItemType<PeridotAmulet>());
             recipe.AddIngredient(ModContent.ItemType<ZirconAmulet>());
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

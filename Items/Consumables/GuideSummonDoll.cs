@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +28,37 @@ namespace ExxoAvalonOrigins.Items.Consumables
 			item.height = dims.Height;
 		}
 
-		public override bool CanUseItem(Player player) => true;
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GuideVoodooDoll);
+            recipe.AddIngredient(ItemID.Cobweb, 50);
+            recipe.AddIngredient(ItemID.SilverOre, 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this, 5);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GuideVoodooDoll);
+            recipe.AddIngredient(ItemID.Cobweb, 50);
+            recipe.AddIngredient(ItemID.TungstenOre, 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this, 5);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GuideVoodooDoll);
+            recipe.AddIngredient(ItemID.Cobweb, 50);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.ZincOre>(), 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this, 5);
+            recipe.AddRecipe();
+        }
+
+        public override bool CanUseItem(Player player) => true;
 
 		public override bool UseItem(Player player)
 		{
