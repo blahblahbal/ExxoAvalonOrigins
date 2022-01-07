@@ -3824,24 +3824,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             // staff
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 15);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BronzeHelmet>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 25);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BronzeChainmail>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 20);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BronzeGreaves>());
-            recipe.AddRecipe();
             // end bronze stuff
 
             // Nickel
@@ -3937,24 +3919,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             // staff
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 20);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<NickelHelmet>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 30);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<NickelChainmail>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 25);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<NickelGreaves>());
-            recipe.AddRecipe();
             // end Nickel stuff
 
             // Zinc
@@ -4026,24 +3990,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             // staff
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 20);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ZincHelmet>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 30);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ZincChainmail>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 25);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<ZincGreaves>());
-            recipe.AddRecipe();
             // end Zinc stuff
 
             // Bismuth
@@ -4115,24 +4061,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             // staff
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 25);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthHelmet>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 35);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthChainmail>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 30);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthGreaves>());
-            recipe.AddRecipe();
 			
 			recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 5);

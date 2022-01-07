@@ -29,7 +29,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             item.width = dims.Width;
             item.knockBack = 16f;
             item.useTime = 15;
-            item.useStyle = ItemUseStyleID.HoldingUp;
             item.value = Item.sellPrice(2);
             item.useAnimation = 15;
             item.height = dims.Height;

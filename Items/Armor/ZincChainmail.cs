@@ -1,5 +1,6 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
@@ -11,7 +12,14 @@ namespace ExxoAvalonOrigins.Items.Armor
         {
             DisplayName.SetDefault("Zinc Chainmail");
         }
-
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.ZincBar>(), 25);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
