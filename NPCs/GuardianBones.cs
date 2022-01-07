@@ -46,7 +46,10 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Phantoplasm>(), 1, false, 0, false);
             }
         }
-
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return spawnInfo.player.ZoneDungeon && Main.hardMode && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.Y == 0f)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,5 +22,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			item.value = Item.sellPrice(0, 3, 0, 0);
 			item.height = dims.Height;
 		}
-	}
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.15f;
+        }
+    }
 }

@@ -13,6 +13,9 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
+            Main.tileBrick[Type] = true;
+            Main.tileMerge[Type][TileID.WoodBlock] = true;
+            Main.tileMerge[TileID.WoodBlock][Type] = true;
             drop = ModContent.ItemType<Items.Placeable.Tile.ChunkstoneBrick>();
             soundType = SoundID.Tink;
             soundStyle = 1;

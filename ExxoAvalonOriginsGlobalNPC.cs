@@ -63,7 +63,7 @@ namespace ExxoAvalonOrigins
         //}
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && !spawnInfo.player.InPillarZone())
             {
                 pool.Clear();
                 pool.Add(ModContent.NPCType<NPCs.Bactus>(), 1f);
@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins
                     pool.Add(ModContent.NPCType<NPCs.CaesiumStalker>(), 0.9f);
                 }
             }
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter && !spawnInfo.player.InPillarZone())
             {
                 pool.Clear();
                 pool.Add(ModContent.NPCType<NPCs.DarkMotherSlime>(), 0.5f);
@@ -1174,9 +1174,9 @@ IL_162:
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ToxinShard>(), 1, false, 0, false);
                 }
             }
-            if (undead.Contains(npc.type) && Main.hardMode && Main.rand.Next(300) == 0)
+            if (undead.Contains(npc.type) && Main.hardMode && Main.rand.Next(550) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Accessories.UndeadTalisman>(), 1, false, -1, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<UndeadTalisman>(), 1, false, -1, false);
             }
             if (undead.Contains(npc.type))
             {
@@ -1376,27 +1376,27 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BirthofaMonster>(), 1, false, 0, false);
             }
-            if ((npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || npc.type == NPCID.EnchantedSword) && Main.rand.Next(80) == 0)
+            if ((npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || npc.type == NPCID.EnchantedSword) && Main.rand.Next(100) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Clash>(), 1, false, 0, false);
             }
-            if (npc.type == NPCID.EaterofSouls && (Main.rand.Next(250) == 0 || (Main.rand.Next(125) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
+            if (npc.type == NPCID.EaterofSouls && (Main.rand.Next(700) == 0 || (Main.rand.Next(350) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EvilOuroboros>(), 1, false, 0, false);
             }
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.rand.Next(250) == 0)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.rand.Next(700) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RingofDisgust>(), 1, false, 0, false);
             }
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon && Main.rand.Next(400) == 0)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon && Main.rand.Next(700) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Trespassing>(), 1, false, 0, false);
             }
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon && Main.rand.Next(300) == 0 && Main.hardMode)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon && Main.rand.Next(700) == 0 && Main.hardMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Placeable.Painting.ACometHasStruckGround>(), 1, false, 0, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ACometHasStruckGround>(), 1, false, 0, false);
             }
-            if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < (Main.worldSurface * 16.0) + (Main.screenHeight / 2) && (Main.rand.Next(500) == 0 || (Main.rand.Next(400) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
+            if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < (Main.worldSurface * 16.0) + (Main.screenHeight / 2) && (Main.rand.Next(500) == 0 || (Main.rand.Next(700) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EclipseofDoom>(), 1, false, 0, false);
             }
@@ -1564,6 +1564,19 @@ IL_162:
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (npc.HasBuff(ModContent.BuffType<Buffs.Electrified>()))
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 8;
+                if (npc.velocity.X != 0)
+                {
+                    npc.lifeRegen -= 32;
+                }
+                if (damage < 8) damage = 8;
+            }
             if (npc.HasBuff(ModContent.BuffType<Buffs.NecroticDrain>()))
             {
                 if (npc.lifeRegen > 0)

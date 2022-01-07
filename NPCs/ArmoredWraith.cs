@@ -48,6 +48,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.lifeMax = (int)(npc.lifeMax * 0.35f);
             npc.damage = (int)(npc.damage * 0.5f);
         }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.velocity.X > 0f)

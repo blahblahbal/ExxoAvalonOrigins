@@ -29,14 +29,14 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.Mechasting>())) return false;
+            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.Mechasting>())) return false;
             return true;
         }
 
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundID.Roar, player.position, 0);
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Mechasting>());
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Bosses.Mechasting>());
             return true;
         }
 

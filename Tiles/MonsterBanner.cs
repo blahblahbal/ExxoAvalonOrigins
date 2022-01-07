@@ -185,6 +185,9 @@ namespace ExxoAvalonOrigins.Tiles
                 case 55:
                     item = ModContent.ItemType<Items.Banners.CursedScepterBanner>();
                     break;
+                case 56:
+                    item = ModContent.ItemType<Items.Banners.EctoHandBanner>();
+                    break;
                 default:
                     return;
             }
@@ -337,6 +340,9 @@ namespace ExxoAvalonOrigins.Tiles
                         break;
                     case 55:
                         type = "CursedScepter";
+                        break;
+                    case 56:
+                        type = "EctoHand";
                         break;
                     default:
                         return;

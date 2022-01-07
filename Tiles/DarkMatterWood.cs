@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,8 @@ namespace ExxoAvalonOrigins.Tiles
 			AddMapEntry(new Color(80, 63, 88));
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
-			drop = mod.ItemType("DarkMatterWood");
+            Main.tileBrick[Type] = true;
+            drop = mod.ItemType("DarkMatterWood");
             dustType = ModContent.DustType<Dusts.DarkMatterWoodDust>();
 		}
 	}

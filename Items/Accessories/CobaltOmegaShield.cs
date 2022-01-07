@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 		{
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().incDef = true;
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().regenStrike = true;
-			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().frontReflect = true;
+			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield = true;
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cOmega = true;
             player.noKnockback = true;
 		}

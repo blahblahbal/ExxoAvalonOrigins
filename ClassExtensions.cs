@@ -24,6 +24,14 @@ namespace ExxoAvalonOrigins
         {
             return item.type > ItemID.None && item.stack > 0;
         }
+        public static bool InPillarZone(this Player p)
+        {
+            if (!p.ZoneTowerStardust && !p.ZoneTowerVortex && !p.ZoneTowerSolar)
+            {
+                return p.ZoneTowerNebula;
+            }
+            return true;
+        }
         public static int RemoveAtIndex(this List<int> list, int index)
         {
             int item = list[index];

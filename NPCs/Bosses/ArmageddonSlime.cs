@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.NPCs
+namespace ExxoAvalonOrigins.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class ArmageddonSlime : ModNPC

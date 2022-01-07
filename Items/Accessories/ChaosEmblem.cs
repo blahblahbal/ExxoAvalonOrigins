@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,13 +25,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.minionDamage += 0.1f;
-			player.meleeDamage += 0.1f;
-			player.magicDamage += 0.1f;
-			player.rangedDamage += 0.1f;
-			player.bulletDamage += 0.1f;
-			player.rocketDamage += 0.1f;
-			player.arrowDamage += 0.1f;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.1f;
+            player.allDamage += 0.1f;
 		}
 	}
 }

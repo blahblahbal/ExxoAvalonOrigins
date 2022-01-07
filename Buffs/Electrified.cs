@@ -25,24 +25,12 @@ namespace ExxoAvalonOrigins.Buffs
                 player.lifeRegen = 0;
             }
             player.lifeRegenTime = 0;
-            int minus = ((player.GetModPlayer<ExxoAvalonOriginsModPlayer>().frontReflect && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumShield>())) ? 4 : (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().frontReflect ? 6 : 8));
-            int minus2 = ((player.GetModPlayer<ExxoAvalonOriginsModPlayer>().frontReflect && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>())) ? 16 : (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().frontReflect ? 24 : 32));
+            int minus = ((player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumShield>())) ? 4 : (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield ? 6 : 8));
+            int minus2 = ((player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>())) ? 16 : (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield ? 24 : 32));
             player.lifeRegen -= minus;
             if (player.velocity.X != 0)
             {
                 player.lifeRegen -= minus2;
-            }
-        }
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            if (npc.lifeRegen > 0)
-            {
-                npc.lifeRegen = 0;
-            }
-            npc.lifeRegen -= 8;
-            if (npc.velocity.X != 0)
-            {
-                npc.lifeRegen -= 32;
             }
         }
     }

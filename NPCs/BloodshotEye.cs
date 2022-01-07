@@ -83,7 +83,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return Main.bloodMoon ? 0.091f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return Main.bloodMoon && !spawnInfo.player.InPillarZone() ? 0.091f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.NPCs
+namespace ExxoAvalonOrigins.NPCs.Bosses
 {
     public class Mechasting : ModNPC
     {
@@ -347,6 +347,19 @@ namespace ExxoAvalonOrigins.NPCs
             else
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
+                int rn = Main.rand.Next(4);
+                if (rn == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Accessories.StingerPack>(), 1, false, -1, false);
+                }
+                if (rn == 1)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>(), 1, false, -1, false);
+                }
+                if (rn == 2)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>(), 1, false, -1, false);
+                }
             }
 
             if (!ExxoAvalonOriginsWorld.downedMechasting)

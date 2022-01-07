@@ -38,8 +38,21 @@ namespace ExxoAvalonOrigins.Items.BossBags
             {
                 player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
             }
+            int rn = Main.rand.Next(4);
+            if (rn == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Accessories.StingerPack>());
+            }
+            if (rn == 1)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.Mechazapinator>());
+            }
+            if (rn == 2)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Weapons.Ranged.HeatSeeker>());
+            }
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Mechasting>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Mechasting>();
     }
 }

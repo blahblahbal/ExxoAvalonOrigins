@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,14 +10,14 @@ namespace ExxoAvalonOrigins.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Hellsteel Pants");
-			Tooltip.SetDefault("Increases your max number of minions by 5");
+			DisplayName.SetDefault("Hellsteel Greaves");
+			Tooltip.SetDefault("14% increased movement speed\nIncreases your max number of minions by 1");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.defense = 25;
+			item.defense = 27;
 			item.rare = ItemRarityID.Cyan;
 			item.width = dims.Width;
 			item.value = Item.sellPrice(0, 9, 0, 0);
@@ -26,15 +26,16 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.HellsteelPlate>(), 5);
-			recipe.AddIngredient(ModContent.ItemType<Armor.FleshPants>());
+            recipe.AddIngredient(ModContent.ItemType<Material.HellsteelPlate>(), 20);
+			recipe.AddIngredient(ModContent.ItemType<FleshPants>());
             recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
         public override void UpdateEquip(Player player)
 		{
-			player.maxMinions += 5;
+            player.moveSpeed += 0.14f;
+            player.maxMinions++;
 		}
 	}
 }

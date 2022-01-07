@@ -2884,35 +2884,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.EbonstoneBlock, 100);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
-            recipe.AddIngredient(ItemID.Ectoplasm, 5);
-            recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<DarkMatterChunk>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CrimstoneBlock, 100);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
-            recipe.AddIngredient(ItemID.Ectoplasm, 5);
-            recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<DarkMatterChunk>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ChunkstoneBlock>(), 100);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
-            recipe.AddIngredient(ItemID.Ectoplasm, 5);
-            recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<DarkMatterChunk>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<YuckyBit>(), 6);
             recipe.AddIngredient(ItemID.IronBar, 5);
             recipe.AddIngredient(ItemID.SoulofNight, 6);

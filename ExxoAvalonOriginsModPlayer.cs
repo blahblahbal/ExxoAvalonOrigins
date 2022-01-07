@@ -167,7 +167,7 @@ namespace ExxoAvalonOrigins
         public bool incDef;
         public bool regenStrike;
 		public bool bOfBacteria;
-        public bool frontReflect = false;
+        public bool duraShield = false;
         public bool slimeBand;
         public bool defDebuff;
         public int defDebuffBonusDef;
@@ -308,6 +308,7 @@ namespace ExxoAvalonOrigins
         public bool cloudGloves;
         public bool crystalEdge;
         public float bonusKB = 1f;
+        public bool stingerPack;
         // Adv Buffs
         public bool advAmmoBuff;
 
@@ -354,6 +355,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
             bOfBacteria = false;
+            stingerPack = false;
             crystalEdge = false;
             tpStam = true;
             riftGoggles = false;
@@ -443,7 +445,7 @@ namespace ExxoAvalonOrigins
                     player.lifeRegen = 0;
                 }
                 player.lifeRegenTime = 0;
-                if (frontReflect && Main.rand.Next(6) == 0)
+                if (duraShield && Main.rand.Next(6) == 0)
                 {
                     player.lifeRegen += HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 6 : 4;
                 }
@@ -459,7 +461,7 @@ namespace ExxoAvalonOrigins
                     player.lifeRegen = 0;
                 }
                 player.lifeRegenTime = 0;
-                if (frontReflect && Main.rand.Next(6) == 0)
+                if (duraShield && Main.rand.Next(6) == 0)
                 {
                     player.lifeRegen += HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 3 : 2;
                 }
@@ -947,6 +949,34 @@ namespace ExxoAvalonOrigins
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
+            if (stingerPack)
+            {
+                float shootSpeed = 6f;
+                Vector2 center = player.Center;
+                Main.PlaySound(2, player.position, 17);
+                float num572 = (float)Math.Atan2(center.Y - npc.Center.Y, center.X - npc.Center.X);
+                for (float f = 0f; f <= 4f; f += 0.4f)
+                {
+                    int proj = Projectile.NewProjectile(center.X, center.Y, (float)(Math.Cos(num572 + f) * shootSpeed * -1), (float)(Math.Sin(num572 + f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
+                    Main.projectile[proj].timeLeft = 600;
+                    Main.projectile[proj].tileCollide = false;
+                    Main.projectile[proj].hostile = false;
+                    Main.projectile[proj].friendly = true;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), proj, 0f, 0f, 0f, 0);
+                    }
+                    proj = Projectile.NewProjectile(center.X, center.Y, (float)(Math.Cos(num572 - f) * shootSpeed * -1), (float)(Math.Sin(num572 - f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
+                    Main.projectile[proj].timeLeft = 600;
+                    Main.projectile[proj].tileCollide = false;
+                    Main.projectile[proj].hostile = false;
+                    Main.projectile[proj].friendly = true;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), proj, 0f, 0f, 0f, 0);
+                    }
+                }
+            }
             if (auraThorns && !player.immune && !npc.dontTakeDamage)
             {
                 int x = (int)player.position.X;
@@ -1177,7 +1207,7 @@ namespace ExxoAvalonOrigins
 
         public override void UpdateLifeRegen()
         {
-            if (frontReflect && Main.rand.Next(6) == 0)
+            if (duraShield && Main.rand.Next(6) == 0)
             {
                 if (player.poisoned)
                 {
@@ -1942,7 +1972,7 @@ namespace ExxoAvalonOrigins
 
             #region bubble boost
 
-            if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump && !NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>()))
+            if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>()))
             {
                 #region bubble timer and spawn bubble gores/sound
 
@@ -2523,15 +2553,6 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        public bool InPillarZone()
-        {
-            if (player.ZoneTowerNebula || player.ZoneTowerSolar || player.ZoneTowerStardust || player.ZoneTowerVortex)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             if (damage > 0)
@@ -2605,7 +2626,7 @@ namespace ExxoAvalonOrigins
             FloorVisualsAvalon(player.velocity.Y > player.gravity);
             if (activateRocketJump)
             {
-                if (player.controlUp && player.releaseUp && statStam >= 50)
+                if (player.controlUp && player.releaseUp && statStam >= 70)
                 {
                     if (isOnGround())
                     {
@@ -2621,7 +2642,7 @@ namespace ExxoAvalonOrigins
                         Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
                         Main.PlaySound(2, player.Center, 11);
                         player.velocity.Y -= 16.5f;
-                        statStam -= 50;
+                        statStam -= 70;
                     }
                 }
                 if (player.velocity.Y < 0)

@@ -38,7 +38,9 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.noGravity = true;
 			npc.noTileCollide = true;
 			npc.behindTiles = false;
-		}
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.EctoHandBanner>();
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f);

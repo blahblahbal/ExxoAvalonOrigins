@@ -324,7 +324,7 @@ namespace ExxoAvalonOrigins
                         break;
                     }
                 }
-                if (n.type == ModContent.NPCType<NPCs.DesertBeak>() && n.active)
+                if (n.type == ModContent.NPCType<NPCs.Bosses.DesertBeak>() && n.active)
                 {
                     var db = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (db.Intersects(rectangle))
@@ -342,7 +342,7 @@ namespace ExxoAvalonOrigins
                         break;
                     }
                 }
-                if (n.type == ModContent.NPCType<NPCs.ArmageddonSlime>() && n.active)
+                if (n.type == ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>() && n.active)
                 {
                     var arma = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (arma.Intersects(rectangle))
@@ -489,7 +489,7 @@ namespace ExxoAvalonOrigins
                     (
                     "AddBoss",
                     3.5f,
-                    ModContent.NPCType<NPCs.DesertBeak>(),
+                    ModContent.NPCType<NPCs.Bosses.DesertBeak>(),
                     this,
                     "Desert Beak",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDesertBeak),
@@ -564,7 +564,7 @@ namespace ExxoAvalonOrigins
                     (
                     "AddBoss",
                     17f,
-                    ModContent.NPCType<NPCs.ArmageddonSlime>(),
+                    ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>(),
                     this,
                     "Armageddon Slime",
                     (Func<bool>)(() => ExxoAvalonOriginsGlobalNPC.stoppedArmageddon),
@@ -609,7 +609,7 @@ namespace ExxoAvalonOrigins
                     (
                     "AddBoss",
                     19f,
-                    ModContent.NPCType<NPCs.Mechasting>(),
+                    ModContent.NPCType<NPCs.Bosses.Mechasting>(),
                     this,
                     "Mechasting",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedMechasting),
@@ -726,7 +726,20 @@ namespace ExxoAvalonOrigins
                 ItemID.FestiveWings,
                 ItemID.BeetleWings,
                 ItemID.FinWings,
-                ItemID.FishronWings
+                ItemID.FishronWings,
+                ItemID.WingsNebula,
+                ItemID.WingsSolar,
+                ItemID.WingsStardust,
+                ItemID.WingsVortex,
+                ItemID.FinWings,
+                ItemID.MothronWings,
+                ItemID.BetsyWings,
+                ItemID.SteampunkWings,
+                ModContent.ItemType<ContagionWings>(),
+                ModContent.ItemType<CrimsonWings>(),
+                ModContent.ItemType<CorruptionWings>(),
+                ModContent.ItemType<HolyWings>(),
+                ModContent.ItemType<EtherealWings>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:Wings", groupWings);
             var groupWorkBenches = new RecipeGroup(() => "Any Work Bench", new int[]
@@ -762,7 +775,13 @@ namespace ExxoAvalonOrigins
                 ItemID.CrystalWorkbench,
                 ItemID.CactusWorkBench,
                 ItemID.BorealWoodWorkBench,
-                ItemID.BoneWorkBench
+                ItemID.BoneWorkBench,
+                ModContent.ItemType<Items.Placeable.Crafting.CoughwoodWorkBench>(),
+                ModContent.ItemType<Items.Placeable.Crafting.DarkSlimeWorkBench>(),
+                ModContent.ItemType<Items.Placeable.Crafting.HeartstoneWorkBench>(),
+                ModContent.ItemType<Items.Placeable.Crafting.OrangeDungeonWorkBench>(),
+                ModContent.ItemType<Items.Placeable.Crafting.ResistantWoodWorkBench>(),
+                ModContent.ItemType<Items.Placeable.Crafting.VertebraeWorkBench>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:WorkBenches", groupWorkBenches);
 
@@ -774,10 +793,11 @@ namespace ExxoAvalonOrigins
                 ItemID.Shiverthorn,
                 ItemID.Waterleaf,
                 ItemID.Moonglow,
-                ItemID.Daybloom
-                //ModContent.ItemType<Items.Bloodberry>(),
-                //ModContent.ItemType<Items.Sweetstem>(),
-                //ModContent.ItemType<Items.Barfbush>(),
+                ItemID.Daybloom,
+                ModContent.ItemType<Bloodberry>(),
+                ModContent.ItemType<Sweetstem>(),
+                ModContent.ItemType<Barfbush>(),
+                ModContent.ItemType<Holybird>(),
                 //ModContent.ItemType<Items.TwilightPlume>(),
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:Herbs", groupHerbs);

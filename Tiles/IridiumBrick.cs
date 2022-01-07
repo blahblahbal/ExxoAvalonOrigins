@@ -1,14 +1,7 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
-using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -22,6 +15,9 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileShine2[Type] = true;
 			Main.tileShine[Type] = 1900;
             Main.tileBlockLight[Type] = true;
+            Main.tileBrick[Type] = true;
+            Main.tileMerge[Type][TileID.WoodBlock] = true;
+            Main.tileMerge[TileID.WoodBlock][Type] = true;
             drop = ModContent.ItemType<Items.Placeable.Tile.IridiumBrick>();
             soundType = SoundID.Tink;
             soundStyle = 1;

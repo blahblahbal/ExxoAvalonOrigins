@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (var k = 0; k < 2; k++)
             {
-                if (NPC.AnyNPCs(ModContent.NPCType<ArmageddonSlime>()))
+                if (NPC.AnyNPCs(ModContent.NPCType<Bosses.ArmageddonSlime>()))
                 {
                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<NPCs.DarkMatterSlime>(), 0);
                 }
@@ -65,7 +65,7 @@ namespace ExxoAvalonOrigins.NPCs
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     NPC scannedNPC = Main.npc[i];
-                    if (scannedNPC.type == ModContent.NPCType<NPCs.ArmageddonSlime>())
+                    if (scannedNPC.type == ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>())
                     {
                         if (Vector2.Distance(npc.Center, scannedNPC.Center) < 5000)
                         {

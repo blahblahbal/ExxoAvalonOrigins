@@ -279,6 +279,16 @@ namespace ExxoAvalonOrigins
             {
                 return false;
             }
+            if (target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.PoisonDartTrap ||
+                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.SpearTrap ||
+                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.FlamesTrap ||
+                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.FlamethrowerTrap ||
+                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.SpikyBallTrap ||
+                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.GeyserTrap ||
+                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.Boulder)
+            {
+                return false;
+            }
             return base.CanHitPlayer(projectile, target);
         }
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

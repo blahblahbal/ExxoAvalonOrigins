@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Storage
 			item.scale = 1f;
 			item.maxStack = 99;
 			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.ContaigonChest>();
+			item.createTile = ModContent.TileType<Tiles.ContagionChest>();
 			item.width = dims.Width;
 			item.useTime = 10;
 			item.useStyle = ItemUseStyleID.SwingThrow;

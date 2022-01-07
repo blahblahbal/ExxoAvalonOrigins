@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -32,6 +28,10 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             if (Main.rand.Next(8) == 0) target.AddBuff(ModContent.BuffType<Buffs.Electrified>(), 60 * 6);
         }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (Main.rand.Next(8) == 0) target.AddBuff(ModContent.BuffType<Buffs.Electrified>(), 60 * 8);
+        }
         public override void Kill(int timeLeft)
         {
             int num279 = Main.rand.Next(5, 10);
@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             if (projectile.type == ModContent.ProjectileType<ElectricBolt>())
             {
-                if (projectile.ai[1] == 0f)
+                if (projectile.ai[1] == 0f && projectile.hostile)
                 {
                     projectile.ai[1] = 1f;
                     Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 12);

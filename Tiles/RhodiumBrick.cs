@@ -1,13 +1,7 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -17,8 +11,11 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			AddMapEntry(Color.Pink);
 			Main.tileSolid[Type] = true;
-			Main.tileBrick[Type] = true;
-			drop = mod.ItemType("RhodiumBrick");
+            Main.tileBrick[Type] = true;
+            Main.tileMerge[Type][TileID.WoodBlock] = true;
+            Main.tileMerge[TileID.WoodBlock][Type] = true;
+            Main.tileBlockLight[Type] = true;
+            drop = mod.ItemType("RhodiumBrick");
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.t_LivingWood;

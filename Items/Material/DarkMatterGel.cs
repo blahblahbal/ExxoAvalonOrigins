@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,18 +22,5 @@ namespace ExxoAvalonOrigins.Items.Material
 			item.value = 20;
 			item.height = dims.Height;
 		}
-
-        public override bool CanUseItem(Player player)
-        {
-            if (!Main.hardMode) return false;
-            if (NPC.AnyNPCs(ModContent.NPCType<NPCs.ArmageddonSlime>())) return false;
-            return true;
-        }
-
-        public override bool UseItem(Player player)
-        {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.ArmageddonSlime>());
-            return true;
-        }
     }
 }

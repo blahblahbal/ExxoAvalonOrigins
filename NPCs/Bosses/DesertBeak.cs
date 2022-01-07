@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace ExxoAvalonOrigins.NPCs
+namespace ExxoAvalonOrigins.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class DesertBeak : ModNPC

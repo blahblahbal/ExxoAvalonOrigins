@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,5 +32,9 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 			item.height = dims.Height;
             item.UseSound = SoundID.Item12;
         }
-	}
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-10f, 0f);
+        }
+    }
 }
