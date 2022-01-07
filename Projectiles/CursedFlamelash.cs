@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +26,11 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.magic = true;
 			drawOriginOffsetY = -6;
 		}
-
-		public override Color? GetAlpha(Color lightColor) => new Color(96, 248, 2, 0);
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.CursedInferno, 180);
+        }
+        public override Color? GetAlpha(Color lightColor) => new Color(96, 248, 2, 0);
 
 		public override void AI() {
 			if (projectile.soundDelay == 0 && Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y) > 2f) {

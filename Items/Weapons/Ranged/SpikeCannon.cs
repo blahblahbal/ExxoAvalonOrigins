@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,10 +16,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.damage = 50;
+			item.damage = 65;
 			item.autoReuse = true;
 			item.useTurn = false;
-			item.useAmmo = 147;
+			item.useAmmo = ItemID.Spike;
 			item.shootSpeed = 14f;
 			item.crit += 2;
 			item.ranged = true;
@@ -27,13 +27,13 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.noMelee = true;
 			item.width = dims.Width;
 			item.knockBack = 8f;
-			item.useTime = 30;
+			item.useTime = 25;
 			item.shoot = ModContent.ProjectileType<Projectiles.SpikeCannon>();
 			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.useAnimation = 30;
+			item.useAnimation = 25;
 			item.height = dims.Height;
             item.UseSound = SoundID.Item11;
         }
-	}
+    }
 }
