@@ -73,7 +73,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
             recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

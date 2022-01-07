@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             r.AddIngredient(ModContent.ItemType<SouloftheGolem>());
             r.AddIngredient(ModContent.ItemType<ForsakenRelic>());
             r.AddIngredient(ModContent.ItemType<BubbleBoost>());
-            r.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             r.SetResult(this);
             r.AddRecipe();
         }

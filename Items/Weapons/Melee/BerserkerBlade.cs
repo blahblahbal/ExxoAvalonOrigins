@@ -63,14 +63,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<VoraylzumKatana>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeGreatsword>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

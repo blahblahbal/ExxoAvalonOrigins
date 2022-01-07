@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Material
             r.AddIngredient(ModContent.ItemType<SoulofDelight>(), 5);
             r.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 20);
             r.AddIngredient(ModContent.ItemType<AlienDevice>());
-            r.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             r.SetResult(this);
             r.AddRecipe();
         }

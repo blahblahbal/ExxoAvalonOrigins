@@ -26,6 +26,7 @@ namespace ExxoAvalonOrigins
         {
             ModContent.ItemType<Items.Ammo.BlahBullet>(),
             ModContent.ItemType<Items.Weapons.Melee.BlahsEnergyBlade>(),
+            ModContent.ItemType<Items.Weapons.Magic.BlahStaff>(),
             ModContent.ItemType<Items.Weapons.Ranged.TacticalBlahncher>(),
             ModContent.ItemType<Items.Accessories.BlahsWings>(),
             ModContent.ItemType<Items.Armor.BlahsHeadguard>(),

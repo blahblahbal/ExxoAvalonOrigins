@@ -120,6 +120,16 @@ namespace ExxoAvalonOrigins
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
+            if (type == NPCID.Pirate && NPC.downedPirates)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<FalseTreasureMap>());
+                nextSlot++;
+            }
+            if (type == NPCID.GoblinTinkerer && NPC.downedGoblins)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoblinRetreatOrder>());
+                nextSlot++;
+            }
             if (type == 19 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<MissileBolt>());

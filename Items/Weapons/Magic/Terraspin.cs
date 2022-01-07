@@ -88,7 +88,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             recipe.AddIngredient(ItemID.RazorbladeTyphoon);
             recipe.AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>());
             recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

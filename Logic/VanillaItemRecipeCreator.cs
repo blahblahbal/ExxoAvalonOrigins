@@ -509,7 +509,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 50);
             recipe.AddIngredient(ModContent.ItemType<EarthStone>(), 3);
             recipe.AddIngredient(ItemID.SoulofMight, 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ItemID.Picksaw);
             recipe.AddRecipe();
 

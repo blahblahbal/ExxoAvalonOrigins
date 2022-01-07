@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             recipe.AddIngredient(ItemID.RocketLauncher);
             recipe.AddIngredient(ItemID.GrenadeLauncher);
             recipe.AddIngredient(ItemID.Stynger);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

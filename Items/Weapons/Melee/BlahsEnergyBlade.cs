@@ -49,7 +49,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             recipe.AddIngredient(ModContent.ItemType<ElementalExcalibur>());
             recipe.AddIngredient(ModContent.ItemType<BerserkerBlade>());
             recipe.AddIngredient(ModContent.ItemType<PumpkingsSword>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

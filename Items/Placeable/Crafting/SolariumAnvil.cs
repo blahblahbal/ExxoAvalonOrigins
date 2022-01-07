@@ -1,10 +1,10 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 {
-	class XeradonAnvil : ModItem
+	class SolariumAnvil : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 			Rectangle dims = this.GetDims();
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.XeradonAnvil>();
+			item.createTile = ModContent.TileType<Tiles.SolariumAnvil>();
 			item.rare = ItemRarityID.Lime;
 			item.width = dims.Width;
 			item.useTurn = true;

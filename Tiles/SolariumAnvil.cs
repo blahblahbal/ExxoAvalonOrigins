@@ -1,9 +1,4 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -12,7 +7,7 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class XeradonAnvil : ModTile
+	public class SolariumAnvil : ModTile
 	{
 		public override void SetDefaults()
 		{
@@ -27,7 +22,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Crafting.XeradonAnvil>());
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Crafting.SolariumAnvil>());
         }
     }
 }

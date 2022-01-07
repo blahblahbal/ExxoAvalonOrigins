@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Ammo
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 3);
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this, 250);
             recipe.AddRecipe();
 
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Items.Ammo
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 3);
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this, 250);
             recipe.AddRecipe();
         }

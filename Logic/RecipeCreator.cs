@@ -1086,14 +1086,14 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.SpectreStaff);
             recipe.AddIngredient(ItemID.ShadowbeamStaff);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SpiritbeamFork>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 20);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<OnyxHook>());
             recipe.AddRecipe();
 
@@ -1181,7 +1181,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.LivingFireBlock, 200);
             recipe.AddIngredient(ItemID.Pumpkin, 30);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 70);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PumpkingsSword>());
             recipe.AddRecipe();
 
@@ -1698,7 +1698,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<CaesiumBar>(), 30);
             recipe.AddIngredient(ItemID.HellstoneBar, 10);
             recipe.AddIngredient(ItemID.SoulofSight, 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<CaesiumHeadpiece>());
             recipe.AddRecipe();
 
@@ -1706,7 +1706,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<CaesiumBar>(), 40);
             recipe.AddIngredient(ItemID.HellstoneBar, 12);
             recipe.AddIngredient(ItemID.SoulofMight, 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<CaesiumPlateMail>());
             recipe.AddRecipe();
 
@@ -1714,7 +1714,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<CaesiumBar>(), 28);
             recipe.AddIngredient(ItemID.HellstoneBar, 9);
             recipe.AddIngredient(ItemID.SoulofFright, 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<CaesiumGreaves>());
             recipe.AddRecipe();
 
@@ -1722,7 +1722,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 16);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<XeradonAnvil>());
+            recipe.SetResult(ModContent.ItemType<SolariumAnvil>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -1977,7 +1977,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.TacticalShotgun, 2);
             recipe.AddIngredient(ItemID.Ectoplasm, 50);
             recipe.AddIngredient(ItemID.ShroomiteBar, 30);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<TacticalExpulsor>());
             recipe.AddRecipe();
 
@@ -1987,7 +1987,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.MeteoriteBar, 150);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 17);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 35);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Starfall>());
             recipe.AddRecipe();
 
@@ -1997,7 +1997,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
             recipe.AddIngredient(ItemID.CursedFlame, 50);
             recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PossessedFlamesaw>());
             recipe.AddRecipe();
 
@@ -2007,7 +2007,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
             recipe.AddIngredient(ItemID.CursedFlame, 50);
             recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PossessedFlamesaw>());
             recipe.AddRecipe();
 
@@ -2026,20 +2026,20 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 33);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SolarFlaresword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 21);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SolarFlareBow>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<FeroziumBar>(), 7);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SolariumStaff>());
             recipe.AddRecipe();
 
@@ -2048,7 +2048,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.ScourgeoftheCorruptor);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
             recipe.AddIngredient(ModContent.ItemType<IllegalWeaponInstructions>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<KnivesoftheCorruptor>());
             recipe.AddRecipe();
 
@@ -2057,7 +2057,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.SpellTome);
             recipe.AddIngredient(ItemID.SoulofLight, 20);
             recipe.AddIngredient(ItemID.Fireblossom, 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<TheGoldenFlames>());
             recipe.AddRecipe();
 
@@ -2067,7 +2067,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.IllegalGunParts);
             recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 50);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PlanterasFury>());
             recipe.AddRecipe();
 
@@ -2998,20 +2998,20 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<PyroscoricBar>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PyroscoricLongsword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<PyroscoricBar>(), 25);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PyroscoricPickaxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<PyroscoricBar>());
             recipe.AddIngredient(ItemID.MusketBall, 70);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<PyroscoricBullet>(), 70);
             recipe.AddRecipe();
 
@@ -3023,20 +3023,20 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<TritanoriumBar>(), 35);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<TritanoriumBroadsword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<TritanoriumBar>(), 25);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<TritanoriumPickaxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<TritanoriumBar>());
             recipe.AddIngredient(ItemID.MusketBall, 70);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<TritonBullet>(), 70);
             recipe.AddRecipe();
 
@@ -3048,13 +3048,13 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 24);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditeGreatsword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditePicksaw>());
             recipe.AddRecipe();
 
@@ -3062,7 +3062,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SolariumStaff>());
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 15);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 9);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditeKunziteWaveStaff>());
             recipe.AddRecipe();
 
@@ -3070,7 +3070,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.PulseBow);
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 13);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditeFusebow>());
             recipe.AddRecipe();
 
@@ -3078,7 +3078,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 17);
             recipe.AddIngredient(ModContent.ItemType<SpikedBlastShell>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditeHeadpiece>());
             recipe.AddRecipe();
 
@@ -3086,7 +3086,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 46);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 10);
             recipe.AddIngredient(ModContent.ItemType<SpikedBlastShell>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditeBodyplate>());
             recipe.AddRecipe();
 
@@ -3094,7 +3094,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 32);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 8);
             recipe.AddIngredient(ModContent.ItemType<SpikedBlastShell>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<UnvolanditeLeggings>());
             recipe.AddRecipe();
 
@@ -3106,13 +3106,13 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 22);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VoraylzumKatana>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VorazylcumPicksaw>());
             recipe.AddRecipe();
 
@@ -3120,7 +3120,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SolariumStaff>());
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 15);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 9);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VorazylcumKunziteBoltStaff>());
             recipe.AddRecipe();
 
@@ -3128,7 +3128,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.PulseBow);
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 13);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VorazylcumFusebow>());
             recipe.AddRecipe();
 
@@ -3136,7 +3136,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 17);
             recipe.AddIngredient(ModContent.ItemType<SpikedBlastShell>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VorazylcumHeadpiece>());
             recipe.AddRecipe();
 
@@ -3144,7 +3144,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 46);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 10);
             recipe.AddIngredient(ModContent.ItemType<SpikedBlastShell>(), 4);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VorazylcumBodyplate>());
             recipe.AddRecipe();
 
@@ -3152,7 +3152,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 32);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 8);
             recipe.AddIngredient(ModContent.ItemType<SpikedBlastShell>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VorazylcumLeggings>());
             recipe.AddRecipe();
 
@@ -3160,7 +3160,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 30);
             recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 30);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Elektriwave>());
             recipe.AddRecipe();
 
@@ -3169,14 +3169,14 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<CaesiumBar>(), 3);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 3);
             recipe.AddIngredient(ModContent.ItemType<FeroziumBar>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SuperhardmodeBar>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MusketBall, 200);
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Electrobullet>(), 200);
             recipe.AddRecipe();
 
@@ -3184,7 +3184,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 30);
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 30);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BlahsHelmet>());
             recipe.AddRecipe();
 
@@ -3192,7 +3192,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 35);
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 35);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BlahsBodyarmor>());
             recipe.AddRecipe();
 
@@ -3200,7 +3200,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 30);
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 25);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 17);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BlahsCuisses>());
             recipe.AddRecipe();
 
@@ -3209,7 +3209,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 25);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 25);
             recipe.AddIngredient(ModContent.ItemType<InstantaniumPicksaw>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BlahsPicksaw>());
             recipe.AddRecipe();
 
@@ -3218,7 +3218,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 25);
             recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 25);
             recipe.AddIngredient(ModContent.ItemType<TheBanhammer>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BlahsWarhammer>());
             recipe.AddRecipe();
 
@@ -3226,7 +3226,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.ChlorophyteShotbow);
             recipe.AddIngredient(ItemID.HallowedRepeater);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 22);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<GleamingTwilight>());
             recipe.AddRecipe();
 
@@ -3236,7 +3236,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 40);
             recipe.AddIngredient(ModContent.ItemType<ElementShard>(), 7);
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BerserkerNightmare>());
             recipe.AddRecipe();
 
@@ -3245,7 +3245,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.TitaniumBar, 30);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 5);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
             recipe.AddRecipe();
 
@@ -3254,7 +3254,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<TroxiniumBar>(), 30);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 5);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
             recipe.AddRecipe();
 
@@ -3263,7 +3263,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.AdamantiteBar, 30);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 5);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
             recipe.AddRecipe();
 
@@ -3273,35 +3273,35 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 40);
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 5);
             recipe.AddIngredient(ItemID.Ectoplasm, 60);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SoulEdge>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 30);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<OblivionGlaive>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 10);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Oblivirod>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Opal>(), 40);
             recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<OpalStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 25);
             recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<OnyxStaff>());
             recipe.AddRecipe();
 
@@ -3309,7 +3309,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.PaladinsHammer);
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
             recipe.AddIngredient(ItemID.Ectoplasm, 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<GuardianHammer>());
             recipe.AddRecipe();
 
@@ -3376,7 +3376,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 60);
             recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BerserkerHeadpiece>());
             recipe.AddRecipe();
 
@@ -3385,7 +3385,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 65);
             recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BerserkerBodyarmor>());
             recipe.AddRecipe();
 
@@ -3394,7 +3394,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 70);
             recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<BerserkerCuisses>());
             recipe.AddRecipe();
 
@@ -3403,7 +3403,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 60);
             recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
             recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<AwakenedRoseCrown>());
             recipe.AddRecipe();
 
@@ -3412,7 +3412,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 65);
             recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
             recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<AwakenedRosePlateMail>());
             recipe.AddRecipe();
 
@@ -3421,7 +3421,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 70);
             recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
             recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<AwakenedRoseSubligar>());
             recipe.AddRecipe();
 
@@ -3431,7 +3431,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
             recipe.AddIngredient(ModContent.ItemType<Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SpectrumHelmet>());
             recipe.AddRecipe();
 
@@ -3441,7 +3441,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
             recipe.AddIngredient(ModContent.ItemType<Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SpectrumBreastplate>());
             recipe.AddRecipe();
 
@@ -3451,7 +3451,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
             recipe.AddIngredient(ModContent.ItemType<Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<SpectrumGreaves>());
             recipe.AddRecipe();
 
@@ -3468,7 +3468,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 3);
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 60);
             recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<MiloticCrown>());
             recipe.AddRecipe();
 
@@ -3477,7 +3477,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 4);
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 75);
             recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<MiloticSkinplate>());
             recipe.AddRecipe();
 
@@ -3486,7 +3486,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 3);
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 70);
             recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<MiloticJodpurs>());
             recipe.AddRecipe();
 
@@ -3497,7 +3497,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<BerserkerHeadpiece>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonHelmet>());
             recipe.AddRecipe();
 
@@ -3506,7 +3506,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<BerserkerBodyarmor>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonBodyarmor>());
             recipe.AddRecipe();
 
@@ -3515,7 +3515,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<BerserkerCuisses>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonCuisses>());
             recipe.AddRecipe();
 
@@ -3524,7 +3524,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<AwakenedRoseCrown>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonHelmet>());
             recipe.AddRecipe();
 
@@ -3533,7 +3533,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<AwakenedRosePlateMail>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonBodyarmor>());
             recipe.AddRecipe();
 
@@ -3542,7 +3542,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<AwakenedRoseSubligar>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonCuisses>());
             recipe.AddRecipe();
 
@@ -3551,7 +3551,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<SpectrumHelmet>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonHelmet>());
             recipe.AddRecipe();
 
@@ -3560,7 +3560,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<SpectrumBreastplate>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonBodyarmor>());
             recipe.AddRecipe();
 
@@ -3569,7 +3569,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<SpectrumGreaves>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonCuisses>());
             recipe.AddRecipe();
 
@@ -3578,7 +3578,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<MiloticCrown>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonHelmet>());
             recipe.AddRecipe();
 
@@ -3587,7 +3587,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<MiloticSkinplate>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonBodyarmor>());
             recipe.AddRecipe();
 
@@ -3596,7 +3596,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<MiloticJodpurs>());
             recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Armor.AvalonCuisses>());
             recipe.AddRecipe();
 

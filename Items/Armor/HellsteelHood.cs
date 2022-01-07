@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Material.HellsteelPlate>(), 15);
 			recipe.AddIngredient(ModContent.ItemType<FleshCap>());
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

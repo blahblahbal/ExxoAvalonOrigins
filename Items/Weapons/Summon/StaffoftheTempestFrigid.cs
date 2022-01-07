@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             recipe.AddIngredient(ItemID.FrostCore, 10);
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
             recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.HydrolythBar>(), 40);
-            recipe.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<StaffoftheTempestFrigid>());
             recipe.AddRecipe();
         }

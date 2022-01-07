@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             r.AddIngredient(ModContent.ItemType<ChaosEmblem>());
             r.AddIngredient(ModContent.ItemType<GuardianBoots>());
             r.AddIngredient(ModContent.ItemType<Material.HellsteelPlate>(), 20);
-            r.AddTile(ModContent.TileType<Tiles.XeradonAnvil>());
+            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             r.SetResult(this);
             r.AddRecipe();
         }
