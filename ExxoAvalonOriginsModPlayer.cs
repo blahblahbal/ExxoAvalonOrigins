@@ -955,7 +955,7 @@ namespace ExxoAvalonOrigins
                 Vector2 center = player.Center;
                 Main.PlaySound(2, player.position, 17);
                 float num572 = (float)Math.Atan2(center.Y - npc.Center.Y, center.X - npc.Center.X);
-                for (float f = 0f; f <= 4f; f += 0.4f)
+                for (float f = 0f; f <= 3.6f; f += 0.4f)
                 {
                     int proj = Projectile.NewProjectile(center.X, center.Y, (float)(Math.Cos(num572 + f) * shootSpeed * -1), (float)(Math.Sin(num572 + f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
                     Main.projectile[proj].timeLeft = 600;
