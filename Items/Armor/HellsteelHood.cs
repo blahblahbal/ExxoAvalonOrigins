@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			Rectangle dims = this.GetDims();
 			item.defense = 27;
-			item.rare = ItemRarityID.LightBlue;
+			item.rare = ItemRarityID.Cyan;
 			item.width = dims.Width;
 			item.value = Item.sellPrice(0, 10, 0, 0);
 			item.height = dims.Height;
