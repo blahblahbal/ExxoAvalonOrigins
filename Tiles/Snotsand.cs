@@ -37,6 +37,7 @@ namespace ExxoAvalonOrigins.Tiles
 			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
 			TileID.Sets.Falling[Type] = true;
 			drop = mod.ItemType("SnotsandBlock");
+			SetModCactus(new IckyCactus());
             SetModPalmTree(new ContagionPalmTree());
             dustType = DustID.ScourgeOfTheCorruptor;
         }
