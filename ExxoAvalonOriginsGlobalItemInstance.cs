@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ExxoAvalonOrigins.Items;
@@ -40,7 +40,8 @@ namespace ExxoAvalonOrigins
         {
             ModContent.ItemType<Items.Armor.AvalonHelmet>(),
             ModContent.ItemType<Items.Armor.AvalonBodyarmor>(),
-            ModContent.ItemType<Items.Armor.AvalonCuisses>()
+            ModContent.ItemType<Items.Armor.AvalonCuisses>(),
+			ModContent.ItemType<Items.Other.MechanicalWhoopieCushion>()
         };
         List<int> rainbowRarityItems = new List<int>
         {
