@@ -466,6 +466,12 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.DarkMatterToken>(), 75);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(ModContent.ItemType<Items.Accessories.VampireHarpyWings>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.MechastingToken>());
             recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<Items.Tokens.DarkMatterToken>());

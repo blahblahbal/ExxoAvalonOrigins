@@ -297,6 +297,19 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
+            {
+                if (musicMod != null)
+                {
+                    music = musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/DarkMatter");
+                }
+                else
+                {
+                    music = MusicID.Eclipse;
+                }
+
+                priority = MusicPriority.Environment;
+            }
             var rectangle = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
             const int dist = 5000;
             bool phantasm = false;

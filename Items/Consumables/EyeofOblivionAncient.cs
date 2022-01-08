@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,6 +25,18 @@ namespace ExxoAvalonOrigins.Items.Consumables
 			item.maxStack = 20;
 			item.useAnimation = 45;
 			item.height = dims.Height;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.Rock>());
+            recipe.AddIngredient(ModContent.ItemType<Material.PointingLaser>());
+            recipe.AddIngredient(ModContent.ItemType<Material.AlienApparatus>());
+            recipe.AddIngredient(ModContent.ItemType<Material.IllegalWeaponInstructions>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ModContent.ItemType<EyeofOblivionAncient>(), 3);
+            recipe.AddRecipe();
         }
 
         public override bool CanUseItem(Player player)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 		{
 			Rectangle dims = this.GetDims();
 			item.consumable = item.autoReuse = true;
-			item.createTile = TileID.DemonAltar;
+			item.createTile = ModContent.TileType<Tiles.EvilAltarsPlaced>();
 			item.placeStyle = 0;
 			item.rare = ItemRarityID.Blue;
 			item.width = dims.Width;

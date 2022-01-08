@@ -53,8 +53,8 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			}
             if (hasDebuff)
             {
-                if (target.boss) damage = (int)(damage * 1.2);
-                else damage = (int)(damage * 1.6);
+                if (target.boss) damage = (int)(damage * 1.5);
+                else damage = (int)(damage * 1.9);
             }
 		}
 	}

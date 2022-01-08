@@ -23,6 +23,13 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Bar.BismuthBar>(), 2);
+            recipe.AddIngredient(ItemID.PinkTorch);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ItemID.PeaceCandle);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Cloud);
             recipe.needWater = true;
             recipe.SetResult(ItemID.RainCloud);

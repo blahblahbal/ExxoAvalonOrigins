@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,8 +17,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 			Rectangle dims = this.GetDims();
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.IckyAltar>();
-			item.rare = ItemRarityID.Blue;
+			item.createTile = ModContent.TileType<Tiles.EvilAltarsPlaced>();
+            item.placeStyle = 2;
+            item.rare = ItemRarityID.Blue;
 			item.width = dims.Width;
 			item.useTime = 20;
 			item.maxStack = 99;

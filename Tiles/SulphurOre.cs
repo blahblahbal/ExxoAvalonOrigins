@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +18,8 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			AddMapEntry(new Color(218, 216, 114), LanguageManager.Instance.GetText("Sulphur"));
 			Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
+            Main.tileSpelunker[Type] = true;
 			drop = mod.ItemType("Sulphur");
             soundType = SoundID.Tink;
             soundStyle = 1;

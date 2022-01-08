@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.MaxUpdates = 2;
 			projectile.scale = 1f;
 			projectile.ranged = true;
-            projectile.light = 3f;
+            projectile.light = 2.5f;
 		}
 		public override Color? GetAlpha(Color lightColor)
 		{
@@ -61,9 +61,9 @@ namespace ExxoAvalonOrigins.Projectiles
 				projectile.frameCounter = 0;
 			}
 			projectile.localAI[1]++;
-			if (projectile.localAI[1] > 10f && Main.rand.Next(3) == 0)
+			if (projectile.localAI[1] > 10f && Main.rand.Next(8) == 0)
 			{
-				int num586 = 6;
+				int num586 = 2;
 				for (int num587 = 0; num587 < num586; num587++)
 				{
 					Vector2 spinningpoint4 = Vector2.Normalize(projectile.velocity) * new Vector2(projectile.width, projectile.height) / 2f;

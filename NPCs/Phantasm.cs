@@ -27,8 +27,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.boss = npc.noTileCollide = npc.noGravity = true;
             npc.npcSlots = 100f;
             npc.damage = 95;
-            npc.lifeMax = 47800;
-            npc.defense = 55;
+            npc.lifeMax = 56900;
+            npc.defense = 60;
             npc.aiStyle = -1;
             npc.value = 100000f;
             npc.knockBackResist = 0f;
@@ -357,7 +357,7 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     if (npc.ai[0] == 400 || npc.ai[0] == 450 || npc.ai[0] == 500 || npc.ai[0] == 550)
                     {
-                        Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"), 0.8f);
+                        Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"), 0.8f);
                         Vector2 velocityOfProj = Main.player[npc.target].Center - npc.Center;
                         velocityOfProj.Normalize();
                         float num1275 = -1f;

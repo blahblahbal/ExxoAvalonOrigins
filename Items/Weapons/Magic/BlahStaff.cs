@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             item.autoReuse = true;
             item.magic = true;
             item.damage = 278;
-            item.mana = 30;
+            item.mana = 19;
             item.noMelee = true;
             item.rare = ItemRarityID.Purple;
             item.width = dims.Width;

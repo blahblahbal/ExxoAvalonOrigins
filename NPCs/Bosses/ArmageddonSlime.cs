@@ -29,8 +29,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.boss = true;
             npc.netAlways = true;
             npc.scale = 1.8f;
-            npc.lifeMax = 61000;
-            npc.defense = 55;
+            npc.lifeMax = 66000;
+            npc.defense = 72;
             npc.width = 170;
             npc.aiStyle = -1;
             npc.npcSlots = 10f;
@@ -54,8 +54,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.25f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.25f);
+            npc.lifeMax = (int)(npc.lifeMax * 0.75f * bossLifeScale);
+            npc.damage = (int)(npc.damage * 0.95f);
         }
 
         public override void AI()

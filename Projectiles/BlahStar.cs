@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 float speedX = projectile.velocity.X + Main.rand.Next(-51, 51) * 0.2f;
                 float speedY = projectile.velocity.Y + Main.rand.Next(-51, 51) * 0.2f;
-                int proj = Projectile.NewProjectile(projectile.position, new Vector2(speedX, speedY), ProjectileID.GreekFire1, projectile.damage, projectile.knockBack);
+                int proj = Projectile.NewProjectile(projectile.position, new Vector2(speedX, speedY), ModContent.ProjectileType<BlahFire>(), projectile.damage, projectile.knockBack);
                 Main.projectile[proj].hostile = false;
                 Main.projectile[proj].friendly = true;
                 Main.projectile[proj].owner = projectile.owner;

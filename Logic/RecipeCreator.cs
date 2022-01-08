@@ -2862,15 +2862,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Rock>());
-            recipe.AddIngredient(ModContent.ItemType<PointingLaser>());
-            recipe.AddIngredient(ModContent.ItemType<AlienDevice>());
-            recipe.AddIngredient(ModContent.ItemType<IllegalWeaponInstructions>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<EyeofOblivionAncient>(), 3);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ToxinShard>(), 30);
             recipe.AddIngredient(ItemID.Stinger, 15);
             recipe.AddTile(TileID.DemonAltar);

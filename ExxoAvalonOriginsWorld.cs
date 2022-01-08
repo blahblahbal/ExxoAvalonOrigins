@@ -1293,7 +1293,7 @@ namespace ExxoAvalonOrigins
             int type = Main.tile[i, j].type;
             if (SuperHardmode)
             {
-                if (type == ModContent.TileType<Tiles.DarkMatter>() || type == ModContent.TileType<Tiles.DarkMatterSoil>() || type == ModContent.TileType<DarkMatterGrass>() || type == ModContent.TileType<DarkMatterSand>() || type == ModContent.TileType<HardenedDarkSand>() || type == ModContent.TileType<Darksandstone>() || type == ModContent.TileType<BlackIce>())
+                if (type == ModContent.TileType<DarkMatter>() || type == ModContent.TileType<DarkMatterSoil>() || type == ModContent.TileType<DarkMatterGrass>() || type == ModContent.TileType<DarkMatterSand>() || type == ModContent.TileType<HardenedDarkSand>() || type == ModContent.TileType<Darksandstone>() || type == ModContent.TileType<BlackIce>())
                 {
                     bool flag5 = true;
                     while (flag5)
@@ -1305,17 +1305,35 @@ namespace ExxoAvalonOrigins
                         {
                             continue;
                         }
-                        if (Main.tile[num6, num7].type == 2)
+                        if (Main.tile[num6, num7].type == TileID.Grass || Main.tile[num6, num7].type == TileID.JungleGrass ||
+                            Main.tile[num6, num7].type == TileID.MushroomGrass || Main.tile[num6, num7].type == TileID.CorruptGrass ||
+                            Main.tile[num6, num7].type == TileID.FleshGrass || Main.tile[num6, num7].type == TileID.HallowedGrass ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<Ickgrass>() ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<TropicalGrass>())
                         {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 flag5 = true;
                             }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<Ickgrass>();
+                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<DarkMatterGrass>();
                             WorldGen.SquareTileFrame(num6, num7);
                             NetMessage.SendTileSquare(-1, num6, num7, 1);
                         }
-                        else if (Main.tile[num6, num7].type == TileID.Stone || Main.tile[num6, num7].type == TileID.Crimstone || Main.tile[num6, num7].type == TileID.Ebonstone || Main.tile[num6, num7].type == TileID.Pearlstone || Main.tile[num6, num7].type == (ushort)ModContent.TileType<Chunkstone>() || Main.tileMoss[Main.tile[num6, num7].type])
+                        if (Main.tile[num6, num7].type == TileID.Dirt || Main.tile[num6, num7].type == TileID.Mud ||
+                            Main.tile[num6, num7].type == TileID.ClayBlock ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<TropicalMud>())
+                        {
+                            if (WorldGen.genRand.Next(2) == 0)
+                            {
+                                flag5 = true;
+                            }
+                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<DarkMatterSoil>();
+                            WorldGen.SquareTileFrame(num6, num7);
+                            NetMessage.SendTileSquare(-1, num6, num7, 1);
+                        }
+                        else if (Main.tile[num6, num7].type == TileID.Stone || Main.tile[num6, num7].type == TileID.Crimstone ||
+                            Main.tile[num6, num7].type == TileID.Ebonstone || Main.tile[num6, num7].type == TileID.Pearlstone ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<Chunkstone>() || Main.tileMoss[Main.tile[num6, num7].type])
                         {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
@@ -1325,17 +1343,21 @@ namespace ExxoAvalonOrigins
                             WorldGen.SquareTileFrame(num6, num7);
                             NetMessage.SendTileSquare(-1, num6, num7, 1);
                         }
-                        else if (Main.tile[num6, num7].type == TileID.Sand || Main.tile[num6, num7].type == TileID.Pearlsand || Main.tile[num6, num7].type == TileID.Ebonsand || Main.tile[num6, num7].type == TileID.Crimsand || Main.tile[num6, num7].type == (ushort)ModContent.TileType<Snotsand>())
+                        else if (Main.tile[num6, num7].type == TileID.Sand || Main.tile[num6, num7].type == TileID.Pearlsand ||
+                            Main.tile[num6, num7].type == TileID.Ebonsand || Main.tile[num6, num7].type == TileID.Crimsand ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<Snotsand>())
                         {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
                                 flag5 = true;
                             }
-                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<Tiles.DarkMatterSand>();
+                            Main.tile[num6, num7].type = (ushort)ModContent.TileType<DarkMatterSand>();
                             WorldGen.SquareTileFrame(num6, num7);
                             NetMessage.SendTileSquare(-1, num6, num7, 1);
                         }
-                        else if (Main.tile[num6, num7].type == TileID.Sandstone || Main.tile[num6, num7].type == TileID.CrimsonSandstone || Main.tile[num6, num7].type == TileID.CorruptSandstone || Main.tile[num6, num7].type == TileID.HallowSandstone || Main.tile[num6, num7].type == (ushort)ModContent.TileType<Snotsandstone>())
+                        else if (Main.tile[num6, num7].type == TileID.Sandstone || Main.tile[num6, num7].type == TileID.CrimsonSandstone ||
+                            Main.tile[num6, num7].type == TileID.CorruptSandstone || Main.tile[num6, num7].type == TileID.HallowSandstone ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<Snotsandstone>())
                         {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
@@ -1345,7 +1367,9 @@ namespace ExxoAvalonOrigins
                             WorldGen.SquareTileFrame(num6, num7);
                             NetMessage.SendTileSquare(-1, num6, num7, 1);
                         }
-                        else if (Main.tile[num6, num7].type == TileID.HardenedSand || Main.tile[num6, num7].type == TileID.CrimsonHardenedSand || Main.tile[num6, num7].type == TileID.CorruptHardenedSand || Main.tile[num6, num7].type == TileID.HallowHardenedSand || Main.tile[num6, num7].type == (ushort)ModContent.TileType<HardenedSnotsand>())
+                        else if (Main.tile[num6, num7].type == TileID.HardenedSand || Main.tile[num6, num7].type == TileID.CrimsonHardenedSand ||
+                            Main.tile[num6, num7].type == TileID.CorruptHardenedSand || Main.tile[num6, num7].type == TileID.HallowHardenedSand ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<HardenedSnotsand>())
                         {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
@@ -1355,7 +1379,11 @@ namespace ExxoAvalonOrigins
                             WorldGen.SquareTileFrame(num6, num7);
                             NetMessage.SendTileSquare(-1, num6, num7, 1);
                         }
-                        else if (Main.tile[num6, num7].type == TileID.IceBlock || Main.tile[num6, num7].type == TileID.FleshIce || Main.tile[num6, num7].type == TileID.CorruptIce || Main.tile[num6, num7].type == TileID.HallowedIce || Main.tile[num6, num7].type == (ushort)ModContent.TileType<YellowIce>())
+                        else if (Main.tile[num6, num7].type == TileID.IceBlock || Main.tile[num6, num7].type == TileID.FleshIce ||
+                            Main.tile[num6, num7].type == TileID.CorruptIce || Main.tile[num6, num7].type == TileID.HallowedIce ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<YellowIce>() ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<GreenIce>() ||
+                            Main.tile[num6, num7].type == (ushort)ModContent.TileType<BrownIce>())
                         {
                             if (WorldGen.genRand.Next(2) == 0)
                             {
@@ -1557,7 +1585,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].type == TileID.HallowedGrass || Main.tile[num5, num6].type == TileID.Pearlstone)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(100) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 350 : 100)) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Holybird>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1578,7 +1606,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(100) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(350) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Sweetstem>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1599,7 +1627,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].type == TileID.FleshGrass || Main.tile[num5, num6].type == TileID.Crimstone)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(100) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 350 : 100)) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1633,7 +1661,7 @@ namespace ExxoAvalonOrigins
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
                         }
-                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(100) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 350 : 100)) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Barfbush>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -2866,7 +2894,7 @@ namespace ExxoAvalonOrigins
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(2, 7), (ushort)ModContent.TileType<Tiles.OblivionOre>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(5, 9), Main.rand.Next(4, 6), (ushort)ModContent.TileType<Tiles.OblivionOre>());
             }
             // opals
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
@@ -2880,14 +2908,14 @@ namespace ExxoAvalonOrigins
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(3, 5), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Onyx>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Onyx>());
             }
             // kunzite
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(3, 5), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Kunzite>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Kunzite>());
             }
             // primordial ore
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
@@ -2944,6 +2972,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },
                 { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },
                 { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },
+                { "ExxoAvalonOrigins:StoppedArmageddon", ExxoAvalonOriginsGlobalNPC.stoppedArmageddon }
             };
 
             // Update config cache values on save world
@@ -3040,6 +3069,10 @@ namespace ExxoAvalonOrigins
                 {
                     WorldDarkMatterTiles = 0;
                 }
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:StoppedArmageddon"))
+            {
+                ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = tag.Get<bool>("ExxoAvalonOrigins:StoppedArmageddon");
             }
         }
     }

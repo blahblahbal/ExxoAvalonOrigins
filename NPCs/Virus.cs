@@ -57,13 +57,13 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusTail"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHead"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHair"), 1f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusTail"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHead"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHair"), 0.6f);
             }
         }
     }
