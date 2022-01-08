@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs
 {
+    [AutoloadBossHead]
 	public class DragonLordHead : ModNPC
 	{
 		public override void SetStaticDefaults()
@@ -53,6 +54,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Color.White;
         }
+		public override void BossHeadRotation(ref float rotation)
+		{
+			rotation = npc.rotation;
+		}
         /*public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = mod.GetTexture("NPCs/DragonLordHead");
