@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
             Item.staff[item.type] = true;
             Rectangle dims = this.GetDims();
+            item.useStyle = 5;
             item.autoReuse = true;
             item.magic = true;
             item.damage = 278;
