@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 		}
         public override bool ConsumeAmmo(Player player)
         {
-            return player.itemAnimation >= item.useAnimation - 4;
+            return player.itemAnimation >= player.HeldItem.useAnimation - 3;
         }
     }
 }

@@ -120,14 +120,31 @@ namespace ExxoAvalonOrigins
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
+            if (type == NPCID.Steampunker && Main.LocalPlayer.ZoneJungle)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.LimeGreenSolution>());
+                nextSlot++;
+            }
+            if (type == NPCID.Steampunker && (Main.bloodMoon || Main.eclipse))
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.YellowSolution>());
+                nextSlot++;
+            }
+            if (type == NPCID.Steampunker && ExxoAvalonOriginsWorld.downedMechasting)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.BlackSolution>());
+                nextSlot++;
+            }
             if (type == NPCID.Pirate && NPC.downedPirates)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<FalseTreasureMap>());
+                shop.item[nextSlot].value = Item.buyPrice(0, 4);
                 nextSlot++;
             }
             if (type == NPCID.GoblinTinkerer && NPC.downedGoblins)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoblinRetreatOrder>());
+                shop.item[nextSlot].value = Item.buyPrice(0, 4);
                 nextSlot++;
             }
             if (type == 19 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)

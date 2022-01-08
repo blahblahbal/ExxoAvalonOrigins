@@ -1075,6 +1075,59 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+            if (convert == 2 && WorldDarkMatterTiles < 250000)
+            {
+                if (Main.tile[x, y] != null)
+                {
+                    if (wall == WallID.JungleUnsafe || wall == WallID.GrassUnsafe || wall == ModContent.WallType<Walls.ContagionGrassWall>() || wall == WallID.CrimsonGrassUnsafe || wall == WallID.CorruptGrassUnsafe || wall == WallID.HallowedGrassUnsafe)
+                    {
+                        Main.tile[x, y].wall = (ushort)ModContent.WallType<Walls.DarkMatterGrassWall>();
+                    }
+                    else if (wall == WallID.DirtUnsafe)
+                    {
+                        Main.tile[x, y].wall = (ushort)ModContent.WallType<Walls.DarkMatterSoilWall>();
+                    }
+                    else if (WallID.Sets.Conversion.Stone[wall])
+                    {
+                        Main.tile[x, y].wall = (ushort)ModContent.WallType<Walls.DarkMatterStoneWall>();
+                    }
+                }
+                if (Main.tile[x, y] != null)
+                {
+                    if (type == ModContent.TileType<Ickgrass>() || type == ModContent.TileType<TropicalGrass>() || type == TileID.JungleGrass || type == TileID.MushroomGrass || type == TileID.FleshGrass || type == TileID.CorruptGrass || type == TileID.Grass || type == TileID.HallowedGrass)
+                    {
+                        tile.type = (ushort)ModContent.TileType<DarkMatterGrass>();
+                    }
+                    else if (type == TileID.Dirt || type == TileID.ClayBlock || type == TileID.Mud || type == ModContent.TileType<TropicalMud>())
+                    {
+                        tile.type = (ushort)ModContent.TileType<DarkMatterSoil>();
+                    }
+                    else if (type == ModContent.TileType<Snotsand>() || type == TileID.Sand || type == TileID.Crimsand || type == TileID.Ebonsand || type == TileID.Pearlsand)
+                    {
+                        tile.type = (ushort)ModContent.TileType<DarkMatterSand>();
+                    }
+                    else if (type == ModContent.TileType<Chunkstone>() || type == TileID.Stone || type == TileID.Pearlstone || type == TileID.Crimstone || type == TileID.Ebonstone)
+                    {
+                        tile.type = (ushort)ModContent.TileType<DarkMatter>();
+                    }
+                    else if (type == ModContent.TileType<Snotsandstone>() || type == TileID.Sandstone || type == TileID.HallowSandstone || type == TileID.CrimsonSandstone || type == TileID.CorruptSandstone)
+                    {
+                        tile.type = (ushort)ModContent.TileType<Darksandstone>();
+                    }
+                    else if (type == ModContent.TileType<HardenedSnotsand>() || type == TileID.HardenedSand || type == TileID.HallowHardenedSand || type == TileID.CrimsonHardenedSand || type == TileID.CorruptHardenedSand)
+                    {
+                        tile.type = (ushort)ModContent.TileType<HardenedDarkSand>();
+                    }
+                    else if (type == ModContent.TileType<YellowIce>() || type == TileID.HallowedIce || type == TileID.FleshIce || type == TileID.CorruptIce || type == TileID.IceBlock || type == ModContent.TileType<GreenIce>() || type == ModContent.TileType<BrownIce>())
+                    {
+                        tile.type = (ushort)ModContent.TileType<BlackIce>();
+                    }
+                    if (TileID.Sets.Conversion.Grass[type] || type == 0)
+                    {
+                        WorldGen.SquareTileFrame(x, y);
+                    }
+                }
+            }
             if (tileframe)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
@@ -1125,6 +1178,7 @@ namespace ExxoAvalonOrigins
             writer.Write(shmOreTier1);
             writer.Write(shmOreTier2);
             writer.Write(hallowAltarCount);
+            writer.Write(ExxoAvalonOriginsGlobalNPC.stoppedArmageddon);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -1142,6 +1196,7 @@ namespace ExxoAvalonOrigins
             shmOreTier1 = reader.ReadInt32();
             shmOreTier2 = reader.ReadInt32();
             hallowAltarCount = reader.ReadInt32();
+            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = reader.ReadBoolean();
         }
 
         public static void GrowLargeHerb(int x, int y)
@@ -1291,6 +1346,7 @@ namespace ExxoAvalonOrigins
             }
 
             int type = Main.tile[i, j].type;
+            int wall = Main.tile[i, j].wall;
             if (SuperHardmode)
             {
                 if (type == ModContent.TileType<DarkMatter>() || type == ModContent.TileType<DarkMatterSoil>() || type == ModContent.TileType<DarkMatterGrass>() || type == ModContent.TileType<DarkMatterSand>() || type == ModContent.TileType<HardenedDarkSand>() || type == ModContent.TileType<Darksandstone>() || type == ModContent.TileType<BlackIce>())
@@ -1895,9 +1951,9 @@ namespace ExxoAvalonOrigins
             }
             if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && SuperHardmode && Main.hardMode)
             {
-                DropComet(ModContent.TileType<Tiles.HydrolythOre>());
+                DropComet(ModContent.TileType<HydrolythOre>());
             }
-            Main.tileSolidTop[ModContent.TileType<Tiles.FallenStarTile>()] = Main.dayTime;
+            Main.tileSolidTop[ModContent.TileType<FallenStarTile>()] = Main.dayTime;
         }
 
         public override void PreWorldGen()
