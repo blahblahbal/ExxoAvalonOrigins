@@ -11,6 +11,7 @@ using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.NPCs
 {
+    [AutoloadBossHead]
 	public class DragonLordTail : ModNPC
 	{
 		public override void SetStaticDefaults()
@@ -49,6 +50,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Color.White;
         }
+		public override void BossHeadRotation(ref float rotation)
+		{
+			rotation = npc.rotation;
+		}
         public override void AI()
         {
             if (npc.ai[3] > 0f)

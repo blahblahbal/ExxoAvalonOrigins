@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Backgrounds
@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Backgrounds
     {
         public override bool ChooseBgStyle()
         {
-            return !Main.gameMenu && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger;
+            return !Main.gameMenu && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && !Main.LocalPlayer.ZoneDesert;
         }
 
         // Use this to keep far Backgrounds like the mountains.
