@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ExxoAvalonOrigins.Items;
@@ -18,6 +18,7 @@ namespace ExxoAvalonOrigins
         public bool invince;
         public int torch = 0;
         public int healStamina;
+        public bool wasMech = false;
         public bool tome = false;
         public bool updateInvisibleVanity = false;
         public AvalonRarity avalonRarity;

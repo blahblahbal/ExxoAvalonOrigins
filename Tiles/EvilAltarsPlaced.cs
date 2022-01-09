@@ -20,7 +20,6 @@ namespace ExxoAvalonOrigins.Tiles
                 18
             };
             TileObjectData.addTile(Type);
-            Main.tileHammer[Type] = true;
 			Main.tileLighted[Type] = true;
 			Main.tileFrameImportant[Type] = true;
             adjTiles = new int[] { TileID.DemonAltar };

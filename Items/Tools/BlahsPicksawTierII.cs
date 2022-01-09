@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         {
             if (player.inventory[player.selectedItem].type == item.type)
             {
-                player.pickSpeed -= 0.5f;
+                player.pickSpeed -= 0.75f;
             }
         }
     }

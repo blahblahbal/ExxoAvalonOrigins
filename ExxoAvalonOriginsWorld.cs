@@ -44,6 +44,7 @@ namespace ExxoAvalonOrigins
         public static int darkTiles = 0;
         public static int tropicTiles = 0;
         public static int caesiumTiles = 0;
+        public static int skyFortressTiles = 0;
         public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
@@ -180,6 +181,7 @@ namespace ExxoAvalonOrigins
             hellcastleTiles = tileCounts[ModContent.TileType<Tiles.ImperviousBrick>()];
             darkTiles = tileCounts[ModContent.TileType<Tiles.DarkMatter>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterSand>()] + tileCounts[ModContent.TileType<Tiles.BlackIce>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterSoil>()] + tileCounts[ModContent.TileType<Tiles.HardenedDarkSand>()] + tileCounts[ModContent.TileType<Tiles.Darksandstone>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterGrass>()];
             caesiumTiles = tileCounts[ModContent.TileType<Tiles.BlackBlaststone>()];
+            skyFortressTiles = tileCounts[ModContent.TileType<SkyBrick>()];
             Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
         }
 
@@ -196,13 +198,6 @@ namespace ExxoAvalonOrigins
                     WorldGen.OreRunner(i10, j10, WorldGen.genRand.Next(4, 5), WorldGen.genRand.Next(5, 7), (ushort)rhodiumOre.GetTile());
                 }
                 Main.NewText("Retrogenned Rhodium/Osmium/Iridium");
-                //Caesium
-                for (int num179 = 0; num179 < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); num179++)
-                {
-                    WorldGen.OreRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), (ushort)ModContent.TileType<Tiles.CaesiumOre>());
-                    //WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next(Main.maxTilesY - 150, Main.maxTilesY), WorldGen.genRand.Next(2, 6), WorldGen.genRand.Next(3, 5), ModContent.TileType<CaesiumOre>(), false, 0f, 0f, false, true);
-                }
-                Main.NewText("Retrogenned Caesium");
             }
             if (worldVersion < new Version(0, 1, 1, 0))
             {
@@ -3051,7 +3046,6 @@ namespace ExxoAvalonOrigins
 
             return toSave;
         }
-
         public override void Load(TagCompound tag)
         {
             if (tag.ContainsKey("ExxoAvalonOrigins:LastOpenedVersion"))

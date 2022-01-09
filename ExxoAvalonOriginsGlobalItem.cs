@@ -83,7 +83,7 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Placeable.Tile.Tourmaline>(),
             ModContent.ItemType<Items.Placeable.Tile.Opal>()
         };
-
+        //public bool wasMech = false;
         public static int GemToTile(int type)
         {
             if (type == ItemID.Amethyst) return TileID.Amethyst;
@@ -922,6 +922,25 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
+            Item tempWireItem = new Item();
+            tempWireItem.netDefaults(item.netID);
+            tempWireItem = tempWireItem.CloneWithModdedDataFrom(item);
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress)
+            {
+                player.InfoAccMechShowWires = false;
+                if (item.mech)
+                {
+                    item.mech = false;
+                    item.useStyle = 0;
+                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech = true;
+                }
+            }
+            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress || ExxoAvalonOriginsWorld.downedDragonLord))
+            {
+                item.netDefaults(tempWireItem.netID);
+                item.stack = tempWireItem.stack;
+                item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech = false;
+            }
             Item tempItem = new Item();
             tempItem.netDefaults(item.netID);
             tempItem = tempItem.CloneWithModdedDataFrom(item);

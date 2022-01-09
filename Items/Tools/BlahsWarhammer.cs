@@ -34,5 +34,12 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.useAnimation = 9;
 			item.height = dims.Height;
 		}
+        public override void HoldItem(Player player)
+        {
+            if (player.inventory[player.selectedItem].type == item.type)
+            {
+                player.wallSpeed += 0.5f;
+            }
+        }
     }
 }

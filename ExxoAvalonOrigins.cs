@@ -297,6 +297,19 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress)
+            {
+                if (musicMod != null)
+                {
+                    music = MusicID.Dungeon; // musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/SkyFortress"); //ADD MUSIC LATER
+                }
+                else
+                {
+                    music = MusicID.Dungeon;
+                }
+
+                priority = MusicPriority.Environment;
+            }
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
             {
                 if (musicMod != null)

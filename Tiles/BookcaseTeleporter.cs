@@ -40,35 +40,38 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void HitWire(int i, int j)
         {
-            ExxoAvalonOriginsWorld.specialWireHitCount++;
-            if (ExxoAvalonOriginsWorld.specialWireHitCount == 2)
+            Player player = Main.LocalPlayer;
+
+            Wiring.SkipWire(i, j);
+            for (int p = 0; p < Main.player.Length; p++)
             {
-                Player player = Main.LocalPlayer;
-                Wiring.SkipWire(i, j);
-                Point tileC = player.position.ToTileCoordinates();
-                if ((Main.tile[tileC.X, tileC.Y].active() && Main.tile[tileC.X, tileC.Y].type == Type) ||
-                    (Main.tile[tileC.X + 1, tileC.Y].active() && Main.tile[tileC.X + 1, tileC.Y].type == Type) ||
-                    (Main.tile[tileC.X, tileC.Y + 1].active() && Main.tile[tileC.X, tileC.Y + 1].type == Type) ||
-                    (Main.tile[tileC.X + 1, tileC.Y + 1].active() && Main.tile[tileC.X + 1, tileC.Y + 1].type == Type) ||
-                    (Main.tile[tileC.X, tileC.Y + 2].active() && Main.tile[tileC.X, tileC.Y + 2].type == Type) ||
-                    (Main.tile[tileC.X + 1, tileC.Y + 2].active() && Main.tile[tileC.X + 1, tileC.Y + 2].type == Type) ||
-                    (Main.tile[tileC.X, tileC.Y + 3].active() && Main.tile[tileC.X, tileC.Y + 3].type == Type) ||
-                    (Main.tile[tileC.X + 1, tileC.Y + 3].active() && Main.tile[tileC.X + 1, tileC.Y + 3].type == Type))
+                Player q = Main.player[p];
+                if (q.active && !q.dead)
                 {
-                    if (!Main.tile[i, j + 1].active())
+                    Point tileC = q.position.ToTileCoordinates();
+                    if ((Main.tile[tileC.X, tileC.Y].active() && Main.tile[tileC.X, tileC.Y].type == Type) ||
+                        (Main.tile[tileC.X + 1, tileC.Y].active() && Main.tile[tileC.X + 1, tileC.Y].type == Type) ||
+                        (Main.tile[tileC.X, tileC.Y + 1].active() && Main.tile[tileC.X, tileC.Y + 1].type == Type) ||
+                        (Main.tile[tileC.X + 1, tileC.Y + 1].active() && Main.tile[tileC.X + 1, tileC.Y + 1].type == Type) ||
+                        (Main.tile[tileC.X, tileC.Y + 2].active() && Main.tile[tileC.X, tileC.Y + 2].type == Type) ||
+                        (Main.tile[tileC.X + 1, tileC.Y + 2].active() && Main.tile[tileC.X + 1, tileC.Y + 2].type == Type) ||
+                        (Main.tile[tileC.X, tileC.Y + 3].active() && Main.tile[tileC.X, tileC.Y + 3].type == Type) ||
+                        (Main.tile[tileC.X + 1, tileC.Y + 3].active() && Main.tile[tileC.X + 1, tileC.Y + 3].type == Type))
                     {
-                        player.Teleport(new Vector2(i * 16, j * 16 - 16));
-                    }
-                    if (!Main.tile[i, j + 1].active() || !Main.tile[i, j + 2].active())
-                    {
-                        player.Teleport(new Vector2(i * 16, j * 16));
-                    }
-                    else
-                    {
-                        player.Teleport(new Vector2(i * 16, j * 16 - 32));
+                        if (!Main.tile[i, j + 1].active())
+                        {
+                            q.Teleport(new Vector2(i * 16, j * 16 - 16));
+                        }
+                        if (!Main.tile[i, j + 1].active() || !Main.tile[i, j + 2].active())
+                        {
+                            q.Teleport(new Vector2(i * 16, j * 16));
+                        }
+                        else
+                        {
+                            q.Teleport(new Vector2(i * 16, j * 16 - 32));
+                        }
                     }
                 }
-                ExxoAvalonOriginsWorld.specialWireHitCount = 0;
             }
         }
     }

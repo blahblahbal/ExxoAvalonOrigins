@@ -272,6 +272,7 @@ namespace ExxoAvalonOrigins
         public bool zoneTropics;
         public bool zoneCaesium;
         public bool zoneOutpost;
+        public bool zoneSkyFortress;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -508,6 +509,7 @@ namespace ExxoAvalonOrigins
             zoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
             zoneOutpost = ExxoAvalonOriginsWorld.tropicTiles > 50 && Main.tile[tileC.X, tileC.Y].wall == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && player.ZoneRockLayerHeight;
             zoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
+            zoneSkyFortress = ExxoAvalonOriginsWorld.skyFortressTiles > 50 && player.position.Y / 16 < 300;
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
@@ -519,6 +521,7 @@ namespace ExxoAvalonOrigins
             flags[3] = zoneTropics;
             flags[4] = zoneCaesium;
             flags[5] = zoneOutpost;
+            flags[6] = zoneSkyFortress;
             writer.Write(flags);
         }
 
@@ -531,6 +534,7 @@ namespace ExxoAvalonOrigins
             zoneTropics = flags[3];
             zoneCaesium = flags[4];
             zoneOutpost = flags[5];
+            zoneSkyFortress = flags[6];
         }
 
         public bool HasItemInArmor(int type)
