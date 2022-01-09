@@ -1,15 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Seed;
 using ExxoAvalonOrigins.Items.Potions;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.UI.Herbology
 {
-    internal static class HerbologyDefenitions
+    internal static class HerbologyLogic
     {
-        public static Dictionary<int, int> AdvancedPotion = new Dictionary<int, int>
+        public const int HerbTier4Threshold = 1500;
+        public const int HerbTier3Threshold = 750;
+        public const int HerbTier2Threshold = 250;
+
+        public static Dictionary<int, int> ElixirIdByPotionId = new Dictionary<int, int>
         {
             { ItemID.ObsidianSkinPotion, ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>() },
             { ItemID.RegenerationPotion, ModContent.ItemType<Items.AdvancedPotions.AdvRegenerationPotion>() },
@@ -49,7 +55,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ItemID.WarmthPotion, ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>() }
         };
 
-        public static readonly int[] Potions = new int[]
+        public static readonly int[] PotionIds = new int[]
         {
             ItemID.ObsidianSkinPotion,
             ItemID.RegenerationPotion,
@@ -107,7 +113,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             // Magnet Potion
         };
 
-        public static readonly Dictionary<int, int> Herbs = new Dictionary<int, int>
+        public static readonly Dictionary<int, int> HerbIdByLargeHerbId = new Dictionary<int, int>
         {
             { ModContent.ItemType<LargeDaybloom>(), ItemID.Daybloom },
             { ModContent.ItemType<LargeMoonglow>(), ItemID.Moonglow },
@@ -121,7 +127,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ModContent.ItemType<LargeBarfbush>(), ModContent.ItemType<Barfbush>() }
         };
 
-        public static readonly Dictionary<int, int> LargeHerbs = new Dictionary<int, int>
+        public static readonly Dictionary<int, int> LargeHerbIdByLargeHerbSeedId = new Dictionary<int, int>
         {
             { ModContent.ItemType<LargeDaybloomSeed>(), ModContent.ItemType<LargeDaybloom>() },
             { ModContent.ItemType<LargeMoonglowSeed>(), ModContent.ItemType<LargeMoonglow>() },
@@ -135,7 +141,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ModContent.ItemType<LargeBarfbushSeed>(), ModContent.ItemType<LargeBarfbush>() }
         };
 
-        public static readonly Dictionary<int, int> LargeHerbSeeds = new Dictionary<int, int>
+        public static readonly Dictionary<int, int> LargeHerbSeedIdByHerbId = new Dictionary<int, int>
         {
             { ItemID.Daybloom, ModContent.ItemType<LargeDaybloomSeed>() },
             { ItemID.Moonglow, ModContent.ItemType<LargeMoonglowSeed>() },
@@ -148,5 +154,100 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ModContent.ItemType<Sweetstem>(), ModContent.ItemType<LargeSweetstemSeed>() },
             { ModContent.ItemType<Barfbush>(), ModContent.ItemType<LargeBarfbushSeed>() }
         };
+
+        public static void UpdateHerbTier(ExxoAvalonOriginsModPlayer modPlayer)
+        {
+            // TODO: Ensure herb tier doesn't decrease
+            if (modPlayer.herbTotal >= HerbTier4Threshold && Main.hardMode)
+            {
+                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Master; // tier 4; Blah Potion exchange
+            }
+            else if (modPlayer.herbTotal >= HerbTier3Threshold && Main.hardMode)
+            {
+                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Expert; // tier 3; allows you to obtain advanced potions
+            }
+            else if (modPlayer.herbTotal >= HerbTier2Threshold)
+            {
+                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Apprentice; // tier 2; allows for large herb seeds
+            }
+            else
+            {
+                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Novice; // tier 1; allows for exchanging one herb for another
+            }
+        }
+
+        public static bool PurchaseItem(Item item, int amount)
+        {
+            Player player = Main.LocalPlayer;
+            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+
+            int herbCharge = 0;
+            int herbType = ItemID.None;
+            bool chargeInventory = false;
+            if (HerbIdByLargeHerbId.ContainsValue(item.type))
+            {
+                herbCharge = amount;
+                herbType = item.type;
+            }
+            else if (LargeHerbSeedIdByHerbId.ContainsValue(item.type))
+            {
+                herbCharge = amount * 15;
+                chargeInventory = true;
+                herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[item.type]];
+            }
+
+            if (herbCharge > 0)
+            {
+                if (modPlayer.herbTotal >= herbCharge)
+                {
+                    if (chargeInventory && herbType != ItemID.None && modPlayer.herbCounts[herbType] > herbCharge)
+                    {
+                        modPlayer.herbCounts[herbType] -= herbCharge;
+                    }
+                    else if (chargeInventory)
+                    {
+                        return false;
+                    }
+                    modPlayer.herbTotal -= herbCharge;
+                    Main.mouseItem = item.Clone();
+                    Main.mouseItem.stack = amount;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            int potionCharge = 0;
+            if (PotionIds.Contains(item.type))
+            {
+                potionCharge = amount;
+            }
+            else if (ElixirIdByPotionId.ContainsValue(item.type))
+            {
+                potionCharge = amount * 5;
+            }
+            else if (item.type == ModContent.ItemType<BlahPotion>())
+            {
+                potionCharge = amount * 2500;
+            }
+
+            if (potionCharge > 0)
+            {
+                if (modPlayer.potionTotal >= potionCharge)
+                {
+                    modPlayer.potionTotal -= potionCharge;
+                    Main.mouseItem = item.Clone();
+                    Main.mouseItem.stack = amount;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
     }
 }

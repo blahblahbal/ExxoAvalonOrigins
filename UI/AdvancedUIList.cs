@@ -18,13 +18,11 @@ namespace ExxoAvalonOrigins.UI
     }
     public struct UIListItemParams
     {
-        public UIListItemParams(bool fillLength = false, bool fillOppLength = false)
+        public UIListItemParams(bool fillLength = false)
         {
             FillLength = fillLength;
-            FillOppLength = fillOppLength;
         }
         public readonly bool FillLength;
-        public readonly bool FillOppLength;
     }
     public class AdvancedUIList : UIElement, IElementListener
     {
@@ -120,8 +118,8 @@ namespace ExxoAvalonOrigins.UI
         public override void RecalculateChildren()
         {
             float largestOppLength = 0;
-            int fillLengthCount = 0;
             float total = 0;
+            int fillLengthCount = 0;
 
             for (int i = 0; i < Elements.Count; i++)
             {
@@ -135,13 +133,26 @@ namespace ExxoAvalonOrigins.UI
                     CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
                     float length = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
                     total += length;
-                    if (!ElementParamsList[i].FillOppLength)
+                    if ((Direction == Direction.Vertical && Elements[i].Width.Precent == 0) || (Direction == Direction.Horizontal && Elements[i].Height.Precent == 0))
                     {
                         float oppLength = (Direction == Direction.Vertical) ? outerDimensions.Width : outerDimensions.Height;
                         largestOppLength = System.Math.Max(oppLength, largestOppLength);
                     }
                 }
             }
+
+            // Set largest opposite length
+            if (FitHeightToContent && Direction == Direction.Horizontal)
+            {
+                Height.Set(largestOppLength, 0);
+            }
+
+            if (FitWidthToContent && Direction == Direction.Vertical)
+            {
+                Width.Set(largestOppLength, 0);
+            }
+
+            this.RecalculateSelf();
 
             float innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
             float padding = ListPadding;
@@ -175,32 +186,19 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count; i++)
             {
-                if (ElementParamsList[i].FillLength || ElementParamsList[i].FillOppLength)
+                if (ElementParamsList[i].FillLength)
                 {
-                    if (ElementParamsList[i].FillLength)
+                    if (Direction == Direction.Vertical)
                     {
-                        if (Direction == Direction.Vertical)
-                        {
-                            Elements[i].Height.Set(fillLength, 0);
-                        }
-                        else
-                        {
-                            Elements[i].Width.Set(fillLength, 0);
-                        }
+                        Elements[i].Height.Set(fillLength, 0);
                     }
-                    if (ElementParamsList[i].FillOppLength)
+                    else
                     {
-                        if (Direction == Direction.Vertical)
-                        {
-                            Elements[i].Width.Set(largestOppLength, 0);
-                        }
-                        else
-                        {
-                            Elements[i].Height.Set(largestOppLength, 0);
-                        }
+                        Elements[i].Width.Set(fillLength, 0);
                     }
-                    Elements[i].Recalculate();
                 }
+
+                Elements[i].Recalculate();
 
                 CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
                 float outerLength = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
@@ -233,28 +231,14 @@ namespace ExxoAvalonOrigins.UI
                 }
             }
 
-            if (FitHeightToContent)
+            if (FitHeightToContent && Direction == Direction.Vertical)
             {
-                if (Direction == Direction.Vertical)
-                {
-                    Height.Set(offset, 0);
-                }
-                else
-                {
-                    Height.Set(largestOppLength, 0);
-                }
+                Height.Set(offset, 0);
             }
 
-            if (FitWidthToContent)
+            if (FitWidthToContent && Direction == Direction.Horizontal)
             {
-                if (Direction == Direction.Vertical)
-                {
-                    Width.Set(largestOppLength, 0);
-                }
-                else
-                {
-                    Width.Set(offset, 0);
-                }
+                Width.Set(offset, 0);
             }
 
             TotalLength = offset;

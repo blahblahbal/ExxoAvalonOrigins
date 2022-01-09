@@ -52,7 +52,7 @@ namespace ExxoAvalonOrigins
         private UserInterface herbologyUserInterface;
         private StaminaBar staminaBar;
         private TomeSlot tomeSlot;
-        private HerbologyBenchUI herbology;
+        private UI.Herbology.HerbologyState herbology;
         public bool CheckPointer = true;
 
         // Reference to the main instance of the mod
@@ -140,7 +140,7 @@ namespace ExxoAvalonOrigins
                 tomeSlot.Activate();
                 tomeSlotUserInterface = new UserInterface();
                 tomeSlotUserInterface.SetState(tomeSlot);
-                herbology = new HerbologyBenchUI();
+                herbology = new UI.Herbology.HerbologyState();
                 herbology.Activate();
                 herbologyUserInterface = new UserInterface();
                 staminaInterface = new UserInterface();

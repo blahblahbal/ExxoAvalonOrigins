@@ -37,35 +37,17 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
         private bool firstUpdate = true;
 
-        private static void UpdateHerbTier(ExxoAvalonOriginsModPlayer modPlayer)
-        {
-            if (modPlayer.herbTotal >= 1500 && Main.hardMode)
-            {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Master; // tier 4; Blah Potion exchange
-            }
-            else if (modPlayer.herbTotal >= 750 && Main.hardMode)
-            {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Expert; // tier 3; allows you to obtain advanced potions
-            }
-            else if (modPlayer.herbTotal >= 250)
-            {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Apprentice; // tier 2; allows for large herb seeds
-            }
-            else
-            {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Novice; // tier 1; allows for exchanging one herb for another
-            }
-        }
-
         public override void OnInitialize()
         {
-            MainPanel?.Remove();
+            RemoveAllChildren();
+
             MainPanel = new DraggableUIPanel();
             MainPanel.SetPadding(15);
             MainPanel.Width.Set(720, 0);
             MainPanel.Height.Set(660, 0);
             MainPanel.VAlign = UIAlign.Center;
             MainPanel.HAlign = UIAlign.Center;
+            Append(MainPanel);
 
             // Prevent scrolling from changing recipe focus while mouse is over UI
             MainPanel.OnMouseOver += delegate
@@ -83,7 +65,6 @@ namespace ExxoAvalonOrigins.UI.Herbology
                     mouseWasOver = false;
                 }
             };
-            Append(MainPanel);
 
             var mainContainer = new AdvancedUIList();
             mainContainer.Width.Set(0, 1);
@@ -257,7 +238,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 HAlign = UIAlign.Center
             };
-            contextInput.NumberInput.OnKeyboardUpdate += (target, keyboardState) =>
+            contextInput.NumberInput.OnKeyboardUpdate += (_, keyboardState) =>
             {
                 if (keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
                 {
@@ -265,7 +246,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 }
                 else if (keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter))
                 {
-                    if (PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
+                    if (HerbologyLogic.PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
                     {
                         contextAttachment.AttachTo(null);
                     }
@@ -275,100 +256,23 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             var button = new PanelButton<UIText>(new UIText("Exchange"))
             {
-                HAlign = UIAlign.Center,
-                FitToInnerElement = true
+                HAlign = UIAlign.Center
             };
-            button.InnerElement.Height = button.InnerElement.MinHeight;
+            button.Width.Set(0, 1);
+            button.Height.Pixels = button.InnerElement.MinHeight.Pixels + button.PaddingBottom + button.PaddingTop;
             button.InnerElement.HAlign = UIAlign.Center;
             button.OnClick += delegate
             {
-                if (PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
+                if (HerbologyLogic.PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
                 {
                     contextAttachment.AttachTo(null);
                 }
             };
-            contextMenu.InnerElement.Append(button, new UIListItemParams(fillOppLength: true));
+            contextMenu.InnerElement.Append(button);
 
-            contextAttachment = new AttachmentManager(MainPanel, contextMenu, (attachment, attachmentHolder) =>
-            {
-                attachment.Top.Set(attachment.Top.Pixels + attachmentHolder.GetOuterDimensions().Height, 0);
-            });
+            contextAttachment = new AttachmentManager(MainPanel, contextMenu, (attachment, attachmentHolder) => attachment.Top.Set(attachment.Top.Pixels + attachmentHolder.GetOuterDimensions().Height, 0));
 
             firstUpdate = true;
-        }
-
-        private bool PurchaseItem(Item item, int amount)
-        {
-            Player player = Main.LocalPlayer;
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
-
-            int herbCharge = 0;
-            int herbType = ItemID.None;
-            bool chargeInventory = false;
-            if (HerbologyDefenitions.Herbs.ContainsValue(item.type))
-            {
-                herbCharge = amount;
-                herbType = item.type;
-            }
-            else if (HerbologyDefenitions.LargeHerbSeeds.ContainsValue(item.type))
-            {
-                herbCharge = amount * 15;
-                chargeInventory = true;
-                herbType = HerbologyDefenitions.Herbs[HerbologyDefenitions.LargeHerbs[item.type]];
-            }
-
-            if (herbCharge > 0)
-            {
-                if (modPlayer.herbTotal >= herbCharge)
-                {
-                    if (chargeInventory && herbType != ItemID.None && modPlayer.herbCounts[herbType] > herbCharge)
-                    {
-                        modPlayer.herbCounts[herbType] -= herbCharge;
-                    }
-                    else if (chargeInventory)
-                    {
-                        return false;
-                    }
-                    modPlayer.herbTotal -= herbCharge;
-                    Main.mouseItem = item.Clone();
-                    Main.mouseItem.stack = amount;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            int potionCharge = 0;
-            if (HerbologyDefenitions.Potions.Contains(item.type))
-            {
-                potionCharge = amount;
-            }
-            else if (HerbologyDefenitions.AdvancedPotion.ContainsValue(item.type))
-            {
-                potionCharge = amount * 5;
-            }
-            else if (item.type == ModContent.ItemType<BlahPotion>())
-            {
-                potionCharge = amount * 2500;
-            }
-
-            if (potionCharge > 0)
-            {
-                if (modPlayer.potionTotal >= potionCharge)
-                {
-                    modPlayer.potionTotal -= potionCharge;
-                    Main.mouseItem = item.Clone();
-                    Main.mouseItem.stack = amount;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return false;
         }
 
         public override void OnActivate()
@@ -385,20 +289,20 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
         private void FirstUpdate()
         {
-            foreach (int itemID in HerbologyDefenitions.Herbs.Values)
+            foreach (int itemID in HerbologyLogic.HerbIdByLargeHerbId.Values)
             {
                 var herbItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
-                herbItem.OnClick += (UIMouseEvent evt, UIElement listeningElement) =>
+                herbItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
                 {
                     contextAttachment.AttachTo(listeningElement);
                     contextInput.NumberInput.MaxNumber = herbItem.Item.maxStack;
                 };
                 herbList.InnerElement.Append(herbItem);
             }
-            foreach (int itemID in HerbologyDefenitions.Potions)
+            foreach (int itemID in HerbologyLogic.PotionIds)
             {
                 var potionItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
-                potionItem.OnClick += (UIMouseEvent evt, UIElement listeningElement) =>
+                potionItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
                 {
                     contextAttachment.AttachTo(listeningElement);
                     contextInput.NumberInput.MaxNumber = potionItem.Item.maxStack;
@@ -412,7 +316,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             herbButton.OnClick += OnButtonClick;
             herbTurnInContainer.InnerElement.Append(herbButton);
             herbItemSlot = new UIItemSlot(Main.inventoryBack7Texture, ItemID.None);
-            herbItemSlot.OnClick += (evt, listeningElement) =>
+            herbItemSlot.OnClick += (_, __) =>
             {
                 if ((Main.mouseItem.type == ItemID.None && herbItemSlot.Item.type != ItemID.None) || (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name))))
                 {
@@ -471,20 +375,20 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             int herbAddition = 0;
             int herbType = ItemID.None;
-            if (HerbologyDefenitions.Herbs.ContainsValue(herbItemSlot.Item.type))
+            if (HerbologyLogic.HerbIdByLargeHerbId.ContainsValue(herbItemSlot.Item.type))
             {
                 herbAddition = 1;
                 herbType = herbItemSlot.Item.type;
             }
-            else if (HerbologyDefenitions.LargeHerbSeeds.ContainsValue(herbItemSlot.Item.type))
+            else if (HerbologyLogic.LargeHerbSeedIdByHerbId.ContainsValue(herbItemSlot.Item.type))
             {
                 herbAddition = 15;
-                herbType = HerbologyDefenitions.Herbs[HerbologyDefenitions.LargeHerbs[herbItemSlot.Item.type]];
+                herbType = HerbologyLogic.HerbIdByLargeHerbId[HerbologyLogic.LargeHerbIdByLargeHerbSeedId[herbItemSlot.Item.type]];
             }
-            else if (HerbologyDefenitions.LargeHerbs.ContainsValue(herbItemSlot.Item.type))
+            else if (HerbologyLogic.LargeHerbIdByLargeHerbSeedId.ContainsValue(herbItemSlot.Item.type))
             {
                 herbAddition = 20;
-                herbType = HerbologyDefenitions.Herbs[herbItemSlot.Item.type];
+                herbType = HerbologyLogic.HerbIdByLargeHerbId[herbItemSlot.Item.type];
             }
 
             if (herbAddition > 0)
@@ -501,11 +405,11 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
 
             int potionAddition = 0;
-            if (HerbologyDefenitions.Potions.Contains(herbItemSlot.Item.type))
+            if (HerbologyLogic.PotionIds.Contains(herbItemSlot.Item.type))
             {
                 potionAddition = 1;
             }
-            else if (HerbologyDefenitions.AdvancedPotion.ContainsValue(herbItemSlot.Item.type))
+            else if (HerbologyLogic.ElixirIdByPotionId.ContainsValue(herbItemSlot.Item.type))
             {
                 potionAddition = 10;
             }
@@ -521,7 +425,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             herbItemSlot.Item.stack = 0;
 
-            UpdateHerbTier(modPlayer);
+            HerbologyLogic.UpdateHerbTier(modPlayer);
 
             ItemText.NewText(herbItemSlot.Item, herbItemSlot.Item.stack, false, false);
             Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
