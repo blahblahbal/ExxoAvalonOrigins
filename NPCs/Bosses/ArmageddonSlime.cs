@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.aiStyle = -1;
             npc.npcSlots = 10f;
             npc.value = 200000f;
-            npc.timeLeft = 750;
+            npc.timeLeft = 75000;
             npc.height = 120;
             npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;

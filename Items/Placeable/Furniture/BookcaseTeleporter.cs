@@ -24,6 +24,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.maxStack = 99;
 			item.value = 300;
+            item.mech = true;
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}

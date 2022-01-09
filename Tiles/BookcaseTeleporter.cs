@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -29,6 +30,13 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Furniture.BookcaseTeleporter>());
 		}
+        //public override void RightClick(int i, int j)
+        //{
+        //    if (Main.tile[i, j].frameX == 18 && Main.tile[i, j].frameY == 36)
+        //    {
+        //        Wiring.TripWire(i, j, 1, 1);
+        //    }
+        //}
         public override bool NewRightClick(int i, int j)
         {
             if (Main.tile[i, j].frameX == 18 && Main.tile[i, j].frameY == 36)
@@ -40,8 +48,6 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void HitWire(int i, int j)
         {
-            Player player = Main.LocalPlayer;
-
             Wiring.SkipWire(i, j);
             for (int p = 0; p < Main.player.Length; p++)
             {
@@ -60,15 +66,39 @@ namespace ExxoAvalonOrigins.Tiles
                     {
                         if (!Main.tile[i, j + 1].active())
                         {
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                RemoteClient.CheckSection(p, new Vector2(i * 16, j * 16 - 16));
+                            }
                             q.Teleport(new Vector2(i * 16, j * 16 - 16));
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendData(MessageID.Teleport, -1, -1, null, 0, p, i * 16, j * 16 - 16);
+                            }
                         }
                         if (!Main.tile[i, j + 1].active() || !Main.tile[i, j + 2].active())
                         {
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                RemoteClient.CheckSection(p, new Vector2(i * 16, j * 16));
+                            }
                             q.Teleport(new Vector2(i * 16, j * 16));
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendData(MessageID.Teleport, -1, -1, null, 0, p, i * 16, j * 16);
+                            }
                         }
                         else
                         {
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                RemoteClient.CheckSection(p, new Vector2(i * 16, j * 16 - 32));
+                            }
                             q.Teleport(new Vector2(i * 16, j * 16 - 32));
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendData(MessageID.Teleport, -1, -1, null, 0, p, i * 16, j * 16 - 32);
+                            }
                         }
                     }
                 }
