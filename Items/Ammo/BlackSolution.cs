@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.Ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Yellow Solution");
+			DisplayName.SetDefault("Black Solution");
 			Tooltip.SetDefault("Used by the Clentaminator\nSpreads the Dark Matter");
 		}
 

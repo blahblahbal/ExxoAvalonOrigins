@@ -56,6 +56,7 @@ namespace ExxoAvalonOrigins
         public static bool downedMechasting = false;
         public static bool downedOblivion = false;
         public static bool downedKingSting = false;
+        public static int specialWireHitCount = 0;
 
         #region WorldGen Variants
 
@@ -1179,6 +1180,7 @@ namespace ExxoAvalonOrigins
             writer.Write(shmOreTier2);
             writer.Write(hallowAltarCount);
             writer.Write(ExxoAvalonOriginsGlobalNPC.stoppedArmageddon);
+            writer.Write(specialWireHitCount);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -1197,6 +1199,7 @@ namespace ExxoAvalonOrigins
             shmOreTier2 = reader.ReadInt32();
             hallowAltarCount = reader.ReadInt32();
             ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = reader.ReadBoolean();
+            specialWireHitCount = reader.ReadInt32();
         }
 
         public static void GrowLargeHerb(int x, int y)
@@ -3028,7 +3031,8 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },
                 { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },
                 { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },
-                { "ExxoAvalonOrigins:StoppedArmageddon", ExxoAvalonOriginsGlobalNPC.stoppedArmageddon }
+                { "ExxoAvalonOrigins:StoppedArmageddon", ExxoAvalonOriginsGlobalNPC.stoppedArmageddon },
+                { "ExxoAvalonOrigins:SpecialWireHitCount", specialWireHitCount}
             };
 
             // Update config cache values on save world
@@ -3129,6 +3133,10 @@ namespace ExxoAvalonOrigins
             if (tag.ContainsKey("ExxoAvalonOrigins:StoppedArmageddon"))
             {
                 ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = tag.Get<bool>("ExxoAvalonOrigins:StoppedArmageddon");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SpecialWireHitCount"))
+            {
+                specialWireHitCount = tag.GetAsInt("ExxoAvalonOrigins:SpecialWireHitCount");
             }
         }
     }
