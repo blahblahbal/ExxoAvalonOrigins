@@ -8,6 +8,7 @@ namespace ExxoAvalonOrigins.UI
     internal class BetterUIImage : UIElement
     {
         protected Texture2D Texture { get; private set; }
+        protected Color Color = Color.White;
         public float LocalScale = 1f;
         public float LocalRotation;
         private float scale = 1f;
@@ -34,7 +35,7 @@ namespace ExxoAvalonOrigins.UI
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2)).ToNearestPixel(), null, Color.White, LocalRotation, Texture.Size() / 2, scale * LocalScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2)).ToNearestPixel(), null, Color, LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f); ;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.UI
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2)).ToNearestPixel(), null, Color.White * (IsMouseHovering ? visibilityActive : visibilityInactive), LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2)).ToNearestPixel(), null, Color * (IsMouseHovering ? visibilityActive : visibilityInactive), LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
         }
 
         public override void MouseOver(UIMouseEvent evt)
@@ -40,10 +40,10 @@ namespace ExxoAvalonOrigins.UI
             }
         }
 
-        public void SetVisibility(float whenActive, float whenInactive)
+        public void SetVisibility(float whenInactive, float whenActive)
         {
-            visibilityActive = MathHelper.Clamp(whenActive, 0f, 1f);
             visibilityInactive = MathHelper.Clamp(whenInactive, 0f, 1f);
+            visibilityActive = MathHelper.Clamp(whenActive, 0f, 1f);
         }
     }
 }
