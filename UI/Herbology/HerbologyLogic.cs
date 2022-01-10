@@ -155,24 +155,43 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ModContent.ItemType<Barfbush>(), ModContent.ItemType<LargeBarfbushSeed>() }
         };
 
+        public static readonly Dictionary<int, int> LargeHerbSeedIdByHerbSeedId = new Dictionary<int, int>
+        {
+            { ItemID.DaybloomSeeds, ModContent.ItemType<LargeDaybloomSeed>() },
+            { ItemID.MoonglowSeeds, ModContent.ItemType<LargeMoonglowSeed>() },
+            { ItemID.BlinkrootSeeds, ModContent.ItemType<LargeBlinkrootSeed>() },
+            { ItemID.DeathweedSeeds, ModContent.ItemType<LargeDeathweedSeed>() },
+            { ItemID.WaterleafSeeds, ModContent.ItemType<LargeWaterleafSeed>() },
+            { ItemID.FireblossomSeeds, ModContent.ItemType<LargeFireblossomSeed>() },
+            { ItemID.ShiverthornSeeds, ModContent.ItemType<LargeShiverthornSeed>() },
+            { ModContent.ItemType<BloodberrySeeds>(), ModContent.ItemType<LargeBloodberrySeed>() },
+            { ModContent.ItemType<SweetstemSeeds>(), ModContent.ItemType<LargeSweetstemSeed>() },
+            { ModContent.ItemType<BarfbushSeeds>(), ModContent.ItemType<LargeBarfbushSeed>() }
+        };
+
         public static void UpdateHerbTier(ExxoAvalonOriginsModPlayer modPlayer)
         {
             // TODO: Ensure herb tier doesn't decrease
+            ExxoAvalonOriginsModPlayer.HerbTier newHerbTier;
             if (modPlayer.herbTotal >= HerbTier4Threshold && Main.hardMode)
             {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Master; // tier 4; Blah Potion exchange
+                newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Master; // tier 4; Blah Potion exchange
             }
             else if (modPlayer.herbTotal >= HerbTier3Threshold && Main.hardMode)
             {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Expert; // tier 3; allows you to obtain advanced potions
+                newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Expert; // tier 3; allows you to obtain advanced potions
             }
             else if (modPlayer.herbTotal >= HerbTier2Threshold)
             {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Apprentice; // tier 2; allows for large herb seeds
+                newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Apprentice; // tier 2; allows for large herb seeds
             }
             else
             {
-                modPlayer.herbTier = ExxoAvalonOriginsModPlayer.HerbTier.Novice; // tier 1; allows for exchanging one herb for another
+                newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Novice; // tier 1; allows for exchanging one herb for another
+            }
+            if (newHerbTier > modPlayer.herbTier)
+            {
+                modPlayer.herbTier = newHerbTier;
             }
         }
 
@@ -184,12 +203,12 @@ namespace ExxoAvalonOrigins.UI.Herbology
             int herbCharge = 0;
             int herbType = ItemID.None;
             bool chargeInventory = false;
-            if (HerbIdByLargeHerbId.ContainsValue(item.type))
+            if (LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type))
             {
                 herbCharge = amount;
-                herbType = item.type;
+                herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[LargeHerbSeedIdByHerbSeedId[item.type]]];
             }
-            else if (LargeHerbSeedIdByHerbId.ContainsValue(item.type))
+            else if (LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type))
             {
                 herbCharge = amount * 15;
                 chargeInventory = true;
@@ -200,7 +219,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 if (modPlayer.herbTotal >= herbCharge)
                 {
-                    if (chargeInventory && herbType != ItemID.None && modPlayer.herbCounts[herbType] > herbCharge)
+                    if (chargeInventory && herbType != ItemID.None && modPlayer.herbCounts.ContainsKey(herbType) && modPlayer.herbCounts[herbType] > herbCharge)
                     {
                         modPlayer.herbCounts[herbType] -= herbCharge;
                     }
@@ -248,6 +267,70 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 }
             }
             return false;
+        }
+
+        public static bool SellItem(Item item)
+        {
+            Player player = Main.LocalPlayer;
+            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+
+            if (item.stack <= 0 || item.type == ItemID.None)
+            {
+                return false;
+            }
+
+            int herbAddition = 0;
+            int herbType = ItemID.None;
+            if (HerbIdByLargeHerbId.ContainsValue(item.type))
+            {
+                herbAddition = 1;
+                herbType = item.type;
+            }
+            else if (LargeHerbSeedIdByHerbId.ContainsValue(item.type))
+            {
+                herbAddition = 15;
+                herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[item.type]];
+            }
+            else if (LargeHerbIdByLargeHerbSeedId.ContainsValue(item.type))
+            {
+                herbAddition = 20;
+                herbType = HerbIdByLargeHerbId[item.type];
+            }
+
+            if (herbAddition > 0 && herbType != ItemID.None)
+            {
+                if (!modPlayer.herbCounts.ContainsKey(herbType))
+                {
+                    modPlayer.herbCounts.Add(herbType, 0);
+                }
+                modPlayer.herbCounts[herbType] += herbAddition * item.stack;
+                modPlayer.herbTotal += herbAddition * item.stack;
+            }
+
+            int potionAddition = 0;
+            if (PotionIds.Contains(item.type))
+            {
+                potionAddition = 1;
+            }
+            else if (ElixirIdByPotionId.ContainsValue(item.type))
+            {
+                potionAddition = 10;
+            }
+            else if (item.type == ModContent.ItemType<BlahPotion>())
+            {
+                potionAddition = 2500;
+            }
+
+            if (potionAddition > 0)
+            {
+                modPlayer.potionTotal += potionAddition * item.stack;
+            }
+
+            UpdateHerbTier(modPlayer);
+
+            ItemText.NewText(item, item.stack, false, false);
+            Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
+            return true;
         }
     }
 }

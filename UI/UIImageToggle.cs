@@ -6,7 +6,18 @@ namespace ExxoAvalonOrigins.UI
 {
     internal class UIImageToggle : BetterUIImageButton
     {
-        public bool Toggled { get; set; }
+        public delegate void ToggleEvent(bool toggled);
+        public event ToggleEvent OnToggle;
+        private bool toggled;
+        public bool Toggled
+        {
+            get => toggled;
+            set
+            {
+                toggled = value;
+                OnToggle.Invoke(toggled);
+            }
+        }
         private Color inactiveColor;
         private Color activeColor;
         public UIImageToggle(Texture2D texture, Color inactiveColor, Color activeColor) : base(texture)

@@ -65,6 +65,8 @@ namespace ExxoAvalonOrigins
 
         public override void Load()
         {
+            Hooks.HooksManager.ApplyHooks();
+
             if (Main.netMode != NetmodeID.Server)
             {
                 Mod musicMod = ModLoader.GetMod("AvalonMusic");
@@ -141,7 +143,6 @@ namespace ExxoAvalonOrigins
                 tomeSlotUserInterface = new UserInterface();
                 tomeSlotUserInterface.SetState(tomeSlot);
                 herbology = new UI.Herbology.HerbologyState();
-                herbology.Activate();
                 herbologyUserInterface = new UserInterface();
                 staminaInterface = new UserInterface();
                 staminaBar = new StaminaBar();
@@ -149,8 +150,6 @@ namespace ExxoAvalonOrigins
 
                 Main.chTitle = true;
             }
-
-            Hooks.HooksManager.ApplyHooks();
 
             //AddAvalonAlts();
         }

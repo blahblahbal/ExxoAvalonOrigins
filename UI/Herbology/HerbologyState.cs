@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using ExxoAvalonOrigins.Items.Potions;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -34,8 +33,6 @@ namespace ExxoAvalonOrigins.UI.Herbology
         private UIImageToggle potionToggle;
         private bool mouseWasOver;
         private int oldFocusRecipe;
-
-        private bool firstUpdate = true;
 
         public override void OnInitialize()
         {
@@ -127,6 +124,26 @@ namespace ExxoAvalonOrigins.UI.Herbology
             herbTurnInContainer.InnerElement.FitWidthToContent = true;
             herbContainer.InnerElement.Append(herbTurnInContainer);
 
+            herbButton = new BetterUIImageButton(ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton"))
+            {
+                HAlign = UIAlign.Center
+            };
+            herbButton.OnClick += OnHerbConsumeButtonClick;
+            herbTurnInContainer.InnerElement.Append(herbButton);
+            herbItemSlot = new UIItemSlot(Main.inventoryBack7Texture, ItemID.None);
+            herbItemSlot.OnClick += (_, __) =>
+            {
+                if ((Main.mouseItem.type == ItemID.None && (herbItemSlot.Item.type != ItemID.None && herbItemSlot.Item.stack > 0)) || (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name))))
+                {
+                    Main.PlaySound(SoundID.Grab);
+                    Item item6 = Main.mouseItem;
+                    Main.mouseItem = herbItemSlot.Item;
+                    herbItemSlot.Item = item6;
+                    Recipe.FindRecipes();
+                }
+            };
+            herbTurnInContainer.InnerElement.Append(herbItemSlot);
+
             herbExchangeContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
             herbExchangeContainer.Height.Set(0, 1);
             herbContainer.InnerElement.Append(herbExchangeContainer, new UIListItemParams(fillLength: true));
@@ -147,7 +164,10 @@ namespace ExxoAvalonOrigins.UI.Herbology
             herbExchangeTitleContainer.Append(herbExchangeTitle);
 
             seedToggle = new UIImageToggle(TextureManager.Load("Images/UI/WorldCreation/IconRandomSeed"), Color.Red, Color.White);
+            seedToggle.OnToggle += (toggled) => RefreshHerbList(toggled);
             herbExchangeTitleContainer.Append(seedToggle);
+
+            MainPanel.Append(new ContentLockPanel(seedToggle, () => Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= ExxoAvalonOriginsModPlayer.HerbTier.Apprentice, $"Content locked: Must be Herbology {ExxoAvalonOriginsModPlayer.HerbTier.Apprentice}"));
 
             var herbExchangeTitleUnderline = new HorizontalRule();
             herbExchangeTitleUnderline.Width.Set(0, 1);
@@ -200,6 +220,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             potionExchangeTitleContainer.Append(potionExchangeTitle);
 
             potionToggle = new UIImageToggle(TextureManager.Load("Images/UI/WorldCreation/IconEvilCorruption"), Color.White, Color.Orange);
+            potionToggle.OnToggle += (toggled) => RefreshPotionList(toggled);
             potionExchangeTitleContainer.Append(potionToggle);
 
             var potionExchangeTitleUnderline = new HorizontalRule();
@@ -272,7 +293,9 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             contextAttachment = new AttachmentManager(MainPanel, contextMenu, (attachment, attachmentHolder) => attachment.Top.Set(attachment.Top.Pixels + attachmentHolder.GetOuterDimensions().Height, 0));
 
-            firstUpdate = true;
+            MainPanel.Append(new ContentLockPanel(potionExchangeContainer, () => Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= ExxoAvalonOriginsModPlayer.HerbTier.Expert, $"Content locked: Must be Herbology {ExxoAvalonOriginsModPlayer.HerbTier.Expert}"));
+
+            RefreshContent();
         }
 
         public override void OnActivate()
@@ -287,9 +310,27 @@ namespace ExxoAvalonOrigins.UI.Herbology
             Main.PlaySound(SoundID.MenuClose);
         }
 
-        private void FirstUpdate()
+        private void RefreshContent()
         {
-            foreach (int itemID in HerbologyLogic.HerbIdByLargeHerbId.Values)
+            RefreshHerbList(seedToggle.Toggled);
+            RefreshPotionList(potionToggle.Toggled);
+        }
+
+        private void RefreshHerbList(bool displayLargeSeed)
+        {
+            herbList.InnerElement.Clear();
+            var items = new List<int>();
+            if (displayLargeSeed)
+            {
+                items.AddRange(HerbologyLogic.LargeHerbSeedIdByHerbSeedId.Values);
+            }
+            else
+            {
+                items.AddRange(HerbologyLogic.LargeHerbSeedIdByHerbSeedId.Keys);
+            }
+
+            var elements = new List<UIElement>();
+            foreach (int itemID in items)
             {
                 var herbItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
                 herbItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
@@ -297,9 +338,31 @@ namespace ExxoAvalonOrigins.UI.Herbology
                     contextAttachment.AttachTo(listeningElement);
                     contextInput.NumberInput.MaxNumber = herbItem.Item.maxStack;
                 };
-                herbList.InnerElement.Append(herbItem);
+                elements.Add(herbItem);
             }
-            foreach (int itemID in HerbologyLogic.PotionIds)
+            herbList.InnerElement.AddRange(elements);
+        }
+
+        private void RefreshPotionList(bool displayElixirs)
+        {
+            potionList.InnerElement.Clear();
+            var items = new List<int>();
+            if (displayElixirs)
+            {
+                items.AddRange(HerbologyLogic.ElixirIdByPotionId.Values);
+            }
+            else
+            {
+                items.AddRange(HerbologyLogic.PotionIds);
+            }
+
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= ExxoAvalonOriginsModPlayer.HerbTier.Master)
+            {
+                items.Add(ModContent.ItemType<Items.Potions.BlahPotion>());
+            }
+
+            var elements = new List<UIElement>();
+            foreach (int itemID in items)
             {
                 var potionItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
                 potionItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
@@ -307,36 +370,13 @@ namespace ExxoAvalonOrigins.UI.Herbology
                     contextAttachment.AttachTo(listeningElement);
                     contextInput.NumberInput.MaxNumber = potionItem.Item.maxStack;
                 };
-                potionList.InnerElement.Append(potionItem);
+                elements.Add(potionItem);
             }
-            herbButton = new BetterUIImageButton(ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton"))
-            {
-                HAlign = UIAlign.Center
-            };
-            herbButton.OnClick += OnButtonClick;
-            herbTurnInContainer.InnerElement.Append(herbButton);
-            herbItemSlot = new UIItemSlot(Main.inventoryBack7Texture, ItemID.None);
-            herbItemSlot.OnClick += (_, __) =>
-            {
-                if ((Main.mouseItem.type == ItemID.None && herbItemSlot.Item.type != ItemID.None) || (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name))))
-                {
-                    Main.PlaySound(SoundID.Grab);
-                    Item item6 = Main.mouseItem;
-                    Main.mouseItem = herbItemSlot.Item;
-                    herbItemSlot.Item = item6;
-                    Recipe.FindRecipes();
-                }
-            };
-            herbTurnInContainer.InnerElement.Append(herbItemSlot);
+            potionList.InnerElement.AddRange(elements);
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (firstUpdate)
-            {
-                firstUpdate = false;
-                FirstUpdate();
-            }
             base.Update(gameTime);
             if (MainPanel.IsMouseHovering)
             {
@@ -360,75 +400,23 @@ namespace ExxoAvalonOrigins.UI.Herbology
         public override void MiddleDoubleClick(UIMouseEvent evt)
         {
             base.MiddleDoubleClick(evt);
-            OnInitialize();
+            if (ExxoAvalonOrigins.DevMode)
+            {
+                OnInitialize();
+            }
         }
 
-        private void OnButtonClick(UIMouseEvent evt, UIElement listeningElement)
+        private void OnHerbConsumeButtonClick(UIMouseEvent evt, UIElement listeningElement)
         {
-            Player player = Main.LocalPlayer;
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
-
-            if (herbItemSlot.Item.stack <= 0 || herbItemSlot.Item.type == ItemID.None)
+            ExxoAvalonOriginsModPlayer.HerbTier oldTier = Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier;
+            if (HerbologyLogic.SellItem(herbItemSlot.Item))
             {
-                return;
-            }
-
-            int herbAddition = 0;
-            int herbType = ItemID.None;
-            if (HerbologyLogic.HerbIdByLargeHerbId.ContainsValue(herbItemSlot.Item.type))
-            {
-                herbAddition = 1;
-                herbType = herbItemSlot.Item.type;
-            }
-            else if (HerbologyLogic.LargeHerbSeedIdByHerbId.ContainsValue(herbItemSlot.Item.type))
-            {
-                herbAddition = 15;
-                herbType = HerbologyLogic.HerbIdByLargeHerbId[HerbologyLogic.LargeHerbIdByLargeHerbSeedId[herbItemSlot.Item.type]];
-            }
-            else if (HerbologyLogic.LargeHerbIdByLargeHerbSeedId.ContainsValue(herbItemSlot.Item.type))
-            {
-                herbAddition = 20;
-                herbType = HerbologyLogic.HerbIdByLargeHerbId[herbItemSlot.Item.type];
-            }
-
-            if (herbAddition > 0)
-            {
-                if (herbType != ItemID.None)
+                herbItemSlot.Item.stack = 0;
+                if (oldTier != Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier)
                 {
-                    if (!modPlayer.herbCounts.ContainsKey(herbType))
-                    {
-                        modPlayer.herbCounts.Add(herbType, 0);
-                    }
-                    modPlayer.herbCounts[herbType] += herbAddition * herbItemSlot.Item.stack;
-                    modPlayer.herbTotal += herbAddition * herbItemSlot.Item.stack;
+                    RefreshContent();
                 }
             }
-
-            int potionAddition = 0;
-            if (HerbologyLogic.PotionIds.Contains(herbItemSlot.Item.type))
-            {
-                potionAddition = 1;
-            }
-            else if (HerbologyLogic.ElixirIdByPotionId.ContainsValue(herbItemSlot.Item.type))
-            {
-                potionAddition = 10;
-            }
-            else if (herbItemSlot.Item.type == ModContent.ItemType<BlahPotion>())
-            {
-                potionAddition = 2500;
-            }
-
-            if (potionAddition > 0)
-            {
-                modPlayer.potionTotal += potionAddition * herbItemSlot.Item.stack;
-            }
-
-            herbItemSlot.Item.stack = 0;
-
-            HerbologyLogic.UpdateHerbTier(modPlayer);
-
-            ItemText.NewText(herbItemSlot.Item, herbItemSlot.Item.stack, false, false);
-            Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -462,7 +450,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
             if (seedToggle.IsMouseHovering)
             {
-                Main.hoverItemName = "Toggle Seeds/Plants";
+                Main.hoverItemName = "Toggle Seeds/Large Seeds";
             }
             if (potionToggle.IsMouseHovering)
             {

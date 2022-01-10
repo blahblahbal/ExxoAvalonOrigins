@@ -66,10 +66,14 @@ namespace ExxoAvalonOrigins.UI
 
         public virtual void AddRange(IEnumerable<UIElement> items)
         {
+            Elements.AddRange(items);
             foreach (UIElement item in items)
             {
-                Append(item);
+                item.Remove();
+                item.Parent = this;
+                ElementParamsList.Add(new UIListItemParams());
             }
+            Recalculate();
         }
 
         public virtual void Remove(UIElement item)
@@ -179,7 +183,7 @@ namespace ExxoAvalonOrigins.UI
             float offset = 0f;
 
             // Needs checking, offset for centering
-            if (Justification == Justification.Center)
+            if (Justification == Justification.Center && !((FitWidthToContent && Direction == Direction.Horizontal) || (FitHeightToContent && Direction == Direction.Vertical)))
             {
                 offset = (innerLength / 2) - (total / 2);
             }
