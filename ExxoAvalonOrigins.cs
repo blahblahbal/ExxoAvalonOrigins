@@ -107,9 +107,6 @@ namespace ExxoAvalonOrigins
                 };
 
                 // Vanilla Texture replacements
-
-                Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
-                Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");
                 Main.logoTexture = GetTexture("Sprites/EAOLogo");
                 Main.logo2Texture = GetTexture("Sprites/EAOLogo");
                 Main.itemTexture[ItemID.HallowedKey] = GetTexture("Sprites/HallowedKey");
@@ -123,6 +120,8 @@ namespace ExxoAvalonOrigins
                 Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");
                 Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
                 Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
+                Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
+                Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");
 
                 NPCs.WallofSteel.Load();
                 Projectiles.PhantasmLaser.Load();
@@ -133,7 +132,7 @@ namespace ExxoAvalonOrigins
                 // Hotkeys
 
                 shadowHotkey = RegisterHotKey("Shadow Teleport", "V");
-                sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");//implemented?
+                sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");
                 dashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");
                 quintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
                 swimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?

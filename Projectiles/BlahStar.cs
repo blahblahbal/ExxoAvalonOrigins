@@ -1,13 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -42,6 +36,11 @@ namespace ExxoAvalonOrigins.Projectiles
                 Main.projectile[proj].timeLeft = 240;
             }
             projectile.active = false;
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            projectile.Kill();
+            return true;
         }
         public override void AI()
         {

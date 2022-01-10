@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Walls
 		public override void SetDefaults()
 		{
 			Main.wallHouse[Type] = false;
-            AddMapEntry(new Color(94, 94, 74));
+            AddMapEntry(new Color(79, 79, 59));
             drop = mod.ItemType("SkyBrickWall");
             dustType = DustID.Smoke;
 		}

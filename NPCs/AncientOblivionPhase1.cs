@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.aiStyle = -1;
 			npc.npcSlots = 6f;
 			npc.value = 50000f;
-			npc.timeLeft = 750;
+			npc.timeLeft = 22500;
 			npc.height = 152;
 			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
