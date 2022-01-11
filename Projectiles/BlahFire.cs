@@ -21,12 +21,13 @@ namespace ExxoAvalonOrigins.Projectiles
 		public override void SetDefaults()
 		{
 			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahFire");
-			projectile.aiStyle = 5;
+			projectile.aiStyle = -1;
 			projectile.width = 20;
 			projectile.height = 20;
             projectile.tileCollide = true;
-            projectile.penetrate = 5;
+            projectile.penetrate = -1;
             projectile.hostile = false;
+            projectile.alpha = 255;
             projectile.timeLeft = 180;
 		}
         public override bool OnTileCollide(Vector2 oldVelocity)

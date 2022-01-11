@@ -124,7 +124,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 dust2.noLight = true;
             }
             projectile.ai[0]++;
-            if (projectile.ai[0] == 10)
+            if (projectile.ai[0] == 20)
             {
                 float speedX = projectile.velocity.X + Main.rand.Next(20, 51) * 0.1f;
                 float speedY = projectile.velocity.Y + Main.rand.Next(20, 51) * 0.1f;
@@ -133,7 +133,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 Main.projectile[p].hostile = false;
                 Main.projectile[p].owner = projectile.owner;
             }
-            if (projectile.ai[0] == 20)
+            if (projectile.ai[0] == 40)
             {
                 float speedX = projectile.velocity.X + Main.rand.Next(-51, -20) * 0.1f;
                 float speedY = projectile.velocity.Y + Main.rand.Next(20, 51) * 0.1f;

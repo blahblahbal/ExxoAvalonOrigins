@@ -1537,6 +1537,8 @@ namespace ExxoAvalonOrigins
                     num222 += Main.rand.Next(-30, 31) * 0.05f;
                     num223 += Main.rand.Next(-30, 31) * 0.05f;
                     if (item.type == ModContent.ItemType<TacticalBlahncher>()) type = ModContent.ProjectileType<Projectiles.Blahcket>();
+                    if (item.type == ModContent.ItemType<VorazylcumFusebow>()) type = ModContent.ProjectileType<Projectiles.ArrowBeam>();
+                    if (item.type == ModContent.ItemType<UnvolanditeFusebow>()) type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
                     Projectile.NewProjectile(position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);
                 }
             }
