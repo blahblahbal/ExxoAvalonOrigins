@@ -3221,15 +3221,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<GleamingTwilight>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 60);
-            recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 75);
-            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<ElementShard>(), 7);
-            recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<BerserkerNightmare>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Picksaw);
@@ -3362,32 +3354,11 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<OblivionBar>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 60);
-            recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<BerserkerHeadpiece>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 23);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 65);
-            recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<BerserkerBodyarmor>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 70);
-            recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<BerserkerCuisses>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SouloftheJungle>(), 20);
@@ -4053,18 +4024,7 @@ namespace ExxoAvalonOrigins.Logic
 
             // staff
 			
-			recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 5);
-            recipe.AddIngredient(ItemID.Ruby);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthCrown>());
-            recipe.AddRecipe();
 			
-			recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthCrown>(), 1);
-            recipe.AddIngredient(ItemID.Gel, 20);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ItemID.SlimeCrown);
             // end Bismuth stuff
 
             // Iridium
@@ -4156,6 +4116,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<Catalyzer>());
             recipe.AddRecipe();
 
+            //start stone types
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PearlstoneBlock, 50);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4183,7 +4144,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ItemID.PearlstoneBlock, 50);
             recipe.AddRecipe();
-
+            //end stone types
+            //start wood
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DarkMatterWood>(), 50);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4237,9 +4199,24 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.PalmWood, 50);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
-            recipe.SetResult(ModContent.ItemType<DarkMatterWood>(), 50);
+            recipe.SetResult(ItemID.RichMahogany, 50);
             recipe.AddRecipe();
 
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.RichMahogany, 50);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<TropicalWood>(), 50);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<TropicalWood>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<DarkMatterWood>(), 50);
+            recipe.AddRecipe();
+            //end wood
+            //evil ores
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BacciliteOre>(), 40);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4260,7 +4237,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ModContent.ItemType<BacciliteOre>(), 40);
             recipe.AddRecipe();
-
+            //end evil ores
+            //hardmode ores
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DurataniumOre>(), 20);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4323,7 +4301,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ModContent.ItemType<TroxiniumOre>(), 10);
             recipe.AddRecipe();
-
+            //end hardmode ores
+            //evil bars
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BacciliteBar>(), 10);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4344,7 +4323,181 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ModContent.ItemType<BacciliteBar>(), 10);
             recipe.AddRecipe();
+            //end evil bars
 
+            //phm ores
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BronzeOre>(), 30);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CopperOre, 30);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CopperOre, 30);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TinOre, 30);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TinOre, 30);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<BronzeOre>(), 30);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<NickelOre>(), 30);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.IronOre, 30);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.IronOre, 30);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.LeadOre, 30);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LeadOre, 30);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<NickelOre>(), 30);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<ZincOre>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.SilverOre, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.SilverOre, 40);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TungstenOre, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TungstenOre, 40);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<ZincOre>(), 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthOre>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.GoldOre, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GoldOre, 40);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PlatinumOre, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PlatinumOre, 40);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<BismuthOre>(), 40);
+            recipe.AddRecipe();
+            //end phm ores
+
+            //phm bars
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.CopperBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.CopperBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TinBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TinBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<BronzeBar>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.IronBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.IronBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.LeadBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LeadBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<NickelBar>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.SilverBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.SilverBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.TungstenBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TungstenBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<ZincBar>(), 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.GoldBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GoldBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.PlatinumBar, 10);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PlatinumBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Sulphur>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<BismuthBar>(), 10);
+            recipe.AddRecipe();
+            //end phm bars
+
+            //hardmode ore bars
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DurataniumBar>(), 10);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4407,7 +4560,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ModContent.ItemType<TroxiniumBar>(), 5);
             recipe.AddRecipe();
-
+            //end hardmode ore bars
+            //evil boss materials
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Booger>(), 3);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>());
@@ -4428,6 +4582,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
             recipe.SetResult(ModContent.ItemType<Booger>(), 3);
             recipe.AddRecipe();
+            //end evil boss materials
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Pathogen>(), 33);
@@ -4521,56 +4676,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             #endregion catalyzer
-
-            #region Corrupted Thorn Armor
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike, 20);
-            recipe.AddIngredient(ModContent.ItemType<CorruptShard>(), 20);
-            recipe.AddIngredient(ItemID.SoulofNight, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Armor.CorruptedThornCrown>());
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike, 25);
-            recipe.AddIngredient(ModContent.ItemType<CorruptShard>(), 25);
-            recipe.AddIngredient(ItemID.SoulofNight, 20);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Armor.CorruptedThornBodyarmor>());
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike, 20);
-            recipe.AddIngredient(ModContent.ItemType<CorruptShard>(), 20);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Armor.CorruptedThornGreaves>());
-
-            #endregion Corrupted Thorn Armor
-
-            #region Divine Light Armor
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PixieDust, 20);
-            recipe.AddIngredient(ItemID.HallowedBar, 20);
-            recipe.AddIngredient(ItemID.SoulofLight, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightHuntingHorns>());
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PixieDust, 25);
-            recipe.AddIngredient(ItemID.HallowedBar, 25);
-            recipe.AddIngredient(ItemID.SoulofLight, 20);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightJerkin>());
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PixieDust, 20);
-            recipe.AddIngredient(ItemID.HallowedBar, 20);
-            recipe.AddIngredient(ItemID.SoulofLight, 15);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<Items.Armor.DivineLightTreads>());
-
-            #endregion Divine Light Armor
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 12);

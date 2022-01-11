@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/BerserkerBlade_Glow");
+            Texture2D texture = mod.GetTexture("Items/Weapons/Melee/BerserkerBlade_Glow");
             spriteBatch.Draw
             (
                 texture,
@@ -62,6 +62,9 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         {
             var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Material.VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<VoraylzumKatana>());
             recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);
@@ -69,6 +72,9 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Material.VictoryPiece>());
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeGreatsword>());
             recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(this);

@@ -29,8 +29,17 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 2, 10, 0);
 			item.height = dims.Height;
 		}
-
-		public override bool IsArmorSet(Item head, Item body, Item legs)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PixieDust, 20);
+            recipe.AddIngredient(ItemID.HallowedBar, 20);
+            recipe.AddIngredient(ItemID.SoulofLight, 10);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<DivineLightJerkin>() && legs.type == ModContent.ItemType<DivineLightTreads>();
 		}

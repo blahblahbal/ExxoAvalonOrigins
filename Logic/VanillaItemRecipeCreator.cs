@@ -23,6 +23,23 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Daybloom);
+            recipe.AddIngredient(ModContent.ItemType<NickelOre>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ItemID.IronskinPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Blinkroot);
+            recipe.AddIngredient(ItemID.Moonglow);
+            recipe.AddIngredient(ModContent.ItemType<BismuthOre>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ItemID.SpelunkerPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Bar.BismuthBar>(), 2);
             recipe.AddIngredient(ItemID.PinkTorch);
             recipe.AddTile(TileID.WorkBenches);

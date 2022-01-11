@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,8 +23,17 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 65, 0, 0);
 			item.height = dims.Height;
 		}
-
-		public override void UpdateEquip(Player player)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 17);
+            recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 15);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void UpdateEquip(Player player)
 		{
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().LightningInABottle = true;
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().meleeStealth = true;

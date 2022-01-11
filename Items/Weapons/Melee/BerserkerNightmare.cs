@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,5 +34,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.useAnimation = 38;
 			item.height = dims.Height;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 60);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 75);
+            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 7);
+            recipe.AddIngredient(ModContent.ItemType<Material.VictoryPiece>());
+            recipe.AddIngredient(ItemID.Flairon);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

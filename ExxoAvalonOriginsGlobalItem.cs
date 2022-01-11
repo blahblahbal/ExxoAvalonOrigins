@@ -83,7 +83,7 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Placeable.Tile.Tourmaline>(),
             ModContent.ItemType<Items.Placeable.Tile.Opal>()
         };
-        //public bool wasMech = false;
+
         public static int GemToTile(int type)
         {
             if (type == ItemID.Amethyst) return TileID.Amethyst;

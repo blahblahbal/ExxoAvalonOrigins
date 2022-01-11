@@ -29,8 +29,17 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 1, 80, 0);
 			item.height = dims.Height;
 		}
-
-		public override void UpdateEquip(Player player)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PixieDust, 20);
+            recipe.AddIngredient(ItemID.HallowedBar, 20);
+            recipe.AddIngredient(ItemID.SoulofLight, 15);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void UpdateEquip(Player player)
 		{
 			player.moveSpeed += 0.25f;
 			player.archery = true;

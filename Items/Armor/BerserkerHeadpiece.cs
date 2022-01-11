@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,8 +28,17 @@ namespace ExxoAvalonOrigins.Items.Armor
 		{
 			return body.type == ModContent.ItemType<BerserkerBodyarmor>() && legs.type == ModContent.ItemType<BerserkerCuisses>();
 		}
-
-		public override void UpdateArmorSet(Player player)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 15);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Melee weapons have a chance to instantly kill your enemies";
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().oblivionKill = true;

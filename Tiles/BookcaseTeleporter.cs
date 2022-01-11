@@ -30,13 +30,6 @@ namespace ExxoAvalonOrigins.Tiles
 		{
 			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Furniture.BookcaseTeleporter>());
 		}
-        //public override void RightClick(int i, int j)
-        //{
-        //    if (Main.tile[i, j].frameX == 18 && Main.tile[i, j].frameY == 36)
-        //    {
-        //        Wiring.TripWire(i, j, 1, 1);
-        //    }
-        //}
         public override bool NewRightClick(int i, int j)
         {
             if (Main.tile[i, j].frameX == 18 && Main.tile[i, j].frameY == 36)

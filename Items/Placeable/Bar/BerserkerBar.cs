@@ -29,5 +29,23 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.useAnimation = 15;
             item.height = dims.Height;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<OblivionBar>());
+            r.AddIngredient(ModContent.ItemType<UnvolanditeBar>());
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 3);
+            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            r.SetResult(this);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<OblivionBar>());
+            r.AddIngredient(ModContent.ItemType<VorazylcumBar>());
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 3);
+            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }
