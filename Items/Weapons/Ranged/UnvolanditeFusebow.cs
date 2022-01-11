@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         { 
 		    Rectangle dims = this.GetDims();
-            item.damage = 70;
+            item.damage = 98;
             item.ranged = true;
             item.useTime = 15;
             item.useAnimation = 15;
@@ -35,24 +35,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.width = dims.Width;
         }
  
+  //      public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+  //      {
+		//if (type == ProjectileID.WoodenArrowFriendly)
+		//	{
+		//		type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
+		//	}
+		//return true;
+		//}
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-		if (type == ProjectileID.WoodenArrowFriendly)
-			{
-				type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
-			}
-		return true;
-		}
-		
-		/*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-             int numberProjectiles = 2 + Main.rand.Next(2); 
-                for (int i = 0; i < numberProjectiles; i++)
-                {
-                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-                }
-        return false;
-        }*/
+            int numberProjectiles = 2 + Main.rand.Next(2);
+            for (int i = 0; i < numberProjectiles; i++)
+            {
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<Projectiles.UnvolanditeBolt>(), damage, knockBack, player.whoAmI);
+            }
+            return false;
+        }
     }
 }

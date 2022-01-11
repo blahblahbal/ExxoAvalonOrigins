@@ -41,10 +41,22 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (Main.tile[i, j].frameX == 18 && Main.tile[i, j].frameY == 36)
             {
-                Wiring.TripWire(i, j, 1, 1);
+                Trigger(i, j);
+                if (Main.netMode == 1)
+                {
+                    ModPacket packet = Network.MessageHandler.GetPacket(Network.MessageID.SyncWiring);
+                    packet.Write((short)i);
+                    packet.Write((short)j);
+                    packet.Send();
+                }
                 return true;
             }
             return false;
+        }
+        public static void Trigger(int i, int j)
+        {
+            Main.PlaySound(28, i * 16, j * 16, 0);
+            Wiring.TripWire(i, j, 1, 1);
         }
         public override void HitWire(int i, int j)
         {

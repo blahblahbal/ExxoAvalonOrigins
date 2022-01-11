@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 15);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.NickelBar>(), 15);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

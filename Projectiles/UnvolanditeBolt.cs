@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.alpha = 255;
 			projectile.light = 0.9f;
 			projectile.penetrate = 6;
-			projectile.magic = true;
+			projectile.ranged = true;
 			projectile.timeLeft = 2400;
 			projectile.ignoreWater = true;
 		}
