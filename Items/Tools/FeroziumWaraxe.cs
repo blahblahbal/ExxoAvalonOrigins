@@ -1,8 +1,8 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Melee
+namespace ExxoAvalonOrigins.Items.Tools
 {
 	class FeroziumWaraxe : ModItem
 	{

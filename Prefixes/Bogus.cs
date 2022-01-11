@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
@@ -28,9 +28,10 @@ namespace ExxoAvalonOrigins.Prefixes
 
 		public override void Apply(Item item)
 		{
-			Main.player[Main.myPlayer].magicCrit += 6;
-			Main.player[Main.myPlayer].meleeCrit += 6;
-			Main.player[Main.myPlayer].rangedCrit += 6;
+			Main.player[Main.myPlayer].magicCrit += 5;
+			Main.player[Main.myPlayer].meleeCrit += 5;
+			Main.player[Main.myPlayer].rangedCrit += 5;
+            Main.player[Main.myPlayer].thrownCrit += 5;
 		}
 
 		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.damage = 80;
+			item.damage = 100;
 			item.autoReuse = true;
 			item.useAmmo = AmmoID.Arrow;
 			item.shootSpeed = 15f;
@@ -36,11 +36,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-		if (type == ProjectileID.WoodenArrowFriendly)
-			{
-				type = ProjectileID.ShadowBeamFriendly;
-			}
-		return true;
+            int proj = Projectile.NewProjectile(position, new Vector2(speedX, speedY), ProjectileID.ShadowBeamFriendly, damage, knockBack);
+            Main.projectile[proj].magic = false;
+            Main.projectile[proj].ranged = true;
+            return false;
 		}
 	}
 }

@@ -922,6 +922,7 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
+            #region wire disable in sky fortress
             Item tempWireItem = new Item();
             tempWireItem.netDefaults(item.netID);
             tempWireItem = tempWireItem.CloneWithModdedDataFrom(item);
@@ -941,6 +942,8 @@ namespace ExxoAvalonOrigins
                 item.stack = tempWireItem.stack;
                 item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech = false;
             }
+            #endregion
+            #region barbaric prefix logic
             Item tempItem = new Item();
             tempItem.netDefaults(item.netID);
             tempItem = tempItem.CloneWithModdedDataFrom(item);
@@ -964,6 +967,8 @@ namespace ExxoAvalonOrigins
             else if (item.prefix == ModContent.PrefixType<Stupid>()) kbDiff = 0.16f;
             item.knockBack = tempItem.knockBack * (1 + kbDiff);
             item.knockBack *= player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bonusKB;
+            #endregion
+            #region herb seed block swap
             if (herbSeeds.Contains(item.type))
             {
                 Vector2 mousePosition = Main.MouseWorld;
@@ -999,6 +1004,7 @@ namespace ExxoAvalonOrigins
                     item.stack--;
                 }
             }
+            #endregion
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
             {
                 if (item.summon && ExxoAvalonOrigins.mod.minionGuidingHotkey.Current)
