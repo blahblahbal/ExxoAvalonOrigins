@@ -62,7 +62,7 @@ namespace ExxoAvalonOrigins.World.Passes
                             {
                                 if (q % 20 == 0)
                                 {
-                                    Structures.CaesiumSpike.CreateSpike3(q, z, (ushort)ModContent.TileType<Tiles.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpikeDown(q, z, (ushort)ModContent.TileType<Tiles.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
                         }
