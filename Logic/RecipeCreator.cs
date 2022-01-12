@@ -1234,39 +1234,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LightsBane);
-            recipe.AddIngredient(ItemID.Muramasa);
-            recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ItemID.NightsEdge);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BloodButcherer);
-            recipe.AddIngredient(ItemID.Muramasa);
-            recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ItemID.NightsEdge);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Snotsabre>());
-            recipe.AddIngredient(ItemID.Muramasa);
-            recipe.AddIngredient(ItemID.BladeofGrass);
-            recipe.AddIngredient(ItemID.FieryGreatsword);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ItemID.NightsEdge);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Snotsabre>());
-            recipe.AddIngredient(ItemID.Muramasa);
-            recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ItemID.NightsEdge);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BlueMoon);
             recipe.AddIngredient(ItemID.Sunfury);
             recipe.AddIngredient(ItemID.BallOHurt);

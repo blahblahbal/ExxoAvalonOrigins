@@ -53,6 +53,15 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Snotsabre>());
+            recipe.AddIngredient(ItemID.Muramasa);
+            recipe.AddIngredient(ItemID.BladeofGrass);
+            recipe.AddIngredient(ItemID.FieryGreatsword);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ItemID.NightsEdge);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LightsBane);
             recipe.AddIngredient(ItemID.Muramasa);
             recipe.AddIngredient(ModContent.ItemType<FieryBladeofGrass>());
@@ -301,15 +310,23 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GoldBroadsword);
-            recipe.AddIngredient(ItemID.MeteoriteBar, 10);
-            recipe.AddIngredient(ItemID.FallenStar, 20);
+            recipe.AddIngredient(ItemID.IronBar, 3);
+            recipe.AddIngredient(ItemID.Bone, 10);
+			recipe.anyIronBar = true;
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ItemID.Starfury);
+            recipe.SetResult(ItemID.Spike, 20);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PlatinumBroadsword);
+            recipe.AddIngredient(ItemID.Wood, 20);
+            recipe.AddIngredient(ItemID.BeetleHusk, 2);
+			recipe.anyWood = true;
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ItemID.WoodenSpike, 40);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GoldBroadsword);
             recipe.AddIngredient(ItemID.MeteoriteBar, 10);
             recipe.AddIngredient(ItemID.FallenStar, 20);
             recipe.AddTile(TileID.Anvils);
@@ -453,14 +470,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthWatch>());
-            recipe.AddIngredient(ItemID.DepthMeter);
-            recipe.AddIngredient(ItemID.Compass);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ItemID.GPS);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.OldShoe);
             recipe.AddIngredient(ItemID.SwiftnessPotion, 2);
             recipe.AddIngredient(ItemID.Cloud, 60);
@@ -498,7 +507,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.DirtBlock, 50);
             recipe.AddIngredient(ModContent.ItemType<RottenFlesh>());
-            recipe.AddIngredient(ItemID.IronOre);
+            recipe.AddIngredient(ItemID.LeadOre);
             recipe.needWater = true;
             recipe.SetResult(ItemID.ClayBlock, 50);
             recipe.AddRecipe();
@@ -509,12 +518,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<NickelOre>());
             recipe.needWater = true;
             recipe.SetResult(ItemID.ClayBlock, 50);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Cloud);
-            recipe.needWater = true;
-            recipe.SetResult(ItemID.RainCloud, 50);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

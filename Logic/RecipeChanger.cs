@@ -598,6 +598,14 @@ namespace ExxoAvalonOrigins.Logic
                 var editor = new RecipeEditor(recipe);
                 editor.AcceptRecipeGroup("ExxoAvalonOrigins:Tier3Watch");
             }
+
+            finder = new RecipeFinder();
+            finder.SetResult(ItemID.Throne);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var editor = new RecipeEditor(recipe);
+                editor.AcceptRecipeGroup("ExxoAvalonOrigins:GoldBar");
+            }
         }
     }
 }
