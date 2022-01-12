@@ -44,14 +44,14 @@ namespace ExxoAvalonOrigins.World.Passes
                         {
                             if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
                             {
-                                if (q % 30 == 0)
+                                if (q % 20 == 0)
                                 {
-                                    Structures.CaesiumSpike.CreateSpike2(q, z, 0, -2f, 40, 2); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpikeUp(q, z, (ushort)ModContent.TileType<Tiles.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
                         }
                     }
-                    if (z < Main.maxTilesY - 210 && z > Main.maxTilesY - 220)
+                    if (z < Main.maxTilesY - 170 && z > Main.maxTilesY - 180)
                     {
                         if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
@@ -60,9 +60,9 @@ namespace ExxoAvalonOrigins.World.Passes
                         {
                             if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
                             {
-                                if (q % 35 == 0)
+                                if (q % 20 == 0)
                                 {
-                                    Structures.CaesiumSpike.CreateSpike2(q, z, 0, 2f, 40, 2); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpike3(q, z, (ushort)ModContent.TileType<Tiles.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
                         }

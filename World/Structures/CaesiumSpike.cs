@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.GameContent.Generation;
 using Terraria.ModLoader;
+using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Structures
 {
@@ -71,6 +73,28 @@ namespace ExxoAvalonOrigins.World.Structures
             {
             }
             return new Vector2(num, num2);
+        }
+
+        public static bool CreateSpikeDown(int x, int y, ushort type, bool down = false)
+        {
+            if (!WorldUtils.Find(new Point(x, y), Searches.Chain(new Searches.Down(10), new Conditions.IsSolid().AreaAnd(6, 1)), out var result))
+            {
+                return false;
+            }
+            float angle = 1 / 3f * 2f + 0.57075f;
+            WorldUtils.Gen(result, new ShapeRoot(angle, WorldGen.genRand.Next(25, 35), 6, 2), new Actions.SetTile(type, setSelfFrames: true));
+            return true;
+        }
+
+        public static bool CreateSpikeUp(int x, int y, ushort type)
+        {
+            if (!WorldUtils.Find(new Point(x, y), Searches.Chain(new Searches.Up(10), new Conditions.IsSolid().AreaAnd(6, 1)), out var result))
+            {
+                return false;
+            }
+            float angle = -(1 / 3f * 2f + 0.57075f * 2);
+            WorldUtils.Gen(result, new ShapeRoot(angle, WorldGen.genRand.Next(25, 35), 6, 2), new Actions.SetTile(type, setSelfFrames: true));
+            return true;
         }
 
         public static void CreateSpike(int x, int y)
