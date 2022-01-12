@@ -1331,7 +1331,10 @@ namespace ExxoAvalonOrigins
             }
             herbTier = 2;
             //player.statMana = statMana;
-
+            if (!HasItemInArmor(ModContent.ItemType<AstrallineArtifact>()))
+            {
+                player.DelBuff(ModContent.BuffType<AstralProjecting>());
+            }
             if (screenShakeTimer == 1)
             {
                 Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, 14);

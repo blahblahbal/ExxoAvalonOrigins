@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,5 +31,36 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.useAnimation = 15;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PossessedHatchet);
+            recipe.AddIngredient(ItemID.AdamantiteChainsaw);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddIngredient(ItemID.CursedFlame, 50);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PossessedHatchet);
+            recipe.AddIngredient(ItemID.TitaniumChainsaw);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddIngredient(ItemID.CursedFlame, 50);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PossessedHatchet);
+            recipe.AddIngredient(ModContent.ItemType<Tools.TroxiniumChainsaw>());
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddIngredient(ItemID.CursedFlame, 50);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

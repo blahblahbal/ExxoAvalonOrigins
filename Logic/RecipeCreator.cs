@@ -1081,14 +1081,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<ZirconHook>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.InfernoFork);
-            recipe.AddIngredient(ItemID.SpectreStaff);
-            recipe.AddIngredient(ItemID.ShadowbeamStaff);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<SpiritbeamFork>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 20);
@@ -1175,15 +1168,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BagofIck>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TheHorsemansBlade);
-            recipe.AddIngredient(ItemID.SpookyWood, 900);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 200);
-            recipe.AddIngredient(ItemID.Pumpkin, 30);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 70);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<PumpkingsSword>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SiltBlock, 20);
@@ -1948,35 +1933,9 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<TacticalExpulsor>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BrokenVigilanteTome>());
-            recipe.AddIngredient(ItemID.FallenStar, 200);
-            recipe.AddIngredient(ItemID.MeteoriteBar, 150);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 35);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<Starfall>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PossessedHatchet);
-            recipe.AddIngredient(ItemID.AdamantiteChainsaw);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
-            recipe.AddIngredient(ItemID.CursedFlame, 50);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<PossessedFlamesaw>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PossessedHatchet);
-            recipe.AddIngredient(ItemID.TitaniumChainsaw);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
-            recipe.AddIngredient(ItemID.CursedFlame, 50);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<PossessedFlamesaw>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<EarthStone>());
@@ -2158,7 +2117,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.GreenSolution, 15);
             recipe.AddIngredient(ItemID.StoneBlock, 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<PurityBomb>());
@@ -2167,7 +2126,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PurpleSolution, 15);
             recipe.AddIngredient(ItemID.EbonstoneBlock, 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<CorruptionBomb>());
@@ -2176,7 +2135,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<LimeGreenSolution>(), 15);
             recipe.AddIngredient(ItemID.MudBlock, 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<JungleBomb>());
@@ -2185,7 +2144,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.RedSolution, 15);
             recipe.AddIngredient(ItemID.CrimstoneBlock, 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<CrimsonBomb>());
@@ -2194,7 +2153,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<YellowSolution>(), 15);
             recipe.AddIngredient(ModContent.ItemType<ChunkstoneBlock>(), 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<ContagionBomb>());
@@ -2203,7 +2162,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.DarkBlueSolution, 15);
             recipe.AddIngredient(ItemID.MudBlock, 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<MushroomBomb>());
@@ -2212,7 +2171,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BlueSolution, 15);
             recipe.AddIngredient(ItemID.PearlstoneBlock, 50);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 2);
             recipe.AddIngredient(ItemID.Explosives);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<HallowBomb>());
@@ -3180,13 +3139,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BlahsWarhammer>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ChlorophyteShotbow);
-            recipe.AddIngredient(ItemID.HallowedRepeater);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 22);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<GleamingTwilight>());
-            recipe.AddRecipe();
+            
 
             
 
@@ -3255,13 +3208,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<OnyxStaff>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PaladinsHammer);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
-            recipe.AddIngredient(ItemID.Ectoplasm, 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<GuardianHammer>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.WoodenArrow, 75);
@@ -3354,35 +3301,11 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<AwakenedRoseSubligar>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<SpectrumHelmet>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 23);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<SpectrumBreastplate>());
-            recipe.AddRecipe();
+            
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<SpectrumGreaves>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<HydrolythOre>(), 5);

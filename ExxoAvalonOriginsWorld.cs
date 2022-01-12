@@ -172,7 +172,6 @@ namespace ExxoAvalonOrigins
                 style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
             }
         }
-
         public override void TileCountsAvailable(int[] tileCounts)
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];

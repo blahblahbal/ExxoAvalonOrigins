@@ -10,11 +10,13 @@ namespace ExxoAvalonOrigins.Projectiles
 		protected int tileType;
 		protected int dustType;
 
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+        {
 			DisplayName.SetDefault("Snotsand Ball");
 			ProjectileID.Sets.ForcePlateDetection[projectile.type] = true;
 		}
-		public override void SetDefaults() {
+		public override void SetDefaults()
+        {
 			projectile.knockBack = 6f;
 			projectile.width = 10;
 			projectile.height = 10;
@@ -24,9 +26,11 @@ namespace ExxoAvalonOrigins.Projectiles
 			tileType = ModContent.TileType<Tiles.Snotsand>();
 		}
 
-		public override void AI() {
+		public override void AI()
+        {
 
-			if (Main.rand.Next(5) == 0) {
+			if (Main.rand.Next(5) == 0)
+            {
 				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, dustType);
 				Main.dust[dust].velocity.X *= 0.4f;
 			}
@@ -34,11 +38,13 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.tileCollide = true;
 			projectile.localAI[1] = 0f;
 
-			if (projectile.ai[0] == 1f) {
+			if (projectile.ai[0] == 1f)
+            {
 				if (!falling) {
 					projectile.ai[1] += 1f;
 
-					if (projectile.ai[1] >= 60f) {
+					if (projectile.ai[1] >= 60f)
+                    {
 						projectile.ai[1] = 60f;
 						projectile.velocity.Y += 0.2f;
 					}
@@ -46,7 +52,8 @@ namespace ExxoAvalonOrigins.Projectiles
 				else
 					projectile.velocity.Y += 0.41f;
 			}
-			else if (projectile.ai[0] == 2f) {
+			else if (projectile.ai[0] == 2f)
+            {
 				projectile.velocity.Y += 0.2f;
 
 				if (projectile.velocity.X < -0.04f)
@@ -72,8 +79,10 @@ namespace ExxoAvalonOrigins.Projectiles
 			return false;
 		}
 
-		public override void Kill(int timeLeft) {
-			if (projectile.owner == Main.myPlayer && !projectile.noDropItem) {
+		public override void Kill(int timeLeft)
+        {
+			if (projectile.owner == Main.myPlayer && !projectile.noDropItem)
+            {
 				int tileX = (int)(projectile.position.X + projectile.width / 2) / 16;
 				int tileY = (int)(projectile.position.Y + projectile.width / 2) / 16;
 
@@ -83,14 +92,17 @@ namespace ExxoAvalonOrigins.Projectiles
 				if (tile.halfBrick() && projectile.velocity.Y > 0f && System.Math.Abs(projectile.velocity.Y) > System.Math.Abs(projectile.velocity.X))
 					tileY--;
 
-				if (!tile.active()) {
+				if (!tile.active())
+                {
 					bool onMinecartTrack = tileY < Main.maxTilesY - 2 && tileBelow != null && tileBelow.active() && tileBelow.type == TileID.MinecartTrack;
 
 					if (!onMinecartTrack)
 						WorldGen.PlaceTile(tileX, tileY, tileType, false, true);
 
-					if (!onMinecartTrack && tile.active() && tile.type == tileType) {
-						if (tileBelow.halfBrick() || tileBelow.slope() != 0) {
+					if (!onMinecartTrack && tile.active() && tile.type == tileType)
+                    {
+						if (tileBelow.halfBrick() || tileBelow.slope() != 0)
+                        {
 							WorldGen.SlopeTile(tileX, tileY + 1, 0);
 
 							if (Main.netMode == NetmodeID.Server)

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         {
             Rectangle dims = this.GetDims();
             item.UseSound = SoundID.Item1;
-            item.damage = 4;
+            item.damage = 8;
             item.autoReuse = true;
             item.useTurn = true;
             item.scale = 1.05f;

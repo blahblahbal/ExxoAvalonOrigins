@@ -1,4 +1,4 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Bar;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
             recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 25);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
             recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 100);
             recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 5);
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());

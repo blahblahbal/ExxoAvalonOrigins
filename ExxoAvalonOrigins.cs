@@ -63,7 +63,6 @@ namespace ExxoAvalonOrigins
         {
             mod = this;
         }
-
         public override void Load()
         {
             if (Main.netMode != NetmodeID.Server)

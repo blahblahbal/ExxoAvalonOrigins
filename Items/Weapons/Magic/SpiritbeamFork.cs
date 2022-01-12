@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,8 +33,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
 			item.height = dims.Height;
             item.UseSound = SoundID.Item43;
         }
-
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.InfernoFork);
+            recipe.AddIngredient(ItemID.SpectreStaff);
+            recipe.AddIngredient(ItemID.ShadowbeamStaff);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
 			ref float knockBack)
 		{
 			for (int num172 = 0; num172 < 3; num172++)

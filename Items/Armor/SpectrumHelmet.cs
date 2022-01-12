@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +22,19 @@ namespace ExxoAvalonOrigins.Items.Armor
 			item.value = Item.sellPrice(0, 40, 0, 0);
 			item.height = dims.Height;
 		}
-		public override bool IsArmorSet(Item head, Item body, Item legs)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 40);
+            recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Opal>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<SpectrumBreastplate>() && legs.type == ModContent.ItemType<SpectrumGreaves>();
 		}

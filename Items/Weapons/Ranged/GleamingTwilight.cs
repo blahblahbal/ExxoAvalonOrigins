@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,8 +32,17 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.height = dims.Height;
             item.UseSound = SoundID.Item5;
         }
-
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.ChlorophyteShotbow);
+            recipe.AddIngredient(ItemID.HallowedRepeater);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
 			ref float knockBack)
 		{
 			for (int num188 = 0; num188 < 5; num188++)

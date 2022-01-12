@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -32,6 +32,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.value = Item.sellPrice(0, 40, 0, 0);
 			item.height = dims.Height;
             item.UseSound = SoundID.Item1;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.TheHorsemansBlade);
+            recipe.AddIngredient(ItemID.SpookyWood, 900);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 200);
+            recipe.AddIngredient(ItemID.Pumpkin, 30);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
         public override Color? GetAlpha(Color lightColor)
         {

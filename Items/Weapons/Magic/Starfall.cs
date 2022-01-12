@@ -29,7 +29,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             item.useAnimation = 35;
             item.height = dims.Height;
         }
-
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>());
+            recipe.AddIngredient(ItemID.FallenStar, 200);
+            recipe.AddIngredient(ItemID.MeteoriteBar, 150);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 17);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 35);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override bool UseItem(Player player)
         {
             float x = (float)(Main.mouseX + Main.screenPosition.X);

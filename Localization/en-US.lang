@@ -4,3 +4,8 @@ ItemTooltip.AdvObsidianSkinPotion={$ItemTooltip.ObsidianSkinPotion}
 
 ItemName.AdvRegenerationPotion=Regeneration Elixir
 ItemTooltip.AdvRegenerationPotion={$ItemTooltip.RegenerationPotion}
+
+Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusHallowContagion={0} is {1}% contagion.
+Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusContagionCrimson={0} is {1}% contagion and {2}% crimson.
+Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusHallowContagion={0} is {1}% hallow and {2}% contagion.
+Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusAll={0} is {1}% hallow, {2}% corrupt, {3}% crimson, and {4}% contagion.

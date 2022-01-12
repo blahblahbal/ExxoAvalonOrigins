@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,5 +30,15 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 			item.useAnimation = 32;
 			item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PaladinsHammer);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
+            recipe.AddIngredient(ItemID.Ectoplasm, 15);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }
