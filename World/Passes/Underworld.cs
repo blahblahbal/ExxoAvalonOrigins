@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     //if (WorldGen.genRand.Next(10) == 0 && z >= Main.maxTilesY - 240 && z <= Main.maxTilesY - 231 && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
                     //if (WorldGen.genRand.Next(5) == 0 && z >= Main.maxTilesY - 230 && z <= Main.maxTilesY - 221 && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
                     if ((Main.tile[q, z].type == TileID.Ash || Main.tile[q, z].type == TileID.Hellstone) && Main.tile[q, z].active()) Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.BlackBlaststone>();
-                    if (z < Main.maxTilesY - 125 && z > Main.maxTilesY - 165)
+                    if (z < Main.maxTilesY - 110 && z > Main.maxTilesY - 120)
                     {
                         if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
                             Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||

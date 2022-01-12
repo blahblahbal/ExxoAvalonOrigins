@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override bool UseItem(Player player)
         {
-            World.Structures.CaesiumSpike.CreateSpikeUp((int)player.position.X / 16, (int)player.position.Y / 16, (ushort)ModContent.TileType<Tiles.CaesiumOre>());
+            //World.Structures.CaesiumSpike.CreateSpikeUp((int)player.position.X / 16, (int)player.position.Y / 16, (ushort)ModContent.TileType<Tiles.CaesiumOre>());
             return true;
         }
     }

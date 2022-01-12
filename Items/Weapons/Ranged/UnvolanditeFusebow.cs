@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             item.UseSound = SoundID.Item75;
             item.autoReuse = true;
             item.shoot = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
-            item.shootSpeed = 9f;
+            item.shootSpeed = 14f;
             item.useAmmo = AmmoID.Arrow;
 			item.height = dims.Height;
 			item.width = dims.Width;

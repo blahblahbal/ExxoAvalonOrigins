@@ -911,6 +911,7 @@ IL_162:
                 if (imk != null)
                 {
                     NPCLoader.blockLoot.Add(imk.ItemType("LootMartiansToken"));
+                    NPCLoader.blockLoot.Add(imk.ItemType("LootPlanteraToken"));
                 }
             }
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
