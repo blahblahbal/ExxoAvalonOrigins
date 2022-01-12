@@ -3,23 +3,23 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Vanity
+namespace ExxoAvalonOrigins.Items.Armor
 {
 	[AutoloadEquip(EquipType.Head)]
-	class CostalqualiteWaterMask : ModItem
+	class CostalliteBoxGoggles: ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Costalqualite Water Mask");
+			DisplayName.SetDefault("Costallite Box Goggles");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Cyan;
+			item.rare = ItemRarityID.Green;
 			item.width = dims.Width;
-			item.vanity = true;
-			item.value = Item.sellPrice(0, 20, 0, 0);
+			item.defense = 5;
+			item.value = Item.sellPrice(0, 1, 50, 0);
 			item.height = dims.Height;
 		}
 		
