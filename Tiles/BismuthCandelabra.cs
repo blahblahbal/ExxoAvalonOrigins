@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
-            dustType = 7;
+            dustType = -1;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 			var name = CreateMapEntryName();
