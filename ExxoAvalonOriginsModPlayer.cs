@@ -799,6 +799,27 @@ namespace ExxoAvalonOrigins
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            if (terraClaws && item.melee)
+            {
+                switch (Main.rand.Next(5))
+                {
+                    case 0:
+                        target.AddBuff(BuffID.OnFire, 9 * 60);
+                        break;
+                    case 1:
+                        target.AddBuff(BuffID.Poisoned, 9 * 60);
+                        break;
+                    case 2:
+                        target.AddBuff(BuffID.Venom, 9 * 60);
+                        break;
+                    case 3:
+                        target.AddBuff(BuffID.Frostburn, 9 * 60);
+                        break;
+                    case 4:
+                        target.AddBuff(BuffID.Ichor, 9 * 60);
+                        break;
+                }
+            }
             if (ancientSandVortex && Main.rand.Next(10) == 0)
             {
                 Projectile.NewProjectile(target.position, Vector2.Zero, ModContent.ProjectileType<AncientSandnado>(), 0, 0);
