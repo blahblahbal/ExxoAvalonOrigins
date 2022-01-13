@@ -800,6 +800,7 @@ namespace ExxoAvalonOrigins
                 ItemID.CactusWorkBench,
                 ItemID.BorealWoodWorkBench,
                 ItemID.BoneWorkBench,
+                ItemID.GothicWorkBench,
                 ModContent.ItemType<Items.Placeable.Crafting.CoughwoodWorkBench>(),
                 ModContent.ItemType<Items.Placeable.Crafting.DarkSlimeWorkBench>(),
                 ModContent.ItemType<Items.Placeable.Crafting.HeartstoneWorkBench>(),
@@ -872,6 +873,14 @@ namespace ExxoAvalonOrigins
                 ModContent.ItemType<BronzeBar>()
             });
             RecipeGroup.RegisterGroup("ExxoAvalonOrigins:CopperBar", groupCopperBar);
+
+            var groupSilverBar = new RecipeGroup(() => "Any Silver Bar", new int[]
+            {
+                ItemID.SilverBar,
+                ItemID.TungstenBar,
+                ModContent.ItemType<ZincBar>()
+            });
+            RecipeGroup.RegisterGroup("ExxoAvalonOrigins:SilverBar", groupSilverBar);
         }
 
         public override void AddRecipes()

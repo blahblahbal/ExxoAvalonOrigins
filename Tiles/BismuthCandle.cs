@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-    public class ResistantWoodCandle : ModTile
+    public class BismuthCandle : ModTile
     {
         public override void SetDefaults()
         {
@@ -20,13 +20,13 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[] { 20 };
             TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
-            drop = ModContent.ItemType<Items.Placeable.Light.ResistantWoodCandle>();
+            drop = ModContent.ItemType<Items.Placeable.Light.BismuthCandle>();
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Resistant Wood Candle");
+            name.SetDefault("Bismuth Candle");
             AddMapEntry(new Color(253, 221, 3), name);
-            dustType = DustID.Wraith;
+            dustType = DustID.Fire;
         }
 
         public override void MouseOver(int i, int j)
@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Tiles
             Player player = Main.player[Main.myPlayer];
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.ResistantWoodCandle>();
+            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.BismuthCandle>();
         }
 
         public override bool NewRightClick(int i, int j)
@@ -87,7 +87,7 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/ResistantWoodCandle_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(mod.GetTexture("Tiles/BismuthCandle_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
     }

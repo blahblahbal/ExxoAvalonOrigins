@@ -18,6 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[] { 20 };
             TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
+            drop = ModContent.ItemType<Items.Placeable.Light.HeartstoneCandle>();
             dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
@@ -54,11 +55,6 @@ namespace ExxoAvalonOrigins.Tiles
                 g = 0.5f;
                 b = 0.7f;
             }
-        }
-
-        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
-        {
-            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.Light.HeartstoneCandle>());
         }
 
         public override void HitWire(int i, int j)

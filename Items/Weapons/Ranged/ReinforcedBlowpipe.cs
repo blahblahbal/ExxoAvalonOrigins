@@ -37,21 +37,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SilverBar, 5);
-            recipe.AddIngredient(ItemID.Blowpipe);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-            
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TungstenBar, 5);
-            recipe.AddIngredient(ItemID.Blowpipe);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.ZincBar>(), 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:SilverBar", 5);
             recipe.AddIngredient(ItemID.Blowpipe);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);

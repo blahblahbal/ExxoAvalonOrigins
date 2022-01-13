@@ -2,21 +2,21 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Placeable.Furniture
+namespace ExxoAvalonOrigins.Items.Placeable.Light
 {
-	class ResistantWoodCandelabra : ModItem
+	class BismuthCandelabra : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Resistant Wood Candelabra");
+			DisplayName.SetDefault("Bismuth Candelabra");
 		}
 
 		public override void SetDefaults()
 		{
-			Rectangle dims = this.GetDims();
+			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Placeable/Light/BismuthCandelabra");
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.ResistantWoodCandelabra>();
+			item.createTile = ModContent.TileType<Tiles.BismuthCandelabra>();
 			item.width = dims.Width;
 			item.useTurn = true;
 			item.useTime = 10;

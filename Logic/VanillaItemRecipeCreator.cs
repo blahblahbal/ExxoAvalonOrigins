@@ -47,12 +47,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Cloud);
-            recipe.needWater = true;
-            recipe.SetResult(ItemID.RainCloud);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Snotsabre>());
             recipe.AddIngredient(ItemID.Muramasa);
             recipe.AddIngredient(ItemID.BladeofGrass);
@@ -464,6 +458,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.IronBar, 30);
             recipe.AddIngredient(ItemID.Glass, 5);
             recipe.AddIngredient(ItemID.Wire, 20);
+            recipe.anyIronBar = true;
             recipe.AddIngredient(ItemID.Timer1Second);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ItemID.Extractinator);
