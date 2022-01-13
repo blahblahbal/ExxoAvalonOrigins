@@ -258,21 +258,26 @@ namespace ExxoAvalonOrigins
         public bool magnet;
         public Item tome;
         public bool ghostSilence;
-        public bool zoneTime;
-        public bool zoneBlight;
-        public bool zoneFright;
-        public bool zoneMight;
-        public bool zoneNight;
-        public bool zoneTorture;
-        public bool zoneBooger;
-        public bool zoneDark;
-        public bool zoneComet;
-        public bool zoneHellcastle;
-        public bool zoneDarkMatter;
-        public bool zoneTropics;
-        public bool zoneCaesium;
-        public bool zoneOutpost;
-        public bool zoneSkyFortress;
+        public bool ZoneTime;
+        public bool ZoneBlight;
+        public bool ZoneFright;
+        public bool ZoneMight;
+        public bool ZoneNight;
+        public bool ZoneTorture;
+        public bool ZoneIceSoul;
+        public bool ZoneFlight;
+        public bool ZoneHumidity;
+        public bool ZoneDelight;
+        public bool ZoneSight;
+        public bool ZoneBooger;
+        public bool ZoneDark;
+        public bool ZoneComet;
+        public bool ZoneHellcastle;
+        public bool ZoneDarkMatter;
+        public bool ZoneTropics;
+        public bool ZoneCaesium;
+        public bool ZoneOutpost;
+        public bool ZoneSkyFortress;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -493,48 +498,89 @@ namespace ExxoAvalonOrigins
 
         public override void UpdateBiomes()
         {
-            zoneHellcastle = false;
+            ZoneHellcastle = false;
             if (ExxoAvalonOriginsWorld.hellcastleTiles >= 350)
             {
                 int num = (int)player.position.X / 16;
                 int num2 = (int)player.position.Y / 16;
                 if (Main.tile[num, num2].wall == ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
                 {
-                    zoneHellcastle = true;
+                    ZoneHellcastle = true;
                 }
             }
             Point tileC = player.position.ToTileCoordinates();
-            zoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
-            zoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
-            zoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
-            zoneOutpost = ExxoAvalonOriginsWorld.tropicTiles > 50 && Main.tile[tileC.X, tileC.Y].wall == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && player.ZoneRockLayerHeight;
-            zoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
-            zoneSkyFortress = ExxoAvalonOriginsWorld.skyFortressTiles > 50 && player.position.Y / 16 < 300;
+            ZoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
+            ZoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
+            ZoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
+            ZoneOutpost = ExxoAvalonOriginsWorld.tropicTiles > 50 && Main.tile[tileC.X, tileC.Y].wall == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && player.ZoneRockLayerHeight;
+            ZoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
+            ZoneSkyFortress = ExxoAvalonOriginsWorld.skyFortressTiles > 50 && player.position.Y / 16 < 300;
+            ZoneBlight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.BlightCandle>());
+            ZoneDelight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.DelightCandle>());
+            ZoneFlight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.FlightCandle>());
+            ZoneFright = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.FrightCandle>());
+            ZoneHumidity = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.HumidityCandle>());
+            ZoneIceSoul = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.IceCandle>());
+            ZoneMight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.MightCandle>());
+            ZoneNight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.NightCandle>());
+            ZoneSight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.SightCandle>());
+            ZoneTime = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.TimeCandle>());
+            ZoneTorture = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.TortureCandle>());
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
         {
             var flags = new BitsByte();
-            flags[0] = zoneHellcastle;
-            flags[1] = zoneBooger;
-            flags[2] = zoneDarkMatter;
-            flags[3] = zoneTropics;
-            flags[4] = zoneCaesium;
-            flags[5] = zoneOutpost;
-            flags[6] = zoneSkyFortress;
+            flags[0] = ZoneHellcastle;
+            flags[1] = ZoneBooger;
+            flags[2] = ZoneDarkMatter;
+            flags[3] = ZoneTropics;
+            flags[4] = ZoneCaesium;
+            flags[5] = ZoneOutpost;
+            flags[6] = ZoneSkyFortress;
             writer.Write(flags);
+            var flags2 = new BitsByte();
+            flags2[0] = ZoneBlight;
+            flags2[1] = ZoneDelight;
+            flags2[2] = ZoneFlight;
+            flags2[3] = ZoneFright;
+            flags2[4] = ZoneHumidity;
+            flags2[5] = ZoneIceSoul;
+            flags2[6] = ZoneMight;
+            flags2[7] = ZoneNight;
+            writer.Write(flags2);
+            var flags3 = new BitsByte();
+            flags3[0] = ZoneTime;
+            flags3[1] = ZoneTorture;
+            flags3[2] = ZoneSight;
+            writer.Write(flags3);
         }
 
         public override void ReceiveCustomBiomes(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
-            zoneHellcastle = flags[0];
-            zoneBooger = flags[1];
-            zoneDarkMatter = flags[2];
-            zoneTropics = flags[3];
-            zoneCaesium = flags[4];
-            zoneOutpost = flags[5];
-            zoneSkyFortress = flags[6];
+            ZoneHellcastle = flags[0];
+            ZoneBooger = flags[1];
+            ZoneDarkMatter = flags[2];
+            ZoneTropics = flags[3];
+            ZoneCaesium = flags[4];
+            ZoneOutpost = flags[5];
+            ZoneSkyFortress = flags[6];
+
+            BitsByte flags2 = reader.ReadByte();
+            ZoneBlight = flags2[0];
+            ZoneDelight = flags2[1];
+            ZoneFlight = flags2[2];
+            ZoneFright = flags2[3];
+            ZoneHumidity = flags2[4];
+            ZoneIceSoul = flags2[5];
+            ZoneMight = flags2[6];
+            ZoneNight = flags2[7];
+
+            BitsByte flags3 = reader.ReadByte();
+            ZoneTime = flags3[0];
+            ZoneTorture = flags3[1];
+            ZoneSight = flags3[2];
         }
 
         public bool HasItemInArmor(int type)
@@ -1372,14 +1418,25 @@ namespace ExxoAvalonOrigins
                 {
                     if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.PyroscoricOre>())
                     {
-                        player.AddBuff(ModContent.BuffType<Buffs.Melting>(), 60);
+                        player.AddBuff(ModContent.BuffType<Melting>(), 60);
                     }
                 }
             }
 
+            if (ZoneFlight) player.slowFall = true;
+            if (ZoneFright) player.statDefense += 5;
+            if (ZoneIceSoul) slimeBand = true;
+            if (ZoneMight) player.allDamage += 0.1f;
+            if (ZoneNight) player.wolfAcc = true;
+            if (ZoneTime) player.accWatch = 3;
+            if (ZoneTorture) player.AllCrit(4);
+            if (ZoneSight) player.detectCreature = player.dangerSense = true;
+            if (ZoneDelight) player.lifeRegen++;
+            if (ZoneHumidity) player.resistCold = true;
+
             #region rift goggles
 
-            if (player.ZoneCrimson || player.ZoneCorrupt || zoneBooger)
+            if (player.ZoneCrimson || player.ZoneCorrupt || ZoneBooger)
             {
                 if (Main.rand.Next(3000) == 0 && riftGoggles)
                 {
@@ -1454,7 +1511,6 @@ namespace ExxoAvalonOrigins
             {
                 player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
             }
-            //if (shmAcc) player.extraAccessorySlots++;
             if (chaosCharm)
             {
                 int lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
@@ -2754,7 +2810,7 @@ namespace ExxoAvalonOrigins
 
             #region Contagion Fish
 
-            if (zoneBooger && Main.rand.NextBool(10))
+            if (ZoneBooger && Main.rand.NextBool(10))
             {
                 caughtType = ModContent.ItemType<Items.Fish.NauSeaFish>();
             }

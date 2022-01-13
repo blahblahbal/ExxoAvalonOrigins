@@ -34,8 +34,8 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.EbonstoneBlock, 100);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
+            recipe.AddIngredient(ItemID.EbonstoneBlock, 30);
+            recipe.AddIngredient(ItemID.SoulofNight, 8);
             recipe.AddIngredient(ItemID.Ectoplasm, 5);
             recipe.AddIngredient(ModContent.ItemType<Material.EarthStone>());
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>());
@@ -44,8 +44,8 @@ namespace ExxoAvalonOrigins.Items.Consumables
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CrimstoneBlock, 100);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
+            recipe.AddIngredient(ItemID.CrimstoneBlock, 30);
+            recipe.AddIngredient(ItemID.SoulofNight, 8);
             recipe.AddIngredient(ItemID.Ectoplasm, 5);
             recipe.AddIngredient(ModContent.ItemType<Material.EarthStone>());
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>());
@@ -54,8 +54,8 @@ namespace ExxoAvalonOrigins.Items.Consumables
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.ChunkstoneBlock>(), 100);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.ChunkstoneBlock>(), 30);
+            recipe.AddIngredient(ItemID.SoulofNight, 8);
             recipe.AddIngredient(ItemID.Ectoplasm, 5);
             recipe.AddIngredient(ModContent.ItemType<Material.EarthStone>());
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>());

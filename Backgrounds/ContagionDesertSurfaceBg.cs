@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Backgrounds
 	public class ContagionDesertSurfaceBg : ModSurfaceBgStyle
 	{
 		public override bool ChooseBgStyle() {
-			return !Main.gameMenu && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger && Main.LocalPlayer.ZoneDesert;
+			return !Main.gameMenu && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && Main.LocalPlayer.ZoneDesert;
 		}
 
 		public override void ModifyFarFades(float[] fades, float transitionSpeed) {

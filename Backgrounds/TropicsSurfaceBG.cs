@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Backgrounds
     {
         public override bool ChooseBgStyle()
         {
-            return !Main.gameMenu && !Main.LocalPlayer.ZoneCrimson && !Main.LocalPlayer.ZoneCorrupt && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics;
+            return !Main.gameMenu && !Main.LocalPlayer.ZoneCrimson && !Main.LocalPlayer.ZoneCorrupt && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics;
         }
 
         // Use this to keep far Backgrounds like the mountains.

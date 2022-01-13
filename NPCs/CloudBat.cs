@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress ? 0.3f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress ? 0.3f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

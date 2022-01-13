@@ -44,6 +44,16 @@ namespace ExxoAvalonOrigins
         public static int darkTiles = 0;
         public static int tropicTiles = 0;
         public static int caesiumTiles = 0;
+        public static int blightTiles = 0;
+        public static int delightTiles = 0;
+        public static int flightTiles = 0;
+        public static int frightTiles = 0;
+        public static int humidityTiles = 0;
+        public static int iceSoulTiles = 0;
+        public static int mightTiles = 0;
+        public static int nightTiles = 0;
+        public static int timeTiles = 0;
+        public static int tortureTiles = 0;
         public static int skyFortressTiles = 0;
         public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
@@ -162,15 +172,27 @@ namespace ExxoAvalonOrigins
 
         public override void ChooseWaterStyle(ref int style)
         {
-            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
             {
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
             }
 
-            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics)
             {
                 style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
             }
+        }
+        public static bool AnyTiles(Player player, ushort type, int distance = 20, bool candle = true)
+        {
+            Point tileC = player.position.ToTileCoordinates();
+            for (int x = tileC.X - distance; x < tileC.X + distance; x++)
+            {
+                for (int y = tileC.Y - distance; y < tileC.Y + distance; y++)
+                {
+                    if (Main.tile[x, y].type == type && (candle ? Main.tile[x, y].frameX == 0 : true)) return true;
+                }
+            }
+            return false;
         }
         public override void TileCountsAvailable(int[] tileCounts)
         {

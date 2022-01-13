@@ -140,7 +140,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics && !spawnInfo.player.InPillarZone() && Main.hardMode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics && !spawnInfo.player.InPillarZone() && Main.hardMode ? 0.083f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
         public override void HitEffect(int hitDirection, double damage)
         {

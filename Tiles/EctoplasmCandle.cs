@@ -20,7 +20,6 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
             drop = ModContent.ItemType<Items.Placeable.Light.EctoplasmCandle>();
-            dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             ModTranslation name = CreateMapEntryName();

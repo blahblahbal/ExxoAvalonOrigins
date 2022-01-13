@@ -99,7 +99,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                     else if (!WorldGen.crimson && ExxoAvalonOriginsWorld.contagion) // contagion world
                     {
-                        if (p.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+                        if (p.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
                         {
                             if (Main.rand.Next(2) == 0) // crimson mobs
                             {

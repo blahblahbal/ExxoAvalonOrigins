@@ -42,37 +42,37 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 15);
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 10);
             r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            r.AddIngredient(ItemID.SoulofMight, 10);
-            r.AddIngredient(ItemID.SoulofFlight, 10);
+            r.AddIngredient(ItemID.SoulofMight, 5);
+            r.AddIngredient(ItemID.SoulofFlight, 5);
             r.AddIngredient(ItemID.RottenChunk, 5);
-            r.AddIngredient(ItemID.PearlstoneBlock, 60);
-            r.AddIngredient(ItemID.LivingFireBlock, 30);
+            r.AddIngredient(ItemID.PearlstoneBlock, 20);
+            r.AddIngredient(ItemID.LivingFireBlock, 10);
             r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
             r.SetResult(this, 2);
             r.AddRecipe();
 
             r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 15);
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 10);
             r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            r.AddIngredient(ItemID.SoulofMight, 10);
-            r.AddIngredient(ItemID.SoulofFlight, 10);
+            r.AddIngredient(ItemID.SoulofMight, 5);
+            r.AddIngredient(ItemID.SoulofFlight, 5);
             r.AddIngredient(ItemID.Vertebrae, 5);
-            r.AddIngredient(ItemID.PearlstoneBlock, 60);
-            r.AddIngredient(ItemID.LivingFireBlock, 30);
+            r.AddIngredient(ItemID.PearlstoneBlock, 20);
+            r.AddIngredient(ItemID.LivingFireBlock, 10);
             r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
             r.SetResult(this, 2);
             r.AddRecipe();
 
             r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 15);
+            r.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 10);
             r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            r.AddIngredient(ItemID.SoulofMight, 10);
-            r.AddIngredient(ItemID.SoulofFlight, 10);
+            r.AddIngredient(ItemID.SoulofMight, 5);
+            r.AddIngredient(ItemID.SoulofFlight, 5);
             r.AddIngredient(ModContent.ItemType<Material.YuckyBit>(), 5);
-            r.AddIngredient(ItemID.PearlstoneBlock, 60);
-            r.AddIngredient(ItemID.LivingFireBlock, 30);
+            r.AddIngredient(ItemID.PearlstoneBlock, 20);
+            r.AddIngredient(ItemID.LivingFireBlock, 10);
             r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
             r.SetResult(this, 2);
             r.AddRecipe();

@@ -24,6 +24,13 @@ namespace ExxoAvalonOrigins
         {
             return item.type > ItemID.None && item.stack > 0;
         }
+        public static void AllCrit(this Player p, int amt)
+        {
+            p.magicCrit += amt;
+            p.meleeCrit += amt;
+            p.rangedCrit += amt;
+            p.thrownCrit += amt;
+        }
         public static bool InPillarZone(this Player p)
         {
             if (!p.ZoneTowerStardust && !p.ZoneTowerVortex && !p.ZoneTowerSolar)

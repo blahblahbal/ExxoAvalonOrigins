@@ -516,63 +516,9 @@ namespace ExxoAvalonOrigins
                 case ItemID.Flamethrower:
                     item.damage = 35;
                     break;
-                case ItemID.SoulofLight:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.useTurn = true;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.autoReuse = true;
-                    item.consumable = true;
-                    item.createTile = ModContent.TileType<Tiles.LightsoulBlock>();
-                    break;
-                case ItemID.SoulofNight:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.useTurn = true;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.autoReuse = true;
-                    item.consumable = true;
-                    item.createTile = ModContent.TileType<Tiles.NightsoulBlock>();
-                    break;
                 case ItemID.CursedTorch:
                     item.ammo = 8;
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 8;
-                    break;
-                case ItemID.SoulofFright:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.useTurn = true;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.autoReuse = true;
-                    item.consumable = true;
-                    item.createTile = ModContent.TileType<Tiles.FrightsoulBlock>();
-                    break;
-                case ItemID.SoulofMight:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.useTurn = true;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.autoReuse = true;
-                    item.consumable = true;
-                    item.createTile = ModContent.TileType<Tiles.MightsoulBlock>();
-                    break;
-                case ItemID.SoulofSight:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.useTurn = true;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.autoReuse = true;
-                    item.consumable = true;
-                    item.createTile = ModContent.TileType<Tiles.SightsoulBlock>();
-                    break;
-                case ItemID.SoulofFlight:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-                    item.useTurn = true;
-                    item.useAnimation = 15;
-                    item.useTime = 10;
-                    item.autoReuse = true;
-                    item.consumable = true;
-                    item.createTile = ModContent.TileType<Tiles.FlightsoulBlock>();
                     break;
                 case ItemID.SnowGlobe:
                     item.maxStack = 20;
@@ -861,10 +807,10 @@ namespace ExxoAvalonOrigins
             {
                 item.maxStack = 100;
             }
-            if (souls.Contains(item.type))
-            {
-                item.noUseGraphic = true;
-            }
+            //if (souls.Contains(item.type))
+            //{
+            //    item.noUseGraphic = true;
+            //}
             if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch > 0)
             {
                 item.notAmmo = true;
@@ -926,7 +872,7 @@ namespace ExxoAvalonOrigins
             Item tempWireItem = new Item();
             tempWireItem.netDefaults(item.netID);
             tempWireItem = tempWireItem.CloneWithModdedDataFrom(item);
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
             {
                 player.InfoAccMechShowWires = false;
                 if (item.mech)
@@ -936,7 +882,7 @@ namespace ExxoAvalonOrigins
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech = true;
                 }
             }
-            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress || ExxoAvalonOriginsWorld.downedDragonLord))
+            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress || ExxoAvalonOriginsWorld.downedDragonLord))
             {
                 item.netDefaults(tempWireItem.netID);
                 item.stack = tempWireItem.stack;

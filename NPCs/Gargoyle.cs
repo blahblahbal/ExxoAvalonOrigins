@@ -182,7 +182,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
             {
                 return 2f;
             }

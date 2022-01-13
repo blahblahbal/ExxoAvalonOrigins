@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins
         public const bool DevMode = false;
 #endif
         public const bool GodMode = false;
-        public readonly Version version = new Version(0, 9, 6, 0, DevMode);
+        public readonly Version version = new Version(0, 9, 7, 0, DevMode);
 
         // Hotkeys
 
@@ -227,7 +227,7 @@ namespace ExxoAvalonOrigins
                 return;
             }
 
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics)
             {
                 if (musicMod != null)
                 {
@@ -240,7 +240,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.BiomeMedium;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
             {
                 if (Main.player[Main.myPlayer].position.Y > (Main.worldSurface * 16.0) + (Main.screenHeight / 2))
                 {
@@ -282,7 +282,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.BiomeHigh;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneHellcastle)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle)
             {
                 if (musicMod != null)
                 {
@@ -295,7 +295,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneSkyFortress)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
             {
                 if (musicMod != null)
                 {
@@ -308,7 +308,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneDarkMatter)
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneDarkMatter)
             {
                 if (musicMod != null)
                 {

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
@@ -25,18 +25,11 @@ namespace ExxoAvalonOrigins.Items.Material
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.autoReuse = true;
-			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.BlightsoulBlock>();
 			item.rare = ItemRarityID.Yellow;
 			item.width = dims.Width;
-            item.noUseGraphic = true;
-			item.useTurn = true;
-			item.useTime = 10;
-			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.maxStack = 999;
+            item.width = dims.Width;
 			item.value = 80000;
-			item.useAnimation = 15;
 			item.height = 28;
 		}
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)

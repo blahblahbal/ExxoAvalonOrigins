@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.BacteriumPrime>()) && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneBooger;
+            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.BacteriumPrime>()) && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger;
         }
 
         public override bool UseItem(Player player)

@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.KingSting>()) && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().zoneTropics;
+            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.KingSting>()) && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics;
         }
 
         public override bool UseItem(Player player)
