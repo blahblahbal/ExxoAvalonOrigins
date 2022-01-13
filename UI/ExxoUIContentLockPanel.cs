@@ -8,11 +8,11 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class ContentLockPanel : ExxoUIPanel
+    internal class ExxoUIContentLockPanel : ExxoUIPanel
     {
         public bool Locked => !unlockCondition();
         private readonly Func<bool> unlockCondition;
-        private readonly AdvancedUIList list;
+        private readonly ExxoUIList list;
         private readonly UIElement contentHolder;
         private bool wasOversize;
         private bool wasLocked;
@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.UI
         private readonly UIElement elementToLock;
         private readonly CalculatedStyle listOuterDimensions;
         private bool ListIsOversize => listOuterDimensions.Width > elementToLock.GetInnerDimensions().Width || listOuterDimensions.Height > elementToLock.GetInnerDimensions().Height;
-        public ContentLockPanel(UIElement elementToLock, Func<bool> unlockCondition, string message = "Content locked")
+        public ExxoUIContentLockPanel(UIElement elementToLock, Func<bool> unlockCondition, string message = "Content locked")
         {
             this.message = message;
             this.elementToLock = elementToLock;
@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.UI
             BackgroundColor = Color.Black * 0.9f;
             SetPadding(0);
 
-            list = new AdvancedUIList
+            list = new ExxoUIList
             {
                 VAlign = UIAlign.Center,
                 HAlign = UIAlign.Center
@@ -39,12 +39,12 @@ namespace ExxoAvalonOrigins.UI
             list.FitHeightToContent = true;
             list.FitWidthToContent = true;
 
-            var iconBackground = new BetterUIImage(TextureManager.Load("Images/UI/Wires_1"))
+            var iconBackground = new ExxoUIImage(TextureManager.Load("Images/UI/Wires_1"))
             {
                 VAlign = UIAlign.Center
             };
             list.Append(iconBackground);
-            var innerImage = new BetterUIImage(TextureManager.Load("Images/UI/Workshop/PublicityPrivate"))
+            var innerImage = new ExxoUIImage(TextureManager.Load("Images/UI/Workshop/PublicityPrivate"))
             {
                 VAlign = UIAlign.Center,
                 HAlign = UIAlign.Center
@@ -111,7 +111,7 @@ namespace ExxoAvalonOrigins.UI
                 contentHolder.RemoveAllChildren();
                 if (ListIsOversize)
                 {
-                    var image = new BetterUIImage(TextureManager.Load("Images/UI/Workshop/PublicityPrivate"))
+                    var image = new ExxoUIImage(TextureManager.Load("Images/UI/Workshop/PublicityPrivate"))
                     {
                         VAlign = UIAlign.Center,
                         HAlign = UIAlign.Center

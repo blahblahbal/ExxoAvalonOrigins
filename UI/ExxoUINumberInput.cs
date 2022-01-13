@@ -8,7 +8,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class NumberInput : AdvancedUIList
+    internal class ExxoUINumberInput : ExxoUIList
     {
         public delegate void KeyboardEvent(UIElement target, KeyboardState keyboardState);
         public event KeyboardEvent OnKeyboardUpdate;
@@ -38,11 +38,11 @@ namespace ExxoAvalonOrigins.UI
                 SetActiveIndex(activeNumberIndex + number.ToString().Length - oldString.Length);
             }
         }
-        private PanelWrapper<UIText>[] numbers;
+        private ExxoUIPanelWrapper<UIText>[] numbers;
         private int activeNumberIndex;
-        private PanelWrapper<UIText> ActiveNumberElement => numbers[activeNumberIndex];
+        private ExxoUIPanelWrapper<UIText> ActiveNumberElement => numbers[activeNumberIndex];
         private Color inactiveColor;
-        public NumberInput(int amountNumbers = 3)
+        public ExxoUINumberInput(int amountNumbers = 3)
         {
             Direction = Direction.Horizontal;
             FitWidthToContent = true;
@@ -61,7 +61,7 @@ namespace ExxoAvalonOrigins.UI
             // Match the text params below, ensures size consistency
             var textSize = new UIText("000");
 
-            numbers = new PanelWrapper<UIText>[amountNumbers];
+            numbers = new ExxoUIPanelWrapper<UIText>[amountNumbers];
 
             for (int i = 0; i < amountNumbers; i++)
             {
@@ -70,7 +70,7 @@ namespace ExxoAvalonOrigins.UI
                     VAlign = UIAlign.Center,
                     HAlign = UIAlign.Center,
                 };
-                var number = new PanelWrapper<UIText>(text, false)
+                var number = new ExxoUIPanelWrapper<UIText>(text, false)
                 {
                     Width = textSize.MinWidth
                 };

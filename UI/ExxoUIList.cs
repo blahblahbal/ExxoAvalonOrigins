@@ -4,7 +4,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    public class AdvancedUIList : ExxoUIElement
+    public class ExxoUIList : ExxoUIElement
     {
         public struct ElementParams
         {
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.UI
         public float ListPadding = 5f;
         public float TotalLength { get; set; }
 
-        protected AdvancedUIScrollbar ScrollBar;
+        protected ExxoUIScrollbar ScrollBar;
         protected readonly List<ElementParams> ElementParamsList = new List<ElementParams>();
 
         public void ScrollTo(ElementSearchMethod searchMethod)
@@ -264,7 +264,7 @@ namespace ExxoAvalonOrigins.UI
             ScrollBar?.SetView(GetInnerDimensions().Height, TotalLength);
         }
 
-        public void SetScrollbar(AdvancedUIScrollbar scrollbar)
+        public void SetScrollbar(ExxoUIScrollbar scrollbar)
         {
             ScrollBar = scrollbar;
             UpdateScrollbar();

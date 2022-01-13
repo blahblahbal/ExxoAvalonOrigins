@@ -6,13 +6,13 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class PanelButton<T> : PanelWrapper<T> where T : UIElement
+    internal class ExxoUIPanelButton<T> : ExxoUIPanelWrapper<T> where T : UIElement
     {
         private bool mouseWasOver;
         private float visibilityActive = 1f;
         private float visibilityInactive = 0.4f;
         private Color inactiveColor;
-        public PanelButton(T uiElement, bool autoSize = true) : base(uiElement, autoSize)
+        public ExxoUIPanelButton(T uiElement, bool autoSize = true) : base(uiElement, autoSize)
         {
             inactiveColor = BackgroundColor;
         }

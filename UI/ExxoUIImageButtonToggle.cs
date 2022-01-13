@@ -4,7 +4,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class UIImageToggle : BetterUIImageButton
+    internal class ExxoUIImageButtonToggle : ExxoUIImageButton
     {
         public delegate void ToggleEvent(bool toggled);
         public event ToggleEvent OnToggle;
@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.UI
         }
         private Color inactiveColor;
         private Color activeColor;
-        public UIImageToggle(Texture2D texture, Color inactiveColor, Color activeColor) : base(texture)
+        public ExxoUIImageButtonToggle(Texture2D texture, Color inactiveColor, Color activeColor) : base(texture)
         {
             this.inactiveColor = inactiveColor;
             this.activeColor = activeColor;

@@ -5,7 +5,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class UIItemSlot : BetterUIImageButton
+    internal class ExxoUIItemSlot : ExxoUIImageButton
     {
         private Item item;
         public Item Item
@@ -18,13 +18,13 @@ namespace ExxoAvalonOrigins.UI
             }
         }
         public bool HoverItemDrawStack = true;
-        public readonly BetterUIImage InnerImage;
-        public UIItemSlot(Texture2D backgroundTexture, int itemID) : base(backgroundTexture)
+        public readonly ExxoUIImage InnerImage;
+        public ExxoUIItemSlot(Texture2D backgroundTexture, int itemID) : base(backgroundTexture)
         {
             item = new Item();
             item.netDefaults(itemID);
             item.stack = 1;
-            InnerImage = new BetterUIImage(Main.itemTexture[item.type])
+            InnerImage = new ExxoUIImage(Main.itemTexture[item.type])
             {
                 HAlign = UIAlign.Center,
                 VAlign = UIAlign.Center

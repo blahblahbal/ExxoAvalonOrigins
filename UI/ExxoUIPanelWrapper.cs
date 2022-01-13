@@ -2,11 +2,11 @@
 
 namespace ExxoAvalonOrigins.UI
 {
-    public class ElementWrapper<T> : ExxoUIElement where T : UIElement
+    public class ExxoUIPanelWrapper<T> : ExxoUIPanel where T : UIElement
     {
         public readonly T InnerElement;
         public bool FitToInnerElement { get; set; }
-        public ElementWrapper(T uiElement, bool autoSize = true)
+        public ExxoUIPanelWrapper(T uiElement, bool autoSize = true)
         {
             InnerElement = uiElement;
             if (autoSize)

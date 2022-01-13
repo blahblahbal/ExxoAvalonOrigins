@@ -6,11 +6,11 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class BetterUIImageButton : BetterUIImage
+    internal class ExxoUIImageButton : ExxoUIImage
     {
         private float visibilityActive = 1f;
         private float visibilityInactive = 0.4f;
-        public BetterUIImageButton(Texture2D texture) : base(texture)
+        public ExxoUIImageButton(Texture2D texture) : base(texture)
         {
         }
 

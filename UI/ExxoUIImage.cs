@@ -4,7 +4,7 @@ using Terraria;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class BetterUIImage : ExxoUIElement
+    internal class ExxoUIImage : ExxoUIElement
     {
         protected Texture2D Texture { get; private set; }
         protected Color Color = Color.White;
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.UI
             Width.Set(texture.Width * scale, 0f);
             Height.Set(texture.Height * scale, 0f);
         }
-        public BetterUIImage(Texture2D texture)
+        public ExxoUIImage(Texture2D texture)
         {
             SetImage(texture);
         }

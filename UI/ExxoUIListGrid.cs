@@ -2,7 +2,7 @@
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class AdvancedUIListGrid : AdvancedUIList
+    internal class ExxoUIListGrid : ExxoUIList
     {
         public override void RecalculateChildren()
         {

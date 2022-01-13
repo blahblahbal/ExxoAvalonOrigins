@@ -3,13 +3,13 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class UIAttachment<THolder> : ExxoUIElement where THolder : UIElement
+    internal class ExxoUIAttachment<THolder> : ExxoUIElement where THolder : UIElement
     {
         public THolder AttachmentHolder { get; private set; }
         private readonly UIElement element;
         public delegate void AttachToEvent(UIElement attachment, THolder attachmentHolder);
         public event AttachToEvent OnAttachTo;
-        public UIAttachment(UIElement uiElement, AttachToEvent attachToEvent)
+        public ExxoUIAttachment(UIElement uiElement, AttachToEvent attachToEvent)
         {
             Active = false;
             Width.Set(0, 1);

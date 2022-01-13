@@ -4,10 +4,10 @@ using Terraria.Graphics;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class HorizontalRule : ExxoUIElement
+    internal class ExxoUIHorizontalRule : ExxoUIElement
     {
         private readonly Texture2D dividerTexture;
-        public HorizontalRule()
+        public ExxoUIHorizontalRule()
         {
             dividerTexture = TextureManager.Load("Images/UI/Divider");
             Height.Set(dividerTexture.Height, 0);
