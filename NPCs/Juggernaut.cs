@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.value = 700000f;
             npc.timeLeft = 10000;
             npc.height = 68;
-            npc.knockBackResist = 0.05f;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit2;
             npc.DeathSound = SoundID.NPCDeath2;
         }
@@ -74,26 +74,26 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (npc.justHit)
             {
-                if (Main.rand.Next(2) == 1)
+                if (Main.rand.Next(20) == 0)
                 {
-                    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Skeleton, 0);
+                    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<JuggernautSorcerer>(), 0);
                 }
-                if (Main.rand.Next(4) == 1)
+                if (Main.rand.Next(20) == 0)
                 {
                     NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<EyeBones>(), 0);
                 }
-                if (Main.rand.Next(10) == 1)
-                {
-                    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.ArmoredSkeleton, 0);
-                }
-                if (Main.rand.Next(25) == 1)
+                //if (Main.rand.Next(10) == 1)
+                //{
+                //    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.ArmoredSkeleton, 0);
+                //}
+                if (Main.rand.Next(45) == 0)
                 {
                     NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<CursedMagmaSkeleton>(), 0);
                 }
-                if (Main.rand.Next(33) == 1)
-                {
-                    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.ArmoredViking, 0);
-                }
+                //if (Main.rand.Next(33) == 1)
+                //{
+                //    NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.ArmoredViking, 0);
+                //}
             }
             if (npc.velocity.Y == 0f && ((npc.velocity.X > 0f && npc.direction < 0) || (npc.velocity.X < 0f && npc.direction > 0)))
             {

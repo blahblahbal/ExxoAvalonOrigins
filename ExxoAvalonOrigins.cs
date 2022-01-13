@@ -122,7 +122,7 @@ namespace ExxoAvalonOrigins
                 Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
                 Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");
 
-                NPCs.WallofSteel.Load();
+                NPCs.Bosses.WallofSteel.Load();
                 Projectiles.PhantasmLaser.Load();
 
                 Effects.EffectsManager.Load();
@@ -339,7 +339,7 @@ namespace ExxoAvalonOrigins
                         break;
                     }
                 }
-                if (n.type == ModContent.NPCType<NPCs.Phantasm>() && n.active)
+                if (n.type == ModContent.NPCType<NPCs.Bosses.Phantasm>() && n.active)
                 {
                     var phant = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (phant.Intersects(rectangle))
@@ -357,7 +357,7 @@ namespace ExxoAvalonOrigins
                         break;
                     }
                 }
-                if (n.type == ModContent.NPCType<NPCs.WallofSteel>() && n.active)
+                if (n.type == ModContent.NPCType<NPCs.Bosses.WallofSteel>() && n.active)
                 {
                     var wos = new Rectangle((int)(n.position.X + (n.width / 2)) - dist, (int)(n.position.Y + (n.height / 2)) - dist, dist * 2, dist * 2);
                     if (wos.Intersects(rectangle))
@@ -540,7 +540,7 @@ namespace ExxoAvalonOrigins
                     (
                     "AddBoss",
                     15f,
-                    ModContent.NPCType<NPCs.Phantasm>(),
+                    ModContent.NPCType<NPCs.Bosses.Phantasm>(),
                     this,
                     "Phantasm",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedPhantasm),
@@ -564,7 +564,7 @@ namespace ExxoAvalonOrigins
                     (
                     "AddBoss",
                     16f,
-                    ModContent.NPCType<NPCs.WallofSteel>(),
+                    ModContent.NPCType<NPCs.Bosses.WallofSteel>(),
                     this,
                     "Wall of Steel",
                     (Func<bool>)(() => ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode),

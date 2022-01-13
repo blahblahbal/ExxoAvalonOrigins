@@ -84,7 +84,7 @@ namespace ExxoAvalonOrigins.World.Passes
             }
             progress.Message = "Generating Hellcastle and Ashen Overgrowth";
             World.Structures.HellCastle.Generate(Main.maxTilesX / 3 - 210, Main.maxTilesY - 140); // change back later
-            for (int hbx = Main.maxTilesX / 3 - 350; hbx < Main.maxTilesX / 3 + 500; hbx++)
+            for (int hbx = Main.maxTilesX / 3 - 450; hbx < Main.maxTilesX / 3 + 500; hbx++)
             {
                 for (int hby = Main.maxTilesY - 200; hby < Main.maxTilesY - 50; hby++)
                 {

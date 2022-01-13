@@ -20,10 +20,10 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.damage = 130;
+            npc.damage = 151;
             npc.scale = 1f;
-            npc.lifeMax = 1700;
-            npc.defense = 34;
+            npc.lifeMax = 2100;
+            npc.defense = 55;
             npc.noGravity = true;
             npc.width = 56;
             npc.aiStyle = -1;

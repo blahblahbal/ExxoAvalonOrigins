@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace ExxoAvalonOrigins.NPCs
+namespace ExxoAvalonOrigins.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class Phantasm : ModNPC
@@ -406,7 +406,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The spirits are stirring in the depths!"), 255, 50f, 255f, 130f, 0);
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The spirits are stirring in the depths!"), new Color(50, 255, 130));
                 }
                 ExxoAvalonOriginsWorld.downedPhantasm = true;
             }

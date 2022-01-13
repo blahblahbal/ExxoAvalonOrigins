@@ -54,6 +54,6 @@ namespace ExxoAvalonOrigins.Items.BossBags
             }
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.Phantasm>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.Phantasm>();
     }
 }

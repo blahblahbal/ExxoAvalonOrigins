@@ -270,7 +270,7 @@ namespace ExxoAvalonOrigins
             }
 IL_162:
             num3 = num5 * 16;
-            int num7 = NPC.NewNPC(num2, num3, ModContent.NPCType<NPCs.WallofSteel>(), 0);
+            int num7 = NPC.NewNPC(num2, num3, ModContent.NPCType<NPCs.Bosses.WallofSteel>(), 0);
             if (Main.netMode == NetmodeID.Server && num7 < 200)
             {
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.Empty, num7);

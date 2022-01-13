@@ -11,7 +11,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.NPCs
+namespace ExxoAvalonOrigins.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class WallofSteel : ModNPC

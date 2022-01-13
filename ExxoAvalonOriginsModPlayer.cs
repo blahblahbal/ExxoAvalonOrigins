@@ -622,7 +622,7 @@ namespace ExxoAvalonOrigins
                 //}
                 if (player.buffType[k] == 37)
                 {
-                    if (Main.wof >= 0 && Main.npc[Main.wof].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.WallofSteel>())
+                    if (Main.wof >= 0 && Main.npc[Main.wof].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.Bosses.WallofSteel>())
                     {
                         player.gross = true;
                         player.buffTime[k] = 10;

@@ -59,6 +59,6 @@ namespace ExxoAvalonOrigins.Items.BossBags
             }
         }
 
-        public override int BossBagNPC => ModContent.NPCType<NPCs.WallofSteel>();
+        public override int BossBagNPC => ModContent.NPCType<NPCs.Bosses.WallofSteel>();
     }
 }
