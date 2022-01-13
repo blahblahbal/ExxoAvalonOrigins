@@ -1352,7 +1352,7 @@ namespace ExxoAvalonOrigins
             }
             herbTier = 2;
             //player.statMana = statMana;
-            if (!HasItemInArmor(ModContent.ItemType<AstrallineArtifact>()))
+            if (!astralProject && player.HasBuff(ModContent.BuffType<AstralProjecting>()))
             {
                 player.DelBuff(ModContent.BuffType<AstralProjecting>());
             }
