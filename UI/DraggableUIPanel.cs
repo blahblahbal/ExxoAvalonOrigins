@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class DraggableUIPanel : UIPanel
+    internal class DraggableUIPanel : ExxoUIPanel
     {
         private bool isMouseHeld;
         private Vector2 clickDelta;

@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics;
-using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class HorizontalRule : UIElement
+    internal class HorizontalRule : ExxoUIElement
     {
         private readonly Texture2D dividerTexture;
         public HorizontalRule()

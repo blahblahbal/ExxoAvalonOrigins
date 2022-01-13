@@ -2,9 +2,8 @@
 
 namespace ExxoAvalonOrigins.UI
 {
-    public class ElementWrapper<T> : UIElement, IElementListener where T : UIElement
+    public class ElementWrapper<T> : ExxoUIElement where T : UIElement
     {
-        public bool IsRecalculating { get; set; } = false;
         public readonly T InnerElement;
         public bool FitToInnerElement { get; set; }
         public ElementWrapper(T uiElement, bool autoSize = true)
@@ -26,13 +25,13 @@ namespace ExxoAvalonOrigins.UI
             }
             base.Recalculate();
         }
-        public void PostRecalculate()
+        public override void PostRecalculate()
         {
             if (FitToInnerElement)
             {
                 Width.Set(InnerElement.GetOuterDimensions().Width + PaddingLeft + PaddingRight, 0);
                 Height.Set(InnerElement.GetOuterDimensions().Height + PaddingBottom + PaddingTop, 0);
-                this.RecalculateSelf();
+                RecalculateSelf();
             }
         }
     }

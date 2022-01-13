@@ -8,9 +8,8 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class ContentLockPanel : UIPanel
+    internal class ContentLockPanel : ExxoUIPanel
     {
-        private bool display = true;
         public bool Locked => !unlockCondition();
         private readonly Func<bool> unlockCondition;
         private readonly AdvancedUIList list;
@@ -76,37 +75,18 @@ namespace ExxoAvalonOrigins.UI
             {
                 if (!Locked)
                 {
-                    Deactivate();
+                    Active = false;
                 }
                 else
                 {
-                    Activate();
+                    Active = true;
                 }
                 wasLocked = Locked;
             }
         }
 
-        public override void OnDeactivate()
-        {
-            base.OnDeactivate();
-            display = false;
-            Width.Set(0, 0);
-            Height.Set(0, 0);
-            base.Recalculate();
-        }
-
-        public override void OnActivate()
-        {
-            base.OnActivate();
-            display = true;
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!display)
-            {
-                return;
-            }
             base.Draw(spriteBatch);
             if (IsMouseHovering && ListIsOversize)
             {
@@ -116,7 +96,7 @@ namespace ExxoAvalonOrigins.UI
 
         public override void Recalculate()
         {
-            if (!display)
+            if (Parent == null)
             {
                 return;
             }

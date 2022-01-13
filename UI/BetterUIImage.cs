@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class BetterUIImage : UIElement
+    internal class BetterUIImage : ExxoUIElement
     {
         protected Texture2D Texture { get; private set; }
         protected Color Color = Color.White;

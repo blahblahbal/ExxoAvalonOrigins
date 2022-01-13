@@ -200,6 +200,8 @@ namespace ExxoAvalonOrigins.Hooks
                 }
             });
         }
+
+        // Reverses the order that children are checked in order to best reflect the order in which they are drawn
         public static void ILUIElementGetElementAt(ILContext il)
         {
             var c = new ILCursor(il);
@@ -213,33 +215,35 @@ namespace ExxoAvalonOrigins.Hooks
             c.EmitDelegate<Func<List<UIElement>, List<UIElement>>>((elements) => elements.AsEnumerable().Reverse().ToList());
         }
 
-        // Ensures IElementListeners correctly recalculate when a child has recalculated
-        public static void OnUIElementRecalculate(On.Terraria.UI.UIElement.orig_Recalculate orig, UIElement self)
+        // Some trickery that changes default behaviour of Recalculate to only recalculate self when element is ExxoUIElement
+        public static void ILUIElementRecalculate(ILContext il)
         {
-            var selfListener = self as UI.IElementListener;
-            if (selfListener != null)
+            var c = new ILCursor(il);
+            if (!c.TryGotoNext(i => i.MatchCallvirt(typeof(UIElement).GetMethod(nameof(UIElement.RecalculateChildren)))))
             {
-                selfListener.IsRecalculating = true;
+                return;
             }
 
-            var parent = self.Parent as UI.IElementListener;
-            if (parent != null && !parent.IsRecalculating)
+            c.Remove();
+            c.EmitDelegate<Action<UIElement>>((element) =>
             {
-                self.Parent.Recalculate();
+                if (!(element is UI.ExxoUIElement))
+                {
+                    element.RecalculateChildren();
+                }
+            });
+        }
+
+        // ExxoUIElements use a better removal system that removes children after updating, this allows children to remove themselves during update
+        public static void OnUIElementRemove(On.Terraria.UI.UIElement.orig_Remove orig, UIElement self)
+        {
+            if (self.Parent is UI.ExxoUIElement exxoParent)
+            {
+                exxoParent.ElementsForRemoval.Enqueue(self);
             }
             else
             {
                 orig(self);
-                if (selfListener != null)
-                {
-                    selfListener.PostRecalculate();
-                    self.RecalculateChildren();
-                }
-            }
-
-            if (selfListener != null)
-            {
-                selfListener.IsRecalculating = false;
             }
         }
 

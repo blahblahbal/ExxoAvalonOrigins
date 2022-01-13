@@ -1,11 +1,9 @@
-﻿using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
+﻿using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    public class PanelWrapper<T> : UIPanel, IElementListener where T : UIElement
+    public class PanelWrapper<T> : ExxoUIPanel where T : UIElement
     {
-        public bool IsRecalculating { get; set; } = false;
         public readonly T InnerElement;
         public bool FitToInnerElement { get; set; }
         public PanelWrapper(T uiElement, bool autoSize = true)
@@ -27,13 +25,13 @@ namespace ExxoAvalonOrigins.UI
             }
             base.Recalculate();
         }
-        public void PostRecalculate()
+        public override void PostRecalculate()
         {
             if (FitToInnerElement)
             {
                 Width.Set(InnerElement.GetOuterDimensions().Width + PaddingLeft + PaddingRight, 0);
                 Height.Set(InnerElement.GetOuterDimensions().Height + PaddingBottom + PaddingTop, 0);
-                this.RecalculateSelf();
+                RecalculateSelf();
             }
         }
     }

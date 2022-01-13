@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -96,35 +95,6 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        public static void RecalculateSelf(this UIElement element)
-        {
-            CalculatedStyle calculatedStyle = ((element.Parent == null) ? UserInterface.ActiveInstance.GetDimensions() : element.Parent.GetInnerDimensions());
-            var calculatedStyle2 = default(CalculatedStyle);
-            calculatedStyle2.X = element.Left.GetValue(calculatedStyle.Width) + calculatedStyle.X;
-            calculatedStyle2.Y = element.Top.GetValue(calculatedStyle.Height) + calculatedStyle.Y;
-            float value = element.MinWidth.GetValue(calculatedStyle.Width);
-            float value2 = element.MaxWidth.GetValue(calculatedStyle.Width);
-            float value3 = element.MinHeight.GetValue(calculatedStyle.Height);
-            float value4 = element.MaxHeight.GetValue(calculatedStyle.Height);
-            calculatedStyle2.Width = MathHelper.Clamp(element.Width.GetValue(calculatedStyle.Width), value, value2);
-            calculatedStyle2.Height = MathHelper.Clamp(element.Height.GetValue(calculatedStyle.Height), value3, value4);
-            calculatedStyle2.Width += element.MarginLeft + element.MarginRight;
-            calculatedStyle2.Height += element.MarginTop + element.MarginBottom;
-            calculatedStyle2.X += calculatedStyle.Width * element.HAlign - calculatedStyle2.Width * element.HAlign;
-            calculatedStyle2.Y += calculatedStyle.Height * element.VAlign - calculatedStyle2.Height * element.VAlign;
-            typeof(UIElement).GetField("_outerDimensions", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(element, calculatedStyle2);
-            calculatedStyle2.X += element.MarginLeft;
-            calculatedStyle2.Y += element.MarginTop;
-            calculatedStyle2.Width -= element.MarginLeft + element.MarginRight;
-            calculatedStyle2.Height -= element.MarginTop + element.MarginBottom;
-            typeof(UIElement).GetField("_dimensions", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(element, calculatedStyle2);
-            calculatedStyle2.X += element.PaddingLeft;
-            calculatedStyle2.Y += element.PaddingTop;
-            calculatedStyle2.Width -= element.PaddingLeft + element.PaddingRight;
-            calculatedStyle2.Height -= element.PaddingTop + element.PaddingBottom;
-            typeof(UIElement).GetField("_innerDimensions", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(element, calculatedStyle2);
-        }
-
         // Used to draw float coordinates to nearest pixel coordinates to avoid blurry rendering of textures
         public static Vector2 ToNearestPixel(this Vector2 vector)
         {
@@ -136,6 +106,14 @@ namespace ExxoAvalonOrigins
             if (userInterface.CurrentState != null)
             {
                 userInterface.Recalculate();
+                userInterface.CurrentState.Draw(spriteBatch);
+            }
+        }
+
+        public static void DrawOnly(this UserInterface userInterface, SpriteBatch spriteBatch)
+        {
+            if (userInterface.CurrentState != null)
+            {
                 userInterface.CurrentState.Draw(spriteBatch);
             }
         }

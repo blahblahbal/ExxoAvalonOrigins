@@ -70,14 +70,11 @@ namespace ExxoAvalonOrigins.UI
                     VAlign = UIAlign.Center,
                     HAlign = UIAlign.Center,
                 };
-                text.Width = textSize.MinWidth;
-                text.Height = textSize.MinHeight;
-                text.SetPadding(8);
                 var number = new PanelWrapper<UIText>(text, false)
                 {
-                    FitToInnerElement = true
+                    Width = textSize.MinWidth
                 };
-                number.SetPadding(0);
+                number.Height.Pixels = textSize.MinHeight.Pixels * 2;
                 Append(number);
                 numbers[i] = number;
             }

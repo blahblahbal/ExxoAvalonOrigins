@@ -10,7 +10,6 @@ namespace ExxoAvalonOrigins.UI
     {
         private float visibilityActive = 1f;
         private float visibilityInactive = 0.4f;
-        private bool mouseWasOver;
         public BetterUIImageButton(Texture2D texture) : base(texture)
         {
         }
@@ -20,24 +19,10 @@ namespace ExxoAvalonOrigins.UI
             spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2)).ToNearestPixel(), null, Color * (IsMouseHovering ? visibilityActive : visibilityInactive), LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
         }
 
-        public override void MouseOver(UIMouseEvent evt)
+        public override void FirstMouseOver(UIMouseEvent evt)
         {
-            if (!mouseWasOver)
-            {
-                mouseWasOver = true;
-                Main.PlaySound(SoundID.MenuTick);
-            }
-            base.MouseOver(evt);
-        }
-
-        public override void MouseOut(UIMouseEvent evt)
-        {
-            base.MouseOut(evt);
-
-            if (!ContainsPoint(evt.MousePosition))
-            {
-                mouseWasOver = false;
-            }
+            base.FirstMouseOver(evt);
+            Main.PlaySound(SoundID.MenuTick);
         }
 
         public void SetVisibility(float whenInactive, float whenActive)

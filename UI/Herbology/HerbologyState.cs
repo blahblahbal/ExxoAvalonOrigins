@@ -10,7 +10,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI.Herbology
 {
-    internal class HerbologyState : AdvancedUIState
+    internal class HerbologyState : UIState
     {
         public DraggableUIPanel MainPanel;
         private PanelWrapper<AdvancedUIList> herbContainer;
@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
         private ElementWrapper<AdvancedUIListGrid> herbList;
         private PanelWrapper<AdvancedUIList> potionExchangeContainer;
         private ElementWrapper<AdvancedUIListGrid> potionList;
-        private AttachmentManager contextAttachment;
+        private UIAttachment<UIItemSlot> contextAttachment;
         private PanelWrapper<AdvancedUIList> contextMenu;
         private NumberInputWithButtons contextInput;
         private UIImageToggle seedToggle;
@@ -79,7 +79,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             herbContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
             herbContainer.Width.Set(0, 1);
             herbContainer.InnerElement.Direction = Direction.Horizontal;
-            mainContainer.Append(herbContainer, new UIListItemParams(fillLength: true));
+            mainContainer.Append(herbContainer, new AdvancedUIList.ElementParams(fillLength: true));
 
             herbStatsWrapper = new PanelWrapper<AdvancedUIList>(new AdvancedUIList())
             {
@@ -146,7 +146,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             herbExchangeContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
             herbExchangeContainer.Height.Set(0, 1);
-            herbContainer.InnerElement.Append(herbExchangeContainer, new UIListItemParams(fillLength: true));
+            herbContainer.InnerElement.Append(herbExchangeContainer, new AdvancedUIList.ElementParams(fillLength: true));
 
             var herbExchangeTitleContainer = new AdvancedUIList
             {
@@ -180,14 +180,16 @@ namespace ExxoAvalonOrigins.UI.Herbology
             herbList.Width.Set(0, 1);
             herbList.InnerElement.HAlign = UIAlign.Center;
             herbList.InnerElement.FitWidthToContent = true;
-            herbExchangeContainer.InnerElement.Append(herbList, new UIListItemParams(fillLength: true));
+            herbExchangeContainer.InnerElement.Append(herbList, new AdvancedUIList.ElementParams(fillLength: true));
 
-            var herbScrollBar = new AdvancedUIScrollbar();
-            herbScrollBar.Height.Set(0, 1);
+            var herbScrollBar = new ElementWrapper<AdvancedUIScrollbar>(new AdvancedUIScrollbar())
+            {
+                FitToInnerElement = true
+            };
             herbScrollBar.VAlign = UIAlign.Center;
             herbScrollBar.SetPadding(0);
             herbContainer.InnerElement.Append(herbScrollBar);
-            herbList.InnerElement.SetScrollbar(herbScrollBar);
+            herbList.InnerElement.SetScrollbar(herbScrollBar.InnerElement);
             herbExchangeContainer.OnScrollWheel += herbList.InnerElement.ScrollWheelListener;
 
             #endregion
@@ -197,12 +199,12 @@ namespace ExxoAvalonOrigins.UI.Herbology
             var potionContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
             potionContainer.Width.Set(0, 1);
             potionContainer.InnerElement.Direction = Direction.Horizontal;
-            mainContainer.Append(potionContainer, new UIListItemParams(fillLength: true));
+            mainContainer.Append(potionContainer, new AdvancedUIList.ElementParams(fillLength: true));
 
             potionExchangeContainer = new PanelWrapper<AdvancedUIList>(new AdvancedUIList());
             potionExchangeContainer.Height.Set(0, 1);
             potionExchangeContainer.InnerElement.VAlign = UIAlign.Center;
-            potionContainer.InnerElement.Append(potionExchangeContainer, new UIListItemParams(fillLength: true));
+            potionContainer.InnerElement.Append(potionExchangeContainer, new AdvancedUIList.ElementParams(fillLength: true));
 
             var potionExchangeTitleContainer = new AdvancedUIList
             {
@@ -234,14 +236,16 @@ namespace ExxoAvalonOrigins.UI.Herbology
             potionList.Width.Set(0, 1);
             potionList.InnerElement.HAlign = UIAlign.Center;
             potionList.InnerElement.FitWidthToContent = true;
-            potionExchangeContainer.InnerElement.Append(potionList, new UIListItemParams(fillLength: true));
+            potionExchangeContainer.InnerElement.Append(potionList, new AdvancedUIList.ElementParams(fillLength: true));
 
-            var potionScrollBar = new AdvancedUIScrollbar();
-            potionScrollBar.Height.Set(0, 1);
+            var potionScrollBar = new ElementWrapper<AdvancedUIScrollbar>(new AdvancedUIScrollbar())
+            {
+                FitToInnerElement = true
+            };
             potionScrollBar.VAlign = UIAlign.Center;
             potionScrollBar.SetPadding(0);
             potionContainer.InnerElement.Append(potionScrollBar);
-            potionList.InnerElement.SetScrollbar(potionScrollBar);
+            potionList.InnerElement.SetScrollbar(potionScrollBar.InnerElement);
             potionExchangeContainer.OnScrollWheel += potionList.InnerElement.ScrollWheelListener;
 
             #endregion
@@ -267,7 +271,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 }
                 else if (keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter))
                 {
-                    if (HerbologyLogic.PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
+                    if (HerbologyLogic.PurchaseItem(contextAttachment.AttachmentHolder?.Item, contextInput.NumberInput.Number))
                     {
                         contextAttachment.AttachTo(null);
                     }
@@ -284,14 +288,15 @@ namespace ExxoAvalonOrigins.UI.Herbology
             button.InnerElement.HAlign = UIAlign.Center;
             button.OnClick += delegate
             {
-                if (HerbologyLogic.PurchaseItem((contextAttachment.AttachmentHolder as UIItemSlot)?.Item, contextInput.NumberInput.Number))
+                if (HerbologyLogic.PurchaseItem(contextAttachment.AttachmentHolder?.Item, contextInput.NumberInput.Number))
                 {
                     contextAttachment.AttachTo(null);
                 }
             };
             contextMenu.InnerElement.Append(button);
 
-            contextAttachment = new AttachmentManager(MainPanel, contextMenu, (attachment, attachmentHolder) => attachment.Top.Set(attachment.Top.Pixels + attachmentHolder.GetOuterDimensions().Height, 0));
+            contextAttachment = new UIAttachment<UIItemSlot>(contextMenu, (attachment, attachmentHolder) => attachment.Top.Set(attachment.Top.Pixels + attachmentHolder.GetOuterDimensions().Height, 0));
+            MainPanel.Append(contextAttachment);
 
             MainPanel.Append(new ContentLockPanel(potionExchangeContainer, () => Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= ExxoAvalonOriginsModPlayer.HerbTier.Expert, $"Content locked: Must be Herbology {ExxoAvalonOriginsModPlayer.HerbTier.Expert}"));
 
@@ -335,7 +340,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 var herbItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
                 herbItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
                 {
-                    contextAttachment.AttachTo(listeningElement);
+                    contextAttachment.AttachTo(listeningElement as UIItemSlot);
                     contextInput.NumberInput.MaxNumber = herbItem.Item.maxStack;
                 };
                 elements.Add(herbItem);
@@ -367,7 +372,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 var potionItem = new UIItemSlot(Main.inventoryBack7Texture, itemID);
                 potionItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
                 {
-                    contextAttachment.AttachTo(listeningElement);
+                    contextAttachment.AttachTo(listeningElement as UIItemSlot);
                     contextInput.NumberInput.MaxNumber = potionItem.Item.maxStack;
                 };
                 elements.Add(potionItem);
@@ -391,7 +396,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
         public override void Click(UIMouseEvent evt)
         {
             base.Click(evt);
-            if (!contextAttachment.ContainsPoint(evt.MousePosition))
+            if (!contextAttachment.ContainsPoint(evt.MousePosition) && (!contextAttachment.AttachmentHolder?.ContainsPoint(evt.MousePosition) ?? false))
             {
                 contextAttachment.AttachTo(null);
             }

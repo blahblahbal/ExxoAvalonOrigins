@@ -4,41 +4,29 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    public enum Justification
+    public class AdvancedUIList : ExxoUIElement
     {
-        Start,
-        End,
-        Center,
-        SpaceBetween,
-    }
-    public enum Direction
-    {
-        Vertical,
-        Horizontal
-    }
-    public struct UIListItemParams
-    {
-        public UIListItemParams(bool fillLength = false)
+        public struct ElementParams
         {
-            FillLength = fillLength;
+            public ElementParams(bool fillLength = false)
+            {
+                FillLength = fillLength;
+            }
+            public readonly bool FillLength;
         }
-        public readonly bool FillLength;
-    }
-    public class AdvancedUIList : UIElement, IElementListener
-    {
+
         public delegate bool ElementSearchMethod(UIElement element);
 
         public Justification Justification = Justification.Start;
         public Direction Direction = Direction.Vertical;
-        public bool FitHeightToContent;
         public bool FitWidthToContent;
-        public bool IsRecalculating { get; set; }
+        public bool FitHeightToContent;
 
         public float ListPadding = 5f;
         public float TotalLength { get; set; }
 
         protected AdvancedUIScrollbar ScrollBar;
-        protected readonly List<UIListItemParams> ElementParamsList = new List<UIListItemParams>();
+        protected readonly List<ElementParams> ElementParamsList = new List<ElementParams>();
 
         public void ScrollTo(ElementSearchMethod searchMethod)
         {
@@ -55,10 +43,10 @@ namespace ExxoAvalonOrigins.UI
 
         public new void Append(UIElement item)
         {
-            Append(item, new UIListItemParams());
+            Append(item, new ElementParams());
         }
 
-        public void Append(UIElement item, UIListItemParams elementParams)
+        public void Append(UIElement item, ElementParams elementParams)
         {
             ElementParamsList.Add(elementParams);
             base.Append(item);
@@ -71,7 +59,7 @@ namespace ExxoAvalonOrigins.UI
             {
                 item.Remove();
                 item.Parent = this;
-                ElementParamsList.Add(new UIListItemParams());
+                ElementParamsList.Add(new ElementParams());
             }
             Recalculate();
         }
@@ -156,7 +144,7 @@ namespace ExxoAvalonOrigins.UI
                 Width.Set(largestOppLength, 0);
             }
 
-            this.RecalculateSelf();
+            RecalculateSelf();
 
             float innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
             float padding = ListPadding;
@@ -247,7 +235,7 @@ namespace ExxoAvalonOrigins.UI
 
             TotalLength = offset;
 
-            this.RecalculateSelf();
+            RecalculateSelf();
         }
 
         public override bool ContainsPoint(Vector2 point)
@@ -280,10 +268,6 @@ namespace ExxoAvalonOrigins.UI
         {
             ScrollBar = scrollbar;
             UpdateScrollbar();
-        }
-
-        public void PostRecalculate()
-        {
         }
     }
 }
