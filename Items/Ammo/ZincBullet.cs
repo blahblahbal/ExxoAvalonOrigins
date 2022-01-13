@@ -4,18 +4,18 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Ammo
 {
-	class TungstenBullet : ModItem
+	class ZincBullet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tungsten Bullet");
+			DisplayName.SetDefault("Zinc Bullet");
 		}
 
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.shootSpeed = 3.25f;
-			item.damage = 12;
+			item.shootSpeed = 3.75f;
+			item.damage = 11;
 			item.ammo = AmmoID.Bullet;
 			item.ranged = true;
 			item.consumable = true;
@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Items.Ammo
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MusketBall, 70);
-            recipe.AddIngredient(ItemID.TungstenBar);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.ZincBar>(), 1);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this, 70);
             recipe.AddRecipe();

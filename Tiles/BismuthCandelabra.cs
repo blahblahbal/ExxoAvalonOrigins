@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-    public class ResistantWoodCandelabra : ModTile
+    public class BismuthCandelabra : ModTile
     {
         public override void SetDefaults()
         {
@@ -21,13 +21,12 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
-            dustType = 7;
+            dustType = -1;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 			var name = CreateMapEntryName();
-			name.SetDefault("Resistant Wood Candelabra");
+			name.SetDefault("Bismuth Candelabra");
             AddMapEntry(new Color(253, 221, 3), name);
-            dustType = DustID.Wraith;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -43,7 +42,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.ResistantWoodCandelabra>());
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.BismuthCandelabra>());
         }
 
         public override void HitWire(int i, int j)
@@ -100,7 +99,7 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 float x = (float)Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 float y = (float)Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/ResistantWoodCandelabra_Flame"), new Vector2((float)(i * 16 - (int)Main.screenPosition.X + offsetX) - (width - 16f) / 2f + x, (float)(j * 16 - (int)Main.screenPosition.Y + offsetY) + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(mod.GetTexture("Tiles/BismuthCandelabra_Flame"), new Vector2((float)(i * 16 - (int)Main.screenPosition.X + offsetX) - (width - 16f) / 2f + x, (float)(j * 16 - (int)Main.screenPosition.Y + offsetY) + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
     }

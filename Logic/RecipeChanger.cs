@@ -12,6 +12,96 @@ namespace ExxoAvalonOrigins.Logic
         {
             RecipeFinder finder;
 
+			//Delete recipes
+
+			finder = new RecipeFinder();
+			finder.AddIngredient(ItemID.Silk, 20);
+			finder.AddIngredient(ItemID.PlatinumBar, 30);
+			finder.AddTile(TileID.Anvils);
+			finder.SetResult(ItemID.Throne);
+			foreach (var recipe in finder.SearchRecipes())
+			{
+				var exactRecipe = finder.FindExactRecipe();
+
+				bool isRecipeFound = exactRecipe != null;
+				if (isRecipeFound)
+				{
+					RecipeEditor editor = new RecipeEditor(exactRecipe);
+					editor.DeleteRecipe();
+				}
+			}
+
+			finder = new RecipeFinder();
+			finder.AddIngredient(ItemID.PlatinumWatch);
+			finder.AddIngredient(ItemID.Wire);
+			finder.AddTile(TileID.Anvils);
+			finder.SetResult(ItemID.Timer1Second);
+			foreach (var recipe in finder.SearchRecipes())
+			{
+				var exactRecipe = finder.FindExactRecipe();
+
+				bool isRecipeFound = exactRecipe != null;
+				if (isRecipeFound)
+				{
+					RecipeEditor editor = new RecipeEditor(exactRecipe);
+					editor.DeleteRecipe();
+				}
+			}
+
+			finder = new RecipeFinder();
+			finder.AddIngredient(ItemID.TungstenWatch);
+			finder.AddIngredient(ItemID.Wire);
+			finder.AddTile(TileID.Anvils);
+			finder.SetResult(ItemID.Timer3Second);
+			foreach (var recipe in finder.SearchRecipes())
+			{
+				var exactRecipe = finder.FindExactRecipe();
+
+				bool isRecipeFound = exactRecipe != null;
+				if (isRecipeFound)
+				{
+					RecipeEditor editor = new RecipeEditor(exactRecipe);
+					editor.DeleteRecipe();
+				}
+			}
+
+			finder = new RecipeFinder();
+			finder.AddIngredient(ItemID.TinWatch);
+			finder.AddIngredient(ItemID.Wire);
+			finder.AddTile(TileID.Anvils);
+			finder.SetResult(ItemID.Timer5Second);
+			foreach (var recipe in finder.SearchRecipes())
+			{
+				var exactRecipe = finder.FindExactRecipe();
+
+				bool isRecipeFound = exactRecipe != null;
+				if (isRecipeFound)
+				{
+					RecipeEditor editor = new RecipeEditor(exactRecipe);
+					editor.DeleteRecipe();
+				}
+			}
+
+			finder = new RecipeFinder();
+			finder.AddIngredient(ItemID.PlatinumWatch);
+			finder.AddIngredient(ItemID.DepthMeter);
+			finder.AddIngredient(ItemID.Compass);
+			finder.AddTile(TileID.TinkerersWorkbench);
+			finder.SetResult(ItemID.GPS);
+			foreach (var recipe in finder.SearchRecipes())
+			{
+				var exactRecipe = finder.FindExactRecipe();
+
+				bool isRecipeFound = exactRecipe != null;
+				if (isRecipeFound)
+				{
+					RecipeEditor editor = new RecipeEditor(exactRecipe);
+					editor.DeleteRecipe();
+				}
+			}
+
+			//Delete recipes over
+
             finder = new RecipeFinder();
             finder.SetResult(ItemID.ClayPot);
             foreach (var recipe in finder.SearchRecipes())

@@ -729,6 +729,44 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 4);
+            recipe.AddIngredient(ItemID.Torch, 4);
+            recipe.AddIngredient(ItemID.Chain);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<Items.Placeable.Light.BronzeChandelier>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 4);
+            recipe.AddIngredient(ItemID.Torch, 4);
+            recipe.AddIngredient(ItemID.Chain);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<Items.Placeable.Light.ZincChandelier>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 4);
+            recipe.AddIngredient(ItemID.Torch, 4);
+            recipe.AddIngredient(ItemID.Chain);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(ModContent.ItemType<Items.Placeable.Light.BismuthChandelier>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthBar>());
+            recipe.AddIngredient(ItemID.Torch);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ModContent.ItemType<Items.Placeable.Light.BismuthCandle>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 5);
+            recipe.AddIngredient(ItemID.Torch, 3);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ModContent.ItemType<Items.Placeable.Light.BismuthCandelabra>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Sapphire);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<SapphireWall>(), 4);
@@ -1257,14 +1295,7 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SolarFragment>(), 3);
-            recipe.AddIngredient(ItemID.SilverBar, 5);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<SunCharm>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<SolarFragment>(), 3);
-            recipe.AddIngredient(ItemID.TungstenBar, 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:SilverBar", 5);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<SunCharm>());
             recipe.AddRecipe();
@@ -2390,7 +2421,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.AvengerEmblem);
             recipe.AddIngredient(ItemID.Cobweb, 30);
-            recipe.AddIngredient(ItemID.GoldBar, 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
             recipe.AddIngredient(ItemID.SilverOre, 5);
             recipe.AddIngredient(ItemID.SoulofFright, 15);
             recipe.AddTile(TileID.TinkerersWorkbench);
@@ -2400,7 +2431,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.AvengerEmblem);
             recipe.AddIngredient(ItemID.Cobweb, 30);
-            recipe.AddIngredient(ItemID.GoldBar, 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
             recipe.AddIngredient(ItemID.TungstenOre, 5);
             recipe.AddIngredient(ItemID.SoulofFright, 15);
             recipe.AddTile(TileID.TinkerersWorkbench);
@@ -2410,18 +2441,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.AvengerEmblem);
             recipe.AddIngredient(ItemID.Cobweb, 30);
-            recipe.AddIngredient(ItemID.PlatinumBar, 5);
-            recipe.AddIngredient(ItemID.SilverOre, 5);
-            recipe.AddIngredient(ItemID.SoulofFright, 15);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ModContent.ItemType<AngerTalisman>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.AvengerEmblem);
-            recipe.AddIngredient(ItemID.Cobweb, 30);
-            recipe.AddIngredient(ItemID.PlatinumBar, 5);
-            recipe.AddIngredient(ItemID.TungstenOre, 5);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
+            recipe.AddIngredient(ModContent.ItemType<ZincOre>(), 5);
             recipe.AddIngredient(ItemID.SoulofFright, 15);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ModContent.ItemType<AngerTalisman>());
@@ -2839,18 +2860,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.Lens, 5);
             recipe.AddIngredient(ItemID.SoulofLight, 10);
             recipe.AddIngredient(ItemID.SoulofNight, 10);
-            recipe.AddIngredient(ItemID.GoldBar, 20);
-            recipe.AddIngredient(ItemID.BlackLens);
-            recipe.AddIngredient(ModContent.ItemType<BloodshotLens>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<Moonphaser>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Lens, 5);
-            recipe.AddIngredient(ItemID.SoulofLight, 10);
-            recipe.AddIngredient(ItemID.SoulofNight, 10);
-            recipe.AddIngredient(ItemID.PlatinumBar, 20);
+            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 20);
             recipe.AddIngredient(ItemID.BlackLens);
             recipe.AddIngredient(ModContent.ItemType<BloodshotLens>(), 4);
             recipe.AddTile(TileID.WorkBenches);
@@ -4001,6 +4011,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipeGroup(RecipeGroupID.Wood, 20);
             recipe.AddIngredient(ModContent.ItemType<Sulphur>(), 30);
             recipe.AddIngredient(ItemID.IronBar, 15);
+            recipe.anyIronBar = true;
             recipe.AddRecipeGroup("ExxoAvalonOrigins:WorkBenches");
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<Catalyzer>());

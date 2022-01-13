@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ancient Workbench");
+            DisplayName.SetDefault("Ancient Work Bench");
             Tooltip.SetDefault("Used to craft old-style items");
         }
 
