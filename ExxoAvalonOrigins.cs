@@ -1715,5 +1715,7 @@ namespace ExxoAvalonOrigins
         {
             MergeWithFrameExplicit(x, y, myType, mergeType, out _, out _, out _, out _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight, resetFrame);
         }
+
+        public override object Call(params object[] args) => ExxoAvalonOriginsCall.Call(args);
     }
 }
