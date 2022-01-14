@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +23,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 			item.value = Item.sellPrice(0, 0, 0, 15);
 			item.notAmmo = true;
 			item.flame = true;
-		}
+            item.ammo = 8;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 15;
+        }
 		public override void HoldItem(Player player)
 		{
 			if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)

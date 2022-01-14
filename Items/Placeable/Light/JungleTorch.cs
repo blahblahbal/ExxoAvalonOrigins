@@ -24,7 +24,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 			item.notAmmo = true;
 			item.flame = true;
 			item.rare = ItemRarityID.Orange;
-		}
+            item.ammo = 8;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 13;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

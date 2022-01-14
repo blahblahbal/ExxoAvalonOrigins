@@ -23,7 +23,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 			item.value = Item.sellPrice(0, 0, 0, 15);
 			item.notAmmo = true;
 			item.flame = true;
-		}
+            item.ammo = 8;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 16;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

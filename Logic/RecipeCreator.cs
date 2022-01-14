@@ -2216,13 +2216,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ItemID.BundleofBalloons);
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Shotgun);
-            recipe.AddIngredient(ItemID.Spike, 100);
-            recipe.AddIngredient(ItemID.SoulofMight, 20);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ModContent.ItemType<SpikeCannon>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.StarCloak);
@@ -2751,15 +2745,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ItemID.EnchantedSword);
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Torch, 50);
-            recipe.AddIngredient(ItemID.IronBar, 10);
-            recipe.AddIngredient(ItemID.Wood, 20);
-            recipe.anyWood = true;
-            recipe.anyIronBar = true;
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<TorchLauncher>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SiltBlock, 100);

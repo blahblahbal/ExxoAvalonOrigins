@@ -681,7 +681,174 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-
+        public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            if (item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeCannon>())
+            {
+                Item item2 = new Item();
+                bool flag7 = false;
+                bool inAmmoSlots = false;
+                for (int i = 54; i < 58; i++)
+                {
+                    if (player.inventory[i].ammo == player.inventory[player.selectedItem].useAmmo && player.inventory[i].stack > 0)
+                    {
+                        item2 = player.inventory[i];
+                        flag7 = true;
+                        inAmmoSlots = true;
+                        break;
+                    }
+                }
+                if (!inAmmoSlots)
+                {
+                    for (int i = 0; i < 54; i++)
+                    {
+                        if (player.inventory[i].ammo == player.inventory[player.selectedItem].useAmmo && player.inventory[i].stack > 0)
+                        {
+                            item2 = player.inventory[i];
+                            flag7 = true;
+                            break;
+                        }
+                    }
+                }
+                if (flag7)
+                {
+                    if (player.inventory[player.selectedItem].useAmmo == ItemID.Spike)
+                    {
+                        int t = 0;
+                        switch (item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike)
+                        {
+                            case 0:
+                                t = ModContent.ProjectileType<SpikeCannon>();
+                                break;
+                            case 1:
+                                t = ModContent.ProjectileType<DemonSpikeScale>();
+                                break;
+                            case 2:
+                                t = ModContent.ProjectileType<BloodiedSpike>();
+                                break;
+                            case 3:
+                                t = ModContent.ProjectileType<NastySpike>();
+                                break;
+                            case 4:
+                                t = ModContent.ProjectileType<WoodenSpike>();
+                                break;
+                            case 5:
+                                t = ModContent.ProjectileType<VenomSpike>();
+                                break;
+                            case 6:
+                                t = ModContent.ProjectileType<PoisonSpike>();
+                                break;
+                        }
+                        if (t > 0)
+                        {
+                            Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, damage, knockBack);
+                            return false;
+                        }
+                    }
+                }
+            }
+            if (item.type == ModContent.ItemType<TorchLauncher>())
+            {
+                Item item2 = new Item();
+                bool flag7 = false;
+                bool inAmmoSlots = false;
+                for (int i = 54; i < 58; i++)
+                {
+                    if (player.inventory[i].ammo == player.inventory[player.selectedItem].useAmmo && player.inventory[i].stack > 0)
+                    {
+                        item2 = player.inventory[i];
+                        flag7 = true;
+                        inAmmoSlots = true;
+                        break;
+                    }
+                }
+                if (!inAmmoSlots)
+                {
+                    for (int i = 0; i < 54; i++)
+                    {
+                        if (player.inventory[i].ammo == player.inventory[player.selectedItem].useAmmo && player.inventory[i].stack > 0)
+                        {
+                            item2 = player.inventory[i];
+                            flag7 = true;
+                            break;
+                        }
+                    }
+                }
+                if (flag7)
+                {
+                    if (player.inventory[player.selectedItem].useAmmo == 8)
+                    {
+                        int t = 0;
+                        switch (item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch)
+                        {
+                            case 0:
+                                t = ModContent.ProjectileType<Projectiles.Torches.Torch>();
+                                break;
+                            case 1:
+                                t = ModContent.ProjectileType<Projectiles.Torches.BlueTorch>();
+                                break;
+                            case 2:
+                                t = ModContent.ProjectileType<Projectiles.Torches.RedTorch>();
+                                break;
+                            case 3:
+                                t = ModContent.ProjectileType<Projectiles.Torches.GreenTorch>();
+                                break;
+                            case 4:
+                                t = ModContent.ProjectileType<Projectiles.Torches.PurpleTorch>();
+                                break;
+                            case 5:
+                                t = ModContent.ProjectileType<Projectiles.Torches.WhiteTorch>();
+                                break;
+                            case 6:
+                                t = ModContent.ProjectileType<Projectiles.Torches.YellowTorch>();
+                                break;
+                            case 7:
+                                t = ModContent.ProjectileType<Projectiles.Torches.DemonTorch>();
+                                break;
+                            case 8:
+                                t = ModContent.ProjectileType<Projectiles.Torches.CursedTorch>();
+                                break;
+                            case 9:
+                                t = ModContent.ProjectileType<Projectiles.Torches.IceTorch>();
+                                break;
+                            case 10:
+                                t = ModContent.ProjectileType<Projectiles.Torches.OrangeTorch>();
+                                break;
+                            case 11:
+                                t = ModContent.ProjectileType<Projectiles.Torches.IchorTorch>();
+                                break;
+                            case 12:
+                                t = ModContent.ProjectileType<Projectiles.Torches.UltrabrightTorch>();
+                                break;
+                            case 13:
+                                t = ModContent.ProjectileType<Projectiles.Torches.JungleTorch>();
+                                break;
+                            case 14:
+                                t = ModContent.ProjectileType<Projectiles.Torches.PathogenTorch>();
+                                break;
+                            case 15:
+                                t = ModContent.ProjectileType<Projectiles.Torches.SlimeTorch>();
+                                break;
+                            case 16:
+                                t = ModContent.ProjectileType<Projectiles.Torches.CyanTorch>();
+                                break;
+                            case 17:
+                                t = ModContent.ProjectileType<Projectiles.Torches.LimeTorch>();
+                                break;
+                            case 18:
+                                t = ModContent.ProjectileType<Projectiles.Torches.BrownTorch>();
+                                break;
+                        }
+                        if (t > 0)
+                        {
+                            Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, 0, 0);
+                            return false;
+                        }
+                    }
+                }
+            }
+            return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+        }
         public void WOSTongue()
         {
             if (ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].active)

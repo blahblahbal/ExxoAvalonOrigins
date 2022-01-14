@@ -25,6 +25,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
+            item.notAmmo = true;
+            item.ammo = ItemID.Spike;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 5;
         }
     }
 }

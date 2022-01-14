@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.autoReuse = true;
 			item.useTurn = true;
 			item.scale = 1.15f;
-			item.pick = 75;
+			item.pick = 69;
 			item.rare = ItemRarityID.Blue;
 			item.width = dims.Width;
 			item.useTime = 13;

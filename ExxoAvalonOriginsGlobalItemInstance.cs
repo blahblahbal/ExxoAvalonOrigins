@@ -17,6 +17,7 @@ namespace ExxoAvalonOrigins
         public override bool InstancePerEntity => true;
         public bool invince;
         public int torch = 0;
+        public int spike = 0;
         public int healStamina;
         public bool wasMech = false;
         public bool tome = false;

@@ -1,9 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -33,12 +29,17 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
+            for (int num133 = 0; num133 < 3; num133++)
+            {
+                float num134 = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                float num135 = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                Projectile.NewProjectile(projectile.position.X + num134, projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<SpikeShard>(), (int)(projectile.damage * 0.33), 0f, projectile.owner, 0f, 0f);
+            }
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Poisoned, 240);
         }
-
         public override void AI()
 		{
 			projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;

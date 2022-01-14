@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,6 +26,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			item.value = 0;
 			item.useAnimation = 15;
 			item.height = dims.Height;
-		}
+            item.notAmmo = true;
+            item.ammo = ItemID.Spike;
+            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 6;
+        }
 	}
 }

@@ -439,6 +439,13 @@ namespace ExxoAvalonOrigins
                     break;
                 case ItemID.Spike:
                     item.ammo = 147;
+                    item.notAmmo = true;
+                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 0;
+                    break;
+                case ItemID.WoodenSpike:
+                    item.ammo = 147;
+                    item.notAmmo = true;
+                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 4;
                     break;
                 case ItemID.Hellstone:
                     item.value = Item.sellPrice(0, 0, 13, 30);

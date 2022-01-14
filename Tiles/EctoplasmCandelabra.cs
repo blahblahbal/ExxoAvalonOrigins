@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -18,7 +18,6 @@ namespace ExxoAvalonOrigins.Tiles
             //TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.Table, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.addTile(Type);
-            dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 			var name = CreateMapEntryName();

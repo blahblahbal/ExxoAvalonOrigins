@@ -35,5 +35,19 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 			item.height = dims.Height;
             item.UseSound = SoundID.Item11;
         }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-10f, 0f);
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Shotgun);
+            recipe.AddIngredient(ItemID.Spike, 100);
+            recipe.AddIngredient(ItemID.SoulofMight, 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

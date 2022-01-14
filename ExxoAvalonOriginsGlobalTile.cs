@@ -90,7 +90,10 @@ namespace ExxoAvalonOrigins
             {
                 fail = true;
             }
-
+            if (Main.tile[i, j].type == TileID.Hellstone && Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem].pick < 70)
+            {
+                fail = true;
+            }
             int[] blowPipes =
             {
                 ItemID.Blowpipe,

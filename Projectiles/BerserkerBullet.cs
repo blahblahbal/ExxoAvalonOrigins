@@ -33,6 +33,17 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.ranged = true;
 		}
 
+        public override void Kill(int timeLeft)
+        {
+            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
+            for (int num133 = 0; num133 < 3; num133++)
+            {
+                float num134 = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                float num135 = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                Projectile.NewProjectile(projectile.position.X + num134, projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<BerserkerCrystal>(), (int)((double)projectile.damage * 0.5), 0f, projectile.owner, 0f, 0f);
+            }
+        }
+
         public override void AI()
         {
             if (projectile.alpha < 170)
