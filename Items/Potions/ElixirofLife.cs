@@ -33,8 +33,8 @@ namespace ExxoAvalonOrigins.Items.Potions
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Material.LifeDew>());
-            recipe.AddIngredient(ItemID.GreaterHealingPotion, 2);
-            recipe.AddIngredient(ItemID.LifeFruit);
+            recipe.AddIngredient(ItemID.SuperHealingPotion);
+            recipe.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 3);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();

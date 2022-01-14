@@ -67,7 +67,7 @@ namespace ExxoAvalonOrigins.World.Passes
             {
                 for (int num571 = 0; num571 < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 2E-05); num571++)
                 {
-                    WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), (ushort)ModContent.TileType<Tiles.BacciliteOre>());
+                    WorldGen.TileRunner(WorldGen.genRand.Next(0, Main.maxTilesX), WorldGen.genRand.Next((int)WorldGen.rockLayerLow, Main.maxTilesY), WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 6), (ushort)ModContent.TileType<Tiles.Ores.BacciliteOre>());
                 }
             }
             else if (!ExxoAvalonOriginsWorld.contagion && !WorldGen.crimson)
@@ -96,7 +96,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 double stuff;
                 stuff = Main.rockLayer - 75f;
                 int j6 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
-                WorldGen.OreRunner(i6, j6, (double)WorldGen.genRand.Next(20, 29), WorldGen.genRand.Next(20, 29), (ushort)ModContent.TileType<Tiles.Heartstone>());
+                WorldGen.OreRunner(i6, j6, (double)WorldGen.genRand.Next(20, 29), WorldGen.genRand.Next(20, 29), (ushort)ModContent.TileType<Tiles.Ores.Heartstone>());
             }
             for (int asdfasdf = 0; asdfasdf < 2; asdfasdf++)
             {
@@ -132,7 +132,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 var i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                 var rockLayer = Main.rockLayer;
                 var j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
-                GenerateHearts(i8, j8, ModContent.TileType<Tiles.Heartstone>());
+                GenerateHearts(i8, j8, ModContent.TileType<Tiles.Ores.Heartstone>());
             }
 
             for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 1E-05); i++)

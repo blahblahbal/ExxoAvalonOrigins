@@ -228,17 +228,17 @@ namespace ExxoAvalonOrigins
                     float num285 = 0;
                     if (num284 == 69)
                     {
-                        type8 = ModContent.TileType<Tiles.Tourmaline>();
+                        type8 = ModContent.TileType<Tiles.Ores.Tourmaline>();
                         num285 = Main.maxTilesX * 0.2f;
                     }
                     else if (num284 == 70)
                     {
-                        type8 = ModContent.TileType<Tiles.Peridot>();
+                        type8 = ModContent.TileType<Tiles.Ores.Peridot>();
                         num285 = Main.maxTilesX * 0.2f;
                     }
                     else if (num284 == 71)
                     {
-                        type8 = ModContent.TileType<Tiles.Zircon>();
+                        type8 = ModContent.TileType<Tiles.Ores.Zircon>();
                         num285 = Main.maxTilesX * 0.2f;
                     }
                     num285 *= 0.2f;
@@ -265,7 +265,7 @@ namespace ExxoAvalonOrigins
                     int i8 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                     double rockLayer = Main.rockLayer;
                     int j8 = WorldGen.genRand.Next((int)rockLayer, Main.maxTilesY - 150);
-                    World.Passes.OreGenPreHardMode.GenerateHearts(i8, j8, ModContent.TileType<Tiles.Heartstone>());
+                    World.Passes.OreGenPreHardMode.GenerateHearts(i8, j8, ModContent.TileType<Tiles.Ores.Heartstone>());
                 }
                 Main.NewText("Retrogenned Heartstone");
             }
@@ -1970,7 +1970,7 @@ namespace ExxoAvalonOrigins
             }
             if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && SuperHardmode && Main.hardMode)
             {
-                DropComet(ModContent.TileType<HydrolythOre>());
+                DropComet(ModContent.TileType<Tiles.Ores.HydrolythOre>());
             }
             Main.tileSolidTop[ModContent.TileType<FallenStarTile>()] = Main.dayTime;
         }
@@ -2969,35 +2969,35 @@ namespace ExxoAvalonOrigins
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(5, 9), Main.rand.Next(4, 6), (ushort)ModContent.TileType<Tiles.OblivionOre>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(5, 9), Main.rand.Next(4, 6), (ushort)ModContent.TileType<Tiles.Ores.OblivionOre>());
             }
             // opals
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Opal>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Ores.Opal>());
             }
             // onyx
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Onyx>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Ores.Onyx>());
             }
             // kunzite
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Kunzite>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(4, 7), Main.rand.Next(1, 4), (ushort)ModContent.TileType<Tiles.Ores.Kunzite>());
             }
             // primordial ore
             for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
             {
                 int x = Main.rand.Next(100, Main.maxTilesX - 100);
                 int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(5, 8), (ushort)ModContent.TileType<Tiles.PrimordialOre>());
+                WorldGen.OreRunner(x, y, Main.rand.Next(3, 6), Main.rand.Next(5, 8), (ushort)ModContent.TileType<Tiles.Ores.PrimordialOre>());
             }
         }
 
@@ -3005,7 +3005,7 @@ namespace ExxoAvalonOrigins
         {
             if (Collision.CheckAABBvAABBCollision(npc1.Center, new Vector2(npc1.width, npc1.height), npc2.Center, new Vector2(npc2.width, npc2.height)))
             {
-                Utils.MakeCircle((int)(npc1.position.X / 16f), (int)(npc1.position.Y / 16f), radius, ModContent.TileType<Tiles.OblivionOre>());
+                Utils.MakeCircle((int)(npc1.position.X / 16f), (int)(npc1.position.Y / 16f), radius, ModContent.TileType<Tiles.Ores.OblivionOre>());
                 npc1.life = 0;
                 npc1.NPCLoot();
                 npc1.active = false;

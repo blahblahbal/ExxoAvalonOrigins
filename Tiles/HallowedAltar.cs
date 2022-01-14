@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,21 +81,21 @@ namespace ExxoAvalonOrigins.Tiles
             }
             int num = ExxoAvalonOriginsWorld.hallowAltarCount % 2;
             int num2 = ExxoAvalonOriginsWorld.hallowAltarCount / 2 + 1;
-            float num3 = (float)(Main.maxTilesX / 4200);
+            float num3 = Main.maxTilesX / 4200;
             int num4 = 1 - num;
-            num3 = num3 * 310f - (float)(85 * num);
+            num3 = num3 * 310f - 85 * num;
             num3 *= 0.85f;
-            num3 /= (float)num2;
+            num3 /= num2;
             if (num == 0)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if (ExxoAvalonOriginsWorld.shmOreTier1 == ModContent.TileType<Tiles.TritanoriumOre>()) Main.NewText("Your world has been invigorated with Tritanorium!", 117, 158, 107, false);
+                    if (ExxoAvalonOriginsWorld.shmOreTier1 == 0) Main.NewText("Your world has been invigorated with Tritanorium!", 117, 158, 107, false);
                     else Main.NewText("Your world has been melted with Pyroscoric!", 187, 35, 0, false);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    if (ExxoAvalonOriginsWorld.shmOreTier1 == ModContent.TileType<Tiles.TritanoriumOre>()) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been invigorated with Tritanorium!"), new Color(117, 158, 107));
+                    if (ExxoAvalonOriginsWorld.shmOreTier1 == 0) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been invigorated with Tritanorium!"), new Color(117, 158, 107));
                     else NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been melted with Pyroscoric!"), new Color(187, 35, 0));
                 }
                 num = ExxoAvalonOriginsWorld.shmOreTier1;
@@ -105,12 +105,12 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if (ExxoAvalonOriginsWorld.shmOreTier2 == ModContent.TileType<Tiles.UnvolanditeOre>()) Main.NewText("Your world has been blessed with Unvolandite!", 171, 119, 75, false);
+                    if (ExxoAvalonOriginsWorld.shmOreTier2 == 2) Main.NewText("Your world has been blessed with Unvolandite!", 171, 119, 75, false);
                     else Main.NewText("Your world has been blessed with Vorazylcum!", 123, 95, 126, false);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    if (ExxoAvalonOriginsWorld.shmOreTier2 == ModContent.TileType<Tiles.UnvolanditeOre>())
+                    if (ExxoAvalonOriginsWorld.shmOreTier2 == 2)
                     {
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Unvolandite!"), new Color(171, 119, 75));
                     }
@@ -126,16 +126,23 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 int i2 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                 double num12 = Main.worldSurface;
-                if (num == ModContent.TileType<Tiles.PyroscoricOre>())
+                if (num == 1)
                 {
                     num12 = Main.rockLayer;
                 }
-                if (num == ModContent.TileType<Tiles.UnvolanditeOre>() || num == ModContent.TileType<Tiles.VorazylcumOre>())
+                if (num == 2 || num == 3)
                 {
-                    num12 = (Main.rockLayer + Main.rockLayer + (double)Main.maxTilesY) / 3.0;
+                    num12 = (Main.rockLayer + Main.rockLayer + Main.maxTilesY) / 3.0;
                 }
                 int j2 = WorldGen.genRand.Next((int)num12, Main.maxTilesY - 150);
-                WorldGen.OreRunner(i2, j2, (double)WorldGen.genRand.Next(5, 9 + num4), WorldGen.genRand.Next(5, 9 + num4), (ushort)num);
+                switch (num)
+                {
+                    case 0: num = ModContent.TileType<Ores.TritanoriumOre>(); break;
+                    case 1: num = ModContent.TileType<Ores.PyroscoricOre>(); break;
+                    case 2: num = ModContent.TileType<Ores.UnvolanditeOre>(); break;
+                    case 3: num = ModContent.TileType<Ores.VorazylcumOre>(); break;
+                }
+                WorldGen.OreRunner(i2, j2, WorldGen.genRand.Next(5, 9 + num4), WorldGen.genRand.Next(5, 9 + num4), (ushort)num);
                 num11++;
             }
             ExxoAvalonOriginsWorld.hallowAltarCount++;

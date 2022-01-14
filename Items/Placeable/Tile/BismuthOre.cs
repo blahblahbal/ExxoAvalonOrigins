@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.BismuthOre>();
+            item.createTile = ModContent.TileType<Tiles.Ores.BismuthOre>();
             item.width = dims.Width;
             item.useTime = 10;
             item.useTurn = true;

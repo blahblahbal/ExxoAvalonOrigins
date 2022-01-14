@@ -236,12 +236,12 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         if (Main.tile[x, y].type == TileID.Tin && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.BronzeOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>();
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BronzeOre>() && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>() && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Copper;
                             WorldGen.SquareTileFrame(x, y);
@@ -259,12 +259,12 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         if (Main.tile[x, y].type == TileID.Lead && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.NickelOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.NickelOre>();
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.NickelOre>() && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.NickelOre>() && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Iron;
                             WorldGen.SquareTileFrame(x, y);
@@ -282,12 +282,12 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         if (Main.tile[x, y].type == TileID.Tungsten && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.ZincOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.ZincOre>();
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ZincOre>() && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.ZincOre>() && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Silver;
                             WorldGen.SquareTileFrame(x, y);
@@ -305,12 +305,12 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         if (Main.tile[x, y].type == TileID.Platinum && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.BismuthOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>();
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.BismuthOre>() && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>() && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
                             Main.tile[x, y].type = TileID.Gold;
                             WorldGen.SquareTileFrame(x, y);
@@ -319,23 +319,23 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         #endregion
                         #region phm ore tier 5
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.RhodiumOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.RhodiumOre>())
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.OsmiumOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.OsmiumOre>();
                             WorldGen.SquareTileFrame(x, y);
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.OsmiumOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.OsmiumOre>())
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.IridiumOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.IridiumOre>();
                             WorldGen.SquareTileFrame(x, y);
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.IridiumOre>())
+                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.IridiumOre>())
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.RhodiumOre>();
+                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.RhodiumOre>();
                             WorldGen.SquareTileFrame(x, y);
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;

@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins
         }
         public override void NearbyEffects(int i, int j, int type, bool closer)
         {
-            if (type == ModContent.TileType<Tiles.PyroscoricOre>())
+            if (type == ModContent.TileType<Tiles.Ores.PyroscoricOre>())
             {
             Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, DustID.InfernoFork, 0f, 0f);
             }

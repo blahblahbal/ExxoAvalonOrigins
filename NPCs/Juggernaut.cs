@@ -41,7 +41,6 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<OblivionOre>(), Main.rand.Next(22, 34), false, 0, false);
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<IllegalWeaponInstructions>(), 1, false, 0, false);
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofBlight>(), Main.rand.Next(3) + 1, false, 0, false);
             npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = false;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 		{
 			Rectangle dims = this.GetDims();
 			item.autoReuse = true;
-			item.createTile = ModContent.TileType<Tiles.TritanoriumOre>();
+			item.createTile = ModContent.TileType<Tiles.Ores.TritanoriumOre>();
 			item.consumable = true;
 			item.rare = ItemRarityID.Purple;
 			item.width = dims.Width;

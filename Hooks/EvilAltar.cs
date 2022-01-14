@@ -1,4 +1,4 @@
-using ExxoAvalonOrigins.Tiles;
+﻿using ExxoAvalonOrigins.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Hooks
             switch (currentOreTier)
             {
                 case 0:
-                    if (WorldGen.oreTier1 == TileID.Palladium || WorldGen.oreTier1 == ModContent.TileType<DurataniumOre>())
+                    if (WorldGen.oreTier1 == TileID.Palladium || WorldGen.oreTier1 == 0)
                     {
                         amountOreToSpawn *= 0.9f;
                     }
@@ -43,7 +43,7 @@ namespace ExxoAvalonOrigins.Hooks
                             Main.NewText("Your world has been blessed with Cobalt!", 26, 105, 161, false);
                         else if (WorldGen.oreTier1 == TileID.Palladium)
                             Main.NewText("Your world has been blessed with Palladium!", 235, 87, 47, false);
-                        else if (WorldGen.oreTier1 == ModContent.TileType<DurataniumOre>())
+                        else if (WorldGen.oreTier1 == 0)
                             Main.NewText("Your world has been blessed with Duratanium!", 137, 81, 89, false);
 
                         if (WorldGen.altarCount == 0)
@@ -55,7 +55,7 @@ namespace ExxoAvalonOrigins.Hooks
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Cobalt!"), new Color(26, 105, 161));
                         else if (WorldGen.oreTier1 == TileID.Palladium)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Palladium!"), new Color(235, 87, 47));
-                        else if (WorldGen.oreTier1 == ModContent.TileType<DurataniumOre>())
+                        else if (WorldGen.oreTier1 == 0)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Duratanium!"), new Color(137, 81, 89));
 
                         if (WorldGen.altarCount == 0)
@@ -67,7 +67,7 @@ namespace ExxoAvalonOrigins.Hooks
                     amountOreToSpawn *= 1.05f;
                     break;
                 case 1:
-                    if (WorldGen.oreTier2 == TileID.Orichalcum || WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>())
+                    if (WorldGen.oreTier2 == TileID.Orichalcum || WorldGen.oreTier2 == 1)
                     {
                         amountOreToSpawn *= 0.9f;
                     }
@@ -78,7 +78,7 @@ namespace ExxoAvalonOrigins.Hooks
                             Main.NewText("Your world has been blessed with Mythril!", 93, 147, 88, false);
                         else if (WorldGen.oreTier2 == TileID.Orichalcum)
                             Main.NewText("Your world has been blessed with Orichalcum!", 163, 22, 158, false);
-                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>())
+                        else if (WorldGen.oreTier2 == 1)
                             Main.NewText("Your world has been blessed with Naquadah!", 0, 38, 255, false);
                     }
                     else if (Main.netMode == NetmodeID.Server)
@@ -87,14 +87,14 @@ namespace ExxoAvalonOrigins.Hooks
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Mythril!"), new Color(93, 147, 88));
                         else if (WorldGen.oreTier2 == TileID.Orichalcum)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Orichalcum!"), new Color(163, 22, 158));
-                        else if (WorldGen.oreTier2 == ModContent.TileType<NaquadahOre>())
+                        else if (WorldGen.oreTier2 == 1)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Naquadah!"), new Color(0, 38, 255));
                     }
 
                     currentOreTier = WorldGen.oreTier2;
                     break;
                 case 2:
-                    if (WorldGen.oreTier3 == TileID.Titanium || WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>())
+                    if (WorldGen.oreTier3 == TileID.Titanium || WorldGen.oreTier3 == 2)
                     {
                         amountOreToSpawn *= 0.9f;
                     }
@@ -105,7 +105,7 @@ namespace ExxoAvalonOrigins.Hooks
                             Main.NewText("Your world has been blessed with Adamantite!", 221, 85, 152, false);
                         else if (WorldGen.oreTier3 == TileID.Titanium)
                             Main.NewText("Your world has been blessed with Titanium!", 185, 194, 215, false);
-                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>())
+                        else if (WorldGen.oreTier3 == 2)
                             Main.NewText("Your world has been blessed with Troxinium!", 193, 218, 72, false);
                     }
                     else if (Main.netMode == NetmodeID.Server)
@@ -114,7 +114,7 @@ namespace ExxoAvalonOrigins.Hooks
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Adamantite!"), new Color(221, 85, 152));
                         else if (WorldGen.oreTier3 == TileID.Titanium)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Titanium!"), new Color(185, 194, 215));
-                        else if (WorldGen.oreTier3 == ModContent.TileType<TroxiniumOre>())
+                        else if (WorldGen.oreTier3 == 2)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Troxinium!"), new Color(193, 218, 72));
                     }
 
@@ -127,17 +127,21 @@ namespace ExxoAvalonOrigins.Hooks
             {
                 // Set max height to spawn ore
                 double maxHeightToSpawn = Main.worldSurface;
-                if  (currentOreTier == TileID.Mythril || currentOreTier == TileID.Orichalcum || currentOreTier == ModContent.TileType<NaquadahOre>())
+                if  (currentOreTier == TileID.Mythril || currentOreTier == TileID.Orichalcum || currentOreTier == 1)
                 {
                     maxHeightToSpawn = Main.rockLayer;
                 }
-                if  (currentOreTier == TileID.Adamantite || currentOreTier == TileID.Titanium || currentOreTier == ModContent.TileType<TroxiniumOre>())
+                if  (currentOreTier == TileID.Adamantite || currentOreTier == TileID.Titanium || currentOreTier == 2)
                 {
                     maxHeightToSpawn = (Main.rockLayer + Main.rockLayer + (double)Main.maxTilesY) / 3.0;
                 }
 
                 int x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                 int y = WorldGen.genRand.Next((int)maxHeightToSpawn, Main.maxTilesY - 150);
+
+                if (currentOreTier == 0) currentOreTier = ModContent.TileType<Tiles.Ores.DurataniumOre>();
+                if (currentOreTier == 1) currentOreTier = ModContent.TileType<Tiles.Ores.NaquadahOre>();
+                if (currentOreTier == 2) currentOreTier = ModContent.TileType<Tiles.Ores.TroxiniumOre>();
 
                 WorldGen.OreRunner(x, y, WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)currentOreTier);
 
@@ -147,7 +151,7 @@ namespace ExxoAvalonOrigins.Hooks
                     x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                     y = WorldGen.genRand.Next((int)maxHeightToSpawn, Main.maxTilesY - 150);
 
-                    WorldGen.OreRunner(x, y, (double)WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)ModContent.TileType<Tiles.SulphurOre>());
+                    WorldGen.OreRunner(x, y, (double)WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)ModContent.TileType<Tiles.Ores.SulphurOre>());
                 }
             }
 

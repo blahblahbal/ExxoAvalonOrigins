@@ -15,6 +15,27 @@ namespace ExxoAvalonOrigins.Logic
             ModRecipe recipe;
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Bar.FeroziumBar>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemID.FrostHelmet);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Bar.FeroziumBar>(), 24);
+            recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemID.FrostBreastplate);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Bar.FeroziumBar>(), 18);
+            recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(ItemID.FrostLeggings);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup("ExxoAvalonOrigins:CopperBar", 6);
             recipe.AddIngredient(ItemID.Wood);
             recipe.anyWood = true;

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.World.Passes
         {
             for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); i++)
             {
-                IceSnowOreRunner(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 200), WorldGen.genRand.Next(6, 9), WorldGen.genRand.Next(6, 9), (ushort)ModContent.TileType<Tiles.FeroziumOre>());
+                IceSnowOreRunner(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 200), WorldGen.genRand.Next(6, 9), WorldGen.genRand.Next(6, 9), (ushort)ModContent.TileType<Tiles.Ores.FeroziumOre>());
             }
         }
         /// <summary>

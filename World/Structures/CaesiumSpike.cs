@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.World.Structures
                             if ((Math.Abs(j - num) + Math.Abs(k - num2)) < num5 * (1.0 + WorldGen.genRand.Next(-10, 11) * 0.005) && j >= 0 && j < Main.maxTilesX && k >= 0 && k < Main.maxTilesY)
                             {
                                 Main.tile[j, k].active(true);
-                                Main.tile[j, k].type = (ushort)ModContent.TileType<Tiles.CaesiumOre>();
+                                Main.tile[j, k].type = (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>();
                                 WorldGen.SquareTileFrame(j, k);
                             }
                         }
@@ -108,7 +108,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 {
                     for (int j = y - yStep + 1; j < y + yStep + 1; j++)
                     {
-                        Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.CaesiumOre>();
+                        Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>();
                         Main.tile[i, j].active(true);
                     }
                     yStep += WorldGen.genRand.Next(1, 3);
@@ -129,7 +129,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 {
                     for (int j = y + yStep2 + 1; j > y - yStep2 + 1; j--)
                     {
-                        Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.CaesiumOre>();
+                        Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>();
                         Main.tile[i, j].active(true);
                     }
                     yStep2 += WorldGen.genRand.Next(1, 3);

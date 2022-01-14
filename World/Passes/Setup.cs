@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.CopperVariant.bronze:
-                    WorldGen.CopperTierOre = (ushort)ModContent.TileType<Tiles.BronzeOre>();
+                    WorldGen.CopperTierOre = (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>();
                     WorldGen.copperBar = ModContent.ItemType<BronzeBar>();
                     break;
             }
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.IronVariant.nickel:
-                    WorldGen.IronTierOre = (ushort)ModContent.TileType<Tiles.NickelOre>();
+                    WorldGen.IronTierOre = (ushort)ModContent.TileType<Tiles.Ores.NickelOre>();
                     WorldGen.ironBar = ModContent.ItemType<NickelBar>();
                     break;
             }
@@ -76,7 +76,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.SilverVariant.zinc:
-                    WorldGen.SilverTierOre = (ushort)ModContent.TileType<Tiles.ZincOre>();
+                    WorldGen.SilverTierOre = (ushort)ModContent.TileType<Tiles.Ores.ZincOre>();
                     WorldGen.silverBar = ModContent.ItemType<ZincBar>();
                     break;
             }
@@ -99,7 +99,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.GoldVariant.bismuth:
-                    WorldGen.GoldTierOre = (ushort)ModContent.TileType<Tiles.BismuthOre>();
+                    WorldGen.GoldTierOre = (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>();
                     WorldGen.goldBar = ModContent.ItemType<BismuthBar>();
                     break;
             }
@@ -125,27 +125,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.CobaltVariant.duratanium:
-                    WorldGen.oreTier1 = ModContent.TileType<Tiles.DurataniumOre>();
-                    break;
-            }
-
-            if (ExxoAvalonOriginsWorld.cobaltOre == ExxoAvalonOriginsWorld.CobaltVariant.random)
-            {
-                ExxoAvalonOriginsWorld.cobaltOre = (ExxoAvalonOriginsWorld.CobaltVariant)WorldGen.genRand.Next(3);
-            }
-
-            switch (ExxoAvalonOriginsWorld.cobaltOre)
-            {
-                case ExxoAvalonOriginsWorld.CobaltVariant.cobalt:
-                    WorldGen.oreTier1 = TileID.Cobalt;
-                    break;
-
-                case ExxoAvalonOriginsWorld.CobaltVariant.palladium:
-                    WorldGen.oreTier1 = TileID.Palladium;
-                    break;
-
-                case ExxoAvalonOriginsWorld.CobaltVariant.duratanium:
-                    WorldGen.oreTier1 = ModContent.TileType<Tiles.DurataniumOre>();
+                    WorldGen.oreTier1 = 0;
                     break;
             }
 
@@ -165,7 +145,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.MythrilVariant.naquadah:
-                    WorldGen.oreTier2 = ModContent.TileType<Tiles.NaquadahOre>();
+                    WorldGen.oreTier2 = 1;
                     break;
             }
 
@@ -185,7 +165,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     break;
 
                 case ExxoAvalonOriginsWorld.AdamantiteVariant.troxinium:
-                    WorldGen.oreTier3 = ModContent.TileType<Tiles.TroxiniumOre>();
+                    WorldGen.oreTier3 = 2;
                     break;
             }
 
@@ -197,11 +177,11 @@ namespace ExxoAvalonOrigins.World.Passes
             switch (ExxoAvalonOriginsWorld.shmTier1Ore)
             {
                 case ExxoAvalonOriginsWorld.SHMTier1Variant.tritanorium:
-                    ExxoAvalonOriginsWorld.shmOreTier1 = ModContent.TileType<Tiles.TritanoriumOre>();
+                    ExxoAvalonOriginsWorld.shmOreTier1 = 0;
                     break;
 
                 case ExxoAvalonOriginsWorld.SHMTier1Variant.pyroscoric:
-                    ExxoAvalonOriginsWorld.shmOreTier1 = ModContent.TileType<Tiles.PyroscoricOre>();
+                    ExxoAvalonOriginsWorld.shmOreTier1 = 1;
                     break;
             }
 
@@ -213,11 +193,11 @@ namespace ExxoAvalonOrigins.World.Passes
             switch (ExxoAvalonOriginsWorld.shmTier2Ore)
             {
                 case ExxoAvalonOriginsWorld.SHMTier2Variant.unvolandite:
-                    ExxoAvalonOriginsWorld.shmOreTier2 = ModContent.TileType<Tiles.UnvolanditeOre>();
+                    ExxoAvalonOriginsWorld.shmOreTier2 = 2;
                     break;
 
                 case ExxoAvalonOriginsWorld.SHMTier2Variant.vorazylcum:
-                    ExxoAvalonOriginsWorld.shmOreTier2 = ModContent.TileType<Tiles.VorazylcumOre>();
+                    ExxoAvalonOriginsWorld.shmOreTier2 = 3;
                     break;
             }
         }

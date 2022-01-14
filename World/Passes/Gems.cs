@@ -14,17 +14,17 @@ namespace ExxoAvalonOrigins.World.Passes
                 float num285 = 0;
                 if (num284 == 69)
                 {
-                    type8 = ModContent.TileType<Tiles.Tourmaline>();
+                    type8 = ModContent.TileType<Tiles.Ores.Tourmaline>();
                     num285 = Main.maxTilesX * 0.2f;
                 }
                 else if (num284 == 70)
                 {
-                    type8 = ModContent.TileType<Tiles.Peridot>();
+                    type8 = ModContent.TileType<Tiles.Ores.Peridot>();
                     num285 = Main.maxTilesX * 0.2f;
                 }
                 else if (num284 == 71)
                 {
-                    type8 = ModContent.TileType<Tiles.Zircon>();
+                    type8 = ModContent.TileType<Tiles.Ores.Zircon>();
                     num285 = Main.maxTilesX * 0.2f;
                 }
                 num285 *= 0.2f;

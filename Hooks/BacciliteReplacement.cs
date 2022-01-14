@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Hooks
         {
             if (ExxoAvalonOriginsWorld.contagion && type == TileID.Demonite)
             {
-                type = ModContent.TileType<Tiles.BacciliteOre>();
+                type = ModContent.TileType<Tiles.Ores.BacciliteOre>();
             }
 
             orig(i, j, strength, steps, type, addtile, speedx, speedy, noychange, @override);

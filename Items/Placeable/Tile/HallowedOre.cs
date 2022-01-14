@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			Rectangle dims = this.GetDims();
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.HallowedOre>();
+			item.createTile = ModContent.TileType<Tiles.Ores.HallowedOre>();
 			item.rare = ItemRarityID.Pink;
 			item.width = dims.Width;
 			item.useTurn = true;

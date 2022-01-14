@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
 			Rectangle dims = this.GetDims();
 			item.autoReuse = true;
 			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.FeroziumOre>();
+			item.createTile = ModContent.TileType<Tiles.Ores.FeroziumOre>();
 			item.rare = ItemRarityID.Lime;
 			item.width = dims.Width;
 			item.useTime = 10;

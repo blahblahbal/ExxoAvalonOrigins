@@ -24,6 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.buffImmune[BuffID.Confused] = true;
+            npc.lavaImmune = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

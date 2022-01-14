@@ -42,11 +42,11 @@ namespace ExxoAvalonOrigins.World.Passes
                             Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
                             Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
                         {
-                            if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
+                            if (Main.tile[q, z].type != ModContent.TileType<Tiles.Ores.CaesiumOre>())
                             {
                                 if (q % 20 == 0)
                                 {
-                                    Structures.CaesiumSpike.CreateSpikeUp(q, z, (ushort)ModContent.TileType<Tiles.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpikeUp(q, z, (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
                         }
@@ -58,11 +58,11 @@ namespace ExxoAvalonOrigins.World.Passes
                             Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
                             Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
                         {
-                            if (Main.tile[q, z].type != ModContent.TileType<Tiles.CaesiumOre>())
+                            if (Main.tile[q, z].type != ModContent.TileType<Tiles.Ores.CaesiumOre>())
                             {
                                 if (q % 20 == 0)
                                 {
-                                    Structures.CaesiumSpike.CreateSpikeDown(q, z, (ushort)ModContent.TileType<Tiles.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpikeDown(q, z, (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
                         }

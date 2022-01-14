@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.SulphurOre>();
+            item.createTile = ModContent.TileType<Tiles.Ores.SulphurOre>();
             item.rare = ItemRarityID.Blue;
             item.width = dims.Width;
             item.useTime = 10;

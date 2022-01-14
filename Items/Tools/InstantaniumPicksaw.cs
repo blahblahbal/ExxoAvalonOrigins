@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,20 +42,34 @@ namespace ExxoAvalonOrigins.Items.Tools
                 player.pickSpeed -= 0.5f;
             }
         }
-
-/*        public override bool UseItem(Player player)
+        public override void AddRecipes()
         {
-            if (Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer)
-            {
-                if (Main.tile[Player.tileTargetX, Player.tileTargetY].active())
-                {
-                    int tileId = player.hitTile.HitObject(Player.tileTargetX, Player.tileTargetY, 1);
-                    if (player.inventory[player.selectedItem].pick >= Main.pick[Main.tile[Player.tileTargetX, Player.tileTargetY].type])
-                        player.hitTile.AddDamage(tileId, player.inventory[player.selectedItem].pick, true);
-                    return true;
-                }
-            }
-            return false;
-        }*/
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Picksaw);
+            recipe.AddIngredient(ItemID.TitaniumBar, 30);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Picksaw);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.TroxiniumBar>(), 30);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Picksaw);
+            recipe.AddIngredient(ItemID.AdamantiteBar, 30);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 10);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
+            recipe.AddRecipe();
+        }
     }
 }

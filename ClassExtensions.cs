@@ -84,11 +84,11 @@ namespace ExxoAvalonOrigins
             switch (osmiumVariant)
             {
                 case ExxoAvalonOriginsWorld.RhodiumVariant.osmium:
-                    return ModContent.TileType<Tiles.OsmiumOre>();
+                    return ModContent.TileType<Tiles.Ores.OsmiumOre>();
                 case ExxoAvalonOriginsWorld.RhodiumVariant.rhodium:
-                    return ModContent.TileType<Tiles.RhodiumOre>();
+                    return ModContent.TileType<Tiles.Ores.RhodiumOre>();
                 case ExxoAvalonOriginsWorld.RhodiumVariant.iridium:
-                    return ModContent.TileType<Tiles.IridiumOre>();
+                    return ModContent.TileType<Tiles.Ores.IridiumOre>();
                 default:
                     return -1;
             }

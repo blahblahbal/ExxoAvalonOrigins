@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.NPCs
                             {
                                 if (Main.rand.Next(5) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
                                 {
-                                    Main.tile[num290, num291].type = (ushort)ModContent.TileType<Tiles.CaesiumOre>();
+                                    Main.tile[num290, num291].type = (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291);
                                 if (Main.netMode == NetmodeID.Server)

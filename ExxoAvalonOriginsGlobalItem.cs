@@ -89,15 +89,15 @@ namespace ExxoAvalonOrigins
             if (type == ItemID.Amethyst) return TileID.Amethyst;
             else if (type == ItemID.Diamond) return TileID.Diamond;
             else if (type == ItemID.Emerald) return TileID.Emerald;
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Kunzite>()) return ModContent.TileType<Tiles.Kunzite>();
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Onyx>()) return ModContent.TileType<Tiles.Onyx>();
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Opal>()) return ModContent.TileType<Tiles.Opal>();
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Peridot>()) return ModContent.TileType<Tiles.Peridot>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Kunzite>()) return ModContent.TileType<Tiles.Ores.Kunzite>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Onyx>()) return ModContent.TileType<Tiles.Ores.Onyx>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Opal>()) return ModContent.TileType<Tiles.Ores.Opal>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Peridot>()) return ModContent.TileType<Tiles.Ores.Peridot>();
             else if (type == ItemID.Ruby) return TileID.Ruby;
             else if (type == ItemID.Sapphire) return TileID.Sapphire;
             else if (type == ItemID.Topaz) return TileID.Topaz;
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Tourmaline>()) return ModContent.TileType<Tiles.Tourmaline>();
-            else if (type == ModContent.ItemType<Zircon>()) return ModContent.TileType<Tiles.Zircon>();
+            else if (type == ModContent.ItemType<Items.Placeable.Tile.Tourmaline>()) return ModContent.TileType<Tiles.Ores.Tourmaline>();
+            else if (type == ModContent.ItemType<Zircon>()) return ModContent.TileType<Tiles.Ores.Zircon>();
             return 0;
         }
         public static int DungeonWallItemToBackwallID(int type)
@@ -760,37 +760,6 @@ namespace ExxoAvalonOrigins
                     item.damage = 120;
                     break;
             }
-            //if (item.type == ItemID.Mushroom)
-            //{
-            //    if (Main.playerInventory)
-            //    {
-            //        if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().placeShroom)
-            //        {
-            //            item.potion = false;
-            //            item.healLife = 0;
-            //            item.useAnimation = 15;
-            //            item.useTime = 10;
-            //            item.useTurn = item.autoReuse = true;
-            //            item.createTile = ModContent.TileType<Tiles.MushroomTile>();
-            //            item.useStyle = ItemUseStyleID.SwingThrow;
-            //            item.UseSound = null;
-            //        }
-            //        else
-            //        {
-            //            item.potion = true;
-            //            item.healLife = 15;
-            //            item.useAnimation = 17;
-            //            item.useTime = 17;
-            //            item.useTurn = item.autoReuse = false;
-            //            item.useStyle = ItemUseStyleID.EatingUsing;
-            //            item.UseSound = SoundID.Item2;
-            //        }
-            //    }
-            //}
-            //if (item.type >= 1615 && item.type <= 1701)
-            //{
-            //    item.maxStack = 999;
-            //}
             if (item.type >= ItemID.BrainMask && item.type <= ItemID.DestroyerMask)
             {
                 item.value = Item.sellPrice(0, 2, 0, 0);

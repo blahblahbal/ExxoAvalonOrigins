@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,5 +29,23 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.useAnimation = 15;
             item.height = dims.Height;
 		}
-	}
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<PyroscoricBar>());
+            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>());
+            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<TritanoriumBar>());
+            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>());
+            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>());
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+    }
 }

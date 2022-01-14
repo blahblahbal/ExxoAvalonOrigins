@@ -1416,7 +1416,7 @@ namespace ExxoAvalonOrigins
             {
                 for (int ypos = (int)pposTile.Y - 4; ypos <= (int)pposTile.Y + 4; ypos++)
                 {
-                    if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.PyroscoricOre>())
+                    if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.Ores.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.Ores.PyroscoricOre>())
                     {
                         player.AddBuff(ModContent.BuffType<Melting>(), 60);
                     }

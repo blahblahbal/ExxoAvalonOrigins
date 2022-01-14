@@ -264,7 +264,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 15:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.BacciliteOre>();
+                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.BacciliteOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;

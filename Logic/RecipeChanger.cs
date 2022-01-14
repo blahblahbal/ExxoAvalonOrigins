@@ -13,12 +13,12 @@ namespace ExxoAvalonOrigins.Logic
             RecipeFinder finder;
 
 			//Delete recipes
-
+            //frost armor
 			finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.Silk, 20);
-			finder.AddIngredient(ItemID.PlatinumBar, 30);
-			finder.AddTile(TileID.Anvils);
-			finder.SetResult(ItemID.Throne);
+			finder.AddIngredient(ItemID.AdamantiteBar, 10);
+			finder.AddIngredient(ItemID.FrostCore);
+			finder.AddTile(TileID.MythrilAnvil);
+			finder.SetResult(ItemID.FrostHelmet);
 			foreach (var recipe in finder.SearchRecipes())
 			{
 				var exactRecipe = finder.FindExactRecipe();
@@ -31,7 +31,110 @@ namespace ExxoAvalonOrigins.Logic
 				}
 			}
 
-			finder = new RecipeFinder();
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.AdamantiteBar, 20);
+            finder.AddIngredient(ItemID.FrostCore);
+            finder.AddTile(TileID.MythrilAnvil);
+            finder.SetResult(ItemID.FrostBreastplate);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
+
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
+
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.AdamantiteBar, 16);
+            finder.AddIngredient(ItemID.FrostCore);
+            finder.AddTile(TileID.MythrilAnvil);
+            finder.SetResult(ItemID.FrostLeggings);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
+
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
+
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.TitaniumBar, 10);
+            finder.AddIngredient(ItemID.FrostCore);
+            finder.AddTile(TileID.MythrilAnvil);
+            finder.SetResult(ItemID.FrostHelmet);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
+
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
+
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.TitaniumBar, 20);
+            finder.AddIngredient(ItemID.FrostCore);
+            finder.AddTile(TileID.MythrilAnvil);
+            finder.SetResult(ItemID.FrostBreastplate);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
+
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
+
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.TitaniumBar, 16);
+            finder.AddIngredient(ItemID.FrostCore);
+            finder.AddTile(TileID.MythrilAnvil);
+            finder.SetResult(ItemID.FrostLeggings);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
+
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
+            // end frost armor
+
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.Silk, 20);
+            finder.AddIngredient(ItemID.PlatinumBar, 30);
+            finder.AddTile(TileID.Anvils);
+            finder.SetResult(ItemID.Throne);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
+
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
+
+            finder = new RecipeFinder();
 			finder.AddIngredient(ItemID.PlatinumWatch);
 			finder.AddIngredient(ItemID.Wire);
 			finder.AddTile(TileID.Anvils);
@@ -431,6 +534,29 @@ namespace ExxoAvalonOrigins.Logic
                 var editor = new RecipeEditor(recipe);
                 editor.AddIngredient(ModContent.ItemType<ToxinShard>(), 2);
             }
+
+            //finder = new RecipeFinder();
+            //finder.SetResult(ItemID.FrostHelmet);
+            //foreach (var recipe in finder.SearchRecipes())
+            //{
+            //    var editor = new RecipeEditor(recipe);
+            //    editor.DeleteIngredient(ItemID.AdamantiteBar);
+            //    editor.DeleteIngredient(ItemID.FrostCore);
+            //    editor.AddIngredient(ModContent.ItemType<FeroziumBar>(), 12);
+            //    editor.AddIngredient(ModContent.ItemType<FrigidShard>());
+            //}
+
+            //finder = new RecipeFinder();
+            //finder.SetResult(ItemID.FrostHelmet);
+            //foreach (var recipe in finder.SearchRecipes())
+            //{
+            //    var editor = new RecipeEditor(recipe);
+            //    editor.DeleteIngredient(ItemID.TitaniumBar);
+            //    editor.DeleteIngredient(ItemID.FrostCore);
+            //    editor.AddIngredient(ModContent.ItemType<FeroziumBar>(), 12);
+            //    editor.AddIngredient(ModContent.ItemType<FrigidShard>());
+            //}
+
             //armor change start
             //copper armor
             finder = new RecipeFinder();

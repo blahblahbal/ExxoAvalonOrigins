@@ -1736,7 +1736,7 @@ IL_162:
                 {
                     int x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                     int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.maxTilesY - 200);
-                    WorldGen.OreRunner(x, y, WorldGen.genRand.Next(4, 7), WorldGen.genRand.Next(4, 8), (ushort)ModContent.TileType<Tiles.SolariumOre>());
+                    WorldGen.OreRunner(x, y, WorldGen.genRand.Next(4, 7), WorldGen.genRand.Next(4, 8), (ushort)ModContent.TileType<Tiles.Ores.SolariumOre>());
                 }
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
@@ -1767,7 +1767,7 @@ IL_162:
                         int i2 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                         double num6 = Main.rockLayer;
                         int j2 = WorldGen.genRand.Next((int)num6, Main.maxTilesY - 200);
-                        WorldGen.OreRunner(i2, j2, WorldGen.genRand.Next(WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(4, 6)), WorldGen.genRand.Next(WorldGen.genRand.Next(3, 5), WorldGen.genRand.Next(4, 8)), (ushort)ModContent.TileType<Tiles.HallowedOre>());
+                        WorldGen.OreRunner(i2, j2, WorldGen.genRand.Next(WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(4, 6)), WorldGen.genRand.Next(WorldGen.genRand.Next(3, 5), WorldGen.genRand.Next(4, 8)), (ushort)ModContent.TileType<Tiles.Ores.HallowedOre>());
                     }
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {

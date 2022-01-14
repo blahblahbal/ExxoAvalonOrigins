@@ -1881,27 +1881,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FeroziumBar>(), 12);
-            recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<FeroziumHelmet>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FeroziumBar>(), 24);
-            recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<FeroziumBreastplate>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FeroziumBar>(), 18);
-            recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<FeroziumGreaves>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<FeroziumBar>());
             recipe.AddIngredient(ItemID.WoodenArrow, 70);
             recipe.AddTile(TileID.MythrilAnvil);
@@ -3091,14 +3070,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<Elektriwave>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<CaesiumBar>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<FeroziumBar>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<SuperhardmodeBar>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MusketBall, 200);
@@ -3153,32 +3125,7 @@ namespace ExxoAvalonOrigins.Logic
 
             
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Picksaw);
-            recipe.AddIngredient(ItemID.TitaniumBar, 30);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Picksaw);
-            recipe.AddIngredient(ModContent.ItemType<TroxiniumBar>(), 30);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Picksaw);
-            recipe.AddIngredient(ItemID.AdamantiteBar, 30);
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<InstantaniumPicksaw>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TerraBlade);
