@@ -60,6 +60,7 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Accessories.TerraClaws>(),
             ModContent.ItemType<Items.Placeable.Trophy.EggmanTrophy>(),
             ModContent.ItemType<Items.Placeable.Tile.OpalGemsparkBlock>(),
+            ModContent.ItemType<Items.Tools.Oblivirod>()
         };
         Dictionary<int, byte> allowedPrefixes = new Dictionary<int, byte>()
         {

@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Items.Placeable.Tile.AncientAdamantiteBrick>());
+            r.AddIngredient(ModContent.ItemType<Tile.AncientAdamantiteBrick>());
             r.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
             r.SetResult(this, 4);
             r.AddRecipe();
@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
             r = new ModRecipe(mod);
             r.AddIngredient(this, 4);
             r.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
-            r.SetResult(ModContent.ItemType<Items.Placeable.Tile.AncientAdamantiteBrick>());
+            r.SetResult(ModContent.ItemType<Tile.AncientAdamantiteBrick>());
             r.AddRecipe();
         }
     }

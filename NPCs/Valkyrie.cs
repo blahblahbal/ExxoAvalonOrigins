@@ -21,12 +21,12 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.width = 24;
 			npc.aiStyle = 14;
 			npc.value = 1000f;
-			npc.knockBackResist = 0.25f;
+			npc.knockBackResist = 0.05f;
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath1;
 			npc.height = 34;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.BismuthSlimeBanner>();
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.ValkyrieBanner>();
             animationType = 48;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

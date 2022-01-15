@@ -31,6 +31,11 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             recipe.AddIngredient(ModContent.ItemType<Coughwood>());
             recipe.SetResult(this, 2);
             recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this, 2);
+            recipe.SetResult(ModContent.ItemType<Coughwood>());
+            recipe.AddRecipe();
         }
     }
 }

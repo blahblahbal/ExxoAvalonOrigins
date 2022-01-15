@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Tools
 		{
 			Rectangle dims = this.GetDims();
 			item.shootSpeed = 15.5f;
-			item.rare = 12;
+			item.rare = ItemRarityID.Purple;
 			item.width = dims.Width;
 			item.useTime = 8;
 			item.fishingPole = 110;
-			item.shoot = ProjectileID.BobberHotline;
+			item.shoot = ModContent.ProjectileType<Projectiles.OblivirodBobber>();
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.value = Item.sellPrice(0, 40, 0, 0);
 			item.useAnimation = 8;

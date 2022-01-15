@@ -188,6 +188,12 @@ namespace ExxoAvalonOrigins.Tiles
                 case 56:
                     item = ModContent.ItemType<Items.Banners.EctoHandBanner>();
                     break;
+                case 57:
+                    item = ModContent.ItemType<Items.Banners.CloudBatBanner>();
+                    break;
+                case 58:
+                    item = ModContent.ItemType<Items.Banners.ValkyrieBanner>();
+                    break;
                 default:
                     return;
             }
@@ -343,6 +349,12 @@ namespace ExxoAvalonOrigins.Tiles
                         break;
                     case 56:
                         type = "EctoHand";
+                        break;
+                    case 57:
+                        type = "CloudBat";
+                        break;
+                    case 58:
+                        type = "Valkyrie";
                         break;
                     default:
                         return;

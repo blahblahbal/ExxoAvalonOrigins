@@ -28,11 +28,17 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Items.Placeable.Tile.ChunkstoneBrick>());
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(this, 4);
-            r.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Tile.ChunkstoneBrick>());
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(this, 4);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this, 4);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ModContent.ItemType<Tile.ChunkstoneBrick>());
+            recipe.AddRecipe();
         }
     }
 }
