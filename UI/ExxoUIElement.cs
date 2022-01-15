@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ExxoAvalonOrigins.Logic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
@@ -9,18 +9,14 @@ namespace ExxoAvalonOrigins.UI
     public class ExxoUIElement : UIElement
     {
         public event MouseEvent OnMouseHovering;
+        public event EventHandler OnRecalculateFinish;
         public bool IsRecalculating { get; private set; }
         public bool Active { get; set; } = true;
         public bool Hidden { get; set; }
-        public Queue<UIElement> ElementsForRemoval = new Queue<UIElement>();
-        private readonly Observer<float> observer;
+        public bool IsVisible => Active && !Hidden && (GetOuterDimensions().Width > 0 && GetOuterDimensions().Height > 0);
+        public readonly Queue<UIElement> ElementsForRemoval = new Queue<UIElement>();
         private bool mouseWasOver;
 
-        public ExxoUIElement()
-        {
-            // TODO: Allow custom condition delegate for each observer
-            observer = new Observer<float>(() => Top.Pixels + Top.Precent + Left.Pixels + Left.Precent + Width.Pixels + Width.Precent + Height.Pixels + Height.Precent + MinWidth.Pixels + MinWidth.Precent + MaxWidth.Pixels + MaxWidth.Precent + MinHeight.Pixels + MinHeight.Precent + MaxHeight.Pixels + MaxHeight.Precent + PaddingBottom + PaddingLeft + PaddingRight + PaddingTop + MarginBottom + MarginLeft + MarginRight + MarginTop + HAlign + VAlign);
-        }
 
         public override void Update(GameTime gameTime)
         {
@@ -28,6 +24,7 @@ namespace ExxoAvalonOrigins.UI
             {
                 return;
             }
+
             if (IsMouseHovering)
             {
                 OnMouseHovering?.Invoke(new UIMouseEvent(this, UserInterface.ActiveInstance.MousePosition), this);
@@ -37,20 +34,16 @@ namespace ExxoAvalonOrigins.UI
             {
                 RemoveChild(ElementsForRemoval.Dequeue());
             }
-            if (observer.Check())
-            {
-                Recalculate();
-            }
         }
 
         public override bool ContainsPoint(Vector2 point)
         {
-            return (Active && !Hidden) && base.ContainsPoint(point);
+            return IsVisible && base.ContainsPoint(point);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!Active || Hidden)
+            if (!IsVisible)
             {
                 return;
             }
@@ -59,15 +52,11 @@ namespace ExxoAvalonOrigins.UI
 
         public override void Recalculate()
         {
-            if (Parent is ExxoUIElement exxoParent && !exxoParent.IsRecalculating)
-            {
-                exxoParent.Recalculate();
-                return;
-            }
             IsRecalculating = true;
             RecalculateSelf();
             RecalculateChildren();
             PostRecalculate();
+            OnRecalculateFinish?.Invoke(this, EventArgs.Empty);
             IsRecalculating = false;
         }
 
@@ -79,7 +68,6 @@ namespace ExxoAvalonOrigins.UI
 
         public virtual void PostRecalculate()
         {
-
         }
 
         protected override void DrawChildren(SpriteBatch spriteBatch)
@@ -100,7 +88,6 @@ namespace ExxoAvalonOrigins.UI
             if (!mouseWasOver)
             {
                 mouseWasOver = true;
-                //Terraria.Main.NewText(evt.Target.ToString());
                 FirstMouseOver(evt);
             }
         }
@@ -117,12 +104,10 @@ namespace ExxoAvalonOrigins.UI
 
         public virtual void FirstMouseOver(UIMouseEvent evt)
         {
-
         }
 
         public virtual void FirstMouseOut(UIMouseEvent evt)
         {
-
         }
     }
 }

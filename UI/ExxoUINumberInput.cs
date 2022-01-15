@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 using Terraria.UI;
 
@@ -38,9 +36,9 @@ namespace ExxoAvalonOrigins.UI
                 SetActiveIndex(activeNumberIndex + number.ToString().Length - oldString.Length);
             }
         }
-        private ExxoUIPanelWrapper<UIText>[] numbers;
+        private ExxoUITextPanel[] numbers;
         private int activeNumberIndex;
-        private ExxoUIPanelWrapper<UIText> ActiveNumberElement => numbers[activeNumberIndex];
+        private ExxoUITextPanel ActiveNumberElement => numbers[activeNumberIndex];
         private Color inactiveColor;
         public ExxoUINumberInput(int amountNumbers = 3)
         {
@@ -59,19 +57,20 @@ namespace ExxoAvalonOrigins.UI
             Number = 1;
 
             // Match the text params below, ensures size consistency
-            var textSize = new UIText("000");
+            var textSize = new ExxoUIText("000");
 
-            numbers = new ExxoUIPanelWrapper<UIText>[amountNumbers];
+            numbers = new ExxoUITextPanel[amountNumbers];
 
             for (int i = 0; i < amountNumbers; i++)
             {
-                var text = new UIText("")
+                var text = new ExxoUIText("")
                 {
                     VAlign = UIAlign.Center,
                     HAlign = UIAlign.Center,
                 };
-                var number = new ExxoUIPanelWrapper<UIText>(text, false)
+                var number = new ExxoUITextPanel(text, false)
                 {
+                    FitMinToInnerElement = false,
                     Width = textSize.MinWidth
                 };
                 number.Height.Pixels = textSize.MinHeight.Pixels * 2;
@@ -94,8 +93,6 @@ namespace ExxoAvalonOrigins.UI
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
             ActiveNumberElement.BackgroundColor = inactiveColor * 2f;
 
             PlayerInput.WritingText = true;
@@ -103,9 +100,9 @@ namespace ExxoAvalonOrigins.UI
             string currentString = Number.ToString();
             string newString = Main.GetInputText(currentString);
 
-            if (newString?.Length <= AmountNumbers && int.TryParse(newString, out int newNumber))
+            if (int.TryParse(newString, out int newNumber))
             {
-                if (Number != newNumber)
+                if (Number != newNumber && newNumber.ToString().Length <= AmountNumbers)
                 {
                     Number = newNumber;
                 }
@@ -116,11 +113,9 @@ namespace ExxoAvalonOrigins.UI
             }
 
             OnKeyboardUpdate.Invoke(this, Main.inputText);
-        }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
             string numString = number.ToString();
+
             for (int i = 0; i < AmountNumbers; i++)
             {
                 if (i < numString.Length)
@@ -132,7 +127,7 @@ namespace ExxoAvalonOrigins.UI
                     numbers[i].InnerElement.SetText("");
                 }
             }
-            base.Draw(spriteBatch);
+            base.Update(gameTime);
         }
     }
 }

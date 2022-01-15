@@ -171,7 +171,6 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
         public static void UpdateHerbTier(ExxoAvalonOriginsModPlayer modPlayer)
         {
-            // TODO: Ensure herb tier doesn't decrease
             ExxoAvalonOriginsModPlayer.HerbTier newHerbTier;
             if (modPlayer.herbTotal >= HerbTier4Threshold && Main.hardMode)
             {

@@ -1,42 +1,56 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class ExxoUIAttachment<THolder> : ExxoUIElement where THolder : UIElement
+    internal class ExxoUIAttachment<THolder> : ExxoUIElement where THolder : ExxoUIElement
     {
         public THolder AttachmentHolder { get; private set; }
-        private readonly UIElement element;
         public delegate void AttachToEvent(UIElement attachment, THolder attachmentHolder);
         public event AttachToEvent OnAttachTo;
+        protected readonly UIElement Element;
+        private bool isAttached;
         public ExxoUIAttachment(UIElement uiElement, AttachToEvent attachToEvent)
         {
             Active = false;
             Width.Set(0, 1);
             Height.Set(0, 1);
-            element = uiElement;
+            Element = uiElement;
             OnAttachTo += attachToEvent;
-            Append(element);
+            Append(Element);
         }
         public override bool ContainsPoint(Vector2 point)
         {
-            return element.ContainsPoint(point);
+            return IsVisible && Element.ContainsPoint(point);
         }
         public virtual void AttachTo(THolder attachmentHolder)
         {
+            if (isAttached)
+            {
+                AttachmentHolder.OnRecalculateFinish -= OnRecalculateFinishHandler;
+            }
             AttachmentHolder = attachmentHolder;
             if (AttachmentHolder == null)
             {
+                isAttached = false;
                 Active = false;
             }
             else
             {
                 Active = true;
-                Vector2 position = AttachmentHolder.GetDimensions().Position() - Parent.GetDimensions().Position();
-                element.Left.Set(position.X - Parent.PaddingLeft, 0);
-                element.Top.Set(position.Y - Parent.PaddingTop, 0);
-                OnAttachTo(element, AttachmentHolder);
+                OnAttachTo?.Invoke(Element, AttachmentHolder);
+                AttachmentHolder.OnRecalculateFinish += OnRecalculateFinishHandler;
+                isAttached = true;
             }
+        }
+        protected virtual void OnRecalculateFinishHandler(object sender, EventArgs e)
+        {
+            var exxoElement = (ExxoUIElement)sender;
+            Vector2 position = exxoElement.GetDimensions().Position() - Parent.GetOuterDimensions().Position();
+            Element.Left.Set(position.X, 0);
+            Element.Top.Set(position.Y, 0);
+            Recalculate();
         }
     }
 }

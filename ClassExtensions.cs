@@ -110,14 +110,6 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        public static void DrawOnly(this UserInterface userInterface, SpriteBatch spriteBatch)
-        {
-            if (userInterface.CurrentState != null)
-            {
-                userInterface.CurrentState.Draw(spriteBatch);
-            }
-        }
-
         public static TagCompound Save<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
         {
             TKey[] keys = dictionary.Keys.ToArray();

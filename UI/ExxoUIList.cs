@@ -61,7 +61,6 @@ namespace ExxoAvalonOrigins.UI
                 item.Parent = this;
                 ElementParamsList.Add(new ElementParams());
             }
-            Recalculate();
         }
 
         public virtual void Remove(UIElement item)
@@ -75,14 +74,12 @@ namespace ExxoAvalonOrigins.UI
                 }
             }
             RemoveChild(item);
-            Recalculate();
         }
 
         public virtual void Clear()
         {
             ElementParamsList.Clear();
             Elements.Clear();
-            Recalculate();
         }
 
         public override void Recalculate()
@@ -96,7 +93,6 @@ namespace ExxoAvalonOrigins.UI
                 Width.Set(0, 1);
             }
             base.Recalculate();
-            UpdateScrollbar();
         }
 
         public void ScrollWheelListener(UIScrollWheelEvent evt, UIElement listeningElement)
@@ -115,6 +111,10 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count; i++)
             {
+                if (Elements[i] is ExxoUIElement exxoElement && (exxoElement?.Hidden == true || exxoElement?.Active == false))
+                {
+                    continue;
+                }
                 if (ElementParamsList[i].FillLength)
                 {
                     fillLengthCount++;
@@ -128,6 +128,11 @@ namespace ExxoAvalonOrigins.UI
                     if ((Direction == Direction.Vertical && Elements[i].Width.Precent == 0) || (Direction == Direction.Horizontal && Elements[i].Height.Precent == 0))
                     {
                         float oppLength = (Direction == Direction.Vertical) ? outerDimensions.Width : outerDimensions.Height;
+                        largestOppLength = System.Math.Max(oppLength, largestOppLength);
+                    }
+                    else
+                    {
+                        float oppLength = (Direction == Direction.Vertical) ? Elements[i].MinWidth.Pixels : Elements[i].MinHeight.Pixels;
                         largestOppLength = System.Math.Max(oppLength, largestOppLength);
                     }
                 }
@@ -157,6 +162,16 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count - 1; i++)
             {
+                var exxoElement = Elements[i] as ExxoUIElement;
+                if (exxoElement?.IsVisible == false)
+                {
+                    continue;
+                }
+                else if (exxoElement == null && Elements[i].GetOuterDimensions().Height > 0 && Elements[i].GetOuterDimensions().Width > 0)
+                {
+                    continue;
+                }
+
                 if (Direction == Direction.Vertical)
                 {
                     Elements[i].MarginBottom = padding;
@@ -236,6 +251,7 @@ namespace ExxoAvalonOrigins.UI
             TotalLength = offset;
 
             RecalculateSelf();
+            base.RecalculateChildren();
         }
 
         public override bool ContainsPoint(Vector2 point)
@@ -267,6 +283,12 @@ namespace ExxoAvalonOrigins.UI
         public void SetScrollbar(ExxoUIScrollbar scrollbar)
         {
             ScrollBar = scrollbar;
+            UpdateScrollbar();
+        }
+
+        public override void PostRecalculate()
+        {
+            base.PostRecalculate();
             UpdateScrollbar();
         }
     }

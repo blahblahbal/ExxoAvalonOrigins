@@ -6,6 +6,11 @@ namespace ExxoAvalonOrigins.UI
     {
         public override void RecalculateChildren()
         {
+            foreach (UIElement element in Elements)
+            {
+                element.Recalculate();
+            }
+
             float largestWidth = 0;
             float largestHeight = 0;
             float width = 0;
