@@ -1,7 +1,7 @@
 ﻿Welcome to Exxo Avalon: Origins! Avalon is a vanilla-oriented mod, expanding on content while keeping to a generally vanilla feel. As of now, there are:
 - Over 1200 items
-- Over 100 NPCs, including 7 bosses and 1 town NPC (plans for more eventually)
-- Several new structures, including Ice Shrines, the Evil Shrine, the Temple of the Observer, the Hellcastle, and the Sky Fortress (currently planned)
+- Over 100 NPCs, including 7 bosses and 2 town NPCs (plans for more eventually)
+- Several new structures, including Ice Shrines, the Evil Shrine, the Temple of the Observer, the Hellcastle, and the Sky Fortress
 - A new world evil, the Contagion, which is an alternate to the Corruption and Crimson
 - Plans for the Tropics, an alternate to the Jungle, which will be complete with alternates to everything the Jungle has to offer
 - Superhardmode, which is currently unfinished, and is after Hardmode - activated after killing the Wall of Steel, it will increase enemy health, damage, and defense, as well as add several new enemies to the spawnpool
@@ -19,7 +19,7 @@ The tModLoader team for tModLoader, and for ExampleMod, which was a lot of help 
 The Tremor team for some generic code from their opensource mod
 Jopojelly for help with the code and also for Cheat Sheet
 0x0ade for his TerrariaHooks mod - it enables several major features
-Fox for some code regarding the Dryad status text
+Fox for some code
 Ghasttear for a lot of code
 Optical Starline for quite a bit of code
 Lion8cake for some code

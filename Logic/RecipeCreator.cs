@@ -1943,17 +1943,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<TacticalExpulsor>());
             recipe.AddRecipe();
 
-            
-
-            
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddIngredient(ItemID.LihzahrdPowerCell);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumShrine>());
-            recipe.SetResult(ModContent.ItemType<SolariumRod>());
-            recipe.AddRecipe();
-
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SolariumOre>(), 2);
             recipe.AddTile(ModContent.TileType<Tiles.CaesiumForge>());

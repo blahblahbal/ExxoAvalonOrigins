@@ -2930,6 +2930,28 @@ namespace ExxoAvalonOrigins
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback(shmCallback), 1);
         }
+        public void GenerateSkyFortress()
+        {
+            ThreadPool.QueueUserWorkItem(new WaitCallback(SkyFortressCallback), 1);
+        }
+        public void SkyFortressCallback(object threadContext)
+        {
+            if (ExxoAvalonOriginsGlobalNPC.stoppedArmageddon) return;
+            int x = Main.maxTilesX / 3;
+            if (Main.rand.Next(2) == 0) x = Main.maxTilesX - Main.maxTilesX / 3;
+            int y = 50;
+            if (Main.maxTilesY == 1800) y = 60;
+            if (Main.maxTilesY == 2400) y = 70;
+            World.Structures.SkyFortress.Generate(x, y);
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText("Something is hiding on the top of your world...", 244, 140, 140);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Something is hiding on the top of your world..."), new Color(244, 140, 140));
+            }
+        }
 
         public void shmCallback(object threadContext)
         {

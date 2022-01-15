@@ -10,11 +10,10 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class ContagionChest : ModTile
+	public class PlatinumChest : ModTile
 	{
 		public override void SetDefaults()
 		{
-			Main.tileSpelunker[Type] = true;
 			Main.tileContainer[Type] = true;
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;
@@ -31,13 +30,13 @@ namespace ExxoAvalonOrigins.Tiles
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
 			var name = CreateMapEntryName();
-			name.SetDefault("Contagion Chest");
+			name.SetDefault("Platinum Chest");
 			AddMapEntry(new Color(174, 129, 92), name, MapChestName);
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
-			chest = "Contagion Chest";
-			chestDrop = ModContent.ItemType<Items.Placeable.Storage.ContagionChest>();
-            dustType = ModContent.DustType<Dusts.ContagionDust>();
+			chest = "Platinum Chest";
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.PlatinumChest>();
+            dustType = DustID.Platinum;
         }
 
 		public override bool HasSmartInteract()
@@ -183,10 +182,10 @@ namespace ExxoAvalonOrigins.Tiles
 			}
 			else
 			{
-				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Contagion Chest";
-				if (player.showItemIconText == "Contagion Chest")
+				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Platinum Chest";
+				if (player.showItemIconText == "Platinum Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ContagionChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.PlatinumChest>();
 					player.showItemIconText = "";
 				}
 			}

@@ -683,6 +683,7 @@ namespace ExxoAvalonOrigins
         }
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            #region spike cannon logic
             if (item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeCannon>())
             {
                 Item item2 = new Item();
@@ -747,6 +748,8 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+            #endregion
+            #region torch launcher logic
             if (item.type == ModContent.ItemType<TorchLauncher>())
             {
                 Item item2 = new Item();
@@ -838,6 +841,15 @@ namespace ExxoAvalonOrigins
                             case 18:
                                 t = ModContent.ProjectileType<Projectiles.Torches.BrownTorch>();
                                 break;
+                            case 19:
+                                t = ModContent.ProjectileType<Projectiles.Torches.BoneTorch>();
+                                break;
+                            case 20:
+                                t = ModContent.ProjectileType<Projectiles.Torches.RainbowTorch>();
+                                break;
+                            case 21:
+                                t = ModContent.ProjectileType<Projectiles.Torches.PinkTorch>();
+                                break;
                         }
                         if (t > 0)
                         {
@@ -847,6 +859,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+            #endregion
             return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
         public void WOSTongue()
@@ -1590,16 +1603,17 @@ namespace ExxoAvalonOrigins
                 }
             }
 
-            if (ZoneFlight) player.slowFall = true;
+            if (ZoneFlight) player.slowFall = true; // doesn't work
             if (ZoneFright) player.statDefense += 5;
-            if (ZoneIceSoul) slimeBand = true;
-            if (ZoneMight) player.allDamage += 0.1f;
+            if (ZoneIceSoul) slimeBand = true; // doesn't work
+            if (ZoneMight) player.allDamage += 0.06f;
             if (ZoneNight) player.wolfAcc = true;
             if (ZoneTime) player.accWatch = 3;
-            if (ZoneTorture) player.AllCrit(4);
-            if (ZoneSight) player.detectCreature = player.dangerSense = true;
-            if (ZoneDelight) player.lifeRegen++;
+            if (ZoneTorture) player.AllCrit(6);
+            if (ZoneSight) player.detectCreature = player.dangerSense = player.nightVision = true;
+            if (ZoneDelight) player.lifeRegen += 3;
             if (ZoneHumidity) player.resistCold = true;
+            if (ZoneBlight) player.armorPenetration += 10;
 
             #region rift goggles
 
@@ -2603,7 +2617,7 @@ namespace ExxoAvalonOrigins
             }
 
             player.breathMax = 200;
-
+            if (ZoneFlight) player.slowFall = true;
             // Large gem trashing logic
             if (player.whoAmI == Main.myPlayer)
             {
@@ -3077,7 +3091,7 @@ namespace ExxoAvalonOrigins
                 {
                     player.sticky = false;
                 }
-                if (slimeBand)
+                if (slimeBand || ZoneIceSoul)
                 {
                     player.slippy = true;
                     player.slippy2 = true;

@@ -554,10 +554,6 @@ namespace ExxoAvalonOrigins.World.Structures
         }
         public static bool AddHellcastleChest(int i, int j, int contain = 0, bool notNearOtherChests = false, int Style = -1)
         {
-            //if (WorldGen.genRand == null)
-            //{
-            //    WorldGen.genRand = new Random((int)DateTime.Now.Ticks);
-            //}
             int k = j;
             while (k < Main.maxTilesY)
             {

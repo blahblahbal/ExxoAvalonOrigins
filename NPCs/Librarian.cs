@@ -68,11 +68,11 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 return "My home is fraught with Wraiths. I'm deathly afraid of them; please keep them away.";
             }
-            if (NPC.AnyNPCs(NPCID.Dryad) && Main.rand.Next(6) == 0)
+            if (NPC.AnyNPCs(NPCID.DyeTrader) && Main.rand.Next(6) == 0)
             {
-                return "Whatever " + Main.npc[ExxoAvalonOriginsGlobalNPC.FindATypeOfNPC(NPCID.Dryad)].GivenName + "'s wearing would probably sell very well in the land I'm from. On second thought, that's probably not good.";
+                return "Wow, " + Main.npc[ExxoAvalonOriginsGlobalNPC.FindATypeOfNPC(NPCID.DyeTrader)].GivenName + "'s services are free? Where I'm from, you have to pay an arm and a leg to dye clothes...";
             }
-            switch (Main.rand.Next(9))
+            switch (Main.rand.Next(11))
             {
                 case 0:
                     return "I come from a distant land, one where there are many races. It doesn't appear that you are any of those races, however.";
@@ -92,10 +92,10 @@ namespace ExxoAvalonOrigins.NPCs
                     return "You should consider the Tome Forge. It's my own invention!";
                 case 8:
                     return "When the Changelings took over the Western Steppes, I fled to this land. I already like it better.";
-                    //case 9:
-                    //    return "";
-                    //case 10:
-                    //    return "";
+                case 9:
+                    return "Wait, you get loot after defeating a boss more than once per day?";
+                case 10:
+                    return "It's very strange to not see fairies flying around everyone. Why don't you buy one from me?";
             }
             return "";
         }

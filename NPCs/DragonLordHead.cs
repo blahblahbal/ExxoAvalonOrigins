@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +50,10 @@ namespace ExxoAvalonOrigins.NPCs
             drawOffsetY = 55;
             bossBag = ModContent.ItemType<Items.BossBags.DragonLordBossBag>();
 		}
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ModContent.ItemType<Items.Potions.ElixirofLife>();
+        }
         public override Color? GetAlpha(Color drawColor)
         {
             return Color.White;

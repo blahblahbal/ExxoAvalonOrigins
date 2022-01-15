@@ -49,7 +49,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ItemID.RottenChunk, 5);
             r.AddIngredient(ItemID.PearlstoneBlock, 20);
             r.AddIngredient(ItemID.LivingFireBlock, 10);
-            r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            r.AddTile(ModContent.TileType<Tiles.DragonAltar>());
             r.SetResult(this, 2);
             r.AddRecipe();
 
@@ -61,7 +61,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ItemID.Vertebrae, 5);
             r.AddIngredient(ItemID.PearlstoneBlock, 20);
             r.AddIngredient(ItemID.LivingFireBlock, 10);
-            r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            r.AddTile(ModContent.TileType<Tiles.DragonAltar>());
             r.SetResult(this, 2);
             r.AddRecipe();
 
@@ -73,7 +73,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<Material.YuckyBit>(), 5);
             r.AddIngredient(ItemID.PearlstoneBlock, 20);
             r.AddIngredient(ItemID.LivingFireBlock, 10);
-            r.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            r.AddTile(ModContent.TileType<Tiles.DragonAltar>());
             r.SetResult(this, 2);
             r.AddRecipe();
         }
