@@ -617,6 +617,13 @@ IL_162:
                 if (r == 5) result += " fell into a crevasse";
                 if (r == 6) result += " slipped.";
             }
+            else if (Type == ModContent.NPCType<NPCs.Librarian>())
+            {
+                int r = Main.rand.Next(3);
+                if (r == 0) result += " was nuked by a full squad.";
+                if (r == 1) result += " fell victim to toxic world chat.";
+                if (r == 2) result += " couldn't afford grade eighteen.";
+            }
             else result += " was slain...";
             return result;
         }

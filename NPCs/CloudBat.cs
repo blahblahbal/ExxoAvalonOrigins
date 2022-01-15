@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.NPCs
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cloud Bat");
-			Main.npcFrameCount[npc.type] = 4;
+			Main.npcFrameCount[npc.type] = 5;
 		}
 
 		public override void SetDefaults()

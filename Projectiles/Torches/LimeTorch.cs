@@ -49,6 +49,10 @@ namespace ExxoAvalonOrigins.Projectiles.Torches
                     // not sure if PlaceTile calls TileFrame
                     WorldGen.TileFrame(TileX, TileY);
                     Main.tile[TileX, TileY].frameY = (short)(style * 22);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, TileX, TileY, ModContent.TileType<Tiles.Torches>(), style);
+                    }
                     projectile.active = false;
                 }
                 else
