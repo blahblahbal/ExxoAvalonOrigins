@@ -68,6 +68,7 @@
             IL.Terraria.UI.UserInterface.Update += UIChanges.ILUserInterfaceUpdate;
             IL.Terraria.UI.UIElement.GetElementAt += UIChanges.ILUIElementGetElementAt;
             IL.Terraria.UI.UIElement.Recalculate += UIChanges.ILUIElementRecalculate;
+            IL.Terraria.UI.UIElement.GetClippingRectangle += UIChanges.ILUIElementGetClippingRectangle;
             On.Terraria.UI.UIElement.Remove += UIChanges.OnUIElementRemove;
             On.Terraria.Main.DrawInventory += UIChanges.OnMainDrawInventory;
             On.Terraria.Utils.DrawBorderString += UIChanges.OnUtilsDrawBorderString;

@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.UI;
 
@@ -11,6 +10,8 @@ namespace ExxoAvalonOrigins.UI
     internal class ExxoUIContentLockPanel : ExxoUIPanel
     {
         public bool Locked => !unlockCondition();
+        public delegate void LockStatusChangedEventHandler(ExxoUIContentLockPanel sender, EventArgs e);
+        public LockStatusChangedEventHandler OnLockStatusChanged;
         private readonly Func<bool> unlockCondition;
         private readonly ExxoUIList list;
         private readonly UIElement contentHolder;
@@ -35,6 +36,7 @@ namespace ExxoAvalonOrigins.UI
                 HAlign = UIAlign.Center
             };
             list.SetPadding(0);
+            list.ListPadding = 5;
             list.Direction = Direction.Horizontal;
             list.FitHeightToContent = true;
             list.FitWidthToContent = true;
@@ -44,18 +46,19 @@ namespace ExxoAvalonOrigins.UI
                 VAlign = UIAlign.Center
             };
             list.Append(iconBackground);
-            var innerImage = new ExxoUIImage(TextureManager.Load("Images/UI/Workshop/PublicityPrivate"))
+            var innerImage = new ExxoUIImage(TextureManager.Load("Images/UI/UI_quickicon1"))
             {
                 VAlign = UIAlign.Center,
                 HAlign = UIAlign.Center
             };
             iconBackground.Append(innerImage);
 
-            var text = new UIText(message)
+            var text = new ExxoUIText(message)
             {
                 VAlign = UIAlign.Center
             };
             list.Append(text);
+            list.Recalculate();
 
             contentHolder = new UIElement();
             contentHolder.SetPadding(0);
@@ -65,7 +68,7 @@ namespace ExxoAvalonOrigins.UI
 
             listOuterDimensions = list.GetOuterDimensions();
             wasOversize = !ListIsOversize;
-            wasLocked = true;
+            wasLocked = !Locked;
         }
 
         public override void Update(GameTime gameTime)
@@ -73,16 +76,15 @@ namespace ExxoAvalonOrigins.UI
             base.Update(gameTime);
             if (wasLocked != Locked)
             {
-                if (!Locked)
-                {
-                    Active = false;
-                }
-                else
-                {
-                    Active = true;
-                }
+                LockStatusChanged();
                 wasLocked = Locked;
             }
+        }
+
+        protected virtual void LockStatusChanged()
+        {
+            OnLockStatusChanged?.Invoke(this, EventArgs.Empty);
+            Hidden = !Locked;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -111,7 +113,7 @@ namespace ExxoAvalonOrigins.UI
                 contentHolder.RemoveAllChildren();
                 if (ListIsOversize)
                 {
-                    var image = new ExxoUIImage(TextureManager.Load("Images/UI/Workshop/PublicityPrivate"))
+                    var image = new ExxoUIImage(TextureManager.Load("Images/UI/UI_quickicon1"))
                     {
                         VAlign = UIAlign.Center,
                         HAlign = UIAlign.Center

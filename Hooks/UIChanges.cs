@@ -234,6 +234,29 @@ namespace ExxoAvalonOrigins.Hooks
             });
         }
 
+        // Fixes vanilla's decision to clamp the clipping rectangle from 0 to the screen width which doesnt respect the position of the element... smh
+        public static void ILUIElementGetClippingRectangle(ILContext il)
+        {
+            var c = new ILCursor(il);
+            if (!c.TryGotoNext(i => i.MatchLdarg(1)))
+            {
+                return;
+            }
+
+            int startIndex = c.Index;
+
+            if (!c.TryGotoNext(i => i.MatchRet()))
+            {
+                return;
+            }
+
+            int endIndex = c.Index - 1;
+
+            c.Index = startIndex;
+
+            c.RemoveRange(endIndex - startIndex);
+        }
+
         // ExxoUIElements use a better removal system that removes children after updating, this allows children to remove themselves during update
         public static void OnUIElementRemove(On.Terraria.UI.UIElement.orig_Remove orig, UIElement self)
         {

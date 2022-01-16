@@ -86,10 +86,12 @@ namespace ExxoAvalonOrigins.UI
         {
             if (FitHeightToContent)
             {
+                MinHeight.Set(0, 0);
                 Height.Set(0, 1);
             }
             if (FitWidthToContent)
             {
+                MinWidth.Set(0, 0);
                 Width.Set(0, 1);
             }
             base.Recalculate();
@@ -141,12 +143,14 @@ namespace ExxoAvalonOrigins.UI
             // Set largest opposite length
             if (FitHeightToContent && Direction == Direction.Horizontal)
             {
-                Height.Set(largestOppLength, 0);
+                MinHeight.Set(largestOppLength, 0);
+                Height.Set(0, 0);
             }
 
             if (FitWidthToContent && Direction == Direction.Vertical)
             {
-                Width.Set(largestOppLength, 0);
+                MinWidth.Set(largestOppLength, 0);
+                Width.Set(0, 0);
             }
 
             RecalculateSelf();
@@ -162,12 +166,14 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count - 1; i++)
             {
-                var exxoElement = Elements[i] as ExxoUIElement;
+                Elements[i].MarginBottom = 0;
+                Elements[i].MarginRight = 0;
+                var exxoElement = Elements[i + 1] as ExxoUIElement;
                 if (exxoElement?.IsVisible == false)
                 {
                     continue;
                 }
-                else if (exxoElement == null && Elements[i].GetOuterDimensions().Height > 0 && Elements[i].GetOuterDimensions().Width > 0)
+                else if (exxoElement == null && Elements[i + 1].GetOuterDimensions().Height > 0 && Elements[i + 1].GetOuterDimensions().Width > 0)
                 {
                     continue;
                 }
@@ -240,12 +246,14 @@ namespace ExxoAvalonOrigins.UI
 
             if (FitHeightToContent && Direction == Direction.Vertical)
             {
-                Height.Set(offset, 0);
+                MinHeight.Set(offset, 0);
+                Height.Set(0, 0);
             }
 
             if (FitWidthToContent && Direction == Direction.Horizontal)
             {
-                Width.Set(offset, 0);
+                MinWidth.Set(offset, 0);
+                Width.Set(0, 0);
             }
 
             TotalLength = offset;

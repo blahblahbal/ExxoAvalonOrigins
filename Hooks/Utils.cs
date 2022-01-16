@@ -1,17 +1,11 @@
-﻿using Mono.Cecil;
+﻿using System;
+using System.Reflection;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using MonoMod.RuntimeDetour.HookGen;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Hooks
 {
-    class Utils
+    internal class Utils
     {
         public static void AddAlternativeIDCheck(ILContext il, ushort val1, int val2)
         {
@@ -23,7 +17,8 @@ namespace ExxoAvalonOrigins.Hooks
                 if (c.Next.Offset != 0 && c.Prev.MatchLdcI4(val1))
                 {
                     c.Index--;
-                    c.EmitDelegate<Func<ushort, ushort>>((id) => { 
+                    c.EmitDelegate<Func<ushort, ushort>>((id) =>
+                    {
                         if (id == val2)
                         {
                             return val1;

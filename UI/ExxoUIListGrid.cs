@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.UI
             float top = 0;
             for (int i = 0; i < Elements.Count; i++)
             {
-                largestHeight = System.Math.Max(largestHeight, Elements[i].Height.Pixels);
+                largestHeight = System.Math.Max(largestHeight, Elements[i].GetOuterDimensions().Height);
                 Elements[i].Top.Set(top, 0);
                 Elements[i].Left.Set(width, 0);
                 width += Elements[i].GetOuterDimensions().Width + ListPadding;

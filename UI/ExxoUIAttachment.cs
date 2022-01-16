@@ -4,20 +4,30 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
+    internal class PositionAttachmentEventArgs : EventArgs
+    {
+        public Vector2 Position;
+
+        public PositionAttachmentEventArgs(Vector2 position)
+        {
+            Position = position;
+        }
+    }
     internal class ExxoUIAttachment<THolder> : ExxoUIElement where THolder : ExxoUIElement
     {
         public THolder AttachmentHolder { get; private set; }
         public delegate void AttachToEvent(UIElement attachment, THolder attachmentHolder);
+        public delegate void PositionAttachmentEventHandler(ExxoUIAttachment<THolder> sender, PositionAttachmentEventArgs e);
+        public event PositionAttachmentEventHandler OnPositionAttachment;
         public event AttachToEvent OnAttachTo;
         protected readonly UIElement Element;
         private bool isAttached;
-        public ExxoUIAttachment(UIElement uiElement, AttachToEvent attachToEvent)
+        public ExxoUIAttachment(UIElement uiElement)
         {
             Active = false;
             Width.Set(0, 1);
             Height.Set(0, 1);
             Element = uiElement;
-            OnAttachTo += attachToEvent;
             Append(Element);
         }
         public override bool ContainsPoint(Vector2 point)
@@ -48,8 +58,10 @@ namespace ExxoAvalonOrigins.UI
         {
             var exxoElement = (ExxoUIElement)sender;
             Vector2 position = exxoElement.GetDimensions().Position() - Parent.GetOuterDimensions().Position();
-            Element.Left.Set(position.X, 0);
-            Element.Top.Set(position.Y, 0);
+            var args = new PositionAttachmentEventArgs(position);
+            OnPositionAttachment?.Invoke(this, args);
+            Element.Left.Set(args.Position.X, 0);
+            Element.Top.Set(args.Position.Y, 0);
             Recalculate();
         }
     }

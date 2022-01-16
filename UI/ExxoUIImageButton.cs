@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.UI
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2)).ToNearestPixel(), null, Color * (IsMouseHovering ? visibilityActive : visibilityInactive), LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2) - Inset).ToNearestPixel(), null, Color * (IsMouseHovering ? visibilityActive : visibilityInactive), LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
         }
 
         public override void FirstMouseOver(UIMouseEvent evt)
