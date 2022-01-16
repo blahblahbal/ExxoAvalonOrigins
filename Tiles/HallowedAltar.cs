@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -53,9 +48,9 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Main.rand.Next(80) == 1)
+            if (Main.rand.Next(60) == 1)
             {
-                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.HallowedWeapons, 0f, 0f, 0, default(Color), 1.5f);
+                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.HallowedWeapons, 0f, 0f, 0, default, 1.5f);
                 Main.dust[num162].noGravity = true;
                 Main.dust[num162].velocity *= 1f;
             }

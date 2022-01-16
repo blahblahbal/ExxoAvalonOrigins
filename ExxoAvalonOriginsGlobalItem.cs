@@ -766,6 +766,18 @@ namespace ExxoAvalonOrigins
                 case ItemID.RainbowCrystalStaff:
                     item.damage = 120;
                     break;
+                case ItemID.BoneTorch:
+                    item.ammo = 8;
+                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 19;
+                    break;
+                case ItemID.RainbowTorch:
+                    item.ammo = 8;
+                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 20;
+                    break;
+                case ItemID.PinkTorch:
+                    item.ammo = 8;
+                    item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 21;
+                    break;
             }
             if (item.type >= ItemID.BrainMask && item.type <= ItemID.DestroyerMask)
             {
@@ -803,20 +815,37 @@ namespace ExxoAvalonOrigins
             }
             if (context == "bossBag" && arg == ItemID.GolemBossBag)
             {
-                int drop = 0;
-                switch (Main.rand.Next(3))
+                NPCLoader.blockLoot.Add(ItemID.Picksaw);
+                NPCLoader.blockLoot.Add(ItemID.HeatRay);
+                NPCLoader.blockLoot.Add(ItemID.StaffofEarth);
+                NPCLoader.blockLoot.Add(ItemID.GolemFist);
+                NPCLoader.blockLoot.Add(ItemID.EyeoftheGolem);
+                NPCLoader.blockLoot.Add(ItemID.SunStone);
+                NPCLoader.blockLoot.Add(ItemID.PossessedHatchet);
+                NPCLoader.blockLoot.Add(ItemID.Stynger);
+                NPCLoader.blockLoot.Add(ItemID.StyngerBolt);
+                var list = new List<int>
                 {
-                    case 0:
-                        drop = ModContent.ItemType<Sunstorm>();
-                        break;
-                    case 1:
-                        drop = ModContent.ItemType<HeartoftheGolem>();
-                        break;
-                    case 2:
-                        drop = ModContent.ItemType<EarthenInsignia>();
-                        break;
+                    ItemID.Stynger,
+                    ItemID.StaffofEarth,
+                    ItemID.EyeoftheGolem,
+                    ItemID.Picksaw,
+                    ItemID.PossessedHatchet,
+                    ItemID.GolemFist,
+                    ItemID.SunStone,
+                    ItemID.HeatRay,
+                    ModContent.ItemType<Sunstorm>(),
+                    ModContent.ItemType<EarthenInsignia>(),
+                    ModContent.ItemType<HeartoftheGolem>()
+                };
+                int item1 = list.RemoveAtIndex(Main.rand.Next(list.Count));
+                int item2 = list.RemoveAtIndex(Main.rand.Next(list.Count));
+                player.QuickSpawnItem(item1);
+                player.QuickSpawnItem(item2);
+                if (item1 == ItemID.Stynger || item2 == ItemID.Stynger)
+                {
+                    player.QuickSpawnItem(ItemID.StyngerBolt, Main.rand.Next(60, 101));
                 }
-                player.QuickSpawnItem(drop);
                 player.QuickSpawnItem(ModContent.ItemType<EarthStone>(), Main.rand.Next(1, 4));
             }
             if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
@@ -848,7 +877,8 @@ namespace ExxoAvalonOrigins
             Item tempWireItem = new Item();
             tempWireItem.netDefaults(item.netID);
             tempWireItem = tempWireItem.CloneWithModdedDataFrom(item);
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
+            tempWireItem.stack = item.stack;
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress && !ExxoAvalonOriginsWorld.downedDragonLord)
             {
                 player.InfoAccMechShowWires = false;
                 if (item.mech)
@@ -858,7 +888,7 @@ namespace ExxoAvalonOrigins
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech = true;
                 }
             }
-            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress || ExxoAvalonOriginsWorld.downedDragonLord))
+            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && !player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
             {
                 item.netDefaults(tempWireItem.netID);
                 item.stack = tempWireItem.stack;

@@ -1,5 +1,4 @@
-﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
@@ -22,12 +21,12 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.aiStyle = 14;
             npc.scale = 1.4f;
 			npc.value = 10000f;
-			npc.knockBackResist = 0.55f;
+			npc.knockBackResist = 0.05f;
             npc.HitSound = SoundID.NPCHit1;
 	        npc.DeathSound = SoundID.NPCDeath4;
 			npc.height = 12;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.BismuthSlimeBanner>();
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Banners.CloudBatBanner>();
             animationType = 49;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

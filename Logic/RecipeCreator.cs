@@ -75,52 +75,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<HeartstoneBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<HeartstoneBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OrangeBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<OrangeBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OrangeBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<OrangeSlabWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<OrangeBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<OrangeTiledWall>(), 4);
-            recipe.AddRecipe();
-
-            
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ChocolateCandyCaneBlock>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<ChocolateCandyCaneWall>(), 4);
-            recipe.AddRecipe();
-
-            
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Coughwood>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<CoughwoodWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterWood>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<DarkMatterWoodWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Coughwood>(), 6);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<CoughwoodDoor>());
@@ -271,11 +225,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DarkSlimeBlock>());
-            recipe.SetResult(ModContent.ItemType<DarkSlimePlatform>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DarkSlimeBlock>(), 10);
             recipe.SetResult(ModContent.ItemType<DarkSlimeWorkBench>());
             recipe.AddRecipe();
@@ -400,16 +349,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Heartstone>());
-            recipe.SetResult(ModContent.ItemType<HeartstonePlatform>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<HeartstonePlatform>());
-            recipe.SetResult(ModContent.ItemType<Heartstone>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Heartstone>(), 10);
             recipe.SetResult(ModContent.ItemType<HeartstoneWorkBench>());
             recipe.AddRecipe();
@@ -526,16 +465,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Echoplasm>());
-            recipe.SetResult(ModContent.ItemType<EctoplasmPlatform>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<EctoplasmPlatform>());
-            recipe.SetResult(ModContent.ItemType<Echoplasm>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Echoplasm>(), 10);
             recipe.SetResult(ModContent.ItemType<EctoplasmWorkBench>());
             recipe.AddRecipe();
@@ -586,16 +515,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.Torch);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<VertebraeLantern>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Vertebrae);
-            recipe.SetResult(ModContent.ItemType<VertebraePlatform>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<VertebraePlatform>());
-            recipe.SetResult(ItemID.Vertebrae);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -764,42 +683,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.Torch, 3);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<Items.Placeable.Light.BismuthCandelabra>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Sapphire);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<SapphireWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Ruby);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<RubyWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Emerald);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<EmeraldWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Topaz);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<TopazWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Amethyst);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<AmethystWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Diamond);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<DiamondWall>(), 4);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -1941,17 +1824,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.ShroomiteBar, 30);
             recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<TacticalExpulsor>());
-            recipe.AddRecipe();
-
-            
-
-            
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddIngredient(ItemID.LihzahrdPowerCell);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumShrine>());
-            recipe.SetResult(ModContent.ItemType<SolariumRod>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -3562,18 +3434,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BronzeBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<BronzeBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BronzeBrickWall>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<BronzeBrick>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BronzeOre>(), 3);
             recipe.AddTile(TileID.Furnaces);
             recipe.SetResult(ModContent.ItemType<BronzeBar>());
@@ -3630,24 +3490,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<NickelBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelBrickWall>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<NickelBrick>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelBar>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<NickelFence>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 6);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<NickelDoor>());
@@ -3657,12 +3499,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 5);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<NickelAnvil>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NickelFence>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<NickelBar>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -3725,18 +3561,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<ZincBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBrickWall>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<ZincBrick>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ZincOre>(), 4);
             recipe.AddTile(TileID.Furnaces);
             recipe.SetResult(ModContent.ItemType<ZincBar>());
@@ -3795,17 +3619,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BismuthBrick>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<BismuthBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBrickWall>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<BismuthBrick>());
-            recipe.AddRecipe();
+            
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BismuthOre>(), 4);
@@ -3865,18 +3679,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<IridiumOre>());
             recipe.AddIngredient(ItemID.StoneBlock);
             recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<IridiumBrick>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<IridiumBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<IridiumBrickWall>(), 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<IridiumBrickWall>(), 4);
-            recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(ModContent.ItemType<IridiumBrick>());
             recipe.AddRecipe();
 

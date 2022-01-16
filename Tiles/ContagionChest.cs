@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Contagion Chest";
-			chestDrop = ModContent.ItemType<Items.Placeable.Storage.ContaigonChest>();
+			chestDrop = ModContent.ItemType<Items.Placeable.Storage.ContagionChest>();
             dustType = ModContent.DustType<Dusts.ContagionDust>();
         }
 
@@ -183,10 +183,10 @@ namespace ExxoAvalonOrigins.Tiles
 			}
 			else
 			{
-				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Contaigon Chest";
-				if (player.showItemIconText == "Contaigon Chest")
+				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Contagion Chest";
+				if (player.showItemIconText == "Contagion Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ContaigonChest>();
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ContagionChest>();
 					player.showItemIconText = "";
 				}
 			}

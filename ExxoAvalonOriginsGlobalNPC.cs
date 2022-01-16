@@ -63,6 +63,12 @@ namespace ExxoAvalonOrigins
         //}
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
+            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
+            {
+                pool.Clear();
+                pool.Add(ModContent.NPCType<NPCs.Valkyrie>(), 0.6f);
+                pool.Add(ModContent.NPCType<NPCs.CloudBat>(), 0.9f);
+            }
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && !spawnInfo.player.InPillarZone())
             {
                 pool.Clear();
@@ -619,10 +625,11 @@ IL_162:
             }
             else if (Type == ModContent.NPCType<NPCs.Librarian>())
             {
-                int r = Main.rand.Next(3);
+                int r = Main.rand.Next(4);
                 if (r == 0) result += " was nuked by a full squad.";
                 if (r == 1) result += " fell victim to toxic world chat.";
                 if (r == 2) result += " couldn't afford grade eighteen.";
+                if (r == 3) result += " was slain by a boss cone attack.";
             }
             else result += " was slain...";
             return result;
@@ -1002,13 +1009,13 @@ IL_162:
                         ModContent.ItemType<HeartoftheGolem>()
                     };
                     int item1 = list.RemoveAtIndex(Main.rand.Next(list.Count));
-                    //int item2 = list.RemoveAtIndex(Main.rand.Next(list.Count));
-                    if (item1 == ItemID.Stynger) // || item2 == ItemID.Stynger)
+                    int item2 = list.RemoveAtIndex(Main.rand.Next(list.Count));
+                    if (item1 == ItemID.Stynger || item2 == ItemID.Stynger)
                     {
                         Item.NewItem(npc.getRect(), ItemID.StyngerBolt, Main.rand.Next(60, 100), false, 0, false);
                     }
                     Item.NewItem(npc.getRect(), item1, 1, false, -1, false);
-                    //Item.NewItem(npc.getRect(), item2, 1, false, -1, false);
+                    Item.NewItem(npc.getRect(), item2, 1, false, -1, false);
                 }
                 Item.NewItem(npc.getRect(), ModContent.ItemType<EarthStone>(), Main.rand.Next(2) + 1, false, 0, false);
                 Item.NewItem(npc.getRect(), ItemID.BeetleHusk, Main.rand.Next(4, 9), false, 0, false);

@@ -30,5 +30,17 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         {
             return true;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<ResistantWood>());
+            recipe.SetResult(this, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this, 2);
+            recipe.SetResult(ModContent.ItemType<ResistantWood>());
+            recipe.AddRecipe();
+        }
     }
 }

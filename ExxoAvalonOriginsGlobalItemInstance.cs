@@ -36,7 +36,9 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Armor.BlahsCuisses2>(),
             ModContent.ItemType<Items.Potions.BlahPotion>(),
             ModContent.ItemType<Items.Tools.BlahsPicksawTierII>(),
-            ModContent.ItemType<Items.Tools.BlahsWarhammer>()
+            ModContent.ItemType<Items.Tools.BlahsWarhammer>(),
+            ModContent.ItemType<Items.Weapons.Melee.BlahsThrow>(),
+            ModContent.ItemType<Items.Placeable.Painting.CrossingtheTropics>()
         };
         List<int> avalonRarityItems = new List<int>
         {
@@ -60,6 +62,7 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Accessories.TerraClaws>(),
             ModContent.ItemType<Items.Placeable.Trophy.EggmanTrophy>(),
             ModContent.ItemType<Items.Placeable.Tile.OpalGemsparkBlock>(),
+            ModContent.ItemType<Items.Tools.Oblivirod>()
         };
         Dictionary<int, byte> allowedPrefixes = new Dictionary<int, byte>()
         {

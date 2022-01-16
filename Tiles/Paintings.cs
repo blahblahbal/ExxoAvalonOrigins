@@ -74,6 +74,9 @@ namespace ExxoAvalonOrigins.Tiles
                 case 11:
                     item = ModContent.ItemType<Clash>();
                     break;
+                case 12:
+                    item = ModContent.ItemType<CrossingtheTropics>();
+                    break;
             }
             if (item > 0)
             {

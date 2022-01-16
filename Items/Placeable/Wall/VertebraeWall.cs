@@ -32,6 +32,12 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(this, 4);
             recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this, 4);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ItemID.Vertebrae);
+            recipe.AddRecipe();
         }
     }
 }
