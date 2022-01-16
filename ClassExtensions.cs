@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins
             p.rangedCrit += amt;
             p.thrownCrit += amt;
         }
-        public static bool DrawFishingLine(this Projectile projectile, int fishingRodType, Color poleColor, int xPositionAdditive = 45, float yPositionAdditive = 35f)
+        public static bool DrawFishingLine(this Projectile projectile, int fishingRodType, Color lineColor, int xPositionAdditive = 45, float yPositionAdditive = 35f)
         {
             Player player = Main.player[projectile.owner];
             Item heldItem = player.HeldItem;
@@ -132,7 +132,7 @@ namespace ExxoAvalonOrigins
                         vector2.X *= 1f - num5;
                     }
                 }
-                Color color = Lighting.GetColor((int)playerPosModified.X / 16, (int)playerPosModified.Y / 16, poleColor);
+                Color color = Lighting.GetColor((int)playerPosModified.X / 16, (int)playerPosModified.Y / 16, lineColor);
                 float rotation = vector2.ToRotation() - (float)Math.PI / 2f;
                 Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(playerPosModified.X - Main.screenPosition.X + (float)Main.fishingLineTexture.Width * 0.5f, playerPosModified.Y - Main.screenPosition.Y + (float)Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)num3), color, rotation, new Vector2((float)Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
             }

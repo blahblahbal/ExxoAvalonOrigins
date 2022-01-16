@@ -469,7 +469,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     npc.defense = 0;
                     Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserCharge"));
                 }
-                if (npc.ai[3] >= 60 && npc.ai[3] < 80)
+                if (npc.ai[3] >= 60 && npc.ai[3] <= 90)
                 {
                     if (npc.ai[3] == 60)
                     {
@@ -479,20 +479,26 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         npc.localAI[1] = npc.velocity.X;
                         npc.localAI[2] = npc.velocity.Y;
                     }
-                    int wide = Projectile.NewProjectile(npc.ai[1], npc.ai[2], npc.localAI[1], npc.localAI[2], ModContent.ProjectileType<Projectiles.WallofSteelLaser>(), 100, 4f);
-                    if (npc.velocity.X > 0)
+                    int t = ModContent.ProjectileType<Projectiles.WallofSteelLaser>(); // middle
+                    if (npc.ai[3] == 60) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>(); // start
+                    if (npc.ai[3] == 90) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>(); // end
+                    if (npc.ai[3] % 3 == 0)
                     {
-                        Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
-                    }
-                    else if (npc.velocity.X < 0)
-                    {
-                        Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
-                    }
+                        int wide = Projectile.NewProjectile(npc.ai[1], npc.ai[2], npc.localAI[1], npc.localAI[2], t, 100, 4f);
+                        if (npc.velocity.X > 0)
+                        {
+                            Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
+                        }
+                        else if (npc.velocity.X < 0)
+                        {
+                            Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
+                        }
 
-                    Main.projectile[wide].tileCollide = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, wide);
+                        Main.projectile[wide].tileCollide = false;
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, wide);
+                        }
                     }
                 }
                 if (npc.ai[3] > 100 && npc.ai[3] < 150)
