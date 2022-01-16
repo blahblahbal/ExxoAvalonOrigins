@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
@@ -25,6 +26,13 @@ namespace ExxoAvalonOrigins
         //          "GetWorldAltCopper"          // Method name, as example here "GetWorldAltCopper" which provides us Copper/Tin/Bronze Ores! :D
         //      );
         //                                       // As result, it will return 1, 2 or 3. Correspondently it's: 1 = Copper, 2 = Tin, 3 = Bronze.
+        //
+        // Part 3: IsDownedX
+        // ModLoader.GetMod("ExxoAvalonOrigins") // Gets mod
+        //      .Call(                           // Start using call
+        //          "IsDownedBacterium"          // Method name, as example here "IsDownedBacterium" which provides us boolean, ig?
+        //      );
+        //                                       // As result, it will return true either false, depending on if boss was downed or not.
 
         internal static object Call(params object[] args)
         {
@@ -241,6 +249,33 @@ namespace ExxoAvalonOrigins
                     case "getworldaltshmtier2":
                     case "getworldaltshmtiertwo":
                         return (int)ExxoAvalonOriginsWorld.shmTier2Ore + 1;
+                    #endregion
+
+                    #region
+                    case "isdownedbacterium":
+                    case "isdownedbacteriumprime":
+                        return ExxoAvalonOriginsWorld.downedBacteriumPrime;
+                    case "isdownedbeak":
+                    case "isdowneddesertbeak":
+                        return ExxoAvalonOriginsWorld.downedDesertBeak;
+                    case "isdownedphantasm":
+                        return ExxoAvalonOriginsWorld.downedPhantasm;
+                    case "isdownedwos":
+                    case "superhardmode":
+                    case "issuperhardmode":
+                        return ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode;
+                    case "isdownedarma":
+                    case "isdownedarmageddon":
+                    case "isdownedarmageddonslime":
+                        return ExxoAvalonOriginsGlobalNPC.stoppedArmageddon;
+                    case "isdownedlord":
+                    case "isdowneddragon":
+                    case "isdowneddragonlord":
+                        return ExxoAvalonOriginsWorld.downedDragonLord;
+                    case "isdownedmechasting":
+                        return ExxoAvalonOriginsWorld.downedMechasting;
+                    case "isdownedoblivion":
+                        return ExxoAvalonOriginsWorld.downedOblivion;
                     #endregion
 
                     default:
