@@ -37,7 +37,8 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.aiStyle = -1;
 			npc.npcSlots = 6f;
 			npc.value = 100000f;
-			npc.timeLeft = 3000;
+            npc.gfxOffY = 25f;
+            npc.timeLeft = 3000;
 			npc.height = 32;
 			npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit7;

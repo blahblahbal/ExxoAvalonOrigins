@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,8 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.defense = 50;
 			npc.noGravity = true;
 			npc.width = 32;
-			npc.aiStyle = -1;
+            npc.gfxOffY = 25f;
+            npc.aiStyle = -1;
 			npc.npcSlots = 1f;
 			npc.value = 100000f;
 			npc.timeLeft = 3000;

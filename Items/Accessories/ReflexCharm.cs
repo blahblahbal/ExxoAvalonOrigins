@@ -34,7 +34,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
                     Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() && Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
                     Pr.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumGas>() &&
                     Pr.type != ModContent.ProjectileType<Projectiles.SpikyBall>() && Pr.type != ModContent.ProjectileType<Projectiles.Spike>() && Pr.type != ModContent.ProjectileType<Projectiles.CrystalShard>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>() && Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>())
+                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>() && Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.CrystalBit>() && Pr.type != ModContent.ProjectileType<Projectiles.CrystalBeam>())
                 {
                     Rectangle proj2 = new Rectangle((int)Pr.position.X, (int)Pr.position.Y, Pr.width, Pr.height);
                     bool reflect = false, check = false;

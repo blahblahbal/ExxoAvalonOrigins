@@ -3048,7 +3048,7 @@ namespace ExxoAvalonOrigins
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(244, 140, 140));
             }
             float num611 = Main.maxTilesX * Main.maxTilesY / 5040000f;
-            int num612 = (int)(WorldGen.genRand.Next(4, 7) * num611);
+            int num612 = (int)(WorldGen.genRand.Next(2, 5) * num611);
             float num613 = (Main.maxTilesX - 160) / num612;
             int num614 = 0;
             while (num614 < num612)

@@ -26,30 +26,31 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
             var projectile = Main.projectile;
             for (var l = 0; l < projectile.Length; l++)
             {
-                var projectile2 = projectile[l];
-                if (!projectile2.friendly && !projectile2.bobber && projectile2.type != 237 && projectile2.type != ProjectileID.Stinger && projectile2.type != 238 && projectile2.type != 243 &&
-                    projectile2.type != 244 && projectile2.type != 308 && projectile2.type != 295 && projectile2.type != 296 &&
-                    projectile2.type != ProjectileID.PhantasmalDeathray && projectile2.type != ModContent.ProjectileType<Projectiles.Ghostflame>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && projectile2.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && projectile2.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumGas>() && projectile2.type != ModContent.ProjectileType<Projectiles.SpikyBall>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.Spike>() && projectile2.type != ModContent.ProjectileType<Projectiles.CrystalShard>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>() && projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>())
+                var Pr = projectile[l];
+                if (!Pr.friendly && !Pr.bobber && Pr.type != 237 && Pr.type != ProjectileID.Stinger && Pr.type != 238 && Pr.type != 243 &&
+                    Pr.type != 244 && Pr.type != 308 && Pr.type != 295 && Pr.type != 296 &&
+                    Pr.type != ProjectileID.PhantasmalDeathray && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.CaesiumGas>() && Pr.type != ModContent.ProjectileType<Projectiles.SpikyBall>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.Spike>() && Pr.type != ModContent.ProjectileType<Projectiles.CrystalShard>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>() && Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>() &&
+                    Pr.type != ModContent.ProjectileType<Projectiles.CrystalBit>() && Pr.type != ModContent.ProjectileType<Projectiles.CrystalBeam>())
                 {
-                    var rectangle = new Rectangle((int)projectile2.position.X, (int)projectile2.position.Y, projectile2.width, projectile2.height);
+                    var rectangle = new Rectangle((int)Pr.position.X, (int)Pr.position.Y, Pr.width, Pr.height);
                     if (rectangle.Intersects(value))
                     {
                         for (var m = 0; m < 5; m++)
                         {
-                            var num = Dust.NewDust(projectile2.position, projectile2.width, projectile2.height, DustID.MagicMirror, 0f, 0f, 100, default(Color), 1f);
+                            var num = Dust.NewDust(Pr.position, Pr.width, Pr.height, DustID.MagicMirror, 0f, 0f, 100, default(Color), 1f);
                             Main.dust[num].noGravity = true;
                         }
-                        projectile2.hostile = false;
-                        projectile2.friendly = true;
-                        var expr_605_cp_0 = projectile2;
+                        Pr.hostile = false;
+                        Pr.friendly = true;
+                        var expr_605_cp_0 = Pr;
                         expr_605_cp_0.velocity.X = expr_605_cp_0.velocity.X * -1f;
-                        var expr_61D_cp_0 = projectile2;
+                        var expr_61D_cp_0 = Pr;
                         expr_61D_cp_0.velocity.Y = expr_61D_cp_0.velocity.Y * -1f;
                     }
                 }

@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.npcSlots = 1f;
 			npc.value = 610f;
 			npc.height = 58;
-            npc.scale = 0.6f;
+            npc.scale = 0.8f;
 			npc.knockBackResist = 0.2f;
             npc.HitSound = SoundID.NPCHit18;
 	        npc.DeathSound = SoundID.NPCDeath21;
@@ -57,13 +57,13 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (npc.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusTail"), 0.6f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.6f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHead"), 0.6f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHair"), 0.6f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusTail"), 0.8f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHead"), 0.8f);
+                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHair"), 0.8f);
             }
         }
     }

@@ -1,9 +1,8 @@
-﻿// Warning: Some assembly references could not be resolved automatically. This might lead to incorrect decompilation of some parts,
-// for ex. property getter/setter access. To get optimal decompilation results, please manually add the missing references to the list of loaded assemblies.
-// Terraria.GameContent.Biomes.MarbleBiome
-using System;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
@@ -12,227 +11,285 @@ namespace ExxoAvalonOrigins.World.Biomes
 {
     public class CrystalMines : MicroBiome
     {
-        private delegate bool SlabState(int x, int y, int scale);
-
-        private class SlabStates
+        private struct Magma
         {
-            public static bool Empty(int x, int y, int scale)
+            public readonly float Pressure;
+
+            public readonly float Resistance;
+
+            public readonly bool IsActive;
+
+            private Magma(float pressure, float resistance, bool active)
             {
-                return false;
+                Pressure = pressure;
+                Resistance = resistance;
+                IsActive = active;
             }
 
-            public static bool Solid(int x, int y, int scale)
+            public Magma ToFlow()
             {
-                return true;
+                return new Magma(Pressure, Resistance, active: true);
             }
 
-            public static bool HalfBrick(int x, int y, int scale)
+            public static Magma CreateFlow(float pressure, float resistance = 0f)
             {
-                return y >= scale / 2;
+                return new Magma(pressure, resistance, active: true);
             }
 
-            public static bool BottomRightFilled(int x, int y, int scale)
+            public static Magma CreateEmpty(float resistance = 0f)
             {
-                return x >= scale - y;
-            }
-
-            public static bool BottomLeftFilled(int x, int y, int scale)
-            {
-                return x < y;
-            }
-
-            public static bool TopRightFilled(int x, int y, int scale)
-            {
-                return x > y;
-            }
-
-            public static bool TopLeftFilled(int x, int y, int scale)
-            {
-                return x < scale - y;
+                return new Magma(0f, resistance, active: false);
             }
         }
 
-        private struct Slab
-        {
-            public readonly SlabState State;
+        private const int MAX_MAGMA_ITERATIONS = 300;
 
-            public readonly bool HasWall;
+        private static Magma[,] _sourceMagmaMap = new Magma[200, 200];
 
-            public bool IsSolid => State != new SlabState(SlabStates.Empty);
-
-            private Slab(SlabState state, bool hasWall)
-            {
-                State = state;
-                HasWall = hasWall;
-            }
-
-            public Slab WithState(SlabState state)
-            {
-                return new Slab(state, HasWall);
-            }
-
-            public static Slab Create(SlabState state, bool hasWall)
-            {
-                return new Slab(state, hasWall);
-            }
-        }
-
-        private const int SCALE = 3;
-
-        private Slab[,] _slabs;
-
-        private void SmoothSlope(int x, int y)
-        {
-            Slab slab = _slabs[x, y];
-            if (slab.IsSolid)
-            {
-                bool isSolid5 = _slabs[x, y - 1].IsSolid;
-                bool isSolid2 = _slabs[x, y + 1].IsSolid;
-                bool isSolid3 = _slabs[x - 1, y].IsSolid;
-                bool isSolid4 = _slabs[x + 1, y].IsSolid;
-                switch (((isSolid5 ? 1 : 0) << 3) | ((isSolid2 ? 1 : 0) << 2) | ((isSolid3 ? 1 : 0) << 1) | (isSolid4 ? 1 : 0))
-                {
-                    case 10:
-                        _slabs[x, y] = slab.WithState(SlabStates.TopLeftFilled);
-                        break;
-                    case 9:
-                        _slabs[x, y] = slab.WithState(SlabStates.TopRightFilled);
-                        break;
-                    case 6:
-                        _slabs[x, y] = slab.WithState(SlabStates.BottomLeftFilled);
-                        break;
-                    case 5:
-                        _slabs[x, y] = slab.WithState(SlabStates.BottomRightFilled);
-                        break;
-                    case 4:
-                        _slabs[x, y] = slab.WithState(SlabStates.HalfBrick);
-                        break;
-                    default:
-                        _slabs[x, y] = slab.WithState(SlabStates.Solid);
-                        break;
-                }
-            }
-        }
-
-        private void PlaceSlab(Slab slab, int originX, int originY, int scale)
-        {
-            for (int i = 0; i < scale; i++)
-            {
-                for (int j = 0; j < scale; j++)
-                {
-                    Tile tile = _tiles[originX + i, originY + j];
-                    if (TileID.Sets.Ore[tile.type] || tile.type == TileID.LihzahrdBrick || tile.type == TileID.BlueDungeonBrick ||
-                        tile.type == TileID.PinkDungeonBrick || tile.type == TileID.GreenDungeonBrick || tile.type == TileID.Containers ||
-                        tile.type == TileID.Containers2 || tile.type == TileID.Pots || tile.type == ModContent.TileType<Tiles.TuhrtlBrick>())
-                    {
-                        tile.ResetToType(tile.type);
-                    }
-                    else
-                    {
-                        tile.ResetToType((ushort)ModContent.TileType<Tiles.CrystalStone>());
-                    }
-                    bool active = slab.State(i, j, scale);
-                    tile.active(active);
-                    if (slab.HasWall && tile.wall != WallID.LihzahrdBrickUnsafe && tile.wall != ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && !Main.wallDungeon[tile.wall])
-                    {
-                        tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
-                    }
-                    WorldUtils.TileFrame(originX + i, originY + j, frameNeighbors: true);
-                    WorldGen.SquareWallFrame(originX + i, originY + j);
-                    Tile.SmoothSlope(originX + i, originY + j);
-                    //if (WorldGen.SolidTile(originX + i, originY + j - 1) && WorldGen.genRand.Next(4) == 0)
-                    //{
-                    //    WorldGen.PlaceTight(originX + i, originY + j, 165);
-                    //}
-                    //if (WorldGen.SolidTile(originX + i, originY + j) && WorldGen.genRand.Next(4) == 0)
-                    //{
-                    //    WorldGen.PlaceTight(originX + i, originY + j - 1, 165);
-                    //}
-                }
-            }
-        }
-
-        private bool IsGroupSolid(int x, int y, int scale)
-        {
-            int num = 0;
-            for (int i = 0; i < scale; i++)
-            {
-                for (int j = 0; j < scale; j++)
-                {
-                    if (WorldGen.SolidOrSlopedTile(x + i, y + j))
-                    {
-                        num++;
-                    }
-                }
-            }
-            return num > scale / 4 * 3;
-        }
+        private static Magma[,] _targetMagmaMap = new Magma[200, 200];
 
         public override bool Place(Point origin, StructureMap structures)
         {
-            if (_slabs == null)
+            if (GenBase._tiles[origin.X, origin.Y].active())
             {
-                _slabs = new Slab[56, 26];
+                return false;
             }
-            int num = WorldGen.genRand.Next(80, 150) / 3;
-            int num6 = WorldGen.genRand.Next(40, 60) / 3;
-            int num7 = (num6 * 3 - WorldGen.genRand.Next(20, 30)) / 3;
-            origin.X -= num * 3 / 2;
-            origin.Y -= num6 * 3 / 2;
-            for (int i = -1; i < num + 1; i++)
+            int length = _sourceMagmaMap.GetLength(0);
+            int length2 = _sourceMagmaMap.GetLength(1);
+            int num = length / 2;
+            int num12 = length2 / 2;
+            origin.X -= num;
+            origin.Y -= num12;
+            for (int i = 0; i < length; i++)
             {
-                float num8 = (i - num / 2) / num + 0.5f;
-                int num9 = (int)((0.5f - Math.Abs(num8 - 0.5f)) * 5f) - 2;
-                for (int j = -1; j < num6 + 1; j++)
+                for (int j = 0; j < length2; j++)
                 {
-                    bool hasWall = true;
-                    bool flag = false;
-                    bool flag2 = IsGroupSolid(i * 3 + origin.X, j * 3 + origin.Y, 3);
-                    int num10 = Math.Abs(j - num6 / 2) - num7 / 4 + num9;
-                    if (num10 > 3)
-                    {
-                        flag = flag2;
-                        hasWall = false;
-                    }
-                    else if (num10 > 0)
-                    {
-                        flag = j - num6 / 2 > 0 || flag2;
-                        hasWall = j - num6 / 2 < 0 || num10 <= 2;
-                    }
-                    else if (num10 == 0)
-                    {
-                        flag = WorldGen.genRand.Next(2) == 0 && (j - num6 / 2 > 0 || flag2);
-                    }
-                    if (Math.Abs(num8 - 0.5f) > 0.35f + WorldGen.genRand.NextFloat() * 0.1f && !flag2)
-                    {
-                        hasWall = false;
-                        flag = false;
-                    }
-                    _slabs[i + 1, j + 1] = Slab.Create(flag ? new SlabState(SlabStates.Solid) : new SlabState(SlabStates.Empty), hasWall);
+                    int i2 = i + origin.X;
+                    int j2 = j + origin.Y;
+                    _sourceMagmaMap[i, j] = Magma.CreateEmpty(WorldGen.SolidTile(i2, j2) ? 4f : 1f);
+                    _targetMagmaMap[i, j] = _sourceMagmaMap[i, j];
                 }
             }
-            for (int k = 0; k < num; k++)
+            int num20 = num;
+            int num21 = num;
+            int num22 = num12;
+            int num23 = num12;
+            for (int k = 0; k < 300; k++)
             {
-                for (int l = 0; l < num6; l++)
+                for (int l = num20; l <= num21; l++)
                 {
-                    SmoothSlope(k + 1, l + 1);
+                    for (int m = num22; m <= num23; m++)
+                    {
+                        Magma magma = _sourceMagmaMap[l, m];
+                        if (!magma.IsActive)
+                        {
+                            continue;
+                        }
+                        float num24 = 0f;
+                        Vector2 zero = Vector2.Zero;
+                        for (int n = -1; n <= 1; n++)
+                        {
+                            for (int num25 = -1; num25 <= 1; num25++)
+                            {
+                                if (n == 0 && num25 == 0)
+                                {
+                                    continue;
+                                }
+                                Vector2 value = new Vector2(n, num25);
+                                value.Normalize();
+                                Magma magma2 = _sourceMagmaMap[l + n, m + num25];
+                                if (magma.Pressure > 0.01f && !magma2.IsActive)
+                                {
+                                    if (n == -1)
+                                    {
+                                        num20 = Terraria.Utils.Clamp(l + n, 1, num20);
+                                    }
+                                    else
+                                    {
+                                        num21 = Terraria.Utils.Clamp(l + n, num21, length - 2);
+                                    }
+                                    if (num25 == -1)
+                                    {
+                                        num22 = Terraria.Utils.Clamp(m + num25, 1, num22);
+                                    }
+                                    else
+                                    {
+                                        num23 = Terraria.Utils.Clamp(m + num25, num23, length2 - 2);
+                                    }
+                                    _targetMagmaMap[l + n, m + num25] = magma2.ToFlow();
+                                }
+                                float pressure = magma2.Pressure;
+                                num24 += pressure;
+                                zero += pressure * value;
+                            }
+                        }
+                        num24 /= 8f;
+                        if (num24 > magma.Resistance)
+                        {
+                            float num26 = zero.Length() / 8f;
+                            float val = Math.Max(num24 - num26 - magma.Pressure, 0f) + num26 + magma.Pressure * 0.875f - magma.Resistance;
+                            val = Math.Max(0f, val);
+                            _targetMagmaMap[l, m] = Magma.CreateFlow(val, Math.Max(0f, magma.Resistance - val * 0.02f));
+                        }
+                    }
+                }
+                if (k < 2)
+                {
+                    _targetMagmaMap[num, num12] = Magma.CreateFlow(25f);
+                }
+                Utils.Swap(ref _sourceMagmaMap, ref _targetMagmaMap);
+            }
+            bool flag = origin.Y + num12 > WorldGen.lavaLine - 30;
+            bool flag2 = false;
+            for (int num2 = -50; num2 < 50; num2++)
+            {
+                if (flag2)
+                {
+                    break;
+                }
+                for (int num3 = -50; num3 < 50; num3++)
+                {
+                    if (flag2)
+                    {
+                        break;
+                    }
+                    if (_tiles[origin.X + num + num2, origin.Y + num12 + num3].active())
+                    {
+                        ushort type = _tiles[origin.X + num + num2, origin.Y + num12 + num3].type;
+                        if (type == 147 || (uint)(type - 161) <= 2u || type == 200)
+                        {
+                            flag = false;
+                            flag2 = true;
+                        }
+                    }
                 }
             }
-            int num11 = num / 2;
-            int num12 = num6 / 2;
-            int num13 = (num12 + 1) * (num12 + 1);
-            float value = WorldGen.genRand.NextFloat() * 2f - 1f;
-            float num2 = WorldGen.genRand.NextFloat() * 2f - 1f;
-            float value2 = WorldGen.genRand.NextFloat() * 2f - 1f;
-            float num3 = 0f;
-            for (int m = 0; m <= num; m++)
+            for (int num4 = num20; num4 <= num21; num4++)
             {
-                float num4 = num12 / num11 * (m - num11);
-                int num5 = Math.Min(num12, (int)Math.Sqrt(Math.Max(0f, num13 - num4 * num4)));
-                num3 = ((m >= num / 2) ? (num3 + MathHelper.Lerp(num2, value2, m / (float)(num / 2) - 1f)) : (num3 + MathHelper.Lerp(value, num2, m / (float)(num / 2))));
-                for (int n = num12 - num5; n <= num12 + num5; n++)
+                for (int num5 = num22; num5 <= num23; num5++)
                 {
-                    PlaceSlab(_slabs[m + 1, n + 1], m * 3 + origin.X, n * 3 + origin.Y + (int)num3, 3);
+                    Magma magma3 = _sourceMagmaMap[num4, num5];
+                    if (!magma3.IsActive)
+                    {
+                        continue;
+                    }
+                    Tile tile = GenBase._tiles[origin.X + num4, origin.Y + num5];
+                    float num6 = (float)Math.Sin((float)(origin.Y + num5) * 0.4f) * 0.7f + 1.2f;
+                    float num7 = 0.2f + 0.5f / (float)Math.Sqrt(Math.Max(0f, magma3.Pressure - magma3.Resistance));
+                    if (Math.Max(1f - Math.Max(0f, num6 * num7), magma3.Pressure / 15f) > 0.35f + (WorldGen.SolidTile(origin.X + num4, origin.Y + num5) ? 0f : 0.5f))
+                    {
+                        if (TileID.Sets.Ore[tile.type])
+                        {
+                            tile.ResetToType(tile.type);
+                        }
+                        else if (tile.type == TileID.Pots || tile.type == TileID.Containers || tile.type == TileID.Containers2 || tile.type == TileID.Heart ||
+                        tile.type == TileID.ShadowOrbs || tile.type == TileID.DemonAltar || tile.type == ModContent.TileType<Tiles.HallowedAltar>() ||
+                        tile.type == ModContent.TileType<Tiles.SnotOrb>() || tile.type == TileID.LihzahrdBrick || tile.type == TileID.BlueDungeonBrick ||
+                        tile.type == TileID.PinkDungeonBrick || tile.type == TileID.GreenDungeonBrick || tile.type == ModContent.TileType<Tiles.TuhrtlBrick>() ||
+                        tile.type == TileID.Statues)
+                        {
+                        }
+                        else
+                        {
+                            tile.ResetToType((ushort)ModContent.TileType<Tiles.CrystalStone>());
+                        }
+                        if (tile.wall != WallID.LihzahrdBrickUnsafe && tile.wall != ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && !Main.wallDungeon[tile.wall])
+                        {
+                            tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                        }
+                    }
+                    else if (magma3.Resistance < 0.01f)
+                    {
+                        WorldUtils.ClearTile(origin.X + num4, origin.Y + num5);
+                        tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                    }
+                    if (tile.liquid > 0 && flag)
+                    {
+                        tile.liquidType(1);
+                    }
+                }
+            }
+            List<Point16> list = new List<Point16>();
+            for (int num8 = num20; num8 <= num21; num8++)
+            {
+                for (int num9 = num22; num9 <= num23; num9++)
+                {
+                    if (!_sourceMagmaMap[num8, num9].IsActive)
+                    {
+                        continue;
+                    }
+                    int num10 = 0;
+                    int num11 = num8 + origin.X;
+                    int num13 = num9 + origin.Y;
+                    if (!WorldGen.SolidTile(num11, num13))
+                    {
+                        continue;
+                    }
+                    for (int num14 = -1; num14 <= 1; num14++)
+                    {
+                        for (int num15 = -1; num15 <= 1; num15++)
+                        {
+                            if (WorldGen.SolidTile(num11 + num14, num13 + num15))
+                            {
+                                num10++;
+                            }
+                        }
+                    }
+                    if (num10 < 3)
+                    {
+                        list.Add(new Point16(num11, num13));
+                    }
+                }
+            }
+            foreach (Point16 item in list)
+            {
+                int x = item.X;
+                int y = item.Y;
+                WorldUtils.ClearTile(x, y, frameNeighbors: true);
+                GenBase._tiles[x, y].wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+            }
+            list.Clear();
+            for (int num16 = num20; num16 <= num21; num16++)
+            {
+                for (int num17 = num22; num17 <= num23; num17++)
+                {
+                    Magma magma4 = _sourceMagmaMap[num16, num17];
+                    int num18 = num16 + origin.X;
+                    int num19 = num17 + origin.Y;
+                    if (!magma4.IsActive)
+                    {
+                        continue;
+                    }
+                    WorldUtils.TileFrame(num18, num19);
+                    WorldGen.SquareWallFrame(num18, num19);
+                    //if (GenBase._random.Next(8) == 0 && GenBase._tiles[num18, num19].active())
+                    //{
+                    //    if (!GenBase._tiles[num18, num19 + 1].active())
+                    //    {
+                    //        WorldGen.PlaceTight(num18, num19 + 1, 165);
+                    //    }
+                    //    if (!GenBase._tiles[num18, num19 - 1].active())
+                    //    {
+                    //        WorldGen.PlaceTight(num18, num19 - 1, 165);
+                    //    }
+                    //}
+                    if (!Main.tile[num18, num19].active() && Main.tile[num18, num19 - 1].active() && Main.tile[num18, num19 - 1].type == ModContent.TileType<Tiles.CrystalStone>() ||
+                        !Main.tile[num18, num19].active() && Main.tile[num18, num19 + 1].active() && Main.tile[num18, num19 + 1].type == ModContent.TileType<Tiles.CrystalStone>() ||
+                        !Main.tile[num18, num19].active() && Main.tile[num18 - 1, num19].active() && Main.tile[num18 - 1, num19].type == ModContent.TileType<Tiles.CrystalStone>() ||
+                        !Main.tile[num18, num19].active() && Main.tile[num18 + 1, num19].active() && Main.tile[num18 + 1, num19].type == ModContent.TileType<Tiles.CrystalStone>())
+                    {
+                        if (Main.tile[num18, num19].type != TileID.Crystals)
+                        {
+                            if (WorldGen.genRand.Next(8) == 0)
+                            {
+                                WorldGen.PlaceTile(num18, num19, TileID.Crystals);
+                            }
+                        }
+                    }
+                    if (GenBase._random.Next(2) == 0)
+                    {
+                        Tile.SmoothSlope(num18, num19);
+                    }
                 }
             }
             return true;

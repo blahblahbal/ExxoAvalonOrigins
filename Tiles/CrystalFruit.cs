@@ -14,6 +14,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = false;
+            Main.tileSpelunker[Type] = true;
             Main.tileCut[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.AnchorValidTiles = new int[]

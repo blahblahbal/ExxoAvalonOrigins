@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -29,6 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.aiStyle = -1;
             npc.npcSlots = 1f;
             npc.value = 10000f;
+            npc.gfxOffY = 25f;
             npc.timeLeft = 750;
             npc.height = 12;
             npc.knockBackResist = 0f;
