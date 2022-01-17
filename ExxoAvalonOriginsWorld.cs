@@ -55,6 +55,7 @@ namespace ExxoAvalonOrigins
         public static int timeTiles = 0;
         public static int tortureTiles = 0;
         public static int skyFortressTiles = 0;
+        public static int crystalTiles = 0;
         public static Vector2 LoK = Vector2.Zero;
         public static int wosT;
         public static int wosB;
@@ -198,11 +199,12 @@ namespace ExxoAvalonOrigins
         {
             Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
             ickyTiles = tileCounts[ModContent.TileType<Chunkstone>()] + tileCounts[ModContent.TileType<HardenedSnotsand>()] + tileCounts[ModContent.TileType<Snotsandstone>()] + tileCounts[ModContent.TileType<Ickgrass>()] + tileCounts[ModContent.TileType<Snotsand>()] + tileCounts[ModContent.TileType<YellowIce>()];
-            tropicTiles = tileCounts[ModContent.TileType<TropicalStone>()] + tileCounts[ModContent.TileType<Tiles.TuhrtlBrick>()] + tileCounts[ModContent.TileType<TropicalMud>()] + tileCounts[ModContent.TileType<TropicalGrass>()];
-            hellcastleTiles = tileCounts[ModContent.TileType<Tiles.ImperviousBrick>()];
-            darkTiles = tileCounts[ModContent.TileType<Tiles.DarkMatter>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterSand>()] + tileCounts[ModContent.TileType<Tiles.BlackIce>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterSoil>()] + tileCounts[ModContent.TileType<Tiles.HardenedDarkSand>()] + tileCounts[ModContent.TileType<Tiles.Darksandstone>()] + tileCounts[ModContent.TileType<Tiles.DarkMatterGrass>()];
-            caesiumTiles = tileCounts[ModContent.TileType<Tiles.BlackBlaststone>()];
+            tropicTiles = tileCounts[ModContent.TileType<TropicalStone>()] + tileCounts[ModContent.TileType<TuhrtlBrick>()] + tileCounts[ModContent.TileType<TropicalMud>()] + tileCounts[ModContent.TileType<TropicalGrass>()];
+            hellcastleTiles = tileCounts[ModContent.TileType<ImperviousBrick>()];
+            darkTiles = tileCounts[ModContent.TileType<DarkMatter>()] + tileCounts[ModContent.TileType<DarkMatterSand>()] + tileCounts[ModContent.TileType<BlackIce>()] + tileCounts[ModContent.TileType<DarkMatterSoil>()] + tileCounts[ModContent.TileType<HardenedDarkSand>()] + tileCounts[ModContent.TileType<Darksandstone>()] + tileCounts[ModContent.TileType<DarkMatterGrass>()];
+            caesiumTiles = tileCounts[ModContent.TileType<BlackBlaststone>()];
             skyFortressTiles = tileCounts[ModContent.TileType<SkyBrick>()];
+            crystalTiles = tileCounts[ModContent.TileType<CrystalStone>()];
             Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
         }
 
@@ -1595,7 +1597,6 @@ namespace ExxoAvalonOrigins
                     }
 
                     #region hardmode/superhardmode stuff
-
                     if (Main.tile[num5, num6].nactive())
                     {
                         ContagionHardmodeSpread(num5, num6);
@@ -1609,11 +1610,91 @@ namespace ExxoAvalonOrigins
                             DarkMatterSpread(num5, num6);
                         }
                     }
-
                     #endregion hardmode/superhardmode stuff
 
-                    #region tropical short grass
+                    #region crystal shard in crystal mines
+                    if (SuperHardmode)
+                    {
+                        int type = (int)Main.tile[num5, num6].type;
+                        if ((type == ModContent.TileType<CrystalStone>()) && num6 > Main.rockLayer && Main.rand.Next(65) == 0)
+                        {
+                            int num = WorldGen.genRand.Next(4);
+                            int xdir = 0;
+                            int ydir = 0;
+                            if (num == 0)
+                            {
+                                xdir = -1;
+                            }
+                            else if (num == 1)
+                            {
+                                xdir = 1;
+                            }
+                            else if (num == 0)
+                            {
+                                ydir = -1;
+                            }
+                            else
+                            {
+                                ydir = 1;
+                            }
+                            if (!Main.tile[num5 + xdir, num6 + ydir].active())
+                            {
+                                int q = 0;
+                                int z = 6;
+                                for (int k = num5 - z; k <= num5 + z; k++)
+                                {
+                                    for (int l = num6 - z; l <= num6 + z; l++)
+                                    {
+                                        if (Main.tile[k, l].active() && Main.tile[k, l].type == TileID.Crystals)
+                                        {
+                                            q++;
+                                        }
+                                    }
+                                }
+                                if (q < 2)
+                                {
+                                    WorldGen.PlaceTile(num5 + xdir, num6 + ydir, TileID.Crystals, true, false, -1, 0);
+                                    NetMessage.SendTileSquare(-1, num5 + xdir, num6 + ydir, 1);
+                                }
+                            }
+                        }
+                    }
+                    #endregion
 
+                    #region crystal fruit spawning
+                    if (Main.tile[num5, num6].type == ModContent.TileType<CrystalStone>() && SuperHardmode && downedOblivion && num6 > Main.rockLayer)
+                    {
+                        if (WorldGen.genRand.Next(40) == 0 && Main.tile[num5, num9].liquid == 0)
+                        {
+                            bool flag16 = true;
+                            int distanceCheck = 10;
+                            for (int num80 = num5 - distanceCheck; num80 < num5 + distanceCheck; num80 += 2)
+                            {
+                                for (int num81 = num6 - distanceCheck; num81 < num6 + distanceCheck; num81 += 2)
+                                {
+                                    if (num80 > 1 && num80 < Main.maxTilesX - 2 && num81 > 1 && num81 < Main.maxTilesY - 2 && Main.tile[num80, num81].active() && Main.tile[num80, num81].type == ModContent.TileType<CrystalFruit>())
+                                    {
+                                        flag16 = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (flag16)
+                            {
+                                WorldGen.Place2x2(num5, num9, (ushort)ModContent.TileType<CrystalFruit>(), WorldGen.genRand.Next(3));
+                                WorldGen.SquareTileFrame(num5, num9, true);
+                                WorldGen.SquareTileFrame(num5 + 1, num9 + 1, true);
+                                //Utils.SquareTileFrameArea(num5, num9, 2);
+                                if (Main.tile[num5, num9].type == ModContent.TileType<CrystalFruit>() && Main.netMode == NetmodeID.Server)
+                                {
+                                    NetMessage.SendTileSquare(-1, num5, num9, 4);
+                                }
+                            }
+                        }
+                    }
+                    #endregion
+
+                    #region tropical short grass
                     if (Main.tile[num5, num6].type == ModContent.TileType<TropicalGrass>())
                     {
                         int num14 = Main.tile[num5, num6].type;
@@ -1652,7 +1733,6 @@ namespace ExxoAvalonOrigins
                             }
                         }*/
                     }
-
                     #endregion tropical short grass
 
                     #region holybird spawning
@@ -2934,6 +3014,10 @@ namespace ExxoAvalonOrigins
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback(SkyFortressCallback), 1);
         }
+        public void GenerateCrystalMines()
+        {
+            ThreadPool.QueueUserWorkItem(new WaitCallback(CrystalMinesCallback), 1);
+        }
         public void SkyFortressCallback(object threadContext)
         {
             if (ExxoAvalonOriginsGlobalNPC.stoppedArmageddon) return;
@@ -2952,7 +3036,30 @@ namespace ExxoAvalonOrigins
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Something is hiding on the top of your world..."), new Color(244, 140, 140));
             }
         }
-
+        public void CrystalMinesCallback(object threadContext)
+        {
+            if (!SuperHardmode) return;
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText("The otherworldly crystals begin to grow...", 244, 140, 140);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(244, 140, 140));
+            }
+            float num611 = Main.maxTilesX * Main.maxTilesY / 5040000f;
+            int num612 = (int)(WorldGen.genRand.Next(4, 7) * num611);
+            float num613 = (Main.maxTilesX - 160) / num612;
+            int num614 = 0;
+            while (num614 < num612)
+            {
+                float num615 = (float)num614 / num612;
+                if (Biomes<World.Biomes.CrystalMines>.Place(WorldGen.RandomRectanglePoint((int)(num615 * (float)(Main.maxTilesX - 160)) + 80, (int)Main.rockLayer + 20, (int)num613, Main.maxTilesY - ((int)Main.rockLayer + 40) - 200), null))
+                {
+                    num614++;
+                }
+            }
+        }
         public void shmCallback(object threadContext)
         {
             if (SuperHardmode)

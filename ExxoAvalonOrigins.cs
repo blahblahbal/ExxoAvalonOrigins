@@ -46,6 +46,7 @@ namespace ExxoAvalonOrigins
         public ModHotKey astralHotkey;
         public ModHotKey minionGuidingHotkey;
         public ModHotKey rocketJumpHotkey;
+        public ModHotKey quickStaminaHotkey;
 
         // UI
 
@@ -141,6 +142,7 @@ namespace ExxoAvalonOrigins
                 astralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
                 minionGuidingHotkey = RegisterHotKey("Ancient Minion Guiding", "Mouse2");
                 rocketJumpHotkey = RegisterHotKey("Stamina Rocket Jump", "C");
+                quickStaminaHotkey = RegisterHotKey("Quick Stamina", "X");
 
                 // UI
 

@@ -278,6 +278,7 @@ namespace ExxoAvalonOrigins
         public bool ZoneCaesium;
         public bool ZoneOutpost;
         public bool ZoneSkyFortress;
+        public bool ZoneCrystal;
         public bool meleeStealth;
         public bool releaseQuickStamina;
         public int stamRegen;
@@ -526,6 +527,7 @@ namespace ExxoAvalonOrigins
             ZoneSight = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.SightCandle>());
             ZoneTime = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.TimeCandle>());
             ZoneTorture = ExxoAvalonOriginsWorld.AnyTiles(player, (ushort)ModContent.TileType<Tiles.SoulCandles.TortureCandle>());
+            ZoneCrystal = ExxoAvalonOriginsWorld.crystalTiles > 100;
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
@@ -538,6 +540,7 @@ namespace ExxoAvalonOrigins
             flags[4] = ZoneCaesium;
             flags[5] = ZoneOutpost;
             flags[6] = ZoneSkyFortress;
+            flags[7] = ZoneCrystal;
             writer.Write(flags);
             var flags2 = new BitsByte();
             flags2[0] = ZoneBlight;
@@ -566,7 +569,7 @@ namespace ExxoAvalonOrigins
             ZoneCaesium = flags[4];
             ZoneOutpost = flags[5];
             ZoneSkyFortress = flags[6];
-
+            ZoneCrystal = flags[7];
             BitsByte flags2 = reader.ReadByte();
             ZoneBlight = flags2[0];
             ZoneDelight = flags2[1];
@@ -2634,6 +2637,10 @@ namespace ExxoAvalonOrigins
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
+            if (ExxoAvalonOrigins.mod.quickStaminaHotkey.JustPressed)
+            {
+                QuickStamina();
+            }
             if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && tpStam && statStam >= 90 && tpCD >= 300)
             {
                 statStam -= 90;
@@ -3260,7 +3267,71 @@ namespace ExxoAvalonOrigins
                 Dust.NewDust(player.position, player.width, player.height, d, 0f, 0f, 150, default(Color), 1.5f);
             }
         }
-
+        public void QuickStamina()
+        {
+            if (player.noItems)
+            {
+                return;
+            }
+            if (statStam == statStamMax2 || player.potionDelay > 0)
+            {
+                return;
+            }
+            int num = statStamMax2 - statStam;
+            Item item = null;
+            int num2 = -statStamMax2;
+            for (int i = 0; i < 58; i++)
+            {
+                Item item2 = player.inventory[i];
+                if (item2.stack > 0 && item2.type > 0 && item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina > 0)
+                {
+                    int num3 = item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina - num;
+                    if (num2 < 0)
+                    {
+                        if (num3 > num2)
+                        {
+                            item = item2;
+                            num2 = num3;
+                        }
+                    }
+                    else if (num3 < num2 && num3 >= 0)
+                    {
+                        item = item2;
+                        num2 = num3;
+                    }
+                }
+            }
+            if (item == null)
+            {
+                return;
+            }
+            Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, 3);
+            statStam += item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina;
+            if (statStam > statStamMax2)
+            {
+                statStam = statStamMax2;
+            }
+            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina > 0 && Main.myPlayer == player.whoAmI)
+            {
+                StaminaHealEffect(item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina, true);
+            }
+            item.stack--;
+            if (item.stack <= 0)
+            {
+                item.type = 0;
+            }
+        }
+        public void StaminaHealEffect(int healAmount, bool broadcast = true)
+        {
+            CombatText.NewText(player.getRect(), new Color(5, 200, 255, 255), string.Concat(healAmount), false, false);
+            if (broadcast && Main.netMode == 1 && player.whoAmI == Main.myPlayer)
+            {
+                ModPacket packet = Network.MessageHandler.GetPacket(Network.MessageID.StaminaHeal);
+                packet.Write(player.whoAmI);
+                packet.Write(healAmount);
+                packet.Send();
+            }
+        }
         public void SpectrumDodge()
         {
             player.immune = true;

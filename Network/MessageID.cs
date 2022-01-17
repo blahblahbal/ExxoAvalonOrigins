@@ -5,6 +5,7 @@
         ShadowTeleport = 0,
         CursorPosition = 1,
         SyncTime = 2,
-        SyncWiring = 3
+        SyncWiring = 3,
+        StaminaHeal = 4
     }
 }

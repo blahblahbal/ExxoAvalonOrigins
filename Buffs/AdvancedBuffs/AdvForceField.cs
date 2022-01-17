@@ -34,7 +34,8 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
                     projectile2.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && projectile2.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
                     projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() &&
                     projectile2.type != ModContent.ProjectileType<Projectiles.CaesiumGas>() && projectile2.type != ModContent.ProjectileType<Projectiles.SpikyBall>() &&
-                    projectile2.type != ModContent.ProjectileType<Projectiles.Spike>())
+                    projectile2.type != ModContent.ProjectileType<Projectiles.Spike>() && projectile2.type != ModContent.ProjectileType<Projectiles.CrystalShard>() &&
+                    projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>() && projectile2.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>())
                 {
                     var rectangle = new Rectangle((int)projectile2.position.X, (int)projectile2.position.Y, projectile2.width, projectile2.height);
                     if (rectangle.Intersects(value))

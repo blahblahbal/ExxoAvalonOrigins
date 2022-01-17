@@ -29,6 +29,9 @@ namespace ExxoAvalonOrigins.Network
                 case MessageID.SyncWiring:
                     SyncWiring.HandlePacket(reader, fromWho);
                     break;
+                case MessageID.StaminaHeal:
+                    SyncWiring.HandlePacket(reader, fromWho);
+                    break;
             }
         }
     }

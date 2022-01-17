@@ -2536,50 +2536,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<Staminastone>(), 25);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Staminastone>(), 25);
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<StaminaCrystal>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ModContent.ItemType<Staminastone>(), 5);
-            recipe.AddIngredient(ItemID.Silk);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<LesserStaminaPotion>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LesserStaminaPotion>(), 2);
-            recipe.AddIngredient(ItemID.Mushroom);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<StaminaPotion>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<StaminaPotion>());
-            recipe.AddIngredient(ItemID.SharkFin, 3);
-            recipe.AddIngredient(ItemID.Mushroom, 5);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<GreaterStaminaPotion>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2);
-            recipe.AddIngredient(ItemID.SharkFin, 6);
-            recipe.AddIngredient(ItemID.Mushroom);
-            recipe.AddIngredient(ItemID.Silk);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<SuperStaminaPotion>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LifeFruit);
             recipe.AddTile(TileID.AdamantiteForge);
             recipe.SetResult(ModContent.ItemType<Lifestone>(), 30);

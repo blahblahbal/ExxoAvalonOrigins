@@ -266,6 +266,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override void NPCLoot()
         {
             ExxoAvalonOriginsGlobalNPC.oblivionDead = true;
+
             if (Main.rand.Next(7) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<OblivionTrophy>(), 1, false, 0, false);
@@ -296,6 +297,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (!ExxoAvalonOriginsWorld.downedOblivion)
             {
                 ExxoAvalonOriginsWorld.downedOblivion = true;
+                ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateCrystalMines();
             }
         }
 
