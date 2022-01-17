@@ -1661,7 +1661,7 @@ namespace ExxoAvalonOrigins
                     }
                     #endregion
 
-                    #region crystal fruit spawning
+                    #region crystal fruit and giant crystal spawning
                     if (Main.tile[num5, num6].type == ModContent.TileType<CrystalStone>() && SuperHardmode && downedOblivion && num6 > Main.rockLayer)
                     {
                         if (WorldGen.genRand.Next(40) == 0 && Main.tile[num5, num9].liquid == 0)
@@ -1684,8 +1684,17 @@ namespace ExxoAvalonOrigins
                                 WorldGen.Place2x2(num5, num9, (ushort)ModContent.TileType<CrystalFruit>(), WorldGen.genRand.Next(3));
                                 WorldGen.SquareTileFrame(num5, num9, true);
                                 WorldGen.SquareTileFrame(num5 + 1, num9 + 1, true);
-                                //Utils.SquareTileFrameArea(num5, num9, 2);
                                 if (Main.tile[num5, num9].type == ModContent.TileType<CrystalFruit>() && Main.netMode == NetmodeID.Server)
+                                {
+                                    NetMessage.SendTileSquare(-1, num5, num9, 4);
+                                }
+                            }
+                            else
+                            {
+                                WorldGen.Place2x2(num5, num9, (ushort)ModContent.TileType<GiantCrystalShard>(), WorldGen.genRand.Next(3));
+                                WorldGen.SquareTileFrame(num5, num9, true);
+                                WorldGen.SquareTileFrame(num5 + 1, num9 + 1, true);
+                                if (Main.tile[num5, num9].type == ModContent.TileType<GiantCrystalShard>() && Main.netMode == NetmodeID.Server)
                                 {
                                     NetMessage.SendTileSquare(-1, num5, num9, 4);
                                 }

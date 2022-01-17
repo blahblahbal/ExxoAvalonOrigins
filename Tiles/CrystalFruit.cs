@@ -29,8 +29,8 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
-            if (Main.tile[i, j].frameX < 36) num = DustID.PinkCrystalShard;
-            else if (Main.tile[i, j].frameX < 72) num = DustID.BlueCrystalShard;
+            if (Main.tile[i, j].frameY < 36) num = DustID.PinkCrystalShard;
+            else if (Main.tile[i, j].frameY < 72) num = DustID.BlueCrystalShard;
             else num = DustID.PurpleCrystalShard;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
