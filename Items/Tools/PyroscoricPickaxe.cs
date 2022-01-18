@@ -1,4 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,8 +11,11 @@ namespace ExxoAvalonOrigins.Items.Tools
 		{
 			DisplayName.SetDefault("Pyroscoric Pickaxe");
 		}
-
-		public override void SetDefaults()
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 200);
+        }
+        public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
 			item.damage = 30;
@@ -31,5 +35,13 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.height = dims.Height;
             item.UseSound = SoundID.Item1;
         }
-	}
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            if (Main.rand.Next(2) == 0)
+            {
+                int num162 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Fire, 0f, 0f, 0, default(Color), 2f);
+                Main.dust[num162].noGravity = true;
+            }
+        }
+    }
 }
