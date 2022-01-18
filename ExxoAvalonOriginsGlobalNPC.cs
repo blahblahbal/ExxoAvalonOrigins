@@ -923,6 +923,14 @@ IL_162:
                     NPCLoader.blockLoot.Add(imk.ItemType("LootPlanteraToken"));
                 }
             }
+            if (npc.type == NPCID.WallofFlesh && !Main.expertMode)
+            {
+                NPCLoader.blockLoot.Add(ItemID.RangerEmblem);
+                NPCLoader.blockLoot.Add(ItemID.SummonerEmblem);
+                NPCLoader.blockLoot.Add(ItemID.WarriorEmblem);
+                NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<NullEmblem>());
+            }
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
                 if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneOutpost)

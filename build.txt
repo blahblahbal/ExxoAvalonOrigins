@@ -1,6 +1,6 @@
 ﻿displayName = Exxo Avalon: Origins
 author = imkSushi, blahblahbal, The Avalon Team
-version = 0.9.7.5
+version = 0.9.7.8
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, *.mp3
 includePDB = true
 hideCode = true

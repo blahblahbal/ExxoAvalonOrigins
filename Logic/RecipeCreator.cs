@@ -2151,30 +2151,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NullEmblem>(), 3);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ItemID.AvengerEmblem);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ItemID.RangerEmblem);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ItemID.SorcererEmblem);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ItemID.WarriorEmblem);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ChaosCharm>());
             recipe.AddIngredient(ItemID.EyeoftheGolem);
             recipe.AddTile(TileID.TinkerersWorkbench);

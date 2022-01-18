@@ -15,6 +15,30 @@ namespace ExxoAvalonOrigins.Logic
             ModRecipe recipe;
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.RangerEmblem);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.SorcererEmblem);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.WarriorEmblem);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.SummonerEmblem);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Bar.FeroziumBar>(), 12);
             recipe.AddIngredient(ModContent.ItemType<FrigidShard>());
             recipe.AddTile(TileID.MythrilAnvil);

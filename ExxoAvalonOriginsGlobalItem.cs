@@ -75,12 +75,12 @@ namespace ExxoAvalonOrigins
             ItemID.Diamond,
             ItemID.Emerald,
             ItemID.Sapphire,
-            ModContent.ItemType<Items.Placeable.Tile.Onyx>(),
+            ModContent.ItemType<Onyx>(),
             ModContent.ItemType<Zircon>(),
-            ModContent.ItemType<Items.Placeable.Tile.Kunzite>(),
-            ModContent.ItemType<Items.Placeable.Tile.Peridot>(),
-            ModContent.ItemType<Items.Placeable.Tile.Tourmaline>(),
-            ModContent.ItemType<Items.Placeable.Tile.Opal>()
+            ModContent.ItemType<Kunzite>(),
+            ModContent.ItemType<Peridot>(),
+            ModContent.ItemType<Tourmaline>(),
+            ModContent.ItemType<Opal>()
         };
 
         public static int GemToTile(int type)
@@ -88,14 +88,14 @@ namespace ExxoAvalonOrigins
             if (type == ItemID.Amethyst) return TileID.Amethyst;
             else if (type == ItemID.Diamond) return TileID.Diamond;
             else if (type == ItemID.Emerald) return TileID.Emerald;
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Kunzite>()) return ModContent.TileType<Tiles.Ores.Kunzite>();
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Onyx>()) return ModContent.TileType<Tiles.Ores.Onyx>();
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Opal>()) return ModContent.TileType<Tiles.Ores.Opal>();
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Peridot>()) return ModContent.TileType<Tiles.Ores.Peridot>();
+            else if (type == ModContent.ItemType<Kunzite>()) return ModContent.TileType<Tiles.Ores.Kunzite>();
+            else if (type == ModContent.ItemType<Onyx>()) return ModContent.TileType<Tiles.Ores.Onyx>();
+            else if (type == ModContent.ItemType<Opal>()) return ModContent.TileType<Tiles.Ores.Opal>();
+            else if (type == ModContent.ItemType<Peridot>()) return ModContent.TileType<Tiles.Ores.Peridot>();
             else if (type == ItemID.Ruby) return TileID.Ruby;
             else if (type == ItemID.Sapphire) return TileID.Sapphire;
             else if (type == ItemID.Topaz) return TileID.Topaz;
-            else if (type == ModContent.ItemType<Items.Placeable.Tile.Tourmaline>()) return ModContent.TileType<Tiles.Ores.Tourmaline>();
+            else if (type == ModContent.ItemType<Tourmaline>()) return ModContent.TileType<Tiles.Ores.Tourmaline>();
             else if (type == ModContent.ItemType<Zircon>()) return ModContent.TileType<Tiles.Ores.Zircon>();
             return 0;
         }
@@ -811,6 +811,14 @@ namespace ExxoAvalonOrigins
                 {
                     player.QuickSpawnItem(ModContent.ItemType<StaminaCrystal>());
                 }
+            }
+            if (context == "bossBag" && arg == ItemID.WallOfFleshBossBag)
+            {
+                NPCLoader.blockLoot.Add(ItemID.RangerEmblem);
+                NPCLoader.blockLoot.Add(ItemID.SummonerEmblem);
+                NPCLoader.blockLoot.Add(ItemID.WarriorEmblem);
+                NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
+                player.QuickSpawnItem(ModContent.ItemType<NullEmblem>());
             }
             if (context == "bossBag" && arg == ItemID.GolemBossBag)
             {
