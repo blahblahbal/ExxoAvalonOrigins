@@ -29,6 +29,7 @@
             IL.Terraria.Projectile.FishingCheck += BuffEffects.ILCatchFish;
             IL.Terraria.Player.Update += ExtraHealth.ILUpdate;
             IL.Terraria.Lang.GetDryadWorldStatusDialog += DryadText.ILDryadText;
+            IL.Terraria.Main.DrawUnderworldBackground += CaesiumUnderworldBackground.ILDoSelf;
 
             IL.Terraria.WorldGen.generateWorld += GenPasses.ILGenerateWorld;
 
