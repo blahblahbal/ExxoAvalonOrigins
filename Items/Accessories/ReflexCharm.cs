@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Linq;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,7 +8,42 @@ namespace ExxoAvalonOrigins.Items.Accessories
 {
 	class ReflexCharm : ModItem
 	{
-		public override void SetStaticDefaults()
+        public int[] notReflect = new int[]
+        {
+            ProjectileID.Stinger,
+            ProjectileID.RainCloudMoving,
+            ProjectileID.RainCloudRaining,
+            ProjectileID.BloodCloudMoving,
+            ProjectileID.BloodCloudRaining,
+            ProjectileID.FrostHydra,
+            ProjectileID.InfernoFriendlyBolt,
+            ProjectileID.InfernoFriendlyBlast,
+            ProjectileID.PhantasmalDeathray,
+            ProjectileID.FlyingPiggyBank,
+            ProjectileID.Glowstick,
+            ProjectileID.BouncyGlowstick,
+            ProjectileID.SpelunkerGlowstick,
+            ProjectileID.StickyGlowstick,
+            ProjectileID.WaterGun,
+            ProjectileID.SlimeGun,
+            ModContent.ProjectileType<Projectiles.Ghostflame>(),
+            ModContent.ProjectileType<Projectiles.WallofSteelLaser>(),
+            ModContent.ProjectileType<Projectiles.ElectricBolt>(),
+            ModContent.ProjectileType<Projectiles.HomingRocket>(),
+            ModContent.ProjectileType<Projectiles.StingerLaser>(),
+            ModContent.ProjectileType<Projectiles.CaesiumFireball>(),
+            ModContent.ProjectileType<Projectiles.CaesiumCrystal>(),
+            ModContent.ProjectileType<Projectiles.CaesiumGas>(),
+            ModContent.ProjectileType<Projectiles.SpikyBall>(),
+            ModContent.ProjectileType<Projectiles.Spike>(),
+            ModContent.ProjectileType<Projectiles.CrystalShard>(),
+            ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>(),
+            ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>(),
+            ModContent.ProjectileType<Projectiles.CrystalBit>(),
+            ModContent.ProjectileType<Projectiles.CrystalBeam>()
+        };
+
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Reflex Charm");
 			Tooltip.SetDefault("Gives a chance to reflect projectiles");
@@ -29,13 +65,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             Rectangle playerWS = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {
-                if (!Pr.friendly && !Pr.bobber && Pr.type != 237 && Pr.type != 238 && Pr.type != 243 && Pr.type != 244 && Pr.type != ProjectileID.Stinger && Pr.type != 308 && Pr.type != 295 && Pr.type != 296 && Pr.type != 50 && Pr.type != 53 && Pr.type != 358 &&
-                    Pr.type != ProjectileID.PhantasmalDeathray && Pr.type != ModContent.ProjectileType<Projectiles.Ghostflame>() && Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaser>() && Pr.type != ModContent.ProjectileType<Projectiles.PhantasmLaser>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.ElectricBolt>() && Pr.type != ModContent.ProjectileType<Projectiles.HomingRocket>() && Pr.type != ModContent.ProjectileType<Projectiles.StingerLaser>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.CaesiumFireball>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumCrystal>() && Pr.type != ModContent.ProjectileType<Projectiles.CaesiumGas>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.SpikyBall>() && Pr.type != ModContent.ProjectileType<Projectiles.Spike>() && Pr.type != ModContent.ProjectileType<Projectiles.CrystalShard>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>() && Pr.type != ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>() &&
-                    Pr.type != ModContent.ProjectileType<Projectiles.CrystalBit>() && Pr.type != ModContent.ProjectileType<Projectiles.CrystalBeam>())
+                if (!Pr.friendly && !Pr.bobber && !notReflect.Contains(Pr.type))
                 {
                     Rectangle proj2 = new Rectangle((int)Pr.position.X, (int)Pr.position.Y, Pr.width, Pr.height);
                     bool reflect = false, check = false;

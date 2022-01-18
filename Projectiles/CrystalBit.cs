@@ -24,6 +24,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.hostile = true;
             projectile.alpha = 100;
             projectile.timeLeft = 180;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
             rn = Main.rand.Next(60, 121);
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
