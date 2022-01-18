@@ -35,6 +35,13 @@ namespace ExxoAvalonOrigins.Items.Tools
 			item.height = dims.Height;
             item.UseSound = SoundID.Item1;
         }
+        public override void HoldItem(Player player)
+        {
+            if (player.inventory[player.selectedItem].type == item.type)
+            {
+                player.pickSpeed -= 0.25f;
+            }
+        }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
             if (Main.rand.Next(2) == 0)
