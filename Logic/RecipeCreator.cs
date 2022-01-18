@@ -2668,14 +2668,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LifeCrystal, 2);
-            recipe.AddIngredient(ItemID.LifeFruit, 2);
-            recipe.AddIngredient(ModContent.ItemType<VictoryPiece>());
-            recipe.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            recipe.SetResult(ModContent.ItemType<CrystalFruit>(), 2);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SoulofMight);
             recipe.AddIngredient(ItemID.BlueBrick, 5);
             recipe.AddTile(ModContent.TileType<Tiles.CaesiumForge>());

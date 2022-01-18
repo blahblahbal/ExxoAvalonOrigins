@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -33,7 +34,42 @@ namespace ExxoAvalonOrigins.Tiles
             soundStyle = 1;
             dustType = DustID.PinkCrystalShard;
         }
-	}
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
+        {
+            if (i % 14 == 0 || i % 14 == 13)
+            {
+                drawColor = new Color(123, 186, 228);
+            }
+            else if (i % 14 == 1 || i % 14 == 12)
+            {
+                drawColor = new Color(144, 171, 221);
+            }
+            else if (i % 14 == 2 || i % 14 == 11)
+            {
+                drawColor = new Color(163, 160, 216);
+            }
+            else if (i % 14 == 3 || i % 14 == 10)
+            {
+                drawColor = new Color(176, 153, 214);
+            }
+            else if (i % 14 == 4 || i % 14 == 9)
+            {
+                drawColor = new Color(186, 146, 212);
+            }
+            else if (i % 14 == 5 || i % 14 == 8)
+            {
+                drawColor = new Color(200, 138, 209);
+            }
+            else if (i % 14 == 6 || i % 14 == 7)
+            {
+                drawColor = new Color(216, 129, 205);
+            }
+            else if (i % 14 == 7)
+            {
+                drawColor = new Color (227, 123, 203);
+            }
+        }
+    }
 }
 
 

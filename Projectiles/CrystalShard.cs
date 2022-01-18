@@ -39,8 +39,6 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            projectile.hostile = true;
-            projectile.friendly = false;
             projectile.ai[0]++;
             if (projectile.ai[0] > 5f)
             {

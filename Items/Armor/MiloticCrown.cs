@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Minions have a chance to freeze your enemies" +
-				"\nFrozen enemies or enemies which cannot be frozen take an aadditional 10% damage";
+				"\nFrozen enemies or enemies which cannot be frozen take an additional 10% damage";
 			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().minionFreeze = true;
 		}
 
