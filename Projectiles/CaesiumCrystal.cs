@@ -1,31 +1,37 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-    public class CaesiumCrystal : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Caesium Crystal");
-        }
+	public class CaesiumCrystal : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Caesium Crystal");
+		}
 
-        public override void SetDefaults()
-        {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CaesiumCrystal");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.tileCollide = true;
-            projectile.friendly = false;
+		public override void SetDefaults()
+		{
+			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CaesiumCrystal");
+			projectile.width = dims.Width;
+			projectile.height = dims.Height / Main.projFrames[projectile.type];
+			projectile.aiStyle = -1;
+			projectile.tileCollide = true;
+			projectile.friendly = false;
             projectile.hostile = true;
-            projectile.timeLeft = 540;
-            projectile.light = 1f;
-            projectile.penetrate = -1;
-            projectile.magic = true;
-            projectile.ignoreWater = true;
+			projectile.timeLeft = 540;
+			projectile.light = 1f;
+			projectile.penetrate = -1;
+			projectile.magic = true;
+			projectile.ignoreWater = true;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

@@ -1,32 +1,37 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    public class BombBones : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bomb Bones");
-            Main.npcFrameCount[npc.type] = 15;
-        }
+	public class BombBones : ModNPC
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bomb Bones");
+			Main.npcFrameCount[npc.type] = 15;
+		}
 
-        public override void SetDefaults()
-        {
-            npc.damage = 85;
-            npc.lifeMax = 1000;
-            npc.defense = 20;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.value = 40000f;
-            npc.height = 40;
-            npc.knockBackResist = 0.3f;
-            npc.HitSound = SoundID.NPCHit2;
-            npc.DeathSound = SoundID.NPCDeath2;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.Confused] = true;
+		public override void SetDefaults()
+		{
+			npc.damage = 85;
+			npc.lifeMax = 1000;
+			npc.defense = 20;
+			npc.width = 18;
+			npc.aiStyle = 3;
+			npc.value = 40000f;
+			npc.height = 40;
+			npc.knockBackResist = 0.05f;
+			npc.HitSound = SoundID.NPCHit2;
+	        npc.DeathSound = SoundID.NPCDeath2;
+			npc.buffImmune[BuffID.Poisoned] = true;
+			npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
         }
@@ -36,8 +41,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void NPCLoot()
-        {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bomb, Main.rand.Next(10, 16), false, 0, false);
+		{
+			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bomb, Main.rand.Next(10, 16), false, 0, false);
         }
 
         public override void FindFrame(int frameHeight)

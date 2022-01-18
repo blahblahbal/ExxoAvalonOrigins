@@ -30,6 +30,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Daybreak] = true;
             drawOffsetY = 25;
+            //banner = npc.type;
+            //bannerItem = ModContent.ItemType<Items.Banners.CaesiumSeekerBanner>();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

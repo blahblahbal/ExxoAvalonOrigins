@@ -1,26 +1,32 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-    public class CaesiumFireball : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Caesium Fireball");
-        }
+	public class CaesiumFireball : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Caesium Fireball");
+		}
 
-        public override void SetDefaults()
-        {
+		public override void SetDefaults()
+		{
             projectile.width = 28;
             projectile.height = 28;
-            projectile.aiStyle = -1;
-            projectile.melee = true;
-            projectile.alpha = 0;
-            projectile.friendly = false;
+			projectile.aiStyle = -1;
+			projectile.melee = true;
+			projectile.alpha = 0;
+			projectile.friendly = false;
             projectile.hostile = true;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override void AI()
         {
@@ -41,8 +47,8 @@ namespace ExxoAvalonOrigins.Projectiles
             }
         }
         public override void Kill(int timeLeft)
-        {
-            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Fireball"));
+		{
+			Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Fireball"));
             projectile.damage <<= 1;
             projectile.penetrate = 10;
             projectile.width <<= 3;
@@ -71,5 +77,5 @@ namespace ExxoAvalonOrigins.Projectiles
             //    Main.dust[num952].noGravity = true;
             //}
         }
-    }
+	}
 }

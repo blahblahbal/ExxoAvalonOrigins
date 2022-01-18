@@ -82,7 +82,7 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 float speedX = npc.velocity.X + Main.rand.Next(-51, 51) * 0.2f;
                 float speedY = npc.velocity.Y + Main.rand.Next(-51, 51) * 0.2f;
-                int proj = Projectile.NewProjectile(npc.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalShard>(), (int)(npc.damage * 0.8f), 0.3f);
+                int proj = Projectile.NewProjectile(npc.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalShard>(), 100, 0.3f);
                 Main.projectile[proj].timeLeft = 300;
             }
             if (npc.life <= 0)

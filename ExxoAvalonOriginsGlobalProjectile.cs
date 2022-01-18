@@ -10,7 +10,6 @@ namespace ExxoAvalonOrigins
 {
     class ExxoAvalonOriginsGlobalProjectile : GlobalProjectile
     {
-
         public static bool[] forceReset = new bool[255];
 
         public static int cooldown = 0;
@@ -118,7 +117,28 @@ namespace ExxoAvalonOrigins
         {
             return (float)Math.Atan2(endPos.Y - startPos.Y, endPos.X - startPos.X);
         }
-
+        //public override void SetDefaults(Projectile projectile)
+        //{
+        //    switch (projectile.type)
+        //    {
+        //        case ProjectileID.Stinger:
+        //        case ProjectileID.RainCloudMoving:
+        //        case ProjectileID.RainCloudRaining:
+        //        case ProjectileID.BloodCloudMoving:
+        //        case ProjectileID.BloodCloudRaining:
+        //        case ProjectileID.FrostHydra:
+        //        case ProjectileID.InfernoFriendlyBolt:
+        //        case ProjectileID.InfernoFriendlyBlast:
+        //        case ProjectileID.PhantasmalDeathray:
+        //        case ProjectileID.FlyingPiggyBank:
+        //        case ProjectileID.Glowstick:
+        //        case ProjectileID.BouncyGlowstick:
+        //        case ProjectileID.SpelunkerGlowstick:
+        //        case ProjectileID.StickyGlowstick:
+        //            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+        //            break;
+        //    }
+        //}
         public static void DrawChain(object sb, Texture2D texture, int shader, Vector2 start, Vector2 end, float Jump = 0f, Color? overrideColor = null, float scale = 1f, bool drawEndsUnder = false, Func<Texture2D, Vector2, Vector2, Vector2, Rectangle, Color, float, float, int, bool> OnDrawTex = null)
         {
             DrawChain(sb, new Texture2D[]

@@ -1653,8 +1653,11 @@ namespace ExxoAvalonOrigins
                                 }
                                 if (q < 2)
                                 {
-                                    WorldGen.PlaceTile(num5 + xdir, num6 + ydir, TileID.Crystals, true, false, -1, 0);
-                                    NetMessage.SendTileSquare(-1, num5 + xdir, num6 + ydir, 1);
+                                    if (ydir != -1)
+                                    {
+                                        WorldGen.PlaceTile(num5 + xdir, num6 + ydir, TileID.Crystals, true, false, -1, 0);
+                                        NetMessage.SendTileSquare(-1, num5 + xdir, num6 + ydir, 1);
+                                    }
                                 }
                             }
                         }

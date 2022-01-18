@@ -24,6 +24,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.MaxUpdates = 100;
             projectile.alpha = 255;
             projectile.timeLeft = 100;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override void AI()
         {
