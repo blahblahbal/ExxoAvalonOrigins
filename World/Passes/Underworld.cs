@@ -47,6 +47,7 @@ namespace ExxoAvalonOrigins.World.Passes
                                 if (q % 20 == 0)
                                 {
                                     Structures.CaesiumSpike.CreateSpikeUp(q, z, (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
+                                    Structures.CaesiumSpike.CreateSpikeDown(q, z, (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>());
                                 }
                             }
                         }
@@ -62,6 +63,7 @@ namespace ExxoAvalonOrigins.World.Passes
                             {
                                 if (q % 20 == 0)
                                 {
+                                    Structures.CaesiumSpike.CreateSpikeUp(q, z, (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>());
                                     Structures.CaesiumSpike.CreateSpikeDown(q, z, (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>()); // Structures.CaesiumSpike.CreateSpike(q, z);
                                 }
                             }
@@ -80,6 +82,23 @@ namespace ExxoAvalonOrigins.World.Passes
                     //        }
                     //    }
                     //}
+                }
+            }
+            for (int q = Main.maxTilesX - Main.maxTilesX / 5; q < Main.maxTilesX - 20; q++)
+            {
+                for (int z = Main.maxTilesY - 250; z < Main.maxTilesY - 20; z++)
+                {
+                    if (q % 100 < 33 && z > Main.maxTilesY - 175)
+                    {
+                        if (Main.tile[q, z].active() && !Main.tile[q, z - 1].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q, z + 1].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q - 1, z].active() ||
+                            Main.tile[q, z].active() && !Main.tile[q + 1, z].active())
+                        {
+                            if (Main.tile[q, z].type == ModContent.TileType<Tiles.BlackBlaststone>())
+                                Main.tile[q, z].type = (ushort)ModContent.TileType<Tiles.LaziteGrass>();
+                        }
+                    }
                 }
             }
             progress.Message = "Generating Hellcastle and Ashen Overgrowth";

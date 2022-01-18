@@ -1879,6 +1879,10 @@ namespace ExxoAvalonOrigins
                                     {
                                         WorldGen.SpreadGrass(m, n, TileID.Ash, ModContent.TileType<Impgrass>(), false, Main.tile[num5, num6].color());
                                     }
+                                    if (Main.tile[m, n].type == ModContent.TileType<BlackBlaststone>())
+                                    {
+                                        WorldGen.SpreadGrass(m, n, ModContent.TileType<BlackBlaststone>(), ModContent.TileType<LaziteGrass>(), false, Main.tile[num5, num6].color());
+                                    }
                                 }
                             }
                         }
