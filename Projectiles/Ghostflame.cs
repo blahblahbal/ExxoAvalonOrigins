@@ -30,6 +30,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.penetrate = -1;
             projectile.magic = true;
             projectile.ignoreWater = true;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {

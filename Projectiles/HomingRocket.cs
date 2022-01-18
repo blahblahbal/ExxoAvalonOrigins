@@ -27,6 +27,8 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.hostile = true;
             projectile.ranged = true;
             projectile.penetrate = 1;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+
         }
         public override void Kill(int timeLeft)
         {

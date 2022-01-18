@@ -26,6 +26,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.scale = 1.2f;
             projectile.timeLeft = 1200;
             projectile.ranged = true;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override void AI()
         {

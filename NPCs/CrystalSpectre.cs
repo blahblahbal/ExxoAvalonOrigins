@@ -70,7 +70,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return !Main.dayTime && Main.hardMode && spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCrystal ? 0.053f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return !Main.dayTime && Main.hardMode && spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCrystal ? 0.5f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
         public override void FindFrame(int frameHeight)
         {

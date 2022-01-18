@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = false;
-            Main.tileSpelunker[Type] = true;
+            //Main.tileSpelunker[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
             TileObjectData.addTile(Type);
@@ -32,7 +32,11 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void PlaceInWorld(int i, int j, Item item)
         {
-            Main.tile[i, j].frameY = (short)(Main.rand.Next(3) * 36);
+            short f = (short)(Main.rand.Next(3) * 36);
+            Main.tile[i - 1, j - 1].frameY = f;
+            Main.tile[i, j - 1].frameY = f;
+            Main.tile[i - 1, j].frameY = (short)(f + 18);
+            Main.tile[i, j].frameY = (short)(f + 18);
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {

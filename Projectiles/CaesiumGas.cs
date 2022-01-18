@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.hostile = true;
             projectile.tileCollide = false;
             projectile.scale = 0.6f;
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
 
         public override void AI()

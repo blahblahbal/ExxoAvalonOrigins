@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
 using Terraria.ModLoader;
@@ -30,14 +25,14 @@ namespace ExxoAvalonOrigins.NPCs
 			npc.npcSlots = 2f;
 			npc.value = 15000f;
 			npc.height = 48;
-            //npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
+            npc.HitSound = SoundID.NPCHit21;
+	        npc.DeathSound = SoundID.NPCDeath24;
 			npc.knockBackResist = 0.1f;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.lavaImmune = true;
             //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.BactusBanner>();
+            //bannerItem = ModContent.ItemType<Items.Banners.CaesiumBruteBanner>();
         }
         public override void NPCLoot()
         {
@@ -60,6 +55,11 @@ namespace ExxoAvalonOrigins.NPCs
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCaesium && spawnInfo.player.ZoneUnderworldHeight && !NPC.AnyNPCs(NPCID.WallofFlesh) && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.WallofSteel>()))
                 return 0.8f;
             return 0;
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (npc.Center.X <= target.Center.X) target.velocity.X += 8;
+            else target.velocity.X -= 8;
         }
         public override void AI()
         {

@@ -60,6 +60,8 @@ namespace ExxoAvalonOrigins
         // Reference to the main instance of the mod
         public static ExxoAvalonOrigins mod { get; private set; }
 
+        public static float caesiumTransition;
+
         public ExxoAvalonOrigins()
         {
             mod = this;

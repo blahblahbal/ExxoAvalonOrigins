@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,8 @@ namespace ExxoAvalonOrigins.Projectiles
 			projectile.alpha = 0;
 			projectile.friendly = false;
             projectile.hostile = true;
-		}
+            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+        }
         public override void AI()
         {
             projectile.rotation++;

@@ -46,7 +46,8 @@ namespace ExxoAvalonOrigins
         public static int slimeLife = 10000;
         public static bool imkCompat = false;
 
-        public static List<int> hornets = new List<int> {
+        public static List<int> hornets = new List<int>
+        {
             NPCID.Hornet,
             NPCID.MossHornet,
             NPCID.HornetFatty,
@@ -56,11 +57,6 @@ namespace ExxoAvalonOrigins
             NPCID.HornetStingy
         };
 
-        //public override void SetupTravelShop(int[] shop, ref int nextSlot)
-        //{
-        //    shop[nextSlot] = ModContent.ItemType<TomeForge>();
-        //    nextSlot++;
-        //}
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
@@ -126,20 +122,24 @@ namespace ExxoAvalonOrigins
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (type == NPCID.Steampunker && Main.LocalPlayer.ZoneJungle)
+            if (type == NPCID.Steampunker)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.LimeGreenSolution>());
-                nextSlot++;
-            }
-            if (type == NPCID.Steampunker && (Main.bloodMoon || Main.eclipse))
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.YellowSolution>());
-                nextSlot++;
-            }
-            if (type == NPCID.Steampunker && ExxoAvalonOriginsWorld.downedMechasting)
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.BlackSolution>());
-                nextSlot++;
+                if (Main.bloodMoon || Main.eclipse)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.YellowSolution>());
+                    nextSlot++;
+                }
+                if (Main.LocalPlayer.ZoneJungle)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.LimeGreenSolution>());
+                    nextSlot++;
+                }
+                if (ExxoAvalonOriginsWorld.downedMechasting)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Ammo.BlackSolution>());
+                    shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                    nextSlot++;
+                }
             }
             if (type == NPCID.Pirate && NPC.downedPirates)
             {
@@ -153,14 +153,9 @@ namespace ExxoAvalonOrigins
                 shop.item[nextSlot].value = Item.buyPrice(0, 4);
                 nextSlot++;
             }
-            if (type == 19 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
+            if (type == NPCID.ArmsDealer && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<MissileBolt>());
-                nextSlot++;
-            }
-            if (type == 368)
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<TomeForge>());
                 nextSlot++;
             }
         }
@@ -717,7 +712,7 @@ IL_162:
             return base.CheckDead(npc);
         }
 
-        public static void InitialiseNPCGroups()
+        public static void InitializeNPCGroups()
         {
             slimes.Add(NPCID.BlueSlime);
             slimes.Add(NPCID.MotherSlime);
@@ -909,7 +904,7 @@ IL_162:
         {
             if (!initialised)
             {
-                InitialiseNPCGroups();
+                InitializeNPCGroups();
                 initialised = true;
             }
             int maxValue = 100;
