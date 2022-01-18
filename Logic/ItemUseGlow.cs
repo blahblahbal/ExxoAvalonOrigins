@@ -13,8 +13,8 @@ namespace ExxoAvalonOrigins.Logic
         public Texture2D glowTexture = null;
         public int glowOffsetY = 0;
         public int glowOffsetX = 0;
-       public override bool InstancePerEntity => true;
-       public override bool CloneNewInstances => true;
+        public override bool InstancePerEntity => true;
+        public override bool CloneNewInstances => true;
     }
     public class PlayerUseGlow : ModPlayer
     {

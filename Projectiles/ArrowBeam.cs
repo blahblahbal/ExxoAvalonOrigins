@@ -1,34 +1,28 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class ArrowBeam : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Arrow Beam");
-		}
+    public class ArrowBeam : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Arrow Beam");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ArrowBeam");
-			projectile.width = dims.Width * 4 / 1;
-			projectile.height = dims.Height * 4 / 1 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.ranged = true;
-			projectile.MaxUpdates = 100;
-			projectile.timeLeft = 100;
-			projectile.penetrate = -1;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ArrowBeam");
+            projectile.width = dims.Width * 4 / 1;
+            projectile.height = dims.Height * 4 / 1 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.ranged = true;
+            projectile.MaxUpdates = 100;
+            projectile.timeLeft = 100;
+            projectile.penetrate = -1;
+        }
 
         public override void AI()
         {

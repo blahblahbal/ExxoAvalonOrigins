@@ -6,21 +6,21 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class MistyPeachBlossoms : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Misty Peach Blossoms");
-			Tooltip.SetDefault("Tome\n+20 HP\n+20 mana");
-		}
+    class MistyPeachBlossoms : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Misty Peach Blossoms");
+            Tooltip.SetDefault("Tome\n+20 HP\n+20 mana");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Green;
-			item.width = dims.Width;
-			item.value = 15000;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Green;
+            item.width = dims.Width;
+            item.value = 15000;
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 

@@ -1,32 +1,27 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class Bones : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bones");
-		}
+    public class Bones : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bones");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Bones");
-			projectile.width = dims.Width;
-			projectile.height = dims.Height / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.scale = 1.2f;
-			projectile.friendly = true;
-			projectile.magic = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Bones");
+            projectile.width = dims.Width;
+            projectile.height = dims.Height / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.scale = 1.2f;
+            projectile.friendly = true;
+            projectile.magic = true;
+        }
 
         public override void AI()
         {

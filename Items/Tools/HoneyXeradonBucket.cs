@@ -5,28 +5,28 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-	class HoneyXeradonBucket : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Honey Xeradon Bucket");
-		}
+    class HoneyXeradonBucket : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Honey Xeradon Bucket");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.autoReuse = true;
-			item.width = dims.Width;
-			item.useTurn = true;
-			item.useTime = 10;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.maxStack = 99;
-			item.useAnimation = 15;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.autoReuse = true;
+            item.width = dims.Width;
+            item.useTurn = true;
+            item.useTime = 10;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.maxStack = 99;
+            item.useAnimation = 15;
+            item.height = dims.Height;
+        }
 
-		public override bool UseItem(Player player)
-		{
+        public override bool UseItem(Player player)
+        {
             if (player.whoAmI == Main.myPlayer)
             {
                 if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 &&
@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins.Items.Tools
                     }
                 }
             }
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 }

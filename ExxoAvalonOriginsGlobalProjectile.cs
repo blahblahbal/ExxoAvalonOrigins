@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -262,7 +258,7 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-         
+
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().thornMagic)

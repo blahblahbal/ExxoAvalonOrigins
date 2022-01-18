@@ -1,10 +1,9 @@
-using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Dusts
 {
-	public class OsmiumDust : ModDust
-	{
+    public class OsmiumDust : ModDust
+    {
 
-	}
+    }
 }

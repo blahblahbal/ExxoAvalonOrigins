@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
 {
-	[AutoloadEquip(EquipType.Body)]
-	class PeridotRobe : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Peridot Robe");
-			Tooltip.SetDefault("Increases maximum mana by 120\nReduces mana usage by 16%");
-		}
+    [AutoloadEquip(EquipType.Body)]
+    class PeridotRobe : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Peridot Robe");
+            Tooltip.SetDefault("Increases maximum mana by 120\nReduces mana usage by 16%");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 5;
-			item.rare = ItemRarityID.Green;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 0, 50, 0) * 4;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 5;
+            item.rare = ItemRarityID.Green;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 0, 50, 0) * 4;
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -50,9 +50,9 @@ namespace ExxoAvalonOrigins.Items.Armor
             }
         }
         public override void UpdateEquip(Player player)
-		{
-			player.statManaMax2 += 120;
-			player.manaCost -= 0.16f;
-		}
-	}
+        {
+            player.statManaMax2 += 120;
+            player.manaCost -= 0.16f;
+        }
+    }
 }

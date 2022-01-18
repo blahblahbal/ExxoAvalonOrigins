@@ -1,26 +1,19 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class TropicalGrass : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(56, 215, 29));
+    public class TropicalGrass : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(56, 215, 29));
             SetModTree(new TropicalTree());
             Main.tileSolid[Type] = true;
-			Main.tileBrick[Type] = true;
-			Main.tileBlockLight[Type] = true;
+            Main.tileBrick[Type] = true;
+            Main.tileBlockLight[Type] = true;
             Main.tileBlendAll[Type] = true;
             Main.tileMergeDirt[Type] = true;
             drop = ModContent.ItemType<TropicalMudBlock>();

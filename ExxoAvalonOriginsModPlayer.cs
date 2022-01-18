@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ExxoAvalonOrigins.Items;
+using ExxoAvalonOrigins.Buffs;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Tools;
@@ -9,7 +9,6 @@ using ExxoAvalonOrigins.Items.Weapons.Melee;
 using ExxoAvalonOrigins.Logic;
 using ExxoAvalonOrigins.Prefixes;
 using ExxoAvalonOrigins.Projectiles;
-using ExxoAvalonOrigins.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -166,7 +165,7 @@ namespace ExxoAvalonOrigins
         public bool thunderBolt;
         public bool incDef;
         public bool regenStrike;
-		public bool bOfBacteria;
+        public bool bOfBacteria;
         public bool duraShield = false;
         public bool slimeBand;
         public bool defDebuff;
@@ -1538,7 +1537,7 @@ namespace ExxoAvalonOrigins
 
         public override void PreUpdateMovement()
         {
-            
+
         }
 
         public override void PostUpdate()
@@ -1548,7 +1547,7 @@ namespace ExxoAvalonOrigins
             {
                 Player.defaultItemGrabRange = 114;
             }
-           
+
             if (herbTotal < 250)
             {
                 herbTier = 0;
@@ -2071,10 +2070,10 @@ namespace ExxoAvalonOrigins
                 player.statLife += hpHealed;
                 player.HealEffect(hpHealed, true);
             }
-			if (player.whoAmI == Main.myPlayer && bOfBacteria)
-			{
-				player.AddBuff(ModContent.BuffType<BacteriaEndurance>(), 6 * 60, true);
-			}
+            if (player.whoAmI == Main.myPlayer && bOfBacteria)
+            {
+                player.AddBuff(ModContent.BuffType<BacteriaEndurance>(), 6 * 60, true);
+            }
         }
 
         public override void PostUpdateEquips()

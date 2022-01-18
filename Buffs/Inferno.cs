@@ -1,23 +1,17 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
 {
-	public class Inferno : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Inferno");
-			Description.SetDefault("Losing life");
-			Main.debuff[Type] = true;
+    public class Inferno : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Inferno");
+            Description.SetDefault("Losing life");
+            Main.debuff[Type] = true;
             canBeCleared = false;
         }
 

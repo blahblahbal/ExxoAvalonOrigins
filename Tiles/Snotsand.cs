@@ -1,37 +1,37 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class Snotsand : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(136, 157, 56));
-			Main.tileSolid[Type] = true;
-			Main.tileBlockLight[Type] = true;
+    public class Snotsand : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(136, 157, 56));
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
             Main.tileMergeDirt[Type] = true;
-			//Merge with Sand
-			Main.tileMerge[Type][TileID.Sand] = true;
-			Main.tileMerge[TileID.Sand][Type] = true;
-			//Merge with Ebonsand
-			Main.tileMerge[Type][TileID.Ebonsand] = true;
-			Main.tileMerge[TileID.Ebonsand][Type] = true;
-			//Merge with Crimsand
-			Main.tileMerge[Type][TileID.Crimsand] = true;
-			Main.tileMerge[TileID.Crimsand][Type] = true;
-			//Merge with Pearlsand
-			Main.tileMerge[Type][TileID.Pearlsand] = true;
-			Main.tileMerge[TileID.Pearlsand][Type] = true;
-			Main.tileSand[Type] = true;
-			TileID.Sets.TouchDamageSands[Type] = 15;
-			TileID.Sets.Conversion.Sand[Type] = true;
-			TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
-			TileID.Sets.Falling[Type] = true;
-			drop = mod.ItemType("SnotsandBlock");
-			SetModCactus(new IckyCactus());
+            //Merge with Sand
+            Main.tileMerge[Type][TileID.Sand] = true;
+            Main.tileMerge[TileID.Sand][Type] = true;
+            //Merge with Ebonsand
+            Main.tileMerge[Type][TileID.Ebonsand] = true;
+            Main.tileMerge[TileID.Ebonsand][Type] = true;
+            //Merge with Crimsand
+            Main.tileMerge[Type][TileID.Crimsand] = true;
+            Main.tileMerge[TileID.Crimsand][Type] = true;
+            //Merge with Pearlsand
+            Main.tileMerge[Type][TileID.Pearlsand] = true;
+            Main.tileMerge[TileID.Pearlsand][Type] = true;
+            Main.tileSand[Type] = true;
+            TileID.Sets.TouchDamageSands[Type] = 15;
+            TileID.Sets.Conversion.Sand[Type] = true;
+            TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
+            TileID.Sets.Falling[Type] = true;
+            drop = mod.ItemType("SnotsandBlock");
+            SetModCactus(new IckyCactus());
             SetModPalmTree(new ContagionPalmTree());
             dustType = DustID.ScourgeOfTheCorruptor;
         }
@@ -95,10 +95,10 @@ namespace ExxoAvalonOrigins.Tiles
         //    return true;
         //}
         public override bool HasWalkDust()
-		{
-			return Main.rand.Next(3) == 0;
-		}
-		public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+        {
+            return Main.rand.Next(3) == 0;
+        }
+        public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
         public override int SaplingGrowthType(ref int style)
         {
             style = 0;

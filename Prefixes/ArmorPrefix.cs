@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Terraria.Localization;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes

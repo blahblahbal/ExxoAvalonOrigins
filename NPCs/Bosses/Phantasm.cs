@@ -1,13 +1,13 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {

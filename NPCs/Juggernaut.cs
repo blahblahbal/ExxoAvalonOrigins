@@ -1,15 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Material;
-using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {

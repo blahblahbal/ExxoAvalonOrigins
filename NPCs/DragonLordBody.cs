@@ -1,60 +1,56 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
     [AutoloadBossHead]
-	public class DragonLordBody : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dragon Lord");
-			Main.npcFrameCount[npc.type] = 1;
-		}
+    public class DragonLordBody : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dragon Lord");
+            Main.npcFrameCount[npc.type] = 1;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 100;
-			npc.boss = true;
-			npc.scale = 1.3f;
-			npc.netAlways = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 35000;
-			npc.defense = 50;
-			npc.noGravity = true;
-			npc.width = 32;
+        public override void SetDefaults()
+        {
+            npc.damage = 100;
+            npc.boss = true;
+            npc.scale = 1.3f;
+            npc.netAlways = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 35000;
+            npc.defense = 50;
+            npc.noGravity = true;
+            npc.width = 32;
             npc.gfxOffY = 25f;
             npc.aiStyle = -1;
-			npc.npcSlots = 1f;
-			npc.value = 100000f;
-			npc.timeLeft = 3000;
-			npc.height = 32;
-			npc.knockBackResist = 0f;
+            npc.npcSlots = 1f;
+            npc.value = 100000f;
+            npc.timeLeft = 3000;
+            npc.height = 32;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit7;
-	        npc.DeathSound = SoundID.NPCDeath8;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.Frostburn] = true;
+            npc.DeathSound = SoundID.NPCDeath8;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.Frostburn] = true;
             drawOffsetY = 55;
         }
         public override Color? GetAlpha(Color drawColor)
         {
             return Color.White;
         }
-		public override void BossHeadRotation(ref float rotation)
-		{
-			rotation = npc.rotation;
-		}
+        public override void BossHeadRotation(ref float rotation)
+        {
+            rotation = npc.rotation;
+        }
         public override void AI()
         {
             if (npc.ai[3] > 0f)

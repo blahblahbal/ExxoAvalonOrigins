@@ -1,41 +1,35 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class GrossyFloat : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Grossy Float");
-			Main.npcFrameCount[npc.type] = 5;
-		}
+    public class GrossyFloat : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Grossy Float");
+            Main.npcFrameCount[npc.type] = 5;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 70;
-			npc.noTileCollide = true;
-			npc.lifeMax = 200;
-			npc.defense = 10;
-			npc.noGravity = true;
-			npc.alpha = 100;
-			npc.width = 24;
-			npc.aiStyle = 22;
-			npc.value = 500f;
-			npc.height = 56;
-			npc.knockBackResist = 0.7f;
+        public override void SetDefaults()
+        {
+            npc.damage = 70;
+            npc.noTileCollide = true;
+            npc.lifeMax = 200;
+            npc.defense = 10;
+            npc.noGravity = true;
+            npc.alpha = 100;
+            npc.width = 24;
+            npc.aiStyle = 22;
+            npc.value = 500f;
+            npc.height = 56;
+            npc.knockBackResist = 0.7f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
         }

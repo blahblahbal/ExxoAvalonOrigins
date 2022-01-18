@@ -178,6 +178,25 @@ namespace ExxoAvalonOrigins
 
                             return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress;
                         }
+                    case "getinzonemines":
+                    case "getinzonecrystal":
+                    case "getinzonecrystalmine":
+                    case "getinzonecrystalmines":
+                        {
+                            Player player = null;
+                            if (args[1] is int num)
+                                player = Main.player[num];
+                            else if (args[1] is Player player1)
+                                player = player1;
+
+                            if (player == null)
+                            {
+                                logger.Error("CALL ERROR: Second param MUST be a player or integer!");
+                                return null;
+                            }
+
+                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCrystal;
+                        }
                     #endregion
 
                     #region GetWorldAltX
@@ -251,7 +270,7 @@ namespace ExxoAvalonOrigins
                         return (int)ExxoAvalonOriginsWorld.shmTier2Ore + 1;
                     #endregion
 
-                    #region
+                    #region IsDownedX
                     case "isdownedbacterium":
                     case "isdownedbacteriumprime":
                         return ExxoAvalonOriginsWorld.downedBacteriumPrime;

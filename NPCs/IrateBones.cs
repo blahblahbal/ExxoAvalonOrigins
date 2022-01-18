@@ -1,36 +1,31 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class IrateBones : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Irate Bones");
-			Main.npcFrameCount[npc.type] = 15;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 35;
-			npc.lifeMax = 350;
-			npc.defense = 15;
-			npc.lavaImmune = true;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 1000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.5f;
+    public class IrateBones : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Irate Bones");
+            Main.npcFrameCount[npc.type] = 15;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 35;
+            npc.lifeMax = 350;
+            npc.defense = 15;
+            npc.lavaImmune = true;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 1000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.IrateBonesBanner>();
         }

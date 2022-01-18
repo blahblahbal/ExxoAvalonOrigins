@@ -1,7 +1,5 @@
 ﻿using System;
-using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using Terraria;
 
 namespace ExxoAvalonOrigins.Hooks
 {

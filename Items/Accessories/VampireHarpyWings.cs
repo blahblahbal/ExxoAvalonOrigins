@@ -1,29 +1,28 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	[AutoloadEquip(EquipType.Wings)]
-	class VampireHarpyWings : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Vampire Harpy Wings");
-			Tooltip.SetDefault("Allows flight and slow fall and heals life\nOther bonuses apply when in the Dark Matter");
-		}
+    [AutoloadEquip(EquipType.Wings)]
+    class VampireHarpyWings : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Vampire Harpy Wings");
+            Tooltip.SetDefault("Allows flight and slow fall and heals life\nOther bonuses apply when in the Dark Matter");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Red;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Red;
             item.width = dims.Width;
-			item.value = 800000;
-			item.accessory = true;
-			item.height = dims.Height;
-		}
+            item.value = 800000;
+            item.accessory = true;
+            item.height = dims.Height;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -34,5 +33,5 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 player.lifeRegen += 5;
             }
         }
-	}
+    }
 }

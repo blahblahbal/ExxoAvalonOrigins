@@ -5,20 +5,20 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Material
 {
-	class MusicBoxEssence : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Music Box Essence");
-		}
+    class MusicBoxEssence : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Music Box Essence");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightRed;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 5, 0, 0);
-			item.height = dims.Height;
-		}
-	}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.LightRed;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 5, 0, 0);
+            item.height = dims.Height;
+        }
+    }
 }

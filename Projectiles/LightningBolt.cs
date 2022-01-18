@@ -1,38 +1,34 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class LightningBolt : ModProjectile
-	{
+    public class LightningBolt : ModProjectile
+    {
         float rot = 0f;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Lightning");
-		}
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Lightning");
+        }
 
-		public override void SetDefaults()
-		{
-			projectile.width = 8;
-			projectile.height = 8;
-			projectile.scale = 1f;
-			projectile.alpha = 100;
-			projectile.aiStyle = -1;
-			projectile.timeLeft = 50;
-			projectile.friendly = true;
-			projectile.penetrate = 1;
-			projectile.light = 1f;
-			projectile.ignoreWater = true;
-			projectile.tileCollide = false;
-		}
+        public override void SetDefaults()
+        {
+            projectile.width = 8;
+            projectile.height = 8;
+            projectile.scale = 1f;
+            projectile.alpha = 100;
+            projectile.aiStyle = -1;
+            projectile.timeLeft = 50;
+            projectile.friendly = true;
+            projectile.penetrate = 1;
+            projectile.light = 1f;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+        }
         public override void AI()
         {
             // Disgusting spaghetticode, my apologies. The checks I implemented for the lighning to make it always move down do not work always so if you want to give this a try, be my guest
@@ -84,7 +80,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     //fakePos.Y += (float)Math.Sin(projectile.rotation) * newLightning.scale * 48;
                     //fakePos.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
                     //fakePos.Y += (float)Math.Sin(newLightning.rotation) * newLightning.scale * 48;
-                    
+
                     //Main.NewText(((int)(projectile.position.Y / 16)).ToString());
 
                     //Main.NewText(((int)(newLightning.position.Y / 16)).ToString(), 255, 255, 100);
@@ -118,7 +114,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, lightning);
                     }
-                    
+
                 }
             }
             projectile.ai[0]--;

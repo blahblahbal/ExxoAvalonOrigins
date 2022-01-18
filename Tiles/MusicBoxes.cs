@@ -49,15 +49,15 @@ namespace ExxoAvalonOrigins.Tiles
                 case 6:
                     item = ModContent.ItemType<Items.MusicBoxes.MusicBoxPhantasm>();
                     break;
-				/*case 7:
+                /*case 7:
 				    item = ModContent.ItemType<Items.MusicBoxes.MusicBoxDarkMatter>();
 					break;*/
-				case 8:
-					item = ModContent.ItemType<Items.MusicBoxes.MusicBoxHellCastle>();
-					break;
-				case 9:
-					item = ModContent.ItemType<Items.MusicBoxes.MusicBoxTuhrtlOutpost>();
-					break;
+                case 8:
+                    item = ModContent.ItemType<Items.MusicBoxes.MusicBoxHellCastle>();
+                    break;
+                case 9:
+                    item = ModContent.ItemType<Items.MusicBoxes.MusicBoxTuhrtlOutpost>();
+                    break;
             }
             Item.NewItem(i * 16, j * 16, 16, 48, item);
         }
@@ -88,15 +88,15 @@ namespace ExxoAvalonOrigins.Tiles
                 case 6:
                     item = ModContent.ItemType<Items.MusicBoxes.MusicBoxPhantasm>();
                     break;
-				/*case 7:
+                /*case 7:
 				    item = ModContent.ItemType<Items.MusicBoxes.MusicBoxDarkMatter>();
 					break;*/
-				case 8:
-					item = ModContent.ItemType<Items.MusicBoxes.MusicBoxHellCastle>();
-					break;
-				case 9:
-					item = ModContent.ItemType<Items.MusicBoxes.MusicBoxTuhrtlOutpost>();
-					break;
+                case 8:
+                    item = ModContent.ItemType<Items.MusicBoxes.MusicBoxHellCastle>();
+                    break;
+                case 9:
+                    item = ModContent.ItemType<Items.MusicBoxes.MusicBoxTuhrtlOutpost>();
+                    break;
             }
             Player player = Main.LocalPlayer;
             player.noThrow = 2;

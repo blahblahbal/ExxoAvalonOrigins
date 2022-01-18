@@ -1,41 +1,40 @@
-﻿using ExxoAvalonOrigins.Logic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-	class ElementalExcalibur : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Elemental Excalibur");
-		}
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.damage = 190;
-			item.autoReuse = true;
-			item.UseSound = SoundID.Item1;
-			item.scale = 1.2f;
-			item.shootSpeed = 13f;
-			item.rare = ItemRarityID.Cyan;
-			item.noMelee = false;
-			item.width = dims.Width;
-			item.useTime = 15;
-			item.knockBack = 8.5f;
-			item.shoot = ModContent.ProjectileType<Projectiles.ElementBeam>();
-			item.melee = true;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.value = Item.sellPrice(0, 90, 0, 0);
-			item.useAnimation = 10;
-			item.height = dims.Height;
-		}
-		public override Color? GetAlpha(Color lightColor)
-		{
-			return new Color(255, 255, 255, 255);
-		}
+    class ElementalExcalibur : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Elemental Excalibur");
+        }
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.damage = 190;
+            item.autoReuse = true;
+            item.UseSound = SoundID.Item1;
+            item.scale = 1.2f;
+            item.shootSpeed = 13f;
+            item.rare = ItemRarityID.Cyan;
+            item.noMelee = false;
+            item.width = dims.Width;
+            item.useTime = 15;
+            item.knockBack = 8.5f;
+            item.shoot = ModContent.ProjectileType<Projectiles.ElementBeam>();
+            item.melee = true;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.value = Item.sellPrice(0, 90, 0, 0);
+            item.useAnimation = 10;
+            item.height = dims.Height;
+        }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 255);
+        }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             int randomNum = Main.rand.Next(8);
@@ -77,5 +76,5 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-	}
+    }
 }

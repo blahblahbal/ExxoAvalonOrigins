@@ -1,23 +1,18 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class TroxiniumForge : ModTile
-	{
-		public override void SetDefaults()
-		{
-			var name = CreateMapEntryName();
-			name.SetDefault("Troxinium Forge");
-			AddMapEntry(new Color(255, 216, 0), name);
+    public class TroxiniumForge : ModTile
+    {
+        public override void SetDefaults()
+        {
+            var name = CreateMapEntryName();
+            name.SetDefault("Troxinium Forge");
+            AddMapEntry(new Color(255, 216, 0), name);
             animationFrameHeight = 38;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.CoordinateHeights = new int[]
@@ -29,11 +24,11 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
-			Main.tileLighted[Type] = true;
-			Main.tileFrameImportant[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileFrameImportant[Type] = true;
             dustType = ModContent.DustType<Dusts.TroxiniumDust>();
-            adjTiles = new int[] {TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces};
-		}
+            adjTiles = new int[] { TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces };
+        }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 0.83f;
@@ -41,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
             b = 0.5f;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {   
+        {
             Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.TroxiniumForge>());
         }
         public override void RandomUpdate(int i, int j)
@@ -52,7 +47,7 @@ namespace ExxoAvalonOrigins.Tiles
                 if (Main.rand.Next(3) != 0)
                 {
                     Main.dust[num306].noGravity = true;
-                }        
+                }
             }
         }
         public override void AnimateTile(ref int frame, ref int frameCounter)

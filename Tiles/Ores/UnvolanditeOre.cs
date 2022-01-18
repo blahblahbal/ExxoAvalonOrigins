@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class UnvolanditeOre : ModTile
-	{
-		public override void SetDefaults()
-		{
-			mineResist = 8f;
-			AddMapEntry(new Color(78, 79, 41), LanguageManager.Instance.GetText("Unvolandite"));
-			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
+    public class UnvolanditeOre : ModTile
+    {
+        public override void SetDefaults()
+        {
+            mineResist = 8f;
+            AddMapEntry(new Color(78, 79, 41), LanguageManager.Instance.GetText("Unvolandite"));
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 840;
             Main.tileBlockLight[Type] = true;

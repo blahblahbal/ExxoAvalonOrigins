@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.IO;

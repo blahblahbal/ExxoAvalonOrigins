@@ -1,24 +1,18 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class SporeBlock : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(133, 235, 38));
-			Main.tileSolid[Type] = true;
-			drop = mod.ItemType("SporeBlock");
+    public class SporeBlock : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(133, 235, 38));
+            Main.tileSolid[Type] = true;
+            drop = mod.ItemType("SporeBlock");
             dustType = DustID.GreenFairy;
         }
-	}
+    }
 }

@@ -6,26 +6,26 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class TourmalineAmulet : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tourmaline Amulet");
+    class TourmalineAmulet : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Tourmaline Amulet");
             Tooltip.SetDefault("5% increased critical strike chance");
-		}
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 0, 70);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 0, 70);
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
             player.meleeCrit += 5;
             player.magicCrit += 5;
             player.rangedCrit += 5;

@@ -1,57 +1,52 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Material;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class BloodshotEye : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bloodshot Eye");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class BloodshotEye : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bloodshot Eye");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 25;
-			npc.lifeMax = 110;
-			npc.defense = 5;
-			npc.width = 48;
-			npc.aiStyle = 2;
-			npc.value = 150f;
-			npc.height = 34;
-			npc.knockBackResist = 0.4f;
-			npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath6;
-			npc.buffImmune[BuffID.Confused] = true;
+        public override void SetDefaults()
+        {
+            npc.damage = 25;
+            npc.lifeMax = 110;
+            npc.defense = 5;
+            npc.width = 48;
+            npc.aiStyle = 2;
+            npc.value = 150f;
+            npc.height = 34;
+            npc.knockBackResist = 0.4f;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath6;
+            npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BloodshotEyeBanner>();
         }
 
-		public override void NPCLoot()
-		{
-			if (Main.rand.Next(100) <= 45)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodshotLens>(), 1, false, 0, false);
-			}
-			if (Main.rand.Next(33) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackLens, 1, false, 0, false);
-			}
-			if (npc.life <= 0)
-			{
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye1"), 1f);
-				Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye2"), 1f);
-			}
-		}
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(100) <= 45)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodshotLens>(), 1, false, 0, false);
+            }
+            if (Main.rand.Next(33) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackLens, 1, false, 0, false);
+            }
+            if (npc.life <= 0)
+            {
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye1"), 1f);
+                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/BloodshotEye2"), 1f);
+            }
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.65f);

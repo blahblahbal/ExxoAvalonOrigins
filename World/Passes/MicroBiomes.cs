@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
-using Terraria.ID;
 using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Passes

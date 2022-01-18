@@ -1,43 +1,39 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Potions;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class AncientOblivionPhase1 : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ancient Oblivion");
-			Main.npcFrameCount[npc.type] = 6;
-		}
+    public class AncientOblivionPhase1 : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient Oblivion");
+            Main.npcFrameCount[npc.type] = 6;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 150;
-			npc.boss = true;
-			npc.netAlways = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 70000;
-			npc.defense = 50;
-			npc.noGravity = true;
-			npc.width = 110;
-			npc.aiStyle = -1;
-			npc.npcSlots = 6f;
-			npc.value = 50000f;
-			npc.timeLeft = 22500;
-			npc.height = 152;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 150;
+            npc.boss = true;
+            npc.netAlways = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 70000;
+            npc.defense = 50;
+            npc.noGravity = true;
+            npc.width = 110;
+            npc.aiStyle = -1;
+            npc.npcSlots = 6f;
+            npc.value = 50000f;
+            npc.timeLeft = 22500;
+            npc.height = 152;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath14;
-			npc.buffImmune[BuffID.Frostburn] = true;
+            npc.DeathSound = SoundID.NPCDeath14;
+            npc.buffImmune[BuffID.Frostburn] = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

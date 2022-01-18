@@ -1,18 +1,18 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class PearlwoodBeam : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(75, 68, 49));
-			drop = mod.ItemType("PearlwoodBeam");
+    public class PearlwoodBeam : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(75, 68, 49));
+            drop = mod.ItemType("PearlwoodBeam");
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);

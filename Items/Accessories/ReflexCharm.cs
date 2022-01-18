@@ -5,27 +5,27 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class ReflexCharm : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Reflex Charm");
-			Tooltip.SetDefault("Gives a chance to reflect projectiles");
-		}
+    class ReflexCharm : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Reflex Charm");
+            Tooltip.SetDefault("Gives a chance to reflect projectiles");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 2;
-			item.rare = ItemRarityID.LightRed;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 1, 8, 0);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 2;
+            item.rare = ItemRarityID.LightRed;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 1, 8, 0);
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
             Rectangle playerWS = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {
@@ -85,5 +85,5 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 }
             }
         }
-	}
+    }
 }

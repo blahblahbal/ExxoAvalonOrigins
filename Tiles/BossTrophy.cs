@@ -1,5 +1,4 @@
-﻿using System;
-using ExxoAvalonOrigins.Items.Placeable.Trophy;
+﻿using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -90,7 +90,7 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             bool num220 = WorldGen.SolidTile(Framing.GetTileSafely((int)projectile.position.X / 16, (int)projectile.position.Y / 16));
             Dust dust2 = Main.dust[Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), (int)(projectile.width * projectile.scale), (int)(projectile.height * projectile.scale), DustID.Fire)];
-                
+
             dust2.position = new Vector2(projectile.position.X + (projectile.width - 0.5f * projectile.scale), projectile.position.Y + (projectile.height - 0.5f * projectile.scale));
             dust2.velocity = Vector2.Zero;
             dust2.scale = 1.5f;

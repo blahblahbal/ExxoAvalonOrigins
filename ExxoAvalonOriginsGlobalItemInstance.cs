@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Armor.AvalonHelmet>(),
             ModContent.ItemType<Items.Armor.AvalonBodyarmor>(),
             ModContent.ItemType<Items.Armor.AvalonCuisses>(),
-			ModContent.ItemType<Items.Other.MechanicalWhoopieCushion>()
+            ModContent.ItemType<Items.Other.MechanicalWhoopieCushion>()
         };
         List<int> rainbowRarityItems = new List<int>
         {

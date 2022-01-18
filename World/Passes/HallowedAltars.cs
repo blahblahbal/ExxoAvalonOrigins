@@ -1,11 +1,11 @@
 ﻿using System;
+using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
-using ExxoAvalonOrigins.Tiles;
-using Microsoft.Xna.Framework;
 using Terraria.Utilities;
+using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Passes
 {

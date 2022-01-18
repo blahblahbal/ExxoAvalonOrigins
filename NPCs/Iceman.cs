@@ -1,46 +1,43 @@
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Painting;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
     [AutoloadHead]
-	public class Iceman : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Iceman");
-			Main.npcFrameCount[npc.type] = 16;
-		}
+    public class Iceman : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Iceman");
+            Main.npcFrameCount[npc.type] = 16;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 10;
-			npc.lifeMax = 300;
-			npc.townNPC = true;
-			npc.defense = 15;
-			npc.friendly = true;
-			npc.width = 18;
-			npc.aiStyle = -1;
-			npc.scale = 1f;
-			npc.height = 40;
-			npc.knockBackResist = 0.5f;
+        public override void SetDefaults()
+        {
+            npc.damage = 10;
+            npc.lifeMax = 300;
+            npc.townNPC = true;
+            npc.defense = 15;
+            npc.friendly = true;
+            npc.width = 18;
+            npc.aiStyle = -1;
+            npc.scale = 1f;
+            npc.height = 40;
+            npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-		}
+            npc.DeathSound = SoundID.NPCDeath1;
+        }
         public override string TownNPCName()
         {
             switch (Main.rand.Next(9))

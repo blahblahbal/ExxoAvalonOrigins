@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.World.Structures
@@ -166,7 +164,7 @@ namespace ExxoAvalonOrigins.World.Structures
             Main.tile[x - 1, y].active(true);
             Main.tile[x + 1, y].active(true);
             WorldGen.PlaceTile(x, y - 1, (ushort)ModContent.TileType<Tiles.WaspLarva>());
-            
+
             //WorldGen.Place3x3(x - 1, y - 4, (ushort)ModContent.TileType<Tiles.WaspLarva>());
 
 

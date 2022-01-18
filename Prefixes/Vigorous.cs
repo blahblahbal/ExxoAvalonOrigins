@@ -3,40 +3,40 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Vigorous : ModPrefix
-	{
-		public Vigorous()
-		{
+    public class Vigorous : ModPrefix
+    {
+        public Vigorous()
+        {
 
-		}
+        }
 
-		public override PrefixCategory Category { get { return PrefixCategory.Accessory; } }
+        public override PrefixCategory Category { get { return PrefixCategory.Accessory; } }
 
-		public override void ModifyValue(ref float valueMult)
-		{
-			valueMult *= 1.25f;
-		}
+        public override void ModifyValue(ref float valueMult)
+        {
+            valueMult *= 1.25f;
+        }
 
-		public override bool Autoload(ref string name)
-		{
-			if (base.Autoload(ref name))
-			{
-				mod.AddPrefix("Vigorous", new Vigorous());
-			}
-			return false;
-		}
+        public override bool Autoload(ref string name)
+        {
+            if (base.Autoload(ref name))
+            {
+                mod.AddPrefix("Vigorous", new Vigorous());
+            }
+            return false;
+        }
 
-		public override void Apply(Item item)
-		{
-			Main.player[Main.myPlayer].meleeSpeed += 0.03f;
-			Main.player[Main.myPlayer].meleeDamage += 0.03f;
-			Main.player[Main.myPlayer].rangedDamage += 0.03f;
-			Main.player[Main.myPlayer].magicDamage += 0.03f;
-			Main.player[Main.myPlayer].minionDamage += 0.03f;
-		}
+        public override void Apply(Item item)
+        {
+            Main.player[Main.myPlayer].meleeSpeed += 0.03f;
+            Main.player[Main.myPlayer].meleeDamage += 0.03f;
+            Main.player[Main.myPlayer].rangedDamage += 0.03f;
+            Main.player[Main.myPlayer].magicDamage += 0.03f;
+            Main.player[Main.myPlayer].minionDamage += 0.03f;
+        }
 
-		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-		{
-		}
-	}
+        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
+        {
+        }
+    }
 }

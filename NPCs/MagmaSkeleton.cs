@@ -1,36 +1,32 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class MagmaSkeleton : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Magma Skeleton");
-			Main.npcFrameCount[npc.type] = 15;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 42;
-			npc.lifeMax = 540;
-			npc.defense = 21;
-			npc.lavaImmune = true;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 1000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.15f;
+    public class MagmaSkeleton : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Magma Skeleton");
+            Main.npcFrameCount[npc.type] = 15;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 42;
+            npc.lifeMax = 540;
+            npc.defense = 21;
+            npc.lavaImmune = true;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 1000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.15f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Confused] = true;
             npc.buffImmune[BuffID.OnFire] = true;
         }
         public override Color? GetAlpha(Color lightColor)

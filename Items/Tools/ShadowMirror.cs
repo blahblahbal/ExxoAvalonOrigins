@@ -6,27 +6,27 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-	class ShadowMirror : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Shadow Mirror");
-			Tooltip.SetDefault("Gaze in the mirror to return home");
-		}
+    class ShadowMirror : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Shadow Mirror");
+            Tooltip.SetDefault("Gaze in the mirror to return home");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Lime;
-			item.width = dims.Width;
-			item.useTime = 90;
-			item.useTurn = true;
-			item.value = 500000;
-			item.useStyle = ItemUseStyleID.HoldingUp;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Lime;
+            item.width = dims.Width;
+            item.useTime = 90;
+            item.useTurn = true;
+            item.value = 500000;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item6;
-			item.useAnimation = 90;
-			item.height = dims.Height;
-		}
+            item.useAnimation = 90;
+            item.height = dims.Height;
+        }
         public override void UpdateInventory(Player player)
         {
             player.accThirdEye = player.accFishFinder = player.accWeatherRadio = player.accCalendar = player.accCritterGuide = player.accDreamCatcher =

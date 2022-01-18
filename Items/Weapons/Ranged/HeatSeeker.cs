@@ -5,34 +5,34 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 {
-	class HeatSeeker : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Heat Seeker");
-			Tooltip.SetDefault("Rockets turn into heat-seeking missiles");
-		}
+    class HeatSeeker : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Heat Seeker");
+            Tooltip.SetDefault("Rockets turn into heat-seeking missiles");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.damage = 98;
-			item.autoReuse = true;
-			item.useTurn = false;
-			item.useAmmo = AmmoID.Rocket;
-			item.shootSpeed = 10f;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.damage = 98;
+            item.autoReuse = true;
+            item.useTurn = false;
+            item.useAmmo = AmmoID.Rocket;
+            item.shootSpeed = 10f;
             item.crit += 3;
-			item.ranged = true;
+            item.ranged = true;
             item.rare = ItemRarityID.Red;
             item.noMelee = true;
-			item.width = dims.Width;
-			item.knockBack = 5f;
-			item.useTime = 15;
-			item.shoot = ProjectileID.RocketI;
-			item.value = Item.sellPrice(1, 0, 0, 0);
-			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.useAnimation = 15;
-			item.height = dims.Height;
+            item.width = dims.Width;
+            item.knockBack = 5f;
+            item.useTime = 15;
+            item.shoot = ProjectileID.RocketI;
+            item.value = Item.sellPrice(1, 0, 0, 0);
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.useAnimation = 15;
+            item.height = dims.Height;
             item.UseSound = SoundID.Item11;
 
         }

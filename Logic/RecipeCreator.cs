@@ -13,7 +13,6 @@ using ExxoAvalonOrigins.Items.Placeable.Statue;
 using ExxoAvalonOrigins.Items.Placeable.Storage;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Placeable.Wall;
-using ExxoAvalonOrigins.Items.Potions;
 using ExxoAvalonOrigins.Items.Tools;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Melee;
@@ -829,32 +828,32 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BlueLihzahrdStatue>());
             recipe.AddRecipe();
 
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
-
-            
 
 
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.CrystalBall);
@@ -1002,7 +1001,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<ZirconHook>());
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Onyx>(), 20);
@@ -1089,7 +1088,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BagofIck>());
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SiltBlock, 20);
@@ -1961,29 +1960,29 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<SandBomb>(), 2);
             recipe.AddRecipe();
-			
-			recipe = new ModRecipe(mod);
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bomb, 2);
             recipe.AddIngredient(ItemID.EbonsandBlock, 30);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<EbonsandBomb>(), 2);
             recipe.AddRecipe();
-			
-			recipe = new ModRecipe(mod);
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bomb, 2);
             recipe.AddIngredient(ItemID.CrimsandBlock, 30);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<CrimsandBomb>(), 2);
             recipe.AddRecipe();
-			
-			recipe = new ModRecipe(mod);
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bomb, 2);
             recipe.AddIngredient(ItemID.PearlsandBlock, 30);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<PearlsandBomb>(), 2);
             recipe.AddRecipe();
-			
-			recipe = new ModRecipe(mod);
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bomb, 2);
             recipe.AddIngredient(ModContent.ItemType<SnotsandBlock>());
             recipe.AddTile(TileID.Anvils);
@@ -2088,7 +2087,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ItemID.BundleofBalloons);
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.StarCloak);
@@ -2339,7 +2338,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<SandCastle>());
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FireGauntlet);
@@ -2573,7 +2572,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ItemID.EnchantedSword);
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SiltBlock, 100);
@@ -2876,7 +2875,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<Elektriwave>());
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.MusketBall, 200);
@@ -2927,11 +2926,11 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BlahsWarhammer>());
             recipe.AddRecipe();
 
-            
 
-            
 
-            
+
+
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TerraBlade);
@@ -2971,7 +2970,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<OnyxStaff>());
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.WoodenArrow, 75);
@@ -3031,11 +3030,11 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<OblivionBar>());
             recipe.AddRecipe();
 
-            
 
-            
 
-            
+
+
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SouloftheJungle>(), 20);
@@ -3064,11 +3063,11 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<AwakenedRoseSubligar>());
             recipe.AddRecipe();
 
-            
 
-            
 
-            
+
+
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<HydrolythOre>(), 5);
@@ -3567,7 +3566,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<BismuthBrick>());
             recipe.AddRecipe();
 
-            
+
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<BismuthOre>(), 4);
@@ -3618,8 +3617,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             // staff
-			
-			
+
+
             // end Bismuth stuff
 
             // Iridium

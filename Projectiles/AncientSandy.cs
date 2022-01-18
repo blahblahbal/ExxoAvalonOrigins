@@ -1,36 +1,31 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class AncientSandy : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sandy");
-		}
+    public class AncientSandy : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Sandy");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/AncientSandy");
-			projectile.width = dims.Width * 20 / 16;
-			projectile.height = dims.Height * 20 / 16 / Main.projFrames[projectile.type];
-			projectile.scale = 1f;
-			projectile.alpha = 255;
-			projectile.aiStyle = -1;
-			projectile.timeLeft = 3600;
-			projectile.friendly = true;
-			projectile.penetrate = 1;
-			projectile.ignoreWater = true;
-			projectile.tileCollide = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/AncientSandy");
+            projectile.width = dims.Width * 20 / 16;
+            projectile.height = dims.Height * 20 / 16 / Main.projFrames[projectile.type];
+            projectile.scale = 1f;
+            projectile.alpha = 255;
+            projectile.aiStyle = -1;
+            projectile.timeLeft = 3600;
+            projectile.friendly = true;
+            projectile.penetrate = 1;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = true;
+        }
 
         public override void AI()
         {

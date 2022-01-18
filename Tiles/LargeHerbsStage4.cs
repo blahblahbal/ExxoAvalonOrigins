@@ -1,16 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.ObjectData;
-using Terraria.Enums;
 using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {

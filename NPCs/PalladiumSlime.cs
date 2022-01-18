@@ -1,36 +1,36 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class PalladiumSlime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Palladium Slime");
-			Main.npcFrameCount[npc.type] = 2;
-		}
+    public class PalladiumSlime : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Palladium Slime");
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 38;
-			npc.lifeMax = 514;
-			npc.defense = 10;
-			npc.width = 36;
-			npc.aiStyle = 1;
-			npc.value = 1000f;
-			npc.knockBackResist = 0.4f;
-			npc.height = 24;
+        public override void SetDefaults()
+        {
+            npc.damage = 38;
+            npc.lifeMax = 514;
+            npc.defense = 10;
+            npc.width = 36;
+            npc.aiStyle = 1;
+            npc.value = 1000f;
+            npc.knockBackResist = 0.4f;
+            npc.height = 24;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
+            npc.DeathSound = SoundID.NPCDeath1;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.PalladiumSlimeBanner>();
         }
 
-		public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PalladiumOre, Main.rand.Next(20, 32), false, 0, false);
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PalladiumOre, Main.rand.Next(20, 32), false, 0, false);
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

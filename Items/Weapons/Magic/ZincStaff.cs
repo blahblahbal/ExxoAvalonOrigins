@@ -5,18 +5,18 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
-	class ZincStaff : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Zinc Staff");
+    class ZincStaff : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Zinc Staff");
             Item.staff[item.type] = true;
         }
 
-		public override void SetDefaults()
-		{
-			item.CloneDefaults(ItemID.SapphireStaff);
-			Item.staff[item.type] = true;
+        public override void SetDefaults()
+        {
+            item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[item.type] = true;
             Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.width = dims.Width;

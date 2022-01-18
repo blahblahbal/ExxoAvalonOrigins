@@ -1,44 +1,39 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class DarkFlame : ModProjectile
-	{
+    public class DarkFlame : ModProjectile
+    {
         float theta; // this code and everything using it is referenced from Laugicality (The Enigma Mod) by Laugic
         float distanceFromOrigin;
         float speed;
         Vector2 origin;
 
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dark Flame");
-		}
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dark Flame");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DarkFlame");
-			projectile.width = dims.Width;
-			projectile.height = dims.Height / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.hostile = true;
-			projectile.light = 0.8f;
-			projectile.alpha = 50;
-			projectile.magic = true;
-			projectile.penetrate = -1;
-			projectile.scale = 0.9f;
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DarkFlame");
+            projectile.width = dims.Width;
+            projectile.height = dims.Height / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.hostile = true;
+            projectile.light = 0.8f;
+            projectile.alpha = 50;
+            projectile.magic = true;
+            projectile.penetrate = -1;
+            projectile.scale = 0.9f;
 
             theta = -1;
             distanceFromOrigin = 0;
             speed = 1;
-		}
+        }
 
         public override void AI()
         {

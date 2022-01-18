@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using ReLogic.Graphics;
-using System;
 using Terraria;
 using Terraria.Graphics;
 using Terraria.UI.Chat;

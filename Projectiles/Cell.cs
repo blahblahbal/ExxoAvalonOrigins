@@ -1,34 +1,30 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class Cell : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cell");
-		}
+    public class Cell : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cell");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Cell");
-			projectile.width = dims.Width * 22 / 24;
-			projectile.height = dims.Height * 22 / 24 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = -1;
-			projectile.melee = true;
-			projectile.scale = 1.1f;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Cell");
+            projectile.width = dims.Width * 22 / 24;
+            projectile.height = dims.Height * 22 / 24 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.penetrate = -1;
+            projectile.melee = true;
+            projectile.scale = 1.1f;
+        }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

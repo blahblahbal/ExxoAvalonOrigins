@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class HydrolythOre : ModTile
-	{
-		public override void SetDefaults()
-		{
-			mineResist = 8f;
-			AddMapEntry(new Color(0, 255, 255), LanguageManager.Instance.GetText("Hydrolyth"));
-			Main.tileSolid[Type] = true;
-			Main.tileBlockLight[Type] = true;
+    public class HydrolythOre : ModTile
+    {
+        public override void SetDefaults()
+        {
+            mineResist = 8f;
+            AddMapEntry(new Color(0, 255, 255), LanguageManager.Instance.GetText("Hydrolyth"));
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
             drop = mod.ItemType("HydrolythOre");
             soundType = SoundID.Tink;

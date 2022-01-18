@@ -1,32 +1,24 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class PatellaBullet : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Patella Bullet");
-		}
-		public override void SetDefaults()
-		{
-			projectile.width = 12;
-			projectile.timeLeft = 30;
-			projectile.height = 12;
-			projectile.aiStyle = -1;
-			projectile.scale = 1f;
-			projectile.friendly = true;
-			projectile.ranged = true;
-		}
-		/*public override void AI()
+    public class PatellaBullet : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Patella Bullet");
+        }
+        public override void SetDefaults()
+        {
+            projectile.width = 12;
+            projectile.timeLeft = 30;
+            projectile.height = 12;
+            projectile.aiStyle = -1;
+            projectile.scale = 1f;
+            projectile.friendly = true;
+            projectile.ranged = true;
+        }
+        /*public override void AI()
 		{
 			if (projectile.type == ModContent.ProjectileType<Boomlash>() || projectile.type == ModContent.ProjectileType<VileSpit>())
 			{
@@ -262,5 +254,5 @@ namespace ExxoAvalonOrigins.Projectiles
 				projectile.velocity.Y = 16f;
 			}
 		}*/
-	}
+    }
 }

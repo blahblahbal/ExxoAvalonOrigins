@@ -6,35 +6,35 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
-	class Ancient : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ancient");
-			Tooltip.SetDefault("Creates a sandstorm");
-		}
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.magic = true;
-			item.damage = 46;
-			item.autoReuse = true;
-			item.useTurn = true;
-			item.shootSpeed = 10f;
-			item.crit += 2;
-			item.mana = 19;
-			item.rare = ItemRarityID.Yellow;
-			item.noMelee = true;
-			item.width = dims.Width;
-			item.useTime = 25;
-			item.knockBack = 4f;
-			item.shoot = ModContent.ProjectileType<Projectiles.AncientSandstorm>();
-			item.UseSound = SoundID.Item34;
-			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.value = Item.sellPrice(0, 25, 0, 0);
-			item.useAnimation = 25;
-			item.height = dims.Height;
-		}
+    class Ancient : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient");
+            Tooltip.SetDefault("Creates a sandstorm");
+        }
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.magic = true;
+            item.damage = 46;
+            item.autoReuse = true;
+            item.useTurn = true;
+            item.shootSpeed = 10f;
+            item.crit += 2;
+            item.mana = 19;
+            item.rare = ItemRarityID.Yellow;
+            item.noMelee = true;
+            item.width = dims.Width;
+            item.useTime = 25;
+            item.knockBack = 4f;
+            item.shoot = ModContent.ProjectileType<Projectiles.AncientSandstorm>();
+            item.UseSound = SoundID.Item34;
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.value = Item.sellPrice(0, 25, 0, 0);
+            item.useAnimation = 25;
+            item.height = dims.Height;
+        }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)
         {
@@ -58,27 +58,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         }
         public override void HoldItem(Player player)
         {
-			Item ancient = item;
-			int baseCost = 19;
-			if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientLessCost)
+            Item ancient = item;
+            int baseCost = 19;
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientLessCost)
             {
-				foreach (Item item in player.inventory)
-				{
-					if (item.type == ancient.type)
-					{
-						item.mana = 9;
-						break;
-					}
-				}
-			}
-			else
-            {
-				foreach (Item item in player.inventory)
+                foreach (Item item in player.inventory)
                 {
-					if (item.type == ancient.type)
+                    if (item.type == ancient.type)
                     {
-						item.mana = baseCost;
-						break;
+                        item.mana = 9;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Item item in player.inventory)
+                {
+                    if (item.type == ancient.type)
+                    {
+                        item.mana = baseCost;
+                        break;
                     }
                 }
             }

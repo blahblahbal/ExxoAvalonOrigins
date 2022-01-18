@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,8 +14,8 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         }
 
         public override void SetDefaults()
-        { 
-		    Rectangle dims = this.GetDims();
+        {
+            Rectangle dims = this.GetDims();
             item.damage = 98;
             item.ranged = true;
             item.useTime = 15;
@@ -31,18 +30,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             item.shoot = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
             item.shootSpeed = 14f;
             item.useAmmo = AmmoID.Arrow;
-			item.height = dims.Height;
-			item.width = dims.Width;
+            item.height = dims.Height;
+            item.width = dims.Width;
         }
- 
-  //      public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-  //      {
-		//if (type == ProjectileID.WoodenArrowFriendly)
-		//	{
-		//		type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
-		//	}
-		//return true;
-		//}
+
+        //      public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        //      {
+        //if (type == ProjectileID.WoodenArrowFriendly)
+        //	{
+        //		type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
+        //	}
+        //return true;
+        //}
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

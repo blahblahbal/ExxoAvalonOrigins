@@ -1,42 +1,42 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using ExxoAvalonOrigins.Items.Vanity;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class DesertBeak : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Desert Beak");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Desert Beak");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 40;
-			npc.boss = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 3500;
-			npc.defense = 18;
-			npc.noGravity = true;
-			npc.width = 130;
-			npc.aiStyle = -1;
-			npc.npcSlots = 100f;
-			npc.value = 50000f;
-			npc.timeLeft = 22500;
-			npc.height = 78;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 40;
+            npc.boss = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 3500;
+            npc.defense = 18;
+            npc.noGravity = true;
+            npc.width = 130;
+            npc.aiStyle = -1;
+            npc.npcSlots = 100f;
+            npc.value = 50000f;
+            npc.timeLeft = 22500;
+            npc.height = 78;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit28;
-	        npc.DeathSound = SoundID.NPCDeath31;
-			npc.buffImmune[mod.BuffType("Freeze")] = true;
+            npc.DeathSound = SoundID.NPCDeath31;
+            npc.buffImmune[mod.BuffType("Freeze")] = true;
             bossBag = ModContent.ItemType<Items.BossBags.DesertBeakBossBag>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -45,15 +45,15 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.damage = (int)(npc.damage * 0.55f);
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(7) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertBeakMask>(), 1, false, 0, false);
-			}
-			if (Main.rand.Next(10) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertBeakTrophy>(), 1, false, 0, false);
-			}
+        {
+            if (Main.rand.Next(7) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertBeakMask>(), 1, false, 0, false);
+            }
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertBeakTrophy>(), 1, false, 0, false);
+            }
             if (Main.expertMode)
             {
                 npc.DropBossBags();

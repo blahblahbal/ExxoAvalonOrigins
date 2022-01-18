@@ -1,38 +1,33 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExxoAvalonOrigins.Items.Placeable.Tile;
+﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class CaesiumBrute : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Caesium Brute");
-			Main.npcFrameCount[npc.type] = 5;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 62;
+    public class CaesiumBrute : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Caesium Brute");
+            Main.npcFrameCount[npc.type] = 5;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 62;
             npc.lifeMax = 780;
-			npc.defense = 45;
-			npc.noGravity = true;
-			npc.width = 28;
-			npc.aiStyle = 14;
-			npc.npcSlots = 2f;
-			npc.value = 15000f;
-			npc.height = 48;
+            npc.defense = 45;
+            npc.noGravity = true;
+            npc.width = 28;
+            npc.aiStyle = 14;
+            npc.npcSlots = 2f;
+            npc.value = 15000f;
+            npc.height = 48;
             //npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.1f;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.1f;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.lavaImmune = true;

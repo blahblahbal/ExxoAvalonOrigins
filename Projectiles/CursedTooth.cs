@@ -1,30 +1,26 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class CursedTooth : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cursed Tooth");
-		}
+    public class CursedTooth : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cursed Tooth");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CursedTooth");
-			projectile.width = dims.Width * 10 / 22;
-			projectile.height = dims.Height * 10 / 22 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CursedTooth");
+            projectile.width = dims.Width * 10 / 22;
+            projectile.height = dims.Height * 10 / 22 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+        }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y, 1);

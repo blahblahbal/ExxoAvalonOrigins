@@ -1,40 +1,35 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Material;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Mime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Mime");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class Mime : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Mime");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 75;
-			npc.scale = 1.4f;
-			npc.noTileCollide = false;
-			npc.lifeMax = 630;
-			npc.defense = 46;
-			npc.noGravity = false;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 1500f;
-			npc.height = 40;
-			npc.knockBackResist = 0.6f;
+        public override void SetDefaults()
+        {
+            npc.damage = 75;
+            npc.scale = 1.4f;
+            npc.noTileCollide = false;
+            npc.lifeMax = 630;
+            npc.defense = 46;
+            npc.noGravity = false;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 1500f;
+            npc.height = 40;
+            npc.knockBackResist = 0.6f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
+            npc.DeathSound = SoundID.NPCDeath1;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.MimeBanner>();
         }
@@ -44,20 +39,20 @@ namespace ExxoAvalonOrigins.NPCs
             npc.damage = (int)(npc.damage * 0.75f);
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(3) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
-			}
-			if (Main.rand.Next(100) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ManaCompromise>(), 1, false, -2, false);
-			}
-			if (Main.rand.Next(8) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ConfusionTalisman>(), 1, false, -2, false);
-			}
-		}
+        {
+            if (Main.rand.Next(3) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
+            }
+            if (Main.rand.Next(100) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ManaCompromise>(), 1, false, -2, false);
+            }
+            if (Main.rand.Next(8) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ConfusionTalisman>(), 1, false, -2, false);
+            }
+        }
 
         public override void FindFrame(int frameHeight)
         {
@@ -119,7 +114,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHoly && Main.hardMode ? 0.14f: 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHoly && Main.hardMode ? 0.14f : 0f;
         }
     }
 }

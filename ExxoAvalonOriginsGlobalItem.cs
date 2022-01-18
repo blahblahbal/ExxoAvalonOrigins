@@ -14,7 +14,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace ExxoAvalonOrigins
 {
@@ -116,7 +115,7 @@ namespace ExxoAvalonOrigins
             else if (type == ModContent.ItemType<Items.Placeable.Wall.OrangeTiledWall>()) return ModContent.WallType<Walls.OrangeTiledUnsafe>();
             return 0;
         }
-        
+
         public override void SetDefaults(Item item)
         {
             int[] to2000 =
@@ -392,7 +391,7 @@ namespace ExxoAvalonOrigins
                 ItemID.SoulofSight,
                 ItemID.SoulofFright
             };
-            
+
             switch (item.type)
             {
                 case ItemID.Mushroom:
@@ -853,7 +852,7 @@ namespace ExxoAvalonOrigins
                 player.QuickSpawnItem(ModContent.ItemType<LifeDew>(), Main.rand.Next(15, 22));
                 player.QuickSpawnItem(ItemID.ChlorophyteOre, Main.rand.Next(60, 121));
             }
-			if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag) //keeping it this way because we might add unholy arrow alt
+            if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag) //keeping it this way because we might add unholy arrow alt
             {
                 if (ExxoAvalonOriginsWorld.contagion)
                 {

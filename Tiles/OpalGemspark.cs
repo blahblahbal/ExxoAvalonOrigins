@@ -1,27 +1,20 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.ObjectData;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class OpalGemspark : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(165, 255, 127));
-			Main.tileSolid[Type] = true;
-			Main.tileLighted[Type] = true;
-			Main.tileShine2[Type] = true;
-			drop = mod.ItemType("OpalGemsparkBlock");
-		}
+    public class OpalGemspark : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(165, 255, 127));
+            Main.tileSolid[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileShine2[Type] = true;
+            drop = mod.ItemType("OpalGemsparkBlock");
+        }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

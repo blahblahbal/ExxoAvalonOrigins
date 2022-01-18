@@ -1,38 +1,36 @@
-﻿using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Insane : ArmorPrefix
-	{
-		public Insane()
-		{
+    public class Insane : ArmorPrefix
+    {
+        public Insane()
+        {
 
-		}
+        }
 
-		public override bool CanRoll(Item item)
-		{
+        public override bool CanRoll(Item item)
+        {
             return IsArmor(item);
-		}
+        }
 
-		public override void ModifyValue(ref float valueMult)
-		{
-			valueMult *= 1.2f;
-		}
+        public override void ModifyValue(ref float valueMult)
+        {
+            valueMult *= 1.2f;
+        }
 
-		public override bool Autoload(ref string name)
-		{
-			if (base.Autoload(ref name))
-			{
-				mod.AddPrefix("Insane", new Insane());
-			}
-			return false;
-		}
+        public override bool Autoload(ref string name)
+        {
+            if (base.Autoload(ref name))
+            {
+                mod.AddPrefix("Insane", new Insane());
+            }
+            return false;
+        }
         public override void UpdateEquip(Player player)
-		{
-			player.tileSpeed += 0.3f;
-			player.wallSpeed += 0.3f;
-		}
-	}
+        {
+            player.tileSpeed += 0.3f;
+            player.wallSpeed += 0.3f;
+        }
+    }
 }

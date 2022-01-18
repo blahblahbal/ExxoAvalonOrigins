@@ -1,7 +1,7 @@
 ﻿using ExxoAvalonOrigins.Items.Consumables;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.World.Structures
 {

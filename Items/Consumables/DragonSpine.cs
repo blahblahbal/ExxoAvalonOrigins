@@ -5,22 +5,22 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-	class DragonSpine : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dragon Spine");
-			Tooltip.SetDefault("Summons the Dragon Lord\nUse at the Dragon Altar in the Sky Fortress");
-		}
+    class DragonSpine : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dragon Spine");
+            Tooltip.SetDefault("Summons the Dragon Lord\nUse at the Dragon Altar in the Sky Fortress");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Yellow;
-			item.width = dims.Width;
-			item.value = 0;
-			item.maxStack = 20;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Yellow;
+            item.width = dims.Width;
+            item.value = 0;
+            item.maxStack = 20;
+            item.height = dims.Height;
         }
 
         public override bool CanUseItem(Player player)

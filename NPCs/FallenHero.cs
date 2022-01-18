@@ -1,33 +1,32 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using ExxoAvalonOrigins.Items.Armor;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class FallenHero : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Fallen Hero");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class FallenHero : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Fallen Hero");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 30;
-			npc.lifeMax = 180;
-			npc.defense = 6;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 10000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.5f;
+        public override void SetDefaults()
+        {
+            npc.damage = 30;
+            npc.lifeMax = 180;
+            npc.defense = 6;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 10000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.Confused] = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -102,7 +101,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(12) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Melee.MinersSword>(), 1, false,-1, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Weapons.Melee.MinersSword>(), 1, false, -1, false);
             }
         }
         public override void HitEffect(int hitDirection, double damage)

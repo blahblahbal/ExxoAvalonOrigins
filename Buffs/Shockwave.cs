@@ -1,23 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.Buffs
 {
-	public class Shockwave : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Shockwave");
-			Description.SetDefault("On-screen enemies take damage when you land");
-		}
+    public class Shockwave : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Shockwave");
+            Description.SetDefault("On-screen enemies take damage when you land");
+        }
 
         public override void Update(Player player, ref int buffIndex)
         {

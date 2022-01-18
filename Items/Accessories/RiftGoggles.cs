@@ -1,39 +1,34 @@
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class RiftGoggles : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rift Goggles");
-			Tooltip.SetDefault("Allows you to see rifts into another world");
-		}
+    class RiftGoggles : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Rift Goggles");
+            Tooltip.SetDefault("Allows you to see rifts into another world");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/RiftGoggles");
-			item.rare = ItemRarityID.Lime;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = 50000;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/RiftGoggles");
+            item.rare = ItemRarityID.Lime;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = 50000;
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
-			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().riftGoggles = true;
-		}
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().riftGoggles = true;
+        }
 
         public override void AddRecipes()
         {

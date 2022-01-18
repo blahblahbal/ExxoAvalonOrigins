@@ -6,21 +6,21 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class UnderestimatedResolve : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Underestimated Resolve");
-			Tooltip.SetDefault("Tome\n+20 HP, +5% ranged damage\n+4 defense");
-		}
+    class UnderestimatedResolve : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Underestimated Resolve");
+            Tooltip.SetDefault("Tome\n+20 HP, +5% ranged damage\n+4 defense");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightPurple;
-			item.width = dims.Width;
-			item.value = 20000;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.LightPurple;
+            item.width = dims.Width;
+            item.value = 20000;
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 

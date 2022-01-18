@@ -1,7 +1,7 @@
 ﻿using ExxoAvalonOrigins.Tiles;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Banners
 {

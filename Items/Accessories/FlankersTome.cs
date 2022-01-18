@@ -6,21 +6,21 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class FlankersTome : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Flanker's Tome");
-			Tooltip.SetDefault("Tome\n+10% melee damage");
-		}
+    class FlankersTome : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Flanker's Tome");
+            Tooltip.SetDefault("Tome\n+10% melee damage");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.value = 15000;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.value = 15000;
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 

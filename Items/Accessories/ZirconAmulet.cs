@@ -6,26 +6,26 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class ZirconAmulet : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Zircon Amulet");
+    class ZirconAmulet : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Zircon Amulet");
             Tooltip.SetDefault("5% increased throwing damage");
-		}
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 0, 70);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 0, 70);
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
             player.thrownDamage += 0.05f;
         }
 

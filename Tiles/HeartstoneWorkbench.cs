@@ -7,30 +7,30 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class HeartstoneWorkbench : ModTile
-	{
-		public override void SetDefaults()
-		{
-			Main.tileSolidTop[Type] = true;
-			Main.tileFrameImportant[Type] = true;
-			Main.tileNoAttach[Type] = true;
-			Main.tileTable[Type] = true;
-			Main.tileLavaDeath[Type] = true;
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
-			TileObjectData.newTile.CoordinateHeights = new int[]{ 18 };
-			TileObjectData.addTile(Type);
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			var name = CreateMapEntryName();
-			name.SetDefault("Heartstone Work Bench");
-			AddMapEntry(new Color(191, 142, 111), name);
-			disableSmartCursor = true;
-			adjTiles = new int[]{ TileID.WorkBenches };
+    public class HeartstoneWorkbench : ModTile
+    {
+        public override void SetDefaults()
+        {
+            Main.tileSolidTop[Type] = true;
+            Main.tileFrameImportant[Type] = true;
+            Main.tileNoAttach[Type] = true;
+            Main.tileTable[Type] = true;
+            Main.tileLavaDeath[Type] = true;
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
+            TileObjectData.newTile.CoordinateHeights = new int[] { 18 };
+            TileObjectData.addTile(Type);
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+            var name = CreateMapEntryName();
+            name.SetDefault("Heartstone Work Bench");
+            AddMapEntry(new Color(191, 142, 111), name);
+            disableSmartCursor = true;
+            adjTiles = new int[] { TileID.WorkBenches };
             dustType = DustID.Confetti_Pink;
         }
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<HeartstoneWorkBench>());
-		}
-	}
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        {
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<HeartstoneWorkBench>());
+        }
+    }
 }

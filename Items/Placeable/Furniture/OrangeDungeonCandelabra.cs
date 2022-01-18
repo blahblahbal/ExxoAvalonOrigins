@@ -4,27 +4,27 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 {
-	class OrangeDungeonCandelabra : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Orange Dungeon Candelabra");
-		}
+    class OrangeDungeonCandelabra : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Orange Dungeon Candelabra");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.autoReuse = true;
-			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.OrangeDungeonCandelabra>();
-			item.width = dims.Width;
-			item.useTurn = true;
-			item.useTime = 10;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.maxStack = 99;
-			item.value = 1500;
-			item.useAnimation = 15;
-			item.height = dims.Height;
-		}
-	}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.autoReuse = true;
+            item.consumable = true;
+            item.createTile = ModContent.TileType<Tiles.OrangeDungeonCandelabra>();
+            item.width = dims.Width;
+            item.useTurn = true;
+            item.useTime = 10;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.maxStack = 99;
+            item.value = 1500;
+            item.useAnimation = 15;
+            item.height = dims.Height;
+        }
+    }
 }

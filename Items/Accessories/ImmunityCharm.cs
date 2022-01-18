@@ -1,32 +1,27 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class ImmunityCharm : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Immunity Charm");
-			Tooltip.SetDefault("Provides immunity to slimes and flying creatures\nProvides 20 defense against undead monsters\nReduces damage taken by 10% and negates fall damage");
-		}
+    class ImmunityCharm : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Immunity Charm");
+            Tooltip.SetDefault("Provides immunity to slimes and flying creatures\nProvides 20 defense against undead monsters\nReduces damage taken by 10% and negates fall damage");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/ImmunityCharm");
-			item.rare = ItemRarityID.Cyan;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 7, 25, 0);
-			item.accessory = true;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/ImmunityCharm");
+            item.rare = ItemRarityID.Cyan;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 7, 25, 0);
+            item.accessory = true;
+            item.height = dims.Height;
+        }
 
         public override void AddRecipes()
         {

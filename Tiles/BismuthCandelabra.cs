@@ -24,8 +24,8 @@ namespace ExxoAvalonOrigins.Tiles
             dustType = -1;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Bismuth Candelabra");
+            var name = CreateMapEntryName();
+            name.SetDefault("Bismuth Candelabra");
             AddMapEntry(new Color(253, 221, 3), name);
         }
 

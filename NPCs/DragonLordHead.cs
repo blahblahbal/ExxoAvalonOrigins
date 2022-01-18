@@ -1,56 +1,51 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
     [AutoloadBossHead]
-	public class DragonLordHead : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dragon Lord");
-			Main.npcFrameCount[npc.type] = 1;
-		}
+    public class DragonLordHead : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dragon Lord");
+            Main.npcFrameCount[npc.type] = 1;
+        }
         public bool head;
         public override void SetDefaults()
-		{
-			npc.damage = 125;
-			npc.boss = true;
-			npc.scale = 1.3f;
-			npc.netAlways = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 50000;
-			npc.defense = 40;
-			npc.noGravity = true;
-			npc.width = 32;
-			npc.aiStyle = -1;
-			npc.npcSlots = 6f;
-			npc.value = 100000f;
+        {
+            npc.damage = 125;
+            npc.boss = true;
+            npc.scale = 1.3f;
+            npc.netAlways = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 50000;
+            npc.defense = 40;
+            npc.noGravity = true;
+            npc.width = 32;
+            npc.aiStyle = -1;
+            npc.npcSlots = 6f;
+            npc.value = 100000f;
             npc.gfxOffY = 25f;
             npc.timeLeft = 3000;
-			npc.height = 32;
-			npc.knockBackResist = 0f;
+            npc.height = 32;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit7;
-	        npc.DeathSound = SoundID.NPCDeath8;
+            npc.DeathSound = SoundID.NPCDeath8;
             npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.Frostburn] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.Frostburn] = true;
             drawOffsetY = 55;
             bossBag = ModContent.ItemType<Items.BossBags.DragonLordBossBag>();
-		}
+        }
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = ModContent.ItemType<Items.Potions.ElixirofLife>();
@@ -59,10 +54,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Color.White;
         }
-		public override void BossHeadRotation(ref float rotation)
-		{
-			rotation = npc.rotation;
-		}
+        public override void BossHeadRotation(ref float rotation)
+        {
+            rotation = npc.rotation;
+        }
         /*public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = mod.GetTexture("NPCs/DragonLordHead");
@@ -80,11 +75,11 @@ namespace ExxoAvalonOrigins.NPCs
             }
         }*/
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(7) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DragonLordTrophy>(), 1, false, 0, false);
-			}
+        {
+            if (Main.rand.Next(7) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DragonLordTrophy>(), 1, false, 0, false);
+            }
             if (Main.expertMode)
             {
                 npc.DropBossBags();

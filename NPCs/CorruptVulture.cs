@@ -1,41 +1,35 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExxoAvalonOrigins.Items.Placeable.Tile;
+﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
     public class CorruptVulture : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Evil Vulture");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Evil Vulture");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 45;
-			npc.noTileCollide = false;
-			npc.lifeMax = 300;
-			npc.defense = 15;
-			npc.width = 36;
-			npc.aiStyle = 17;
-			npc.value = 750;
-			npc.timeLeft = 750;
-			npc.height = 36;
+        public override void SetDefaults()
+        {
+            npc.damage = 45;
+            npc.noTileCollide = false;
+            npc.lifeMax = 300;
+            npc.defense = 15;
+            npc.width = 36;
+            npc.aiStyle = 17;
+            npc.value = 750;
+            npc.timeLeft = 750;
+            npc.height = 36;
             animationType = 61;
             aiType = 61;
-			npc.knockBackResist = 0.6f;
+            npc.knockBackResist = 0.6f;
             npc.HitSound = SoundID.NPCHit28;
-	        npc.DeathSound = SoundID.NPCDeath31;
-			npc.buffImmune[mod.BuffType("Freeze")] = true;
+            npc.DeathSound = SoundID.NPCDeath31;
+            npc.buffImmune[mod.BuffType("Freeze")] = true;
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<Items.Banners.CorruptVultureBanner>();
         }
@@ -45,8 +39,8 @@ namespace ExxoAvalonOrigins.NPCs
             npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(2) == 0)
+        {
+            if (Main.rand.Next(2) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Beak>(), 1, false, 0, false);
             }

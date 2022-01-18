@@ -1,30 +1,30 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class CloudBat : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cloud Bat");
-			Main.npcFrameCount[npc.type] = 5;
-		}
+    public class CloudBat : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cloud Bat");
+            Main.npcFrameCount[npc.type] = 5;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 80;
-			npc.lifeMax = 1670;
-			npc.defense = 35;
-			npc.width = 10;
-			npc.aiStyle = 14;
+        public override void SetDefaults()
+        {
+            npc.damage = 80;
+            npc.lifeMax = 1670;
+            npc.defense = 35;
+            npc.width = 10;
+            npc.aiStyle = 14;
             npc.scale = 1.4f;
-			npc.value = 10000f;
-			npc.knockBackResist = 0.05f;
+            npc.value = 10000f;
+            npc.knockBackResist = 0.05f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath4;
-			npc.height = 12;
+            npc.DeathSound = SoundID.NPCDeath4;
+            npc.height = 12;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.CloudBatBanner>();
             animationType = 49;

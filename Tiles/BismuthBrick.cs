@@ -1,17 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class BismuthBrick : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(187, 89, 192));
-			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
+    public class BismuthBrick : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(187, 89, 192));
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
@@ -20,6 +20,6 @@ namespace ExxoAvalonOrigins.Tiles
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.BismuthDust>();
-		}
-	}
+        }
+    }
 }

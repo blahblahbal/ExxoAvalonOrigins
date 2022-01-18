@@ -5,19 +5,19 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Other
 {
-	class GoldApple : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Golden Apple");
-		}
+    class GoldApple : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Golden Apple");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.width = dims.Width;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.width = dims.Width;
+            item.height = dims.Height;
+        }
 
         public override bool CanPickup(Player player)
         {

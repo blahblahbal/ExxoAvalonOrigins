@@ -1,34 +1,29 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class TimechangerMkII : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Timechanger Mk II");
-		}
+    public class TimechangerMkII : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Timechanger Mk II");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TimechangerMkII");
-			projectile.penetrate = -1;
-			projectile.width = dims.Width * 10 / 32;
-			projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TimechangerMkII");
+            projectile.penetrate = -1;
+            projectile.width = dims.Width * 10 / 32;
+            projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
             projectile.damage = 0;
             projectile.tileCollide = false;
-		}
+        }
 
         public override void AI()
         {
@@ -71,7 +66,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     projectile.active = false;
                     return;
             }
-            
+
         }
     }
 }

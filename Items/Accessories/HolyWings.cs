@@ -1,29 +1,28 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	[AutoloadEquip(EquipType.Wings)]
-	class HolyWings : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Holy Wings");
-			Tooltip.SetDefault("Allows flight and slow fall\nOther bonuses apply when in the Hallow");
-		}
+    [AutoloadEquip(EquipType.Wings)]
+    class HolyWings : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Holy Wings");
+            Tooltip.SetDefault("Allows flight and slow fall\nOther bonuses apply when in the Hallow");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Yellow;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
-			item.value = 600000;
-			item.accessory = true;
-			item.height = dims.Height;
-		}
+            item.value = 600000;
+            item.accessory = true;
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe r = new ModRecipe(mod);
@@ -46,5 +45,5 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 player.buffImmune[BuffID.Silenced] = true;
             }
         }
-	}
+    }
 }

@@ -1,18 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class TritanoriumOre : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(Color.DarkGreen, LanguageManager.Instance.GetText("Tritanorium Ore"));
-			Main.tileSolid[Type] = true;
+    public class TritanoriumOre : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(Color.DarkGreen, LanguageManager.Instance.GetText("Tritanorium Ore"));
+            Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             }
             Vector2 pos = new Vector2(i * 16, j * 16) + zero - Main.screenPosition;
             Rectangle frame = new Rectangle(tile.frameX, tile.frameY, 16, 16);
-            Main.spriteBatch.Draw(mod.GetTexture("Tiles/Ores/TritanoriumOre_Glow") ,pos , frame, Color.White);
+            Main.spriteBatch.Draw(mod.GetTexture("Tiles/Ores/TritanoriumOre_Glow"), pos, frame, Color.White);
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {

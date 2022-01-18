@@ -2,80 +2,79 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-	class TimechangerMkII : ModItem
-	{
-		enum Time
+    class TimechangerMkII : ModItem
+    {
+        enum Time
         {
-			day,
-			midday,
-			night,
-			midnight
+            day,
+            midday,
+            night,
+            midnight
         }
-		Time selectedTime;
+        Time selectedTime;
         int time;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Timechanger Mk II");
-		}
-
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightPurple;
-			item.width = dims.Width;
-			item.height = dims.Height;
-			item.useTime = 35;
-			item.useAnimation = 35;
-			item.useStyle = ItemUseStyleID.HoldingUp;
-			item.value = Item.sellPrice(0, 3, 70, 0);
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Timechanger Mk II");
         }
 
-		public override bool AltFunctionUse(Player player)
-		{
-			return true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.LightPurple;
+            item.width = dims.Width;
+            item.height = dims.Height;
+            item.useTime = 35;
+            item.useAnimation = 35;
+            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.value = Item.sellPrice(0, 3, 70, 0);
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
 
         public override bool UseItem(Player player)
-		{
-			if (player.altFunctionUse == 2) // right click
-			{
-				selectedTime = (Time)(((int)selectedTime + 1) % 4);
-			}
+        {
+            if (player.altFunctionUse == 2) // right click
+            {
+                selectedTime = (Time)(((int)selectedTime + 1) % 4);
+            }
 
-			string selectedString = "";
-			switch (selectedTime)
-			{
-				case Time.day: 
-					selectedString = "Day";
+            string selectedString = "";
+            switch (selectedTime)
+            {
+                case Time.day:
+                    selectedString = "Day";
                     time = 0;
-					break;
-				case Time.midday:
-					selectedString = "Noon";
+                    break;
+                case Time.midday:
+                    selectedString = "Noon";
                     time = 1;
-					break;
-				case Time.night:
-					selectedString = "Night";
+                    break;
+                case Time.night:
+                    selectedString = "Night";
                     time = 2;
-					break;
-				case Time.midnight:
-					selectedString = "Midnight";
+                    break;
+                case Time.midnight:
+                    selectedString = "Midnight";
                     time = 3;
-					break;
-			}
+                    break;
+            }
 
-			if (player.altFunctionUse == 2) // right click
-			{
+            if (player.altFunctionUse == 2) // right click
+            {
                 Main.NewText(String.Format("Mode set to {0}.", selectedString), 50, 255, 130, false);
-     //           if (Main.netMode == NetmodeID.SinglePlayer)
-     //               Main.NewText(String.Format("Mode set to {0}.", selectedString), 50, 255, 130, false);
-     //           else if (Main.netMode == NetmodeID.Server)
-					//NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("Mode set to {0}.", selectedString)), new Color(50, 255, 130));
-			}
+                //           if (Main.netMode == NetmodeID.SinglePlayer)
+                //               Main.NewText(String.Format("Mode set to {0}.", selectedString), 50, 255, 130, false);
+                //           else if (Main.netMode == NetmodeID.Server)
+                //NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("Mode set to {0}.", selectedString)), new Color(50, 255, 130));
+            }
             else
             {
                 if (player.itemAnimation > 0 && player.whoAmI == Main.myPlayer)
@@ -114,6 +113,6 @@ namespace ExxoAvalonOrigins.Items.Tools
             }
 
             return true;
-		}
-	}
+        }
+    }
 }

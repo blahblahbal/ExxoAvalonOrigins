@@ -1,7 +1,7 @@
+using System;
 using ExxoAvalonOrigins.UI;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;

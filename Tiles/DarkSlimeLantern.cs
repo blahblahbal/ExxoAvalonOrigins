@@ -23,8 +23,8 @@ namespace ExxoAvalonOrigins.Tiles
             dustType = -1;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Dark Slime Lantern");
+            var name = CreateMapEntryName();
+            name.SetDefault("Dark Slime Lantern");
             AddMapEntry(new Color(251, 235, 127), name);
             dustType = DustID.UnholyWater;
         }

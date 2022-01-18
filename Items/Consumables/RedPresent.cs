@@ -13,23 +13,23 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-	class RedPresent : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Red Present");
-			Tooltip.SetDefault("Right click to open");
-		}
+    class RedPresent : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Red Present");
+            Tooltip.SetDefault("Right click to open");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.consumable = true;
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.maxStack = 999;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.consumable = true;
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.maxStack = 999;
+            item.height = dims.Height;
+        }
 
         public override bool CanRightClick()
         {

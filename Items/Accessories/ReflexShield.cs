@@ -5,47 +5,47 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	[AutoloadEquip(EquipType.Shield)]
-	class ReflexShield : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Reflex Shield");
-			Tooltip.SetDefault("Gives a chance to reflect projectiles and immunity to most debuffs\nGrants immunity to fire blocks and knockback");
-		}
+    [AutoloadEquip(EquipType.Shield)]
+    class ReflexShield : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Reflex Shield");
+            Tooltip.SetDefault("Gives a chance to reflect projectiles and immunity to most debuffs\nGrants immunity to fire blocks and knockback");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 6;
-			item.rare = ItemRarityID.Cyan;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 17, 45, 0);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 6;
+            item.rare = ItemRarityID.Cyan;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 17, 45, 0);
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
-			player.noKnockback = true;
-			player.fireWalk = true;
-			player.buffImmune[BuffID.Weak] = true;
-			player.buffImmune[BuffID.BrokenArmor] = true;
-			player.buffImmune[BuffID.Bleeding] = true;
-			player.buffImmune[BuffID.Poisoned] = true;
-			player.buffImmune[BuffID.Slow] = true;
-			player.buffImmune[BuffID.Confused] = true;
-			player.buffImmune[BuffID.Silenced] = true;
-			player.buffImmune[BuffID.Cursed] = true;
-			player.buffImmune[BuffID.Darkness] = true;
-			player.buffImmune[BuffID.Chilled] = true;
-			player.buffImmune[BuffID.Frozen] = true;
-			player.buffImmune[BuffID.Suffocation] = true;
-			player.buffImmune[BuffID.Ichor] = true;
-			player.buffImmune[BuffID.OnFire] = true;
-			player.buffImmune[BuffID.Blackout] = true;
-			player.buffImmune[BuffID.CursedInferno] = true;
-			var playerWS = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.noKnockback = true;
+            player.fireWalk = true;
+            player.buffImmune[BuffID.Weak] = true;
+            player.buffImmune[BuffID.BrokenArmor] = true;
+            player.buffImmune[BuffID.Bleeding] = true;
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.Slow] = true;
+            player.buffImmune[BuffID.Confused] = true;
+            player.buffImmune[BuffID.Silenced] = true;
+            player.buffImmune[BuffID.Cursed] = true;
+            player.buffImmune[BuffID.Darkness] = true;
+            player.buffImmune[BuffID.Chilled] = true;
+            player.buffImmune[BuffID.Frozen] = true;
+            player.buffImmune[BuffID.Suffocation] = true;
+            player.buffImmune[BuffID.Ichor] = true;
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.Blackout] = true;
+            player.buffImmune[BuffID.CursedInferno] = true;
+            var playerWS = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {
                 if (!Pr.friendly && !Pr.bobber && Pr.type != ProjectileID.RainCloudMoving && Pr.type != ProjectileID.RainCloudRaining &&
@@ -108,5 +108,5 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 }
             }
         }
-	}
+    }
 }

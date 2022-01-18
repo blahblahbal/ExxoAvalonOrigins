@@ -5,22 +5,22 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Material
 {
-	class CarbonSteel : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Carbon Steel");
-		}
+    class CarbonSteel : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Carbon Steel");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Green;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 0, 2, 0);
-			item.maxStack = 999;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Green;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 0, 2, 0);
+            item.maxStack = 999;
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

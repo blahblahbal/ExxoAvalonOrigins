@@ -1,33 +1,28 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class BombSkeleton : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bomb");
-		}
+    public class BombSkeleton : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bomb");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BombSkeleton");
-			projectile.width = dims.Width;
-			projectile.height = dims.Height * 22 / 48 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.hostile = true;
-			projectile.penetrate = -1;
-			projectile.ranged = true;
-			Main.projFrames[projectile.type] = 2;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BombSkeleton");
+            projectile.width = dims.Width;
+            projectile.height = dims.Height * 22 / 48 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.hostile = true;
+            projectile.penetrate = -1;
+            projectile.ranged = true;
+            Main.projFrames[projectile.type] = 2;
+        }
 
         public override void AI()
         {

@@ -1,45 +1,39 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class ProtectorWheel : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Protector Wheel");
-			Main.npcFrameCount[npc.type] = 4;
-		}
+    public class ProtectorWheel : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Protector Wheel");
+            Main.npcFrameCount[npc.type] = 4;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 65;
-			npc.scale = 1f;
-			npc.lifeMax = 500;
-			npc.defense = 100;
-			npc.noGravity = true;
-			npc.width = 22;
-			npc.aiStyle = -1;
-			npc.behindTiles = true;
-			npc.npcSlots = 1f;
-			npc.value = 0f;
-			npc.timeLeft = 750;
-			npc.height = 22;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 65;
+            npc.scale = 1f;
+            npc.lifeMax = 500;
+            npc.defense = 100;
+            npc.noGravity = true;
+            npc.width = 22;
+            npc.aiStyle = -1;
+            npc.behindTiles = true;
+            npc.npcSlots = 1f;
+            npc.value = 0f;
+            npc.timeLeft = 750;
+            npc.height = 22;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit3;
-	        npc.DeathSound = SoundID.NPCDeath3;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
-		}
+            npc.DeathSound = SoundID.NPCDeath3;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f);

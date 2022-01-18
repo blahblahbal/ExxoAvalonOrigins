@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using System.IO;
+﻿using ExxoAvalonOrigins.Items.Other;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ExxoAvalonOrigins.Items.Other;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -18,14 +17,14 @@ namespace ExxoAvalonOrigins.NPCs
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MechanicalDiggerHead"), 1f);
             }
         }
-		
-		public override void NPCLoot()
-		{
-			if (Main.rand.Next(25) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MechanicalWhoopieCushion>(), 1);
-			}
-		}
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(25) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MechanicalWhoopieCushion>(), 1);
+            }
+        }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

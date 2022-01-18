@@ -1,39 +1,35 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class BactusMinion : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bactus Minion");
-			Main.npcFrameCount[npc.type] = 4;
-		}
+    public class BactusMinion : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bactus Minion");
+            Main.npcFrameCount[npc.type] = 4;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 25;
-			npc.lifeMax = 125;
-			npc.defense = 5;
-			npc.noGravity = true;
-			npc.width = 30;
-			npc.aiStyle = -1;
-			npc.noTileCollide = true;
-			npc.height = 30;
+        public override void SetDefaults()
+        {
+            npc.damage = 25;
+            npc.lifeMax = 125;
+            npc.defense = 5;
+            npc.noGravity = true;
+            npc.width = 30;
+            npc.aiStyle = -1;
+            npc.noTileCollide = true;
+            npc.height = 30;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.8f;
-		}
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.8f;
+        }
 
         public override void NPCLoot()
         {

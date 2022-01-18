@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System.IO;
+﻿using System.IO;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.NPCs.Utils
 {

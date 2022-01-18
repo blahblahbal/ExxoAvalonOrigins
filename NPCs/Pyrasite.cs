@@ -1,6 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System.IO;
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

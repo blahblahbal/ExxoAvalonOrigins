@@ -1,39 +1,34 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Material;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Cougher : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cougher");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class Cougher : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cougher");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 35;
-			npc.lifeMax = 230;
-			npc.defense = 12;
-			npc.noGravity = true;
-			npc.width = 28;
-			npc.aiStyle = -1;
-			npc.npcSlots = 1f;
-			npc.value = 510f;
-			npc.height = 38;
+        public override void SetDefaults()
+        {
+            npc.damage = 35;
+            npc.lifeMax = 230;
+            npc.defense = 12;
+            npc.noGravity = true;
+            npc.width = 28;
+            npc.aiStyle = -1;
+            npc.npcSlots = 1f;
+            npc.value = 510f;
+            npc.height = 38;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.3f;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.3f;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.CougherBanner>();
         }

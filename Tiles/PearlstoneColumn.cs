@@ -1,23 +1,18 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.ObjectData;
 using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class PearlstoneColumn : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(73, 51, 36));
-			drop = mod.ItemType("PearlstoneColumn");
+    public class PearlstoneColumn : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(73, 51, 36));
+            drop = mod.ItemType("PearlstoneColumn");
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);

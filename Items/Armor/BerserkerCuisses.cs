@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
 {
-	[AutoloadEquip(EquipType.Legs)]
-	class BerserkerCuisses : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Berserker Cuisses");
-			Tooltip.SetDefault("Melee stealth when standing still\nLightning strikes when damaged");
-		}
+    [AutoloadEquip(EquipType.Legs)]
+    class BerserkerCuisses : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Berserker Cuisses");
+            Tooltip.SetDefault("Melee stealth when standing still\nLightning strikes when damaged");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 32;
-			item.rare = ItemRarityID.Red;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 65, 0, 0);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 32;
+            item.rare = ItemRarityID.Red;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 65, 0, 0);
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -34,9 +34,9 @@ namespace ExxoAvalonOrigins.Items.Armor
             recipe.AddRecipe();
         }
         public override void UpdateEquip(Player player)
-		{
-			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().LightningInABottle = true;
-			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().meleeStealth = true;
-		}
-	}
+        {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().LightningInABottle = true;
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().meleeStealth = true;
+        }
+    }
 }

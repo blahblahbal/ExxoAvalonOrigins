@@ -1,43 +1,39 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Accessories;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class CursedFlamer : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Cursed Flamer");
-			Main.npcFrameCount[npc.type] = 2;
-		}
-		public override void SetDefaults()
-		{
-			npc.npcSlots = 1;
-			npc.width = 46;
-			npc.height = 90;
-			npc.aiStyle = -1;
-			npc.timeLeft = 1750;
-			//animationType = 75;
-			npc.damage = 50;
-			npc.defense = 35;
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath1;
-			npc.lifeMax = 210;
-			npc.scale = 1f;
-			npc.knockBackResist = 0.35f;
-			npc.noGravity = true;
-			npc.noTileCollide = false;
-			npc.value = 500;
-			npc.buffImmune[BuffID.Confused] = true;
+    public class CursedFlamer : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Cursed Flamer");
+            Main.npcFrameCount[npc.type] = 2;
+        }
+        public override void SetDefaults()
+        {
+            npc.npcSlots = 1;
+            npc.width = 46;
+            npc.height = 90;
+            npc.aiStyle = -1;
+            npc.timeLeft = 1750;
+            //animationType = 75;
+            npc.damage = 50;
+            npc.defense = 35;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.lifeMax = 210;
+            npc.scale = 1f;
+            npc.knockBackResist = 0.35f;
+            npc.noGravity = true;
+            npc.noTileCollide = false;
+            npc.value = 500;
+            npc.buffImmune[BuffID.Confused] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Poisoned] = true;
@@ -45,9 +41,9 @@ namespace ExxoAvalonOrigins.NPCs
             //bannerItem = ModContent.ItemType<Items.Banners.CursedFlamerBanner>();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			return Main.hardMode && spawnInfo.player.ZoneCorrupt && !spawnInfo.player.InPillarZone() && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 1f : 0f;
-		}
+        {
+            return Main.hardMode && spawnInfo.player.ZoneCorrupt && !spawnInfo.player.InPillarZone() && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 1f : 0f;
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f);
@@ -67,22 +63,22 @@ namespace ExxoAvalonOrigins.NPCs
             }
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(3) == 0)
-			{
-				Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ItemID.CursedFlame, 1);
-			}
-			if (Main.rand.Next(50) == 0)
+        {
+            if (Main.rand.Next(3) == 0)
             {
-				Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<GreekExtinguisher>(), 1);
-			}
-		}
+                Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ItemID.CursedFlame, 1);
+            }
+            if (Main.rand.Next(50) == 0)
+            {
+                Item.NewItem(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<GreekExtinguisher>(), 1);
+            }
+        }
         public Vector2 RotateAboutOrigin(Vector2 point, Vector2 origin, float rotation)
         {
             return Vector2.Transform(point - origin, Matrix.CreateRotationZ(rotation)) + origin;
         }
         public override void AI()
-		{
+        {
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead)
             {
                 npc.TargetClosest(true);
@@ -253,27 +249,27 @@ namespace ExxoAvalonOrigins.NPCs
                 return;
             }
         }
-		public override void HitEffect(int hitDirection, double damage)
-		{
-			if (npc.life <= 0)
-			{
-				Rectangle R = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
-				int C = 50;
-				float vR = .4f;
-				for (int i = 1; i <= C; i++)
-				{
-					int D = Dust.NewDust(npc.position, R.Width, R.Height, DustID.CursedTorch, 0, 0, 100, new Color(), 2f);
-					Main.dust[D].noGravity = true;
-					Main.dust[D].velocity.X = vR * (Main.dust[D].position.X - (npc.position.X + (npc.width / 2)));
-					Main.dust[D].velocity.Y = vR * (Main.dust[D].position.Y - (npc.position.Y + (npc.height / 2)));
-				}
-				for (int i2 = 1; i2 <= C; i2++)
-				{
-					int D2 = Dust.NewDust(npc.position, R.Width, R.Height, DustID.CursedTorch, 0, 0, 100, new Color(), 2f);
-					Main.dust[D2].noGravity = true;
-					Main.dust[D2].velocity.X = vR * (Main.dust[D2].position.X - (npc.position.X + (npc.width / 2)));
-					Main.dust[D2].velocity.Y = vR * (Main.dust[D2].position.Y - (npc.position.Y + (npc.height / 2)));
-				}
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                Rectangle R = new Rectangle((int)npc.position.X, (int)(npc.position.Y + ((npc.height - npc.width) / 2)), npc.width, npc.width);
+                int C = 50;
+                float vR = .4f;
+                for (int i = 1; i <= C; i++)
+                {
+                    int D = Dust.NewDust(npc.position, R.Width, R.Height, DustID.CursedTorch, 0, 0, 100, new Color(), 2f);
+                    Main.dust[D].noGravity = true;
+                    Main.dust[D].velocity.X = vR * (Main.dust[D].position.X - (npc.position.X + (npc.width / 2)));
+                    Main.dust[D].velocity.Y = vR * (Main.dust[D].position.Y - (npc.position.Y + (npc.height / 2)));
+                }
+                for (int i2 = 1; i2 <= C; i2++)
+                {
+                    int D2 = Dust.NewDust(npc.position, R.Width, R.Height, DustID.CursedTorch, 0, 0, 100, new Color(), 2f);
+                    Main.dust[D2].noGravity = true;
+                    Main.dust[D2].velocity.X = vR * (Main.dust[D2].position.X - (npc.position.X + (npc.width / 2)));
+                    Main.dust[D2].velocity.Y = vR * (Main.dust[D2].position.Y - (npc.position.Y + (npc.height / 2)));
+                }
                 for (int i2 = 1; i2 <= C; i2++)
                 {
                     int D2 = Dust.NewDust(npc.position, R.Width, R.Height, DustID.Vile, 0, 0, 100, new Color(), 2f);
@@ -282,6 +278,6 @@ namespace ExxoAvalonOrigins.NPCs
                     Main.dust[D2].velocity.Y = vR * (Main.dust[D2].position.Y - (npc.position.Y + (npc.height / 2)));
                 }
             }
-		}
-	}
+        }
+    }
 }

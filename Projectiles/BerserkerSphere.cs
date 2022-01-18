@@ -1,35 +1,31 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class BerserkerSphere : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Berserker Sphere");
-		}
+    public class BerserkerSphere : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Berserker Sphere");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BerserkerSphere");
-			projectile.width = dims.Width * 22 / 34;
-			projectile.height = dims.Height * 22 / 34 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.light = 0.4f;
-			projectile.penetrate = -1;
-			projectile.melee = true;
-			projectile.scale = 0.9f;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BerserkerSphere");
+            projectile.width = dims.Width * 22 / 34;
+            projectile.height = dims.Height * 22 / 34 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.light = 0.4f;
+            projectile.penetrate = -1;
+            projectile.melee = true;
+            projectile.scale = 0.9f;
+        }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

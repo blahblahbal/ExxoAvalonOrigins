@@ -5,26 +5,26 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-	class EyeofOblivionAncient : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Eye of Oblivion");
-			Tooltip.SetDefault("Summons Ancient Oblivion\nUse with care");
-		}
+    class EyeofOblivionAncient : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Eye of Oblivion");
+            Tooltip.SetDefault("Summons Ancient Oblivion\nUse with care");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.consumable = true;
-			item.rare = ItemRarityID.Yellow;
-			item.width = dims.Width;
-			item.useTime = 45;
-			item.useStyle = ItemUseStyleID.HoldingUp;
-			item.value = 0;
-			item.maxStack = 20;
-			item.useAnimation = 45;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.consumable = true;
+            item.rare = ItemRarityID.Yellow;
+            item.width = dims.Width;
+            item.useTime = 45;
+            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.value = 0;
+            item.maxStack = 20;
+            item.useAnimation = 45;
+            item.height = dims.Height;
         }
 
         public override void AddRecipes()

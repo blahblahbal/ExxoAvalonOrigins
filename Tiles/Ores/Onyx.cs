@@ -1,18 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class Onyx : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(30, 30, 30), LanguageManager.Instance.GetText("Onyx"));
-			Main.tileSolid[Type] = true;
-			Main.tileBlockLight[Type] = true;
+    public class Onyx : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(30, 30, 30), LanguageManager.Instance.GetText("Onyx"));
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
             Main.tileMerge[TileID.Stone][Type] = true;
             Main.tileMerge[Type][TileID.Stone] = true;
             Main.tileSpelunker[Type] = true;

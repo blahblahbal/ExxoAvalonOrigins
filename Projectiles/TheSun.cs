@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +16,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Main.projFrames[projectile.type] = 4;
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TheSun");
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TheSun");
             projectile.width = dims.Width * 30 / 40;
             projectile.height = dims.Height * 30 / 40 / Main.projFrames[projectile.type];
             projectile.alpha = 0;

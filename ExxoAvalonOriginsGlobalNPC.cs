@@ -959,7 +959,7 @@ IL_162:
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.ContagionToken>());
                 }
             }
-            
+
             if (ExxoAvalonOriginsWorld.downedDesertBeak && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDesert && Main.rand.Next(125) == 0)
             {
                 int item = Main.rand.Next(3);
@@ -1370,7 +1370,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RottenEye>(), Main.rand.Next(2) + 1, false, 0, false);
             }
-			if ((npc.type == NPCID.Clown) && Main.rand.Next(3) == 0)
+            if ((npc.type == NPCID.Clown) && Main.rand.Next(3) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ClownBomb>(), Main.rand.Next(5) + 1, false, 0, false);
             }

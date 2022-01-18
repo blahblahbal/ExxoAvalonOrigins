@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -21,14 +21,14 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.StyleWrapLimit = 111;
-			TileObjectData.newTile.Origin = new Point16(1, 0);
+            TileObjectData.newTile.Origin = new Point16(1, 0);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
             dustType = -1;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             Main.tileLighted[Type] = true;
-			var name = CreateMapEntryName();
-			name.SetDefault("Bismuth Chandelier");
+            var name = CreateMapEntryName();
+            name.SetDefault("Bismuth Chandelier");
             AddMapEntry(new Color(235, 166, 135), name);
         }
 

@@ -1,36 +1,31 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class ChaosBolt : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Chaos Bolt");
-		}
+    public class ChaosBolt : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Chaos Bolt");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ChaosBolt");
-			projectile.width = dims.Width;
-			projectile.height = dims.Height / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.tileCollide = false;
-			projectile.friendly = true;
-			projectile.timeLeft = 540;
-			projectile.light = 1f;
-			projectile.penetrate = -1;
-			projectile.magic = true;
-			projectile.ignoreWater = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ChaosBolt");
+            projectile.width = dims.Width;
+            projectile.height = dims.Height / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.tileCollide = false;
+            projectile.friendly = true;
+            projectile.timeLeft = 540;
+            projectile.light = 1f;
+            projectile.penetrate = -1;
+            projectile.magic = true;
+            projectile.ignoreWater = true;
+        }
 
         public override void AI()
         {

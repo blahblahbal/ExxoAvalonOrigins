@@ -1,32 +1,27 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class BloodyAmulet : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bloody Amulet");
-		}
+    public class BloodyAmulet : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bloody Amulet");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BloodyAmulet");
-			projectile.aiStyle = -1;
-			projectile.width = dims.Width;
-			projectile.height = dims.Height / Main.projFrames[projectile.type];
-			projectile.damage = 0;
-			projectile.tileCollide = false;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BloodyAmulet");
+            projectile.aiStyle = -1;
+            projectile.width = dims.Width;
+            projectile.height = dims.Height / Main.projFrames[projectile.type];
+            projectile.damage = 0;
+            projectile.tileCollide = false;
+        }
 
         public override void AI()
         {

@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class PyroscoricOre : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(255, 102, 0), LanguageManager.Instance.GetText("Pyroscoric"));
-			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
+    public class PyroscoricOre : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(255, 102, 0), LanguageManager.Instance.GetText("Pyroscoric"));
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
             Main.tileValue[Type] = 820;

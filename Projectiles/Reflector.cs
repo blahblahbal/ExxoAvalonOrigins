@@ -1,7 +1,7 @@
-﻿using Terraria.ModLoader;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     projectile.timeLeft = 2;
                 }
             }
-            
+
             int num321 = 10;
             int num322 = 40 * (projectile.minionPos + 1) * Main.player[projectile.owner].direction;
             if (Main.player[projectile.owner].position.X + (float)(Main.player[projectile.owner].width / 2) < projectile.position.X + (float)(projectile.width / 2) - num321 + num322)

@@ -1,51 +1,47 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Material;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Infernaspaz : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Infernaspaz");
-			Main.npcFrameCount[npc.type] = 6;
-		}
+    public class Infernaspaz : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Infernaspaz");
+            Main.npcFrameCount[npc.type] = 6;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 95;
-			npc.boss = true;
-			npc.netAlways = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 75000;
-			npc.defense = 30;
-			npc.noGravity = true;
-			npc.width = 100;
-			npc.aiStyle = -1;
-			npc.npcSlots = 2f;
-			npc.value = 50000f;
-			npc.timeLeft = 750;
-			npc.height = 110;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 95;
+            npc.boss = true;
+            npc.netAlways = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 75000;
+            npc.defense = 30;
+            npc.noGravity = true;
+            npc.width = 100;
+            npc.aiStyle = -1;
+            npc.npcSlots = 2f;
+            npc.value = 50000f;
+            npc.timeLeft = 750;
+            npc.height = 110;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath14;
-			npc.buffImmune[BuffID.Confused] = true;
-		}
+            npc.DeathSound = SoundID.NPCDeath14;
+            npc.buffImmune[BuffID.Confused] = true;
+        }
 
-		public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofFright, Main.rand.Next(5) + 1, false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SouloftheJungle>(), Main.rand.Next(5) + 1, false, 0, false);
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<LifeDew>(), Main.rand.Next(5) + 1, false, 0, false);
-		}
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofFright, Main.rand.Next(5) + 1, false, 0, false);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SouloftheJungle>(), Main.rand.Next(5) + 1, false, 0, false);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<LifeDew>(), Main.rand.Next(5) + 1, false, 0, false);
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);

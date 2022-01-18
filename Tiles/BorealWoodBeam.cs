@@ -1,22 +1,16 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.ObjectData;
 using Terraria.DataStructures;
-using Terraria.Enums;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class BorealWoodBeam : ModTile
-	{
-		public override void SetDefaults()
-		{
+    public class BorealWoodBeam : ModTile
+    {
+        public override void SetDefaults()
+        {
             drop = mod.ItemType("BorealWoodBeam");
             AddMapEntry(new Color(85, 68, 57));
             Main.tileSolid[Type] = false;

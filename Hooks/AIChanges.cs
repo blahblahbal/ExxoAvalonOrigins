@@ -1,7 +1,7 @@
-﻿using Mono.Cecil;
+﻿using System;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using System;
 using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Hooks

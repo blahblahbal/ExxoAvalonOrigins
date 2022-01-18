@@ -5,41 +5,41 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-	class AncientElementalExcalibur : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ancient Elemental Excalibur");
-			Tooltip.SetDefault("'The unification of the Elements'\n'A relic of the past'");
-		}
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.UseSound = SoundID.Item1;
-			item.damage = 190;
-			item.autoReuse = true;
-			item.useTurn = true;
-			item.scale = 1.2f;
-			item.rare = ItemRarityID.Cyan;
-			item.width = dims.Width;
-			item.useTime = 15;
-			item.knockBack = 7f;
-			item.melee = true;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.value = Item.sellPrice(0, 50, 0, 0);
-			item.useAnimation = 10;
-			item.height = dims.Height;
-		}
-		public override void MeleeEffects(Player player, Rectangle hitbox)
-		{
-			if (Main.rand.NextBool(3))
-			{
-				int num313 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Enchanted_Pink);
-				Main.dust[num313].noGravity = true;
-				Main.dust[num313].fadeIn = 1.25f;
-				Main.dust[num313].velocity *= 0.25f;
-			}
-		}
+    class AncientElementalExcalibur : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient Elemental Excalibur");
+            Tooltip.SetDefault("'The unification of the Elements'\n'A relic of the past'");
+        }
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.UseSound = SoundID.Item1;
+            item.damage = 190;
+            item.autoReuse = true;
+            item.useTurn = true;
+            item.scale = 1.2f;
+            item.rare = ItemRarityID.Cyan;
+            item.width = dims.Width;
+            item.useTime = 15;
+            item.knockBack = 7f;
+            item.melee = true;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.value = Item.sellPrice(0, 50, 0, 0);
+            item.useAnimation = 10;
+            item.height = dims.Height;
+        }
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            if (Main.rand.NextBool(3))
+            {
+                int num313 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Enchanted_Pink);
+                Main.dust[num313].noGravity = true;
+                Main.dust[num313].fadeIn = 1.25f;
+                Main.dust[num313].velocity *= 0.25f;
+            }
+        }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             int randomNum = Main.rand.Next(8);

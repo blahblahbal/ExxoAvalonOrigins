@@ -1,34 +1,34 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using ExxoAvalonOrigins.Items.Material;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Bactus : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bactus");
-			Main.npcFrameCount[npc.type] = 4;
-		}
+    public class Bactus : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bactus");
+            Main.npcFrameCount[npc.type] = 4;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 23;
-			npc.lifeMax = 50;
-			npc.defense = 7;
-			npc.noGravity = true;
-			npc.width = 40;
-			npc.aiStyle = -1;
-			npc.npcSlots = 1f;
-			npc.value = 110f;
-			npc.height = 44;
+        public override void SetDefaults()
+        {
+            npc.damage = 23;
+            npc.lifeMax = 50;
+            npc.defense = 7;
+            npc.noGravity = true;
+            npc.width = 40;
+            npc.aiStyle = -1;
+            npc.npcSlots = 1f;
+            npc.value = 110f;
+            npc.height = 44;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.5f;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.5f;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BactusBanner>();
             drawOffsetY = 10;
@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.NPCs
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone())
-               return 1;
+                return 1;
             return 0;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

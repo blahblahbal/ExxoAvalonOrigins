@@ -1,43 +1,39 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class EctoHand : ModNPC
-	{
+    public class EctoHand : ModNPC
+    {
         private int timer = 0;
         private bool spawn = false;
         private float PosX = 0f;
         private float PosY = 0f;
         public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ecto Hand");
-			Main.npcFrameCount[npc.type] = 1;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 66;
-			npc.lifeMax = 1600;
-			npc.defense = 30;
-			npc.width = 30;
-			npc.height = 30;
-			npc.aiStyle = -1;
+        {
+            DisplayName.SetDefault("Ecto Hand");
+            Main.npcFrameCount[npc.type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 66;
+            npc.lifeMax = 1600;
+            npc.defense = 30;
+            npc.width = 30;
+            npc.height = 30;
+            npc.aiStyle = -1;
             npc.scale = 1.3f;
-			npc.value = 1000f;
-			npc.knockBackResist = 0f;
+            npc.value = 1000f;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit36;
-	        npc.DeathSound = SoundID.NPCDeath39;
-			npc.noGravity = true;
-			npc.noTileCollide = true;
-			npc.behindTiles = false;
+            npc.DeathSound = SoundID.NPCDeath39;
+            npc.noGravity = true;
+            npc.noTileCollide = true;
+            npc.behindTiles = false;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.EctoHandBanner>();
         }
@@ -81,14 +77,14 @@ namespace ExxoAvalonOrigins.NPCs
             }
             return true;
         }
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
             if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
             {
                 return 2f;
             }
             return 0f;
-		}
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (npc.life <= 0)

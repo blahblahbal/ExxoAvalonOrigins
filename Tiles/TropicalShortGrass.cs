@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Tiles
             AddMapEntry(new Color(58, 188, 32));
             AddMapEntry(new Color(58, 188, 32));
             AddMapEntry(new Color(58, 188, 32));
-            AddMapEntry(new Color(58, 188, 32)); 
+            AddMapEntry(new Color(58, 188, 32));
             AddMapEntry(new Color(58, 188, 32));
             AddMapEntry(new Color(277, 41, 75), LanguageManager.Instance.GetText("Tropical Shroom"));
         }

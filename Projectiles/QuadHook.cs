@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Localization;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
@@ -22,16 +17,16 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
-/*			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/QuadHook");
-            projectile.netImportant = true;
-			projectile.width = dims.Width * 18 / 22;
-			projectile.height = dims.Height * 18 / 22 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.light = 1.2f;
-            projectile.timeLeft *= 10;*/
+            /*			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/QuadHook");
+                        projectile.netImportant = true;
+                        projectile.width = dims.Width * 18 / 22;
+                        projectile.height = dims.Height * 18 / 22 / Main.projFrames[projectile.type];
+                        projectile.aiStyle = -1;
+                        projectile.friendly = true;
+                        projectile.penetrate = -1;
+                        projectile.tileCollide = false;
+                        projectile.light = 1.2f;
+                        projectile.timeLeft *= 10;*/
         }
 
         /*public override void AI()

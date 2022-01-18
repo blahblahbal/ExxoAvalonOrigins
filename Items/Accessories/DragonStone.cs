@@ -5,23 +5,23 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class DragonStone : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dragon Stone");
-			Tooltip.SetDefault("Provides immunity to flying creatures");
-		}
+    class DragonStone : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dragon Stone");
+            Tooltip.SetDefault("Provides immunity to flying creatures");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Lime;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 4, 0, 0);
-			item.accessory = true;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Lime;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 4, 0, 0);
+            item.accessory = true;
+            item.height = dims.Height;
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.npcTypeNoAggro[NPCID.DemonEye] = true;

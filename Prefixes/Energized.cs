@@ -1,35 +1,34 @@
-using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Energized : ModPrefix
-	{
-		public Energized()
-		{
+    public class Energized : ModPrefix
+    {
+        public Energized()
+        {
 
-		}
+        }
 
-		public override PrefixCategory Category { get { return PrefixCategory.Magic; } }
+        public override PrefixCategory Category { get { return PrefixCategory.Magic; } }
 
-		public override void ModifyValue(ref float valueMult)
-		{
-			valueMult *= 1.25f;
-		}
+        public override void ModifyValue(ref float valueMult)
+        {
+            valueMult *= 1.25f;
+        }
 
-		public override bool Autoload(ref string name)
-		{
-			if (base.Autoload(ref name))
-			{
-				mod.AddPrefix("Energized", new Energized());
-			}
-			return false;
-		}
+        public override bool Autoload(ref string name)
+        {
+            if (base.Autoload(ref name))
+            {
+                mod.AddPrefix("Energized", new Energized());
+            }
+            return false;
+        }
 
-		public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
-		{
-			damageMult = 1.19f;
-			manaMult = 0.8f;
-		}
-	}
+        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
+        {
+            damageMult = 1.19f;
+            manaMult = 0.8f;
+        }
+    }
 }

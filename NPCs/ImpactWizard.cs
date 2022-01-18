@@ -1,38 +1,34 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class ImpactWizard : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Impact Wizard");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class ImpactWizard : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Impact Wizard");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 110;
-			npc.lifeMax = 1200;
-			npc.defense = 50;
-			npc.width = 18;
-			npc.aiStyle = -1;
-			npc.npcSlots = 2f;
-			npc.value = 20000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.4f;
+        public override void SetDefaults()
+        {
+            npc.damage = 110;
+            npc.lifeMax = 1200;
+            npc.defense = 50;
+            npc.width = 18;
+            npc.aiStyle = -1;
+            npc.npcSlots = 2f;
+            npc.value = 20000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.4f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.OnFire] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.OnFire] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.ImpactWizardBanner>();
         }

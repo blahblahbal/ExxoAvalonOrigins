@@ -6,21 +6,21 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class ChristmasTome : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Christmas Tome");
-			Tooltip.SetDefault("Tome\n+3% critical strike chance");
-		}
+    class ChristmasTome : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Christmas Tome");
+            Tooltip.SetDefault("Tome\n+3% critical strike chance");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightPurple;
-			item.width = dims.Width;
-			item.value = 15000;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.LightPurple;
+            item.width = dims.Width;
+            item.value = 15000;
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 

@@ -6,23 +6,23 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class TheVoidlands : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("The Voidlands");
-			Tooltip.SetDefault("Tome\n+15% damage, +3% critical strike chance\n+60 HP, +40 mana");
-		}
+    class TheVoidlands : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("The Voidlands");
+            Tooltip.SetDefault("Tome\n+15% damage, +3% critical strike chance\n+60 HP, +40 mana");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.LightPurple;
-			item.width = dims.Width;
-			item.value = 105000;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.LightPurple;
+            item.width = dims.Width;
+            item.value = 105000;
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
-		}
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

@@ -5,22 +5,22 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class ObsidianGlove: ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Obsidian Glove");
-			Tooltip.SetDefault("The wearer can place blocks and walls in midair and in lava\nProvides immunity to fire blocks");
-		}
+    class ObsidianGlove : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Obsidian Glove");
+            Tooltip.SetDefault("The wearer can place blocks and walls in midair and in lava\nProvides immunity to fire blocks");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Lime;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 2, 0, 0);
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Lime;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 2, 0, 0);
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -1,43 +1,39 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Potions;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class AncientOblivionHead2 : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ancient Oblivion");
-			Main.npcFrameCount[npc.type] = 3;
-		}
+    public class AncientOblivionHead2 : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient Oblivion");
+            Main.npcFrameCount[npc.type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 120;
-			npc.boss = true;
-			npc.netAlways = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 100000;
-			npc.defense = 80;
-			npc.noGravity = true;
-			npc.width = 80;
-			npc.aiStyle = -1;
-			npc.npcSlots = 10f;
-			npc.value = 50000f;
-			npc.timeLeft = 22500;
-			npc.height = 102;
-			npc.knockBackResist = 0f;
+        public override void SetDefaults()
+        {
+            npc.damage = 120;
+            npc.boss = true;
+            npc.netAlways = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 100000;
+            npc.defense = 80;
+            npc.noGravity = true;
+            npc.width = 80;
+            npc.aiStyle = -1;
+            npc.npcSlots = 10f;
+            npc.value = 50000f;
+            npc.timeLeft = 22500;
+            npc.height = 102;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
-	        npc.DeathSound = SoundID.NPCDeath14;
+            npc.DeathSound = SoundID.NPCDeath14;
         }
         public override void BossLoot(ref string name, ref int potionType)
         {

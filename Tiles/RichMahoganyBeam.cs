@@ -1,18 +1,18 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class RichMahoganyBeam : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(99, 49, 52));
-			drop = mod.ItemType("RichMahoganyBeam");
+    public class RichMahoganyBeam : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(99, 49, 52));
+            drop = mod.ItemType("RichMahoganyBeam");
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);

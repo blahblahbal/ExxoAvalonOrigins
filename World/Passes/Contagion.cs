@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
-using ExxoAvalonOrigins.Tiles;
-using Microsoft.Xna.Framework;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
     class Contagion
     {
         public static void Method(GenerationProgress progress)
-		{
+        {
             progress.Message = "Making the world gross";
             int num208 = 0;
             while (num208 < Main.maxTilesX * 0.00045)
@@ -220,7 +220,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 }
                 num208++;
             }
-		}
+        }
         /// <summary>
         /// Contagion generation method.
         /// </summary>

@@ -1,46 +1,42 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class CaesiumStalker : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Caesium Stalker");
-			Main.npcFrameCount[npc.type] = 4;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 73;
-			npc.scale = 1.2f;
-			npc.noTileCollide = false;
-			npc.lifeMax = 575;
-			npc.lavaImmune = true;
-			npc.defense = 44;
-			npc.noGravity = true;
-			npc.aiStyle = -1;
-			npc.width = 24;
-			npc.value = Item.buyPrice(0, 0, 45, 0);
-			npc.timeLeft = 750;
-			npc.knockBackResist = 0f;
-			npc.height = 32;
+    public class CaesiumStalker : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Caesium Stalker");
+            Main.npcFrameCount[npc.type] = 4;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 73;
+            npc.scale = 1.2f;
+            npc.noTileCollide = false;
+            npc.lifeMax = 575;
+            npc.lavaImmune = true;
+            npc.defense = 44;
+            npc.noGravity = true;
+            npc.aiStyle = -1;
+            npc.width = 24;
+            npc.value = Item.buyPrice(0, 0, 45, 0);
+            npc.timeLeft = 750;
+            npc.knockBackResist = 0f;
+            npc.height = 32;
             //npc.HitSound = SoundID.NPCHit1;
-	        //npc.DeathSound = SoundID.NPCDeath6;
-			/*npc.buffImmune[BuffID.OnFire] = true;
+            //npc.DeathSound = SoundID.NPCDeath6;
+            /*npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
 			npc.buffImmune[BuffID.Confused] = true;
             npc.buffImmune[BuffID.Daybreak] = true;*/
-            for(int i = 0; i < npc.buffImmune.Length; i++)
+            for (int i = 0; i < npc.buffImmune.Length; i++)
             {
                 npc.buffImmune[i] = true;
             }
@@ -64,16 +60,16 @@ namespace ExxoAvalonOrigins.NPCs
             npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(10) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
-			}
-			var rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + (npc.height - npc.width) / 2), npc.width, npc.width);
-			for (var j = 1; j <= 25; j++)
-			{
-				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 110, 0f, 0f, 100, default, 0.6f);
-				Main.dust[num11].noGravity = true;
+        {
+            if (Main.rand.Next(10) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
+            }
+            var rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + (npc.height - npc.width) / 2), npc.width, npc.width);
+            for (var j = 1; j <= 25; j++)
+            {
+                var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, 110, 0f, 0f, 100, default, 0.6f);
+                Main.dust[num11].noGravity = true;
                 Main.dust[num11].velocity *= 2.5f;
                 Main.dust[num11].fadeIn = 1.1f;
             }

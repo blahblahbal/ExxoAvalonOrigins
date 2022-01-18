@@ -1,40 +1,35 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Larvae : ModNPC
-	{
+    public class Larvae : ModNPC
+    {
         int splitTimer;
         public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Larvae");
-			Main.npcFrameCount[npc.type] = 1;
-		}
+        {
+            DisplayName.SetDefault("Larvae");
+            Main.npcFrameCount[npc.type] = 1;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 0;
-			npc.lifeMax = 200;
-			npc.defense = 10;
-			npc.noGravity = false;
-			npc.width = 38;
-			npc.aiStyle = -1;
-			npc.noTileCollide = false;
-			npc.height = 18;
+        public override void SetDefaults()
+        {
+            npc.damage = 0;
+            npc.lifeMax = 200;
+            npc.defense = 10;
+            npc.noGravity = false;
+            npc.width = 38;
+            npc.aiStyle = -1;
+            npc.noTileCollide = false;
+            npc.height = 18;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.knockBackResist = 0.05f;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.knockBackResist = 0.05f;
 
             splitTimer = 0;
-		}
+        }
 
         public override void AI()
         {

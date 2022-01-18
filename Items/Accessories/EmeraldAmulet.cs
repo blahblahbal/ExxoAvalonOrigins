@@ -5,28 +5,28 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class EmeraldAmulet : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Emerald Amulet");
-			Tooltip.SetDefault("5% increased ranged damage");
-		}
+    class EmeraldAmulet : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Emerald Amulet");
+            Tooltip.SetDefault("5% increased ranged damage");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Green;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 0, 50);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Green;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 0, 50);
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
             player.rangedDamage += 0.05f;
-		}
+        }
 
         public override void AddRecipes()
         {

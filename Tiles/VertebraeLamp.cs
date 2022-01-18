@@ -21,8 +21,8 @@ namespace ExxoAvalonOrigins.Tiles
             dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Vertebrae Lamp");
+            var name = CreateMapEntryName();
+            name.SetDefault("Vertebrae Lamp");
             AddMapEntry(new Color(253, 221, 3), name);
             dustType = DustID.HeartCrystal;
         }

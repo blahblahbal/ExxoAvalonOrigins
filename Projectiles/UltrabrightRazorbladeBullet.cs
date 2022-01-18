@@ -1,36 +1,32 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class UltrabrightRazorbladeBullet : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ultrabright Razorblade Bullet");
-		}
+    public class UltrabrightRazorbladeBullet : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ultrabright Razorblade Bullet");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/UltrabrightRazorbladeBullet");
-			projectile.width = dims.Width * 4 / 20;
-			projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = 1;
-			projectile.light = 3f;
-			projectile.alpha = 0;
-			projectile.scale = 1.2f;
-			projectile.timeLeft = 1200;
-			projectile.ranged = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/UltrabrightRazorbladeBullet");
+            projectile.width = dims.Width * 4 / 20;
+            projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.penetrate = 1;
+            projectile.light = 3f;
+            projectile.alpha = 0;
+            projectile.scale = 1.2f;
+            projectile.timeLeft = 1200;
+            projectile.ranged = true;
+        }
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 14);
@@ -46,16 +42,16 @@ namespace ExxoAvalonOrigins.Projectiles
             }
         }
         public override void AI()
-		{
-			if (projectile.type != ModContent.ProjectileType<UltrabrightRazorbladeBullet>())
-			{
-				projectile.ai[0] += 1f;
-			}
-			projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-			if (projectile.velocity.Y > 16f)
-			{
-				projectile.velocity.Y = 16f;
-			}
-		}
-	}
+        {
+            if (projectile.type != ModContent.ProjectileType<UltrabrightRazorbladeBullet>())
+            {
+                projectile.ai[0] += 1f;
+            }
+            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
+            if (projectile.velocity.Y > 16f)
+            {
+                projectile.velocity.Y = 16f;
+            }
+        }
+    }
 }

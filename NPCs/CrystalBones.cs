@@ -1,31 +1,31 @@
 ﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class CrystalBones : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Crystal Bones");
-			Main.npcFrameCount[npc.type] = 15;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 122;
+    public class CrystalBones : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Crystal Bones");
+            Main.npcFrameCount[npc.type] = 15;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 122;
             npc.lifeMax = 3500;
-			npc.defense = 15;
-			npc.lavaImmune = true;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 50000f;
-			npc.height = 40;
-			npc.knockBackResist = 0f;
+            npc.defense = 15;
+            npc.lavaImmune = true;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 50000f;
+            npc.height = 40;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
+            npc.DeathSound = SoundID.NPCDeath2;
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<Items.Banners.IrateBonesBanner>();
         }

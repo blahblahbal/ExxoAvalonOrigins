@@ -1,36 +1,36 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class PlatinumSlime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Platinum Slime");
-			Main.npcFrameCount[npc.type] = 2;
-		}
+    public class PlatinumSlime : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Platinum Slime");
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 22;
-			npc.lifeMax = 362;
-			npc.defense = 5;
-			npc.width = 36;
-			npc.aiStyle = 1;
-			npc.value = 1000f;
-			npc.knockBackResist = 0.4f;
-			npc.height = 24;
+        public override void SetDefaults()
+        {
+            npc.damage = 22;
+            npc.lifeMax = 362;
+            npc.defense = 5;
+            npc.width = 36;
+            npc.aiStyle = 1;
+            npc.value = 1000f;
+            npc.knockBackResist = 0.4f;
+            npc.height = 24;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
+            npc.DeathSound = SoundID.NPCDeath1;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.PlatinumSlimeBanner>();
         }
 
-		public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PlatinumOre, Main.rand.Next(10, 20), false, 0, false);
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PlatinumOre, Main.rand.Next(10, 20), false, 0, false);
         }
 
         public override void FindFrame(int frameHeight)

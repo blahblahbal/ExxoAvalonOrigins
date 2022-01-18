@@ -1,25 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
 {
-	public class Shadows : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Shadows");
-			Description.SetDefault("You can teleport to the cursor, press V");
-		}
+    public class Shadows : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Shadows");
+            Description.SetDefault("You can teleport to the cursor, press V");
+        }
 
-		public override void Update(Player player, ref int k)
-		{
-			if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd > 300)
-			{
-				player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd = 300;
-			}
+        public override void Update(Player player, ref int k)
+        {
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd > 300)
+            {
+                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd = 300;
+            }
             player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd++;
             if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
             {
@@ -38,6 +37,6 @@ namespace ExxoAvalonOrigins.Buffs
                     Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.1f);
                 }
             }
-		}
-	}
+        }
+    }
 }

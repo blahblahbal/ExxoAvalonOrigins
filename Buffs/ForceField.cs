@@ -1,29 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
 {
-	public class ForceField : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Force Field");
-			Description.SetDefault("A force field surrounds you");
-		}
+    public class ForceField : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Force Field");
+            Description.SetDefault("A force field surrounds you");
+        }
 
-		public override void Update(Player player, ref int k)
-		{
-			player.GetModPlayer<ExxoAvalonOriginsModPlayer>().forceField = true;
-			var value = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
-			var projectile = Main.projectile;
+        public override void Update(Player player, ref int k)
+        {
+            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().forceField = true;
+            var value = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
+            var projectile = Main.projectile;
             for (var l = 0; l < projectile.Length; l++)
             {
                 var Pr = projectile[l];
@@ -55,7 +49,7 @@ namespace ExxoAvalonOrigins.Buffs
                     }
                 }
             }
-		    var npc = Main.npc;
+            var npc = Main.npc;
             for (var l = 0; l < npc.Length; l++)
             {
                 var nPC = npc[l];
@@ -77,6 +71,6 @@ namespace ExxoAvalonOrigins.Buffs
                     }
                 }
             }
-		}
-	}
+        }
+    }
 }

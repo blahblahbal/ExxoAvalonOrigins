@@ -5,25 +5,25 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-	class WorldgenHelper : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("WorldGen Helper");
-			Tooltip.SetDefault("Use this item to generate a pre-set structure at your location\nDO NOT USE IN NORMAL GAMEPLAY - IT WILL OVERWRITE BLOCKS");
-		}
+    class WorldgenHelper : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("WorldGen Helper");
+            Tooltip.SetDefault("Use this item to generate a pre-set structure at your location\nDO NOT USE IN NORMAL GAMEPLAY - IT WILL OVERWRITE BLOCKS");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
             item.rare = ItemRarityID.Purple;
-			item.width = dims.Width;
-			item.maxStack = 1;
+            item.width = dims.Width;
+            item.maxStack = 1;
             item.useAnimation = item.useTime = 30;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = 0;
-			item.height = dims.Height;
-		}
+            item.height = dims.Height;
+        }
 
         public override bool UseItem(Player player)
         {

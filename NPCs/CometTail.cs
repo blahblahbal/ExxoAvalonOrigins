@@ -1,14 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -33,7 +28,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.height = 22;
             npc.knockBackResist = 0.4f;
             npc.HitSound = SoundID.NPCHit3;
-	        npc.DeathSound = SoundID.NPCDeath3;
+            npc.DeathSound = SoundID.NPCDeath3;
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;

@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class CaesiumOre : ModTile
-	{
-		public override void SetDefaults()
-		{
-			mineResist = 5f;
-			AddMapEntry(new Color(86, 190, 74), LanguageManager.Instance.GetText("Caesium"));
-			Main.tileSolid[Type] = true;
-			Main.tileBlockLight[Type] = true;
+    public class CaesiumOre : ModTile
+    {
+        public override void SetDefaults()
+        {
+            mineResist = 5f;
+            AddMapEntry(new Color(86, 190, 74), LanguageManager.Instance.GetText("Caesium"));
+            Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 720;
             //Main.tileMerge[Type][TileID.Ash] = true;

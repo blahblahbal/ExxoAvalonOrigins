@@ -5,28 +5,28 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class StickyCharm : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sticky Charm");
-			Tooltip.SetDefault("Reduces damage taken by 10% and negates fall damage\nProvides immunity to slimes");
-		}
+    class StickyCharm : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Sticky Charm");
+            Tooltip.SetDefault("Reduces damage taken by 10% and negates fall damage\nProvides immunity to slimes");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = 200000;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = 200000;
+            item.height = dims.Height;
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
-			player.endurance += 0.1f;
-			player.noFallDmg = true;
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.endurance += 0.1f;
+            player.noFallDmg = true;
             player.npcTypeNoAggro[1] = true;
             player.npcTypeNoAggro[16] = true;
             player.npcTypeNoAggro[59] = true;
@@ -74,5 +74,5 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.npcTypeNoAggro[ModContent.NPCType<NPCs.TroxiniumSlime>()] = true;
             player.npcTypeNoAggro[ModContent.NPCType<NPCs.DarkMatterSlime>()] = true;
         }
-	}
+    }
 }

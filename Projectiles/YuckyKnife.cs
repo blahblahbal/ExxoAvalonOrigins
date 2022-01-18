@@ -1,40 +1,35 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class YuckyKnife : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Yucky Knife");
-		}
+    public class YuckyKnife : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Yucky Knife");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/YuckyKnife");
-			projectile.width = dims.Width * 8 / 30;
-			projectile.height = dims.Height * 8 / 30 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = 1;
-			projectile.melee = true;
-			projectile.light = 0.6f;
-			projectile.ignoreWater = true;
-			projectile.extraUpdates = 0;
-			projectile.timeLeft = 300;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/YuckyKnife");
+            projectile.width = dims.Width * 8 / 30;
+            projectile.height = dims.Height * 8 / 30 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.penetrate = 1;
+            projectile.melee = true;
+            projectile.light = 0.6f;
+            projectile.ignoreWater = true;
+            projectile.extraUpdates = 0;
+            projectile.timeLeft = 300;
+        }
 
-		public override void AI()
-		{
-			projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.03f * projectile.direction;
+        public override void AI()
+        {
+            projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.03f * projectile.direction;
             projectile.ai[0] += 1f;
             if (projectile.ai[0] < 30f)
             {
@@ -50,9 +45,9 @@ namespace ExxoAvalonOrigins.Projectiles
                 }
             }
             if (projectile.velocity.Y > 16f)
-			{
-				projectile.velocity.Y = 16f;
-			}
-		}
-	}
+            {
+                projectile.velocity.Y = 16f;
+            }
+        }
+    }
 }

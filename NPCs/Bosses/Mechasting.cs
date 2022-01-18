@@ -1,15 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Potions;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -34,13 +30,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.timeLeft = 22500;
             npc.damage = 142;
             npc.defense = 65;
-            npc.HitSound= SoundID.NPCHit4;
+            npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.boss = true;
             npc.lifeMax = 82000;
             npc.scale = 1.2f;
             bossBag = ModContent.ItemType<Items.BossBags.MechastingBossBag>();
-            
+
         }
         public override void BossLoot(ref string name, ref int potionType)
         {

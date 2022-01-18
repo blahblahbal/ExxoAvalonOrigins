@@ -4,22 +4,22 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Other
 {
-	class ContagionKeyMold : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Contagion Key Mold");
-			Tooltip.SetDefault("Used for crafting a Contagion Key");
-		}
+    class ContagionKeyMold : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Contagion Key Mold");
+            Tooltip.SetDefault("Used for crafting a Contagion Key");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Yellow;
-			item.width = dims.Width;
-			item.scale = 1f;
-			item.maxStack = 999;
-			item.height = dims.Height;
-		}
-	}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Yellow;
+            item.width = dims.Width;
+            item.scale = 1f;
+            item.maxStack = 999;
+            item.height = dims.Height;
+        }
+    }
 }

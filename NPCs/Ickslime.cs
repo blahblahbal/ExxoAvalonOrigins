@@ -1,48 +1,42 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Ickslime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ickslime");
-			Main.npcFrameCount[npc.type] = 2;
-		}
+    public class Ickslime : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ickslime");
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 57;
-			npc.lifeMax = 186;
-			npc.defense = 30;
-			npc.alpha = 55;
-			npc.width = 40;
-			npc.aiStyle = 1;
-			npc.scale = 1.1f;
-			npc.value = 400f;
-			npc.height = 30;
-			npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.Confused] = true;
+        public override void SetDefaults()
+        {
+            npc.damage = 57;
+            npc.lifeMax = 186;
+            npc.defense = 30;
+            npc.alpha = 55;
+            npc.width = 40;
+            npc.aiStyle = 1;
+            npc.scale = 1.1f;
+            npc.value = 400f;
+            npc.height = 30;
+            npc.HitSound = SoundID.NPCHit1;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.IckslimeBanner>();
         }
 
-		public override void NPCLoot()
-		{
-			if (Main.rand.Next(90) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false);
-			}
+        public override void NPCLoot()
+        {
+            if (Main.rand.Next(90) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false);
+            }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

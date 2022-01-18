@@ -1,32 +1,30 @@
-﻿using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 
 namespace ExxoAvalonOrigins.Prefixes
 {
-	public class Slimy : ArmorPrefix
-	{
-		public Slimy()
-		{
+    public class Slimy : ArmorPrefix
+    {
+        public Slimy()
+        {
 
-		}
+        }
 
-		public override bool CanRoll(Item item)
-		{
+        public override bool CanRoll(Item item)
+        {
             return IsArmor(item);
-		}
+        }
 
-		public override bool Autoload(ref string name)
-		{
-			if (base.Autoload(ref name))
-			{
-				mod.AddPrefix("Slimy", new Slimy());
-			}
-			return false;
-		}
+        public override bool Autoload(ref string name)
+        {
+            if (base.Autoload(ref name))
+            {
+                mod.AddPrefix("Slimy", new Slimy());
+            }
+            return false;
+        }
         public override void UpdateEquip(Player player)
-		{
-			player.endurance += 0.05f;
-		}
-	}
+        {
+            player.endurance += 0.05f;
+        }
+    }
 }

@@ -1,45 +1,41 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using ExxoAvalonOrigins.Items.Vanity;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
     [AutoloadBossHead]
     public class BacteriumPrime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bacterium Prime");
-			Main.npcFrameCount[npc.type] = 8;
-		}
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bacterium Prime");
+            Main.npcFrameCount[npc.type] = 8;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 31;
-			npc.boss = true;
-			npc.noTileCollide = true;
-			npc.lifeMax = 1500;
-			npc.defense = 10;
-			npc.noGravity = true;
-			npc.width = 120;
-			npc.aiStyle = -1;
-			npc.npcSlots = 6f;
-			npc.value = 50000f;
-			npc.timeLeft = NPC.activeTime * 30;
-			npc.height = 120;
+        public override void SetDefaults()
+        {
+            npc.damage = 31;
+            npc.boss = true;
+            npc.noTileCollide = true;
+            npc.lifeMax = 1500;
+            npc.defense = 10;
+            npc.noGravity = true;
+            npc.width = 120;
+            npc.aiStyle = -1;
+            npc.npcSlots = 6f;
+            npc.value = 50000f;
+            npc.timeLeft = NPC.activeTime * 30;
+            npc.height = 120;
             npc.HitSound = SoundID.NPCHit8;
-	        npc.DeathSound = SoundID.NPCDeath10;
-			npc.knockBackResist = 0f;
+            npc.DeathSound = SoundID.NPCDeath10;
+            npc.knockBackResist = 0f;
             bossBag = ModContent.ItemType<Items.BossBags.BacteriumPrimeBossBag>();
         }
 
@@ -182,7 +178,7 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         while (num908 <= 100);
                         return;
-                    IL_3556C:
+IL_3556C:
                         npc.ai[0] = -2f;
                         npc.ai[1] = num909;
                         npc.ai[2] = num910;
@@ -294,7 +290,7 @@ namespace ExxoAvalonOrigins.NPCs
                         }
                         while (num917 <= 100);
                         return;
-                    IL_35A0D:
+IL_35A0D:
                         npc.ai[0] = 1f;
                         npc.ai[1] = num918;
                         npc.ai[2] = num919;

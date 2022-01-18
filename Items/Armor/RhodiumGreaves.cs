@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
 {
-	[AutoloadEquip(EquipType.Legs)]
-	class RhodiumGreaves : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rhodium Greaves");
-			Tooltip.SetDefault("10% increased magic damage");
-		}
+    [AutoloadEquip(EquipType.Legs)]
+    class RhodiumGreaves : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Rhodium Greaves");
+            Tooltip.SetDefault("10% increased magic damage");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 7;
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 1, 0, 0);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 7;
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 1, 0, 0);
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -33,8 +33,8 @@ namespace ExxoAvalonOrigins.Items.Armor
             recipe.AddRecipe();
         }
         public override void UpdateEquip(Player player)
-		{
-			player.magicDamage += 0.1f;
-		}
-	}
+        {
+            player.magicDamage += 0.1f;
+        }
+    }
 }

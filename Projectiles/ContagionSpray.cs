@@ -1,35 +1,29 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class ContagionSpray : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Contagion Spray");
-		}
+    public class ContagionSpray : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Contagion Spray");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ContagionSpray");
-			projectile.width = dims.Width * 6 / 16;
-			projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.alpha = 255;
-			projectile.penetrate = -1;
-			projectile.MaxUpdates = 2;
-			projectile.tileCollide = false;
-			projectile.ignoreWater = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ContagionSpray");
+            projectile.width = dims.Width * 6 / 16;
+            projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.alpha = 255;
+            projectile.penetrate = -1;
+            projectile.MaxUpdates = 2;
+            projectile.tileCollide = false;
+            projectile.ignoreWater = true;
+        }
 
         public override void AI()
         {

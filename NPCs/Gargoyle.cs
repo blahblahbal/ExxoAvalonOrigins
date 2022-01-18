@@ -1,41 +1,36 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Gargoyle : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Gargoyle");
-			Main.npcFrameCount[npc.type] = 5;
-		}
+    public class Gargoyle : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Gargoyle");
+            Main.npcFrameCount[npc.type] = 5;
+        }
         public override void SetDefaults()
-		{
-			npc.damage = 85;
-			npc.netAlways = true;
-			npc.scale = 1.1f;
-			npc.lifeMax = 2400;
-			npc.defense = 30;
-			npc.lavaImmune = true;
-			npc.width = 34;
-			npc.aiStyle = -1;
-			npc.value = Item.buyPrice(0, 1, 0, 0);
-			npc.height = 50;
-			npc.knockBackResist = 0f;
+        {
+            npc.damage = 85;
+            npc.netAlways = true;
+            npc.scale = 1.1f;
+            npc.lifeMax = 2400;
+            npc.defense = 30;
+            npc.lavaImmune = true;
+            npc.width = 34;
+            npc.aiStyle = -1;
+            npc.value = Item.buyPrice(0, 1, 0, 0);
+            npc.height = 50;
+            npc.knockBackResist = 0f;
             npc.HitSound = null;
-	        npc.DeathSound = null;
-			npc.buffImmune[BuffID.Confused] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.CursedInferno] = true;
+            npc.DeathSound = null;
+            npc.buffImmune[BuffID.Confused] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.CursedInferno] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.GargoyleBanner>();
         }
@@ -45,9 +40,9 @@ namespace ExxoAvalonOrigins.NPCs
             npc.damage = (int)(npc.damage * 0.5f);
         }
         public override void NPCLoot()
-		{
-			// todo - add drops
-		}
+        {
+            // todo - add drops
+        }
         public override void AI()
         {
             npc.noGravity = true;

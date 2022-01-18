@@ -1,8 +1,6 @@
-﻿using Mono.Cecil;
+﻿using System.Reflection;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using System;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

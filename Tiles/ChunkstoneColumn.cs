@@ -7,12 +7,12 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class ChunkstoneColumn : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(73, 51, 36));
-			drop = mod.ItemType("ChunkstoneColumn");
+    public class ChunkstoneColumn : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(73, 51, 36));
+            drop = mod.ItemType("ChunkstoneColumn");
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);

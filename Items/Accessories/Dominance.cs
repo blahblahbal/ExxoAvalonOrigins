@@ -7,21 +7,21 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class Dominance : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Dominance");
-			Tooltip.SetDefault("Tome\n+22% damage, +8% critical strike chance, -10% mana cost\n20% chance to not consume ammo, 11 defense, +140 mana, +80 HP");
-		}
+    class Dominance : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Dominance");
+            Tooltip.SetDefault("Tome\n+22% damage, +8% critical strike chance, -10% mana cost\n20% chance to not consume ammo, 11 defense, +140 mana, +80 HP");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Cyan;
-			item.width = dims.Width;
-			item.value = 250000;
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Cyan;
+            item.width = dims.Width;
+            item.value = 250000;
+            item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 

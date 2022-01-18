@@ -1,24 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles.Ores
 {
-	public class SolariumOre : ModTile
-	{
-		public override void SetDefaults()
-		{
-			mineResist = 4f;
-			AddMapEntry(new Color(244, 167, 0), LanguageManager.Instance.GetText("Solarium"));
-			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
-			Main.tileBlockLight[Type] = true;
-			Main.tileLighted[Type] = true;
+    public class SolariumOre : ModTile
+    {
+        public override void SetDefaults()
+        {
+            mineResist = 4f;
+            AddMapEntry(new Color(244, 167, 0), LanguageManager.Instance.GetText("Solarium"));
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
+            Main.tileBlockLight[Type] = true;
+            Main.tileLighted[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 730;
-			Main.tileShine[Type] = 1150;
+            Main.tileShine[Type] = 1150;
             drop = mod.ItemType("SolariumOre");
             soundType = SoundID.Tink;
             soundStyle = 1;

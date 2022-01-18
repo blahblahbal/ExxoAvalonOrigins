@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
 {
-	[AutoloadEquip(EquipType.Head)]
-	class HallowedCrown : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Hallowed Crown");
-			Tooltip.SetDefault("12% increased minion damage and knockback\nIncreases your max number of minions by 2");
-		}
+    [AutoloadEquip(EquipType.Head)]
+    class HallowedCrown : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Hallowed Crown");
+            Tooltip.SetDefault("12% increased minion damage and knockback\nIncreases your max number of minions by 2");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 12;
-			item.rare = ItemRarityID.Pink;
-			item.width = dims.Width;
-			item.value = 250000;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 12;
+            item.rare = ItemRarityID.Pink;
+            item.width = dims.Width;
+            item.value = 250000;
+            item.height = dims.Height;
+        }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -36,10 +36,10 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
 
         public override void UpdateEquip(Player player)
-		{
-			player.minionKB += 0.12f;
-			player.minionDamage += 0.12f;
-			player.maxMinions += 2;
-		}
-	}
+        {
+            player.minionKB += 0.12f;
+            player.minionDamage += 0.12f;
+            player.maxMinions += 2;
+        }
+    }
 }

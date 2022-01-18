@@ -5,26 +5,26 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-	class OddFertilizer : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Odd Fertilizer");
-			Tooltip.SetDefault("Summons Plantera");
-		}
+    class OddFertilizer : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Odd Fertilizer");
+            Tooltip.SetDefault("Summons Plantera");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.consumable = true;
-			item.rare = ItemRarityID.LightRed;
-			item.width = dims.Width;
-			item.useTime = 45;
-			item.useStyle = ItemUseStyleID.HoldingUp;
-			item.maxStack = 20;
-			item.useAnimation = 45;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.consumable = true;
+            item.rare = ItemRarityID.LightRed;
+            item.width = dims.Width;
+            item.useTime = 45;
+            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.maxStack = 20;
+            item.useAnimation = 45;
+            item.height = dims.Height;
+        }
 
         public override bool CanUseItem(Player player)
         {

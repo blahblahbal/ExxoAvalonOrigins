@@ -11,25 +11,31 @@ namespace ExxoAvalonOrigins.Backgrounds
         }
 
         // Use this to keep far Backgrounds like the mountains.
-		// This shit doesn't work. Why?
-        public override void ModifyFarFades(float[] fades, float transitionSpeed) {
-			for (int i = 0; i < fades.Length; i++) {
-				if (i == Slot) {
-					fades[i] += transitionSpeed;
-					if (fades[i] > 1f) {
-						fades[i] = 1f;
-					}
-				}
-				else {
-					fades[i] -= transitionSpeed;
-					if (fades[i] < 0f) {
-						fades[i] = 0f;
-					}
-				}
-			}
-		}
+        // This shit doesn't work. Why?
+        public override void ModifyFarFades(float[] fades, float transitionSpeed)
+        {
+            for (int i = 0; i < fades.Length; i++)
+            {
+                if (i == Slot)
+                {
+                    fades[i] += transitionSpeed;
+                    if (fades[i] > 1f)
+                    {
+                        fades[i] = 1f;
+                    }
+                }
+                else
+                {
+                    fades[i] -= transitionSpeed;
+                    if (fades[i] < 0f)
+                    {
+                        fades[i] = 0f;
+                    }
+                }
+            }
+        }
 
-		// Also this displays too low down.
+        // Also this displays too low down.
         public override int ChooseFarTexture()
         {
             return mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG3");

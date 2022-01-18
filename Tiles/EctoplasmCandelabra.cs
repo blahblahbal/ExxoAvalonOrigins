@@ -20,8 +20,8 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.addTile(Type);
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Ectoplasm Candelabra");
+            var name = CreateMapEntryName();
+            name.SetDefault("Ectoplasm Candelabra");
             AddMapEntry(new Color(253, 221, 3), name);
             dustType = DustID.Ultrabright;
         }

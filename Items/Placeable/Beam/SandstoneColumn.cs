@@ -4,26 +4,26 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Beam
 {
-	class SandstoneColumn : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sandstone Column");
-		}
+    class SandstoneColumn : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Sandstone Column");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.autoReuse = true;
-			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.SandstoneColumn>();
-			item.width = dims.Width;
-			item.useTurn = true;
-			item.useTime = 10;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.maxStack = 999;
-			item.useAnimation = 15;
-			item.height = dims.Height;
-		}
-	}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.autoReuse = true;
+            item.consumable = true;
+            item.createTile = ModContent.TileType<Tiles.SandstoneColumn>();
+            item.width = dims.Width;
+            item.useTurn = true;
+            item.useTime = 10;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.maxStack = 999;
+            item.useAnimation = 15;
+            item.height = dims.Height;
+        }
+    }
 }

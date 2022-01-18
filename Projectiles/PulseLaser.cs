@@ -1,20 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class PulseLaser : ModProjectile
-	{
+    public class PulseLaser : ModProjectile
+    {
         Vector2 End = new Vector2(0, 0);
         Vector2 StartReal = new Vector2(0, 0);
         float L = 0f;
@@ -28,26 +23,26 @@ namespace ExxoAvalonOrigins.Projectiles
         float dustSpeed = 4f;
         Color DC = Color.Purple;
         public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Pulse Laser");
-		}
+        {
+            DisplayName.SetDefault("Pulse Laser");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PulseLaser");
-			projectile.width = dims.Width * 4 / 20;
-			projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = 7;
-			projectile.light = 0.8f;
-			projectile.alpha = 255;
-			projectile.MaxUpdates = 2;
-			projectile.scale = 1.2f;
-			projectile.timeLeft = 600;
-			projectile.magic = true;
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PulseLaser");
+            projectile.width = dims.Width * 4 / 20;
+            projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.penetrate = 7;
+            projectile.light = 0.8f;
+            projectile.alpha = 255;
+            projectile.MaxUpdates = 2;
+            projectile.scale = 1.2f;
+            projectile.timeLeft = 600;
+            projectile.magic = true;
             StartReal = projectile.position;
-		}
+        }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {

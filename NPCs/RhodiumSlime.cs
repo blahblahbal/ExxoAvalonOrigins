@@ -1,37 +1,37 @@
 ﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class RhodiumSlime : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Rhodium Slime");
-			Main.npcFrameCount[npc.type] = 2;
-		}
+    public class RhodiumSlime : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Rhodium Slime");
+            Main.npcFrameCount[npc.type] = 2;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 20;
-			npc.lifeMax = 290;
-			npc.defense = 5;
-			npc.width = 36;
-			npc.aiStyle = 1;
-			npc.value = 1000f;
-			npc.knockBackResist = 0.4f;
-			npc.height = 24;
+        public override void SetDefaults()
+        {
+            npc.damage = 20;
+            npc.lifeMax = 290;
+            npc.defense = 5;
+            npc.width = 36;
+            npc.aiStyle = 1;
+            npc.value = 1000f;
+            npc.knockBackResist = 0.4f;
+            npc.height = 24;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
+            npc.DeathSound = SoundID.NPCDeath1;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.RhodiumSlimeBanner>();
         }
 
-		public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RhodiumOre>(), Main.rand.Next(10, 16), false, 0, false);
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RhodiumOre>(), Main.rand.Next(10, 16), false, 0, false);
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

@@ -6,8 +6,8 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class Shards : ModTile
-	{
+    public class Shards : ModTile
+    {
         public override void SetDefaults()
         {
             TileObjectData.newTile.Width = 1;

@@ -4,24 +4,24 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-	class TheBeak : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("The Beak");
-			Tooltip.SetDefault("Summons Desert Beak");
-		}
+    class TheBeak : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("The Beak");
+            Tooltip.SetDefault("Summons Desert Beak");
+        }
 
-		public override void SetDefaults()
-		{
-			//Rectangle dims = this.GetDims();
-			item.consumable = true;
-			item.width = 32;
-			item.useTime = 40;
-			item.maxStack = 20;
-			item.useStyle = ItemUseStyleID.HoldingUp;
-			item.useAnimation = 40;
-			item.height = 28;
+        public override void SetDefaults()
+        {
+            //Rectangle dims = this.GetDims();
+            item.consumable = true;
+            item.width = 32;
+            item.useTime = 40;
+            item.maxStack = 20;
+            item.useStyle = ItemUseStyleID.HoldingUp;
+            item.useAnimation = 40;
+            item.height = 28;
         }
 
         public override bool CanUseItem(Player player)

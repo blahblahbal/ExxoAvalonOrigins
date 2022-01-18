@@ -5,16 +5,16 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Bar
 {
-	class SuperhardmodeBar : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Superhardmode Bar");
-		}
+    class SuperhardmodeBar : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Superhardmode Bar");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.useTurn = true;
             item.maxStack = 999;
@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
-		}
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

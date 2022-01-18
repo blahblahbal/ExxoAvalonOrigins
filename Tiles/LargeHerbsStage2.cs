@@ -1,13 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ExxoAvalonOrigins.Items.Placeable.Seed;
+﻿using ExxoAvalonOrigins.Items.Placeable.Seed;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles

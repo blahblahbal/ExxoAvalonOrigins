@@ -1,29 +1,28 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	[AutoloadEquip(EquipType.Wings)]
-	class CorruptionWings : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Corruption Wings");
-			Tooltip.SetDefault("Allows flight and slow fall\nOther bonuses apply when in the Corruption");
-		}
+    [AutoloadEquip(EquipType.Wings)]
+    class CorruptionWings : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Corruption Wings");
+            Tooltip.SetDefault("Allows flight and slow fall\nOther bonuses apply when in the Corruption");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Yellow;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;
-			item.value = 400000;
-			item.accessory = true;
-			item.height = dims.Height;
-		}
+            item.value = 400000;
+            item.accessory = true;
+            item.height = dims.Height;
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -44,5 +43,5 @@ namespace ExxoAvalonOrigins.Items.Accessories
             r.SetResult(this);
             r.AddRecipe();
         }
-	}
+    }
 }

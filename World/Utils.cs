@@ -1,8 +1,8 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Tiles;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ExxoAvalonOrigins.Tiles;
-using Microsoft.Xna.Framework;
 
 namespace ExxoAvalonOrigins.World
 {

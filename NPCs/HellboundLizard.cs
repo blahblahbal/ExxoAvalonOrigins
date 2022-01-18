@@ -1,37 +1,32 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class HellboundLizard : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Hellbound Lizard");
-			Main.npcFrameCount[npc.type] = 16;
-		}
+    public class HellboundLizard : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Hellbound Lizard");
+            Main.npcFrameCount[npc.type] = 16;
+        }
         public override void SetDefaults()
-		{
-			npc.damage = 90;
-			npc.lifeMax = 780;
-			npc.defense = 20;
-			npc.lavaImmune = true;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 1000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.02f;
+        {
+            npc.damage = 90;
+            npc.lifeMax = 780;
+            npc.defense = 20;
+            npc.lavaImmune = true;
+            npc.width = 18;
+            npc.aiStyle = 3;
+            npc.value = 1000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.02f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Confused] = true;
             npc.buffImmune[BuffID.OnFire] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.HellboundLizardBanner>();

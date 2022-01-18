@@ -5,27 +5,27 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
 {
-	[AutoloadEquip(EquipType.Body)]
-	class XeradonArmor : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Xeradon Armor");
-			Tooltip.SetDefault("10% increased mining speed\n10% increased block placement speed\nReduces enemy spawn rate and aggression");
-		}
+    [AutoloadEquip(EquipType.Body)]
+    class XeradonArmor : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Xeradon Armor");
+            Tooltip.SetDefault("10% increased mining speed\n10% increased block placement speed\nReduces enemy spawn rate and aggression");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 20;
-			item.rare = ItemRarityID.Pink;
-			item.width = dims.Width;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 20;
+            item.rare = ItemRarityID.Pink;
+            item.width = dims.Width;
             item.value = Item.sellPrice(0, 2);
-			item.height = dims.Height;
-		}
+            item.height = dims.Height;
+        }
 
         public override void UpdateEquip(Player player)
-		{
+        {
             player.wallSpeed += 0.1f;
             player.tileSpeed += 0.1f;
             player.pickSpeed -= 0.1f;

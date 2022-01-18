@@ -1,18 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class IronBrick : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(140, 101, 80));
-			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
-			Main.tileBrick[Type] = true;
+    public class IronBrick : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(140, 101, 80));
+            Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
+            Main.tileBrick[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
@@ -22,5 +22,5 @@ namespace ExxoAvalonOrigins.Tiles
             soundStyle = 1;
             dustType = DustID.Iron;
         }
-	}
+    }
 }

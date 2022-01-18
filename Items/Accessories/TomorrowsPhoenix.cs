@@ -6,23 +6,23 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class TomorrowsPhoenix : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tomorrow's Phoenix");
-			Tooltip.SetDefault("Tome\n8% increased minion damage\n5% increased minion knockback");
-		}
+    class TomorrowsPhoenix : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Tomorrow's Phoenix");
+            Tooltip.SetDefault("Tome\n8% increased minion damage\n5% increased minion knockback");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Orange;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 0, 10);
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Orange;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 0, 10);
             item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
-		}
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

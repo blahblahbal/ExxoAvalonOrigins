@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;
 using Terraria.ModLoader;
@@ -26,14 +21,14 @@ namespace ExxoAvalonOrigins.Hooks
             // Automatically shift cursor after each emit
             c.MoveAfterLabels();
 
-            c.EmitDelegate <Func<int, int>> ((createTile) =>
-            {
-                if (createTile == ModContent.TileType<Tiles.Torches>())
-                {
-                    return 4;
-                }
-                return createTile;
-            });
+            c.EmitDelegate<Func<int, int>>((createTile) =>
+          {
+              if (createTile == ModContent.TileType<Tiles.Torches>())
+              {
+                  return 4;
+              }
+              return createTile;
+          });
         }
 
     }

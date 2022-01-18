@@ -6,16 +6,16 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
 {
-	public class Supersonic : ModBuff
-	{
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault("Supersonic");
-			Description.SetDefault("You are speedy");
-		}
+    public class Supersonic : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            DisplayName.SetDefault("Supersonic");
+            Description.SetDefault("You are speedy");
+        }
 
-		public override void Update(Player player, ref int k)
-		{
+        public override void Update(Player player, ref int k)
+        {
             player.accRunSpeed = 14.29f;
             if (player.controlLeft)
             {
@@ -46,5 +46,5 @@ namespace ExxoAvalonOrigins.Buffs
                 Main.dust[num].noGravity = true;
             }
         }
-	}
+    }
 }

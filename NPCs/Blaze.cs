@@ -1,42 +1,38 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Blaze : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Blaze");
-			Main.npcFrameCount[npc.type] = 4;
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 69;
-			npc.scale = 1.2f;
-			npc.noTileCollide = false;
-			npc.lifeMax = 460;
-			npc.lavaImmune = true;
-			npc.defense = 35;
-			npc.noGravity = true;
-			npc.aiStyle = -1;
-			npc.width = 24;
-			npc.value = Item.buyPrice(0, 0, 45, 0);
-			npc.timeLeft = 750;
-			npc.knockBackResist = 0.3f;
-			npc.height = 32;
+    public class Blaze : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Blaze");
+            Main.npcFrameCount[npc.type] = 4;
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 69;
+            npc.scale = 1.2f;
+            npc.noTileCollide = false;
+            npc.lifeMax = 460;
+            npc.lavaImmune = true;
+            npc.defense = 35;
+            npc.noGravity = true;
+            npc.aiStyle = -1;
+            npc.width = 24;
+            npc.value = Item.buyPrice(0, 0, 45, 0);
+            npc.timeLeft = 750;
+            npc.knockBackResist = 0.3f;
+            npc.height = 32;
             //npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath6;
-			npc.buffImmune[BuffID.OnFire] = true;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath6;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[BuffID.Confused] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.BlazeBanner>();
             drawOffsetY = 10;
@@ -58,31 +54,31 @@ namespace ExxoAvalonOrigins.NPCs
             Main.spriteBatch.Draw(mod.GetTexture("Sprites/BlazeGlow"), new Vector2(npc.position.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + vector13.X * npc.scale, npc.position.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + vector13.Y * npc.scale + num66), new Rectangle?(npc.frame), new Color(200, 200, 200, 0), npc.rotation, vector13, npc.scale, effects, 0f);
         }
         public override void NPCLoot()
-		{
-			if (Main.rand.Next(10) == 0)
-			{
-				Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Hellstone, Main.rand.Next(1, 5), false, 0, false);
-			}
-			var rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + (npc.height - npc.width) / 2), npc.width, npc.width);
-			var num8 = 50;
-			var num9 = 0.4f;
-			for (var i = 1; i <= num8; i++)
-			{
-				var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.Fire, 0f, 0f, 100, default(Color), 2f);
-				Main.dust[num10].noGravity = true;
-				Main.dust[num10].velocity.X = num9 * (Main.dust[num10].position.X - (npc.position.X + npc.width / 2));
-				Main.dust[num10].velocity.Y = num9 * (Main.dust[num10].position.Y - (npc.position.Y + npc.height / 2));
-			}
-			for (var j = 1; j <= num8; j++)
-			{
-				var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.Wraith, 0f, 0f, 100, default(Color), 1f);
-				Main.dust[num11].noGravity = true;
-				Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
-				Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));
-			}
-			var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, 0, 0f, npc.target, 0f, 0f);
-			Main.projectile[num12].Kill();
-		}
+        {
+            if (Main.rand.Next(10) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Hellstone, Main.rand.Next(1, 5), false, 0, false);
+            }
+            var rectangle = new Rectangle((int)npc.position.X, (int)(npc.position.Y + (npc.height - npc.width) / 2), npc.width, npc.width);
+            var num8 = 50;
+            var num9 = 0.4f;
+            for (var i = 1; i <= num8; i++)
+            {
+                var num10 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.Fire, 0f, 0f, 100, default(Color), 2f);
+                Main.dust[num10].noGravity = true;
+                Main.dust[num10].velocity.X = num9 * (Main.dust[num10].position.X - (npc.position.X + npc.width / 2));
+                Main.dust[num10].velocity.Y = num9 * (Main.dust[num10].position.Y - (npc.position.Y + npc.height / 2));
+            }
+            for (var j = 1; j <= num8; j++)
+            {
+                var num11 = Dust.NewDust(npc.position, rectangle.Width, rectangle.Height, DustID.Wraith, 0f, 0f, 100, default(Color), 1f);
+                Main.dust[num11].noGravity = true;
+                Main.dust[num11].velocity.X = num9 * (Main.dust[num11].position.X - (npc.position.X + npc.width / 2));
+                Main.dust[num11].velocity.Y = num9 * (Main.dust[num11].position.Y - (npc.position.Y + npc.height / 2));
+            }
+            var num12 = Projectile.NewProjectile(npc.position.X + npc.width / 2, npc.position.Y + npc.height / 2, 0f, 0f, ProjectileID.Grenade, 0, 0f, npc.target, 0f, 0f);
+            Main.projectile[num12].Kill();
+        }
         public override void AI()
         {
             npc.netUpdate = true;

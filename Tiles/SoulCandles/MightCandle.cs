@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Tiles.SoulCandles
     {
         public override void SetDefaults()
         {
-            
+
             Main.tileLavaDeath[Type] = false;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.Height = 2;

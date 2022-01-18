@@ -1,33 +1,28 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class BlahBeam : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Blah Beam");
-		}
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahBeam");
+    public class BlahBeam : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Blah Beam");
+        }
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahBeam");
             projectile.width = 16;
-			projectile.height = 16;
-			projectile.aiStyle = 27;
-			projectile.melee = true;
-			projectile.penetrate = 2;
-			projectile.light = 0.8f;
-			projectile.penetrate = 2;
-			projectile.alpha = 255;
-			projectile.friendly = true;
+            projectile.height = 16;
+            projectile.aiStyle = 27;
+            projectile.melee = true;
+            projectile.penetrate = 2;
+            projectile.light = 0.8f;
+            projectile.penetrate = 2;
+            projectile.alpha = 255;
+            projectile.friendly = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {

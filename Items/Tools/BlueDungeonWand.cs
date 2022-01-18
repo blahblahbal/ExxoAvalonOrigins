@@ -5,27 +5,27 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-	class BlueDungeonWand : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Blue Dungeon Wand");
-			Tooltip.SetDefault("Places unsafe blue dungeon walls");
-		}
+    class BlueDungeonWand : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Blue Dungeon Wand");
+            Tooltip.SetDefault("Places unsafe blue dungeon walls");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.UseSound = SoundID.Item1;
-			item.autoReuse = true;
-			item.rare = ItemRarityID.Blue;
-			item.width = dims.Width;
-			item.useTurn = true;
-			item.useTime = 10;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useAnimation = 15;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.UseSound = SoundID.Item1;
+            item.autoReuse = true;
+            item.rare = ItemRarityID.Blue;
+            item.width = dims.Width;
+            item.useTurn = true;
+            item.useTime = 10;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useAnimation = 15;
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

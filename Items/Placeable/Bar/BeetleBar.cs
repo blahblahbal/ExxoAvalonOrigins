@@ -5,29 +5,29 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Bar
 {
-	class BeetleBar : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Beetle Bar");
-		}
+    class BeetleBar : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Beetle Bar");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.autoReuse = true;
-			item.useTurn = true;
-			item.maxStack = 999;
-			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.PlacedBars>();
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.autoReuse = true;
+            item.useTurn = true;
+            item.maxStack = 999;
+            item.consumable = true;
+            item.createTile = ModContent.TileType<Tiles.PlacedBars>();
             item.placeStyle = 14;
-			item.rare = ItemRarityID.Yellow;
-			item.width = dims.Width;
-			item.useTime = 10;
-			item.value = Item.sellPrice(0, 1, 0, 0);
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useAnimation = 15;
-			item.height = dims.Height;
-		}
-	}
+            item.rare = ItemRarityID.Yellow;
+            item.width = dims.Width;
+            item.useTime = 10;
+            item.value = Item.sellPrice(0, 1, 0, 0);
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useAnimation = 15;
+            item.height = dims.Height;
+        }
+    }
 }

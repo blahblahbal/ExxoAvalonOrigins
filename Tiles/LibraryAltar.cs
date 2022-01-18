@@ -15,8 +15,8 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileLavaDeath[Type] = false;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.addTile(Type);
-			var name = CreateMapEntryName();
-			name.SetDefault("Library Altar");
+            var name = CreateMapEntryName();
+            name.SetDefault("Library Altar");
             AddMapEntry((Color.Gray), name);
             dustType = DustID.Stone;
         }

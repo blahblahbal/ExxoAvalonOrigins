@@ -22,8 +22,8 @@ namespace ExxoAvalonOrigins.Tiles
             dustType = -1;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Heartstone Lantern");
+            var name = CreateMapEntryName();
+            name.SetDefault("Heartstone Lantern");
             AddMapEntry(new Color(251, 235, 127), name);
             dustType = DustID.Confetti_Pink;
         }

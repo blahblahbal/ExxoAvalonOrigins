@@ -327,7 +327,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.IronBar, 3);
             recipe.AddIngredient(ItemID.Bone, 10);
-			recipe.anyIronBar = true;
+            recipe.anyIronBar = true;
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ItemID.Spike, 20);
             recipe.AddRecipe();
@@ -335,7 +335,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Wood, 20);
             recipe.AddIngredient(ItemID.BeetleHusk, 2);
-			recipe.anyWood = true;
+            recipe.anyWood = true;
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ItemID.WoodenSpike, 40);
             recipe.AddRecipe();

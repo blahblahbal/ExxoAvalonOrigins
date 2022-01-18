@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.AdvancedPotions
 {
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
             item.maxStack = 100;
             item.value = Item.sellPrice(0, 0, 4, 0);
             item.useAnimation = 15;
-            
+
             item.buffTime = 50400;
         }
     }

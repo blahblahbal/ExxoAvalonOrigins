@@ -1,51 +1,47 @@
-using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class AncientOblivionVice : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Ancient Oblivion Vice");
-			Main.npcFrameCount[npc.type] = 1;
-		}
+    public class AncientOblivionVice : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Ancient Oblivion Vice");
+            Main.npcFrameCount[npc.type] = 1;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 80;
-			npc.noTileCollide = true;
-			npc.lifeMax = 20000;
-			npc.defense = 40;
+        public override void SetDefaults()
+        {
+            npc.damage = 80;
+            npc.noTileCollide = true;
+            npc.lifeMax = 20000;
+            npc.defense = 40;
             npc.noGravity = true;
             npc.width = 52;
-			npc.aiStyle = -1;
-			npc.npcSlots = 1f;
-			npc.value = 0f;
-			npc.timeLeft = 750;
-			npc.height = 52;
-			npc.knockBackResist = 0f;
+            npc.aiStyle = -1;
+            npc.npcSlots = 1f;
+            npc.value = 0f;
+            npc.timeLeft = 750;
+            npc.height = 52;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit4;
-	        npc.DeathSound = SoundID.NPCDeath14;
-			npc.buffImmune[BuffID.Frostburn] = true;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.OnFire] = true;
-		    npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill = true;
-		}
+            npc.DeathSound = SoundID.NPCDeath14;
+            npc.buffImmune[BuffID.Frostburn] = true;
+            npc.buffImmune[BuffID.Poisoned] = true;
+            npc.buffImmune[BuffID.OnFire] = true;
+            npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill = true;
+        }
 
-		public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart, Main.rand.Next(3, 6), false, 0, false);
+        public override void NPCLoot()
+        {
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart, Main.rand.Next(3, 6), false, 0, false);
             if (Main.expertMode) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Heart, Main.rand.Next(5, 8), false, 0, false);
-		}
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.35f * bossLifeScale);

@@ -5,28 +5,28 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Potions
 {
-	class GreaterStaminaPotion : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Greater Stamina Potion");
+    class GreaterStaminaPotion : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Greater Stamina Potion");
             Tooltip.SetDefault("Restores 95 stamina");
         }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.consumable = true;
-			item.rare = ItemRarityID.Pink;
-			item.width = dims.Width;
-			item.useTurn = true;
-			item.useTime = 17;
-			item.useStyle = ItemUseStyleID.EatingUsing;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.consumable = true;
+            item.rare = ItemRarityID.Pink;
+            item.width = dims.Width;
+            item.useTurn = true;
+            item.useTime = 17;
+            item.useStyle = ItemUseStyleID.EatingUsing;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 95;
             item.maxStack = 75;
-			item.value = 2000;
-			item.useAnimation = 17;
-			item.height = dims.Height;
+            item.value = 2000;
+            item.useAnimation = 17;
+            item.height = dims.Height;
             item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()

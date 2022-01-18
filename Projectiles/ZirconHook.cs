@@ -1,22 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Localization;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class ZirconHook : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Zircon Hook");
+    public class ZirconHook : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Zircon Hook");
             //Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ZirconHook");
             //projectile.netImportant = true;
             //projectile.width = dims.Width;
@@ -28,10 +23,10 @@ namespace ExxoAvalonOrigins.Projectiles
             //projectile.timeLeft *= 10;
         }
 
-		public override void SetDefaults()
-		{
-			projectile.CloneDefaults(ProjectileID.GemHookDiamond);
-		}
+        public override void SetDefaults()
+        {
+            projectile.CloneDefaults(ProjectileID.GemHookDiamond);
+        }
 
         //public override void AI()
         //{
@@ -271,13 +266,13 @@ namespace ExxoAvalonOrigins.Projectiles
         }
 
         public override float GrappleRange()
-		{
-			return 600f;
-		}
+        {
+            return 600f;
+        }
 
-		public override void NumGrappleHooks(Player player, ref int numHooks)
-		{
-			numHooks = 2;
-		}
-	}
+        public override void NumGrappleHooks(Player player, ref int numHooks)
+        {
+            numHooks = 2;
+        }
+    }
 }

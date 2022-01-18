@@ -5,34 +5,34 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
-	class MysteryTome : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Mystery Tome");
-			Tooltip.SetDefault("Casts all spells used to make it in random order\nSpells cast may not match the original");
-		}
+    class MysteryTome : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Mystery Tome");
+            Tooltip.SetDefault("Casts all spells used to make it in random order\nSpells cast may not match the original");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.magic = true;
-			item.damage = 110;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.magic = true;
+            item.damage = 110;
             item.reuseDelay = 14;
-			item.autoReuse = true;
-			item.scale = 0.9f;
-			item.shootSpeed = 9f;
-			item.mana = 25;
-			item.rare = ItemRarityID.Purple;
-			item.width = dims.Width;
-			item.useTime = 11;
-			item.knockBack = 4f;
-			item.shoot = ModContent.ProjectileType<Projectiles.InfectedMist>();
-			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.value = 505000;
-			item.useAnimation = 11;
-			item.height = dims.Height;
-		}
+            item.autoReuse = true;
+            item.scale = 0.9f;
+            item.shootSpeed = 9f;
+            item.mana = 25;
+            item.rare = ItemRarityID.Purple;
+            item.width = dims.Width;
+            item.useTime = 11;
+            item.knockBack = 4f;
+            item.shoot = ModContent.ProjectileType<Projectiles.InfectedMist>();
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.value = 505000;
+            item.useAnimation = 11;
+            item.height = dims.Height;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

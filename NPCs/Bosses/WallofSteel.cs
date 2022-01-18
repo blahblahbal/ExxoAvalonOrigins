@@ -1,5 +1,4 @@
 ﻿using System;
-using ExxoAvalonOrigins.Items.Consumables;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Trophy;
 using ExxoAvalonOrigins.Items.Weapons.Magic;

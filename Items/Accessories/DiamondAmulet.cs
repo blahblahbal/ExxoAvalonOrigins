@@ -5,28 +5,28 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class DiamondAmulet : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Diamond Amulet");
-		}
+    class DiamondAmulet : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Diamond Amulet");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Green;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 0, 50);
-			item.height = dims.Height;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Green;
+            item.width = dims.Width;
+            item.accessory = true;
+            item.value = Item.sellPrice(0, 0, 50);
+            item.height = dims.Height;
             item.defense = 5;
-		}
+        }
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
-		{
-            
-		}
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+
+        }
 
         public override void AddRecipes()
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

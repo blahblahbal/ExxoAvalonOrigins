@@ -1,35 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class BlahFire : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Blah Fire");
-		}
+    public class BlahFire : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Blah Fire");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahFire");
-			projectile.aiStyle = -1;
-			projectile.width = 20;
-			projectile.height = 20;
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahFire");
+            projectile.aiStyle = -1;
+            projectile.width = 20;
+            projectile.height = 20;
             projectile.tileCollide = true;
             projectile.penetrate = -1;
             projectile.hostile = false;
             projectile.alpha = 255;
             projectile.timeLeft = 180;
-		}
+        }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             projectile.velocity.X = oldVelocity.X * -0.1f;

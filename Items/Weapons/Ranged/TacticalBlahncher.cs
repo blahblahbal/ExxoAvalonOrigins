@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Bar;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
@@ -10,34 +9,34 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 {
-	class TacticalBlahncher : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Tactical Blahncher");
-			Tooltip.SetDefault("Launches homing blahckets\n75% chance to not consume ammo");
-		}
+    class TacticalBlahncher : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Tactical Blahncher");
+            Tooltip.SetDefault("Launches homing blahckets\n75% chance to not consume ammo");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.damage = 160;
-			item.autoReuse = true;
-			item.useTurn = false;
-			item.useAmmo = AmmoID.Rocket;
-			item.shootSpeed = 11f;
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.damage = 160;
+            item.autoReuse = true;
+            item.useTurn = false;
+            item.useAmmo = AmmoID.Rocket;
+            item.shootSpeed = 11f;
             item.crit += 7;
-			item.ranged = true;
+            item.ranged = true;
             item.rare = 11;
             item.noMelee = true;
-			item.width = dims.Width;
-			item.knockBack = 5f;
-			item.useTime = 9;
-			item.shoot = ProjectileID.RocketI;
-			item.value = Item.sellPrice(1, 0, 0, 0);
-			item.useStyle = ItemUseStyleID.HoldingOut;
-			item.useAnimation = 9;
-			item.height = dims.Height;
+            item.width = dims.Width;
+            item.knockBack = 5f;
+            item.useTime = 9;
+            item.shoot = ProjectileID.RocketI;
+            item.value = Item.sellPrice(1, 0, 0, 0);
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.useAnimation = 9;
+            item.height = dims.Height;
             item.UseSound = SoundID.Item11;
 
         }

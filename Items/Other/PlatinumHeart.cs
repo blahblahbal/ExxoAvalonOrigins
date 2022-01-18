@@ -5,19 +5,19 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Other
 {
-	class PlatinumHeart : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Platinum Heart");
-		}
+    class PlatinumHeart : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Platinum Heart");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.width = dims.Width;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.width = dims.Width;
+            item.height = dims.Height;
+        }
 
         public override bool CanPickup(Player player)
         {

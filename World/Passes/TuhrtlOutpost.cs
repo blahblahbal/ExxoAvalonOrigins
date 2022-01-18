@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.World.Generation;
+﻿using Terraria;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
+using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Passes
 {

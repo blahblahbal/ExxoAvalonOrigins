@@ -5,16 +5,16 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Bar
 {
-	class EnchantedBar : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Enchanted Bar");
-		}
+    class EnchantedBar : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Enchanted Bar");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.useTurn = true;
             item.maxStack = 999;
@@ -28,6 +28,6 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;
-		}
-	}
+        }
+    }
 }

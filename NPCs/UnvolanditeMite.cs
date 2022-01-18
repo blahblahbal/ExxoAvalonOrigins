@@ -1,29 +1,29 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class UnvolanditeMite : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Unvolandite Mite");
-		}
-		public override void SetDefaults()
-		{
-			npc.damage = 77;
-			npc.lifeMax = 1300;
-			npc.defense = 6;
-			npc.width = 18;
-			npc.aiStyle = -1;
-			npc.value = 10000f;
-			npc.height = 40;
-			npc.knockBackResist = 0f;
+    public class UnvolanditeMite : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Unvolandite Mite");
+        }
+        public override void SetDefaults()
+        {
+            npc.damage = 77;
+            npc.lifeMax = 1300;
+            npc.defense = 6;
+            npc.width = 18;
+            npc.aiStyle = -1;
+            npc.value = 10000f;
+            npc.height = 40;
+            npc.knockBackResist = 0f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.buffImmune[BuffID.Confused] = true;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.buffImmune[BuffID.Confused] = true;
             npc.lavaImmune = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                 }
             }
-           
+
         }
     }
 }

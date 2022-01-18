@@ -1,23 +1,18 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.ObjectData;
 using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class CoughwoodBeam : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(57, 73, 47));
-			drop = mod.ItemType("CoughwoodBeam");
+    public class CoughwoodBeam : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(57, 73, 47));
+            drop = mod.ItemType("CoughwoodBeam");
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);

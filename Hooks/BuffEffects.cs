@@ -1,7 +1,7 @@
-﻿using Mono.Cecil;
+﻿using System;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using System;
 using Terraria;
 using Terraria.ID;
 
@@ -49,7 +49,8 @@ namespace ExxoAvalonOrigins.Hooks
                 return;
 
             c.Emit(OpCodes.Ldloc, num19);
-            c.EmitDelegate<Func<Player, int, int>>((player, num) => {
+            c.EmitDelegate<Func<Player, int, int>>((player, num) =>
+            {
                 if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advCrateBuff)
                 {
                     num += advCrateBuffAddChance;

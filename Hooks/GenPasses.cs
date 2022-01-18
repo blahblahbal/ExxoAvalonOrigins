@@ -1,9 +1,9 @@
-﻿using Mono.Cecil;
+﻿using System;
+using System.Reflection;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour.HookGen;
-using System;
-using System.Reflection;
 using Terraria;
 
 namespace ExxoAvalonOrigins.Hooks
@@ -140,7 +140,8 @@ namespace ExxoAvalonOrigins.Hooks
 
             c.Emit(OpCodes.Ldarg_0);
             c.Emit(OpCodes.Ldfld, dungeonSideField);
-            c.EmitDelegate<Action<int>>((dungeonSide) => {
+            c.EmitDelegate<Action<int>>((dungeonSide) =>
+            {
                 ExxoAvalonOriginsWorld.dungeonSide = dungeonSide;
             });
         }

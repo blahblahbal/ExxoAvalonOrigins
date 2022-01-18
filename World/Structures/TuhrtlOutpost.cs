@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -783,7 +783,7 @@ namespace ExxoAvalonOrigins.World.Structures
             ushort brick = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
             ushort wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
 
-            
+
 
             int mod1 = WorldGen.genRand.Next(9, 13);
             int sideMod1 = WorldGen.genRand.Next(10, 16); // height 20-26
@@ -935,7 +935,7 @@ namespace ExxoAvalonOrigins.World.Structures
 
 
                 endPoints.Add(LargeRoom(x + WorldGen.genRand.Next(110, 140), y + WorldGen.genRand.Next(170, 181))[1]); // boss room (5e)
-                
+
 
                 if (WorldGen.genRand.Next(2) == 0) //2
                 {

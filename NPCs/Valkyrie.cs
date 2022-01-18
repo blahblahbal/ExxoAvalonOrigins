@@ -1,30 +1,29 @@
-﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class Valkyrie : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Valkyrie");
-			Main.npcFrameCount[npc.type] = 4;
-		}
+    public class Valkyrie : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Valkyrie");
+            Main.npcFrameCount[npc.type] = 4;
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 80;
-			npc.lifeMax = 2421;
-			npc.defense = 35;
-			npc.width = 24;
-			npc.aiStyle = 14;
-			npc.value = 1000f;
-			npc.knockBackResist = 0.05f;
+        public override void SetDefaults()
+        {
+            npc.damage = 80;
+            npc.lifeMax = 2421;
+            npc.defense = 35;
+            npc.width = 24;
+            npc.aiStyle = 14;
+            npc.value = 1000f;
+            npc.knockBackResist = 0.05f;
             npc.HitSound = SoundID.NPCHit1;
-	        npc.DeathSound = SoundID.NPCDeath1;
-			npc.height = 34;
+            npc.DeathSound = SoundID.NPCDeath1;
+            npc.height = 34;
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Banners.ValkyrieBanner>();
             animationType = 48;

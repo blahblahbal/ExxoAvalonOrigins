@@ -12,24 +12,24 @@ namespace ExxoAvalonOrigins.Logic
         {
             RecipeFinder finder;
 
-			//Delete recipes
+            //Delete recipes
             //frost armor
-			finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.AdamantiteBar, 10);
-			finder.AddIngredient(ItemID.FrostCore);
-			finder.AddTile(TileID.MythrilAnvil);
-			finder.SetResult(ItemID.FrostHelmet);
-			foreach (var recipe in finder.SearchRecipes())
-			{
-				var exactRecipe = finder.FindExactRecipe();
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.AdamantiteBar, 10);
+            finder.AddIngredient(ItemID.FrostCore);
+            finder.AddTile(TileID.MythrilAnvil);
+            finder.SetResult(ItemID.FrostHelmet);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
 
-				bool isRecipeFound = exactRecipe != null;
-				if (isRecipeFound)
-				{
-					RecipeEditor editor = new RecipeEditor(exactRecipe);
-					editor.DeleteRecipe();
-				}
-			}
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
 
             finder = new RecipeFinder();
             finder.AddIngredient(ItemID.AdamantiteBar, 20);
@@ -135,75 +135,75 @@ namespace ExxoAvalonOrigins.Logic
             }
 
             finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.PlatinumWatch);
-			finder.AddIngredient(ItemID.Wire);
-			finder.AddTile(TileID.Anvils);
-			finder.SetResult(ItemID.Timer1Second);
-			foreach (var recipe in finder.SearchRecipes())
-			{
-				var exactRecipe = finder.FindExactRecipe();
+            finder.AddIngredient(ItemID.PlatinumWatch);
+            finder.AddIngredient(ItemID.Wire);
+            finder.AddTile(TileID.Anvils);
+            finder.SetResult(ItemID.Timer1Second);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
 
-				bool isRecipeFound = exactRecipe != null;
-				if (isRecipeFound)
-				{
-					RecipeEditor editor = new RecipeEditor(exactRecipe);
-					editor.DeleteRecipe();
-				}
-			}
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
 
-			finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.TungstenWatch);
-			finder.AddIngredient(ItemID.Wire);
-			finder.AddTile(TileID.Anvils);
-			finder.SetResult(ItemID.Timer3Second);
-			foreach (var recipe in finder.SearchRecipes())
-			{
-				var exactRecipe = finder.FindExactRecipe();
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.TungstenWatch);
+            finder.AddIngredient(ItemID.Wire);
+            finder.AddTile(TileID.Anvils);
+            finder.SetResult(ItemID.Timer3Second);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
 
-				bool isRecipeFound = exactRecipe != null;
-				if (isRecipeFound)
-				{
-					RecipeEditor editor = new RecipeEditor(exactRecipe);
-					editor.DeleteRecipe();
-				}
-			}
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
 
-			finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.TinWatch);
-			finder.AddIngredient(ItemID.Wire);
-			finder.AddTile(TileID.Anvils);
-			finder.SetResult(ItemID.Timer5Second);
-			foreach (var recipe in finder.SearchRecipes())
-			{
-				var exactRecipe = finder.FindExactRecipe();
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.TinWatch);
+            finder.AddIngredient(ItemID.Wire);
+            finder.AddTile(TileID.Anvils);
+            finder.SetResult(ItemID.Timer5Second);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
 
-				bool isRecipeFound = exactRecipe != null;
-				if (isRecipeFound)
-				{
-					RecipeEditor editor = new RecipeEditor(exactRecipe);
-					editor.DeleteRecipe();
-				}
-			}
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
 
-			finder = new RecipeFinder();
-			finder.AddIngredient(ItemID.PlatinumWatch);
-			finder.AddIngredient(ItemID.DepthMeter);
-			finder.AddIngredient(ItemID.Compass);
-			finder.AddTile(TileID.TinkerersWorkbench);
-			finder.SetResult(ItemID.GPS);
-			foreach (var recipe in finder.SearchRecipes())
-			{
-				var exactRecipe = finder.FindExactRecipe();
+            finder = new RecipeFinder();
+            finder.AddIngredient(ItemID.PlatinumWatch);
+            finder.AddIngredient(ItemID.DepthMeter);
+            finder.AddIngredient(ItemID.Compass);
+            finder.AddTile(TileID.TinkerersWorkbench);
+            finder.SetResult(ItemID.GPS);
+            foreach (var recipe in finder.SearchRecipes())
+            {
+                var exactRecipe = finder.FindExactRecipe();
 
-				bool isRecipeFound = exactRecipe != null;
-				if (isRecipeFound)
-				{
-					RecipeEditor editor = new RecipeEditor(exactRecipe);
-					editor.DeleteRecipe();
-				}
-			}
+                bool isRecipeFound = exactRecipe != null;
+                if (isRecipeFound)
+                {
+                    RecipeEditor editor = new RecipeEditor(exactRecipe);
+                    editor.DeleteRecipe();
+                }
+            }
 
-			//Delete recipes over
+            //Delete recipes over
 
             finder = new RecipeFinder();
             finder.SetResult(ItemID.ClayPot);

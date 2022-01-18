@@ -5,24 +5,24 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Armor
 {
-	[AutoloadEquip(EquipType.Head)]
-	class BloodstainedHelmet : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Bloodstained Helmet");
-			Tooltip.SetDefault("Shows the location of treasures and ores\nWorks in the vanity slot");
-		}
+    [AutoloadEquip(EquipType.Head)]
+    class BloodstainedHelmet : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bloodstained Helmet");
+            Tooltip.SetDefault("Shows the location of treasures and ores\nWorks in the vanity slot");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.defense = 3;
-			item.rare = ItemRarityID.Green;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 0, 90, 0);
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.defense = 3;
+            item.rare = ItemRarityID.Green;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 0, 90, 0);
+            item.height = dims.Height;
+        }
 
         public override void UpdateVanity(Player player, EquipType type)
         {

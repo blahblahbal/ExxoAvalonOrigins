@@ -1,32 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
 using Terraria.Localization;
-using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class CaesiumForge : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Caesium Forge"));
+    public class CaesiumForge : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Caesium Forge"));
             Main.tileFrameImportant[Type] = true;
             animationFrameHeight = 36;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.LavaDeath = false;
-			TileObjectData.addTile(Type);
-			Main.tileLighted[Type] = true;
-			adjTiles = new int[] {TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces};
-		}
+            TileObjectData.addTile(Type);
+            Main.tileLighted[Type] = true;
+            adjTiles = new int[] { TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces };
+        }
 
         public override void AnimateTile(ref int frame, ref int frameCounter)
         {
@@ -41,9 +35,9 @@ namespace ExxoAvalonOrigins.Tiles
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{   
-			Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.CaesiumForge>());
-		}
+        {
+            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.CaesiumForge>());
+        }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 230f / 255f;

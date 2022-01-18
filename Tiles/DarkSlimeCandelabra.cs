@@ -22,8 +22,8 @@ namespace ExxoAvalonOrigins.Tiles
             dustType = 7;
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-			var name = CreateMapEntryName();
-			name.SetDefault("Dark Slime Candelabra");
+            var name = CreateMapEntryName();
+            name.SetDefault("Dark Slime Candelabra");
             AddMapEntry(new Color(253, 221, 3), name);
             dustType = DustID.UnholyWater;
         }

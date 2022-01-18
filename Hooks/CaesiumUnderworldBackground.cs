@@ -4,9 +4,15 @@ using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;
+using System.Collections.Generic;
+using Terraria.ModLoader;
+using System.Reflection;
 
 namespace ExxoAvalonOrigins.Hooks
 {
+    /// <summary>
+    /// REDO/TODO: Old Backgrounds
+    /// </summary>
     internal static class CaesiumUnderworldBackground
     {
         public static void ILDoSelf(ILContext il)
@@ -39,6 +45,7 @@ namespace ExxoAvalonOrigins.Hooks
             if (!c.TryGotoNext(i => i.MatchRet()))
                 return;
 
+            // Old Code
             /*if (!c.TryGotoPrev(i => i.MatchCallvirt(out _)))
                 return;
 
@@ -145,5 +152,246 @@ namespace ExxoAvalonOrigins.Hooks
                 }
             });
         }
+
+        // Ported and adapted from my old, unreleased mod.
+
+        private static readonly List<int> UnderworldBGs = new List<int> // Add value here that you want to change
+        {
+            5,
+            6,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            150,
+            152,
+            157,
+            159,
+            185,
+            186,
+            187,
+        };
+
+        // RE-DO
+        /*
+        public static void ILDoOld(ILContext il)
+        {
+            var c = new ILCursor(il);
+            for (int j = 0; j < 10; j++)
+            {
+                if (!c.TryGotoNext(i => i.MatchLdcI4(6)))
+                    return;
+            }
+
+            if (!c.TryGotoNext(i => i.MatchLdelemRef()))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchLdsfld<Main>(nameof(Main.spriteBatch))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdsfld<Main>(nameof(Main.backgroundTexture))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchCallvirt(out _)))
+                return;
+            c.Index++;
+            c.Emit(OpCodes.Ldloc, 4);
+            c.Emit(OpCodes.Ldloc, 101);
+            c.Emit(OpCodes.Ldloc, 103);
+            c.Emit(OpCodes.Ldloc, 100);
+            c.Emit(OpCodes.Ldloc, 102);
+            c.Emit(OpCodes.Ldloc, 104);
+            c.Emit(OpCodes.Ldloc, 5);
+            c.Emit(OpCodes.Ldloc, 114);
+            c.Emit(OpCodes.Ldloc, 111);
+            c.Emit(OpCodes.Ldloc, 112);
+            c.Emit(OpCodes.Ldloc, 113);
+            c.Emit(OpCodes.Ldloc, 110);
+            c.EmitDelegate<Action<int, int, int, int, int, int, Vector2, Color, int, int, int, int>>((num3, num71, num73, num70, num72, num74, vector, color26, num86, width3, height3, num85) =>
+            {
+                foreach (int i in UnderworldBGs)
+                {
+                    int bgStart = (int)typeof(Main).GetField("bgStart", BindingFlags.NonPublic).GetValue(null);
+                    int bgStartY = (int)typeof(Main).GetField("bgStartY", BindingFlags.NonPublic).GetValue(null);
+
+                    Texture2D texture2D = Main.magicPixel;
+                    if (ModContent.TextureExists($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}"))
+                        texture2D = ModContent.GetTexture($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}");
+
+                    Main.spriteBatch.Draw(texture2D,
+                        new Vector2(bgStart + (num3 * num71) + (16 * num73) + num85 + num70, bgStartY + (Main.backgroundHeight[2] * num72) + (16 * num74) + num86) + vector,
+                        new Rectangle((16 * num73) + num85 + num70 + 16, (16 * num74) + (Main.backgroundHeight[2] * Main.magmaBGFrame) + num86, width3, height3),
+                        color26,
+                        0f,
+                        default,
+                        1f,
+                        SpriteEffects.None,
+                        0f);
+                }
+            });
+
+            if (!c.TryGotoNext(i => i.MatchLdelemRef()))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchLdsfld<Main>(nameof(Main.spriteBatch))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdsfld<Main>(nameof(Main.backgroundTexture))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchCallvirt(out _)))
+                return;
+            c.Index++;
+            c.Emit(OpCodes.Ldloc, 4);
+            c.Emit(OpCodes.Ldloc, 101);
+            c.Emit(OpCodes.Ldloc, 103);
+            c.Emit(OpCodes.Ldloc, 100);
+            c.Emit(OpCodes.Ldloc, 102);
+            c.Emit(OpCodes.Ldloc, 104);
+            c.Emit(OpCodes.Ldloc, 5);
+            c.Emit(OpCodes.Ldloc, 118);
+            c.Emit(OpCodes.Ldloc, 119);
+            c.Emit(OpCodes.Ldloc, 120);
+            c.EmitDelegate<Action<int, int, int, int, int, int, Vector2, int, int, Color>>((num3, num71, num73, num70, num72, num74, vector, num88, num89, color28) =>
+            {
+                foreach (int i in UnderworldBGs)
+                {
+                    int bgStart = (int)typeof(Main).GetField("bgStart", BindingFlags.NonPublic).GetValue(null);
+                    int bgStartY = (int)typeof(Main).GetField("bgStartY", BindingFlags.NonPublic).GetValue(null);
+
+                    Texture2D texture2D = Main.magicPixel;
+                    if (ModContent.TextureExists($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}"))
+                        texture2D = ModContent.GetTexture($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}");
+
+                    Main.spriteBatch.Draw(texture2D,
+                        new Vector2(bgStart + (num3 * num71) + (16 * num73) + num88 + num70, (bgStartY + (Main.backgroundHeight[2] * num72) + (16 * num74) + num89)) + vector,
+                        new Rectangle((16 * num73) + num88 + num70 + 16, (16 * num74) + (Main.backgroundHeight[2] * Main.magmaBGFrame) + num89, 8, 8),
+                        color28,
+                        0f,
+                        default,
+                        1f,
+                        SpriteEffects.None,
+                        0f);
+                }
+            });
+
+            if (!c.TryGotoNext(i => i.MatchLdelemRef()))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchLdsfld<Main>(nameof(Main.spriteBatch))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdsfld<Main>(nameof(Main.backgroundTexture))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchCallvirt(out _)))
+                return;
+            c.Index++;
+            c.Emit(OpCodes.Ldloc, 4);
+            c.Emit(OpCodes.Ldloc, 101);
+            c.Emit(OpCodes.Ldloc, 103);
+            c.Emit(OpCodes.Ldloc, 100);
+            c.Emit(OpCodes.Ldloc, 102);
+            c.Emit(OpCodes.Ldloc, 104);
+            c.Emit(OpCodes.Ldloc, 5);
+            c.Emit(OpCodes.Ldloc, 107);
+            c.EmitDelegate<Action<int, int, int, int, int, int, Vector2, Color>>((num3, num71, num73, num70, num72, num74, vector, color25) =>
+            {
+                foreach (int i in UnderworldBGs)
+                {
+                    int bgStart = (int)typeof(Main).GetField("bgStart", BindingFlags.NonPublic).GetValue(null);
+                    int bgStartY = (int)typeof(Main).GetField("bgStartY", BindingFlags.NonPublic).GetValue(null);
+
+                    Texture2D texture2D = Main.magicPixel;
+                    if (ModContent.TextureExists($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}"))
+                        texture2D = ModContent.GetTexture($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}");
+
+                    Main.spriteBatch.Draw(texture2D,
+                        new Vector2(bgStart + (num3 * num71) + (16 * num73) + num70, bgStartY + (Main.backgroundHeight[2] * num72) + (16 * num74)) + vector,
+                        new Rectangle((16 * num73) + num70 + 16, (16 * num74) + (Main.backgroundHeight[2] * Main.magmaBGFrame), 16, 16),
+                        color25,
+                        0f,
+                        default,
+                        1f,
+                        SpriteEffects.None,
+                        0f);
+                }
+            });
+
+            if (!c.TryGotoNext(i => i.MatchLdelemRef()))
+                return;
+            if (!c.TryGotoPrev(i => i.MatchLdsfld<Main>(nameof(Main.spriteBatch))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchLdsfld<Main>(nameof(Main.backgroundTexture))))
+                return;
+            if (!c.TryGotoNext(i => i.MatchCallvirt(out _)))
+                return;
+            c.Index++;
+            c.Emit(OpCodes.Ldloc, 4);
+            c.Emit(OpCodes.Ldloc, 101);
+            c.Emit(OpCodes.Ldloc, 103);
+            c.Emit(OpCodes.Ldloc, 100);
+            c.Emit(OpCodes.Ldloc, 102);
+            c.Emit(OpCodes.Ldloc, 104);
+            c.Emit(OpCodes.Ldloc, 5);
+            c.Emit(OpCodes.Ldloc, 107);
+            c.EmitDelegate<Action<int, int, int, int, int, int, Vector2, Color>>((num3, num71, num73, num70, num72, num74, vector, color25) =>
+            {
+                foreach (int i in UnderworldBGs)
+                {
+                    int bgStart = (int)typeof(Main).GetField("bgStart", BindingFlags.NonPublic).GetValue(null);
+                    int bgStartY = (int)typeof(Main).GetField("bgStartY", BindingFlags.NonPublic).GetValue(null);
+
+                    Texture2D texture2D = Main.magicPixel;
+                    if (ModContent.TextureExists($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}"))
+                        texture2D = ModContent.GetTexture($"ExxoAvalonOrigins/Backgrounds/OldCaesium{i}");
+
+                    Main.spriteBatch.Draw(texture2D,
+                        new Vector2(bgStart + (num3 * num71) + (16 * num73) + num70, bgStartY + (Main.backgroundHeight[2] * num72) + (16 * num74)) + vector,
+                        new Rectangle((16 * num73) + num70 + 16, (16 * num74) + (Main.backgroundHeight[2] * Main.magmaBGFrame), 16, 16),
+                        color25 * ExxoAvalonOrigins.caesiumTransition,
+                        0f,
+                        default,
+                        1f,
+                        SpriteEffects.None,
+                        0f);
+                }
+            });
+
+            if (!c.TryGotoNext(i => i.MatchRet()))
+                return;
+            c.Remove();
+
+            c.EmitDelegate<Action>(() =>
+            {
+                if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCaesium)
+                {
+                    ExxoAvalonOrigins.caesiumTransition += 0.05f;
+                    if (ExxoAvalonOrigins.caesiumTransition > 1f)
+                    {
+                        ExxoAvalonOrigins.caesiumTransition = 1f;
+                    }
+                }
+                else
+                {
+                    ExxoAvalonOrigins.caesiumTransition -= 0.05f;
+                    if (ExxoAvalonOrigins.caesiumTransition < 0f)
+                    {
+                        ExxoAvalonOrigins.caesiumTransition = 0f;
+                    }
+                }
+            });
+
+            c.Emit(OpCodes.Ret);
+        }
+        */
     }
 }

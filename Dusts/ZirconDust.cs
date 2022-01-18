@@ -2,8 +2,8 @@
 
 namespace ExxoAvalonOrigins.Dusts
 {
-	public class ZirconDust : ModDust
-	{
+    public class ZirconDust : ModDust
+    {
 
-	}
+    }
 }

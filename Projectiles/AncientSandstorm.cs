@@ -1,38 +1,32 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class AncientSandstorm : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sandstorm");
-		}
+    public class AncientSandstorm : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Sandstorm");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/AncientSandstorm");
-			projectile.width = dims.Width * 6 / 16;
-			projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
-			projectile.scale = 1f;
-			projectile.alpha = 255;
-			projectile.aiStyle = -1;
-			projectile.timeLeft = 3600;
-			projectile.friendly = true;
-			projectile.penetrate = 4;
-			projectile.ignoreWater = true;
-			projectile.tileCollide = true;
-			projectile.MaxUpdates = 2;
-			projectile.magic = true;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/AncientSandstorm");
+            projectile.width = dims.Width * 6 / 16;
+            projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
+            projectile.scale = 1f;
+            projectile.alpha = 255;
+            projectile.aiStyle = -1;
+            projectile.timeLeft = 3600;
+            projectile.friendly = true;
+            projectile.penetrate = 4;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = true;
+            projectile.MaxUpdates = 2;
+            projectile.magic = true;
+        }
 
         public override void AI()
         {

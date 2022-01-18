@@ -127,11 +127,11 @@ namespace ExxoAvalonOrigins.Hooks
             {
                 // Set max height to spawn ore
                 double maxHeightToSpawn = Main.worldSurface;
-                if  (currentOreTier == TileID.Mythril || currentOreTier == TileID.Orichalcum || currentOreTier == 1)
+                if (currentOreTier == TileID.Mythril || currentOreTier == TileID.Orichalcum || currentOreTier == 1)
                 {
                     maxHeightToSpawn = Main.rockLayer;
                 }
-                if  (currentOreTier == TileID.Adamantite || currentOreTier == TileID.Titanium || currentOreTier == 2)
+                if (currentOreTier == TileID.Adamantite || currentOreTier == TileID.Titanium || currentOreTier == 2)
                 {
                     maxHeightToSpawn = (Main.rockLayer + Main.rockLayer + (double)Main.maxTilesY) / 3.0;
                 }

@@ -71,7 +71,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
         {
             Tile tile = Framing.GetTileSafely(i, j); //Safe way of getting a tile instance
             PlantStage stage = GetStage(i, j); //The current stage of the herb
-            
+
             if (stage == PlantStage.Planted && Main.rand.Next(8) == 0)
             {
                 tile.frameX += FrameWidth;

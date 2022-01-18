@@ -7,11 +7,11 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-	public class EvilAltarsPlaced : ModTile
-	{
-		public override void SetDefaults()
-		{
-			AddMapEntry(new Color(0, 250, 50), LanguageManager.Instance.GetText("Evil Altar"));
+    public class EvilAltarsPlaced : ModTile
+    {
+        public override void SetDefaults()
+        {
+            AddMapEntry(new Color(0, 250, 50), LanguageManager.Instance.GetText("Evil Altar"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.CoordinateHeights = new int[]
@@ -20,8 +20,8 @@ namespace ExxoAvalonOrigins.Tiles
                 18
             };
             TileObjectData.addTile(Type);
-			Main.tileLighted[Type] = true;
-			Main.tileFrameImportant[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileFrameImportant[Type] = true;
             adjTiles = new int[] { TileID.DemonAltar };
         }
 

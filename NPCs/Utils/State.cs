@@ -1,8 +1,8 @@
-﻿using ExxoAvalonOrigins.Network;
+﻿using System;
+using System.IO;
+using ExxoAvalonOrigins.Network;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 

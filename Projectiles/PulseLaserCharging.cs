@@ -5,32 +5,32 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
-	public class PulseLaserCharging : ModProjectile
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Pulse Laser Charging");
-		}
+    public class PulseLaserCharging : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Pulse Laser Charging");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PulseLaserCharging");
-			projectile.width = dims.Width;
-			projectile.height = dims.Height / Main.projFrames[projectile.type];
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = 1;
-			projectile.light = 0.5f;
-			projectile.alpha = 50;
-			projectile.scale = 1.2f;
-			projectile.timeLeft = 10;
-			projectile.ranged = true;
-			projectile.tileCollide = false;
+        public override void SetDefaults()
+        {
+            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PulseLaserCharging");
+            projectile.width = dims.Width;
+            projectile.height = dims.Height / Main.projFrames[projectile.type];
+            projectile.aiStyle = -1;
+            projectile.friendly = true;
+            projectile.penetrate = 1;
+            projectile.light = 0.5f;
+            projectile.alpha = 50;
+            projectile.scale = 1.2f;
+            projectile.timeLeft = 10;
+            projectile.ranged = true;
+            projectile.tileCollide = false;
             projectile.damage = 0;
-		}
+        }
 
-		public override void AI()
-		{
+        public override void AI()
+        {
             projectile.ai[0]++;
             Projectile P = projectile;
             Player O = Main.player[P.owner];
@@ -70,5 +70,5 @@ namespace ExxoAvalonOrigins.Projectiles
                 }
             }
         }
-	}
+    }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Seed;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -36,7 +31,7 @@ namespace ExxoAvalonOrigins
         {
             if (type == ModContent.TileType<Tiles.Ores.PyroscoricOre>())
             {
-            Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, DustID.InfernoFork, 0f, 0f);
+                Dust.NewDust(new Vector2(j * 16, i * 16), 16, 16, DustID.InfernoFork, 0f, 0f);
             }
         }
         public override bool Slope(int i, int j, int type)

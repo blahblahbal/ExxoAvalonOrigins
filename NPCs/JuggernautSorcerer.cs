@@ -1,34 +1,34 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-	public class JuggernautSorcerer : ModNPC
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Juggernaut Sorcerer");
-			Main.npcFrameCount[npc.type] = 1; // change later
-		}
+    public class JuggernautSorcerer : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Juggernaut Sorcerer");
+            Main.npcFrameCount[npc.type] = 1; // change later
+        }
 
-		public override void SetDefaults()
-		{
-			npc.damage = 110;
-			npc.lifeMax = 1500;
-			npc.defense = 50;
-			npc.width = 18;
-			npc.aiStyle = -1;
-			npc.npcSlots = 2f;
-			npc.value = 1000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.1f;
+        public override void SetDefaults()
+        {
+            npc.damage = 110;
+            npc.lifeMax = 1500;
+            npc.defense = 50;
+            npc.width = 18;
+            npc.aiStyle = -1;
+            npc.npcSlots = 2f;
+            npc.value = 1000f;
+            npc.height = 40;
+            npc.knockBackResist = 0.1f;
             npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.OnFire] = true;
+            npc.DeathSound = SoundID.NPCDeath2;
+            npc.buffImmune[BuffID.OnFire] = true;
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<Items.Banners.ImpactWizardBanner>();
         }

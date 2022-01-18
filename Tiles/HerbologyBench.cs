@@ -1,14 +1,9 @@
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.ObjectData;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
@@ -19,16 +14,16 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.addTile(Type);
-			TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.HasOutlines[Type] = true;
             Main.tileFrameImportant[Type] = true;
             AddMapEntry(new Color(153, 77, 86), LanguageManager.Instance.GetText("Herbology Bench"));
-			disableSmartCursor = true;
+            disableSmartCursor = true;
         }
-		
-		public override bool HasSmartInteract()
-		{
-			return true;
-		}
+
+        public override bool HasSmartInteract()
+        {
+            return true;
+        }
 
         public override bool NewRightClick(int i, int j)
         {

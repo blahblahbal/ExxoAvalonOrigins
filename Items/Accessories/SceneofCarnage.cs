@@ -7,23 +7,23 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-	class SceneofCarnage : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Scene of Carnage");
-			Tooltip.SetDefault("Tome\n15% increased melee damage and speed");
-		}
+    class SceneofCarnage : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Scene of Carnage");
+            Tooltip.SetDefault("Tome\n15% increased melee damage and speed");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.rare = ItemRarityID.Yellow;
-			item.width = dims.Width;
-			item.value = Item.sellPrice(0, 0, 40);
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.rare = ItemRarityID.Yellow;
+            item.width = dims.Width;
+            item.value = Item.sellPrice(0, 0, 40);
             item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
-		}
+        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

@@ -4,20 +4,20 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Material
 {
-	class VirulentPowder : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Virulent Powder");
-		}
+    class VirulentPowder : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Virulent Powder");
+        }
 
-		public override void SetDefaults()
-		{
-			Rectangle dims = this.GetDims();
-			item.width = dims.Width;
-			item.maxStack = 999;
-			item.height = dims.Height;
-		}
+        public override void SetDefaults()
+        {
+            Rectangle dims = this.GetDims();
+            item.width = dims.Width;
+            item.maxStack = 999;
+            item.height = dims.Height;
+        }
 
         public override void AddRecipes()
         {
