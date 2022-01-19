@@ -32,13 +32,13 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Hit mobs 15 times to trigger ranged crits for 10 hits";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hyperRanged = true;
+            player.Avalon().hyperRanged = true;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.rangedDamage += 0.09f;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ammoCost70 = true;
+            player.Avalon().ammoCost70 = true;
         }
     }
 }

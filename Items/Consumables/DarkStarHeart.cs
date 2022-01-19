@@ -30,13 +30,13 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return !player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shmAcc;
+            return !player.Avalon().shmAcc;
         }
 
         public override bool UseItem(Player player)
         {
             player.extraAccessorySlots++;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shmAcc = true;
+            player.Avalon().shmAcc = true;
             return true;
         }
     }

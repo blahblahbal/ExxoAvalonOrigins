@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Hooks
         {
             float advArcheryBuffMult = 1.3f;
 
-            ExxoAvalonOriginsModPlayer modPlayer = self.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = self.Avalon();
             if (sItem.useAmmo == AmmoID.Arrow && modPlayer.advArcheryBuff && speed < 20f)
             {
                 speed *= advArcheryBuffMult;
@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Hooks
             c.Emit(OpCodes.Ldloc, num19);
             c.EmitDelegate<Func<Player, int, int>>((player, num) =>
             {
-                if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advCrateBuff)
+                if (player.Avalon().advCrateBuff)
                 {
                     num += advCrateBuffAddChance;
                 }

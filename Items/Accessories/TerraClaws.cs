@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().terraClaws = true;
+            player.Avalon().terraClaws = true;
             player.meleeDamage += 0.1f;
             player.meleeSpeed += 0.1f;
         }

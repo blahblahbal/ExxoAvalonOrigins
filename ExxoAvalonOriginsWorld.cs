@@ -173,12 +173,12 @@ namespace ExxoAvalonOrigins
 
         public override void ChooseWaterStyle(ref int style)
         {
-            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
+            if (Main.LocalPlayer.Avalon().ZoneBooger)
             {
                 style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
             }
 
-            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics)
+            if (Main.LocalPlayer.Avalon().ZoneTropics)
             {
                 style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
             }

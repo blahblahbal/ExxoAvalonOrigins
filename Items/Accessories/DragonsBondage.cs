@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().dragonsBondage = true;
+            player.Avalon().dragonsBondage = true;
             //player.AddBuff(item.buffType, 2, true);
         }
     }

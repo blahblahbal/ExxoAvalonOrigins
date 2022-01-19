@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().riftGoggles = true;
+            player.Avalon().riftGoggles = true;
         }
 
         public override void AddRecipes()

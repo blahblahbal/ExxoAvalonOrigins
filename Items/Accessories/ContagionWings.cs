@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
+            if (player.Avalon().ZoneBooger)
             {
                 player.statDefense += 5;
                 player.statLifeMax2 += 40;

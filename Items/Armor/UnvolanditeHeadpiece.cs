@@ -32,9 +32,9 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.onHitPetal = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hyperMelee = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hyperMagic = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hyperRanged = true;
+            player.Avalon().hyperMelee = true;
+            player.Avalon().hyperMagic = true;
+            player.Avalon().hyperRanged = true;
             player.setBonus = "Petals attack your enemies and Hyper Damage";
         }
 

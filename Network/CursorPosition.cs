@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Network
             else
             {
                 Player player = Main.player[whoAmI];
-                ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+                ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
                 modPlayer.MousePosition = position;
             }
         }

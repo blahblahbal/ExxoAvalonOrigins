@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Hit mobs 15 times to trigger magic crits for 10 hits";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hyperMagic = true;
+            player.Avalon().hyperMagic = true;
         }
 
         public override void UpdateEquip(Player player)

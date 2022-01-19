@@ -885,7 +885,7 @@ namespace ExxoAvalonOrigins
             tempWireItem.netDefaults(item.netID);
             tempWireItem = tempWireItem.CloneWithModdedDataFrom(item);
             tempWireItem.stack = item.stack;
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress && !ExxoAvalonOriginsWorld.downedDragonLord)
+            if (player.Avalon().ZoneSkyFortress && !ExxoAvalonOriginsWorld.downedDragonLord)
             {
                 player.InfoAccMechShowWires = false;
                 if (item.mech)
@@ -895,7 +895,7 @@ namespace ExxoAvalonOrigins
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech = true;
                 }
             }
-            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && !player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
+            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().wasMech && !player.Avalon().ZoneSkyFortress)
             {
                 item.netDefaults(tempWireItem.netID);
                 item.stack = tempWireItem.stack;
@@ -925,7 +925,7 @@ namespace ExxoAvalonOrigins
             else if (item.prefix == ModContent.PrefixType<Drunken>() || item.prefix == ModContent.PrefixType<Hectic>()) kbDiff = -0.07f;
             else if (item.prefix == ModContent.PrefixType<Stupid>()) kbDiff = 0.16f;
             item.knockBack = tempItem.knockBack * (1 + kbDiff);
-            item.knockBack *= player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bonusKB;
+            item.knockBack *= player.Avalon().bonusKB;
             #endregion
             #region herb seed block swap
             if (herbSeeds.Contains(item.type))
@@ -933,14 +933,14 @@ namespace ExxoAvalonOrigins
                 Vector2 mousePosition = Main.MouseWorld;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+                    player.Avalon().MousePosition = mousePosition;
                     Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+                    player.Avalon().MousePosition = mousePosition;
                 }
-                Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
+                Point mpTile = player.Avalon().MousePosition.ToTileCoordinates();
 
                 if ((Main.tile[mpTile.X, mpTile.Y].type == TileID.BloomingHerbs ||
                     Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Barfbush>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
@@ -964,7 +964,7 @@ namespace ExxoAvalonOrigins
                 }
             }
             #endregion
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientMinionGuide)
+            if (player.Avalon().ancientMinionGuide)
             {
                 if (item.summon && ExxoAvalonOrigins.mod.minionGuidingHotkey.Current)
                 {
@@ -1039,14 +1039,14 @@ namespace ExxoAvalonOrigins
 
         public override bool UseItem(Item item, Player player)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves)
+            if (player.Avalon().cloudGloves)
             {
                 bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX &&
                     (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX &&
                     player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY &&
                     (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
                 if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
-                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.GetModPlayer<ExxoAvalonOriginsModPlayer>().HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
+                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.Avalon().HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
                     !Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
                 {
                     bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
@@ -1484,7 +1484,7 @@ namespace ExxoAvalonOrigins
         }
         public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().splitProj &&
+            if (player.Avalon().splitProj &&
                 item.ranged &&
                 Main.rand.Next(7) == 0 &&
                 type != ModContent.ProjectileType<Projectiles.EnchantedShuriken>())
@@ -1502,7 +1502,7 @@ namespace ExxoAvalonOrigins
                 }
             }
 
-            /*if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientGunslinger &&
+            /*if (player.Avalon().ancientGunslinger &&
                 item.ranged &&
                 inaccurateGuns.Contains(item.type))
             {

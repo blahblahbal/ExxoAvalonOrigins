@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.UI
             // Draw labelText above stamina bar
             DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, labelText, new Vector2((Main.screenWidth - labelDimensions.X + 15), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 0.7f, SpriteEffects.None, 0f);
 
-            var player = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            var player = Main.player[Main.myPlayer].Avalon();
 
             int stamBars = player.statStamMax2 / staminaPerBar;
             if (stamBars > maxStaminaBars)

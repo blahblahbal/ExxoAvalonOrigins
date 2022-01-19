@@ -1679,20 +1679,20 @@ namespace ExxoAvalonOrigins
                 player.shadow = 0f;
             }
 
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
+            if (player.Avalon().herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
                 int num10 = (int)((player.position.Y + player.height * 0.5) / 16.0);
                 if (num9 < herbX - Player.tileRangeX || num9 > herbX + Player.tileRangeX + 1 || num10 < herbY - Player.tileRangeY || num10 > herbY + Player.tileRangeY + 1)
                 {
                     Main.PlaySound(SoundID.MenuClose, -1, -1, 1);
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
+                    player.Avalon().herb = false;
                     player.dropItemCheck();
                 }
             }
             if (!Main.playerInventory)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = false;
+                player.Avalon().herb = false;
             }
             if (chaosCharm)
             {
@@ -1894,7 +1894,7 @@ namespace ExxoAvalonOrigins
                                   return;
                               }
                               Player drawPlayer = drawInfo.drawPlayer;
-                              bool[] ownedLargeGems = drawPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ownedLargeGems;
+                              bool[] ownedLargeGems = drawplayer.Avalon().ownedLargeGems;
                               if (ownedLargeGems.Length > 0)
                               {
                                   bool flag2 = false;

@@ -43,7 +43,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone())
+            if (spawnInfo.player.Avalon().ZoneBooger && spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone())
                 return 1;
             return 0;
         }

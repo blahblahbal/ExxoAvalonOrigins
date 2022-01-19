@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins.Buffs
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.GastrominiSummon>()] > 0)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion = true;
+                player.Avalon().gastroMinion = true;
             }
-            if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion)
+            if (!player.Avalon().gastroMinion)
             {
                 player.DelBuff(k);
                 k--;

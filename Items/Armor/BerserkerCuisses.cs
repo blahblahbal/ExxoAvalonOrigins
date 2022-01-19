@@ -35,8 +35,8 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().LightningInABottle = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().meleeStealth = true;
+            player.Avalon().LightningInABottle = true;
+            player.Avalon().meleeStealth = true;
         }
     }
 }

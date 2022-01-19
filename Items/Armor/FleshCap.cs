@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Hungry minions can be summoned up to 10";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().fleshLaser = true;
+            player.Avalon().fleshLaser = true;
         }
 
         public override void UpdateEquip(Player player)

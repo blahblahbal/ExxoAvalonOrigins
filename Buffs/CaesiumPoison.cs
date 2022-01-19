@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().caesiumPoison = true;
+            player.Avalon().caesiumPoison = true;
             player.blind = true;
         }
     }

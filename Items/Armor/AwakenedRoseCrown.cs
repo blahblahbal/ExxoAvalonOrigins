@@ -34,14 +34,14 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "On hitting enemies with magic weapons, rosebuds have a chance to spawn around them. Picking up rosebuds restores 10-15 hp";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().roseMagic = true;
+            player.Avalon().roseMagic = true;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.magicDamage += 0.2f;
             player.magicCrit += 5;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().leafStorm = true;
+            player.Avalon().leafStorm = true;
         }
     }
 }

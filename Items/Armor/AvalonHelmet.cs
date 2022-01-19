@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
             player.setBonus = "Restoration"
                 + "\nDealing a critical hit temporarily gives the 'Blessing of Avalon' buff"
                 + "\nThis buff removes almost all debuffs and greatly increases your stats"
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             player.allDamage += 0.32f;
             player.manaCost -= 0.20f;
             player.statManaMax2 += 280;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().leafStorm = true;
+            player.Avalon().leafStorm = true;
         }
     }
 }

@@ -281,7 +281,7 @@ namespace ExxoAvalonOrigins
 
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
-            if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().thornMagic)
+            if (Main.player[projectile.owner].Avalon().thornMagic)
                 if (projectile.magic)
                     if (Main.rand.Next(10) == 0)
                         Projectile.NewProjectile(projectile.Center, new Vector2(0f, -32f), ProjectileID.NettleBurstRight, projectile.damage, projectile.knockBack, projectile.owner);
@@ -291,17 +291,17 @@ namespace ExxoAvalonOrigins
 
         public override bool CanHitPlayer(Projectile projectile, Player target)
         {
-            if (target.GetModPlayer<ExxoAvalonOriginsModPlayer>().beeRepel && projectile.type == ProjectileID.Stinger)
+            if (target.Avalon().beeRepel && projectile.type == ProjectileID.Stinger)
             {
                 return false;
             }
-            if (target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.PoisonDartTrap ||
-                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.SpearTrap ||
-                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.FlamesTrap ||
-                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.FlamethrowerTrap ||
-                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.SpikyBallTrap ||
-                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.GeyserTrap ||
-                target.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune && projectile.type == ProjectileID.Boulder)
+            if (target.Avalon().trapImmune && projectile.type == ProjectileID.PoisonDartTrap ||
+                target.Avalon().trapImmune && projectile.type == ProjectileID.SpearTrap ||
+                target.Avalon().trapImmune && projectile.type == ProjectileID.FlamesTrap ||
+                target.Avalon().trapImmune && projectile.type == ProjectileID.FlamethrowerTrap ||
+                target.Avalon().trapImmune && projectile.type == ProjectileID.SpikyBallTrap ||
+                target.Avalon().trapImmune && projectile.type == ProjectileID.GeyserTrap ||
+                target.Avalon().trapImmune && projectile.type == ProjectileID.Boulder)
             {
                 return false;
             }

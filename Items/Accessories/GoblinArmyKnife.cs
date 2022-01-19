@@ -35,11 +35,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.accCompass = 1;
             player.accDepthMeter = 1;
             Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, 2f, 2f, 2f);
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().quintJump)
+            if (player.Avalon().quintJump)
             {
                 player.doubleJumpCloud = player.doubleJumpSandstorm = player.doubleJumpBlizzard = true;
             }
-            player.jumpBoost = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().magnet = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().longInvince2 = player.longInvince = player.detectCreature = player.findTreasure = true;
+            player.jumpBoost = player.Avalon().magnet = player.Avalon().longInvince2 = player.longInvince = player.detectCreature = player.findTreasure = true;
             player.manaRegenDelayBonus++;
             player.manaRegenBonus += 25;
             player.meleeDamage += 0.07f;

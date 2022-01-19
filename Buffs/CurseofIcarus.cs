@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().curseOfIcarus = true;
+            player.Avalon().curseOfIcarus = true;
         }
     }
 }

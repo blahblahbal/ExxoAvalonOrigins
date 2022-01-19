@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Hooks
             c.Index++;
             c.EmitDelegate<Action>(() => // Transition thingy
             {
-                if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCaesium)
+                if (Main.player[Main.myPlayer].Avalon().ZoneCaesium)
                 {
                     ExxoAvalonOrigins.caesiumTransition += 0.05f;
                     if (ExxoAvalonOrigins.caesiumTransition > 1f)
@@ -371,7 +371,7 @@ namespace ExxoAvalonOrigins.Hooks
 
             c.EmitDelegate<Action>(() =>
             {
-                if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCaesium)
+                if (Main.player[Main.myPlayer].Avalon().ZoneCaesium)
                 {
                     ExxoAvalonOrigins.caesiumTransition += 0.05f;
                     if (ExxoAvalonOrigins.caesiumTransition > 1f)

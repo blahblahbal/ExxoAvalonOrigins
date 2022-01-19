@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateEquip(Player player)
         {
             player.aggro += 600;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().goBerserk = true;
+            player.Avalon().goBerserk = true;
         }
     }
 }

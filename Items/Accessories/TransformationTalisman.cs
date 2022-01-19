@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             var flag2 = Collision.LavaCollision(player.position, player.width, player.height);
             if (flag2)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().mermanLava = true;
+                player.Avalon().mermanLava = true;
                 player.merman = true;
                 player.accFlipper = true;
                 player.lavaImmune = true;

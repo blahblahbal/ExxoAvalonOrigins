@@ -54,7 +54,7 @@ namespace ExxoAvalonOrigins.Buffs
             player.magicCrit += 10;
             player.rangedCrit += 10;
             player.thrownCrit += 10;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.3f;
+            player.Avalon().critDamageMult += 0.3f;
             player.statDefense += 10;
             player.lifeRegen += 3;
             player.manaRegen += 3;

@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins.Buffs
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiCannon>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiLaser>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiSaw>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiVice>()] > 0)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().primeMinion = true;
+                player.Avalon().primeMinion = true;
             }
-            if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().primeMinion)
+            if (!player.Avalon().primeMinion)
             {
                 player.DelBuff(k);
                 k--;

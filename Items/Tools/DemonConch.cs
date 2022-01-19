@@ -62,9 +62,9 @@ namespace ExxoAvalonOrigins.Items.Tools
                             Main.projectile[num366].Kill();
                         }
                     }
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = true;
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(5, player.whoAmI);
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = false;
+                    player.Avalon().shadowTele = true;
+                    player.Avalon().ShadowTP(5, player.whoAmI);
+                    player.Avalon().shadowTele = false;
                     for (int num367 = 0; num367 < 70; num367++)
                     {
                         Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.5f);

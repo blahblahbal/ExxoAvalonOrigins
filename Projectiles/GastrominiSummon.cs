@@ -40,9 +40,9 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 if (Main.player[projectile.owner].dead)
                 {
-                    Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion = false;
+                    Main.player[projectile.owner].Avalon().gastroMinion = false;
                 }
-                if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().gastroMinion)
+                if (Main.player[projectile.owner].Avalon().gastroMinion)
                 {
                     projectile.timeLeft = 2;
                 }

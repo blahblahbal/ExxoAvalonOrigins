@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bOfBacteria = true;
+            player.Avalon().bOfBacteria = true;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Buffs
         public override void Update(Player player, ref int k)
         {
             if (player.HeldItem.shoot == ProjectileID.None)
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 1.5f;
+                player.Avalon().critDamageMult += 1.5f;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Defense is increased by 12 while you are affected by a debuff";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().defDebuff = true;
+            player.Avalon().defDebuff = true;
         }
 
         public override void UpdateEquip(Player player)

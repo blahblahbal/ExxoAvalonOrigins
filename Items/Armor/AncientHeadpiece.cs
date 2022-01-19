@@ -76,7 +76,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
             player.setBonus = "Ancient costs 50% less mana"
                 + "\nEnemies killed with a ranged weapon violently explode"
                 + "\nHas a chance to summon a sand vortex that pulls enemies in on true melee hits"

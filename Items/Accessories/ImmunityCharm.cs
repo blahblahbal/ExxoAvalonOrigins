@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().undeadTalisman = true;
+            player.Avalon().undeadTalisman = true;
             player.endurance += 0.1f;
             player.noFallDmg = true;
             player.npcTypeNoAggro[1] = true;

@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             player.meleeCrit += 10;
             player.rangedCrit += 10;
             player.thrownCrit += 10;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.30f;
+            player.Avalon().critDamageMult += 0.30f;
             player.longInvince = true;
             player.starCloak = true;
         }

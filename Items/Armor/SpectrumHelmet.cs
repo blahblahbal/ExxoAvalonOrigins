@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         {
             player.setBonus = "The slower you walk the more damage you gain, up to 25%" +
                 "\nWhile moving at maximum speed, you have a chance to dodge attacks";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().spectrumSpeed = true;
+            player.Avalon().spectrumSpeed = true;
         }
         public override void UpdateEquip(Player player)
         {

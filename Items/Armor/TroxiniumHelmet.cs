@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Hit mobs 15 times to trigger melee crits for 10 hits";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hyperMelee = true;
+            player.Avalon().hyperMelee = true;
         }
 
         public override void UpdateEquip(Player player)

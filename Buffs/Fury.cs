@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.2f;
+            player.Avalon().critDamageMult += 0.2f;
         }
     }
 }

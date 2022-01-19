@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().earthInsig = true;
+            player.Avalon().earthInsig = true;
         }
     }
 }

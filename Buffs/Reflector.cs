@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins.Buffs
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Reflector>()] > 0)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().reflectorMinion = true;
+                player.Avalon().reflectorMinion = true;
             }
-            if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().reflectorMinion)
+            if (!player.Avalon().reflectorMinion)
             {
                 player.DelBuff(k);
                 k--;

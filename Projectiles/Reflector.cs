@@ -59,9 +59,9 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 if (Main.player[projectile.owner].dead)
                 {
-                    Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().reflectorMinion = false;
+                    Main.player[projectile.owner].Avalon().reflectorMinion = false;
                 }
-                if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().reflectorMinion)
+                if (Main.player[projectile.owner].Avalon().reflectorMinion)
                 {
                     projectile.timeLeft = 2;
                 }

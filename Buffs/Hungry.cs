@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins.Buffs
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.HungrySummon>()] > 0)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion = true;
+                player.Avalon().hungryMinion = true;
             }
-            if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().hungryMinion)
+            if (!player.Avalon().hungryMinion)
             {
                 player.DelBuff(k);
                 k--;

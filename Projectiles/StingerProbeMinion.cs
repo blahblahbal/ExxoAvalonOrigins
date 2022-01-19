@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
 
             if (player.HasBuff(ModContent.BuffType<Buffs.StingerProbe>()))
             {
@@ -169,7 +169,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void Kill(int timeLeft)
         {
             Player player = Main.player[projectile.owner];
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
 
             Main.PlaySound(SoundID.NPCKilled, projectile.position, 14);
 

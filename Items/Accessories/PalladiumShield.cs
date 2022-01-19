@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().regenStrike = true;
+            player.Avalon().regenStrike = true;
         }
     }
 }

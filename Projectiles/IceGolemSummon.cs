@@ -48,9 +48,9 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 if (Main.player[projectile.owner].dead)
                 {
-                    Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().iceGolem = false;
+                    Main.player[projectile.owner].Avalon().iceGolem = false;
                 }
-                if (Main.player[projectile.owner].GetModPlayer<ExxoAvalonOriginsModPlayer>().iceGolem)
+                if (Main.player[projectile.owner].Avalon().iceGolem)
                 {
                     projectile.timeLeft = 2;
                 }

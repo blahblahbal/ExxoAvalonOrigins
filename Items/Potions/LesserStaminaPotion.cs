@@ -40,16 +40,16 @@ namespace ExxoAvalonOrigins.Items.Potions
         }
         public override bool CanUseItem(Player player)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam >= player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2) return false;
+            if (player.Avalon().statStam >= player.Avalon().statStamMax2) return false;
             return true;
         }
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam += 35;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().StaminaHealEffect(35, true);
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam > player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2)
+            player.Avalon().statStam += 35;
+            player.Avalon().StaminaHealEffect(35, true);
+            if (player.Avalon().statStam > player.Avalon().statStamMax2)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2;
+                player.Avalon().statStam = player.Avalon().statStamMax2;
             }
             return true;
         }

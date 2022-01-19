@@ -60,7 +60,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         {
             Item ancient = item;
             int baseCost = 19;
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ancientLessCost)
+            if (player.Avalon().ancientLessCost)
             {
                 foreach (Item item in player.inventory)
                 {

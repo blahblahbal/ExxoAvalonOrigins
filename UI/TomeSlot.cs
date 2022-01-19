@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.UI
                 var mouseLoc = new Point(Main.mouseX, Main.mouseY);
                 var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
                 Main.inventoryScale = 0.85f;
-                Item tmpItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
+                Item tmpItem = Main.player[Main.myPlayer].Avalon().tomeItem;
                 int mH = 0;
                 if (Main.mapEnabled)
                 {
@@ -60,42 +60,42 @@ namespace ExxoAvalonOrigins.UI
                     Main.armorHide = true;
                     if (Main.mouseLeftRelease && Main.mouseLeft)
                     {
-                        if (Main.mouseItem.stack == 1 && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == ItemID.None && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type != Main.mouseItem.type)
+                        if (Main.mouseItem.stack == 1 && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome && Main.player[Main.myPlayer].Avalon().tomeItem.type == ItemID.None && Main.player[Main.myPlayer].Avalon().tomeItem.type != Main.mouseItem.type)
                         {
                             Main.PlaySound(SoundID.Grab, -1, -1, 1);
                             Item item6 = Main.mouseItem;
-                            Main.mouseItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
-                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = item6;
+                            Main.mouseItem = Main.player[Main.myPlayer].Avalon().tomeItem;
+                            Main.player[Main.myPlayer].Avalon().tomeItem = item6;
                         }
-                        else if (Main.mouseItem.type == ItemID.None && Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > ItemID.None)
+                        else if (Main.mouseItem.type == ItemID.None && Main.player[Main.myPlayer].Avalon().tomeItem.type > ItemID.None)
                         {
                             Item item7 = Main.mouseItem;
-                            Main.mouseItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem;
-                            Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = item7;
-                            if (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type == ItemID.None || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.stack < 1)
+                            Main.mouseItem = Main.player[Main.myPlayer].Avalon().tomeItem;
+                            Main.player[Main.myPlayer].Avalon().tomeItem = item7;
+                            if (Main.player[Main.myPlayer].Avalon().tomeItem.type == ItemID.None || Main.player[Main.myPlayer].Avalon().tomeItem.stack < 1)
                             {
-                                Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = new Item();
+                                Main.player[Main.myPlayer].Avalon().tomeItem = new Item();
                             }
                             if (Main.mouseItem.type == ItemID.None || Main.mouseItem.stack < 1)
                             {
                                 Main.mouseItem = new Item();
                             }
-                            if (Main.mouseItem.type > ItemID.None || Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > ItemID.None)
+                            if (Main.mouseItem.type > ItemID.None || Main.player[Main.myPlayer].Avalon().tomeItem.type > ItemID.None)
                             {
                                 Recipe.FindRecipes();
                                 Main.PlaySound(SoundID.Grab, -1, -1, 1);
                             }
                         }
                     }
-                    Main.hoverItemName = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.type > ItemID.None ? Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Name : "Tome";
-                    Main.HoverItem = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem.Clone();
+                    Main.hoverItemName = Main.player[Main.myPlayer].Avalon().tomeItem.type > ItemID.None ? Main.player[Main.myPlayer].Avalon().tomeItem.Name : "Tome";
+                    Main.HoverItem = Main.player[Main.myPlayer].Avalon().tomeItem.Clone();
                 }
                 ssa[0] = tmpItem;
                 //spriteBatch.Draw(BackgroundTexture, r, default(Color));
                 ItemSlot.Draw(spriteBatch, ssa, 10, 0, new Vector2(r.X, r.Y));
                 //Main.spriteBatch.Draw(BackgroundTexture, r, default(Color));
                 tmpItem = ssa[0];
-                //Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().tomeItem = tmpItem;
+                //Main.player[Main.myPlayer].Avalon().tomeItem = tmpItem;
             }
         }
     }

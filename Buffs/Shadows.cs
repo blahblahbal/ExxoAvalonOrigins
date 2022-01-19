@@ -15,14 +15,14 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd > 300)
+            if (player.Avalon().shadowPotCd > 300)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd = 300;
+                player.Avalon().shadowPotCd = 300;
             }
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd++;
-            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
+            player.Avalon().shadowPotCd++;
+            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && player.Avalon().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowPotCd = 0;
+                player.Avalon().shadowPotCd = 0;
                 for (int num10 = 0; num10 < 70; num10++)
                 {
                     Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.1f);

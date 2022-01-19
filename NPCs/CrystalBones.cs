@@ -74,7 +74,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return Main.hardMode && spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCrystal ? 0.8f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return Main.hardMode && spawnInfo.player.Avalon().ZoneCrystal ? 0.8f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
         public override void NPCLoot()
         {

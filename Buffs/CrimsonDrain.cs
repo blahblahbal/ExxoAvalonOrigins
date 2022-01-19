@@ -21,8 +21,8 @@ namespace ExxoAvalonOrigins.Buffs
                 var nPC3 = Main.npc[num9];
                 if (!nPC3.townNPC && nPC3.active && !nPC3.dontTakeDamage && !nPC3.friendly && nPC3.life >= 1 && nPC3.position.X >= num7 - 620 && nPC3.position.X <= num7 + 620 && nPC3.position.Y >= num8 - 620 && nPC3.position.Y <= num8 + 620)
                 {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().crimsonCount++;
-                    if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().crimsonCount % 50 == 0)
+                    player.Avalon().crimsonCount++;
+                    if (player.Avalon().crimsonCount % 50 == 0)
                     {
                         var npc = Main.npc;
                         for (var l = 0; l < npc.Length; l++)
@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Buffs
                                 nPC4.StrikeNPC(1, 0f, 1, false, false);
                             }
                         }
-                        player.GetModPlayer<ExxoAvalonOriginsModPlayer>().crimsonCount = 0;
+                        player.Avalon().crimsonCount = 0;
                     }
                 }
             }

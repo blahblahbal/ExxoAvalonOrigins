@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.bee = (player.starCloak = (player.panic = (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().LightningInABottle = true)));
+            player.bee = (player.starCloak = (player.panic = (player.Avalon().LightningInABottle = true)));
         }
     }
 }

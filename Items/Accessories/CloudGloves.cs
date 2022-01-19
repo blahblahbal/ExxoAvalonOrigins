@@ -25,11 +25,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves = true;
+            player.Avalon().cloudGloves = true;
         }
         public override void UpdateVanity(Player player, EquipType type)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().cloudGloves = true;
+            player.Avalon().cloudGloves = true;
         }
         public override void AddRecipes()
         {

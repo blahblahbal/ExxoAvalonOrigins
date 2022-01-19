@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             if (player.whoAmI == Main.myPlayer)
             {
                 int d = 15;
-                switch (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowWP)
+                switch (player.Avalon().shadowWP)
                 {
                     case 0:
                         d = DustID.MagicMirror;
@@ -89,9 +89,9 @@ namespace ExxoAvalonOrigins.Items.Tools
                         Main.projectile[num366].Kill();
                     }
                 }
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = true;
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowWP, player.whoAmI);
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = false;
+                player.Avalon().shadowTele = true;
+                player.Avalon().ShadowTP(player.Avalon().shadowWP, player.whoAmI);
+                player.Avalon().shadowTele = false;
                 for (int num367 = 0; num367 < 70; num367++)
                 {
                     int dust = Dust.NewDust(player.position, player.width, player.height, d, 0f, 0f, 150, default(Color), 1.5f);

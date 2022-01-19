@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             player.meleeDamage += 0.05f;
             //player.thorns = true;
             player.statDefense += 4;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().meleeStealth = true;
+            player.Avalon().meleeStealth = true;
         }
         public override void UpdateEquip(Player player)
         {

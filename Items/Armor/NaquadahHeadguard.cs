@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Nearby enemies receive damage when you are damaged";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().auraThorns = true;
+            player.Avalon().auraThorns = true;
         }
 
         public override void UpdateEquip(Player player)

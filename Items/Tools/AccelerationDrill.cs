@@ -56,7 +56,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override void HoldItem(Player player)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().speed && player.controlUseItem)
+            if (player.Avalon().speed && player.controlUseItem)
             {
                 if (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost <= Player.tileTargetX && (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f >= Player.tileTargetX && player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost <= Player.tileTargetY && (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f >= Player.tileTargetY)
                 {

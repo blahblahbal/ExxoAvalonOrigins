@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().chaosCharm = true;
+            player.Avalon().chaosCharm = true;
             player.meleeCrit += 8;
             player.rangedCrit += 8;
             player.magicCrit += 8;

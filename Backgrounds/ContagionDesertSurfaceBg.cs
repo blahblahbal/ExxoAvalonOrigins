@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Backgrounds
     {
         public override bool ChooseBgStyle()
         {
-            return !Main.gameMenu && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && Main.LocalPlayer.ZoneDesert;
+            return !Main.gameMenu && Main.LocalPlayer.Avalon().ZoneBooger && Main.LocalPlayer.ZoneDesert;
         }
 
         public override void ModifyFarFades(float[] fades, float transitionSpeed)

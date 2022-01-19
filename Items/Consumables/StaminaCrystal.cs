@@ -30,14 +30,14 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax < 300;
+            return player.Avalon().statStamMax < 300;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax += 30;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStamMax2 += 30;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().statStam += 30;
+            player.Avalon().statStamMax += 30;
+            player.Avalon().statStamMax2 += 30;
+            player.Avalon().statStam += 30;
             return true;
         }
     }

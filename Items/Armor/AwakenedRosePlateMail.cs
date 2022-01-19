@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
             modPlayer.teleportV = true;
             modPlayer.thornMagic = true;
         }

@@ -338,7 +338,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             npc.velocity.X = npc.velocity.X + 7f * (float)npc.direction;
                         }
                         cindersOnce = false;
-                        Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().screenShakeTimer = 0;
+                        Main.player[Main.myPlayer].Avalon().screenShakeTimer = 0;
                     }
                     else if (npc.ai[0] >= -30f)
                     {
@@ -360,7 +360,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
             #region projectiles / slime spawn
 
-            ExxoAvalonOriginsModPlayer myModPlayer = Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer myModPlayer = Main.player[Main.myPlayer].Avalon();
 
             if (ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, (int)(npc.width * npc.scale), (int)(npc.height * npc.scale)) && npc.oldVelocity.Y > 0f)
             {

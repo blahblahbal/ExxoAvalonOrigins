@@ -26,9 +26,9 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().oblivionKill = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().splitProj = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().teleportV = true;
+            player.Avalon().oblivionKill = true;
+            player.Avalon().splitProj = true;
+            player.Avalon().teleportV = true;
         }
     }
 }

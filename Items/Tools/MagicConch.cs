@@ -52,10 +52,10 @@ namespace ExxoAvalonOrigins.Items.Tools
                             Main.projectile[num366].Kill();
                         }
                     }
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = true;
-                    if (Main.rand.Next(2) == 0) player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(3, player.whoAmI);
-                    else player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ShadowTP(4, player.whoAmI);
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().shadowTele = false;
+                    player.Avalon().shadowTele = true;
+                    if (Main.rand.Next(2) == 0) player.Avalon().ShadowTP(3, player.whoAmI);
+                    else player.Avalon().ShadowTP(4, player.whoAmI);
+                    player.Avalon().shadowTele = false;
                     for (int num367 = 0; num367 < 70; num367++)
                     {
                         Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.5f);

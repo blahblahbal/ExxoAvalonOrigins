@@ -17,12 +17,12 @@ namespace ExxoAvalonOrigins.Buffs
         {
             if (Main.rand.Next(600) == 0)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().deliriumCount = Main.rand.Next(240, 481);
+                player.Avalon().deliriumCount = Main.rand.Next(240, 481);
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().deliriumCount > 0)
+            if (player.Avalon().deliriumCount > 0)
             {
                 player.confused = true;
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().deliriumCount--;
+                player.Avalon().deliriumCount--;
             }
         }
     }

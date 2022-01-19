@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().confusionTal = true; //unimplemented
+            player.Avalon().confusionTal = true; //unimplemented
         }
     }
 }

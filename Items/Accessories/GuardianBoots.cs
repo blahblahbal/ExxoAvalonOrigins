@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune = true;
+            player.Avalon().trapImmune = true;
             player.noKnockback = true;
             player.noFallDmg = true;
             player.fireWalk = true;

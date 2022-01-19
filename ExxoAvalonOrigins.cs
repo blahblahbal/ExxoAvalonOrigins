@@ -230,7 +230,7 @@ namespace ExxoAvalonOrigins
                 return;
             }
 
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics)
+            if (player.Avalon().ZoneTropics)
             {
                 if (musicMod != null)
                 {
@@ -243,7 +243,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.BiomeMedium;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
+            if (player.Avalon().ZoneBooger)
             {
                 if (Main.player[Main.myPlayer].position.Y > (Main.worldSurface * 16.0) + (Main.screenHeight / 2))
                 {
@@ -285,7 +285,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.BiomeHigh;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle)
+            if (player.Avalon().ZoneHellcastle)
             {
                 if (musicMod != null)
                 {
@@ -298,7 +298,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
+            if (player.Avalon().ZoneSkyFortress)
             {
                 if (musicMod != null)
                 {
@@ -311,7 +311,7 @@ namespace ExxoAvalonOrigins
 
                 priority = MusicPriority.Environment;
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneDarkMatter)
+            if (player.Avalon().ZoneDarkMatter)
             {
                 if (musicMod != null)
                 {

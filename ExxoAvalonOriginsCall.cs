@@ -61,7 +61,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger;
+                            return player.Avalon().ZoneBooger;
                         }
                     case "getinzonecomet":
                         {
@@ -77,7 +77,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneComet;
+                            return player.Avalon().ZoneComet;
                         }
                     case "getinzonehellcastle":
                         {
@@ -93,7 +93,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle;
+                            return player.Avalon().ZoneHellcastle;
                         }
                     case "getinzonedark":
                     case "getinzonedarkmatter":
@@ -110,7 +110,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneDarkMatter;
+                            return player.Avalon().ZoneDarkMatter;
                         }
                     case "getinzonejunglealt":
                     case "getinzonetropics":
@@ -127,7 +127,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics;
+                            return player.Avalon().ZoneTropics;
                         }
                     case "getinzonecaesium":
                         {
@@ -143,7 +143,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCaesium;
+                            return player.Avalon().ZoneCaesium;
                         }
                     case "getinzoneoutpost":
                         {
@@ -159,7 +159,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneOutpost;
+                            return player.Avalon().ZoneOutpost;
                         }
                     case "getinzonefortress":
                     case "getinzoneskyfortress":
@@ -176,7 +176,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress;
+                            return player.Avalon().ZoneSkyFortress;
                         }
                     case "getinzonemines":
                     case "getinzonecrystal":
@@ -195,7 +195,7 @@ namespace ExxoAvalonOrigins
                                 return null;
                             }
 
-                            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCrystal;
+                            return player.Avalon().ZoneCrystal;
                         }
                     #endregion
 

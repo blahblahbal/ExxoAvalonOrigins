@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
             player.setBonus = "Blood Casting, Necrotic Aura, 75% increased mana usage";
             modPlayer.bloodCast = true;
             modPlayer.necroticAura = true;

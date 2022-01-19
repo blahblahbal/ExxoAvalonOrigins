@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.dash = 2;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().dashIntoMob = true;
+            player.Avalon().dashIntoMob = true;
         }
     }
 }

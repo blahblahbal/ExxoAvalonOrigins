@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             float posX = (float)Main.mouseX + Main.screenPosition.X;
             float posY = (float)Main.mouseY + Main.screenPosition.Y;
             int num227 = Projectile.NewProjectile(posX, posY, 0f, 0f, type, damage, knockBack, player.whoAmI, 0f, 0f);
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().fleshLaser)
+            if (player.Avalon().fleshLaser)
             {
                 Main.projectile[num227].minionSlots = 0.25f;
             }

@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
             player.setBonus = "Reckoning: your reckoning level increases as you attack enemies, up to a maximum of ten"
                 + "\nThe greater your reckoning level, the greater your ranged critical strike chance"
                 + "\nYour reckoning level decreases gradually over time"

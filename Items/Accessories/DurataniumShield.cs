@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield = true;
+            player.Avalon().duraShield = true;
         }
     }
 }

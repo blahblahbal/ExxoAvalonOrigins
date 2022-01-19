@@ -30,12 +30,12 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return player.statManaMax >= 200 && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().spiritPoppyUseCount < 10;
+            return player.statManaMax >= 200 && player.Avalon().spiritPoppyUseCount < 10;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().spiritPoppyUseCount++;
+            player.Avalon().spiritPoppyUseCount++;
             return true;
         }
     }

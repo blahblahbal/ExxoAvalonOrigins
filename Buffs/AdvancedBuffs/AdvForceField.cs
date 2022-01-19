@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 
         public override void Update(Player player, ref int k)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().forceField = true;
+            player.Avalon().forceField = true;
             var value = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
             var projectile = Main.projectile;
             for (var l = 0; l < projectile.Length; l++)

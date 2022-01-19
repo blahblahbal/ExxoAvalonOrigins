@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 
         public override void Update(Player player, ref int k)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advArcheryBuff = true;
+            player.Avalon().advArcheryBuff = true;
         }
     }
 }

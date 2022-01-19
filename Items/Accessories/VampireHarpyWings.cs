@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.wingTimeMax = 210;
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneDarkMatter)
+            if (player.Avalon().ZoneDarkMatter)
             {
                 player.statDefense += 8;
                 player.lifeRegen += 5;

@@ -13,9 +13,9 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky = true;
+            player.Avalon().lucky = true;
             player.enemySpawns = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().enemySpawns2 = true;
+            player.Avalon().enemySpawns2 = true;
             player.maxMinions += 4;
             player.accMerman = true;
             player.lavaImmune = true;

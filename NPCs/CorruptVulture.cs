@@ -181,7 +181,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger || spawnInfo.player.ZoneCorrupt || spawnInfo.player.ZoneCrimson)
+            if (spawnInfo.player.Avalon().ZoneBooger || spawnInfo.player.ZoneCorrupt || spawnInfo.player.ZoneCrimson)
             {
                 if (Main.hardMode)
                 {

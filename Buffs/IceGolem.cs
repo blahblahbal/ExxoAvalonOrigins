@@ -17,9 +17,9 @@ namespace ExxoAvalonOrigins.Buffs
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.IceGolemSummon>()] > 0)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().iceGolem = true;
+                player.Avalon().iceGolem = true;
             }
-            if (!player.GetModPlayer<ExxoAvalonOriginsModPlayer>().iceGolem)
+            if (!player.Avalon().iceGolem)
             {
                 player.DelBuff(k);
                 k--;

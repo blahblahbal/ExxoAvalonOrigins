@@ -26,10 +26,10 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().incDef = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().regenStrike = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().duraShield = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().pOmega = true;
+            player.Avalon().incDef = true;
+            player.Avalon().regenStrike = true;
+            player.Avalon().duraShield = true;
+            player.Avalon().pOmega = true;
             player.noKnockback = true;
         }
     }

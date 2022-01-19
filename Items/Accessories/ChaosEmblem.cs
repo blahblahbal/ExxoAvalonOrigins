@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.1f;
+            player.Avalon().critDamageMult += 0.1f;
             player.allDamage += 0.1f;
         }
     }

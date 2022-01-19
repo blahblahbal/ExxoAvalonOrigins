@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
 
             if (player.dead || !player.active || !modPlayer.HasItemInArmor(ModContent.ItemType<Items.Accessories.AIController>()))
             {

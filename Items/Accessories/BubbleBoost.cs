@@ -25,8 +25,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bubbleBoost = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().activateBubble = true;
+            player.Avalon().bubbleBoost = true;
+            player.Avalon().activateBubble = true;
         }
     }
 }

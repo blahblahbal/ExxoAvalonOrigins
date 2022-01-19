@@ -15,18 +15,18 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectTimer++;
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectTimer % 60 == 0 && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectTimer != 0)
+            player.Avalon().infectTimer++;
+            if (player.Avalon().infectTimer % 60 == 0 && player.Avalon().infectTimer != 0)
             {
-                if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg < 16)
+                if (player.Avalon().infectDmg < 16)
                 {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg *= 2;
+                    player.Avalon().infectDmg *= 2;
                 }
                 else
                 {
-                    player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg = 16;
+                    player.Avalon().infectDmg = 16;
                 }
-                player.Hurt(PlayerDeathReason.ByCustomReason(" was infected."), player.GetModPlayer<ExxoAvalonOriginsModPlayer>().infectDmg, 0, false, false, false);
+                player.Hurt(PlayerDeathReason.ByCustomReason(" was infected."), player.Avalon().infectDmg, 0, false, false, false);
             }
         }
     }

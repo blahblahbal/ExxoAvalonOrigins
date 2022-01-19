@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Network
             int healAmt = reader.ReadInt32();
             if (pid != Main.myPlayer)
             {
-                Main.player[pid].GetModPlayer<ExxoAvalonOriginsModPlayer>().StaminaHealEffect(healAmt, true);
+                Main.player[pid].Avalon().StaminaHealEffect(healAmt, true);
             }
             if (Main.netMode == NetmodeID.Server)
             {

@@ -16,6 +16,8 @@ namespace ExxoAvalonOrigins
 {
     public static class ClassExtensions
     {
+        public static ExxoAvalonOriginsModPlayer Avalon(this Player player) => player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+
         public static Rectangle NewRectVector2(Vector2 V, Vector2 WH)
         {
             return new Rectangle((int)V.X, (int)V.Y, (int)WH.X, (int)WH.Y);

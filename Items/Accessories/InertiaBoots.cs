@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().noSticky = true;
+            player.Avalon().noSticky = true;
             player.accRunSpeed = 10.29f;
             player.rocketBoots = 3;
             player.noFallDmg = true;

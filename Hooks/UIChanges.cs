@@ -88,7 +88,7 @@ namespace ExxoAvalonOrigins.Hooks
 
             c.EmitDelegate<Action<SpriteBatch, Vector2, Player>>((spriteBatch, vector2, player) =>
             {
-                ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+                ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
                 if (modPlayer == null)
                 {
                     return;

@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             bool flag = Collision.LavaCollision(player.position, player.width, player.height);
             if (flag)
             {
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().mermanLava = true;
+                player.Avalon().mermanLava = true;
                 player.merman = true;
                 player.accFlipper = true;
                 player.ignoreWater = true;

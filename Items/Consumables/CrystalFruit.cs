@@ -30,12 +30,12 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return player.statLifeMax >= 500 && player.GetModPlayer<ExxoAvalonOriginsModPlayer>().crystalHealth < 4;
+            return player.statLifeMax >= 500 && player.Avalon().crystalHealth < 4;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().crystalHealth += 1;
+            player.Avalon().crystalHealth += 1;
             player.statLifeMax += 25;
             player.statLife += 25;
             player.statLifeMax2 += 25;

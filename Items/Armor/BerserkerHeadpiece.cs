@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Melee weapons have a chance to instantly kill your enemies";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().oblivionKill = true;
+            player.Avalon().oblivionKill = true;
         }
 
         public override void UpdateEquip(Player player)

@@ -26,8 +26,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.allDamage += 0.15f;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().critDamageMult += 0.12f;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune = true;
+            player.Avalon().critDamageMult += 0.12f;
+            player.Avalon().trapImmune = true;
         }
         public override void AddRecipes()
         {

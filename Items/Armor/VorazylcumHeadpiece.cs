@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().auraThorns = true;
+            player.Avalon().auraThorns = true;
             player.onHitDodge = true;
             player.setBonus = "Thorns Aura and Shadow Dodge";
         }

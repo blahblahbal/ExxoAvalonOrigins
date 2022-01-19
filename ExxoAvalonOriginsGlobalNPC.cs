@@ -59,13 +59,13 @@ namespace ExxoAvalonOrigins
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneSkyFortress)
+            if (spawnInfo.player.Avalon().ZoneSkyFortress)
             {
                 pool.Clear();
                 pool.Add(ModContent.NPCType<NPCs.Valkyrie>(), 0.6f);
                 pool.Add(ModContent.NPCType<NPCs.CloudBat>(), 0.9f);
             }
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && !spawnInfo.player.InPillarZone())
+            if (spawnInfo.player.Avalon().ZoneBooger && !spawnInfo.player.InPillarZone())
             {
                 pool.Clear();
                 pool.Add(ModContent.NPCType<NPCs.Bactus>(), 1f);
@@ -86,7 +86,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCaesium)
+            if (spawnInfo.player.Avalon().ZoneCaesium)
             {
                 if (Main.hardMode)
                 {
@@ -96,7 +96,7 @@ namespace ExxoAvalonOrigins
                     pool.Add(ModContent.NPCType<NPCs.CaesiumStalker>(), 0.9f);
                 }
             }
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneDarkMatter && !spawnInfo.player.InPillarZone())
+            if (spawnInfo.player.Avalon().ZoneDarkMatter && !spawnInfo.player.InPillarZone())
             {
                 pool.Clear();
                 pool.Add(ModContent.NPCType<NPCs.DarkMotherSlime>(), 0.5f);
@@ -105,7 +105,7 @@ namespace ExxoAvalonOrigins
                 pool.Add(ModContent.NPCType<NPCs.MatterMan>(), 0.9f);
                 pool.Add(ModContent.NPCType<NPCs.UnstableAnomaly>(), 0.9f);
             }
-            if (spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle)
+            if (spawnInfo.player.Avalon().ZoneHellcastle)
             {
                 pool.Clear();
                 pool.Add(NPCID.Demon, 0.2f);
@@ -163,13 +163,13 @@ namespace ExxoAvalonOrigins
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
             // Advanced battle potion buff changes
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advBattleBuff)
+            if (player.Avalon().advBattleBuff)
             {
                 spawnRate = (int)(spawnRate * 0.35f);
                 maxSpawns = (int)(maxSpawns * 2.5f);
             }
             // Advanced calming potion buff changes
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().advCalmingBuff)
+            if (player.Avalon().advCalmingBuff)
             {
                 spawnRate = (int)(spawnRate * 1.5f);
                 maxSpawns = (int)(maxSpawns * 0.65f);
@@ -184,12 +184,12 @@ namespace ExxoAvalonOrigins
                     maxSpawns = (int)(maxSpawns * 1.11);
                 }
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().enemySpawns2)
+            if (player.Avalon().enemySpawns2)
             {
                 spawnRate = (int)(spawnRate * 0.2);
                 maxSpawns = (int)(maxSpawns * 3f);
             }
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger)
+            if (player.Avalon().ZoneBooger)
             {
                 spawnRate = (int)(spawnRate * 0.65f);
                 maxSpawns = (int)(maxSpawns * 1.3f);
@@ -200,7 +200,7 @@ namespace ExxoAvalonOrigins
                     maxSpawns = (int)(maxSpawns * 1.3f);
                 }
             }
-            else if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle)
+            else if (player.Avalon().ZoneHellcastle)
             {
                 spawnRate = (int)(spawnRate * 0.4f);
                 maxSpawns = (int)(maxSpawns * 1.7f);
@@ -909,7 +909,7 @@ IL_162:
             }
             int maxValue = 100;
             int maxValue3 = 1000;
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().lucky)
             {
                 maxValue = 50;
                 maxValue3 = 500;
@@ -933,11 +933,11 @@ IL_162:
             }
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
-                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneOutpost)
+                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneOutpost)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.OutpostToken>());
                 }
-                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneTropics && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
+                if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneTropics && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.TropicsToken>());
                 }
@@ -945,7 +945,7 @@ IL_162:
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.SuperhardmodeToken>());
                 }
-                if (Main.rand.Next(15) == 0 && NPC.downedMoonlord && ExxoAvalonOriginsWorld.downedPhantasm && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneHellcastle)
+                if (Main.rand.Next(15) == 0 && NPC.downedMoonlord && ExxoAvalonOriginsWorld.downedPhantasm && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneHellcastle)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.HellcastleToken>());
                 }
@@ -957,7 +957,7 @@ IL_162:
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
                 }
-                if (Main.rand.Next(15) == 0 && NPC.downedBoss1 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
+                if (Main.rand.Next(15) == 0 && NPC.downedBoss1 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneBooger && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.ContagionToken>());
                 }
@@ -970,7 +970,7 @@ IL_162:
                 else if (item == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumPlateMail>(), 1, false, 0, false);
                 else Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumGreaves>(), 1, false, 0, false);
             }
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && Main.rand.Next(5) == 0 && npc.lifeMax > 5 && !npc.friendly && Main.hardMode)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneBooger && Main.rand.Next(5) == 0 && npc.lifeMax > 5 && !npc.friendly && Main.hardMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, 0, false);
             }
@@ -1433,11 +1433,11 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Clash>(), 1, false, 0, false);
             }
-            if (npc.type == NPCID.EaterofSouls && (Main.rand.Next(700) == 0 || (Main.rand.Next(350) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
+            if (npc.type == NPCID.EaterofSouls && (Main.rand.Next(700) == 0 || (Main.rand.Next(350) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().lucky)))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EvilOuroboros>(), 1, false, 0, false);
             }
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneBooger && Main.rand.Next(700) == 0)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneBooger && Main.rand.Next(700) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RingofDisgust>(), 1, false, 0, false);
             }
@@ -1449,7 +1449,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ACometHasStruckGround>(), 1, false, 0, false);
             }
-            if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < (Main.worldSurface * 16.0) + (Main.screenHeight / 2) && (Main.rand.Next(500) == 0 || (Main.rand.Next(700) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)))
+            if (Main.eclipse && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y < (Main.worldSurface * 16.0) + (Main.screenHeight / 2) && (Main.rand.Next(500) == 0 || (Main.rand.Next(700) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().lucky)))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EclipseofDoom>(), 1, false, 0, false);
             }
@@ -1493,11 +1493,11 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StaminaCrystal>(), 1, false, 0, false);
             }
-            if (Main.hardMode && (Main.rand.Next(2500) == 0 || (Main.rand.Next(1250) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)) && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y > (Main.maxTilesY - 190) * 16f)
+            if (Main.hardMode && (Main.rand.Next(2500) == 0 || (Main.rand.Next(1250) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().lucky)) && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].position.Y > (Main.maxTilesY - 190) * 16f)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.UnderworldKey>(), 1, false, 0, false);
             }
-            if (Main.hardMode && (Main.rand.Next(2000) == 0 || (Main.rand.Next(1000) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<ExxoAvalonOriginsModPlayer>().lucky)) && Main.sandTiles > 50)
+            if (Main.hardMode && (Main.rand.Next(2000) == 0 || (Main.rand.Next(1000) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().lucky)) && Main.sandTiles > 50)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.DesertKey>(), 1, false, 0, false);
             }
@@ -1584,8 +1584,8 @@ IL_162:
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<PlanterasRage>(), 1, false, -1, false);
                 }
             }
-            if ((Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().ethHeart && Main.rand.Next(30) == 0) ||
-                (Main.player[Main.myPlayer].GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem && Main.rand.Next(50) == 0 && npc.lifeMax > 5))
+            if ((Main.player[Main.myPlayer].Avalon().ethHeart && Main.rand.Next(30) == 0) ||
+                (Main.player[Main.myPlayer].Avalon().heartGolem && Main.rand.Next(50) == 0 && npc.lifeMax > 5))
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Other.PlatinumHeart>(), 1, false, 0, false);
             }
@@ -1706,11 +1706,11 @@ IL_162:
 
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
         {
-            if (hornets.Contains(npc.type) && target.GetModPlayer<ExxoAvalonOriginsModPlayer>().beeRepel)
+            if (hornets.Contains(npc.type) && target.Avalon().beeRepel)
             {
                 return false;
             }
-            if (slimes.Contains(npc.type) && target.GetModPlayer<ExxoAvalonOriginsModPlayer>().slimeImmune)
+            if (slimes.Contains(npc.type) && target.Avalon().slimeImmune)
             {
                 return false;
             }
@@ -1720,7 +1720,7 @@ IL_162:
 
         public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit)
         {
-            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().oblivionKill && Main.rand.Next(35) == 0 && !npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill)
+            if (player.Avalon().oblivionKill && Main.rand.Next(35) == 0 && !npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill)
             {
                 npc.life = 0;
                 npc.NPCLoot();

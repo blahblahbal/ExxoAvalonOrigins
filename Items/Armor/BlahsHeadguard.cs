@@ -30,14 +30,14 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().blahArmor = true;
+            player.Avalon().blahArmor = true;
             player.setBonus = "Melee Stealth, Ranged Stealth, Attackers also take double full damage, and Spectre Heal";
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().meleeStealth = true;
+            player.Avalon().meleeStealth = true;
             player.shroomiteStealth = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().doubleDamage = true;
+            player.Avalon().doubleDamage = true;
             player.ghostHeal = true;
             //player.thorns = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ghostSilence = true;
+            player.Avalon().ghostSilence = true;
         }
 
         public override void UpdateEquip(Player player)

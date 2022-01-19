@@ -44,13 +44,13 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().noSticky = true;
+            player.Avalon().noSticky = true;
             player.pStone = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().bubbleBoost = true;
-            player.GetModPlayer<ExxoAvalonOriginsModPlayer>().trapImmune =
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().heartGolem =
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ethHeart =
-                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().longInvince2 = true;
+            player.Avalon().bubbleBoost = true;
+            player.Avalon().trapImmune =
+                player.Avalon().heartGolem =
+                player.Avalon().ethHeart =
+                player.Avalon().longInvince2 = true;
             player.wingTime = 1000;
             if (player.immune)
             {
