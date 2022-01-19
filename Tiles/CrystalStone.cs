@@ -77,6 +77,21 @@ namespace ExxoAvalonOrigins.Tiles
                 drawColor = new Color(drawColor.R + c8.R, drawColor.G + c8.G, drawColor.B + c8.B);
             }
         }
+        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            if ((i + j) % 5 == 0)
+            {
+                Tile tile = Main.tile[i, j];
+                Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+                if (Main.drawToScreen)
+                {
+                    zero = Vector2.Zero;
+                }
+                Vector2 pos = new Vector2(i * 16, j * 16) + zero - Main.screenPosition;
+                Rectangle frame = new Rectangle(tile.frameX, tile.frameY, 16, 16);
+                Main.spriteBatch.Draw(mod.GetTexture("Tiles/CrystalStone_Glow"), pos, frame, Color.White);
+            }
+        }
     }
 }
 
