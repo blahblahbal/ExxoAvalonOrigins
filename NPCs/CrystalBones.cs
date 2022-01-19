@@ -85,6 +85,7 @@ namespace ExxoAvalonOrigins.NPCs
                 int proj = Projectile.NewProjectile(npc.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalShard>(), 100, 0.3f);
                 Main.projectile[proj].timeLeft = 300;
             }
+            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), Main.rand.Next(10, 15));
             if (npc.life <= 0)
             {
                 Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CrystalBonesHead"), 1f);

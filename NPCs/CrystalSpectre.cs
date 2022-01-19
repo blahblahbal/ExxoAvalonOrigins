@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.noGravity = true;
             npc.alpha = 50;
             npc.width = 24;
-            npc.aiStyle = 22;
+            npc.aiStyle = -1;
             npc.npcSlots = 1f;
             npc.value = Item.buyPrice(0, 1, 0, 0);
             npc.timeLeft = 750;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.ArmoredWraithBanner>();
+            //bannerItem = ModContent.ItemType<Items.Banners.CrystalSpectreBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -62,10 +62,174 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (npc.ai[3] == 540) npc.ai[3] = 0;
             }
+            if (npc.justHit)
+            {
+                npc.ai[2] = 0f;
+            }
+            if (npc.ai[2] >= 0f)
+            {
+                int num391 = 16;
+                bool flag35 = false;
+                bool flag36 = false;
+                if (npc.position.X > npc.ai[0] - num391 && npc.position.X < npc.ai[0] + num391)
+                {
+                    flag35 = true;
+                }
+                else if ((npc.velocity.X < 0f && npc.direction > 0) || (npc.velocity.X > 0f && npc.direction < 0))
+                {
+                    flag35 = true;
+                }
+                num391 += 24;
+                if (npc.position.Y > npc.ai[1] - num391 && npc.position.Y < npc.ai[1] + num391)
+                {
+                    flag36 = true;
+                }
+                if (flag35 && flag36)
+                {
+                    npc.ai[2] += 1f;
+                    if (npc.ai[2] >= 60f)
+                    {
+                        npc.ai[2] = -200f;
+                        npc.direction *= -1;
+                        npc.velocity.X = npc.velocity.X * -1f;
+                        npc.collideX = false;
+                    }
+                }
+                else
+                {
+                    npc.ai[0] = npc.position.X;
+                    npc.ai[1] = npc.position.Y;
+                    npc.ai[2] = 0f;
+                }
+                npc.TargetClosest(true);
+            }
+            npc.ai[2]++;
+            if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2 > npc.position.X + npc.width / 2)
+            {
+                npc.direction = 1;
+            }
+            else
+            {
+                npc.direction = -1;
+            }
+
+            int num392 = (int)((npc.position.X + npc.width / 2) / 16f) + npc.direction * 2;
+            int num393 = (int)((npc.position.Y + npc.height) / 16f);
+            if (npc.collideX)
+            {
+                npc.velocity.X = npc.oldVelocity.X * -0.4f;
+                if (npc.direction == -1 && npc.velocity.X > 0f && npc.velocity.X < 1f)
+                {
+                    npc.velocity.X = 1f;
+                }
+                if (npc.direction == 1 && npc.velocity.X < 0f && npc.velocity.X > -1f)
+                {
+                    npc.velocity.X = -1f;
+                }
+            }
+            if (npc.collideY)
+            {
+                npc.velocity.Y = npc.oldVelocity.Y * -0.25f;
+                if (npc.velocity.Y > 0f && npc.velocity.Y < 1f)
+                {
+                    npc.velocity.Y = 1f;
+                }
+                if (npc.velocity.Y < 0f && npc.velocity.Y > -1f)
+                {
+                    npc.velocity.Y = -1f;
+                }
+            }
+            float num418 = 2f;
+            if (npc.direction == -1 && npc.velocity.X > -num418)
+            {
+                npc.velocity.X = npc.velocity.X - 0.1f;
+                if (npc.velocity.X > num418)
+                {
+                    npc.velocity.X = npc.velocity.X - 0.1f;
+                }
+                else if (npc.velocity.X > 0f)
+                {
+                    npc.velocity.X = npc.velocity.X + 0.05f;
+                }
+                if (npc.velocity.X < -num418)
+                {
+                    npc.velocity.X = -num418;
+                }
+            }
+            else if (npc.direction == 1 && npc.velocity.X < num418)
+            {
+                npc.velocity.X = npc.velocity.X + 0.1f;
+                if (npc.velocity.X < -num418)
+                {
+                    npc.velocity.X = npc.velocity.X + 0.1f;
+                }
+                else if (npc.velocity.X < 0f)
+                {
+                    npc.velocity.X = npc.velocity.X - 0.05f;
+                }
+                if (npc.velocity.X > num418)
+                {
+                    npc.velocity.X = num418;
+                }
+            }
+            if (npc.directionY == -1 && npc.velocity.Y > -1.5)
+            {
+                npc.velocity.Y = npc.velocity.Y - 0.04f;
+                if (npc.velocity.Y > 1.5)
+                {
+                    npc.velocity.Y = npc.velocity.Y - 0.05f;
+                }
+                else if (npc.velocity.Y > 0f)
+                {
+                    npc.velocity.Y = npc.velocity.Y + 0.03f;
+                }
+                if (npc.velocity.Y < -1.5)
+                {
+                    npc.velocity.Y = -1.5f;
+                }
+            }
+            else if (npc.directionY == 1 && npc.velocity.Y < 1.5)
+            {
+                npc.velocity.Y = npc.velocity.Y + 0.04f;
+                if (npc.velocity.Y < -1.5)
+                {
+                    npc.velocity.Y = npc.velocity.Y + 0.05f;
+                }
+                else if (npc.velocity.Y < 0f)
+                {
+                    npc.velocity.Y = npc.velocity.Y - 0.03f;
+                }
+                if (npc.velocity.Y > 1.5)
+                {
+                    npc.velocity.Y = 1.5f;
+                }
+            }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return !Main.dayTime && Main.hardMode && spawnInfo.player.GetModPlayer<ExxoAvalonOriginsModPlayer>().ZoneCrystal ? 0.5f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+        }
+        public override void NPCLoot()
+        {
+            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), Main.rand.Next(10, 15));
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                for (int num333 = 0; num333 < 20; num333++)
+                {
+                    int num334 = Dust.NewDust(npc.position, npc.width, npc.height, 54, 0f, 0f, 50, default, 1.5f);
+                    Main.dust[num334].velocity *= 2f;
+                    Main.dust[num334].noGravity = true;
+                }
+                int num335 = Gore.NewGore(new Vector2(npc.position.X, npc.position.Y - 10f), new Vector2(hitDirection, 0f), 99, npc.scale);
+                Main.gore[num335].velocity *= 0.3f;
+                num335 = Gore.NewGore(new Vector2(npc.position.X, npc.position.Y + npc.height / 2 - 15f), new Vector2(hitDirection, 0f), 99, npc.scale);
+                Main.gore[num335].velocity *= 0.3f;
+                num335 = Gore.NewGore(new Vector2(npc.position.X, npc.position.Y + npc.height - 20f), new Vector2(hitDirection, 0f), 99, npc.scale);
+                Main.gore[num335].velocity *= 0.3f;
+            }
         }
         public override void FindFrame(int frameHeight)
         {

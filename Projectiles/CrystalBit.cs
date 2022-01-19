@@ -21,7 +21,6 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.tileCollide = false;
             projectile.penetrate = -1;
             projectile.hostile = true;
-            projectile.alpha = 100;
             projectile.timeLeft = 180;
             projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
             rn = Main.rand.Next(60, 121);
@@ -45,21 +44,6 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.friendly = false;
             projectile.velocity *= 0.85f;
             projectile.rotation = (float)System.Math.Atan2(projectile.Center.Y - Main.player[Player.FindClosest(projectile.position, projectile.width, projectile.height)].Center.Y, projectile.Center.X - Main.player[Player.FindClosest(projectile.position, projectile.width, projectile.height)].Center.X) - 1.57079633f;
-            //projectile.ai[1]++;
-            //if (projectile.ai[1] > 5f)
-            //{
-            //    projectile.ai[1] = 5f;
-            //    if (projectile.velocity.Y == 0f && projectile.velocity.X != 0f)
-            //    {
-            //        projectile.velocity.X = projectile.velocity.X * 0.97f;
-            //        if (projectile.velocity.X > -0.01 && projectile.velocity.X < 0.01)
-            //        {
-            //            projectile.velocity.X = 0f;
-            //            projectile.netUpdate = true;
-            //        }
-            //    }
-            //    projectile.velocity.Y = projectile.velocity.Y + 0.2f;
-            //}
             projectile.ai[0]++;
             if (projectile.ai[0] > rn)
             {
