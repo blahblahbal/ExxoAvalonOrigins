@@ -3366,7 +3366,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<BronzeBar>(), 12);
             recipe.AddRecipeGroup(RecipeGroupID.Wood, 4);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<Items.Tools.BronzePickaxe>());
+            recipe.SetResult(ModContent.ItemType<BronzePickaxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
@@ -3432,24 +3432,21 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 12);
-            recipe.AddIngredient(ItemID.Wood, 4);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 4);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<NickelPickaxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 9);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<NickelAxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<NickelBar>(), 10);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<NickelHammer>());
             recipe.AddRecipe();
@@ -3491,24 +3488,21 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 12);
-            recipe.AddIngredient(ItemID.Wood, 4);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 4);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ZincPickaxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 9);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ZincAxe>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 10);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
+            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ZincHammer>());
             recipe.AddRecipe();
@@ -3540,56 +3534,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.StoneBlock);
             recipe.AddTile(TileID.Furnaces);
             recipe.SetResult(ModContent.ItemType<BismuthBrick>());
-            recipe.AddRecipe();
-
-
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthOre>(), 4);
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(ModContent.ItemType<BismuthBar>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 12);
-            recipe.AddIngredient(ItemID.Wood, 4);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthPickaxe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 9);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthAxe>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 10);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthHammer>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 8);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthBroadsword>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 7);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthShortsword>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthBar>(), 7);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<BismuthBow>());
             recipe.AddRecipe();
 
             // staff

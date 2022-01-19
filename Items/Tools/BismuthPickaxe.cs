@@ -28,5 +28,14 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.useAnimation = 14;
             item.height = dims.Height;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 12);
+            recipe.AddIngredient(RecipeGroupID.Wood, 4);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

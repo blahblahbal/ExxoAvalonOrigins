@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,6 +28,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             item.value = 4600;
             item.useAnimation = 20;
             item.height = dims.Height;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 7);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

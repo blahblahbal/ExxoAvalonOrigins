@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,6 +26,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useAnimation = 18;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 8);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

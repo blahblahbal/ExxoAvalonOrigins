@@ -101,7 +101,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
                 npc.ai[1]++;
                 // fire ghostflame orbs
-                if (npc.ai[1] >= 150)
+                if (npc.ai[1] >= 120)
                 {
                     float rotation = (float)Math.Atan2(npc.Center.Y - Main.player[npc.target].Center.Y, npc.Center.X - Main.player[npc.target].Center.X);
                     float speed = 12f;
@@ -243,7 +243,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         npc.ai[1]++;
                         //npc.velocity *= 0f;
                         //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
-                        if (npc.ai[1] % 75 == 0)
+                        if (npc.ai[1] % 60 == 0)
                         {
                             Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
                             // fire laser

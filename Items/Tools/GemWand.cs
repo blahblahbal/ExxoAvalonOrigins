@@ -41,23 +41,34 @@ namespace ExxoAvalonOrigins.Items.Tools
         }
         public override bool UseItem(Player player)
         {
+            Vector2 mousePosition = Main.MouseWorld;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+                Network.CursorPosition.SendPacket(mousePosition, player.whoAmI);
+            }
+            else if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition = mousePosition;
+            }
+            Point mpTile = player.GetModPlayer<ExxoAvalonOriginsModPlayer>().MousePosition.ToTileCoordinates();
             if (Main.myPlayer == player.whoAmI)
             {
                 for (int q = 0; q < player.inventory.Length; q++)
                 {
                     int t = player.inventory[q].type;
-                    bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX &&
-                        (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX &&
-                        player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY &&
-                        (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
+                    bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= mpTile.X &&
+                        (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= mpTile.X &&
+                        player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= mpTile.Y &&
+                        (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= mpTile.Y);
                     if (ExxoAvalonOriginsGlobalItem.gems.Contains(t) && t != 0)
                     {
-                        if (!Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
+                        if (!Main.tile[mpTile.X, mpTile.Y].active() && inrange)
                         {
-                            bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.GemToTile(t));
-                            if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
+                            bool subtractFromStack = WorldGen.PlaceTile(mpTile.X, mpTile.Y, ExxoAvalonOriginsGlobalItem.GemToTile(t));
+                            if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
                             {
-                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.GemToTile(t));
+                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, ExxoAvalonOriginsGlobalItem.GemToTile(t));
                             }
                             if (subtractFromStack)
                             {

@@ -1,4 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,6 +31,13 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.useAnimation = 15;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;
+        }
+        public override void HoldItem(Player player)
+        {
+            if (player.inventory[player.selectedItem].type == item.type)
+            {
+                player.pickSpeed -= 0.25f;
+            }
         }
     }
 }
