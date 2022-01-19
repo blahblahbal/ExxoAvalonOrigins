@@ -1894,7 +1894,7 @@ namespace ExxoAvalonOrigins
                                   return;
                               }
                               Player drawPlayer = drawInfo.drawPlayer;
-                              bool[] ownedLargeGems = drawplayer.Avalon().ownedLargeGems;
+                              bool[] ownedLargeGems = drawPlayer.Avalon().ownedLargeGems;
                               if (ownedLargeGems.Length > 0)
                               {
                                   bool flag2 = false;
