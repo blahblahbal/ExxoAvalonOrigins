@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.width = 16;
             projectile.height = 16;
             projectile.aiStyle = 21;
-            projectile.melee = true;
+            projectile.magic = true;
             projectile.light = 0.8f;
             projectile.penetrate = -1;
             projectile.friendly = true;

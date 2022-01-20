@@ -56,7 +56,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             if (rn == 0) type = ModContent.ProjectileType<Projectiles.SacredLyre1>();
             if (rn == 1) type = ModContent.ProjectileType<Projectiles.SacredLyre2>();
             if (rn == 2) type = ModContent.ProjectileType<Projectiles.SacredLyre3>();
-            //type += Main.rand.Next(3); // change proj
             num73 /= Main.screenHeight / 2;
             if (num73 > 1f)
             {
@@ -66,8 +65,6 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             float num76 = num71 + Main.rand.Next(-40, 41) * 0.01f;
             num75 *= num73 + 0.25f;
             num76 *= num73 + 0.25f;
-            //num75 *= 0.01f;
-            //num76 *= 0.01f;
             int num77 = Projectile.NewProjectile(position.X, position.Y, num75, num76, type, damage, knockBack, player.whoAmI, 0f, 0f);
             Main.projectile[num77].ai[1] = 1f;
             num73 = num73 * 2f - 1f;
