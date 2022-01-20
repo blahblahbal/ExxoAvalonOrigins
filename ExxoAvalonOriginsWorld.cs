@@ -3054,7 +3054,7 @@ namespace ExxoAvalonOrigins
         }
         public void CrystalMinesCallback(object threadContext)
         {
-            if (!SuperHardmode) return;
+            //if (!SuperHardmode) return;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText("The otherworldly crystals begin to grow...", 244, 140, 140);
@@ -3070,8 +3070,10 @@ namespace ExxoAvalonOrigins
             while (num614 < num612)
             {
                 float num615 = (float)num614 / num612;
-                if (Biomes<World.Biomes.CrystalMines>.Place(WorldGen.RandomRectanglePoint((int)(num615 * (float)(Main.maxTilesX - 160)) + 80, (int)Main.rockLayer + 20, (int)num613, Main.maxTilesY - ((int)Main.rockLayer + 40) - 200), null))
+                Point point = WorldGen.RandomRectanglePoint((int)(num615 * (float)(Main.maxTilesX - 160)) + 80, (int)Main.rockLayer + 20, (int)num613, Main.maxTilesY - ((int)Main.rockLayer + 40) - 200);
+                if (Biomes<World.Biomes.CrystalMines>.Place(point, null))
                 {
+                    Biomes<World.Biomes.CrystalMinesHouseBiome>.Place(new Point(point.X, point.Y + 15), null);
                     num614++;
                 }
             }

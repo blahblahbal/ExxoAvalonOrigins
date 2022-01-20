@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -46,35 +41,35 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (i % 14 == 0 || i % 14 == 13)
             {
-                drawColor = new Color(drawColor.R + c1.R, drawColor.G + c1.G, drawColor.B + c1.B);
+                drawColor = c1;
             }
             else if (i % 14 == 1 || i % 14 == 12)
             {
-                drawColor = new Color(drawColor.R + c2.R, drawColor.G + c2.G, drawColor.B + c2.B);
+                drawColor = c2;
             }
             else if (i % 14 == 2 || i % 14 == 11)
             {
-                drawColor = new Color(drawColor.R + c3.R, drawColor.G + c3.G, drawColor.B + c3.B);
+                drawColor = c3;
             }
             else if (i % 14 == 3 || i % 14 == 10)
             {
-                drawColor = new Color(drawColor.R + c4.R, drawColor.G + c4.G, drawColor.B + c4.B);
+                drawColor = c4;
             }
             else if (i % 14 == 4 || i % 14 == 9)
             {
-                drawColor = new Color(drawColor.R + c5.R, drawColor.G + c5.G, drawColor.B + c5.B);
+                drawColor = c5;
             }
             else if (i % 14 == 5 || i % 14 == 8)
             {
-                drawColor = new Color(drawColor.R + c6.R, drawColor.G + c6.G, drawColor.B + c6.B);
+                drawColor = c6;
             }
             else if (i % 14 == 6 || i % 14 == 7)
             {
-                drawColor = new Color(drawColor.R + c7.R, drawColor.G + c7.G, drawColor.B + c7.B);
+                drawColor = c7;
             }
             else if (i % 14 == 7)
             {
-                drawColor = new Color(drawColor.R + c8.R, drawColor.G + c8.G, drawColor.B + c8.B);
+                drawColor = c8;
             }
         }
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
