@@ -1888,19 +1888,19 @@ namespace ExxoAvalonOrigins
                     {
                         int num14 = Main.tile[num5, num6].type;
                         // where lazite tallgrass would grow
-                        //if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
-                        //{
-                        //    WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
-                        //    Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
-                        //    if (Main.tile[num5, num9].active())
-                        //    {
-                        //        Main.tile[num5, num9].color(Main.tile[num5, num6].color());
-                        //    }
-                        //    if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
-                        //    {
-                        //        NetMessage.SendTileSquare(-1, num5, num9, 1);
-                        //    }
-                        //}
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<LaziteGrass>())
+                        {
+                            WorldGen.PlaceTile(num5, num9, ModContent.TileType<LaziteShortGrass>(), true, false, -1, 0);
+                            Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 10) * 18);
+                            if (Main.tile[num5, num9].active())
+                            {
+                                Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                            }
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
+                            {
+                                NetMessage.SendTileSquare(-1, num5, num9, 1);
+                            }
+                        }
                         bool flag2 = false;
                         for (int m = num7; m < num8; m++)
                         {
