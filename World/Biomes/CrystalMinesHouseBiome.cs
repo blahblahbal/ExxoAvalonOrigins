@@ -170,7 +170,15 @@ namespace ExxoAvalonOrigins.World.Biomes
                         int num3 = 0;
                         while (num3 == 0)
                         {
-                            Main.chest[num2].item[0].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.ShatterLance>(), false);
+                            int r = Main.rand.Next(2);
+                            if (r == 0)
+                            {
+                                Main.chest[num2].item[0].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.ShatterLance>(), false);
+                            }
+                            else if (r == 1)
+                            {
+                                Main.chest[num2].item[0].SetDefaults(ModContent.ItemType<Items.Weapons.Magic.SacredLyre>(), false);
+                            }
                             Main.chest[num2].item[0].Prefix(-1);
                             Main.chest[num2].item[1].SetDefaults(ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), false);
                             Main.chest[num2].item[1].stack = Main.rand.Next(200, 301);
@@ -202,14 +210,14 @@ namespace ExxoAvalonOrigins.World.Biomes
                             }
                             if (WorldGen.genRand.Next(8) == 0)
                             {
-                                Main.chest[num2].item[4].SetDefaults(ModContent.ItemType<Items.Consumables.CrystalFruit>(), false);
-                                Main.chest[num2].item[5].SetDefaults(ItemID.PlatinumCoin, false);
-                                Main.chest[num2].item[5].stack = WorldGen.genRand.Next(1, 5);
+                                Main.chest[num2].item[3].SetDefaults(ModContent.ItemType<Items.Consumables.CrystalFruit>(), false);
+                                Main.chest[num2].item[4].SetDefaults(ItemID.PlatinumCoin, false);
+                                Main.chest[num2].item[4].stack = WorldGen.genRand.Next(1, 5);
                             }
                             else
                             {
-                                Main.chest[num2].item[4].SetDefaults(ItemID.PlatinumCoin, false);
-                                Main.chest[num2].item[4].stack = WorldGen.genRand.Next(1, 5);
+                                Main.chest[num2].item[3].SetDefaults(ItemID.PlatinumCoin, false);
+                                Main.chest[num2].item[3].stack = WorldGen.genRand.Next(1, 5);
                             }
                             num3++;
                         }

@@ -2475,7 +2475,7 @@ namespace ExxoAvalonOrigins
                 player.accDepthMeter = 1;
                 player.accCompass = 1;
             }
-            if (player.HasItem(ModContent.ItemType<SonicScrewdriverMkII>()))
+            if (player.HasItem(ModContent.ItemType<SonicScrewdriverMkIII>()))
             {
                 player.findTreasure = player.detectCreature = player.dangerSense = openLocks = true;
                 player.accWatch = 3;

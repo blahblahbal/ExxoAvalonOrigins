@@ -1670,7 +1670,7 @@ namespace ExxoAvalonOrigins
                         if (WorldGen.genRand.Next(50) == 0 && Main.tile[num5, num9].liquid == 0)
                         {
                             bool flag16 = true;
-                            int distanceCheck = 30;
+                            int distanceCheck = 40;
                             for (int num80 = num5 - distanceCheck; num80 < num5 + distanceCheck; num80 += 2)
                             {
                                 for (int num81 = num6 - distanceCheck; num81 < num6 + distanceCheck; num81 += 2)
@@ -1694,6 +1694,7 @@ namespace ExxoAvalonOrigins
                             }
                             else
                             {
+                                Main.NewText("hi");
                                 WorldGen.Place2x2(num5, num9, (ushort)ModContent.TileType<GiantCrystalShard>(), WorldGen.genRand.Next(3));
                                 WorldGen.SquareTileFrame(num5, num9, true);
                                 WorldGen.SquareTileFrame(num5 + 1, num9 + 1, true);
@@ -3149,20 +3150,24 @@ namespace ExxoAvalonOrigins
             //if (!SuperHardmode) return;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText("The otherworldly crystals begin to grow...", 244, 140, 140);
+                Main.NewText("The otherworldly crystals begin to grow...", 176, 153, 214); // [c/7BBAE4:The ot][c/90ABDD:herwo][c/A3A0D9:rldly] [c/B099D6:cryst][c/BA92D4:als] [c/BA92D4:be][c/C88AD1:gin to] [c/D881CD:grow][c/E37BCB:...]
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(244, 140, 140));
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(176, 153, 214));
             }
             float num611 = Main.maxTilesX * Main.maxTilesY / 5040000f;
-            int num612 = (int)(WorldGen.genRand.Next(2, 5) * num611);
-            float num613 = (Main.maxTilesX - 160) / num612;
+            int amtOfBiomes = 2;
+            if (Main.maxTilesX == 6300) amtOfBiomes = 3;
+            if (Main.maxTilesX == 8400) amtOfBiomes = 4;
+            else amtOfBiomes = 2;
+            //int num612 = (int)(WorldGen.genRand.Next(2, 4) * num611);
+            float num613 = (Main.maxTilesX - 160) / amtOfBiomes;
             int num614 = 0;
-            while (num614 < num612)
+            while (num614 < amtOfBiomes)
             {
-                float num615 = (float)num614 / num612;
-                Point point = WorldGen.RandomRectanglePoint((int)(num615 * (float)(Main.maxTilesX - 160)) + 80, (int)Main.rockLayer + 20, (int)num613, Main.maxTilesY - ((int)Main.rockLayer + 40) - 200);
+                float num615 = (float)num614 / amtOfBiomes;
+                Point point = WorldGen.RandomRectanglePoint((int)(num615 * (Main.maxTilesX - 160)) + 80, (int)Main.rockLayer + 20, (int)num613, Main.maxTilesY - ((int)Main.rockLayer + 40) - 200);
                 if (Biomes<World.Biomes.CrystalMines>.Place(point, null))
                 {
                     Biomes<World.Biomes.CrystalMinesHouseBiome>.Place(new Point(point.X, point.Y + 15), null);
