@@ -1667,10 +1667,10 @@ namespace ExxoAvalonOrigins
                     #region crystal fruit and giant crystal spawning
                     if (Main.tile[num5, num6].type == ModContent.TileType<CrystalStone>() && SuperHardmode && downedOblivion && num6 > Main.rockLayer)
                     {
-                        if (WorldGen.genRand.Next(40) == 0 && Main.tile[num5, num9].liquid == 0)
+                        if (WorldGen.genRand.Next(50) == 0 && Main.tile[num5, num9].liquid == 0)
                         {
                             bool flag16 = true;
-                            int distanceCheck = 10;
+                            int distanceCheck = 30;
                             for (int num80 = num5 - distanceCheck; num80 < num5 + distanceCheck; num80 += 2)
                             {
                                 for (int num81 = num6 - distanceCheck; num81 < num6 + distanceCheck; num81 += 2)
@@ -1871,18 +1871,6 @@ namespace ExxoAvalonOrigins
                                             WorldGen.SpreadGrass(m, n, ModContent.TileType<Ickgrass>(), num14, false, Main.tile[num5, num6].color());
                                         }
                                     }
-                                    if (Main.tile[m, n].type == (ushort)ModContent.TileType<TropicalMud>())
-                                    {
-                                        WorldGen.SpreadGrass(m, n, ModContent.TileType<TropicalMud>(), ModContent.TileType<TropicalGrass>(), false, Main.tile[num5, num6].color());
-                                    }
-                                    if (Main.tile[m, n].type == TileID.Ash)
-                                    {
-                                        WorldGen.SpreadGrass(m, n, TileID.Ash, ModContent.TileType<Impgrass>(), false, Main.tile[num5, num6].color());
-                                    }
-                                    if (Main.tile[m, n].type == ModContent.TileType<BlackBlaststone>())
-                                    {
-                                        WorldGen.SpreadGrass(m, n, ModContent.TileType<BlackBlaststone>(), ModContent.TileType<LaziteGrass>(), false, Main.tile[num5, num6].color());
-                                    }
                                 }
                             }
                         }
@@ -1893,6 +1881,110 @@ namespace ExxoAvalonOrigins
                     }
 
                     #endregion contagion shortgrass/barfbush spawning
+
+                    #region lazite grass
+                    if (Main.tile[num5, num6].type == ModContent.TileType<LaziteGrass>())
+                    {
+                        int num14 = Main.tile[num5, num6].type;
+                        // where lazite tallgrass would grow
+                        //if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        //{
+                        //    WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
+                        //    Main.tile[num5, num9].frameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
+                        //    if (Main.tile[num5, num9].active())
+                        //    {
+                        //        Main.tile[num5, num9].color(Main.tile[num5, num6].color());
+                        //    }
+                        //    if (Main.netMode == NetmodeID.Server && Main.tile[num5, num9].active())
+                        //    {
+                        //        NetMessage.SendTileSquare(-1, num5, num9, 1);
+                        //    }
+                        //}
+                        bool flag2 = false;
+                        for (int m = num7; m < num8; m++)
+                        {
+                            for (int n = num9; n < num10; n++)
+                            {
+                                if ((num5 != m || num6 != n) && Main.tile[m, n].active())
+                                {
+                                    if (Main.tile[m, n].type == ModContent.TileType<BlackBlaststone>())
+                                    {
+                                        WorldGen.SpreadGrass(m, n, ModContent.TileType<BlackBlaststone>(), ModContent.TileType<LaziteGrass>(), false, Main.tile[num5, num6].color());
+                                    }
+                                    if (Main.tile[m, n].type == num14)
+                                    {
+                                        WorldGen.SquareTileFrame(m, n, true);
+                                        flag2 = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (Main.netMode == NetmodeID.Server && flag2)
+                        {
+                            NetMessage.SendTileSquare(-1, num5, num6, 3);
+                        }
+                    }
+                    #endregion
+
+                    #region impgrass growing
+                    if (Main.tile[num5, num6].type == ModContent.TileType<Impgrass>())
+                    {
+                        int num14 = Main.tile[num5, num6].type;
+                        bool flag2 = false;
+                        for (int m = num7; m < num8; m++)
+                        {
+                            for (int n = num9; n < num10; n++)
+                            {
+                                if ((num5 != m || num6 != n) && Main.tile[m, n].active())
+                                {
+                                    if (Main.tile[m, n].type == TileID.Ash)
+                                    {
+                                        WorldGen.SpreadGrass(m, n, TileID.Ash, ModContent.TileType<Impgrass>(), false, Main.tile[num5, num6].color());
+                                    }
+                                    if (Main.tile[m, n].type == num14)
+                                    {
+                                        WorldGen.SquareTileFrame(m, n, true);
+                                        flag2 = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (Main.netMode == NetmodeID.Server && flag2)
+                        {
+                            NetMessage.SendTileSquare(-1, num5, num6, 3);
+                        }
+                    }
+                    #endregion
+
+                    #region tropical grass growing
+                    if (Main.tile[num5, num6].type == ModContent.TileType<TropicalGrass>())
+                    {
+                        int num14 = Main.tile[num5, num6].type;
+                        bool flag2 = false;
+                        for (int m = num7; m < num8; m++)
+                        {
+                            for (int n = num9; n < num10; n++)
+                            {
+                                if ((num5 != m || num6 != n) && Main.tile[m, n].active())
+                                {
+                                    if (Main.tile[m, n].type == ModContent.TileType<TropicalMud>())
+                                    {
+                                        WorldGen.SpreadGrass(m, n, ModContent.TileType<TropicalMud>(), ModContent.TileType<TropicalGrass>(), false, Main.tile[num5, num6].color());
+                                    }
+                                    if (Main.tile[m, n].type == num14)
+                                    {
+                                        WorldGen.SquareTileFrame(m, n, true);
+                                        flag2 = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (Main.netMode == NetmodeID.Server && flag2)
+                        {
+                            NetMessage.SendTileSquare(-1, num5, num6, 3);
+                        }
+                    }
+                    #endregion
 
                     #region impvines growing
 

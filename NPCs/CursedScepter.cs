@@ -34,6 +34,10 @@ namespace ExxoAvalonOrigins.NPCs
             npc.lifeMax = (int)(npc.lifeMax * 0.75f);
             npc.damage = (int)(npc.damage * 0.5f);
         }
+        public override void AI()
+        {
+            Lighting.AddLight((int)((npc.position.X + npc.width / 2) / 16f), (int)((npc.position.Y + npc.height / 2) / 16f), 0.55f, 0.99f, 0.28f);
+        }
         public override void FindFrame(int frameHeight)
         {
             if (npc.ai[0] == 2f)

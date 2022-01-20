@@ -183,10 +183,10 @@ namespace ExxoAvalonOrigins.World.Biomes
                             tile.ResetToType(tile.type);
                         }
                         else if (tile.type == TileID.Pots || tile.type == TileID.Containers || tile.type == TileID.Containers2 || tile.type == TileID.Heart ||
-                        tile.type == TileID.ShadowOrbs || tile.type == TileID.DemonAltar || tile.type == ModContent.TileType<Tiles.HallowedAltar>() ||
-                        tile.type == ModContent.TileType<Tiles.SnotOrb>() || tile.type == TileID.LihzahrdBrick || tile.type == TileID.BlueDungeonBrick ||
-                        tile.type == TileID.PinkDungeonBrick || tile.type == TileID.GreenDungeonBrick || tile.type == ModContent.TileType<Tiles.TuhrtlBrick>() ||
-                        tile.type == TileID.Statues)
+                            tile.type == TileID.ShadowOrbs || tile.type == TileID.DemonAltar || tile.type == ModContent.TileType<Tiles.HallowedAltar>() ||
+                            tile.type == ModContent.TileType<Tiles.SnotOrb>() || tile.type == TileID.LihzahrdBrick || tile.type == TileID.BlueDungeonBrick ||
+                            tile.type == TileID.PinkDungeonBrick || tile.type == TileID.GreenDungeonBrick || tile.type == ModContent.TileType<Tiles.TuhrtlBrick>() ||
+                            tile.type == TileID.Statues)
                         {
                         }
                         else
@@ -205,7 +205,7 @@ namespace ExxoAvalonOrigins.World.Biomes
                     }
                     if (tile.liquid > 0 && flag)
                     {
-                        tile.liquidType(1);
+                        tile.liquid = 0;
                     }
                 }
             }

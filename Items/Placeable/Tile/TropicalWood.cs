@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tropical Wood");
+            DisplayName.SetDefault("Bleached Ebony");
         }
 
         public override void SetDefaults()

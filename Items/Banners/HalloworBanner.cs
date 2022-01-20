@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Banners
             item.rare = ItemRarityID.Blue;
             item.value = Item.buyPrice(0, 0, 10, 0);
             item.createTile = ModContent.TileType<MonsterBanner>();
-            item.placeStyle = 42;
+            item.placeStyle = 49;
         }
     }
 }

@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.World.Biomes
                 return new BuildData
                 {
                     Tile = (ushort)ModContent.TileType<Tiles.CrystalStone>(),
-                    Wall = 0,
+                    Wall = WallID.Crystal,
                     DoorStyle = 36,
                     PlatformStyle = 30,
                     TableStyle = 0, // tile 469
@@ -374,7 +374,6 @@ namespace ExxoAvalonOrigins.World.Biomes
             {
                 WorldUtils.Gen(new Point(item17.X, item17.Y), new Shapes.Rectangle(item17.Width, item17.Height), Actions.Chain(new Actions.SetTile(item.Tile), new Actions.SetFrames(frameNeighbors: true)));
                 WorldUtils.Gen(new Point(item17.X + 1, item17.Y + 1), new Shapes.Rectangle(item17.Width - 2, item17.Height - 2), Actions.Chain(new Actions.ClearTile(frameNeighbors: true), new Actions.PlaceWall(item.Wall)));
-                //structures.AddStructure(item17, 8);
             }
             foreach (Tuple<Point, Point> item18 in list4)
             {
@@ -392,7 +391,8 @@ namespace ExxoAvalonOrigins.World.Biomes
             foreach (Point item2 in list3)
             {
                 WorldUtils.Gen(item2, new Shapes.Rectangle(1, 3), new Actions.ClearTile(frameNeighbors: true));
-                WorldGen.PlaceTile(item2.X, item2.Y, 10, mute: true, forced: true, -1, item.DoorStyle);
+                WorldGen.PlaceTile(item2.X, item2.Y, ModContent.TileType<Tiles.ClosedCrystalDoor>(), true, true, -1, 0);
+                Utils.SquareTileFrameArea(item2.X, item2.Y, 2);
             }
             foreach (Point item19 in list5)
             {
