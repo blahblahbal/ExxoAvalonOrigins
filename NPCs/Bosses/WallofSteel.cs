@@ -59,7 +59,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, 255);
+            return Color.Lerp(Color.White, Lighting.GetColor((int)npc.position.X, (int)npc.position.Y), 0.5f);
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
