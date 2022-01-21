@@ -9,7 +9,6 @@ namespace ExxoAvalonOrigins.UI
         private readonly ExxoUIList buttonColumn;
         private readonly ExxoUIImageButton incrementButton;
         private readonly ExxoUIImageButton decrementButton;
-        public int Number { get; set; }
         public ExxoUINumberInputWithButtons(int amountNumbers = 3)
         {
             Direction = Direction.Horizontal;

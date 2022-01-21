@@ -31,7 +31,9 @@ namespace ExxoAvalonOrigins.UI.Herbology
         private ExxoUINumberInputWithButtons contextInput;
         private ExxoUIImageButtonToggle seedToggle;
         private ExxoUIImageButtonToggle potionToggle;
-
+        private ExxoUIText herbBalance;
+        private ExxoUIText subBalance;
+        private ExxoUIText endBalance;
         public override void OnInitialize()
         {
             base.OnInitialize();
@@ -128,11 +130,12 @@ namespace ExxoAvalonOrigins.UI.Herbology
             };
             potionTotalContainer.InnerElement.Append(potionTotalText);
 
-            herbTurnInContainer = new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList())
+            herbTurnInContainer = new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList(), false)
             {
                 FitToInnerElement = true,
                 VAlign = UIAlign.Center,
             };
+            herbTurnInContainer.InnerElement.Height.Set(0, 1);
             herbTurnInContainer.InnerElement.Justification = Justification.Center;
             herbTurnInContainer.InnerElement.FitWidthToContent = true;
             herbContainer.InnerElement.Append(herbTurnInContainer);
@@ -192,7 +195,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             };
             herbList.Width.Set(0, 1);
             herbList.InnerElement.HAlign = UIAlign.Center;
-            herbList.InnerElement.FitWidthToContent = false;
+            herbList.InnerElement.FitWidthToContent = true;
             herbExchangeContainer.InnerElement.Append(herbList, new ExxoUIList.ElementParams(fillLength: true));
 
             var herbScrollBar = new ExxoUIElementWrapper<ExxoUIScrollbar>(new ExxoUIScrollbar())
@@ -267,18 +270,16 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             contextMenu = new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList())
             {
-                FitToInnerElement = true,
+                FitMinToInnerElement = true,
             };
             contextMenu.InnerElement.FitHeightToContent = true;
             contextMenu.InnerElement.FitWidthToContent = true;
-            contextMenu.InnerElement.ListPadding = 20;
             contextMenu.BackgroundColor.A = 255;
             contextAttachment = new ExxoUIAttachment<ExxoUIItemSlot>(contextMenu);
             contextAttachment.OnPositionAttachment += (sender, e) =>
             {
                 e.Position.Y += sender.AttachmentHolder.GetOuterDimensions().Height;
             };
-            Append(contextAttachment);
 
             contextInput = new ExxoUINumberInputWithButtons()
             {
@@ -299,6 +300,60 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 }
             };
             contextMenu.InnerElement.Append(contextInput);
+
+            var differenceContainer = new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList()
+            {
+                FitHeightToContent = true,
+                FitWidthToContent = true,
+                Direction = Direction.Horizontal,
+                ListPadding = 10,
+            })
+            { FitMinToInnerElement = true, HAlign = UIAlign.Center };
+            contextMenu.InnerElement.Append(differenceContainer);
+
+            var iconContainer = new ExxoUIList
+            {
+                FitWidthToContent = true,
+                FitHeightToContent = true,
+                ListPadding = 18,
+            };
+            differenceContainer.InnerElement.Append(iconContainer);
+
+            var herbIcon2 = new ExxoUIImage(TextureManager.Load("Images/UI/WorldCreation/IconRandomSeed"))
+            {
+                HAlign = UIAlign.Center,
+                Inset = new Vector2(11, 11)
+            };
+            iconContainer.Append(herbIcon2);
+
+            var subIcon = new ExxoUIImage(TextureManager.Load("Images/UI/Minimap/Valkyrie/MinimapButton_ZoomOut"))
+            {
+                HAlign = UIAlign.Center,
+            };
+            iconContainer.Append(subIcon);
+
+            var tallyContainer = new ExxoUIList
+            {
+                FitWidthToContent = true,
+                FitHeightToContent = true,
+                ListPadding = 10,
+            };
+            differenceContainer.InnerElement.Append(tallyContainer);
+
+            herbBalance = new ExxoUIText("100")
+            {
+            };
+            tallyContainer.Append(herbBalance);
+
+            subBalance = new ExxoUIText("10000")
+            {
+            };
+            tallyContainer.Append(subBalance);
+
+            endBalance = new ExxoUIText("100")
+            {
+            };
+            tallyContainer.Append(endBalance);
 
             var button = new ExxoUIPanelButton<UIText>(new UIText("Exchange"))
             {
@@ -324,6 +379,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             };
             Append(potionLock);
 
+            Append(contextAttachment);
 
             RefreshContent();
         }
@@ -447,6 +503,15 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
             string potionTotal = modPlayer.potionTotal.ToString();
             potionTotalText.SetText(potionTotal);
+
+            if (contextAttachment.Active)
+            {
+                herbBalance.SetText(herbTotal);
+                int cost = HerbologyLogic.GetItemCost(contextAttachment.AttachmentHolder.Item, contextInput.NumberInput.Number);
+                subBalance.SetText(cost.ToString());
+                int end = modPlayer.herbTotal - cost;
+                endBalance.SetText(end.ToString());
+            }
         }
 
         public override void Click(UIMouseEvent evt)

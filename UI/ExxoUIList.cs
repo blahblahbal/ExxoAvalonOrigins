@@ -20,6 +20,8 @@ namespace ExxoAvalonOrigins.UI
         public Justification Justification = Justification.Start;
         public Direction Direction = Direction.Vertical;
         public bool FitWidthToContent;
+        private StyleDimension origWidth;
+        private StyleDimension origHeight;
         public bool FitHeightToContent;
 
         public float ListPadding = 5f;
@@ -87,14 +89,17 @@ namespace ExxoAvalonOrigins.UI
             if (FitHeightToContent)
             {
                 MinHeight.Set(0, 0);
+                origHeight = Height;
                 Height.Set(0, 1);
             }
             if (FitWidthToContent)
             {
                 MinWidth.Set(0, 0);
+                origWidth = Width;
                 Width.Set(0, 1);
             }
             base.Recalculate();
+            UpdateScrollbar();
         }
 
         public void ScrollWheelListener(UIScrollWheelEvent evt, UIElement listeningElement)
@@ -117,43 +122,24 @@ namespace ExxoAvalonOrigins.UI
                 {
                     continue;
                 }
+
                 if (ElementParamsList[i].FillLength)
                 {
                     fillLengthCount++;
                 }
-                else
+
+                float width = System.Math.Max(Elements[i].MinWidth.Pixels, Elements[i].Width.Pixels);
+                float height = System.Math.Max(Elements[i].MinHeight.Pixels, Elements[i].Height.Pixels);
+
+                if (!ElementParamsList[i].FillLength)
                 {
-                    Elements[i].Recalculate();
-                    CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
-                    float length = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
+                    float length = (Direction == Direction.Vertical) ? height : width;
                     total += length;
-                    if ((Direction == Direction.Vertical && Elements[i].Width.Precent == 0) || (Direction == Direction.Horizontal && Elements[i].Height.Precent == 0))
-                    {
-                        float oppLength = (Direction == Direction.Vertical) ? outerDimensions.Width : outerDimensions.Height;
-                        largestOppLength = System.Math.Max(oppLength, largestOppLength);
-                    }
-                    else
-                    {
-                        float oppLength = (Direction == Direction.Vertical) ? Elements[i].MinWidth.Pixels : Elements[i].MinHeight.Pixels;
-                        largestOppLength = System.Math.Max(oppLength, largestOppLength);
-                    }
                 }
-            }
 
-            // Set largest opposite length
-            if (FitHeightToContent && Direction == Direction.Horizontal)
-            {
-                MinHeight.Set(largestOppLength, 0);
-                Height.Set(0, 0);
+                float oppLength = (Direction == Direction.Vertical) ? width : height;
+                largestOppLength = System.Math.Max(oppLength, largestOppLength);
             }
-
-            if (FitWidthToContent && Direction == Direction.Vertical)
-            {
-                MinWidth.Set(largestOppLength, 0);
-                Width.Set(0, 0);
-            }
-
-            RecalculateSelf();
 
             float innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
             float padding = ListPadding;
@@ -186,12 +172,43 @@ namespace ExxoAvalonOrigins.UI
                 {
                     Elements[i].MarginRight = padding;
                 }
+                total += padding;
             }
 
+            // Set largest opposite length
+            if (FitHeightToContent && Direction == Direction.Horizontal)
+            {
+                MinHeight.Set(largestOppLength, 0);
+                Height = origHeight;
+            }
+
+            if (FitWidthToContent && Direction == Direction.Vertical)
+            {
+                MinWidth.Set(largestOppLength, 0);
+                Width = origWidth;
+            }
+
+            // Set direction length
+            if (FitHeightToContent && Direction == Direction.Vertical)
+            {
+                MinHeight.Set(total, 0);
+                Height = origHeight;
+            }
+
+            if (FitWidthToContent && Direction == Direction.Horizontal)
+            {
+                MinWidth.Set(total, 0);
+                Width = origWidth;
+            }
+
+            TotalLength = total;
+
+            RecalculateSelf();
+
+            innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
             float fillLength = (innerLength - total) / System.Math.Max(1, fillLengthCount);
             float offset = 0f;
 
-            // Needs checking, offset for centering
             if (Justification == Justification.Center && !((FitWidthToContent && Direction == Direction.Horizontal) || (FitHeightToContent && Direction == Direction.Vertical)))
             {
                 offset = (innerLength / 2) - (total / 2);
@@ -211,10 +228,10 @@ namespace ExxoAvalonOrigins.UI
                     }
                 }
 
-                Elements[i].Recalculate();
+                float width = System.Math.Max(Elements[i].MinWidth.Pixels, Elements[i].Width.Pixels);
+                float height = System.Math.Max(Elements[i].MinHeight.Pixels, Elements[i].Height.Pixels);
 
-                CalculatedStyle outerDimensions = Elements[i].GetOuterDimensions();
-                float outerLength = (Direction == Direction.Vertical) ? outerDimensions.Height : outerDimensions.Width;
+                float outerLength = (Direction == Direction.Vertical) ? height + Elements[i].MarginBottom : width + Elements[i].MarginRight;
                 float pixels;
 
                 switch (Justification)
@@ -244,21 +261,6 @@ namespace ExxoAvalonOrigins.UI
                 }
             }
 
-            if (FitHeightToContent && Direction == Direction.Vertical)
-            {
-                MinHeight.Set(offset, 0);
-                Height.Set(0, 0);
-            }
-
-            if (FitWidthToContent && Direction == Direction.Horizontal)
-            {
-                MinWidth.Set(offset, 0);
-                Width.Set(0, 0);
-            }
-
-            TotalLength = offset;
-
-            RecalculateSelf();
             base.RecalculateChildren();
         }
 
@@ -279,8 +281,14 @@ namespace ExxoAvalonOrigins.UI
             base.Update(gameTime);
             if (ScrollBar != null)
             {
-                Top.Set(0 - ScrollBar.GetValue(), 0f);
+                Top.Set(-ScrollBar.GetValue(), 0f);
             }
+        }
+
+        public override void PostRecalculate()
+        {
+            base.PostRecalculate();
+            UpdateScrollbar();
         }
 
         private void UpdateScrollbar()
@@ -291,13 +299,6 @@ namespace ExxoAvalonOrigins.UI
         public void SetScrollbar(ExxoUIScrollbar scrollbar)
         {
             ScrollBar = scrollbar;
-            UpdateScrollbar();
-        }
-
-        public override void PostRecalculate()
-        {
-            base.PostRecalculate();
-            UpdateScrollbar();
         }
     }
 }

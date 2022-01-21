@@ -16,10 +16,10 @@ namespace ExxoAvalonOrigins.UI
     internal class ExxoUIAttachment<THolder> : ExxoUIElement where THolder : ExxoUIElement
     {
         public THolder AttachmentHolder { get; private set; }
-        public delegate void AttachToEvent(UIElement attachment, THolder attachmentHolder);
+        public delegate void ExxoUIAttachmentEventHandler(ExxoUIAttachment<THolder> sender, EventArgs e);
         public delegate void PositionAttachmentEventHandler(ExxoUIAttachment<THolder> sender, PositionAttachmentEventArgs e);
         public event PositionAttachmentEventHandler OnPositionAttachment;
-        public event AttachToEvent OnAttachTo;
+        public event ExxoUIAttachmentEventHandler OnAttachTo;
         protected readonly UIElement Element;
         private bool isAttached;
         public ExxoUIAttachment(UIElement uiElement)
@@ -49,7 +49,7 @@ namespace ExxoAvalonOrigins.UI
             else
             {
                 Active = true;
-                OnAttachTo?.Invoke(Element, AttachmentHolder);
+                OnAttachTo?.Invoke(this, EventArgs.Empty);
                 AttachmentHolder.OnRecalculateFinish += OnRecalculateFinishHandler;
                 isAttached = true;
             }

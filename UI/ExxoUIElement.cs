@@ -9,14 +9,14 @@ namespace ExxoAvalonOrigins.UI
     public class ExxoUIElement : UIElement
     {
         public event MouseEvent OnMouseHovering;
-        public event EventHandler OnRecalculateFinish;
+        public delegate void ExxoUIElementEventHandler(ExxoUIElement sender, EventArgs e);
+        public event ExxoUIElementEventHandler OnRecalculateFinish;
         public bool IsRecalculating { get; private set; }
         public bool Active { get; set; } = true;
         public bool Hidden { get; set; }
         public bool IsVisible => Active && !Hidden && (GetOuterDimensions().Width > 0 && GetOuterDimensions().Height > 0);
         public readonly Queue<UIElement> ElementsForRemoval = new Queue<UIElement>();
         private bool mouseWasOver;
-
 
         public override void Update(GameTime gameTime)
         {
@@ -43,11 +43,10 @@ namespace ExxoAvalonOrigins.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!IsVisible)
+            if (IsVisible)
             {
-                return;
+                base.Draw(spriteBatch);
             }
-            base.Draw(spriteBatch);
         }
 
         public override void Recalculate()
@@ -60,6 +59,23 @@ namespace ExxoAvalonOrigins.UI
             IsRecalculating = false;
         }
 
+        // Optimised method that only moves positions, only to be used if the elements have already previously been recalculated
+        public void RecalculateChildrenSelf()
+        {
+            RecalculateSelf();
+            foreach (UIElement element in Elements)
+            {
+                if (element is ExxoUIElement exxoElement)
+                {
+                    exxoElement.RecalculateChildrenSelf();
+                }
+                else
+                {
+                    element.Recalculate();
+                }
+            }
+        }
+
         // This works because the UIChanges.ILUIElementRecalculate hook doesn't recalulate children if the element is an ExxoUIElement
         public virtual void RecalculateSelf()
         {
@@ -68,18 +84,6 @@ namespace ExxoAvalonOrigins.UI
 
         public virtual void PostRecalculate()
         {
-        }
-
-        protected override void DrawChildren(SpriteBatch spriteBatch)
-        {
-            foreach (UIElement element in Elements)
-            {
-                if (element is ExxoUIElement exxoElement && !exxoElement.Active)
-                {
-                    continue;
-                }
-                element.Draw(spriteBatch);
-            }
         }
 
         public override void MouseOver(UIMouseEvent evt)

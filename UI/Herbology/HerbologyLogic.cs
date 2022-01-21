@@ -194,78 +194,103 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
         }
 
+        public static int GetItemCost(Item item, int amount)
+        {
+            if (LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type))
+            {
+                return amount;
+            }
+            else if (LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type))
+            {
+                return amount * 15;
+            }
+
+            if (PotionIds.Contains(item.type))
+            {
+                return amount;
+            }
+            else if (ElixirIdByPotionId.ContainsValue(item.type))
+            {
+                return amount * 5;
+            }
+            else if (item.type == ModContent.ItemType<BlahPotion>())
+            {
+                return amount * 2500;
+            }
+
+            return 0;
+        }
+
+        public static bool ItemIsPotion(Item item)
+        {
+            return PotionIds.Contains(item.type) || ElixirIdByPotionId.ContainsValue(item.type) || item.type == ModContent.ItemType<BlahPotion>();
+        }
+
+        public static bool ItemIsHerb(Item item)
+        {
+            return LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type) || LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type);
+        }
+
         public static bool PurchaseItem(Item item, int amount)
         {
             Player player = Main.LocalPlayer;
             ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
-            int herbCharge = 0;
-            int herbType = ItemID.None;
-            bool chargeInventory = false;
-            if (LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type))
+            int charge = GetItemCost(item, amount);
+
+            if (charge <= 0)
             {
-                herbCharge = amount;
-                herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[LargeHerbSeedIdByHerbSeedId[item.type]]];
-            }
-            else if (LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type))
-            {
-                herbCharge = amount * 15;
-                chargeInventory = true;
-                herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[item.type]];
+                return false;
             }
 
-            if (herbCharge > 0)
+            if (ItemIsHerb(item))
             {
-                if (modPlayer.herbTotal >= herbCharge)
+                int herbType = ItemID.None;
+                bool chargeInventory = false;
+                if (LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type))
                 {
-                    if (chargeInventory && herbType != ItemID.None && modPlayer.herbCounts.ContainsKey(herbType) && modPlayer.herbCounts[herbType] > herbCharge)
+                    herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[LargeHerbSeedIdByHerbSeedId[item.type]]];
+                }
+                else if (LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type))
+                {
+                    chargeInventory = true;
+                    herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[item.type]];
+                }
+
+                if (modPlayer.herbTotal < charge)
+                {
+                    return false;
+                }
+
+                if (chargeInventory)
+                {
+                    if (herbType != ItemID.None && modPlayer.herbCounts.ContainsKey(herbType) && modPlayer.herbCounts[herbType] > charge)
                     {
-                        modPlayer.herbCounts[herbType] -= herbCharge;
+                        modPlayer.herbCounts[herbType] -= charge;
                     }
-                    else if (chargeInventory)
+                    else
                     {
                         return false;
                     }
-                    modPlayer.herbTotal -= herbCharge;
-                    Main.mouseItem = item.Clone();
-                    Main.mouseItem.stack = amount;
-                    return true;
                 }
-                else
+
+                modPlayer.herbTotal -= charge;
+                Main.mouseItem = item.Clone();
+                Main.mouseItem.stack = amount;
+                return true;
+            }
+            else
+            {
+                if (modPlayer.potionTotal < charge)
                 {
                     return false;
                 }
-            }
 
-            int potionCharge = 0;
-            if (PotionIds.Contains(item.type))
-            {
-                potionCharge = amount;
+                modPlayer.potionTotal -= charge;
+                Main.mouseItem = item.Clone();
+                Main.mouseItem.stack = amount;
+                return true;
             }
-            else if (ElixirIdByPotionId.ContainsValue(item.type))
-            {
-                potionCharge = amount * 5;
-            }
-            else if (item.type == ModContent.ItemType<BlahPotion>())
-            {
-                potionCharge = amount * 2500;
-            }
-
-            if (potionCharge > 0)
-            {
-                if (modPlayer.potionTotal >= potionCharge)
-                {
-                    modPlayer.potionTotal -= potionCharge;
-                    Main.mouseItem = item.Clone();
-                    Main.mouseItem.stack = amount;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return false;
         }
 
         public static bool SellItem(Item item)

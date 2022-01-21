@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameInput;
@@ -9,7 +10,9 @@ namespace ExxoAvalonOrigins.UI
     internal class ExxoUINumberInput : ExxoUIList
     {
         public delegate void KeyboardEvent(UIElement target, KeyboardState keyboardState);
+        public delegate void NumberChangedEventHandler(ExxoUINumberInput sender, EventArgs e);
         public event KeyboardEvent OnKeyboardUpdate;
+        public event NumberChangedEventHandler OnNumberChanged;
         private int maxNumber = int.MaxValue;
         public int MaxNumber
         {
@@ -34,6 +37,7 @@ namespace ExxoAvalonOrigins.UI
                 string oldString = number.ToString();
                 number = (int)MathHelper.Clamp(value, 0, MaxNumber);
                 SetActiveIndex(activeNumberIndex + number.ToString().Length - oldString.Length);
+                OnNumberChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         private ExxoUITextPanel[] numbers;
@@ -68,7 +72,7 @@ namespace ExxoAvalonOrigins.UI
                     VAlign = UIAlign.Center,
                     HAlign = UIAlign.Center,
                 };
-                var number = new ExxoUITextPanel(text, false)
+                var number = new ExxoUITextPanel(text)
                 {
                     FitMinToInnerElement = false,
                     Width = textSize.MinWidth

@@ -2,7 +2,7 @@
 {
     internal class ExxoUITextPanel : ExxoUIPanelWrapper<ExxoUIText>
     {
-        public ExxoUITextPanel(ExxoUIText uiElement, bool autoSize = false) : base(uiElement, autoSize)
+        public ExxoUITextPanel(ExxoUIText uiElement) : base(uiElement, false)
         {
             FitMinToInnerElement = true;
         }
