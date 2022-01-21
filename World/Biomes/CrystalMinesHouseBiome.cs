@@ -84,11 +84,7 @@ namespace ExxoAvalonOrigins.World.Biomes
 
         private const int VERTICAL_EXIT_WIDTH = 3;
 
-        public static bool[] _blacklistedTiles = TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, 203, 112, 25, 151);
-
-        private int _sharpenerCount;
-
-        private int _extractinatorCount;
+        public static bool[] _blacklistedTiles = TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, 203, 112, 25, 151, ModContent.TileType<Tiles.TuhrtlBrick>());
 
         private Rectangle GetRoom(Point origin)
         {
@@ -570,12 +566,6 @@ namespace ExxoAvalonOrigins.World.Biomes
                 }
             }
             return true;
-        }
-
-        public override void Reset()
-        {
-            _sharpenerCount = 0;
-            _extractinatorCount = 0;
         }
 
         internal static void AgeDefaultRoom(Rectangle room)

@@ -1590,8 +1590,8 @@ namespace ExxoAvalonOrigins
                 }
                 if (Main.tile[num5, num6] != null)
                 {
-                    if (Main.tile[num5, num6].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage1>() || Main.tile[num5, num6].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage2>() ||
-                        Main.tile[num5, num6].type == (ushort)ModContent.TileType<Tiles.LargeHerbsStage3>())
+                    if (Main.tile[num5, num6].type == (ushort)ModContent.TileType<LargeHerbsStage1>() || Main.tile[num5, num6].type == (ushort)ModContent.TileType<LargeHerbsStage2>() ||
+                        Main.tile[num5, num6].type == (ushort)ModContent.TileType<LargeHerbsStage3>())
                     {
                         GrowLargeHerb(num5, num6);
                     }
@@ -3129,7 +3129,11 @@ namespace ExxoAvalonOrigins
         }
         public void SkyFortressCallback(object threadContext)
         {
-            if (ExxoAvalonOriginsGlobalNPC.stoppedArmageddon) return;
+            if (Main.rand == null)
+            {
+                Main.rand = new UnifiedRandom((int)DateTime.Now.Ticks);
+            }
+            //if (!ExxoAvalonOriginsGlobalNPC.stoppedArmageddon) return;
             int x = Main.maxTilesX / 3;
             if (Main.rand.Next(2) == 0) x = Main.maxTilesX - Main.maxTilesX / 3;
             int y = 50;
