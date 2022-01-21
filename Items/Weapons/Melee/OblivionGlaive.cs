@@ -10,8 +10,8 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Oblivion Glaive");
+            Tooltip.SetDefault("Striking an enemy causes shadow glaives to rain down");
         }
-
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();

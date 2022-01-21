@@ -12,7 +12,6 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             DisplayName.SetDefault("Oblivion Glaive");
         }
-
         public override void SetDefaults()
         {
             projectile.width = 18;
@@ -33,31 +32,12 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            for (int num9 = 0; num9 < 3; num9++)
-            {
-                Vector2 vector = new Vector2(target.position.X + target.width * 0.5f + Main.rand.Next(201) * -target.direction + (Main.mouseX + Main.screenPosition.X - target.position.X), target.Center.Y - 600f);
-                vector.X = (vector.X + target.Center.X) / 2f + Main.rand.Next(-200, 201);
-                vector.Y -= 100 * num9;
-                float num311 = target.position.X - vector.X;
-                float num312 = Main.mouseY + Main.screenPosition.Y - vector.Y;
-                float ai2 = num312 + vector.Y;
-                if (num312 < 0f)
-                {
-                    num312 *= -1f;
-                }
-                if (num312 < 20f)
-                {
-                    num312 = 20f;
-                }
-                float num313 = (float)Math.Sqrt(num311 * num311 + num312 * num312);
-                num313 = 20f / num313;
-                num311 *= num313;
-                num312 *= num313;
-                Vector2 vector3 = new Vector2(num311, num312) / 2f;
-                int p = Projectile.NewProjectile(vector.X, vector.Y, vector3.X, vector3.Y, ModContent.ProjectileType<OblivionGlaiveSky>(), projectile.damage, projectile.knockBack, projectile.owner, 0f, ai2);
-                Main.projectile[p].owner = projectile.owner;
-                Main.projectile[p].rotation = (float)Math.Atan2(vector.Y - target.Center.Y, vector.X - target.Center.X) - 0.78539816f;
-            }
+            int offset = Main.rand.Next(-200, 200);
+            Vector2 spawnPosition = new Vector2(target.Center.X + offset, target.Center.Y - 700);
+            Vector2 velocity = Vector2.Normalize(target.Center - spawnPosition) * 15f;
+
+            int p = Projectile.NewProjectile(spawnPosition.X, spawnPosition.Y, velocity.X, velocity.Y, ModContent.ProjectileType<Projectiles.OblivionGlaiveSky>(), damage, knockback, projectile.owner, 0f);
+            Main.projectile[p].owner = projectile.owner;
         }
         public override void AI()
         {
