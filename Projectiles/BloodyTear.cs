@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,6 +25,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
+            projectile.spriteDirection = projectile.direction;
             projectile.scale *= 0.99f;
             projectile.ai[0] += 1f;
             if (projectile.ai[0] == 4f)
