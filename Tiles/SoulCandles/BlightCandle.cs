@@ -54,9 +54,9 @@ namespace ExxoAvalonOrigins.Tiles.SoulCandles
             Tile tile = Main.tile[i, j];
             if (tile.frameX == 0)
             {
-                r = 0.105882354f;
-                g = 0.105882354f;
-                b = 0.105882354f;
+                r = 0.205882354f;
+                g = 0.205882354f;
+                b = 0.205882354f;
             }
         }
 
@@ -80,12 +80,11 @@ namespace ExxoAvalonOrigins.Tiles.SoulCandles
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
             ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)((ulong)i));
-            var color = new Color(224, 104, 147, 0);
+            var color = new Color(50, 50, 50, 60);
             int frameX = Main.tile[i, j].frameX;
             int frameY = Main.tile[i, j].frameY;
             int width = 18;
-            int offsetY = -4;
-            int height = 20;
+            int height = 18;
             int offsetX = 1;
             var zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
             if (Main.drawToScreen)
@@ -96,7 +95,7 @@ namespace ExxoAvalonOrigins.Tiles.SoulCandles
             {
                 float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/SoulCandles/BlightCandle_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(mod.GetTexture("Tiles/SoulCandles/BlightCandle_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
     }

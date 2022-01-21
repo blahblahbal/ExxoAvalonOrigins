@@ -7,7 +7,8 @@ namespace ExxoAvalonOrigins.Dusts
     {
         public override bool Update(Dust dust)
         {
-            Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), 0.003921569f, 0.4862745f, 0.6313726f);
+			var lightFade = (dust.scale > 1 ? 1 : dust.scale);
+            Lighting.AddLight((int)(dust.position.X / 16f), (int)(dust.position.Y / 16f), 0.003921569f * lightFade, 0.4862745f * lightFade, 0.6313726f * lightFade);
             return true;
         }
     }
