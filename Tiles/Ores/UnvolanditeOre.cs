@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
         {
             if (j > Main.rockLayer)
             {
-                if (Main.rand.Next(5500) == 0)
+                if (Main.rand.Next(5500) == 0 && Vector2.Distance(Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)].position, new Vector2(i * 16, j * 16)) < 12 * 16)
                 {
                     NPC.NewNPC(i * 16, j * 16, ModContent.NPCType<NPCs.UnvolanditeMiteDigger>());
                 }

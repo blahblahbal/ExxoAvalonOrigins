@@ -2,13 +2,13 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Placeable.Tile
+namespace ExxoAvalonOrigins.Items.Placeable.Beam
 {
-    class GiantCrystalShard : ModItem
+    public class CrystalColumn : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Giant Crystal Shard");
+            DisplayName.SetDefault("Crystal Pillar");
         }
 
         public override void SetDefaults()
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.GiantCrystalShard>();
+            item.createTile = ModContent.TileType<Tiles.CrystalColumn>();
             item.width = dims.Width;
             item.useTurn = true;
             item.useTime = 10;
@@ -24,7 +24,6 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.maxStack = 999;
             item.useAnimation = 15;
             item.height = dims.Height;
-            item.rare = ItemRarityID.Blue;
         }
     }
 }

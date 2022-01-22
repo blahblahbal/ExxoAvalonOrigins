@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CrystalShard");
-            projectile.aiStyle = 14;
+            projectile.aiStyle = -1;
             projectile.width = 20;
             projectile.height = 20;
             projectile.tileCollide = true;
@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.hostile = true;
             projectile.alpha = 255;
             projectile.timeLeft = 180;
+            projectile.ignoreWater = true;
             projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)

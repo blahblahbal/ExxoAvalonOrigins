@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.aiStyle = 3;
             npc.value = 1500f;
             npc.height = 40;
-            npc.knockBackResist = 0.6f;
+            npc.knockBackResist = 0.15f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             banner = npc.type;

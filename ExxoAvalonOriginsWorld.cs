@@ -3160,10 +3160,9 @@ namespace ExxoAvalonOrigins
                 NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(176, 153, 214));
             }
             float num611 = Main.maxTilesX * Main.maxTilesY / 5040000f;
-            int amtOfBiomes = 2;
-            if (Main.maxTilesX == 6300) amtOfBiomes = 3;
-            if (Main.maxTilesX == 8400) amtOfBiomes = 4;
-            else amtOfBiomes = 2;
+            int amtOfBiomes = 3;
+            if (Main.maxTilesX == 6300) amtOfBiomes = 4;
+            if (Main.maxTilesX == 8400) amtOfBiomes = 5;
             //int num612 = (int)(WorldGen.genRand.Next(2, 4) * num611);
             float num613 = (Main.maxTilesX - 160) / amtOfBiomes;
             int num614 = 0;
@@ -3171,6 +3170,9 @@ namespace ExxoAvalonOrigins
             {
                 float num615 = (float)num614 / amtOfBiomes;
                 Point point = WorldGen.RandomRectanglePoint((int)(num615 * (Main.maxTilesX - 160)) + 80, (int)Main.rockLayer + 20, (int)num613, Main.maxTilesY - ((int)Main.rockLayer + 40) - 200);
+                //CrystalMinesRunner(point.X, point.Y, 150, 150);
+                //Biomes<World.Biomes.CrystalMinesHouseBiome>.Place(new Point(point.X, point.Y), null);
+                //num614++;
                 if (Biomes<World.Biomes.CrystalMines>.Place(point, null))
                 {
                     Biomes<World.Biomes.CrystalMinesHouseBiome>.Place(new Point(point.X, point.Y + 15), null);
@@ -3178,6 +3180,82 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
+
+        public static void CrystalMinesRunner(int i, int j, double strength, int steps)
+        {
+            double num = strength;
+            float num2 = steps;
+            Vector2 vector = default;
+            vector.X = i;
+            vector.Y = j;
+            Vector2 vector2 = default;
+            vector2.X = WorldGen.genRand.Next(-10, 11) * 0.1f;
+            vector2.Y = WorldGen.genRand.Next(-10, 11) * 0.1f;
+            while (num > 0.0 && num2 > 0f)
+            {
+                num = strength * (num2 / steps);
+                num2 -= 1f;
+                int num3 = (int)(vector.X - num * 0.5);
+                int num4 = (int)(vector.X + num * 0.5);
+                int num5 = (int)(vector.Y - num * 0.5);
+                int num6 = (int)(vector.Y + num * 0.5);
+                if (num3 < 0)
+                {
+                    num3 = 0;
+                }
+                if (num4 > Main.maxTilesX)
+                {
+                    num4 = Main.maxTilesX;
+                }
+                if (num5 < 0)
+                {
+                    num5 = 0;
+                }
+                if (num6 > Main.maxTilesY)
+                {
+                    num6 = Main.maxTilesY;
+                }
+                for (int k = num3; k < num4; k++)
+                {
+                    for (int l = num5; l < num6; l++)
+                    {
+                        if (Main.tile[k, l].type == 165 || Main.tile[k, l].type == 185 || Main.tile[k, l].type == 186 ||
+                            Main.tile[k, l].type == 187)
+                        {
+                            Main.tile[k, l].active(false);
+                        }
+                        if (Math.Abs(k - vector.X) + Math.Abs(l - vector.Y) < strength * 0.5 * (1.0 + WorldGen.genRand.Next(-10, 11) * 0.015) && (TileID.Sets.CanBeClearedDuringOreRunner[Main.tile[k, l].type] || Main.tileMoss[Main.tile[k, l].type]))
+                        {
+                            if (Main.tile[k, l].active())
+                            {
+                                Main.tile[k, l].type = (ushort)ModContent.TileType<CrystalStone>();
+                                WorldGen.SquareTileFrame(k, l);
+                                if (Main.netMode == 2)
+                                {
+                                    NetMessage.SendTileSquare(-1, k, l, 1);
+                                }
+                            }
+                            else
+                            {
+                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                                WorldGen.SquareWallFrame(k, l);
+                            }
+                        }
+                    }
+                }
+                vector += vector2;
+                vector2.X += WorldGen.genRand.Next(-10, 11) * 0.05f;
+                if (vector2.X > 1f)
+                {
+                    vector2.X = 1f;
+                }
+                if (vector2.X < -1f)
+                {
+                    vector2.X = -1f;
+                }
+            }
+        }
+
         public void shmCallback(object threadContext)
         {
             if (SuperHardmode)

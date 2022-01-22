@@ -3,6 +3,7 @@
 // Terraria.GameContent.Biomes.CaveHouseBiome
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Biomes;
@@ -84,7 +85,24 @@ namespace ExxoAvalonOrigins.World.Biomes
 
         private const int VERTICAL_EXIT_WIDTH = 3;
 
-        public static bool[] _blacklistedTiles = TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, 203, 112, 25, 151, ModContent.TileType<Tiles.TuhrtlBrick>());
+        public static bool[] _blacklistedTiles = TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, 203, 112, 25, 151);
+        public static int[] blacklistedWalls =
+        {
+            WallID.BlueDungeonSlabUnsafe,
+            WallID.BlueDungeonTileUnsafe,
+            WallID.BlueDungeonUnsafe,
+            WallID.GreenDungeonSlabUnsafe,
+            WallID.GreenDungeonTileUnsafe,
+            WallID.GreenDungeonUnsafe,
+            WallID.PinkDungeonSlabUnsafe,
+            WallID.PinkDungeonTileUnsafe,
+            WallID.PinkDungeonUnsafe,
+            WallID.LihzahrdBrickUnsafe,
+            ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(),
+            ModContent.WallType<Walls.OrangeBrickUnsafe>(),
+            ModContent.WallType<Walls.OrangeTiledUnsafe>(),
+            ModContent.WallType<Walls.OrangeSlabUnsafe>()
+        };
 
         private Rectangle GetRoom(Point origin)
         {
@@ -290,6 +308,17 @@ namespace ExxoAvalonOrigins.World.Biomes
             //        return false;
             //    }
             //}
+
+            for (int left = room.X; left < room.X + room.Width - 1; left++)
+            {
+                for (int top = room.Y; top < room.Y + room.Height - 1; top++)
+                {
+                    if (blacklistedWalls.Contains(Main.tile[left, top].wall))
+                    {
+                        return false;
+                    }
+                }
+            }
             int num24 = room.X;
             int num33 = room.X + room.Width - 1;
             List<Rectangle> list2 = new List<Rectangle>();
@@ -406,7 +435,7 @@ namespace ExxoAvalonOrigins.World.Biomes
             {
                 if (item3.Height > 1 && GenBase._tiles[item3.X, item3.Y - 1].type != 19)
                 {
-                    WorldUtils.Gen(new Point(item3.X, item3.Y), new Shapes.Rectangle(item3.Width, item3.Height), Actions.Chain(new Actions.SetTile(124), new Actions.SetFrames(frameNeighbors: true)));
+                    WorldUtils.Gen(new Point(item3.X, item3.Y), new Shapes.Rectangle(item3.Width, item3.Height), Actions.Chain(new Actions.SetTile((ushort)ModContent.TileType<Tiles.CrystalColumn>()), new Actions.SetFrames(frameNeighbors: true)));
                     Tile tile = GenBase._tiles[item3.X, item3.Y + item3.Height];
                     tile.slope(0);
                     tile.halfBrick(halfBrick: false);
@@ -466,10 +495,10 @@ namespace ExxoAvalonOrigins.World.Biomes
                     switch (GenBase._random.Next(4))
                     {
                         case 0:
-                            WorldGen.PlaceSmallPile(num12, num14, GenBase._random.Next(31, 34), 1, 185);
+                            WorldGen.PlaceSmallPile(num12, num14, GenBase._random.Next(31, 34), 1, (ushort)ModContent.TileType<Tiles.CrystalBits>()); // PlaceTile(num12, num14, TileID.Crystals);
                             break;
                         case 1:
-                            WorldGen.PlaceTile(num12, num14, 186, mute: true, forced: false, -1, GenBase._random.Next(22, 26));
+                            WorldGen.PlaceTile(num12, num14, ModContent.TileType<Tiles.GiantCrystalShard>(), true, false, -1, _random.Next(3));
                             break;
                         case 2:
                             {

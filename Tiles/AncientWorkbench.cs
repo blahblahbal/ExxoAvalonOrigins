@@ -13,6 +13,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             AddMapEntry(new Color(168, 178, 204), LanguageManager.Instance.GetText("Ancient Work Bench"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
+            TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.addTile(Type);
             Main.tileObsidianKill[Type] = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -42,15 +43,33 @@ namespace ExxoAvalonOrigins.World.Biomes
             }
         }
 
+        private int[] blacklistedTiles = new int[] { 225, 41, 43, 44, 226, 203, 112, 25, 151, ModContent.TileType<Tiles.TuhrtlBrick>()};
+        private int[] blacklistedWalls = new int[]
+        {
+            WallID.BlueDungeonSlabUnsafe,
+            WallID.BlueDungeonTileUnsafe,
+            WallID.BlueDungeonUnsafe,
+            WallID.GreenDungeonSlabUnsafe,
+            WallID.GreenDungeonTileUnsafe,
+            WallID.GreenDungeonUnsafe,
+            WallID.PinkDungeonSlabUnsafe,
+            WallID.PinkDungeonTileUnsafe,
+            WallID.PinkDungeonUnsafe,
+            WallID.LihzahrdBrickUnsafe,
+            ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(),
+            ModContent.WallType<Walls.OrangeBrickUnsafe>(),
+            ModContent.WallType<Walls.OrangeTiledUnsafe>(),
+            ModContent.WallType<Walls.OrangeSlabUnsafe>()
+        };
         private const int MAX_MAGMA_ITERATIONS = 300;
 
-        private static Magma[,] _sourceMagmaMap = new Magma[200, 200];
+        private static Magma[,] _sourceMagmaMap = new Magma[160, 160];
 
-        private static Magma[,] _targetMagmaMap = new Magma[200, 200];
+        private static Magma[,] _targetMagmaMap = new Magma[160, 160];
 
         public override bool Place(Point origin, StructureMap structures)
         {
-            if (GenBase._tiles[origin.X, origin.Y].active())
+            if (_tiles[origin.X, origin.Y].active())
             {
                 return false;
             }
@@ -141,13 +160,13 @@ namespace ExxoAvalonOrigins.World.Biomes
             }
             bool flag = origin.Y + num12 > WorldGen.lavaLine - 30;
             bool flag2 = false;
-            for (int num2 = -50; num2 < 50; num2++)
+            for (int num2 = -40; num2 < 40; num2++)
             {
                 if (flag2)
                 {
                     break;
                 }
-                for (int num3 = -50; num3 < 50; num3++)
+                for (int num3 = -40; num3 < 40; num3++)
                 {
                     if (flag2)
                     {
@@ -188,6 +207,7 @@ namespace ExxoAvalonOrigins.World.Biomes
                             tile.type == TileID.PinkDungeonBrick || tile.type == TileID.GreenDungeonBrick || tile.type == ModContent.TileType<Tiles.TuhrtlBrick>() ||
                             tile.type == TileID.Statues)
                         {
+                            tile.ResetToType(tile.type);
                         }
                         else
                         {
@@ -201,7 +221,10 @@ namespace ExxoAvalonOrigins.World.Biomes
                     else if (magma3.Resistance < 0.01f)
                     {
                         WorldUtils.ClearTile(origin.X + num4, origin.Y + num5);
-                        tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                        if (!blacklistedWalls.Contains(tile.wall))
+                        {
+                            tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                        }
                     }
                     if (tile.liquid > 0 && flag)
                     {
@@ -246,7 +269,10 @@ namespace ExxoAvalonOrigins.World.Biomes
                 int x = item.X;
                 int y = item.Y;
                 WorldUtils.ClearTile(x, y, frameNeighbors: true);
-                GenBase._tiles[x, y].wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                if (!blacklistedWalls.Contains(_tiles[x, y].wall))
+                {
+                    _tiles[x, y].wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                }
             }
             list.Clear();
             for (int num16 = num20; num16 <= num21; num16++)

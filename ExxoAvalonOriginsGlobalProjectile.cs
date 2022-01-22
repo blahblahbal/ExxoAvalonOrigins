@@ -14,6 +14,41 @@ namespace ExxoAvalonOrigins
 
         public static int cooldown = 0;
 
+        public static int[] notReflect = new int[]
+        {
+            ProjectileID.RainCloudMoving,
+            ProjectileID.RainCloudRaining,
+            ProjectileID.BloodCloudMoving,
+            ProjectileID.BloodCloudRaining,
+            ProjectileID.FrostHydra,
+            ProjectileID.InfernoFriendlyBolt,
+            ProjectileID.InfernoFriendlyBlast,
+            ProjectileID.PhantasmalDeathray,
+            ProjectileID.FlyingPiggyBank,
+            ProjectileID.Glowstick,
+            ProjectileID.BouncyGlowstick,
+            ProjectileID.SpelunkerGlowstick,
+            ProjectileID.StickyGlowstick,
+            ProjectileID.WaterGun,
+            ProjectileID.SlimeGun,
+            ModContent.ProjectileType<Projectiles.Ghostflame>(),
+            ModContent.ProjectileType<Projectiles.WallofSteelLaser>(),
+            ModContent.ProjectileType<Projectiles.ElectricBolt>(),
+            ModContent.ProjectileType<Projectiles.HomingRocket>(),
+            ModContent.ProjectileType<Projectiles.StingerLaser>(),
+            ModContent.ProjectileType<Projectiles.CaesiumFireball>(),
+            ModContent.ProjectileType<Projectiles.CaesiumCrystal>(),
+            ModContent.ProjectileType<Projectiles.CaesiumGas>(),
+            ModContent.ProjectileType<Projectiles.SpikyBall>(),
+            ModContent.ProjectileType<Projectiles.Spike>(),
+            ModContent.ProjectileType<Projectiles.CrystalShard>(),
+            ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>(),
+            ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>(),
+            ModContent.ProjectileType<Projectiles.CrystalBit>(),
+            ModContent.ProjectileType<Projectiles.CrystalBeam>(),
+            ModContent.ProjectileType<Projectiles.Mechastinger>(),
+        };
+
         public static Rectangle drawZoneRect = default(Rectangle);
 
         public static int FindClosestHostile(Vector2 pos, float dist)
@@ -31,49 +66,6 @@ namespace ExxoAvalonOrigins
                 }
             }
             return closest;
-        }
-
-        public static int[] GetProjectiles(Vector2 center, int[] projTypes, int owner = -1, int[] projsToExclude = null, float distance = 500f, Func<Projectile, bool> CanAdd = null)
-        {
-            var list = new List<int>();
-            for (var i = 0; i < Main.projectile.Length; i++)
-            {
-                var projectile = Main.projectile[i];
-                if (projectile != null && projectile.active && (owner == -1 || projectile.owner == owner) && (distance == -1f || Vector2.Distance(center, projectile.Center) < distance))
-                {
-                    var flag = false;
-                    for (var j = 0; j < projTypes.Length; j++)
-                    {
-                        var num = projTypes[j];
-                        if (projectile.type == num)
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag)
-                    {
-                        var flag2 = true;
-                        if (projsToExclude != null)
-                        {
-                            for (var k = 0; k < projsToExclude.Length; k++)
-                            {
-                                var num2 = projsToExclude[k];
-                                if (num2 == projectile.whoAmI)
-                                {
-                                    flag2 = false;
-                                    break;
-                                }
-                            }
-                        }
-                        if ((!flag2 || CanAdd == null || CanAdd(projectile)) && flag2)
-                        {
-                            list.Add(i);
-                        }
-                    }
-                }
-            }
-            return list.ToArray();
         }
 
         public static int[] GetNPCs(Vector2 center, int npcType = -1, int[] npcsToExclude = null, float distance = 500f, Func<NPC, bool> CanAdd = null)

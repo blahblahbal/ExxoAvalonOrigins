@@ -111,6 +111,7 @@ namespace ExxoAvalonOrigins
                 Main.logoTexture = GetTexture("Sprites/EAOLogo");
                 Main.logo2Texture = GetTexture("Sprites/EAOLogo");
                 Main.itemTexture[ItemID.HallowedKey] = GetTexture("Sprites/HallowedKey");
+                Main.itemTexture[ItemID.MagicDagger] = GetTexture("Sprites/MagicDagger");
                 Main.tileTexture[TileID.CopperCoinPile] = GetTexture("Sprites/CopperCoin");
                 Main.tileTexture[TileID.SilverCoinPile] = GetTexture("Sprites/SilverCoin");
                 Main.tileTexture[TileID.GoldCoinPile] = GetTexture("Sprites/GoldCoin");
@@ -121,6 +122,7 @@ namespace ExxoAvalonOrigins
                 Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");
                 Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
                 Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
+                Main.projectileTexture[ProjectileID.MagicDagger] = GetTexture("Sprites/MagicDagger");
                 Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
                 Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");
 

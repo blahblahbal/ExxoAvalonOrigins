@@ -15,7 +15,6 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileNoAttach[Type] = true;
             Main.tileLavaDeath[Type] = false;
             Main.tileSpelunker[Type] = true;
-            Main.tileCut[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
@@ -25,13 +24,31 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(159, 190, 224), LanguageManager.Instance.GetText("Crystal Fruit"));
             disableSmartCursor = true;
+            soundType = SoundID.Shatter;
+            soundStyle = 1;
             //dustType = DustID.BlueCrystalShard;
         }
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
-            if (Main.tile[i, j].frameY < 36) num = DustID.PinkCrystalShard;
-            else if (Main.tile[i, j].frameY < 72) num = DustID.BlueCrystalShard;
-            else num = DustID.PurpleCrystalShard;
+            if (Main.tile[i, j].frameY == 0) num = DustID.PinkCrystalShard;
+            else if (Main.tile[i, j].frameY == 36) num = DustID.BlueCrystalShard;
+            else if (Main.tile[i, j].frameY == 72) num = DustID.PurpleCrystalShard;
+        }
+        public override bool CreateDust(int i, int j, ref int type)
+        {
+            switch (Main.tile[i, j].frameY / 36)
+            {
+                case 0:
+                    type = DustID.PinkCrystalShard;
+                    break;
+                case 1:
+                    type = DustID.BlueCrystalShard;
+                    break;
+                case 2:
+                    type = DustID.PurpleCrystalShard;
+                    break;
+            }
+            return base.CreateDust(i, j, ref type);
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {

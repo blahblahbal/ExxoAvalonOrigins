@@ -152,7 +152,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     float speed = 12f;
                     Vector2 vector8 = new Vector2(npc.position.X + (npc.width * 0.5f), npc.position.Y + (npc.height / 2));
                     int damage = 60;
-                    int type = ProjectileID.Stinger;
+                    int type = ModContent.ProjectileType<Projectiles.Mechastinger>();
                     float rotation = (float)Math.Atan2(npc.Center.Y - Main.player[npc.target].Center.Y, npc.Center.X - Main.player[npc.target].Center.X);
                     int num54;
                     float f = 0f;

@@ -58,8 +58,8 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (npc.Center.X <= target.Center.X) target.velocity.X += 8;
-            else target.velocity.X -= 8;
+            if (npc.Center.X <= target.Center.X) target.velocity.X += 15;
+            else target.velocity.X -= 15;
         }
         public override void AI()
         {

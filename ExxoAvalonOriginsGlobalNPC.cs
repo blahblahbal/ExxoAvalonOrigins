@@ -921,6 +921,7 @@ IL_162:
                 {
                     NPCLoader.blockLoot.Add(imk.ItemType("LootMartiansToken"));
                     NPCLoader.blockLoot.Add(imk.ItemType("LootPlanteraToken"));
+                    NPCLoader.blockLoot.Add(imk.ItemType("LootHardmodeToken"));
                 }
             }
             if (npc.type == NPCID.WallofFlesh && !Main.expertMode)
