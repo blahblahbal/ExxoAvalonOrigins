@@ -1694,7 +1694,6 @@ namespace ExxoAvalonOrigins
                             }
                             else
                             {
-                                Main.NewText("hi");
                                 WorldGen.Place2x2(num5, num9, (ushort)ModContent.TileType<GiantCrystalShard>(), WorldGen.genRand.Next(3));
                                 WorldGen.SquareTileFrame(num5, num9, true);
                                 WorldGen.SquareTileFrame(num5 + 1, num9 + 1, true);
@@ -3306,6 +3305,7 @@ namespace ExxoAvalonOrigins
 
             worldData.contagion = contagion;
             worldData.jungleType = (int)jungleMenuSelection;
+            worldData.superHardmode = SuperHardmode;
 
             string path = Path.ChangeExtension(Main.worldPathName, ".twld");
             tempDict[path] = worldData;

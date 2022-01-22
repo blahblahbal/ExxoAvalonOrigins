@@ -13,6 +13,7 @@ namespace ExxoAvalonOrigins
         {
             public bool contagion;
             public int jungleType;
+            public bool superHardmode;
         }
 
         // Key value is each twld path

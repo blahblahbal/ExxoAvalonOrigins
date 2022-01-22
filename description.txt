@@ -27,8 +27,9 @@ TerrorPenguin for many sprites
 Blasfah for many sprites, and some code
 Jace for many potion sprites
 PhilCo for some sprites
-Dragonfly for the Tome sprites
+Dragonfly for the Tome sprites, and some others
 Yuyu for many sprites
 Jeo for some sprites
 The Avalon composers, Ennway, FatCat, and musicman for, well, the music obviously
 All the beta testers for general help with testing the mod
+Relxs, Hadiros, and Lion8cake for assisting with the Sky Fortress construction

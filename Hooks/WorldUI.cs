@@ -120,6 +120,7 @@ namespace ExxoAvalonOrigins.Hooks
 
                             worldData.contagion = dataTag.Get<bool>("ExxoAvalonOrigins:Contagion");
                             worldData.jungleType = dataTag.Get<int>("ExxoAvalonOrigins:JungleType");
+                            worldData.superHardmode = dataTag.Get<bool>("ExxoAvalonOrigins:SuperHardMode");
                             tempDict[path] = worldData;
 
                             containsMod = true;
@@ -134,6 +135,7 @@ namespace ExxoAvalonOrigins.Hooks
 
                         worldData.contagion = false;
                         worldData.jungleType = (int)ExxoAvalonOriginsWorld.JungleVariant.jungle;
+                        worldData.superHardmode = false;
                         tempDict[path] = worldData;
                     }
 
@@ -148,6 +150,7 @@ namespace ExxoAvalonOrigins.Hooks
                 iconPath += data.IsHardMode ? "Hallow" : "";
                 iconPath += tempDict[path].contagion ? "Contagion" : (data.HasCrimson ? "Crimson" : "Corruption");
                 iconPath += (ExxoAvalonOriginsWorld.JungleVariant)tempDict[path].jungleType == ExxoAvalonOriginsWorld.JungleVariant.tropics ? "Tropics" : "Jungle";
+                iconPath += tempDict[path].superHardmode ? "SHM" : "";
                 return ExxoAvalonOrigins.mod.GetTexture(iconPath);
             }
             else

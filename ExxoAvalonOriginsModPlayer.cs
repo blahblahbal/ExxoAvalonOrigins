@@ -272,6 +272,7 @@ namespace ExxoAvalonOrigins
         public bool ZoneDark;
         public bool ZoneComet;
         public bool ZoneHellcastle;
+        public bool ZoneNearHellcastle;
         public bool ZoneDarkMatter;
         public bool ZoneTropics;
         public bool ZoneCaesium;
@@ -508,6 +509,7 @@ namespace ExxoAvalonOrigins
                     ZoneHellcastle = true;
                 }
             }
+            ZoneNearHellcastle = ExxoAvalonOriginsWorld.hellcastleTiles >= 350;
             Point tileC = player.position.ToTileCoordinates();
             ZoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
             ZoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
@@ -555,6 +557,7 @@ namespace ExxoAvalonOrigins
             flags3[0] = ZoneTime;
             flags3[1] = ZoneTorture;
             flags3[2] = ZoneSight;
+            flags3[3] = ZoneNearHellcastle;
             writer.Write(flags3);
         }
 
@@ -578,11 +581,11 @@ namespace ExxoAvalonOrigins
             ZoneIceSoul = flags2[5];
             ZoneMight = flags2[6];
             ZoneNight = flags2[7];
-
             BitsByte flags3 = reader.ReadByte();
             ZoneTime = flags3[0];
             ZoneTorture = flags3[1];
             ZoneSight = flags3[2];
+            ZoneNearHellcastle = flags3[3];
         }
 
         public bool HasItemInArmor(int type)

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
+using System;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
@@ -22,31 +22,17 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.penetrate = -1;
             projectile.friendly = true;
         }
-        //public override Color? GetAlpha(Color lightColor)
-        //{
-        //    if (this.projectile.localAI[1] >= 15f)
-        //    {
-        //        return new Color(255, 255, 255, this.projectile.alpha);
-        //    }
-        //    if (this.projectile.localAI[1] < 5f)
-        //    {
-        //        return Color.Transparent;
-        //    }
-        //    int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);
-        //    return new Color(num7, num7, num7, num7);
-        //}
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (projectile.type == ModContent.ProjectileType<SacredLyre2>())
             {
                 //Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
-                for (int num133 = 0; num133 < 4; num133++)
+                Vector2 c = projectile.Center;
+                float rot = (float)Math.Atan2(c.Y - 1, c.X - 1);
+                for (float f = 0; f < 3.6f; f += 0.4f)
                 {
-                    float num134 = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                    float num135 = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                    int proj = Projectile.NewProjectile(projectile.position.X + num134, projectile.position.Y + num135, num134, num135, ProjectileID.CrystalShard, (int)(projectile.damage * 0.8), 0f, projectile.owner, 0f, 0f);
-                    Main.projectile[proj].ranged = false;
-                    Main.projectile[proj].magic = true;
+                    Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot + f) * 4f * -1.0), (float)(Math.Sin(rot + f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
+                    Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot - f) * 4f * -1.0), (float)(Math.Sin(rot - f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
                 }
                 projectile.ai[0] += 1f;
                 if (projectile.ai[0] >= 9f)

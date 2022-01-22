@@ -880,22 +880,6 @@ namespace ExxoAvalonOrigins
 
         public override void HoldItem(Item item, Player player)
         {
-            #region disable RoD in hellcastle/skyfortress
-            if (item.type == ItemID.RodofDiscord)
-            {
-                //Item tempRODItem = new Item();
-                //tempRODItem.netDefaults(item.netID);
-                //tempRODItem = tempRODItem.CloneWithModdedDataFrom(item);
-                if (player.Avalon().ZoneSkyFortress && !ExxoAvalonOriginsWorld.downedDragonLord ||
-                    player.Avalon().ZoneHellcastle && !ExxoAvalonOriginsWorld.downedPhantasm)
-                {
-                    item.useStyle = 0;
-                }
-                else if (!player.Avalon().ZoneSkyFortress && !player.Avalon().ZoneHellcastle)
-                    item.useStyle = ItemUseStyleID.SwingThrow;
-            }
-            #endregion
-
             #region wire disable in sky fortress
             Item tempWireItem = new Item();
             tempWireItem.netDefaults(item.netID);
@@ -1049,7 +1033,10 @@ namespace ExxoAvalonOrigins
             {
                 return false;
             }
-
+            if (item.type == ItemID.RodofDiscord && ((player.Avalon().ZoneSkyFortress && !ExxoAvalonOriginsWorld.downedDragonLord) || (player.Avalon().ZoneNearHellcastle && !ExxoAvalonOriginsWorld.downedPhantasm)))
+            {
+                return false;
+            }
             return base.CanUseItem(item, player);
         }
 
