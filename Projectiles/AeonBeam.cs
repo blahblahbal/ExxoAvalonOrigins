@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,6 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             DisplayName.SetDefault("Aeon Beam");
         }
-
         public override void SetDefaults()
         {
             projectile.width = 16;
