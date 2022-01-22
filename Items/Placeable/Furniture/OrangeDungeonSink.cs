@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 {
-    internal class OrangeDungeonSink : ModItem
+    public class OrangeDungeonSink : ModItem
     {
         public override void SetStaticDefaults()
         {

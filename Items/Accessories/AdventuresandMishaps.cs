@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-    internal class AdventuresandMishaps : ModItem
+    public class AdventuresandMishaps : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-    internal class HadesCross : ModItem
+    public class HadesCross : ModItem
     {
         public override void SetStaticDefaults()
         {

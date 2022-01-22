@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Wall
 {
-    internal class AncientCobaltBrickWall : ModItem
+    public class AncientCobaltBrickWall : ModItem
     {
         public override void SetStaticDefaults()
         {

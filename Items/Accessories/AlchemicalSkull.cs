@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-    internal class AlchemicalSkull : ModItem
+    public class AlchemicalSkull : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class UnvolanditeMiteDigger : UnvolanditeMiteDiggerWorm
+    public class UnvolanditeMiteDigger : UnvolanditeMiteDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/UnvolanditeMiteDigger";
 

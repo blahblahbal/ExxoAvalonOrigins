@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-    internal class BronzePickaxe : ModItem
+    public class BronzePickaxe : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -8,15 +8,15 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class TomeSlot : UIState
+    public class TomeSlot : UIState
     {
         public UIPanel tomeSlotDisplay;
-        internal float scale = 1f;
+        public float scale = 1f;
         public static Texture2D BackgroundTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/TomeSlotBackground");
 
-        internal event Action<Item, Item> OnItemChange;
+        public event Action<Item, Item> OnItemChange;
 
-        internal event Func<Item, bool> CanPutIntoSlot;
+        public event Func<Item, bool> CanPutIntoSlot;
 
         private readonly Item[] ssa = new Item[1];
 
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.UI
             Append(tomeSlotDisplay);
         }
 
-        internal void DrawTomes(SpriteBatch spriteBatch)
+        public void DrawTomes(SpriteBatch spriteBatch)
         {
             if (Main.playerInventory && Main.EquipPage == 2)
             {

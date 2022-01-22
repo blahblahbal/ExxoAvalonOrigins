@@ -12,7 +12,7 @@ using Terraria.Utilities;
 
 namespace ExxoAvalonOrigins
 {
-    internal class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
+    public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
     {
         public override bool InstancePerEntity => true;
         public bool invince;

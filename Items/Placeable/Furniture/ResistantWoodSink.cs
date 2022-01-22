@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 {
-    internal class ResistantWoodSink : ModItem
+    public class ResistantWoodSink : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 {
-    internal class SeedFabricator : ModItem
+    public class SeedFabricator : ModItem
     {
         public override void SetStaticDefaults()
         {

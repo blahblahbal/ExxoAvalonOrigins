@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class MechanicalDiggerHead : MechanicalDiggerWorm
+    public class MechanicalDiggerHead : MechanicalDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalDiggerHead";
 
@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class MechanicalDiggerBody : MechanicalDiggerWorm
+    public class MechanicalDiggerBody : MechanicalDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalDiggerBody";
 
@@ -112,7 +112,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class MechanicalDiggerTail : MechanicalDiggerWorm
+    public class MechanicalDiggerTail : MechanicalDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalDiggerTail";
 

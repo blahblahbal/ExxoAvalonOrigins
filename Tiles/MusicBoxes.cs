@@ -6,7 +6,7 @@ using Terraria.ObjectData;
 
 namespace ExxoAvalonOrigins.Tiles
 {
-    internal class MusicBoxes : ModTile
+    public class MusicBoxes : ModTile
     {
         public override void SetDefaults()
         {

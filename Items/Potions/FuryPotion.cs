@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Potions
 {
-    internal class FuryPotion : ModItem
+    public class FuryPotion : ModItem
     {
         public override void SetStaticDefaults()
         {

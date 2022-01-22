@@ -2,7 +2,7 @@
 
 namespace ExxoAvalonOrigins.Network
 {
-    internal interface ISerializable
+    public interface ISerializable
     {
         /// <summary>
         /// Method used to implement binary serialization for this class

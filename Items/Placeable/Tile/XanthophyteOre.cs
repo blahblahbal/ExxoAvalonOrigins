@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-    internal class XanthophyteOre : ModItem
+    public class XanthophyteOre : ModItem
     {
         public override void SetStaticDefaults()
         {

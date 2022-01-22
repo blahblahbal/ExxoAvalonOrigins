@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Storage
 {
-    internal class HellfireChest : ModItem
+    public class HellfireChest : ModItem
     {
         public override void SetStaticDefaults()
         {

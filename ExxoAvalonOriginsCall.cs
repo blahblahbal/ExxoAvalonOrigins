@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
-    internal static class ExxoAvalonOriginsCall
+    public static class ExxoAvalonOriginsCall
     {
-        internal static ILog logger = ExxoAvalonOrigins.mod.Logger;
+        public static ILog logger = ExxoAvalonOrigins.mod.Logger;
 
         // The Great Dictionary about Mod Calls for Blahblahblah from Exxo Avalon Origins by Fox
         //
@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins
         //      );
         //                                       // As result, it will return true either false, depending on if boss was downed or not.
 
-        internal static object Call(params object[] args)
+        public static object Call(params object[] args)
         {
             if (args.Length == 0 || !(args[0] is string))
             {

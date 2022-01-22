@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-    internal class CoolGemsparkBlock : ModItem
+    public class CoolGemsparkBlock : ModItem
     {
         public override void SetStaticDefaults()
         {

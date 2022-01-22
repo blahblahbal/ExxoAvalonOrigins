@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-    internal class TroxiniumPickaxe : ModItem
+    public class TroxiniumPickaxe : ModItem
     {
         public override void SetStaticDefaults()
         {

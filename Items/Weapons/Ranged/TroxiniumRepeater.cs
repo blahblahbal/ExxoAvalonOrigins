@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 {
-    internal class TroxiniumRepeater : ModItem
+    public class TroxiniumRepeater : ModItem
     {
         public override void SetStaticDefaults()
         {

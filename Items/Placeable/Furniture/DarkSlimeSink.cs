@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 {
-    internal class DarkSlimeSink : ModItem
+    public class DarkSlimeSink : ModItem
     {
         public override void SetStaticDefaults()
         {

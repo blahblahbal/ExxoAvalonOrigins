@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Painting
 {
-    internal class ACometHasStruckGround : ModItem
+    public class ACometHasStruckGround : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-    internal class TroxiniumWaraxe : ModItem
+    public class TroxiniumWaraxe : ModItem
     {
         public override void SetStaticDefaults()
         {

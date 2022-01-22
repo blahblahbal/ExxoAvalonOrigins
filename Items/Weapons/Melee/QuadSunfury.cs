@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-    internal class QuadSunfury : ModItem
+    public class QuadSunfury : ModItem
     {
         private byte mode = 1;
         private byte timer = 0;

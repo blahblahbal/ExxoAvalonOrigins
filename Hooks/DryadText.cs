@@ -3,7 +3,7 @@ using MonoMod.Cil;
 
 namespace ExxoAvalonOrigins.Hooks
 {
-    internal static class DryadText
+    public static class DryadText
     {
         public static void ILDryadText(ILContext il)
         {

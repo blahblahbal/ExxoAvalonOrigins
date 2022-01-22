@@ -568,7 +568,7 @@ namespace ExxoAvalonOrigins.World.Biomes
             return true;
         }
 
-        internal static void AgeDefaultRoom(Rectangle room)
+        public static void AgeDefaultRoom(Rectangle room)
         {
             for (int i = 0; i < room.Width * room.Height / 16; i++)
             {
@@ -580,7 +580,7 @@ namespace ExxoAvalonOrigins.World.Biomes
             WorldUtils.Gen(new Point(room.X, room.Y), new Shapes.Rectangle(room.Width, room.Height), Actions.Chain(new Modifiers.Dither(0.949999988079071), new Modifiers.OnlyTiles(30, 321, 158), new Actions.ClearTile(frameNeighbors: true)));
         }
 
-        internal static void AgeCrystalRoom(Rectangle room)
+        public static void AgeCrystalRoom(Rectangle room)
         {
             WorldUtils.Gen(new Point(room.X, room.Y), new Shapes.Rectangle(room.Width, room.Height), Actions.Chain(new Modifiers.Dither(0.60000002384185791), new Modifiers.Blotches(2, 0.60000002384185791), new Modifiers.OnlyTiles(BuildData.Crystal.Tile), new Actions.SetTile((ushort)ModContent.TileType<Tiles.CrystalStone>(), setSelfFrames: true), new Modifiers.Dither(0.8), new Actions.SetTile(TileID.CrystalBlock, setSelfFrames: true)));
             WorldUtils.Gen(new Point(room.X + 1, room.Y), new Shapes.Rectangle(room.Width - 2, 1), Actions.Chain(new Modifiers.Dither(), new Modifiers.OnlyTiles(161), new Modifiers.Offset(0, 1), new ActionStalagtite()));

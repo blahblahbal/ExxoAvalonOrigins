@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-    internal class BerserkerBlade : ModItem
+    public class BerserkerBlade : ModItem
     {
         public override void SetStaticDefaults()
         {

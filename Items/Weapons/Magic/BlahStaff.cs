@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
-    internal class BlahStaff : ModItem
+    public class BlahStaff : ModItem
     {
         public override void SetStaticDefaults()
         {

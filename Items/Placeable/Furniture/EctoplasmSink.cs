@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 {
-    internal class EctoplasmSink : ModItem
+    public class EctoplasmSink : ModItem
     {
         public override void SetStaticDefaults()
         {

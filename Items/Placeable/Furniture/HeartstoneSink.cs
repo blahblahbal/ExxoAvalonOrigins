@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Furniture
 {
-    internal class HeartstoneSink : ModItem
+    public class HeartstoneSink : ModItem
     {
         public override void SetStaticDefaults()
         {

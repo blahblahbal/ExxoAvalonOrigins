@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
-    internal class Starfall : ModItem
+    public class Starfall : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace ExxoAvalonOrigins.Items.Accessories
 {
     [AutoloadEquip(EquipType.Shield)]
-    internal class AegisofAges : ModItem
+    public class AegisofAges : ModItem
     {
         public override void SetStaticDefaults()
         {

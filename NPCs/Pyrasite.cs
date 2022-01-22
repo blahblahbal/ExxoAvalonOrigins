@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class PyrasiteHead : PyrasiteWorm
+    public class PyrasiteHead : PyrasiteWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/PyrasiteHead";
 
@@ -60,7 +60,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class PyrasiteBody : PyrasiteWorm
+    public class PyrasiteBody : PyrasiteWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/PyrasiteBody";
 
@@ -95,7 +95,7 @@ namespace ExxoAvalonOrigins.NPCs
 
     }
 
-    internal class PyrasiteTail : PyrasiteWorm
+    public class PyrasiteTail : PyrasiteWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/PyrasiteTail";
 

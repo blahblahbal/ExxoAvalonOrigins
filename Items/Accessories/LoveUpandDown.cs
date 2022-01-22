@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-    internal class LoveUpandDown : ModItem
+    public class LoveUpandDown : ModItem
     {
         public override void SetStaticDefaults()
         {

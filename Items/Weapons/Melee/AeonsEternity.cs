@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-    internal class AeonsEternity : ModItem
+    public class AeonsEternity : ModItem
     {
         public override void SetStaticDefaults()
         {

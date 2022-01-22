@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-    internal class ChunkstoneBrick : ModItem
+    public class ChunkstoneBrick : ModItem
     {
         public override void SetStaticDefaults()
         {

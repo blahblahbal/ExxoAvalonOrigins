@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-    internal class BlackBlaststone : ModItem
+    public class BlackBlaststone : ModItem
     {
         public override void SetStaticDefaults()
         {

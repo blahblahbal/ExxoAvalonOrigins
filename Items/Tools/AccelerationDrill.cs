@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Tools
 {
-    internal class AccelerationDrill : ModItem
+    public class AccelerationDrill : ModItem
     {
         public override void SetStaticDefaults()
         {

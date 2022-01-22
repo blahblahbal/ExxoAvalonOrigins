@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-    internal class AncientAdamantiteBrick : ModItem
+    public class AncientAdamantiteBrick : ModItem
     {
         public override void SetStaticDefaults()
         {

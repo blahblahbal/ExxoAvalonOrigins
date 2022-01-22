@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 {
-    internal class StarlightCannon : ModItem
+    public class StarlightCannon : ModItem
     {
         public override void SetStaticDefaults()
         {

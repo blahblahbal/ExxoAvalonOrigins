@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 {
-    internal class Hellrazer : ModItem
+    public class Hellrazer : ModItem
     {
         public override void SetStaticDefaults()
         {

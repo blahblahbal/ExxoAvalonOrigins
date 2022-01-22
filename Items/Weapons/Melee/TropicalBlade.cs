@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
-    internal class TropicalBlade : ModItem
+    public class TropicalBlade : ModItem
     {
         public override void SetStaticDefaults()
         {

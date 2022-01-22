@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Hooks
     /// <summary>
     /// REDO/TODO: Old Backgrounds
     /// </summary>
-    internal static class CaesiumUnderworldBackground
+    public static class CaesiumUnderworldBackground
     {
         public static void ILDoSelf(ILContext il)
         {

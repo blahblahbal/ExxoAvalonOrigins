@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Bar
 {
-    internal class XanthophyteBar : ModItem
+    public class XanthophyteBar : ModItem
     {
         public override void SetStaticDefaults()
         {

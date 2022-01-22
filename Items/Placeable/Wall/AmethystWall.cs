@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Wall
 {
-    internal class AmethystWall : ModItem
+    public class AmethystWall : ModItem
     {
         public override void SetStaticDefaults()
         {

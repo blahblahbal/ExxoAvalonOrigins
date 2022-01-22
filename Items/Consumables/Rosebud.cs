@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-    internal class Rosebud : ModItem
+    public class Rosebud : ModItem
     {
         public override void SetStaticDefaults()
         {

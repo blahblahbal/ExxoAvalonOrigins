@@ -17,7 +17,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
-    internal class ExxoAvalonOriginsGlobalItem : GlobalItem
+    public class ExxoAvalonOriginsGlobalItem : GlobalItem
     {
         public static List<int> inaccurateGuns = new List<int>
         {

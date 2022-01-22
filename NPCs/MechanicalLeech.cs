@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class MechanicalLeechHead : MechanicalLeechWorm
+    public class MechanicalLeechHead : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechHead";
 
@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class MechanicalLeechBody : MechanicalLeechWorm
+    public class MechanicalLeechBody : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechBody";
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
@@ -68,7 +68,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class MechanicalLeechTail : MechanicalLeechWorm
+    public class MechanicalLeechTail : MechanicalLeechWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/MechanicalLeechTail";
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

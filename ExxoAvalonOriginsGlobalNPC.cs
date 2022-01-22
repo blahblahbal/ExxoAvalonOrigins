@@ -22,7 +22,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins
 {
-    internal class ExxoAvalonOriginsGlobalNPC : GlobalNPC
+    public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
     {
         public static float endoSpawnRate = 0.25f;
         public static bool stoppedArmageddon = false;

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Magic
 {
-    internal class Terraspin : ModItem
+    public class Terraspin : ModItem
     {
         public override void SetStaticDefaults()
         {

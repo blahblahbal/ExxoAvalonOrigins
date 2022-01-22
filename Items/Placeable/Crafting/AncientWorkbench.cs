@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 {
-    internal class AncientWorkbench : ModItem
+    public class AncientWorkbench : ModItem
     {
         public override void SetStaticDefaults()
         {

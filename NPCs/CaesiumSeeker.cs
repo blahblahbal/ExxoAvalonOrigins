@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class CaesiumSeekerHead : CaesiumSeekerWorm
+    public class CaesiumSeekerHead : CaesiumSeekerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/CaesiumSeekerHead";
         public override void SetDefaults()
@@ -67,7 +67,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class CaesiumSeekerBody : CaesiumSeekerWorm
+    public class CaesiumSeekerBody : CaesiumSeekerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/CaesiumSeekerBody";
 
@@ -110,7 +110,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
     }
 
-    internal class CaesiumSeekerTail : CaesiumSeekerWorm
+    public class CaesiumSeekerTail : CaesiumSeekerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/CaesiumSeekerTail";
 

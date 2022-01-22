@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Material
 {
-    internal class AlienApparatus : ModItem
+    public class AlienApparatus : ModItem
     {
         public override void SetStaticDefaults()
         {

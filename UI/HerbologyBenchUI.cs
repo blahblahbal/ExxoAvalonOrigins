@@ -13,7 +13,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI
 {
-    internal class HerbologyBenchUI : UIState
+    public class HerbologyBenchUI : UIState
     {
         public static readonly int[] Potions = new int[]
         {
@@ -91,13 +91,13 @@ namespace ExxoAvalonOrigins.UI
         public UIPanel herbologyBenchDisplay;
         public UIPanel button;
         public UIText text;
-        internal float scale = 1f;
+        public float scale = 1f;
         private readonly Texture2D background = TomeSlot.BackgroundTexture;
         private readonly Texture2D herbButton = ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton");
 
-        internal event Action<Item, Item> OnItemChange;
+        public event Action<Item, Item> OnItemChange;
 
-        internal event Func<Item, bool> CanPutIntoSlot;
+        public event Func<Item, bool> CanPutIntoSlot;
 
         private readonly Item[] ssa = new Item[1];
         private bool itemInSlot = false;
@@ -257,7 +257,7 @@ namespace ExxoAvalonOrigins.UI
             }
         }
 
-        internal void DrawHerbologyInterface(SpriteBatch spriteBatch)
+        public void DrawHerbologyInterface(SpriteBatch spriteBatch)
         {
             int xpos = 200;
             int ypos = 350;

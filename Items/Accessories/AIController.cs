@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-    internal class AIController : ModItem
+    public class AIController : ModItem
     {
         public override void SetStaticDefaults()
         {

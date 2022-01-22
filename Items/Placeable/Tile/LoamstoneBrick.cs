@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Placeable.Tile
 {
-    internal class LoamstoneBrick : ModItem
+    public class LoamstoneBrick : ModItem
     {
         public override void SetStaticDefaults()
         {

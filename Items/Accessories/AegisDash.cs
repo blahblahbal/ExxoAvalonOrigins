@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace ExxoAvalonOrigins.Items.Accessories
 {
     [AutoloadEquip(EquipType.Shield)]
-    internal class AegisDash : ModItem
+    public class AegisDash : ModItem
     {
         public override void SetStaticDefaults()
         {

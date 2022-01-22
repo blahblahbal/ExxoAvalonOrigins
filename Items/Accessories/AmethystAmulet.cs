@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories
 {
-    internal class AmethystAmulet : ModItem
+    public class AmethystAmulet : ModItem
     {
         public override void SetStaticDefaults()
         {

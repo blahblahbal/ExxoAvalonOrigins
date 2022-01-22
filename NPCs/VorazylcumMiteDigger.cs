@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.NPCs
 {
-    internal class VorazylcumMiteDigger : VorazylcumMiteDiggerWorm
+    public class VorazylcumMiteDigger : VorazylcumMiteDiggerWorm
     {
         public override string Texture => "ExxoAvalonOrigins/NPCs/VorazylcumMiteDigger";
 
