@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = mod.ItemType("VenomSpike");
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = DustID.PurpleTorch;
+            dustType = ModContent.DustType<Dusts.BismuthDust>();
         }
         public override bool Slope(int i, int j)
         {
