@@ -43,6 +43,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         {
             return new Vector2(-6, 0);
         }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 200);
+        }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             float num70 = Main.mouseX + Main.screenPosition.X - position.X;
