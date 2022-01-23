@@ -27,8 +27,8 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override bool UseItem(Player player)
         {
-            ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateCrystalMines();
-            //World.Structures.SkyFortress.Generate((int)player.position.X / 16, (int)player.position.Y / 16);
+            //ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateCrystalMines();
+            World.Structures.SkyFortress.Generate((int)player.position.X / 16, (int)player.position.Y / 16);
             //World.Structures.CaesiumSpike.CreateSpikeUp((int)player.position.X / 16, (int)player.position.Y / 16, (ushort)ModContent.TileType<Tiles.CaesiumOre>());
             return true;
         }

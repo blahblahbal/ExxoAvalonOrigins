@@ -13,7 +13,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             DisplayName.SetDefault("Sacred Lyre");
             Tooltip.SetDefault("Casts bouncing notes\nNotes have a different effect depending on the distance your cursor is from you");
         }
-
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 150);
+        }
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
