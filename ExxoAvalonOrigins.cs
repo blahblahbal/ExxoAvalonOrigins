@@ -110,6 +110,11 @@ namespace ExxoAvalonOrigins
                 // Vanilla Texture replacements
                 Main.logoTexture = GetTexture("Sprites/EAOLogo");
                 Main.logo2Texture = GetTexture("Sprites/EAOLogo");
+                if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
+                {
+                    Main.logoTexture = GetTexture("Sprites/EAOLogoAprilFools");
+                    Main.logo2Texture = GetTexture("Sprites/EAOLogoAprilFools");
+                }
                 Main.itemTexture[ItemID.HallowedKey] = GetTexture("Sprites/HallowedKey");
                 Main.itemTexture[ItemID.MagicDagger] = GetTexture("Sprites/MagicDagger");
                 Main.tileTexture[TileID.CopperCoinPile] = GetTexture("Sprites/CopperCoin");
