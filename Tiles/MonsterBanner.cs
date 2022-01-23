@@ -326,6 +326,12 @@ namespace ExxoAvalonOrigins.Tiles
                     case 41:
                         type = "TroxiniumSlime";
                         break;
+                    case 42:
+                        type = "UnstableAnomaly";
+                        break;
+                    case 43:
+                        type = "MatterMan";
+                        break;
                     case 44:
                         type = "BronzeSlime";
                         break;
@@ -340,6 +346,9 @@ namespace ExxoAvalonOrigins.Tiles
                         break;
                     case 48:
                         type = "IridiumSlime";
+                        break;
+                    case 49:
+                        type = "Hallowor";
                         break;
                     case 51:
                         type = "IrateBones";
