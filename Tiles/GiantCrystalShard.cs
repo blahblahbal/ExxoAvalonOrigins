@@ -20,12 +20,12 @@ namespace ExxoAvalonOrigins.Tiles
             soundType = SoundID.Item;
             soundStyle = 27;
         }
-        public override void NumDust(int i, int j, bool fail, ref int num)
-        {
-            if (Main.tile[i, j].frameY == 0) num = DustID.PurpleCrystalShard;
-            else if (Main.tile[i, j].frameY == 36) num = DustID.BlueCrystalShard;
-            else if (Main.tile[i, j].frameY == 72) num = DustID.PinkCrystalShard;
-        }
+        //public override void NumDust(int i, int j, bool fail, ref int num)
+        //{
+        //    if (Main.tile[i, j].frameY == 0) num = DustID.PurpleCrystalShard;
+        //    else if (Main.tile[i, j].frameY == 36) num = DustID.BlueCrystalShard;
+        //    else if (Main.tile[i, j].frameY == 72) num = DustID.PinkCrystalShard;
+        //}
         public override bool CreateDust(int i, int j, ref int type)
         {
             switch (Main.tile[i, j].frameY / 36)
@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.Tiles
                     type = DustID.PinkCrystalShard;
                     break;
             }
-            return base.CreateDust(i, j, ref type);
+            return true;
         }
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
