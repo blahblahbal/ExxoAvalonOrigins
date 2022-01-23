@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins
 
         public int statStamMax = 30;
         public int statStamMax2;
-
+        public bool[] pSensor = new bool[6];
         public int statStam = 100;
         public int spiritPoppyUseCount;
         public bool shmAcc = false;
@@ -1546,6 +1546,96 @@ namespace ExxoAvalonOrigins
         public override void PostUpdate()
         {
             //Main.worldRate = 7;
+            #region player sensor
+            int pposX = (int)(player.position.X / 16);
+            int pposY = (int)(player.position.Y / 16);
+            int pposXOld = (int)(player.oldPosition.X / 16);
+            int pposYOld = (int)(player.oldPosition.Y / 16);
+            // x, y
+            if (Main.tile[pposX, pposY].type == ModContent.TileType<Tiles.PlayerSensor>())
+            {
+                if (!pSensor[0])
+                {
+                    Main.PlaySound(28, pposX * 16, pposY * 16, 0);
+                    Wiring.TripWire(pposX, pposY, 1, 1);
+                    pSensor[0] = true;
+                }
+            }
+            else pSensor[0] = false;
+            // x + 1, y
+            if (Main.tile[pposX + 1, pposY].type == ModContent.TileType<Tiles.PlayerSensor>())
+            {
+                if (!pSensor[1])
+                {
+                    Main.PlaySound(28, (pposX + 1) * 16, pposY * 16, 0);
+                    Wiring.TripWire(pposX + 1, pposY, 1, 1);
+                    pSensor[1] = true;
+                }
+            }
+            else pSensor[1] = false;
+            // x, y + 1
+            if (Main.tile[pposX, pposY + 1].type == ModContent.TileType<Tiles.PlayerSensor>())
+            {
+                if (!pSensor[2])
+                {
+                    Main.PlaySound(28, pposX * 16, (pposY + 1) * 16, 0);
+                    Wiring.TripWire(pposX, pposY + 1, 1, 1);
+                    pSensor[2] = true;
+                }
+            }
+            else pSensor[2] = false;
+            // x + 1, y + 1
+            if (Main.tile[pposX + 1, pposY + 1].type == ModContent.TileType<Tiles.PlayerSensor>())
+            {
+                if (!pSensor[3])
+                {
+                    Main.PlaySound(28, (pposX + 1) * 16, (pposY + 1) * 16, 0);
+                    Wiring.TripWire(pposX + 1, pposY + 1, 1, 1);
+                    pSensor[3] = true;
+                }
+            }
+            else pSensor[3] = false;
+            // x, y + 2
+            if (Main.tile[pposX, pposY + 2].type == ModContent.TileType<Tiles.PlayerSensor>())
+            {
+                if (!pSensor[4])
+                {
+                    Main.PlaySound(28, pposX * 16, (pposY + 2) * 16, 0);
+                    Wiring.TripWire(pposX, pposY + 2, 1, 1);
+                    pSensor[4] = true;
+                }
+            }
+            else pSensor[4] = false;
+            // x + 1, y + 1
+            if (Main.tile[pposX + 1, pposY + 2].type == ModContent.TileType<Tiles.PlayerSensor>())
+            {
+                if (!pSensor[5])
+                {
+                    Main.PlaySound(28, (pposX + 1) * 16, (pposY + 2) * 16, 0);
+                    Wiring.TripWire(pposX + 1, pposY + 2, 1, 1);
+                    pSensor[5] = true;
+                }
+            }
+            else pSensor[5] = false;
+            #endregion
+            //for (int pposX = (int)(player.position.X / 16); pposX <= (int)(player.position.X / 16) + 1; pposX++)
+            //{
+            //    for (int pposY = (int)(player.position.Y / 16); pposY <= (int)(player.position.Y / 16) + 2; pposY++)
+            //    {
+            //        if (Main.tile[pposX, pposY].type == ModContent.TileType<Tiles.PlayerSensor>())
+            //        {
+            //            if (!pSensor)
+            //            {
+            //                Main.PlaySound(28, pposX * 16, pposY * 16, 0);
+            //                Wiring.SkipWire(pposX, pposY);
+            //                Wiring.TripWire(pposX, pposY, 1, 1);
+            //                pSensor = true;
+            //                break;
+            //            }
+            //        }
+            //        else pSensor = false;
+            //    }
+            //}
             if (magnet)
             {
                 Player.defaultItemGrabRange = 114;
