@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles
@@ -31,11 +32,13 @@ namespace ExxoAvalonOrigins.Projectiles
             if (projectile.type == ModContent.ProjectileType<SacredLyreSplittingNote>())
             {
                 //Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
-                for (int num133 = 0; num133 < 2; num133++)
+                for (int num133 = 0; num133 < 3; num133++)
                 {
                     float num134 = -projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
                     float num135 = -projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                    int proj = Projectile.NewProjectile(projectile.position.X + num134, projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<SacredLyreSplittingNote2>(), (int)(projectile.damage * 0.8), 0f, projectile.owner, 0f, 0f);
+                    int proj = Projectile.NewProjectile(projectile.position.X + num134, projectile.position.Y + num135, num134, num135, ProjectileID.CrystalShard, (int)(projectile.damage * 0.65f), 0f, projectile.owner, 0f, 0f);
+                    Main.projectile[proj].ranged = false;
+                    Main.projectile[proj].magic = true;
                 }
                 projectile.ai[0] += 1f;
                 if (projectile.ai[0] >= 9f)
