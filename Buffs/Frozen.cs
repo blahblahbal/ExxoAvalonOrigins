@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Frozen");
-            Description.SetDefault("'I can't move!'");
+            Description.SetDefault("I can't move!");
             Main.debuff[Type] = true;
             canBeCleared = false;
         }

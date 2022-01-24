@@ -1614,6 +1614,15 @@ IL_162:
                 npc.velocity.X *= 0.2f;
                 npc.color = new Color(0, 144, 255, 100);
             }
+            if (npc.HasBuff(ModContent.BuffType<Buffs.IcySlowdown>()))
+            {
+                if (!npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().slowed)
+                {
+                    npc.velocity.X *= 0.3f;
+                    npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().slowed = true;
+                }
+                npc.color = new Color(0, 144, 255, 100);
+            }
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)

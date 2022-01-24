@@ -2041,12 +2041,12 @@ namespace ExxoAvalonOrigins
                 bodyFrame2.X += num55;
                 bodyFrame2.Width -= num55;
                 var value = default(DrawData);
-                value = new DrawData(spectrumArmorTextures[1], new Vector2((float)((int)(drawInfo.position.X - Main.screenPosition.X - (float)(p.bodyFrame.Width / 2) + (float)(p.width / 2)) + num55), (float)((int)(drawInfo.position.Y - Main.screenPosition.Y + (float)p.height - (float)p.bodyFrame.Height + 4f))) + p.bodyPosition + new Vector2((float)(p.bodyFrame.Width / 2), (float)(p.bodyFrame.Height / 2)), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
+                value = new DrawData(spectrumArmorTextures[1], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2) + num55, (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.bodyPosition + new Vector2(p.bodyFrame.Width / 2, p.bodyFrame.Height / 2), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(value);
             }
             if (p.legs == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumGreaves", EquipType.Legs))
             {
-                var value = new DrawData(spectrumArmorTextures[4], new Vector2((float)((int)(drawInfo.position.X - Main.screenPosition.X - (float)(p.legFrame.Width / 2) + (float)(p.width / 2))), (float)((int)(drawInfo.position.Y - Main.screenPosition.Y + (float)p.height - (float)p.legFrame.Height + 4f))) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
+                var value = new DrawData(spectrumArmorTextures[4], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.legFrame.Width / 2 + p.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.legFrame.Height + 4f)) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(value);
             }
         });

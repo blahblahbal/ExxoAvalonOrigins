@@ -8,6 +8,7 @@ namespace ExxoAvalonOrigins.Projectiles
 {
     public class IceGolemSummon : ModProjectile
     {
+        int timer;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ice Golem");
@@ -26,6 +27,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.minionSlots = 1f;
             projectile.ignoreWater = true;
             projectile.friendly = true;
+            timer = 0;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
@@ -75,6 +77,24 @@ namespace ExxoAvalonOrigins.Projectiles
             else if (Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2 > projectile.position.X + projectile.width / 2 + num356)
             {
                 flag10 = true;
+            }
+            timer++;
+            if (timer > 180)
+            {
+                int n = BlahBeam.FindClosest(projectile.position, 1600);
+                if (n != -1)
+                {
+                    if (!Main.npc[n].townNPC && Main.npc[n].lifeMax > 5 && !Main.npc[n].dontTakeDamage)
+                    {
+                        if (Collision.CanHit(projectile.Center, projectile.width, projectile.height, Main.npc[n].Center, Main.npc[n].width, Main.npc[n].height))
+                        {
+                            Main.PlaySound(2, projectile.position, 12);
+                            int p = Projectile.NewProjectile(projectile.Center, projectile.velocity, ModContent.ProjectileType<IceGolemBeam>(), projectile.damage, projectile.knockBack, projectile.owner);
+                            Main.projectile[p].velocity = Vector2.Normalize(Main.npc[n].Center - projectile.Center) * 18f;
+                        }
+                    }
+                }
+                timer = 0;
             }
             if (projectile.ai[1] == 0f)
             {
@@ -351,7 +371,7 @@ namespace ExxoAvalonOrigins.Projectiles
                                 int num435 = ProjectileID.PygmySpear;
                                 if (projectile.type == ModContent.ProjectileType<IceGolemSummon>())
                                 {
-                                    num435 = ProjectileID.FrostBeam;
+                                    num435 = ModContent.ProjectileType<IceGolemBeam>();
                                 }
                                 var num436 = Projectile.NewProjectile(vector32.X, vector32.Y, num430, num432, num435, num434, (projectile.type == ModContent.ProjectileType<IceGolemSummon>()) ? 8f : projectile.knockBack, Main.myPlayer, 0f, 0f);
                                 Main.projectile[num436].friendly = true;
@@ -377,15 +397,6 @@ namespace ExxoAvalonOrigins.Projectiles
                     flag9 = false;
                     flag10 = false;
                 }
-                else if (projectile.type >= ProjectileID.VenomSpider && projectile.type <= ProjectileID.DangerousSpider)
-                {
-                    var num452 = (int)(projectile.Center.X / 16f);
-                    var num453 = (int)(projectile.Center.Y / 16f);
-                    if (Main.tile[num452, num453] != null && Main.tile[num452, num453].wall > 0)
-                    {
-                        flag9 = (flag10 = false);
-                    }
-                }
                 projectile.tileCollide = true;
                 var num454 = 0.08f;
                 var num455 = 6.5f;
@@ -398,10 +409,6 @@ namespace ExxoAvalonOrigins.Projectiles
                         num455 = Math.Abs(Main.player[projectile.owner].velocity.X) + Math.Abs(Main.player[projectile.owner].velocity.Y);
                         num454 = 0.3f;
                     }
-                }
-                if (projectile.type >= ProjectileID.VenomSpider && projectile.type <= ProjectileID.DangerousSpider)
-                {
-                    num454 *= 2f;
                 }
                 if (flag9)
                 {
