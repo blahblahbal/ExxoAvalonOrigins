@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
             Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.AncientWorkbench>();
+            item.createTile = ModContent.TileType<Tiles.Ancient.AncientWorkbench>();
             item.rare = ItemRarityID.Green;
             item.width = dims.Width;
             item.useTurn = true;

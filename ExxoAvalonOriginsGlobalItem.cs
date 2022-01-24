@@ -115,7 +115,6 @@ namespace ExxoAvalonOrigins
             else if (type == ModContent.ItemType<Items.Placeable.Wall.OrangeTiledWall>()) return ModContent.WallType<Walls.OrangeTiledUnsafe>();
             return 0;
         }
-
         public override void SetDefaults(Item item)
         {
             int[] to2000 =

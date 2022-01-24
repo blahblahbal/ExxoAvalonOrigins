@@ -45,24 +45,28 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 1:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = TileID.PlatinumBrick;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 2:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = (ushort)ModContent.TileType<Tiles.MoonplateBlock>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 3:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = TileID.MarbleBlock;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 4:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = (ushort)ModContent.TileType<Tiles.PearlstoneColumn>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
@@ -72,9 +76,11 @@ namespace ExxoAvalonOrigins.World.Structures
                                     if (confirmPlatforms == 0)
                                     {
                                         tile.active(false);
+                                        tile.liquid = 0;
                                         tile.halfBrick(false);
                                         tile.slope(0);
                                     }
+                                    tile.liquid = 0;
                                     tile.wall = WallID.BorealWood;
                                     break;
                                 case 6:
@@ -83,12 +89,14 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.AncientWorkbench>(), true, true, -1, 0);
+                                        WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.Ancient.AncientWorkbench>(), true, true, -1, 0);
                                     }
+                                    tile.liquid = 0;
                                     tile.wall = WallID.BorealWood;
                                     break;
                                 case 7:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = TileID.MarbleBlock;
                                     tile.slope(0);
                                     tile.halfBrick(true);
@@ -96,6 +104,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 8:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = TileID.MarbleBlock;
                                     tile.slope(0);
                                     tile.halfBrick(false);
@@ -103,12 +112,14 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 9:
                                     tile.active(true);
+                                    tile.liquid = 0;
                                     tile.type = (ushort)ModContent.TileType<Tiles.PearlstoneColumn>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 10:
                                     tile.active(false);
+                                    tile.liquid = 0;
                                     tile.wall = 0;
                                     tile.slope(0);
                                     tile.halfBrick(false);

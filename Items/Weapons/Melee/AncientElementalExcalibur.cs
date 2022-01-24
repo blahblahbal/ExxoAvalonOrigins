@@ -77,7 +77,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             recipe.AddIngredient(ModContent.ItemType<PyroscoricLongsword>());
             recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
             recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
+            recipe.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

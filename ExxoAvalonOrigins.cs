@@ -97,7 +97,14 @@ namespace ExxoAvalonOrigins
                     ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
                     ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Legs")
                 };
-
+                ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Texture2D[]
+                {
+                    mod.GetTexture("Items/Armor/SpectrumHelmet_Glow_Head"),
+                    mod.GetTexture("Items/Armor/SpectrumBreastplate_Body_Glow"),
+                    mod.GetTexture("Items/Armor/SpectrumBreastplate_Arms_Glow"),
+                    mod.GetTexture("Items/Armor/SpectrumBreastplate_FemaleBody_Glow"),
+                    mod.GetTexture("Items/Armor/SpectrumGreaves_Legs_Glow"),
+                };
                 ExxoAvalonOriginsModPlayer.originalMermanTextures = new Texture2D[]
                 {
                     Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Head_39"),
@@ -200,6 +207,7 @@ namespace ExxoAvalonOrigins
         {
             Tiles.CoolGemsparkBlock.StaticUpdate();
             Tiles.WarmGemsparkBlock.StaticUpdate();
+            Items.Armor.SpectrumHelmet.StaticUpdate();
         }
 
         public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)

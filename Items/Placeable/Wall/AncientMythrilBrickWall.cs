@@ -29,15 +29,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Items.Placeable.Tile.AncientMythrilBrick>());
-            r.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
+            r.AddIngredient(ModContent.ItemType<Tile.Ancient.AncientMythrilBrick>());
+            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
             r.SetResult(this, 4);
             r.AddRecipe();
 
             r = new ModRecipe(mod);
             r.AddIngredient(this, 4);
-            r.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
-            r.SetResult(ModContent.ItemType<Items.Placeable.Tile.AncientMythrilBrick>());
+            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
+            r.SetResult(ModContent.ItemType<Tile.Ancient.AncientMythrilBrick>());
             r.AddRecipe();
         }
     }

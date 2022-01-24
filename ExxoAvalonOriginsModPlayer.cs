@@ -127,6 +127,8 @@ namespace ExxoAvalonOrigins
         public static Texture2D[] lavaMermanTextures;
         public static Texture2D[] originalMermanTextures;
 
+        public static Texture2D[] spectrumArmorTextures;
+
         public bool armorStealth = false;
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
@@ -1979,130 +1981,202 @@ namespace ExxoAvalonOrigins
             }
         }
 
+        public static readonly PlayerLayer SpectrumArmorLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "SpectrumArmorLayer", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
+        {
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player p = drawInfo.drawPlayer;
+            Color rb = new Color(Items.Armor.SpectrumHelmet.R, Items.Armor.SpectrumHelmet.G, Items.Armor.SpectrumHelmet.B, drawInfo.bodyColor.A);
+            SpriteEffects spriteEffects = SpriteEffects.None;
+            if (p.gravDir == 1f)
+            {
+                if (p.direction == 1)
+                {
+                    spriteEffects = SpriteEffects.None;
+                }
+                else
+                {
+                    spriteEffects = SpriteEffects.FlipHorizontally;
+                }
+                if (!p.dead)
+                {
+                    p.legPosition.Y = 0f;
+                    p.headPosition.Y = 0f;
+                    p.bodyPosition.Y = 0f;
+                }
+            }
+            else
+            {
+                if (p.direction == 1)
+                {
+                    spriteEffects = SpriteEffects.FlipVertically;
+                }
+                else
+                {
+                    spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
+                }
+                if (!p.dead)
+                {
+                    p.legPosition.Y = 6f;
+                    p.headPosition.Y = 6f;
+                    p.bodyPosition.Y = 6f;
+                }
+            }
+            Vector2 vector2 = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.75f);
+            Vector2 origin = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.5f);
+            Vector2 vector3 = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.4f);
+            if (p.head == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumHelmet", EquipType.Head))
+            {
+                
+                var value = default(DrawData);
+                value = new DrawData(spectrumArmorTextures[0], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.headPosition + vector3, new Rectangle?(p.bodyFrame), rb, p.headRotation, vector3, 1f, spriteEffects, 0);
+                Main.playerDrawData.Add(value);
+            }
+            if (p.body == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumBreastplate", EquipType.Body))
+            {
+                Rectangle bodyFrame2 = p.bodyFrame;
+                int num55 = 0;
+                bodyFrame2.X += num55;
+                bodyFrame2.Width -= num55;
+                var value = default(DrawData);
+                value = new DrawData(spectrumArmorTextures[1], new Vector2((float)((int)(drawInfo.position.X - Main.screenPosition.X - (float)(p.bodyFrame.Width / 2) + (float)(p.width / 2)) + num55), (float)((int)(drawInfo.position.Y - Main.screenPosition.Y + (float)p.height - (float)p.bodyFrame.Height + 4f))) + p.bodyPosition + new Vector2((float)(p.bodyFrame.Width / 2), (float)(p.bodyFrame.Height / 2)), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
+                Main.playerDrawData.Add(value);
+            }
+            if (p.legs == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumGreaves", EquipType.Legs))
+            {
+                var value = new DrawData(spectrumArmorTextures[4], new Vector2((float)((int)(drawInfo.position.X - Main.screenPosition.X - (float)(p.legFrame.Width / 2) + (float)(p.width / 2))), (float)((int)(drawInfo.position.Y - Main.screenPosition.Y + (float)p.height - (float)p.legFrame.Height + 4f))) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
+                Main.playerDrawData.Add(value);
+            }
+        });
+
         // Large gem player layer logic
         public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo)
-                          {
-                              if (drawInfo.shadow != 0f)
-                              {
-                                  return;
-                              }
-                              Player drawPlayer = drawInfo.drawPlayer;
-                              bool[] ownedLargeGems = drawPlayer.Avalon().ownedLargeGems;
-                              if (ownedLargeGems.Length > 0)
-                              {
-                                  bool flag2 = false;
-                                  var value = default(DrawData);
-                                  float numGems = 0f;
-                                  for (int num23 = 0; num23 < 10; num23++)
-                                  {
-                                      if (ownedLargeGems[num23])
-                                      {
-                                          numGems += 1f;
-                                      }
-                                  }
-                                  float num25 = 1f - numGems * 0.06f;
-                                  float num26 = (numGems - 1f) * 4f;
-                                  switch ((int)numGems)
-                                  {
-                                      case 2:
-                                          num26 += 10f;
-                                          break;
+        {
+            if (drawInfo.shadow != 0f)
+            {
+                return;
+            }
+            Player drawPlayer = drawInfo.drawPlayer;
+            bool[] ownedLargeGems = drawPlayer.Avalon().ownedLargeGems;
+            if (ownedLargeGems.Length > 0)
+            {
+                bool flag2 = false;
+                var value = default(DrawData);
+                float numGems = 0f;
+                for (int num23 = 0; num23 < 10; num23++)
+                {
+                    if (ownedLargeGems[num23])
+                    {
+                        numGems += 1f;
+                    }
+                }
+                float num25 = 1f - numGems * 0.06f;
+                float num26 = (numGems - 1f) * 4f;
+                switch ((int)numGems)
+                {
+                    case 2:
+                        num26 += 10f;
+                        break;
 
-                                      case 3:
-                                          num26 += 8f;
-                                          break;
+                    case 3:
+                        num26 += 8f;
+                        break;
 
-                                      case 4:
-                                          num26 += 6f;
-                                          break;
+                    case 4:
+                        num26 += 6f;
+                        break;
 
-                                      case 5:
-                                          num26 += 6f;
-                                          break;
+                    case 5:
+                        num26 += 6f;
+                        break;
 
-                                      case 6:
-                                          num26 += 2f;
-                                          break;
+                    case 6:
+                        num26 += 2f;
+                        break;
 
-                                      case 7:
-                                          num26 += 0f;
-                                          break;
+                    case 7:
+                        num26 += 0f;
+                        break;
 
-                                      case 8:
-                                          num26 += 0f;
-                                          break;
+                    case 8:
+                        num26 += 0f;
+                        break;
 
-                                      case 9:
-                                          num26 += 0f;
-                                          break;
+                    case 9:
+                        num26 += 0f;
+                        break;
 
-                                      case 10:
-                                          num26 += 0f;
-                                          break;
-                                  }
-                                  float rotSpeed = drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
-                                  if (numGems > 0f)
-                                  {
-                                      float spacing = (float)Math.PI * 2f / numGems;
-                                      float num29 = 0f;
-                                      var ringSize = new Vector2(1.5f, 0.85f);
-                                      var list = new List<DrawData>();
-                                      for (int num30 = 0; num30 < 10; num30++)
-                                      {
-                                          if (!ownedLargeGems[num30])
-                                          {
-                                              num29 += 1f;
-                                              continue;
-                                          }
-                                          Vector2 value14 = (rotSpeed + spacing * (num30 - num29)).ToRotationVector2();
-                                          float num31 = num25;
-                                          if (flag2)
-                                          {
-                                              num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
-                                          }
+                    case 10:
+                        num26 += 0f;
+                        break;
+                }
+                float rotSpeed = drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
+                if (numGems > 0f)
+                {
+                    float spacing = (float)Math.PI * 2f / numGems;
+                    float num29 = 0f;
+                    var ringSize = new Vector2(1.5f, 0.85f);
+                    var list = new List<DrawData>();
+                    for (int num30 = 0; num30 < 10; num30++)
+                    {
+                        if (!ownedLargeGems[num30])
+                        {
+                            num29 += 1f;
+                            continue;
+                        }
+                        Vector2 value14 = (rotSpeed + spacing * (num30 - num29)).ToRotationVector2();
+                        float num31 = num25;
+                        if (flag2)
+                        {
+                            num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
+                        }
 
-                                          Texture2D texture2D4 = null;
-                                          if (num30 < 7)
-                                          {
-                                              texture2D4 = Main.gemTexture[num30];
-                                          }
-                                          else
-                                          {
-                                              switch (num30)
-                                              {
-                                                  case 7:
-                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeZircon>()).GetTexture();
-                                                      num31 *= 1.5f;
-                                                      break;
+                        Texture2D texture2D4 = null;
+                        if (num30 < 7)
+                        {
+                            texture2D4 = Main.gemTexture[num30];
+                        }
+                        else
+                        {
+                            switch (num30)
+                            {
+                                case 7:
+                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeZircon>()).GetTexture();
+                                    num31 *= 1.5f;
+                                    break;
 
-                                                  case 8:
-                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeTourmaline>()).GetTexture();
-                                                      num31 *= 1.5f;
-                                                      break;
+                                case 8:
+                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeTourmaline>()).GetTexture();
+                                    num31 *= 1.5f;
+                                    break;
 
-                                                  case 9:
-                                                      texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargePeridot>()).GetTexture();
-                                                      num31 *= 1.5f;
-                                                      break;
-                                              }
-                                          }
+                                case 9:
+                                    texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargePeridot>()).GetTexture();
+                                    num31 *= 1.5f;
+                                    break;
+                            }
+                        }
 
-                                          value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + drawPlayer.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, (Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
-                                          list.Add(value);
-                                      }
-                                      if (flag2)
-                                      {
-                                          list.Sort(DelegateMethods.CompareDrawSorterByYScale);
-                                      }
-                                      Main.playerDrawData.AddRange(list);
-                                  }
-                              }
-                          });
+                        value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + drawPlayer.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, (Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
+                        list.Add(value);
+                    }
+                    if (flag2)
+                    {
+                        list.Sort(DelegateMethods.CompareDrawSorterByYScale);
+                    }
+                    Main.playerDrawData.AddRange(list);
+                }
+            }
+        });
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
             LargeGemLayer.visible = true;
             layers.Add(LargeGemLayer);
+            SpectrumArmorLayer.visible = true;
+            layers.Add(SpectrumArmorLayer);
         }
 
         // Large gem drop on death logic
