@@ -2,13 +2,13 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Placeable.Tile
+namespace ExxoAvalonOrigins.Items.Placeable.Tile.Ancient
 {
-    public class AncientMythrilBrick : ModItem
+    public class AncientAdamantiteBrick : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ancient Mythril Brick");
+            DisplayName.SetDefault("Ancient Adamantite Brick");
         }
 
         public override void SetDefaults()
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             Rectangle dims = this.GetDims();
             item.autoReuse = true;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.AncientMythrilBrick>();
+            item.createTile = ModContent.TileType<Tiles.Ancient.AncientAdamantiteBrick>();
             item.width = dims.Width;
             item.useTime = 10;
             item.useTurn = true;
@@ -29,15 +29,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.MythrilBrick);
-            r.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
+            r.AddIngredient(ItemID.AdamantiteBeam);
+            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
             r.SetResult(this);
             r.AddRecipe();
 
             r = new ModRecipe(mod);
             r.AddIngredient(this);
-            r.AddTile(ModContent.TileType<Tiles.AncientWorkbench>());
-            r.SetResult(ItemID.MythrilBrick);
+            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
+            r.SetResult(ItemID.AdamantiteBeam);
             r.AddRecipe();
         }
     }

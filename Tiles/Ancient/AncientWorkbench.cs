@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace ExxoAvalonOrigins.Tiles
+namespace ExxoAvalonOrigins.Tiles.Ancient
 {
     public class AncientWorkbench : ModTile
     {

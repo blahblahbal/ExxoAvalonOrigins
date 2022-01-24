@@ -62,8 +62,8 @@ namespace ExxoAvalonOrigins.NPCs
         {
             base.Init();
             head = true;
-            minLength = 20;
-            maxLength = 30;
+            minLength = 10;
+            maxLength = 18;
         }
     }
 
@@ -166,8 +166,8 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void Init()
         {
-            minLength = 20;
-            maxLength = 30;
+            minLength = 10;
+            maxLength = 18;
             tailType = ModContent.NPCType<CaesiumSeekerTail>();
             bodyType = ModContent.NPCType<CaesiumSeekerBody>();
             headType = ModContent.NPCType<CaesiumSeekerHead>();
