@@ -522,11 +522,11 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public override void NPCLoot()
         {
-            if (!ExxoAvalonOriginsGlobalNPC.stoppedArmageddon)
+            if (!ExxoAvalonOriginsWorld.stoppedArmageddon)
             {
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateSkyFortress();
+                ExxoAvalonOriginsWorld.stoppedArmageddon = true;
             }
-            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = true;
             if (Main.expertMode)
             {
                 npc.DropBossBags();

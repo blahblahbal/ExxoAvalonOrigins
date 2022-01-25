@@ -31,6 +31,38 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(0, 1, 0, 0);
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.IceBlade);
+            recipe.AddIngredient(ItemID.Starfury);
+            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
+            recipe.AddIngredient(ModContent.ItemType<RhodiumGreatsword>());
+            recipe.AddIngredient(ModContent.ItemType<MinersSword>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.IceBlade);
+            recipe.AddIngredient(ItemID.Starfury);
+            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
+            recipe.AddIngredient(ModContent.ItemType<OsmiumGreatsword>());
+            recipe.AddIngredient(ModContent.ItemType<MinersSword>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.IceBlade);
+            recipe.AddIngredient(ItemID.Starfury);
+            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
+            recipe.AddIngredient(ModContent.ItemType<IridiumGreatsword>());
+            recipe.AddIngredient(ModContent.ItemType<MinersSword>());
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
             if (Main.rand.Next(5) == 0)

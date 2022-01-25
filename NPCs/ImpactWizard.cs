@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return Main.hardMode && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && spawnInfo.player.ZoneDungeon ? 0.2f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return Main.hardMode && ExxoAvalonOriginsWorld.stoppedArmageddon && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && spawnInfo.player.ZoneDungeon ? 0.2f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
         public override void AI()
         {

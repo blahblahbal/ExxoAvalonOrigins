@@ -66,8 +66,9 @@ namespace ExxoAvalonOrigins
         public static bool downedPhantasm = false;
         public static bool downedDragonLord = false;
         public static bool downedMechasting = false;
-        public static bool downedOblivion = false;
+        public static bool oblivionDead = false;
         public static bool downedKingSting = false;
+        public static bool stoppedArmageddon = false;
         public static int specialWireHitCount = 0;
 
         #region WorldGen Variants
@@ -1191,13 +1192,13 @@ namespace ExxoAvalonOrigins
             flags[4] = downedDesertBeak;
             flags[5] = downedDragonLord;
             flags[6] = downedMechasting;
-            flags[7] = downedOblivion;
+            flags[7] = oblivionDead;
             writer.Write(flags);
             writer.WriteVector2(LoK);
             writer.Write(shmOreTier1);
             writer.Write(shmOreTier2);
             writer.Write(hallowAltarCount);
-            writer.Write(ExxoAvalonOriginsGlobalNPC.stoppedArmageddon);
+            writer.Write(ExxoAvalonOriginsWorld.stoppedArmageddon);
             writer.Write(specialWireHitCount);
         }
 
@@ -1210,13 +1211,13 @@ namespace ExxoAvalonOrigins
             downedPhantasm = flags[1];
             downedDragonLord = flags[5];
             downedMechasting = flags[6];
-            downedOblivion = flags[7];
+            oblivionDead = flags[7];
             contagion = flags[2];
             LoK = reader.ReadVector2();
             shmOreTier1 = reader.ReadInt32();
             shmOreTier2 = reader.ReadInt32();
             hallowAltarCount = reader.ReadInt32();
-            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = reader.ReadBoolean();
+            ExxoAvalonOriginsWorld.stoppedArmageddon = reader.ReadBoolean();
             specialWireHitCount = reader.ReadInt32();
         }
 
@@ -1665,7 +1666,7 @@ namespace ExxoAvalonOrigins
                     #endregion
 
                     #region crystal fruit and giant crystal spawning
-                    if (Main.tile[num5, num6].type == ModContent.TileType<CrystalStone>() && SuperHardmode && downedOblivion && num6 > Main.rockLayer)
+                    if (Main.tile[num5, num6].type == ModContent.TileType<CrystalStone>() && SuperHardmode && oblivionDead && num6 > Main.rockLayer)
                     {
                         if (WorldGen.genRand.Next(50) == 0 && Main.tile[num5, num9].liquid == 0)
                         {
@@ -2156,7 +2157,7 @@ namespace ExxoAvalonOrigins
                     retroGenned = true;
                 }
             }
-            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && SuperHardmode && Main.hardMode)
+            if (Main.time == 16200.0 && Main.rand.Next(4) == 0 && NPC.downedGolemBoss && ExxoAvalonOriginsWorld.stoppedArmageddon && SuperHardmode && Main.hardMode)
             {
                 DropComet(ModContent.TileType<Tiles.Ores.HydrolythOre>());
             }
@@ -2166,14 +2167,14 @@ namespace ExxoAvalonOrigins
         public override void PreWorldGen()
         {
             SuperHardmode = false;
-            ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = false;
+            stoppedArmageddon = false;
             ExxoAvalonOriginsGlobalNPC.oblivionDead = false;
             ExxoAvalonOriginsGlobalNPC.oblivionTimes = 0;
             downedBacteriumPrime = false;
             downedDesertBeak = false;
             downedDragonLord = false;
             downedMechasting = false;
-            downedOblivion = false;
+            oblivionDead = false;
             downedPhantasm = false;
             downedKingSting = false;
             hiddenTemplePos = Vector2.Zero;
@@ -3362,7 +3363,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:DownedPhantasm", downedPhantasm },
                 { "ExxoAvalonOrigins:DownedDragonLord", downedDragonLord },
                 { "ExxoAvalonOrigins:DownedMechasting", downedMechasting },
-                { "ExxoAvalonOrigins:DownedOblivion", downedOblivion },
+                { "ExxoAvalonOrigins:DownedOblivion", oblivionDead },
                 { "ExxoAvalonOrigins:LibraryofKnowledge", LoK },
                 { "ExxoAvalonOrigins:Contagion", contagion },
                 { "ExxoAvalonOrigins:DungeonSide", dungeonSide },
@@ -3372,7 +3373,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HallowAltarCount", hallowAltarCount },
                 { "ExxoAvalonOrigins:JungleType", (int)jungleMenuSelection },
                 { "ExxoAvalonOrigins:WorldDarkMatterTiles", WorldDarkMatterTiles },
-                { "ExxoAvalonOrigins:StoppedArmageddon", ExxoAvalonOriginsGlobalNPC.stoppedArmageddon },
+                { "ExxoAvalonOrigins:StoppedArmageddon", ExxoAvalonOriginsWorld.stoppedArmageddon },
                 { "ExxoAvalonOrigins:SpecialWireHitCount", specialWireHitCount}
             };
 
@@ -3425,7 +3426,7 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:DownedOblivion"))
             {
-                downedOblivion = tag.Get<bool>("ExxoAvalonOrigins:DownedOblivion");
+                oblivionDead = tag.Get<bool>("ExxoAvalonOrigins:DownedOblivion");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:LibraryofKnowledge"))
             {
@@ -3473,7 +3474,7 @@ namespace ExxoAvalonOrigins
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:StoppedArmageddon"))
             {
-                ExxoAvalonOriginsGlobalNPC.stoppedArmageddon = tag.Get<bool>("ExxoAvalonOrigins:StoppedArmageddon");
+                ExxoAvalonOriginsWorld.stoppedArmageddon = tag.Get<bool>("ExxoAvalonOrigins:StoppedArmageddon");
             }
             if (tag.ContainsKey("ExxoAvalonOrigins:SpecialWireHitCount"))
             {

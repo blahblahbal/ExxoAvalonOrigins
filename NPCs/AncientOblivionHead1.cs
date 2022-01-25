@@ -294,9 +294,9 @@ namespace ExxoAvalonOrigins.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
             }
 
-            if (!ExxoAvalonOriginsWorld.downedOblivion)
+            if (!ExxoAvalonOriginsWorld.oblivionDead)
             {
-                ExxoAvalonOriginsWorld.downedOblivion = true;
+                ExxoAvalonOriginsWorld.oblivionDead = true;
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateCrystalMines();
             }
         }

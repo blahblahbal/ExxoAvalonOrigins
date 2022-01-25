@@ -25,11 +25,9 @@ namespace ExxoAvalonOrigins
     public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
     {
         public static float endoSpawnRate = 0.25f;
-        public static bool stoppedArmageddon = false;
         public static bool oblivionDead = false;
         public static int oblivionTimes = 0;
-        public static bool downedPhantasm = false;
-        public static bool initialised = false;
+        public static bool initialized = false;
         public static List<int> slimes = new List<int>();
         public static List<int> toxic = new List<int>();
         public static List<int> undead = new List<int>();
@@ -902,10 +900,10 @@ IL_162:
 
         public override void NPCLoot(NPC npc)
         {
-            if (!initialised)
+            if (!initialized)
             {
                 InitializeNPCGroups();
-                initialised = true;
+                initialized = true;
             }
             int maxValue = 100;
             int maxValue3 = 1000;
@@ -914,6 +912,108 @@ IL_162:
                 maxValue = 50;
                 maxValue3 = 500;
             }
+            #region luck potion stuff
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().lucky)
+            {
+                NPCLoader.blockLoot.Add(ItemID.HallowedKey);
+                NPCLoader.blockLoot.Add(ItemID.JungleKey);
+                NPCLoader.blockLoot.Add(ItemID.FrozenKey);
+                NPCLoader.blockLoot.Add(ItemID.CorruptionKey);
+                NPCLoader.blockLoot.Add(ItemID.CrimsonKey);
+                NPCLoader.blockLoot.Add(ItemID.CoinGun);
+                NPCLoader.blockLoot.Add(ItemID.MechanicalEye);
+                NPCLoader.blockLoot.Add(ItemID.MechanicalSkull);
+                NPCLoader.blockLoot.Add(ItemID.MechanicalWorm);
+                NPCLoader.blockLoot.Add(ItemID.LuckyCoin);
+                NPCLoader.blockLoot.Add(ItemID.DiscountCard);
+                NPCLoader.blockLoot.Add(ItemID.PirateStaff);
+                NPCLoader.blockLoot.Add(ItemID.GoldRing);
+
+                if (Main.hardMode)
+                {
+                    if (!NPC.downedMechBoss1 && Main.rand.Next(1250) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.MechanicalWorm);
+                    }
+                    if (!NPC.downedMechBoss2 && Main.rand.Next(1250) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.MechanicalEye);
+                    }
+                    if (!NPC.downedMechBoss3 && Main.rand.Next(1250) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.MechanicalSkull);
+                    }
+                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneJungle)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.JungleKey);
+                    }
+                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneHoly)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.HallowedKey);
+                    }
+                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneCorrupt)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.CorruptionKey);
+                    }
+                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneCrimson)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.CrimsonKey);
+                    }
+                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneSnow)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.FrozenKey);
+                    }
+                }
+
+                if (npc.type >= 212 && npc.type <= 215)
+                {
+                    if (Main.rand.Next(4000) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.CoinGun, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(2000) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.LuckyCoin, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(1000) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.DiscountCard, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(1000) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.PirateStaff, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(500) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.GoldRing, prefixGiven: -1);
+                    }
+                }
+                if (npc.type == 216)
+                {
+                    if (Main.rand.Next(1000) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.CoinGun, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(500) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.LuckyCoin, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(250) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.DiscountCard, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(250) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.PirateStaff, prefixGiven: -1);
+                    }
+                    if (Main.rand.Next(125) == 0)
+                    {
+                        Item.NewItem(npc.getRect(), ItemID.GoldRing, prefixGiven: -1);
+                    }
+                }
+            }
+            #endregion
+            #region blocking imk tokens after phantasm
             if (imkCompat && ExxoAvalonOriginsWorld.downedPhantasm)
             {
                 Mod imk = ModLoader.GetMod("imkSushisMod");
@@ -924,6 +1024,7 @@ IL_162:
                     NPCLoader.blockLoot.Add(imk.ItemType("LootHardmodeToken"));
                 }
             }
+            #endregion
             if (npc.type == NPCID.WallofFlesh && !Main.expertMode)
             {
                 NPCLoader.blockLoot.Add(ItemID.RangerEmblem);
@@ -932,6 +1033,7 @@ IL_162:
                 NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NullEmblem>());
             }
+            #region avalon tokens dropping
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
                 if (Main.rand.Next(15) == 0 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneOutpost)
@@ -942,7 +1044,7 @@ IL_162:
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.TropicsToken>());
                 }
-                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !stoppedArmageddon)
+                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !ExxoAvalonOriginsWorld.stoppedArmageddon)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.SuperhardmodeToken>());
                 }
@@ -954,7 +1056,7 @@ IL_162:
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.MechastingToken>());
                 }
-                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && stoppedArmageddon && !ExxoAvalonOriginsWorld.downedMechasting)
+                if (Main.rand.Next(15) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && ExxoAvalonOriginsWorld.stoppedArmageddon && !ExxoAvalonOriginsWorld.downedMechasting)
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
                 }
@@ -963,7 +1065,7 @@ IL_162:
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.ContagionToken>());
                 }
             }
-
+            #endregion
             if (ExxoAvalonOriginsWorld.downedDesertBeak && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDesert && Main.rand.Next(125) == 0)
             {
                 int item = Main.rand.Next(3);
@@ -987,11 +1089,6 @@ IL_162:
             }
             if (npc.type == NPCID.Golem && !Main.expertMode)
             {
-                //if (Main.rand.Next(7) == 0)
-                //{
-                //    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2110, 1, false, -1, false);
-                //}
-                //int num14 = Main.rand.Next(6);
                 if (!NPC.downedGolemBoss)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Picksaw, 1, false, -1, false);
@@ -1042,6 +1139,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CobaltShield, 1, false, -2, false);
             }
+            #region random potions
             if (Main.rand.Next(600) == 0 && npc.lifeMax > 5 && !npc.townNPC)
             {
                 int potionToDrop = 0;
@@ -1116,11 +1214,12 @@ IL_162:
                 }
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, potionToDrop, 1, false, 0, false);
             }
+            #endregion
             if (Main.eclipse && Main.rand.Next(90) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SolarFragment>());
             }
-            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneJungle && npc.lifeMax >= 100 && Main.rand.Next(9) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && ExxoAvalonOriginsGlobalNPC.stoppedArmageddon && NPC.downedGolemBoss)
+            if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneJungle && npc.lifeMax >= 100 && Main.rand.Next(9) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && ExxoAvalonOriginsWorld.stoppedArmageddon && NPC.downedGolemBoss)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SouloftheJungle>());
             }
@@ -1182,6 +1281,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RoyalGel, 1, false, -2);
             }
+            #region rock, pointing laser, alien device
             if (Main.rand.Next(600) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Rock>());
@@ -1194,6 +1294,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AlienDevice>(), 1, false, 0, false);
             }
+            #endregion
             if ((npc.type == NPCID.Clinger || npc.type == NPCID.Spazmatism) && Main.rand.Next(maxValue) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GreekExtinguisher>(), 1, false, -2);
@@ -1214,6 +1315,11 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Sunfury, 1, false, -2, false);
             }
+            if (undead.Contains(npc.type) && Main.hardMode && Main.rand.Next(550) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<UndeadTalisman>(), 1, false, -1, false);
+            }
+            #region shards
             if (toxic.Contains(npc.type))
             {
                 if (Main.hardMode)
@@ -1227,10 +1333,6 @@ IL_162:
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ToxinShard>(), 1, false, 0, false);
                 }
-            }
-            if (undead.Contains(npc.type) && Main.hardMode && Main.rand.Next(550) == 0)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<UndeadTalisman>(), 1, false, -1, false);
             }
             if (undead.Contains(npc.type))
             {
@@ -1344,6 +1446,7 @@ IL_162:
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ArcaneShard>(), 1, false, 0, false);
                 }
             }
+            #endregion
             if (npc.type == NPCID.Harpy && Main.rand.Next(6) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RubybeadHerb>(), 1, false, 0, false);

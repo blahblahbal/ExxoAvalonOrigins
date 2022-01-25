@@ -519,7 +519,7 @@ namespace ExxoAvalonOrigins
                     "Use [i:" + ModContent.ItemType<BacterialTotem>() + "] or break three Snot Orbs in a Contagion ring",
                     "Bacterium Prime melts back into the ick",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/BacteriumPrimeBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/BacteriumPrime_Head_Boss",
+                    "ExxoAvalonOrigins/NPCs/Bosses/BacteriumPrime_Head_Boss",
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.contagion)
                     );
 
@@ -541,13 +541,13 @@ namespace ExxoAvalonOrigins
                     new List<int> {ItemID.SandBlock,
                         ModContent.ItemType<DesertFeather>(),
                         ModContent.ItemType<RhodiumOre>(),
-                        ModContent.ItemType<OsmiumBar>(),
-                        ModContent.ItemType<IridiumBar>(),
+                        ModContent.ItemType<OsmiumOre>(),
+                        ModContent.ItemType<IridiumOre>(),
                         ModContent.ItemType<TomeoftheDistantPast>()},
                     "Use [i:" + ModContent.ItemType<TheBeak>() + "] in the desert",
                     "Desert Beak has retreated into the sky",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/DesertBeakBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/DesertBeak_Head_Boss"
+                    "ExxoAvalonOrigins/NPCs/Bosses/DesertBeak_Head_Boss"
                     );
 
                 #endregion DesertBeak
@@ -571,7 +571,7 @@ namespace ExxoAvalonOrigins
                     "Use an [i:" + ModContent.ItemType<EctoplasmicBeacon>() + "] on the Library Alter in the Library of Knowledge",
                     "The Phantasm fades away",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/PhantasmBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/Phantasm_Head_Boss"
+                    "ExxoAvalonOrigins/NPCs/Bosses/Phantasm_Head_Boss"
                     );
 
                 #endregion Phantasm
@@ -595,7 +595,7 @@ namespace ExxoAvalonOrigins
                     "Throw a [i:" + ModContent.ItemType<HellboundRemote>() + "] into lava",
                     "The Wall of Steel hisses steam and sinks into the lava",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/WallofSteelBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/WallofSteel_Head_Boss"
+                    "ExxoAvalonOrigins/NPCs/Bosses/WallofSteel_Head_Boss"
                     );
 
                 #endregion Wall of Steel
@@ -609,16 +609,15 @@ namespace ExxoAvalonOrigins
                     ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>(),
                     this,
                     "Armageddon Slime",
-                    (Func<bool>)(() => ExxoAvalonOriginsGlobalNPC.stoppedArmageddon),
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.stoppedArmageddon),
                     ModContent.ItemType<DarkMatterChunk>(),
                     new List<int> {ModContent.ItemType<ArmageddonSlimeTrophy>(),
                         ModContent.ItemType<ArmageddonSlimeMask>()},
                     new List<int> { ModContent.ItemType<DarkMatterSoilBlock>() },
                     "Use a [i:" + ModContent.ItemType<DarkMatterChunk>() + "]",
-                    "The Armageddon Slime melts into the earth",
+                    "Armageddon Slime melts into the earth",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/ArmageddonSlimeBossChecklist",
-                    //"ExxoAvalonOrigins/NPCs/ArmageddonSlime_Head_Boss"
-                    "ExxoAvalonOrigins/Items/ArmageddonSlimeMask"
+                    "ExxoAvalonOrigins/NPCs/Bosses/ArmageddonSlime_Head_Boss"
                     );
 
                 #endregion Armageddon Slime
@@ -635,12 +634,17 @@ namespace ExxoAvalonOrigins
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDragonLord),
                     ModContent.ItemType<DragonSpine>(),
                     new List<int> { ModContent.ItemType<DragonLordTrophy>() },
-                    new List<int> { ModContent.ItemType<DragonScale>() },
+                    new List<int> { ModContent.ItemType<DragonScale>(),
+                                    ModContent.ItemType<MagmafrostBolt>(),
+                                    ModContent.ItemType<QuadroCannon>(),
+                                    ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>(),
+                                    ModContent.ItemType<DragonStone>(),
+                                    ModContent.ItemType<Items.Weapons.Melee.Infernasword>()
+                    },
                     "Use a [i:" + ModContent.ItemType<DragonSpine>() + "]",
                     "The Dragon Lord flies away",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/DragonLordBossChecklist",
-                    //"ExxoAvalonOrigins/NPCs/ArmageddonSlime_Head_Boss"
-                    "ExxoAvalonOrigins/NPCs/DragonLordHead"
+                    "ExxoAvalonOrigins/NPCs/DragonLordHead_Head_Boss"
                     );
 
                 #endregion Dragon Lord
@@ -657,9 +661,12 @@ namespace ExxoAvalonOrigins
                     (Func<bool>)(() => ExxoAvalonOriginsWorld.downedMechasting),
                     ModContent.ItemType<MechanicalWasp>(),
                     new List<int> { ModContent.ItemType<MechastingTrophy>() },
-                    new List<int> { ModContent.ItemType<SoulofDelight>() },
+                    new List<int> { ModContent.ItemType<SoulofDelight>(),
+                                    ModContent.ItemType<Mechazapinator>(),
+                                    ModContent.ItemType<HeatSeeker>()
+                    },
                     "Use a [i:" + ModContent.ItemType<MechanicalWasp>() + "]",
-                    "The Mechasting retreats to it's mechanical hive",
+                    "Mechasting retreats to its mechanical hive",
                     "ExxoAvalonOrigins/Sprites/BossChecklist/MechastingBossChecklist"
                     //"ExxoAvalonOrigins/NPCs/Mechasting_Head_Boss"
                     );
@@ -675,7 +682,7 @@ namespace ExxoAvalonOrigins
                     ModContent.NPCType<NPCs.AncientOblivionHead1>(),
                     this,
                     "Oblivion",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedOblivion),
+                    (Func<bool>)(() => ExxoAvalonOriginsWorld.oblivionDead),
                     ModContent.ItemType<EyeofOblivionAncient>(),
                     new List<int> { ModContent.ItemType<OblivionTrophy>() },
                     new List<int> {ModContent.ItemType<VictoryPiece>(),

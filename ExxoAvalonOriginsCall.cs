@@ -286,7 +286,7 @@ namespace ExxoAvalonOrigins
                     case "isdownedarma":
                     case "isdownedarmageddon":
                     case "isdownedarmageddonslime":
-                        return ExxoAvalonOriginsGlobalNPC.stoppedArmageddon;
+                        return ExxoAvalonOriginsWorld.stoppedArmageddon;
                     case "isdownedlord":
                     case "isdowneddragon":
                     case "isdowneddragonlord":
@@ -294,7 +294,7 @@ namespace ExxoAvalonOrigins
                     case "isdownedmechasting":
                         return ExxoAvalonOriginsWorld.downedMechasting;
                     case "isdownedoblivion":
-                        return ExxoAvalonOriginsWorld.downedOblivion;
+                        return ExxoAvalonOriginsWorld.oblivionDead;
                     #endregion
 
                     default:

@@ -1112,33 +1112,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.Starfury);
-            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
-            recipe.AddIngredient(ModContent.ItemType<RhodiumGreatsword>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.AeonsEternity>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.Starfury);
-            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
-            recipe.AddIngredient(ModContent.ItemType<OsmiumGreatsword>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.AeonsEternity>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.Starfury);
-            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
-            recipe.AddIngredient(ModContent.ItemType<IridiumGreatsword>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.AeonsEternity>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BlueMoon);
             recipe.AddIngredient(ItemID.Sunfury);
             recipe.AddIngredient(ItemID.BallOHurt);
