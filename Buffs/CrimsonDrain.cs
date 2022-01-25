@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Crimson Drain");
+            DisplayName.SetDefault("Aura Drain");
             Description.SetDefault("On-screen enemies take damage");
         }
 

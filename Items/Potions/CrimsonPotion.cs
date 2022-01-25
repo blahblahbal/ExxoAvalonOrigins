@@ -9,8 +9,8 @@ namespace ExxoAvalonOrigins.Items.Potions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Crimson Potion");
-            Tooltip.SetDefault("Enemies within a ten tile radius take damage");
+            DisplayName.SetDefault("Aura Potion");
+            Tooltip.SetDefault("On-screen enemies take damage");
         }
 
         public override void SetDefaults()

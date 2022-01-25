@@ -1041,7 +1041,7 @@ namespace ExxoAvalonOrigins
 
         public override bool UseItem(Item item, Player player)
         {
-            if (player.Avalon().cloudGloves)
+            if (player.Avalon().cloudGloves && player.whoAmI == Main.myPlayer)
             {
                 bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX &&
                     (player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX &&

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Advanced Crimson Drain");
+            DisplayName.SetDefault("Advanced Aura Drain");
             Description.SetDefault("On-screen enemies take damage");
         }
 

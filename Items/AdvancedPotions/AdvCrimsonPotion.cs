@@ -9,8 +9,8 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Crimson Elixir");
-            Tooltip.SetDefault("Enemies within a forty tile radius take damage");
+            DisplayName.SetDefault("Aura Elixir");
+            Tooltip.SetDefault("On-screen enemies take damage");
         }
 
         public override void SetDefaults()

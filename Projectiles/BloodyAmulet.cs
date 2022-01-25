@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon is rising..."), 255, 50f, 255f, 130f, 0);
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50, 255, 130));
                 }
                 projectile.active = false;
                 return;

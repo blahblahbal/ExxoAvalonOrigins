@@ -8,7 +8,7 @@ using Terraria.World.Generation;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
-    class ReplaceChestItems
+    public class ReplaceChestItems
     {
         public static void Method(GenerationProgress progress)
         {
@@ -28,6 +28,11 @@ namespace ExxoAvalonOrigins.World.Passes
                             if (i != null && i.type == ItemID.Boomstick) i.SetDefaults(ModContent.ItemType<Thompson>());
                         }
                         if (i != null && i.type == ItemID.StaffofRegrowth && WorldGen.genRand.Next(2) == 0) i.SetDefaults(ModContent.ItemType<FlowerofTheJungle>());
+                        if (i != null)
+                        {
+                            if (i.type == ItemID.BreathingReed && WorldGen.genRand.Next(3) == 0) i.SetDefaults(ModContent.ItemType<Items.Tools.MagicConch>());
+                            if (i.type == ItemID.Flipper && WorldGen.genRand.Next(4) == 0) i.SetDefaults(ModContent.ItemType<Items.Tools.MagicConch>());
+                        }
                     }
                 }
             }
