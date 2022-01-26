@@ -8,7 +8,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI.Herbology
 {
-    internal class HerbologyState : ExxoUIState
+    internal class HerbologyUIState : ExxoUIState
     {
         public ExxoUIDraggablePanel MainPanel;
         private HerbologyUIStats stats;
