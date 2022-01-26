@@ -13,17 +13,17 @@ namespace ExxoAvalonOrigins.UI
 
         private Texture2D dividerTexture;
         private Texture2D innerPanelTexture;
-        private UIImage worldIcon;
-        private UIText UIText;
+        private readonly UIImage worldIcon;
+        private readonly UIText UIText;
 
-        private string itemName;
+        private readonly string itemName;
 
         public ListItem(string name, Texture2D tex, UIElement.MouseEvent submitEvent)
         {
             itemName = name;
             LoadTextures();
 
-            UIElement mouseOverBox = new UIElement();
+            var mouseOverBox = new UIElement();
             mouseOverBox.Width.Set(0f, 1f);
             mouseOverBox.Height.Set(0f, 1f);
             mouseOverBox.OnMouseOver += delegate
@@ -105,8 +105,8 @@ namespace ExxoAvalonOrigins.UI
             CalculatedStyle innerDimensions = GetInnerDimensions();
             CalculatedStyle dimensions = worldIcon.GetDimensions();
             float num = dimensions.X + dimensions.Width;
-            Vector2 vector = new Vector2(num + 6f, innerDimensions.Y + (innerDimensions.Height * 0.25f));
-            this.DrawPanel(spriteBatch, vector, innerDimensions.Width - dimensions.Width - 12f);
+            var vector = new Vector2(num + 6f, innerDimensions.Y + (innerDimensions.Height * 0.25f));
+            DrawPanel(spriteBatch, vector, innerDimensions.Width - dimensions.Width - 12f);
             spriteBatch.Draw(dividerTexture, new Vector2(num, vector.Y + innerPanelTexture.Height + 5), null, Color.White, 0f, Vector2.Zero, new Vector2((GetDimensions().X + base.GetDimensions().Width - num) / 8f, 1f), SpriteEffects.None, 0f);
         }
     }

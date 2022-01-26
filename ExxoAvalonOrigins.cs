@@ -54,7 +54,8 @@ namespace ExxoAvalonOrigins
         private UserInterface herbologyUserInterface;
         private StaminaBar staminaBar;
         private TomeSlot tomeSlot;
-        private HerbologyBenchUI herbology;
+        private UI.Herbology.HerbologyUIState herbology;
+        public bool CheckPointer = true;
 
         // Reference to the main instance of the mod
         public static ExxoAvalonOrigins mod { get; private set; }
@@ -67,6 +68,8 @@ namespace ExxoAvalonOrigins
         }
         public override void Load()
         {
+            Hooks.HooksManager.ApplyHooks();
+
             if (Main.netMode != NetmodeID.Server)
             {
                 Mod imkTokensMod = ModLoader.GetMod("imkSushisMod");
@@ -165,18 +168,14 @@ namespace ExxoAvalonOrigins
                 tomeSlot.Activate();
                 tomeSlotUserInterface = new UserInterface();
                 tomeSlotUserInterface.SetState(tomeSlot);
-                herbology = new HerbologyBenchUI();
-                herbology.Activate();
+                herbology = new UI.Herbology.HerbologyUIState();
                 herbologyUserInterface = new UserInterface();
-                herbologyUserInterface.SetState(herbology);
                 staminaInterface = new UserInterface();
                 staminaBar = new StaminaBar();
                 staminaInterface.SetState(staminaBar);
 
                 Main.chTitle = true;
             }
-
-            Hooks.HooksManager.ApplyHooks();
 
             //AddAvalonAlts();
         }
@@ -704,39 +703,58 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
-            if (MouseTextIndex != -1)
+            layers.Insert(0, new LegacyGameInterfaceLayer(
+                "ExxoAvalonOrigins: Update Interfaces",
+                delegate
+                {
+                    if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb && Main.playerInventory && herbologyUserInterface.CurrentState == null)
+                    {
+                        herbologyUserInterface.SetState(herbology);
+                        typeof(UserInterface).GetField("_clickDisabledTimeRemaining", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(herbologyUserInterface, 10);
+                    }
+                    else if (!(Main.playerInventory && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) && herbologyUserInterface.CurrentState != null)
+                    {
+                        herbologyUserInterface.SetState(null);
+                    }
+
+                    herbologyUserInterface.Update(Main._drawInterfaceGameTime);
+                    staminaInterface.Update(Main._drawInterfaceGameTime);
+                    return true;
+                },
+                InterfaceScaleType.UI)
+            );
+
+            int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Radial Hotbars"));
+            if (inventoryIndex >= 0)
             {
-                layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(
+                layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
                     "ExxoAvalonOrigins: Tome Slot",
                     delegate
                     {
-                        //if (!Main.mouseItem.IsAir && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome) Main.EquipPage = 2;
                         tomeSlot.DrawTomes(Main.spriteBatch);
                         return true;
                     },
                     InterfaceScaleType.UI)
                 );
-                layers.Insert(MouseTextIndex + 1, new LegacyGameInterfaceLayer(
+
+                layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
                     "ExxoAvalonOrigins: Herbology Bench",
                     delegate
                     {
-                        //if (!Main.mouseItem.IsAir && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome) Main.EquipPage = 2;
-                        herbology.DrawHerbologyInterface(Main.spriteBatch);
+                        herbologyUserInterface.DrawWithoutUpdate(Main.spriteBatch);
                         return true;
                     },
                     InterfaceScaleType.UI)
                 );
             }
 
-            int resourceBarIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
-            if (resourceBarIndex != -1)
+            int resourceBarsIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
+            if (resourceBarsIndex >= 0)
             {
-                layers.Insert(resourceBarIndex + 1, new LegacyGameInterfaceLayer(
+                layers.Insert(resourceBarsIndex, new LegacyGameInterfaceLayer(
                     "ExxoAvalonOrigins: Stamina Bar",
                     delegate
                     {
-                        staminaInterface.Update(Main._drawInterfaceGameTime);
                         staminaInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                         return true;
                     },

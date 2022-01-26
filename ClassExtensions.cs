@@ -11,6 +11,8 @@ using ReLogic.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace ExxoAvalonOrigins
 {
@@ -214,6 +216,45 @@ namespace ExxoAvalonOrigins
                     return ModContent.ItemType<IridiumOre>();
                 default:
                     return -1;
+            }
+        }
+
+        // Used to draw float coordinates to nearest pixel coordinates to avoid blurry rendering of textures
+        public static Vector2 ToNearestPixel(this Vector2 vector)
+        {
+            return new Vector2((int)vector.X, (int)vector.Y);
+        }
+
+        public static void DrawWithoutUpdate(this UserInterface userInterface, SpriteBatch spriteBatch)
+        {
+            if (userInterface.CurrentState != null)
+            {
+                userInterface.Recalculate();
+                userInterface.CurrentState.Draw(spriteBatch);
+            }
+        }
+
+        public static TagCompound Save<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)
+        {
+            TKey[] keys = dictionary.Keys.ToArray();
+            TValue[] values = dictionary.Values.ToArray();
+            var tag = new TagCompound();
+            tag.Set("keys", keys);
+            tag.Set("values", values);
+            return tag;
+        }
+
+        public static void Load<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TagCompound tag)
+        {
+            if (tag.ContainsKey("keys") && tag.ContainsKey("values"))
+            {
+                TKey[] keys = tag.Get<TKey[]>("keys");
+                TValue[] values = tag.Get<TValue[]>("values");
+
+                for (int i = 0; i < keys.Length; i++)
+                {
+                    dictionary[keys[i]] = values[i];
+                }
             }
         }
     }

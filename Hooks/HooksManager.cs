@@ -67,6 +67,16 @@
             // Character list stamina stat addition
             IL.Terraria.GameContent.UI.Elements.UICharacterListItem.DrawSelf += UIChanges.ILUICharacterListItemDrawSelf;
             IL.Terraria.GameContent.UI.Elements.UICharacterListItem.ctor += UIChanges.ILUICharacterListItemCtor;
+            On.Terraria.Main.DrawInterface += UIChanges.OnMainDrawInterface;
+            IL.Terraria.UI.UserInterface.Update += UIChanges.ILUserInterfaceUpdate;
+            IL.Terraria.UI.UIElement.GetElementAt += UIChanges.ILUIElementGetElementAt;
+            IL.Terraria.UI.UIElement.Recalculate += UIChanges.ILUIElementRecalculate;
+            IL.Terraria.UI.UIElement.GetClippingRectangle += UIChanges.ILUIElementGetClippingRectangle;
+            IL.Terraria.UI.UIElement.Draw += UIChanges.ILUIElementDraw;
+            On.Terraria.UI.UIElement.Remove += UIChanges.OnUIElementRemove;
+            On.Terraria.Main.DrawInventory += UIChanges.OnMainDrawInventory;
+            On.Terraria.Utils.DrawBorderString += UIChanges.OnUtilsDrawBorderString;
+            On.Terraria.Utils.DrawBorderStringBig += UIChanges.OnUtilsDrawBorderStringBig;
         }
     }
 }

@@ -5,7 +5,7 @@ using MonoMod.Cil;
 
 namespace ExxoAvalonOrigins.Hooks
 {
-    class Utils
+    internal class Utils
     {
         public static void AddAlternativeIDCheck(ILContext il, ushort val1, int val2)
         {

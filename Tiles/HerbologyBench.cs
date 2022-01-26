@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -28,32 +28,16 @@ namespace ExxoAvalonOrigins.Tiles
         public override bool NewRightClick(int i, int j)
         {
             Main.playerInventory = true;
-            if (Main.netMode != NetmodeID.Server) Main.LocalPlayer.Avalon().herb = !Main.LocalPlayer.Avalon().herb;
-            Main.LocalPlayer.Avalon().herbX = Player.tileTargetX;
-            Main.LocalPlayer.Avalon().herbY = Player.tileTargetY;
-            Main.mouseRightRelease = false;
-            if (Main.LocalPlayer.Avalon().herb) Main.PlaySound(SoundID.MenuOpen, -1, -1, 1);
-            else Main.PlaySound(SoundID.MenuClose, -1, -1, 1);
+
+            Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb = !Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb;
+            Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbX = i;
+            Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbY = j;
+
             return true;
         }
-
-        //public override void RightClick(int i, int j)
-        //{
-        //    Main.playerInventory = true;
-        //    ExxoAvalonOrigins.herb = !ExxoAvalonOrigins.herb;
-        //    if (ExxoAvalonOrigins.herb)
-        //    {
-        //        Main.PlaySound(10, -1, -1, 1);
-        //    }
-        //    else
-        //    {
-        //        Main.PlaySound(11, -1, -1, 1);
-        //        Main.player[Main.myPlayer].dropItemCheck();
-        //    }
-        //}
         public override void MouseOver(int i, int j)
         {
-            var player = Main.player[Main.myPlayer];
+            Player player = Main.player[Main.myPlayer];
             player.noThrow = 2;
             player.showItemIcon = true;
             player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Crafting.HerbologyBench>();

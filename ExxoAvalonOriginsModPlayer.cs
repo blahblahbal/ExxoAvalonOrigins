@@ -344,15 +344,24 @@ namespace ExxoAvalonOrigins
 
         public int herbX;
         public int herbY;
-        public int herbTier;
         public int potionTotal;
         public int herbTotal;
-        public int[] herbCounts = new int[10];
+        public Dictionary<int, int> herbCounts = new Dictionary<int, int>();
         private int gemCount = 0;
         private bool[] ownedLargeGems = new bool[10];
 
         // Crit damage multiplyer vars
         public float critDamageMult = 1f;
+
+        public enum HerbTier
+        {
+            Novice,
+            Apprentice,
+            Expert,
+            Master
+        }
+
+        public HerbTier herbTier;
 
         #endregion fields
 
@@ -979,57 +988,6 @@ namespace ExxoAvalonOrigins
             base.ModifyWeaponDamage(item, ref add, ref mult, ref flat);
         }
 
-        public override void Load(TagCompound tag)
-        {
-            if (tag.ContainsKey("ExxoAvalonOrigins:TomeSlot"))
-            {
-                tomeItem = ItemIO.Load(tag.Get<TagCompound>("ExxoAvalonOrigins:TomeSlot"));
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:CrystalHealth"))
-            {
-                crystalHealth = tag.GetAsInt("ExxoAvalonOrigins:CrystalHealth");
-                if (crystalHealth > 4)
-                {
-                    crystalHealth = 4;
-                }
-
-                if (player.statLifeMax == 500)
-                {
-                    player.statLifeMax += crystalHealth *= 25;
-                    player.statLifeMax2 += crystalHealth *= 25;
-                }
-            }
-
-            if (tag.ContainsKey("ExxoAvalonOrigins:Stamina"))
-            {
-                statStamMax = tag.GetAsInt("ExxoAvalonOrigins:Stamina");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:SHMAcc"))
-            {
-                shmAcc = tag.Get<bool>("ExxoAvalonOrigins:SHMAcc");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:HerbTier"))
-            {
-                herbTier = tag.GetAsInt("ExxoAvalonOrigins:HerbTier");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:HerbTotal"))
-            {
-                herbTotal = tag.GetAsInt("ExxoAvalonOrigins:HerbTotal");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:PotionTotal"))
-            {
-                potionTotal = tag.GetAsInt("ExxoAvalonOrigins:PotionTotal");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:HerbCounts"))
-            {
-                herbCounts = tag.Get<int[]>("ExxoAvalonOrigins:HerbCounts");
-            }
-            if (tag.ContainsKey("ExxoAvalonOrigins:SpiritPoppyUseCount"))
-            {
-                spiritPoppyUseCount = tag.Get<int>("ExxoAvalonOrigins:SpiritPoppyUseCount");
-            }
-        }
-
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             if (terraClaws && item.melee)
@@ -1516,13 +1474,70 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:CrystalHealth", crystalHealth },
                 { "ExxoAvalonOrigins:Stamina", statStamMax},
                 { "ExxoAvalonOrigins:SHMAcc", shmAcc },
-                { "ExxoAvalonOrigins:HerbTier", herbTier },
+                { "ExxoAvalonOrigins:HerbTier", (int)herbTier },
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
-                { "ExxoAvalonOrigins:HerbCounts", herbCounts },
+                { "ExxoAvalonOrigins:HerbCounts", herbCounts.Save() },
                 { "ExxoAvalonOrigins:SpiritPoppyUseCount", spiritPoppyUseCount }
             };
             return tag;
+        }
+        public override void Load(TagCompound tag)
+        {
+            if (tag.ContainsKey("ExxoAvalonOrigins:TomeSlot"))
+            {
+                tomeItem = ItemIO.Load(tag.Get<TagCompound>("ExxoAvalonOrigins:TomeSlot"));
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:CrystalHealth"))
+            {
+                crystalHealth = tag.GetAsInt("ExxoAvalonOrigins:CrystalHealth");
+                if (crystalHealth > 4)
+                {
+                    crystalHealth = 4;
+                }
+
+                if (player.statLifeMax == 500)
+                {
+                    player.statLifeMax += crystalHealth *= 25;
+                    player.statLifeMax2 += crystalHealth *= 25;
+                }
+            }
+
+            if (tag.ContainsKey("ExxoAvalonOrigins:Stamina"))
+            {
+                statStamMax = tag.GetAsInt("ExxoAvalonOrigins:Stamina");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SHMAcc"))
+            {
+                shmAcc = tag.Get<bool>("ExxoAvalonOrigins:SHMAcc");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HerbTier"))
+            {
+                herbTier = (HerbTier)tag.GetAsInt("ExxoAvalonOrigins:HerbTier");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HerbTotal"))
+            {
+                herbTotal = tag.GetAsInt("ExxoAvalonOrigins:HerbTotal");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:PotionTotal"))
+            {
+                potionTotal = tag.GetAsInt("ExxoAvalonOrigins:PotionTotal");
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:HerbCounts"))
+            {
+                try
+                {
+                    herbCounts.Load(tag.Get<TagCompound>("ExxoAvalonOrigins:HerbCounts"));
+                }
+                catch
+                {
+                    herbCounts = new Dictionary<int, int>();
+                }
+            }
+            if (tag.ContainsKey("ExxoAvalonOrigins:SpiritPoppyUseCount"))
+            {
+                spiritPoppyUseCount = tag.Get<int>("ExxoAvalonOrigins:SpiritPoppyUseCount");
+            }
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -1643,37 +1658,6 @@ namespace ExxoAvalonOrigins
                 Player.defaultItemGrabRange = 114;
             }
 
-            if (herbTotal < 250)
-            {
-                herbTier = 0;
-            }
-            else if (herbTotal >= 250 && herbTotal < 750)
-            {
-                herbTier = 1;
-            }
-            else if (herbTotal >= 750 && herbTotal < 1500)
-            {
-                if (Main.hardMode)
-                {
-                    herbTier = 2;
-                }
-                else
-                {
-                    herbTier = 1;
-                }
-            }
-            else
-            {
-                if (Main.hardMode)
-                {
-                    herbTier = 3;
-                }
-                else
-                {
-                    herbTier = 1;
-                }
-            }
-            herbTier = 2;
             //player.statMana = statMana;
             if (!astralProject && player.HasBuff(ModContent.BuffType<AstralProjecting>()))
             {
@@ -1774,7 +1758,8 @@ namespace ExxoAvalonOrigins
                 player.shadow = 0f;
             }
 
-            if (player.Avalon().herb)
+            // Herbology bench distance check
+            if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
                 int num9 = (int)((player.position.X + player.width * 0.5) / 16.0);
                 int num10 = (int)((player.position.Y + player.height * 0.5) / 16.0);
