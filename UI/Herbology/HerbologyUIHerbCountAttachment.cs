@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             };
             AttachmentElement.InnerElement.Append(Text);
 
-            OnPositionAttachment += (sender, e) => e.Position.Y -= sender.AttachmentElement.GetOuterDimensions().Height;
+            OnPositionAttachment += (sender, e) => e.Position.Y -= sender.AttachmentElement.MinHeight.Pixels;
         }
         public override void UpdateSelf(GameTime gameTime)
         {

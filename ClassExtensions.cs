@@ -12,13 +12,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.UI;
 
 namespace ExxoAvalonOrigins
 {
     public static class ClassExtensions
     {
-        public static ExxoAvalonOriginsModPlayer Avalon(this Player player) => player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+        public static ExxoAvalonOriginsModPlayer Avalon(this Player player)
+        {
+            return player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+        }
 
         public static Rectangle NewRectVector2(Vector2 V, Vector2 WH)
         {
@@ -49,7 +51,7 @@ namespace ExxoAvalonOrigins
             float gravDir = player.gravDir;
             if (heldItem.type == fishingRodType)
             {
-                playerMountedXCenter += (float)(xPositionAdditive * player.direction);
+                playerMountedXCenter += xPositionAdditive * player.direction;
                 if (player.direction < 0)
                 {
                     playerMountedXCenter -= 13f;
@@ -60,7 +62,7 @@ namespace ExxoAvalonOrigins
             {
                 y -= 12f;
             }
-            Vector2 playerPosModified = new Vector2(playerMountedXCenter, y);
+            var playerPosModified = new Vector2(playerMountedXCenter, y);
             playerPosModified = player.RotatedRelativePoint(playerPosModified + new Vector2(8f)) - new Vector2(8f);
             Vector2 vector2 = projectile.Center - playerPosModified;
             bool flag = true;
@@ -138,7 +140,7 @@ namespace ExxoAvalonOrigins
                 }
                 Color color = Lighting.GetColor((int)playerPosModified.X / 16, (int)playerPosModified.Y / 16, lineColor);
                 float rotation = vector2.ToRotation() - (float)Math.PI / 2f;
-                Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(playerPosModified.X - Main.screenPosition.X + (float)Main.fishingLineTexture.Width * 0.5f, playerPosModified.Y - Main.screenPosition.Y + (float)Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)num3), color, rotation, new Vector2((float)Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(playerPosModified.X - Main.screenPosition.X + Main.fishingLineTexture.Width * 0.5f, playerPosModified.Y - Main.screenPosition.Y + Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)num3), color, rotation, new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }
@@ -223,15 +225,6 @@ namespace ExxoAvalonOrigins
         public static Vector2 ToNearestPixel(this Vector2 vector)
         {
             return new Vector2((int)vector.X, (int)vector.Y);
-        }
-
-        public static void DrawWithoutUpdate(this UserInterface userInterface, SpriteBatch spriteBatch)
-        {
-            if (userInterface.CurrentState != null)
-            {
-                userInterface.Recalculate();
-                userInterface.CurrentState.Draw(spriteBatch);
-            }
         }
 
         public static TagCompound Save<TKey, TValue>(this Dictionary<TKey, TValue> dictionary)

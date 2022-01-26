@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Terraria.UI;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.UI
             Position = position;
         }
     }
-    internal class ExxoUIAttachment<THolder, TAttachment> : ExxoUIElement where THolder : ExxoUIElement where TAttachment : UIElement
+    internal class ExxoUIAttachment<THolder, TAttachment> : ExxoUIElement where THolder : ExxoUIElement where TAttachment : ExxoUIElement
     {
         public THolder AttachmentHolder { get; private set; }
         public readonly TAttachment AttachmentElement;
@@ -21,7 +21,6 @@ namespace ExxoAvalonOrigins.UI
         public delegate void PositionAttachmentEventHandler(ExxoUIAttachment<THolder, TAttachment> sender, PositionAttachmentEventArgs e);
         public event PositionAttachmentEventHandler OnPositionAttachment;
         public event ExxoUIAttachmentEventHandler OnAttachTo;
-        private bool isAttached;
         public ExxoUIAttachment(TAttachment uiElement)
         {
             Active = false;
@@ -36,32 +35,27 @@ namespace ExxoAvalonOrigins.UI
         }
         public virtual void AttachTo(THolder attachmentHolder)
         {
-            if (isAttached)
-            {
-                AttachmentHolder.OnRecalculateFinish -= OnRecalculateFinishHandler;
-            }
             AttachmentHolder = attachmentHolder;
             if (AttachmentHolder == null)
             {
-                isAttached = false;
                 Active = false;
             }
             else
             {
                 Active = true;
                 OnAttachTo?.Invoke(this, EventArgs.Empty);
-                AttachmentHolder.OnRecalculateFinish += OnRecalculateFinishHandler;
-                isAttached = true;
             }
         }
-        protected virtual void OnRecalculateFinishHandler(object sender, EventArgs e)
+
+        protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             Vector2 position = AttachmentHolder.GetDimensions().Position() - Parent.GetOuterDimensions().Position();
             var args = new PositionAttachmentEventArgs(position);
             OnPositionAttachment?.Invoke(this, args);
             AttachmentElement.Left.Set(args.Position.X, 0);
             AttachmentElement.Top.Set(args.Position.Y, 0);
-            Recalculate();
+            RecalculateChildrenSelf();
+            base.DrawSelf(spriteBatch);
         }
     }
 }

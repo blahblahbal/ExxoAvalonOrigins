@@ -121,7 +121,9 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count; i++)
             {
-                if (Elements[i] is ExxoUIElement exxoElement && (exxoElement?.Hidden == true || exxoElement?.Active == false))
+                Elements[i].MarginBottom = 0;
+                Elements[i].MarginRight = 0;
+                if (Elements[i] is ExxoUIElement exxoElement && (exxoElement.Hidden || !exxoElement.Active))
                 {
                     continue;
                 }
@@ -150,25 +152,37 @@ namespace ExxoAvalonOrigins.UI
                 largestOppLength = System.Math.Max(oppLength, largestOppLength);
             }
 
-            float innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
             float padding = ListPadding;
 
             // List padding
             if (Justification == Justification.SpaceBetween)
             {
-                padding = (innerLength - total) / (Elements.Count - 1);
+                padding = 0;
+                if (Elements.Count > 1)
+                {
+                    for (int i = 0; i < Elements.Count; i++)
+                    {
+                        Elements[i].HAlign = i / (float)(Elements.Count - 1);
+                    }
+                }
             }
 
             for (int i = 0; i < Elements.Count - 1; i++)
             {
-                Elements[i].MarginBottom = 0;
-                Elements[i].MarginRight = 0;
-                var exxoElement = Elements[i + 1] as ExxoUIElement;
-                if (exxoElement?.IsVisible == false)
+                if (Elements[i] is ExxoUIElement exxoElement && (exxoElement.Hidden || !exxoElement.Active))
                 {
                     continue;
                 }
-                else if (exxoElement == null && Elements[i + 1].GetOuterDimensions().Height > 0 && Elements[i + 1].GetOuterDimensions().Width > 0)
+
+                float width = System.Math.Max(Elements[i + 1].MinWidth.Pixels, Elements[i + 1].Width.Pixels);
+                float height = System.Math.Max(Elements[i + 1].MinHeight.Pixels, Elements[i + 1].Height.Pixels);
+
+                var nextExxoElement = Elements[i + 1] as ExxoUIElement;
+                if (nextExxoElement != null && (nextExxoElement.Hidden || !nextExxoElement.Active))
+                {
+                    continue;
+                }
+                else if (nextExxoElement == null && height > 0 && width > 0)
                 {
                     continue;
                 }
@@ -182,6 +196,10 @@ namespace ExxoAvalonOrigins.UI
                     Elements[i].MarginRight = padding;
                 }
                 total += padding;
+                if (Justification == Justification.SpaceBetween)
+                {
+                    total += ListPadding;
+                }
             }
 
             // Set largest opposite length
@@ -214,7 +232,7 @@ namespace ExxoAvalonOrigins.UI
 
             RecalculateSelf();
 
-            innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
+            float innerLength = (Direction == Direction.Vertical) ? GetInnerDimensions().Height : GetInnerDimensions().Width;
             float fillLength = (innerLength - total) / System.Math.Max(1, fillLengthCount);
             float offset = 0f;
 
@@ -225,6 +243,11 @@ namespace ExxoAvalonOrigins.UI
 
             for (int i = 0; i < Elements.Count; i++)
             {
+                if (Elements[i] is ExxoUIElement exxoElement && (exxoElement?.Hidden == true || exxoElement?.Active == false))
+                {
+                    continue;
+                }
+
                 if (ElementParamsList[i].FillLength)
                 {
                     if (Direction == Direction.Vertical)
@@ -245,7 +268,6 @@ namespace ExxoAvalonOrigins.UI
 
                 switch (Justification)
                 {
-                    case Justification.SpaceBetween:
                     case Justification.Start:
                     case Justification.Center:
                         pixels = offset;

@@ -11,9 +11,10 @@ namespace ExxoAvalonOrigins.UI.Herbology
         public readonly ExxoUIPanelButton<ExxoUIText> Button;
         public readonly ExxoUIPanelWrapper<ExxoUIList> DifferenceContainer;
         private readonly ExxoUIImage balanceIcon;
-        private readonly ExxoUIText startBalance;
         private readonly ExxoUIText subBalance;
-        private readonly ExxoUIText endBalance;
+        private readonly ExxoUIList herbCountCostContainer;
+        private readonly ExxoUIImage herbTypeIcon;
+        private readonly ExxoUIText subHerbCountBalance;
         public HerbologyUIPurchaseAttachment() : base(new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList()))
         {
             AttachmentElement.FitMinToInnerElement = true;
@@ -23,7 +24,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             AttachmentElement.InnerElement.ContentHAlign = UIAlign.Center;
             AttachmentElement.BackgroundColor.A = 255;
 
-            OnPositionAttachment += (sender, e) => e.Position.Y += sender.AttachmentHolder.GetOuterDimensions().Height;
+            OnPositionAttachment += (sender, e) => e.Position.Y += sender.AttachmentHolder.MinHeight.Pixels;
 
             NumberInputWithButtons = new ExxoUINumberInputWithButtons();
             AttachmentElement.InnerElement.Append(NumberInputWithButtons);
@@ -32,43 +33,44 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 FitHeightToContent = true,
                 FitWidthToContent = true,
-                Direction = Direction.Horizontal,
                 ListPadding = 10,
             })
-            { FitMinToInnerElement = true, HAlign = UIAlign.Center };
+            { FitMinToInnerElement = true };
             AttachmentElement.InnerElement.Append(DifferenceContainer);
 
-            var iconContainer = new ExxoUIList
+            var tokenCostContainer = new ExxoUIList
             {
-                FitWidthToContent = true,
                 FitHeightToContent = true,
-                ContentHAlign = UIAlign.Center,
-                ListPadding = 18,
-            };
-            DifferenceContainer.InnerElement.Append(iconContainer);
-
-            balanceIcon = new ExxoUIImage(TextureManager.Load("Images/UI/WorldCreation/IconRandomSeed"))
-            {
-                Inset = new Vector2(11, 11)
-            };
-            iconContainer.Append(balanceIcon);
-
-            var tallyContainer = new ExxoUIList
-            {
                 FitWidthToContent = true,
-                FitHeightToContent = true,
-                ListPadding = 10,
+                ContentVAlign = UIAlign.Center,
+                Direction = Direction.Horizontal,
+                Justification = Justification.SpaceBetween
             };
-            DifferenceContainer.InnerElement.Append(tallyContainer);
+            tokenCostContainer.Width.Set(0, 1);
+            DifferenceContainer.InnerElement.Append(tokenCostContainer);
 
-            startBalance = new ExxoUIText("");
-            tallyContainer.Append(startBalance);
+            balanceIcon = new ExxoUIImage(null);
+            tokenCostContainer.Append(balanceIcon);
 
             subBalance = new ExxoUIText("");
-            tallyContainer.Append(subBalance);
+            tokenCostContainer.Append(subBalance);
 
-            endBalance = new ExxoUIText("");
-            tallyContainer.Append(endBalance);
+            herbCountCostContainer = new ExxoUIList
+            {
+                FitHeightToContent = true,
+                FitWidthToContent = true,
+                ContentVAlign = UIAlign.Center,
+                Direction = Direction.Horizontal,
+                Justification = Justification.SpaceBetween
+            };
+            herbCountCostContainer.Width.Set(0, 1);
+            DifferenceContainer.InnerElement.Append(herbCountCostContainer);
+
+            herbTypeIcon = new ExxoUIImage(null);
+            herbCountCostContainer.Append(herbTypeIcon);
+
+            subHerbCountBalance = new ExxoUIText("");
+            herbCountCostContainer.Append(subHerbCountBalance);
 
             Button = new ExxoUIPanelButton<ExxoUIText>(new ExxoUIText("Exchange"), false)
             {
@@ -76,10 +78,14 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 FitMinToInnerElement = true,
             };
             Button.Width.Set(0, 1);
-            Button.Height.Pixels = Button.InnerElement.MinHeight.Pixels + Button.PaddingBottom + Button.PaddingTop;
             Button.InnerElement.HAlign = UIAlign.Center;
 
             AttachmentElement.InnerElement.Append(Button);
+
+            OnAttachTo += delegate
+            {
+                NumberInputWithButtons.NumberInput.Number = 1;
+            };
         }
         public override void UpdateSelf(GameTime gameTime)
         {
@@ -89,6 +95,8 @@ namespace ExxoAvalonOrigins.UI.Herbology
             ExxoAvalonOriginsModPlayer modPlayer = player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
 
             int balance;
+            bool showHerbCount = HerbologyLogic.LargeHerbSeedIdByHerbSeedId.ContainsValue(AttachmentHolder.Item.type);
+            herbCountCostContainer.Hidden = !showHerbCount;
             if (HerbologyLogic.ItemIsHerb(AttachmentHolder.Item))
             {
                 balance = modPlayer.herbTotal;
@@ -101,19 +109,34 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 balanceIcon.SetImage(TextureManager.Load("Images/UI/WorldCreation/IconEvilCorruption"));
                 balanceIcon.Inset = new Vector2(8, 5);
             }
-            startBalance.SetText(balance.ToString("+0;-#"));
             int cost = HerbologyLogic.GetItemCost(AttachmentHolder.Item, NumberInputWithButtons.NumberInput.Number);
             subBalance.SetText($"-{cost}");
-            int end = balance - cost;
-            if (end < 0)
+            if (balance - cost < 0)
             {
-                endBalance.TextColor = Color.Red;
+                subBalance.TextColor = Color.Red;
             }
             else
             {
-                endBalance.TextColor = Color.White;
+                subBalance.TextColor = Color.White;
             }
-            endBalance.SetText(end.ToString("+0;-#"));
+
+            if (showHerbCount)
+            {
+                int herbType = HerbologyLogic.GetBaseHerbType(AttachmentHolder.Item);
+                if (herbType != -1)
+                {
+                    herbTypeIcon.SetImage(Main.itemTexture[herbType]);
+                    subHerbCountBalance.SetText($"-{cost}");
+                    if (!modPlayer.herbCounts.ContainsKey(herbType) || modPlayer.herbCounts[herbType] - cost < 0)
+                    {
+                        subHerbCountBalance.TextColor = Color.Red;
+                    }
+                    else
+                    {
+                        subHerbCountBalance.TextColor = Color.White;
+                    }
+                }
+            }
         }
     }
 }

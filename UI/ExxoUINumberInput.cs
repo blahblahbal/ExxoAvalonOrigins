@@ -42,8 +42,9 @@ namespace ExxoAvalonOrigins.UI
         }
         private ExxoUITextPanel[] numbers;
         private int activeNumberIndex;
+        private double lastActiveFlicker;
+        private bool flickerToggle;
         private ExxoUITextPanel ActiveNumberElement => numbers[activeNumberIndex];
-        private Color inactiveColor;
         public ExxoUINumberInput(int amountNumbers = 3)
         {
             Direction = Direction.Horizontal;
@@ -81,7 +82,6 @@ namespace ExxoAvalonOrigins.UI
                 Append(number);
                 numbers[i] = number;
             }
-            inactiveColor = numbers[0].BackgroundColor;
             SetActiveIndex(0);
         }
 
@@ -89,16 +89,16 @@ namespace ExxoAvalonOrigins.UI
         {
             if (activeNumberIndex != index && index >= 0 && index < AmountNumbers)
             {
-                ActiveNumberElement.BackgroundColor = inactiveColor;
+                Color oldColor = ActiveNumberElement.BackgroundColor;
+                ActiveNumberElement.BackgroundColor = ExxoUIPanel.DefaultBackgroundColor;
                 activeNumberIndex = index;
-                inactiveColor = ActiveNumberElement.BackgroundColor;
+                ActiveNumberElement.BackgroundColor = oldColor;
             }
         }
 
         public override void UpdateSelf(GameTime gameTime)
         {
             base.UpdateSelf(gameTime);
-            ActiveNumberElement.BackgroundColor = inactiveColor * 2f;
 
             PlayerInput.WritingText = true;
             Main.instance.HandleIME();
@@ -131,6 +131,20 @@ namespace ExxoAvalonOrigins.UI
                 {
                     numbers[i].InnerElement.SetText("");
                 }
+            }
+
+            if (gameTime.TotalGameTime.TotalSeconds - lastActiveFlicker > 0.5f)
+            {
+                if (flickerToggle)
+                {
+                    ActiveNumberElement.BackgroundColor = ExxoUIPanel.DefaultBackgroundColor * 2.5f;
+                }
+                else
+                {
+                    ActiveNumberElement.BackgroundColor = ExxoUIPanel.DefaultBackgroundColor;
+                }
+                flickerToggle = !flickerToggle;
+                lastActiveFlicker = gameTime.TotalGameTime.TotalSeconds;
             }
         }
     }

@@ -186,6 +186,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
         public override void OnActivate()
         {
             base.OnActivate();
+            HerbologyLogic.UpdateHerbTier(Main.LocalPlayer.Avalon());
             Main.PlaySound(SoundID.MenuOpen);
         }
 

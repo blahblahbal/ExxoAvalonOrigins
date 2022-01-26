@@ -741,7 +741,7 @@ namespace ExxoAvalonOrigins
                     "ExxoAvalonOrigins: Herbology Bench",
                     delegate
                     {
-                        herbologyUserInterface.DrawWithoutUpdate(Main.spriteBatch);
+                        herbologyUserInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -1759,6 +1759,9 @@ namespace ExxoAvalonOrigins
             MergeWithFrameExplicit(x, y, myType, mergeType, out _, out _, out _, out _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight, resetFrame);
         }
 
-        public override object Call(params object[] args) => ExxoAvalonOriginsCall.Call(args);
+        public override object Call(params object[] args)
+        {
+            return ExxoAvalonOriginsCall.Call(args);
+        }
     }
 }
