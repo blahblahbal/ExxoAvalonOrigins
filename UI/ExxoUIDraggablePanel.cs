@@ -23,9 +23,9 @@ namespace ExxoAvalonOrigins.UI
             base.MouseUp(evt);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateSelf(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateSelf(gameTime);
             if (isMouseHeld)
             {
                 Vector2 mouseDelta = UserInterface.ActiveInstance.MousePosition - (new Vector2(GetInnerDimensions().X, GetInnerDimensions().Y) + clickDelta);

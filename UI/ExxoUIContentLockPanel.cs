@@ -1,7 +1,6 @@
 ﻿using System;
+using ExxoAvalonOrigins.Logic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Graphics;
 using Terraria.UI;
 
@@ -15,8 +14,8 @@ namespace ExxoAvalonOrigins.UI
         private readonly Func<bool> unlockCondition;
         private readonly ExxoUIList list;
         private readonly UIElement contentHolder;
-        private bool wasOversize;
-        private bool wasLocked;
+        private readonly Observer<bool> oversizeChanged;
+        private readonly Observer<bool> lockedStatusChanged;
         private readonly string message;
         private readonly UIElement elementToLock;
         private readonly CalculatedStyle listOuterDimensions;
@@ -40,11 +39,9 @@ namespace ExxoAvalonOrigins.UI
             list.Direction = Direction.Horizontal;
             list.FitHeightToContent = true;
             list.FitWidthToContent = true;
+            list.ContentVAlign = UIAlign.Center;
 
-            var iconBackground = new ExxoUIImage(TextureManager.Load("Images/UI/Wires_1"))
-            {
-                VAlign = UIAlign.Center
-            };
+            var iconBackground = new ExxoUIImage(TextureManager.Load("Images/UI/Wires_1"));
             list.Append(iconBackground);
             var innerImage = new ExxoUIImage(TextureManager.Load("Images/UI/UI_quickicon1"))
             {
@@ -53,10 +50,7 @@ namespace ExxoAvalonOrigins.UI
             };
             iconBackground.Append(innerImage);
 
-            var text = new ExxoUIText(message)
-            {
-                VAlign = UIAlign.Center
-            };
+            var text = new ExxoUIText(message);
             list.Append(text);
             list.Recalculate();
 
@@ -67,48 +61,40 @@ namespace ExxoAvalonOrigins.UI
             Append(contentHolder);
 
             listOuterDimensions = list.GetOuterDimensions();
-            wasOversize = !ListIsOversize;
-            wasLocked = !Locked;
+            oversizeChanged = new Observer<bool>(() => ListIsOversize);
+            lockedStatusChanged = new Observer<bool>(() => Locked);
+            Hidden = !Locked;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateSelf(GameTime gameTime)
         {
-            base.Update(gameTime);
-            if (wasLocked != Locked)
+            base.UpdateSelf(gameTime);
+            if (lockedStatusChanged.Check())
             {
                 LockStatusChanged();
-                wasLocked = Locked;
             }
         }
 
         protected virtual void LockStatusChanged()
         {
-            OnLockStatusChanged?.Invoke(this, EventArgs.Empty);
             Hidden = !Locked;
+            OnLockStatusChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void PreRecalculate()
         {
-            base.Draw(spriteBatch);
-            if (IsMouseHovering && ListIsOversize)
-            {
-                Main.hoverItemName = message;
-            }
-        }
-
-        public override void Recalculate()
-        {
-            if (Parent == null)
-            {
-                return;
-            }
+            base.PreRecalculate();
             Width.Set(elementToLock.GetOuterDimensions().Width, 0);
             Height.Set(elementToLock.GetOuterDimensions().Height, 0);
             Vector2 position = elementToLock.GetDimensions().Position() - Parent.GetDimensions().Position();
             Left.Set(position.X - Parent.PaddingLeft, 0);
             Top.Set(position.Y - Parent.PaddingTop, 0);
-            base.Recalculate();
-            if (wasOversize != ListIsOversize)
+        }
+
+        public override void PostRecalculate()
+        {
+            base.PostRecalculate();
+            if (oversizeChanged.Check())
             {
                 contentHolder.RemoveAllChildren();
                 if (ListIsOversize)
@@ -119,12 +105,13 @@ namespace ExxoAvalonOrigins.UI
                         HAlign = UIAlign.Center
                     };
                     contentHolder.Append(image);
+                    Tooltip = message;
                 }
                 else
                 {
                     contentHolder.Append(list);
+                    Tooltip = "";
                 }
-                wasOversize = ListIsOversize;
             }
         }
     }

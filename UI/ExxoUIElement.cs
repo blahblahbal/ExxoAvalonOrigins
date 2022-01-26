@@ -9,8 +9,11 @@ namespace ExxoAvalonOrigins.UI
     public class ExxoUIElement : UIElement
     {
         public event MouseEvent OnMouseHovering;
+        public event MouseEvent OnFirstMouseOver;
+        public event MouseEvent OnLastMouseOut;
         public delegate void ExxoUIElementEventHandler(ExxoUIElement sender, EventArgs e);
         public event ExxoUIElementEventHandler OnRecalculateFinish;
+        public string Tooltip = "";
         public bool IsRecalculating { get; private set; }
         public bool Active { get; set; } = true;
         public bool Hidden { get; set; }
@@ -18,7 +21,7 @@ namespace ExxoAvalonOrigins.UI
         public readonly Queue<UIElement> ElementsForRemoval = new Queue<UIElement>();
         private bool mouseWasOver;
 
-        public override void Update(GameTime gameTime)
+        public sealed override void Update(GameTime gameTime)
         {
             if (!Active)
             {
@@ -29,6 +32,7 @@ namespace ExxoAvalonOrigins.UI
             {
                 OnMouseHovering?.Invoke(new UIMouseEvent(this, UserInterface.ActiveInstance.MousePosition), this);
             }
+            UpdateSelf(gameTime);
             base.Update(gameTime);
             while (ElementsForRemoval.Count > 0)
             {
@@ -36,27 +40,51 @@ namespace ExxoAvalonOrigins.UI
             }
         }
 
+        public virtual void UpdateSelf(GameTime gameTime)
+        {
+        }
+
         public override bool ContainsPoint(Vector2 point)
         {
             return IsVisible && base.ContainsPoint(point);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public sealed override void Draw(SpriteBatch spriteBatch)
         {
             if (IsVisible)
             {
+                if (IsMouseHovering && Tooltip != null && Tooltip != string.Empty)
+                {
+                    Terraria.Main.hoverItemName = Tooltip;
+                }
                 base.Draw(spriteBatch);
             }
         }
 
-        public override void Recalculate()
+        public sealed override void Recalculate()
         {
             IsRecalculating = true;
+            PreRecalculate();
             RecalculateSelf();
             RecalculateChildren();
             PostRecalculate();
-            OnRecalculateFinish?.Invoke(this, EventArgs.Empty);
+            if (!(Parent is ExxoUIElement))
+            {
+                RecalculateFinish();
+            }
             IsRecalculating = false;
+        }
+
+        protected void RecalculateFinish()
+        {
+            foreach (UIElement element in Elements)
+            {
+                if (element is ExxoUIElement exxoElement)
+                {
+                    exxoElement.RecalculateFinish();
+                }
+            }
+            OnRecalculateFinish?.Invoke(this, EventArgs.Empty);
         }
 
         // Optimised method that only moves positions, only to be used if the elements have already previously been recalculated
@@ -77,9 +105,13 @@ namespace ExxoAvalonOrigins.UI
         }
 
         // This works because the UIChanges.ILUIElementRecalculate hook doesn't recalulate children if the element is an ExxoUIElement
-        public virtual void RecalculateSelf()
+        public void RecalculateSelf()
         {
             base.Recalculate();
+        }
+
+        public virtual void PreRecalculate()
+        {
         }
 
         public virtual void PostRecalculate()
@@ -102,16 +134,18 @@ namespace ExxoAvalonOrigins.UI
             if (!ContainsPoint(evt.MousePosition))
             {
                 mouseWasOver = false;
-                FirstMouseOut(evt);
+                LastMouseOut(evt);
             }
         }
 
         public virtual void FirstMouseOver(UIMouseEvent evt)
         {
+            OnFirstMouseOver?.Invoke(evt, this);
         }
 
-        public virtual void FirstMouseOut(UIMouseEvent evt)
+        public virtual void LastMouseOut(UIMouseEvent evt)
         {
+            OnLastMouseOut?.Invoke(evt, this);
         }
     }
 }

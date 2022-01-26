@@ -14,11 +14,9 @@ namespace ExxoAvalonOrigins.UI
             Direction = Direction.Horizontal;
             FitWidthToContent = true;
             FitHeightToContent = true;
+            ContentVAlign = UIAlign.Center;
 
-            NumberInput = new ExxoUINumberInput(amountNumbers)
-            {
-                VAlign = UIAlign.Center,
-            };
+            NumberInput = new ExxoUINumberInput(amountNumbers);
             Append(NumberInput);
 
             buttonColumn = new ExxoUIList

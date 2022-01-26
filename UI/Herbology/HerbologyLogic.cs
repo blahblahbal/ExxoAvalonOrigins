@@ -11,49 +11,24 @@ namespace ExxoAvalonOrigins.UI.Herbology
 {
     internal static class HerbologyLogic
     {
-        public const int HerbTier4Threshold = 1500;
-        public const int HerbTier3Threshold = 750;
         public const int HerbTier2Threshold = 250;
+        public const int HerbTier3Threshold = 750;
+        public const int HerbTier4Threshold = 1500;
 
-        public static Dictionary<int, int> ElixirIdByPotionId = new Dictionary<int, int>
-        {
-            { ItemID.ObsidianSkinPotion, ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>() },
-            { ItemID.RegenerationPotion, ModContent.ItemType<Items.AdvancedPotions.AdvRegenerationPotion>() },
-            { ItemID.SwiftnessPotion, ModContent.ItemType<Items.AdvancedPotions.AdvSwiftnessPotion>() },
-            { ItemID.GillsPotion, ModContent.ItemType<Items.AdvancedPotions.AdvGillsPotion>() },
-            { ItemID.IronskinPotion, ModContent.ItemType<Items.AdvancedPotions.AdvIronskinPotion>() },
-            { ItemID.ManaRegenerationPotion, ModContent.ItemType<Items.AdvancedPotions.AdvManaRegenerationPotion>() },
-            { ItemID.MagicPowerPotion, ModContent.ItemType<Items.AdvancedPotions.AdvMagicPowerPotion>() },
-            { ItemID.FeatherfallPotion, ModContent.ItemType<Items.AdvancedPotions.AdvFeatherfallPotion>() },
-            { ItemID.SpelunkerPotion, ModContent.ItemType<Items.AdvancedPotions.AdvSpelunkerPotion>() },
-            { ItemID.InvisibilityPotion, ModContent.ItemType<Items.AdvancedPotions.AdvInvisibilityPotion>() },
-            { ItemID.ShinePotion, ModContent.ItemType<Items.AdvancedPotions.AdvShinePotion>() },
-            { ItemID.NightOwlPotion, ModContent.ItemType<Items.AdvancedPotions.AdvNightOwlPotion>() },
-            { ItemID.BattlePotion, ModContent.ItemType<Items.AdvancedPotions.AdvBattlePotion>() },
-            { ItemID.ThornsPotion, ModContent.ItemType<Items.AdvancedPotions.AdvThornsPotion>() },
-            { ItemID.WaterWalkingPotion, ModContent.ItemType<Items.AdvancedPotions.AdvWaterWalkingPotion>() },
-            { ItemID.ArcheryPotion, ModContent.ItemType<Items.AdvancedPotions.AdvArcheryPotion>() },
-            { ItemID.HunterPotion, ModContent.ItemType<Items.AdvancedPotions.AdvHunterPotion>() },
-            { ItemID.GravitationPotion, ModContent.ItemType<Items.AdvancedPotions.AdvGravitationPotion>() },
-            { ItemID.MiningPotion, ModContent.ItemType<Items.AdvancedPotions.AdvMiningPotion>() },
-            { ItemID.HeartreachPotion, ModContent.ItemType<Items.AdvancedPotions.AdvHeartreachPotion>() },
-            { ItemID.CalmingPotion, ModContent.ItemType<Items.AdvancedPotions.AdvCalmingPotion>() },
-            { ItemID.BuilderPotion, ModContent.ItemType<Items.AdvancedPotions.AdvBuilderPotion>() },
-            { ItemID.TitanPotion, ModContent.ItemType<Items.AdvancedPotions.AdvTitanPotion>() },
-            { ItemID.FlipperPotion, ModContent.ItemType<Items.AdvancedPotions.AdvFlipperPotion>() },
-            { ItemID.SummoningPotion, ModContent.ItemType<Items.AdvancedPotions.AdvSummoningPotion>() },
-            { ItemID.TrapsightPotion, ModContent.ItemType<Items.AdvancedPotions.AdvDangersensePotion>() },
-            { ItemID.AmmoReservationPotion, ModContent.ItemType<Items.AdvancedPotions.AdvAmmoReservationPotion>() },
-            { ItemID.LifeforcePotion, ModContent.ItemType<Items.AdvancedPotions.AdvLifeforcePotion>() },
-            { ItemID.EndurancePotion, ModContent.ItemType<Items.AdvancedPotions.AdvEndurancePotion>() },
-            { ItemID.RagePotion, ModContent.ItemType<Items.AdvancedPotions.AdvRagePotion>() },
-            { ItemID.InfernoPotion, ModContent.ItemType<Items.AdvancedPotions.AdvInfernoPotion>() },
-            { ItemID.WrathPotion, ModContent.ItemType<Items.AdvancedPotions.AdvWrathPotion>() },
-            { ItemID.FishingPotion, ModContent.ItemType<Items.AdvancedPotions.AdvFishingPotion>() },
-            { ItemID.SonarPotion, ModContent.ItemType<Items.AdvancedPotions.AdvSonarPotion>() },
-            { ItemID.CratePotion, ModContent.ItemType<Items.AdvancedPotions.AdvCratePotion>() },
-            { ItemID.WarmthPotion, ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>() }
-        };
+        public const int HerbSellPrice = 1;
+        public const int LargeHerbSeedSellPrice = 15;
+        public const int LargeHerbSellPrice = 20;
+
+        public const int PotionSellPrice = 1;
+        public const int ElixirSellPrice = 5;
+        public const int BlahPotionSellPrice = 2500;
+
+        public const int HerbSeedCost = 1;
+        public const int LargeHerbSeedCost = 15;
+
+        public const int PotionCost = 1;
+        public const int ElixirCost = 5;
+        public const int BlahPotionCost = 2500;
 
         public static readonly int[] PotionIds = new int[]
         {
@@ -111,6 +86,46 @@ namespace ExxoAvalonOrigins.UI.Herbology
             ModContent.ItemType<ForceFieldPotion>(),
             ModContent.ItemType<FuryPotion>()
             // Magnet Potion
+        };
+
+        public static readonly int[] ElixirIds = new int[]
+        {
+            ModContent.ItemType<Items.AdvancedPotions.AdvObsidianSkinPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvRegenerationPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvSwiftnessPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvGillsPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvIronskinPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvManaRegenerationPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvMagicPowerPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvFeatherfallPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvSpelunkerPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvInvisibilityPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvShinePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvNightOwlPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvBattlePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvThornsPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvWaterWalkingPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvArcheryPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvHunterPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvGravitationPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvMiningPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvHeartreachPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvCalmingPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvBuilderPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvTitanPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvFlipperPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvSummoningPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvDangersensePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvAmmoReservationPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvLifeforcePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvEndurancePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvRagePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvInfernoPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvWrathPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvFishingPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvSonarPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvCratePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>()
         };
 
         public static readonly Dictionary<int, int> HerbIdByLargeHerbId = new Dictionary<int, int>
@@ -194,28 +209,45 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
         }
 
+        public static int GetBaseHerbType(Item item)
+        {
+            if (HerbIdByLargeHerbId.ContainsValue(item.type))
+            {
+                return item.type;
+            }
+            else if (LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type))
+            {
+                return HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[LargeHerbSeedIdByHerbSeedId[item.type]]];
+            }
+            else if (LargeHerbIdByLargeHerbSeedId.ContainsKey(item.type))
+            {
+                return HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[item.type]];
+            }
+            return -1;
+        }
+
         public static int GetItemCost(Item item, int amount)
         {
             if (LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type))
             {
-                return amount;
+                return amount * HerbSeedCost;
             }
             else if (LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type))
             {
-                return amount * 15;
+                return amount * LargeHerbSeedCost;
             }
 
             if (PotionIds.Contains(item.type))
             {
-                return amount;
+                return amount * PotionCost;
             }
-            else if (ElixirIdByPotionId.ContainsValue(item.type))
+            else if (ElixirIds.Contains(item.type))
             {
-                return amount * 5;
+                return amount * ElixirCost;
             }
             else if (item.type == ModContent.ItemType<BlahPotion>())
             {
-                return amount * 2500;
+                return amount * BlahPotionCost;
             }
 
             return 0;
@@ -223,12 +255,12 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
         public static bool ItemIsPotion(Item item)
         {
-            return PotionIds.Contains(item.type) || ElixirIdByPotionId.ContainsValue(item.type) || item.type == ModContent.ItemType<BlahPotion>();
+            return PotionIds.Contains(item.type) || ElixirIds.Contains(item.type) || item.type == ModContent.ItemType<BlahPotion>();
         }
 
         public static bool ItemIsHerb(Item item)
         {
-            return LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type) || LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type);
+            return LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type) || LargeHerbIdByLargeHerbSeedId.ContainsValue(item.type) || LargeHerbIdByLargeHerbSeedId.ContainsKey(item.type) || HerbIdByLargeHerbId.ContainsValue(item.type);
         }
 
         public static bool PurchaseItem(Item item, int amount)
@@ -307,17 +339,17 @@ namespace ExxoAvalonOrigins.UI.Herbology
             int herbType = ItemID.None;
             if (HerbIdByLargeHerbId.ContainsValue(item.type))
             {
-                herbAddition = 1;
+                herbAddition = HerbSellPrice;
                 herbType = item.type;
             }
             else if (LargeHerbSeedIdByHerbId.ContainsValue(item.type))
             {
-                herbAddition = 15;
+                herbAddition = LargeHerbSeedSellPrice;
                 herbType = HerbIdByLargeHerbId[LargeHerbIdByLargeHerbSeedId[item.type]];
             }
             else if (LargeHerbIdByLargeHerbSeedId.ContainsValue(item.type))
             {
-                herbAddition = 20;
+                herbAddition = LargeHerbSellPrice;
                 herbType = HerbIdByLargeHerbId[item.type];
             }
 
@@ -334,15 +366,15 @@ namespace ExxoAvalonOrigins.UI.Herbology
             int potionAddition = 0;
             if (PotionIds.Contains(item.type))
             {
-                potionAddition = 1;
+                potionAddition = PotionSellPrice;
             }
-            else if (ElixirIdByPotionId.ContainsValue(item.type))
+            else if (ElixirIds.Contains(item.type))
             {
-                potionAddition = 10;
+                potionAddition = ElixirSellPrice;
             }
             else if (item.type == ModContent.ItemType<BlahPotion>())
             {
-                potionAddition = 2500;
+                potionAddition = BlahPotionSellPrice;
             }
 
             if (potionAddition > 0)

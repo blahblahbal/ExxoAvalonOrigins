@@ -8,16 +8,20 @@ namespace ExxoAvalonOrigins.UI
     {
         public struct ElementParams
         {
-            public ElementParams(bool fillLength = false)
+            public ElementParams(bool fillLength = false, bool ignoreContentAlign = false)
             {
                 FillLength = fillLength;
+                IgnoreContentAlign = ignoreContentAlign;
             }
             public readonly bool FillLength;
+            public readonly bool IgnoreContentAlign;
         }
 
         public delegate bool ElementSearchMethod(UIElement element);
 
         public Justification Justification = Justification.Start;
+        public float ContentVAlign;
+        public float ContentHAlign;
         public Direction Direction = Direction.Vertical;
         public bool FitWidthToContent;
         private StyleDimension origWidth;
@@ -84,8 +88,9 @@ namespace ExxoAvalonOrigins.UI
             Elements.Clear();
         }
 
-        public override void Recalculate()
+        public override void PreRecalculate()
         {
+            base.PreRecalculate();
             if (FitHeightToContent)
             {
                 MinHeight.Set(0, 0);
@@ -98,11 +103,9 @@ namespace ExxoAvalonOrigins.UI
                 origWidth = Width;
                 Width.Set(0, 1);
             }
-            base.Recalculate();
-            UpdateScrollbar();
         }
 
-        public void ScrollWheelListener(UIScrollWheelEvent evt, UIElement listeningElement)
+        public void ScrollWheelListener(UIScrollWheelEvent evt, UIElement _)
         {
             if (ScrollBar != null)
             {
@@ -121,6 +124,12 @@ namespace ExxoAvalonOrigins.UI
                 if (Elements[i] is ExxoUIElement exxoElement && (exxoElement?.Hidden == true || exxoElement?.Active == false))
                 {
                     continue;
+                }
+
+                if (!ElementParamsList[i].IgnoreContentAlign)
+                {
+                    Elements[i].VAlign = ContentVAlign;
+                    Elements[i].HAlign = ContentHAlign;
                 }
 
                 if (ElementParamsList[i].FillLength)
@@ -276,9 +285,9 @@ namespace ExxoAvalonOrigins.UI
             return false;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateSelf(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateSelf(gameTime);
             if (ScrollBar != null)
             {
                 Top.Set(-ScrollBar.GetValue(), 0f);

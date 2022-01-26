@@ -95,8 +95,9 @@ namespace ExxoAvalonOrigins.UI
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateSelf(GameTime gameTime)
         {
+            base.UpdateSelf(gameTime);
             ActiveNumberElement.BackgroundColor = inactiveColor * 2f;
 
             PlayerInput.WritingText = true;
@@ -131,7 +132,6 @@ namespace ExxoAvalonOrigins.UI
                     numbers[i].InnerElement.SetText("");
                 }
             }
-            base.Update(gameTime);
         }
     }
 }

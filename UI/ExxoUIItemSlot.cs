@@ -32,9 +32,9 @@ namespace ExxoAvalonOrigins.UI
             Append(InnerImage);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            base.DrawSelf(spriteBatch);
             if (IsMouseHovering && Item.type > ItemID.None && Item.stack > 0)
             {
                 Main.hoverItemName = Item.Name;

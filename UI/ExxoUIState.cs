@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 
@@ -11,6 +12,10 @@ namespace ExxoAvalonOrigins.UI
         public bool HideItemHoverIcon = true;
         private int oldFocusRecipe;
         private bool mouseWasOver;
+        public static void BeginDefaultSpriteBatch(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, DepthStencilState.None, null, null, Main.UIScaleMatrix);
+        }
         public bool ChildrenContainsPoint(Vector2 point)
         {
             foreach (UIElement element in Elements)
@@ -35,6 +40,14 @@ namespace ExxoAvalonOrigins.UI
                 }
             }
         }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.End();
+            BeginDefaultSpriteBatch(spriteBatch);
+            base.Draw(spriteBatch);
+        }
+
         public override void OnInitialize()
         {
             base.OnInitialize();

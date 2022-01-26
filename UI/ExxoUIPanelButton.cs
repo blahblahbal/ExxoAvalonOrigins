@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.UI;
@@ -36,8 +35,10 @@ namespace ExxoAvalonOrigins.UI
                 mouseWasOver = false;
             }
         }
-        public override void Draw(SpriteBatch spriteBatch)
+
+        public override void UpdateSelf(GameTime gameTime)
         {
+            base.UpdateSelf(gameTime);
             if (IsMouseHovering)
             {
                 BackgroundColor = inactiveColor * visibilityActive;
@@ -46,8 +47,8 @@ namespace ExxoAvalonOrigins.UI
             {
                 BackgroundColor = inactiveColor * visibilityInactive;
             }
-            base.Draw(spriteBatch);
         }
+
         public void SetVisibility(float whenActive, float whenInactive)
         {
             visibilityActive = MathHelper.Clamp(whenActive, 0f, 1f);

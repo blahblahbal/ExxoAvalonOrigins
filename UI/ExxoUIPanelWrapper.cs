@@ -19,8 +19,9 @@ namespace ExxoAvalonOrigins.UI
             }
             Append(InnerElement);
         }
-        public override void Recalculate()
+        public override void PreRecalculate()
         {
+            base.PreRecalculate();
             if (FitToInnerElement || FitMinToInnerElement)
             {
                 origWidth = Width;
@@ -28,7 +29,6 @@ namespace ExxoAvalonOrigins.UI
                 Width.Set(0, 1);
                 Height.Set(0, 1);
             }
-            base.Recalculate();
         }
         public override void PostRecalculate()
         {

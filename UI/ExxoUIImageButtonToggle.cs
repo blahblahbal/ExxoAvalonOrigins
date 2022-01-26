@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.UI
             set
             {
                 toggled = value;
-                OnToggle.Invoke(toggled);
+                OnToggle?.Invoke(toggled);
             }
         }
         private Color inactiveColor;

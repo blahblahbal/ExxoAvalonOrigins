@@ -29,8 +29,11 @@ namespace ExxoAvalonOrigins.UI
         }
         private void UpdateDimensions()
         {
-            MinWidth.Set((Texture.Width - Inset.X * 2) * scale, 0f);
-            MinHeight.Set((Texture.Height - Inset.Y * 2) * scale, 0f);
+            if (Texture != null)
+            {
+                MinWidth.Set((Texture.Width - (Inset.X * 2)) * Scale, 0f);
+                MinHeight.Set((Texture.Height - (Inset.Y * 2)) * Scale, 0f);
+            }
         }
         public ExxoUIImage(Texture2D texture)
         {
@@ -39,7 +42,10 @@ namespace ExxoAvalonOrigins.UI
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() / 2) - Inset).ToNearestPixel(), null, Color, LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f); ;
+            if (Texture != null)
+            {
+                spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() * Scale / 2) - (Inset * Scale)).ToNearestPixel(), null, Color, LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
+            }
         }
     }
 }

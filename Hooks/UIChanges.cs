@@ -295,5 +295,19 @@ namespace ExxoAvalonOrigins.Hooks
         {
             return orig(sb, text, pos.ToNearestPixel(), color, scale, anchorx, anchory, maxCharactersDisplayed);
         }
+
+        // Makes ExxoUIElements able to assume that no matter what they will be SamplerState PointClamp by default unless they implement other SamplerStates manually
+        public static void ILUIElementDraw(ILContext il)
+        {
+            var c = new ILCursor(il);
+            if (!c.TryGotoNext(i => i.MatchLdsfld(typeof(SamplerState), nameof(SamplerState.AnisotropicClamp))))
+            {
+                return;
+            }
+
+            c.Index++;
+            c.Emit(OpCodes.Ldarg_0);
+            c.EmitDelegate<Func<SamplerState, UIElement, SamplerState>>((origState, element) => (element is UI.ExxoUIElement) ? SamplerState.PointClamp : origState);
+        }
     }
 }

@@ -13,26 +13,26 @@ namespace ExxoAvalonOrigins.UI
             Position = position;
         }
     }
-    internal class ExxoUIAttachment<THolder> : ExxoUIElement where THolder : ExxoUIElement
+    internal class ExxoUIAttachment<THolder, TAttachment> : ExxoUIElement where THolder : ExxoUIElement where TAttachment : UIElement
     {
         public THolder AttachmentHolder { get; private set; }
-        public delegate void ExxoUIAttachmentEventHandler(ExxoUIAttachment<THolder> sender, EventArgs e);
-        public delegate void PositionAttachmentEventHandler(ExxoUIAttachment<THolder> sender, PositionAttachmentEventArgs e);
+        public readonly TAttachment AttachmentElement;
+        public delegate void ExxoUIAttachmentEventHandler(ExxoUIAttachment<THolder, TAttachment> sender, EventArgs e);
+        public delegate void PositionAttachmentEventHandler(ExxoUIAttachment<THolder, TAttachment> sender, PositionAttachmentEventArgs e);
         public event PositionAttachmentEventHandler OnPositionAttachment;
         public event ExxoUIAttachmentEventHandler OnAttachTo;
-        protected readonly UIElement Element;
         private bool isAttached;
-        public ExxoUIAttachment(UIElement uiElement)
+        public ExxoUIAttachment(TAttachment uiElement)
         {
             Active = false;
             Width.Set(0, 1);
             Height.Set(0, 1);
-            Element = uiElement;
-            Append(Element);
+            AttachmentElement = uiElement;
+            Append(AttachmentElement);
         }
         public override bool ContainsPoint(Vector2 point)
         {
-            return IsVisible && Element.ContainsPoint(point);
+            return IsVisible && AttachmentElement.ContainsPoint(point);
         }
         public virtual void AttachTo(THolder attachmentHolder)
         {
@@ -56,12 +56,11 @@ namespace ExxoAvalonOrigins.UI
         }
         protected virtual void OnRecalculateFinishHandler(object sender, EventArgs e)
         {
-            var exxoElement = (ExxoUIElement)sender;
-            Vector2 position = exxoElement.GetDimensions().Position() - Parent.GetOuterDimensions().Position();
+            Vector2 position = AttachmentHolder.GetDimensions().Position() - Parent.GetOuterDimensions().Position();
             var args = new PositionAttachmentEventArgs(position);
             OnPositionAttachment?.Invoke(this, args);
-            Element.Left.Set(args.Position.X, 0);
-            Element.Top.Set(args.Position.Y, 0);
+            AttachmentElement.Left.Set(args.Position.X, 0);
+            AttachmentElement.Top.Set(args.Position.Y, 0);
             Recalculate();
         }
     }

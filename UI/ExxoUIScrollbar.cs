@@ -1,7 +1,6 @@
 ﻿using System;
 using ExxoAvalonOrigins.Logic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.UI.Elements;
 
 namespace ExxoAvalonOrigins.UI
@@ -42,10 +41,6 @@ namespace ExxoAvalonOrigins.UI
             {
                 OnViewPositionChanged?.Invoke(this, EventArgs.Empty);
             }
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
     }
 }

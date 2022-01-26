@@ -38,6 +38,8 @@ namespace ExxoAvalonOrigins.UI
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, DepthStencilState.None, null, null, Main.UIScaleMatrix);
             CalculatedStyle innerDimensions = GetInnerDimensions();
             Vector2 pos = innerDimensions.Position();
             if (IsLarge)
@@ -50,6 +52,8 @@ namespace ExxoAvalonOrigins.UI
                 pos.Y -= 2f * TextScale;
                 Utils.DrawBorderString(spriteBatch, Text, pos, TextColor, TextScale);
             }
+            spriteBatch.End();
+            ExxoUIState.BeginDefaultSpriteBatch(spriteBatch);
         }
     }
 }
