@@ -146,6 +146,12 @@ namespace ExxoAvalonOrigins
         public bool gastroMinion = false;
         public bool hungryMinion = false;
         public bool iceGolem = false;
+        public bool goldDagger = false;
+        public bool platinumDagger = false;
+        public bool bismuthDagger = false;
+        public bool adamantiteDagger = false;
+        public bool titaniumDagger = false;
+        public bool troxiniumDagger = false;
         public int infectTimer = 0;
         public int infectDmg = 0;
         public bool weaponMinion = false;
@@ -318,6 +324,9 @@ namespace ExxoAvalonOrigins
         public bool crystalEdge;
         public float bonusKB = 1f;
         public bool stingerPack;
+        public bool UltraHMinion = false;
+        public bool UltraRMinion = false;
+        public bool UltraLMinion = false;
         // Adv Buffs
         public bool advAmmoBuff;
 
@@ -332,15 +341,21 @@ namespace ExxoAvalonOrigins
         public int StingerProbeTimer = 0;
         public List<bool> StingerProbeActiveIds = new List<bool>();
 
-        #endregion Stinger Probe Minion AI vars
+        #endregion Dagger Staff Minion AI vars
+
+        #region dagger staff vars
+        public float daggerStaffRotTimer = 0;
+        public int daggerStaffTimer = 0;
+        public List<bool> daggerStaffActiveIDs = new List<bool>();
+        #endregion
 
         public Vector2 MousePosition = default(Vector2);
 
-        #region Draggon's Bondage AI vars
+        #region Dragon's Bondage AI vars
 
         public bool dragonsBondage;
 
-        #endregion Draggon's Bondage AI vars
+        #endregion Dragon's Bondage AI vars
 
         public int herbX;
         public int herbY;
@@ -432,6 +447,15 @@ namespace ExxoAvalonOrigins
             reflectorMinion = false;
             iceGolem = false;
             caesiumPoison = false;
+            goldDagger = false;
+            platinumDagger = false;
+            bismuthDagger = false;
+            adamantiteDagger = false;
+            titaniumDagger = false;
+            troxiniumDagger = false;
+            UltraHMinion = false;
+            UltraRMinion = false;
+            UltraLMinion = false;
             cloudGloves = false;
             bonusKB = 1f;
 

@@ -30,12 +30,40 @@ namespace ExxoAvalonOrigins
         {
             return item.type > ItemID.None && item.stack > 0;
         }
+        /// <summary>
+        /// Increases all of the Player instance's critical strike chance values.
+        /// </summary>
+        /// <param name="p">The Player instance.</param>
+        /// <param name="amt">The amount to increase the crit chance by.</param>
         public static void AllCrit(this Player p, int amt)
         {
             p.magicCrit += amt;
             p.meleeCrit += amt;
             p.rangedCrit += amt;
             p.thrownCrit += amt;
+        }
+        /// <summary>
+        /// Finds the closest NPC to the Projectile instance.
+        /// </summary>
+        /// <param name="p">The Projectile instance.</param>
+        /// <param name="dist">The distance from this Projectile instance that is desired.</param>
+        /// <returns>Returns the index in the Main.npc[] NPC array.</returns>
+        public static int FindClosestNPC(this Projectile p, float dist)
+        {
+            int closest = -1;
+            float last = dist;
+            for (int i = 0; i < Main.npc.Length; i++)
+            {
+                NPC N = Main.npc[i];
+                if (!N.active || N.townNPC || N.dontTakeDamage) continue;
+                if (Vector2.Distance(p.Center, N.Center) < last)
+                {
+                    last = Vector2.Distance(p.Center, N.Center);
+                    closest = i;
+                }
+                else continue;
+            }
+            return closest;
         }
         public static bool DrawFishingLine(this Projectile projectile, int fishingRodType, Color lineColor, int xPositionAdditive = 45, float yPositionAdditive = 35f)
         {

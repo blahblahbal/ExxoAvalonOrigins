@@ -48,9 +48,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.pStone = true;
             player.Avalon().bubbleBoost = true;
             player.Avalon().trapImmune =
-                player.Avalon().heartGolem =
-                player.Avalon().ethHeart =
-                player.Avalon().longInvince2 = true;
+            player.Avalon().heartGolem =
+            player.Avalon().ethHeart =
+            player.Avalon().longInvince2 = true;
             player.wingTime = 1000;
             if (player.immune)
             {

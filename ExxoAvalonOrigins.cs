@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins
         public const bool DevMode = false;
 #endif
         public const bool GodMode = false;
-        public readonly Version version = new Version(0, 9, 7, 8, DevMode);
+        public readonly Version version = new Version(0, 9, 8, 0, DevMode);
 
         // Hotkeys
 

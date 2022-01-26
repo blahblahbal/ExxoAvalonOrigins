@@ -20,14 +20,14 @@ namespace ExxoAvalonOrigins.UI.Herbology
         public const int LargeHerbSellPrice = 20;
 
         public const int PotionSellPrice = 1;
-        public const int ElixirSellPrice = 5;
+        public const int ElixirSellPrice = 10;
         public const int BlahPotionSellPrice = 2500;
 
         public const int HerbSeedCost = 1;
         public const int LargeHerbSeedCost = 15;
 
         public const int PotionCost = 1;
-        public const int ElixirCost = 5;
+        public const int ElixirCost = 10;
         public const int BlahPotionCost = 2500;
 
         public static readonly int[] PotionIds = new int[]
@@ -84,7 +84,9 @@ namespace ExxoAvalonOrigins.UI.Herbology
             ModContent.ItemType<TitanskinPotion>(),
             ModContent.ItemType<InvincibilityPotion>(),
             ModContent.ItemType<ForceFieldPotion>(),
-            ModContent.ItemType<FuryPotion>()
+            ModContent.ItemType<FuryPotion>(),
+            ModContent.ItemType<SupersonicPotion>(),
+            ModContent.ItemType<LeapingPotion>()
             // Magnet Potion
         };
 
@@ -125,7 +127,25 @@ namespace ExxoAvalonOrigins.UI.Herbology
             ModContent.ItemType<Items.AdvancedPotions.AdvFishingPotion>(),
             ModContent.ItemType<Items.AdvancedPotions.AdvSonarPotion>(),
             ModContent.ItemType<Items.AdvancedPotions.AdvCratePotion>(),
-            ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>()
+            ModContent.ItemType<Items.AdvancedPotions.AdvWarmthPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvCrimsonPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvShockwavePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvLuckPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvBloodCastPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvStarbrightPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvStrengthPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvGPSPotion>(),
+            //ModContent.ItemType<Items.AdvancedPotions.AdvTimeShiftPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvShadowPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvRoguePotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvGauntletPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvWisdomPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvTitanskinPotion>(),
+            //ModContent.ItemType<Items.AdvancedPotions.AdvInvincibilityPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvForceFieldPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvFuryPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvSupersonicPotion>(),
+            ModContent.ItemType<Items.AdvancedPotions.AdvLeapingPotion>()
         };
 
         public static readonly Dictionary<int, int> HerbIdByLargeHerbId = new Dictionary<int, int>
@@ -139,7 +159,8 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ModContent.ItemType<LargeShiverthorn>(), ItemID.Shiverthorn },
             { ModContent.ItemType<LargeBloodberry>(), ModContent.ItemType<Bloodberry>() },
             { ModContent.ItemType<LargeSweetstem>(), ModContent.ItemType<Sweetstem>() },
-            { ModContent.ItemType<LargeBarfbush>(), ModContent.ItemType<Barfbush>() }
+            { ModContent.ItemType<LargeBarfbush>(), ModContent.ItemType<Barfbush>() },
+            { ModContent.ItemType<LargeHolybird>(), ModContent.ItemType<Holybird>() }
         };
 
         public static readonly Dictionary<int, int> LargeHerbIdByLargeHerbSeedId = new Dictionary<int, int>
@@ -153,7 +174,8 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ModContent.ItemType<LargeShiverthornSeed>(), ModContent.ItemType<LargeShiverthorn>() },
             { ModContent.ItemType<LargeBloodberrySeed>(), ModContent.ItemType<LargeBloodberry>() },
             { ModContent.ItemType<LargeSweetstemSeed>(), ModContent.ItemType<LargeSweetstem>() },
-            { ModContent.ItemType<LargeBarfbushSeed>(), ModContent.ItemType<LargeBarfbush>() }
+            { ModContent.ItemType<LargeBarfbushSeed>(), ModContent.ItemType<LargeBarfbush>() },
+            { ModContent.ItemType<LargeHolybirdSeed>(), ModContent.ItemType<LargeHolybird>() }
         };
 
         public static readonly Dictionary<int, int> LargeHerbSeedIdByHerbId = new Dictionary<int, int>
@@ -167,7 +189,8 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ItemID.Shiverthorn, ModContent.ItemType<LargeShiverthornSeed>() },
             { ModContent.ItemType<Bloodberry>(), ModContent.ItemType<LargeBloodberrySeed>() },
             { ModContent.ItemType<Sweetstem>(), ModContent.ItemType<LargeSweetstemSeed>() },
-            { ModContent.ItemType<Barfbush>(), ModContent.ItemType<LargeBarfbushSeed>() }
+            { ModContent.ItemType<Barfbush>(), ModContent.ItemType<LargeBarfbushSeed>() },
+            { ModContent.ItemType<Holybird>(), ModContent.ItemType<LargeHolybirdSeed>() }
         };
 
         public static readonly Dictionary<int, int> LargeHerbSeedIdByHerbSeedId = new Dictionary<int, int>
@@ -181,13 +204,14 @@ namespace ExxoAvalonOrigins.UI.Herbology
             { ItemID.ShiverthornSeeds, ModContent.ItemType<LargeShiverthornSeed>() },
             { ModContent.ItemType<BloodberrySeeds>(), ModContent.ItemType<LargeBloodberrySeed>() },
             { ModContent.ItemType<SweetstemSeeds>(), ModContent.ItemType<LargeSweetstemSeed>() },
-            { ModContent.ItemType<BarfbushSeeds>(), ModContent.ItemType<LargeBarfbushSeed>() }
+            { ModContent.ItemType<BarfbushSeeds>(), ModContent.ItemType<LargeBarfbushSeed>() },
+            { ModContent.ItemType<HolybirdSeeds>(), ModContent.ItemType<LargeHolybirdSeed>() }
         };
 
         public static void UpdateHerbTier(ExxoAvalonOriginsModPlayer modPlayer)
         {
             ExxoAvalonOriginsModPlayer.HerbTier newHerbTier;
-            if (modPlayer.herbTotal >= HerbTier4Threshold && Main.hardMode)
+            if (modPlayer.herbTotal >= HerbTier4Threshold && Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
             {
                 newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Master; // tier 4; Blah Potion exchange
             }

@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             HerbTotalContainer = new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList())
             {
                 FitMinToInnerElement = true,
-                Tooltip = "Herb tokens",
+                Tooltip = "Herb credits",
             };
             HerbTotalContainer.InnerElement.Direction = Direction.Horizontal;
             HerbTotalContainer.InnerElement.FitHeightToContent = true;
@@ -56,7 +56,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             PotionTotalContainer = new ExxoUIPanelWrapper<ExxoUIList>(new ExxoUIList())
             {
                 FitMinToInnerElement = true,
-                Tooltip = "Potion tokens",
+                Tooltip = "Potion credits",
             };
             PotionTotalContainer.InnerElement.Direction = Direction.Horizontal;
             PotionTotalContainer.InnerElement.FitHeightToContent = true;

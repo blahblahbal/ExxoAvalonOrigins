@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -92,7 +92,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            int closest = FindClosest(projectile.position, 16 * 20);
+            int closest = projectile.FindClosestNPC(16 * 20);
             if (closest != -1)
             {
                 if (Main.npc[closest].lifeMax > 5 && !Main.npc[closest].friendly && !Main.npc[closest].townNPC)
