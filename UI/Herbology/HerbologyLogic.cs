@@ -260,7 +260,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
         public static bool ItemIsHerb(Item item)
         {
-            return LargeHerbSeedIdByHerbSeedId.ContainsValue(item.type) || LargeHerbIdByLargeHerbSeedId.ContainsValue(item.type) || LargeHerbIdByLargeHerbSeedId.ContainsKey(item.type) || HerbIdByLargeHerbId.ContainsValue(item.type);
+            return LargeHerbSeedIdByHerbSeedId.ContainsKey(item.type) || LargeHerbIdByLargeHerbSeedId.ContainsValue(item.type) || LargeHerbIdByLargeHerbSeedId.ContainsKey(item.type) || HerbIdByLargeHerbId.ContainsValue(item.type);
         }
 
         public static bool PurchaseItem(Item item, int amount)
