@@ -44,6 +44,68 @@ namespace ExxoAvalonOrigins
         public static int slimeLife = 10000;
         public static bool imkCompat = false;
 
+        public static List<int> shmMobs = new List<int>
+        {
+            NPCID.Creeper,
+            NPCID.Pumpking,
+            NPCID.SantaNK1,
+            ModContent.NPCType<NPCs.AegisHallowor>(),
+            ModContent.NPCType<NPCs.AncientOblivionCannon>(),
+            ModContent.NPCType<NPCs.AncientOblivionHead1>(),
+            ModContent.NPCType<NPCs.AncientOblivionHead2>(),
+            ModContent.NPCType<NPCs.AncientOblivionLaser>(),
+            ModContent.NPCType<NPCs.AncientOblivionPhase1>(),
+            ModContent.NPCType<NPCs.AncientOblivionSaw>(),
+            ModContent.NPCType<NPCs.AncientOblivionVice>(),
+            ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>(),
+            ModContent.NPCType<NPCs.ArmoredHellTortoise>(),
+            ModContent.NPCType<NPCs.ArmoredWraith>(),
+            ModContent.NPCType<NPCs.Astigmatazer>(),
+            ModContent.NPCType<NPCs.BactusMinion>(), // remove later
+            ModContent.NPCType<NPCs.BombBones>(),
+            ModContent.NPCType<NPCs.BombSkeleton>(),
+            ModContent.NPCType<NPCs.CloudBat>(),
+            ModContent.NPCType<NPCs.CometTail>(),
+            ModContent.NPCType<NPCs.CrystalBones>(),
+            ModContent.NPCType<NPCs.CrystalSpectre>(),
+            ModContent.NPCType<NPCs.CursedMagmaSkeleton>(),
+            ModContent.NPCType<NPCs.DarkMatterSlime>(),
+            ModContent.NPCType<NPCs.DarkMotherSlime>(),
+            ModContent.NPCType<NPCs.Dragonfly>(),
+            ModContent.NPCType<NPCs.DragonLordBody>(),
+            ModContent.NPCType<NPCs.DragonLordBody2>(),
+            ModContent.NPCType<NPCs.DragonLordBody3>(),
+            ModContent.NPCType<NPCs.DragonLordHead>(),
+            ModContent.NPCType<NPCs.DragonLordLegs>(),
+            ModContent.NPCType<NPCs.DragonLordTail>(),
+            ModContent.NPCType<NPCs.Ectosphere>(),
+            ModContent.NPCType<NPCs.EyeBones>(),
+            ModContent.NPCType<NPCs.GuardianBones>(),
+            ModContent.NPCType<NPCs.GuardianCorruptor>(),
+            ModContent.NPCType<NPCs.ImpactWizard>(),
+            ModContent.NPCType<NPCs.Infernaspaz>(),
+            ModContent.NPCType<NPCs.Juggernaut>(),
+            ModContent.NPCType<NPCs.JuggernautSorcerer>(),
+            ModContent.NPCType<NPCs.MatterMan>(),
+            ModContent.NPCType<NPCs.MechanicalDiggerBody>(),
+            ModContent.NPCType<NPCs.MechanicalDiggerHead>(),
+            ModContent.NPCType<NPCs.MechanicalDiggerTail>(),
+            ModContent.NPCType<NPCs.Bosses.Mechasting>(),
+            ModContent.NPCType<NPCs.ProtectorWheel>(),
+            ModContent.NPCType<NPCs.QuickCaribe>(),
+            ModContent.NPCType<NPCs.RedAegisBonesHelmet>(),
+            ModContent.NPCType<NPCs.RedAegisBonesHorned>(),
+            ModContent.NPCType<NPCs.RedAegisBonesSparta>(),
+            ModContent.NPCType<NPCs.RedAegisBonesSpike>(),
+            ModContent.NPCType<NPCs.UnstableAnomaly>(),
+            ModContent.NPCType<NPCs.UnvolanditeMite>(),
+            ModContent.NPCType<NPCs.UnvolanditeMiteDigger>(),
+            ModContent.NPCType<NPCs.Valkyrie>(),
+            ModContent.NPCType<NPCs.VampireHarpy>(),
+            ModContent.NPCType<NPCs.VorazylcumMite>(),
+            ModContent.NPCType<NPCs.VorazylcumMiteDigger>(),
+        };
+
         public static List<int> hornets = new List<int>
         {
             NPCID.Hornet,
@@ -1856,6 +1918,48 @@ IL_162:
             {
                 npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().noOneHitKill = true;
             }
+            #region shm mob scaling
+            if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
+            {
+                if (!shmMobs.Contains(npc.type))
+                {
+                    if (Main.expertMode)
+                    {
+                        if (npc.townNPC)
+                        {
+                            npc.lifeMax *= 2;
+                        }
+                        else if (npc.boss)
+                        {
+                            npc.lifeMax = (int)(npc.lifeMax * 1.2);
+                            npc.damage = (int)(npc.damage * 1.3);
+                        }
+                        else
+                        {
+                            npc.lifeMax = (int)(npc.lifeMax * 1.6);
+                            npc.damage = (int)(npc.damage * 1.5);
+                        }
+                    }
+                    else
+                    {
+                        if (npc.townNPC)
+                        {
+                            npc.lifeMax *= 2;
+                        }
+                        else if (npc.boss)
+                        {
+                            npc.lifeMax = (int)(npc.lifeMax * 1.5);
+                            npc.damage *= 2;
+                        }
+                        else
+                        {
+                            npc.damage *= 2;
+                            npc.lifeMax *= 2;
+                        }
+                    }
+                }
+            }
+            #endregion
         }
 
         public override bool PreNPCLoot(NPC npc)

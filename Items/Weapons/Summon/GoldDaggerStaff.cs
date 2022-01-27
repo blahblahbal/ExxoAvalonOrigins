@@ -31,11 +31,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.height = dims.Height;
             item.UseSound = SoundID.Item44;
         }
+        public override bool CanUseItem(Player player)
+        {
+            return true;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.GoldBar, 13);
-            recipe.AddIngredient(ItemID.Ruby);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

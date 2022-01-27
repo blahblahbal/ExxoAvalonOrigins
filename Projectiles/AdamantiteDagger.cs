@@ -57,6 +57,16 @@ namespace ExxoAvalonOrigins.Projectiles
                 }
             }
 
+            if (Main.player[projectile.owner].slotsMinions + projectile.minionSlots > Main.player[projectile.owner].maxMinions && projectile.owner == Main.myPlayer)
+            {
+                projectile.Kill();
+            }
+            else
+            {
+                Main.player[projectile.owner].numMinions++;
+                Main.player[projectile.owner].slotsMinions += projectile.minionSlots;
+            }
+
             #region Get ID
             if (!initialised)
             {
@@ -66,6 +76,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     if (!modPlayer.daggerStaffActiveIDs[i])
                     {
                         id = i;
+                        //player.numMinions += (int)projectile.minionSlots;
                         modPlayer.daggerStaffActiveIDs[i] = true;
                         found = true;
                         break;

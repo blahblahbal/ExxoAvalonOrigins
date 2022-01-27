@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ExxoAvalonOrigins.Buffs;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
@@ -129,6 +130,8 @@ namespace ExxoAvalonOrigins
 
         public static Texture2D[] spectrumArmorTextures;
 
+        public bool quackJump;
+        public bool jumpAgainQuack;
         public bool armorStealth = false;
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
@@ -387,6 +390,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            quackJump = false;
             bOfBacteria = false;
             stingerPack = false;
             crystalEdge = false;
@@ -2633,9 +2637,27 @@ namespace ExxoAvalonOrigins
         {
             return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
         }
-
+        public void DoubleJumps()
+        {
+            if (NumHookProj() > 0 || player.sliding || (player.autoJump && player.justJumped))
+            {
+                jumpAgainQuack = true;
+                return;
+            }
+            bool flag = true;
+            if (player.mount != null && player.mount.Active)
+            {
+                flag = player.mount.BlockExtraJumps;
+            }
+            bool flag2 = (player.carpet ? player.carpetTime <= 0 && player.canCarpet : true);
+            if (player.position.Y == player.oldPosition.Y && flag && flag2)
+            {
+                jumpAgainQuack = true;
+            }
+        }
         public override void PostUpdateMiscEffects()
         {
+            DoubleJumps();
             if (noSticky)
             {
                 player.sticky = false;
@@ -2809,7 +2831,10 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-
+        public static int NumHookProj()
+        {
+            return Main.projectile.Count((Projectile p) => Main.projHook[p.type] && p.active && p.ai[0] == 2f && p.owner == Main.myPlayer);
+        }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (ExxoAvalonOrigins.mod.quickStaminaHotkey.JustPressed)
@@ -2873,6 +2898,7 @@ namespace ExxoAvalonOrigins
                 }
             }
 
+            #region other hotkeys
             if (ExxoAvalonOrigins.mod.rocketJumpHotkey.JustPressed)
             {
                 activateRocketJump = !activateRocketJump;
@@ -2914,7 +2940,7 @@ namespace ExxoAvalonOrigins
                 activateBubble = !activateBubble;
                 Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
             }
-
+            #endregion
             if (player.inventory[player.selectedItem].type == ModContent.ItemType<Items.Tools.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
             {
                 speed = !speed;
@@ -2998,6 +3024,57 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
+            bool flag = true;
+            if (player.mount != null && player.mount.Active)
+            {
+                flag = player.mount.BlockExtraJumps;
+            }
+            bool flag2 = (!player.doubleJumpCloud || !player.jumpAgainCloud) && (!player.doubleJumpSandstorm || !player.jumpAgainSandstorm) && (!player.doubleJumpBlizzard || !player.jumpAgainBlizzard) && (!player.doubleJumpFart || !player.jumpAgainFart) && (!player.doubleJumpSail || !player.jumpAgainSail) && (!player.doubleJumpUnicorn || !player.jumpAgainUnicorn) && NumHookProj() <= 0 && flag;
+            if (!(PlayerInput.Triggers.JustPressed.Jump && player.position.Y != player.oldPosition.Y && flag2))
+            {
+                return;
+            }
+            if (quackJump && jumpAgainQuack)
+            {
+                jumpAgainQuack = false;
+                int h = player.height;
+                if (player.gravDir == -1)
+                {
+                    h = -6;
+                }
+                Main.PlaySound(SoundID.Zombie, player.position, 12);
+                player.velocity.Y = -Player.jumpSpeed * player.gravDir;
+                player.jump = (int)(Player.jumpHeight * 1.25);
+                int num8 = Dust.NewDust(new Vector2(player.position.X - 4f, player.position.Y + h), player.width + 8, 4, 188, -player.velocity.X * 0.5f, player.velocity.Y * 0.5f, DustID.FartInAJar, default, 1.5f);
+                Main.dust[num8].velocity.X = Main.dust[num8].velocity.X * 0.5f - player.velocity.X * 0.1f;
+                Main.dust[num8].velocity.Y = Main.dust[num8].velocity.Y * 0.5f - player.velocity.Y * 0.3f;
+                Main.dust[num8].velocity *= 0.5f;
+
+                int g = Main.rand.Next(2);
+                if (g == 0) g = mod.GetGoreSlot("Gores/QuackGore1");
+                if (g == 1) g = mod.GetGoreSlot("Gores/QuackGore2");
+                int g2 = Main.rand.Next(2);
+                if (g2 == 0) g2 = mod.GetGoreSlot("Gores/QuackGore1");
+                if (g2 == 1) g2 = mod.GetGoreSlot("Gores/QuackGore2");
+                int g3 = Main.rand.Next(2);
+                if (g3 == 0) g3 = mod.GetGoreSlot("Gores/QuackGore1");
+                if (g3 == 1) g3 = mod.GetGoreSlot("Gores/QuackGore2");
+                int num3 = Gore.NewGore(new Vector2(player.position.X + player.width / 2 - 16f, player.position.Y + h - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), g, 1f);
+                Main.gore[num3].velocity.X = Main.gore[num3].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                Main.gore[num3].velocity.Y = Main.gore[num3].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                Main.gore[num3].sticky = false;
+                Main.gore[num3].rotation += 0.1f;
+                num3 = Gore.NewGore(new Vector2(player.position.X - 36f, player.position.Y + h - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), g2, 1f);
+                Main.gore[num3].velocity.X = Main.gore[num3].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                Main.gore[num3].velocity.Y = Main.gore[num3].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                Main.gore[num3].sticky = false;
+                Main.gore[num3].rotation += 0.1f;
+                num3 = Gore.NewGore(new Vector2(player.position.X + player.width + 4f, player.position.Y + h - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), g3, 1f);
+                Main.gore[num3].velocity.X = Main.gore[num3].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                Main.gore[num3].velocity.Y = Main.gore[num3].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                Main.gore[num3].sticky = false;
+                Main.gore[num3].rotation += 0.1f;
+            }
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -3066,7 +3143,10 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-
+        public override void UpdateDead()
+        {
+            jumpAgainQuack = false;
+        }
         public override void PostUpdateRunSpeeds()
         {
             //Main.NewText("PostUpdateRunSpeeds " + slimeBand.ToString());

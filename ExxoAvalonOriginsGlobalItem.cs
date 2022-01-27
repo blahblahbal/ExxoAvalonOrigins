@@ -1041,6 +1041,16 @@ namespace ExxoAvalonOrigins
 
         public override bool UseItem(Item item, Player player)
         {
+            //if (item.type == ModContent.ItemType<Items.Weapons.Summon.AdamantiteDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.BismuthDaggerStaff>() ||
+            //    item.type == ModContent.ItemType<Items.Weapons.Summon.GoldDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.PlatinumDaggerStaff>() ||
+            //    item.type == ModContent.ItemType<Items.Weapons.Summon.TitaniumDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.TroxiniumDaggerStaff>())
+            //{
+            //    if (player.Avalon().daggerStaffActiveIDs.Count >= player.maxMinions)
+            //    {
+            //        player.Avalon().daggerStaffActiveIDs[0] = false;
+            //        player.Avalon().daggerStaffActiveIDs.RemoveAt(0);
+            //    }
+            //}
             if (player.Avalon().cloudGloves && player.whoAmI == Main.myPlayer)
             {
                 bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX &&

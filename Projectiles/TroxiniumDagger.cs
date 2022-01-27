@@ -57,6 +57,16 @@ namespace ExxoAvalonOrigins.Projectiles
                 }
             }
 
+            if (Main.player[projectile.owner].slotsMinions + projectile.minionSlots > Main.player[projectile.owner].maxMinions && projectile.owner == Main.myPlayer)
+            {
+                projectile.Kill();
+            }
+            else
+            {
+                Main.player[projectile.owner].numMinions++;
+                Main.player[projectile.owner].slotsMinions += projectile.minionSlots;
+            }
+
             #region Get ID
             if (!initialised)
             {

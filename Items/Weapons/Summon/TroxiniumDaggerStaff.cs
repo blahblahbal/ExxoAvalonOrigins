@@ -31,6 +31,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.height = dims.Height;
             item.UseSound = SoundID.Item44;
         }
+        public override bool CanUseItem(Player player)
+        {
+            return true;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
