@@ -390,7 +390,6 @@ namespace ExxoAvalonOrigins.Projectiles
                         }
                     }
                 }
-                var flag14 = false;
                 var vector33 = Vector2.Zero;
                 if (projectile.ai[1] != 0f)
                 {

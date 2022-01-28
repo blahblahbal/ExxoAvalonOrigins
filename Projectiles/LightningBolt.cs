@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -9,7 +9,6 @@ namespace ExxoAvalonOrigins.Projectiles
 {
     public class LightningBolt : ModProjectile
     {
-        float rot = 0f;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lightning");

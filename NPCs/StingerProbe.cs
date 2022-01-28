@@ -54,11 +54,6 @@ namespace ExxoAvalonOrigins.NPCs
             num150 -= vector17.Y;
             float num151 = (float)Math.Sqrt((double)(num149 * num149 + num150 * num150));
             float num152 = num151;
-            bool flag16 = false;
-            if (num151 > 600f)
-            {
-                flag16 = true;
-            }
             if (num151 == 0f)
             {
                 num149 = npc.velocity.X;

@@ -10,7 +10,6 @@ namespace ExxoAvalonOrigins.Projectiles
     {
         bool initialised = false;
         int id;
-        int projTimer;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bismuth Dagger");

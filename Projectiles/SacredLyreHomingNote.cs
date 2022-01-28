@@ -6,7 +6,6 @@ namespace ExxoAvalonOrigins.Projectiles
 {
     public class SacredLyreHomingNote : ModProjectile
     {
-        int timer = 0;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lyre Note");
@@ -26,23 +25,6 @@ namespace ExxoAvalonOrigins.Projectiles
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 150);
-        }
-        public static int FindClosest(Vector2 pos, float dist)
-        {
-            int closest = -1;
-            float last = dist;
-            for (int i = 0; i < Main.npc.Length; i++)
-            {
-                NPC N = Main.npc[i];
-                if (!N.active || N.townNPC || N.dontTakeDamage) continue;
-                if (Vector2.Distance(pos, N.Center) < last)
-                {
-                    last = Vector2.Distance(pos, N.Center);
-                    closest = i;
-                }
-                else continue;
-            }
-            return closest;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
@@ -72,7 +54,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            int closest = FindClosest(projectile.position, 16 * 15);
+            int closest = projectile.FindClosestNPC(16 * 15);
             if (closest != -1)
             {
                 if (Main.npc[closest].lifeMax > 5 && !Main.npc[closest].friendly && !Main.npc[closest].townNPC)

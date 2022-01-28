@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -127,81 +127,81 @@ namespace ExxoAvalonOrigins.Projectiles
                 {
                     if (Main.moonPhase == 0)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now Full."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now Full."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 1)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now Last Gibbous."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now Last Gibbous."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 2)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now Last Quarter."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now Last Quarter."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 3)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now Last Crescent."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now Last Crescent."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 4)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now New."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now New."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 5)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now First Crescent."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now First Crescent."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 6)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now First Quarter."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now First Quarter."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                     }
                     if (Main.moonPhase == 7)
                     {
-                        NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("Moon Phase is now First Gibbous."), 255, 50f, 255f, 130f, 0);
+                        NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Moon Phase is now First Gibbous."), new Color(50, 255, 130));
                         if (Main.rand.Next(14) == 0 && !Main.dayTime)
                         {
                             Main.bloodMoon = true;
-                            NetMessage.SendData(MessageID.ChatText, -1, -1, NetworkText.FromLiteral("The Blood Moon has risen..."), 255, 50f, 255f, 130f, 0);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
                         projectile.active = false;
                         return;

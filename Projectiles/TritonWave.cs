@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -47,11 +47,6 @@ namespace ExxoAvalonOrigins.Projectiles
             if (projectile.timeLeft <= 10)
             {
                 projectile.scale *= 0.91f;
-            }
-            float num1 = 1f;
-            if (projectile.timeLeft <= 15)
-            {
-                num1 = 0.5f;
             }
             //int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.TritanoriumFlame>(), 0f, 0f, default, default, 1f);
             //Main.dust[dust].noGravity = true;

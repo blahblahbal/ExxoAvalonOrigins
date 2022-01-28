@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -112,7 +112,6 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 var num257 = (11f + (projectile.localAI[0] / 3)) / Main.player[projectile.owner].meleeSpeed;
                 var num258 = (0.9f + (projectile.localAI[0] / 15)) / Main.player[projectile.owner].meleeSpeed;
-                var num259 = 300f;
                 Math.Abs(num253);
                 Math.Abs(num254);
                 if (projectile.ai[1] == 1f)

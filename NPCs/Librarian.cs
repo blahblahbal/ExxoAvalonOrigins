@@ -34,37 +34,37 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override string TownNPCName()
         {
-            switch (Main.rand.Next(9))
+            switch (Main.rand.Next(12))
             {
                 case 0:
-                    return "Richard";
+                    return "Juisefuss";
                 case 1:
-                    return "John";
+                    return "Rob";
                 case 2:
-                    return "Cameron";
+                    return "Nasard";
                 case 3:
-                    return "Benjamin";
+                    return "Helafrin";
                 case 4:
-                    return "Samuel";
+                    return "Ganjarule";
                 case 5:
-                    return "Miles";
+                    return "Ryugrei";
                 case 6:
-                    return "Julian";
+                    return "Baysh";
                 case 7:
-                    return "Roger";
+                    return "Encanes";
                 case 8:
-                    return "Steven";
+                    return "Dato";
                 case 9:
-                    return "Arnold";
+                    return "Callumn";
                 case 10:
-                    return "Thomas";
+                    return "Alkaido";
                 default:
-                    return "Peter";
+                    return "Harry";
             }
         }
         public override string GetChat()
         {
-            if (!Main.dayTime && Main.rand.Next(5) == 0)
+            if (!Main.dayTime && Main.hardMode && Main.rand.Next(5) == 0)
             {
                 return "My home is fraught with Wraiths. I'm deathly afraid of them; please keep them away.";
             }
@@ -83,7 +83,7 @@ namespace ExxoAvalonOrigins.NPCs
                 case 3:
                     return "How do you people deal with being two-dimensional?";
                 case 4:
-                    return "買點東西，什麼都買。Oops, sorry about that. I was just speaking to a friend of mine from home.";
+                    return "買點東西，什麼都買。 Oops, sorry about that. I was just speaking to a friend of mine from home.";
                 case 5:
                     return "Psionic Infusion, Spark, Chant of Chi, Tide Spirit, Sandburst Blast, Stone Smasher, macro. What? Just setting up my strategy for this nuke.";
                 case 6:
@@ -95,7 +95,7 @@ namespace ExxoAvalonOrigins.NPCs
                 case 9:
                     return "Wait, you get loot after defeating a boss more than once per day?";
                 case 10:
-                    return "It's very strange to not see fairies flying around everyone. Why don't you buy one from me?";
+                    return "It's very strange to not see fairies flying around everyone. Why don't you buy one from me?"; // add genie pets
             }
             return "";
         }

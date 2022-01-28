@@ -251,7 +251,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             int tilePosX = (int)(npc.position.X / 16f);
             int tilePosXwidth = (int)((npc.position.X + npc.width) / 16f);
             int tilePosYCenter = (int)((npc.position.Y + npc.height / 2) / 16f);
-            int num446 = 0;
             int num447 = tilePosYCenter + 7;
             num447 += 4;
             if (ExxoAvalonOriginsWorld.wosB == -1)
@@ -274,7 +273,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     ExxoAvalonOriginsWorld.wosB = num447 * 16;
                 }
             }
-            num446 = 0;
             num447 = tilePosYCenter - 7;
             num447 -= 4;
             if (ExxoAvalonOriginsWorld.wosT == -1)
