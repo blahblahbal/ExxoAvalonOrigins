@@ -1,4 +1,4 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Bar;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chant of the Water Dragon");
-            Tooltip.SetDefault("+20% magic damage");
+            Tooltip.SetDefault("Tome\n+20% magic damage");
         }
 
         public override void SetDefaults()

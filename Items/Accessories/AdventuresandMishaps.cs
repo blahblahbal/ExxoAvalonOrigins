@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Adventures and Mishaps");
-            Tooltip.SetDefault("+60 HP, +5% damage\n-10% mana cost");
+            Tooltip.SetDefault("Tome\n+60 HP, +5% damage\n-10% mana cost");
         }
 
         public override void SetDefaults()

@@ -49,12 +49,6 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                 }
             }
-            if (projectile.ai[0] == 10)
-            {
-                rot = MathHelper.PiOver2;
-                projectile.ai[0]--;
-                //Main.NewText(rot.ToString(), 255, 255, 0);
-            }
             if (((Main.rand.Next(15) == 0 && projectile.ai[0] > 0) || projectile.scale == 1.0) && projectile.scale > 0.4f)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
