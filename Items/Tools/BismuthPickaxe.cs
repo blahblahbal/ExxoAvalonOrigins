@@ -32,7 +32,8 @@ namespace ExxoAvalonOrigins.Items.Tools
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 12);
-            recipe.AddIngredient(RecipeGroupID.Wood, 4);
+            recipe.AddIngredient(ItemID.Wood, 4);
+            recipe.anyWood = true;
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
