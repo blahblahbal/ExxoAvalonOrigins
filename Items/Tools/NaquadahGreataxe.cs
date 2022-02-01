@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.knockBack = 7f;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 1, 40, 0);
+            item.value = Item.sellPrice(0, 2, 5, 0);
             item.useAnimation = 18;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;

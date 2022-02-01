@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             Rectangle dims = this.GetDims();
             item.defense = 3;
             item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 0, 60);
+            item.value = Item.sellPrice(0, 0, 8);
             item.height = dims.Height;
         }
         public override void AddRecipes()

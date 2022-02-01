@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.knockBack = 5.2f;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 4500;
+            item.value = 12000;
             item.useAnimation = 18;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;

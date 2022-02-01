@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.shoot = ModContent.ProjectileType<Projectiles.DurataniumGlaive>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 105000;
+            item.value = 50000;
             item.height = dims.Height;
         }
     }

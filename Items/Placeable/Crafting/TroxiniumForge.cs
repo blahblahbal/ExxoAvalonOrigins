@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
             item.width = dims.Width;
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 55000;
+            item.value = 50000;
             item.useAnimation = 15;
             item.height = dims.Height;
         }

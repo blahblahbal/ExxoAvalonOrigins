@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.shoot = ModContent.ProjectileType<Projectiles.NaquadahTrident>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 105000;
+            item.value = 86000;
             item.useAnimation = 26;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;

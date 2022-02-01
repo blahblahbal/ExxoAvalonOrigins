@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.shoot = ModContent.ProjectileType<Projectiles.DurataniumChainsaw>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 88000;
+            item.value = 60000;
             item.useAnimation = 25;
             item.height = dims.Height;
         }

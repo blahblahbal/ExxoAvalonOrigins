@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.placeStyle = 20;
             item.width = dims.Width;
             item.useTime = 10;
-            item.value = Item.sellPrice(0, 0, 4, 0);
+            item.value = Item.sellPrice(0, 0, 7, 80);
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;

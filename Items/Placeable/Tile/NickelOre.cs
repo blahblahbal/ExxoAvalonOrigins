@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.useTurn = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 0, 90);
+            item.value = Item.sellPrice(0, 0, 1, 25);
             item.useAnimation = 15;
             item.height = dims.Height;
         }

@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             item.knockBack = 1.5f;
             item.shoot = ProjectileID.WoodenArrowFriendly;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 100000;
+            item.value = 130000;
             item.useAnimation = 21;
             item.height = dims.Height;
             if (!Main.dedServ)

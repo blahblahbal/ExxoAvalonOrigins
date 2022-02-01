@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.knockBack = 4f;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 800;
+            item.value = 2000;
             item.UseSound = SoundID.Item1;
             item.useAnimation = 26;
             item.height = dims.Height;
