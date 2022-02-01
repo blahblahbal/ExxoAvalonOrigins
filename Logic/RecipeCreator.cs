@@ -1957,9 +1957,9 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Bomb, 2);
-            recipe.AddIngredient(ModContent.ItemType<SnotsandBlock>());
+            recipe.AddIngredient(ModContent.ItemType<SnotsandBlock>(), 30);
             recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<SandBomb>(), 2);
+            recipe.SetResult(ModContent.ItemType<SnotsandBomb>(), 2);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
