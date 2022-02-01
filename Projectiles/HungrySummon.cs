@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/HungrySummon");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/HungrySummon");
             projectile.netImportant = true;
             projectile.width = 22;
             projectile.height = 36;

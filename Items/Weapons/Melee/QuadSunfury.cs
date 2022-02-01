@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            List<string> assignedKeys = ExxoAvalonOrigins.mod.modeChangeHotkey.GetAssignedKeys();
+            List<string> assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
 
             var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change attack modes");
             tooltips.Add(assignedKeyInfo);
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void HoldItem(Player player)
         {
-            if (ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
             {
                 mode++;
                 if (mode == 1)

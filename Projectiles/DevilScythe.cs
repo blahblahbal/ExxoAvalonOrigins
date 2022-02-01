@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DevilScythe");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DevilScythe");
             projectile.width = 48;
             projectile.height = 48;
             projectile.alpha = 100;

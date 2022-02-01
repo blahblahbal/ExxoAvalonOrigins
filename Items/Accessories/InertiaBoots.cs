@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/InertiaBoots");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/InertiaBoots");
             item.defense = 4;
             item.rare = ItemRarityID.Lime;
             item.width = dims.Width;

@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/BandofSlime");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/BandofSlime");
             item.rare = ItemRarityID.Blue;
             item.width = dims.Width;
             item.accessory = true;

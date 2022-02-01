@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ElementBeam");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ElementBeam");
             projectile.width = 16;
             projectile.height = 16;
             projectile.aiStyle = 27;

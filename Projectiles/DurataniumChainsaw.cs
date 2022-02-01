@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DurataniumChainsaw");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DurataniumChainsaw");
             projectile.width = dims.Width * 18 / 56;
             projectile.height = dims.Height * 18 / 56 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

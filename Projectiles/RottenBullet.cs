@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/RottenBullet");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/RottenBullet");
             projectile.width = dims.Width * 10 / 12;
             projectile.timeLeft = 30;
             projectile.height = dims.Height * 10 / 12 / Main.projFrames[projectile.type];

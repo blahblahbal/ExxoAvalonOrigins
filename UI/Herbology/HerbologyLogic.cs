@@ -409,7 +409,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             UpdateHerbTier(modPlayer);
 
             ItemText.NewText(item, item.stack, false, false);
-            Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
+            Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
             return true;
         }
     }

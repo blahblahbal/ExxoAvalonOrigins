@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Minisphere");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Minisphere");
             projectile.width = dims.Width * 14 / 20;
             projectile.height = dims.Height * 14 / 20 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

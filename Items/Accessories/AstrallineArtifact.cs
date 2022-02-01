@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/AstrallineArtifact");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/AstrallineArtifact");
             item.rare = -12;
             item.width = dims.Width;
             item.accessory = true;

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Freezethrower");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Freezethrower");
             projectile.width = dims.Width * 6 / 16;
             projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

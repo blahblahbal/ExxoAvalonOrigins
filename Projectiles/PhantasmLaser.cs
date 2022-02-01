@@ -19,9 +19,9 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public static void Load()
         {
-            texture2D18 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamVenoshock");
-            texture2D19 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamStart");
-            texture2D20 = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamEnd");
+            texture2D18 = ExxoAvalonOrigins.Mod.GetTexture("Sprites/BeamVenoshock");
+            texture2D19 = ExxoAvalonOrigins.Mod.GetTexture("Sprites/BeamStart");
+            texture2D20 = ExxoAvalonOrigins.Mod.GetTexture("Sprites/BeamEnd");
         }
 
         public override void SetStaticDefaults()

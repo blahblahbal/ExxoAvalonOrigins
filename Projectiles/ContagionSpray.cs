@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ContagionSpray");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ContagionSpray");
             projectile.width = dims.Width * 6 / 16;
             projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

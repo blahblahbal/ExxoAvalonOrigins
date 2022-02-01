@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/GastrominiSummon");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/GastrominiSummon");
             projectile.netImportant = true;
             projectile.width = 22;
             projectile.height = 36;

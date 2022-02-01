@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/LightningCloud");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/LightningCloud");
             projectile.width = dims.Width;
             projectile.height = dims.Height;
             projectile.friendly = true;

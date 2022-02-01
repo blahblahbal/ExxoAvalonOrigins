@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/MagmafrostBolt");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/MagmafrostBolt");
             projectile.width = dims.Width * 12 / 16;
             projectile.height = dims.Height * 12 / 16 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

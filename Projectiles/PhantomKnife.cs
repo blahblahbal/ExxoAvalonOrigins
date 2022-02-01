@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PhantomKnife");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PhantomKnife");
             projectile.width = 30;
             projectile.height = 30;
             projectile.aiStyle = -1;

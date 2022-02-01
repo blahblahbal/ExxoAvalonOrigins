@@ -30,22 +30,22 @@ namespace ExxoAvalonOrigins
         public const bool DevMode = false;
 #endif
         public const bool GodMode = false;
-        public readonly Version version = new Version(0, 9, 8, 0, DevMode);
+        public new readonly Version Version = new Version(0, 9, 8, 0, DevMode);
 
         // Hotkeys
 
-        public ModHotKey shadowHotkey;
-        public ModHotKey sprintHotkey;
-        public ModHotKey dashHotkey;
-        public ModHotKey quintupleHotkey;
-        public ModHotKey swimHotkey;
-        public ModHotKey wallSlideHotkey;
-        public ModHotKey bubbleBoostHotkey;
-        public ModHotKey modeChangeHotkey;
-        public ModHotKey astralHotkey;
+        public ModHotKey ShadowHotkey;
+        public ModHotKey SprintHotkey;
+        public ModHotKey DashHotkey;
+        public ModHotKey QuintupleHotkey;
+        public ModHotKey SwimHotkey;
+        public ModHotKey WallSlideHotkey;
+        public ModHotKey BubbleBoostHotkey;
+        public ModHotKey ModeChangeHotkey;
+        public ModHotKey AstralHotkey;
         public ModHotKey minionGuidingHotkey;
         public ModHotKey rocketJumpHotkey;
-        public ModHotKey quickStaminaHotkey;
+        public ModHotKey QuickStaminaHotkey;
 
         // UI
 
@@ -58,13 +58,13 @@ namespace ExxoAvalonOrigins
         public bool CheckPointer = true;
 
         // Reference to the main instance of the mod
-        public static ExxoAvalonOrigins mod { get; private set; }
+        public static ExxoAvalonOrigins Mod { get; private set; }
 
-        public static float caesiumTransition;
+        public static float CaesiumTransition;
 
         public ExxoAvalonOrigins()
         {
-            mod = this;
+            Mod = this;
         }
         public override void Load()
         {
@@ -94,19 +94,19 @@ namespace ExxoAvalonOrigins
 
                 ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Texture2D[]
                 {
-                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Head"),
-                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Body"),
-                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Arms"),
-                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
-                    ExxoAvalonOrigins.mod.GetTexture("Sprites/LavaMerman_Legs")
+                    Mod.GetTexture("Sprites/LavaMerman_Head"),
+                    Mod.GetTexture("Sprites/LavaMerman_Body"),
+                    Mod.GetTexture("Sprites/LavaMerman_Arms"),
+                    Mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
+                    Mod.GetTexture("Sprites/LavaMerman_Legs")
                 };
                 ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Texture2D[]
                 {
-                    mod.GetTexture("Items/Armor/SpectrumHelmet_Glow_Head"),
-                    mod.GetTexture("Items/Armor/SpectrumBreastplate_Body_Glow"),
-                    mod.GetTexture("Items/Armor/SpectrumBreastplate_Arms_Glow"),
-                    mod.GetTexture("Items/Armor/SpectrumBreastplate_FemaleBody_Glow"),
-                    mod.GetTexture("Items/Armor/SpectrumGreaves_Legs_Glow"),
+                    Mod.GetTexture("Items/Armor/SpectrumHelmet_Glow_Head"),
+                    Mod.GetTexture("Items/Armor/SpectrumBreastplate_Body_Glow"),
+                    Mod.GetTexture("Items/Armor/SpectrumBreastplate_Arms_Glow"),
+                    Mod.GetTexture("Items/Armor/SpectrumBreastplate_FemaleBody_Glow"),
+                    Mod.GetTexture("Items/Armor/SpectrumGreaves_Legs_Glow"),
                 };
                 ExxoAvalonOriginsModPlayer.originalMermanTextures = new Texture2D[]
                 {
@@ -149,18 +149,18 @@ namespace ExxoAvalonOrigins
 
                 // Hotkeys
 
-                shadowHotkey = RegisterHotKey("Shadow Teleport", "V");
-                sprintHotkey = RegisterHotKey("Toggle Sprinting", "F");
-                dashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");
-                quintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
-                swimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?
-                wallSlideHotkey = RegisterHotKey("Toggle Wall Sliding", "G");
-                bubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");
-                modeChangeHotkey = RegisterHotKey("Change Modes", "N");
-                astralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
+                ShadowHotkey = RegisterHotKey("Shadow Teleport", "V");
+                SprintHotkey = RegisterHotKey("Toggle Sprinting", "F");
+                DashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");
+                QuintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
+                SwimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?
+                WallSlideHotkey = RegisterHotKey("Toggle Wall Sliding", "G");
+                BubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");
+                ModeChangeHotkey = RegisterHotKey("Change Modes", "N");
+                AstralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
                 minionGuidingHotkey = RegisterHotKey("Ancient Minion Guiding", "Mouse2");
                 rocketJumpHotkey = RegisterHotKey("Stamina Rocket Jump", "C");
-                quickStaminaHotkey = RegisterHotKey("Quick Stamina", "X");
+                QuickStaminaHotkey = RegisterHotKey("Quick Stamina", "X");
 
                 // UI
 
@@ -454,251 +454,7 @@ namespace ExxoAvalonOrigins
 
         public override void PostSetupContent()
         {
-            #region BossChecklist
-
-            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
-            if (bossChecklist != null)
-            {
-                /*
-                // Boss checklist documentation can be found here: https://github.com/JavidPack/BossChecklist/wiki/Support-using-Mod-Call
-
-                // Vanilla boss progression floats:
-                KingSlime = 1f;
-                EyeOfCthulhu = 2f;
-                EaterOfWorlds = 3f;
-                QueenBee = 4f;
-                Skeletron = 5f;
-                WallOfFlesh = 6f;
-                TheTwins = 7f;
-                TheDestroyer = 8f;
-                SkeletronPrime = 9f;
-                Plantera = 10f;
-                Golem = 11f;
-                DukeFishron = 12f;
-                LunaticCultist = 13f;
-                Moonlord = 14f;
-
-                // Template
-                bossChecklist.Call
-                    (
-                    "",
-                    0f,
-                    ModContent.NPCType<>(),
-                    this,
-                    "",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld),
-                    ModContent.ItemType<>(),
-                    new List<int> {ModContent.ItemType<>(),
-                        ModContent.ItemType<>()},
-                    new List<int> {ModContent.ItemType<>(),
-                        ModContent.ItemType<>()},
-                    " [i:" + ModContent.ItemType<>() + "] ",
-                    "",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/",
-                    "ExxoAvalonOrigins/NPCs/",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld)
-                    );
-                */
-
-                #region BacteriumPrime
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    3f,
-                    ModContent.NPCType<NPCs.BacteriumPrime>(),
-                    this,
-                    "Bacterium Prime",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedBacteriumPrime),
-                    ModContent.ItemType<BacterialTotem>(),
-                    new List<int> {ModContent.ItemType<BacteriumPrimeTrophy>(),
-                        ModContent.ItemType<BacteriumPrimeMask>()},
-                    new List<int> {ModContent.ItemType<BacciliteOre>(),
-                        ModContent.ItemType<Booger>()},
-                    "Use [i:" + ModContent.ItemType<BacterialTotem>() + "] or break three Snot Orbs in a Contagion ring",
-                    "Bacterium Prime melts back into the ick",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/BacteriumPrimeBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/Bosses/BacteriumPrime_Head_Boss",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.contagion)
-                    );
-
-                #endregion BacteriumPrime
-
-                #region DesertBeak
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    3.5f,
-                    ModContent.NPCType<NPCs.Bosses.DesertBeak>(),
-                    this,
-                    "Desert Beak",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDesertBeak),
-                    ModContent.ItemType<TheBeak>(),
-                    new List<int> {ModContent.ItemType<DesertBeakTrophy>(),
-                        ModContent.ItemType<DesertBeakMask>()},
-                    new List<int> {ItemID.SandBlock,
-                        ModContent.ItemType<DesertFeather>(),
-                        ModContent.ItemType<RhodiumOre>(),
-                        ModContent.ItemType<OsmiumOre>(),
-                        ModContent.ItemType<IridiumOre>(),
-                        ModContent.ItemType<TomeoftheDistantPast>()},
-                    "Use [i:" + ModContent.ItemType<TheBeak>() + "] in the desert",
-                    "Desert Beak has retreated into the sky",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/DesertBeakBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/Bosses/DesertBeak_Head_Boss"
-                    );
-
-                #endregion DesertBeak
-
-                #region Phantasm
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    15f,
-                    ModContent.NPCType<NPCs.Bosses.Phantasm>(),
-                    this,
-                    "Phantasm",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedPhantasm),
-                    ModContent.ItemType<EctoplasmicBeacon>(),
-                    new List<int> { ModContent.ItemType<PhantasmTrophy>() },
-                    new List<int> {ModContent.ItemType<PhantomKnives>(),
-                        ModContent.ItemType<EtherealHeart>(),
-                        ModContent.ItemType<VampireTeeth>(),
-                        ModContent.ItemType<GhostintheMachine>()},
-                    "Use an [i:" + ModContent.ItemType<EctoplasmicBeacon>() + "] on the Library Alter in the Library of Knowledge",
-                    "The Phantasm fades away",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/PhantasmBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/Bosses/Phantasm_Head_Boss"
-                    );
-
-                #endregion Phantasm
-
-                #region Wall of Steel
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    16f,
-                    ModContent.NPCType<NPCs.Bosses.WallofSteel>(),
-                    this,
-                    "Wall of Steel",
-                    (Func<bool>)(() => ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode),
-                    ModContent.ItemType<HellboundRemote>(),
-                    new List<int> { ModContent.ItemType<WallofSteelTrophy>() },
-                    new List<int> {ModContent.ItemType<DarkStarHeart>(),
-                        ModContent.ItemType<FleshBoiler>(),
-                        ModContent.ItemType<MagicCleaver>(),
-                        ModContent.ItemType<SoulofBlight>()},
-                    "Throw a [i:" + ModContent.ItemType<HellboundRemote>() + "] into lava",
-                    "The Wall of Steel hisses steam and sinks into the lava",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/WallofSteelBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/Bosses/WallofSteel_Head_Boss"
-                    );
-
-                #endregion Wall of Steel
-
-                #region Armageddon Slime
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    17f,
-                    ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>(),
-                    this,
-                    "Armageddon Slime",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.stoppedArmageddon),
-                    ModContent.ItemType<DarkMatterChunk>(),
-                    new List<int> {ModContent.ItemType<ArmageddonSlimeTrophy>(),
-                        ModContent.ItemType<ArmageddonSlimeMask>()},
-                    new List<int> { ModContent.ItemType<DarkMatterSoilBlock>() },
-                    "Use a [i:" + ModContent.ItemType<DarkMatterChunk>() + "]",
-                    "Armageddon Slime melts into the earth",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/ArmageddonSlimeBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/Bosses/ArmageddonSlime_Head_Boss"
-                    );
-
-                #endregion Armageddon Slime
-
-                #region Dragon Lord
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    18f,
-                    ModContent.NPCType<NPCs.DragonLordHead>(),
-                    this,
-                    "Dragon Lord",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDragonLord),
-                    ModContent.ItemType<DragonSpine>(),
-                    new List<int> { ModContent.ItemType<DragonLordTrophy>() },
-                    new List<int> { ModContent.ItemType<DragonScale>(),
-                                    ModContent.ItemType<MagmafrostBolt>(),
-                                    ModContent.ItemType<QuadroCannon>(),
-                                    ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>(),
-                                    ModContent.ItemType<DragonStone>(),
-                                    ModContent.ItemType<Items.Weapons.Melee.Infernasword>()
-                    },
-                    "Use a [i:" + ModContent.ItemType<DragonSpine>() + "]",
-                    "The Dragon Lord flies away",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/DragonLordBossChecklist",
-                    "ExxoAvalonOrigins/NPCs/DragonLordHead_Head_Boss"
-                    );
-
-                #endregion Dragon Lord
-
-                #region Mechasting
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    19f,
-                    ModContent.NPCType<NPCs.Bosses.Mechasting>(),
-                    this,
-                    "Mechasting",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.downedMechasting),
-                    ModContent.ItemType<MechanicalWasp>(),
-                    new List<int> { ModContent.ItemType<MechastingTrophy>() },
-                    new List<int> { ModContent.ItemType<SoulofDelight>(),
-                                    ModContent.ItemType<Mechazapinator>(),
-                                    ModContent.ItemType<HeatSeeker>()
-                    },
-                    "Use a [i:" + ModContent.ItemType<MechanicalWasp>() + "]",
-                    "Mechasting retreats to its mechanical hive",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/MechastingBossChecklist"
-                    //"ExxoAvalonOrigins/NPCs/Mechasting_Head_Boss"
-                    );
-
-                #endregion Mechasting
-
-                #region Oblivion
-
-                bossChecklist.Call
-                    (
-                    "AddBoss",
-                    20f,
-                    ModContent.NPCType<NPCs.AncientOblivionHead1>(),
-                    this,
-                    "Oblivion",
-                    (Func<bool>)(() => ExxoAvalonOriginsWorld.oblivionDead),
-                    ModContent.ItemType<EyeofOblivionAncient>(),
-                    new List<int> { ModContent.ItemType<OblivionTrophy>() },
-                    new List<int> {ModContent.ItemType<VictoryPiece>(),
-                        ModContent.ItemType<OblivionOre>(),
-                        ModContent.ItemType<SoulofTorture>(),
-                        ModContent.ItemType<Items.Tools.AccelerationDrill>(),
-                        ModContent.ItemType<CurseofOblivion>()},
-                    "Use a [i:" + ModContent.ItemType<EyeofOblivionAncient>() + "] at night",
-                    "Oblivion retreats into the night",
-                    "ExxoAvalonOrigins/Sprites/BossChecklist/OblivionBossChecklist"
-                    //"ExxoAvalonOrigins/NPCs/Oblivion_Head_Boss",
-                    );
-
-                #endregion Oblivion
-            }
-
-            #endregion BossChecklist
+            ExxoAvalonOriginsCall.Support();
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -935,19 +691,19 @@ namespace ExxoAvalonOrigins
             if (imkTokensMod != null)
             {
                 ExxoAvalonOriginsGlobalNPC.imkCompat = true;
-                SushiRecipes.CreateRecipes(mod, imkTokensMod);
+                SushiRecipes.CreateRecipes(Mod, imkTokensMod);
             }
         }
 
-        public static Vector2 LavaCollision(Vector2 Position, Vector2 Velocity, int Width, int Height, bool fallThrough = false)
+        public static Vector2 LavaCollision(Vector2 position, Vector2 velocity, int width, int height, bool fallThrough = false)
         {
-            Vector2 result = Velocity;
-            Vector2 vector = Position + Velocity;
-            Vector2 vector2 = Position;
-            int num = (int)(Position.X / 16f) - 1;
-            int num2 = (int)((Position.X + Width) / 16f) + 2;
-            int num3 = (int)(Position.Y / 16f) - 1;
-            int num4 = (int)((Position.Y + Height) / 16f) + 2;
+            Vector2 result = velocity;
+            Vector2 vector = position + velocity;
+            Vector2 vector2 = position;
+            int num = (int)(position.X / 16f) - 1;
+            int num2 = (int)((position.X + width) / 16f) + 2;
+            int num3 = (int)(position.Y / 16f) - 1;
+            int num4 = (int)((position.Y + height) / 16f) + 2;
             if (num < 0)
             {
                 num = 0;
@@ -974,9 +730,9 @@ namespace ExxoAvalonOrigins
                         Vector2 vector3;
                         vector3.X = i * 16;
                         vector3.Y = (j * 16) + 16 - num5;
-                        if (vector.X + Width > vector3.X && vector.X < vector3.X + 16f && vector.Y + Height > vector3.Y && vector.Y < vector3.Y + num5 && vector2.Y + Height <= vector3.Y && !fallThrough)
+                        if (vector.X + width > vector3.X && vector.X < vector3.X + 16f && vector.Y + height > vector3.Y && vector.Y < vector3.Y + num5 && vector2.Y + height <= vector3.Y && !fallThrough)
                         {
-                            result.Y = vector3.Y - (vector2.Y + Height);
+                            result.Y = vector3.Y - (vector2.Y + height);
                         }
                     }
                 }
@@ -984,9 +740,9 @@ namespace ExxoAvalonOrigins
             return result;
         }
 
-        public static Rectangle NewRectVector2(Vector2 V, Vector2 WH)
+        public static Rectangle NewRectVector2(Vector2 v, Vector2 wH)
         {
-            return new Rectangle((int)V.X, (int)V.Y, (int)WH.X, (int)WH.Y);
+            return new Rectangle((int)v.X, (int)v.Y, (int)wH.X, (int)wH.Y);
         }
 
         public static void StopRain()
@@ -1057,7 +813,6 @@ namespace ExxoAvalonOrigins
                     return;
                 }
                 Main.maxRaining = Main.rand.Next(40, 90) * 0.01f;
-                return;
             }
             else if (Main.numClouds > 100.0)
             {
@@ -1077,18 +832,17 @@ namespace ExxoAvalonOrigins
                     return;
                 }
                 Main.maxRaining = Main.rand.Next(5, 30) * 0.01f;
-                return;
             }
         }
 
-        public static Rectangle getDims(string loc)
+        public static Rectangle GetDims(string loc)
         {
             if (Main.netMode == NetmodeID.Server)
             {
                 return new Rectangle(0, 0, 1, 1);
             }
 
-            return mod.GetTexture(loc).Bounds;
+            return Mod.GetTexture(loc).Bounds;
         }
 
         public enum Similarity

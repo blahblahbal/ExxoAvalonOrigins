@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/NaquadahTrident");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/NaquadahTrident");
             projectile.width = 18;
             projectile.height = 18;
             projectile.aiStyle = 19;

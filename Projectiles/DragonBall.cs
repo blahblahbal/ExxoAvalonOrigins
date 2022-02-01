@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DragonBall");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DragonBall");
             projectile.width = dims.Width * 22 / 24;
             projectile.height = dims.Height * 22 / 24 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

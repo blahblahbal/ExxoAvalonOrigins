@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Network
     {
         public static ModPacket GetPacket(MessageID messageID, int capacity = 256)
         {
-            ModPacket message = ExxoAvalonOrigins.mod.GetPacket(capacity);
+            ModPacket message = ExxoAvalonOrigins.Mod.GetPacket(capacity);
             message.Write((int)messageID);
             return message;
         }

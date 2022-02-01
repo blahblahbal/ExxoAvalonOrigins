@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/KunzitePulseBolt");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/KunzitePulseBolt");
             projectile.width = dims.Width * 4 / 1;
             projectile.height = dims.Height * 4 / 1 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

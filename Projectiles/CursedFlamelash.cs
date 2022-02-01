@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CursedFlamelash");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/CursedFlamelash");
             projectile.width = dims.Width * 14 / 16;
             projectile.height = dims.Height * 14 / 16 / Main.projFrames[projectile.type];
             projectile.friendly = true;

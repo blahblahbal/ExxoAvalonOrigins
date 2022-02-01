@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/FireWave");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/FireWave");
             projectile.width = 32;
             projectile.height = 32;
             projectile.friendly = true;

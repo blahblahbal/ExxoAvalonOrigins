@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PumpkinHead");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PumpkinHead");
             projectile.width = dims.Width;
             projectile.height = dims.Height * 30 / 36 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

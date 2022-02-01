@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BismuthDagger");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/BismuthDagger");
             projectile.width = dims.Width;
             projectile.height = dims.Height;
             projectile.aiStyle = -1;

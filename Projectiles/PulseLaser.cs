@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PulseLaser");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PulseLaser");
             projectile.width = dims.Width * 4 / 20;
             projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;
@@ -144,7 +144,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             start -= Main.screenPosition;
             end -= Main.screenPosition;
-            Texture2D TEX = ExxoAvalonOrigins.mod.GetTexture("Sprites/BeamVenoshock");
+            Texture2D TEX = ExxoAvalonOrigins.Mod.GetTexture("Sprites/BeamVenoshock");
             int linklength = TEX.Height;
             Vector2 chain = end - start;
 

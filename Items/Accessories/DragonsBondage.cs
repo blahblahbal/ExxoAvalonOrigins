@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/DragonsBondage");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/DragonsBondage");
             item.rare = -12;
             item.width = dims.Width;
             item.accessory = true;

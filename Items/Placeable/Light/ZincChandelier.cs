@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Placeable/Light/ZincChandelier");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Placeable/Light/ZincChandelier");
             item.autoReuse = true;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.ZincChandelier>();

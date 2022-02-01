@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/AncientSandy");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/AncientSandy");
             projectile.width = dims.Width * 20 / 16;
             projectile.height = dims.Height * 20 / 16 / Main.projFrames[projectile.type];
             projectile.scale = 1f;

@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/VirulentPike");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/VirulentPike");
             projectile.width = 18;
             projectile.height = 18;
             projectile.aiStyle = 19;

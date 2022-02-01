@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/BadgeOfBacteria");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/BadgeOfBacteria");
             item.rare = 2;
             item.width = dims.Width;
             item.accessory = true;

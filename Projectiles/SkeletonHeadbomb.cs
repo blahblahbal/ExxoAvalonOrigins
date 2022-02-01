@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/SkeletonHeadbomb");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SkeletonHeadbomb");
             projectile.width = dims.Width * 22 / 26;
             projectile.height = dims.Height * 22 / 26 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

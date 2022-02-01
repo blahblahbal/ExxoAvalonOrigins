@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Moonphaser");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Moonphaser");
             projectile.aiStyle = -1;
             projectile.width = dims.Width;
             projectile.height = dims.Height / Main.projFrames[projectile.type];

@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/IceGolemBeam");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/IceGolemBeam");
             projectile.width = 2;
             projectile.height = 100;
             projectile.aiStyle = -1;

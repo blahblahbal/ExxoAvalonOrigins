@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/SunCharm");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SunCharm");
             projectile.aiStyle = -1;
             projectile.width = dims.Width;
             projectile.height = dims.Height / Main.projFrames[projectile.type];

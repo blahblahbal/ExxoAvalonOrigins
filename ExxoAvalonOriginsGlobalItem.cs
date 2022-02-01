@@ -965,7 +965,7 @@ namespace ExxoAvalonOrigins
             #endregion
             if (player.Avalon().ancientMinionGuide)
             {
-                if (item.summon && ExxoAvalonOrigins.mod.minionGuidingHotkey.Current)
+                if (item.summon && ExxoAvalonOrigins.Mod.minionGuidingHotkey.Current)
                 {
                     foreach (Projectile proj in Main.projectile)
                     {

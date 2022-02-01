@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Tear");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Tear");
             projectile.penetrate = 1;
             projectile.width = 12;
             projectile.height = 12;

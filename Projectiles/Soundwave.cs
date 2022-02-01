@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Soundwave");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Soundwave");
             projectile.width = 20;
             projectile.height = 28;
             projectile.scale = 1f;

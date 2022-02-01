@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Armor/CorruptedThornGreaves");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/CorruptedThornGreaves");
             item.defense = 15;
             item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;

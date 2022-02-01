@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/StingerProbeMinion");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/StingerProbeMinion");
             projectile.width = dims.Width;
             projectile.height = dims.Height;
             projectile.aiStyle = -1;

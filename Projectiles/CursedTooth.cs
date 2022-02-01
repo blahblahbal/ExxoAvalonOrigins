@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CursedTooth");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/CursedTooth");
             projectile.width = dims.Width * 10 / 22;
             projectile.height = dims.Height * 10 / 22 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

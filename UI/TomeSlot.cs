@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.UI
     {
         public UIPanel tomeSlotDisplay;
         public float scale = 1f;
-        public static Texture2D BackgroundTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/TomeSlotBackground");
+        public static Texture2D BackgroundTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/TomeSlotBackground");
 
         public event Action<Item, Item> OnItemChange;
 

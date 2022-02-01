@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            List<string> assignedKeys = ExxoAvalonOrigins.mod.modeChangeHotkey.GetAssignedKeys();
+            List<string> assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
 
             var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change mining modes");
             tooltips.Add(assignedKeyInfo);

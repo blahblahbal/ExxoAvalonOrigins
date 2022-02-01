@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/StingerLaser");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/StingerLaser");
             projectile.width = dims.Width * 4 / 20;
             projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
             projectile.aiStyle = 1;

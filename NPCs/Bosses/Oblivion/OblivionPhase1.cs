@@ -301,7 +301,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
             public override void PostDraw(SpriteBatch spriteBatch)
             {
-                Texture2D texture = ExxoAvalonOrigins.mod.GetTexture("NPCs/Bosses/Oblivion/OblivionPhase1_Shadow_Glow");
+                Texture2D texture = ExxoAvalonOrigins.Mod.GetTexture("NPCs/Bosses/Oblivion/OblivionPhase1_Shadow_Glow");
                 spriteBatch.Draw
                 (
                     texture,

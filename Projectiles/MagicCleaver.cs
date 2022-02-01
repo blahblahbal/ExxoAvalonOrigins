@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/MagicCleaver");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/MagicCleaver");
             projectile.width = 44;
             projectile.height = 44;
             projectile.aiStyle = 2;

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CrystalBit");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/CrystalBit");
             projectile.aiStyle = -1;
             projectile.width = 20;
             projectile.height = 20;

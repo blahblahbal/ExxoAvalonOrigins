@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CorruptionSeed");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/CorruptionSeed");
             projectile.width = dims.Width * 8 / 10;
             projectile.height = dims.Height * 8 / 10 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

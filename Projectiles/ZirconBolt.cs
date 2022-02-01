@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.magic = true;
             projectile.light = 0.9f;
             projectile.friendly = true;
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/ZirconBolt");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ZirconBolt");
             projectile.width = dims.Width * 10 / 16;
             projectile.height = dims.Height * 10 / 16 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DarkGeyser");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DarkGeyser");
             projectile.width = dims.Width;
             projectile.height = dims.Height;
             projectile.hostile = true;

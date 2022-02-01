@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvInvincibilityPotion");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/AdvancedPotions/AdvInvincibilityPotion");
             item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvInvincibility>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;

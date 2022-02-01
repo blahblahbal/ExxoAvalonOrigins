@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.MusicBoxes
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/MusicBoxes/MusicBoxHellCastle");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/MusicBoxes/MusicBoxHellCastle");
             item.autoReuse = true;
             item.useTurn = true;
             item.maxStack = 999;

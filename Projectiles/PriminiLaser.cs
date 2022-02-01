@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PriminiLaser");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PriminiLaser");
             projectile.netImportant = true;
             projectile.width = dims.Width;
             projectile.height = dims.Height * 30 / 18 / Main.projFrames[projectile.type];

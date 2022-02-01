@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/SacredLyreHomingNote");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SacredLyreHomingNote");
             projectile.width = 16;
             projectile.height = 16;
             projectile.aiStyle = 21;

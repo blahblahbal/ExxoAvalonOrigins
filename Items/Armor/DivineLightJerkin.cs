@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Armor/DivineLightJerkin");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/DivineLightJerkin");
             item.defense = 18;
             item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;

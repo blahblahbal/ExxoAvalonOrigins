@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/TimechangerMkII");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/TimechangerMkII");
             projectile.penetrate = -1;
             projectile.width = dims.Width * 10 / 32;
             projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];

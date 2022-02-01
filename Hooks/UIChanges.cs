@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.Hooks
                     return;
                 }
 
-                Texture2D staminaTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
+                Texture2D staminaTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Stamina");
                 Texture2D defenceTexture = TextureManager.Load("Images/UI/Bestiary/Stat_Defense");
                 //switch ((modPlayer.statStamMax - 1) / 150)
                 //{
@@ -169,7 +169,7 @@ namespace ExxoAvalonOrigins.Hooks
 
         public static void OnMainDrawInterface(On.Terraria.Main.orig_DrawInterface orig, Main self, GameTime gameTime)
         {
-            ExxoAvalonOrigins.mod.CheckPointer = true;
+            ExxoAvalonOrigins.Mod.CheckPointer = true;
             orig(self, gameTime);
         }
 
@@ -189,9 +189,9 @@ namespace ExxoAvalonOrigins.Hooks
                     return uiElement;
                 }
 
-                if (ExxoAvalonOrigins.mod.CheckPointer && uiElement != null)
+                if (ExxoAvalonOrigins.Mod.CheckPointer && uiElement != null)
                 {
-                    ExxoAvalonOrigins.mod.CheckPointer = false;
+                    ExxoAvalonOrigins.Mod.CheckPointer = false;
                     return uiElement;
                 }
                 else
@@ -273,13 +273,13 @@ namespace ExxoAvalonOrigins.Hooks
         public static void OnMainDrawInventory(On.Terraria.Main.orig_DrawInventory orig, Main self)
         {
             Vector2 oldMouseScreen = Main.MouseScreen;
-            if (!ExxoAvalonOrigins.mod.CheckPointer)
+            if (!ExxoAvalonOrigins.Mod.CheckPointer)
             {
                 Main.mouseX = -100;
                 Main.mouseY = -100;
             }
             orig(self);
-            if (!ExxoAvalonOrigins.mod.CheckPointer)
+            if (!ExxoAvalonOrigins.Mod.CheckPointer)
             {
                 Main.mouseX = (int)oldMouseScreen.X;
                 Main.mouseY = (int)oldMouseScreen.Y;

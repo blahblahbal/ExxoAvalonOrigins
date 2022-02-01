@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvManaRegenerationPotion");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/AdvancedPotions/AdvManaRegenerationPotion");
             item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvManaRegeneration>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;
