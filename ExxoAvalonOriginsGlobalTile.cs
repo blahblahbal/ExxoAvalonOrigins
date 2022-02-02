@@ -153,6 +153,16 @@ namespace ExxoAvalonOrigins
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
                 }
             }
+			//Broken Hilt Piece
+            if (type == TileID.LargePiles)
+            {
+				Tile tile = Main.tile[i, j];
+                if ((tile.frameX == 324 || tile.frameX == 810) && Main.rand.Next(2) == 0)
+                {
+                    int a = Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<BrokenHiltPiece>(), 1, false, 0);
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
+                }
+            }
         }
     }
 }
