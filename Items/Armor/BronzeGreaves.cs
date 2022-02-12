@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Armor
             Rectangle dims = this.GetDims();
             item.defense = 2;
             item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 0, 40);
+            item.value = Item.sellPrice(0, 0, 4, 50);
             item.height = dims.Height;
         }
     }

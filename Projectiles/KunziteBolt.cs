@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             projectile.CloneDefaults(ProjectileID.SapphireBolt);
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/KunziteBolt");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/KunziteBolt");
             projectile.width = dims.Width * 10 / 16;
             projectile.height = dims.Height * 10 / 16 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

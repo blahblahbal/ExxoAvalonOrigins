@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/NaquadahDrill");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/NaquadahDrill");
             projectile.width = dims.Width;
             projectile.height = dims.Height * 26 / 58 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

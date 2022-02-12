@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/EnchantedShuriken");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/EnchantedShuriken");
             projectile.width = dims.Width;
             projectile.height = dims.Height / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

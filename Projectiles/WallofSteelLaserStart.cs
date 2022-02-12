@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/WallofSteelLaserStart");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/WallofSteelLaserStart");
             projectile.width = dims.Width * 4 / 20;
             projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

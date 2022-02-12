@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.useTime = 10;
-            item.value = Item.sellPrice(0, 0, 44, 0);
+            item.value = Item.sellPrice(0, 0, 56, 0);
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 15;
             item.height = dims.Height;

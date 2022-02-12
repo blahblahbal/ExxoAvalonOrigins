@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/VerticalLaserBeam");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/VerticalLaserBeam");
             projectile.width = dims.Width;
             projectile.height = dims.Height / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

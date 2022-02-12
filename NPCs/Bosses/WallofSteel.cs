@@ -20,8 +20,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public static void Load()
         {
-            wosTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/WallofSteel");
-            mechaHungryChainTexture = ExxoAvalonOrigins.mod.GetTexture("Sprites/MechaHungryChain");
+            wosTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/WallofSteel");
+            mechaHungryChainTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/MechaHungryChain");
         }
 
         public override void SetStaticDefaults()

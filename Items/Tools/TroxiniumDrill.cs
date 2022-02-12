@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.shoot = ModContent.ProjectileType<Projectiles.TroxiniumDrill>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 54000;
+            item.value = 114000;
             item.useAnimation = 25;
             item.height = dims.Height;
         }

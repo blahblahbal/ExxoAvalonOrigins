@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
 		public override void SetDefaults()
 		{
-			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/SpikyBall");
+			Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SpikyBall");
 			projectile.width = dims.Width * 8 / 16;
 			projectile.height = dims.Height * 8 / 16 / Main.projFrames[projectile.type];
 			projectile.aiStyle = -1;

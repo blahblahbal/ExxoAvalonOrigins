@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Fish
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Fish/NauSeaFish");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Fish/NauSeaFish");
             item.maxStack = 999;
             item.width = dims.Width;
             item.height = dims.Height;

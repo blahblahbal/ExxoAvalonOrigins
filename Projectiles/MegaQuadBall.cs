@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/MegaQuadBall");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/MegaQuadBall");
             projectile.width = dims.Width * 32 / 68;
             projectile.height = dims.Height * 32 / 68 / Main.projFrames[projectile.type];
             projectile.friendly = true;

@@ -20,9 +20,9 @@ namespace ExxoAvalonOrigins.UI
 
         public StaminaBar()
         {
-            staminaTexture1 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina");
-            staminaTexture2 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina2");
-            staminaTexture3 = ExxoAvalonOrigins.mod.GetTexture("Sprites/Stamina3");
+            staminaTexture1 = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Stamina");
+            staminaTexture2 = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Stamina2");
+            staminaTexture3 = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Stamina3");
 
             int manaStarSpacing = 28;
             textYOffset = manaStarSpacing * 11 + 30;

@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PossessedFlamesaw");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PossessedFlamesaw");
             projectile.light = 0.9f;
             projectile.width = dims.Width * 30 / 62;
             projectile.height = dims.Height * 30 / 62 / Main.projFrames[projectile.type];

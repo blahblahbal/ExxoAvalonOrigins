@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.knockBack = 6.5f;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 3, 40, 0);
+            item.value = Item.sellPrice(0, 2, 28, 0);
             item.height = dims.Height;
             if (!Main.dedServ)
             {

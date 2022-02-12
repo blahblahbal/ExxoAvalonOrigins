@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvFlipperPotion");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/AdvancedPotions/AdvFlipperPotion");
             item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvFlipper>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;

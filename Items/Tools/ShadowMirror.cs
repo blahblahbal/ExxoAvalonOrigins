@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            var assignedKeys = ExxoAvalonOrigins.mod.modeChangeHotkey.GetAssignedKeys();
+            var assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
 
             var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change teleportation modes");
             tooltips.Add(assignedKeyInfo);

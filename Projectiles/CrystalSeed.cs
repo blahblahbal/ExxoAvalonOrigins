@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/CrystalSeed");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/CrystalSeed");
             projectile.width = dims.Width * 8 / 14;
             projectile.height = dims.Height * 8 / 14 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

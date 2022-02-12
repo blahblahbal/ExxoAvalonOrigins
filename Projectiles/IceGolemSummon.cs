@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/IceGolemSummon");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/IceGolemSummon");
             projectile.netImportant = true;
             projectile.width = dims.Width * 22 / 230;
             projectile.height = dims.Height * 22 / 230 / Main.projFrames[projectile.type];

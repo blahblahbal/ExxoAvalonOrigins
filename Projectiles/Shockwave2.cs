@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/Shockwave2");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Shockwave2");
             projectile.width = 50;
             projectile.height = 16;
             projectile.scale = 0.3f;

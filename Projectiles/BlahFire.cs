@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BlahFire");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/BlahFire");
             projectile.aiStyle = -1;
             projectile.width = 20;
             projectile.height = 20;

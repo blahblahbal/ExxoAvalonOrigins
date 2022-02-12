@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/DarkFlame");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DarkFlame");
             projectile.width = dims.Width;
             projectile.height = dims.Height / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

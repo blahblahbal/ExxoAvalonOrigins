@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/PulseLaserCharging");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PulseLaserCharging");
             projectile.width = dims.Width;
             projectile.height = dims.Height / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

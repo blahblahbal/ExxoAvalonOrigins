@@ -1,71 +1,122 @@
 ﻿using System;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using Terraria;
+using Terraria.Localization;
 
 namespace ExxoAvalonOrigins.Hooks
 {
+    /// <summary>
+    /// To-Do: Fix it always adding "crimson" for no reason.
+    /// </summary>
     public static class DryadText
     {
+        // MIGHT CONFLICT WITH OTHER MODS LIKE CONFECTION, WHICH IS GOING TO HAVE BASICALLY SAME IL EDIT!
         public static void ILDryadText(ILContext il)
         {
             var c = new ILCursor(il);
 
-            // This code replaces tEvil with your custom value, once someone will add it
-            /*if (!c.TryGotoNext(i => i.MatchStloc(out _)))
+            if (!c.TryGotoNext(i => i.MatchLdloc(0)))
                 return;
-            if (!c.TryGotoNext(i => i.MatchStloc(out _)))
-                return;
-            int tGross = 0;
-            if (!c.TryGotoNext(i => i.MatchStloc(out tGross)))
-                return;
-            if (!c.TryGotoNext(i => i.MatchStloc(out _)))
-                return;
-            c.Index++;
-            c.Emit(OpCodes.Ldloc, tGross);
-            c.EmitDelegate<Func<int, int>>((orig) =>
+            c.Remove(); // Remove Ldloc.0
+
+            c.Emit(OpCodes.Ldloc_1);
+            c.Emit(OpCodes.Ldloc_2);
+            c.Emit(OpCodes.Ldloc_3);
+            c.EmitDelegate<Func<int, int, int, string>>((tGood, tEvil, tBlood) =>
             {
-                if (ExxoAvalonOriginsWorld.contagion)
+                int tGross = 1;
+
+                string text = "";
+                if (tGood > 0 && tEvil > 0 && tBlood > 0 && tGross > 0)
                 {
-                    orig = WorldGen.tGood; // Replace vanilla value with custom
+                    text = Language.GetTextValue("Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusAll", Main.worldName, tGood, tEvil, tBlood, tGross);
                 }
-                return orig;
-            });
-            c.Emit(OpCodes.Stloc, tGross);*/
 
+                // Combinations of good and evils
+                else if (tGood > 0 && tEvil > 0) // Hallow, Corruption
+                {
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusHallowCorrupt", Main.worldName, tGood, tEvil);
+                }
+                else if (tGood > 0 && tEvil > 0 && tGross > 0) // Hallow, Corruption, Contagion
+                {
+                    text = Language.GetTextValue("Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusHallowCorruptContagion", Main.worldName, tGood, tEvil, tGross);
+                }
+                else if (tGood > 0 && tBlood > 0) // Hallow, Crimson
+                {
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusHallowCrimson", Main.worldName, tGood, tBlood);
+                }
+                else if (tGood > 0 && tBlood > 0 && tEvil > 0) // Hallow, Crimson, Corruption
+                {
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusHallowCrimson", Main.worldName, tGood, tBlood, tEvil);
+                }
+                else if (tEvil > 0 && tBlood > 0) // Corruption, Crimson
+                {
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusCorruptCrimson", Main.worldName, tEvil, tBlood);
+                }
+                else if (tEvil > 0 && tGross > 0) // Corruption, Contagion
+                {
+                    text = Language.GetTextValue("Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusCorruptContagion", Main.worldName, tEvil, tGross);
+                }
+                else if (tEvil > 0 && tBlood > 0 && tGross > 0) // Corruption, Crimson, Contagion
+                {
+                    text = Language.GetTextValue("Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusCorruptCrimsonContagion", Main.worldName, tEvil, tBlood, tGross);
+                }
+                else if (tBlood > 0 && tGross > 0) // Crimson, Contagion
+                {
+                    text = Language.GetTextValue("Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusCrimsonContagion", Main.worldName, tBlood, tGross);
+                }
 
-            if (!c.TryGotoNext(i => i.MatchLdstr("DryadSpecialText.WorldStatusAll")))
-                return;
-            c.Index++;
-            c.EmitDelegate<Func<string, string>>((orig) =>
-            {
-                return "Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusAll";
+                // "Singular" evils
+                else if (tEvil > 0)
+                {
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusCorrupt", Main.worldName, tEvil);
+                }
+                else if (tBlood > 0)
+                {
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusCrimson", Main.worldName, tBlood);
+                }
+                else if (tGross > 0)
+                {
+                    text = Language.GetTextValue("Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusContagion", Main.worldName, tGross);
+                }
+
+                // Good
+                else
+                {
+                    if (tGood <= 0) // ... if no hallow, then pure
+                    {
+                        return Language.GetTextValue("DryadSpecialText.WorldStatusPure", Main.worldName);
+                    }
+                    text = Language.GetTextValue("DryadSpecialText.WorldStatusHallow", Main.worldName, tGood);
+                }
+
+                string str;
+                if (tGood * 1.2 >= (tEvil + tBlood + tGross) && tGood * 0.8 <= (tEvil + tBlood + tGross))
+                {
+                    str = Language.GetTextValue("DryadSpecialText.WorldDescriptionBalanced");
+                }
+                else if (tGood >= tEvil + tBlood + tGross)
+                {
+                    str = Language.GetTextValue("DryadSpecialText.WorldDescriptionFairyTale");
+                }
+                else if (tEvil + tBlood + tGross > tGood + 20)
+                {
+                    str = Language.GetTextValue("DryadSpecialText.WorldDescriptionGrim");
+                }
+                else if (tEvil + tBlood + tGross <= 10)
+                {
+                    str = Language.GetTextValue("DryadSpecialText.WorldDescriptionClose");
+                }
+                else
+                {
+                    str = Language.GetTextValue("DryadSpecialText.WorldDescriptionWork");
+                }
+
+                return $"{text} {str}";
             });
-            if (!c.TryGotoNext(i => i.MatchLdstr("DryadSpecialText.WorldStatusHallowCorrupt")))
-                return;
-            c.Index++;
-            c.EmitDelegate<Func<string, string>>((orig) =>
-            {
-                if (ExxoAvalonOriginsWorld.contagion)
-                    return "Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusHallowContagion";
-                return orig;
-            });
-            if (!c.TryGotoNext(i => i.MatchLdstr("DryadSpecialText.WorldStatusCorruptCrimson")))
-                return;
-            c.Index++;
-            c.EmitDelegate<Func<string, string>>((orig) =>
-            {
-                if (ExxoAvalonOriginsWorld.contagion)
-                    return "Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusContagionCrimson";
-                return orig;
-            });
-            if (!c.TryGotoNext(i => i.MatchLdstr("DryadSpecialText.WorldStatusCorrupt")))
-                return;
-            c.Index++;
-            c.EmitDelegate<Func<string, string>>((orig) =>
-            {
-                if (ExxoAvalonOriginsWorld.contagion)
-                    return "Mods.ExxoAvalonOrigins.DryadSpecialText.WorldStatusContagion";
-                return orig;
-            });
+
+            c.Emit(OpCodes.Ret);
         }
     }
 }

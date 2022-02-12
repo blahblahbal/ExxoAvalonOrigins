@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/MissileBolt");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/MissileBolt");
             projectile.MaxUpdates = 1;
             projectile.width = dims.Width * 10 / 38;
             projectile.height = dims.Height * 10 / 38 / Main.projFrames[projectile.type];

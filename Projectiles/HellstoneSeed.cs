@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/HellstoneSeed");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/HellstoneSeed");
             projectile.width = dims.Width * 8 / 28;
             projectile.height = dims.Height * 8 / 28 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

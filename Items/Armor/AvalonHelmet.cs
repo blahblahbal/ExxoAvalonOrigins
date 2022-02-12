@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Armor/AvalonHelmet");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/AvalonHelmet");
             item.defense = 40;
             item.rare = ItemRarityID.Yellow;
             item.width = dims.Width;

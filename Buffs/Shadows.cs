@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Buffs
                 player.Avalon().shadowPotCd = 300;
             }
             player.Avalon().shadowPotCd++;
-            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && player.Avalon().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
+            if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && player.Avalon().shadowPotCd >= 300 && !Main.editChest && !Main.editSign && !Main.drawingPlayerChat)
             {
                 player.Avalon().shadowPotCd = 0;
                 for (int num10 = 0; num10 < 70; num10++)

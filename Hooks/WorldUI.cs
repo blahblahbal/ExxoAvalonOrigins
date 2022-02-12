@@ -74,7 +74,7 @@ namespace ExxoAvalonOrigins.Hooks
             {
                 if (ExxoAvalonOriginsWorld.contagion)
                 {
-                    return ExxoAvalonOrigins.mod.GetTexture("Sprites/Outer_Contagion");
+                    return ExxoAvalonOrigins.Mod.GetTexture("Sprites/Outer_Contagion");
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace ExxoAvalonOrigins.Hooks
                 {
                     foreach (TagCompound modDataTag in tag.GetList<TagCompound>("modData").Skip(2))
                     {
-                        if (modDataTag.Get<string>("mod") == ExxoAvalonOrigins.mod.Name)
+                        if (modDataTag.Get<string>("mod") == ExxoAvalonOrigins.Mod.Name)
                         {
                             TagCompound dataTag = modDataTag.Get<TagCompound>("data");
                             ExxoAvalonOriginsConfig.WorldDataValues worldData;
@@ -151,7 +151,7 @@ namespace ExxoAvalonOrigins.Hooks
                 iconPath += tempDict[path].contagion ? "Contagion" : (data.HasCrimson ? "Crimson" : "Corruption");
                 iconPath += (ExxoAvalonOriginsWorld.JungleVariant)tempDict[path].jungleType == ExxoAvalonOriginsWorld.JungleVariant.tropics ? "Tropics" : "Jungle";
                 iconPath += tempDict[path].superHardmode ? "SHM" : "";
-                return ExxoAvalonOrigins.mod.GetTexture(iconPath);
+                return ExxoAvalonOrigins.Mod.GetTexture(iconPath);
             }
             else
             {

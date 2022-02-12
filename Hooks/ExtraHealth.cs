@@ -19,12 +19,12 @@ namespace ExxoAvalonOrigins.Hooks
 
         public static void Load()
         {
-            heart3Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Heart3");
-            mana2Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana2");
-            mana3Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana3");
-            mana4Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana4");
-            mana5Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana5");
-            mana6Texture = ExxoAvalonOrigins.mod.GetTexture("Sprites/Mana6");
+            heart3Texture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Heart3");
+            mana2Texture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Mana2");
+            mana3Texture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Mana3");
+            mana4Texture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Mana4");
+            mana5Texture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Mana5");
+            mana6Texture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Mana6");
         }
         public static void OnDrawInterface_Resources_Life(On.Terraria.Main.orig_DrawInterface_Resources_Life orig)
         {

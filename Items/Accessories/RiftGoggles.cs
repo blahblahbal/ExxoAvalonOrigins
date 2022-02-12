@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/RiftGoggles");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/RiftGoggles");
             item.rare = ItemRarityID.Lime;
             item.width = dims.Width;
             item.accessory = true;

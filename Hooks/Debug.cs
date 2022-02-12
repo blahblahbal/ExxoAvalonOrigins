@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Hooks
             foreach (Instruction instruction in c.Instrs)
             {
                 object obj = (instruction.Operand == null) ? "" : instruction.Operand.ToString();
-                ExxoAvalonOrigins.mod.Logger.Debug($"{instruction.Offset} | {instruction.OpCode} | {obj}");
+                ExxoAvalonOrigins.Mod.Logger.Debug($"{instruction.Offset} | {instruction.OpCode} | {obj}");
             }
         }
     }

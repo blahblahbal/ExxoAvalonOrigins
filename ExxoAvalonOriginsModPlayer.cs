@@ -646,7 +646,7 @@ namespace ExxoAvalonOrigins
                 tomeItem.SetDefaults();
             }
 
-            Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.mod.version.ToString());
+            Main.NewText("You are using Exxo Avalon: Origins " + ExxoAvalonOrigins.Mod.Version.ToString());
             Main.NewText("Please note that Exxo Avalon: Origins is in Beta; it may have many bugs");
             Main.NewText("Please also note that Exxo Avalon: Origins will interact strangely with other large mods");
             astralCD = 3600;
@@ -1994,7 +1994,7 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        public static readonly PlayerLayer SpectrumArmorLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "SpectrumArmorLayer", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
+        public static readonly PlayerLayer SpectrumArmorLayer = new PlayerLayer(ExxoAvalonOrigins.Mod.Name, "SpectrumArmorLayer", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f)
             {
@@ -2040,14 +2040,14 @@ namespace ExxoAvalonOrigins
             Vector2 vector2 = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.75f);
             Vector2 origin = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.5f);
             Vector2 vector3 = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.4f);
-            if (p.head == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumHelmet", EquipType.Head))
+            if (p.head == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumHelmet", EquipType.Head))
             {
                 
                 var value = default(DrawData);
                 value = new DrawData(spectrumArmorTextures[0], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.headPosition + vector3, new Rectangle?(p.bodyFrame), rb, p.headRotation, vector3, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(value);
             }
-            if (p.body == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumBreastplate", EquipType.Body))
+            if (p.body == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumBreastplate", EquipType.Body))
             {
                 Rectangle bodyFrame2 = p.bodyFrame;
                 int num55 = 0;
@@ -2057,7 +2057,7 @@ namespace ExxoAvalonOrigins
                 value = new DrawData(spectrumArmorTextures[1], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2) + num55, (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.bodyPosition + new Vector2(p.bodyFrame.Width / 2, p.bodyFrame.Height / 2), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(value);
             }
-            if (p.legs == ExxoAvalonOrigins.mod.GetEquipSlot("SpectrumGreaves", EquipType.Legs))
+            if (p.legs == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumGreaves", EquipType.Legs))
             {
                 var value = new DrawData(spectrumArmorTextures[4], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.legFrame.Width / 2 + p.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.legFrame.Height + 4f)) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
                 Main.playerDrawData.Add(value);
@@ -2065,7 +2065,7 @@ namespace ExxoAvalonOrigins
         });
 
         // Large gem player layer logic
-        public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo)
+        public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.Mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo)
         {
             if (drawInfo.shadow != 0f)
             {
@@ -2837,11 +2837,11 @@ namespace ExxoAvalonOrigins
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (ExxoAvalonOrigins.mod.quickStaminaHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.QuickStaminaHotkey.JustPressed)
             {
                 QuickStamina();
             }
-            if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && tpStam && statStam >= 90 && tpCD >= 300)
+            if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && statStam >= 90 && tpCD >= 300)
             {
                 statStam -= 90;
                 tpCD = 0;
@@ -2860,7 +2860,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            else if (ExxoAvalonOrigins.mod.shadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
+            else if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
             {
                 teleportVWasTriggered = false;
                 tpCD = 0;
@@ -2879,7 +2879,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            if (ExxoAvalonOrigins.mod.astralHotkey.JustPressed && astralProject)
+            if (ExxoAvalonOrigins.Mod.AstralHotkey.JustPressed && astralProject)
             {
                 if (astralStart)
                 {
@@ -2899,49 +2899,49 @@ namespace ExxoAvalonOrigins
             }
 
             #region other hotkeys
-            if (ExxoAvalonOrigins.mod.rocketJumpHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.rocketJumpHotkey.JustPressed)
             {
                 activateRocketJump = !activateRocketJump;
                 Main.NewText(!activateRocketJump ? "Rocket Jump Off" : "Rocket Jump On");
             }
 
-            if (ExxoAvalonOrigins.mod.sprintHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.SprintHotkey.JustPressed)
             {
                 activateSprint = !activateSprint;
                 Main.NewText(!activateSprint ? "Sprinting Off" : "Sprinting On");
             }
 
-            if (ExxoAvalonOrigins.mod.dashHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.DashHotkey.JustPressed)
             {
                 stamDashKey = !stamDashKey;
                 Main.NewText(!stamDashKey ? "Dashing Off" : "Dashing On");
             }
 
-            if (ExxoAvalonOrigins.mod.quintupleHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.QuintupleHotkey.JustPressed)
             {
                 quintJump = !quintJump;
                 Main.NewText(!quintJump ? "Quintuple Jump Off" : "Quintuple Jump On");
             }
 
-            if (ExxoAvalonOrigins.mod.swimHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.SwimHotkey.JustPressed)
             {
                 activateSwim = !activateSwim;
                 Main.NewText(!activateSwim ? "Swimming Off" : "Swimming On");
             }
 
-            if (ExxoAvalonOrigins.mod.wallSlideHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.WallSlideHotkey.JustPressed)
             {
                 activateSlide = !activateSlide;
                 Main.NewText(!activateSlide ? "Wall Sliding Off" : "Wall Sliding On");
             }
 
-            if (ExxoAvalonOrigins.mod.bubbleBoostHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.BubbleBoostHotkey.JustPressed)
             {
                 activateBubble = !activateBubble;
                 Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
             }
             #endregion
-            if (player.inventory[player.selectedItem].type == ModContent.ItemType<Items.Tools.AccelerationDrill>() && ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+            if (player.inventory[player.selectedItem].type == ModContent.ItemType<Items.Tools.AccelerationDrill>() && ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
             {
                 speed = !speed;
                 if (!speed)
@@ -2955,7 +2955,7 @@ namespace ExxoAvalonOrigins
             }
 
             if (Main.netMode != NetmodeID.SinglePlayer && player.inventory[player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
-                ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+                ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
             {
                 int newPlayer = teleportToPlayer;
                 int numPlayersCounted = 0;
@@ -2985,7 +2985,7 @@ namespace ExxoAvalonOrigins
             if (player.inventory[player.selectedItem].type == ModContent.ItemType<ShadowMirror>())
             {
                 player.noFallDmg = true; //TODO: Replace with better anti-fall-damage mechanism.
-                if (ExxoAvalonOrigins.mod.modeChangeHotkey.JustPressed)
+                if (ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
                 {
                     shadowWP++;
                     shadowWP %= 7;

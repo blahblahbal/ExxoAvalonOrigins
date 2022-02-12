@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Placeable/Light/BismuthCandle");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Placeable/Light/BismuthCandle");
             item.autoReuse = true;
             item.noWet = true;
             item.consumable = true;

@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BerserkerArrow");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/BerserkerArrow");
             projectile.penetrate = 4;
             projectile.width = dims.Width * 10 / 32;
             projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];

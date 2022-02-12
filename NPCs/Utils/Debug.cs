@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.NPCs.Utils
     {
         public static void DrawIndicator(SpriteBatch spriteBatch, Vector2 worldPosition)
         {
-            spriteBatch.Draw(ExxoAvalonOrigins.mod.GetTexture("Sprites/DebugIndicator"), worldPosition - Main.screenPosition, Color.White);
+            spriteBatch.Draw(ExxoAvalonOrigins.Mod.GetTexture("Sprites/DebugIndicator"), worldPosition - Main.screenPosition, Color.White);
         }
     }
 }

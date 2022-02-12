@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/AccelerationDrill");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/AccelerationDrill");
             projectile.width = dims.Width;
             projectile.height = dims.Height * 26 / 76 / Main.projFrames[projectile.type];
             projectile.light = 0.8f;

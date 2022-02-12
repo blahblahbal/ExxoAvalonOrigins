@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.shoot = ModContent.ProjectileType<Projectiles.TroxiniumChainsaw>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 108000;
+            item.value = 114000;
             item.useAnimation = 25;
             item.height = dims.Height;
         }

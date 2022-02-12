@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/KunziteShower");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/KunziteShower");
             projectile.width = dims.Width * 32 / 16;
             projectile.height = dims.Height * 32 / 16 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

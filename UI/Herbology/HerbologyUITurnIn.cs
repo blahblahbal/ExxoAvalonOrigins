@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             InnerElement.FitWidthToContent = true;
             InnerElement.ContentHAlign = UIAlign.Center;
 
-            Button = new ExxoUIImageButton(ExxoAvalonOrigins.mod.GetTexture("Sprites/HerbButton"))
+            Button = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.GetTexture("Sprites/HerbButton"))
             {
                 Tooltip = "Consume Herbs/Potions",
             };

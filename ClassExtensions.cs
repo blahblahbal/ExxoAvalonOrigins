@@ -22,11 +22,11 @@ namespace ExxoAvalonOrigins
             return player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
         }
 
-        public static Rectangle NewRectVector2(Vector2 V, Vector2 WH)
+        public static Rectangle NewRectVector2(Vector2 v, Vector2 wH)
         {
-            return new Rectangle((int)V.X, (int)V.Y, (int)WH.X, (int)WH.Y);
+            return new Rectangle((int)v.X, (int)v.Y, (int)wH.X, (int)wH.Y);
         }
-        public static bool exists(this Item item)
+        public static bool Exists(this Item item)
         {
             return item.type > ItemID.None && item.stack > 0;
         }
@@ -54,14 +54,16 @@ namespace ExxoAvalonOrigins
             float last = dist;
             for (int i = 0; i < Main.npc.Length; i++)
             {
-                NPC N = Main.npc[i];
-                if (!N.active || N.townNPC || N.dontTakeDamage) continue;
-                if (Vector2.Distance(p.Center, N.Center) < last)
+                NPC n = Main.npc[i];
+                if (!n.active || n.townNPC || n.dontTakeDamage) continue;
+                if (Vector2.Distance(p.Center, n.Center) < last)
                 {
-                    last = Vector2.Distance(p.Center, N.Center);
+                    last = Vector2.Distance(p.Center, n.Center);
                     closest = i;
                 }
-                else continue;
+                else
+                {
+                }
             }
             return closest;
         }

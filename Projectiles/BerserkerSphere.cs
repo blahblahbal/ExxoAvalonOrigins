@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/BerserkerSphere");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/BerserkerSphere");
             projectile.width = dims.Width * 22 / 34;
             projectile.height = dims.Height * 22 / 34 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

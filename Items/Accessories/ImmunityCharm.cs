@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/Accessories/ImmunityCharm");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/ImmunityCharm");
             item.rare = ItemRarityID.Cyan;
             item.width = dims.Width;
             item.value = Item.sellPrice(0, 7, 25, 0);

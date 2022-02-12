@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/GuardianHammer2");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/GuardianHammer2");
             projectile.width = dims.Width * 28 / 68;
             projectile.height = dims.Height * 28 / 68 / Main.projFrames[projectile.type];
             projectile.aiStyle = -1;

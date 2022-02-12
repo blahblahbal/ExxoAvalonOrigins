@@ -26,18 +26,18 @@ namespace ExxoAvalonOrigins.Hooks
             {
                 if (Main.player[Main.myPlayer].Avalon().ZoneCaesium)
                 {
-                    ExxoAvalonOrigins.caesiumTransition += 0.05f;
-                    if (ExxoAvalonOrigins.caesiumTransition > 1f)
+                    ExxoAvalonOrigins.CaesiumTransition += 0.05f;
+                    if (ExxoAvalonOrigins.CaesiumTransition > 1f)
                     {
-                        ExxoAvalonOrigins.caesiumTransition = 1f;
+                        ExxoAvalonOrigins.CaesiumTransition = 1f;
                     }
                 }
                 else
                 {
-                    ExxoAvalonOrigins.caesiumTransition -= 0.05f;
-                    if (ExxoAvalonOrigins.caesiumTransition < 0f)
+                    ExxoAvalonOrigins.CaesiumTransition -= 0.05f;
+                    if (ExxoAvalonOrigins.CaesiumTransition < 0f)
                     {
-                        ExxoAvalonOrigins.caesiumTransition = 0f;
+                        ExxoAvalonOrigins.CaesiumTransition = 0f;
                     }
                 }
             });
@@ -97,7 +97,7 @@ namespace ExxoAvalonOrigins.Hooks
                 float num = (Main.GameViewMatrix.Zoom.Y - 1f) * 0.5f * 200f;
                 var caesiumBgs = new Texture2D[5];
                 for (int i = 0; i <= 4; i++)
-                    caesiumBgs[i] = ExxoAvalonOrigins.mod.GetTexture("Backgrounds/Caesium" + (i + 1).ToString());
+                    caesiumBgs[i] = ExxoAvalonOrigins.Mod.GetTexture("Backgrounds/Caesium" + (i + 1).ToString());
 
                 for (int num2 = 4; num2 >= 0; num2--)
                 {
@@ -142,12 +142,12 @@ namespace ExxoAvalonOrigins.Hooks
                     for (int i = num7 - 2; i < num7 + 4 + (int)(Main.screenWidth / num6); i++)
                     {
                         Vector2 vector3 = ((new Vector2(i * num4 * (rectangle.Width / vector2.X), (Main.maxTilesY - 200) * 16f) + value - vector) * vector2) + vector - Main.screenPosition - value + zero;
-                        Color color = Color.White * ExxoAvalonOrigins.caesiumTransition;
+                        Color color = Color.White * ExxoAvalonOrigins.CaesiumTransition;
                         Main.spriteBatch.Draw(texture2D, vector3, rectangle, color, 0f, Vector2.Zero, num4, SpriteEffects.None, 0f);
                         if (num2 == 0)
                         {
                             int num8 = (int)(vector3.Y + (rectangle.Height * num4));
-                            Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)vector3.X, num8, (int)(rectangle.Width * num4), Math.Max(0, Main.screenHeight - num8)), new Color(6, 5, 6) * ExxoAvalonOrigins.caesiumTransition);
+                            Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)vector3.X, num8, (int)(rectangle.Width * num4), Math.Max(0, Main.screenHeight - num8)), new Color(6, 5, 6) * ExxoAvalonOrigins.CaesiumTransition);
                         }
                     }
                 }

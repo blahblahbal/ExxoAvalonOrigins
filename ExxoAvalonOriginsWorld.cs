@@ -2151,7 +2151,7 @@ namespace ExxoAvalonOrigins
         {
             if (!retroGenned)
             {
-                if (worldVersion == null || worldVersion < ExxoAvalonOrigins.mod.version)
+                if (worldVersion == null || worldVersion < ExxoAvalonOrigins.Mod.Version)
                 {
                     RetroGen();
                     retroGenned = true;
@@ -3356,7 +3356,7 @@ namespace ExxoAvalonOrigins
         {
             var toSave = new TagCompound
             {
-                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.mod.version.ToString() },
+                { "ExxoAvalonOrigins:LastOpenedVersion", ExxoAvalonOrigins.Mod.Version.ToString() },
                 { "ExxoAvalonOrigins:SuperHardMode", SuperHardmode },
                 { "ExxoAvalonOrigins:DownedBacteriumPrime", downedBacteriumPrime },
                 { "ExxoAvalonOrigins:DownedDesertBeak", downedDesertBeak },

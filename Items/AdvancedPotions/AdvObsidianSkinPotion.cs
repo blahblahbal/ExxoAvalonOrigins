@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
     {
         public override void SetDefaults()
         {
-            Rectangle dims = ExxoAvalonOrigins.getDims("Items/AdvancedPotions/AdvObsidianSkinPotion");
+            Rectangle dims = ExxoAvalonOrigins.GetDims("Items/AdvancedPotions/AdvObsidianSkinPotion");
             item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvObsidianSkin>();
             item.UseSound = SoundID.Item3;
             item.consumable = true;

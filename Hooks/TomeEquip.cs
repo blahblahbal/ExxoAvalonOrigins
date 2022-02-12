@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Hooks
             for (int k = 13; k < 18 + player.extraAccessorySlots; k++)
             {
                 Item item = player.armor[k];
-                if (item.exists() &&
+                if (item.Exists() &&
                     item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity)
                 {
                     item.modItem.UpdateVanity(player, EquipType.Back);
