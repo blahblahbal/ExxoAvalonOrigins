@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins
             return false;
         }
 
-        public override void OnCraft(Item item, Recipe recipe)
+        /*public override void OnCraft(Item item, Recipe recipe)
         {
             if (IsArmor(item))
             {
@@ -147,7 +147,7 @@ namespace ExxoAvalonOrigins
                         break;
                 }
             }
-        }
+        }*/
         public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand)
         {
             if (IsArmor(item) && pre == -3)
