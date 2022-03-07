@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Solarium Rod");
-            Tooltip.SetDefault("Use at a Solarium Shrine");
+            Tooltip.SetDefault("Used at the Solarium Shrine");
         }
 
         public override void SetDefaults()

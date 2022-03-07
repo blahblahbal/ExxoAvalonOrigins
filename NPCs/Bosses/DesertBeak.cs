@@ -62,10 +62,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(22, 55), false, 0, false);
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
-                if (Main.rand.Next(10) <= 5)
+                if (Main.rand.Next(10) <= 2)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26), false, 0, false);
                 }
+				else
+				{
+					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(10, 15), false, 0, false);
+				}
                 if (Main.rand.Next(3) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TomeoftheDistantPast>(), 1, false, -2, false);

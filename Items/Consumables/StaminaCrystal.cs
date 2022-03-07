@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stamina Crystal");
-            Tooltip.SetDefault("Permanently increases maximum stamina by 20");
+            Tooltip.SetDefault("Permanently increases maximum stamina by 30");
         }
 
         public override void SetDefaults()
