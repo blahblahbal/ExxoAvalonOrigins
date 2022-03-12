@@ -80,6 +80,15 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             recipe.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
             recipe.SetResult(this);
             recipe.AddRecipe();
+			
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
+            recipe.AddIngredient(ModContent.ItemType<TritanoriumBroadsword>());
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15);
+            recipe.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }
