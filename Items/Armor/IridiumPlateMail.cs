@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Iridium Plate Mail");
-            Tooltip.SetDefault("Increases maximum mana by 50");
+            Tooltip.SetDefault("Increases maximum mana by 40");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.statManaMax2 += 50;
+            player.statManaMax2 += 40;
         }
     }
 }

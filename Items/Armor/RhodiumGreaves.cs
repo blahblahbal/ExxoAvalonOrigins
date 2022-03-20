@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rhodium Greaves");
-            Tooltip.SetDefault("10% increased magic damage");
+            Tooltip.SetDefault("14% increased magic damage");
         }
 
         public override void SetDefaults()
@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicDamage += 0.1f;
+            player.magicDamage += 0.14f;
         }
     }
 }

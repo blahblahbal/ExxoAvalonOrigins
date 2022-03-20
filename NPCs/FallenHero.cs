@@ -117,7 +117,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone() && Main.bloodMoon ? 0.055f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone() && Main.bloodMoon ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

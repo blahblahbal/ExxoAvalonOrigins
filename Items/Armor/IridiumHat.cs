@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Iridium Hat");
-            Tooltip.SetDefault("14% increased melee damage and speed\n11% increased ranged damage");
+            Tooltip.SetDefault("11% increased melee damage and speed\n11% increased ranged damage");
         }
 
         public override void SetDefaults()
@@ -31,13 +31,13 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased melee speed";
-            player.meleeSpeed += 0.2f;
+            player.setBonus = "9% increased critical strike chance";
+            player.AllCrit(9);
         }
         public override void UpdateEquip(Player player)
         {
-            player.meleeDamage += 0.14f;
-            player.meleeSpeed += 0.14f;
+            player.meleeDamage += 0.11f;
+            player.meleeSpeed += 0.11f;
             player.rangedDamage += 0.11f;
         }
     }

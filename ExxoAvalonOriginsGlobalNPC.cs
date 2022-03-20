@@ -1095,6 +1095,10 @@ IL_162:
                 NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NullEmblem>());
             }
+            if (npc.type == NPCID.SkeletronHead && !NPC.downedBoss3)
+            {
+                ExxoAvalonOriginsWorld.GenerateSulphur();
+            }
             #region avalon tokens dropping
             if (imkCompat && npc.lifeMax > 5 && !npc.townNPC)
             {
@@ -1145,9 +1149,9 @@ IL_162:
                 Main.projectile[proj].velocity.Y = -3.5f;
                 Main.projectile[proj].velocity.X = Main.rand.Next(-45, 46) * 0.1f;
             }
-            if (npc.type == NPCID.KingSlime && Main.rand.Next(5) == 0)
+            if (npc.type == NPCID.KingSlime && Main.rand.Next(3) == 0 && !Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Accessories.BandofSlime>(), 1, false, -1, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BandofSlime>(), 1, false, -1, false);
             }
             if (npc.type == NPCID.Golem && !Main.expertMode)
             {
@@ -1709,7 +1713,7 @@ IL_162:
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FleshyTendril>(), Main.rand.Next(13, 19), false, 0, false);
             }
-            if (npc.type == NPCID.EyeofCthulhu)
+            if (npc.type == NPCID.EyeofCthulhu && !Main.expertMode)
             {
                 if (!Main.hardMode && !ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(10) < 3)
                 {

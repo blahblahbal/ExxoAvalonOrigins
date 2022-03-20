@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -10,6 +10,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             AddMapEntry(new Color(116, 138, 106));
             Main.tileSolid[Type] = true;
+            Main.tileBlockLight[Type] = true;
             drop = mod.ItemType("Coughwood");
             dustType = ModContent.DustType<Dusts.CoughwoodDust>();
         }

@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Osmium Jerkin");
-            Tooltip.SetDefault("15% increased melee damage and speed");
+            Tooltip.SetDefault("12% increased melee damage and speed");
         }
 
         public override void SetDefaults()
@@ -34,8 +34,8 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.meleeDamage += 0.15f;
-            player.meleeSpeed += 0.15f;
+            player.meleeDamage += 0.12f;
+            player.meleeSpeed += 0.12f;
         }
     }
 }

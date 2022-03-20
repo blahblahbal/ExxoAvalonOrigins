@@ -89,6 +89,11 @@ namespace ExxoAvalonOrigins
             {
                 fail = true;
             }
+            if (type == TileID.Stalactite && Main.tile[i, j].frameX < 54 && Main.rand.Next(2) == 0)
+            {
+                int number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Weapons.Throw.Icicle>(), 1, false, 0, false);
+                NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+            }
             int[] blowPipes =
             {
                 ItemID.Blowpipe,

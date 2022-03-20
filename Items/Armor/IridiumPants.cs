@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Iridium Pants");
-            Tooltip.SetDefault("15% increased magic damage");
+            Tooltip.SetDefault("11% increased magic damage");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicDamage += 0.15f;
+            player.magicDamage += 0.11f;
         }
     }
 }

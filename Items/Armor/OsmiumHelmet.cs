@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Osmium Helmet");
-            Tooltip.SetDefault("15% increased ranged damage\nIncreases maximum mana by 40");
+            Tooltip.SetDefault("12% increased ranged damage\nIncreases maximum mana by 40");
         }
 
         public override void SetDefaults()
@@ -39,14 +39,14 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+3 defense and 20% increased melee speed";
-            player.meleeSpeed += 0.2f;
+            player.setBonus = "+5 defense";
+            player.statDefense += 5;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.statManaMax2 += 40;
-            player.rangedDamage += 0.15f;
+            player.rangedDamage += 0.12f;
         }
     }
 }

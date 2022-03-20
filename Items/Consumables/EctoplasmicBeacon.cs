@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.Phantasm>()) && player.Avalon().ZoneHellcastle;
+            return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.Phantasm>()) && player.Avalon().ZoneHellcastle && NPC.downedMoonlord && Main.hardMode;
         }
 
         public override bool UseItem(Player player)

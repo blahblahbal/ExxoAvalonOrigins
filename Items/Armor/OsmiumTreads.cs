@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Osmium Treads");
-            Tooltip.SetDefault("15% increased magic damage");
+            Tooltip.SetDefault("12% increased magic damage");
         }
 
         public override void SetDefaults()
@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicDamage += 0.15f;
+            player.magicDamage += 0.12f;
         }
     }
 }

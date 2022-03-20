@@ -1379,12 +1379,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 3);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<EmptyXeradonBucket>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<TroxiniumBar>(), 12);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<TroxiniumHeadpiece>());
@@ -2389,12 +2383,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SpellTome);
-            recipe.AddTile(TileID.Bookcases);
-            recipe.SetResult(ModContent.ItemType<MysteriousPage>(), 2);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Lens, 20);
             recipe.AddIngredient(ModContent.ItemType<BloodshotLens>(), 10);
             recipe.AddIngredient(ItemID.BlackLens);
@@ -2554,12 +2542,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ItemID.Stinger, 15);
             recipe.AddTile(TileID.DemonAltar);
             recipe.SetResult(ModContent.ItemType<HornetFood>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Lens, 20);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ModContent.ItemType<EyesPamphlet>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

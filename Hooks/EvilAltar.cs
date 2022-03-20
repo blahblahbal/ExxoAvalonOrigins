@@ -46,8 +46,8 @@ namespace ExxoAvalonOrigins.Hooks
                         else if (WorldGen.oreTier1 == 0)
                             Main.NewText("Your world has been blessed with Duratanium!", 137, 81, 89, false);
 
-                        if (WorldGen.altarCount == 0)
-                            Main.NewText("The underground smells like rotten eggs...", 210, 183, 4, false);
+                        //if (WorldGen.altarCount == 0)
+                        //    Main.NewText("The underground smells like rotten eggs...", 210, 183, 4, false);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
@@ -58,8 +58,8 @@ namespace ExxoAvalonOrigins.Hooks
                         else if (WorldGen.oreTier1 == 0)
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with Duratanium!"), new Color(137, 81, 89));
 
-                        if (WorldGen.altarCount == 0)
-                            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
+                        //if (WorldGen.altarCount == 0)
+                        //    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
                     }
 
                     currentOreTier = WorldGen.oreTier1;
@@ -146,13 +146,13 @@ namespace ExxoAvalonOrigins.Hooks
                 WorldGen.OreRunner(x, y, WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)currentOreTier);
 
                 // For first 9 altars broken, spawn sulphur ore as well
-                if (WorldGen.altarCount < 9)
-                {
-                    x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
-                    y = WorldGen.genRand.Next((int)maxHeightToSpawn, Main.maxTilesY - 150);
+                //if (WorldGen.altarCount < 9)
+                //{
+                //    x = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
+                //    y = WorldGen.genRand.Next((int)maxHeightToSpawn, Main.maxTilesY - 150);
 
-                    WorldGen.OreRunner(x, y, (double)WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)ModContent.TileType<Tiles.Ores.SulphurOre>());
-                }
+                //    WorldGen.OreRunner(x, y, (double)WorldGen.genRand.Next(5, 9 + num8), WorldGen.genRand.Next(5, 9 + num8), (ushort)ModContent.TileType<Tiles.Ores.SulphurOre>());
+                //}
             }
 
             // Spawn evil or hallow blocks

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return !NPC.AnyNPCs(NPCID.EyeofCthulhu);
+            return !NPC.AnyNPCs(NPCID.EyeofCthulhu) && !Main.dayTime;
         }
 
         public override bool UseItem(Player player)
@@ -39,6 +39,14 @@ namespace ExxoAvalonOrigins.Items.Consumables
             NPC.SpawnOnPlayer(player.whoAmI, NPCID.EyeofCthulhu);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Lens, 20);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

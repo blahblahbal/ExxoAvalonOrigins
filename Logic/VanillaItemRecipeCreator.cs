@@ -15,6 +15,13 @@ namespace ExxoAvalonOrigins.Logic
             ModRecipe recipe;
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Vanity.BismuthCrown>());
+            recipe.AddIngredient(ItemID.Gel, 20);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.SetResult(ItemID.SlimeCrown);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<NullEmblem>());
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ItemID.RangerEmblem);

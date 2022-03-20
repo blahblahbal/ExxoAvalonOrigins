@@ -1221,6 +1221,28 @@ namespace ExxoAvalonOrigins
             specialWireHitCount = reader.ReadInt32();
         }
 
+        public static void GenerateSulphur()
+        {
+            if (Main.rand == null)
+            {
+                Main.rand = new UnifiedRandom((int)DateTime.Now.Ticks);
+            }
+            for (int a = 0; a < (int)((Main.maxTilesX * Main.maxTilesY) * 0.00012); a++)
+            {
+                int x = Main.rand.Next(100, Main.maxTilesX - 100);
+                int y = Main.rand.Next((int)Main.rockLayer, Main.maxTilesY - 150);
+                WorldGen.OreRunner(x, y, Main.rand.Next(7, 9), Main.rand.Next(5, 7), (ushort)ModContent.TileType<Tiles.Ores.SulphurOre>());
+            }
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText("The underground smells like rotten eggs...", 210, 183, 4, false);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The underground smells like rotten eggs..."), new Color(210, 183, 4));
+            }
+        }
+
         public static void GrowLargeHerb(int x, int y)
         {
             if (Main.tile[x, y].active())
@@ -1359,7 +1381,6 @@ namespace ExxoAvalonOrigins
                 }
             }
         }
-
         public void DarkMatterSpread(int i, int j)
         {
             if (!Main.hardMode || Main.tile[i, j].inActive())

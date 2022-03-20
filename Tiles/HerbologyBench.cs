@@ -17,6 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileID.Sets.HasOutlines[Type] = true;
             Main.tileFrameImportant[Type] = true;
             AddMapEntry(new Color(153, 77, 86), LanguageManager.Instance.GetText("Herbology Bench"));
+            adjTiles = new int[] { TileID.Bottles };
             disableSmartCursor = true;
         }
 

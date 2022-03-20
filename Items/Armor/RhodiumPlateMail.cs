@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rhodium Plate Mail");
-            Tooltip.SetDefault("10% increased melee damage and speed");
+            Tooltip.SetDefault("14% increased melee damage and speed");
         }
 
         public override void SetDefaults()
@@ -34,8 +34,8 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.meleeDamage += 0.1f;
-            player.meleeSpeed += 0.1f;
+            player.meleeDamage += 0.14f;
+            player.meleeSpeed += 0.14f;
         }
     }
 }

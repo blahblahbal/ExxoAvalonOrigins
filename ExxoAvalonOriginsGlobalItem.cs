@@ -819,6 +819,10 @@ namespace ExxoAvalonOrigins
                 NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
                 player.QuickSpawnItem(ModContent.ItemType<NullEmblem>());
             }
+            if (context == "bossBag" && arg == ItemID.WallOfFleshBossBag)
+            {
+                if (Main.rand.Next(3) == 0) player.QuickSpawnItem(ModContent.ItemType<BandofSlime>());
+            }
             if (context == "bossBag" && arg == ItemID.GolemBossBag)
             {
                 NPCLoader.blockLoot.Add(ItemID.Picksaw);
@@ -873,6 +877,18 @@ namespace ExxoAvalonOrigins
                 if (WorldGen.crimson)
                 {
                     player.QuickSpawnItem(ModContent.ItemType<Items.Ammo.BloodyArrow>(), Main.rand.Next(20, 50));
+                }
+                if (!Main.hardMode && !ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(10) < 3)
+                {
+                    player.QuickSpawnItem(ModContent.ItemType<BloodyAmulet>());
+                }
+                else if (Main.hardMode && !ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(100) < 15)
+                {
+                    player.QuickSpawnItem(ModContent.ItemType<BloodyAmulet>());
+                }
+                else if (Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(100) < 7)
+                {
+                    player.QuickSpawnItem(ModContent.ItemType<BloodyAmulet>());
                 }
             }
         }

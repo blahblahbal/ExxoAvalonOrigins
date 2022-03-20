@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rhodium Headgear");
-            Tooltip.SetDefault("10% increased ranged damage\nIncreases maximum mana by 20");
+            Tooltip.SetDefault("14% increased ranged damage\nIncreases maximum mana by 40");
         }
 
         public override void SetDefaults()
@@ -39,14 +39,14 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% increased melee speed";
-            player.meleeSpeed += 0.2f;
+            player.setBonus = "9% increased damage";
+            player.allDamage += 0.09f;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.statManaMax2 += 20;
-            player.rangedDamage += 0.1f;
+            player.statManaMax2 += 40;
+            player.rangedDamage += 0.14f;
         }
     }
 }

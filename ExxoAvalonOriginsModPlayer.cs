@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins
 
         public int statStamMax = 30;
         public int statStamMax2;
+        public bool stamFlower = false;
         public bool[] pSensor = new bool[6];
         public int statStam = 100;
         public int spiritPoppyUseCount;
@@ -36,6 +37,7 @@ namespace ExxoAvalonOrigins
         public bool teleportVWasTriggered = false;
         public int screenShakeTimer;
         public bool astralProject;
+        public int staminaRegen = 1000;
 
         public enum ShadowMirrorModes
         {
@@ -390,6 +392,9 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            shockWave = false;
+            stamFlower = false;
+            staminaRegen = 1000;
             quackJump = false;
             bOfBacteria = false;
             stingerPack = false;
@@ -1303,6 +1308,15 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (crystalEdge)
+            {
+                damage += 15;
+            }
+            if (player.HasBuff(ModContent.BuffType<Buffs.BacteriaEndurance>()))
+            {
+                damage += 8;
+            }
+            
             if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
             {
                 damage *= 3;
@@ -2841,9 +2855,20 @@ namespace ExxoAvalonOrigins
             {
                 QuickStamina();
             }
-            if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && statStam >= 90 && tpCD >= 300)
+            if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && tpCD >= 300)
             {
-                statStam -= 90;
+                if (statStam >= 90)
+                {
+                    statStam -= 90;
+                }
+                else if (stamFlower)
+                {
+                    QuickStamina();
+                    if (statStam >= 90)
+                    {
+                        statStam -= 90;
+                    }
+                }
                 tpCD = 0;
                 if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>() &&
                     Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != WallID.LihzahrdBrickUnsafe)
@@ -3153,10 +3178,22 @@ namespace ExxoAvalonOrigins
             FloorVisualsAvalon(player.velocity.Y > player.gravity);
             if (activateRocketJump)
             {
-                if (player.controlUp && player.releaseUp && statStam >= 70)
+                if (player.controlUp && player.releaseUp)
                 {
                     if (isOnGround())
                     {
+                        if (statStam >= 70)
+                        {
+                            statStam -= 70;
+                        }
+                        else if (stamFlower)
+                        {
+                            QuickStamina();
+                            if (statStam >= 70)
+                            {
+                                statStam -= 70;
+                            }
+                        }
                         float yDestination = player.position.Y - 360f;
                         int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
                         Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
@@ -3169,7 +3206,7 @@ namespace ExxoAvalonOrigins
                         Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
                         Main.PlaySound(2, player.Center, 11);
                         player.velocity.Y -= 16.5f;
-                        statStam -= 70;
+                        
                     }
                 }
                 if (player.velocity.Y < 0)
@@ -3180,14 +3217,25 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            if (statStam >= 1 && player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
+            if (player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
             {
                 bool flag15 = true;
-                staminaCD += 1;
+                staminaCD++;
                 stamRegenCount = 0;
                 if (staminaCD >= 6)
                 {
-                    statStam--;
+                    if (statStam >= 1)
+                    {
+                        statStam--;
+                    }
+                    else if (stamFlower)
+                    {
+                        QuickStamina();
+                        if (statStam >= 1)
+                        {
+                            statStam--;
+                        }
+                    }
                     if (statStam <= 0)
                     {
                         statStam = 0;
@@ -3202,14 +3250,25 @@ namespace ExxoAvalonOrigins
             }
             if (activateSprint)
             {
-                if ((player.controlRight || player.controlLeft) && statStam >= 2 && !HasItemInArmor(ModContent.ItemType<Items.Accessories.InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
+                if ((player.controlRight || player.controlLeft) && !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
                 {
                     bool flag17 = true;
-                    staminaCD2 += 1;
+                    staminaCD2++;
                     stamRegenCount = 0;
                     if (staminaCD2 >= 15)
                     {
-                        statStam -= 2;
+                        if (statStam >= 2)
+                        {
+                            statStam -= 2;
+                        }
+                        else if (stamFlower)
+                        {
+                            QuickStamina();
+                            if (statStam >= 2)
+                            {
+                                statStam -= 2;
+                            }
+                        }
                         if (statStam <= 0)
                         {
                             statStam = 0;
@@ -3287,7 +3346,8 @@ namespace ExxoAvalonOrigins
                 stamRegen = 0;
             }
             stamRegenCount += stamRegen;
-            while (stamRegenCount >= 1000)
+
+            while (stamRegenCount >= staminaRegen)
             {
                 bool flag = false;
                 stamRegenCount -= 1000;

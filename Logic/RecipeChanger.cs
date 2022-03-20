@@ -219,7 +219,7 @@ namespace ExxoAvalonOrigins.Logic
             foreach (var recipe in finder.SearchRecipes())
             {
                 var editor = new RecipeEditor(recipe);
-                editor.AddIngredient(ModContent.ItemType<ToxinShard>(), 2);
+                editor.AddIngredient(ModContent.ItemType<ToxinShard>());
             }
 
             finder = new RecipeFinder();
@@ -243,7 +243,7 @@ namespace ExxoAvalonOrigins.Logic
             foreach (var recipe in finder.SearchRecipes())
             {
                 var editor = new RecipeEditor(recipe);
-                editor.AddIngredient(ModContent.ItemType<ToxinShard>(), 3);
+                editor.AddIngredient(ModContent.ItemType<ToxinShard>());
             }
 
             finder = new RecipeFinder();
@@ -251,7 +251,7 @@ namespace ExxoAvalonOrigins.Logic
             foreach (var recipe in finder.SearchRecipes())
             {
                 var editor = new RecipeEditor(recipe);
-                editor.AddIngredient(ModContent.ItemType<ToxinShard>(), 3);
+                editor.AddIngredient(ModContent.ItemType<ToxinShard>());
             }
 
             finder = new RecipeFinder();
@@ -259,7 +259,7 @@ namespace ExxoAvalonOrigins.Logic
             foreach (var recipe in finder.SearchRecipes())
             {
                 var editor = new RecipeEditor(recipe);
-                editor.AddIngredient(ModContent.ItemType<ToxinShard>(), 3);
+                editor.AddIngredient(ModContent.ItemType<ToxinShard>());
             }
 
             finder = new RecipeFinder();
