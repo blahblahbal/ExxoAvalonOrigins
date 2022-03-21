@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Tiles
                 {
                     WorldGen.spawnMeteor = true;
                 }
-                int num3 = Main.rand.Next(3);
+                int num3 = Main.rand.Next(4);
                 if (!WorldGen.shadowOrbSmashed)
                 {
                     num3 = 0;
@@ -70,6 +70,10 @@ namespace ExxoAvalonOrigins.Tiles
                 else if (num3 == 2)
                 {
                     Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<BandofStamina>(), 1, false, -1, false);
+                }
+                else if (num3 == 3)
+                {
+                    Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<Items.Other.SnotOrb>(), 1, false, -1, false);
                 }
                 WorldGen.shadowOrbSmashed = true;
                 WorldGen.shadowOrbCount++;

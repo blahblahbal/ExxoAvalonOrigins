@@ -38,6 +38,7 @@ namespace ExxoAvalonOrigins
         public int screenShakeTimer;
         public bool astralProject;
         public int staminaRegen = 1000;
+        public bool snotOrb;
 
         public enum ShadowMirrorModes
         {
@@ -392,6 +393,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            snotOrb = false;
             shockWave = false;
             stamFlower = false;
             staminaRegen = 1000;
@@ -715,6 +717,7 @@ namespace ExxoAvalonOrigins
                 //        player.buffTime[k] = 18000;
                 //    }
                 //}
+
                 if (player.buffType[k] == 37)
                 {
                     if (Main.wof >= 0 && Main.npc[Main.wof].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.Bosses.WallofSteel>())

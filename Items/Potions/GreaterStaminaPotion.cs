@@ -32,11 +32,11 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<StaminaPotion>());
-            recipe.AddIngredient(ItemID.SharkFin, 3);
-            recipe.AddIngredient(ItemID.Mushroom, 5);
+            recipe.AddIngredient(ModContent.ItemType<StaminaPotion>(), 10);
+            recipe.AddIngredient(ItemID.Feather, 2);
+            recipe.AddIngredient(ItemID.SoulofFlight);
             recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
+            recipe.SetResult(this, 10);
             recipe.AddRecipe();
         }
         public override bool CanUseItem(Player player)

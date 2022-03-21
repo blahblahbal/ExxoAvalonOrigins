@@ -819,7 +819,7 @@ namespace ExxoAvalonOrigins
                 NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
                 player.QuickSpawnItem(ModContent.ItemType<NullEmblem>());
             }
-            if (context == "bossBag" && arg == ItemID.WallOfFleshBossBag)
+            if (context == "bossBag" && arg == ItemID.KingSlimeBossBag)
             {
                 if (Main.rand.Next(3) == 0) player.QuickSpawnItem(ModContent.ItemType<BandofSlime>());
             }

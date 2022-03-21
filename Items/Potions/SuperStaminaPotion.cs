@@ -33,11 +33,18 @@ namespace ExxoAvalonOrigins.Items.Potions
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2);
-            recipe.AddIngredient(ItemID.SharkFin, 6);
-            recipe.AddIngredient(ItemID.Mushroom);
-            recipe.AddIngredient(ItemID.Silk);
+            recipe.AddIngredient(ItemID.ChlorophyteBar);
+            recipe.AddIngredient(ItemID.SharkFin, 2);
             recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
+            recipe.SetResult(this, 2);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.XanthophyteBar>());
+            recipe.AddIngredient(ItemID.SharkFin, 2);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this, 2);
             recipe.AddRecipe();
         }
         public override bool CanUseItem(Player player)

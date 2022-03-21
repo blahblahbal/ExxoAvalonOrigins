@@ -32,8 +32,8 @@ namespace ExxoAvalonOrigins.Items.Potions
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Boltstone>(), 5);
-            recipe.AddIngredient(ItemID.Silk);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Boltstone>());
+            recipe.AddIngredient(ItemID.Cactus, 2);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();

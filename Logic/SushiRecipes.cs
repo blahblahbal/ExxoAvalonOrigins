@@ -330,7 +330,43 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>(), 25);
             recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.FeralClaws);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>(), 25);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ItemID.FlowerBoots);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>(), 25);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(ItemID.AnkletoftheWind);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.ContagionToken>(), 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ModContent.ItemType<Items.Accessories.BandofStamina>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.ContagionToken>(), 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.VirulentPike>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.ContagionToken>(), 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ModContent.ItemType<Items.Other.SnotOrb>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Items.Tokens.ContagionToken>(), 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.PeeShooter>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

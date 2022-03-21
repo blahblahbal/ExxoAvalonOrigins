@@ -32,8 +32,8 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LesserStaminaPotion>(), 2);
-            recipe.AddIngredient(ItemID.Mushroom);
+            recipe.AddIngredient(ModContent.ItemType<LesserStaminaPotion>());
+            recipe.AddIngredient(ItemID.GlowingMushroom);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();
