@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
@@ -20,7 +20,13 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Iceman");
-            Main.npcFrameCount[npc.type] = 16;
+            Main.npcFrameCount[npc.type] = 25;
+            NPCID.Sets.ExtraFramesCount[npc.type] = 9;
+            NPCID.Sets.AttackFrameCount[npc.type] = 4;
+            NPCID.Sets.DangerDetectRange[npc.type] = 600;
+            NPCID.Sets.AttackType[npc.type] = 0;
+            NPCID.Sets.AttackTime[npc.type] = 50;
+            NPCID.Sets.AttackAverageChance[npc.type] = 10;
         }
 
         public override void SetDefaults()
@@ -31,12 +37,13 @@ namespace ExxoAvalonOrigins.NPCs
             npc.defense = 15;
             npc.friendly = true;
             npc.width = 18;
-            npc.aiStyle = -1;
+            npc.aiStyle = 7;
             npc.scale = 1f;
             npc.height = 40;
             npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
+            animationType = 22;
         }
         public override string TownNPCName()
         {
@@ -739,7 +746,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
-            damage = 40;
+            damage = 65;
             knockback = 4f;
         }
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)

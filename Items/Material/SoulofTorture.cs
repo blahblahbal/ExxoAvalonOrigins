@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soul of Torture");
-            Tooltip.SetDefault("'The essence of cruelty'\nIncreases critical strike chance if placed");
+            Tooltip.SetDefault("'The essence of cruelty'");
             Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
             ItemID.Sets.AnimatesAsSoul[item.type] = true;
             ItemID.Sets.ItemIconPulse[item.type] = true;

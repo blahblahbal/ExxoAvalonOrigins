@@ -14,23 +14,30 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Librarian");
-            Main.npcFrameCount[npc.type] = 16;
+            Main.npcFrameCount[npc.type] = 25;
+            NPCID.Sets.ExtraFramesCount[npc.type] = 9;
+            NPCID.Sets.AttackFrameCount[npc.type] = 4;
+            NPCID.Sets.DangerDetectRange[npc.type] = 600;
+            NPCID.Sets.AttackType[npc.type] = 0;
+            NPCID.Sets.AttackTime[npc.type] = 50;
+            NPCID.Sets.AttackAverageChance[npc.type] = 10;
         }
 
         public override void SetDefaults()
         {
             npc.damage = 10;
-            npc.lifeMax = 300;
+            npc.lifeMax = 250;
             npc.townNPC = true;
             npc.defense = 15;
             npc.friendly = true;
             npc.width = 18;
-            npc.aiStyle = -1;
+            npc.aiStyle = 7;
             npc.scale = 1f;
             npc.height = 40;
             npc.knockBackResist = 0.5f;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
+            animationType = 22;
         }
         public override string TownNPCName()
         {
@@ -117,36 +124,36 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Placeable.Crafting.TomeForge>());
-            shop.item[nextSlot].value = Item.buyPrice(0, 5);
+            shop.item[nextSlot].value = Item.buyPrice(0, 7, 50);
             nextSlot++;
             if (Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<MysticalTomePage>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 2);
                 nextSlot++;
             }
             if (NPC.downedBoss1)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<MysticalClaw>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 2, 50);
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<RubybeadHerb>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 2, 50);
                 nextSlot++;
             }
             if (Main.LocalPlayer.ZoneJungle)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<StrongVenom>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 2, 50);
                 nextSlot++;
             }
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<ElementDust>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 2, 50);
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<DewOrb>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 2, 50);
                 nextSlot++;
             }
             if (Main.hardMode)
@@ -167,22 +174,22 @@ namespace ExxoAvalonOrigins.NPCs
             if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<MysticalTotem>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 4);
+                shop.item[nextSlot].value = Item.buyPrice(0, 7);
                 nextSlot++;
             }
             if (NPC.downedPlantBoss && Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<ElementDiamond>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 3, 50);
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<DewofHerbs>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 1);
+                shop.item[nextSlot].value = Item.buyPrice(0, 3, 50);
                 nextSlot++;
             }
             if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScrollofTome>());
-                shop.item[nextSlot].value = Item.buyPrice(0, 10);
+                shop.item[nextSlot].value = Item.buyPrice(0, 12, 50);
                 nextSlot++;
                 if (ExxoAvalonOriginsWorld.downedDragonLord)
                 {
@@ -784,7 +791,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ProjectileID.GreenLaser;
+            projType = ProjectileID.WaterBolt;
             attackDelay = 1;
         }
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)

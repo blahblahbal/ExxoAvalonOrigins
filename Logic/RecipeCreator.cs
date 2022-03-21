@@ -2695,12 +2695,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<UnvolanditePicksaw>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<SolariumStaff>());
             recipe.AddIngredient(ModContent.ItemType<UnvolanditeBar>(), 15);
             recipe.AddIngredient(ModContent.ItemType<Kunzite>(), 9);
@@ -2750,12 +2744,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 22);
             recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
             recipe.SetResult(ModContent.ItemType<VoraylzumKatana>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<VorazylcumBar>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<VorazylcumPicksaw>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

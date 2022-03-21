@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Astralline Artifact");
-            Tooltip.SetDefault("Allows you to astral project\nRun into enemies to mark them while astral projecting\nEnemies marked will take triple damage until they die");
+            Tooltip.SetDefault("Allows you to astral project\nRun into enemies to mark them while astral projecting\nEnemies marked will take triple damage for 30 seconds");
         }
 
         public override void SetDefaults()

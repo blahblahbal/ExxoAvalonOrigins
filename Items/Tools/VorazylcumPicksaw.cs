@@ -1,4 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vorazylcum Picksaw");
+            Tooltip.SetDefault("Can mine Oblivion Ore");
         }
 
         public override void SetDefaults()
@@ -31,6 +33,22 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.useAnimation = 15;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;
+        }
+        public override void HoldItem(Player player)
+        {
+            if (player.inventory[player.selectedItem].type == item.type)
+            {
+                player.pickSpeed -= 0.35f;
+            }
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.VorazylcumBar>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
+            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

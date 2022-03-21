@@ -3188,6 +3188,18 @@ namespace ExxoAvalonOrigins
                         if (statStam >= 70)
                         {
                             statStam -= 70;
+                            float yDestination = player.position.Y - 360f;
+                            int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                            Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                            Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                            num6 = Gore.NewGore(new Vector2(player.position.X - 36f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                            Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                            Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                            num6 = Gore.NewGore(new Vector2(player.position.X + player.width + 4f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                            Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                            Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                            Main.PlaySound(2, player.Center, 11);
+                            player.velocity.Y -= 16.5f;
                         }
                         else if (stamFlower)
                         {
@@ -3195,21 +3207,20 @@ namespace ExxoAvalonOrigins
                             if (statStam >= 70)
                             {
                                 statStam -= 70;
+                                float yDestination = player.position.Y - 360f;
+                                int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                                Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                                Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                                num6 = Gore.NewGore(new Vector2(player.position.X - 36f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                                Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                                Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                                num6 = Gore.NewGore(new Vector2(player.position.X + player.width + 4f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
+                                Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
+                                Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
+                                Main.PlaySound(2, player.Center, 11);
+                                player.velocity.Y -= 16.5f;
                             }
                         }
-                        float yDestination = player.position.Y - 360f;
-                        int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
-                        Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
-                        Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
-                        num6 = Gore.NewGore(new Vector2(player.position.X - 36f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
-                        Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
-                        Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
-                        num6 = Gore.NewGore(new Vector2(player.position.X + player.width + 4f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
-                        Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
-                        Main.gore[num6].velocity.Y = Main.gore[num6].velocity.Y * 0.1f - player.velocity.Y * 0.05f;
-                        Main.PlaySound(2, player.Center, 11);
-                        player.velocity.Y -= 16.5f;
-                        
                     }
                 }
                 if (player.velocity.Y < 0)
