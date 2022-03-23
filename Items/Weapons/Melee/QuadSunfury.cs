@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.melee = true;
             item.value = 999000;
             item.shootSpeed = 12f;
-            item.shoot = ModContent.ProjectileType<Projectiles.QuadBall>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.QuadBall>();
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -92,7 +92,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             }
             if (mode == 3)
             {
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<Projectiles.MegaQuadBall>(), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.MegaQuadBall>(), damage, knockBack, player.whoAmI);
             }
 
             if (mode == 4)
@@ -127,22 +127,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
                 timer++;
                 if (timer == 1)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
                 }
 
                 if (timer == 16)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
                 }
 
                 if (timer == 31)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
                 }
 
                 if (timer == 46)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
                     timer = 0;
                     done = true;
                 }

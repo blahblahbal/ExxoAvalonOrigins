@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.knockBack = 4f;
             item.useTime = 20;
-            item.shoot = ModContent.ProjectileType<Projectiles.InfernoScythe>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.InfernoScythe>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 0, 80, 0);

@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.width = dims.Width;
             item.useTime = 30;
             item.knockBack = 6.5f;
-            item.shoot = ModContent.ProjectileType<PriminiCannon>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.PriminiCannon>();
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 10, 0, 0);
             item.useAnimation = 30;
@@ -37,10 +37,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)
         {
-            Projectile.NewProjectile(player.Center.X - 40f, player.Center.Y - 40f, 0f, 0f, ModContent.ProjectileType<PriminiCannon>(), damage, knockBack, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(player.Center.X + 40f, player.Center.Y - 40f, 0f, 0f, ModContent.ProjectileType<PriminiLaser>(), damage, knockBack, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(player.Center.X - 40f, player.Center.Y + 40f, 0f, 0f, ModContent.ProjectileType<PriminiSaw>(), damage, knockBack, player.whoAmI, 0f, 0f);
-            Projectile.NewProjectile(player.Center.X + 40f, player.Center.Y + 40f, 0f, 0f, ModContent.ProjectileType<PriminiVice>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X - 40f, player.Center.Y - 40f, 0f, 0f, ModContent.ProjectileType<Projectiles.Summon.PriminiCannon>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X + 40f, player.Center.Y - 40f, 0f, 0f, ModContent.ProjectileType<Projectiles.Summon.PriminiLaser>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X - 40f, player.Center.Y + 40f, 0f, 0f, ModContent.ProjectileType<Projectiles.Summon.PriminiSaw>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(player.Center.X + 40f, player.Center.Y + 40f, 0f, 0f, ModContent.ProjectileType<Projectiles.Summon.PriminiVice>(), damage, knockBack, player.whoAmI, 0f, 0f);
             return false;
         }
     }

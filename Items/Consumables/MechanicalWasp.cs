@@ -45,7 +45,16 @@ namespace ExxoAvalonOrigins.Items.Consumables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Stinger, 9);
             recipe.AddIngredient(ItemID.HallowedBar, 10);
-            recipe.AddIngredient(ModContent.ItemType<Items.Placeable.Tile.DragonScale>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 2);
+            recipe.AddIngredient(ItemID.SoulofFlight, 15);
+            recipe.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.MosquitoProboscis>(), 9);
+            recipe.AddIngredient(ItemID.HallowedBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 2);
             recipe.AddIngredient(ItemID.SoulofFlight, 15);
             recipe.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
             recipe.SetResult(this);

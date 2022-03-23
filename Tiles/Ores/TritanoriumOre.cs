@@ -58,7 +58,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             if (Main.rand.Next(200) == 1)
             {
                 int randomSize = Main.rand.Next(1, 4) / 2;
-                int num161 = Gore.NewGore(new Vector2(i * 16, j * 16), default(Vector2), Main.rand.Next(61, 64));
+                int num161 = Gore.NewGore(new Vector2(i * 16, j * 16), default, Main.rand.Next(61, 64));
                 Gore gore30 = Main.gore[num161];
                 Gore gore40 = gore30;
                 gore40.velocity *= 0.3f;
@@ -68,14 +68,14 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             }
             if (Main.rand.Next(120) == 1)
             {
-                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, ModContent.DustType<Dusts.TritanoriumFlame>(), 0f, 0f, 0, default(Color), 1.5f);
+                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, ModContent.DustType<Dusts.TritanoriumFlame>(), 0f, 0f, 0, default, 1.5f);
                 Main.dust[num162].noGravity = true;
                 Main.dust[num162].velocity *= 1.5f;
                 Main.dust[num162].noLight = true;
             }
             if (Main.rand.Next(120) == 1)
             {
-                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Smoke, 0f, 0f, 0, default(Color), 1.5f);
+                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Smoke, 0f, 0f, 0, default, 1.5f);
                 Main.dust[num162].noGravity = true;
                 Main.dust[num162].velocity *= 1.5f;
                 Main.dust[num162].noLight = true;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useTime = 24;
             item.useAnimation = 24;
             item.knockBack = 2.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.VirulentPike>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.VirulentPike>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = Item.sellPrice(0, 0, 36, 0);

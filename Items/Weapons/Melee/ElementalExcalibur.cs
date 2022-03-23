@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 15;
             item.knockBack = 8.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.ElementBeam>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ElementBeam>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 90, 0, 0);

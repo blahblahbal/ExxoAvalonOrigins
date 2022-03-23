@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.width = dims.Width;
             item.useTime = 30;
             item.knockBack = 8.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.IceGolemSummon>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.IceGolemSummon>();
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 30, 0, 0);
             item.useAnimation = 30;

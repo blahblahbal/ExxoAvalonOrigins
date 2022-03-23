@@ -30,5 +30,21 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.ammo = ItemID.Spike;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 6;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Spike, 20);
+            r.AddIngredient(ItemID.Stinger);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this, 20);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Spike, 20);
+            r.AddIngredient(ModContent.ItemType<Material.MosquitoProboscis>());
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this, 20);
+            r.AddRecipe();
+        }
     }
 }

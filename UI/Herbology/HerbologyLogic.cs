@@ -43,9 +43,6 @@ namespace ExxoAvalonOrigins.UI.Herbology
 
         public static readonly int[] PotionIds = new int[]
         {
-            ItemID.HealingPotion,
-            ItemID.ManaPotion,
-            ModContent.ItemType<StaminaPotion>(),
             ItemID.ObsidianSkinPotion,
             ItemID.RegenerationPotion,
             ItemID.SwiftnessPotion,
@@ -287,7 +284,10 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 return amount * BlahPotionCost;
             }
-
+            else if (RestorationIDs.Contains(item.type))
+            {
+                return amount * RestorationPotionCost;
+            }
             return 0;
         }
 
@@ -402,11 +402,8 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
 
             int potionAddition = 0;
-            if (RestorationIDs.Contains(item.type))
-            {
-                potionAddition = RestorationPotionCost;
-            }
-            else if (PotionIds.Contains(item.type))
+            
+            if (PotionIds.Contains(item.type))
             {
                 potionAddition = PotionSellPrice;
             }
@@ -418,7 +415,10 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 potionAddition = BlahPotionSellPrice;
             }
-            
+            if (RestorationIDs.Contains(item.type))
+            {
+                potionAddition = RestorationPotionCost;
+            }
 
             if (potionAddition > 0)
             {

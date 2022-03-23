@@ -184,10 +184,50 @@ namespace ExxoAvalonOrigins.Logic
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.Deathweed);
+            recipe.AddIngredient(ItemID.Cactus);
+            recipe.AddIngredient(ItemID.WormTooth);
+            recipe.AddIngredient(ModContent.ItemType<MosquitoProboscis>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.ThornsPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
             recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
             recipe.AddIngredient(ItemID.Cactus);
             recipe.AddIngredient(ItemID.WormTooth);
             recipe.AddIngredient(ItemID.Stinger);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.ThornsPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddIngredient(ItemID.Cactus);
+            recipe.AddIngredient(ItemID.WormTooth);
+            recipe.AddIngredient(ItemID.Stinger);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.ThornsPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Bloodberry>());
+            recipe.AddIngredient(ItemID.Cactus);
+            recipe.AddIngredient(ItemID.WormTooth);
+            recipe.AddIngredient(ModContent.ItemType<MosquitoProboscis>());
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(ItemID.ThornsPotion);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
+            recipe.AddIngredient(ItemID.Cactus);
+            recipe.AddIngredient(ItemID.WormTooth);
+            recipe.AddIngredient(ModContent.ItemType<MosquitoProboscis>());
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(ItemID.ThornsPotion);
             recipe.AddRecipe();
@@ -364,8 +404,8 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 20);
-            recipe.AddIngredient(ItemID.BeetleHusk, 2);
+            recipe.AddIngredient(ItemID.Wood, 40);
+            recipe.AddIngredient(ItemID.BeetleHusk);
             recipe.anyWood = true;
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ItemID.WoodenSpike, 40);

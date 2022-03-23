@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useTime = 22;
             item.useAnimation = 22;
             item.knockBack = 5.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.DarklightLance>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.DarklightLance>();
             item.melee = true;
             item.autoReuse = true;
             item.useStyle = ItemUseStyleID.HoldingOut;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useTime = 22;
             item.useAnimation = 22;
             item.knockBack = 5.1f;
-            item.shoot = ModContent.ProjectileType<Projectiles.DurataniumGlaive>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.DurataniumGlaive>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = 50000;

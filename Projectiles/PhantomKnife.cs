@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -43,19 +43,6 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                 }
                 if (projectile.ai[0] < 30f)
-                {
-                    projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-                }
-            }
-            else
-            {
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] >= 20f)
-                {
-                    projectile.velocity.Y = projectile.velocity.Y + 0.4f;
-                    projectile.velocity.X = projectile.velocity.X * 0.97f;
-                }
-                else if (projectile.type == ProjectileID.ThrowingKnife || projectile.type == ProjectileID.PoisonedKnife || projectile.type == ProjectileID.MagicDagger)
                 {
                     projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
                 }

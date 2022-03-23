@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.TitaniumDagger>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.TitaniumDagger>()] > 0)
             {
                 player.Avalon().titaniumDagger = true;
             }

@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 38;
             item.knockBack = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.BerserkerSphere>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.BerserkerSphere>();
             item.UseSound = SoundID.Item1;
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 26;
             item.knockBack = 5.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.NaquadahTrident>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.NaquadahTrident>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = 86000;

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useAnimation = 16;
             item.height = dims.Height;
             item.UseSound = SoundID.Item1;
-            item.shoot = ModContent.ProjectileType<Projectiles.TritonWave>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.TritonWave>();
             item.shootSpeed = 20;
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)

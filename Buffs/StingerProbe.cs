@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Buffs
         {
             ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
 
-            if (player.dead || !player.active || !modPlayer.HasItemInArmor(ModContent.ItemType<Items.Accessories.AIController>()))
+            if (player.dead || !player.active || !player.HasItemInArmor(ModContent.ItemType<Items.Accessories.AIController>()))
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;
@@ -46,14 +46,14 @@ namespace ExxoAvalonOrigins.Buffs
                 modPlayer.MousePosition = mousePosition;
             }
 
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.StingerProbeMinion>()] < 4)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.StingerProbeMinion>()] < 4)
                 modPlayer.StingerProbeTimer++;
             else
                 modPlayer.StingerProbeTimer = 0;
 
             if (modPlayer.StingerProbeTimer >= 300)
             {
-                Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI);
+                Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Summon.StingerProbeMinion>(), (player.HeldItem.damage / 4) * 3, 0f, player.whoAmI);
                 modPlayer.StingerProbeTimer = 0;
             }
         }

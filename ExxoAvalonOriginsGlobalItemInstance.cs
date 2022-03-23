@@ -26,10 +26,10 @@ namespace ExxoAvalonOrigins
 
         List<int> blahRarityItems = new List<int>
         {
-            ModContent.ItemType<Items.Ammo.BlahBullet>(),
-            ModContent.ItemType<Items.Weapons.Melee.BlahsEnergyBlade>(),
-            ModContent.ItemType<Items.Weapons.Magic.BlahStaff>(),
-            ModContent.ItemType<Items.Weapons.Ranged.TacticalBlahncher>(),
+            ModContent.ItemType<Items.Weapons.Blah.BlahBullet>(),
+            ModContent.ItemType<Items.Weapons.Blah.BlahsEnergyBlade>(),
+            ModContent.ItemType<Items.Weapons.Blah.BlahStaff>(),
+            ModContent.ItemType<Items.Weapons.Blah.TacticalBlahncher>(),
             ModContent.ItemType<Items.Accessories.BlahsWings>(),
             ModContent.ItemType<Items.Armor.BlahsHeadguard>(),
             ModContent.ItemType<Items.Armor.BlahsHauberk>(),
@@ -37,7 +37,9 @@ namespace ExxoAvalonOrigins
             ModContent.ItemType<Items.Potions.BlahPotion>(),
             ModContent.ItemType<Items.Tools.BlahsPicksawTierII>(),
             ModContent.ItemType<Items.Tools.BlahsWarhammer>(),
-            ModContent.ItemType<Items.Weapons.Melee.BlahsThrow>(),
+            ModContent.ItemType<Items.Weapons.Blah.BlahsThrow>(),
+            ModContent.ItemType<Items.Weapons.Blah.BlahsKnives>(),
+            ModContent.ItemType<Items.Weapons.Blah.SpraynBlah>(),
             ModContent.ItemType<Items.Placeable.Painting.CrossingtheTropics>()
         };
         List<int> avalonRarityItems = new List<int>
@@ -93,61 +95,6 @@ namespace ExxoAvalonOrigins
             }
             return false;
         }
-
-        /*public override void OnCraft(Item item, Recipe recipe)
-        {
-            if (IsArmor(item))
-            {
-                switch (Main.rand.Next(15))
-                {
-                    case 0:
-                        item.prefix = ModContent.PrefixType<Prefixes.Barbaric>();
-                        break;
-                    case 1:
-                        item.prefix = ModContent.PrefixType<Prefixes.Boosted>();
-                        break;
-                    case 2:
-                        item.prefix = ModContent.PrefixType<Prefixes.Busted>();
-                        break;
-                    case 3:
-                        item.prefix = ModContent.PrefixType<Prefixes.Confused>();
-                        break;
-                    case 4:
-                        item.prefix = ModContent.PrefixType<Prefixes.Disgusting>();
-                        break;
-                    case 5:
-                        item.prefix = ModContent.PrefixType<Prefixes.Fluidic>();
-                        break;
-                    case 6:
-                        item.prefix = ModContent.PrefixType<Prefixes.Glorious>();
-                        break;
-                    case 7:
-                        item.prefix = ModContent.PrefixType<Prefixes.Handy>();
-                        break;
-                    case 8:
-                        item.prefix = ModContent.PrefixType<Prefixes.Insane>();
-                        break;
-                    case 9:
-                        item.prefix = ModContent.PrefixType<Prefixes.Loaded>();
-                        break;
-                    case 10:
-                        item.prefix = ModContent.PrefixType<Prefixes.Messy>();
-                        break;
-                    case 11:
-                        item.prefix = ModContent.PrefixType<Prefixes.Mythic>();
-                        break;
-                    case 12:
-                        item.prefix = ModContent.PrefixType<Prefixes.Protective>();
-                        break;
-                    case 13:
-                        item.prefix = ModContent.PrefixType<Prefixes.Silly>();
-                        break;
-                    case 14:
-                        item.prefix = ModContent.PrefixType<Prefixes.Slimy>();
-                        break;
-                }
-            }
-        }*/
         public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand)
         {
             if (IsArmor(item) && pre == -3)

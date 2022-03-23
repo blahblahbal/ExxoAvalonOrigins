@@ -94,7 +94,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 if (npc.ai[2] > 15)
                 {
                     float Speed = 9f;
-                    Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+                    Vector2 vector8 = new Vector2(npc.Center.X, npc.position.Y + npc.height - 10);
                     int damage = 90;
                     Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
                     Vector2 offset = new Vector2(npc.Center.X + Main.rand.Next(5) * npc.direction, npc.Center.Y + Main.rand.Next(5, 10));
@@ -293,8 +293,10 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         speed = 15f;
                     }
                     int p;
+                    #region electric bolt attack
                     if (npc.ai[1] % 60 == 0)
                     {
+                        float increment = Main.expertMode ? 0.225f : 0.45f;
                         while (f <= 3.6f)
                         {
                             // above the boss
@@ -317,9 +319,10 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             {
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, p);
                             }
-                            f += .45f;
+                            f += increment;
                         }
                     }
+                    #endregion
                     if (npc.ai[1] == 300)
                     {
                         npc.ai[1] = 0;

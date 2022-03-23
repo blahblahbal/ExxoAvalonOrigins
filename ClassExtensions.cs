@@ -17,14 +17,71 @@ namespace ExxoAvalonOrigins
 {
     public static class ClassExtensions
     {
+        /// <summary>
+        /// Helper method to reduce code writing.
+        /// </summary>
+        /// <param name="player">The current player.</param>
+        /// <returns>Returns the ExxoAvalonOriginsModPlayer instance.</returns>
         public static ExxoAvalonOriginsModPlayer Avalon(this Player player)
         {
             return player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+        }
+        /// <summary>
+        /// Rotate a Vector2.
+        /// </summary>
+        /// <param name="spinningpoint">The origin.</param>
+        /// <param name="radians">The angle in radians to rotate the Vector2 by.</param>
+        /// <param name="center"></param>
+        /// <returns>Returns the rotated Vector2.</returns>
+        public static Vector2 Rotate(this Vector2 spinningpoint, double radians, Vector2 center = default)
+        {
+            float num = (float)Math.Cos(radians);
+            float num2 = (float)Math.Sin(radians);
+            Vector2 vector = spinningpoint - center;
+            Vector2 result = center;
+            result.X += vector.X * num - vector.Y * num2;
+            result.Y += vector.X * num2 + vector.Y * num;
+            return result;
         }
 
         public static Rectangle NewRectVector2(Vector2 v, Vector2 wH)
         {
             return new Rectangle((int)v.X, (int)v.Y, (int)wH.X, (int)wH.Y);
+        }
+        /// <summary>
+        /// Checks if the current player has an item in their armor/accessory slots.
+        /// </summary>
+        /// <param name="p">The player.</param>
+        /// <param name="type">The item ID to check.</param>
+        /// <returns>Whether or not the item is found.</returns>
+        public static bool HasItemInArmor(this Player p, int type)
+        {
+            for (int i = 0; i < p.armor.Length; i++)
+            {
+                return type == p.armor[i].type;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Helper method for Vampire Teeth and Blah's Knives lifesteal.
+        /// </summary>
+        /// <param name="p">The player.</param>
+        /// <param name="dmg">The damage to use in the lifesteal calculation.</param>
+        /// <param name="position">The position to spawn the lifesteal projectile at.</param>
+        public static void VampireHeal(this Player p, int dmg, Vector2 position)
+        {
+            float num = dmg * 0.075f;
+            if ((int)num == 0)
+            {
+                return;
+            }
+            if (p.lifeSteal <= 0f)
+            {
+                return;
+            }
+            p.lifeSteal -= num;
+            int num2 = p.whoAmI;
+            Projectile.NewProjectile(position.X, position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, p.whoAmI, num2, num);
         }
         public static bool Exists(this Item item)
         {
@@ -174,6 +231,11 @@ namespace ExxoAvalonOrigins
             }
             return false;
         }
+        /// <summary>
+        /// A helper method to check if the player is in any of the Lunar event's pillar zones.
+        /// </summary>
+        /// <param name="p">The current player.</param>
+        /// <returns>Whether or not the player is in a pillar zone.</returns>
         public static bool InPillarZone(this Player p)
         {
             if (!p.ZoneTowerStardust && !p.ZoneTowerVortex && !p.ZoneTowerSolar)
@@ -182,6 +244,12 @@ namespace ExxoAvalonOrigins
             }
             return true;
         }
+        /// <summary>
+        /// Removes the specified index of a List of int - used for Golem dropping 2 items from its 11-drop loot table.
+        /// </summary>
+        /// <param name="list">The List of int.</param>
+        /// <param name="index">The index.</param>
+        /// <returns>Returns the item ID of the removed index.</returns>
         public static int RemoveAtIndex(this List<int> list, int index)
         {
             int item = list[index];
@@ -199,6 +267,9 @@ namespace ExxoAvalonOrigins
             ParameterDefinition def = context.Method.Parameters.FirstOrDefault(parameter => parameter.Name == name);
             return def?.Index + 1 ?? throw new Exception($"Parameter with name '{name}' does not exist!");
         }
+        /// <summary>
+        /// Draws an outlined string.
+        /// </summary>
         public static void DrawOutlinedString(this SpriteBatch spriteBatch, DynamicSpriteFont spriteFont, string text, Vector2 position, Color normalColor, Color outlineColor, float strength, float scale)
         {
             var positions = new Vector2[] { new Vector2(position.X + strength, position.Y + strength), new Vector2(position.X - strength, position.Y - strength), new Vector2(position.X + strength, position.Y - strength), new Vector2(position.X - strength, position.Y + strength) };

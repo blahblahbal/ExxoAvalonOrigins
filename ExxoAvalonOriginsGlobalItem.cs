@@ -1228,7 +1228,7 @@ namespace ExxoAvalonOrigins
                     player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY &&
                     (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
                 if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
-                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.Avalon().HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
+                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
                     !Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
                 {
                     bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
@@ -1677,7 +1677,7 @@ namespace ExxoAvalonOrigins
                     float num223 = speedY;
                     num222 += Main.rand.Next(-30, 31) * 0.05f;
                     num223 += Main.rand.Next(-30, 31) * 0.05f;
-                    if (item.type == ModContent.ItemType<TacticalBlahncher>()) type = ModContent.ProjectileType<Projectiles.Blahcket>();
+                    if (item.type == ModContent.ItemType<Items.Weapons.Blah.TacticalBlahncher>()) type = ModContent.ProjectileType<Projectiles.Blahcket>();
                     if (item.type == ModContent.ItemType<VorazylcumFusebow>()) type = ModContent.ProjectileType<Projectiles.ArrowBeam>();
                     if (item.type == ModContent.ItemType<UnvolanditeFusebow>()) type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
                     Projectile.NewProjectile(position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);

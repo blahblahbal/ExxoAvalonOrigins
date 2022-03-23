@@ -20,20 +20,20 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
             item.autoReuse = true;
             item.useTurn = false;
             item.useAmmo = ItemID.Spike;
-            item.shootSpeed = 20f;
+            item.shootSpeed = 23f;
             item.crit += 2;
             item.ranged = true;
             item.rare = ItemRarityID.Cyan;
             item.noMelee = true;
             item.width = dims.Width;
             item.knockBack = 8f;
-            item.useTime = 15;
+            item.useTime = 9;
             item.shoot = ModContent.ProjectileType<Projectiles.SpikeCannon>();
             item.value = Item.sellPrice(0, 20, 0, 0);
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 15;
+            item.useAnimation = 9;
             item.height = dims.Height;
-            item.UseSound = SoundID.Item11;
+            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Railgun");
         }
         public override Vector2? HoldoutOffset()
         {

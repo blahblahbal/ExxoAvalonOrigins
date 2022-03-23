@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Projectiles.Summon
 {
@@ -27,7 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
             projectile.timeLeft *= 5;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            shoot = mod.ProjectileType("UltraLFire");
+            shoot = ModContent.ProjectileType<UltraLFire>();
             shootSpeed = 12f;
         }
 

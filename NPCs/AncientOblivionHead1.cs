@@ -1,4 +1,5 @@
 ﻿using System;
+using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Painting;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
@@ -290,6 +291,10 @@ namespace ExxoAvalonOrigins.NPCs
                 else
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<VictoryPiece>(), 2, false, 0, false);
+                }
+                if (Main.rand.Next(20) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TomeofLuck>(), 1, false, -1, false);
                 }
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
             }

@@ -240,6 +240,12 @@ namespace ExxoAvalonOrigins.UI.Herbology
                 items.Add(ItemID.SuperManaPotion);
                 items.Add(ModContent.ItemType<Items.Potions.SuperStaminaPotion>());
             }
+            if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herbTier >= ExxoAvalonOriginsModPlayer.HerbTier.Expert)
+            {
+                items.Add(ItemID.HealingPotion);
+                items.Add(ItemID.ManaPotion);
+                items.Add(ModContent.ItemType<Items.Potions.StaminaPotion>());
+            }
             if (displayElixirs)
             {
                 items.AddRange(HerbologyLogic.ElixirIds);

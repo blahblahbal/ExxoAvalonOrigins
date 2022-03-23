@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.HungrySummon>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.HungrySummon>()] > 0)
             {
                 player.Avalon().hungryMinion = true;
             }

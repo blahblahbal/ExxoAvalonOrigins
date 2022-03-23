@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useTime = 36;
             item.useAnimation = 16;
             item.knockBack = 8f;
-            item.shoot = ModContent.ProjectileType<Projectiles.PumpkingsBeam>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.PumpkingsBeam>();
             item.shootSpeed = 12f;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
@@ -72,7 +72,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
                 num5 = 8f / num5;
                 num3 *= num5;
                 num4 *= num5;
-                Projectile.NewProjectile((float)num, (float)num2, num4, num5, ModContent.ProjectileType<Projectiles.PumpkinHead>(), dmg, kb, p.whoAmI, (float)i, 0f);
+                Projectile.NewProjectile((float)num, (float)num2, num4, num5, ModContent.ProjectileType<Projectiles.Melee.PumpkinHead>(), dmg, kb, p.whoAmI, (float)i, 0f);
             }
         }
 

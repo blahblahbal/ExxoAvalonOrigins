@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.width = dims.Width;
             item.useTime = 30;
             item.knockBack = 5.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.HungrySummon>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.HungrySummon>();
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 1, 0, 0);
             item.useAnimation = 30;

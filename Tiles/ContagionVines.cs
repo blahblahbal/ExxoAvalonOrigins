@@ -46,7 +46,6 @@ namespace ExxoAvalonOrigins.Tiles
             WorldGen.KillTile(i, j);
             return true;
         }
-
         public override void RandomUpdate(int i, int j)
         {
             Tile tileBelow = Framing.GetTileSafely(i, j + 1);

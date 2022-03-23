@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 35;
             item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.AeonBeam>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.AeonBeam>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 3, 0, 0);

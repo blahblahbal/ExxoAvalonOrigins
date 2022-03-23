@@ -309,7 +309,7 @@ namespace ExxoAvalonOrigins
         public override void Kill(Projectile projectile, int timeLeft)
         {
             var instance = projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>();
-            if (projectile.type == ModContent.ProjectileType<Projectiles.GuardianHammer2>())
+            if (projectile.type == ModContent.ProjectileType<Projectiles.Melee.GuardianHammer2>())
             {
                 Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
             }

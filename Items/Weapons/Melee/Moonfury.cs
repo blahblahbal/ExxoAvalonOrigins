@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 42;
             item.knockBack = 6.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Moonfury>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Moonfury>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = 54000;

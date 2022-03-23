@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 23;
             item.knockBack = 5.6f;
-            item.shoot = ModContent.ProjectileType<Projectiles.TroxiniumSpear>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.TroxiniumSpear>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = 100000;

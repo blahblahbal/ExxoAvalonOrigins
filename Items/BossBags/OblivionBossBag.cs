@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
             {
                 player.QuickSpawnItem(ModContent.ItemType<CurseofOblivion>(), 1);
             }
-            player.QuickSpawnItem(ModContent.ItemType<Items.Tools.AccelerationDrill>(), 1);
+            player.QuickSpawnItem(ModContent.ItemType<Tools.AccelerationDrill>(), 1);
             player.QuickSpawnItem(ModContent.ItemType<SoulofTorture>(), Main.rand.Next(60, 121));
             if (Main.rand.Next(5) > 0)
             {
@@ -52,6 +52,10 @@ namespace ExxoAvalonOrigins.Items.BossBags
             if (Main.rand.Next(4) == 0)
             {
                 player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            }
+            if (Main.rand.Next(20) == 0)
+            {
+                player.QuickSpawnItem(ModContent.ItemType<Accessories.TomeofLuck>());
             }
         }
 

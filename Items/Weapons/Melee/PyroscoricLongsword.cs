@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.knockBack = 7f;
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.shoot = ModContent.ProjectileType<Projectiles.FireWave>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.FireWave>();
             item.shootSpeed = 25f;
             item.value = Item.sellPrice(0, 7, 63, 0);
             item.height = dims.Height;

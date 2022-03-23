@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiCannon>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiLaser>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiSaw>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.PriminiVice>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.PriminiCannon>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.PriminiLaser>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.PriminiSaw>()] > 0 || player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.PriminiVice>()] > 0)
             {
                 player.Avalon().primeMinion = true;
             }

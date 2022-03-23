@@ -20,8 +20,8 @@ namespace ExxoAvalonOrigins.Buffs
                 player.lifeRegen = 0;
             }
             player.lifeRegenTime = 0;
-            int minus = ((player.Avalon().duraShield && player.Avalon().HasItemInArmor(ModContent.ItemType<DurataniumShield>())) ? 4 : (player.Avalon().duraShield ? 6 : 8));
-            int minus2 = ((player.Avalon().duraShield && player.Avalon().HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>())) ? 16 : (player.Avalon().duraShield ? 24 : 32));
+            int minus = ((player.Avalon().duraShield && player.HasItemInArmor(ModContent.ItemType<DurataniumShield>())) ? 4 : (player.Avalon().duraShield ? 6 : 8));
+            int minus2 = ((player.Avalon().duraShield && player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>())) ? 16 : (player.Avalon().duraShield ? 24 : 32));
             player.lifeRegen -= minus;
             if (player.velocity.X != 0)
             {

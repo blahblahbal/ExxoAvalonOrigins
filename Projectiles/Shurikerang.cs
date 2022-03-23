@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Projectiles
             if (projectile.ai[0] == 0f)
             {
                 projectile.ai[1] += 1f;
-                if (projectile.type == ModContent.ProjectileType<PossessedFlamesaw>())
+                if (projectile.type == ModContent.ProjectileType<Melee.PossessedFlamesaw>())
                 {
                     if (Main.rand.Next(2) == 0)
                     {
@@ -134,7 +134,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             projectile.velocity.Y = projectile.velocity.Y - num96 * 2f;
                         }
                     }
-                    if (projectile.type == ModContent.ProjectileType<PossessedFlamesaw>() && Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active() && Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].type == 5)
+                    if (projectile.type == ModContent.ProjectileType<Melee.PossessedFlamesaw>() && Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active() && Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].type == 5)
                     {
                         WorldGen.KillTile((int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f), false, false, false);
                     }
@@ -151,7 +151,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 projectile.tileCollide = false;
                 var num100 = 9f;
                 var num101 = 0.4f;
-                if (projectile.type == ModContent.ProjectileType<PossessedFlamesaw>())
+                if (projectile.type == ModContent.ProjectileType<Melee.PossessedFlamesaw>())
                 {
                     num100 = 16f;
                     num101 = 1.2f;

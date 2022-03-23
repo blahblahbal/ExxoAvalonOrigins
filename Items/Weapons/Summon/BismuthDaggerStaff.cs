@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             item.width = dims.Width;
             item.useTime = 30;
             item.knockBack = 5.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.BismuthDagger>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.BismuthDagger>();
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 0, 30);
             item.useAnimation = 30;

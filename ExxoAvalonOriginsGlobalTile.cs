@@ -2,6 +2,7 @@
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Seed;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
+using ExxoAvalonOrigins.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -72,27 +73,31 @@ namespace ExxoAvalonOrigins
         //}
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (type == ModContent.TileType<Tiles.ImperviousBrick>())
+            if (type == ModContent.TileType<ImperviousBrick>())
             {
-                if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.LockedImperviousDoor>() ||
-                    Main.tile[i, j + 1].type == ModContent.TileType<Tiles.LockedImperviousDoor>())
+                if (Main.tile[i, j - 1].type == ModContent.TileType<LockedImperviousDoor>() ||
+                    Main.tile[i, j + 1].type == ModContent.TileType<LockedImperviousDoor>())
                 {
                     fail = true;
                 }
             }
-            if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() && Main.tile[i, j].type != ModContent.TileType<Tiles.IckyAltar>() ||
-                Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>() && Main.tile[i, j].type != ModContent.TileType<Tiles.HallowedAltar>())
+            if (Main.tile[i, j - 1].type == ModContent.TileType<IckyAltar>() && Main.tile[i, j].type != ModContent.TileType<IckyAltar>() ||
+                Main.tile[i, j - 1].type == ModContent.TileType<HallowedAltar>() && Main.tile[i, j].type != ModContent.TileType<HallowedAltar>())
             {
                 fail = true;
             }
-            if (Main.tile[i, j].type == TileID.Hellstone && Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem].pick < 70)
+            if (type == TileID.Hellstone && Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem].pick < 70)
             {
                 fail = true;
             }
-            if (type == TileID.Stalactite && Main.tile[i, j].frameX < 54 && Main.rand.Next(2) == 0)
+            if (type == TileID.Stalactite && Main.tile[i, j].frameX < 54 && (Main.tile[i, j].frameY == 0 || Main.tile[i, j].frameY == 72) && Main.rand.Next(2) == 0)
             {
                 int number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Weapons.Throw.Icicle>(), 1, false, 0, false);
-                NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+                    Main.item[number2].owner = Player.FindClosest(Main.item[number2].position, 8, 8);
+                }
             }
             int[] blowPipes =
             {
@@ -110,12 +115,20 @@ namespace ExxoAvalonOrigins
                 if (Main.rand.Next(8000) == 0)
                 {
                     int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FourLeafClover>(), 1, false, 0);
-                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
+                        Main.item[a].owner = Player.FindClosest(Main.item[a].position, 8, 8);
+                    }
                 }
                 if (Main.rand.Next(500) == 0)
                 {
                     int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FakeFourLeafClover>(), 1, false, 0);
-                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
+                        Main.item[a].owner = Player.FindClosest(Main.item[a].position, 8, 8);
+                    }
                 }
             }
             if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
@@ -155,7 +168,11 @@ namespace ExxoAvalonOrigins
                             number2 = Item.NewItem(i * 16, j * 16, 16, 16, ItemID.Seed, 1, false, 0, false);
                             break;
                     }
-                    NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
+                        Main.item[number2].owner = Player.FindClosest(Main.item[number2].position, 8, 8);
+                    }
                 }
             }
 			//Broken Hilt Piece (it drops 2 when destroyed sometimes, i somehow didn't have this happen once when i tested before pushing)

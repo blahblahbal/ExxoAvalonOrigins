@@ -208,6 +208,14 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
                             shootVel.Normalize();
                             shootVel *= shootSpeed;
                             int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, shootVel.X, shootVel.Y, shoot, projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
+                            if (shoot == ModContent.ProjectileType<UltraLFire>())
+                            {
+                                Main.PlaySound(SoundID.Item20);
+                            }
+                            else if (shoot == ModContent.ProjectileType<UltraRLaser>())
+                            {
+                                Main.PlaySound(SoundID.Item33);
+                            }
                             Main.projectile[proj].timeLeft = 300;
                             Main.projectile[proj].netUpdate = true;
                             projectile.netUpdate = true;

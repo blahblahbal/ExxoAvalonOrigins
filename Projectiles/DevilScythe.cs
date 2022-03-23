@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 projectile.ai[1] = 1f;
                 Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 8);
             }
-            if (projectile.type == ProjectileID.IceSickle || projectile.type == ProjectileID.DeathSickle || projectile.type == ModContent.ProjectileType<InfernoScythe>())
+            if (projectile.type == ProjectileID.IceSickle || projectile.type == ProjectileID.DeathSickle || projectile.type == ModContent.ProjectileType<Melee.InfernoScythe>())
             {
                 if (projectile.type == ProjectileID.DeathSickle && projectile.velocity.X < 0f)
                 {

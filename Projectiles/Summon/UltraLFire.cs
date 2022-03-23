@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
             projectile.scale = 1.2f;
             projectile.timeLeft = 600;
             projectile.extraUpdates = 2;
-            Main.PlaySound(SoundID.Item20);
+            //Main.PlaySound(SoundID.Item20);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

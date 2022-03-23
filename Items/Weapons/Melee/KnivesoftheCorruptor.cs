@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 16;
             item.knockBack = 5.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.CorruptKnife>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.CorruptKnife>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 50, 0, 0);

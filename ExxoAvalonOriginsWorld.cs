@@ -1774,7 +1774,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].type == TileID.HallowedGrass || Main.tile[num5, num6].type == TileID.Pearlstone)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 350 : 100)) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 600 : 250)) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Holybird>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1795,7 +1795,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].type == ModContent.TileType<Nest>() || Main.tile[num5, num6].type == TileID.Hive)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(350) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
+                        if (!Main.tile[num5, num9].active() && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(450) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Sweetstem>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1816,7 +1816,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].type == TileID.FleshGrass || Main.tile[num5, num6].type == TileID.Crimstone)
                     {
                         int num14 = Main.tile[num5, num6].type;
-                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 350 : 100)) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())
@@ -1831,6 +1831,34 @@ namespace ExxoAvalonOrigins
                     }
 
                     #endregion bloodberry spawning
+
+                    #region killing things if the block above/below isn't the necessary type
+                    // kill contagion vines if block above isn't contagion grass
+                    if (Main.tile[num5, num9].type == TileID.Dirt && Main.tile[num5, num6].type == ModContent.TileType<ContagionVines>())
+                    {
+                        WorldGen.KillTile(num5, num6);
+                    }
+                    // kill contagion short grass if block below isn't contagion grass
+                    if (Main.tile[num5, num6].type == TileID.Dirt && Main.tile[num5, num9].type == ModContent.TileType<ContagionShortGrass>())
+                    {
+                        WorldGen.KillTile(num5, num6);
+                    }
+                    // kill barfbush if block below isn't contagion grass
+                    if (Main.tile[num5, num6].type == TileID.Dirt && Main.tile[num5, num9].type == ModContent.TileType<Tiles.Herbs.Barfbush>())
+                    {
+                        WorldGen.KillTile(num5, num6);
+                    }
+                    // kill bloodberry if block below isn't crimson grass
+                    if (Main.tile[num5, num6].type == TileID.Dirt && Main.tile[num5, num9].type == ModContent.TileType<Tiles.Herbs.Bloodberry>())
+                    {
+                        WorldGen.KillTile(num5, num6);
+                    }
+                    // kill holybird if block below isn't hallowed grass
+                    if (Main.tile[num5, num6].type == TileID.Dirt && Main.tile[num5, num9].type == ModContent.TileType<Tiles.Herbs.Holybird>())
+                    {
+                        WorldGen.KillTile(num5, num6);
+                    }
+                    #endregion
 
                     #region contagion shortgrass/barfbush spawning
 
@@ -1850,7 +1878,7 @@ namespace ExxoAvalonOrigins
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
                         }
-                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 350 : 100)) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].active() && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].halfBrick() && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Barfbush>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].active())

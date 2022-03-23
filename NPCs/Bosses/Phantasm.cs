@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.boss = npc.noTileCollide = npc.noGravity = true;
             npc.npcSlots = 100f;
             npc.damage = 95;
-            npc.lifeMax = 56900;
+            npc.lifeMax = 62700;
             npc.defense = 60;
             npc.aiStyle = -1;
             npc.value = 100000f;
@@ -104,7 +104,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 if (npc.ai[1] >= 120)
                 {
                     float rotation = (float)Math.Atan2(npc.Center.Y - Main.player[npc.target].Center.Y, npc.Center.X - Main.player[npc.target].Center.X);
-                    float speed = 12f;
+                    float speed = Main.expertMode ? 18f : 12f;
                     float f = 0;
                     int p;
                     while (f <= 0.3f)
@@ -234,6 +234,34 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         }
                         if (npc.ai[2] == 301)
                         {
+                            #region 360 degree spread
+                            float increment;
+                            if (Main.expertMode)
+                                increment = 0.2f;
+                            else
+                                increment = 0.4f;
+
+                            var vector155 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height / 2);
+                            Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 33);
+                            var num1166 = (float)Math.Atan2(vector155.Y - (Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f), vector155.X - (Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f));
+                            for (var num1167 = 0f; num1167 <= 3.6f; num1167 += increment)
+                            {
+                                var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 16f * -1.0), (float)(Math.Sin(num1166 + num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.Ghostflame>(), 70, 0f, npc.target, 0f, 0f);
+                                Main.projectile[num1168].timeLeft = 600;
+                                Main.projectile[num1168].tileCollide = false;
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num1168);
+                                }
+                                num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 16f * -1.0), (float)(Math.Sin(num1166 - num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.Ghostflame>(), 70, 0f, npc.target, 0f, 0f);
+                                Main.projectile[num1168].timeLeft = 600;
+                                Main.projectile[num1168].tileCollide = false;
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num1168);
+                                }
+                            }
+                            #endregion
                             npc.ai[1]++;
                             npc.ai[2] = 0;
                         }
@@ -243,6 +271,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         npc.ai[1]++;
                         //npc.velocity *= 0f;
                         //Teleport(new Vector2(Main.maxTilesX / 3 + 168, Main.maxTilesY - 140 + 57) * 16, false, npc.whoAmI);
+                        #region sweeping laser attack
                         if (npc.ai[1] % 60 == 0)
                         {
                             Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
@@ -270,6 +299,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             num1277 += MathHelper.TwoPi / 720f;
                             npc.localAI[0] = num1277;
                         }
+                        #endregion
                         if (npc.ai[1] == 304)
                         {
                             npc.ai[1] = 0;
@@ -307,6 +337,9 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     }
                     if (npc.ai[0] % 10 == 0)
                     {
+                        float increment;
+                        if (Main.expertMode) increment = 0.09f;
+                        else increment = 0.18f;
                         if (npc.ai[2] <= 7.2f)
                         {
                             p = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(rotation - npc.ai[2]) * speed) * -1), (float)((Math.Sin(rotation - npc.ai[2]) * speed) * -1), ModContent.ProjectileType<Projectiles.Ghostflame>(), 60, 0f, npc.target);
@@ -353,7 +386,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                                 //return;
                             }
                         }
-                        npc.ai[2] += .18f;
+                        npc.ai[2] += increment;
                     }
                     if (npc.ai[0] == 400 || npc.ai[0] == 450 || npc.ai[0] == 500 || npc.ai[0] == 550)
                     {
@@ -365,7 +398,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         {
                             num1275 = 1f;
                         }
-                        velocityOfProj = velocityOfProj.RotatedBy((double)((0f - num1275) * MathHelper.TwoPi / 6f));
+                        velocityOfProj = velocityOfProj.RotatedBy((0f - num1275) * MathHelper.TwoPi / 6f);
                         int p2 = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, velocityOfProj.X, velocityOfProj.Y, ModContent.ProjectileType<Projectiles.PhantasmLaser>(), 95, 0f, Main.myPlayer, num1275 * MathHelper.TwoPi / 720f, (float)npc.whoAmI);
                         Main.projectile[p2].localAI[0] += 120;
                         npc.localAI[1] += 0.05f;

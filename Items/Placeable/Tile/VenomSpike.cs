@@ -29,5 +29,14 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.ammo = ItemID.Spike;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 5;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Spike, 40);
+            r.AddIngredient(ItemID.FlaskofVenom);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this, 40);
+            r.AddRecipe();
+        }
     }
 }

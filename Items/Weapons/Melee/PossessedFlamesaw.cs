@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.knockBack = 9f;
             item.useTime = 15;
-            item.shoot = ModContent.ProjectileType<Projectiles.PossessedFlamesaw>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.PossessedFlamesaw>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 40, 0, 0);

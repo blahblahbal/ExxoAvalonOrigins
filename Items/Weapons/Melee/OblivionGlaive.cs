@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useTime = 14;
             item.useAnimation = 14;
             item.knockBack = 4.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.OblivionGlaive>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.OblivionGlaive>();
             item.melee = true;
             item.autoReuse = true;
             item.useStyle = ItemUseStyleID.HoldingOut;

@@ -36,8 +36,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.height = 580;
             npc.boss = npc.noTileCollide = npc.noGravity = npc.behindTiles = true;
             npc.npcSlots = 100f;
-            npc.damage = 135;
-            npc.lifeMax = 75000;
+            npc.damage = 150;
+            npc.lifeMax = 87000;
             npc.timeLeft = 750000;
             npc.defense = 55;
             npc.aiStyle = -1;

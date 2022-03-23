@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 16;
             item.knockBack = 5.6f;
-            item.shoot = ModContent.ProjectileType<Projectiles.ShatterLance>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ShatterLance>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.value = 105000;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 pos = player.Center + new Vector2(100, 0).RotatedBy(player.AngleTo(Main.MouseWorld));
-            Projectile.NewProjectile(pos.X, pos.Y, speedX * 3, speedY * 3, ModContent.ProjectileType<Projectiles.ShatterShard>(), damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(pos.X, pos.Y, speedX * 3, speedY * 3, ModContent.ProjectileType<Projectiles.Melee.ShatterShard>(), damage, knockBack, player.whoAmI);
             return true;
         }
         public override Color? GetAlpha(Color lightColor)

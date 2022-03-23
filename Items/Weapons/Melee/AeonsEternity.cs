@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.useAnimation = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.AeonBeam2>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.AeonBeam2>();
             item.shootSpeed = 9f;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(0, 1, 0, 0);

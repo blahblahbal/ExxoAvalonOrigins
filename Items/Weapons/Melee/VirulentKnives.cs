@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.width = dims.Width;
             item.useTime = 18;
             item.knockBack = 3f;
-            item.shoot = ModContent.ProjectileType<Projectiles.YuckyKnife>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.YuckyKnife>();
             item.melee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = Item.sellPrice(0, 20, 0, 0);

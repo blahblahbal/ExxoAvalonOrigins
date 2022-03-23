@@ -505,7 +505,7 @@ namespace ExxoAvalonOrigins
                 player.lifeRegenTime = 0;
                 if (duraShield && Main.rand.Next(6) == 0)
                 {
-                    player.lifeRegen += HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 6 : 4;
+                    player.lifeRegen += player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 6 : 4;
                 }
                 else
                 {
@@ -521,7 +521,7 @@ namespace ExxoAvalonOrigins
                 player.lifeRegenTime = 0;
                 if (duraShield && Main.rand.Next(6) == 0)
                 {
-                    player.lifeRegen += HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 3 : 2;
+                    player.lifeRegen += player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) ? 3 : 2;
                 }
                 else
                 {
@@ -639,18 +639,6 @@ namespace ExxoAvalonOrigins
             ZoneNearHellcastle = flags3[3];
         }
 
-        public bool HasItemInArmor(int type)
-        {
-            for (int i = 0; i < player.armor.Length; i++)
-            {
-                if (type == player.armor[i].type)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public override void OnEnterWorld(Player player)
         {
             if (tomeItem.type <= ItemID.None)
@@ -741,7 +729,7 @@ namespace ExxoAvalonOrigins
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             #region spike cannon logic
-            if (item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeCannon>())
+            if (item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeCannon>() || item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeRailgun>())
             {
                 Item item2 = new Item();
                 bool flag7 = false;
@@ -773,33 +761,56 @@ namespace ExxoAvalonOrigins
                     if (player.inventory[player.selectedItem].useAmmo == ItemID.Spike)
                     {
                         int t = 0;
+                        int dmgAdd = 0;
                         switch (item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike)
                         {
                             case 0:
                                 t = ModContent.ProjectileType<SpikeCannon>();
+                                dmgAdd = 11;
                                 break;
                             case 1:
                                 t = ModContent.ProjectileType<DemonSpikeScale>();
+                                dmgAdd = 17;
                                 break;
                             case 2:
                                 t = ModContent.ProjectileType<BloodiedSpike>();
+                                dmgAdd = 17;
                                 break;
                             case 3:
                                 t = ModContent.ProjectileType<NastySpike>();
+                                dmgAdd = 18;
                                 break;
                             case 4:
                                 t = ModContent.ProjectileType<WoodenSpike>();
+                                dmgAdd = 30;
                                 break;
                             case 5:
                                 t = ModContent.ProjectileType<VenomSpike>();
+                                dmgAdd = 39;
                                 break;
                             case 6:
                                 t = ModContent.ProjectileType<PoisonSpike>();
+                                dmgAdd = 15;
                                 break;
                         }
                         if (t > 0)
                         {
-                            Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, damage, knockBack);
+                            if (item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeRailgun>())
+                            {
+                                float num87 = MathHelper.Pi / 10;
+                                int num88 = 3;
+                                Vector2 vector2 = new Vector2(speedX, speedY);
+                                vector2.Normalize();
+                                vector2 *= 40f;
+                                for (int num89 = 0; num89 < num88; num89++)
+                                {
+                                    float num90 = num89 - (num88 - 1f) / 2f;
+                                    Vector2 vector3 = vector2.Rotate(num87 * num90, default);
+                                    int num91 = Projectile.NewProjectile(position.X + vector3.X, position.Y + vector3.Y, speedX, speedY, t, damage + dmgAdd, knockBack, player.whoAmI, 0f, 0f);
+                                }
+                                return false;
+                            }
+                            Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, damage + dmgAdd, knockBack, player.whoAmI);
                             return false;
                         }
                     }
@@ -1062,11 +1073,11 @@ namespace ExxoAvalonOrigins
                 {
                     if (target.boss)
                     {
-                        vampireHeal(damage / 2, target.Center);
+                        player.VampireHeal(damage / 2, target.Center);
                     }
                     else
                     {
-                        vampireHeal(damage, target.Center);
+                        player.VampireHeal(damage, target.Center);
                     }
                 }
             }
@@ -1186,22 +1197,6 @@ namespace ExxoAvalonOrigins
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
                 }
             }
-        }
-
-        public void vampireHeal(int dmg, Vector2 Position)
-        {
-            float num = dmg * 0.075f;
-            if ((int)num == 0)
-            {
-                return;
-            }
-            if (player.lifeSteal <= 0f)
-            {
-                return;
-            }
-            player.lifeSteal -= num;
-            int num2 = player.whoAmI;
-            Projectile.NewProjectile(Position.X, Position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, player.whoAmI, num2, num);
         }
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
@@ -1429,7 +1424,7 @@ namespace ExxoAvalonOrigins
 
         public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
         {
-            if (HasItemInArmor(ModContent.ItemType<ShadowRing>()))
+            if (player.HasItemInArmor(ModContent.ItemType<ShadowRing>()))
             {
                 drawInfo.shadow = 0f;
             }
@@ -1478,7 +1473,7 @@ namespace ExxoAvalonOrigins
                 if (player.poisoned)
                 {
                     int num = 2;
-                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    if (player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
                     {
                         num = 4;
                     }
@@ -1488,7 +1483,7 @@ namespace ExxoAvalonOrigins
                 else if (player.venom || player.frostBurn || player.onFire2)
                 {
                     int num2 = 2;
-                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    if (player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
                     {
                         num2 = 4;
                     }
@@ -1497,7 +1492,7 @@ namespace ExxoAvalonOrigins
                 else if (player.onFire)
                 {
                     int num3 = 2;
-                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    if (player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
                     {
                         num3 = 4;
                     }
@@ -1506,7 +1501,7 @@ namespace ExxoAvalonOrigins
                 else if (darkInferno)
                 {
                     int num6 = 4;
-                    if (HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
+                    if (player.HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()))
                     {
                         num6 = 8;
                     }
@@ -1729,7 +1724,10 @@ namespace ExxoAvalonOrigins
                 {
                     if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.Ores.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.Ores.PyroscoricOre>())
                     {
-                        player.AddBuff(ModContent.BuffType<Melting>(), 60);
+                        if (!player.HasItemInArmor(ModContent.ItemType<TomeofLuck>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                        {
+                            player.AddBuff(ModContent.BuffType<Melting>(), 60);
+                        }
                     }
                 }
             }
@@ -1798,7 +1796,7 @@ namespace ExxoAvalonOrigins
 
             #endregion rift goggles
 
-            if (HasItemInArmor(ModContent.ItemType<ShadowRing>()))
+            if (player.HasItemInArmor(ModContent.ItemType<ShadowRing>()))
             {
                 player.shadow = 0f;
             }
@@ -2400,7 +2398,7 @@ namespace ExxoAvalonOrigins
                 player.stealth = 1f;
             }
 
-            if (HasItemInArmor(ModContent.ItemType<BlahsWings>()) || HasItemInArmor(ModContent.ItemType<InertiaBoots>()))
+            if (player.HasItemInArmor(ModContent.ItemType<BlahsWings>()) || player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()))
             {
                 if (player.controlUp && player.controlJump)
                 {
@@ -2709,22 +2707,22 @@ namespace ExxoAvalonOrigins
             }
             if (dragonsBondage)
             {
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<DragonBall>()] == 0)
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Melee.DragonBall>()] == 0)
                 {
                     for (int i = 0; i < 3; i++)
                     {
-                        int newBall = Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.DragonBall>(), (player.HeldItem.damage / 2) * 3, 1f, player.whoAmI);
+                        int newBall = Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Melee.DragonBall>(), (player.HeldItem.damage / 2) * 3, 1f, player.whoAmI);
                         Main.projectile[newBall].localAI[0] = i;
                     }
                 }
             }
             else
             {
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DragonBall>()] != 0)
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Melee.DragonBall>()] != 0)
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
-                        if (Main.projectile[i].type == ModContent.ProjectileType<Projectiles.DragonBall>() && Main.projectile[i].owner == player.whoAmI)
+                        if (Main.projectile[i].type == ModContent.ProjectileType<Projectiles.Melee.DragonBall>() && Main.projectile[i].owner == player.whoAmI)
                         {
                             Main.projectile[i].Kill();
                         }
@@ -3491,18 +3489,18 @@ namespace ExxoAvalonOrigins
                     }
                     if (flag17)
                     {
-                        if (!HasItemInArmor(ItemID.HermesBoots) && !HasItemInArmor(ItemID.FlurryBoots) && !HasItemInArmor(ItemID.SpectreBoots) &&
-                            !HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) && !HasItemInArmor(ItemID.SailfishBoots) &&
-                            !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                        if (!player.HasItemInArmor(ItemID.HermesBoots) && !player.HasItemInArmor(ItemID.FlurryBoots) && !player.HasItemInArmor(ItemID.SpectreBoots) &&
+                            !player.HasItemInArmor(ItemID.LightningBoots) && !player.HasItemInArmor(ItemID.FrostsparkBoots) && !player.HasItemInArmor(ItemID.SailfishBoots) &&
+                            !player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
                         {
                             player.accRunSpeed = 6f;
                         }
-                        else if (!HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) &&
-                            !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                        else if (!player.HasItemInArmor(ItemID.LightningBoots) && !player.HasItemInArmor(ItemID.FrostsparkBoots) &&
+                            !player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
                         {
                             player.accRunSpeed = 6.75f;
                         }
-                        else if (!HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                        else if (!player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
                         {
                             player.accRunSpeed = 10.29f;
                             if ((player.velocity.X < 4f && player.controlRight) || (player.velocity.X > -4f && player.controlLeft))

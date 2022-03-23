@@ -54,13 +54,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.wingTime = 1000;
             if (player.immune)
             {
-                player.magicCrit += 7;
-                player.meleeCrit += 7;
-                player.rangedCrit += 7;
-                player.magicDamage += 0.07f;
-                player.meleeDamage += 0.07f;
-                player.rangedDamage += 0.07f;
-                player.minionDamage += 0.07f;
+                player.AllCrit(7);
+                player.allDamage += 0.07f;
             }
             player.accRunSpeed = 10.29f;
             player.rocketBoots = 2;
