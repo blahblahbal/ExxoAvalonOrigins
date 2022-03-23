@@ -2181,17 +2181,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ReflexCharm>());
-            recipe.AddIngredient(ItemID.AnkhShield);
-            recipe.AddIngredient(ModContent.ItemType<GoldenShield>());
-            recipe.AddIngredient(ModContent.ItemType<OxygenTank>());
-            recipe.AddIngredient(ModContent.ItemType<Vortex>());
-            recipe.AddIngredient(ModContent.ItemType<NuclearExtinguisher>());
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ModContent.ItemType<ReflexShield>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<GreekExtinguisher>());
             recipe.AddIngredient(ModContent.ItemType<SixHundredWattLightbulb>());
             recipe.AddTile(TileID.TinkerersWorkbench);

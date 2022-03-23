@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Band of Slime");
-            Tooltip.SetDefault("Reduces damage taken by 10% and negates fall damage\nAll tiles are slippery");
+            Tooltip.SetDefault("Reduces damage taken by 5% and negates fall damage\nAll tiles are slippery");
         }
 
         public override void SetDefaults()
@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Avalon().slimeBand = true;
-            player.endurance += 0.1f;
+            player.endurance += 0.05f;
             player.noFallDmg = true;
             player.slippy2 = true;
         }

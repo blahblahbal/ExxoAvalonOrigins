@@ -8,13 +8,13 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Advanced Gauntlet");
-            Description.SetDefault("-6 defense, +25% melee damage");
+            Description.SetDefault("-10 defense, +18% melee damage");
         }
 
         public override void Update(Player player, ref int k)
         {
-            player.statDefense -= 6;
-            player.meleeDamage += 0.25f;
+            player.statDefense -= 10;
+            player.meleeDamage += 0.18f;
         }
     }
 }

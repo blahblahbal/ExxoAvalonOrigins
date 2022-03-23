@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
@@ -13,15 +13,11 @@ namespace ExxoAvalonOrigins.Buffs
 
         public override void Update(Player player, ref int k)
         {
-            player.meleeDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            player.meleeCrit++;
-            player.magicCrit++;
-            player.rangedCrit++;
+            player.allDamage += 0.1f;
+            player.AllCrit(1);
             player.statDefense += 5;
             player.lifeRegen++;
+            player.Avalon().critDamageMult += 0.05f;
         }
     }
 }

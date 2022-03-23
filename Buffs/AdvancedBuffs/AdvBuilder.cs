@@ -13,8 +13,8 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 
         public override void Update(Player player, ref int k)
         {
-            player.tileSpeed += 0.5f;
-            player.wallSpeed += 0.5f;
+            player.tileSpeed += 0.3f;
+            player.wallSpeed += 0.3f;
             player.blockRange += 2;
         }
     }

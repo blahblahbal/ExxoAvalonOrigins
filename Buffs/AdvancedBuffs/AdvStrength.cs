@@ -13,16 +13,11 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 
         public override void Update(Player player, ref int k)
         {
-            player.meleeDamage += 0.15f;
-            player.magicDamage += 0.15f;
-            player.rangedDamage += 0.15f;
-            player.minionDamage += 0.15f;
-            player.thrownDamage += 0.15f;
-            player.meleeCrit += 2;
-            player.magicCrit += 2;
-            player.rangedCrit += 2;
+            player.allDamage += 0.13f;
+            player.AllCrit(2);
             player.statDefense += 7;
-            player.lifeRegen += 2;
+            player.lifeRegen++;
+            player.Avalon().critDamageMult += 0.1f;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.BossBags
         {
             player.TryGettingDevArmor();
 
-            if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
+            if (player.extraAccessorySlots == 0 && !Main.expertMode || player.extraAccessorySlots == 1 && Main.expertMode)
             {
                 player.QuickSpawnItem(ModContent.ItemType<Consumables.DarkStarHeart>());
             }

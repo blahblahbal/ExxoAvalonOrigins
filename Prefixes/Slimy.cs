@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Prefixes
         }
         public override void UpdateEquip(Player player)
         {
-            player.endurance += 0.05f;
+            player.endurance += 0.03f;
         }
     }
 }

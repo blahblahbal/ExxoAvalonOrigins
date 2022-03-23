@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sticky Charm");
-            Tooltip.SetDefault("Reduces damage taken by 10% and negates fall damage\nProvides immunity to slimes");
+            Tooltip.SetDefault("Reduces damage taken by 5% and negates fall damage\nProvides immunity to slimes");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.endurance += 0.1f;
+            player.endurance += 0.05f;
             player.noFallDmg = true;
             player.npcTypeNoAggro[1] = true;
             player.npcTypeNoAggro[16] = true;

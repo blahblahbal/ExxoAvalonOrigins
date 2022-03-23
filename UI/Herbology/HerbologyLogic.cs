@@ -26,12 +26,26 @@ namespace ExxoAvalonOrigins.UI.Herbology
         public const int HerbSeedCost = 1;
         public const int LargeHerbSeedCost = 15;
 
-        public const int PotionCost = 1;
+        public const int PotionCost = 3;
         public const int ElixirCost = 10;
         public const int BlahPotionCost = 2500;
+        public const int RestorationPotionCost = 5;
+
+        public static readonly int[] RestorationIDs = new int[]
+        {
+            ItemID.HealingPotion,
+            ItemID.ManaPotion,
+            ModContent.ItemType<StaminaPotion>(),
+            ItemID.SuperHealingPotion,
+            ItemID.SuperManaPotion,
+            ModContent.ItemType<SuperStaminaPotion>()
+        };
 
         public static readonly int[] PotionIds = new int[]
         {
+            ItemID.HealingPotion,
+            ItemID.ManaPotion,
+            ModContent.ItemType<StaminaPotion>(),
             ItemID.ObsidianSkinPotion,
             ItemID.RegenerationPotion,
             ItemID.SwiftnessPotion,
@@ -86,7 +100,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             ModContent.ItemType<ForceFieldPotion>(),
             ModContent.ItemType<FuryPotion>(),
             ModContent.ItemType<SupersonicPotion>(),
-            ModContent.ItemType<LeapingPotion>()
+            ModContent.ItemType<LeapingPotion>(),
             // Magnet Potion
         };
 
@@ -217,7 +231,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
             else if (modPlayer.herbTotal >= HerbTier3Threshold && Main.hardMode)
             {
-                newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Expert; // tier 3; allows you to obtain advanced potions
+                newHerbTier = ExxoAvalonOriginsModPlayer.HerbTier.Expert; // tier 3; allows you to obtain elixirs
             }
             else if (modPlayer.herbTotal >= HerbTier2Threshold)
             {
@@ -388,7 +402,11 @@ namespace ExxoAvalonOrigins.UI.Herbology
             }
 
             int potionAddition = 0;
-            if (PotionIds.Contains(item.type))
+            if (RestorationIDs.Contains(item.type))
+            {
+                potionAddition = RestorationPotionCost;
+            }
+            else if (PotionIds.Contains(item.type))
             {
                 potionAddition = PotionSellPrice;
             }
@@ -400,6 +418,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 potionAddition = BlahPotionSellPrice;
             }
+            
 
             if (potionAddition > 0)
             {

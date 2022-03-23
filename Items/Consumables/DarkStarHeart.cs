@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dark Star Heart");
+            DisplayName.SetDefault("Mechanical Heart");
             Tooltip.SetDefault("Permanently increases accessory slots by 1");
         }
 

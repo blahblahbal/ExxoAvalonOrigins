@@ -44,6 +44,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             npc.lifeMax = (int)(npc.lifeMax * 0.57f * bossLifeScale);
             npc.damage = (int)(npc.damage * 0.55f);
         }
+
         public override void NPCLoot()
         {
             if (Main.rand.Next(7) == 0)

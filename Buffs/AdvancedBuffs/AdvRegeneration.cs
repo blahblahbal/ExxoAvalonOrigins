@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 
         public override void Update(Player player, ref int k)
         {
-            player.lifeRegen += 4;
+            player.lifeRegen += 3;
         }
     }
 }

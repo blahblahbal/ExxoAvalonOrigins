@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Band of Stamina");
-            Tooltip.SetDefault("Increases maximum stamina by 60");
+            Tooltip.SetDefault("Increases maximum stamina by 90");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Avalon().statStamMax2 += 60;
+            player.Avalon().statStamMax2 += 90;
         }
     }
 }

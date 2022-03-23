@@ -26,15 +26,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.03f;
-            player.meleeDamage += 0.03f;
-            player.rangedDamage += 0.03f;
-            player.minionDamage += 0.03f;
-            player.thrownDamage += 0.03f;
-            player.magicCrit += 3;
-            player.meleeCrit += 3;
-            player.rangedCrit += 3;
-            player.thrownCrit += 3;
+            player.allDamage += 0.07f;
+            player.AllCrit(5);
             player.statManaMax2 += 40;
             player.statLifeMax2 += 40;
         }

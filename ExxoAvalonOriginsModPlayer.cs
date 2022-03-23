@@ -29,6 +29,10 @@ namespace ExxoAvalonOrigins
         public int statStamMax = 30;
         public int statStamMax2;
         public bool stamFlower = false;
+        public bool staminaDrain = false;
+        public int staminaDrainStacks = 1;
+        public float staminaDrainMult = 1.2f;
+        public static int staminaDrainTime = 10 * 60;
         public bool[] pSensor = new bool[6];
         public int statStam = 100;
         public int spiritPoppyUseCount;
@@ -393,6 +397,7 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            staminaDrain = false;
             snotOrb = false;
             shockWave = false;
             stamFlower = false;
@@ -1256,7 +1261,7 @@ namespace ExxoAvalonOrigins
             }
             if (avalonRetribution && damage > 0)
             {
-                npc.AddBuff(ModContent.BuffType<Buffs.CurseofAvalon>(), 100);
+                npc.AddBuff(ModContent.BuffType<CurseofAvalon>(), 100);
             }
         }
 
@@ -2674,6 +2679,7 @@ namespace ExxoAvalonOrigins
         }
         public override void PostUpdateMiscEffects()
         {
+            DashMovement();
             DoubleJumps();
             if (noSticky)
             {
@@ -2703,7 +2709,7 @@ namespace ExxoAvalonOrigins
             }
             if (dragonsBondage)
             {
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DragonBall>()] == 0)
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<DragonBall>()] == 0)
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -2822,7 +2828,16 @@ namespace ExxoAvalonOrigins
         {
             player.statManaMax2 += (spiritPoppyUseCount * 20);
         }
+        //public override void PostUpdateBuffs()
+        //{
+        //    for (int k = 0; k < 22; k++)
+        //    {
+        //        if (player.buffType[k] == ModContent.BuffType<StaminaDrain>())
+        //        {
 
+        //        }
+        //    }
+        //}
         public override void PreUpdate()
         {
             WOSTongue();
@@ -2852,6 +2867,154 @@ namespace ExxoAvalonOrigins
         {
             return Main.projectile.Count((Projectile p) => Main.projHook[p.type] && p.active && p.ai[0] == 2f && p.owner == Main.myPlayer);
         }
+        public void DashMovement()
+        {
+            if (player.dashDelay > 0)
+            {
+                player.dashDelay--;
+                return;
+            }
+            int amt = 60;
+            if (staminaDrain)
+            {
+                amt *= (int)(staminaDrainStacks * staminaDrainMult);
+            }
+            if (stamDashKey && player.dash == 0 && player.dashDelay >= 0)
+            {
+                if (statStam > amt)
+                {
+                    int num2 = 0;
+                    bool flag = false;
+                    if (player.dashTime > 0)
+                    {
+                        player.dashTime--;
+                    }
+                    if (player.dashTime < 0)
+                    {
+                        player.dashTime++;
+                    }
+                    if (player.controlRight && player.releaseRight)
+                    {
+                        if (player.dashTime > 0)
+                        {
+                            num2 = 1;
+                            flag = true;
+                            player.dashTime = 0;
+                            statStam -= amt;
+                        }
+                        else
+                        {
+                            player.dashTime = 15;
+                        }
+                    }
+                    else if (player.controlLeft && player.releaseLeft)
+                    {
+                        if (player.dashTime < 0)
+                        {
+                            num2 = -1;
+                            flag = true;
+                            player.dashTime = 0;
+                            statStam -= amt;
+                        }
+                        else
+                        {
+                            player.dashTime = -15;
+                        }
+                    }
+                    if (flag)
+                    {
+                        player.velocity.X = 15.9f * num2;
+                        player.dashDelay = -1;
+                        for (int j = 0; j < 20; j++)
+                        {
+                            int num3 = Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, DustID.Smoke, 0f, 0f, 100, default, 2f);
+                            Dust expr_336_cp_0 = Main.dust[num3];
+                            expr_336_cp_0.position.X = expr_336_cp_0.position.X + Main.rand.Next(-5, 6);
+                            Dust expr_35D_cp_0 = Main.dust[num3];
+                            expr_35D_cp_0.position.Y = expr_35D_cp_0.position.Y + Main.rand.Next(-5, 6);
+                            Main.dust[num3].velocity *= 0.2f;
+                            Main.dust[num3].scale *= 1f + Main.rand.Next(20) * 0.01f;
+                        }
+                        int num4 = Gore.NewGore(new Vector2(player.position.X + player.width / 2 - 24f, player.position.Y + player.height / 2 - 34f), default, Main.rand.Next(61, 64), 1f);
+                        Main.gore[num4].velocity.X = Main.rand.Next(-50, 51) * 0.01f;
+                        Main.gore[num4].velocity.Y = Main.rand.Next(-50, 51) * 0.01f;
+                        Main.gore[num4].velocity *= 0.4f;
+                        num4 = Gore.NewGore(new Vector2(player.position.X + player.width / 2 - 24f, player.position.Y + player.height / 2 - 14f), default, Main.rand.Next(61, 64), 1f);
+                        Main.gore[num4].velocity.X = Main.rand.Next(-50, 51) * 0.01f;
+                        Main.gore[num4].velocity.Y = Main.rand.Next(-50, 51) * 0.01f;
+                        Main.gore[num4].velocity *= 0.4f;
+                    }
+                }
+                else if (stamFlower)
+                {
+                    QuickStamina(amt);
+                    if (statStam > amt)
+                    {
+                        int num2 = 0;
+                        bool flag = false;
+                        if (player.dashTime > 0)
+                        {
+                            player.dashTime--;
+                        }
+                        if (player.dashTime < 0)
+                        {
+                            player.dashTime++;
+                        }
+                        if (player.controlRight && player.releaseRight)
+                        {
+                            if (player.dashTime > 0)
+                            {
+                                num2 = 1;
+                                flag = true;
+                                player.dashTime = 0;
+                                statStam -= amt;
+                            }
+                            else
+                            {
+                                player.dashTime = 15;
+                            }
+                        }
+                        else if (player.controlLeft && player.releaseLeft)
+                        {
+                            if (player.dashTime < 0)
+                            {
+                                num2 = -1;
+                                flag = true;
+                                player.dashTime = 0;
+                                statStam -= amt;
+                            }
+                            else
+                            {
+                                player.dashTime = -15;
+                            }
+                        }
+                        if (flag)
+                        {
+                            player.velocity.X = 15.9f * num2;
+                            player.dashDelay = -1;
+                            for (int j = 0; j < 20; j++)
+                            {
+                                int num3 = Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, DustID.Smoke, 0f, 0f, 100, default, 2f);
+                                Dust expr_336_cp_0 = Main.dust[num3];
+                                expr_336_cp_0.position.X = expr_336_cp_0.position.X + Main.rand.Next(-5, 6);
+                                Dust expr_35D_cp_0 = Main.dust[num3];
+                                expr_35D_cp_0.position.Y = expr_35D_cp_0.position.Y + Main.rand.Next(-5, 6);
+                                Main.dust[num3].velocity *= 0.2f;
+                                Main.dust[num3].scale *= 1f + Main.rand.Next(20) * 0.01f;
+                            }
+                            int num4 = Gore.NewGore(new Vector2(player.position.X + player.width / 2 - 24f, player.position.Y + player.height / 2 - 34f), default, Main.rand.Next(61, 64), 1f);
+                            Main.gore[num4].velocity.X = Main.rand.Next(-50, 51) * 0.01f;
+                            Main.gore[num4].velocity.Y = Main.rand.Next(-50, 51) * 0.01f;
+                            Main.gore[num4].velocity *= 0.4f;
+                            num4 = Gore.NewGore(new Vector2(player.position.X + player.width / 2 - 24f, player.position.Y + player.height / 2 - 14f), default, Main.rand.Next(61, 64), 1f);
+                            Main.gore[num4].velocity.X = Main.rand.Next(-50, 51) * 0.01f;
+                            Main.gore[num4].velocity.Y = Main.rand.Next(-50, 51) * 0.01f;
+                            Main.gore[num4].velocity *= 0.4f;
+                        }
+                    }
+                }
+            }
+        }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (ExxoAvalonOrigins.Mod.QuickStaminaHotkey.JustPressed)
@@ -2860,31 +3023,52 @@ namespace ExxoAvalonOrigins
             }
             if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && tpCD >= 300)
             {
-                if (statStam >= 90)
+                int amt = 90;
+                if (staminaDrain)
                 {
-                    statStam -= 90;
+                    amt *= (int)(staminaDrainStacks * staminaDrainMult);
+                }
+                if (statStam >= amt)
+                {
+                    statStam -= amt;
+                    tpCD = 0;
+                    if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>() &&
+                        Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != WallID.LihzahrdBrickUnsafe)
+                    {
+                        for (int m = 0; m < 70; m++)
+                        {
+                            Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default, 1.1f);
+                        }
+                        player.position.X = Main.mouseX + Main.screenPosition.X;
+                        player.position.Y = Main.mouseY + Main.screenPosition.Y;
+                        for (int n = 0; n < 70; n++)
+                        {
+                            Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.1f);
+                        }
+                    }
                 }
                 else if (stamFlower)
                 {
-                    QuickStamina();
-                    if (statStam >= 90)
+                    QuickStamina(amt);
+                    if (statStam >= amt)
                     {
-                        statStam -= 90;
-                    }
-                }
-                tpCD = 0;
-                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>() &&
-                    Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != WallID.LihzahrdBrickUnsafe)
-                {
-                    for (int m = 0; m < 70; m++)
-                    {
-                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default, 1.1f);
-                    }
-                    player.position.X = Main.mouseX + Main.screenPosition.X;
-                    player.position.Y = Main.mouseY + Main.screenPosition.Y;
-                    for (int n = 0; n < 70; n++)
-                    {
-                        Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.1f);
+                        statStam -= amt;
+                        tpCD = 0;
+                        if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>() &&
+                            Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall != WallID.LihzahrdBrickUnsafe &&
+                            !Main.wallDungeon[Main.tile[(int)(Main.mouseX + Main.screenPosition.X) / 16, (int)(Main.mouseY + Main.screenPosition.Y) / 16].wall])
+                        {
+                            for (int m = 0; m < 70; m++)
+                            {
+                                Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default, 1.1f);
+                            }
+                            player.position.X = Main.mouseX + Main.screenPosition.X;
+                            player.position.Y = Main.mouseY + Main.screenPosition.Y;
+                            for (int n = 0; n < 70; n++)
+                            {
+                                Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default, 1.1f);
+                            }
+                        }
                     }
                 }
             }
@@ -2911,9 +3095,9 @@ namespace ExxoAvalonOrigins
             {
                 if (astralStart)
                 {
-                    if (player.HasBuff(ModContent.BuffType<Buffs.AstralProjecting>()))
+                    if (player.HasBuff(ModContent.BuffType<AstralProjecting>()))
                     {
-                        player.ClearBuff(ModContent.BuffType<Buffs.AstralProjecting>());
+                        player.ClearBuff(ModContent.BuffType<AstralProjecting>());
                     }
                 }
                 if (astralCD >= 3600)
@@ -2921,7 +3105,7 @@ namespace ExxoAvalonOrigins
                     astralCD = 0;
                     if (!astralStart)
                     {
-                        player.AddBuff(ModContent.BuffType<Buffs.AstralProjecting>(), 15 * 60);
+                        player.AddBuff(ModContent.BuffType<AstralProjecting>(), 15 * 60);
                     }
                 }
             }
@@ -3185,9 +3369,14 @@ namespace ExxoAvalonOrigins
                 {
                     if (isOnGround())
                     {
-                        if (statStam >= 70)
+                        int amt = 70;
+                        if (staminaDrain)
                         {
-                            statStam -= 70;
+                            amt *= (int)(staminaDrainStacks * staminaDrainMult);
+                        }
+                        if (statStam >= amt)
+                        {
+                            statStam -= amt;
                             float yDestination = player.position.Y - 360f;
                             int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
                             Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
@@ -3203,10 +3392,10 @@ namespace ExxoAvalonOrigins
                         }
                         else if (stamFlower)
                         {
-                            QuickStamina();
-                            if (statStam >= 70)
+                            QuickStamina(amt);
+                            if (statStam >= amt)
                             {
-                                statStam -= 70;
+                                statStam -= amt;
                                 float yDestination = player.position.Y - 360f;
                                 int num6 = Gore.NewGore(new Vector2(player.position.X + (player.width / 2) - 16f, player.position.Y + (player.gravDir == -1 ? 0 : player.height) - 16f), new Vector2(-player.velocity.X, -player.velocity.Y), Main.rand.Next(11, 14), 1f);
                                 Main.gore[num6].velocity.X = Main.gore[num6].velocity.X * 0.1f - player.velocity.X * 0.1f;
@@ -3236,18 +3425,23 @@ namespace ExxoAvalonOrigins
                 bool flag15 = true;
                 staminaCD++;
                 stamRegenCount = 0;
-                if (staminaCD >= 6)
+                if (staminaCD >= 10)
                 {
-                    if (statStam >= 1)
+                    int amt = 1;
+                    if (staminaDrain)
                     {
-                        statStam--;
+                        amt *= (int)(staminaDrainStacks * staminaDrainMult);
+                    }
+                    if (statStam >= amt)
+                    {
+                        statStam -= amt;
                     }
                     else if (stamFlower)
                     {
                         QuickStamina();
-                        if (statStam >= 1)
+                        if (statStam >= amt)
                         {
-                            statStam--;
+                            statStam -= amt;
                         }
                     }
                     if (statStam <= 0)
@@ -3264,23 +3458,28 @@ namespace ExxoAvalonOrigins
             }
             if (activateSprint)
             {
-                if ((player.controlRight || player.controlLeft) && !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()) && player.velocity.X != 0f)
+                if ((player.controlRight || player.controlLeft) && player.velocity.X != 0f)
                 {
                     bool flag17 = true;
                     staminaCD2++;
                     stamRegenCount = 0;
-                    if (staminaCD2 >= 15)
+                    if (staminaCD2 >= 30)
                     {
-                        if (statStam >= 2)
+                        int amt = 2;
+                        if (staminaDrain)
                         {
-                            statStam -= 2;
+                            amt *= (int)(staminaDrainStacks * staminaDrainMult);
+                        }
+                        if (statStam >= amt)
+                        {
+                            statStam -= amt;
                         }
                         else if (stamFlower)
                         {
                             QuickStamina();
-                            if (statStam >= 2)
+                            if (statStam >= amt)
                             {
-                                statStam -= 2;
+                                statStam -= amt;
                             }
                         }
                         if (statStam <= 0)
@@ -3292,15 +3491,18 @@ namespace ExxoAvalonOrigins
                     }
                     if (flag17)
                     {
-                        if (!HasItemInArmor(ItemID.HermesBoots) && !HasItemInArmor(ItemID.FlurryBoots) && !HasItemInArmor(ItemID.SpectreBoots) && !HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) && !HasItemInArmor(ItemID.SailfishBoots))
+                        if (!HasItemInArmor(ItemID.HermesBoots) && !HasItemInArmor(ItemID.FlurryBoots) && !HasItemInArmor(ItemID.SpectreBoots) &&
+                            !HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) && !HasItemInArmor(ItemID.SailfishBoots) &&
+                            !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
                         {
                             player.accRunSpeed = 6f;
                         }
-                        else if (!HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots))
+                        else if (!HasItemInArmor(ItemID.LightningBoots) && !HasItemInArmor(ItemID.FrostsparkBoots) &&
+                            !HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
                         {
                             player.accRunSpeed = 6.75f;
                         }
-                        else
+                        else if (!HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !HasItemInArmor(ModContent.ItemType<BlahsWings>()))
                         {
                             player.accRunSpeed = 10.29f;
                             if ((player.velocity.X < 4f && player.controlRight) || (player.velocity.X > -4f && player.controlLeft))
@@ -3310,6 +3512,18 @@ namespace ExxoAvalonOrigins
                             else if ((player.velocity.X < 8f && player.controlRight) || (player.velocity.X > -8f && player.controlLeft))
                             {
                                 player.velocity.X = player.velocity.X + (player.controlRight ? 0.29f : -0.29f);
+                            }
+                        }
+                        else
+                        {
+                            player.accRunSpeed = 14.29f;
+                            if ((player.velocity.X < 5f && player.controlRight) || (player.velocity.X > -5f && player.controlLeft))
+                            {
+                                player.velocity.X = player.velocity.X + (player.controlRight ? 0.41f : -0.41f);
+                            }
+                            else if ((player.velocity.X < 14f && player.controlRight) || (player.velocity.X > -14f && player.controlLeft))
+                            {
+                                player.velocity.X = player.velocity.X + (player.controlRight ? 0.39f : -0.39f);
                             }
                         }
                     }
@@ -3364,7 +3578,7 @@ namespace ExxoAvalonOrigins
             while (stamRegenCount >= staminaRegen)
             {
                 bool flag = false;
-                stamRegenCount -= 1000;
+                stamRegenCount -= staminaRegen;
                 if (statStam < statStamMax2)
                 {
                     statStam++;
@@ -3478,6 +3692,13 @@ namespace ExxoAvalonOrigins
             }
         }
 
+        /// <summary>
+        /// Teleports the player to the given mode's teleport. Used for the Shadow Mirror, Magic Conch, and Demon Conch.
+        /// Kills the player if they have the Horrified debuff from Wall of Flesh or Wall of Steel.
+        /// </summary>
+        /// <param name="mode">The mode of the teleport - 0: Spawnpoint, 1: Dungeon, 2: Jungle/Tropics, 3: Left Ocean, 4: Right Ocean,
+        /// 5: Underworld, 6: Random.</param>
+        /// <param name="pid">Unused.</param>
         public void ShadowTP(int mode, int pid)
         {
             if (player.HasBuff(37))
@@ -3596,58 +3817,63 @@ namespace ExxoAvalonOrigins
                 Dust.NewDust(player.position, player.width, player.height, d, 0f, 0f, 150, default(Color), 1.5f);
             }
         }
-        public void QuickStamina()
+        public void QuickStamina(int stamNeeded = 0) // todo: make stamina flower not allow you to consume stam pots that wouldn't allow you to continue using stamina
         {
             if (player.noItems)
             {
                 return;
             }
-            if (statStam == statStamMax2 || player.potionDelay > 0)
+            if (statStam == statStamMax2)
             {
                 return;
             }
             int num = statStamMax2 - statStam;
-            Item item = null;
+            Item potionToBeUsed = null;
             int num2 = -statStamMax2;
             for (int i = 0; i < 58; i++)
             {
-                Item item2 = player.inventory[i];
-                if (item2.stack > 0 && item2.type > 0 && item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina > 0)
+                Item potionChecked = player.inventory[i];
+                if (potionChecked.stack > 0 && potionChecked.type > 0 && potionChecked.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina > 0)
                 {
-                    int num3 = item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina - num;
+                    int num3 = potionChecked.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina - num;
                     if (num2 < 0)
                     {
                         if (num3 > num2)
                         {
-                            item = item2;
+                            potionToBeUsed = potionChecked;
                             num2 = num3;
                         }
                     }
                     else if (num3 < num2 && num3 >= 0)
                     {
-                        item = item2;
+                        potionToBeUsed = potionChecked;
                         num2 = num3;
                     }
                 }
             }
-            if (item == null)
+            if (potionToBeUsed == null)
+            {
+                return;
+            }
+            if (potionToBeUsed.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina < stamNeeded && stamNeeded != 0)
             {
                 return;
             }
             Main.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, 3);
-            statStam += item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina;
+            statStam += potionToBeUsed.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina;
             if (statStam > statStamMax2)
             {
                 statStam = statStamMax2;
             }
-            if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina > 0 && Main.myPlayer == player.whoAmI)
+            if (potionToBeUsed.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina > 0 && Main.myPlayer == player.whoAmI)
             {
-                StaminaHealEffect(item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina, true);
+                player.AddBuff(ModContent.BuffType<StaminaDrain>(), 8 * 60);
+                StaminaHealEffect(potionToBeUsed.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina, true);
             }
-            item.stack--;
-            if (item.stack <= 0)
+            potionToBeUsed.stack--;
+            if (potionToBeUsed.stack <= 0)
             {
-                item.type = 0;
+                potionToBeUsed.type = 0;
             }
         }
         public void StaminaHealEffect(int healAmount, bool broadcast = true)

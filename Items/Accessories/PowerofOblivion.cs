@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Power of Oblivion");
-            Tooltip.SetDefault("Automatically use mana and stamina potions when needed\nIncreases maximum stamina by 40\nReduces the cooldown of healing potions\nProvides life, mana, and stamina regeneration");
+            Tooltip.SetDefault("Automatically use mana and stamina potions when needed\nIncreases maximum stamina by 60\nReduces the cooldown of healing potions\nProvides life, mana, and stamina regeneration");
         }
 
         public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Avalon().statStamMax2 += 40;
+            player.Avalon().statStamMax2 += 60;
             player.manaFlower = true;
             player.Avalon().stamFlower = true;
             player.pStone = true;

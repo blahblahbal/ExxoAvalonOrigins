@@ -8,12 +8,12 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Advanced Mining");
-            Description.SetDefault("50% increased mining speed");
+            Description.SetDefault("35% increased mining speed");
         }
 
         public override void Update(Player player, ref int k)
         {
-            player.pickSpeed -= 0.5f;
+            player.pickSpeed -= 0.35f;
         }
     }
 }

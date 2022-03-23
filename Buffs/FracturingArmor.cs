@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs
@@ -8,20 +8,23 @@ namespace ExxoAvalonOrigins.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Fracturing Armor");
-            Description.SetDefault("Defense is decreased by 0");
+            Description.SetDefault("Defense is decreased by ");
             Main.debuff[Type] = true;
             canBeCleared = false;
         }
-
+        public override void ModifyBuffTip(ref string tip, ref int rare)
+        {
+            tip += Main.LocalPlayer.Avalon().fAlevel;
+        }
         public override void Update(Player player, ref int k)
         {
             player.statDefense -= player.Avalon().fAlevel;
-            if (player.Avalon().fAlastRecord <= player.buffTime[player.FindBuffIndex(149)])
+            if (player.Avalon().fAlastRecord <= player.buffTime[player.FindBuffIndex(ModContent.BuffType<FracturingArmor>())])
             {
-                player.Avalon().fAlastRecord = player.buffTime[player.FindBuffIndex(149)];
+                player.Avalon().fAlastRecord = player.buffTime[player.FindBuffIndex(ModContent.BuffType<FracturingArmor>())];
                 if (player.Avalon().fAlevel < 30)
                 {
-                    player.Avalon().fAlevel++;
+                    player.Avalon().fAlevel += 3;
                 }
             }
             //Main.buffTip[149] = "Decreased defense by " + player.GetModPlayer<ExxoAvalonOriginsGlobalPlayer>(mod).fAlevel;

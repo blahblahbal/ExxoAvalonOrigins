@@ -553,7 +553,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 //{
                 //    if (Main.player[i].active) numplayers++;
                 //}
-                //npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DarkStarHeart>());
+                if (!Main.expertMode) npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.Consumables.DarkStarHeart>());
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().InitiateSuperHardmode();
             }
             if (Main.rand.Next(10) == 0)

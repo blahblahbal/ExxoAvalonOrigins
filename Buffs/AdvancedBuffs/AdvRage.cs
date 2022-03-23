@@ -8,15 +8,12 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Advanced Rage");
-            Description.SetDefault("20% increased critical chance");
+            Description.SetDefault("15% increased critical strike chance");
         }
 
         public override void Update(Player player, ref int k)
         {
-            player.magicCrit += 20;
-            player.meleeCrit += 20;
-            player.rangedCrit += 20;
-            player.thrownCrit += 20;
+            player.AllCrit(15);
         }
     }
 }

@@ -59,8 +59,21 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			item.value = Item.sellPrice(0, 17, 45, 0);
 			item.height = dims.Height;
 		}
-
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<ReflexCharm>());
+            recipe.AddIngredient(ItemID.AnkhShield);
+            recipe.AddIngredient(ModContent.ItemType<GoldenShield>());
+            recipe.AddIngredient(ModContent.ItemType<OxygenTank>());
+            recipe.AddIngredient(ModContent.ItemType<Vortex>());
+            recipe.AddIngredient(ModContent.ItemType<NuclearExtinguisher>());
+            recipe.AddIngredient(ItemID.PocketMirror);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.noKnockback = true;
 			player.fireWalk = true;
@@ -80,6 +93,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 			player.buffImmune[BuffID.OnFire] = true;
 			player.buffImmune[BuffID.Blackout] = true;
 			player.buffImmune[BuffID.CursedInferno] = true;
+            player.buffImmune[BuffID.Stoned] = true;
 			var playerWS = new Rectangle((int)player.Center.X - 32, (int)player.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {

@@ -8,12 +8,12 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Advanced Endurance");
-            Description.SetDefault("20% reduced damage taken");
+            Description.SetDefault("15% reduced damage taken");
         }
 
         public override void Update(Player player, ref int k)
         {
-            player.endurance += 0.2f;
+            player.endurance += 0.15f;
         }
     }
 }

@@ -8,12 +8,12 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Advanced Magic Power");
-            Description.SetDefault("40% increased magic damage");
+            Description.SetDefault("30% increased magic damage");
         }
 
         public override void Update(Player player, ref int k)
         {
-            player.magicDamage += 0.4f;
+            player.magicDamage += 0.3f;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stamina Flower");
-            Tooltip.SetDefault("Increases maximum stamina by 60\nAutomatically uses stamina potions when needed");
+            Tooltip.SetDefault("Increases maximum stamina by 90\nAutomatically uses stamina potions when needed");
         }
 
         public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Avalon().stamFlower = true;
-            player.Avalon().statStamMax2 += 60;
+            player.Avalon().statStamMax2 += 90;
         }
     }
 }

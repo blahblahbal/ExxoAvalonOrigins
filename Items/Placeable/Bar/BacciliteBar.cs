@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.BacciliteOre>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<Tile.BacciliteOre>(), 3);
             recipe.AddTile(TileID.Furnaces);
             recipe.SetResult(this);
             recipe.AddRecipe();

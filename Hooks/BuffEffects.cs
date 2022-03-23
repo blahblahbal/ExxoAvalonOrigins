@@ -4,11 +4,18 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Hooks
 {
     class BuffEffects
     {
+        public string[] buffNames =
+        {
+
+        };
+
         public static void OnPickAmmo(On.Terraria.Player.orig_PickAmmo orig, Player self, Item sItem, ref int shoot, ref float speed, ref bool canShoot, ref int Damage, ref float KnockBack, bool dontConsume)
         {
             float advArcheryBuffMult = 1.3f;
@@ -23,6 +30,35 @@ namespace ExxoAvalonOrigins.Hooks
                 }
             }
             orig(self, sItem, ref shoot, ref speed, ref canShoot, ref Damage, ref KnockBack, dontConsume);
+        }
+
+        public static void OnAddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time, bool quiet = true)
+        {
+            for (int j = 0; j < 22; j++)
+            {
+                if (self.buffType[j] == type)
+                {
+                    if (type == ModContent.BuffType<Buffs.StaminaDrain>())
+                    {
+                        self.buffTime[j] += time;
+                        if (self.Avalon().staminaDrainStacks < 5)
+                        {
+                            self.Avalon().staminaDrainStacks++;
+                        }
+                        if (self.buffTime[j] > ExxoAvalonOriginsModPlayer.staminaDrainTime)
+                        {
+                            self.buffTime[j] = ExxoAvalonOriginsModPlayer.staminaDrainTime;
+                            return;
+                        }
+                    }
+                    else if (self.buffTime[j] < time)
+                    {
+                        self.buffTime[j] = time;
+                    }
+                    return;
+                }
+            }
+            orig(self, type, time, quiet);
         }
 
         public static void ILCatchFish(ILContext il)

@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Love Up and Down");
-            Tooltip.SetDefault("Tome\n+15% damage, +7% critical strike chance, -25% mana cost\n20% chance to not consume ammo, 7 defense, +80 HP, +80 mana");
+            Tooltip.SetDefault("Tome\n+15% damage, +7% critical strike chance, -25% mana cost\n20% chance to not consume ammo, 12 defense, +80 HP, +80 mana");
         }
 
         public override void SetDefaults()
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.rangedCrit += 7;
             player.thrownCrit += 7;
             player.manaCost -= 0.25f;
-            player.statDefense += 7;
+            player.statDefense += 12;
             player.statLifeMax2 += 80;
             player.statManaMax2 += 80;
         }
