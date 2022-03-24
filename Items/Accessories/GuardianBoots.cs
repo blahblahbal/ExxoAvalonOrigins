@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +23,24 @@ namespace ExxoAvalonOrigins.Items.Accessories
             item.value = Item.sellPrice(0, 1, 44, 0);
             item.height = dims.Height;
         }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.ObsidianHorseshoe);
+            recipe.AddIngredient(ItemID.CobaltShield);
+            recipe.AddIngredient(ItemID.Spike, 50);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
 
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.ObsidianShield);
+            recipe.AddIngredient(ItemID.LuckyHorseshoe);
+            recipe.AddIngredient(ItemID.Spike, 50);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Avalon().trapImmune = true;

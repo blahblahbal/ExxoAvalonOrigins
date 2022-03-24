@@ -40,8 +40,8 @@ namespace ExxoAvalonOrigins.Hooks
                     if (Main.tile[i, j] != null && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].inActive() && Main.tile[i, j].active() && (Main.tile[i, j].type == ModContent.TileType<Tiles.PoisonSpike>() || Main.tile[i, j].type == ModContent.TileType<Tiles.VenomSpike>() || Main.tile[i, j].type == TileID.Spikes || Main.tile[i, j].type == TileID.WoodenSpikes))
                     {
                         Vector2 vector2;
-                        vector2.X = (float)(i * 16);
-                        vector2.Y = (float)(j * 16);
+                        vector2.X = i * 16;
+                        vector2.Y = j * 16;
                         int num5 = 0;
                         int type = (int)Main.tile[i, j].type;
                         int num6 = 16;
@@ -50,10 +50,10 @@ namespace ExxoAvalonOrigins.Hooks
                             vector2.Y += 8f;
                             num6 -= 8;
                         }
-                        if (vector.X + (float)Width >= vector2.X && vector.X <= vector2.X + 16f && vector.Y + (float)Height >= vector2.Y && (double)vector.Y <= (double)(vector2.Y + (float)num6) + 0.01)
+                        if (vector.X + Width >= vector2.X && vector.X <= vector2.X + 16f && vector.Y + Height >= vector2.Y && vector.Y <= (vector2.Y + num6) + 0.01)
                         {
                             int num9 = 1;
-                            if (vector.X + (float)(Width / 2) < vector2.X + 8f)
+                            if (vector.X + Width / 2 < vector2.X + 8f)
                             {
                                 num9 = -1;
                             }
@@ -63,6 +63,7 @@ namespace ExxoAvalonOrigins.Hooks
                             }
                             if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
                                 !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
@@ -71,8 +72,14 @@ namespace ExxoAvalonOrigins.Hooks
                             {
                                 num5 = 40;
                             }
-                            if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) && !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) && !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) && !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) && !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) && !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == TileID.WoodenSpikes)
+                            if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
+                                !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == TileID.WoodenSpikes)
                             {
                                 num5 = 60;
                             }
@@ -89,6 +96,7 @@ namespace ExxoAvalonOrigins.Hooks
                             //}
                             if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
                                 !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
@@ -101,6 +109,7 @@ namespace ExxoAvalonOrigins.Hooks
                             }
                             if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
+                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
                                 !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
                                 !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&

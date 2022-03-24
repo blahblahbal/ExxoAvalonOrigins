@@ -2081,14 +2081,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<CloakofAssists>());
             recipe.AddRecipe();
 
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ObsidianHorseshoe);
-            recipe.AddIngredient(ItemID.CobaltShield);
-            recipe.AddIngredient(ItemID.Spike, 50);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(ModContent.ItemType<GuardianBoots>());
-            recipe.AddRecipe();
-
             // vanilla items
 
             // end vanilla items
