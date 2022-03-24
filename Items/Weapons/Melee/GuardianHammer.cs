@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.GuardianHammer2>();
             item.melee = true;
             item.value = Item.sellPrice(0, 25, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.useStyle = ItemUseStyleID.SwingThrow;
             item.useAnimation = 32;
             item.height = dims.Height;
         }

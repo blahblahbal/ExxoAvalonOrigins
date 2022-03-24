@@ -101,7 +101,7 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
                 Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
                 spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
-            Texture2D texture = mod.GetTexture("Projectiles/FireWave");
+            Texture2D texture = mod.GetTexture("Projectiles/Melee/FireWave");
             Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, new Color(50, 50, 50, 50), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0.0f);
             return true;

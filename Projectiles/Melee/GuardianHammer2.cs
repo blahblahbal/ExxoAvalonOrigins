@@ -27,6 +27,11 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
 
         public override void AI()
         {
+            if (projectile.soundDelay == 0)
+            {
+                projectile.soundDelay = 8;
+                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 7);
+            }
             if (projectile.type == ProjectileID.MagicDagger && Main.rand.Next(5) == 0)
             {
                 var num58 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, projectile.velocity.X * 0.2f + projectile.direction * 3, projectile.velocity.Y * 0.2f, 100, default(Color), 0.3f);

@@ -28,6 +28,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.value = Item.sellPrice(0, 0, 80, 0);
             item.useAnimation = 20;
             item.height = dims.Height;
+            item.UseSound = SoundID.Item1;
         }
 
         public override void AddRecipes()

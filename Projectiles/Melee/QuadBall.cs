@@ -163,7 +163,7 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = ModContent.GetTexture("ExxoAvalonOrigins/Projectiles/QuadBall_Chain");
+            var texture = ModContent.GetTexture("ExxoAvalonOrigins/Projectiles/Melee/QuadBall_Chain");
 
             var position = projectile.Center;
             var mountedCenter = Main.player[projectile.owner].MountedCenter;

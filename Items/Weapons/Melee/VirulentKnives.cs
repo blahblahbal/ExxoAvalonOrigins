@@ -17,11 +17,10 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
+            item.UseSound = SoundID.Item1;
             item.damage = 46;
             item.noUseGraphic = true;
             item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1f;
             item.shootSpeed = 11f;
             item.noMelee = true;
             item.rare = ItemRarityID.Yellow;
@@ -34,21 +33,16 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
             item.value = Item.sellPrice(0, 20, 0, 0);
             item.useAnimation = 18;
             item.height = dims.Height;
+            item.UseSound = SoundID.Item39;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            float numberProjectiles = ExxoAvalonOriginsGlobalProjectile.howManyProjectiles(1, 5);
-            float shootSpeed = (float)Math.Sqrt((double)speedX * speedX + speedY * speedY);
-            position += Vector2.Normalize(new Vector2(speedX, speedY)) * 45f;
+            int numberProjectiles = ExxoAvalonOriginsGlobalProjectile.howManyProjectiles(1, 5);
             for (int i = 0; i < numberProjectiles; i++)
             {
-                float newSpeedX = speedX * 2f + Main.rand.Next(-35, 36) * 0.05f * i;
-                float newSpeedY = speedY * 2f + Main.rand.Next(-35, 36) * 0.05f * i;
-                float multiMod = shootSpeed / (float)Math.Sqrt((double)newSpeedX * newSpeedX + newSpeedY * newSpeedY);
-                newSpeedX *= multiMod;
-                newSpeedY *= multiMod;
-                Projectile.NewProjectile(position.X, position.Y, newSpeedX, newSpeedY, type, damage, knockBack, player.whoAmI);
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(20));
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
             }
             return false;
         }
