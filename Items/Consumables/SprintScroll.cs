@@ -32,6 +32,27 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Book);
+            r.AddIngredient(ItemID.FlurryBoots);
+            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
+            r.AddTile(TileID.Bookcases);
+            r.SetResult(this);
+            r.AddRecipe();
+
+            r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Book);
+            r.AddIngredient(ItemID.SailfishBoots);
+            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
+            r.AddTile(TileID.Bookcases);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
+        public override bool CanUseItem(Player player)
+        {
+            return !player.Avalon().sprintUnlocked;
         }
         public override bool UseItem(Player player)
         {

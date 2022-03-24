@@ -32,6 +32,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
 
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Book);
@@ -39,6 +40,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
 
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Book);
@@ -46,6 +48,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
 
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Book);
@@ -53,6 +56,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
 
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Book);
@@ -60,6 +64,11 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
+        }
+        public override bool CanUseItem(Player player)
+        {
+            return !player.Avalon().rocketJumpUnlocked;
         }
         public override bool UseItem(Player player)
         {

@@ -669,7 +669,7 @@ namespace ExxoAvalonOrigins
                     ref tileRangeBuff);
             }
         }
-
+        
         public override void PreUpdateBuffs()
         {
             //int[] array = new int[Main.maxProjectileTypes];
@@ -3486,7 +3486,7 @@ namespace ExxoAvalonOrigins
                     player.accFlipper = true;
                 }
             }
-            if (activateSprint && sprintUnlocked)
+            if (activateSprint)
             {
                 if ((player.controlRight || player.controlLeft) && player.velocity.X != 0f)
                 {

@@ -32,6 +32,11 @@ namespace ExxoAvalonOrigins.Items.Consumables
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
+            r.AddRecipe();
+        }
+        public override bool CanUseItem(Player player)
+        {
+            return !player.Avalon().swimmingUnlocked;
         }
         public override bool UseItem(Player player)
         {

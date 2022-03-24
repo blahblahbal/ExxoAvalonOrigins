@@ -58,7 +58,8 @@ namespace ExxoAvalonOrigins
         {
             for (int i = 0; i < p.armor.Length; i++)
             {
-                return type == p.armor[i].type;
+                if (type == p.armor[i].type)
+                    return true;
             }
             return false;
         }
