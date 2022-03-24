@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
     public class LoveUpandDown : ModItem
     {

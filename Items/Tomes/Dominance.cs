@@ -1,11 +1,11 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
     class Dominance : ModItem
     {

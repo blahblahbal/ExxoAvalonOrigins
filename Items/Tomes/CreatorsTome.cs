@@ -1,10 +1,10 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
     class CreatorsTome : ModItem
     {

@@ -1,23 +1,23 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    class ChristmasTome : ModItem
+    class TomeofDistance : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Christmas Tome");
-            Tooltip.SetDefault("Tome\n+3% critical strike chance");
+            DisplayName.SetDefault("Tome of Distance");
+            Tooltip.SetDefault("Tome\n+15% ranged damage, +40 HP, +20 mana\n20% chance to not consume ammo");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightPurple;
+            item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.value = 15000;
             item.height = dims.Height;
@@ -26,20 +26,17 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicCrit += 3;
-            player.meleeCrit += 3;
-            player.rangedCrit += 3;
-            player.thrownCrit += 3;
+            player.rangedDamage += 0.15f;
+            player.statLifeMax2 += 40;
+            player.statManaMax2 += 20;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<MysticalClaw>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<MysteriousPage>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<DewOrb>());
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<MistyPeachBlossoms>());
+            recipe.AddIngredient(ModContent.ItemType<TaleoftheRedLotus>());
+            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>());
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();

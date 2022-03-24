@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Lucky Papyrus");
-            Tooltip.SetDefault("Provides immunity to Pyroscoric and Tritanorium burns\n7% increased critical strike chance");
+            Tooltip.SetDefault("Provides immunity to Pyroscoric and Tritanorium burns\n7% increased critical strike chance\n40% increased critical strike damage");
         }
 
         public override void SetDefaults()
@@ -25,6 +25,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.AllCrit(7);
+            player.Avalon().critDamageMult += 0.4f;
         }
     }
 }

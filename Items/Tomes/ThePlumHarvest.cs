@@ -1,18 +1,17 @@
 ﻿using ExxoAvalonOrigins.Items.Material;
-using ExxoAvalonOrigins.Items.Placeable.Bar;
+using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    class ChantoftheWaterDragon : ModItem
+    class ThePlumHarvest : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Chant of the Water Dragon");
-            Tooltip.SetDefault("Tome\n+20% magic damage");
+            DisplayName.SetDefault("The Plum Harvest");
+            Tooltip.SetDefault("Tome\n30% chance to not consume ammo");
         }
 
         public override void SetDefaults()
@@ -25,22 +24,20 @@ namespace ExxoAvalonOrigins.Items.Accessories
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.magicDamage += 0.2f;
-        }
+        //Update Accs not needed - ammo done in ModPlayer
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<OblivionBar>(), 25);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 30);
-            recipe.AddIngredient(ItemID.FallenStar, 100);
+            recipe.AddIngredient(ModContent.ItemType<Opal>(), 50);
+            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
+            recipe.AddIngredient(ItemID.ShroomiteBar, 12);
             recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 5);
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
+
     }
 }

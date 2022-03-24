@@ -1,17 +1,17 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
     class Emperor : ModItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Emperor");
-            Tooltip.SetDefault("Tome\n+25% damage, +12% critical strike chance, -20% mana cost\n30% chance to not consume ammo, 14 defense, +200 mana, +100 HP");
+            Tooltip.SetDefault("Tome\n25% increased damage, 12% increased critical strike chance, -20% mana cost\n30% chance to not consume ammo, 14 defense, +200 mana, +100 HP, +90 stamina");
         }
 
         public override void SetDefaults()
@@ -39,6 +39,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.statDefense += 14;
             player.statLifeMax2 += 100;
             player.statManaMax2 += 200;
+            player.Avalon().statStamMax2 += 90;
         }
 
         public override void AddRecipes()

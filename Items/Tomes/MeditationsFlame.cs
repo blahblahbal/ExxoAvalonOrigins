@@ -1,44 +1,44 @@
 ﻿using ExxoAvalonOrigins.Items.Material;
-using ExxoAvalonOrigins.Items.Placeable.Bar;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    class SceneofCarnage : ModItem
+    class MeditationsFlame : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Scene of Carnage");
-            Tooltip.SetDefault("Tome\n15% increased melee damage and speed");
+            DisplayName.SetDefault("Meditation's Flame");
+            Tooltip.SetDefault("Tome\n+5% magic damage, -10% mana cost\n+60 mana");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
+            item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 40);
+            item.value = 5000;
             item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeSpeed += 0.15f;
-            player.meleeDamage += 0.15f;
+            player.magicDamage += 0.05f;
+            player.manaCost -= 0.1f;
+            player.statManaMax2 += 60;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 25);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 100);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 20);
+            recipe.AddIngredient(ItemID.FallenStar, 60);
+            recipe.AddIngredient(ItemID.MeteoriteBar, 10);
+            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();

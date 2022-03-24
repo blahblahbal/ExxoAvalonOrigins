@@ -1,42 +1,42 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    class TheHeavenlyScent : ModItem
+    class EternitysMoon : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Heavenly Scent");
-            Tooltip.SetDefault("Tome\n+2 life regen");
+            DisplayName.SetDefault("Eternity's Moon");
+            Tooltip.SetDefault("Tome\n+20 mana, -5% mana cost");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
+            item.rare = ItemRarityID.Green;
             item.width = dims.Width;
-            item.value = 150000;
+            item.value = 15000;
             item.height = dims.Height;
             item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.lifeRegen += 2;
+            player.statManaMax2 += 20;
+            player.manaCost -= 0.05f;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 3);
-            recipe.AddIngredient(ItemID.LesserHealingPotion, 5);
-            recipe.AddIngredient(ItemID.BandofRegeneration);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3);
+            recipe.AddIngredient(ItemID.FallenStar, 10);
+            recipe.AddIngredient(ModContent.ItemType<Gravel>(), 15);
+            recipe.AddIngredient(ModContent.ItemType<MysticalClaw>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>());
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();

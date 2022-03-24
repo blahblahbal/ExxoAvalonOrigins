@@ -1,24 +1,23 @@
 ﻿using ExxoAvalonOrigins.Items.Material;
-using ExxoAvalonOrigins.Items.Placeable.Bar;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    class TheOasisRemembered : ModItem
+    class SoutheasternPeacock : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Oasis Remembered");
-            Tooltip.SetDefault("Tome\n20% increased minion damage and knockback");
+            DisplayName.SetDefault("Southeastern Peacock");
+            Tooltip.SetDefault("Tome\n+3% critical strike chance, -5% mana cost\n8% increased minion damage, 5% increased minion knockback");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
+            item.rare = ItemRarityID.LightPurple;
             item.width = dims.Width;
             item.value = Item.sellPrice(0, 0, 40);
             item.height = dims.Height;
@@ -27,17 +26,20 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.minionDamage += 0.2f;
-            player.minionKB += 0.2f;
+            player.meleeCrit += 3;
+            player.rangedCrit += 3;
+            player.thrownCrit += 3;
+            player.magicCrit += 3;
+            player.minionKB += 0.05f;
+            player.minionDamage += 0.08f;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>(), 25);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<TomorrowsPhoenix>());
+            recipe.AddIngredient(ModContent.ItemType<ChristmasTome>());
+            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();

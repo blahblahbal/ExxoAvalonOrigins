@@ -5,6 +5,7 @@ using System.Linq;
 using ExxoAvalonOrigins.Buffs;
 using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Consumables;
+using ExxoAvalonOrigins.Items.Tomes;
 using ExxoAvalonOrigins.Items.Tools;
 using ExxoAvalonOrigins.Items.Weapons.Melee;
 using ExxoAvalonOrigins.Logic;
@@ -26,22 +27,29 @@ namespace ExxoAvalonOrigins
     {
         #region fields
 
+        // stamina abilities
+        public bool sprintUnlocked = false;
+        public bool rocketJumpUnlocked = false;
+        public bool swimmingUnlocked = false;
+        public bool teleportUnlocked = false;
+
+        public int staminaRegen = 1000;
         public int statStamMax = 30;
         public int statStamMax2;
         public bool stamFlower = false;
         public bool staminaDrain = false;
         public int staminaDrainStacks = 1;
         public float staminaDrainMult = 1.2f;
-        public static int staminaDrainTime = 10 * 60;
-        public bool[] pSensor = new bool[6];
         public int statStam = 100;
+        public static int staminaDrainTime = 10 * 60;
+        // end stamina stuff
+        public bool[] pSensor = new bool[6];
         public int spiritPoppyUseCount;
         public bool shmAcc = false;
         public bool herb = false;
         public bool teleportVWasTriggered = false;
         public int screenShakeTimer;
         public bool astralProject;
-        public int staminaRegen = 1000;
         public bool snotOrb;
 
         public enum ShadowMirrorModes
@@ -1523,7 +1531,11 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:HerbTotal", herbTotal },
                 { "ExxoAvalonOrigins:PotionTotal", potionTotal },
                 { "ExxoAvalonOrigins:HerbCounts", herbCounts.Save() },
-                { "ExxoAvalonOrigins:SpiritPoppyUseCount", spiritPoppyUseCount }
+                { "ExxoAvalonOrigins:SpiritPoppyUseCount", spiritPoppyUseCount },
+                { "ExxoAvalonOrigins:RocketJumpUnlocked", rocketJumpUnlocked },
+                { "ExxoAvalonOrigins:TeleportUnlocked", teleportUnlocked},
+                { "ExxoAvalonOrigins:SwimmingUnlocked", swimmingUnlocked },
+                { "ExxoAvalonOrigins:SprintUnlocked", sprintUnlocked },
             };
             return tag;
         }
@@ -1583,6 +1595,26 @@ namespace ExxoAvalonOrigins
             {
                 spiritPoppyUseCount = tag.Get<int>("ExxoAvalonOrigins:SpiritPoppyUseCount");
             }
+            if (tag.ContainsKey("ExxoAvalonOrigins:RocketJumpUnlocked"))
+            {
+                rocketJumpUnlocked = tag.Get<bool>("ExxoAvalonOrigins:RocketJumpUnlocked");
+            }
+            else rocketJumpUnlocked = false;
+            if (tag.ContainsKey("ExxoAvalonOrigins:TeleportUnlocked"))
+            {
+                teleportUnlocked = tag.Get<bool>("ExxoAvalonOrigins:TeleportUnlocked");
+            }
+            else teleportUnlocked = false;
+            if (tag.ContainsKey("ExxoAvalonOrigins:SwimmingUnlocked"))
+            {
+                swimmingUnlocked = tag.Get<bool>("ExxoAvalonOrigins:SwimmingUnlocked");
+            }
+            else swimmingUnlocked = false;
+            if (tag.ContainsKey("ExxoAvalonOrigins:SprintUnlocked"))
+            {
+                sprintUnlocked = tag.Get<bool>("ExxoAvalonOrigins:SprintUnlocked");
+            }
+            else sprintUnlocked = false;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -3019,7 +3051,7 @@ namespace ExxoAvalonOrigins
             {
                 QuickStamina();
             }
-            if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && tpCD >= 300)
+            if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && tpCD >= 300 && teleportUnlocked)
             {
                 int amt = 90;
                 if (staminaDrain)
@@ -3109,13 +3141,13 @@ namespace ExxoAvalonOrigins
             }
 
             #region other hotkeys
-            if (ExxoAvalonOrigins.Mod.rocketJumpHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.rocketJumpHotkey.JustPressed && rocketJumpUnlocked)
             {
                 activateRocketJump = !activateRocketJump;
                 Main.NewText(!activateRocketJump ? "Rocket Jump Off" : "Rocket Jump On");
             }
 
-            if (ExxoAvalonOrigins.Mod.SprintHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.SprintHotkey.JustPressed && sprintUnlocked)
             {
                 activateSprint = !activateSprint;
                 Main.NewText(!activateSprint ? "Sprinting Off" : "Sprinting On");
@@ -3133,7 +3165,7 @@ namespace ExxoAvalonOrigins
                 Main.NewText(!quintJump ? "Quintuple Jump Off" : "Quintuple Jump On");
             }
 
-            if (ExxoAvalonOrigins.Mod.SwimHotkey.JustPressed)
+            if (ExxoAvalonOrigins.Mod.SwimHotkey.JustPressed && swimmingUnlocked)
             {
                 activateSwim = !activateSwim;
                 Main.NewText(!activateSwim ? "Swimming Off" : "Swimming On");
@@ -3361,7 +3393,7 @@ namespace ExxoAvalonOrigins
         {
             //Main.NewText("PostUpdateRunSpeeds " + slimeBand.ToString());
             FloorVisualsAvalon(player.velocity.Y > player.gravity);
-            if (activateRocketJump)
+            if (activateRocketJump && rocketJumpUnlocked)
             {
                 if (player.controlUp && player.releaseUp)
                 {
@@ -3418,7 +3450,7 @@ namespace ExxoAvalonOrigins
                     }
                 }
             }
-            if (player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim)
+            if (player.wet && player.velocity != Vector2.Zero && !player.accMerman && activateSwim && swimmingUnlocked)
             {
                 bool flag15 = true;
                 staminaCD++;
@@ -3454,7 +3486,7 @@ namespace ExxoAvalonOrigins
                     player.accFlipper = true;
                 }
             }
-            if (activateSprint)
+            if (activateSprint && sprintUnlocked)
             {
                 if ((player.controlRight || player.controlLeft) && player.velocity.X != 0f)
                 {

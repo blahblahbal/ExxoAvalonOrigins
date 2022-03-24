@@ -1,23 +1,23 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    class BurningDesire : ModItem
+    class TomeoftheRiverSpirits : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Burning Desire");
-            Tooltip.SetDefault("Tome\n+40 HP\n+40 mana");
+            DisplayName.SetDefault("Tome of the River Spirits");
+            Tooltip.SetDefault("Tome\n+15% magic and minion damage\n-5% mana cost");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Orange;
+            item.rare = ItemRarityID.Pink;
             item.width = dims.Width;
             item.value = 15000;
             item.height = dims.Height;
@@ -26,17 +26,18 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 40;
-            player.statManaMax2 += 40;
+            player.magicDamage += 0.15f;
+            player.minionDamage += 0.15f;
+            player.manaCost -= 0.05f;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Gravel>(), 7);
-            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 3);
-            recipe.AddIngredient(ItemID.LifeCrystal);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<MeditationsFlame>());
+            recipe.AddIngredient(ModContent.ItemType<EternitysMoon>());
+            recipe.AddIngredient(ItemID.FallenStar, 20);
+            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>());
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
             recipe.AddRecipe();

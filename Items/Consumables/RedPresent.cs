@@ -1,8 +1,9 @@
-using ExxoAvalonOrigins.Items.Accessories;
+﻿using ExxoAvalonOrigins.Items.Accessories;
 using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Painting;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Potions;
+using ExxoAvalonOrigins.Items.Tomes;
 using ExxoAvalonOrigins.Items.Vanity;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;

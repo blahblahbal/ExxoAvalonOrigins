@@ -4,20 +4,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Tomes
 {
-    public class AdventuresandMishaps : ModItem
+    class UnderestimatedResolve : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Adventures and Mishaps");
-            Tooltip.SetDefault("Tome\n+60 HP, +5% damage\n-10% mana cost");
+            DisplayName.SetDefault("Underestimated Resolve");
+            Tooltip.SetDefault("Tome\n+20 HP, +5% ranged damage\n+4 defense");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
+            item.rare = ItemRarityID.LightPurple;
             item.width = dims.Width;
             item.value = 20000;
             item.height = dims.Height;
@@ -26,22 +26,17 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 60;
-            player.magicDamage += 0.05f;
-            player.minionDamage += 0.05f;
-            player.meleeDamage += 0.05f;
+            player.statLifeMax2 += 20;
             player.rangedDamage += 0.05f;
-            player.thrownDamage += 0.05f;
-            player.manaCost -= 0.1f;
+            player.statDefense += 4;
         }
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LifeCrystal, 2);
-            recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<CarbonSteel>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 10);
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<ElementDust>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<MysticalClaw>(), 6);
             recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
             recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
             recipe.SetResult(this);
