@@ -52,7 +52,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
                         else if (!player.Avalon().earthInsig && !Main.hardMode) multiplier = 2;
                         N.StrikeNPC(multiplier * fall_dist, 5f, HitDir);
                         if (Main.netMode != 0) NetMessage.SendData(28, -1, -1, null, o, multiplier * fall_dist, 10f, HitDir, 0); // for multiplayer support
-                        if (player.Avalon().isOnGround() && numOfNPCs == list.Count - 1) break;
+                        if (player.isOnGround() && numOfNPCs == list.Count - 1) break;
                         // optionally add debuff here
                     } // END on screen
                 } // END iterate through NPCs

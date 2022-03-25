@@ -30,6 +30,18 @@ namespace ExxoAvalonOrigins.Logic
             ModRecipe recipe;
 
             recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BrokenHeroSword);
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ModContent.ItemType<BrokenVigilanteTome>());
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BrokenVigilanteTome>());
+            recipe.AddTile(ModContent.TileType<Tiles.Catalyzer>());
+            recipe.SetResult(ItemID.BrokenHeroSword);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.TempleKey);
             recipe.AddIngredient(ModContent.ItemType<Items.Other.UnderworldKeyMold>());
             recipe.AddIngredient(ItemID.SoulofFright, 5);
@@ -1597,13 +1609,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddIngredient(ModContent.ItemType<RottenFlesh>());
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<DemonicShard>());
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<WaterShard>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<WaterXeradonBucket>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(ModContent.ItemType<TorrentShard>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);

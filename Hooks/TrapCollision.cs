@@ -61,61 +61,20 @@ namespace ExxoAvalonOrigins.Hooks
                             {
                                 num5 = 20;
                             }
-                            if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
-                                !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == TileID.Spikes)
+                            if (!Main.LocalPlayer.Avalon().trapImmune && !Main.LocalPlayer.Avalon().spikeImmune && type == TileID.Spikes)
                             {
                                 num5 = 40;
                             }
-                            if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
-                                !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) && type == TileID.WoodenSpikes)
+                            if (!Main.LocalPlayer.Avalon().trapImmune && !Main.LocalPlayer.Avalon().spikeImmune && type == TileID.WoodenSpikes)
                             {
                                 num5 = 60;
                             }
-                            //if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
-                            //    !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
-                            //    !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
-                            //    !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
-                            //    !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
-                            //    !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) &&
-                            //    !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) &&
-                            //    (type == ModContent.TileType<Tiles.Ores.PyroscoricOre>() || type == ModContent.TileType<Tiles.Ores.TritanoriumOre>()))
-                            //{
-                            //    num5 = 30 + Main.player[Main.myPlayer].statDefense / 2;
-                            //}
-                            if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
-                                !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) &&
-                                type == ModContent.TileType<Tiles.PoisonSpike>())
+                            if (!Main.LocalPlayer.Avalon().trapImmune && !Main.LocalPlayer.Avalon().spikeImmune && type == ModContent.TileType<Tiles.PoisonSpike>())
                             {
                                 num5 = 35;
                                 Main.player[Main.myPlayer].AddBuff(BuffID.Poisoned, 180, true);
                             }
-                            if ((!Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BlahsWings>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<GuardianBoots>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<BacchusBoots>()) &&
-                                !Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.Blah>())) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<CobaltOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<PalladiumOmegaShield>()) &&
-                                !Main.player[Main.myPlayer].HasItemInArmor(ModContent.ItemType<DurataniumOmegaShield>()) &&
-                                type == ModContent.TileType<Tiles.VenomSpike>())
+                            if (!Main.LocalPlayer.Avalon().trapImmune && !Main.LocalPlayer.Avalon().spikeImmune && type == ModContent.TileType<Tiles.VenomSpike>())
                             {
                                 num5 = 90;
                                 Main.player[Main.myPlayer].AddBuff(BuffID.Venom, 180, true);

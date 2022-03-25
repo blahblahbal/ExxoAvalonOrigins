@@ -1345,7 +1345,7 @@ IL_162:
             }
             if (slimes.Contains(npc.type) && Main.rand.Next(500) == 0 && Main.hardMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RoyalGel, 1, false, -2);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RoyalGel, 1, false, -1);
             }
             #region rock, pointing laser, alien device
             if (Main.rand.Next(600) == 0)
@@ -1363,15 +1363,15 @@ IL_162:
             #endregion
             if ((npc.type == NPCID.Clinger || npc.type == NPCID.Spazmatism) && Main.rand.Next(maxValue) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GreekExtinguisher>(), 1, false, -2);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GreekExtinguisher>(), 1, false, -1);
             }
             if (npc.type == NPCID.RaggedCaster && Main.rand.Next(50) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SixHundredWattLightbulb>(), 1, false, -2);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SixHundredWattLightbulb>(), 1, false, -1);
             }
             if (npc.type == NPCID.ChaosElemental && NPC.downedMechBossAny && Main.rand.Next(30) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ChaosEye>(), 1, false, -2, false);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ChaosCharm>(), 1, false, -1, false);
             }
             if (npc.type == NPCID.ChaosElemental && Main.rand.Next(7) == 0)
             {
@@ -1699,7 +1699,7 @@ IL_162:
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Ectoplasm, 1, false, 0, false);
                 }
             }
-            if ((npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing) && Main.rand.Next(250) == 0)
+            if (npc.type == NPCID.Mothron && Main.rand.Next(5) == 0)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BrokenVigilanteTome>(), 1, false, 0, false);
             }

@@ -12,6 +12,7 @@ using ExxoAvalonOrigins.Items.Vanity;
 using ExxoAvalonOrigins.Items.Weapons.Magic;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using ExxoAvalonOrigins.Logic;
+using ExxoAvalonOrigins.Projectiles.Torches;
 using ExxoAvalonOrigins.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,7 +31,7 @@ namespace ExxoAvalonOrigins
         public const bool DevMode = false;
 #endif
         public const bool GodMode = false;
-        public new readonly Version Version = new Version(0, 9, 8, 1, DevMode);
+        public new readonly Version Version = new Version(0, 9, 8, 3, DevMode);
 
         // Hotkeys
 
@@ -44,8 +45,9 @@ namespace ExxoAvalonOrigins
         public ModHotKey ModeChangeHotkey;
         public ModHotKey AstralHotkey;
         public ModHotKey minionGuidingHotkey;
-        public ModHotKey rocketJumpHotkey;
+        public ModHotKey RocketJumpHotkey;
         public ModHotKey QuickStaminaHotkey;
+        public ModHotKey FlightTimeRestoreHotkey;
 
         // UI
 
@@ -69,6 +71,32 @@ namespace ExxoAvalonOrigins
         public override void Load()
         {
             Hooks.HooksManager.ApplyHooks();
+
+            ExxoAvalonOriginsModPlayer.torches = new Dictionary<int, int>()
+            {
+                { ItemID.Torch, ModContent.ProjectileType<Torch>() },
+                { ItemID.BlueTorch, ModContent.ProjectileType<BlueTorch>() },
+                { ItemID.RedTorch, ModContent.ProjectileType<RedTorch>() },
+                { ItemID.GreenTorch, ModContent.ProjectileType<GreenTorch>() },
+                { ItemID.PurpleTorch, ModContent.ProjectileType<PurpleTorch>() },
+                { ItemID.WhiteTorch, ModContent.ProjectileType<WhiteTorch>() },
+                { ItemID.YellowTorch, ModContent.ProjectileType<YellowTorch>() },
+                { ItemID.DemonTorch, ModContent.ProjectileType<DemonTorch>() },
+                { ItemID.CursedTorch, ModContent.ProjectileType<CursedTorch>() },
+                { ItemID.IceTorch, ModContent.ProjectileType<IceTorch>() },
+                { ItemID.OrangeTorch, ModContent.ProjectileType<OrangeTorch>() },
+                { ItemID.IchorTorch, ModContent.ProjectileType<IchorTorch>() },
+                { ItemID.UltrabrightTorch, ModContent.ProjectileType<UltrabrightTorch>() },
+                { ModContent.ItemType<Items.Placeable.Light.JungleTorch>(), ModContent.ProjectileType<JungleTorch>() },
+                { ModContent.ItemType<Items.Placeable.Light.PathogenTorch>(), ModContent.ProjectileType<PathogenTorch>() },
+                { ModContent.ItemType<Items.Placeable.Light.SlimeTorch>(), ModContent.ProjectileType<SlimeTorch>() },
+                { ModContent.ItemType<Items.Placeable.Light.CyanTorch>(), ModContent.ProjectileType<CyanTorch>() },
+                { ModContent.ItemType<Items.Placeable.Light.LimeTorch>(), ModContent.ProjectileType<LimeTorch>() },
+                { ModContent.ItemType<Items.Placeable.Light.BrownTorch>(), ModContent.ProjectileType<BrownTorch>() },
+                { ItemID.BoneTorch, ModContent.ProjectileType<BoneTorch>() },
+                { ItemID.RainbowTorch, ModContent.ProjectileType<RainbowTorch>() },
+                { ItemID.PinkTorch, ModContent.ProjectileType<PinkTorch>() },
+            };
 
             if (Main.netMode != NetmodeID.Server)
             {
@@ -149,17 +177,18 @@ namespace ExxoAvalonOrigins
 
                 // Hotkeys
 
-                ShadowHotkey = RegisterHotKey("Shadow Teleport", "V");
-                SprintHotkey = RegisterHotKey("Toggle Sprinting", "F");
-                DashHotkey = RegisterHotKey("Toggle Stamina Dash", "K");
+                ShadowHotkey = RegisterHotKey("Shadow/Stamina Teleport", "V");
+                SprintHotkey = RegisterHotKey("Toggle Stamina Sprinting", "F");
+                DashHotkey = RegisterHotKey("Toggle Stamina Stamina Dash", "K");
                 QuintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
-                SwimHotkey = RegisterHotKey("Toggle Swimming", "L");//implemented?
-                WallSlideHotkey = RegisterHotKey("Toggle Wall Sliding", "G");
+                SwimHotkey = RegisterHotKey("Toggle Stamina Swimming", "L");//implemented?
+                WallSlideHotkey = RegisterHotKey("Toggle Stamina Wall Sliding", "G");
+                FlightTimeRestoreHotkey = RegisterHotKey("Stamina Restore Flight Time", "Z");
                 BubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");
                 ModeChangeHotkey = RegisterHotKey("Change Modes", "N");
                 AstralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
                 minionGuidingHotkey = RegisterHotKey("Ancient Minion Guiding", "Mouse2");
-                rocketJumpHotkey = RegisterHotKey("Stamina Rocket Jump", "C");
+                RocketJumpHotkey = RegisterHotKey("Stamina Rocket Jump", "C");
                 QuickStaminaHotkey = RegisterHotKey("Quick Stamina", "X");
 
                 // UI
@@ -182,6 +211,7 @@ namespace ExxoAvalonOrigins
 
         public override void Unload()
         {
+            ExxoAvalonOriginsModPlayer.torches = null;
             if (Main.netMode != NetmodeID.Server)
             {
                 Main.logoTexture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
@@ -504,7 +534,7 @@ namespace ExxoAvalonOrigins
                 );
             }
 
-            int resourceBarsIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
+            int resourceBarsIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
             if (resourceBarsIndex >= 0)
             {
                 layers.Insert(resourceBarsIndex, new LegacyGameInterfaceLayer(

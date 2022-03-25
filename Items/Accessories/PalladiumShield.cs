@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,6 +27,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Avalon().regenStrike = true;
+            player.Avalon().spikeImmune = true;
         }
     }
 }

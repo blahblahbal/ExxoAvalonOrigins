@@ -19,6 +19,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             item.consumable = true;
             item.width = dims.Width;
             item.useTime = 20;
+            item.rare = ItemRarityID.Green;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
             item.useAnimation = 20;

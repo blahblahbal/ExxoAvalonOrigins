@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
-    class SwimmingScroll : ModItem
+    class FlightTimeScroll : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Swimming Scroll");
-            Tooltip.SetDefault("Unlocks stamina swimming");
+            DisplayName.SetDefault("Flight Time Scroll");
+            Tooltip.SetDefault("Unlocks stamina flight time restoration");
         }
 
         public override void SetDefaults()
@@ -29,7 +29,8 @@ namespace ExxoAvalonOrigins.Items.Consumables
         {
             ModRecipe r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.Flipper);
+            r.AddIngredient(ItemID.Feather, 20);
+            r.AddIngredient(ItemID.SoulofFlight, 15);
             r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
             r.AddTile(TileID.Bookcases);
             r.SetResult(this);
@@ -37,11 +38,11 @@ namespace ExxoAvalonOrigins.Items.Consumables
         }
         public override bool CanUseItem(Player player)
         {
-            return !player.Avalon().swimmingUnlocked;
+            return !player.Avalon().flightRestoreUnlocked;
         }
         public override bool UseItem(Player player)
         {
-            player.Avalon().swimmingUnlocked = true;
+            player.Avalon().flightRestoreUnlocked = true;
             return true;
         }
     }

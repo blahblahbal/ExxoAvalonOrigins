@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.autoReuse = true;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.DemonSpikescale>();
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.Orange;
             item.width = dims.Width;
             item.useTime = 10;
             item.useTurn = true;

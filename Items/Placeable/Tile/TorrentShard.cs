@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,6 +29,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
             item.value = Item.sellPrice(0, 0, 12, 0);
             item.useAnimation = 15;
             item.height = dims.Height;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<Material.WaterShard>(), 2);
+            recipe.AddIngredient(ItemID.WaterBucket);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

@@ -254,23 +254,31 @@ namespace ExxoAvalonOrigins
         {
             return new TagCompound
             {
-                ["ExxoAvalonOrigins:Rarity"] = (int)avalonRarity
+                ["ExxoAvalonOrigins:Rarity"] = (int)avalonRarity,
+                ["ExxoAvalonOrigins:Spike"] = spike,
+                ["ExxoAvalonOrigins:Torch"] = torch
             };
         }
 
         public override void Load(Item item, TagCompound tag)
         {
             avalonRarity = (AvalonRarity)tag.GetInt("ExxoAvalonOrigins:Rarity");
+            spike = tag.GetInt("ExxoAvalonOrigins:Spike");
+            torch = tag.GetInt("ExxoAvalonOrigins:Torch");
         }
 
         public override void NetSend(Item item, BinaryWriter writer)
         {
             writer.Write((int)avalonRarity);
+            writer.Write(spike);
+            writer.Write(torch);
         }
 
         public override void NetReceive(Item item, BinaryReader reader)
         {
             avalonRarity = (AvalonRarity)reader.ReadInt32();
+            spike = reader.ReadInt32();
+            torch = reader.ReadInt32();
         }
     }
 }

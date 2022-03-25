@@ -11,6 +11,7 @@ using ExxoAvalonOrigins.Items.Weapons.Melee;
 using ExxoAvalonOrigins.Logic;
 using ExxoAvalonOrigins.Prefixes;
 using ExxoAvalonOrigins.Projectiles;
+using ExxoAvalonOrigins.Projectiles.Torches;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -32,7 +33,13 @@ namespace ExxoAvalonOrigins
         public bool rocketJumpUnlocked = false;
         public bool swimmingUnlocked = false;
         public bool teleportUnlocked = false;
+        public bool flightRestoreUnlocked = false;
 
+        public int stamFlightRestoreCD = 0;
+        public bool releaseQuickStamina;
+        public int stamRegen;
+        public int stamRegenCount;
+        public int stamRegenDelay;
         public int staminaRegen = 1000;
         public int statStamMax = 30;
         public int statStamMax2;
@@ -43,6 +50,38 @@ namespace ExxoAvalonOrigins
         public int statStam = 100;
         public static int staminaDrainTime = 10 * 60;
         // end stamina stuff
+
+        // buff stuff
+        public bool beeRepel = false;
+        public bool lucky = false;
+        public bool melting = false;
+        public bool enemySpawns2 = false;
+        public int crimsonCount = 0;
+        public bool darkInferno = false;
+        public int deliriumCount = 0;
+        public bool forceField = true;
+        public int fAlevel = 0;
+        public int fAlastRecord = 0;
+        public int shadowPotCd = 0;
+        public bool shockWave = false;
+        public int fallStart_old = 0;
+        public bool vision = false;
+        public const int deliriumFreq = 600;
+        // end buff stuff
+
+        // minion stuff
+        public bool gastroMinion = false;
+        public bool hungryMinion = false;
+        public bool iceGolem = false;
+        public bool goldDagger = false;
+        public bool platinumDagger = false;
+        public bool bismuthDagger = false;
+        public bool adamantiteDagger = false;
+        public bool titaniumDagger = false;
+        public bool troxiniumDagger = false;
+        public bool primeMinion = false;
+        public bool reflectorMinion = false;
+        // end minion stuff
         public bool[] pSensor = new bool[6];
         public int spiritPoppyUseCount;
         public bool shmAcc = false;
@@ -139,11 +178,17 @@ namespace ExxoAvalonOrigins
             ProjectileID.MiniSharkron,
             ProjectileID.StardustCellMinionShot
         };
+        public static Dictionary<int, int> torches;
 
         public static Texture2D[] lavaMermanTextures;
         public static Texture2D[] originalMermanTextures;
 
         public static Texture2D[] spectrumArmorTextures;
+
+        public bool inertiaBoots = false;
+        public bool blahWings = false;
+        public bool spikeImmune = false;
+        public bool luckTome = false;
 
         public bool quackJump;
         public bool jumpAgainQuack;
@@ -151,36 +196,10 @@ namespace ExxoAvalonOrigins
         public int shadowCheckPointNum = 0;
         public int shadowPlayerNum = 0;
         public bool slimeImmune = false;
-        public bool beeRepel = false;
-        public bool lucky = false;
-        public bool melting = false;
-        public bool enemySpawns2 = false;
-        public int crimsonCount = 0;
-        public bool darkInferno = false;
-        public int deliriumCount = 0;
-        public bool forceField = true;
-        public int fAlevel = 0;
-        public int fAlastRecord = 0;
-        public bool gastroMinion = false;
-        public bool hungryMinion = false;
-        public bool iceGolem = false;
-        public bool goldDagger = false;
-        public bool platinumDagger = false;
-        public bool bismuthDagger = false;
-        public bool adamantiteDagger = false;
-        public bool titaniumDagger = false;
-        public bool troxiniumDagger = false;
         public int infectTimer = 0;
         public int infectDmg = 0;
-        public bool weaponMinion = false;
-        public bool primeMinion = false;
-        public bool reflectorMinion = false;
-        public int shadowPotCd = 0;
-        public bool shockWave = false;
-        public int fallStart_old = 0;
+        public bool weaponMinion = false; // remove
         public bool earthInsig = false;
-        public bool vision = false;
-        public const int deliriumFreq = 600;
         public int crystalHealth = 0;
         public Item tomeItem = new Item();
         public int pl = -1;
@@ -196,7 +215,6 @@ namespace ExxoAvalonOrigins
         public bool slimeBand;
         public bool defDebuff;
         public int defDebuffBonusDef;
-        public bool luckTome;
         public float rot;
         public byte qsMode = 1;
         public byte qsTimer;
@@ -306,10 +324,7 @@ namespace ExxoAvalonOrigins
         public bool ZoneSkyFortress;
         public bool ZoneCrystal;
         public bool meleeStealth;
-        public bool releaseQuickStamina;
-        public int stamRegen;
-        public int stamRegenCount;
-        public int stamRegenDelay;
+        
         public bool ammoCost70;
         public bool LightningInABottle;
         public bool longInvince2;
@@ -405,6 +420,10 @@ namespace ExxoAvalonOrigins
             //Main.NewText("" + trapImmune.ToString());
             //Main.NewText("" + slimeBand.ToString());
             Player.defaultItemGrabRange = 38;
+            inertiaBoots = false;
+            luckTome = false;
+            blahWings = false;
+            spikeImmune = false;
             staminaDrain = false;
             snotOrb = false;
             shockWave = false;
@@ -760,6 +779,7 @@ namespace ExxoAvalonOrigins
                         {
                             item2 = player.inventory[i];
                             flag7 = true;
+                            //Main.NewText(item2.Name);
                             break;
                         }
                     }
@@ -770,7 +790,8 @@ namespace ExxoAvalonOrigins
                     {
                         int t = 0;
                         int dmgAdd = 0;
-                        switch (item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike)
+                        //Main.NewText(item2.Name);
+                        /*switch (item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike)
                         {
                             case 0:
                                 t = ModContent.ProjectileType<SpikeCannon>();
@@ -800,6 +821,41 @@ namespace ExxoAvalonOrigins
                                 t = ModContent.ProjectileType<PoisonSpike>();
                                 dmgAdd = 15;
                                 break;
+                        }*/
+                        if (item2.type == ItemID.Spike)
+                        {
+                            t = ModContent.ProjectileType<SpikeCannon>();
+                            dmgAdd = 11;
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Tile.DemonSpikeScale>())
+                        {
+                            t = ModContent.ProjectileType<DemonSpikeScale>();
+                            dmgAdd = 17;
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Tile.BloodiedSpike>())
+                        {
+                            t = ModContent.ProjectileType<BloodiedSpike>();
+                            dmgAdd = 17;
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Tile.NastySpike>())
+                        {
+                            t = ModContent.ProjectileType<NastySpike>();
+                            dmgAdd = 18;
+                        }
+                        else if (item2.type == ItemID.WoodenSpike)
+                        {
+                            t = ModContent.ProjectileType<WoodenSpike>();
+                            dmgAdd = 30;
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Tile.VenomSpike>())
+                        {
+                            t = ModContent.ProjectileType<VenomSpike>();
+                            dmgAdd = 39;
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Tile.PoisonSpike>())
+                        {
+                            t = ModContent.ProjectileType<PoisonSpike>();
+                            dmgAdd = 15;
                         }
                         if (t > 0)
                         {
@@ -816,6 +872,7 @@ namespace ExxoAvalonOrigins
                                     Vector2 vector3 = vector2.Rotate(num87 * num90, default);
                                     int num91 = Projectile.NewProjectile(position.X + vector3.X, position.Y + vector3.Y, speedX, speedY, t, damage + dmgAdd, knockBack, player.whoAmI, 0f, 0f);
                                 }
+                                Main.NewText(t);
                                 return false;
                             }
                             Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, damage + dmgAdd, knockBack, player.whoAmI);
@@ -858,80 +915,106 @@ namespace ExxoAvalonOrigins
                     if (player.inventory[player.selectedItem].useAmmo == 8)
                     {
                         int t = 0;
-                        switch (item2.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch)
-                        {
-                            case 0:
-                                t = ModContent.ProjectileType<Projectiles.Torches.Torch>();
-                                break;
-                            case 1:
-                                t = ModContent.ProjectileType<Projectiles.Torches.BlueTorch>();
-                                break;
-                            case 2:
-                                t = ModContent.ProjectileType<Projectiles.Torches.RedTorch>();
-                                break;
-                            case 3:
-                                t = ModContent.ProjectileType<Projectiles.Torches.GreenTorch>();
-                                break;
-                            case 4:
-                                t = ModContent.ProjectileType<Projectiles.Torches.PurpleTorch>();
-                                break;
-                            case 5:
-                                t = ModContent.ProjectileType<Projectiles.Torches.WhiteTorch>();
-                                break;
-                            case 6:
-                                t = ModContent.ProjectileType<Projectiles.Torches.YellowTorch>();
-                                break;
-                            case 7:
-                                t = ModContent.ProjectileType<Projectiles.Torches.DemonTorch>();
-                                break;
-                            case 8:
-                                t = ModContent.ProjectileType<Projectiles.Torches.CursedTorch>();
-                                break;
-                            case 9:
-                                t = ModContent.ProjectileType<Projectiles.Torches.IceTorch>();
-                                break;
-                            case 10:
-                                t = ModContent.ProjectileType<Projectiles.Torches.OrangeTorch>();
-                                break;
-                            case 11:
-                                t = ModContent.ProjectileType<Projectiles.Torches.IchorTorch>();
-                                break;
-                            case 12:
-                                t = ModContent.ProjectileType<Projectiles.Torches.UltrabrightTorch>();
-                                break;
-                            case 13:
-                                t = ModContent.ProjectileType<Projectiles.Torches.JungleTorch>();
-                                break;
-                            case 14:
-                                t = ModContent.ProjectileType<Projectiles.Torches.PathogenTorch>();
-                                break;
-                            case 15:
-                                t = ModContent.ProjectileType<Projectiles.Torches.SlimeTorch>();
-                                break;
-                            case 16:
-                                t = ModContent.ProjectileType<Projectiles.Torches.CyanTorch>();
-                                break;
-                            case 17:
-                                t = ModContent.ProjectileType<Projectiles.Torches.LimeTorch>();
-                                break;
-                            case 18:
-                                t = ModContent.ProjectileType<Projectiles.Torches.BrownTorch>();
-                                break;
-                            case 19:
-                                t = ModContent.ProjectileType<Projectiles.Torches.BoneTorch>();
-                                break;
-                            case 20:
-                                t = ModContent.ProjectileType<Projectiles.Torches.RainbowTorch>();
-                                break;
-                            case 21:
-                                t = ModContent.ProjectileType<Projectiles.Torches.PinkTorch>();
-                                break;
-                        }
-                        if (t > 0)
+                        if (torches.TryGetValue(item2.type, out t))
                         {
                             Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, 0, 0);
                             return false;
                         }
+                        else return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+                        /*if (item2.type == ItemID.Torch)
+                        {
+                            t = ModContent.ProjectileType<Torch>();
+                        }
+                        else if (item2.type == ItemID.BlueTorch)
+                        {
+                            t = ModContent.ProjectileType<BlueTorch>();
+                        }
+                        else if (item2.type == ItemID.RedTorch)
+                        {
+                            t = ModContent.ProjectileType<RedTorch>();
+                        }
+                        else if (item2.type == ItemID.GreenTorch)
+                        {
+                            t = ModContent.ProjectileType<GreenTorch>();
+                        }
+                        else if (item2.type == ItemID.PurpleTorch)
+                        {
+                            t = ModContent.ProjectileType<PurpleTorch>();
+                        }
+                        else if (item2.type == ItemID.WhiteTorch)
+                        {
+                            t = ModContent.ProjectileType<WhiteTorch>();
+                        }
+                        else if (item2.type == ItemID.YellowTorch)
+                        {
+                            t = ModContent.ProjectileType<YellowTorch>();
+                        }
+                        else if (item2.type == ItemID.DemonTorch)
+                        {
+                            t = ModContent.ProjectileType<DemonTorch>();
+                        }
+                        else if (item2.type == ItemID.CursedTorch)
+                        {
+                            t = ModContent.ProjectileType<CursedTorch>();
+                        }
+                        else if (item2.type == ItemID.IceTorch)
+                        {
+                            t = ModContent.ProjectileType<IceTorch>();
+                        }
+                        else if (item2.type == ItemID.OrangeTorch)
+                        {
+                            t = ModContent.ProjectileType<OrangeTorch>();
+                        }
+                        else if (item2.type == ItemID.IchorTorch)
+                        {
+                            t = ModContent.ProjectileType<IchorTorch>();
+                        }
+                        else if (item2.type == ItemID.UltrabrightTorch)
+                        {
+                            t = ModContent.ProjectileType<UltrabrightTorch>();
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Light.JungleTorch>())
+                        {
+                            t = ModContent.ProjectileType<JungleTorch>();
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Light.PathogenTorch>())
+                        {
+                            t = ModContent.ProjectileType<PathogenTorch>();
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Light.SlimeTorch>())
+                        {
+                            t = ModContent.ProjectileType<SlimeTorch>();
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Light.CyanTorch>())
+                        {
+                            t = ModContent.ProjectileType<CyanTorch>();
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Light.LimeTorch>())
+                        {
+                            t = ModContent.ProjectileType<LimeTorch>();
+                        }
+                        else if (item2.type == ModContent.ItemType<Items.Placeable.Light.BrownTorch>())
+                        {
+                            t = ModContent.ProjectileType<BrownTorch>();
+                        }
+                        else if (item2.type == ItemID.BoneTorch)
+                        {
+                            t = ModContent.ProjectileType<BoneTorch>();
+                        }
+                        else if (item2.type == ItemID.RainbowTorch)
+                        {
+                            t = ModContent.ProjectileType<RainbowTorch>();
+                        }
+                        else if (item2.type == ItemID.PinkTorch)
+                        {
+                            t = ModContent.ProjectileType<PinkTorch>();
+                        }
+                        */
+                        //if (t > 0)
+                        //{
+                        //    Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, 0, 0);
+                        //    return false;
+                        //}
                     }
                 }
             }
@@ -1536,6 +1619,7 @@ namespace ExxoAvalonOrigins
                 { "ExxoAvalonOrigins:TeleportUnlocked", teleportUnlocked},
                 { "ExxoAvalonOrigins:SwimmingUnlocked", swimmingUnlocked },
                 { "ExxoAvalonOrigins:SprintUnlocked", sprintUnlocked },
+                { "ExxoAvalonOrigins:FlightRestoreUnlocked", flightRestoreUnlocked },
             };
             return tag;
         }
@@ -1615,6 +1699,11 @@ namespace ExxoAvalonOrigins
                 sprintUnlocked = tag.Get<bool>("ExxoAvalonOrigins:SprintUnlocked");
             }
             else sprintUnlocked = false;
+            if (tag.ContainsKey("ExxoAvalonOrigins:FlightRestoreUnlocked"))
+            {
+                flightRestoreUnlocked = tag.Get<bool>("ExxoAvalonOrigins:FlightRestoreUnlocked");
+            }
+            else flightRestoreUnlocked = false;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -1630,11 +1719,6 @@ namespace ExxoAvalonOrigins
                 return false;
             }
             return true;
-        }
-
-        public override void PreUpdateMovement()
-        {
-
         }
 
         public override void PostUpdate()
@@ -1756,7 +1840,7 @@ namespace ExxoAvalonOrigins
                 {
                     if (Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.Ores.TritanoriumOre>() || Main.tile[xpos, ypos].type == (ushort)ModContent.TileType<Tiles.Ores.PyroscoricOre>())
                     {
-                        if (!player.HasItemInArmor(ModContent.ItemType<TomeofLuck>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                        if (!luckTome && !blahWings)
                         {
                             player.AddBuff(ModContent.BuffType<Melting>(), 60);
                         }
@@ -1837,7 +1921,6 @@ namespace ExxoAvalonOrigins
             {
                 player.shadow = 0f;
             }
-
             // Herbology bench distance check
             if (player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
             {
@@ -2430,7 +2513,7 @@ namespace ExxoAvalonOrigins
                 player.stealth = 1f;
             }
 
-            if (player.HasItemInArmor(ModContent.ItemType<BlahsWings>()) || player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()))
+            if (inertiaBoots || blahWings)
             {
                 if (player.controlUp && player.controlJump)
                 {
@@ -2471,7 +2554,7 @@ namespace ExxoAvalonOrigins
 
             #region bubble boost
 
-            if (bubbleBoost && activateBubble && !isOnGround() && !player.releaseJump && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>()))
+            if (bubbleBoost && activateBubble && !player.isOnGround() && !player.releaseJump && !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>()))
             {
                 #region bubble timer and spawn bubble gores/sound
 
@@ -2638,7 +2721,12 @@ namespace ExxoAvalonOrigins
                 }
                 tpCD++;
             }
-
+            stamFlightRestoreCD++;
+            if (stamFlightRestoreCD > 3600)
+            {
+                stamFlightRestoreCD = 3600;
+            }
+            
             if (astralProject)
             {
                 if (astralCD > 3600)
@@ -2685,10 +2773,6 @@ namespace ExxoAvalonOrigins
             }
         }
 
-        public bool isOnGround()
-        {
-            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
-        }
         public void DoubleJumps()
         {
             if (NumHookProj() > 0 || player.sliding || (player.autoJump && player.justJumped))
@@ -2868,6 +2952,7 @@ namespace ExxoAvalonOrigins
         //        }
         //    }
         //}
+        
         public override void PreUpdate()
         {
             WOSTongue();
@@ -3051,6 +3136,30 @@ namespace ExxoAvalonOrigins
             {
                 QuickStamina();
             }
+            if (ExxoAvalonOrigins.Mod.FlightTimeRestoreHotkey.JustPressed && player.wingsLogic > 0 && player.wingTime == 0 && flightRestoreUnlocked && stamFlightRestoreCD >= 60 * 60)
+            {
+                int amt = 150;
+                if (staminaDrain)
+                {
+                    amt *= (int)(staminaDrainStacks * staminaDrainMult);
+                }
+                if (statStam >= amt)
+                {
+                    statStam -= amt;
+                    stamFlightRestoreCD = 0;
+                    player.wingTime = player.wingTimeMax;
+                }
+                else if (stamFlower)
+                {
+                    QuickStamina(amt);
+                    if (statStam >= amt)
+                    {
+                        statStam -= amt;
+                        stamFlightRestoreCD = 0;
+                        player.wingTime = player.wingTimeMax;
+                    }
+                }
+            }
             if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && tpCD >= 300 && teleportUnlocked)
             {
                 int amt = 90;
@@ -3141,7 +3250,7 @@ namespace ExxoAvalonOrigins
             }
 
             #region other hotkeys
-            if (ExxoAvalonOrigins.Mod.rocketJumpHotkey.JustPressed && rocketJumpUnlocked)
+            if (ExxoAvalonOrigins.Mod.RocketJumpHotkey.JustPressed && rocketJumpUnlocked)
             {
                 activateRocketJump = !activateRocketJump;
                 Main.NewText(!activateRocketJump ? "Rocket Jump Off" : "Rocket Jump On");
@@ -3397,7 +3506,7 @@ namespace ExxoAvalonOrigins
             {
                 if (player.controlUp && player.releaseUp)
                 {
-                    if (isOnGround())
+                    if (player.isOnGround())
                     {
                         int amt = 70;
                         if (staminaDrain)
@@ -3523,16 +3632,16 @@ namespace ExxoAvalonOrigins
                     {
                         if (!player.HasItemInArmor(ItemID.HermesBoots) && !player.HasItemInArmor(ItemID.FlurryBoots) && !player.HasItemInArmor(ItemID.SpectreBoots) &&
                             !player.HasItemInArmor(ItemID.LightningBoots) && !player.HasItemInArmor(ItemID.FrostsparkBoots) && !player.HasItemInArmor(ItemID.SailfishBoots) &&
-                            !player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                            !inertiaBoots && !blahWings)
                         {
                             player.accRunSpeed = 6f;
                         }
                         else if (!player.HasItemInArmor(ItemID.LightningBoots) && !player.HasItemInArmor(ItemID.FrostsparkBoots) &&
-                            !player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                            !inertiaBoots && !blahWings)
                         {
                             player.accRunSpeed = 6.75f;
                         }
-                        else if (!player.HasItemInArmor(ModContent.ItemType<InertiaBoots>()) && !player.HasItemInArmor(ModContent.ItemType<BlahsWings>()))
+                        else if (!inertiaBoots && !blahWings)
                         {
                             player.accRunSpeed = 10.29f;
                             if ((player.velocity.X < 4f && player.controlRight) || (player.velocity.X > -4f && player.controlLeft))

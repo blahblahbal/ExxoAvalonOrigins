@@ -27,6 +27,15 @@ namespace ExxoAvalonOrigins
             return player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
         }
         /// <summary>
+        /// A helper method to check if the given Player is touching the ground.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns>Returns true if the player is touching the ground.</returns>
+        public static bool isOnGround(this Player player)
+        {
+            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
+        }
+        /// <summary>
         /// Rotate a Vector2.
         /// </summary>
         /// <param name="spinningpoint">The origin.</param>

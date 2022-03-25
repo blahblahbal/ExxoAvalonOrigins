@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +30,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.Avalon().regenStrike = true;
             player.Avalon().duraShield = true;
             player.noKnockback = true;
+            player.Avalon().spikeImmune = true;
         }
     }
 }

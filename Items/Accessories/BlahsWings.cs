@@ -44,6 +44,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.Avalon().blahWings = true;
             player.Avalon().noSticky = true;
             player.pStone = true;
             player.Avalon().bubbleBoost = true;

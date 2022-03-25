@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.blackBelt = true;
             player.iceSkate = true;
             player.wingTime = 1000;
-
+            player.Avalon().inertiaBoots = true;
             //if (player.controlUp && player.controlJump)
             //{
             //    player.velocity.Y = player.velocity.Y - 0.3f * player.gravDir;

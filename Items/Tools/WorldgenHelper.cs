@@ -23,6 +23,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.value = 0;
             item.height = dims.Height;
+            //item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
         }
 
         public override bool UseItem(Player player)
