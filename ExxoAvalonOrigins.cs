@@ -182,8 +182,8 @@ namespace ExxoAvalonOrigins
                 DashHotkey = RegisterHotKey("Toggle Stamina Stamina Dash", "K");
                 QuintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
                 SwimHotkey = RegisterHotKey("Toggle Stamina Swimming", "L");//implemented?
-                WallSlideHotkey = RegisterHotKey("Toggle Stamina Wall Sliding", "G");
-                FlightTimeRestoreHotkey = RegisterHotKey("Stamina Restore Flight Time", "Z");
+                WallSlideHotkey = RegisterHotKey("Toggle Stamina Wall Sliding", "Z");
+                FlightTimeRestoreHotkey = RegisterHotKey("Stamina Restore Flight Time", "G");
                 BubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");
                 ModeChangeHotkey = RegisterHotKey("Change Modes", "N");
                 AstralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
