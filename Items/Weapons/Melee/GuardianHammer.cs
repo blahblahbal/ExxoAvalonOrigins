@@ -10,25 +10,32 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Guardian Hammer");
+            Tooltip.SetDefault("'Lightning strikes with each hit'");
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 200;
+            item.damage = 120;
             item.noUseGraphic = true;
-            item.shootSpeed = 16f;
-            item.rare = ItemRarityID.Cyan;
+            item.shootSpeed = 14f;
+            item.rare = ItemRarityID.Red;
+            item.autoReuse = true;
             item.noMelee = true;
             item.width = dims.Width;
-            item.useTime = 32;
-            item.knockBack = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.GuardianHammer2>();
+            item.useTime = 13;
+            item.knockBack = 12f;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.GuardianHammer>();
             item.melee = true;
             item.value = Item.sellPrice(0, 25, 0, 0);
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 32;
+            item.useAnimation = 13;
             item.height = dims.Height;
+            item.UseSound = SoundID.Item1;
+        }
+        public override bool CanUseItem(Player player)
+        {
+            return (!(player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Melee.GuardianHammer>()] > 0));
         }
         public override void AddRecipes()
         {

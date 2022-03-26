@@ -2875,15 +2875,6 @@ namespace ExxoAvalonOrigins.Logic
             recipe.SetResult(ModContent.ItemType<OnyxStaff>());
             recipe.AddRecipe();
 
-
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.WoodenArrow, 75);
-            recipe.AddIngredient(ModContent.ItemType<ElementShard>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            recipe.SetResult(ModContent.ItemType<ElementalArrow>(), 75);
-            recipe.AddRecipe();
-
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.ChlorophyteArrow, 75);
             recipe.AddIngredient(ItemID.HolyArrow, 75);

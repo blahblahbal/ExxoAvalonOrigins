@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,6 +27,15 @@ namespace ExxoAvalonOrigins.Items.Ammo
             item.value = Item.sellPrice(0, 0, 3, 0);
             item.maxStack = 2000;
             item.height = dims.Height;
+        }
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.WoodenArrow, 250);
+            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 2);
+            recipe.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
+            recipe.SetResult(this, 250);
+            recipe.AddRecipe();
         }
     }
 }

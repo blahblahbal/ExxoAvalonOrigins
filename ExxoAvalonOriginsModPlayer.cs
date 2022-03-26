@@ -1683,27 +1683,22 @@ namespace ExxoAvalonOrigins
             {
                 rocketJumpUnlocked = tag.Get<bool>("ExxoAvalonOrigins:RocketJumpUnlocked");
             }
-            else rocketJumpUnlocked = false;
             if (tag.ContainsKey("ExxoAvalonOrigins:TeleportUnlocked"))
             {
                 teleportUnlocked = tag.Get<bool>("ExxoAvalonOrigins:TeleportUnlocked");
             }
-            else teleportUnlocked = false;
             if (tag.ContainsKey("ExxoAvalonOrigins:SwimmingUnlocked"))
             {
                 swimmingUnlocked = tag.Get<bool>("ExxoAvalonOrigins:SwimmingUnlocked");
             }
-            else swimmingUnlocked = false;
             if (tag.ContainsKey("ExxoAvalonOrigins:SprintUnlocked"))
             {
                 sprintUnlocked = tag.Get<bool>("ExxoAvalonOrigins:SprintUnlocked");
             }
-            else sprintUnlocked = false;
             if (tag.ContainsKey("ExxoAvalonOrigins:FlightRestoreUnlocked"))
             {
                 flightRestoreUnlocked = tag.Get<bool>("ExxoAvalonOrigins:FlightRestoreUnlocked");
             }
-            else flightRestoreUnlocked = false;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)

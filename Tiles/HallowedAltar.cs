@@ -33,7 +33,10 @@ namespace ExxoAvalonOrigins.Tiles
             g = 0.9f + brightness * 2f;
             b = 0f;
         }
-
+        public override bool CanExplode(int i, int j)
+        {
+            return false;
+        }
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
             if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && !Main.hardMode) blockDamaged = false;

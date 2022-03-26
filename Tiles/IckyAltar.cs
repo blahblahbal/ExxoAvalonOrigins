@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -32,6 +32,10 @@ namespace ExxoAvalonOrigins.Tiles
             r = 0.2f + brightness;
             g = 0.5f + brightness * 2f;
             b = 0.2f;
+        }
+        public override bool CanExplode(int i, int j)
+        {
+            return false;
         }
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {

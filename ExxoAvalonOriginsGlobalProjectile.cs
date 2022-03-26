@@ -232,7 +232,6 @@ namespace ExxoAvalonOrigins
         {
             return Lighting.GetColor((int)(position.X / 16f), (int)(position.Y / 16f));
         }
-
         public override void AI(Projectile projectile)
         {
             if (Main.player[projectile.owner].HasBuff(ModContent.BuffType<Buffs.Piercing>()) && projectile.penetrate != -1)
@@ -309,10 +308,10 @@ namespace ExxoAvalonOrigins
         public override void Kill(Projectile projectile, int timeLeft)
         {
             var instance = projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>();
-            if (projectile.type == ModContent.ProjectileType<Projectiles.Melee.GuardianHammer2>())
-            {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
-            }
+            //if (projectile.type == ModContent.ProjectileType<Projectiles.Melee.GuardianHammer>())
+            //{
+            //    Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
+            //}
             if (instance.torch) //Implement torch projectiles
             {
                 var num = 0;
