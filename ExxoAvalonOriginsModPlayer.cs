@@ -1932,20 +1932,22 @@ namespace ExxoAvalonOrigins
             {
                 player.Avalon().herb = false;
             }
-            if (chaosCharm)
-            {
-                int lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
-                if (lvl < 0)
-                {
-                    lvl = 0;
-                }
+            //if (chaosCharm)
+            //{
+            //    int lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
+            //    int modCrit = 2 * (int)Math.Floor((player.statLifeMax2 - (double)player.statLife) /
+            //                  player.statLifeMax2 * 10.0);
+            //    if (lvl < 0)
+            //    {
+            //        lvl = 0;
+            //    }
 
-                player.meleeCrit += 2 * lvl;
-                player.magicCrit += 2 * lvl;
-                player.rangedCrit += 2 * lvl;
-                player.thrownCrit += 2 * lvl;
-            }
-            chaosCharm = false;
+            //    player.meleeCrit += 2 * lvl;
+            //    player.magicCrit += 2 * lvl;
+            //    player.rangedCrit += 2 * lvl;
+            //    player.thrownCrit += 2 * lvl;
+            //}
+            //chaosCharm = false;
             slimeImmune = false;
             if (player.tongued)
             {
@@ -2677,9 +2679,7 @@ namespace ExxoAvalonOrigins
             {
                 int modCrit = 2 * (int)Math.Floor((player.statLifeMax2 - (double)player.statLife) /
                               player.statLifeMax2 * 10.0);
-                player.meleeCrit += modCrit;
-                player.magicCrit += modCrit;
-                player.rangedCrit += modCrit;
+                player.AllCrit(modCrit);
             }
 
             if (defDebuff)
@@ -2691,7 +2691,7 @@ namespace ExxoAvalonOrigins
                         player.buffType[num22] != BuffID.PotionSickness && player.buffType[num22] != BuffID.Merfolk &&
                         player.buffType[num22] != BuffID.Werewolf && player.buffType[num22] != BuffID.TheTongue &&
                         player.buffType[num22] != BuffID.ManaSickness && player.buffType[num22] != BuffID.Wet &&
-                        player.buffType[num22] != BuffID.Slimed)
+                        player.buffType[num22] != BuffID.Slimed && player.buffType[num22] != ModContent.BuffType<Buffs.StaminaDrain>())
                     {
                         flag = true;
                         break;
