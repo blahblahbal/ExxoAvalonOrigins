@@ -1775,7 +1775,6 @@ IL_162:
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().electrified && !npc.buffImmune[BuffID.Electrified])
             {
-                npc.velocity.X *= 0.05f;
                 npc.color = new Color(20, 240, 0, 100);
             }
             if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().frozen && !npc.buffImmune[ModContent.BuffType<Buffs.Frozen>()])
