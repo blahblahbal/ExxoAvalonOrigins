@@ -20,6 +20,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             item.width = dims.Width;
             item.value = Item.sellPrice(0, 5, 0, 0);
             item.height = dims.Height;
+            item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
