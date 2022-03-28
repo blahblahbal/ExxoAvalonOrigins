@@ -21,6 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileLighted[Type] = true;
             adjTiles = new int[]
             {
+                ModContent.TileType<CaesiumForge>(),
                 TileID.AdamantiteForge,
                 TileID.Hellforge,
                 TileID.Furnaces,
