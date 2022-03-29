@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.LightRed;
             item.width = dims.Width;
             item.accessory = true;
             item.value = Item.sellPrice(0, 2);
