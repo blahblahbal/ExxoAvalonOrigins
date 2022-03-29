@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.PlacedBars>();
             item.placeStyle = 15;
-            item.rare = ItemRarityID.Purple;
+            item.rare = ItemRarityID.Red;
             item.width = dims.Width;
             item.useTime = 10;
             item.value = Item.sellPrice(0, 1, 30, 0);
