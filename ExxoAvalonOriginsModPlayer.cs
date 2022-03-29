@@ -189,7 +189,7 @@ namespace ExxoAvalonOrigins
         public bool blahWings = false;
         public bool spikeImmune = false;
         public bool luckTome = false;
-
+        public bool thornHeartAmulet = false;
         public bool quackJump;
         public bool jumpAgainQuack;
         public bool armorStealth = false;

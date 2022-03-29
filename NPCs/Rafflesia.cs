@@ -44,9 +44,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (spawnInfo.player.Avalon().ZoneTropics)
             {
-                if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2].type == ModContent.TileType<Tiles.TropicalGrass>() &&
-                    !Main.tile[spawnInfo.spawnTileX + 1, spawnInfo.spawnTileY].active() && !Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].active() &&
-                    !Main.tile[spawnInfo.spawnTileX - 1, spawnInfo.spawnTileY].active())
+                if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2].type == ModContent.TileType<Tiles.TropicalGrass>())
+                    //&&
+                    //!Main.tile[spawnInfo.spawnTileX + 1, spawnInfo.spawnTileY].active() && !Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].active() &&
+                    //!Main.tile[spawnInfo.spawnTileX - 1, spawnInfo.spawnTileY].active())
                 {
                     return 1f;
                 }
