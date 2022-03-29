@@ -3434,7 +3434,7 @@ namespace ExxoAvalonOrigins.Logic
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 7);
+            recipe.AddIngredient(ModContent.ItemType<ZincBar>(), 6);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(ModContent.ItemType<ZincShortsword>());
             recipe.AddRecipe();
