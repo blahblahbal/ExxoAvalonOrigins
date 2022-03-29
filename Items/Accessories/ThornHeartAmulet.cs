@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Thorn Heart Amulet");
+            DisplayName.SetDefault("Thorned Heart Amulet");
             Tooltip.SetDefault("Damage increases as your health drops");
         }
 
@@ -36,7 +36,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            float dmg = (2 * (int)Math.Floor((player.statLifeMax2 - (double)player.statLife) / player.statLifeMax2 * 10)) / 100;
+            float dmg = (2 * (float)Math.Floor((player.statLifeMax2 - (double)player.statLife) / player.statLifeMax2 * 10)) / 50;
+            if (dmg < 0) dmg = 0;
+            //Main.NewText(player.statLifeMax2);
             player.allDamage += dmg;
         }
     }

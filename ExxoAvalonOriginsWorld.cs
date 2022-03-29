@@ -3184,10 +3184,31 @@ namespace ExxoAvalonOrigins
             }
             //if (!ExxoAvalonOriginsGlobalNPC.stoppedArmageddon) return;
             int x = Main.maxTilesX / 3;
-            if (Main.rand.Next(2) == 0) x = Main.maxTilesX - Main.maxTilesX / 3;
+            int xStored = x;
             int y = 50;
             if (Main.maxTilesY == 1800) y = 60;
             if (Main.maxTilesY == 2400) y = 70;
+            if (Main.rand.Next(2) == 0)
+            {
+                x = Main.maxTilesX - Main.maxTilesX / 3;
+
+
+                //for (int i = x; i < x + 210; i++)
+                //{
+                //    for (int j = y; j < y + 158; j++)
+                //    {
+                //        if (Main.tile[i, j].active() || Main.tile[i, j].liquid > 0 || Main.tile[i, j].wall > 0)
+                //        {
+                //            xStored--;
+                //            break;
+                //        }
+                //    }
+                //}
+            }
+            else
+            {
+                //while (Main.tile[x, y].active() || Main.tile[x, y].liquid > 0 || Main.tile[x, y].wall > 0) x++;
+            }
             World.Structures.SkyFortress.Generate(x, y);
             if (Main.netMode == NetmodeID.SinglePlayer)
             {

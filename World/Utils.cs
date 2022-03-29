@@ -89,7 +89,18 @@ namespace ExxoAvalonOrigins.World
             }
             return 0;
         }
-
+        public static void MakeSquareTemp(int x, int y)
+        {
+            for (int i = x; i < x + 5; i++)
+            {
+                for (int j = y; j < y + 5; j++)
+                {
+                    Main.tile[i, j].type = TileID.Stone;
+                    Main.tile[i, j].active(true);
+                    WorldGen.SquareTileFrame(i, j);
+                }
+            }
+        }
         public static void MakeCircle(int x, int y, int radius, int tileType, bool walls = false, int wallType = WallID.Dirt)
         {
             for (int k = x - radius; k <= x + radius; k++)
