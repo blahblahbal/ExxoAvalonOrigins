@@ -27,6 +27,7 @@
             IL.Terraria.GameContent.UI.Elements.UIGenProgressBar.DrawSelf += WorldUI.ILDrawSelf;
             On.Terraria.Player.PickAmmo += BuffEffects.OnPickAmmo;
             On.Terraria.Player.AddBuff += BuffEffects.OnAddBuff;
+            On.Terraria.NPC.AddBuff += BuffEffects.OnAddBuffNPC;
             On.Terraria.Player.OpenBossBag += BossBagDrops.OnOpenBossBag;
             IL.Terraria.Projectile.FishingCheck += BuffEffects.ILCatchFish;
             IL.Terraria.Player.Update += ExtraHealth.ILUpdate;

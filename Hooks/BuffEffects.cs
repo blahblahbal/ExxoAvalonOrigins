@@ -61,6 +61,34 @@ namespace ExxoAvalonOrigins.Hooks
             orig(self, type, time, quiet);
         }
 
+        public static void OnAddBuffNPC(On.Terraria.NPC.orig_AddBuff orig, NPC self, int type, int time, bool quiet = false)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (self.buffType[j] == type)
+                {
+                    if (type == ModContent.BuffType<Buffs.Bleeding>())
+                    {
+                        self.buffTime[j] += time;
+                        if (self.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks < 3)
+                        {
+                            self.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks++;
+                        }
+                        if (self.buffTime[j] > ExxoAvalonOriginsGlobalNPC.bleedTime)
+                        {
+                            self.buffTime[j] = ExxoAvalonOriginsGlobalNPC.bleedTime;
+                            return;
+                        }
+                    }
+                    else if (self.buffTime[j] < time)
+                    {
+                        self.buffTime[j] = time;
+                    }
+                    return;
+                }
+            }
+        }
+
         public static void ILCatchFish(ILContext il)
         {
             int advCrateBuffAddChance = 15;

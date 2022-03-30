@@ -42,6 +42,7 @@ namespace ExxoAvalonOrigins
         public static int boogerBossCounter = 0;
         public static bool savedIceman = false;
         public static int slimeLife = 10000;
+        public static int bleedTime = 60 * 7;
         public static bool imkCompat = false;
 
         public static List<int> shmMobs = new List<int>
@@ -1826,7 +1827,12 @@ IL_162:
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 4 * npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks;
+                int mult = 4;
+                if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().isBleedingHMBleed)
+                {
+                    mult = 6;
+                }
+                npc.lifeRegen -= mult * npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks;
                 if (damage < npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks)
                 {
                     damage = npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks;
@@ -1839,9 +1845,9 @@ IL_162:
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 30;
-                if (damage < 1)
+                if (damage < 2)
                 {
-                    damage = 1;
+                    damage = 2;
                 }
             }
         }

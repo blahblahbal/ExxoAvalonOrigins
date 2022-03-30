@@ -31,6 +31,7 @@ namespace ExxoAvalonOrigins
         public bool malaria;
         public bool bleeding;
         public int bleedStacks = 0;
+        public bool isBleedingHMBleed = false;
         public bool slowed = false;
     }
 }

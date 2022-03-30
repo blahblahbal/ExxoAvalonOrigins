@@ -31,10 +31,10 @@ namespace ExxoAvalonOrigins.Projectiles
             //projectile.velocity *= 0f;
             //projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().bloodArrowPos = projectile.position;
             target.AddBuff(ModContent.BuffType<Buffs.Bleeding>(), 8 * 60);
-            if (target.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks < 3)
-            {
-                target.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks++;
-            }
+            //if (target.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks < 3)
+            //{
+            //    target.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().bleedStacks++;
+            //}
         }
         public override void AI()
         {
