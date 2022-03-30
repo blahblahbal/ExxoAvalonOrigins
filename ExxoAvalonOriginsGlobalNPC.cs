@@ -1150,6 +1150,17 @@ IL_162:
                 Main.projectile[proj].velocity.Y = -3.5f;
                 Main.projectile[proj].velocity.X = Main.rand.Next(-45, 46) * 0.1f;
             }
+            if (npc.type == NPCID.AngryBones || npc.type == NPCID.AngryBonesBig || npc.type == NPCID.AngryBonesBigHelmet || npc.type == NPCID.AngryBonesBigMuscle)
+            {
+                if (Main.rand.Next(50) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BlackWhetstone>(), 1, false, -1, false);
+                }
+            }
+            if (Main.bloodMoon && Main.hardMode && Main.rand.Next(50) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BloodyWhetstone>(), 1, false, -1, false);
+            }
             if (npc.type == NPCID.KingSlime && Main.rand.Next(3) == 0 && !Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BandofSlime>(), 1, false, -1, false);

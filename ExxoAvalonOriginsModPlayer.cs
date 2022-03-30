@@ -349,7 +349,7 @@ namespace ExxoAvalonOrigins
         public bool noSticky;
         public bool astralStart;
         public bool vampireTeeth;
-        public bool bloodywhetstone;
+        public bool bloodyWhetstone;
         public bool riftGoggles;
         public bool malaria;
         public bool caesiumPoison;
@@ -1188,9 +1188,10 @@ namespace ExxoAvalonOrigins
                     player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
                 }
             }
-            if (player.inventory[player.selectedItem].melee && bloodywhetstone)
+            if (player.inventory[player.selectedItem].melee && bloodyWhetstone)
             {
                 target.AddBuff(ModContent.BuffType<Buffs.Bleeding>(), 120);
+                target.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().isBleedingHMBleed = true;
             }
         }
 

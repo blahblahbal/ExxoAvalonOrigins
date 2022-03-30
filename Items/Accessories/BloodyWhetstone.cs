@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Avalon().bloodywhetstone = true;
+            player.Avalon().bloodyWhetstone = true;
         }
     }
 }
