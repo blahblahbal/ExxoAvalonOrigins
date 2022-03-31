@@ -23,6 +23,11 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.alpha = 255;
             projectile.timeLeft = 180;
         }
+        public override bool PreAI()
+        {
+            Lighting.AddLight(projectile.position, 249 / 255, 201 / 255, 77 / 255);
+            return true;
+        }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             projectile.velocity.X = oldVelocity.X * -0.1f;

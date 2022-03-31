@@ -26,6 +26,11 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             return new Color(255, 255, 255, 150);
         }
+        public override bool PreAI()
+        {
+            Lighting.AddLight(projectile.position, 163 / 255, 77 / 255, 253 / 255);
+            return true;
+        }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (projectile.type == ModContent.ProjectileType<SacredLyreHomingNote>())

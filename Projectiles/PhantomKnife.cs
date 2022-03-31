@@ -25,6 +25,11 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.ignoreWater = true;
             projectile.extraUpdates = 0;
         }
+        public override bool PreAI()
+        {
+            Lighting.AddLight(projectile.position, 145 / 255, 1, 1);
+            return true;
+        }
         public override void AI()
         {
             projectile.localAI[1]++;

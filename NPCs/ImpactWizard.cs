@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.damage = 110;
+            npc.damage = 150;
             npc.lifeMax = 1200;
             npc.defense = 50;
             npc.width = 18;
@@ -147,7 +147,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (npc.ai[1] > 0f)
             {
                 npc.ai[1] -= 1f;
-                if (npc.ai[1] == 25f)
+                if (npc.ai[1] == 25)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
@@ -163,7 +163,7 @@ namespace ExxoAvalonOrigins.NPCs
                         num258 *= 1.4f;
                         if (!npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().silenced)
                         {
-                            var num262 = Projectile.NewProjectile(vector23.X, vector23.Y, num257, num258, ModContent.ProjectileType<Projectiles.ImpactSphere>(), 65, 0f, Main.myPlayer, 0f, 0f);
+                            var num262 = Projectile.NewProjectile(vector23.X, vector23.Y, num257, num258, ModContent.ProjectileType<Projectiles.ImpactSphere>(), Main.expertMode ? 35 : 65, 0f, Main.myPlayer, 0f, 0f);
                             Main.projectile[num262].timeLeft = 300;
                         }
                         npc.localAI[0] = 0f;

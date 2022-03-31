@@ -23,6 +23,11 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.friendly = true;
             projectile.timeLeft = 840;
         }
+        public override bool PreAI()
+        {
+            Lighting.AddLight(projectile.position, 72 / 255, 135 / 255, 255 / 255);
+            return true;
+        }
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 150);

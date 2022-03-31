@@ -11,11 +11,6 @@ namespace ExxoAvalonOrigins.Hooks
 {
     class BuffEffects
     {
-        public string[] buffNames =
-        {
-
-        };
-
         public static void OnPickAmmo(On.Terraria.Player.orig_PickAmmo orig, Player self, Item sItem, ref int shoot, ref float speed, ref bool canShoot, ref int Damage, ref float KnockBack, bool dontConsume)
         {
             float advArcheryBuffMult = 1.3f;
@@ -87,6 +82,7 @@ namespace ExxoAvalonOrigins.Hooks
                     return;
                 }
             }
+            orig(self, type, time, quiet);
         }
 
         public static void ILCatchFish(ILContext il)

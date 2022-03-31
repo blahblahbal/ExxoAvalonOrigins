@@ -22,6 +22,11 @@ namespace ExxoAvalonOrigins.Projectiles
             projectile.penetrate = 5;
             projectile.hostile = false;
         }
+        public override bool PreAI()
+        {
+            Lighting.AddLight(projectile.position, 249 / 255, 201 / 255, 77 / 255);
+            return true;
+        }
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(2, projectile.position, 10);

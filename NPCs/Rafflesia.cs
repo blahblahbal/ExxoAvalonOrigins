@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.NPCs
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0f;
             //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.BactusBanner>();
+            //bannerItem = ModContent.ItemType<Items.Banners.RafflesiaBanner>();
             //drawOffsetY = 10;
         }
 

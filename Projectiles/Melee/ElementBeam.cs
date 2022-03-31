@@ -30,14 +30,19 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         {
             if (this.projectile.localAI[1] >= 15f)
             {
-                return new Color(255, 255, 255, this.projectile.alpha);
+                return new Color(255, 255, 255, projectile.alpha);
             }
             if (this.projectile.localAI[1] < 5f)
             {
                 return Color.Transparent;
             }
-            int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);
+            int num7 = (int)((projectile.localAI[1] - 5f) / 10f * 255f);
             return new Color(num7, num7, num7, num7);
+        }
+        public override bool PreAI()
+        {
+            Lighting.AddLight(projectile.position, Main.DiscoR / 255, Main.DiscoG / 255, Main.DiscoB / 255);
+            return true;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
