@@ -18,11 +18,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 20;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 20;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateEquip(Player player)

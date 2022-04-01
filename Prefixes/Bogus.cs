@@ -21,17 +21,17 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Bogus", new Bogus());
+                Mod.AddPrefix("Bogus", new Bogus());
             }
             return false;
         }
 
         public override void Apply(Item item)
         {
-            Main.player[Main.myPlayer].magicCrit += 5;
-            Main.player[Main.myPlayer].meleeCrit += 5;
-            Main.player[Main.myPlayer].rangedCrit += 5;
-            Main.player[Main.myPlayer].thrownCrit += 5;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Magic) += 5;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Melee) += 5;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Ranged) += 5;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Throwing) += 5;
         }
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)

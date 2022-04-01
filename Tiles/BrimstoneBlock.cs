@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BrimstoneBlock : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(61, 49, 53));
             Main.tileSolid[Type] = true;

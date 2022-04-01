@@ -16,30 +16,17 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 2;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 1, 44, 0);
-            item.height = dims.Height;
+            Item.defense = 2;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 1, 44, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ObsidianHorseshoe);
-            recipe.AddIngredient(ItemID.CobaltShield);
-            recipe.AddIngredient(ItemID.Spike, 50);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ObsidianShield);
-            recipe.AddIngredient(ItemID.LuckyHorseshoe);
-            recipe.AddIngredient(ItemID.Spike, 50);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.ObsidianHorseshoe).AddIngredient(ItemID.CobaltShield).AddIngredient(ItemID.Spike, 50).AddTile(TileID.TinkerersWorkbench).Register();
+            CreateRecipe(1).AddIngredient(ItemID.ObsidianShield).AddIngredient(ItemID.LuckyHorseshoe).AddIngredient(ItemID.Spike, 50).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

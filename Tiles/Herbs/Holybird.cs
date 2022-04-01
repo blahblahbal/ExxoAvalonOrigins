@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
     {
         private const int FrameWidth = 18; //a field for readibilty and to kick out those magic numbers
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileCut[Type] = true;
@@ -42,8 +42,8 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
         }
         public override bool CanPlace(int i, int j)
         {
-            return (Main.tile[i, j + 1].type == TileID.ClayPot || Main.tile[i, j + 1].type == TileID.PlanterBox) &&
-                (!Main.tile[i, j].active() || Main.tile[i, j].type == TileID.Plants);
+            return (Main.tile[i, j + 1].TileType == TileID.ClayPot || Main.tile[i, j + 1].TileType == TileID.PlanterBox) &&
+                (!Main.tile[i, j].HasTile || Main.tile[i, j].TileType == TileID.Plants);
         }
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
@@ -74,7 +74,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
 
             if (stage == PlantStage.Planted && Main.rand.Next(8) == 0)
             {
-                tile.frameX += FrameWidth;
+                tile.TileFrameX += FrameWidth;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendTileSquare(-1, i, j, 1);
             }
@@ -82,7 +82,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
             {
                 if (Main.rand.Next(12) == 0)
                 {
-                    tile.frameX = 36;
+                    tile.TileFrameX = 36;
                 }
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendTileSquare(-1, i, j, 1);
@@ -104,7 +104,7 @@ namespace ExxoAvalonOrigins.Tiles.Herbs
         private PlantStage GetStage(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j); //Always use Framing.GetTileSafely instead of Main.tile as it prevents any errors caused from other mods
-            return (PlantStage)(tile.frameX / FrameWidth);
+            return (PlantStage)(tile.TileFrameX / FrameWidth);
         }
     }
 }

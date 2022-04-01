@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Buffs
     public class StaminaDrain : ModBuff
     {
         int stacks = 1;
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stamina Sickness");
             Description.SetDefault("Stamina usage is increased by ");

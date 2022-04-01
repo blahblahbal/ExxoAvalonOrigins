@@ -1,6 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.World.Passes
             int k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
                 {
                     int num = k - 1;
                     if (Main.tile[i, num - 1].lava() || Main.tile[i - 1, num - 1].lava())
@@ -53,30 +53,30 @@ namespace ExxoAvalonOrigins.World.Passes
                     {
                         return false;
                     }
-                    if (!Main.tileSolid[(int)Main.tile[i, num].type] || !Main.tileSolid[(int)Main.tile[i - 1, num].type])
+                    if (!Main.tileSolid[(int)Main.tile[i, num].TileType] || !Main.tileSolid[(int)Main.tile[i - 1, num].TileType])
                     {
                         return false;
                     }
-                    if (!Main.wallDungeon[(int)Main.tile[i, num].wall])
+                    if (!Main.wallDungeon[(int)Main.tile[i, num].WallType])
                     {
                         return false;
                     }
                     Main.tile[i - 1, num - 1].active(true);
-                    Main.tile[i - 1, num - 1].type = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
-                    Main.tile[i - 1, num - 1].frameX = 0;
-                    Main.tile[i - 1, num - 1].frameY = 0;
+                    Main.tile[i - 1, num - 1].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
+                    Main.tile[i - 1, num - 1].TileFrameX = 0;
+                    Main.tile[i - 1, num - 1].TileFrameY = 0;
                     Main.tile[i, num - 1].active(true);
-                    Main.tile[i, num - 1].type = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
-                    Main.tile[i, num - 1].frameX = 18;
-                    Main.tile[i, num - 1].frameY = 0;
+                    Main.tile[i, num - 1].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
+                    Main.tile[i, num - 1].TileFrameX = 18;
+                    Main.tile[i, num - 1].TileFrameY = 0;
                     Main.tile[i - 1, num].active(true);
-                    Main.tile[i - 1, num].type = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
-                    Main.tile[i - 1, num].frameX = 0;
-                    Main.tile[i - 1, num].frameY = 18;
+                    Main.tile[i - 1, num].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
+                    Main.tile[i - 1, num].TileFrameX = 0;
+                    Main.tile[i - 1, num].TileFrameY = 18;
                     Main.tile[i, num].active(true);
-                    Main.tile[i, num].type = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
-                    Main.tile[i, num].frameX = 18;
-                    Main.tile[i, num].frameY = 18;
+                    Main.tile[i, num].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
+                    Main.tile[i, num].TileFrameX = 18;
+                    Main.tile[i, num].TileFrameY = 18;
                     return true;
                 }
                 else

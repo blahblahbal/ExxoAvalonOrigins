@@ -13,22 +13,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
         }
         public override void SetDefaults()
         {
-            item.useStyle = 1;
-            item.shootSpeed = 14f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Reflector>();
-            item.damage = 120;
-            item.width = 38;
-            item.height = 36;
-            item.UseSound = SoundID.Item44;
+            Item.useStyle = 1;
+            Item.shootSpeed = 14f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Reflector>();
+            Item.damage = 120;
+            Item.width = 38;
+            Item.height = 36;
+            Item.UseSound = SoundID.Item44;
             //item.buffType = ModContent.BuffType<Buffs.Reflector>();
-            item.useAnimation = 30;
-            item.useTime = 30;
-            item.noMelee = true;
-            item.value = Item.sellPrice(0, 30, 0, 0);
-            item.knockBack = 8.5f;
-            item.rare = 8;
-            item.summon = true;
-            item.mana = 30;
+            Item.useAnimation = 30;
+            Item.useTime = 30;
+            Item.noMelee = true;
+            Item.value = Item.sellPrice(0, 30, 0, 0);
+            Item.knockBack = 8.5f;
+            Item.rare = 8;
+            Item.DamageType = DamageClass.Summon;
+            Item.mana = 30;
             //item.buffTime = 3600;
         }
     }

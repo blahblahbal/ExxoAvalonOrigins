@@ -14,15 +14,15 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ContagionSpray");
-            projectile.width = dims.Width * 6 / 16;
-            projectile.height = dims.Height * 6 / 16 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.alpha = 255;
-            projectile.penetrate = -1;
-            projectile.MaxUpdates = 2;
-            projectile.tileCollide = false;
-            projectile.ignoreWater = true;
+            Projectile.width = dims.Width * 6 / 16;
+            Projectile.height = dims.Height * 6 / 16 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.alpha = 255;
+            Projectile.penetrate = -1;
+            Projectile.MaxUpdates = 2;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
         }
 
         public override void AI()
@@ -31,37 +31,37 @@ namespace ExxoAvalonOrigins.Projectiles
             var num501 = 0;
             num500 = 237;
             num501 = 6;
-            if (projectile.owner == Main.myPlayer)
+            if (Projectile.owner == Main.myPlayer)
             {
-                WorldGen.Convert((int)(projectile.position.X + projectile.width / 2) / 16, (int)(projectile.position.Y + projectile.height / 2) / 16, num501, 2);
+                WorldGen.Convert((int)(Projectile.position.X + Projectile.width / 2) / 16, (int)(Projectile.position.Y + Projectile.height / 2) / 16, num501, 2);
             }
-            if (projectile.timeLeft > 133)
+            if (Projectile.timeLeft > 133)
             {
-                projectile.timeLeft = 133;
+                Projectile.timeLeft = 133;
             }
-            if (projectile.ai[0] > 7f)
+            if (Projectile.ai[0] > 7f)
             {
                 var num502 = 1f;
-                if (projectile.ai[0] == 8f)
+                if (Projectile.ai[0] == 8f)
                 {
                     num502 = 0.2f;
                 }
-                else if (projectile.ai[0] == 9f)
+                else if (Projectile.ai[0] == 9f)
                 {
                     num502 = 0.4f;
                 }
-                else if (projectile.ai[0] == 10f)
+                else if (Projectile.ai[0] == 10f)
                 {
                     num502 = 0.6f;
                 }
-                else if (projectile.ai[0] == 11f)
+                else if (Projectile.ai[0] == 11f)
                 {
                     num502 = 0.8f;
                 }
-                projectile.ai[0] += 1f;
+                Projectile.ai[0] += 1f;
                 for (var num503 = 0; num503 < 1; num503++)
                 {
-                    var num504 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, num500, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
+                    var num504 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, num500, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
                     Main.dust[num504].noGravity = true;
                     Main.dust[num504].scale *= 1.75f;
                     var dust57 = Main.dust[num504];
@@ -73,9 +73,9 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             else
             {
-                projectile.ai[0] += 1f;
+                Projectile.ai[0] += 1f;
             }
-            projectile.rotation += 0.3f * projectile.direction;
+            Projectile.rotation += 0.3f * Projectile.direction;
         }
     }
 }

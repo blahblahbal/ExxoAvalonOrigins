@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class VoltBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("VoltBrickWall");
+            drop = Mod.Find<ModItem>("VoltBrickWall").Type;
             AddMapEntry(Color.MediumPurple);
             dustType = DustID.PurpleTorch;
         }

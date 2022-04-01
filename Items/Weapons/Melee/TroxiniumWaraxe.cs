@@ -16,36 +16,36 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 45;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.axe = 22;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.knockBack = 6.5f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 2, 28, 0);
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 45;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.axe = 22;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.knockBack = 6.5f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 2, 28, 0);
+            Item.height = dims.Height;
             if (!Main.dedServ)
             {
-                item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.GetTexture(Texture + "_Glow");
+                Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
             }
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/Weapons/Melee/TroxiniumWaraxe_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Melee/TroxiniumWaraxe_Glow").Value;
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,

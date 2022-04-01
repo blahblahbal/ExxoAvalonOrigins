@@ -19,28 +19,22 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/CorruptedThornBodyarmor");
-            item.defense = 18;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 1, 90, 0);
-            item.height = dims.Height;
+            Item.defense = 18;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 1, 90, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike, 25);
-            recipe.AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 25);
-            recipe.AddIngredient(ItemID.SoulofNight, 20);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Spike, 25).AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 25).AddIngredient(ItemID.SoulofNight, 20).AddTile(TileID.MythrilAnvil).Register();
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicCrit += 10;
-            player.meleeCrit += 10;
-            player.rangedCrit += 10;
-            player.thrownCrit += 10;
+            player.GetCritChance(DamageClass.Magic) += 10;
+            player.GetCritChance(DamageClass.Melee) += 10;
+            player.GetCritChance(DamageClass.Ranged) += 10;
+            player.GetCritChance(DamageClass.Throwing) += 10;
             player.Avalon().critDamageMult += 0.50f;
             player.statLifeMax2 += 100;
         }

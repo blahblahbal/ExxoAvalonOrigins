@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Other
 {
@@ -17,19 +18,19 @@ namespace ExxoAvalonOrigins.Items.Other
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.rare = ItemRarityID.Red;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 30;
-            item.useStyle = 10;
-            item.value = 100;
-            item.useAnimation = 30;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.rare = ItemRarityID.Red;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 30;
+            Item.useStyle = 10;
+            Item.value = 100;
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             Main.PlaySound(SoundID.Zombie, -1, -1, 12);
             return true;

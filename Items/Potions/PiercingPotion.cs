@@ -15,27 +15,21 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.Piercing>();
-            item.consumable = true;
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 4 * 3600;
-            item.UseSound = SoundID.Item3;
+            Item.buffType = ModContent.BuffType<Buffs.Piercing>();
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 4 * 3600;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Material.Holybird>());
-            r.AddIngredient(ItemID.Waterleaf);
-            r.AddIngredient(ItemID.BottledWater);
-            r.AddTile(TileID.Bottles);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.Holybird>()).AddIngredient(ItemID.Waterleaf).AddIngredient(ItemID.BottledWater).AddTile(TileID.Bottles).Register();
         }
     }
 }

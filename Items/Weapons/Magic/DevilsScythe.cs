@@ -15,23 +15,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item8;
-            item.magic = true;
-            item.damage = 61;
-            item.autoReuse = true;
-            item.scale = 0.9f;
-            item.shootSpeed = 1.2f;
-            item.mana = 16;
-            item.rare = ItemRarityID.Pink;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 4.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.DevilScythe>();
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 40000;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item8;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 61;
+            Item.autoReuse = true;
+            Item.scale = 0.9f;
+            Item.shootSpeed = 1.2f;
+            Item.mana = 16;
+            Item.rare = ItemRarityID.Pink;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 4.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.DevilScythe>();
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 40000;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
     }
 }

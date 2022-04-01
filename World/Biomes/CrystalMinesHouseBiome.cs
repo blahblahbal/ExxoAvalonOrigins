@@ -10,7 +10,7 @@ using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Biomes
 {
@@ -175,7 +175,7 @@ namespace ExxoAvalonOrigins.World.Biomes
             int k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
                 {
                     int num = k;
                     int num2 = WorldGen.PlaceChest(i - 1, num - 1, TileID.Containers2, notNearOtherChests);
@@ -313,7 +313,7 @@ namespace ExxoAvalonOrigins.World.Biomes
             {
                 for (int top = room.Y; top < room.Y + room.Height - 1; top++)
                 {
-                    if (blacklistedWalls.Contains(Main.tile[left, top].wall))
+                    if (blacklistedWalls.Contains(Main.tile[left, top].WallType))
                     {
                         return false;
                     }

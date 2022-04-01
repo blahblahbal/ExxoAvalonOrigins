@@ -92,21 +92,21 @@ namespace ExxoAvalonOrigins.NPCs.Utils
         public void UpdateBaseData(ModNPC modNPC)
         {
             ModNPC = modNPC;
-            npc = ModNPC.npc;
-            if (!ModNPC.npc.HasValidTarget)
+            npc = ModNPC.NPC;
+            if (!ModNPC.NPC.HasValidTarget)
             {
                 return;
             }
 
-            if (ModNPC.npc.HasPlayerTarget)
+            if (ModNPC.NPC.HasPlayerTarget)
             {
-                target = Main.player[ModNPC.npc.target];
+                target = Main.player[ModNPC.NPC.target];
             }
             else
             {
-                target = Main.npc[ModNPC.npc.target];
+                target = Main.npc[ModNPC.NPC.target];
             }
-            vectorToTarget = target.Center - ModNPC.npc.Center;
+            vectorToTarget = target.Center - ModNPC.NPC.Center;
             unitVectorToTarget = vectorToTarget.SafeNormalize(Vector2.UnitX);
 
             if (!syncedRandomSet)

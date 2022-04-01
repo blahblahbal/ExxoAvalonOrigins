@@ -16,18 +16,18 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 7, 0, 0);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 7, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.magicQuiver = true;
             player.arrowDamage += 0.15f;
-            player.rangedCrit += 5;
+            player.GetCritChance(DamageClass.Ranged) += 5;
         }
     }
 }

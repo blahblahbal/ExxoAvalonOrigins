@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Vision : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vision");
             Description.SetDefault("Open caves light up");

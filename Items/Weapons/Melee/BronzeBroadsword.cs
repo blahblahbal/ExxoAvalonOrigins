@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.TinBroadsword);
+            Item.CloneDefaults(ItemID.TinBroadsword);
         }
     }
 }

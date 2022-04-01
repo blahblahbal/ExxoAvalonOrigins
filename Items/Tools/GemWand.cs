@@ -16,30 +16,19 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IronBar, 6);
-            recipe.AddIngredient(ItemID.Sapphire);
-            recipe.AddIngredient(ItemID.Ruby);
-            recipe.AddIngredient(ItemID.Emerald);
-            recipe.AddIngredient(ItemID.Topaz);
-            recipe.AddIngredient(ItemID.Amethyst);
-            recipe.AddIngredient(ItemID.Diamond);
-            recipe.anyIronBar = true;
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.IronBar, 6).AddIngredient(ItemID.Sapphire).AddIngredient(ItemID.Ruby).AddIngredient(ItemID.Emerald).AddIngredient(ItemID.Topaz).AddIngredient(ItemID.Amethyst).AddIngredient(ItemID.Diamond).AddTile(TileID.TinkerersWorkbench).Register();
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             Vector2 mousePosition = Main.MouseWorld;
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -63,10 +52,10 @@ namespace ExxoAvalonOrigins.Items.Tools
                         (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= mpTile.Y);
                     if (ExxoAvalonOriginsGlobalItem.gems.Contains(t) && t != 0)
                     {
-                        if (!Main.tile[mpTile.X, mpTile.Y].active() && inrange)
+                        if (!Main.tile[mpTile.X, mpTile.Y].HasTile && inrange)
                         {
                             bool subtractFromStack = WorldGen.PlaceTile(mpTile.X, mpTile.Y, ExxoAvalonOriginsGlobalItem.GemToTile(t));
-                            if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
+                            if (Main.tile[mpTile.X, mpTile.Y].HasTile && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
                             {
                                 NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, ExxoAvalonOriginsGlobalItem.GemToTile(t));
                             }

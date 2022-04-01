@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Shockwave : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shockwave");
             Description.SetDefault("On-screen enemies take damage when you land");

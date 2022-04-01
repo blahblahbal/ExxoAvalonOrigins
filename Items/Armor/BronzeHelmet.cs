@@ -16,18 +16,14 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 2;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 3, 50);
-            item.height = dims.Height;
+            Item.defense = 2;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 3, 50);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 12).AddTile(TileID.Anvils).Register();
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {

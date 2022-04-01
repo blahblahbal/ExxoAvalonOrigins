@@ -16,14 +16,14 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.ammo = AmmoID.Solution;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.consumable = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.YellowSolution>() - ProjectileID.PureSpray;
-            item.value = Item.buyPrice(0, 0, 25, 0);
-            item.maxStack = 2000;
-            item.height = dims.Height;
+            Item.ammo = AmmoID.Solution;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.consumable = true;
+            Item.shoot = ModContent.ProjectileType<Projectiles.YellowSolution>() - ProjectileID.PureSpray;
+            Item.value = Item.buyPrice(0, 0, 25, 0);
+            Item.maxStack = 2000;
+            Item.height = dims.Height;
         }
         public override bool ConsumeAmmo(Player player)
         {

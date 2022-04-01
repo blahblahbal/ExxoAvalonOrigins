@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 {
     public class AdvManaRegeneration : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Advanced Mana Regeneration");
             Description.SetDefault("Increased mana regeneration");

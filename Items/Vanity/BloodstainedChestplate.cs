@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Vanity
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.vanity = true;
-            item.value = Item.sellPrice(0, 0, 50, 0);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.vanity = true;
+            Item.value = Item.sellPrice(0, 0, 50, 0);
+            Item.height = dims.Height;
         }
     }
 }

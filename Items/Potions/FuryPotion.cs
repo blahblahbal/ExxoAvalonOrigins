@@ -18,29 +18,23 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.Fury>();
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.value = Item.sellPrice(0, 0, 2, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 14400;
+            Item.buffType = ModContent.BuffType<Buffs.Fury>();
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 14400;
         }
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ModContent.ItemType<Ickfish>());
-            recipe.AddIngredient(ModContent.ItemType<Barfbush>());
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(ModContent.ItemType<FuryPotion>());
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.BottledWater).AddIngredient(ModContent.ItemType<Ickfish>()).AddIngredient(ModContent.ItemType<Barfbush>()).AddTile(TileID.Bottles).ReplaceResult(ModContent.ItemType<FuryPotion>());
         }
     }
 }

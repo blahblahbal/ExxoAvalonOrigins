@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class CrystalFruit : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
         //}
         public override bool CreateDust(int i, int j, ref int type)
         {
-            switch (Main.tile[i, j].frameY / 36)
+            switch (Main.tile[i, j].TileFrameY / 36)
             {
                 case 0:
                     type = DustID.PinkCrystalShard;

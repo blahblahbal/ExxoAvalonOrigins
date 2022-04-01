@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -15,18 +16,18 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ClownBomb");
-            projectile.width = dims.Width * 20 / 20;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.light = 0.9f;
-            projectile.alpha = 0;
-            projectile.scale = 1f;
-            projectile.timeLeft = 240;
+            Projectile.width = dims.Width * 20 / 20;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.light = 0.9f;
+            Projectile.alpha = 0;
+            Projectile.scale = 1f;
+            Projectile.timeLeft = 240;
             aiType = 30;
-            projectile.tileCollide = true;
-            projectile.CloneDefaults(30);
+            Projectile.tileCollide = true;
+            Projectile.CloneDefaults(30);
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
@@ -37,24 +38,24 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Item14, projectile.position);
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
             for (int i = 0; i < 15; i++)
             {
-                int dustIndex = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+                int dustIndex = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
                 Dust obj = Main.dust[dustIndex];
                 obj.velocity *= 1.4f;
             }
             for (int j = 0; j < 10; j++)
             {
-                int dustIndex2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+                int dustIndex2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
                 Main.dust[dustIndex2].noGravity = true;
                 Dust obj2 = Main.dust[dustIndex2];
                 obj2.velocity *= 5f;
-                dustIndex2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+                dustIndex2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
                 Dust obj3 = Main.dust[dustIndex2];
                 obj3.velocity *= 3f;
             }
-            if (Main.myPlayer != projectile.owner)
+            if (Main.myPlayer != Projectile.owner)
             {
                 return;
             }

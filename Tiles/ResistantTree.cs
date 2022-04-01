@@ -14,17 +14,17 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override int DropWood()
         {
-            return mod.ItemType("ResistantWood");
+            return Mod.Find<ModItem>("ResistantWood").Type;
         }
 
         public override Texture2D GetTexture()
         {
-            return mod.GetTexture("Tiles/ResistantTree");
+            return mod.Assets.Request<Texture2D>("Tiles/ResistantTree").Value;
         }
 
         public override Texture2D GetBranchTextures(int i, int j, int trunkOffset, ref int frame)
         {
-            return mod.GetTexture("Tiles/ResistantTreeBranches");
+            return mod.Assets.Request<Texture2D>("Tiles/ResistantTreeBranches").Value;
         }
         public override int CreateDust()
         {
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Tiles
             frameHeight = 80;
             yOffset += 2;
             //xOffsetLeft += 16;
-            return mod.GetTexture("Tiles/ResistantTreeTop");
+            return mod.Assets.Request<Texture2D>("Tiles/ResistantTreeTop").Value;
         }
     }
 }

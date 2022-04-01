@@ -17,6 +17,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins
 {
@@ -461,7 +462,7 @@ namespace ExxoAvalonOrigins
                     item.useTime = 10;
                     item.useTurn = item.autoReuse = true;
                     item.createTile = ModContent.TileType<Tiles.MushroomTile>();
-                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.useStyle = ItemUseStyleID.Swing;
                     item.UseSound = null;
                     break;
                 case ItemID.Torch:
@@ -473,7 +474,7 @@ namespace ExxoAvalonOrigins
                     item.rare = ItemRarityID.Green;
                     break;
                 case ItemID.RottenChunk:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.useStyle = ItemUseStyleID.Swing;
                     item.useAnimation = 15;
                     item.useTime = 10;
                     item.consumable = true;
@@ -483,7 +484,7 @@ namespace ExxoAvalonOrigins
                     break;
                 case ItemID.ShadowScale:
                     item.useTurn = true;
-                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.useStyle = ItemUseStyleID.Swing;
                     item.useAnimation = 15;
                     item.useTime = 10;
                     item.autoReuse = true;
@@ -513,7 +514,7 @@ namespace ExxoAvalonOrigins
                     item.maxStack = 75;
                     break;
                 case ItemID.Vine:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.useStyle = ItemUseStyleID.Swing;
                     item.useTurn = true;
                     item.useAnimation = 15;
                     item.useTime = 8;
@@ -703,7 +704,7 @@ namespace ExxoAvalonOrigins
                     item.pick = 55;
                     break;
                 case ItemID.Vertebrae:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.useStyle = ItemUseStyleID.Swing;
                     item.useAnimation = 15;
                     item.useTime = 10;
                     item.consumable = true;
@@ -719,7 +720,7 @@ namespace ExxoAvalonOrigins
                     item.value = 108000;
                     break;
                 case ItemID.Ectoplasm:
-                    item.useStyle = ItemUseStyleID.SwingThrow;
+                    item.useStyle = ItemUseStyleID.Swing;
                     item.useAnimation = 15;
                     item.useTime = 10;
                     item.consumable = true;
@@ -983,21 +984,21 @@ namespace ExxoAvalonOrigins
                 }
                 Point mpTile = player.Avalon().MousePosition.ToTileCoordinates();
 
-                if ((Main.tile[mpTile.X, mpTile.Y].type == TileID.BloomingHerbs ||
-                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Barfbush>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
-                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Bloodberry>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
-                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Sweetstem>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36 ||
-                    Main.tile[mpTile.X, mpTile.Y].type == ModContent.TileType<Tiles.Herbs.Holybird>() && Main.tile[mpTile.X, mpTile.Y].frameX == 36) &&
-                    (Main.tile[mpTile.X, mpTile.Y + 1].type == TileID.ClayPot ||
-                    Main.tile[mpTile.X, mpTile.Y + 1].type == TileID.PlanterBox) && Main.mouseLeft)
+                if ((Main.tile[mpTile.X, mpTile.Y].TileType == TileID.BloomingHerbs ||
+                    Main.tile[mpTile.X, mpTile.Y].TileType == ModContent.TileType<Tiles.Herbs.Barfbush>() && Main.tile[mpTile.X, mpTile.Y].TileFrameX == 36 ||
+                    Main.tile[mpTile.X, mpTile.Y].TileType == ModContent.TileType<Tiles.Herbs.Bloodberry>() && Main.tile[mpTile.X, mpTile.Y].TileFrameX == 36 ||
+                    Main.tile[mpTile.X, mpTile.Y].TileType == ModContent.TileType<Tiles.Herbs.Sweetstem>() && Main.tile[mpTile.X, mpTile.Y].TileFrameX == 36 ||
+                    Main.tile[mpTile.X, mpTile.Y].TileType == ModContent.TileType<Tiles.Herbs.Holybird>() && Main.tile[mpTile.X, mpTile.Y].TileFrameX == 36) &&
+                    (Main.tile[mpTile.X, mpTile.Y + 1].TileType == TileID.ClayPot ||
+                    Main.tile[mpTile.X, mpTile.Y + 1].TileType == TileID.PlanterBox) && Main.mouseLeft)
                 {
                     WorldGen.KillTile(mpTile.X, mpTile.Y);
-                    if (!Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    if (!Main.tile[mpTile.X, mpTile.Y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                     {
                         NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, mpTile.X, mpTile.Y);
                     }
                     WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile, style: item.placeStyle);
-                    if (Main.tile[mpTile.X, mpTile.Y].active() && Main.netMode != NetmodeID.SinglePlayer)
+                    if (Main.tile[mpTile.X, mpTile.Y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                     {
                         NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, item.createTile, item.placeStyle);
                     }
@@ -1209,7 +1210,7 @@ namespace ExxoAvalonOrigins
             return base.CanUseItem(item, player);
         }
 
-        public override bool UseItem(Item item, Player player)
+        public override bool? UseItem(Item item, Player player)
         {
             //if (item.type == ModContent.ItemType<Items.Weapons.Summon.AdamantiteDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.BismuthDaggerStaff>() ||
             //    item.type == ModContent.ItemType<Items.Weapons.Summon.GoldDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.PlatinumDaggerStaff>() ||
@@ -1229,10 +1230,10 @@ namespace ExxoAvalonOrigins
                     (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
                 if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
                     (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
-                    !Main.tile[Player.tileTargetX, Player.tileTargetY].active() && inrange)
+                    !Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile && inrange)
                 {
                     bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
-                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
                     {
                         NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, item.createTile);
                     }
@@ -1301,15 +1302,15 @@ namespace ExxoAvalonOrigins
             {
                 if (item.prefix == ModContent.PrefixType<Fluidic>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+5% increased movement speed")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+5% increased movement speed")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "Free movement in liquids")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccMaxMana", "Free movement in liquids")
                         {
                             isModifier = true
                         });
@@ -1317,15 +1318,15 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Barbaric>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+4% damage")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+4% damage")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "+6% knockback")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccMaxMana", "+6% knockback")
                         {
                             isModifier = true
                         });
@@ -1333,11 +1334,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Boosted>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+4% increased movement speed")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+4% increased movement speed")
                         {
                             isModifier = true
                         });
@@ -1345,11 +1346,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Busted>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "-1 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "-1 defense")
                         {
                             isModifier = true,
                             isModifierBad = true
@@ -1358,16 +1359,16 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Disgusting>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "-2 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "-2 defense")
                         {
                             isModifier = true,
                             isModifierBad = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "Stink potion effect")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccMaxMana", "Stink potion effect")
                         {
                             isModifier = true,
                             isModifierBad = true
@@ -1376,15 +1377,15 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Glorious>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+4% damage")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+4% damage")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "+1 defense")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccMaxMana", "+1 defense")
                         {
                             isModifier = true
                         });
@@ -1392,11 +1393,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Insane>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "Increased placement speed")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "Increased placement speed")
                         {
                             isModifier = true
                         });
@@ -1404,11 +1405,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Loaded>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+1 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+1 defense")
                         {
                             isModifier = true
                         });
@@ -1416,11 +1417,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Messy>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "-5% damage")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "-5% damage")
                         {
                             isModifier = true,
                             isModifierBad = true
@@ -1429,11 +1430,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Mythic>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+20 maximum mana")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+20 maximum mana")
                         {
                             isModifier = true
                         });
@@ -1441,11 +1442,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Protective>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+2 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+2 defense")
                         {
                             isModifier = true
                         });
@@ -1453,11 +1454,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Silly>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+2% critical strike chance")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+2% critical strike chance")
                         {
                             isModifier = true
                         });
@@ -1465,11 +1466,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Handy>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+1 block range")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+1 block range")
                         {
                             isModifier = true
                         });
@@ -1477,11 +1478,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Slimy>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "Reduces damage taken by 3%")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "Reduces damage taken by 3%")
                         {
                             isModifier = true
                         });
@@ -1489,15 +1490,15 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Confused>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+5% melee damage")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+5% melee damage")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMaxMana", "-2% melee speed")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccMaxMana", "-2% melee speed")
                         {
                             isModifier = true,
                             isModifierBad = true
@@ -1509,11 +1510,11 @@ namespace ExxoAvalonOrigins
             {
                 if (item.prefix == ModContent.PrefixType<Magical>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+40 mana")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+40 mana")
                         {
                             isModifier = true
                         });
@@ -1521,19 +1522,19 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Enchanted>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMaxMana", "+20 maximum mana")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMaxMana", "+20 maximum mana")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccMoveSpeed", "+3% movement speed")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccMoveSpeed", "+3% movement speed")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 3, new TooltipLine(mod, "PrefixAccDefense", "+1 defense")
+                        tooltips.Insert(index + 3, new TooltipLine(Mod, "PrefixAccDefense", "+1 defense")
                         {
                             isModifier = true
                         });
@@ -1541,11 +1542,11 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Bogus>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccCritChance", "+6% critical strike chance")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccCritChance", "+6% critical strike chance")
                         {
                             isModifier = true
                         });
@@ -1553,15 +1554,15 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Vigorous>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccMeleeSpeed", "+3% melee speed")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccMeleeSpeed", "+3% melee speed")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccDamage", "+3% damage")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccDamage", "+3% damage")
                         {
                             isModifier = true
                         });
@@ -1569,15 +1570,15 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Prefixes.Robust>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccDefense", "+3 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccDefense", "+3 defense")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccDamage", "+3% damage")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccDamage", "+3% damage")
                         {
                             isModifier = true
                         });
@@ -1585,15 +1586,15 @@ namespace ExxoAvalonOrigins
                 }
                 if (item.prefix == ModContent.PrefixType<Lurid>())
                 {
-                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+                    int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                         && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
                     if (index != -1)
                     {
-                        tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccDefense", "+2 defense")
+                        tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccDefense", "+2 defense")
                         {
                             isModifier = true
                         });
-                        tooltips.Insert(index + 2, new TooltipLine(mod, "PrefixAccCritChance", "+2% critical strike chance")
+                        tooltips.Insert(index + 2, new TooltipLine(Mod, "PrefixAccCritChance", "+2% critical strike chance")
                         {
                             isModifier = true
                         });
@@ -1603,7 +1604,7 @@ namespace ExxoAvalonOrigins
             switch (item.type)
             {
                 case ItemID.Vine:
-                    tooltips.Add(new TooltipLine(mod, "Rope", "Can be climbed on"));
+                    tooltips.Add(new TooltipLine(Mod, "Rope", "Can be climbed on"));
                     break;
                 case ItemID.Seed:
                     for (int i = 0; i < tooltips.Count; i++)
@@ -1715,7 +1716,7 @@ namespace ExxoAvalonOrigins
                         if (Main.hardMode && ExxoAvalonOriginsWorld.downedPhantasm)
                         {
                             ExxoAvalonOriginsGlobalNPC.SpawnWOS(item.position);
-                            Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/WoS"), 0.75f);
+                            SoundEngine.PlaySound(SoundID.Item, -1, -1, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/WoS"), 0.75f);
                         }
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, item.whoAmI, 0f, 0f, 0f, 0);
                     }
@@ -1727,29 +1728,29 @@ namespace ExxoAvalonOrigins
         {
             if (item.prefix == ModContent.PrefixType<Prefixes.Lurid>())
             {
-                player.magicCrit += 2;
-                player.meleeCrit += 2;
-                player.rangedCrit += 2;
-                player.thrownCrit += 2;
+                player.GetCritChance(DamageClass.Magic) += 2;
+                player.GetCritChance(DamageClass.Melee) += 2;
+                player.GetCritChance(DamageClass.Ranged) += 2;
+                player.GetCritChance(DamageClass.Throwing) += 2;
                 player.statDefense += 2;
             }
             if (item.prefix == ModContent.PrefixType<Prefixes.Robust>())
             {
-                player.magicDamage += 0.03f;
-                player.meleeDamage += 0.03f;
-                player.rangedDamage += 0.03f;
-                player.thrownDamage += 0.03f;
-                player.minionDamage += 0.03f;
+                player.GetDamage(DamageClass.Magic) += 0.03f;
+                player.GetDamage(DamageClass.Melee) += 0.03f;
+                player.GetDamage(DamageClass.Ranged) += 0.03f;
+                player.GetDamage(DamageClass.Throwing) += 0.03f;
+                player.GetDamage(DamageClass.Summon) += 0.03f;
                 player.statDefense += 3;
             }
             if (item.prefix == ModContent.PrefixType<Prefixes.Vigorous>())
             {
                 player.meleeSpeed += 0.03f;
-                player.meleeDamage += 0.03f;
-                player.rangedDamage += 0.03f;
-                player.magicDamage += 0.03f;
-                player.minionDamage += 0.03f;
-                player.thrownDamage += 0.03f;
+                player.GetDamage(DamageClass.Melee) += 0.03f;
+                player.GetDamage(DamageClass.Ranged) += 0.03f;
+                player.GetDamage(DamageClass.Magic) += 0.03f;
+                player.GetDamage(DamageClass.Summon) += 0.03f;
+                player.GetDamage(DamageClass.Throwing) += 0.03f;
             }
             if (item.prefix == ModContent.PrefixType<Prefixes.Magical>())
             {
@@ -1757,10 +1758,10 @@ namespace ExxoAvalonOrigins
             }
             if (item.prefix == ModContent.PrefixType<Prefixes.Bogus>())
             {
-                player.magicCrit += 6;
-                player.meleeCrit += 6;
-                player.rangedCrit += 6;
-                player.thrownCrit += 6;
+                player.GetCritChance(DamageClass.Magic) += 6;
+                player.GetCritChance(DamageClass.Melee) += 6;
+                player.GetCritChance(DamageClass.Ranged) += 6;
+                player.GetCritChance(DamageClass.Throwing) += 6;
             }
             if (item.prefix == ModContent.PrefixType<Prefixes.Enchanted>())
             {

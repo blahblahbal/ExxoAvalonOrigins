@@ -14,27 +14,20 @@ namespace ExxoAvalonOrigins.Items.Placeable.Seed
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Ickgrass>();
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = 500;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.Ickgrass>();
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = 500;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GrassSeeds, 2);
-            recipe.AddIngredient(ModContent.ItemType<Tile.ChunkstoneBlock>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<Tile.BacciliteOre>(), 3);
-            recipe.AddIngredient(ItemID.Seed, 8);
-            recipe.AddTile(ModContent.TileType<Tiles.SeedFabricator>());
-            recipe.SetResult(this, 2);
-            recipe.AddRecipe();
+            CreateRecipe(2).AddIngredient(ItemID.GrassSeeds, 2).AddIngredient(ModContent.ItemType<Tile.ChunkstoneBlock>(), 5).AddIngredient(ModContent.ItemType<Tile.BacciliteOre>(), 3).AddIngredient(ItemID.Seed, 8).AddTile(ModContent.TileType<Tiles.SeedFabricator>()).Register();
         }
     }
 }

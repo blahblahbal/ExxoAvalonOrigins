@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 {
     public class AdvInvisibility : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Advanced Invisibility");
             Description.SetDefault("Grants invisibility");

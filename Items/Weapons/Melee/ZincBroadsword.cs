@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 13;
-            item.useTurn = true;
-            item.scale = 1.12f;
-            item.width = dims.Width;
-            item.useTime = 23;
-            item.knockBack = 5.2f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 5500;
-            item.useAnimation = 23;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 13;
+            Item.useTurn = true;
+            Item.scale = 1.12f;
+            Item.width = dims.Width;
+            Item.useTime = 23;
+            Item.knockBack = 5.2f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 5500;
+            Item.useAnimation = 23;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
     }
 }

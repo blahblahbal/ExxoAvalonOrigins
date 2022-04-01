@@ -11,13 +11,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class Statues : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileObsidianKill[Type] = true;
@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override ushort GetMapOption(int i, int j)
         {
-            switch (Main.tile[i, j].frameX / 36)
+            switch (Main.tile[i, j].TileFrameX / 36)
             {
                 case 2:
                 case 9:
@@ -52,20 +52,20 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override void HitWire(int i, int j)
         {
-            if (Main.tile[i, j].frameX >= 396 && Main.tile[i, j].frameX <= 430)
+            if (Main.tile[i, j].TileFrameX >= 396 && Main.tile[i, j].TileFrameX <= 430)
             {
-                Main.tile[i, j].frameX += 36;
+                Main.tile[i, j].TileFrameX += 36;
                 WorldGen.SquareTileFrame(i, j);
             }
-            else if (Main.tile[i, j].frameX >= 432 && Main.tile[i, j].frameX <= 466)
+            else if (Main.tile[i, j].TileFrameX >= 432 && Main.tile[i, j].TileFrameX <= 466)
             {
-                Main.tile[i, j].frameX -= 36;
+                Main.tile[i, j].TileFrameX -= 36;
                 WorldGen.SquareTileFrame(i, j);
             }
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Main.tile[i, j].frameX >= 432 && Main.tile[i, j].frameX <= 466)
+            if (Main.tile[i, j].TileFrameX >= 432 && Main.tile[i, j].TileFrameX <= 466)
             {
                 Lighting.AddLight(new Vector2(i * 16, j * 16), new Vector3(1f, 0.1f, 0.1f));
             }
@@ -121,7 +121,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override bool CreateDust(int i, int j, ref int type)
         {
-            switch (Main.tile[i, j].frameX / 36)
+            switch (Main.tile[i, j].TileFrameX / 36)
             {
                 case 2:
                 case 9:

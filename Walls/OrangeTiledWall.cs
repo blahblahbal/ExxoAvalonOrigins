@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class OrangeTiledWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("OrangeTiledWall");
+            drop = Mod.Find<ModItem>("OrangeTiledWall").Type;
             AddMapEntry(new Color(107, 33, 0));
             dustType = DustID.Coralstone;
         }

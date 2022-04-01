@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -14,17 +15,17 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/MagicCleaver");
-            projectile.width = 44;
-            projectile.height = 44;
-            projectile.aiStyle = 2;
-            projectile.friendly = true;
-            projectile.penetrate = 5;
-            projectile.light = 0.15f;
-            projectile.alpha = 0;
-            projectile.scale = 1f;
-            projectile.timeLeft = 3600;
-            projectile.magic = true;
-            projectile.tileCollide = true;
+            Projectile.width = 44;
+            Projectile.height = 44;
+            Projectile.aiStyle = 2;
+            Projectile.friendly = true;
+            Projectile.penetrate = 5;
+            Projectile.light = 0.15f;
+            Projectile.alpha = 0;
+            Projectile.scale = 1f;
+            Projectile.timeLeft = 3600;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.tileCollide = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -34,7 +35,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             if (Main.rand.Next(4) == 0)
             {
-                int num = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, projectile.velocity.X * 0.2f + (float)(projectile.direction * 3), projectile.velocity.Y * 0.2f, 100, default(Color), 0.5f);
+                int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, Projectile.velocity.X * 0.2f + (float)(Projectile.direction * 3), Projectile.velocity.Y * 0.2f, 100, default(Color), 0.5f);
                 Main.dust[num].velocity.X *= 0.1f;
                 Main.dust[num].velocity.Y *= 0.1f;
             }
@@ -43,7 +44,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             for (int num410 = 0; num410 < 5; num410++)
             {
-                int num411 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, 0f, 0f, 100, default(Color), 1f);
+                int num411 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, 0f, 0f, 100, default(Color), 1f);
                 Main.dust[num411].velocity *= 1f;
             }
         }
@@ -55,10 +56,10 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y);
+            SoundEngine.PlaySound(SoundID.Dig, (int)Projectile.position.X, (int)Projectile.position.Y);
             for (int num410 = 0; num410 < 10; num410++)
             {
-                int num411 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, 0f, 0f, 100, default(Color), 1f);
+                int num411 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, 0f, 0f, 100, default(Color), 1f);
                 Main.dust[num411].velocity *= 1f;
             }
         }

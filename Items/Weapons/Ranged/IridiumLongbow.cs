@@ -13,22 +13,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item5;
-            item.damage = 25;
-            item.useTurn = true;
-            item.scale = 1f;
-            item.shootSpeed = 10f;
-            item.useAmmo = AmmoID.Arrow;
-            item.ranged = item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 16;
-            item.knockBack = 2f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.LightRed;
-            item.value = 25000;
-            item.useAnimation = 16;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
+            Item.damage = 25;
+            Item.useTurn = true;
+            Item.scale = 1f;
+            Item.shootSpeed = 10f;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.DamageType = // item.noMelee = true /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+            Item.width = dims.Width;
+            Item.useTime = 16;
+            Item.knockBack = 2f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.rare = ItemRarityID.LightRed;
+            Item.value = 25000;
+            Item.useAnimation = 16;
+            Item.height = dims.Height;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BismuthCandle : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = false;
@@ -20,27 +20,27 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[] { 20 };
             TileObjectData.newTile.DrawYOffset = -4;
             TileObjectData.addTile(Type);
-            drop = ModContent.ItemType<Items.Placeable.Light.BismuthCandle>();
+            ItemDrop = ModContent.ItemType<Items.Placeable.Light.BismuthCandle>();
             Main.tileLighted[Type] = true;
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Bismuth Candle");
             AddMapEntry(new Color(253, 221, 3), name);
-            dustType = DustID.Fire;
+            DustType = DustID.Torch;
         }
 
         public override void MouseOver(int i, int j)
         {
             Player player = Main.player[Main.myPlayer];
             player.noThrow = 2;
-            player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.BismuthCandle>();
+            player.cursorItemIconEnabled = true;
+            player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Light.BismuthCandle>();
         }
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             WorldGen.KillTile(i, j);
-            if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+            if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
             {
                 NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
             }
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             Tile tile = Main.tile[i, j];
-            if (tile.frameX == 0)
+            if (tile.TileFrameX == 0)
             {
                 r = 1f;
                 g = 0.95f;
@@ -61,9 +61,9 @@ namespace ExxoAvalonOrigins.Tiles
         public override void HitWire(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            int topY = j - tile.frameY / 18;
-            short frameAdjustment = (short)(tile.frameX > 0 ? -18 : 18);
-            Main.tile[i, topY].frameX += frameAdjustment;
+            int topY = j - tile.TileFrameY / 18;
+            short frameAdjustment = (short)(tile.TileFrameX > 0 ? -18 : 18);
+            Main.tile[i, topY].TileFrameX += frameAdjustment;
             Wiring.SkipWire(i, topY);
             NetMessage.SendTileSquare(-1, i, topY + 1, 1, TileChangeType.None);
         }
@@ -72,8 +72,8 @@ namespace ExxoAvalonOrigins.Tiles
         {
             ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)((ulong)i));
             var color = new Color(224, 104, 147, 0);
-            int frameX = Main.tile[i, j].frameX;
-            int frameY = Main.tile[i, j].frameY;
+            int frameX = Main.tile[i, j].TileFrameX;
+            int frameY = Main.tile[i, j].TileFrameY;
             int width = 18;
             int offsetY = -4;
             int height = 20;
@@ -87,7 +87,7 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/BismuthCandle_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Tiles/BismuthCandle_Flame").Value, new Vector2(i * 16 - (int)Main.screenPosition.X + offsetX - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
     }

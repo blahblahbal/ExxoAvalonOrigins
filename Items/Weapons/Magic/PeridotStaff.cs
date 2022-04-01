@@ -10,38 +10,32 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Peridot Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 30;
-            item.autoReuse = true;
-            item.shootSpeed = 7.75f;
-            item.mana = 10;
-            item.rare = ItemRarityID.Blue;
-            item.useTime = 26;
-            item.useAnimation = 26;
-            item.knockBack = 4.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.PeridotBolt>();
-            item.value = Item.buyPrice(0, 3, 60, 0);
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 30;
+            Item.autoReuse = true;
+            Item.shootSpeed = 7.75f;
+            Item.mana = 10;
+            Item.rare = ItemRarityID.Blue;
+            Item.useTime = 26;
+            Item.useAnimation = 26;
+            Item.knockBack = 4.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.PeridotBolt>();
+            Item.value = Item.buyPrice(0, 3, 60, 0);
 
-            item.UseSound = SoundID.Item43;
+            Item.UseSound = SoundID.Item43;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Peridot>(), 15);
-            recipe.AddIngredient(ItemID.CrimtaneBar, 20);
-            recipe.AddIngredient(ItemID.TissueSample, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.Peridot>(), 15).AddIngredient(ItemID.CrimtaneBar, 20).AddIngredient(ItemID.TissueSample, 5).AddTile(TileID.Anvils).Register();
         }
     }
 }

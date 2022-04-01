@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Snotsand : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(136, 157, 56));
             Main.tileSolid[Type] = true;
@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileID.Sets.Conversion.Sand[Type] = true;
             TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
             TileID.Sets.Falling[Type] = true;
-            drop = mod.ItemType("SnotsandBlock");
+            drop = Mod.Find<ModItem>("SnotsandBlock").Type;
             SetModCactus(new IckyCactus());
             SetModPalmTree(new ContagionPalmTree());
             dustType = DustID.ScourgeOfTheCorruptor;
@@ -44,10 +44,10 @@ namespace ExxoAvalonOrigins.Tiles
         //    Tile below = Main.tile[i, j + 1];
         //    bool canFall = true;
 
-        //    if (below == null || below.active())
+        //    if (below == null || below.HasTile)
         //        canFall = false;
 
-        //    if (above.active() && (TileID.Sets.BasicChest[above.type] || TileID.Sets.BasicChestFake[above.type] || above.type == TileID.PalmTree || TileLoader.IsDresser(above.type)))
+        //    if (above.HasTile && (TileID.Sets.BasicChest[above.type] || TileID.Sets.BasicChestFake[above.type] || above.type == TileID.PalmTree || TileLoader.IsDresser(above.type)))
         //        canFall = false;
 
         //    if (canFall)

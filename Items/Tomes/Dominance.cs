@@ -18,24 +18,24 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.value = 250000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.value = 250000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.22f;
-            player.minionDamage += 0.22f;
-            player.meleeDamage += 0.22f;
-            player.rangedDamage += 0.22f;
-            player.thrownDamage += 0.22f;
-            player.meleeCrit += 8;
-            player.magicCrit += 8;
-            player.rangedCrit += 8;
-            player.thrownCrit += 8;
+            player.GetDamage(DamageClass.Magic) += 0.22f;
+            player.GetDamage(DamageClass.Summon) += 0.22f;
+            player.GetDamage(DamageClass.Melee) += 0.22f;
+            player.GetDamage(DamageClass.Ranged) += 0.22f;
+            player.GetDamage(DamageClass.Throwing) += 0.22f;
+            player.GetCritChance(DamageClass.Melee) += 8;
+            player.GetCritChance(DamageClass.Magic) += 8;
+            player.GetCritChance(DamageClass.Ranged) += 8;
+            player.GetCritChance(DamageClass.Throwing) += 8;
             player.manaCost -= 0.1f;
             player.statDefense += 11;
             player.statLifeMax2 += 80;
@@ -44,95 +44,16 @@ namespace ExxoAvalonOrigins.Items.Tomes
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<CreatorsTome>());
-            recipe.AddIngredient(ModContent.ItemType<TheOasisRemembered>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LoveUpandDown>());
-            recipe.AddIngredient(ModContent.ItemType<TheOasisRemembered>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<CreatorsTome>());
-            recipe.AddIngredient(ModContent.ItemType<SceneofCarnage>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LoveUpandDown>());
-            recipe.AddIngredient(ModContent.ItemType<SceneofCarnage>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<CreatorsTome>());
-            recipe.AddIngredient(ModContent.ItemType<ThePlumHarvest>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LoveUpandDown>());
-            recipe.AddIngredient(ModContent.ItemType<ThePlumHarvest>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<CreatorsTome>());
-            recipe.AddIngredient(ModContent.ItemType<ChantoftheWaterDragon>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LoveUpandDown>());
-            recipe.AddIngredient(ModContent.ItemType<ChantoftheWaterDragon>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<CreatorsTome>());
-            recipe.AddIngredient(ModContent.ItemType<TheThreeScholars>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<LoveUpandDown>());
-            recipe.AddIngredient(ModContent.ItemType<TheThreeScholars>());
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Onyx>(), 50);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<CreatorsTome>()).AddIngredient(ModContent.ItemType<TheOasisRemembered>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LoveUpandDown>()).AddIngredient(ModContent.ItemType<TheOasisRemembered>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<CreatorsTome>()).AddIngredient(ModContent.ItemType<SceneofCarnage>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LoveUpandDown>()).AddIngredient(ModContent.ItemType<SceneofCarnage>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<CreatorsTome>()).AddIngredient(ModContent.ItemType<ThePlumHarvest>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LoveUpandDown>()).AddIngredient(ModContent.ItemType<ThePlumHarvest>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<CreatorsTome>()).AddIngredient(ModContent.ItemType<ChantoftheWaterDragon>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LoveUpandDown>()).AddIngredient(ModContent.ItemType<ChantoftheWaterDragon>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<CreatorsTome>()).AddIngredient(ModContent.ItemType<TheThreeScholars>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<LoveUpandDown>()).AddIngredient(ModContent.ItemType<TheThreeScholars>()).AddIngredient(ModContent.ItemType<DragonOrb>(), 2).AddIngredient(ModContent.ItemType<Onyx>(), 50).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

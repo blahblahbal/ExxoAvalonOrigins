@@ -15,22 +15,15 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.maxStack = 999;
-            item.width = dims.Width;
-            item.value = 0;
-            item.height = dims.Height;
-            item.rare = ItemRarityID.Cyan;
+            Item.maxStack = 999;
+            Item.width = dims.Width;
+            Item.value = 0;
+            Item.height = dims.Height;
+            Item.rare = ItemRarityID.Cyan;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TempleKey, 2);
-            recipe.AddIngredient(ItemID.Ectoplasm, 10);
-            recipe.AddIngredient(ModContent.ItemType<EarthStone>());
-            recipe.AddIngredient(ItemID.LunarBar, 5);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this, 2);
-            recipe.AddRecipe();
+            CreateRecipe(2).AddIngredient(ItemID.TempleKey, 2).AddIngredient(ItemID.Ectoplasm, 10).AddIngredient(ModContent.ItemType<EarthStone>()).AddIngredient(ItemID.LunarBar, 5).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

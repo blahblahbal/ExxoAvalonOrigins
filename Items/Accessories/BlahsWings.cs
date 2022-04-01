@@ -17,30 +17,17 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 4;
-            item.rare = 11;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(2, 0, 0, 0);
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.defense = 4;
+            Item.rare = 11;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(2, 0, 0, 0);
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 40);
-            r.AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 20);
-            r.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 25);
-            r.AddIngredient(ModContent.ItemType<InertiaBoots>());
-            r.AddIngredient(ModContent.ItemType<GuardianBoots>());
-            r.AddIngredient(ItemID.PhilosophersStone);
-            r.AddIngredient(ModContent.ItemType<SouloftheGolem>());
-            r.AddIngredient(ModContent.ItemType<ForsakenRelic>());
-            r.AddIngredient(ModContent.ItemType<BubbleBoost>());
-            r.AddIngredient(ModContent.ItemType<TomeofLuck>());
-            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 40).AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 20).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 25).AddIngredient(ModContent.ItemType<InertiaBoots>()).AddIngredient(ModContent.ItemType<GuardianBoots>()).AddIngredient(ItemID.PhilosophersStone).AddIngredient(ModContent.ItemType<SouloftheGolem>()).AddIngredient(ModContent.ItemType<ForsakenRelic>()).AddIngredient(ModContent.ItemType<BubbleBoost>()).AddIngredient(ModContent.ItemType<TomeofLuck>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -126,7 +113,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             if (player.velocity.X > 6f || player.velocity.X < -6f)
             {
                 var newColor2 = default(Color);
-                var num2 = Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, DustID.Fire, Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100, newColor2, 2f);
+                var num2 = Dust.NewDust(new Vector2(player.position.X, player.position.Y), player.width, player.height, DustID.Torch, Main.rand.Next(-5, 5), Main.rand.Next(-5, 5), 100, newColor2, 2f);
                 Main.dust[num2].noGravity = true;
             }
             player.wallSpeed += 4.5f;

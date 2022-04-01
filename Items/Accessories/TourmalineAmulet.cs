@@ -17,29 +17,24 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 0, 70);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 0, 70);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeCrit += 5;
-            player.magicCrit += 5;
-            player.rangedCrit += 5;
-            player.thrownCrit += 5;
+            player.GetCritChance(DamageClass.Melee) += 5;
+            player.GetCritChance(DamageClass.Magic) += 5;
+            player.GetCritChance(DamageClass.Ranged) += 5;
+            player.GetCritChance(DamageClass.Throwing) += 5;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Tourmaline>(), 12);
-            recipe.AddIngredient(ItemID.Chain);
-            recipe.SetResult(this);
-            recipe.AddTile(TileID.Anvils);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Tourmaline>(), 12).AddIngredient(ItemID.Chain).AddTile(TileID.Anvils).Register();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Hooks
     {
         public static void OnSquareTileFrame(On.Terraria.WorldGen.orig_SquareTileFrame orig, int i, int j, bool resetFrame)
         {
-            int type = Main.tile[i, j].type;
+            int type = Main.tile[i, j].TileType;
             if (type == ModContent.TileType<Tiles.DarkMatterSoil>() ||
                 type == ModContent.TileType<Tiles.DarkMatter>() ||
                 type == ModContent.TileType<Tiles.DarkMatterSand>() ||

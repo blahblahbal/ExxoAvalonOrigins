@@ -9,10 +9,10 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class CrystalColumn : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(73, 51, 36));
-            drop = mod.ItemType("CrystalColumn");
+            drop = Mod.Find<ModItem>("CrystalColumn").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             TileObjectData.newTile.Width = 1;
@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool CanPlace(int i, int j)
         {
-            return (Main.tile[i, j - 1].active() || Main.tile[i, j + 1].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
+            return (Main.tile[i, j - 1].HasTile || Main.tile[i, j + 1].HasTile || Main.tile[i, j].WallType != 0 && !Main.tile[i, j].HasTile);
         }
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)
         {

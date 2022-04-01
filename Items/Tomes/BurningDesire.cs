@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.value = 15000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.value = 15000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -32,14 +32,7 @@ namespace ExxoAvalonOrigins.Items.Tomes
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Gravel>(), 7);
-            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 3);
-            recipe.AddIngredient(ItemID.LifeCrystal);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 4);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Gravel>(), 7).AddIngredient(ModContent.ItemType<RubybeadHerb>(), 3).AddIngredient(ItemID.LifeCrystal).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 4).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

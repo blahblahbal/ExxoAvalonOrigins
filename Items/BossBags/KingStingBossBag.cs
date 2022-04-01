@@ -14,12 +14,12 @@ namespace ExxoAvalonOrigins.Items.BossBags
 
         public override void SetDefaults()
         {
-            item.maxStack = 999;
-            item.consumable = true;
-            item.width = 36;
-            item.height = 34;
-            item.rare = ItemRarityID.Purple;
-            item.expert = true;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.width = 36;
+            Item.height = 34;
+            Item.rare = ItemRarityID.Purple;
+            Item.expert = true;
         }
 
         public override bool CanRightClick()

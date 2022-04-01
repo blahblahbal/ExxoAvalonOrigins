@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class SandCastle : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(176, 158, 74));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles.Melee
 {
@@ -10,57 +11,57 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shell");
-            Main.projFrames[projectile.type] = 4;
+            Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()
         {
-            projectile.width = 32;
-            projectile.height = 24;
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.melee = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = true;
-            projectile.timeLeft = 900;
-            projectile.damage = 87;
+            Projectile.width = 32;
+            Projectile.height = 24;
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = true;
+            Projectile.timeLeft = 900;
+            Projectile.damage = 87;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 5f)
+            if (Projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 5f)
             {
-                Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
-                Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1);
-                projectile.velocity.Y = -oldVelocity.Y * 0.2f;
+                Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+                SoundEngine.PlaySound(0, (int)Projectile.position.X, (int)Projectile.position.Y, 1);
+                Projectile.velocity.Y = -oldVelocity.Y * 0.2f;
             }
-            if (projectile.velocity.X != oldVelocity.X)
+            if (Projectile.velocity.X != oldVelocity.X)
             {
-                projectile.velocity.X = -oldVelocity.X * 0.85f;
+                Projectile.velocity.X = -oldVelocity.X * 0.85f;
             }
             return false;
         }
         public override void AI()
         {
-            projectile.ai[0]++;
-            if (projectile.ai[0] >= 10 && !Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            Projectile.ai[0]++;
+            if (Projectile.ai[0] >= 10 && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
             {
-                projectile.velocity.Y += 3.6f;
-                projectile.ai[0] = 0;
+                Projectile.velocity.Y += 3.6f;
+                Projectile.ai[0] = 0;
             }
-            if (projectile.velocity.Y >= 0f)
+            if (Projectile.velocity.Y >= 0f)
             {
                 int num97 = 0;
-                if (projectile.velocity.X < 0f)
+                if (Projectile.velocity.X < 0f)
                 {
                     num97 = -1;
                 }
-                if (projectile.velocity.X > 0f)
+                if (Projectile.velocity.X > 0f)
                 {
                     num97 = 1;
                 }
-                Vector2 vector10 = projectile.position;
-                vector10.X += projectile.velocity.X;
-                int num98 = (int)((vector10.X + (float)(projectile.width / 2) + (float)((projectile.width / 2 + 1) * num97)) / 16f);
-                int num99 = (int)((vector10.Y + (float)projectile.height - 1f) / 16f);
+                Vector2 vector10 = Projectile.position;
+                vector10.X += Projectile.velocity.X;
+                int num98 = (int)((vector10.X + (float)(Projectile.width / 2) + (float)((Projectile.width / 2 + 1) * num97)) / 16f);
+                int num99 = (int)((vector10.Y + (float)Projectile.height - 1f) / 16f);
                 if (Main.tile[num98, num99] == null)
                 {
                     Main.tile[num98, num99] = new Tile();
@@ -85,62 +86,62 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
                 {
                     Main.tile[num98 - num97, num99 - 3] = new Tile();
                 }
-                if ((float)(num98 * 16) < vector10.X + (float)projectile.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].nactive() && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].type] && !Main.tileSolidTop[(int)Main.tile[num98, num99].type]) || (Main.tile[num98, num99 - 1].halfBrick() && Main.tile[num98, num99 - 1].nactive())) && (!Main.tile[num98, num99 - 1].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].type] || (Main.tile[num98, num99 - 1].halfBrick() && (!Main.tile[num98, num99 - 4].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].type]))) && (!Main.tile[num98, num99 - 2].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].type]) && (!Main.tile[num98, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].type]) && (!Main.tile[num98 - num97, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].type]))
+                if ((float)(num98 * 16) < vector10.X + (float)Projectile.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].nactive() && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].TileType] && !Main.tileSolidTop[(int)Main.tile[num98, num99].TileType]) || (Main.tile[num98, num99 - 1]IsHalfBlock && Main.tile[num98, num99 - 1].nactive())) && (!Main.tile[num98, num99 - 1].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].TileType] || (Main.tile[num98, num99 - 1]IsHalfBlock && (!Main.tile[num98, num99 - 4].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].TileType]))) && (!Main.tile[num98, num99 - 2].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].TileType]) && (!Main.tile[num98, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].TileType]) && (!Main.tile[num98 - num97, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].TileType]))
                 {
                     float num100 = (float)(num99 * 16);
-                    if (Main.tile[num98, num99].halfBrick())
+                    if (Main.tile[num98, num99]IsHalfBlock)
                     {
                         num100 += 8f;
                     }
-                    if (Main.tile[num98, num99 - 1].halfBrick())
+                    if (Main.tile[num98, num99 - 1]IsHalfBlock)
                     {
                         num100 -= 8f;
                     }
-                    if (num100 < vector10.Y + (float)projectile.height)
+                    if (num100 < vector10.Y + (float)Projectile.height)
                     {
-                        float num101 = vector10.Y + (float)projectile.height - num100;
+                        float num101 = vector10.Y + (float)Projectile.height - num100;
                         float num102 = 16.1f;
                         if (num101 <= num102)
                         {
-                            projectile.gfxOffY += projectile.position.Y + (float)projectile.height - num100;
-                            projectile.position.Y = num100 - (float)projectile.height;
+                            Projectile.gfxOffY += Projectile.position.Y + (float)Projectile.height - num100;
+                            Projectile.position.Y = num100 - (float)Projectile.height;
                             if (num101 < 9f)
                             {
-                                projectile.stepSpeed = 1f;
+                                Projectile.stepSpeed = 1f;
                             }
                             else
                             {
-                                projectile.stepSpeed = 2f;
+                                Projectile.stepSpeed = 2f;
                             }
                         }
                     }
                 }
             }
-            Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY);
-            if (projectile.velocity.Y > 16f)
+            Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY);
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
-            if (projectile.velocity.Y <= 6f)
+            if (Projectile.velocity.Y <= 6f)
             {
-                if (projectile.velocity.X > 0f && projectile.velocity.X < 7f)
+                if (Projectile.velocity.X > 0f && Projectile.velocity.X < 7f)
                 {
-                    projectile.velocity.X = projectile.velocity.X + 0.05f;
+                    Projectile.velocity.X = Projectile.velocity.X + 0.05f;
                 }
-                if (projectile.velocity.X < 0f && projectile.velocity.X > -7f)
+                if (Projectile.velocity.X < 0f && Projectile.velocity.X > -7f)
                 {
-                    projectile.velocity.X = projectile.velocity.X - 0.05f;
+                    Projectile.velocity.X = Projectile.velocity.X - 0.05f;
                 }
             }
-            projectile.frameCounter += (int)Math.Abs(projectile.velocity.X);
-            if (projectile.frameCounter > 10)
+            Projectile.frameCounter += (int)Math.Abs(Projectile.velocity.X);
+            if (Projectile.frameCounter > 10)
             {
-                projectile.frame++;
-                projectile.frameCounter = 0;
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
             }
-            if (projectile.frame > 3)
+            if (Projectile.frame > 3)
             {
-                projectile.frame = 0;
+                Projectile.frame = 0;
             }
         }
     }

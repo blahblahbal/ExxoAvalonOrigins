@@ -14,25 +14,21 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.Torch);
-            Rectangle dims = item.modItem.GetDims();
-            item.createTile = ModContent.TileType<Tiles.Torches>();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.placeStyle = 5;
-            item.value = Item.sellPrice(0, 0, 0, 15);
-            item.notAmmo = true;
-            item.flame = true;
-            item.ammo = 8;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 18;
+            Item.CloneDefaults(ItemID.Torch);
+            Rectangle dims = Item.modItem.GetDims();
+            Item.createTile = ModContent.TileType<Tiles.Torches>();
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.placeStyle = 5;
+            Item.value = Item.sellPrice(0, 0, 0, 15);
+            Item.notAmmo = true;
+            Item.flame = true;
+            Item.ammo = 8;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 18;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Torch, 3);
-            recipe.AddIngredient(ModContent.ItemType<Material.Zircon>());
-            recipe.SetResult(this, 3);
-            recipe.AddRecipe();
+            CreateRecipe(3).AddIngredient(ItemID.Torch, 3).AddIngredient(ModContent.ItemType<Material.Zircon>()).Register();
         }
         public override void HoldItem(Player player)
         {
@@ -46,9 +42,9 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
 
         public override void PostUpdate()
         {
-            if (!item.wet)
+            if (!Item.wet)
             {
-                Lighting.AddLight((int)((item.position.X + item.width / 2) / 16f), (int)((item.position.Y + item.height / 2) / 16f), 1.51372552f, 1.16078436f, 0.9254902f);
+                Lighting.AddLight((int)((Item.position.X + Item.width / 2) / 16f), (int)((Item.position.Y + Item.height / 2) / 16f), 1.51372552f, 1.16078436f, 0.9254902f);
             }
         }
 

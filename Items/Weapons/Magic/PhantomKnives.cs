@@ -15,24 +15,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.magic = true;
-            item.damage = 51;
-            item.noUseGraphic = true;
-            item.autoReuse = true;
-            item.shootSpeed = 15f;
-            item.mana = 18;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.useTime = 16;
-            item.knockBack = 3.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.PhantomKnife>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 30, 0, 0);
-            item.useAnimation = 16;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item39;
+            Item.UseSound = SoundID.Item1;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 51;
+            Item.noUseGraphic = true;
+            Item.autoReuse = true;
+            Item.shootSpeed = 15f;
+            Item.mana = 18;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.useTime = 16;
+            Item.knockBack = 3.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.PhantomKnife>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 30, 0, 0);
+            Item.useAnimation = 16;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item39;
         }
         /*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{

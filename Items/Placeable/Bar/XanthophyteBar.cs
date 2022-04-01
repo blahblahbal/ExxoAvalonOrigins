@@ -15,28 +15,24 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.PlacedBars>();
-            item.rare = ItemRarityID.Yellow;
-            item.placeStyle = 23;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 15, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.PlacedBars>();
+            Item.rare = ItemRarityID.Yellow;
+            Item.placeStyle = 23;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(0, 0, 15, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Items.Placeable.Tile.XanthophyteOre>(), 6);
-            r.AddTile(TileID.AdamantiteForge);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Items.Placeable.Tile.XanthophyteOre>(), 6).AddTile(TileID.AdamantiteForge).Register();
         }
     }
 }

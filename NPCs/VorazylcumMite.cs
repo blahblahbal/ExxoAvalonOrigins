@@ -12,23 +12,23 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void SetDefaults()
         {
-            npc.damage = 77;
-            npc.lifeMax = 1300;
-            npc.defense = 6;
-            npc.width = 18;
-            npc.aiStyle = -1;
-            npc.value = 10000f;
-            npc.height = 40;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.lavaImmune = true;
+            NPC.damage = 77;
+            NPC.lifeMax = 1300;
+            NPC.defense = 6;
+            NPC.width = 18;
+            NPC.aiStyle = -1;
+            NPC.value = 10000f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.lavaImmune = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
@@ -36,62 +36,62 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void NPCLoot()
         {
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/VorazylcumMiteGore1"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/VorazylcumMiteGore2"), npc.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore1"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore2"), NPC.scale);
         }
         public override void AI()
         {
-            npc.spriteDirection = npc.direction;
-            npc.TargetClosest(true);
-            if (npc.ai[1] < 1200f)
+            NPC.spriteDirection = NPC.direction;
+            NPC.TargetClosest(true);
+            if (NPC.ai[1] < 1200f)
             {
-                npc.ai[1]++;
+                NPC.ai[1]++;
             }
-            if (npc.ai[1] == 1200f && Main.netMode != 1)
+            if (NPC.ai[1] == 1200f && Main.netMode != 1)
             {
-                npc.position.Y = npc.position.Y + 16f;
-                npc.Transform(ModContent.NPCType<VorazylcumMiteDigger>());
-                npc.netUpdate = true;
+                NPC.position.Y = NPC.position.Y + 16f;
+                NPC.Transform(ModContent.NPCType<VorazylcumMiteDigger>());
+                NPC.netUpdate = true;
                 return;
             }
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.ai[0] == 1f)
+                if (NPC.ai[0] == 1f)
                 {
-                    if (npc.direction == 0)
+                    if (NPC.direction == 0)
                     {
-                        npc.TargetClosest(true);
+                        NPC.TargetClosest(true);
                     }
-                    if (npc.collideX)
+                    if (NPC.collideX)
                     {
-                        npc.direction *= -1;
+                        NPC.direction *= -1;
                     }
-                    npc.velocity.X = 0.2f * (float)npc.direction;
-                    if (npc.type == ModContent.NPCType<VorazylcumMite>())
+                    NPC.velocity.X = 0.2f * (float)NPC.direction;
+                    if (NPC.type == ModContent.NPCType<VorazylcumMite>())
                     {
-                        npc.velocity.X = npc.velocity.X * 3f;
+                        NPC.velocity.X = NPC.velocity.X * 3f;
                     }
                 }
                 else
                 {
-                    npc.velocity.X = 0f;
+                    NPC.velocity.X = 0f;
                 }
                 if (Main.netMode != 1)
                 {
-                    npc.localAI[1] -= 1f;
-                    if (npc.localAI[1] <= 0f)
+                    NPC.localAI[1] -= 1f;
+                    if (NPC.localAI[1] <= 0f)
                     {
-                        if (npc.ai[0] == 1f)
+                        if (NPC.ai[0] == 1f)
                         {
-                            npc.ai[0] = 0f;
-                            npc.localAI[1] = Main.rand.Next(300, 900);
+                            NPC.ai[0] = 0f;
+                            NPC.localAI[1] = Main.rand.Next(300, 900);
                         }
                         else
                         {
-                            npc.ai[0] = 1f;
-                            npc.localAI[1] = Main.rand.Next(600, 1800);
+                            NPC.ai[0] = 1f;
+                            NPC.localAI[1] = Main.rand.Next(600, 1800);
                         }
-                        npc.netUpdate = true;
+                        NPC.netUpdate = true;
                     }
                 }
             }

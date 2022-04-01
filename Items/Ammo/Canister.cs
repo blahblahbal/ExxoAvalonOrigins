@@ -7,16 +7,16 @@ namespace ExxoAvalonOrigins.Items.Ammo
     {
         public override void SetDefaults()
         {
-            item.damage = 9;
-            item.ranged = true;
-            item.width = 14;
-            item.height = 18;
-            item.maxStack = 999;
-            item.consumable = true;
-            item.value = 10;
-            item.rare = ItemRarityID.Red;
-            item.shoot = ModContent.ProjectileType<Projectiles.FleshFire>();
-            item.ammo = item.type;
+            Item.damage = 9;
+            Item.DamageType = DamageClass.Ranged;
+            Item.width = 14;
+            Item.height = 18;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.value = 10;
+            Item.rare = ItemRarityID.Red;
+            Item.shoot = ModContent.ProjectileType<Projectiles.FleshFire>();
+            Item.ammo = Item.type;
         }
     }
 }

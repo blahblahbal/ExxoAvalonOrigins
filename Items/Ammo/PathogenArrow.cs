@@ -15,27 +15,22 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 13;
-            item.shootSpeed = 4f;
-            item.ammo = AmmoID.Arrow;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.knockBack = 4f;
-            item.shoot = ModContent.ProjectileType<Projectiles.PathogenArrow>();
-            item.value = Item.sellPrice(0, 0, 0, 50);
-            item.maxStack = 2000;
-            item.height = dims.Height;
+            Item.damage = 13;
+            Item.shootSpeed = 4f;
+            Item.ammo = AmmoID.Arrow;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.knockBack = 4f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.PathogenArrow>();
+            Item.value = Item.sellPrice(0, 0, 0, 50);
+            Item.maxStack = 2000;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.WoodenArrow, 35);
-            recipe.AddIngredient(ModContent.ItemType<Material.Pathogen>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this, 35);
-            recipe.AddRecipe();
+            CreateRecipe(35).AddIngredient(ItemID.WoodenArrow, 35).AddIngredient(ModContent.ItemType<Material.Pathogen>()).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class FeroziumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 2f;
             AddMapEntry(new Color(0, 0, 250), LanguageManager.Instance.GetText("Ferozium"));
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileValue[Type] = 690;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 1150;
-            drop = mod.ItemType("FeroziumOre");
+            drop = Mod.Find<ModItem>("FeroziumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 180;

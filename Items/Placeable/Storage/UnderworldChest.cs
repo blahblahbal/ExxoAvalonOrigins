@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Items.Placeable.Storage
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.UnderworldChest>();
-            item.placeStyle = 0;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 99;
-            item.value = 10000;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.UnderworldChest>();
+            Item.placeStyle = 0;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 99;
+            Item.value = 10000;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

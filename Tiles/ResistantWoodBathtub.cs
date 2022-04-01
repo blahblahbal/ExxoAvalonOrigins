@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ResistantWoodBathtub : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = false;

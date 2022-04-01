@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 9);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 9);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -31,13 +31,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<ChaosEmblem>());
-            r.AddIngredient(ModContent.ItemType<GuardianBoots>());
-            r.AddIngredient(ModContent.ItemType<Material.HellsteelPlate>(), 20);
-            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<ChaosEmblem>()).AddIngredient(ModContent.ItemType<GuardianBoots>()).AddIngredient(ModContent.ItemType<Material.HellsteelPlate>(), 20).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

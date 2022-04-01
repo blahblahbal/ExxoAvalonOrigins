@@ -16,23 +16,15 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 2, 0);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.FallenStar, 2);
-            recipe.AddIngredient(ItemID.IronBar);
-            recipe.AddIngredient(ItemID.Wood, 3);
-            recipe.anyWood = true;
-            recipe.anyIronBar = true;
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.FallenStar, 2).AddIngredient(ItemID.IronBar).AddIngredient(ItemID.Wood, 3).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

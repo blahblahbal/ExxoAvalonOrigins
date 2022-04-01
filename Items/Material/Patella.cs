@@ -13,10 +13,10 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.value = 90;
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.width = dims.Width;
+            Item.value = 90;
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
     }
 }

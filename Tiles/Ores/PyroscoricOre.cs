@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class PyroscoricOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(255, 102, 0), LanguageManager.Instance.GetText("Pyroscoric"));
             Main.tileSolid[Type] = true;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
             Main.tileValue[Type] = 820;
-            drop = mod.ItemType("PyroscoricOre");
+            drop = Mod.Find<ModItem>("PyroscoricOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.InfernoFork;
@@ -44,8 +44,8 @@ namespace ExxoAvalonOrigins.Tiles.Ores
                 zero = Vector2.Zero;
             }
             Vector2 pos = new Vector2(i * 16, j * 16) + zero - Main.screenPosition;
-            Rectangle frame = new Rectangle(tile.frameX, tile.frameY, 16, 16);
-            Main.spriteBatch.Draw(mod.GetTexture("Tiles/Ores/PyroscoricOre_Glow"), pos, frame, Color.White);
+            Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
+            Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Tiles/Ores/PyroscoricOre_Glow").Value, pos, frame, Color.White);
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {
@@ -62,7 +62,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             }
             if (Main.rand.Next(120) == 1)
             {
-                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Fire, 0f, 0f, 0, default(Color), 2f);
+                int num162 = Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Torch, 0f, 0f, 0, default(Color), 2f);
                 Main.dust[num162].noGravity = true;
                 Main.dust[num162].velocity *= 4f;
                 Main.dust[num162].noLight = true;

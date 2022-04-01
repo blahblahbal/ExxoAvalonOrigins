@@ -15,11 +15,11 @@ namespace ExxoAvalonOrigins.Items.Fish
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Fish/NauSeaFish");
-            item.maxStack = 999;
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.rare = ItemRarityID.Blue;
-            item.value = 7500;
+            Item.maxStack = 999;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = 7500;
         }
     }
 }

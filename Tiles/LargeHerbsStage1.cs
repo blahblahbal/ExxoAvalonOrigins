@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class LargeHerbsStage1 : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
             TileObjectData.newTile.Width = 1;

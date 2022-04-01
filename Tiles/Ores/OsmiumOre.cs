@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class OsmiumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 2f;
             AddMapEntry(new Color(0, 148, 255), LanguageManager.Instance.GetText("Osmium"));
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileValue[Type] = 430;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 1150;
-            drop = mod.ItemType("OsmiumOre");
+            drop = Mod.Find<ModItem>("OsmiumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 60;

@@ -14,36 +14,36 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/VerticalLaserBeam");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.tileCollide = false;
-            projectile.penetrate = -1;
-            projectile.alpha = 50;
-            projectile.magic = true;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.tileCollide = false;
+            Projectile.penetrate = -1;
+            Projectile.alpha = 50;
+            Projectile.DamageType = DamageClass.Magic;
         }
 
         public override void AI()
         {
-            projectile.ai[0] += 1f;
-            if (projectile.ai[0] >= 100f)
+            Projectile.ai[0] += 1f;
+            if (Projectile.ai[0] >= 100f)
             {
-                projectile.rotation = 0f;
-                projectile.ai[0] = 0f;
-                projectile.Kill();
+                Projectile.rotation = 0f;
+                Projectile.ai[0] = 0f;
+                Projectile.Kill();
                 return;
             }
-            if (projectile.ai[1] == 0f)
+            if (Projectile.ai[1] == 0f)
             {
-                projectile.rotation -= 0.002f;
-                projectile.velocity.X = projectile.velocity.X + 0.5f;
+                Projectile.rotation -= 0.002f;
+                Projectile.velocity.X = Projectile.velocity.X + 0.5f;
                 return;
             }
-            if (projectile.ai[1] == 1f)
+            if (Projectile.ai[1] == 1f)
             {
-                projectile.rotation += 0.002f;
-                projectile.velocity.X = projectile.velocity.X - 0.5f;
+                Projectile.rotation += 0.002f;
+                Projectile.velocity.X = Projectile.velocity.X - 0.5f;
                 return;
             }
         }

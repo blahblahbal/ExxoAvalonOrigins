@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -11,61 +12,61 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blaze Orb");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 65;
-            npc.scale = 0.9f;
-            npc.noTileCollide = true;
-            npc.lifeMax = 1;
-            npc.defense = 0;
-            npc.noGravity = true;
-            npc.alpha = 80;
-            npc.width = 16;
-            npc.aiStyle = -1;
-            npc.height = 16;
-            npc.HitSound = SoundID.NPCHit3;
-            npc.DeathSound = SoundID.NPCDeath3;
-            npc.knockBackResist = 0f;
+            NPC.damage = 65;
+            NPC.scale = 0.9f;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 1;
+            NPC.defense = 0;
+            NPC.noGravity = true;
+            NPC.alpha = 80;
+            NPC.width = 16;
+            NPC.aiStyle = -1;
+            NPC.height = 16;
+            NPC.HitSound = SoundID.NPCHit3;
+            NPC.DeathSound = SoundID.NPCDeath3;
+            NPC.knockBackResist = 0f;
         }
 
         public override void AI()
         {
-            if (npc.target == 255)
+            if (NPC.target == 255)
             {
-                npc.TargetClosest(true);
+                NPC.TargetClosest(true);
                 var num279 = 6f;
-                var vector25 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-                var num280 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2 - vector25.X;
-                var num281 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2 - vector25.Y;
+                var vector25 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                var num280 = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - vector25.X;
+                var num281 = Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2 - vector25.Y;
                 var num282 = (float)Math.Sqrt(num280 * num280 + num281 * num281);
                 num282 = num279 / num282;
-                npc.velocity.X = num280 * num282;
-                npc.velocity.Y = num281 * num282;
+                NPC.velocity.X = num280 * num282;
+                NPC.velocity.Y = num281 * num282;
             }
-            npc.ai[0] += 1f;
-            if (npc.ai[0] > 3f)
+            NPC.ai[0] += 1f;
+            if (NPC.ai[0] > 3f)
             {
-                npc.ai[0] = 3f;
+                NPC.ai[0] = 3f;
             }
-            if (npc.ai[0] == 2f)
+            if (NPC.ai[0] == 2f)
             {
-                npc.position += npc.velocity;
-                Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.position.Y, 20);
+                NPC.position += NPC.velocity;
+                SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, 20);
                 for (var num285 = 0; num285 < 20; num285++)
                 {
-                    var num286 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.Fire, 0f, 0f, 100, default(Color), 1.8f);
+                    var num286 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.Torch, 0f, 0f, 100, default(Color), 1.8f);
                     Main.dust[num286].velocity *= 1.3f;
-                    Main.dust[num286].velocity += npc.velocity;
+                    Main.dust[num286].velocity += NPC.velocity;
                     Main.dust[num286].noGravity = true;
                 }
             }
-            if (Collision.SolidCollision(npc.position, npc.width, npc.height) && Main.netMode != NetmodeID.MultiplayerClient)
+            if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height) && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                var num287 = (int)(npc.position.X + npc.width / 2) / 16;
-                var num288 = (int)(npc.position.Y + npc.height / 2) / 16;
+                var num287 = (int)(NPC.position.X + NPC.width / 2) / 16;
+                var num288 = (int)(NPC.position.Y + NPC.height / 2) / 16;
                 var num289 = 8;
                 for (var num290 = num287 - num289; num290 <= num287 + num289; num290++)
                 {
@@ -74,15 +75,15 @@ namespace ExxoAvalonOrigins.NPCs
                         if (Math.Abs(num290 - num287) + Math.Abs(num291 - num288) < num289 * 0.5)
                         {
                             var tile = Main.tile[num290, num291];
-                            if (tile.type == TileID.Ash)
+                            if (tile.TileType == TileID.Ash)
                             {
                                 if (Main.rand.Next(3) == 0)
                                 {
-                                    Main.tile[num290, num291].type = TileID.Hellstone;
+                                    Main.tile[num290, num291].TileType = TileID.Hellstone;
                                 }
                                 else
                                 {
-                                    Main.tile[num290, num291].type = (ushort)ModContent.TileType<Tiles.BrimstoneBlock>();
+                                    Main.tile[num290, num291].TileType = (ushort)ModContent.TileType<Tiles.BrimstoneBlock>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291, true);
                                 if (Main.netMode == NetmodeID.Server)
@@ -90,11 +91,11 @@ namespace ExxoAvalonOrigins.NPCs
                                     NetMessage.SendTileSquare(-1, num290, num291, 1);
                                 }
                             }
-                            else if (tile.type == TileID.Hellstone)
+                            else if (tile.TileType == TileID.Hellstone)
                             {
                                 if (Main.rand.Next(5) == 0 && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
                                 {
-                                    Main.tile[num290, num291].type = (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>();
+                                    Main.tile[num290, num291].TileType = (ushort)ModContent.TileType<Tiles.Ores.CaesiumOre>();
                                 }
                                 WorldGen.SquareTileFrame(num290, num291);
                                 if (Main.netMode == NetmodeID.Server)
@@ -102,11 +103,11 @@ namespace ExxoAvalonOrigins.NPCs
                                     NetMessage.SendTileSquare(-1, num290, num291, 1);
                                 }
                             }
-                            else if (tile.type == TileID.Obsidian)
+                            else if (tile.TileType == TileID.Obsidian)
                             {
                                 if (Main.rand.Next(10) == 0)
                                 {
-                                    Main.tile[num290, num291].type = TileID.Hellstone;
+                                    Main.tile[num290, num291].TileType = TileID.Hellstone;
                                 }
                                 WorldGen.SquareTileFrame(num290, num291);
                                 if (Main.netMode == NetmodeID.Server)
@@ -118,22 +119,22 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                 }
             }
-            if (Collision.SolidCollision(npc.position, npc.width, npc.height))
+            if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
             {
                 var arg_12ED7_0 = Main.netMode;
-                npc.StrikeNPC(999, 0f, 0, false, false);
+                NPC.StrikeNPC(999, 0f, 0, false, false);
             }
-            if (npc.timeLeft > 100)
+            if (NPC.timeLeft > 100)
             {
-                npc.timeLeft = 100;
+                NPC.timeLeft = 100;
             }
             for (var num292 = 0; num292 < 2; num292++)
             {
-                var num302 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.Fire, npc.velocity.X * 0.1f, npc.velocity.Y * 0.1f, 80, default(Color), 1.3f);
+                var num302 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.Torch, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 80, default(Color), 1.3f);
                 Main.dust[num302].velocity *= 0.3f;
                 Main.dust[num302].noGravity = true;
             }
-            npc.rotation += 0.4f * npc.direction;
+            NPC.rotation += 0.4f * NPC.direction;
             return;
         }
     }

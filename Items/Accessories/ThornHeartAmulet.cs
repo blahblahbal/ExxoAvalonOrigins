@@ -17,22 +17,15 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 2);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 2);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Chain);
-            r.AddIngredient(ItemID.LifeCrystal);
-            r.AddIngredient(ItemID.Stinger, 6);
-            r.AddIngredient(ItemID.SoulofNight, 8);
-            r.AddTile(TileID.TinkerersWorkbench);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Chain).AddIngredient(ItemID.LifeCrystal).AddIngredient(ItemID.Stinger, 6).AddIngredient(ItemID.SoulofNight, 8).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

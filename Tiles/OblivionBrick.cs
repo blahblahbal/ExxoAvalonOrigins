@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class OblivionBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.DarkViolet);
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("OblivionBrick");
+            drop = Mod.Find<ModItem>("OblivionBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.Adamantine;

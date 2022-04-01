@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 {
     public class AdvGills : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Advanced Gills");
             Description.SetDefault("Breate water instead of air");

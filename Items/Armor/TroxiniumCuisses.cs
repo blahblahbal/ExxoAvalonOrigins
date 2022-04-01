@@ -17,18 +17,18 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 13;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 2, 30, 0);
-            item.height = dims.Height;
+            Item.defense = 13;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 2, 30, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.magicCrit += 5;
-            player.rangedCrit += 5;
-            player.meleeCrit += 5;
+            player.GetCritChance(DamageClass.Magic) += 5;
+            player.GetCritChance(DamageClass.Ranged) += 5;
+            player.GetCritChance(DamageClass.Melee) += 5;
         }
     }
 }

@@ -14,17 +14,17 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.noWet = true;
-            item.useTurn = true;
-            item.maxStack = 99;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.OrangeDungeonCandle>();
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.noWet = true;
+            Item.useTurn = true;
+            Item.maxStack = 99;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.OrangeDungeonCandle>();
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

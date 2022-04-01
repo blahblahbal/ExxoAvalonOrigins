@@ -14,26 +14,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 14;
-            item.useTurn = true;
-            item.scale = 1f;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.knockBack = 4f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.Stabbing;
-            item.value = 9000;
-            item.useAnimation = 10;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 14;
+            Item.useTurn = true;
+            Item.scale = 1f;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.knockBack = 4f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Thrust;
+            Item.value = 9000;
+            Item.useAnimation = 10;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 7);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 7).AddTile(TileID.Anvils).Register();
         }
     }
 }

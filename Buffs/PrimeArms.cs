@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class PrimeArms : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Prime Arms");
             Description.SetDefault("The arms will fight for you");

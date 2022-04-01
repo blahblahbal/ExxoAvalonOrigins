@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 10;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 2);
-            item.height = dims.Height;
+            Item.defense = 10;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 2);
+            Item.height = dims.Height;
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -42,14 +42,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.MiningHelmet);
-            r.AddIngredient(ItemID.AdamantiteBar, 3);
-            r.AddIngredient(ItemID.TitaniumBar, 3);
-            r.AddIngredient(ModContent.ItemType<Placeable.Bar.TroxiniumBar>(), 3);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.MiningHelmet).AddIngredient(ItemID.AdamantiteBar, 3).AddIngredient(ItemID.TitaniumBar, 3).AddIngredient(ModContent.ItemType<Placeable.Bar.TroxiniumBar>(), 3).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

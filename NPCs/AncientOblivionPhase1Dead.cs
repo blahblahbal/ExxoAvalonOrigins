@@ -11,36 +11,36 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ancient Oblivion");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 0;
-            npc.noTileCollide = false;
-            npc.dontTakeDamage = true;
-            npc.lifeMax = 1;
-            npc.defense = 0;
-            npc.noGravity = false;
-            npc.width = 48;
-            npc.aiStyle = -1;
-            npc.npcSlots = 1f;
-            npc.value = 0f;
-            npc.timeLeft = 750;
-            npc.height = 26;
-            npc.knockBackResist = 0f;
+            NPC.damage = 0;
+            NPC.noTileCollide = false;
+            NPC.dontTakeDamage = true;
+            NPC.lifeMax = 1;
+            NPC.defense = 0;
+            NPC.noGravity = false;
+            NPC.width = 48;
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 1f;
+            NPC.value = 0f;
+            NPC.timeLeft = 750;
+            NPC.height = 26;
+            NPC.knockBackResist = 0f;
         }
 
         public override void AI()
         {
-            npc.life = 1;
-            npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().oRebirth++;
-            if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().oRebirth == 300)
+            NPC.life = 1;
+            NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().oRebirth++;
+            if (NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().oRebirth == 300)
             {
-                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().oRebirth = 0;
-                npc.life = 0;
-                npc.active = false;
-                npc.NPCLoot();
+                NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().oRebirth = 0;
+                NPC.life = 0;
+                NPC.active = false;
+                NPC.NPCLoot();
                 return;
             }
             return;
@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void NPCLoot()
         {
-            NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<AncientOblivionHead1>(), 0);
+            NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<AncientOblivionHead1>(), 0);
             Main.NewText("Ancient Oblivion has been reborn!", 175, 75, 255, false);
             if (Main.netMode == NetmodeID.Server)
             {

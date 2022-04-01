@@ -17,23 +17,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 45;
-            item.noUseGraphic = true;
-            item.autoReuse = true;
-            item.shootSpeed = 15f;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.useTime = 16;
-            item.knockBack = 5.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.CorruptKnife>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 50, 0, 0);
-            item.useAnimation = 16;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item39;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 45;
+            Item.noUseGraphic = true;
+            Item.autoReuse = true;
+            Item.shootSpeed = 15f;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.useTime = 16;
+            Item.knockBack = 5.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.CorruptKnife>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 50, 0, 0);
+            Item.useAnimation = 16;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item39;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class TropicalGrassWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(35, 76, 0));
             soundType = SoundID.Grass;

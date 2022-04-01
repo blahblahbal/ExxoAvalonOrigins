@@ -16,26 +16,26 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 45;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 0.9f;
-            item.shootSpeed = 2f;
-            item.mana = 60;
-            item.crit += 3;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.knockBack = 4f;
-            item.useTime = 29;
-            item.shoot = ModContent.ProjectileType<Projectiles.Soundwave>();
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/GigaHorn");
-            item.value = Item.sellPrice(0, 9, 0, 0);
-            item.reuseDelay = 14;
-            item.useAnimation = 29;
-            item.height = dims.Height;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 45;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 0.9f;
+            Item.shootSpeed = 2f;
+            Item.mana = 60;
+            Item.crit += 3;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.knockBack = 4f;
+            Item.useTime = 29;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Soundwave>();
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/GigaHorn");
+            Item.value = Item.sellPrice(0, 9, 0, 0);
+            Item.reuseDelay = 14;
+            Item.useAnimation = 29;
+            Item.height = dims.Height;
         }
     }
 }

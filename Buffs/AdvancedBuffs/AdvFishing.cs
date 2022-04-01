@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 {
     public class AdvFishing : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Advanced Fishing");
             Description.SetDefault("Increased fishing level");

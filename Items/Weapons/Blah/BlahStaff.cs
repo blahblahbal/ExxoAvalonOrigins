@@ -13,45 +13,35 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
         {
             DisplayName.SetDefault("Blah Staff");
             Tooltip.SetDefault("Summons blah meteors that rain from the sky\nMeteors rain stars that explode into fire");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.autoReuse = true;
-            item.magic = true;
-            item.damage = 278;
-            item.mana = 19;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Purple;
-            item.width = dims.Width;
-            item.knockBack = 16f;
-            item.useTime = 15;
-            item.value = Item.sellPrice(2);
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.shootSpeed = 20f;
-            item.UseSound = SoundID.Item88;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.autoReuse = true;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 278;
+            Item.mana = 19;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Purple;
+            Item.width = dims.Width;
+            Item.knockBack = 16f;
+            Item.useTime = 15;
+            Item.value = Item.sellPrice(2);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.shootSpeed = 20f;
+            Item.UseSound = SoundID.Item88;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 45);
-            recipe.AddIngredient(ItemID.LunarFlareBook);
-            recipe.AddIngredient(ModContent.ItemType<SolariumStaff>());
-            recipe.AddIngredient(ModContent.ItemType<OpalStaff>());
-            recipe.AddIngredient(ModContent.ItemType<OnyxStaff>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 45).AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 40).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 45).AddIngredient(ItemID.LunarFlareBook).AddIngredient(ModContent.ItemType<SolariumStaff>()).AddIngredient(ModContent.ItemType<OpalStaff>()).AddIngredient(ModContent.ItemType<OnyxStaff>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (player.whoAmI == Main.myPlayer)
             {

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
@@ -11,15 +12,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rosebud");
-            ItemID.Sets.ItemIconPulse[item.type] = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true;
+            ItemID.Sets.ItemIconPulse[Item.type] = true;
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
         }
 
         public override bool CanPickup(Player player) { return true; }
@@ -40,20 +41,20 @@ namespace ExxoAvalonOrigins.Items.Consumables
             {
                 player.HealEffect(rand, true);
             }
-            Main.PlaySound(SoundID.Grab, player.position);
+            SoundEngine.PlaySound(SoundID.Grab, player.position);
             return false;
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = ModContent.GetTexture(Texture + "Glow");
+            Texture2D texture = ModContent.Request<Texture2D>(Texture + "Glow");
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class NickelOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(82, 112, 122), LanguageManager.Instance.GetText("Nickel"));
             Main.tileSolid[Type] = true;

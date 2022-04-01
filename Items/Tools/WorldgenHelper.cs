@@ -17,17 +17,17 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Purple;
-            item.width = dims.Width;
-            item.maxStack = 1;
-            item.useAnimation = item.useTime = 30;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 0;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Purple;
+            Item.width = dims.Width;
+            Item.maxStack = 1;
+            Item.useAnimation = Item.useTime = 30;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 0;
+            Item.height = dims.Height;
             //item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             //int x = (int)player.position.X / 16;
             //int y = (int)player.position.Y / 16;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             //{
             //    for (int j = y; j < y + 5; j++)
             //    {
-            //        if (Main.tile[i, j].active() || Main.tile[i, j].liquid > 0 || Main.tile[i, j].wall > 0)
+            //        if (Main.tile[i, j].HasTile || Main.tile[i, j].liquid > 0 || Main.tile[i, j].wall > 0)
             //        {
             //            xStored--;
             //            break;
@@ -54,7 +54,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         }
         public static int GetXCoord(int x, int y, ref int xStored)
         {
-            if (Main.tile[x, y].active() || Main.tile[x, y].liquid > 0 || Main.tile[x, y].wall > 0)
+            if (Main.tile[x, y].HasTile || Main.tile[x, y].liquid > 0 || Main.tile[x, y].WallType > 0)
             {
                 xStored--;
                 GetXCoord(xStored, y, ref xStored);

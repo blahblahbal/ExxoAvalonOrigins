@@ -141,7 +141,7 @@ namespace ExxoAvalonOrigins.World.Structures
                             {
                                 case 0:
                                     tile.active(true);
-                                    tile.type = impBrick;
+                                    tile.TileType = impBrick;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -151,15 +151,15 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.halfBrick(false);
                                         tile.slope(0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 2:
                                     tile.active(true);
-                                    tile.type = spike;
+                                    tile.TileType = spike;
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 3:
                                     if (confirmPlatforms == 1)
@@ -168,14 +168,14 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, TileID.Banners, true, true, -1, 20);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 4:
                                     if (confirmPlatforms == 0)
                                         tile.active(false);
                                     WorldGen.PlaceTile(k, l, TileID.Books, true, true, -1, 2);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -185,7 +185,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, TileID.Books, true, true, -1, 4);
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 6:
                                     if (confirmPlatforms == 0)
@@ -193,7 +193,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, TileID.Books, true, true, -1, 1);
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 7:
                                     if (confirmPlatforms == 0)
@@ -201,7 +201,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, TileID.Books, true, true, -1, 0);
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 8:
                                     if (confirmPlatforms == 0)
@@ -209,7 +209,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>());
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 9:
                                     if (confirmPlatforms == 1)
@@ -218,7 +218,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ImperviousBookcase>(), true, true, -1, 0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 10:
@@ -227,7 +227,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, TileID.Books, true, true, -1, 3);
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 11:
                                     if (confirmPlatforms == 1)
@@ -236,7 +236,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.LockedImperviousDoor>(), true, true, -1, 0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 12:
@@ -246,7 +246,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, TileID.Statues, true, true, -1, 49);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 13:
@@ -285,7 +285,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                             item = ModContent.ItemType<Hellrazer>();
                                         }
                                         AddHellcastleChest(k, l, contain: item);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 14:
@@ -295,7 +295,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodSofa>()); // sofas
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 15:
@@ -305,7 +305,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodWorkBench>()); // workbenches
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 16:
@@ -314,7 +314,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>());
                                     tile.slope(2);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 17:
                                     if (confirmPlatforms == 1)
@@ -323,7 +323,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodClock>()); // clocks
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 18:
@@ -333,7 +333,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodDresser>()); // dressers
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 19:
@@ -343,7 +343,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodChair>()); // chairs
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 20:
@@ -353,7 +353,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodTable>()); // tables
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 21:
@@ -363,7 +363,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodPiano>()); // pianos
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 22:
@@ -372,7 +372,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.ResistantWoodPlatform>());
                                     tile.slope(1);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 23:
                                     if (confirmPlatforms == 1)
@@ -381,7 +381,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodBed>()); // beds
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 24:
@@ -391,7 +391,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, (ushort)ModContent.TileType<Tiles.ResistantWoodBathtub>());
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 25:
@@ -401,12 +401,12 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, TileID.Sinks, true, true, -1, 13);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 26:
                                     tile.active(true);
-                                    tile.type = impBrick;
+                                    tile.TileType = impBrick;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -417,7 +417,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.LibraryAltar>(), true, true, -1, 0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     }
                                     break;
                                 case 28:
@@ -425,28 +425,28 @@ namespace ExxoAvalonOrigins.World.Structures
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.Paintings>(), true, true, -1, 1);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 29:
                                     tile.active(false);
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.Paintings>(), true, true, -1, 5);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 30:
                                     tile.active(false);
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.Paintings>(), true, true, -1, 2);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                                 case 31:
                                     tile.active(false);
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     WorldGen.PlaceTile(k, l, ModContent.TileType<Tiles.DevilsScythe>());
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>();
                                     break;
                             }
                         }
@@ -458,7 +458,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int z = y; z <= y + 21; z++)
                 {
                     Tile t = Framing.GetTileSafely(q, z);
-                    t.wall = 0;
+                    t.WallType = 0;
                 }
             }
             MakeWallRectangle(x + 192 + 234, y + 8, 2, 9, wallSafe);
@@ -475,8 +475,8 @@ namespace ExxoAvalonOrigins.World.Structures
                     if (Main.tile[noLiquidX, noLiquidY] == null) Main.tile[noLiquidX, noLiquidY] = new Tile();
                     Main.tile[noLiquidX, noLiquidY].liquid = 0;
                     Main.tile[noLiquidX, noLiquidY].lava(false);
-                    if (Main.tile[noLiquidX, noLiquidY].type == TileID.LargePiles || Main.tile[noLiquidX, noLiquidY].type == TileID.LargePiles2 ||
-                        Main.tile[noLiquidX, noLiquidY].type == TileID.SmallPiles)
+                    if (Main.tile[noLiquidX, noLiquidY].TileType == TileID.LargePiles || Main.tile[noLiquidX, noLiquidY].TileType == TileID.LargePiles2 ||
+                        Main.tile[noLiquidX, noLiquidY].TileType == TileID.SmallPiles)
                     {
                         Main.tile[noLiquidX, noLiquidY].active(false);
                     }
@@ -487,26 +487,26 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int noHellHousesY = y - 40; noHellHousesY <= y + 90; noHellHousesY++)
                 {
                     if (Main.tile[noHellHousesX, noHellHousesY] == null) Main.tile[noHellHousesX, noHellHousesY] = new Tile();
-                    if (Main.tile[noHellHousesX, noHellHousesY].type == TileID.ObsidianBrick || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HellstoneBrick ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting3X2 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting2X3 ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting4X3 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting3X3 ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Painting6X4 || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Torches ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Statues || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Banners ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Platforms || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chairs ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.WorkBenches || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Tables ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lampposts || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Lamps ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pianos || Main.tile[noHellHousesX, noHellHousesY].type == TileID.GrandfatherClocks ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Chandeliers || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Hellforge ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].type == TileID.HangingLanterns ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Bookcases || Main.tile[noHellHousesX, noHellHousesY].type == 89 ||
-                        Main.tile[noHellHousesX, noHellHousesY].type == TileID.Candelabras || Main.tile[noHellHousesX, noHellHousesY].type == TileID.Candles)
+                    if (Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.ObsidianBrick || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.HellstoneBrick ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Painting3X2 || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Painting2X3 ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Painting4X3 || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Painting3X3 ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Painting6X4 || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Torches ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Statues || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Banners ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Platforms || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Chairs ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.WorkBenches || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Tables ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Lampposts || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Lamps ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Pianos || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.GrandfatherClocks ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Chandeliers || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Hellforge ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Pots || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.HangingLanterns ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Bookcases || Main.tile[noHellHousesX, noHellHousesY].TileType == 89 ||
+                        Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Candelabras || Main.tile[noHellHousesX, noHellHousesY].TileType == TileID.Candles)
                     {
                         Main.tile[noHellHousesX, noHellHousesY].active(false);
-                        Main.tile[noHellHousesX, noHellHousesY].wall = 0;
+                        Main.tile[noHellHousesX, noHellHousesY].WallType = 0;
                     }
-                    if (Main.tile[noHellHousesX, noHellHousesY].wall == WallID.ObsidianBrickUnsafe || Main.tile[noHellHousesX, noHellHousesY].wall == WallID.HellstoneBrickUnsafe)
+                    if (Main.tile[noHellHousesX, noHellHousesY].WallType == WallID.ObsidianBrickUnsafe || Main.tile[noHellHousesX, noHellHousesY].WallType == WallID.HellstoneBrickUnsafe)
                     {
-                        Main.tile[noHellHousesX, noHellHousesY].wall = 0;
+                        Main.tile[noHellHousesX, noHellHousesY].WallType = 0;
                     }
                     Main.tile[noHellHousesX, noHellHousesY].lava(false);
                     if (noHellHousesX >= x && noHellHousesX <= x + 210 && noHellHousesY >= y && noHellHousesY <= y + 90)
@@ -523,7 +523,7 @@ namespace ExxoAvalonOrigins.World.Structures
             {
                 for (int j = y; j < y + height; j++)
                 {
-                    Main.tile[i, j].wall = type;
+                    Main.tile[i, j].WallType = type;
                     WorldGen.SquareWallFrame(i, j);
                 }
             }
@@ -540,9 +540,9 @@ namespace ExxoAvalonOrigins.World.Structures
                     else
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = (ushort)type;
-                        if (type == 50) Main.tile[i, j].frameX = (short)(WorldGen.genRand.Next(0, 5) * 18);
-                        if (type == 4) Main.tile[i, j].frameY = 176;
+                        Main.tile[i, j].TileType = (ushort)type;
+                        if (type == 50) Main.tile[i, j].TileFrameX = (short)(WorldGen.genRand.Next(0, 5) * 18);
+                        if (type == 4) Main.tile[i, j].TileFrameY = 176;
                         //if (type == 19)
                         //{
                         //    Main.tile[i, j].type = (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>();
@@ -557,7 +557,7 @@ namespace ExxoAvalonOrigins.World.Structures
             int k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
                 {
                     int num = k;
                     int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<Tiles.ResistantWoodChest>(), notNearOtherChests);

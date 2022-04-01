@@ -17,20 +17,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 5;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.value = 30000;
-            item.height = dims.Height;
+            Item.defense = 5;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.value = 30000;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.HellstoneBar, 10);
-            r.AddIngredient(ModContent.ItemType<Items.Material.FireShard>());
-            r.AddTile(TileID.Anvils);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.HellstoneBar, 10).AddIngredient(ModContent.ItemType<Items.Material.FireShard>()).AddTile(TileID.Anvils).Register();
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -40,7 +35,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "17% increased ranged damage and 20% chance to not consume ammo";
-            player.rangedDamage += 0.17f;
+            player.GetDamage(DamageClass.Ranged) += 0.17f;
             player.ammoCost80 = true;
         }
     }

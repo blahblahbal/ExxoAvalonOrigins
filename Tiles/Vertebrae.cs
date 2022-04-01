@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Vertebrae : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(255, 127, 127));
             Main.tileSolid[Type] = true;

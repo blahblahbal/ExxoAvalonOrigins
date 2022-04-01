@@ -7,12 +7,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class LockedUnderworldChest : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSpelunker[Type] = true;
             Main.tileContainer[Type] = true;
@@ -51,11 +52,11 @@ namespace ExxoAvalonOrigins.Tiles
             var left = i;
             var top = j;
             var tile = Main.tile[i, j];
-            if (tile.frameX % 36 != 0)
+            if (tile.TileFrameX % 36 != 0)
             {
                 left--;
             }
-            if (tile.frameY != 0)
+            if (tile.TileFrameY != 0)
             {
                 top--;
             }
@@ -95,15 +96,15 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 return;
             }
-            Main.PlaySound(SoundID.Unlock, X * 16, Y * 16, 1);
+            SoundEngine.PlaySound(SoundID.Unlock, X * 16, Y * 16, 1);
             for (int i = X; i <= X + 1; i++)
             {
                 for (int j = Y; j <= Y + 1; j++)
                 {
-                    Main.tile[i, j].type = (ushort)ModContent.TileType<UnderworldChest>();
+                    Main.tile[i, j].TileType = (ushort)ModContent.TileType<UnderworldChest>();
                     for (int k = 0; k < 4; k++)
                     {
-                        Dust.NewDust(new Vector2((float)(i * 16), (float)(j * 16)), 16, 16, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
+                        Dust.NewDust(new Vector2((float)(i * 16), (float)(j * 16)), 16, 16, DustID.Torch, 0f, 0f, 0, default(Color), 1f);
                     }
                 }
             }
@@ -111,11 +112,11 @@ namespace ExxoAvalonOrigins.Tiles
         public override void RightClick(int i, int j)
         {
             int num148;
-            for (num148 = (int)(Main.tile[i, j].frameX / 18); num148 > 1; num148 -= 2)
+            for (num148 = (int)(Main.tile[i, j].TileFrameX / 18); num148 > 1; num148 -= 2)
             {
             }
             num148 = i - num148;
-            int num149 = j - (int)(Main.tile[i, j].frameY / 18);
+            int num149 = j - (int)(Main.tile[i, j].TileFrameY / 18);
             Player player = Main.LocalPlayer;
             Tile tile = Main.tile[i, j];
             Main.mouseRightRelease = false;
@@ -143,11 +144,11 @@ namespace ExxoAvalonOrigins.Tiles
             var tile = Main.tile[i, j];
             var left = i;
             var top = j;
-            if (tile.frameX % 36 != 0)
+            if (tile.TileFrameX % 36 != 0)
             {
                 left--;
             }
-            if (tile.frameY != 0)
+            if (tile.TileFrameY != 0)
             {
                 top--;
             }

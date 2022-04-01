@@ -10,58 +10,58 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Eye Bones");
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[NPC.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 85;
-            npc.lifeMax = 700;
-            npc.defense = 20;
-            npc.width = 30;
-            npc.aiStyle = 2;
-            npc.value = 10000f;
-            npc.height = 32;
-            npc.knockBackResist = 0.5f;
-            npc.HitSound = SoundID.NPCHit2;
-            npc.DeathSound = SoundID.NPCDeath2;
-            npc.buffImmune[BuffID.Confused] = true;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.EyeBonesBanner>();
+            NPC.damage = 85;
+            NPC.lifeMax = 700;
+            NPC.defense = 20;
+            NPC.width = 30;
+            NPC.aiStyle = 2;
+            NPC.value = 10000f;
+            NPC.height = 32;
+            NPC.knockBackResist = 0.5f;
+            NPC.HitSound = SoundID.NPCHit2;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.buffImmune[BuffID.Confused] = true;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.EyeBonesBanner>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bone, Main.rand.Next(3), false, 0, false);
+            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Bone, Main.rand.Next(3), false, 0, false);
         }
 
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.X > 0f)
+            if (NPC.velocity.X > 0f)
             {
-                npc.spriteDirection = 1;
-                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X);
+                NPC.spriteDirection = 1;
+                NPC.rotation = (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X);
             }
-            if (npc.velocity.X < 0f)
+            if (NPC.velocity.X < 0f)
             {
-                npc.spriteDirection = -1;
-                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 3.14f;
+                NPC.spriteDirection = -1;
+                NPC.rotation = (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + 3.14f;
             }
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter >= 8.0)
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter >= 8.0)
             {
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                npc.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
             }
-            if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
+            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
 

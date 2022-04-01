@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ImperviousBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(10, 10, 10));
             Main.tileSolid[Type] = true;
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][TileID.Ash] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("ImperviousBrick");
+            drop = Mod.Find<ModItem>("ImperviousBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 300;

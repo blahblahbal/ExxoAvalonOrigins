@@ -16,52 +16,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 95;
-            item.noUseGraphic = true;
-            item.shootSpeed = 14f;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.knockBack = 9f;
-            item.useTime = 15;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.PossessedFlamesaw>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 95;
+            Item.noUseGraphic = true;
+            Item.shootSpeed = 14f;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.knockBack = 9f;
+            Item.useTime = 15;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.PossessedFlamesaw>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PossessedHatchet);
-            recipe.AddIngredient(ItemID.AdamantiteChainsaw);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddIngredient(ItemID.CursedFlame, 50);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PossessedHatchet);
-            recipe.AddIngredient(ItemID.TitaniumChainsaw);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddIngredient(ItemID.CursedFlame, 50);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PossessedHatchet);
-            recipe.AddIngredient(ModContent.ItemType<Tools.TroxiniumChainsaw>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddIngredient(ItemID.CursedFlame, 50);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 160);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.PossessedHatchet).AddIngredient(ItemID.AdamantiteChainsaw).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddIngredient(ItemID.CursedFlame, 50).AddIngredient(ItemID.LivingFireBlock, 160).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
+            CreateRecipe(1).AddIngredient(ItemID.PossessedHatchet).AddIngredient(ItemID.TitaniumChainsaw).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddIngredient(ItemID.CursedFlame, 50).AddIngredient(ItemID.LivingFireBlock, 160).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
+            CreateRecipe(1).AddIngredient(ItemID.PossessedHatchet).AddIngredient(ModContent.ItemType<Tools.TroxiniumChainsaw>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddIngredient(ItemID.CursedFlame, 50).AddIngredient(ItemID.LivingFireBlock, 160).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

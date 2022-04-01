@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 {
     public class AdvMagicPower : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Advanced Magic Power");
             Description.SetDefault("30% increased magic damage");
@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 
         public override void Update(Player player, ref int k)
         {
-            player.magicDamage += 0.3f;
+            player.GetDamage(DamageClass.Magic) += 0.3f;
         }
     }
 }

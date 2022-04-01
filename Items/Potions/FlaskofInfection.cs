@@ -16,27 +16,22 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.useTurn = true;
-            item.maxStack = 100;
-            item.buffType = ModContent.BuffType<Buffs.WeaponImbuePathogen>();
-            item.consumable = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 17;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.value = Item.sellPrice(0, 0, 5, 0);
-            item.useAnimation = 17;
-            item.height = dims.Height;
-            item.buffTime = 54000;
+            Item.useTurn = true;
+            Item.maxStack = 100;
+            Item.buffType = ModContent.BuffType<Buffs.WeaponImbuePathogen>();
+            Item.consumable = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 17;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.value = Item.sellPrice(0, 0, 5, 0);
+            Item.useAnimation = 17;
+            Item.height = dims.Height;
+            Item.buffTime = 54000;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ModContent.ItemType<Material.Pathogen>(), 5);
-            recipe.AddTile(TileID.ImbuingStation);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.BottledWater).AddIngredient(ModContent.ItemType<Material.Pathogen>(), 5).AddTile(TileID.ImbuingStation).Register();
         }
     }
 }

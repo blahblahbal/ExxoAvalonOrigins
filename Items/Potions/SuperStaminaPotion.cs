@@ -16,43 +16,30 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 17;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 120;
-            item.maxStack = 99;
-            item.value = 4000;
-            item.useAnimation = 17;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 17;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 120;
+            Item.maxStack = 99;
+            Item.value = 4000;
+            Item.useAnimation = 17;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2);
-            recipe.AddIngredient(ItemID.ChlorophyteBar);
-            recipe.AddIngredient(ItemID.SharkFin, 2);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this, 2);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.XanthophyteBar>());
-            recipe.AddIngredient(ItemID.SharkFin, 2);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this, 2);
-            recipe.AddRecipe();
+            CreateRecipe(2).AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2).AddIngredient(ItemID.ChlorophyteBar).AddIngredient(ItemID.SharkFin, 2).AddTile(TileID.Bottles).Register();
+            CreateRecipe(2).AddIngredient(ModContent.ItemType<GreaterStaminaPotion>(), 2).AddIngredient(ModContent.ItemType<Placeable.Bar.XanthophyteBar>()).AddIngredient(ItemID.SharkFin, 2).AddTile(TileID.Bottles).Register();
         }
         public override bool CanUseItem(Player player)
         {
             if (player.Avalon().statStam >= player.Avalon().statStamMax2) return false;
             return true;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.Avalon().statStam += 120;
             player.Avalon().StaminaHealEffect(120, true);

@@ -14,31 +14,22 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.White;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.createWall = ModContent.WallType<Walls.RhodiumBrickWall>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.White;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.createWall = ModContent.WallType<Walls.RhodiumBrickWall>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Tile.RhodiumBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this, 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(this, 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<Tile.RhodiumBrick>());
-            recipe.AddRecipe();
+            CreateRecipe(4).AddIngredient(ModContent.ItemType<Tile.RhodiumBrick>()).AddTile(TileID.WorkBenches).Register();
+            CreateRecipe(1).AddIngredient(this, 4).AddTile(TileID.WorkBenches).ReplaceResult(ModContent.ItemType<Tile.RhodiumBrick>());
         }
     }
 }

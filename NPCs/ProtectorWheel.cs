@@ -9,102 +9,102 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Protector Wheel");
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[NPC.type] = 4;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 65;
-            npc.scale = 1f;
-            npc.lifeMax = 500;
-            npc.defense = 100;
-            npc.noGravity = true;
-            npc.width = 22;
-            npc.aiStyle = -1;
-            npc.behindTiles = true;
-            npc.npcSlots = 1f;
-            npc.value = 0f;
-            npc.timeLeft = 750;
-            npc.height = 22;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit3;
-            npc.DeathSound = SoundID.NPCDeath3;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
+            NPC.damage = 65;
+            NPC.scale = 1f;
+            NPC.lifeMax = 500;
+            NPC.defense = 100;
+            NPC.noGravity = true;
+            NPC.width = 22;
+            NPC.aiStyle = -1;
+            NPC.behindTiles = true;
+            NPC.npcSlots = 1f;
+            NPC.value = 0f;
+            NPC.timeLeft = 750;
+            NPC.height = 22;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit3;
+            NPC.DeathSound = SoundID.NPCDeath3;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override void AI()
         {
-            if (npc.ai[0] == 0f)
+            if (NPC.ai[0] == 0f)
             {
-                npc.TargetClosest(true);
-                npc.directionY = 1;
-                npc.ai[0] = 1f;
+                NPC.TargetClosest(true);
+                NPC.directionY = 1;
+                NPC.ai[0] = 1f;
             }
             var num401 = 6;
-            if (npc.ai[1] == 0f)
+            if (NPC.ai[1] == 0f)
             {
-                npc.rotation += (npc.direction * npc.directionY) * 0.13f;
-                if (npc.collideY)
+                NPC.rotation += (NPC.direction * NPC.directionY) * 0.13f;
+                if (NPC.collideY)
                 {
-                    npc.ai[0] = 2f;
+                    NPC.ai[0] = 2f;
                 }
-                if (!npc.collideY && npc.ai[0] == 2f)
+                if (!NPC.collideY && NPC.ai[0] == 2f)
                 {
-                    npc.direction = -npc.direction;
-                    npc.ai[1] = 1f;
-                    npc.ai[0] = 1f;
+                    NPC.direction = -NPC.direction;
+                    NPC.ai[1] = 1f;
+                    NPC.ai[0] = 1f;
                 }
-                if (npc.collideX)
+                if (NPC.collideX)
                 {
-                    npc.TargetClosest(true);
-                    npc.directionY = -npc.directionY;
-                    npc.ai[1] = 1f;
+                    NPC.TargetClosest(true);
+                    NPC.directionY = -NPC.directionY;
+                    NPC.ai[1] = 1f;
                 }
             }
             else
             {
-                npc.rotation -= (npc.direction * npc.directionY) * 0.13f;
-                if (npc.collideX)
+                NPC.rotation -= (NPC.direction * NPC.directionY) * 0.13f;
+                if (NPC.collideX)
                 {
-                    npc.ai[0] = 2f;
+                    NPC.ai[0] = 2f;
                 }
-                if (!npc.collideX && npc.ai[0] == 2f)
+                if (!NPC.collideX && NPC.ai[0] == 2f)
                 {
-                    npc.directionY = -npc.directionY;
-                    npc.ai[1] = 0f;
-                    npc.ai[0] = 1f;
+                    NPC.directionY = -NPC.directionY;
+                    NPC.ai[1] = 0f;
+                    NPC.ai[0] = 1f;
                 }
-                if (npc.collideY)
+                if (NPC.collideY)
                 {
-                    npc.TargetClosest(true);
-                    npc.direction = -npc.direction;
-                    npc.ai[1] = 0f;
+                    NPC.TargetClosest(true);
+                    NPC.direction = -NPC.direction;
+                    NPC.ai[1] = 0f;
                 }
             }
-            npc.velocity.X = num401 * npc.direction;
-            npc.velocity.Y = num401 * npc.directionY;
+            NPC.velocity.X = num401 * NPC.direction;
+            NPC.velocity.Y = num401 * NPC.directionY;
             var num402 = (270 - Main.mouseTextColor) / 400f;
-            Lighting.AddLight((int)(npc.position.X + npc.width / 2) / 16, (int)(npc.position.Y + npc.height / 2) / 16, 0.9f, 0.3f + num402, 0.2f);
+            Lighting.AddLight((int)(NPC.position.X + NPC.width / 2) / 16, (int)(NPC.position.Y + NPC.height / 2) / 16, 0.9f, 0.3f + num402, 0.2f);
             return;
         }
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter >= 3.0)
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter >= 3.0)
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                 {
-                    npc.frame.Y = 0;
+                    NPC.frame.Y = 0;
                 }
             }
         }

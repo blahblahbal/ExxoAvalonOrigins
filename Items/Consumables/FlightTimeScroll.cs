@@ -16,31 +16,24 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.rare = ItemRarityID.Green;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.rare = ItemRarityID.Green;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.Feather, 20);
-            r.AddIngredient(ItemID.SoulofFlight, 15);
-            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            r.AddTile(TileID.Bookcases);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Book).AddIngredient(ItemID.Feather, 20).AddIngredient(ItemID.SoulofFlight, 15).AddIngredient(ModContent.ItemType<StaminaCrystal>()).AddTile(TileID.Bookcases).Register();
         }
         public override bool CanUseItem(Player player)
         {
             return !player.Avalon().flightRestoreUnlocked;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.Avalon().flightRestoreUnlocked = true;
             return true;

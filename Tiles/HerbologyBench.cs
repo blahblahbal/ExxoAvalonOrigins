@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class HerbologyBench : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Tiles
             return true;
         }
 
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             Main.playerInventory = true;
 

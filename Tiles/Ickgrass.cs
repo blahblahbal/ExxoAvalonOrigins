@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Ickgrass : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(147, 166, 42));
             SetModTree(new ContagionTree());
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (fail && !effectOnly)
             {
-                Main.tile[i, j].type = TileID.Dirt;
+                Main.tile[i, j].TileType = TileID.Dirt;
                 WorldGen.SquareTileFrame(i, j);
             }
         }

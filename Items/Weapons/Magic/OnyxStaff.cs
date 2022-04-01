@@ -10,27 +10,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Onyx Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 116;
-            item.autoReuse = true;
-            item.shootSpeed = 9.5f;
-            item.mana = 20;
-            item.rare = ItemRarityID.Cyan;
-            item.useTime = 19;
-            item.useAnimation = 19;
-            item.knockBack = 25.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.OnyxBolt>();
-            item.value = Item.buyPrice(0, 35, 0, 0);
-            item.UseSound = SoundID.Item43;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 116;
+            Item.autoReuse = true;
+            Item.shootSpeed = 9.5f;
+            Item.mana = 20;
+            Item.rare = ItemRarityID.Cyan;
+            Item.useTime = 19;
+            Item.useAnimation = 19;
+            Item.knockBack = 25.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.OnyxBolt>();
+            Item.value = Item.buyPrice(0, 35, 0, 0);
+            Item.UseSound = SoundID.Item43;
         }
     }
 }

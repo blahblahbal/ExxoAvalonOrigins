@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Boosted", new Boosted());
+                Mod.AddPrefix("Boosted", new Boosted());
             }
             return false;
         }

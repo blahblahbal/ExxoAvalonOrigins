@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ManaCrystal : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(113, 99, 99));
             animationFrameHeight = 38;

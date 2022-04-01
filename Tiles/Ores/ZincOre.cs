@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class ZincOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(168, 155, 168), LanguageManager.Instance.GetText("Zinc"));
             Main.tileSolid[Type] = true;

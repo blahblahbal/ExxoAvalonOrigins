@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class NaquadahOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 3f;
             AddMapEntry(Color.Blue, LanguageManager.Instance.GetText("Naquadah"));
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileValue[Type] = 635;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 900;
-            drop = mod.ItemType("NaquadahOre");
+            drop = Mod.Find<ModItem>("NaquadahOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 110;

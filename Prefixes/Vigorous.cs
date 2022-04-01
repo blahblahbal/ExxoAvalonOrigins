@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Vigorous", new Vigorous());
+                Mod.AddPrefix("Vigorous", new Vigorous());
             }
             return false;
         }
@@ -29,10 +29,10 @@ namespace ExxoAvalonOrigins.Prefixes
         public override void Apply(Item item)
         {
             Main.player[Main.myPlayer].meleeSpeed += 0.03f;
-            Main.player[Main.myPlayer].meleeDamage += 0.03f;
-            Main.player[Main.myPlayer].rangedDamage += 0.03f;
-            Main.player[Main.myPlayer].magicDamage += 0.03f;
-            Main.player[Main.myPlayer].minionDamage += 0.03f;
+            Main.player[Main.myPlayer].GetDamage(DamageClass.Melee) += 0.03f;
+            Main.player[Main.myPlayer].GetDamage(DamageClass.Ranged) += 0.03f;
+            Main.player[Main.myPlayer].GetDamage(DamageClass.Magic) += 0.03f;
+            Main.player[Main.myPlayer].GetDamage(DamageClass.Summon) += 0.03f;
         }
 
         public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)

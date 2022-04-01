@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -19,60 +20,60 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
-            projectile.alpha = 0;
-            projectile.scale = 1;
-            projectile.aiStyle = -1;
-            projectile.timeLeft = 240;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.damage = 0;
-            projectile.light = 1;
-            projectile.hide = true;
-            projectile.ownerHitCheck = true;
-            projectile.tileCollide = false;
-            projectile.magic = true;
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.alpha = 0;
+            Projectile.scale = 1;
+            Projectile.aiStyle = -1;
+            Projectile.timeLeft = 240;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.damage = 0;
+            Projectile.light = 1;
+            Projectile.hide = true;
+            Projectile.ownerHitCheck = true;
+            Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Magic;
         }
         public override void Kill(int timeLeft)
         {
-            projectile.active = false;
+            Projectile.active = false;
         }
         public override void AI()
         {
             CHARGE++;
-            Projectile P = projectile;
+            Projectile P = Projectile;
             P.damage = 0;
             Player O = Main.player[P.owner];
             if (CHARGE == 149)
             {
-                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.magicDamage), 3f, P.owner);
-                Main.PlaySound(2, (int)P.position.X, (int)P.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
+                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.GetDamage(DamageClass.Magic)), 3f, P.owner);
+                SoundEngine.PlaySound(2, (int)P.position.X, (int)P.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
             }
             if (CHARGE == 169)
             {
-                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.magicDamage), 3f, P.owner);
-                Main.PlaySound(2, (int)P.position.X, (int)P.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
+                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.GetDamage(DamageClass.Magic)), 3f, P.owner);
+                SoundEngine.PlaySound(2, (int)P.position.X, (int)P.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
             }
             if (CHARGE == 189)
             {
-                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.magicDamage), 3f, P.owner);
-                Main.PlaySound(2, (int)P.position.X, (int)P.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
+                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.GetDamage(DamageClass.Magic)), 3f, P.owner);
+                SoundEngine.PlaySound(2, (int)P.position.X, (int)P.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
             }
             if (CHARGE == 209)
             {
-                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.magicDamage), 3f, P.owner);
-                Main.PlaySound(2, (int)P.position.X, (int)P.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
+                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.GetDamage(DamageClass.Magic)), 3f, P.owner);
+                SoundEngine.PlaySound(2, (int)P.position.X, (int)P.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
             }
             if (CHARGE == 229)
             {
-                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.magicDamage), 3f, P.owner);
-                Main.PlaySound(2, (int)P.position.X, (int)P.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
+                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.GetDamage(DamageClass.Magic)), 3f, P.owner);
+                SoundEngine.PlaySound(2, (int)P.position.X, (int)P.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
             }
             if (CHARGE == 249)
             {
-                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.magicDamage), 3f, P.owner);
-                Main.PlaySound(2, (int)P.position.X, (int)P.position.Y, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
+                Pindex = Projectile.NewProjectile(P.position.X + P.width / 2, P.position.Y + P.height / 2, P.velocity.X, P.velocity.Y, ModContent.ProjectileType<TheSun>(), (int)(O.inventory[O.selectedItem].damage * O.GetDamage(DamageClass.Magic)), 3f, P.owner);
+                SoundEngine.PlaySound(2, (int)P.position.X, (int)P.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Pulse"));
             }
             if (CHARGE > 251) CHARGE = 251;
             float MY = Main.mouseY + Main.screenPosition.Y;

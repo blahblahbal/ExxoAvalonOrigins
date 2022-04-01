@@ -17,35 +17,27 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.value = 20000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.value = 20000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.statLifeMax2 += 60;
-            player.magicDamage += 0.05f;
-            player.minionDamage += 0.05f;
-            player.meleeDamage += 0.05f;
-            player.rangedDamage += 0.05f;
-            player.thrownDamage += 0.05f;
+            player.GetDamage(DamageClass.Magic) += 0.05f;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
+            player.GetDamage(DamageClass.Melee) += 0.05f;
+            player.GetDamage(DamageClass.Ranged) += 0.05f;
+            player.GetDamage(DamageClass.Throwing) += 0.05f;
             player.manaCost -= 0.1f;
         }
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LifeCrystal, 2);
-            recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<CarbonSteel>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.LifeCrystal, 2).AddIngredient(ModContent.ItemType<FineLumber>(), 10).AddIngredient(ModContent.ItemType<CarbonSteel>(), 5).AddIngredient(ModContent.ItemType<RubybeadHerb>(), 10).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

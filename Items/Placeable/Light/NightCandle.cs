@@ -16,42 +16,25 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.SoulCandles.NightCandle>();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 0, 50);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.SoulCandles.NightCandle>();
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(0, 0, 0, 50);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SoulofNight, 15);
-            r.AddIngredient(ItemID.Candle);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SoulofNight, 15);
-            r.AddIngredient(ItemID.PlatinumCandle);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SoulofNight, 15);
-            r.AddIngredient(ModContent.ItemType<BismuthCandle>());
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.SoulofNight, 15).AddIngredient(ItemID.Candle).AddTile(TileID.MythrilAnvil).Register();
+            CreateRecipe(1).AddIngredient(ItemID.SoulofNight, 15).AddIngredient(ItemID.PlatinumCandle).AddTile(TileID.MythrilAnvil).Register();
+            CreateRecipe(1).AddIngredient(ItemID.SoulofNight, 15).AddIngredient(ModContent.ItemType<BismuthCandle>()).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

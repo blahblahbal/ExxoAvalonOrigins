@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -15,72 +16,71 @@ namespace ExxoAvalonOrigins.NPCs
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bomb Bones");
-			Main.npcFrameCount[npc.type] = 15;
+			Main.npcFrameCount[NPC.type] = 15;
 		}
 
 		public override void SetDefaults()
 		{
-			npc.damage = 85;
-			npc.lifeMax = 1000;
-			npc.defense = 20;
-			npc.width = 18;
-			npc.aiStyle = 3;
-			npc.value = 40000f;
-			npc.height = 40;
-			npc.knockBackResist = 0.05f;
-			npc.HitSound = SoundID.NPCHit2;
-	        npc.DeathSound = SoundID.NPCDeath2;
-			npc.buffImmune[BuffID.Poisoned] = true;
-			npc.buffImmune[BuffID.Confused] = true;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
+			NPC.damage = 85;
+			NPC.lifeMax = 1000;
+			NPC.defense = 20;
+			NPC.width = 18;
+			NPC.aiStyle = 3;
+			NPC.value = 40000f;
+			NPC.height = 40;
+			NPC.knockBackResist = 0.05f;
+			NPC.HitSound = SoundID.NPCHit2;
+	        NPC.DeathSound = SoundID.NPCDeath2;
+			NPC.buffImmune[BuffID.Poisoned] = true;
+			NPC.buffImmune[BuffID.Confused] = true;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.35f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.35f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
-        public override void NPCLoot()
-		{
-			Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bomb, Main.rand.Next(10, 16), false, 0, false);
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.Bomb, 1, 10, 16));
         }
-
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.velocity.X == 0f)
+                if (NPC.velocity.X == 0f)
                 {
-                    npc.frame.Y = 0;
-                    npc.frameCounter = 0.0;
+                    NPC.frame.Y = 0;
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += 1.0;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += 1.0;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 2;
+                        NPC.frame.Y = frameHeight * 2;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = 0;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = 0;
             }
         }
     }

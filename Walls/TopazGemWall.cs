@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class TopazGemWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("TopazGemWall");
+            drop = Mod.Find<ModItem>("TopazGemWall").Type;
             AddMapEntry(new Color(97, 75, 28));
             dustType = DustID.Stone;
         }

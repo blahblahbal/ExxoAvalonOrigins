@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         }
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.TinBow);
+            Item.CloneDefaults(ItemID.TinBow);
         }
     }
 }

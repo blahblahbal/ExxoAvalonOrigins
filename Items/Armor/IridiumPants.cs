@@ -17,15 +17,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 8;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 9, 75);
-            item.height = dims.Height;
+            Item.defense = 8;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 9, 75);
+            Item.height = dims.Height;
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicDamage += 0.11f;
+            player.GetDamage(DamageClass.Magic) += 0.11f;
         }
     }
 }

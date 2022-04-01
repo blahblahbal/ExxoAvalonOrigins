@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class DurataniumBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("DurataniumBrickWall");
+            drop = Mod.Find<ModItem>("DurataniumBrickWall").Type;
             AddMapEntry(new Color(91, 0, 54));
             dustType = dustType = ModContent.DustType<Dusts.DurataniumDust>();
         }

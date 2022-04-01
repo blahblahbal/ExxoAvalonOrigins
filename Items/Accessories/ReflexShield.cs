@@ -52,26 +52,16 @@ namespace ExxoAvalonOrigins.Items.Accessories
 		public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.defense = 6;
-			item.rare = ItemRarityID.Cyan;
-			item.width = dims.Width;
-			item.accessory = true;
-			item.value = Item.sellPrice(0, 17, 45, 0);
-			item.height = dims.Height;
+			Item.defense = 6;
+			Item.rare = ItemRarityID.Cyan;
+			Item.width = dims.Width;
+			Item.accessory = true;
+			Item.value = Item.sellPrice(0, 17, 45, 0);
+			Item.height = dims.Height;
 		}
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ReflexCharm>());
-            recipe.AddIngredient(ItemID.AnkhShield);
-            recipe.AddIngredient(ModContent.ItemType<GoldenShield>());
-            recipe.AddIngredient(ModContent.ItemType<OxygenTank>());
-            recipe.AddIngredient(ModContent.ItemType<Vortex>());
-            recipe.AddIngredient(ModContent.ItemType<NuclearExtinguisher>());
-            recipe.AddIngredient(ItemID.PocketMirror);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<ReflexCharm>()).AddIngredient(ItemID.AnkhShield).AddIngredient(ModContent.ItemType<GoldenShield>()).AddIngredient(ModContent.ItemType<OxygenTank>()).AddIngredient(ModContent.ItemType<Vortex>()).AddIngredient(ModContent.ItemType<NuclearExtinguisher>()).AddIngredient(ItemID.PocketMirror).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{

@@ -16,14 +16,14 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Melee/GuardianHammer");
-            projectile.width = dims.Width * 28 / 40;
-            projectile.height = dims.Height * 28 / 40 / Main.projFrames[projectile.type];
-            projectile.aiStyle = 3;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.ignoreWater = true;
-            projectile.tileCollide = true;
-            projectile.MaxUpdates = 2;
+            Projectile.width = dims.Width * 28 / 40;
+            Projectile.height = dims.Height * 28 / 40 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = 3;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = true;
+            Projectile.MaxUpdates = 2;
             aiType = 301;
         }
         public override void AI()
@@ -105,15 +105,15 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            StrikeLightning(projectile);
+            StrikeLightning(Projectile);
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            StrikeLightning(projectile);
+            StrikeLightning(Projectile);
             int num34 = 10;
             int num35 = 10;
-            Vector2 vector7 = new Vector2(projectile.Center.X - num34 / 2, projectile.Center.Y - num35 / 2);
-            projectile.velocity = Collision.TileCollision(vector7, projectile.velocity, num34, num35, true, true, 1);
+            Vector2 vector7 = new Vector2(Projectile.Center.X - num34 / 2, Projectile.Center.Y - num35 / 2);
+            Projectile.velocity = Collision.TileCollision(vector7, Projectile.velocity, num34, num35, true, true, 1);
             return base.OnTileCollide(oldVelocity);
         }
         public override Color? GetAlpha(Color lightColor)

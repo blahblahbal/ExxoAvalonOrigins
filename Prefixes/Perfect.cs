@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Perfect", new Perfect());
+                Mod.AddPrefix("Perfect", new Perfect());
             }
             return false;
         }

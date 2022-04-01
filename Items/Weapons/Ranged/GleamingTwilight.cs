@@ -15,32 +15,26 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 90;
-            item.autoReuse = true;
-            item.useAmmo = AmmoID.Arrow;
-            item.shootSpeed = 11f;
-            item.ranged = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.knockBack = 4.5f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 1000000;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item5;
+            Item.damage = 90;
+            Item.autoReuse = true;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.shootSpeed = 11f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.knockBack = 4.5f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 1000000;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ChlorophyteShotbow);
-            recipe.AddIngredient(ItemID.HallowedRepeater);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.ChlorophyteShotbow).AddIngredient(ItemID.HallowedRepeater).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)

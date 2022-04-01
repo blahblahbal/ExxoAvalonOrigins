@@ -82,7 +82,7 @@ namespace ExxoAvalonOrigins.World
             for (int i = (int)(WorldGen.worldSurfaceLow - 30); i < Main.maxTilesY; i++)
             {
                 Tile tile = Framing.GetTileSafely(positionX, i);
-                if ((tile.type == TileID.Dirt || tile.type == TileID.ClayBlock || tile.type == TileID.Stone || tile.type == TileID.Sand || tile.type == ModContent.TileType<Snotsand>() || tile.type == ModContent.TileType<TropicalMud>() || tile.type == TileID.Mud || tile.type == TileID.SnowBlock || tile.type == TileID.IceBlock) && tile.active())
+                if ((tile.TileType == TileID.Dirt || tile.TileType == TileID.ClayBlock || tile.TileType == TileID.Stone || tile.TileType == TileID.Sand || tile.TileType == ModContent.TileType<Snotsand>() || tile.TileType == ModContent.TileType<TropicalMud>() || tile.TileType == TileID.Mud || tile.TileType == TileID.SnowBlock || tile.TileType == TileID.IceBlock) && tile.HasTile)
                 {
                     return i;
                 }
@@ -95,7 +95,7 @@ namespace ExxoAvalonOrigins.World
             {
                 for (int j = y; j < y + 5; j++)
                 {
-                    Main.tile[i, j].type = TileID.Stone;
+                    Main.tile[i, j].TileType = TileID.Stone;
                     Main.tile[i, j].active(true);
                     WorldGen.SquareTileFrame(i, j);
                 }
@@ -117,14 +117,14 @@ namespace ExxoAvalonOrigins.World
                         Main.tile[k, l].active(true);
                         Main.tile[k, l].halfBrick(false);
                         Main.tile[k, l].slope(0);
-                        Main.tile[k, l].type = (ushort)tileType;
+                        Main.tile[k, l].TileType = (ushort)tileType;
                         WorldGen.SquareTileFrame(k, l);
                     }
                     if (walls)
                     {
                         if (dist <= radius - 6 && dist >= radius - 23)
                         {
-                            Main.tile[k, l].wall = (ushort)wallType;
+                            Main.tile[k, l].WallType = (ushort)wallType;
                         }
                     }
                 }

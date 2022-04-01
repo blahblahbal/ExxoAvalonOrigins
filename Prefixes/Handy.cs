@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Handy", new Handy());
+                Mod.AddPrefix("Handy", new Handy());
             }
             return false;
         }

@@ -14,32 +14,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 17;
-            item.noUseGraphic = true;
-            item.channel = true;
-            item.scale = 1f;
-            item.shootSpeed = 12f;
-            item.rare = ItemRarityID.Blue;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 45;
-            item.knockBack = 6.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Cell>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 27000;
-            item.useAnimation = 45;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 17;
+            Item.noUseGraphic = true;
+            Item.channel = true;
+            Item.scale = 1f;
+            Item.shootSpeed = 12f;
+            Item.rare = ItemRarityID.Blue;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 45;
+            Item.knockBack = 6.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Cell>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 27000;
+            Item.useAnimation = 45;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<Material.Booger>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 10).AddIngredient(ModContent.ItemType<Material.Booger>(), 2).AddTile(TileID.Anvils).Register();
         }
     }
 }

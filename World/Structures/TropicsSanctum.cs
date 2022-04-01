@@ -58,43 +58,43 @@ namespace ExxoAvalonOrigins.World.Structures
                                 case 0:
                                     break;
                                 case 1:
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(true);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.type = t;
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(true);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.TileType = t;
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
                                     break;
                                 case 2:
                                     if (confirmPlatforms == 0)
                                     {
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.WallType = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
                                     }
                                     break;
                                 case 3:
                                     if (confirmPlatforms == 1)
                                     {
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) WorldGen.PlaceTile(k, l, 93, true, true, -1, 0);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) WorldGen.PlaceTile(k, l, 93, true, true, -1, 0);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.WallType = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
                                     }
                                     break;
                                 case 4:
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(true);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.type = 4;
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.WallType = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(true);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.TileType = 4;
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
                                     break;
                                 case 5:
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) WorldGen.AddBuriedChest(k, l, contain: WorldGen.GetNextJungleChestItem(), Style: 10);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) WorldGen.AddBuriedChest(k, l, contain: WorldGen.GetNextJungleChestItem(), Style: 10);
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.WallType = (ushort)ModContent.WallType<Walls.TropicalGrassWall>();
                                     break;
                             }
                         }

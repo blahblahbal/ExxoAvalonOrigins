@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Strong : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Strength");
             Description.SetDefault("Increased stats");

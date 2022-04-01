@@ -10,43 +10,43 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Reflector");
-            Main.projFrames[projectile.type] = 20;
+            Main.projFrames[Projectile.type] = 20;
         }
         public override void SetDefaults()
         {
-            projectile.width = 22;
-            projectile.height = 36;
-            projectile.netImportant = true;
-            projectile.friendly = true;
-            projectile.ignoreWater = true;
-            projectile.minionSlots = 1f;
-            projectile.timeLeft = 18000;
-            projectile.penetrate = -1;
-            projectile.timeLeft *= 5;
-            projectile.minion = true;
-            projectile.tileCollide = false;
+            Projectile.width = 22;
+            Projectile.height = 36;
+            Projectile.netImportant = true;
+            Projectile.friendly = true;
+            Projectile.ignoreWater = true;
+            Projectile.minionSlots = 1f;
+            Projectile.timeLeft = 18000;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft *= 5;
+            Projectile.minion = true;
+            Projectile.tileCollide = false;
             //Main.projPet[projectile.type] = true;
         }
         public override void AI()
         {
-            projectile.damage = 0;
+            Projectile.damage = 0;
             bool playerPosLessProj = false;
             bool playerPosGreaterProj = false;
-            projectile.spriteDirection = Main.player[projectile.owner].direction;
-            projectile.rotation = projectile.velocity.X * 0.075f;
-            projectile.frameCounter++;
-            if (projectile.frameCounter > 3)
+            Projectile.spriteDirection = Main.player[Projectile.owner].direction;
+            Projectile.rotation = Projectile.velocity.X * 0.075f;
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter > 3)
             {
-                projectile.frame++;
-                projectile.frameCounter = 0;
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
             }
-            if (projectile.frame > 19)
+            if (Projectile.frame > 19)
             {
-                projectile.frame = 0;
+                Projectile.frame = 0;
             }
-            if (projectile.frame < 1)
+            if (Projectile.frame < 1)
             {
-                projectile.frame = 0;
+                Projectile.frame = 0;
             }
             //if (Vector2.Distance(projectile.position, Main.player[projectile.owner].position) > 25 * 16)
             //{
@@ -54,60 +54,60 @@ namespace ExxoAvalonOrigins.Projectiles
             //}
             //else projectile.tileCollide = true;
 
-            Main.player[projectile.owner].AddBuff(ModContent.BuffType<Buffs.Reflector>(), 3600);
-            if (projectile.type == ModContent.ProjectileType<Reflector>())
+            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<Buffs.Reflector>(), 3600);
+            if (Projectile.type == ModContent.ProjectileType<Reflector>())
             {
-                if (Main.player[projectile.owner].dead)
+                if (Main.player[Projectile.owner].dead)
                 {
-                    Main.player[projectile.owner].Avalon().reflectorMinion = false;
+                    Main.player[Projectile.owner].Avalon().reflectorMinion = false;
                 }
-                if (Main.player[projectile.owner].Avalon().reflectorMinion)
+                if (Main.player[Projectile.owner].Avalon().reflectorMinion)
                 {
-                    projectile.timeLeft = 2;
+                    Projectile.timeLeft = 2;
                 }
             }
 
             int num321 = 10;
-            int num322 = 40 * (projectile.minionPos + 1) * Main.player[projectile.owner].direction;
-            if (Main.player[projectile.owner].position.X + (float)(Main.player[projectile.owner].width / 2) < projectile.position.X + (float)(projectile.width / 2) - num321 + num322)
+            int num322 = 40 * (Projectile.minionPos + 1) * Main.player[Projectile.owner].direction;
+            if (Main.player[Projectile.owner].position.X + (float)(Main.player[Projectile.owner].width / 2) < Projectile.position.X + (float)(Projectile.width / 2) - num321 + num322)
             {
                 playerPosLessProj = true;
             }
-            else if (Main.player[projectile.owner].position.X + (float)(Main.player[projectile.owner].width / 2) > projectile.position.X + (float)(projectile.width / 2) + num321 + num322)
+            else if (Main.player[Projectile.owner].position.X + (float)(Main.player[Projectile.owner].width / 2) > Projectile.position.X + (float)(Projectile.width / 2) + num321 + num322)
             {
                 playerPosGreaterProj = true;
             }
             if (playerPosLessProj)
             {
-                if (projectile.velocity.X > 0f)
+                if (Projectile.velocity.X > 0f)
                 {
-                    projectile.velocity.X = projectile.velocity.X * 0.94f;
+                    Projectile.velocity.X = Projectile.velocity.X * 0.94f;
                 }
-                projectile.velocity.X = projectile.velocity.X - 0.3f;
-                if (projectile.velocity.X > 9f)
+                Projectile.velocity.X = Projectile.velocity.X - 0.3f;
+                if (Projectile.velocity.X > 9f)
                 {
-                    projectile.velocity.X = 9f;
+                    Projectile.velocity.X = 9f;
                 }
             }
             else if (playerPosGreaterProj)
             {
-                if (projectile.velocity.X < 0f)
+                if (Projectile.velocity.X < 0f)
                 {
-                    projectile.velocity.X = projectile.velocity.X * 0.94f;
+                    Projectile.velocity.X = Projectile.velocity.X * 0.94f;
                 }
-                projectile.velocity.X = projectile.velocity.X + 0.2f;
-                if (projectile.velocity.X < -8f)
+                Projectile.velocity.X = Projectile.velocity.X + 0.2f;
+                if (Projectile.velocity.X < -8f)
                 {
-                    projectile.velocity.X = -8f;
+                    Projectile.velocity.X = -8f;
                 }
             }
             if (playerPosLessProj || playerPosGreaterProj)
             {
-                int num421 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-                int j2 = (int)(projectile.position.Y + (float)(projectile.height / 2)) / 16;
-                if (projectile.type == 236)
+                int num421 = (int)(Projectile.position.X + (float)(Projectile.width / 2)) / 16;
+                int j2 = (int)(Projectile.position.Y + (float)(Projectile.height / 2)) / 16;
+                if (Projectile.type == 236)
                 {
-                    num421 += projectile.direction;
+                    num421 += Projectile.direction;
                 }
                 if (playerPosLessProj)
                 {
@@ -117,17 +117,17 @@ namespace ExxoAvalonOrigins.Projectiles
                 {
                     num421++;
                 }
-                num421 += (int)projectile.velocity.X;
+                num421 += (int)Projectile.velocity.X;
             }
             //Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY, 1, false);
-            int closest = ExxoAvalonOriginsGlobalProjectile.FindClosestHostile(projectile.Center, 160f);
+            int closest = ExxoAvalonOriginsGlobalProjectile.FindClosestHostile(Projectile.Center, 160f);
             if (closest != -1)
             {
                 Projectile targ = Main.projectile[closest];
-                projectile.velocity = Vector2.Normalize(targ.Center - projectile.Center) * 8f;
-                if (Vector2.Distance(projectile.Center, targ.Center) < 160)
+                Projectile.velocity = Vector2.Normalize(targ.Center - Projectile.Center) * 8f;
+                if (Vector2.Distance(Projectile.Center, targ.Center) < 160)
                 {
-                    Rectangle proj = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
+                    Rectangle proj = new Rectangle((int)Projectile.position.X, (int)Projectile.position.Y, Projectile.width, Projectile.height);
                     Rectangle targetProj = new Rectangle((int)targ.position.X, (int)targ.position.Y, targ.width, targ.height);
                     if (proj.Intersects(targetProj) && !targ.bobber && targ.type != 237 && targ.type != 238 && targ.type != 243 &&
                         targ.type != 244 && targ.type != 308 && targ.type != 295 && targ.type != 296 &&
@@ -145,28 +145,28 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             else
             {
-                if (projectile.position.Y > Main.player[projectile.owner].Center.Y - 100)
+                if (Projectile.position.Y > Main.player[Projectile.owner].Center.Y - 100)
                 {
-                    if (projectile.velocity.Y > 0f)
+                    if (Projectile.velocity.Y > 0f)
                     {
-                        projectile.velocity.Y = projectile.velocity.Y * 0.96f;
+                        Projectile.velocity.Y = Projectile.velocity.Y * 0.96f;
                     }
-                    projectile.velocity.Y = projectile.velocity.Y - 0.3f;
-                    if (projectile.velocity.Y > 6f)
+                    Projectile.velocity.Y = Projectile.velocity.Y - 0.3f;
+                    if (Projectile.velocity.Y > 6f)
                     {
-                        projectile.velocity.Y = 6f;
+                        Projectile.velocity.Y = 6f;
                     }
                 }
-                else if (projectile.position.Y < Main.player[projectile.owner].Center.Y - 100)
+                else if (Projectile.position.Y < Main.player[Projectile.owner].Center.Y - 100)
                 {
-                    if (projectile.velocity.Y < 0f)
+                    if (Projectile.velocity.Y < 0f)
                     {
-                        projectile.velocity.Y = projectile.velocity.Y * 0.96f;
+                        Projectile.velocity.Y = Projectile.velocity.Y * 0.96f;
                     }
-                    projectile.velocity.Y = projectile.velocity.Y + 0.2f;
-                    if (projectile.velocity.Y < -6f)
+                    Projectile.velocity.Y = Projectile.velocity.Y + 0.2f;
+                    if (Projectile.velocity.Y < -6f)
                     {
-                        projectile.velocity.Y = -6f;
+                        Projectile.velocity.Y = -6f;
                     }
                 }
             }

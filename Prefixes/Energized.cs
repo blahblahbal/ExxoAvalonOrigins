@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Energized", new Energized());
+                Mod.AddPrefix("Energized", new Energized());
             }
             return false;
         }

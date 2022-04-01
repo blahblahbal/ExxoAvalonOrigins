@@ -14,15 +14,15 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ToxinSplash");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.light = 0.2f;
-            projectile.penetrate = -1;
-            projectile.tileCollide = true;
-            projectile.ignoreWater = true;
-            projectile.timeLeft = 300;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.hostile = true;
+            Projectile.light = 0.2f;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = true;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 300;
         }
         public override bool OnTileCollide(Vector2 oldVelocity) { return false; }
         public override void OnHitPlayer(Player target, int damage, bool crit)

@@ -14,25 +14,20 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.NaquadahBrick>();
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.NaquadahBrick>();
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<NaquadahOre>());
-            recipe.AddIngredient(ItemID.StoneBlock);
-            recipe.AddTile(TileID.Furnaces);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<NaquadahOre>()).AddIngredient(ItemID.StoneBlock).AddTile(TileID.Furnaces).Register();
         }
     }
 }

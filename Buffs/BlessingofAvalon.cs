@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Buffs
             BuffID.ChaosState,
             ModContent.BuffType<CurseofIcarus>()
         };
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blessing of Avalon");
             Description.SetDefault("You are immune to almost all debuffs"
@@ -50,10 +50,10 @@ namespace ExxoAvalonOrigins.Buffs
             }
 
             player.allDamage += 0.2f;
-            player.meleeCrit += 10;
-            player.magicCrit += 10;
-            player.rangedCrit += 10;
-            player.thrownCrit += 10;
+            player.GetCritChance(DamageClass.Melee) += 10;
+            player.GetCritChance(DamageClass.Magic) += 10;
+            player.GetCritChance(DamageClass.Ranged) += 10;
+            player.GetCritChance(DamageClass.Throwing) += 10;
             player.Avalon().critDamageMult += 0.3f;
             player.statDefense += 10;
             player.lifeRegen += 3;

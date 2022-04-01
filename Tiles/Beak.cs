@@ -8,11 +8,11 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Beak : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry((Color.DarkOrange), LanguageManager.Instance.GetText("Beak"));
             Main.tileSolid[Type] = true;
-            drop = mod.ItemType("Beak");
+            drop = Mod.Find<ModItem>("Beak").Type;
             soundType = SoundID.NPCHit;
             soundStyle = 2;
         }

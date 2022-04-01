@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -16,12 +17,12 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/CursedFlamelash");
-            projectile.width = dims.Width * 14 / 16;
-            projectile.height = dims.Height * 14 / 16 / Main.projFrames[projectile.type];
-            projectile.friendly = true;
-            projectile.light = 0.8f;
-            projectile.magic = true;
-            drawOriginOffsetY = -6;
+            Projectile.width = dims.Width * 14 / 16;
+            Projectile.height = dims.Height * 14 / 16 / Main.projFrames[Projectile.type];
+            Projectile.friendly = true;
+            Projectile.light = 0.8f;
+            Projectile.DamageType = DamageClass.Magic;
+            DrawOriginOffsetY = -6;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
@@ -31,25 +32,25 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void AI()
         {
-            if (projectile.soundDelay == 0 && Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y) > 2f)
+            if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
             {
-                projectile.soundDelay = 10;
-                Main.PlaySound(SoundID.Item9, projectile.position);
+                Projectile.soundDelay = 10;
+                SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
 
             Dust dust;
-            Vector2 position = projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
+            Vector2 position = Projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
             dust = Main.dust[Terraria.Dust.NewDust(position, 0, 0, 107, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
 
 
-            if (Main.myPlayer == projectile.owner && projectile.ai[0] == 0f)
+            if (Main.myPlayer == Projectile.owner && Projectile.ai[0] == 0f)
             {
 
-                Player player = Main.player[projectile.owner];
+                Player player = Main.player[Projectile.owner];
                 if (player.channel)
                 {
                     float maxDistance = 18f;
-                    Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
+                    Vector2 vectorToCursor = Main.MouseWorld - Projectile.Center;
                     float distanceToCursor = vectorToCursor.Length();
 
                     if (distanceToCursor > maxDistance)
@@ -59,81 +60,81 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
 
                     int velocityXBy1000 = (int)(vectorToCursor.X * 1000f);
-                    int oldVelocityXBy1000 = (int)(projectile.velocity.X * 1000f);
+                    int oldVelocityXBy1000 = (int)(Projectile.velocity.X * 1000f);
                     int velocityYBy1000 = (int)(vectorToCursor.Y * 1000f);
-                    int oldVelocityYBy1000 = (int)(projectile.velocity.Y * 1000f);
+                    int oldVelocityYBy1000 = (int)(Projectile.velocity.Y * 1000f);
 
                     if (velocityXBy1000 != oldVelocityXBy1000 || velocityYBy1000 != oldVelocityYBy1000)
                     {
-                        projectile.netUpdate = true;
+                        Projectile.netUpdate = true;
                     }
 
-                    projectile.velocity = vectorToCursor;
+                    Projectile.velocity = vectorToCursor;
 
                 }
-                else if (projectile.ai[0] == 0f)
+                else if (Projectile.ai[0] == 0f)
                 {
 
-                    projectile.netUpdate = true;
+                    Projectile.netUpdate = true;
 
                     float maxDistance = 14f;
-                    Vector2 vectorToCursor = Main.MouseWorld - projectile.Center;
+                    Vector2 vectorToCursor = Main.MouseWorld - Projectile.Center;
                     float distanceToCursor = vectorToCursor.Length();
 
                     if (distanceToCursor == 0f)
                     {
-                        vectorToCursor = projectile.Center - player.Center;
+                        vectorToCursor = Projectile.Center - player.Center;
                         distanceToCursor = vectorToCursor.Length();
                     }
 
                     distanceToCursor = maxDistance / distanceToCursor;
                     vectorToCursor *= distanceToCursor;
 
-                    projectile.velocity = vectorToCursor;
+                    Projectile.velocity = vectorToCursor;
 
-                    if (projectile.velocity == Vector2.Zero)
+                    if (Projectile.velocity == Vector2.Zero)
                     {
-                        projectile.Kill();
+                        Projectile.Kill();
                     }
 
-                    projectile.ai[0] = 1f;
+                    Projectile.ai[0] = 1f;
                 }
             }
 
-            if (projectile.velocity != Vector2.Zero)
+            if (Projectile.velocity != Vector2.Zero)
             {
-                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver4;
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
             }
         }
 
         public override void Kill(int timeLeft)
         {
-            if (projectile.penetrate == 1)
+            if (Projectile.penetrate == 1)
             {
-                projectile.maxPenetrate = -1;
-                projectile.penetrate = -1;
+                Projectile.maxPenetrate = -1;
+                Projectile.penetrate = -1;
 
                 int explosionArea = 60;
-                Vector2 oldSize = projectile.Size;
-                projectile.position = projectile.Center;
-                projectile.Size += new Vector2(explosionArea);
-                projectile.Center = projectile.position;
+                Vector2 oldSize = Projectile.Size;
+                Projectile.position = Projectile.Center;
+                Projectile.Size += new Vector2(explosionArea);
+                Projectile.Center = Projectile.position;
 
-                projectile.tileCollide = false;
-                projectile.velocity *= 0.01f;
-                projectile.Damage();
-                projectile.scale = 0.01f;
+                Projectile.tileCollide = false;
+                Projectile.velocity *= 0.01f;
+                Projectile.Damage();
+                Projectile.scale = 0.01f;
 
-                projectile.position = projectile.Center;
-                projectile.Size = new Vector2(10);
-                projectile.Center = projectile.position;
+                Projectile.position = Projectile.Center;
+                Projectile.Size = new Vector2(10);
+                Projectile.Center = Projectile.position;
             }
 
-            Main.PlaySound(SoundID.Item10, projectile.position);
+            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
             for (int i = 0; i < 10; i++)
             {
                 Dust dust;
-                Vector2 position = projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
+                Vector2 position = Projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
                 dust = Main.dust[Terraria.Dust.NewDust(position, 0, 0, 107, 0f, 0f, 0, new Color(255, 255, 255), 1f)];
                 dust.noGravity = true;
                 dust.velocity *= 2f;

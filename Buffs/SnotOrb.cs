@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class SnotOrb : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Snot Orb");
             Description.SetDefault("The snot orb provides light");

@@ -9,11 +9,11 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class LivingLightning : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileLighted[Type] = true;
             soundType = SoundID.Dig;
-            drop = mod.ItemType("LivingLightningBlock");
+            drop = Mod.Find<ModItem>("LivingLightningBlock").Type;
             AddMapEntry(new Color(196, 142, 238));
             animationFrameHeight = 90;
             Main.tileSolid[Type] = false;

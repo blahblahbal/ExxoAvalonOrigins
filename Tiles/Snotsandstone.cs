@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Snotsandstone : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(91, 109, 86));
             Main.tileSolid[Type] = true;
@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[ModContent.TileType<Snotsand>()][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<Snotsand>()] = true;
             TileID.Sets.Conversion.Sandstone[Type] = true;
-            drop = mod.ItemType("SnotsandstoneBlock");
+            drop = Mod.Find<ModItem>("SnotsandstoneBlock").Type;
             dustType = DustID.ScourgeOfTheCorruptor;
         }
     }

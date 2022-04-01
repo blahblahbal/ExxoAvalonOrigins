@@ -16,24 +16,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 65;
-            item.autoReuse = true;
-            item.useTurn = false;
-            item.useAmmo = ItemID.Spike;
-            item.shootSpeed = 14f;
-            item.crit += 2;
-            item.ranged = true;
-            item.rare = ItemRarityID.LightRed;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.knockBack = 8f;
-            item.useTime = 25;
-            item.shoot = ModContent.ProjectileType<Projectiles.SpikeCannon>();
-            item.value = Item.sellPrice(0, 5, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 25;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item11;
+            Item.damage = 65;
+            Item.autoReuse = true;
+            Item.useTurn = false;
+            Item.useAmmo = ItemID.Spike;
+            Item.shootSpeed = 14f;
+            Item.crit += 2;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.LightRed;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.knockBack = 8f;
+            Item.useTime = 25;
+            Item.shoot = ModContent.ProjectileType<Projectiles.SpikeCannon>();
+            Item.value = Item.sellPrice(0, 5, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 25;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item11;
         }
         public override Vector2? HoldoutOffset()
         {
@@ -41,13 +41,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Shotgun);
-            recipe.AddIngredient(ItemID.Spike, 100);
-            recipe.AddIngredient(ItemID.SoulofMight, 20);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Shotgun).AddIngredient(ItemID.Spike, 100).AddIngredient(ItemID.SoulofMight, 20).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

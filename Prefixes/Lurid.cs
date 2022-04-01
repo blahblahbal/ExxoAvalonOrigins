@@ -21,16 +21,16 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Lurid", new Lurid());
+                Mod.AddPrefix("Lurid", new Lurid());
             }
             return false;
         }
 
         public override void Apply(Item item)
         {
-            Main.player[Main.myPlayer].magicCrit += 2;
-            Main.player[Main.myPlayer].meleeCrit += 2;
-            Main.player[Main.myPlayer].rangedCrit += 2;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Magic) += 2;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Melee) += 2;
+            Main.player[Main.myPlayer].GetCritChance(DamageClass.Ranged) += 2;
             Main.player[Main.myPlayer].statDefense += 2;
         }
 

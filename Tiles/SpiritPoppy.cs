@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class SpiritPoppy : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(0, 0, 200), LanguageManager.Instance.GetText("Spirit Poppy"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);

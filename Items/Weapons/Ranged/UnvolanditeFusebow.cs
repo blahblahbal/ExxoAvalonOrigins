@@ -16,22 +16,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 98;
-            item.ranged = true;
-            item.useTime = 15;
-            item.useAnimation = 15;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.noMelee = true;
-            item.knockBack = 16;
-            item.value = Item.sellPrice(0, 20, 0, 0);
-            item.rare = ItemRarityID.Cyan;
-            item.UseSound = SoundID.Item75;
-            item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
-            item.shootSpeed = 14f;
-            item.useAmmo = AmmoID.Arrow;
-            item.height = dims.Height;
-            item.width = dims.Width;
+            Item.damage = 98;
+            Item.DamageType = DamageClass.Ranged;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.noMelee = true;
+            Item.knockBack = 16;
+            Item.value = Item.sellPrice(0, 20, 0, 0);
+            Item.rare = ItemRarityID.Cyan;
+            Item.UseSound = SoundID.Item75;
+            Item.autoReuse = true;
+            Item.shoot = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
+            Item.shootSpeed = 14f;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.height = dims.Height;
+            Item.width = dims.Width;
         }
 
         //      public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

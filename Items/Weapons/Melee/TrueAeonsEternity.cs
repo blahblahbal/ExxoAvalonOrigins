@@ -17,22 +17,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 63;
-            item.autoReuse = true;
-            item.UseSound = SoundID.Item1;
-            item.useTurn = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 11f;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 35;
-            item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.AeonBeam>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 3, 0, 0);
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.damage = 63;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
+            Item.useTurn = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 11f;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 35;
+            Item.knockBack = 5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.AeonBeam>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 3, 0, 0);
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

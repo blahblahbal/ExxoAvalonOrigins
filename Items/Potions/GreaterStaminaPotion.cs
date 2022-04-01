@@ -16,35 +16,29 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 17;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 95;
-            item.maxStack = 75;
-            item.value = 2000;
-            item.useAnimation = 17;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 17;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 95;
+            Item.maxStack = 75;
+            Item.value = 2000;
+            Item.useAnimation = 17;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<StaminaPotion>(), 10);
-            recipe.AddIngredient(ItemID.Feather, 2);
-            recipe.AddIngredient(ItemID.SoulofFlight);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this, 10);
-            recipe.AddRecipe();
+            CreateRecipe(10).AddIngredient(ModContent.ItemType<StaminaPotion>(), 10).AddIngredient(ItemID.Feather, 2).AddIngredient(ItemID.SoulofFlight).AddTile(TileID.Bottles).Register();
         }
         public override bool CanUseItem(Player player)
         {
             if (player.Avalon().statStam >= player.Avalon().statStamMax2) return false;
             return true;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.Avalon().statStam += 95;
             player.Avalon().StaminaHealEffect(95, true);

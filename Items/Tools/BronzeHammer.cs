@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.TinHammer);
+            Item.CloneDefaults(ItemID.TinHammer);
         }
     }
 }

@@ -16,27 +16,21 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.autoReuse = true;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.autoReuse = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BlueBrick, 50);
-            recipe.AddIngredient(ItemID.GoldenKey, 2);
-            recipe.AddIngredient(ItemID.Bone, 20);
-            recipe.AddTile(TileID.BoneWelder);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.BlueBrick, 50).AddIngredient(ItemID.GoldenKey, 2).AddIngredient(ItemID.Bone, 20).AddTile(TileID.BoneWelder).Register();
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI)
             {

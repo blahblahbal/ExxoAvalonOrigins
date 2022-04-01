@@ -16,16 +16,16 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.maxStack = 999;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item29;
-            item.value = 95000;
-            item.useAnimation = 30;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.maxStack = 999;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item29;
+            Item.value = 95000;
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
         }
 
         public override bool CanUseItem(Player player)
@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             return player.Avalon().statStamMax < 300;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.Avalon().statStamMax += 30;
             player.Avalon().statStamMax2 += 30;

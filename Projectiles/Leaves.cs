@@ -11,29 +11,29 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 7;
-            projectile.height = 7;
-            projectile.scale = 1.2f;
-            projectile.friendly = true;
-            projectile.ranged = true;
-            projectile.penetrate = 7;
-            projectile.timeLeft = 600;
-            projectile.alpha = 50;
-            projectile.aiStyle = 1;
+            Projectile.width = 7;
+            Projectile.height = 7;
+            Projectile.scale = 1.2f;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.penetrate = 7;
+            Projectile.timeLeft = 600;
+            Projectile.alpha = 50;
+            Projectile.aiStyle = 1;
         }
 
         public override void AI()
         {
-            projectile.rotation += projectile.velocity.X * 0.2f;
-            projectile.ai[1] += 1f;
-            projectile.velocity *= 0.96f;
-            if (projectile.ai[1] > 15f)
+            Projectile.rotation += Projectile.velocity.X * 0.2f;
+            Projectile.ai[1] += 1f;
+            Projectile.velocity *= 0.96f;
+            if (Projectile.ai[1] > 15f)
             {
-                projectile.scale -= 0.05f;
-                if ((double)projectile.scale <= 0.2)
+                Projectile.scale -= 0.05f;
+                if ((double)Projectile.scale <= 0.2)
                 {
-                    projectile.scale = 0.2f;
-                    projectile.active = false;
+                    Projectile.scale = 0.2f;
+                    Projectile.active = false;
                 }
             }
         }

@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class PlacedGems : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
@@ -28,14 +28,14 @@ namespace ExxoAvalonOrigins.Tiles
         // selects the map entry depending on the frameX
         public override ushort GetMapOption(int i, int j)
         {
-            return (ushort)(Main.tile[i, j].frameX / 18);
+            return (ushort)(Main.tile[i, j].TileFrameX / 18);
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             int toDrop = 0;
             //Main.NewText("" + Main.tile[i, j].frameX);
-            switch (Main.tile[i, j].frameX / 18)
+            switch (Main.tile[i, j].TileFrameX / 18)
             {
                 case 0:
                     toDrop = ModContent.ItemType<Items.Placeable.Tile.Opal>();
@@ -68,34 +68,34 @@ namespace ExxoAvalonOrigins.Tiles
             var bottomType = -1;
             var leftType = -1;
             var rightType = -1;
-            if (topTile.active() && !topTile.bottomSlope())
-                bottomType = topTile.type;
-            if (bottomTile.active() && !bottomTile.halfBrick() && !bottomTile.topSlope())
-                topType = bottomTile.type;
-            if (leftTile.active())
-                leftType = leftTile.type;
-            if (rightTile.active())
-                rightType = rightTile.type;
+            if (topTile.HasTile && !topTile.bottomSlope())
+                bottomType = topTile.TileType;
+            if (bottomTile.HasTile && !bottomTileIsHalfBlock && !bottomTile.topSlope())
+                topType = bottomTile.TileType;
+            if (leftTile.HasTile)
+                leftType = leftTile.TileType;
+            if (rightTile.HasTile)
+                rightType = rightTile.TileType;
             var variation = WorldGen.genRand.Next(3) * 18;
             if (topType >= 0 && Main.tileSolid[topType] && !Main.tileSolidTop[topType])
             {
-                if (tile.frameY < 0 || tile.frameY > 36)
-                    tile.frameY = (short)variation;
+                if (tile.TileFrameY < 0 || tile.TileFrameY > 36)
+                    tile.TileFrameY = (short)variation;
             }
             else if (leftType >= 0 && Main.tileSolid[leftType] && !Main.tileSolidTop[leftType])
             {
-                if (tile.frameY < 108 || tile.frameY > 54)
-                    tile.frameY = (short)(108 + variation);
+                if (tile.TileFrameY < 108 || tile.TileFrameY > 54)
+                    tile.TileFrameY = (short)(108 + variation);
             }
             else if (rightType >= 0 && Main.tileSolid[rightType] && !Main.tileSolidTop[rightType])
             {
-                if (tile.frameY < 162 || tile.frameY > 198)
-                    tile.frameY = (short)(162 + variation);
+                if (tile.TileFrameY < 162 || tile.TileFrameY > 198)
+                    tile.TileFrameY = (short)(162 + variation);
             }
             else if (bottomType >= 0 && Main.tileSolid[bottomType] && !Main.tileSolidTop[bottomType])
             {
-                if (tile.frameY < 54 || tile.frameY > 90)
-                    tile.frameY = (short)(54 + variation);
+                if (tile.TileFrameY < 54 || tile.TileFrameY > 90)
+                    tile.TileFrameY = (short)(54 + variation);
             }
             else
                 WorldGen.KillTile(i, j);
@@ -115,7 +115,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)
         {
-            if (Main.tile[i, j].frameY / 18 < 3)
+            if (Main.tile[i, j].TileFrameY / 18 < 3)
                 offsetY = 2;
         }
     }

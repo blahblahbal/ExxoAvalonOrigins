@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.TinWatch);
+            Item.CloneDefaults(ItemID.TinWatch);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -23,13 +23,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 10);
-            recipe.AddIngredient(ItemID.Chain);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.AddTile(TileID.Chairs);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 10).AddIngredient(ItemID.Chain).AddTile(TileID.WorkBenches).AddTile(TileID.Chairs).Register();
         }
         public override void UpdateInventory(Player player)
         {

@@ -16,30 +16,24 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 2);
-            item.height = dims.Height;
-            item.defense = 3;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 2);
+            Item.height = dims.Height;
+            Item.defense = 3;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions += 2;
-            player.minionDamage += 0.08f;
+            player.GetDamage(DamageClass.Summon) += 0.08f;
             player.armorPenetration += 5;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<PygmyShield>());
-            recipe.AddIngredient(ModContent.ItemType<PeridotAmulet>());
-            recipe.AddIngredient(ItemID.SharkToothNecklace);
-            recipe.SetResult(this);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<PygmyShield>()).AddIngredient(ModContent.ItemType<PeridotAmulet>()).AddIngredient(ItemID.SharkToothNecklace).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

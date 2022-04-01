@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.maxStack = 999;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.PlacedBars>();
-            item.placeStyle = 14;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.PlacedBars>();
+            Item.placeStyle = 14;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

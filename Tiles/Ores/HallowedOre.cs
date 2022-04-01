@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class HallowedOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 2f;
             AddMapEntry(new Color(219, 183, 0), LanguageManager.Instance.GetText("Hallowed Ore"));
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileValue[Type] = 690;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 1150;
-            drop = mod.ItemType("HallowedOre");
+            drop = Mod.Find<ModItem>("HallowedOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 185;

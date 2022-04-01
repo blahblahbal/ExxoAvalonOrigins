@@ -37,15 +37,15 @@ namespace ExxoAvalonOrigins.Hooks
             {
                 for (int j = num3; j < num4; j++)
                 {
-                    if (Main.tile[i, j] != null && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].inActive() && Main.tile[i, j].active() && (Main.tile[i, j].type == ModContent.TileType<Tiles.PoisonSpike>() || Main.tile[i, j].type == ModContent.TileType<Tiles.VenomSpike>() || Main.tile[i, j].type == TileID.Spikes || Main.tile[i, j].type == TileID.WoodenSpikes))
+                    if (Main.tile[i, j] != null && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].inActive() && Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == ModContent.TileType<Tiles.PoisonSpike>() || Main.tile[i, j].TileType == ModContent.TileType<Tiles.VenomSpike>() || Main.tile[i, j].TileType == TileID.Spikes || Main.tile[i, j].TileType == TileID.WoodenSpikes))
                     {
                         Vector2 vector2;
                         vector2.X = i * 16;
                         vector2.Y = j * 16;
                         int num5 = 0;
-                        int type = (int)Main.tile[i, j].type;
+                        int type = (int)Main.tile[i, j].TileType;
                         int num6 = 16;
-                        if (Main.tile[i, j].halfBrick())
+                        if (Main.tile[i, j]IsHalfBlock)
                         {
                             vector2.Y += 8f;
                             num6 -= 8;

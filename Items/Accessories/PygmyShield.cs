@@ -14,21 +14,16 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            item.defense = 3;
-            item.rare = ItemRarityID.Green;
-            item.width = 20;
-            item.value = Item.sellPrice(0, 0, 75);
-            item.accessory = true;
-            item.height = 20;
+            Item.defense = 3;
+            Item.rare = ItemRarityID.Green;
+            Item.width = 20;
+            Item.value = Item.sellPrice(0, 0, 75);
+            Item.accessory = true;
+            Item.height = 20;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CobaltShield);
-            recipe.AddIngredient(ItemID.PygmyNecklace);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.CobaltShield).AddIngredient(ItemID.PygmyNecklace).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

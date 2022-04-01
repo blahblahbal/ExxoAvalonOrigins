@@ -10,60 +10,60 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Viris");
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[NPC.type] = 4;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 40;
-            npc.lifeMax = 300;
-            npc.defense = 12;
-            npc.noGravity = true;
-            npc.width = 56;
-            npc.aiStyle = 22;
-            npc.npcSlots = 1f;
-            npc.value = 610f;
-            npc.height = 58;
-            npc.scale = 0.8f;
-            npc.knockBackResist = 0.2f;
-            npc.HitSound = SoundID.NPCHit18;
-            npc.DeathSound = SoundID.NPCDeath21;
+            NPC.damage = 40;
+            NPC.lifeMax = 300;
+            NPC.defense = 12;
+            NPC.noGravity = true;
+            NPC.width = 56;
+            NPC.aiStyle = 22;
+            NPC.npcSlots = 1f;
+            NPC.value = 610f;
+            NPC.height = 58;
+            NPC.scale = 0.8f;
+            NPC.knockBackResist = 0.2f;
+            NPC.HitSound = SoundID.NPCHit18;
+            NPC.DeathSound = SoundID.NPCDeath21;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.65f);
-            npc.damage = (int)(npc.damage * 0.7f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.65f);
+            NPC.damage = (int)(NPC.damage * 0.7f);
         }
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Pathogen>(), 2 + Main.rand.Next(4), false, 0, false);
+            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Pathogen>(), 2 + Main.rand.Next(4), false, 0, false);
         }
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter >= 8.0)
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter >= 8.0)
             {
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                npc.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
             }
-            if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
+            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusTail"), 0.8f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHead"), 0.8f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/VirusHair"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusTail"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHead"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHair"), 0.8f);
             }
         }
     }

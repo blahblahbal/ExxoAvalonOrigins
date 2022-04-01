@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Chunkstone : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(48, 53, 42));
             Main.tileSolid[Type] = true;
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[TileID.Stone][Type] = true;
             Main.tileMerge[Type][TileID.Mud] = true;
             Main.tileMerge[TileID.Mud][Type] = true;
-            drop = mod.ItemType("ChunkstoneBlock");
+            drop = Mod.Find<ModItem>("ChunkstoneBlock").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 60;

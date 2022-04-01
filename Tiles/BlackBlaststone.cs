@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BlackBlaststone : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(20, 20, 20));
             Main.tileSolid[Type] = true;

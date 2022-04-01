@@ -16,16 +16,16 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Rainbringer");
-            projectile.aiStyle = -1;
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.damage = 0;
-            projectile.tileCollide = false;
+            Projectile.aiStyle = -1;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.damage = 0;
+            Projectile.tileCollide = false;
         }
 
         public override void AI()
         {
-            if (projectile.active)
+            if (Projectile.active)
             {
                 if (!Main.raining)
                 {
@@ -51,7 +51,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The rain has stopped."), new Color(0, 148, 255));
                     }
                 }
-                projectile.active = false;
+                Projectile.active = false;
                 return;
             }
         }

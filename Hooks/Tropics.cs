@@ -121,7 +121,7 @@ namespace ExxoAvalonOrigins.Hooks
         }
         public static bool OnActuate(On.Terraria.Wiring.orig_Actuate orig, int i, int j)
         {
-            if (Main.tile[i, j].type == ModContent.TileType<Tiles.TuhrtlBrick>())
+            if (Main.tile[i, j].TileType == ModContent.TileType<Tiles.TuhrtlBrick>())
             {
                 return true;
             }
@@ -130,7 +130,7 @@ namespace ExxoAvalonOrigins.Hooks
 
         public static void OnActuateForced(On.Terraria.Wiring.orig_ActuateForced orig, int i, int j)
         {
-            if (Main.tile[i, j].type == ModContent.TileType<Tiles.TuhrtlBrick>())
+            if (Main.tile[i, j].TileType == ModContent.TileType<Tiles.TuhrtlBrick>())
             {
                 return;
             }
@@ -143,7 +143,7 @@ namespace ExxoAvalonOrigins.Hooks
             {
                 return false;
             }
-            if ((tile.type != 226 || !((double)j > Main.worldSurface) || NPC.downedPlantBoss) && (!((double)j > Main.worldSurface) || NPC.downedGolemBoss || Main.tile[i, j - 1].type != 237))
+            if ((tile.TileType != 226 || !((double)j > Main.worldSurface) || NPC.downedPlantBoss) && (!((double)j > Main.worldSurface) || NPC.downedGolemBoss || Main.tile[i, j - 1].TileType != 237))
             {
                 if (tile.inActive())
                 {
@@ -160,7 +160,7 @@ namespace ExxoAvalonOrigins.Hooks
         public static void ActuateForced(int i, int j)
         {
             Tile tile = Main.tile[i, j];
-            if (tile.type != 226 || !((double)j > Main.worldSurface) || NPC.downedPlantBoss)
+            if (tile.TileType != 226 || !((double)j > Main.worldSurface) || NPC.downedPlantBoss)
             {
                 if (tile.inActive())
                 {

@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class OblivionBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("ObsidianLavaTube");
+            drop = Mod.Find<ModItem>("ObsidianLavaTube").Type;
             AddMapEntry(new Color(121, 0, 48));
         }
     }

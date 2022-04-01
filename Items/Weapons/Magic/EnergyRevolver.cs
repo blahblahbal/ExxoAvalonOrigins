@@ -15,22 +15,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 57;
-            item.autoReuse = true;
-            item.shootSpeed = 15f;
-            item.mana = 6;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.knockBack = 2f;
-            item.useTime = 6;
-            item.shoot = ProjectileID.GreenLaser;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 2, 60, 0);
-            item.useAnimation = 6;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item12;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 57;
+            Item.autoReuse = true;
+            Item.shootSpeed = 15f;
+            Item.mana = 6;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.knockBack = 2f;
+            Item.useTime = 6;
+            Item.shoot = ProjectileID.GreenLaser;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 2, 60, 0);
+            Item.useAnimation = 6;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item12;
         }
         public override Vector2? HoldoutOffset()
         {

@@ -14,32 +14,27 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 17;
-            item.autoReuse = true;
-            item.hammer = 60;
-            item.useTurn = true;
-            item.scale = 1.3f;
-            item.axe = 18;
-            item.crit += 5;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 25;
-            item.knockBack = 2f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 50000;
-            item.useAnimation = 20;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 17;
+            Item.autoReuse = true;
+            Item.hammer = 60;
+            Item.useTurn = true;
+            Item.scale = 1.3f;
+            Item.axe = 18;
+            Item.crit += 5;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 25;
+            Item.knockBack = 2f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 50000;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.RhodiumBar>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.RhodiumBar>(), 10).AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 2).AddTile(TileID.Anvils).Register();
         }
     }
 }

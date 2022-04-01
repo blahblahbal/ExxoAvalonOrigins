@@ -18,11 +18,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/RiftGoggles");
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = 50000;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = 50000;
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -32,71 +32,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Goggles);
-            r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ItemID.JungleSpores, 10);
-            r.AddIngredient(ItemID.CursedFlame, 15);
-            r.AddIngredient(ItemID.SoulofNight, 10);
-            r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Goggles);
-            r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ItemID.JungleSpores, 10);
-            r.AddIngredient(ItemID.Ichor, 15);
-            r.AddIngredient(ItemID.SoulofNight, 10);
-            r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Goggles);
-            r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ItemID.JungleSpores, 10);
-            r.AddIngredient(ModContent.ItemType<Pathogen>(), 15);
-            r.AddIngredient(ItemID.SoulofNight, 10);
-            r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Goggles);
-            r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10);
-            r.AddIngredient(ItemID.CursedFlame, 15);
-            r.AddIngredient(ItemID.SoulofNight, 10);
-            r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Goggles);
-            r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10);
-            r.AddIngredient(ItemID.Ichor, 15);
-            r.AddIngredient(ItemID.SoulofNight, 10);
-            r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Goggles);
-            r.AddIngredient(ModContent.ItemType<BloodshotLens>(), 2);
-            r.AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10);
-            r.AddIngredient(ModContent.ItemType<Pathogen>(), 15);
-            r.AddIngredient(ItemID.SoulofNight, 10);
-            r.AddIngredient(ModContent.ItemType<Sulphur>(), 20);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Goggles).AddIngredient(ModContent.ItemType<BloodshotLens>(), 2).AddIngredient(ItemID.JungleSpores, 10).AddIngredient(ItemID.CursedFlame, 15).AddIngredient(ItemID.SoulofNight, 10).AddIngredient(ModContent.ItemType<Sulphur>(), 20).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Goggles).AddIngredient(ModContent.ItemType<BloodshotLens>(), 2).AddIngredient(ItemID.JungleSpores, 10).AddIngredient(ItemID.Ichor, 15).AddIngredient(ItemID.SoulofNight, 10).AddIngredient(ModContent.ItemType<Sulphur>(), 20).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Goggles).AddIngredient(ModContent.ItemType<BloodshotLens>(), 2).AddIngredient(ItemID.JungleSpores, 10).AddIngredient(ModContent.ItemType<Pathogen>(), 15).AddIngredient(ItemID.SoulofNight, 10).AddIngredient(ModContent.ItemType<Sulphur>(), 20).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Goggles).AddIngredient(ModContent.ItemType<BloodshotLens>(), 2).AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10).AddIngredient(ItemID.CursedFlame, 15).AddIngredient(ItemID.SoulofNight, 10).AddIngredient(ModContent.ItemType<Sulphur>(), 20).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Goggles).AddIngredient(ModContent.ItemType<BloodshotLens>(), 2).AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10).AddIngredient(ItemID.Ichor, 15).AddIngredient(ItemID.SoulofNight, 10).AddIngredient(ModContent.ItemType<Sulphur>(), 20).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Goggles).AddIngredient(ModContent.ItemType<BloodshotLens>(), 2).AddIngredient(ModContent.ItemType<TropicalShroomCap>(), 10).AddIngredient(ModContent.ItemType<Pathogen>(), 15).AddIngredient(ItemID.SoulofNight, 10).AddIngredient(ModContent.ItemType<Sulphur>(), 20).AddTile(TileID.DemonAltar).Register();
         }
     }
 }

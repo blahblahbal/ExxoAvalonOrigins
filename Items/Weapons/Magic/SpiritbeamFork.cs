@@ -10,39 +10,32 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spiritbeam Fork");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 60;
-            item.autoReuse = true;
-            item.shootSpeed = 6f;
-            item.mana = 15;
-            item.rare = ItemRarityID.Cyan;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 19;
-            item.knockBack = 4.25f;
-            item.shoot = ProjectileID.ShadowBeamFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 30, 0, 0);
-            item.useAnimation = 19;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item43;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 60;
+            Item.autoReuse = true;
+            Item.shootSpeed = 6f;
+            Item.mana = 15;
+            Item.rare = ItemRarityID.Cyan;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 19;
+            Item.knockBack = 4.25f;
+            Item.shoot = ProjectileID.ShadowBeamFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 30, 0, 0);
+            Item.useAnimation = 19;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item43;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.InfernoFork);
-            recipe.AddIngredient(ItemID.SpectreStaff);
-            recipe.AddIngredient(ItemID.ShadowbeamStaff);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.InfernoFork).AddIngredient(ItemID.SpectreStaff).AddIngredient(ItemID.ShadowbeamStaff).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)

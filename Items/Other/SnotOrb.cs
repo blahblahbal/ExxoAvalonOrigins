@@ -15,16 +15,16 @@ namespace ExxoAvalonOrigins.Items.Other
         {
             if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
             {
-                player.AddBuff(item.buffType, 3600);
+                player.AddBuff(Item.buffType, 3600);
             }
         }
         public override void SetDefaults()
         {
-            item.CloneDefaults(1183);
-            item.shoot = ModContent.ProjectileType<Projectiles.SnotOrb>();
-            item.buffType = ModContent.BuffType<Buffs.SnotOrb>();
-            item.value = Item.sellPrice(0, 0, 54);
-            item.rare = ItemRarityID.Blue;
+            Item.CloneDefaults(1183);
+            Item.shoot = ModContent.ProjectileType<Projectiles.SnotOrb>();
+            Item.buffType = ModContent.BuffType<Buffs.SnotOrb>();
+            Item.value = Item.sellPrice(0, 0, 54);
+            Item.rare = ItemRarityID.Blue;
         }
     }
 }

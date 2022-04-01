@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class UltrablivionBuff : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ultrablivion");
             Description.SetDefault("The mini Ultrablivion will fight for you");

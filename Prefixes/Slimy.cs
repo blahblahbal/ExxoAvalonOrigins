@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Slimy", new Slimy());
+                Mod.AddPrefix("Slimy", new Slimy());
             }
             return false;
         }

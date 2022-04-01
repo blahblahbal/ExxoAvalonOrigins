@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = 6f;
-            item.damage = 18;
-            item.ammo = AmmoID.Bullet;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.knockBack = 4f;
-            item.shoot = ModContent.ProjectileType<Projectiles.BerserkerBullet>();
-            item.maxStack = 2000;
-            item.value = 200;
-            item.height = dims.Height;
+            Item.shootSpeed = 6f;
+            Item.damage = 18;
+            Item.ammo = AmmoID.Bullet;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.knockBack = 4f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.BerserkerBullet>();
+            Item.maxStack = 2000;
+            Item.value = 200;
+            Item.height = dims.Height;
         }
     }
 }

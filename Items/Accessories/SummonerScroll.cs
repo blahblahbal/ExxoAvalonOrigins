@@ -14,24 +14,19 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void SetDefaults()
         {
-            item.rare = ItemRarityID.Green;
-            item.width = 20;
-            item.value = Item.sellPrice(0, 2);
-            item.accessory = true;
-            item.height = 20;
+            Item.rare = ItemRarityID.Green;
+            Item.width = 20;
+            Item.value = Item.sellPrice(0, 2);
+            Item.accessory = true;
+            Item.height = 20;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SummonerEmblem);
-            recipe.AddIngredient(ItemID.PapyrusScarab);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.SummonerEmblem).AddIngredient(ItemID.PapyrusScarab).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.minionDamage += 0.17f;
+            player.GetDamage(DamageClass.Summon) += 0.17f;
             player.maxMinions++;
         }
     }

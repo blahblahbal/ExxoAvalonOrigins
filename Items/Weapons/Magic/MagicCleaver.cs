@@ -13,23 +13,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.magic = true;
-            item.damage = 85;
-            item.autoReuse = true;
-            item.shootSpeed = 20;
-            item.mana = 16;
-            item.rare = ItemRarityID.Red;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.width = dims.Width;
-            item.useTime = 18;
-            item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.MagicCleaver>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 36000;
-            item.useAnimation = 18;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 85;
+            Item.autoReuse = true;
+            Item.shootSpeed = 20;
+            Item.mana = 16;
+            Item.rare = ItemRarityID.Red;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.width = dims.Width;
+            Item.useTime = 18;
+            Item.knockBack = 5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.MagicCleaver>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 36000;
+            Item.useAnimation = 18;
+            Item.height = dims.Height;
         }
     }
 }

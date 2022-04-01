@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Gastropod : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gastropod");
             Description.SetDefault("The gastropod will fight for you");

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -66,9 +66,9 @@ namespace ExxoAvalonOrigins.World.Passes
                 {
                     for (int l = num5; l < num6; l++)
                     {
-                        if ((double)(Math.Abs((float)k - value.X) + Math.Abs((float)l - value.Y)) < strength * 0.5 * (1.0 + (double)WorldGen.genRand.Next(-10, 11) * 0.015) && Main.tile[k, l].active() && (Main.tile[k, l].type == TileID.SnowBlock || Main.tile[k, l].type == TileID.IceBlock || Main.tile[k, l].type == TileID.FleshIce || Main.tile[k, l].type == TileID.CorruptIce || Main.tile[k, l].type == TileID.HallowedIce || Main.tile[k, l].type == ModContent.TileType<Tiles.YellowIce>()))
+                        if ((double)(Math.Abs((float)k - value.X) + Math.Abs((float)l - value.Y)) < strength * 0.5 * (1.0 + (double)WorldGen.genRand.Next(-10, 11) * 0.015) && Main.tile[k, l].HasTile && (Main.tile[k, l].TileType == TileID.SnowBlock || Main.tile[k, l].TileType == TileID.IceBlock || Main.tile[k, l].TileType == TileID.FleshIce || Main.tile[k, l].TileType == TileID.CorruptIce || Main.tile[k, l].TileType == TileID.HallowedIce || Main.tile[k, l].TileType == ModContent.TileType<Tiles.YellowIce>()))
                         {
-                            Main.tile[k, l].type = type;
+                            Main.tile[k, l].TileType = type;
                             WorldGen.SquareTileFrame(k, l, true);
                             if (Main.netMode == NetmodeID.Server)
                             {

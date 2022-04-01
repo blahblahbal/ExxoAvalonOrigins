@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class Onyx : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(30, 30, 30), LanguageManager.Instance.GetText("Onyx"));
             Main.tileSolid[Type] = true;
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileSpelunker[Type] = true;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 900;
-            drop = mod.ItemType("Onyx");
+            drop = Mod.Find<ModItem>("Onyx").Type;
             minPick = 210;
             soundType = SoundID.Tink;
             soundStyle = 1;

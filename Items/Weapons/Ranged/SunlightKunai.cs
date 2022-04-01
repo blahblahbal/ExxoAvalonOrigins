@@ -14,23 +14,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.damage = 49;
-            item.maxStack = 999;
-            item.shootSpeed = 12f;
-            item.crit += 6;
-            item.ranged = true;
-            item.consumable = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.knockBack = 4f;
-            item.shoot = ModContent.ProjectileType<Projectiles.SunlightKunai>();
-            item.value = 550;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.damage = 49;
+            Item.maxStack = 999;
+            Item.shootSpeed = 12f;
+            Item.crit += 6;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.knockBack = 4f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.SunlightKunai>();
+            Item.value = 550;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

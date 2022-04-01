@@ -14,27 +14,22 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = 7f;
-            item.damage = 11;
-            item.ammo = AmmoID.Bullet;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.knockBack = 3f;
-            item.shoot = ModContent.ProjectileType<Projectiles.PathogenBullet>();
-            item.maxStack = 2000;
-            item.value = 100;
-            item.height = dims.Height;
+            Item.shootSpeed = 7f;
+            Item.damage = 11;
+            Item.ammo = AmmoID.Bullet;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.knockBack = 3f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.PathogenBullet>();
+            Item.maxStack = 2000;
+            Item.value = 100;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MusketBall, 60);
-            recipe.AddIngredient(ModContent.ItemType<Material.Pathogen>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this, 60);
-            recipe.AddRecipe();
+            CreateRecipe(60).AddIngredient(ItemID.MusketBall, 60).AddIngredient(ModContent.ItemType<Material.Pathogen>()).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

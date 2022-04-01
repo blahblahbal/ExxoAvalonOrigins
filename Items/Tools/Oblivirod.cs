@@ -15,16 +15,16 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = 15.5f;
-            item.rare = ItemRarityID.Purple;
-            item.width = dims.Width;
-            item.useTime = 8;
-            item.fishingPole = 110;
-            item.shoot = ModContent.ProjectileType<Projectiles.OblivirodBobber>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.useAnimation = 8;
-            item.height = dims.Height;
+            Item.shootSpeed = 15.5f;
+            Item.rare = ItemRarityID.Purple;
+            Item.width = dims.Width;
+            Item.useTime = 8;
+            Item.fishingPole = 110;
+            Item.shoot = ModContent.ProjectileType<Projectiles.OblivirodBobber>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.useAnimation = 8;
+            Item.height = dims.Height;
         }
     }
 }

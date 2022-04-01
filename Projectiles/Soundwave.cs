@@ -16,17 +16,17 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Soundwave");
-            projectile.width = 20;
-            projectile.height = 28;
-            projectile.scale = 1f;
-            projectile.aiStyle = -1;
-            projectile.timeLeft = 700;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.ignoreWater = true;
-            projectile.tileCollide = true;
-            projectile.MaxUpdates = 2;
-            projectile.magic = true;
+            Projectile.width = 20;
+            Projectile.height = 28;
+            Projectile.scale = 1f;
+            Projectile.aiStyle = -1;
+            Projectile.timeLeft = 700;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = true;
+            Projectile.MaxUpdates = 2;
+            Projectile.DamageType = DamageClass.Magic;
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
@@ -41,13 +41,13 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            projectile.ai[0]++;
-            if (projectile.type == ModContent.ProjectileType<Soundwave>())
+            Projectile.ai[0]++;
+            if (Projectile.type == ModContent.ProjectileType<Soundwave>())
             {
-                projectile.scale = Math.Min(7f, 185.08197f * (float)Math.Pow(0.99111479520797729, projectile.timeLeft));
-                projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-                var v = projectile.Center - new Vector2(projectile.width * projectile.scale / 2f, projectile.height * projectile.scale / 2f);
-                var wH = new Vector2(projectile.width * projectile.scale, projectile.height * projectile.scale);
+                Projectile.scale = Math.Min(7f, 185.08197f * (float)Math.Pow(0.99111479520797729, Projectile.timeLeft));
+                Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+                var v = Projectile.Center - new Vector2(Projectile.width * Projectile.scale / 2f, Projectile.height * Projectile.scale / 2f);
+                var wH = new Vector2(Projectile.width * Projectile.scale, Projectile.height * Projectile.scale);
                 var value2 = ExxoAvalonOrigins.NewRectVector2(v, wH);
                 var npc = Main.npc;
                 for (var num57 = 0; num57 < npc.Length; num57++)
@@ -55,14 +55,14 @@ namespace ExxoAvalonOrigins.Projectiles
                     var nPC = npc[num57];
                     if (nPC.active && !nPC.dontTakeDamage && !nPC.friendly && nPC.life >= 1 && nPC.getRect().Intersects(value2))
                     {
-                        if (projectile.ai[0] % 7 == 0) nPC.StrikeNPC(projectile.damage, projectile.knockBack, (nPC.Center.X < projectile.Center.X) ? -1 : 1, false, false);
+                        if (Projectile.ai[0] % 7 == 0) nPC.StrikeNPC(Projectile.damage, Projectile.knockBack, (nPC.Center.X < Projectile.Center.X) ? -1 : 1, false, false);
                     }
                 }
             }
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

@@ -15,23 +15,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 95;
-            item.mana = 14;
-            item.noUseGraphic = true;
-            item.autoReuse = true;
-            item.shootSpeed = 15f;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Purple;
-            item.width = dims.Width;
-            item.useTime = 18;
-            item.knockBack = 3.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.BlahKnife>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 50);
-            item.useAnimation = 18;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item39;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 95;
+            Item.mana = 14;
+            Item.noUseGraphic = true;
+            Item.autoReuse = true;
+            Item.shootSpeed = 15f;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Purple;
+            Item.width = dims.Width;
+            Item.useTime = 18;
+            Item.knockBack = 3.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.BlahKnife>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 50);
+            Item.useAnimation = 18;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item39;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

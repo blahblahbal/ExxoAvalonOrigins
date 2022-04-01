@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class VineRope : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.Lime);
             Main.tileLavaDeath[Type] = true;

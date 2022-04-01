@@ -14,26 +14,21 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = 3.25f;
-            item.damage = 12;
-            item.ammo = AmmoID.Bullet;
-            item.ranged = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.knockBack = 3f;
-            item.shoot = ProjectileID.Bullet;
-            item.maxStack = 2000;
-            item.value = 15;
-            item.height = dims.Height;
+            Item.shootSpeed = 3.25f;
+            Item.damage = 12;
+            Item.ammo = AmmoID.Bullet;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.knockBack = 3f;
+            Item.shoot = ProjectileID.Bullet;
+            Item.maxStack = 2000;
+            Item.value = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MusketBall, 70);
-            recipe.AddIngredient(ItemID.TungstenBar);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this, 70);
-            recipe.AddRecipe();
+            CreateRecipe(70).AddIngredient(ItemID.MusketBall, 70).AddIngredient(ItemID.TungstenBar).AddTile(TileID.Anvils).Register();
         }
     }
 }

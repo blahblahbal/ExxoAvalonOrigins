@@ -15,30 +15,22 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.Supersonic>();
-            item.consumable = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.value = 2000;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 6 * 3600;
-            item.UseSound = SoundID.Item3;
+            Item.buffType = ModContent.BuffType<Buffs.Supersonic>();
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.value = 2000;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 6 * 3600;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Material.Holybird>());
-            r.AddIngredient(ItemID.Cobweb, 5);
-            r.AddIngredient(ItemID.Cloud);
-            r.AddIngredient(ItemID.SoulofLight);
-            r.AddIngredient(ModContent.ItemType<Material.BottledLava>());
-            r.AddTile(TileID.Bottles);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.Holybird>()).AddIngredient(ItemID.Cobweb, 5).AddIngredient(ItemID.Cloud).AddIngredient(ItemID.SoulofLight).AddIngredient(ModContent.ItemType<Material.BottledLava>()).AddTile(TileID.Bottles).Register();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class ShadowCurse : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadow Curse");
             Description.SetDefault("You take double damage");

@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class IridiumBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("IridiumBrickWall");
+            drop = Mod.Find<ModItem>("IridiumBrickWall").Type;
             AddMapEntry(new Color(95, 116, 72));
             dustType = ModContent.DustType<Dusts.IridiumDust>();
         }

@@ -17,15 +17,15 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.useTime = 90;
-            item.useTurn = true;
-            item.value = 500000;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item6;
-            item.useAnimation = 90;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.useTime = 90;
+            Item.useTurn = true;
+            Item.value = 500000;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item6;
+            Item.useAnimation = 90;
+            Item.height = dims.Height;
         }
         public override void UpdateInventory(Player player)
         {
@@ -39,16 +39,16 @@ namespace ExxoAvalonOrigins.Items.Tools
         {
             var assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
 
-            var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change teleportation modes");
+            var assignedKeyInfo = new TooltipLine(Mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change teleportation modes");
             tooltips.Add(assignedKeyInfo);
 
             if (!(assignedKeys.Count > 0))
             {
-                var unboundKeyInfo = new TooltipLine(mod, "Controls:PromptKeyInfo", "[c/900C3F:Please bind hotkey in the settings to change teleportation modes!]");
+                var unboundKeyInfo = new TooltipLine(Mod, "Controls:PromptKeyInfo", "[c/900C3F:Please bind hotkey in the settings to change teleportation modes!]");
                 tooltips.Add(unboundKeyInfo);
             }
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (player.whoAmI == Main.myPlayer)
             {

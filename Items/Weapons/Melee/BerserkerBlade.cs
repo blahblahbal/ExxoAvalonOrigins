@@ -19,35 +19,35 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 166;
-            item.autoReuse = true;
-            item.UseSound = SoundID.Item1;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.knockBack = 5f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 12);
-            item.useAnimation = 10;
-            item.height = dims.Height;
+            Item.damage = 166;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.knockBack = 5f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 12);
+            Item.useAnimation = 10;
+            Item.height = dims.Height;
             if (!Main.dedServ)
             {
-                item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.GetTexture(Texture + "_Glow");
+                Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
             }
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/Weapons/Melee/BerserkerBlade_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Melee/BerserkerBlade_Glow").Value;
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,
@@ -60,25 +60,8 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.VictoryPiece>());
-            recipe.AddIngredient(ModContent.ItemType<VoraylzumKatana>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.VictoryPiece>());
-            recipe.AddIngredient(ModContent.ItemType<UnvolanditeGreatsword>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BerserkerBar>(), 40).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 20).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 5).AddIngredient(ModContent.ItemType<Material.VictoryPiece>()).AddIngredient(ModContent.ItemType<VoraylzumKatana>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BerserkerBar>(), 40).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 20).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 5).AddIngredient(ModContent.ItemType<Material.VictoryPiece>()).AddIngredient(ModContent.ItemType<UnvolanditeGreatsword>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class NickelBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(82, 112, 122));
             Main.tileSolid[Type] = true;

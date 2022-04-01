@@ -12,41 +12,41 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Triton Wave");
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 3;
-            ProjectileID.Sets.TrailingMode[projectile.type] = 1;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
         }
         public override void SetDefaults()
         {
-            projectile.width = 32;
-            projectile.height = 32;
-            projectile.friendly = true;
-            projectile.timeLeft = 20;
-            projectile.alpha = 0;
-            projectile.melee = true;
-            projectile.tileCollide = false;
-            projectile.penetrate = -1;
-            drawOffsetX = -24;
+            Projectile.width = 32;
+            Projectile.height = 32;
+            Projectile.friendly = true;
+            Projectile.timeLeft = 20;
+            Projectile.alpha = 0;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.tileCollide = false;
+            Projectile.penetrate = -1;
+            DrawOffsetX = -24;
         }
         public override void AI()
         {
-            projectile.alpha += 20;
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-            projectile.velocity *= 0.94f;
-            if (projectile.timeLeft <= 25)
+            Projectile.alpha += 20;
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+            Projectile.velocity *= 0.94f;
+            if (Projectile.timeLeft <= 25)
             {
-                projectile.scale *= 0.97f;
+                Projectile.scale *= 0.97f;
             }
-            if (projectile.timeLeft <= 20)
+            if (Projectile.timeLeft <= 20)
             {
-                projectile.scale *= 0.95f;
+                Projectile.scale *= 0.95f;
             }
-            if (projectile.timeLeft <= 15)
+            if (Projectile.timeLeft <= 15)
             {
-                projectile.scale *= 0.93f;
+                Projectile.scale *= 0.93f;
             }
-            if (projectile.timeLeft <= 10)
+            if (Projectile.timeLeft <= 10)
             {
-                projectile.scale *= 0.91f;
+                Projectile.scale *= 0.91f;
             }
             //int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, ModContent.DustType<Dusts.TritanoriumFlame>(), 0f, 0f, default, default, 1f);
             //Main.dust[dust].noGravity = true;
@@ -69,7 +69,7 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
-            if (projectile.timeLeft >= 15)
+            if (Projectile.timeLeft >= 15)
             {
                 int size = 20;
                 hitbox.X -= size;
@@ -80,20 +80,20 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, this.projectile.alpha);
+            return new Color(255, 255, 255, this.Projectile.alpha);
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
-            for (int k = 0; k < projectile.oldPos.Length; k++)
+            Vector2 drawOrigin = new Vector2(Main.projectileTexture[Projectile.type].Width * 0.5f, Projectile.height * 0.5f);
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
-                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(-24f, projectile.gfxOffY);
-                Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+                Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(-24f, Projectile.gfxOffY);
+                Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                spriteBatch.Draw(Main.projectileTexture[Projectile.type], drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
             }
-            Texture2D texture = mod.GetTexture("Projectiles/Melee/FireWave");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/Melee/FireWave").Value;
             Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
-            spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, new Color(50, 50, 50, 50), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, new Color(50, 50, 50, 50), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0.0f);
             return true;
         }
     }

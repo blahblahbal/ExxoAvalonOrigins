@@ -16,64 +16,64 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PhantomKnife");
-            projectile.width = 30;
-            projectile.height = 30;
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = 1;
-            projectile.magic = true;
-            projectile.ignoreWater = true;
-            projectile.extraUpdates = 0;
+            Projectile.width = 30;
+            Projectile.height = 30;
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = 1;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.ignoreWater = true;
+            Projectile.extraUpdates = 0;
         }
         public override bool PreAI()
         {
-            Lighting.AddLight(projectile.position, 145 / 255, 1, 1);
+            Lighting.AddLight(Projectile.position, 145 / 255, 1, 1);
             return true;
         }
         public override void AI()
         {
-            projectile.localAI[1]++;
+            Projectile.localAI[1]++;
 
-            projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.03f * projectile.direction;
+            Projectile.rotation += (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y)) * 0.03f * Projectile.direction;
 
-            if (projectile.type == ModContent.ProjectileType<PhantomKnife>())
+            if (Projectile.type == ModContent.ProjectileType<PhantomKnife>())
             {
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] >= 30f)
+                Projectile.ai[0] += 1f;
+                if (Projectile.ai[0] >= 30f)
                 {
-                    projectile.alpha += 10;
-                    if (projectile.alpha >= 255)
+                    Projectile.alpha += 10;
+                    if (Projectile.alpha >= 255)
                     {
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                 }
-                if (projectile.ai[0] < 30f)
+                if (Projectile.ai[0] < 30f)
                 {
-                    projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
+                    Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
                 }
             }
-            if (projectile.velocity.Y > 16f)
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            ghostHurt(projectile.damage, projectile.position);
+            ghostHurt(Projectile.damage, Projectile.position);
         }
 
         public override void OnHitPvp(Player target, int damage, bool crit)
         {
-            ghostHurt(projectile.damage, projectile.position);
+            ghostHurt(Projectile.damage, Projectile.position);
         }
 
         public void ghostHurt(int dmg, Vector2 Position)
         {
-            if (!projectile.magic || projectile.damage <= 0)
+            if (!Projectile.magic || Projectile.damage <= 0)
             {
                 return;
             }
-            int num = projectile.damage;
+            int num = Projectile.damage;
             if (dmg <= 1)
             {
                 return;
@@ -88,10 +88,10 @@ namespace ExxoAvalonOrigins.Projectiles
                 {
                     continue;
                 }
-                float num6 = Math.Abs(Main.npc[i].position.X + (float)(Main.npc[i].width / 2) - projectile.position.X + (float)(projectile.width / 2)) + Math.Abs(Main.npc[i].position.Y + (float)(Main.npc[i].height / 2) - projectile.position.Y + (float)(projectile.height / 2));
+                float num6 = Math.Abs(Main.npc[i].position.X + (float)(Main.npc[i].width / 2) - Projectile.position.X + (float)(Projectile.width / 2)) + Math.Abs(Main.npc[i].position.Y + (float)(Main.npc[i].height / 2) - Projectile.position.Y + (float)(Projectile.height / 2));
                 if (num6 < 800f)
                 {
-                    if (Collision.CanHit(projectile.position, 1, 1, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) && num6 > 50f)
+                    if (Collision.CanHit(Projectile.position, 1, 1, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height) && num6 > 50f)
                     {
                         array[num5] = i;
                         num5++;
@@ -112,7 +112,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 num9 = 4f / num9;
                 num7 *= num9;
                 num8 *= num9;
-                Projectile.NewProjectile(Position, new Vector2(num7, num8), ModContent.ProjectileType<Projectiles.SpectreSplit>(), num, 0f, projectile.owner, num2);
+                Projectile.NewProjectile(Position, new Vector2(num7, num8), ModContent.ProjectileType<Projectiles.SpectreSplit>(), num, 0f, Projectile.owner, num2);
             }
         }
     }

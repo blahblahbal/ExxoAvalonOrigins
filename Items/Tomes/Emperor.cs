@@ -17,24 +17,24 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.value = 250000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.value = 250000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.25f;
-            player.minionDamage += 0.25f;
-            player.meleeDamage += 0.25f;
-            player.rangedDamage += 0.25f;
-            player.thrownDamage += 0.25f;
-            player.meleeCrit += 12;
-            player.magicCrit += 12;
-            player.rangedCrit += 12;
-            player.thrownCrit += 12;
+            player.GetDamage(DamageClass.Magic) += 0.25f;
+            player.GetDamage(DamageClass.Summon) += 0.25f;
+            player.GetDamage(DamageClass.Melee) += 0.25f;
+            player.GetDamage(DamageClass.Ranged) += 0.25f;
+            player.GetDamage(DamageClass.Throwing) += 0.25f;
+            player.GetCritChance(DamageClass.Melee) += 12;
+            player.GetCritChance(DamageClass.Magic) += 12;
+            player.GetCritChance(DamageClass.Ranged) += 12;
+            player.GetCritChance(DamageClass.Throwing) += 12;
             player.manaCost -= 0.2f;
             player.statDefense += 14;
             player.statLifeMax2 += 100;
@@ -44,13 +44,7 @@ namespace ExxoAvalonOrigins.Items.Tomes
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Dominance>());
-            recipe.AddIngredient(ModContent.ItemType<VictoryPiece>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 25);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Dominance>()).AddIngredient(ModContent.ItemType<VictoryPiece>(), 3).AddIngredient(ModContent.ItemType<SoulofTorture>(), 25).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

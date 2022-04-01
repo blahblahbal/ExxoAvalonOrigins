@@ -11,22 +11,22 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Larvae");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 0;
-            npc.lifeMax = 200;
-            npc.defense = 10;
-            npc.noGravity = false;
-            npc.width = 38;
-            npc.aiStyle = -1;
-            npc.noTileCollide = false;
-            npc.height = 18;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0.05f;
+            NPC.damage = 0;
+            NPC.lifeMax = 200;
+            NPC.defense = 10;
+            NPC.noGravity = false;
+            NPC.width = 38;
+            NPC.aiStyle = -1;
+            NPC.noTileCollide = false;
+            NPC.height = 18;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.knockBackResist = 0.05f;
 
             splitTimer = 0;
         }
@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             splitTimer++;
 
-            npc.velocity.X *= 0.8f;
+            NPC.velocity.X *= 0.8f;
 
             int threshold;
 
@@ -46,26 +46,26 @@ namespace ExxoAvalonOrigins.NPCs
 
             if (splitTimer >= threshold)
             {
-                npc.ai[0] = 1;
-                npc.NPCLoot();
-                npc.active = false;
+                NPC.ai[0] = 1;
+                NPC.NPCLoot();
+                NPC.active = false;
             }
         }
 
         public override void NPCLoot()
         {
-            float halfWidth = npc.width / 2;
-            float halfHeight = npc.height / 2;
-            Vector2 origin = npc.Center + new Vector2(Main.rand.NextFloat(-halfWidth, halfWidth + 1f), Main.rand.NextFloat(-halfHeight, halfHeight + 1f));
-            if (npc.ai[0] == 1)
+            float halfWidth = NPC.width / 2;
+            float halfHeight = NPC.height / 2;
+            Vector2 origin = NPC.Center + new Vector2(Main.rand.NextFloat(-halfWidth, halfWidth + 1f), Main.rand.NextFloat(-halfHeight, halfHeight + 1f));
+            if (NPC.ai[0] == 1)
             {
-                NPC.NewNPC((int)origin.X, (int)origin.Y, NPCID.Hornet, default, default, default, default, default, npc.target);
+                NPC.NewNPC((int)origin.X, (int)origin.Y, NPCID.Hornet, default, default, default, default, default, NPC.target);
             }
             else
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    NPC.NewNPC((int)origin.X, (int)origin.Y, NPCID.Bee, default, default, default, default, default, npc.target);
+                    NPC.NewNPC((int)origin.X, (int)origin.Y, NPCID.Bee, default, default, default, default, default, NPC.target);
                 }
             }
         }

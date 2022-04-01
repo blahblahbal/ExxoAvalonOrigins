@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class SeedFabricator : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(0, 0, 200), LanguageManager.Instance.GetText("Seed Fabricator"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);

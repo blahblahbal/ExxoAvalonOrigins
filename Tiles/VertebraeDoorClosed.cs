@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class VertebraeDoorClosed : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileBlockLight[Type] = true;
@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.Tiles
             AddMapEntry(new Color(119, 105, 79), name);
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };
-            openDoorID = mod.TileType("VertebraeDoorOpen");
+            openDoorID = Mod.Find<ModTile>("VertebraeDoorOpen").Type;
             dustType = DustID.HeartCrystal;
         }
 

@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Inferno : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Inferno");
             Description.SetDefault("Losing life");
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Buffs
             }
             if (Main.rand.Next(5) == 0)
             {
-                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1.8f);
+                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, 0f, 0f, 0, default(Color), 1.8f);
                 Main.dust[num10].noGravity = true;
             }
         }

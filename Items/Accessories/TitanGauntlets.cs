@@ -17,12 +17,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 14;
-            item.rare = 11;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 30, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 14;
+            Item.rare = 11;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 30, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -34,17 +34,17 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.frostBurn = true;
             player.kbGlove = true;
             player.meleeSpeed += 0.1f;
-            player.meleeDamage += 0.1f;
-            player.rangedDamage += 0.1f;
+            player.GetDamage(DamageClass.Melee) += 0.1f;
+            player.GetDamage(DamageClass.Ranged) += 0.1f;
             player.frostArmor = true;
             if (player.statLife <= player.statLifeMax2 * 0.33)
             {
                 player.statDefense += 20;
                 player.lifeRegen += 5;
-                player.magicDamage += 0.2f;
-                player.meleeDamage += 0.2f;
-                player.minionDamage += 0.2f;
-                player.rangedDamage += 0.2f;
+                player.GetDamage(DamageClass.Magic) += 0.2f;
+                player.GetDamage(DamageClass.Melee) += 0.2f;
+                player.GetDamage(DamageClass.Summon) += 0.2f;
+                player.GetDamage(DamageClass.Ranged) += 0.2f;
             }
             player.noKnockback = true;
             if (player.statLife > player.statLifeMax2 * 0.25)

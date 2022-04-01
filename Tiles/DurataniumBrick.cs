@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class DurataniumBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.Purple);
             Main.tileSolid[Type] = true;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("DurataniumBrick");
+            drop = Mod.Find<ModItem>("DurataniumBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.DurataniumDust>();

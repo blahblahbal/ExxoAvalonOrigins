@@ -21,39 +21,29 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 160;
-            item.autoReuse = true;
-            item.useTurn = false;
-            item.useAmmo = AmmoID.Rocket;
-            item.shootSpeed = 11f;
-            item.crit += 7;
-            item.ranged = true;
-            item.rare = 11;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.knockBack = 5f;
-            item.useTime = 9;
-            item.shoot = ProjectileID.RocketI;
-            item.value = Item.sellPrice(1, 0, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 9;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item11;
+            Item.damage = 160;
+            Item.autoReuse = true;
+            Item.useTurn = false;
+            Item.useAmmo = AmmoID.Rocket;
+            Item.shootSpeed = 11f;
+            Item.crit += 7;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = 11;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.knockBack = 5f;
+            Item.useTime = 9;
+            Item.shoot = ProjectileID.RocketI;
+            Item.value = Item.sellPrice(1, 0, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 9;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item11;
 
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<TacticalExpulsor>());
-            recipe.AddIngredient(ItemID.RocketLauncher);
-            recipe.AddIngredient(ItemID.GrenadeLauncher);
-            recipe.AddIngredient(ItemID.Stynger);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Phantoplasm>(), 45).AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40).AddIngredient(ModContent.ItemType<SoulofTorture>(), 45).AddIngredient(ModContent.ItemType<TacticalExpulsor>()).AddIngredient(ItemID.RocketLauncher).AddIngredient(ItemID.GrenadeLauncher).AddIngredient(ItemID.Stynger).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override Vector2? HoldoutOffset()
         {
@@ -87,7 +77,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
             float num72 = (float)Math.Sqrt((double)(num70 * num70 + num71 * num71));
             float num73 = num72;
             num72 = player.inventory[player.selectedItem].shootSpeed / num72;
-            if (player.inventory[player.selectedItem].type == item.type)
+            if (player.inventory[player.selectedItem].type == Item.type)
             {
                 num70 += (float)Main.rand.Next(-50, 51) * 0.03f / num72;
                 num71 += (float)Main.rand.Next(-50, 51) * 0.03f / num72;

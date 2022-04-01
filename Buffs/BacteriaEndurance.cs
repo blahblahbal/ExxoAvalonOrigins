@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class BacteriaEndurance : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bacterial Endurance");
             Description.SetDefault("Thorns effect and increased damage and jump speed");

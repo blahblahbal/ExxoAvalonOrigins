@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -98,197 +98,197 @@ namespace ExxoAvalonOrigins.World.Passes
                         }
                         if (good)
                         {
-                            if (Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ChunkstoneWall>() || Main.tile[k, l].wall == 3 || Main.tile[k, l].wall == 83)
+                            if (Main.tile[k, l].WallType == (ushort)ModContent.WallType<Walls.ChunkstoneWall>() || Main.tile[k, l].WallType == 3 || Main.tile[k, l].WallType == 83)
                             {
-                                Main.tile[k, l].wall = 28;
+                                Main.tile[k, l].WallType = 28;
                             }
-                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68 || Main.tile[k, l].wall == 69 || Main.tile[k, l].wall == 81)
+                            if (Main.tile[k, l].WallType == 63 || Main.tile[k, l].WallType == 65 || Main.tile[k, l].WallType == 66 || Main.tile[k, l].WallType == 68 || Main.tile[k, l].WallType == 69 || Main.tile[k, l].WallType == 81)
                             {
-                                Main.tile[k, l].wall = 70;
+                                Main.tile[k, l].WallType = 70;
                             }
-                            else if (Main.tile[k, l].wall == 216 || Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>())
+                            else if (Main.tile[k, l].WallType == 216 || Main.tile[k, l].WallType == (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>())
                             {
-                                Main.tile[k, l].wall = 219;
+                                Main.tile[k, l].WallType = 219;
                             }
-                            else if (Main.tile[k, l].wall == 187 || Main.tile[k, l].wall == (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>())
+                            else if (Main.tile[k, l].WallType == 187 || Main.tile[k, l].WallType == (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>())
                             {
-                                Main.tile[k, l].wall = 222;
+                                Main.tile[k, l].WallType = 222;
                             }
-                            if (Main.tile[k, l].active() && !Main.tile[k, l - 1].active() && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].type != TileID.Containers && Main.tile[k, l - 1].type != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(150) == 0) // hallowed altar gen
+                            if (Main.tile[k, l].HasTile && !Main.tile[k, l - 1].HasTile && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].TileType != TileID.Containers && Main.tile[k, l - 1].TileType != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(150) == 0) // hallowed altar gen
                             {
                                 WorldGen.Place3x2(k, l - 1, (ushort)ModContent.TileType<HallowedAltar>());
                             }
-                            if (Main.tile[k, l].wall == 3 || Main.tile[k, l].wall == 83)
+                            if (Main.tile[k, l].WallType == 3 || Main.tile[k, l].WallType == 83)
                             {
-                                Main.tile[k, l].wall = 28;
+                                Main.tile[k, l].WallType = 28;
                             }
-                            if (Main.tile[k, l].type == 2 || Main.tile[k, l].type == (ushort)ModContent.TileType<Ickgrass>())
+                            if (Main.tile[k, l].TileType == 2 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Ickgrass>())
                             {
-                                Main.tile[k, l].type = 109;
+                                Main.tile[k, l].TileType = 109;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 1 || Main.tile[k, l].type == (ushort)ModContent.TileType<Chunkstone>())
+                            else if (Main.tile[k, l].TileType == 1 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Chunkstone>())
                             {
-                                Main.tile[k, l].type = 117;
+                                Main.tile[k, l].TileType = 117;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 53 || Main.tile[k, l].type == 123 || Main.tile[k, l].type == (ushort)ModContent.TileType<Snotsand>())
+                            else if (Main.tile[k, l].TileType == 53 || Main.tile[k, l].TileType == 123 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Snotsand>())
                             {
-                                Main.tile[k, l].type = 116;
+                                Main.tile[k, l].TileType = 116;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 23 || Main.tile[k, l].type == 199 || Main.tile[k, l].type == (ushort)ModContent.TileType<Ickgrass>())
+                            else if (Main.tile[k, l].TileType == 23 || Main.tile[k, l].TileType == 199 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Ickgrass>())
                             {
-                                Main.tile[k, l].type = 109;
+                                Main.tile[k, l].TileType = 109;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 25 || Main.tile[k, l].type == 203 || Main.tile[k, l].type == (ushort)ModContent.TileType<Chunkstone>())
+                            else if (Main.tile[k, l].TileType == 25 || Main.tile[k, l].TileType == 203 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Chunkstone>())
                             {
-                                Main.tile[k, l].type = 117;
+                                Main.tile[k, l].TileType = 117;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 112 || Main.tile[k, l].type == 234 || Main.tile[k, l].type == (ushort)ModContent.TileType<Snotsand>())
+                            else if (Main.tile[k, l].TileType == 112 || Main.tile[k, l].TileType == 234 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Snotsand>())
                             {
-                                Main.tile[k, l].type = 116;
+                                Main.tile[k, l].TileType = 116;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 161 || Main.tile[k, l].type == 163 || Main.tile[k, l].type == 200 || Main.tile[k, l].type == (ushort)ModContent.TileType<YellowIce>())
+                            else if (Main.tile[k, l].TileType == 161 || Main.tile[k, l].TileType == 163 || Main.tile[k, l].TileType == 200 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<YellowIce>())
                             {
-                                Main.tile[k, l].type = 164;
+                                Main.tile[k, l].TileType = 164;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 396 || Main.tile[k, l].type == (ushort)ModContent.TileType<Snotsandstone>())
+                            else if (Main.tile[k, l].TileType == 396 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<Snotsandstone>())
                             {
-                                Main.tile[k, l].type = 403;
+                                Main.tile[k, l].TileType = 403;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 397 || Main.tile[k, l].type == (ushort)ModContent.TileType<HardenedSnotsand>())
+                            else if (Main.tile[k, l].TileType == 397 || Main.tile[k, l].TileType == (ushort)ModContent.TileType<HardenedSnotsand>())
                             {
-                                Main.tile[k, l].type = 402;
+                                Main.tile[k, l].TileType = 402;
                                 Utils.SquareTileFrame(k, l);
                             }
                         }
                         else if (ExxoAvalonOriginsWorld.contagion)
                         {
-                            if (Main.tile[k, l].wall == 28)
+                            if (Main.tile[k, l].WallType == 28)
                             {
-                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ChunkstoneWall>();
+                                Main.tile[k, l].WallType = (ushort)ModContent.WallType<Walls.ChunkstoneWall>();
                             }
-                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68)
+                            if (Main.tile[k, l].WallType == 63 || Main.tile[k, l].WallType == 65 || Main.tile[k, l].WallType == 66 || Main.tile[k, l].WallType == 68)
                             {
-                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionGrassWall>();
+                                Main.tile[k, l].WallType = (ushort)ModContent.WallType<Walls.ContagionGrassWall>();
                             }
-                            else if (Main.tile[k, l].wall == 216)
+                            else if (Main.tile[k, l].WallType == 216)
                             {
-                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>();
+                                Main.tile[k, l].WallType = (ushort)ModContent.WallType<Walls.ContagionNaturalWall1>();
                             }
-                            else if (Main.tile[k, l].wall == 187)
+                            else if (Main.tile[k, l].WallType == 187)
                             {
-                                Main.tile[k, l].wall = (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>();
+                                Main.tile[k, l].WallType = (ushort)ModContent.WallType<Walls.ContagionNaturalWall2>();
                             }
-                            if (Main.tile[k, l].type == 2)
+                            if (Main.tile[k, l].TileType == 2)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Ickgrass>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Ickgrass>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 1)
+                            else if (Main.tile[k, l].TileType == 1)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Chunkstone>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Chunkstone>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 53 || Main.tile[k, l].type == 123)
+                            else if (Main.tile[k, l].TileType == 53 || Main.tile[k, l].TileType == 123)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Snotsand>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Snotsand>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 109)
+                            else if (Main.tile[k, l].TileType == 109)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Ickgrass>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Ickgrass>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 117)
+                            else if (Main.tile[k, l].TileType == 117)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Chunkstone>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Chunkstone>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 116)
+                            else if (Main.tile[k, l].TileType == 116)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Snotsand>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Snotsand>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 161 || Main.tile[k, l].type == 164)
+                            else if (Main.tile[k, l].TileType == 161 || Main.tile[k, l].TileType == 164)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<YellowIce>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<YellowIce>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 396)
+                            else if (Main.tile[k, l].TileType == 396)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<Snotsandstone>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<Snotsandstone>();
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 397)
+                            else if (Main.tile[k, l].TileType == 397)
                             {
-                                Main.tile[k, l].type = (ushort)ModContent.TileType<HardenedSnotsand>();
+                                Main.tile[k, l].TileType = (ushort)ModContent.TileType<HardenedSnotsand>();
                                 Utils.SquareTileFrame(k, l);
                             }
                         }
                         else
                         {
-                            if (Main.tile[k, l].wall == 63 || Main.tile[k, l].wall == 65 || Main.tile[k, l].wall == 66 || Main.tile[k, l].wall == 68)
+                            if (Main.tile[k, l].WallType == 63 || Main.tile[k, l].WallType == 65 || Main.tile[k, l].WallType == 66 || Main.tile[k, l].WallType == 68)
                             {
-                                Main.tile[k, l].wall = 69;
+                                Main.tile[k, l].WallType = 69;
                             }
-                            else if (Main.tile[k, l].wall == 216)
+                            else if (Main.tile[k, l].WallType == 216)
                             {
-                                Main.tile[k, l].wall = 217;
+                                Main.tile[k, l].WallType = 217;
                             }
-                            else if (Main.tile[k, l].wall == 187)
+                            else if (Main.tile[k, l].WallType == 187)
                             {
-                                Main.tile[k, l].wall = 220;
+                                Main.tile[k, l].WallType = 220;
                             }
-                            if (Main.tile[k, l].type == 2)
+                            if (Main.tile[k, l].TileType == 2)
                             {
-                                Main.tile[k, l].type = 23;
+                                Main.tile[k, l].TileType = 23;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 1)
+                            else if (Main.tile[k, l].TileType == 1)
                             {
-                                Main.tile[k, l].type = 25;
+                                Main.tile[k, l].TileType = 25;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 53 || Main.tile[k, l].type == 123)
+                            else if (Main.tile[k, l].TileType == 53 || Main.tile[k, l].TileType == 123)
                             {
-                                Main.tile[k, l].type = 112;
+                                Main.tile[k, l].TileType = 112;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 109)
+                            else if (Main.tile[k, l].TileType == 109)
                             {
-                                Main.tile[k, l].type = 23;
+                                Main.tile[k, l].TileType = 23;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 117)
+                            else if (Main.tile[k, l].TileType == 117)
                             {
-                                Main.tile[k, l].type = 25;
+                                Main.tile[k, l].TileType = 25;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 116)
+                            else if (Main.tile[k, l].TileType == 116)
                             {
-                                Main.tile[k, l].type = 112;
+                                Main.tile[k, l].TileType = 112;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 161 || Main.tile[k, l].type == 164)
+                            else if (Main.tile[k, l].TileType == 161 || Main.tile[k, l].TileType == 164)
                             {
-                                Main.tile[k, l].type = 163;
+                                Main.tile[k, l].TileType = 163;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 396)
+                            else if (Main.tile[k, l].TileType == 396)
                             {
-                                Main.tile[k, l].type = 400;
+                                Main.tile[k, l].TileType = 400;
                                 Utils.SquareTileFrame(k, l);
                             }
-                            else if (Main.tile[k, l].type == 397)
+                            else if (Main.tile[k, l].TileType == 397)
                             {
-                                Main.tile[k, l].type = 398;
+                                Main.tile[k, l].TileType = 398;
                                 Utils.SquareTileFrame(k, l);
                             }
                         }

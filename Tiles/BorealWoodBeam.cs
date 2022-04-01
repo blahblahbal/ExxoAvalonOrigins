@@ -9,9 +9,9 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BorealWoodBeam : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
-            drop = mod.ItemType("BorealWoodBeam");
+            drop = Mod.Find<ModItem>("BorealWoodBeam").Type;
             AddMapEntry(new Color(85, 68, 57));
             Main.tileSolid[Type] = false;
             Main.tileNoAttach[Type] = false;
@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override bool CanPlace(int i, int j)
         {
-            return (Main.tile[i, j - 1].active() || Main.tile[i, j + 1].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
+            return (Main.tile[i, j - 1].HasTile || Main.tile[i, j + 1].HasTile || Main.tile[i, j].WallType != 0 && !Main.tile[i, j].HasTile);
         }
 
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)

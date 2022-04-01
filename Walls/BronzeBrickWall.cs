@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class BronzeBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("BronzeBrickWall");
+            drop = Mod.Find<ModItem>("BronzeBrickWall").Type;
             AddMapEntry(new Color(61, 29, 26));
             dustType = ModContent.DustType<Dusts.BronzeDust>();
         }

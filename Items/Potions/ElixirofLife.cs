@@ -15,29 +15,23 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.potion = true;
-            item.useTurn = true;
-            item.maxStack = 60;
-            item.healLife = 350;
-            item.consumable = true;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.useTime = 17;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.value = 10000;
-            item.useAnimation = 17;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item3;
+            Item.potion = true;
+            Item.useTurn = true;
+            Item.maxStack = 60;
+            Item.healLife = 350;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.useTime = 17;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.value = 10000;
+            Item.useAnimation = 17;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.LifeDew>());
-            recipe.AddIngredient(ItemID.SuperHealingPotion);
-            recipe.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 3);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.LifeDew>()).AddIngredient(ItemID.SuperHealingPotion).AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 3).AddTile(TileID.Bottles).Register();
         }
     }
 }

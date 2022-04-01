@@ -16,22 +16,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.damage = 25;
-            item.maxStack = 999;
-            item.shootSpeed = 10f;
-            item.ranged = true;
-            item.consumable = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 18;
-            item.knockBack = 2f;
-            item.shoot = ModContent.ProjectileType<Projectiles.MythrilKnife>();
-            item.value = 250;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 18;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.damage = 25;
+            Item.maxStack = 999;
+            Item.shootSpeed = 10f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 18;
+            Item.knockBack = 2f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.MythrilKnife>();
+            Item.value = 250;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 18;
+            Item.height = dims.Height;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,

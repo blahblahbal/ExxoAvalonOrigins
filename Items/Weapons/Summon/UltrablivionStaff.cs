@@ -16,27 +16,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
         {
             DisplayName.SetDefault("Ultrablivion Staff");
             Tooltip.SetDefault("Summons a mini Ultrablivion to fight for you");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.summon = true;
-            item.mana = 5;
-            item.width = 152;
-            item.height = 152;
-            item.useAnimation = 30;
-            item.useTime = 30;
-            item.useStyle = 1;
-            item.noMelee = true;
-            item.damage = 100;
-            item.knockBack = 4;
-            item.value = Item.buyPrice(10, 0, 0, 0);
-            item.rare = 11;
-            item.expert = true;
-            item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<Projectiles.Summon.UltraHMinion>();
-            item.shootSpeed = 10f;
+            Item.DamageType = DamageClass.Summon;
+            Item.mana = 5;
+            Item.width = 152;
+            Item.height = 152;
+            Item.useAnimation = 30;
+            Item.useTime = 30;
+            Item.useStyle = 1;
+            Item.noMelee = true;
+            Item.damage = 100;
+            Item.knockBack = 4;
+            Item.value = Item.buyPrice(10, 0, 0, 0);
+            Item.rare = 11;
+            Item.expert = true;
+            Item.UseSound = SoundID.Item44;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Summon.UltraHMinion>();
+            Item.shootSpeed = 10f;
         }
 
         
@@ -56,7 +56,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
             return false;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (player.altFunctionUse == 2)
             {

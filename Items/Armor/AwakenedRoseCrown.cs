@@ -19,11 +19,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 25;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 25;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -39,8 +39,8 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.magicDamage += 0.2f;
-            player.magicCrit += 5;
+            player.GetDamage(DamageClass.Magic) += 0.2f;
+            player.GetCritChance(DamageClass.Magic) += 5;
             player.Avalon().leafStorm = true;
         }
     }

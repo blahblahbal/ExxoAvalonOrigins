@@ -15,25 +15,19 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.shoot = ModContent.ProjectileType<Projectiles.Rainbringer>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 2, 70, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Rainbringer>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 2, 70, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.RainCloud, 50);
-            recipe.AddRecipeGroup(RecipeGroup.recipeGroupIDs["ExxoAvalonOrigins:CopperBar"], 10);
-            recipe.AddIngredient(ItemID.SoulofNight, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(item.type);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.RainCloud, 50).AddRecipeGroup(RecipeGroup.recipeGroupIDs["ExxoAvalonOrigins:CopperBar"], 10).AddIngredient(ItemID.SoulofNight, 10).AddTile(TileID.MythrilAnvil).ReplaceResult(item.type);
         }
     }
 }

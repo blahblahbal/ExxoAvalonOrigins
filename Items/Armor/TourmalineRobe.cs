@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 5;
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 50, 0) * 3;
-            item.height = dims.Height;
+            Item.defense = 5;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 50, 0) * 3;
+            Item.height = dims.Height;
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -29,19 +29,14 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Robe);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Tourmaline>(), 10);
-            recipe.AddTile(TileID.Loom);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Robe).AddIngredient(ModContent.ItemType<Placeable.Tile.Tourmaline>(), 10).AddTile(TileID.Loom).Register();
         }
         public override void UpdateArmorSet(Player player)
         {
             if (player.head == 14)
             {
                 player.setBonus = "10% increased magic critical strike chance";
-                player.magicCrit += 10;
+                player.GetCritChance(DamageClass.Magic) += 10;
             }
             else if (player.head == 159)
             {

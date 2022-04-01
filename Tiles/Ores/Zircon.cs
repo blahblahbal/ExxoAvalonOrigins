@@ -8,12 +8,12 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class Zircon : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(102, 66, 43), LanguageManager.Instance.GetText("Zircon"));
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
-            drop = mod.ItemType("Zircon");
+            drop = Mod.Find<ModItem>("Zircon").Type;
             Main.tileMerge[TileID.Stone][Type] = true;
             Main.tileMerge[Type][TileID.Stone] = true;
             Main.tileBlockLight[Type] = true;

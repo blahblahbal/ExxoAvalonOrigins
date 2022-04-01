@@ -23,16 +23,16 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Silly", new Silly());
+                Mod.AddPrefix("Silly", new Silly());
             }
             return false;
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicCrit += 2;
-            player.meleeCrit += 2;
-            player.rangedCrit += 2;
-            player.thrownCrit += 2;
+            player.GetCritChance(DamageClass.Magic) += 2;
+            player.GetCritChance(DamageClass.Melee) += 2;
+            player.GetCritChance(DamageClass.Ranged) += 2;
+            player.GetCritChance(DamageClass.Throwing) += 2;
         }
     }
 }

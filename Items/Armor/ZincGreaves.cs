@@ -14,19 +14,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.ZincBar>(), 20);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.ZincBar>(), 20).AddTile(TileID.Anvils).Register();
         }
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 4;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 25);
-            item.height = dims.Height;
+            Item.defense = 4;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 25);
+            Item.height = dims.Height;
         }
     }
 }

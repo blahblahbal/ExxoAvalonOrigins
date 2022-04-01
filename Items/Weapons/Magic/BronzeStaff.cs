@@ -10,42 +10,31 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bronze Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 17;
-            item.shootSpeed = 7.5f;
-            item.mana = 5;
-            item.rare = ItemRarityID.Blue;
-            item.useTime = 36;
-            item.useAnimation = 36;
-            item.knockBack = 4f;
-            item.shoot = ProjectileID.AmethystBolt;
-            item.value = 4000;
-            item.UseSound = SoundID.Item43;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 17;
+            Item.shootSpeed = 7.5f;
+            Item.mana = 5;
+            Item.rare = ItemRarityID.Blue;
+            Item.useTime = 36;
+            Item.useAnimation = 36;
+            Item.knockBack = 4f;
+            Item.shoot = ProjectileID.AmethystBolt;
+            Item.value = 4000;
+            Item.UseSound = SoundID.Item43;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 10);
-            recipe.AddIngredient(ItemID.Topaz, 8);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 10);
-            recipe.AddIngredient(ItemID.Amethyst, 8);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 10).AddIngredient(ItemID.Topaz, 8).AddTile(TileID.Anvils).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BronzeBar>(), 10).AddIngredient(ItemID.Amethyst, 8).AddTile(TileID.Anvils).Register();
         }
     }
 }

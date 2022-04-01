@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -21,7 +22,7 @@ namespace ExxoAvalonOrigins.UI
             if (!mouseWasOver)
             {
                 mouseWasOver = true;
-                Main.PlaySound(SoundID.MenuTick);
+                SoundEngine.PlaySound(SoundID.MenuTick);
             }
             base.MouseOver(evt);
         }

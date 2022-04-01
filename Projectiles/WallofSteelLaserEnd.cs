@@ -15,25 +15,25 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/WallofSteelLaserEnd");
-            projectile.width = dims.Width * 4 / 20;
-            projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = false;
-            projectile.hostile = true;
-            projectile.penetrate = 4;
-            projectile.light = 0.8f;
-            projectile.alpha = 0;
-            projectile.scale = 1.2f;
-            projectile.timeLeft = 1200;
-            projectile.ranged = true;
-            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+            Projectile.width = dims.Width * 4 / 20;
+            Projectile.height = dims.Height * 4 / 20 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = false;
+            Projectile.hostile = true;
+            Projectile.penetrate = 4;
+            Projectile.light = 0.8f;
+            Projectile.alpha = 0;
+            Projectile.scale = 1.2f;
+            Projectile.timeLeft = 1200;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override void AI()
         {
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

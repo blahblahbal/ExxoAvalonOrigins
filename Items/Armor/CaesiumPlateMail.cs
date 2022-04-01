@@ -17,16 +17,16 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 25;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 9, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 25;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 9, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.meleeCrit += 5;
+            player.GetCritChance(DamageClass.Melee) += 5;
             player.magmaStone = true;
         }
     }

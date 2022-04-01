@@ -13,15 +13,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.LeadAnvil);
+            Item.CloneDefaults(ItemID.LeadAnvil);
             //Rectangle dims = this.GetDims();
             //item.autoReuse = true;
             //item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.NickelAnvil>();
+            Item.createTile = ModContent.TileType<Tiles.NickelAnvil>();
             //item.rare = 7;
             //item.width = dims.Width;
             //item.useTurn = true;
-            item.placeStyle = 0;
+            Item.placeStyle = 0;
             //item.useTime = 10;
             //item.useStyle = 1;
             //item.maxStack = 99;

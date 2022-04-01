@@ -15,22 +15,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 33;
-            item.noUseGraphic = true;
-            item.channel = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 10f;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 46;
-            item.knockBack = 6.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Sporalash>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 27000;
-            item.useAnimation = 46;
-            item.height = dims.Height;
+            Item.damage = 33;
+            Item.noUseGraphic = true;
+            Item.channel = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 10f;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 46;
+            Item.knockBack = 6.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Sporalash>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 27000;
+            Item.useAnimation = 46;
+            Item.height = dims.Height;
         }
     }
 }

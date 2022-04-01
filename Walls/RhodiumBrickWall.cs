@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class RhodiumBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("RhodiumBrickWall");
+            drop = Mod.Find<ModItem>("RhodiumBrickWall").Type;
             AddMapEntry(new Color(159, 117, 124));
             dustType = DustID.t_LivingWood;
         }

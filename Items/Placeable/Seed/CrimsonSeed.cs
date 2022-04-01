@@ -15,15 +15,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Seed
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 4;
-            item.ammo = AmmoID.Dart;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.shoot = ModContent.ProjectileType<Projectiles.CrimsonSeed>();
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.damage = 4;
+            Item.ammo = AmmoID.Dart;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.shoot = ModContent.ProjectileType<Projectiles.CrimsonSeed>();
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
     }
 }

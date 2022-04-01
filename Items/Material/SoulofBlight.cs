@@ -13,10 +13,10 @@ namespace ExxoAvalonOrigins.Items.Material
         {
             DisplayName.SetDefault("Soul of Blight");
             Tooltip.SetDefault("'The essence of death'");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
-            ItemID.Sets.AnimatesAsSoul[item.type] = true;
-            ItemID.Sets.ItemIconPulse[item.type] = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true;
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+            ItemID.Sets.ItemIconPulse[Item.type] = true;
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -25,18 +25,18 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.maxStack = 999;
-            item.width = dims.Width;
-            item.value = 80000;
-            item.height = 28;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.maxStack = 999;
+            Item.width = dims.Width;
+            Item.value = 80000;
+            Item.height = 28;
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             float num7 = (float)Main.rand.Next(90, 111) * 0.01f;
             num7 *= Main.essScale;
-            Lighting.AddLight((int)((item.position.X + (float)(item.width / 2)) / 16f), (int)((item.position.Y + (float)(item.height / 2)) / 16f), 0.4f * num7, 0.4f * num7, 0.4f * num7);
+            Lighting.AddLight((int)((Item.position.X + (float)(Item.width / 2)) / 16f), (int)((Item.position.Y + (float)(Item.height / 2)) / 16f), 0.4f * num7, 0.4f * num7, 0.4f * num7);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class ShroomiteOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 5f;
             AddMapEntry(Color.CornflowerBlue, LanguageManager.Instance.GetText("Shroomite"));
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileBlockLight[Type] = true;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 1400;
-            drop = mod.ItemType("ShroomiteOre");
+            drop = Mod.Find<ModItem>("ShroomiteOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 205;

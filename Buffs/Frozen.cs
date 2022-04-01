@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Frozen : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frozen");
             Description.SetDefault("I can't move!");

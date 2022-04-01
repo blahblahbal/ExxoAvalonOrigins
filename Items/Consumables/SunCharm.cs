@@ -16,15 +16,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 40;
-            item.shoot = ModContent.ProjectileType<Projectiles.SunCharm>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 40;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 40;
+            Item.shoot = ModContent.ProjectileType<Projectiles.SunCharm>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 40;
+            Item.height = dims.Height;
         }
 
         public override bool CanUseItem(Player player)

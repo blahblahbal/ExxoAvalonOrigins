@@ -16,12 +16,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 2;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 10, 0, 0);
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.defense = 2;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 10, 0, 0);
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -43,16 +43,16 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.lifeRegen += 2;
             player.statDefense += 4;
             player.meleeSpeed += 0.1f;
-            player.meleeDamage += 0.1f;
-            player.meleeCrit += 2;
-            player.rangedDamage += 0.1f;
-            player.rangedCrit += 2;
-            player.magicDamage += 0.1f;
-            player.magicCrit += 2;
-            player.thrownDamage += 0.1f;
-            player.thrownCrit += 2;
+            player.GetDamage(DamageClass.Melee) += 0.1f;
+            player.GetCritChance(DamageClass.Melee) += 2;
+            player.GetDamage(DamageClass.Ranged) += 0.1f;
+            player.GetCritChance(DamageClass.Ranged) += 2;
+            player.GetDamage(DamageClass.Magic) += 0.1f;
+            player.GetCritChance(DamageClass.Magic) += 2;
+            player.GetDamage(DamageClass.Throwing) += 0.1f;
+            player.GetCritChance(DamageClass.Throwing) += 2;
             player.pickSpeed -= 0.15f;
-            player.minionDamage += 0.1f;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
             player.minionKB += 0.5f;
         }
     }

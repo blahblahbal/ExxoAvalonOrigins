@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Overactive", new Overactive());
+                Mod.AddPrefix("Overactive", new Overactive());
             }
             return false;
         }

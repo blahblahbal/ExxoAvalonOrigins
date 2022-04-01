@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = 9f;
-            item.damage = 19;
-            item.ammo = AmmoID.Bullet;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.knockBack = 4f;
-            item.shoot = ModContent.ProjectileType<Projectiles.MagmaticBullet>();
-            item.maxStack = 2000;
-            item.value = 1200;
-            item.height = dims.Height;
+            Item.shootSpeed = 9f;
+            Item.damage = 19;
+            Item.ammo = AmmoID.Bullet;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.knockBack = 4f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.MagmaticBullet>();
+            Item.maxStack = 2000;
+            Item.value = 1200;
+            Item.height = dims.Height;
         }
     }
 }

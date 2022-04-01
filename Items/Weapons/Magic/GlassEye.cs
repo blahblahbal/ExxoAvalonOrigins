@@ -14,35 +14,28 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 14;
-            item.scale = 1.1f;
-            item.magic = true;
-            item.autoReuse = false;
-            item.noMelee = true;
-            item.useTurn = false;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.useTime = 35;
-            item.useAnimation = 35;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.knockBack = 2f;
-            item.mana = 3;
-            item.shoot = ModContent.ProjectileType<Projectiles.Tear>();
-            item.shootSpeed = 12f;
-            item.UseSound = SoundID.NPCHit1;
-            item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.damage = 14;
+            Item.scale = 1.1f;
+            Item.DamageType = DamageClass.Magic;
+            Item.autoReuse = false;
+            Item.noMelee = true;
+            Item.useTurn = false;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.knockBack = 2f;
+            Item.mana = 3;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Tear>();
+            Item.shootSpeed = 12f;
+            Item.UseSound = SoundID.NPCHit1;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Lens, 1);
-            recipe.AddIngredient(ItemID.Glass, 5);
-            recipe.AddIngredient(ItemID.FallenStar, 3);
-            recipe.AddIngredient(ItemID.BottledWater, 1);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Lens, 1).AddIngredient(ItemID.Glass, 5).AddIngredient(ItemID.FallenStar, 3).AddIngredient(ItemID.BottledWater, 1).AddTile(TileID.WorkBenches).Register();
         }
         public override Vector2? HoldoutOffset()
         {

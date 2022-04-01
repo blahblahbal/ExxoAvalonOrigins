@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee
 {
@@ -19,33 +20,33 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 131;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.3f;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 25;
-            item.useAnimation = 20;
-            item.knockBack = 7f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.FireWave>();
-            item.shootSpeed = 25f;
-            item.value = Item.sellPrice(0, 7, 63, 0);
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 131;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.3f;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 25;
+            Item.useAnimation = 20;
+            Item.knockBack = 7f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.FireWave>();
+            Item.shootSpeed = 25f;
+            Item.value = Item.sellPrice(0, 7, 63, 0);
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Main.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 20, 0.8f, 0.25f);
+            SoundEngine.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 20, 0.8f, 0.25f);
             return true;
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
             if (Main.rand.Next(2) == 0)
             {
-                int num162 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Fire, 0f, 0f, 0, default(Color), 2f);
+                int num162 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Torch, 0f, 0f, 0, default(Color), 2f);
                 Main.dust[num162].noGravity = true;
             }
         }

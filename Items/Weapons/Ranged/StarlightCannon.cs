@@ -14,25 +14,25 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 350;
-            item.scale = 1.1f;
-            item.magic = true;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.rare = ItemRarityID.Lime;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.channel = true;
-            item.height = dims.Height;
-            item.mana = 50;
-            item.useTime = 40;
-            item.useAnimation = 40;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.knockBack = 7f;
-            item.shoot = ModContent.ProjectileType<Projectiles.ChargingStar>();
-            item.shootSpeed = 6f;
-            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Charging");
-            item.value = 15500000;
+            Item.damage = 350;
+            Item.scale = 1.1f;
+            Item.DamageType = DamageClass.Magic;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.channel = true;
+            Item.height = dims.Height;
+            Item.mana = 50;
+            Item.useTime = 40;
+            Item.useAnimation = 40;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.knockBack = 7f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.ChargingStar>();
+            Item.shootSpeed = 6f;
+            Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Charging");
+            Item.value = 15500000;
         }
 
     }

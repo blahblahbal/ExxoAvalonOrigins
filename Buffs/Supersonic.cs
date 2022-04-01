@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Supersonic : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Supersonic");
             Description.SetDefault("You are speedy");

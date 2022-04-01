@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class ChlorophyteBrick : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("ChlorophyteBrickWall");
+            drop = Mod.Find<ModItem>("ChlorophyteBrickWall").Type;
             AddMapEntry(new Color(10, 200, 20));
             dustType = DustID.Chlorophyte;
         }

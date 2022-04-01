@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class PlacedBars : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Tiles
         // selects the map entry depending on the frameX
         public override ushort GetMapOption(int i, int j)
         {
-            return (ushort)(Main.tile[i, j].frameX / 18);
+            return (ushort)(Main.tile[i, j].TileFrameX / 18);
         }
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Tiles
                 return;
             }
             int toDrop = 0;
-            switch (Main.tile[i, j].frameX / 18)
+            switch (Main.tile[i, j].TileFrameX / 18)
             {
                 case 0:
                     toDrop = ModContent.ItemType<CaesiumBar>();
@@ -144,7 +144,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override bool CreateDust(int i, int j, ref int type)
         {
-            if (Main.tile[i, j].frameX / 18 == 16)
+            if (Main.tile[i, j].TileFrameX / 18 == 16)
             {
                 Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.MagicMirror);
                 Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, DustID.Enchanted_Gold);

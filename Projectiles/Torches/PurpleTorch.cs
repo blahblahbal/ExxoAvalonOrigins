@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles.Torches
 {
@@ -13,64 +14,65 @@ namespace ExxoAvalonOrigins.Projectiles.Torches
 
         public override void SetDefaults()
         {
-            projectile.width = 6;
-            projectile.height = 14;
-            projectile.aiStyle = 1;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.light = 1f;
-            projectile.damage = 0;
-            projectile.ranged = projectile.tileCollide = true;
+            Projectile.width = 6;
+            Projectile.height = 14;
+            Projectile.aiStyle = 1;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.light = 1f;
+            Projectile.damage = 0;
+            Projectile.DamageType = DamageClass.Generic; // projectile.tileCollide = true /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
         }
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
-            if (projectile.aiStyle == 1)
+            SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 10);
+            if (Projectile.aiStyle == 1)
             {
                 int it = ItemID.PurpleTorch;
                 int style = 4;
-                int TileX = (int)(projectile.position.X + projectile.width * 0.5f) / 16;
-                int TileY = (int)(projectile.position.Y + projectile.height * 0.5f) / 16;
+                int TileX = (int)(Projectile.position.X + Projectile.width * 0.5f) / 16;
+                int TileY = (int)(Projectile.position.Y + Projectile.height * 0.5f) / 16;
 
                 if (TileX < 0 || TileX >= Main.maxTilesX || TileY < 0 || TileY >= Main.maxTilesY)
                 {
-                    projectile.active = false;
+                    Projectile.active = false;
                     return;
                 }
-                if (!Main.tile[TileX, TileY].active())
+                if (!Main.tile[TileX, TileY].HasTile)
                 {
                     WorldGen.PlaceTile(TileX, TileY, 4, false, true, -1, 0);
                     // not sure if PlaceTile calls TileFrame
                     WorldGen.TileFrame(TileX, TileY);
-                    Main.tile[TileX, TileY].frameY = (short)(style * 22);
+                    Main.tile[TileX, TileY].TileFrameY = (short)(style * 22);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, TileX, TileY, 4, style);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, TileX, TileY, 4, style);
                     }
-                    projectile.active = false;
+                    Projectile.active = false;
                 }
                 else
                 {
-                    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, it);
-                    projectile.active = false;
+                    Item.NewItem(Projectile.GetProjectileSource_FromThis(), Projectile.position, it);
+                    //Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
                 }
 
-                if (!Main.tile[TileX, TileY].active() && (Main.tile[TileX + 1, TileY + 1].active() || Main.tile[TileX - 1, TileY + 1].active() || Main.tile[TileX + 1, TileY - 1].active() || Main.tile[TileX - 1, TileY - 1].active()) && !Main.tile[TileX, TileY + 1].active())
+                if (!Main.tile[TileX, TileY].HasTile && (Main.tile[TileX + 1, TileY + 1].HasTile || Main.tile[TileX - 1, TileY + 1].HasTile || Main.tile[TileX + 1, TileY - 1].HasTile || Main.tile[TileX - 1, TileY - 1].HasTile) && !Main.tile[TileX, TileY + 1].HasTile)
                 {
-                    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, it);
-                    projectile.active = false;
+                    Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
                 }
                 if (Main.tile[TileX, TileY].liquid > 0)
                 {
-                    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, it);
-                    projectile.active = false;
+                    Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
                 }
-                if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1].halfBrick())
+                if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1]IsHalfBlock)
                 {
-                    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, it);
-                    projectile.active = false;
+                    Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
                 }
-                projectile.active = false;
+                Projectile.active = false;
             }
         }
     }

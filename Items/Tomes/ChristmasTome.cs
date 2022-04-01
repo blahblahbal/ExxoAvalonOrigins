@@ -17,32 +17,24 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightPurple;
-            item.width = dims.Width;
-            item.value = 15000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.LightPurple;
+            Item.width = dims.Width;
+            Item.value = 15000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicCrit += 3;
-            player.meleeCrit += 3;
-            player.rangedCrit += 3;
-            player.thrownCrit += 3;
+            player.GetCritChance(DamageClass.Magic) += 3;
+            player.GetCritChance(DamageClass.Melee) += 3;
+            player.GetCritChance(DamageClass.Ranged) += 3;
+            player.GetCritChance(DamageClass.Throwing) += 3;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<MysticalClaw>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<MysteriousPage>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<DewOrb>());
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<MysticalClaw>(), 3).AddIngredient(ModContent.ItemType<MysteriousPage>(), 2).AddIngredient(ModContent.ItemType<Sandstone>(), 5).AddIngredient(ModContent.ItemType<DewOrb>()).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 2).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

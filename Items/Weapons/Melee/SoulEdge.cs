@@ -15,22 +15,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 83;
-            item.autoReuse = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 8f;
-            item.rare = ItemRarityID.Yellow;
-            item.noMelee = false;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 6.5f;
-            item.shoot = ProjectileID.LostSoulFriendly;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 80, 0, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 83;
+            Item.autoReuse = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 8f;
+            Item.rare = ItemRarityID.Yellow;
+            Item.noMelee = false;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 6.5f;
+            Item.shoot = ProjectileID.LostSoulFriendly;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 80, 0, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -45,8 +45,8 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
                 //float scale = 1f - (Main.rand.NextFloat() * .3f);
                 //perturbedSpeed = perturbedSpeed * scale; 
                 int spirit = Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-                Main.projectile[spirit].magic = false;
-                Main.projectile[spirit].melee = true;
+                // Main.projectile[spirit].magic = false /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+                Main.projectile[spirit].DamageType = DamageClass.Melee;
             }
             return false; // return false because we don't want tmodloader to shoot projectile
         }

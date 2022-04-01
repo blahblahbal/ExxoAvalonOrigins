@@ -16,13 +16,13 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.lifeRegen = 2;
-            item.defense = 10;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 1, 63, 0);
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.lifeRegen = 2;
+            Item.defense = 10;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 1, 63, 0);
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
     }
 }

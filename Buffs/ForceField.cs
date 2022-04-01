@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.Buffs
             ModContent.ProjectileType<Projectiles.CrystalBit>(),
             ModContent.ProjectileType<Projectiles.CrystalBeam>()
         };
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Force Field");
 			Description.SetDefault("A force field surrounds you");

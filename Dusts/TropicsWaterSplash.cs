@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Dusts
 {
     public class TropicsWaterSplash : ModDust
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             updateType = 33;
         }

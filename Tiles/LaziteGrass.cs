@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class LaziteGrass : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(3, 2, 209));
             Main.tileSolid[Type] = true;
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (fail && !effectOnly)
             {
-                Main.tile[i, j].type = (ushort)ModContent.TileType<BlackBlaststone>();
+                Main.tile[i, j].TileType = (ushort)ModContent.TileType<BlackBlaststone>();
                 WorldGen.SquareTileFrame(i, j);
             }
         }

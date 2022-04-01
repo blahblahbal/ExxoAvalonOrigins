@@ -7,13 +7,13 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class OpalGemspark : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(165, 255, 127));
             Main.tileSolid[Type] = true;
             Main.tileLighted[Type] = true;
             Main.tileShine2[Type] = true;
-            drop = mod.ItemType("OpalGemsparkBlock");
+            drop = Mod.Find<ModItem>("OpalGemsparkBlock").Type;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -40,7 +40,7 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 zero = Vector2.Zero;
             }
-            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.frameX, tile.frameY, 16, 16), new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16), new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
         }
     }
 }

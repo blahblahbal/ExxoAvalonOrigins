@@ -17,26 +17,20 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = 600000;
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = 600000;
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.AngelWings);
-            r.AddIngredient(ItemID.CrystalShard, 100);
-            r.AddIngredient(ItemID.PixieDust, 75);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.AngelWings).AddIngredient(ItemID.CrystalShard, 100).AddIngredient(ItemID.PixieDust, 75).AddTile(TileID.MythrilAnvil).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.wingTimeMax = 160;
-            if (player.ZoneHoly)
+            if (player.ZoneHallow)
             {
                 player.statLifeMax2 += 60;
                 player.statDefense += 4;

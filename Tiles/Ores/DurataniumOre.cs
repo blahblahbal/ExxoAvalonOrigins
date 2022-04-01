@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class DurataniumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 2f;
             AddMapEntry(Color.Purple, LanguageManager.Instance.GetText("Duratanium"));
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileValue[Type] = 615;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 925;
-            drop = mod.ItemType("DurataniumOre");
+            drop = Mod.Find<ModItem>("DurataniumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 100;

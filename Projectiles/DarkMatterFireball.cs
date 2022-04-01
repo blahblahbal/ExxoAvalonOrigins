@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -15,21 +16,21 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DarkMatterFireball");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.tileCollide = true;
-            projectile.friendly = false;
-            projectile.hostile = true;
-            projectile.timeLeft = 100;
-            projectile.light = 1f;
-            projectile.penetrate = -1;
-            projectile.magic = true;
-            projectile.ignoreWater = true;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.tileCollide = true;
+            Projectile.friendly = false;
+            Projectile.hostile = true;
+            Projectile.timeLeft = 100;
+            Projectile.light = 1f;
+            Projectile.penetrate = -1;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.ignoreWater = true;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
+            SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 10);
             return true;
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -38,23 +39,23 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            int num40 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Wraith, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
-            int D3 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f);
+            int num40 = Dust.NewDust(new Vector2(Projectile.position.X + Projectile.velocity.X, Projectile.position.Y + Projectile.velocity.Y), Projectile.width, Projectile.height, DustID.Wraith, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 3f);
+            int D3 = Dust.NewDust(new Vector2(Projectile.position.X + Projectile.velocity.X, Projectile.position.Y + Projectile.velocity.Y), Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 3f);
             Main.dust[num40].noGravity = true;
             Main.dust[D3].noGravity = true;
             if (Main.rand.Next(10) == 0)
             {
-                num40 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Wraith, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.4f);
-                D3 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1.4f);
+                num40 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Wraith, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 1.4f);
+                D3 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 1.4f);
             }
-            if (projectile.ai[1] >= 20f)
+            if (Projectile.ai[1] >= 20f)
             {
-                projectile.velocity.Y = projectile.velocity.Y + 0.2f;
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.2f;
             }
-            projectile.rotation += 0.3f * (float)projectile.direction;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation += 0.3f * (float)Projectile.direction;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

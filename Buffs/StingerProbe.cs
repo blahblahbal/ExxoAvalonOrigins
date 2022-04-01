@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class StingerProbe : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stinger Probe");
             Description.SetDefault("'Don't get too close!'");

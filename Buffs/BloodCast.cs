@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class BloodCast : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blood Casting");
             Description.SetDefault("Maximum life is added to maximum mana");

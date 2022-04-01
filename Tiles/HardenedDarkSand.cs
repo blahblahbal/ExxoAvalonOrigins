@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class HardenedDarkSand : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(63, 0, 63));
             Main.tileSolid[Type] = true;
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[TileID.Sandstone][Type] = true;
             Main.tileMerge[Type][TileID.HardenedSand] = true;
             Main.tileMerge[TileID.HardenedSand][Type] = true;
-            drop = mod.ItemType("HardenedDarkSandBlock");
+            drop = Mod.Find<ModItem>("HardenedDarkSandBlock").Type;
             dustType = ModContent.DustType<Dusts.DarkMatterDust>();
         }
 

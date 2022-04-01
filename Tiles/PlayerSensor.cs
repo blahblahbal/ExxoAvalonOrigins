@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class PlayerSensor : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.LightSteelBlue);
             TileID.Sets.FramesOnKillWall[Type] = true;

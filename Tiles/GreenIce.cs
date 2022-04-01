@@ -7,12 +7,12 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class GreenIce : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(41, 200, 0));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("GreenIceBlock");
+            drop = Mod.Find<ModItem>("GreenIceBlock").Type;
             Main.tileMerge[Type][TileID.IceBlock] = true;
             Main.tileMerge[TileID.IceBlock][Type] = true;
             Main.tileShine2[Type] = true;

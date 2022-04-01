@@ -15,20 +15,20 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 190;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.knockBack = 7f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 50, 0, 0);
-            item.useAnimation = 10;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 190;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.knockBack = 7f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 50, 0, 0);
+            Item.useAnimation = 10;
+            Item.height = dims.Height;
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
@@ -72,23 +72,8 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
-            recipe.AddIngredient(ModContent.ItemType<PyroscoricLongsword>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-			
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
-            recipe.AddIngredient(ModContent.ItemType<TritanoriumBroadsword>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<VertexofExcalibur>()).AddIngredient(ModContent.ItemType<PyroscoricLongsword>()).AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15).AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<VertexofExcalibur>()).AddIngredient(ModContent.ItemType<TritanoriumBroadsword>()).AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 15).AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>()).Register();
         }
     }
 }

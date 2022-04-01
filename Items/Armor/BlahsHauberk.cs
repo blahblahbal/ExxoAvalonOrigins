@@ -17,12 +17,12 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 100;
-            item.rare = ItemRarityID.Purple;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(2, 0, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 100;
+            Item.rare = ItemRarityID.Purple;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(2, 0, 0, 0);
+            Item.height = dims.Height;
         }
         public override void UpdateEquip(Player player)
         {

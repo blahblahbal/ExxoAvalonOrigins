@@ -16,36 +16,31 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.OpalGemspark>();
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.rare = ItemRarityID.Purple;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.OpalGemspark>();
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.rare = ItemRarityID.Purple;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Glass, 20);
-            recipe.AddIngredient(ModContent.ItemType<Opal>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this, 20);
-            recipe.AddRecipe();
+            CreateRecipe(20).AddIngredient(ItemID.Glass, 20).AddIngredient(ModContent.ItemType<Opal>()).AddTile(TileID.WorkBenches).Register();
         }
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            spriteBatch.Draw(Main.itemTexture[item.type], position, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[Item.type], position, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Vector2 iPos = item.position - Main.screenPosition;
-            spriteBatch.Draw(Main.itemTexture[item.type], item.position - Main.screenPosition, null, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            Vector2 iPos = Item.position - Main.screenPosition;
+            spriteBatch.Draw(Main.itemTexture[Item.type], Item.position - Main.screenPosition, null, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
     }
 }

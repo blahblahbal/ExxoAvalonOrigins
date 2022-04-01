@@ -6,6 +6,7 @@ using ExxoAvalonOrigins.Items.Potions;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI.Herbology
 {
@@ -428,7 +429,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             UpdateHerbTier(modPlayer);
 
             ItemText.NewText(item, item.stack, false, false);
-            Main.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
+            SoundEngine.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
             return true;
         }
     }

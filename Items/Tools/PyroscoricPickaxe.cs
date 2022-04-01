@@ -18,26 +18,26 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
 		{
 			Rectangle dims = this.GetDims();
-			item.damage = 30;
-			item.autoReuse = true;
-			item.useTurn = true;
-			item.scale = 1.15f;
-			item.pick = 250;
-			item.rare = ItemRarityID.Yellow;
-			item.width = dims.Width;
-			item.useTime = 9;
-			item.knockBack = 3.5f;
-			item.melee = true;
-			item.tileBoost += 2;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.value = 416000;
-			item.useAnimation = 9;
-			item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+			Item.damage = 30;
+			Item.autoReuse = true;
+			Item.useTurn = true;
+			Item.scale = 1.15f;
+			Item.pick = 250;
+			Item.rare = ItemRarityID.Yellow;
+			Item.width = dims.Width;
+			Item.useTime = 9;
+			Item.knockBack = 3.5f;
+			Item.DamageType = DamageClass.Melee;
+			Item.tileBoost += 2;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.value = 416000;
+			Item.useAnimation = 9;
+			Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == item.type)
+            if (player.inventory[player.selectedItem].type == Item.type)
             {
                 player.pickSpeed -= 0.25f;
             }
@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         {
             if (Main.rand.Next(2) == 0)
             {
-                int num162 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Fire, 0f, 0f, 0, default(Color), 2f);
+                int num162 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Torch, 0f, 0f, 0, default(Color), 2f);
                 Main.dust[num162].noGravity = true;
             }
         }

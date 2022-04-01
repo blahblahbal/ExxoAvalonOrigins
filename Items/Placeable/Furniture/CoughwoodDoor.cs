@@ -14,16 +14,16 @@ namespace ExxoAvalonOrigins.Items.Placeable.Furniture
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.CoughwoodDoorClosed>();
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 99;
-            item.value = 200;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.CoughwoodDoorClosed>();
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 99;
+            Item.value = 200;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

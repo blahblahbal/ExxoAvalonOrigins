@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 36;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 55, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 36;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 55, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -30,13 +30,7 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 20).AddIngredient(ModContent.ItemType<AncientHeadpiece>()).AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 15).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override void UpdateArmorSet(Player player)
         {
@@ -46,9 +40,9 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.meleeDamage += 0.32f;
+            player.GetDamage(DamageClass.Melee) += 0.32f;
             player.meleeSpeed += 0.2f;
-            player.meleeCrit -= 5;
+            player.GetCritChance(DamageClass.Melee) -= 5;
         }
     }
 }

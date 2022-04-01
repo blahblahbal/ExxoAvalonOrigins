@@ -16,13 +16,13 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.lifeRegen = 2;
-            item.defense = 4;
-            item.rare = ItemRarityID.LightPurple;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 15, 0, 0);
-            item.height = dims.Height;
+            Item.lifeRegen = 2;
+            Item.defense = 4;
+            Item.rare = ItemRarityID.LightPurple;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 15, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -42,13 +42,13 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.jumpBoost = player.Avalon().magnet = player.Avalon().longInvince2 = player.longInvince = player.detectCreature = player.findTreasure = true;
             player.manaRegenDelayBonus++;
             player.manaRegenBonus += 25;
-            player.meleeDamage += 0.07f;
-            player.rangedDamage += 0.07f;
-            player.magicDamage += 0.07f;
-            player.minionDamage += 0.07f;
-            player.magicCrit += 2;
-            player.meleeCrit += 2;
-            player.rangedCrit += 2;
+            player.GetDamage(DamageClass.Melee) += 0.07f;
+            player.GetDamage(DamageClass.Ranged) += 0.07f;
+            player.GetDamage(DamageClass.Magic) += 0.07f;
+            player.GetDamage(DamageClass.Summon) += 0.07f;
+            player.GetCritChance(DamageClass.Magic) += 2;
+            player.GetCritChance(DamageClass.Melee) += 2;
+            player.GetCritChance(DamageClass.Ranged) += 2;
         }
     }
 }

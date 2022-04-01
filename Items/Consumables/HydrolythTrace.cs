@@ -15,15 +15,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = 0;
-            item.maxStack = 999;
-            item.useAnimation = 45;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = 0;
+            Item.maxStack = 999;
+            Item.useAnimation = 45;
+            Item.height = dims.Height;
         }
     }
 }

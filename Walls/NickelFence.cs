@@ -5,10 +5,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class NickelFence : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("NickelFence");
+            drop = Mod.Find<ModItem>("NickelFence").Type;
             dustType = ModContent.DustType<Dusts.NickelDust>();
         }
     }

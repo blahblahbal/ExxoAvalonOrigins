@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = 0;
-            item.maxStack = 20;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = 0;
+            Item.maxStack = 20;
+            Item.height = dims.Height;
         }
 
         public override bool CanUseItem(Player player)
@@ -30,38 +30,9 @@ namespace ExxoAvalonOrigins.Items.Consumables
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<DragonBait>());
-            r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            r.AddIngredient(ItemID.SoulofMight, 5);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
-            r.AddIngredient(ItemID.RottenChunk, 5);
-            r.AddIngredient(ItemID.PearlstoneBlock, 20);
-            r.AddTile(ModContent.TileType<Tiles.DragonAltar>());
-            r.SetResult(this, 2);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<DragonBait>());
-            r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            r.AddIngredient(ItemID.SoulofMight, 5);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
-            r.AddIngredient(ItemID.Vertebrae, 5);
-            r.AddIngredient(ItemID.PearlstoneBlock, 20);
-            r.AddTile(ModContent.TileType<Tiles.DragonAltar>());
-            r.SetResult(this, 2);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<DragonBait>());
-            r.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            r.AddIngredient(ItemID.SoulofMight, 5);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
-            r.AddIngredient(ModContent.ItemType<Material.YuckyBit>(), 5);
-            r.AddIngredient(ItemID.PearlstoneBlock, 20);
-            r.AddTile(ModContent.TileType<Tiles.DragonAltar>());
-            r.SetResult(this, 2);
-            r.AddRecipe();
+            CreateRecipe(2).AddIngredient(ModContent.ItemType<DragonBait>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5).AddIngredient(ItemID.SoulofMight, 5).AddIngredient(ItemID.SoulofFlight, 5).AddIngredient(ItemID.RottenChunk, 5).AddIngredient(ItemID.PearlstoneBlock, 20).AddTile(ModContent.TileType<Tiles.DragonAltar>()).Register();
+            CreateRecipe(2).AddIngredient(ModContent.ItemType<DragonBait>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5).AddIngredient(ItemID.SoulofMight, 5).AddIngredient(ItemID.SoulofFlight, 5).AddIngredient(ItemID.Vertebrae, 5).AddIngredient(ItemID.PearlstoneBlock, 20).AddTile(ModContent.TileType<Tiles.DragonAltar>()).Register();
+            CreateRecipe(2).AddIngredient(ModContent.ItemType<DragonBait>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5).AddIngredient(ItemID.SoulofMight, 5).AddIngredient(ItemID.SoulofFlight, 5).AddIngredient(ModContent.ItemType<Material.YuckyBit>(), 5).AddIngredient(ItemID.PearlstoneBlock, 20).AddTile(ModContent.TileType<Tiles.DragonAltar>()).Register();
         }
     }
 }

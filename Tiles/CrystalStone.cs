@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
         Color c6 = new Color(200, 138, 209);
         Color c7 = new Color(216, 129, 205);
         Color c8 = new Color(227, 123, 203);
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
 		{
 			AddMapEntry(new Color(185, 115, 168));
 			Main.tileSolid[Type] = true;
@@ -32,7 +32,7 @@ namespace ExxoAvalonOrigins.Tiles
 			Main.tileMerge[TileID.Stone][Type] = true;
 			Main.tileMerge[Type][TileID.Mud] = true;
 			Main.tileMerge[TileID.Mud][Type] = true;
-			drop = mod.ItemType("CrystalStoneBlock");
+			drop = Mod.Find<ModItem>("CrystalStoneBlock").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.PinkCrystalShard;
@@ -83,8 +83,8 @@ namespace ExxoAvalonOrigins.Tiles
                     zero = Vector2.Zero;
                 }
                 Vector2 pos = new Vector2(i * 16, j * 16) + zero - Main.screenPosition;
-                Rectangle frame = new Rectangle(tile.frameX, tile.frameY, 16, 16);
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/CrystalStone_Glow"), pos, frame, Color.White);
+                Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
+                Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Tiles/CrystalStone_Glow").Value, pos, frame, Color.White);
             }
         }
     }

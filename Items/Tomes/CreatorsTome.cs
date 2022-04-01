@@ -17,24 +17,24 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = 150000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = 150000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.2f;
-            player.minionDamage += 0.2f;
-            player.meleeDamage += 0.2f;
-            player.rangedDamage += 0.2f;
-            player.thrownDamage += 0.2f;
-            player.meleeCrit += 5;
-            player.magicCrit += 5;
-            player.rangedCrit += 5;
-            player.thrownCrit += 5;
+            player.GetDamage(DamageClass.Magic) += 0.2f;
+            player.GetDamage(DamageClass.Summon) += 0.2f;
+            player.GetDamage(DamageClass.Melee) += 0.2f;
+            player.GetDamage(DamageClass.Ranged) += 0.2f;
+            player.GetDamage(DamageClass.Throwing) += 0.2f;
+            player.GetCritChance(DamageClass.Melee) += 5;
+            player.GetCritChance(DamageClass.Magic) += 5;
+            player.GetCritChance(DamageClass.Ranged) += 5;
+            player.GetCritChance(DamageClass.Throwing) += 5;
             player.manaCost -= 0.2f;
             player.statDefense += 10;
             player.statLifeMax2 += 100;
@@ -43,17 +43,7 @@ namespace ExxoAvalonOrigins.Items.Tomes
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<TheVoidlands>());
-            recipe.AddIngredient(ModContent.ItemType<ScrollofTome>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<Gravel>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<CarbonSteel>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DragonOrb>()).AddIngredient(ModContent.ItemType<TheVoidlands>()).AddIngredient(ModContent.ItemType<ScrollofTome>(), 2).AddIngredient(ModContent.ItemType<FineLumber>(), 5).AddIngredient(ModContent.ItemType<Gravel>(), 10).AddIngredient(ModContent.ItemType<Sandstone>(), 20).AddIngredient(ModContent.ItemType<CarbonSteel>(), 15).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

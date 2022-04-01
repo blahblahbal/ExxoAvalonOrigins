@@ -17,16 +17,16 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.useTime = 50;
-            item.useAnimation = 50;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(0, 2, 70, 0);
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.useTime = 50;
+            Item.useAnimation = 50;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.sellPrice(0, 2, 70, 0);
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (Main.dayTime) Main.time = 53999;
             else Main.time = 32399;
@@ -45,14 +45,7 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup(RecipeGroup.recipeGroupIDs["ExxoAvalonOrigins:GoldBar"], 30);
-            recipe.AddIngredient(ItemID.SoulofLight, 15);
-            recipe.AddIngredient(ItemID.SoulofNight, 15);
-            recipe.AddRecipeGroup(RecipeGroup.recipeGroupIDs["ExxoAvalonOrigins:Tier3Watch"], 1);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(item.type);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddRecipeGroup(RecipeGroup.recipeGroupIDs["ExxoAvalonOrigins:GoldBar"], 30).AddIngredient(ItemID.SoulofLight, 15).AddIngredient(ItemID.SoulofNight, 15).AddRecipeGroup(RecipeGroup.recipeGroupIDs["ExxoAvalonOrigins:Tier3Watch"], 1).AddTile(TileID.MythrilAnvil).ReplaceResult(item.type);
         }
     }
 }

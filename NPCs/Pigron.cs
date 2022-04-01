@@ -9,40 +9,40 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pigron");
-            Main.npcFrameCount[npc.type] = 14;
+            Main.npcFrameCount[NPC.type] = 14;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 70;
-            npc.lifeMax = 230;
-            npc.defense = 16;
-            npc.width = 44;
-            npc.aiStyle = 2;
-            npc.value = 2000f;
-            npc.height = 36;
-            npc.knockBackResist = 0.5f;
-            npc.HitSound = SoundID.NPCHit27;
-            npc.DeathSound = SoundID.NPCDeath30;
-            npc.buffImmune[BuffID.Confused] = true;
+            NPC.damage = 70;
+            NPC.lifeMax = 230;
+            NPC.defense = 16;
+            NPC.width = 44;
+            NPC.aiStyle = 2;
+            NPC.value = 2000f;
+            NPC.height = 36;
+            NPC.knockBackResist = 0.5f;
+            NPC.HitSound = SoundID.NPCHit27;
+            NPC.DeathSound = SoundID.NPCDeath30;
+            NPC.buffImmune[BuffID.Confused] = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f * bossLifeScale);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = npc.direction;
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter >= 4.0)
+            NPC.spriteDirection = NPC.direction;
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter >= 4.0)
             {
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                npc.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
             }
-            if (npc.frame.Y >= frameHeight * 14)
+            if (NPC.frame.Y >= frameHeight * 14)
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
     }

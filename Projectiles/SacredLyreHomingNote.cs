@@ -13,14 +13,14 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SacredLyreHomingNote");
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.aiStyle = 21;
-            projectile.magic = true;
-            projectile.light = 0.8f;
-            projectile.penetrate = -1;
-            projectile.friendly = true;
-            projectile.timeLeft = 840;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = 21;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.light = 0.8f;
+            Projectile.penetrate = -1;
+            Projectile.friendly = true;
+            Projectile.timeLeft = 840;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -28,30 +28,30 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override bool PreAI()
         {
-            Lighting.AddLight(projectile.position, 163 / 255, 77 / 255, 253 / 255);
+            Lighting.AddLight(Projectile.position, 163 / 255, 77 / 255, 253 / 255);
             return true;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (projectile.type == ModContent.ProjectileType<SacredLyreHomingNote>())
+            if (Projectile.type == ModContent.ProjectileType<SacredLyreHomingNote>())
             {
                 //Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
                 
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] >= 9f)
+                Projectile.ai[0] += 1f;
+                if (Projectile.ai[0] >= 9f)
                 {
-                    projectile.position += projectile.velocity;
-                    projectile.Kill();
+                    Projectile.position += Projectile.velocity;
+                    Projectile.Kill();
                 }
                 else
                 {
-                    if (projectile.velocity.Y != oldVelocity.Y)
+                    if (Projectile.velocity.Y != oldVelocity.Y)
                     {
-                        projectile.velocity.Y = -oldVelocity.Y;
+                        Projectile.velocity.Y = -oldVelocity.Y;
                     }
-                    if (projectile.velocity.X != oldVelocity.X)
+                    if (Projectile.velocity.X != oldVelocity.X)
                     {
-                        projectile.velocity.X = -oldVelocity.X;
+                        Projectile.velocity.X = -oldVelocity.X;
                     }
                 }
             }
@@ -59,15 +59,15 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            int closest = projectile.FindClosestNPC(16 * 15);
+            int closest = Projectile.FindClosestNPC(16 * 15);
             if (closest != -1)
             {
                 if (Main.npc[closest].lifeMax > 5 && !Main.npc[closest].friendly && !Main.npc[closest].townNPC)
                 {
                     Vector2 v = Main.npc[closest].position;
-                    if (Collision.CanHit(projectile.position, projectile.width, projectile.height, v, Main.npc[closest].width, Main.npc[closest].height))
+                    if (Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, v, Main.npc[closest].width, Main.npc[closest].height))
                     {
-                        projectile.velocity = Vector2.Normalize(v - projectile.position) * 13f;
+                        Projectile.velocity = Vector2.Normalize(v - Projectile.position) * 13f;
                     }
                 }
             }

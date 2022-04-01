@@ -3,12 +3,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class DragonAltar : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             var name = CreateMapEntryName();
             name.SetDefault("Dragon Altar");
@@ -34,7 +35,7 @@ namespace ExxoAvalonOrigins.Tiles
             player.showItemIcon = true;
             player.showItemIcon2 = ModContent.ItemType<Items.Consumables.DragonSpine>();
         }
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             Player p = Main.LocalPlayer;
             for (int v = 0; v < p.inventory.Length; v++)
@@ -42,7 +43,7 @@ namespace ExxoAvalonOrigins.Tiles
                 if (p.inventory[v].type == ModContent.ItemType<Items.Consumables.DragonSpine>() && !NPC.AnyNPCs(ModContent.NPCType<NPCs.DragonLordHead>()))
                 {
                     p.inventory[v].stack--;
-                    Main.PlaySound(SoundID.Roar, p.position, 0);
+                    SoundEngine.PlaySound(SoundID.Roar, p.position, 0);
                     NPC.SpawnOnPlayer(p.whoAmI, ModContent.NPCType<NPCs.DragonLordHead>());
                     return true;
                 }

@@ -16,34 +16,28 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 17;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 35;
-            item.maxStack = 30;
-            item.value = 400;
-            item.useAnimation = 17;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 17;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().healStamina = 35;
+            Item.maxStack = 30;
+            Item.value = 400;
+            Item.useAnimation = 17;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Boltstone>());
-            recipe.AddIngredient(ItemID.Cactus, 2);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.BottledWater).AddIngredient(ModContent.ItemType<Placeable.Tile.Boltstone>()).AddIngredient(ItemID.Cactus, 2).AddTile(TileID.Bottles).Register();
         }
         public override bool CanUseItem(Player player)
         {
             if (player.Avalon().statStam >= player.Avalon().statStamMax2) return false;
             return true;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.Avalon().statStam += 35;
             player.Avalon().StaminaHealEffect(35, true);

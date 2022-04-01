@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class OrangeSlabUnsafe : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallDungeon[Type] = true;
-            drop = mod.ItemType("OrangeSlabUnsafe");
+            drop = Mod.Find<ModItem>("OrangeSlabUnsafe").Type;
             AddMapEntry(new Color(107, 33, 0));
             dustType = DustID.Coralstone;
         }

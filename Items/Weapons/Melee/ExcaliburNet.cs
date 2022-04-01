@@ -15,42 +15,25 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 43;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.knockBack = 4.2f;
-            item.useTime = 23;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.buyPrice(0, 3, 0, 0);
-            item.useAnimation = 23;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 43;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.knockBack = 4.2f;
+            Item.useTime = 23;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.buyPrice(0, 3, 0, 0);
+            Item.useAnimation = 23;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<GoldSwordNet>());
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<PlatinumSwordNet>());
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BismuthSwordNet>());
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<GoldSwordNet>()).AddIngredient(ItemID.HallowedBar, 10).AddTile(TileID.Anvils).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<PlatinumSwordNet>()).AddIngredient(ItemID.HallowedBar, 10).AddTile(TileID.Anvils).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BismuthSwordNet>()).AddIngredient(ItemID.HallowedBar, 10).AddTile(TileID.Anvils).Register();
         }
     }
 }

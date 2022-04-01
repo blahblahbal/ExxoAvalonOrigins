@@ -17,57 +17,18 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 30;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 50, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 30;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 50, 0, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SolarFlareHelmet);
-            r.AddIngredient(ItemID.FragmentNebula, 10);
-            r.AddIngredient(ItemID.FragmentStardust, 10);
-            r.AddIngredient(ItemID.FragmentVortex, 10);
-            r.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5);
-            r.AddIngredient(ModContent.ItemType<Material.GhostintheMachine>());
-            r.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.NebulaHelmet);
-            r.AddIngredient(ItemID.FragmentSolar, 10);
-            r.AddIngredient(ItemID.FragmentStardust, 10);
-            r.AddIngredient(ItemID.FragmentVortex, 10);
-            r.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5);
-            r.AddIngredient(ModContent.ItemType<Material.GhostintheMachine>());
-            r.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.StardustHelmet);
-            r.AddIngredient(ItemID.FragmentNebula, 10);
-            r.AddIngredient(ItemID.FragmentSolar, 10);
-            r.AddIngredient(ItemID.FragmentVortex, 10);
-            r.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5);
-            r.AddIngredient(ModContent.ItemType<Material.GhostintheMachine>());
-            r.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.VortexHelmet);
-            r.AddIngredient(ItemID.FragmentNebula, 10);
-            r.AddIngredient(ItemID.FragmentStardust, 10);
-            r.AddIngredient(ItemID.FragmentSolar, 10);
-            r.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5);
-            r.AddIngredient(ModContent.ItemType<Material.GhostintheMachine>());
-            r.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.SolarFlareHelmet).AddIngredient(ItemID.FragmentNebula, 10).AddIngredient(ItemID.FragmentStardust, 10).AddIngredient(ItemID.FragmentVortex, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
+            CreateRecipe(1).AddIngredient(ItemID.NebulaHelmet).AddIngredient(ItemID.FragmentSolar, 10).AddIngredient(ItemID.FragmentStardust, 10).AddIngredient(ItemID.FragmentVortex, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
+            CreateRecipe(1).AddIngredient(ItemID.StardustHelmet).AddIngredient(ItemID.FragmentNebula, 10).AddIngredient(ItemID.FragmentSolar, 10).AddIngredient(ItemID.FragmentVortex, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
+            CreateRecipe(1).AddIngredient(ItemID.VortexHelmet).AddIngredient(ItemID.FragmentNebula, 10).AddIngredient(ItemID.FragmentStardust, 10).AddIngredient(ItemID.FragmentSolar, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -89,15 +50,15 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.rangedDamage += 0.2f;
-            player.meleeDamage += 0.2f;
-            player.minionDamage += 0.2f;
-            player.magicDamage += 0.2f;
-            player.thrownDamage += 0.2f;
-            player.magicCrit += 5;
-            player.meleeCrit += 5;
-            player.rangedCrit += 5;
-            player.thrownCrit += 5;
+            player.GetDamage(DamageClass.Ranged) += 0.2f;
+            player.GetDamage(DamageClass.Melee) += 0.2f;
+            player.GetDamage(DamageClass.Summon) += 0.2f;
+            player.GetDamage(DamageClass.Magic) += 0.2f;
+            player.GetDamage(DamageClass.Throwing) += 0.2f;
+            player.GetCritChance(DamageClass.Magic) += 5;
+            player.GetCritChance(DamageClass.Melee) += 5;
+            player.GetCritChance(DamageClass.Ranged) += 5;
+            player.GetCritChance(DamageClass.Throwing) += 5;
         }
     }
 }

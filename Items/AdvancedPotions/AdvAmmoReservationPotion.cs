@@ -15,20 +15,20 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
 
         public override void SetDefaults()
         {
-            Rectangle dims = item.modItem.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvAmmoReservation>();
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
-            item.rare = ItemRarityID.Lime;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.value = Item.sellPrice(0, 0, 4, 0);
-            item.useAnimation = 15;
+            Rectangle dims = Item.modItem.GetDims();
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvAmmoReservation>();
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.value = Item.sellPrice(0, 0, 4, 0);
+            Item.useAnimation = 15;
 
-            item.buffTime = 50400;
+            Item.buffTime = 50400;
         }
     }
 }

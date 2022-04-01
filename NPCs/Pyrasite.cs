@@ -12,27 +12,27 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.damage = 15;
-            npc.netAlways = true;
-            npc.noTileCollide = true;
-            npc.lifeMax = 70;
-            npc.defense = 0;
-            npc.noGravity = true;
-            npc.width = 26;
-            npc.aiStyle = -1;
-            npc.behindTiles = true;
-            npc.value = 500f;
-            npc.height = 26;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.PyrasiteBanner>();
+            NPC.damage = 15;
+            NPC.netAlways = true;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 70;
+            NPC.defense = 0;
+            NPC.noGravity = true;
+            NPC.width = 26;
+            NPC.aiStyle = -1;
+            NPC.behindTiles = true;
+            NPC.value = 500f;
+            NPC.height = 26;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.PyrasiteBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -42,14 +42,14 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyrasiteHead"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/PyrasiteHead"), 1f);
             }
         }
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<YuckyBit>(), 1, false, 0, false);
+            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<YuckyBit>(), 1, false, 0, false);
         }
         public override void Init()
         {
@@ -66,20 +66,20 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.damage = 8;
-            npc.netAlways = true;
-            npc.noTileCollide = true;
-            npc.lifeMax = 70;
-            npc.defense = 4;
-            npc.noGravity = true;
-            npc.width = 26;
-            npc.aiStyle = -1;
-            npc.behindTiles = true;
-            npc.value = 500f;
-            npc.height = 26;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            NPC.damage = 8;
+            NPC.netAlways = true;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 70;
+            NPC.defense = 4;
+            NPC.noGravity = true;
+            NPC.width = 26;
+            NPC.aiStyle = -1;
+            NPC.behindTiles = true;
+            NPC.value = 500f;
+            NPC.height = 26;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -87,9 +87,9 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyrasiteBody"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/PyrasiteBody"), 1f);
             }
         }
 
@@ -101,27 +101,27 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.damage = 8;
-            npc.netAlways = true;
-            npc.noTileCollide = true;
-            npc.lifeMax = 70;
-            npc.defense = 6;
-            npc.noGravity = true;
-            npc.width = 26;
-            npc.aiStyle = -1;
-            npc.behindTiles = true;
-            npc.value = 500f;
-            npc.height = 26;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            NPC.damage = 8;
+            NPC.netAlways = true;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 70;
+            NPC.defense = 6;
+            NPC.noGravity = true;
+            NPC.width = 26;
+            NPC.aiStyle = -1;
+            NPC.behindTiles = true;
+            NPC.value = 500f;
+            NPC.height = 26;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/PyrasiteTail"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/PyrasiteTail"), 1f);
             }
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

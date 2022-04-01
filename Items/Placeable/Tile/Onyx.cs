@@ -14,19 +14,19 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.maxStack = 999;
-            item.createTile = ModContent.TileType<Tiles.PlacedGems>();
-            item.placeStyle = 1;
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.value = 30000;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.maxStack = 999;
+            Item.createTile = ModContent.TileType<Tiles.PlacedGems>();
+            Item.placeStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.value = 30000;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

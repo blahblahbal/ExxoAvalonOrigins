@@ -16,22 +16,16 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/ImmunityCharm");
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 7, 25, 0);
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 7, 25, 0);
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<StickyCharm>());
-            r.AddIngredient(ModContent.ItemType<UndeadTalisman>());
-            r.AddIngredient(ModContent.ItemType<DragonStone>());
-            r.AddTile(TileID.TinkerersWorkbench);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<StickyCharm>()).AddIngredient(ModContent.ItemType<UndeadTalisman>()).AddIngredient(ModContent.ItemType<DragonStone>()).AddTile(TileID.TinkerersWorkbench).Register();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

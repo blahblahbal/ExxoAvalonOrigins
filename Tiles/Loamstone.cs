@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Loamstone : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(95, 38, 12));
             Main.tileSolid[Type] = true;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[TileID.Stone][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<TropicalMud>()] = true;
             Main.tileMerge[ModContent.TileType<TropicalMud>()][Type] = true;
-            drop = mod.ItemType("LoamstoneBrick");
+            drop = Mod.Find<ModItem>("LoamstoneBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.TropicalMudDust>();

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class OrangeDungeonCandelabra : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
@@ -30,7 +30,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             Tile tile = Main.tile[i, j];
-            if (tile.frameX == 0)
+            if (tile.TileFrameX == 0)
             {
                 r = 0.9f;
                 g = 0.45f;
@@ -45,8 +45,8 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void HitWire(int i, int j)
         {
-            int x = i - Main.tile[i, j].frameX / 18 % 2;
-            int y = j - Main.tile[i, j].frameY / 18 % 2;
+            int x = i - Main.tile[i, j].TileFrameX / 18 % 2;
+            int y = j - Main.tile[i, j].TileFrameY / 18 % 2;
             for (int l = x; l < x + 2; l++)
             {
                 for (int m = y; m < y + 2; m++)
@@ -55,15 +55,15 @@ namespace ExxoAvalonOrigins.Tiles
                     {
                         Main.tile[l, m] = new Tile();
                     }
-                    if (Main.tile[l, m].active() && Main.tile[l, m].type == Type)
+                    if (Main.tile[l, m].HasTile && Main.tile[l, m].TileType == Type)
                     {
-                        if (Main.tile[l, m].frameX < 36)
+                        if (Main.tile[l, m].TileFrameX < 36)
                         {
-                            Main.tile[l, m].frameX += 36;
+                            Main.tile[l, m].TileFrameX += 36;
                         }
                         else
                         {
-                            Main.tile[l, m].frameX -= 36;
+                            Main.tile[l, m].TileFrameX -= 36;
                         }
                     }
                 }

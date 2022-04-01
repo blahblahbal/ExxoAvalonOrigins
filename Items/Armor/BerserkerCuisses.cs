@@ -17,21 +17,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 32;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 65, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 32;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 65, 0, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 17).AddIngredient(ModContent.ItemType<AncientLeggings>()).AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 15).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override void UpdateEquip(Player player)
         {

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -16,32 +17,32 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Ectosoul");
-            projectile.width = dims.Width * 12 / 1;
-            projectile.height = dims.Height * 12 / 1 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.alpha = 255;
-            projectile.magic = true;
-            projectile.tileCollide = true;
-            projectile.MaxUpdates = 1;
-            projectile.penetrate = -1;
+            Projectile.width = dims.Width * 12 / 1;
+            Projectile.height = dims.Height * 12 / 1 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.hostile = true;
+            Projectile.alpha = 255;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.tileCollide = true;
+            Projectile.MaxUpdates = 1;
+            Projectile.penetrate = -1;
         }
 
         public override void AI()
         {
-            if (projectile.localAI[0] == 0f)
+            if (Projectile.localAI[0] == 0f)
             {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 8);
-                projectile.localAI[0] += 1f;
+                SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 8);
+                Projectile.localAI[0] += 1f;
             }
             for (var num641 = 0; num641 < 9; num641++)
             {
-                var num642 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.SpectreStaff, 0f, 0f, 100, default(Color), 1.3f);
+                var num642 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.SpectreStaff, 0f, 0f, 100, default(Color), 1.3f);
                 Main.dust[num642].noGravity = true;
                 Main.dust[num642].velocity *= 0f;
             }
-            var num643 = projectile.Center.X;
-            var num644 = projectile.Center.Y;
+            var num643 = Projectile.Center.X;
+            var num644 = Projectile.Center.Y;
             var num645 = 400f;
             var flag25 = false;
             num645 = 200f;
@@ -51,7 +52,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 {
                     var num651 = Main.player[num650].position.X + Main.player[num650].width / 2;
                     var num652 = Main.player[num650].position.Y + Main.player[num650].height / 2;
-                    var num653 = Math.Abs(projectile.position.X + projectile.width / 2 - num651) + Math.Abs(projectile.position.Y + projectile.height / 2 - num652);
+                    var num653 = Math.Abs(Projectile.position.X + Projectile.width / 2 - num651) + Math.Abs(Projectile.position.Y + Projectile.height / 2 - num652);
                     if (num653 < num645)
                     {
                         num645 = num653;
@@ -64,15 +65,15 @@ namespace ExxoAvalonOrigins.Projectiles
             if (flag25)
             {
                 var num654 = 3f;
-                var vector41 = new Vector2(projectile.position.X + projectile.width * 0.5f, projectile.position.Y + projectile.height * 0.5f);
+                var vector41 = new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y + Projectile.height * 0.5f);
                 var num655 = num643 - vector41.X;
                 var num656 = num644 - vector41.Y;
                 var num657 = (float)Math.Sqrt(num655 * num655 + num656 * num656);
                 num657 = num654 / num657;
                 num655 *= num657;
                 num656 *= num657;
-                projectile.velocity.X = (projectile.velocity.X * 100f + num655) / 101f;
-                projectile.velocity.Y = (projectile.velocity.Y * 100f + num656) / 101f;
+                Projectile.velocity.X = (Projectile.velocity.X * 100f + num655) / 101f;
+                Projectile.velocity.Y = (Projectile.velocity.Y * 100f + num656) / 101f;
             }
         }
     }

@@ -5,6 +5,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -28,7 +29,7 @@ namespace ExxoAvalonOrigins.UI
             mouseOverBox.Height.Set(0f, 1f);
             mouseOverBox.OnMouseOver += delegate
             {
-                Main.PlaySound(SoundID.MenuTick);
+                SoundEngine.PlaySound(SoundID.MenuTick);
             };
             Append(mouseOverBox);
 
@@ -72,7 +73,7 @@ namespace ExxoAvalonOrigins.UI
 
         private void ClickAction(UIMouseEvent evt, UIElement listeningElement)
         {
-            Main.PlaySound(SoundID.MenuOpen);
+            SoundEngine.PlaySound(SoundID.MenuOpen);
         }
 
         public override void MouseOver(UIMouseEvent evt)

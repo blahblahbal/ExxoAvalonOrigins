@@ -10,95 +10,95 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Desert Scorpion");
-            Main.npcFrameCount[npc.type] = 20;
+            Main.npcFrameCount[NPC.type] = 20;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 65;
-            npc.scale = 1f;
-            npc.noTileCollide = false;
-            npc.lifeMax = 570;
-            npc.defense = 46;
-            npc.noGravity = false;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.value = 900f;
-            npc.height = 40;
-            npc.knockBackResist = 0.1f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.buffImmune[BuffID.Poisoned] = true;
+            NPC.damage = 65;
+            NPC.scale = 1f;
+            NPC.noTileCollide = false;
+            NPC.lifeMax = 570;
+            NPC.defense = 46;
+            NPC.noGravity = false;
+            NPC.width = 18;
+            NPC.aiStyle = 3;
+            NPC.value = 900f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0.1f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.buffImmune[BuffID.Poisoned] = true;
         }
 
         public override void NPCLoot()
         {
             if (Main.rand.Next(9) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Stinger, 1, false, 0, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Stinger, 1, false, 0, false);
             }
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.35f);
-            npc.damage = (int)(npc.damage * 0.35f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.35f);
+            NPC.damage = (int)(NPC.damage * 0.35f);
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.ai[2] > 0f)
+                if (NPC.ai[2] > 0f)
                 {
-                    npc.spriteDirection = npc.direction;
-                    npc.frame.Y = frameHeight * (int)npc.ai[2];
-                    npc.frameCounter = 0.0;
+                    NPC.spriteDirection = NPC.direction;
+                    NPC.frame.Y = frameHeight * (int)NPC.ai[2];
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    if (npc.frame.Y < frameHeight * 6)
+                    if (NPC.frame.Y < frameHeight * 6)
                     {
-                        npc.frame.Y = frameHeight * 6;
+                        NPC.frame.Y = frameHeight * 6;
                     }
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += npc.velocity.X;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += NPC.velocity.X;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 6;
+                        NPC.frame.Y = frameHeight * 6;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = 0;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = 0;
             }
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesertScorpionBody"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertScorpionBody"), 1f);
                 for (var things = 0; things < 8; things++)
                 {
-                    Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesertScorpionLeg"), 1f);
+                    Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertScorpionLeg"), 1f);
                 }
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesertScorpionClaw"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesertScorpionClaw"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/DesertScorpionSting"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertScorpionClaw"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertScorpionClaw"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertScorpionSting"), 1f);
             }
         }
 

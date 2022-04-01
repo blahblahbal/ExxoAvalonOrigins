@@ -8,14 +8,14 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class HydrolythOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 8f;
             AddMapEntry(new Color(0, 255, 255), LanguageManager.Instance.GetText("Hydrolyth"));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
-            drop = mod.ItemType("HydrolythOre");
+            drop = Mod.Find<ModItem>("HydrolythOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 300;

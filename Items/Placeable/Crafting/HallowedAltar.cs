@@ -14,17 +14,17 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.useTurn = true;
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.HallowedAltar>();
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.maxStack = 99;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.HallowedAltar>();
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.maxStack = 99;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
     }
 }

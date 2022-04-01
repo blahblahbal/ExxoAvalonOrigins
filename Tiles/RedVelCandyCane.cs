@@ -6,11 +6,11 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class RedVelCandyCane : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.GreenYellow);
             Main.tileSolid[Type] = true;
-            drop = mod.ItemType("RedVelvetCandyCaneBlock");
+            drop = Mod.Find<ModItem>("RedVelvetCandyCaneBlock").Type;
         }
     }
 }

@@ -16,12 +16,12 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/ElementalArrow");
-            projectile.penetrate = 3;
-            projectile.width = dims.Width * 10 / 32;
-            projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];
-            projectile.aiStyle = 1;
-            projectile.friendly = true;
-            projectile.ranged = true;
+            Projectile.penetrate = 3;
+            Projectile.width = dims.Width * 10 / 32;
+            Projectile.height = dims.Height * 10 / 32 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = 1;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
             aiType = ProjectileID.WoodenArrowFriendly;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

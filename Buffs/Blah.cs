@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Blah : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Blah");
             Description.SetDefault("You shouldn't be affected by this");

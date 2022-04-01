@@ -16,28 +16,28 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item5;
-            item.damage = 42;
-            item.autoReuse = true;
-            item.useAmmo = AmmoID.Arrow;
-            item.shootSpeed = 10.5f;
-            item.ranged = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTime = 21;
-            item.knockBack = 1.5f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 130000;
-            item.useAnimation = 21;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
+            Item.damage = 42;
+            Item.autoReuse = true;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.shootSpeed = 10.5f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTime = 21;
+            Item.knockBack = 1.5f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 130000;
+            Item.useAnimation = 21;
+            Item.height = dims.Height;
             if (!Main.dedServ)
             {
-                item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.GetTexture(Texture + "_Glow");
+                Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
             }
-            item.GetGlobalItem<ItemUseGlow>().glowOffsetX = -5;
-            item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
+            Item.GetGlobalItem<ItemUseGlow>().glowOffsetX = -5;
+            Item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
         }
         public override Vector2? HoldoutOffset()
         {
@@ -45,14 +45,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = ModContent.GetTexture(Texture + "_Glow");
+            Texture2D texture = ModContent.Request<Texture2D>(Texture + "_Glow");
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,

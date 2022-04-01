@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class NecroticDrain : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Necrotic Drain");
             Description.SetDefault("Rapidly wasting away");

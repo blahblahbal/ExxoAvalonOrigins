@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Reflector : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Reflector");
             Description.SetDefault("The minions will reflect projectiles for you");

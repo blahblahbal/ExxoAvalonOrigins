@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
     public class XanthophyteOre : ModTile
     {
         private Color xanthophyteColor = new Color(210, 217, 0);
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(xanthophyteColor, LanguageManager.Instance.GetText("Xanthophyte"));
             Main.tileSolid[Type] = true;

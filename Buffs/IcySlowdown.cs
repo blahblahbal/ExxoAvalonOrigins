@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class IcySlowdown : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Icy Slowdown");
             Description.SetDefault("You are slow");

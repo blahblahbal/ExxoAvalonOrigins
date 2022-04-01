@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class Kunzite : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.HotPink, LanguageManager.Instance.GetText("Kunzite"));
             Main.tileSolid[Type] = true;
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileSpelunker[Type] = true;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 900;
-            drop = mod.ItemType("Kunzite");
+            drop = Mod.Find<ModItem>("Kunzite").Type;
             soundType = SoundID.Tink;
             minPick = 210;
             soundStyle = 1;

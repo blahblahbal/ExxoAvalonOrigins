@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class ContagionGrassWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(106, 116, 59));
             soundType = SoundID.Grass;

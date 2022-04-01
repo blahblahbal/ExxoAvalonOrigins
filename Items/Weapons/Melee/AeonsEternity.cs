@@ -14,54 +14,28 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 36;
-            item.scale = 1.1f;
-            item.melee = true;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.useTime = 30;
-            item.useAnimation = 20;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.AeonBeam2>();
-            item.shootSpeed = 9f;
-            item.UseSound = SoundID.Item1;
-            item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.damage = 36;
+            Item.scale = 1.1f;
+            Item.DamageType = DamageClass.Melee;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.useTime = 30;
+            Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.AeonBeam2>();
+            Item.shootSpeed = 9f;
+            Item.UseSound = SoundID.Item1;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.Starfury);
-            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
-            recipe.AddIngredient(ModContent.ItemType<RhodiumGreatsword>());
-            recipe.AddIngredient(ModContent.ItemType<MinersSword>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.Starfury);
-            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
-            recipe.AddIngredient(ModContent.ItemType<OsmiumGreatsword>());
-            recipe.AddIngredient(ModContent.ItemType<MinersSword>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IceBlade);
-            recipe.AddIngredient(ItemID.Starfury);
-            recipe.AddIngredient(ModContent.ItemType<DesertLongSword>());
-            recipe.AddIngredient(ModContent.ItemType<IridiumGreatsword>());
-            recipe.AddIngredient(ModContent.ItemType<MinersSword>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.IceBlade).AddIngredient(ItemID.Starfury).AddIngredient(ModContent.ItemType<DesertLongSword>()).AddIngredient(ModContent.ItemType<RhodiumGreatsword>()).AddIngredient(ModContent.ItemType<MinersSword>()).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.IceBlade).AddIngredient(ItemID.Starfury).AddIngredient(ModContent.ItemType<DesertLongSword>()).AddIngredient(ModContent.ItemType<OsmiumGreatsword>()).AddIngredient(ModContent.ItemType<MinersSword>()).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.IceBlade).AddIngredient(ItemID.Starfury).AddIngredient(ModContent.ItemType<DesertLongSword>()).AddIngredient(ModContent.ItemType<IridiumGreatsword>()).AddIngredient(ModContent.ItemType<MinersSword>()).AddTile(TileID.DemonAltar).Register();
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {

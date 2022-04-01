@@ -17,20 +17,20 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = -10;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 9, 0, 0);
-            item.height = dims.Height;
+            Item.defense = -10;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 9, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += 0.27f;
-            player.rangedDamage += 0.27f;
-            player.magicDamage += 0.27f;
-            player.minionDamage += 0.27f;
+            player.GetDamage(DamageClass.Melee) += 0.27f;
+            player.GetDamage(DamageClass.Ranged) += 0.27f;
+            player.GetDamage(DamageClass.Magic) += 0.27f;
+            player.GetDamage(DamageClass.Summon) += 0.27f;
         }
     }
 }

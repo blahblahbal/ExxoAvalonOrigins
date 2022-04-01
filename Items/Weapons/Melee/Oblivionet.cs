@@ -15,28 +15,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 70;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.knockBack = 6.2f;
-            item.useTime = 21;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.buyPrice(0, 5, 0, 0);
-            item.useAnimation = 21;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 70;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.knockBack = 6.2f;
+            Item.useTime = 21;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.buyPrice(0, 5, 0, 0);
+            Item.useAnimation = 21;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ExcaliburNet>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 10);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<ExcaliburNet>()).AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 10).AddTile(TileID.Anvils).Register();
         }
     }
 }

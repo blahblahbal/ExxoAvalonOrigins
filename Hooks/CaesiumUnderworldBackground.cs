@@ -97,7 +97,7 @@ namespace ExxoAvalonOrigins.Hooks
                 float num = (Main.GameViewMatrix.Zoom.Y - 1f) * 0.5f * 200f;
                 var caesiumBgs = new Texture2D[5];
                 for (int i = 0; i <= 4; i++)
-                    caesiumBgs[i] = ExxoAvalonOrigins.Mod.GetTexture("Backgrounds/Caesium" + (i + 1).ToString());
+                    caesiumBgs[i] = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Backgrounds/Caesium" + (i + 1).ToString()).Value;
 
                 for (int num2 = 4; num2 >= 0; num2--)
                 {

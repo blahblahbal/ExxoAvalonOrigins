@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.World.Passes
             };
             var x10 = WorldGen.genRand.Next(250, Main.maxTilesX - 250);
             var y6 = WorldGen.genRand.Next(WorldGen.lavaLine, Main.maxTilesY - 210);
-            while (noTiles.Contains(Main.tile[x10, y6].type) || noWalls.Contains(Main.tile[x10, y6].wall))
+            while (noTiles.Contains(Main.tile[x10, y6].TileType) || noWalls.Contains(Main.tile[x10, y6].WallType))
             {
                 if (x10 > (Main.maxTilesY / 2))
                     x10--;
@@ -52,21 +52,21 @@ namespace ExxoAvalonOrigins.World.Passes
                     x10++;
 
             }
-            while (noTiles.Contains(Main.tile[x10 + 30, y6].type) || noWalls.Contains(Main.tile[x10 + 30, y6].wall))
+            while (noTiles.Contains(Main.tile[x10 + 30, y6].TileType) || noWalls.Contains(Main.tile[x10 + 30, y6].WallType))
             {
                 if (x10 > (Main.maxTilesY / 2))
                     x10--;
                 else
                     x10++;
             }
-            while (noTiles.Contains(Main.tile[x10, y6 + 20].type) || noWalls.Contains(Main.tile[x10, y6 + 20].wall))
+            while (noTiles.Contains(Main.tile[x10, y6 + 20].TileType) || noWalls.Contains(Main.tile[x10, y6 + 20].WallType))
             {
                 if (x10 > (Main.maxTilesY / 2))
                     x10--;
                 else
                     x10++;
             }
-            while (noTiles.Contains(Main.tile[x10 + 30, y6 + 20].type) || noWalls.Contains(Main.tile[x10 + 30, y6 + 20].wall))
+            while (noTiles.Contains(Main.tile[x10 + 30, y6 + 20].TileType) || noWalls.Contains(Main.tile[x10 + 30, y6 + 20].WallType))
             {
                 if (x10 > (Main.maxTilesY / 2))
                     x10--;

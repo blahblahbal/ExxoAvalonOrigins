@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class DevilsScythe : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
@@ -17,10 +17,10 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileLighted[Type] = true;
             AddMapEntry(new Color(170, 48, 114));
         }
-        public override bool NewRightClick(int i, int j)
+        public override bool RightClick(int i, int j)
         {
             WorldGen.KillTile(i, j);
-            if (!Main.tile[i, j].active() && Main.netMode != NetmodeID.SinglePlayer)
+            if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
             {
                 NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
             }

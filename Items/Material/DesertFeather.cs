@@ -15,11 +15,11 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 1, 0);
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 1, 0);
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
     }
 }

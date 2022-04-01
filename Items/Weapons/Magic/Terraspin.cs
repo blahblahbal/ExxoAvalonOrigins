@@ -17,31 +17,31 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item84;
-            item.magic = true;
-            item.damage = 185;
-            item.autoReuse = true;
-            item.channel = true;
-            item.useTurn = false;
-            item.shootSpeed = 9f;
-            item.crit += 9;
-            item.mana = 26;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.knockBack = 7f;
-            item.useTime = 30;
-            item.shoot = ModContent.ProjectileType<Projectiles.TerraTyphoon>();
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 50, 0, 0);
-            item.useAnimation = 30;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item84;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 185;
+            Item.autoReuse = true;
+            Item.channel = true;
+            Item.useTurn = false;
+            Item.shootSpeed = 9f;
+            Item.crit += 9;
+            Item.mana = 26;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.knockBack = 7f;
+            Item.useTime = 30;
+            Item.shoot = ModContent.ProjectileType<Projectiles.TerraTyphoon>();
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 50, 0, 0);
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
             if (!Main.dedServ)
             {
-                item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.GetTexture(Texture + "_Glow");
+                Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
             }
-            item.GetGlobalItem<ItemUseGlow>().glowOffsetX = 2;
-            item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
+            Item.GetGlobalItem<ItemUseGlow>().glowOffsetX = 2;
+            Item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
         }
         public override Vector2? HoldoutOffset()
         {
@@ -49,14 +49,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = ModContent.GetTexture(Texture + "_Glow");
+            Texture2D texture = ModContent.Request<Texture2D>(Texture + "_Glow");
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,
@@ -82,15 +82,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DevilsScythe>());
-            recipe.AddIngredient(ModContent.ItemType<TheGoldenFlames>());
-            recipe.AddIngredient(ItemID.RazorbladeTyphoon);
-            recipe.AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DevilsScythe>()).AddIngredient(ModContent.ItemType<TheGoldenFlames>()).AddIngredient(ItemID.RazorbladeTyphoon).AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>()).AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 5).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

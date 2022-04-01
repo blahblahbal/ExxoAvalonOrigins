@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class MusicBoxes : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileObsidianKill[Type] = true;
@@ -65,7 +65,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void MouseOver(int i, int j)
         {
             int item = 0;
-            switch (Main.tile[i, j].frameY / 36)
+            switch (Main.tile[i, j].TileFrameY / 36)
             {
                 case 0:
                     item = ModContent.ItemType<Items.MusicBoxes.MusicBoxContagion>();

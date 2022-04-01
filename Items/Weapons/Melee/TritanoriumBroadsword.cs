@@ -18,22 +18,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 110;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.rare = ItemRarityID.Purple;
-            item.width = dims.Width;
-            item.useTime = 16;
-            item.knockBack = 15f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 8, 0, 0);
-            item.useAnimation = 16;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.TritonWave>();
-            item.shootSpeed = 20;
+            Item.damage = 110;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.rare = ItemRarityID.Purple;
+            Item.width = dims.Width;
+            Item.useTime = 16;
+            Item.knockBack = 15f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 8, 0, 0);
+            Item.useAnimation = 16;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.TritonWave>();
+            Item.shootSpeed = 20;
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {

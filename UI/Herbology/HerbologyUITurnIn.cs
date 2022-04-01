@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.UI;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI.Herbology
 {
@@ -20,7 +22,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             InnerElement.FitWidthToContent = true;
             InnerElement.ContentHAlign = UIAlign.Center;
 
-            Button = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.GetTexture("Sprites/HerbButton"))
+            Button = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/HerbButton").Value)
             {
                 Tooltip = "Consume Herbs/Potions",
             };
@@ -32,7 +34,7 @@ namespace ExxoAvalonOrigins.UI.Herbology
             {
                 if ((Main.mouseItem.type == ItemID.None && (ItemSlot.Item.type != ItemID.None && ItemSlot.Item.stack > 0)) || (Main.mouseItem.stack >= 1 && (ExxoAvalonOriginsGlobalItem.IsHerb(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsPotion(Main.mouseItem.type) || ExxoAvalonOriginsGlobalItem.IsAdvancedPotion(Main.mouseItem.Name))))
                 {
-                    Main.PlaySound(SoundID.Grab);
+                    SoundEngine.PlaySound(SoundID.Grab);
                     Item item6 = Main.mouseItem;
                     Main.mouseItem = ItemSlot.Item;
                     ItemSlot.Item = item6;

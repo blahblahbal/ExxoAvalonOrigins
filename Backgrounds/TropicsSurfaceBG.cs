@@ -38,7 +38,7 @@ namespace ExxoAvalonOrigins.Backgrounds
         // Also this displays too low down.
         public override int ChooseFarTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG3");
+            return Mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG3");
         }
 
         private static int SurfaceFrameCounter;
@@ -50,13 +50,13 @@ namespace ExxoAvalonOrigins.Backgrounds
                 SurfaceFrame = (SurfaceFrame + 1) % 4;
                 SurfaceFrameCounter = 0;
             }
-            return mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG2");
+            return Mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG2");
         }
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
             b -= 200;
-            return mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG");
+            return Mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG");
         }
     }
 }

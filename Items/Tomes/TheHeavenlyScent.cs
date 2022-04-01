@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.value = 150000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.value = 150000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -31,15 +31,7 @@ namespace ExxoAvalonOrigins.Items.Tomes
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<RubybeadHerb>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 3);
-            recipe.AddIngredient(ItemID.LesserHealingPotion, 5);
-            recipe.AddIngredient(ItemID.BandofRegeneration);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<RubybeadHerb>(), 3).AddIngredient(ModContent.ItemType<Sandstone>(), 3).AddIngredient(ItemID.LesserHealingPotion, 5).AddIngredient(ItemID.BandofRegeneration).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

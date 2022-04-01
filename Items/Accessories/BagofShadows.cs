@@ -16,13 +16,13 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.vanity = true;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.vanity = true;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

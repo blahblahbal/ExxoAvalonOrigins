@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Effects
                 return;
             }
 
-            var refOblivionDarkenScreen = new Ref<Effect>(ExxoAvalonOrigins.Mod.GetEffect("Effects/OblivionDarkenScreen"));
+            var refOblivionDarkenScreen = new Ref<Effect>(ExxoAvalonOrigins.Mod.Assets.Request<Effect>("Effects/OblivionDarkenScreen").Value);
             Filters.Scene[SceneKeyOblivionDarkenScreen] = new Filter(new ScreenShaderData(refOblivionDarkenScreen, SceneKeyOblivionDarkenScreen), EffectPriority.VeryHigh);
         }
     }

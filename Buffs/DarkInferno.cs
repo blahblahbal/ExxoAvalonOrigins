@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class DarkInferno : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dark Inferno");
             Description.SetDefault("Losing life");

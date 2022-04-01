@@ -16,29 +16,23 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = 10f;
-            item.damage = 20;
-            item.ammo = AmmoID.Bullet;
-            item.ranged = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.knockBack = 3.5f;
-            item.rare = ItemRarityID.Cyan;
-            item.shoot = ModContent.ProjectileType<Projectiles.UltrabrightRazorbladeBullet>();
-            item.maxStack = 2000;
-            item.value = Item.sellPrice(0, 0, 2);
-            item.height = dims.Height;
+            Item.shootSpeed = 10f;
+            Item.damage = 20;
+            Item.ammo = AmmoID.Bullet;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.knockBack = 3.5f;
+            Item.rare = ItemRarityID.Cyan;
+            Item.shoot = ModContent.ProjectileType<Projectiles.UltrabrightRazorbladeBullet>();
+            Item.maxStack = 2000;
+            Item.value = Item.sellPrice(0, 0, 2);
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.MusketBall, 250);
-            r.AddIngredient(ItemID.UltrabrightTorch, 250);
-            r.AddIngredient(ItemID.RazorbladeTyphoon);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this, 250);
-            r.AddRecipe();
+            CreateRecipe(250).AddIngredient(ItemID.MusketBall, 250).AddIngredient(ItemID.UltrabrightTorch, 250).AddIngredient(ItemID.RazorbladeTyphoon).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

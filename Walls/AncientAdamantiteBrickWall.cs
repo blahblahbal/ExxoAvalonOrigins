@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class AncientAdamantiteBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("AncientAdamantiteBrickWall");
+            drop = Mod.Find<ModItem>("AncientAdamantiteBrickWall").Type;
             AddMapEntry(new Color(148, 57, 101));
             dustType = DustID.Adamantine;
         }

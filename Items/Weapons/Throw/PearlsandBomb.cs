@@ -16,19 +16,19 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.damage = 0;
-            item.maxStack = 999;
-            item.shootSpeed = 5f;
-            item.consumable = true;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 25;
-            item.shoot = ModContent.ProjectileType<Projectiles.PearlsandBomb>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.buyPrice(0, 0, 4, 0);
-            item.useAnimation = 25;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.damage = 0;
+            Item.maxStack = 999;
+            Item.shootSpeed = 5f;
+            Item.consumable = true;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 25;
+            Item.shoot = ModContent.ProjectileType<Projectiles.PearlsandBomb>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.buyPrice(0, 0, 4, 0);
+            Item.useAnimation = 25;
+            Item.height = dims.Height;
         }
     }
 }

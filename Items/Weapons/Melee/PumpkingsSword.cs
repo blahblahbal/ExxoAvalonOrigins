@@ -16,34 +16,26 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 105;
-            item.autoReuse = true;
-            item.UseSound = SoundID.Item1;
-            item.scale = 1.15f;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.useTime = 36;
-            item.useAnimation = 16;
-            item.knockBack = 8f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.PumpkingsBeam>();
-            item.shootSpeed = 12f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 105;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
+            Item.scale = 1.15f;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.useTime = 36;
+            Item.useAnimation = 16;
+            Item.knockBack = 8f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.PumpkingsBeam>();
+            Item.shootSpeed = 12f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TheHorsemansBlade);
-            recipe.AddIngredient(ItemID.SpookyWood, 900);
-            recipe.AddIngredient(ItemID.LivingFireBlock, 200);
-            recipe.AddIngredient(ItemID.Pumpkin, 30);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.TheHorsemansBlade).AddIngredient(ItemID.SpookyWood, 900).AddIngredient(ItemID.LivingFireBlock, 200).AddIngredient(ItemID.Pumpkin, 30).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override Color? GetAlpha(Color lightColor)
         {

@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class TuhrtlBrickWallUnsafe : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(39, 31, 28));
-            drop = mod.ItemType("TuhrtlBrickWall");
+            drop = Mod.Find<ModItem>("TuhrtlBrickWall").Type;
             dustType = DustID.Silt;
         }
     }

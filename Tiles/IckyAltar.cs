@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class IckyAltar : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(0, 250, 50), LanguageManager.Instance.GetText("Icky Altar"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);

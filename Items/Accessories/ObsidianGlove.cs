@@ -16,12 +16,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 2, 0, 0);
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 2, 0, 0);
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -33,12 +33,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<CloudGloves>());
-            r.AddIngredient(ItemID.ObsidianSkull);
-            r.AddTile(TileID.TinkerersWorkbench);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<CloudGloves>()).AddIngredient(ItemID.ObsidianSkull).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

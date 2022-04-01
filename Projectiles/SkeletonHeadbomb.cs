@@ -15,26 +15,26 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SkeletonHeadbomb");
-            projectile.width = dims.Width * 22 / 26;
-            projectile.height = dims.Height * 22 / 26 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.penetrate = 1;
-            projectile.ranged = true;
+            Projectile.width = dims.Width * 22 / 26;
+            Projectile.height = dims.Height * 22 / 26 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.hostile = true;
+            Projectile.penetrate = 1;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void AI()
         {
-            projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.03f * projectile.direction;
-            projectile.ai[0] += 1f;
-            if (projectile.ai[0] >= 20f)
+            Projectile.rotation += (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y)) * 0.03f * Projectile.direction;
+            Projectile.ai[0] += 1f;
+            if (Projectile.ai[0] >= 20f)
             {
-                projectile.velocity.Y = projectile.velocity.Y + 0.4f;
-                projectile.velocity.X = projectile.velocity.X * 0.97f;
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.4f;
+                Projectile.velocity.X = Projectile.velocity.X * 0.97f;
             }
-            if (projectile.velocity.Y > 16f)
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

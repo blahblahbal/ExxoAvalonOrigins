@@ -18,30 +18,22 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 40);
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 40);
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.meleeSpeed += 0.15f;
-            player.meleeDamage += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.15f;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>(), 25);
-            recipe.AddIngredient(ModContent.ItemType<SoulofBlight>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 100);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DragonOrb>()).AddIngredient(ModContent.ItemType<BerserkerBar>(), 25).AddIngredient(ModContent.ItemType<SoulofBlight>(), 10).AddIngredient(ModContent.ItemType<DarkMatterGel>(), 100).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 5).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

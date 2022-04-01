@@ -16,12 +16,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -33,15 +33,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Silk, 15);
-            r.AddIngredient(ItemID.Cloud, 25);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
-            r.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5);
-            r.AddIngredient(ItemID.SunplateBlock, 10);
-            r.AddTile(TileID.TinkerersWorkbench);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Silk, 15).AddIngredient(ItemID.Cloud, 25).AddIngredient(ItemID.SoulofFlight, 5).AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 5).AddIngredient(ItemID.SunplateBlock, 10).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

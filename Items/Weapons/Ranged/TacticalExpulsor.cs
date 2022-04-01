@@ -16,24 +16,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 35;
-            item.autoReuse = true;
-            item.useTurn = false;
-            item.useAmmo = AmmoID.Bullet;
-            item.shootSpeed = 7f;
-            item.crit += 1;
-            item.ranged = true;
-            item.rare = ItemRarityID.Cyan;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.knockBack = 3f;
-            item.useTime = 19;
-            item.shoot = ProjectileID.Bullet;
-            item.value = Item.sellPrice(0, 20, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 19;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item38;
+            Item.damage = 35;
+            Item.autoReuse = true;
+            Item.useTurn = false;
+            Item.useAmmo = AmmoID.Bullet;
+            Item.shootSpeed = 7f;
+            Item.crit += 1;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.Cyan;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.knockBack = 3f;
+            Item.useTime = 19;
+            Item.shoot = ProjectileID.Bullet;
+            Item.value = Item.sellPrice(0, 20, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 19;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item38;
 
         }
         public override Vector2? HoldoutOffset()

@@ -14,32 +14,22 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.createTile = ModContent.TileType<Tiles.ChunkstoneBrick>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.createTile = ModContent.TileType<Tiles.ChunkstoneBrick>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<ChunkstoneBlock>());
-            r.AddIngredient(ItemID.StoneBlock);
-            r.AddTile(TileID.Furnaces);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Items.Placeable.Wall.ChunkstoneBrickWall>(), 4);
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<ChunkstoneBlock>()).AddIngredient(ItemID.StoneBlock).AddTile(TileID.Furnaces).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Items.Placeable.Wall.ChunkstoneBrickWall>(), 4).AddTile(TileID.WorkBenches).Register();
         }
     }
 }

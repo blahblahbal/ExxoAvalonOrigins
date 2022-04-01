@@ -15,22 +15,15 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.maxStack = 999;
-            item.value = 0;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.maxStack = 999;
+            Item.value = 0;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 3);
-            r.AddIngredient(ModContent.ItemType<SoulofDelight>(), 5);
-            r.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 20);
-            r.AddIngredient(ModContent.ItemType<AlienDevice>());
-            r.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 3).AddIngredient(ModContent.ItemType<SoulofDelight>(), 5).AddIngredient(ModContent.ItemType<DarkMatterGel>(), 20).AddIngredient(ModContent.ItemType<AlienDevice>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

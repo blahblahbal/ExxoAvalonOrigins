@@ -18,33 +18,33 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            item.width = 52;
-            item.height = 48;
-            item.useStyle = 5;
-            item.useTime = item.useAnimation = 61;
-            item.channel = true;
-            item.damage = 45;
-            item.knockBack = 8;
-            item.scale = 1.1f;
-            item.UseSound = SoundID.Item1;
-            item.rare = 5;
-            item.noUseGraphic = true;
-            item.noMelee = true;
-            item.melee = true;
-            item.value = 999000;
-            item.shootSpeed = 12f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.QuadBall>();
+            Item.width = 52;
+            Item.height = 48;
+            Item.useStyle = 5;
+            Item.useTime = Item.useAnimation = 61;
+            Item.channel = true;
+            Item.damage = 45;
+            Item.knockBack = 8;
+            Item.scale = 1.1f;
+            Item.UseSound = SoundID.Item1;
+            Item.rare = 5;
+            Item.noUseGraphic = true;
+            Item.noMelee = true;
+            Item.DamageType = DamageClass.Melee;
+            Item.value = 999000;
+            Item.shootSpeed = 12f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.QuadBall>();
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             List<string> assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
 
-            var assignedKeyInfo = new TooltipLine(mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change attack modes");
+            var assignedKeyInfo = new TooltipLine(Mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change attack modes");
             tooltips.Add(assignedKeyInfo);
 
             if (!(assignedKeys.Count > 0))
             {
-                var unboundKeyInfo = new TooltipLine(mod, "Controls:PromptKeyInfo", "[c/900C3F:Please bind hotkey in the settings to change attack modes!]");
+                var unboundKeyInfo = new TooltipLine(Mod, "Controls:PromptKeyInfo", "[c/900C3F:Please bind hotkey in the settings to change attack modes!]");
                 tooltips.Add(unboundKeyInfo);
             }
         }
@@ -127,22 +127,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
                 timer++;
                 if (timer == 1)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
                 }
 
                 if (timer == 16)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
                 }
 
                 if (timer == 31)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
                 }
 
                 if (timer == 46)
                 {
-                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.meleeDamage), 8, PID);
+                    Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
                     timer = 0;
                     done = true;
                 }

@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -15,34 +16,34 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dragon Lord");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
         public bool head;
         public override void SetDefaults()
         {
-            npc.damage = 125;
-            npc.boss = true;
-            npc.scale = 1.3f;
-            npc.netAlways = true;
-            npc.noTileCollide = true;
-            npc.lifeMax = 50000;
-            npc.defense = 40;
-            npc.noGravity = true;
-            npc.width = 32;
-            npc.aiStyle = -1;
-            npc.npcSlots = 6f;
-            npc.value = 100000f;
-            npc.gfxOffY = 25f;
-            npc.timeLeft = 3000;
-            npc.height = 32;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit7;
-            npc.DeathSound = SoundID.NPCDeath8;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.Frostburn] = true;
+            NPC.damage = 125;
+            NPC.boss = true;
+            NPC.scale = 1.3f;
+            NPC.netAlways = true;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 50000;
+            NPC.defense = 40;
+            NPC.noGravity = true;
+            NPC.width = 32;
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 6f;
+            NPC.value = 100000f;
+            NPC.gfxOffY = 25f;
+            NPC.timeLeft = 3000;
+            NPC.height = 32;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit7;
+            NPC.DeathSound = SoundID.NPCDeath8;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.Frostburn] = true;
             drawOffsetY = 55;
             bossBag = ModContent.ItemType<Items.BossBags.DragonLordBossBag>();
         }
@@ -56,7 +57,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void BossHeadRotation(ref float rotation)
         {
-            rotation = npc.rotation;
+            rotation = NPC.rotation;
         }
         /*public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
@@ -78,21 +79,21 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (Main.rand.Next(7) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DragonLordTrophy>(), 1, false, 0, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DragonLordTrophy>(), 1, false, 0, false);
             }
             if (Main.expertMode)
             {
-                npc.DropBossBags();
+                NPC.DropBossBags();
             }
             else
             {
                 int rand = Main.rand.Next(5);
-                if (rand == 0) Item.NewItem(npc.position, ModContent.ItemType<Items.Accessories.DragonStone>());
-                else if (rand == 1) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
-                else if (rand == 2) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
-                else if (rand == 3) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
-                else if (rand == 4) Item.NewItem(npc.position, ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DragonScale>(), Main.rand.Next(8, 16), false, 0, false);
+                if (rand == 0) Item.NewItem(NPC.position, ModContent.ItemType<Items.Accessories.DragonStone>());
+                else if (rand == 1) Item.NewItem(NPC.position, ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
+                else if (rand == 2) Item.NewItem(NPC.position, ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
+                else if (rand == 3) Item.NewItem(NPC.position, ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
+                else if (rand == 4) Item.NewItem(NPC.position, ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DragonScale>(), Main.rand.Next(8, 16), false, 0, false);
             }
 
             if (!ExxoAvalonOriginsWorld.downedDragonLord)
@@ -101,25 +102,25 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void AI()
         {
-            if (npc.ai[3] > 0f)
+            if (NPC.ai[3] > 0f)
             {
-                npc.realLife = (int)npc.ai[3];
+                NPC.realLife = (int)NPC.ai[3];
             }
-            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead)
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead)
             {
-                npc.TargetClosest(true);
+                NPC.TargetClosest(true);
             }
-            if (Main.player[npc.target].dead && npc.timeLeft > 300)
+            if (Main.player[NPC.target].dead && NPC.timeLeft > 300)
             {
-                npc.timeLeft = 300;
+                NPC.timeLeft = 300;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (npc.ai[0] == 0f)
+                if (NPC.ai[0] == 0f)
                 {
-                    npc.ai[3] = npc.whoAmI;
-                    npc.realLife = npc.whoAmI;
-                    var num182 = npc.whoAmI;
+                    NPC.ai[3] = NPC.whoAmI;
+                    NPC.realLife = NPC.whoAmI;
+                    var num182 = NPC.whoAmI;
                     for (var num183 = 0; num183 < 13; num183++)
                     {
                         var num184 = ModContent.NPCType<DragonLordBody>();
@@ -139,36 +140,36 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             num184 = ModContent.NPCType<DragonLordTail>();
                         }
-                        var num185 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height), num184, npc.whoAmI);
-                        Main.npc[num185].ai[3] = npc.whoAmI;
-                        Main.npc[num185].realLife = npc.whoAmI;
+                        var num185 = NPC.NewNPC((int)(NPC.position.X + NPC.width / 2), (int)(NPC.position.Y + NPC.height), num184, NPC.whoAmI);
+                        Main.npc[num185].ai[3] = NPC.whoAmI;
+                        Main.npc[num185].realLife = NPC.whoAmI;
                         Main.npc[num185].ai[1] = num182;
                         Main.npc[num182].ai[0] = num185;
                         NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), num185, 0f, 0f, 0f, 0);
                         num182 = num185;
                     }
                 }
-                if (!Main.npc[(int)npc.ai[0]].active)
+                if (!Main.npc[(int)NPC.ai[0]].active)
                 {
-                    npc.life = 0;
-                    npc.HitEffect(0, 10.0);
-                    npc.active = false;
+                    NPC.life = 0;
+                    NPC.HitEffect(0, 10.0);
+                    NPC.active = false;
                 }
-                if (!Main.npc[(int)npc.ai[1]].active)
+                if (!Main.npc[(int)NPC.ai[1]].active)
                 {
-                    npc.life = 0;
-                    npc.HitEffect(0, 10.0);
-                    npc.active = false;
+                    NPC.life = 0;
+                    NPC.HitEffect(0, 10.0);
+                    NPC.active = false;
                 }
-                if (!npc.active && Main.netMode == NetmodeID.Server)
+                if (!NPC.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, -1f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, -1f, 0f, 0f, 0);
                 }
             }
-            var num193 = (int)(npc.position.X / 16f) - 1;
-            var num194 = (int)((npc.position.X + npc.width) / 16f) + 2;
-            var num195 = (int)(npc.position.Y / 16f) - 1;
-            var num196 = (int)((npc.position.Y + npc.height) / 16f) + 2;
+            var num193 = (int)(NPC.position.X / 16f) - 1;
+            var num194 = (int)((NPC.position.X + NPC.width) / 16f) + 2;
+            var num195 = (int)(NPC.position.Y / 16f) - 1;
+            var num196 = (int)((NPC.position.Y + NPC.height) / 16f) + 2;
             if (num193 < 0)
             {
                 num193 = 0;
@@ -187,35 +188,35 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.rand.Next(275) == 0)
             {
-                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath = true;
-                Main.PlaySound(SoundID.Roar, -1, -1, 0);
+                NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath = true;
+                SoundEngine.PlaySound(SoundID.Roar, -1, -1, 0);
             }
-            if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath)
+            if (NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath)
             {
-                int p = Projectile.NewProjectile(npc.position.X + npc.width / 2f, npc.position.Y + npc.height / 2f, npc.velocity.X * 3f + Main.rand.Next(-2, 3), npc.velocity.Y * 3f + Main.rand.Next(-2, 3), ProjectileID.FlamethrowerTrap, 75, 1.2f, 255, 0f, 0f);
+                int p = Projectile.NewProjectile(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f, NPC.velocity.X * 3f + Main.rand.Next(-2, 3), NPC.velocity.Y * 3f + Main.rand.Next(-2, 3), ProjectileID.FlamethrowerTrap, 75, 1.2f, 255, 0f, 0f);
                 Main.projectile[p].hostile = true;
                 Main.projectile[p].friendly = false;
-                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD--;
+                NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD--;
             }
-            if (npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD <= 0)
+            if (NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD <= 0)
             {
-                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath = false;
-                npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD = 90;
-                Main.PlaySound(SoundID.Item, -1, -1, 20);
+                NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().dlBreath = false;
+                NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().breathCD = 90;
+                SoundEngine.PlaySound(SoundID.Item, -1, -1, 20);
             }
-            if (npc.velocity.X < 0f)
+            if (NPC.velocity.X < 0f)
             {
-                npc.spriteDirection = 1;
+                NPC.spriteDirection = 1;
             }
-            else if (npc.velocity.X > 0f)
+            else if (NPC.velocity.X > 0f)
             {
-                npc.spriteDirection = -1;
+                NPC.spriteDirection = -1;
             }
             var num201 = 10f;
             var num202 = 0.25f;
-            var vector21 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-            var num204 = Main.player[npc.target].position.X + Main.player[npc.target].width / 2;
-            var num205 = Main.player[npc.target].position.Y + Main.player[npc.target].height / 2;
+            var vector21 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+            var num204 = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2;
+            var num205 = Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2;
             num204 = (int)(num204 / 16f) * 16;
             num205 = (int)(num205 / 16f) * 16;
             vector21.X = (int)(vector21.X / 16f) * 16;
@@ -223,34 +224,34 @@ namespace ExxoAvalonOrigins.NPCs
             num204 -= vector21.X;
             num205 -= vector21.Y;
             var num206 = (float)Math.Sqrt(num204 * num204 + num205 * num205);
-            if (npc.ai[1] > 0f && npc.ai[1] < Main.npc.Length)
+            if (NPC.ai[1] > 0f && NPC.ai[1] < Main.npc.Length)
             {
                 try
                 {
-                    vector21 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-                    num204 = Main.npc[(int)npc.ai[1]].position.X + Main.npc[(int)npc.ai[1]].width / 2 - vector21.X;
-                    num205 = Main.npc[(int)npc.ai[1]].position.Y + Main.npc[(int)npc.ai[1]].height / 2 - vector21.Y;
+                    vector21 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                    num204 = Main.npc[(int)NPC.ai[1]].position.X + Main.npc[(int)NPC.ai[1]].width / 2 - vector21.X;
+                    num205 = Main.npc[(int)NPC.ai[1]].position.Y + Main.npc[(int)NPC.ai[1]].height / 2 - vector21.Y;
                 }
                 catch
                 {
                 }
-                npc.rotation = (float)Math.Atan2(num205, num204) + 1.57f;
+                NPC.rotation = (float)Math.Atan2(num205, num204) + 1.57f;
                 num206 = (float)Math.Sqrt(num204 * num204 + num205 * num205);
                 var num207 = 42;
                 num206 = (num206 - num207) / num206;
                 num204 *= num206;
                 num205 *= num206;
-                npc.velocity = Vector2.Zero;
-                npc.position.X = npc.position.X + num204;
-                npc.position.Y = npc.position.Y + num205;
+                NPC.velocity = Vector2.Zero;
+                NPC.position.X = NPC.position.X + num204;
+                NPC.position.Y = NPC.position.Y + num205;
                 if (num204 < 0f)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                     return;
                 }
                 if (num204 > 0f)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                     return;
                 }
             }
@@ -263,119 +264,119 @@ namespace ExxoAvalonOrigins.NPCs
                 num204 *= num211;
                 num205 *= num211;
                 var flag21 = false;
-                if (((npc.velocity.X > 0f && num204 < 0f) || (npc.velocity.X < 0f && num204 > 0f) || (npc.velocity.Y > 0f && num205 < 0f) || (npc.velocity.Y < 0f && num205 > 0f)) && Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) > num202 / 2f && num206 < 300f)
+                if (((NPC.velocity.X > 0f && num204 < 0f) || (NPC.velocity.X < 0f && num204 > 0f) || (NPC.velocity.Y > 0f && num205 < 0f) || (NPC.velocity.Y < 0f && num205 > 0f)) && Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y) > num202 / 2f && num206 < 300f)
                 {
                     flag21 = true;
-                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num201)
+                    if (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y) < num201)
                     {
-                        npc.velocity *= 1.1f;
+                        NPC.velocity *= 1.1f;
                     }
                 }
-                if (npc.position.Y > Main.player[npc.target].position.Y || Main.player[npc.target].position.Y / 16f > Main.worldSurface || Main.player[npc.target].dead)
+                if (NPC.position.Y > Main.player[NPC.target].position.Y || Main.player[NPC.target].position.Y / 16f > Main.worldSurface || Main.player[NPC.target].dead)
                 {
                     flag21 = true;
-                    if (Math.Abs(npc.velocity.X) < num201 / 2f)
+                    if (Math.Abs(NPC.velocity.X) < num201 / 2f)
                     {
-                        if (npc.velocity.X == 0f)
+                        if (NPC.velocity.X == 0f)
                         {
-                            npc.velocity.X = npc.velocity.X - npc.direction;
+                            NPC.velocity.X = NPC.velocity.X - NPC.direction;
                         }
-                        npc.velocity.X = npc.velocity.X * 1.1f;
+                        NPC.velocity.X = NPC.velocity.X * 1.1f;
                     }
-                    else if (npc.velocity.Y > -num201)
+                    else if (NPC.velocity.Y > -num201)
                     {
-                        npc.velocity.Y = npc.velocity.Y - num202;
+                        NPC.velocity.Y = NPC.velocity.Y - num202;
                     }
                 }
                 if (!flag21)
                 {
-                    if ((npc.velocity.X > 0f && num204 > 0f) || (npc.velocity.X < 0f && num204 < 0f) || (npc.velocity.Y > 0f && num205 > 0f) || (npc.velocity.Y < 0f && num205 < 0f))
+                    if ((NPC.velocity.X > 0f && num204 > 0f) || (NPC.velocity.X < 0f && num204 < 0f) || (NPC.velocity.Y > 0f && num205 > 0f) || (NPC.velocity.Y < 0f && num205 < 0f))
                     {
-                        if (npc.velocity.X < num204)
+                        if (NPC.velocity.X < num204)
                         {
-                            npc.velocity.X = npc.velocity.X + num202;
+                            NPC.velocity.X = NPC.velocity.X + num202;
                         }
-                        else if (npc.velocity.X > num204)
+                        else if (NPC.velocity.X > num204)
                         {
-                            npc.velocity.X = npc.velocity.X - num202;
+                            NPC.velocity.X = NPC.velocity.X - num202;
                         }
-                        if (npc.velocity.Y < num205)
+                        if (NPC.velocity.Y < num205)
                         {
-                            npc.velocity.Y = npc.velocity.Y + num202;
+                            NPC.velocity.Y = NPC.velocity.Y + num202;
                         }
-                        else if (npc.velocity.Y > num205)
+                        else if (NPC.velocity.Y > num205)
                         {
-                            npc.velocity.Y = npc.velocity.Y - num202;
+                            NPC.velocity.Y = NPC.velocity.Y - num202;
                         }
-                        if (Math.Abs(num205) < num201 * 0.2 && ((npc.velocity.X > 0f && num204 < 0f) || (npc.velocity.X < 0f && num204 > 0f)))
+                        if (Math.Abs(num205) < num201 * 0.2 && ((NPC.velocity.X > 0f && num204 < 0f) || (NPC.velocity.X < 0f && num204 > 0f)))
                         {
-                            if (npc.velocity.Y > 0f)
+                            if (NPC.velocity.Y > 0f)
                             {
-                                npc.velocity.Y = npc.velocity.Y + num202 * 2f;
+                                NPC.velocity.Y = NPC.velocity.Y + num202 * 2f;
                             }
                             else
                             {
-                                npc.velocity.Y = npc.velocity.Y - num202 * 2f;
+                                NPC.velocity.Y = NPC.velocity.Y - num202 * 2f;
                             }
                         }
-                        if (Math.Abs(num204) < num201 * 0.2 && ((npc.velocity.Y > 0f && num205 < 0f) || (npc.velocity.Y < 0f && num205 > 0f)))
+                        if (Math.Abs(num204) < num201 * 0.2 && ((NPC.velocity.Y > 0f && num205 < 0f) || (NPC.velocity.Y < 0f && num205 > 0f)))
                         {
-                            if (npc.velocity.X > 0f)
+                            if (NPC.velocity.X > 0f)
                             {
-                                npc.velocity.X = npc.velocity.X + num202 * 2f;
+                                NPC.velocity.X = NPC.velocity.X + num202 * 2f;
                             }
                             else
                             {
-                                npc.velocity.X = npc.velocity.X - num202 * 2f;
+                                NPC.velocity.X = NPC.velocity.X - num202 * 2f;
                             }
                         }
                     }
                     else if (num209 > num210)
                     {
-                        if (npc.velocity.X < num204)
+                        if (NPC.velocity.X < num204)
                         {
-                            npc.velocity.X = npc.velocity.X + num202 * 1.1f;
+                            NPC.velocity.X = NPC.velocity.X + num202 * 1.1f;
                         }
-                        else if (npc.velocity.X > num204)
+                        else if (NPC.velocity.X > num204)
                         {
-                            npc.velocity.X = npc.velocity.X - num202 * 1.1f;
+                            NPC.velocity.X = NPC.velocity.X - num202 * 1.1f;
                         }
-                        if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num201 * 0.5)
+                        if (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y) < num201 * 0.5)
                         {
-                            if (npc.velocity.Y > 0f)
+                            if (NPC.velocity.Y > 0f)
                             {
-                                npc.velocity.Y = npc.velocity.Y + num202;
+                                NPC.velocity.Y = NPC.velocity.Y + num202;
                             }
                             else
                             {
-                                npc.velocity.Y = npc.velocity.Y - num202;
+                                NPC.velocity.Y = NPC.velocity.Y - num202;
                             }
                         }
                     }
                     else
                     {
-                        if (npc.velocity.Y < num205)
+                        if (NPC.velocity.Y < num205)
                         {
-                            npc.velocity.Y = npc.velocity.Y + num202 * 1.1f;
+                            NPC.velocity.Y = NPC.velocity.Y + num202 * 1.1f;
                         }
-                        else if (npc.velocity.Y > num205)
+                        else if (NPC.velocity.Y > num205)
                         {
-                            npc.velocity.Y = npc.velocity.Y - num202 * 1.1f;
+                            NPC.velocity.Y = NPC.velocity.Y - num202 * 1.1f;
                         }
-                        if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < num201 * 0.5)
+                        if (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y) < num201 * 0.5)
                         {
-                            if (npc.velocity.X > 0f)
+                            if (NPC.velocity.X > 0f)
                             {
-                                npc.velocity.X = npc.velocity.X + num202;
+                                NPC.velocity.X = NPC.velocity.X + num202;
                             }
                             else
                             {
-                                npc.velocity.X = npc.velocity.X - num202;
+                                NPC.velocity.X = NPC.velocity.X - num202;
                             }
                         }
                     }
                 }
-                npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) + 1.57f;
+                NPC.rotation = (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + 1.57f;
             }
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

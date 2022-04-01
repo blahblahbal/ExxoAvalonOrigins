@@ -14,15 +14,15 @@ namespace ExxoAvalonOrigins.Items.Placeable.Furniture
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.SandCastle>();
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.maxStack = 99;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.SandCastle>();
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.maxStack = 99;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
     }
 }

@@ -8,24 +8,24 @@ namespace ExxoAvalonOrigins.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			ItemID.Sets.SortingPriorityMaterials[item.type] = 90;
+			ItemID.Sets.SortingPriorityMaterials[Item.type] = 90;
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 20;
-			item.height = 20;
-			item.maxStack = 99;
-			item.value = 20000;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useTurn = true;
-			item.useAnimation = 15;
-			item.useTime = 10;
-			item.autoReuse = true;
-			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.ContagionPot>();
-			item.placeStyle = 0;
-			item.rare = ItemRarityID.Green;
+			Item.width = 20;
+			Item.height = 20;
+			Item.maxStack = 99;
+			Item.value = 20000;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.consumable = true;
+			Item.createTile = ModContent.TileType<Tiles.ContagionPot>();
+			Item.placeStyle = 0;
+			Item.rare = ItemRarityID.Green;
 		}
 	}
 }

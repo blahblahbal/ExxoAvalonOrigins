@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -11,59 +12,59 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hallowed Spit");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
         public override void SetDefaults()
         {
-            npc.npcSlots = 1;
-            npc.width = 16;
-            npc.height = 16;
-            npc.aiStyle = -1;
-            npc.timeLeft = 750;
-            npc.damage = 65;
-            npc.DeathSound = SoundID.NPCDeath9;
-            npc.lifeMax = 1;
-            npc.alpha = 80;
-            npc.scale = 0.9f;
-            npc.netAlways = true;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.buffImmune[BuffID.Confused] = true;
+            NPC.npcSlots = 1;
+            NPC.width = 16;
+            NPC.height = 16;
+            NPC.aiStyle = -1;
+            NPC.timeLeft = 750;
+            NPC.damage = 65;
+            NPC.DeathSound = SoundID.NPCDeath9;
+            NPC.lifeMax = 1;
+            NPC.alpha = 80;
+            NPC.scale = 0.9f;
+            NPC.netAlways = true;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.buffImmune[BuffID.Confused] = true;
         }
         public override void AI()
         {
-            if (npc.target == 255)
+            if (NPC.target == 255)
             {
-                npc.TargetClosest(true);
+                NPC.TargetClosest(true);
                 float num157 = 6f;
                 num157 = 7f;
-                Vector2 vector15 = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
-                float num158 = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) - vector15.X;
-                float num159 = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - vector15.Y;
+                Vector2 vector15 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
+                float num158 = Main.player[NPC.target].position.X + (float)(Main.player[NPC.target].width / 2) - vector15.X;
+                float num159 = Main.player[NPC.target].position.Y + (float)(Main.player[NPC.target].height / 2) - vector15.Y;
                 float num160 = (float)Math.Sqrt((double)(num158 * num158 + num159 * num159));
                 num160 = num157 / num160;
-                npc.velocity.X = num158 * num160;
-                npc.velocity.Y = num159 * num160;
+                NPC.velocity.X = num158 * num160;
+                NPC.velocity.Y = num159 * num160;
             }
 
-            npc.ai[0] += 1f;
-            if (npc.ai[0] > 3f)
+            NPC.ai[0] += 1f;
+            if (NPC.ai[0] > 3f)
             {
-                npc.ai[0] = 3f;
+                NPC.ai[0] = 3f;
             }
-            if (npc.ai[0] == 2f)
+            if (NPC.ai[0] == 2f)
             {
-                npc.position += npc.velocity;
-                Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 9);
+                NPC.position += NPC.velocity;
+                SoundEngine.PlaySound(SoundID.NPCKilled, (int)NPC.position.X, (int)NPC.position.Y, 9);
                 for (int num161 = 0; num161 < 20; num161++)
                 {
-                    int num162 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.Enchanted_Pink, 0f, 0f, 100, default(Color), 1.8f);
+                    int num162 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.Enchanted_Pink, 0f, 0f, 100, default(Color), 1.8f);
                     Main.dust[num162].velocity *= 1.3f;
-                    Main.dust[num162].velocity += npc.velocity;
+                    Main.dust[num162].velocity += NPC.velocity;
                     Main.dust[num162].noGravity = true;
                 }
             }
-            if (Collision.SolidCollision(npc.position, npc.width, npc.height))
+            if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
             {
                 #region spread hallow code
                 /*if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -151,19 +152,19 @@ namespace ExxoAvalonOrigins.NPCs
 					}
 				}*/
                 #endregion
-                npc.StrikeNPC(999, 0f, 0, false, false);
+                NPC.StrikeNPC(999, 0f, 0, false, false);
             }
-            if (npc.timeLeft > 100)
+            if (NPC.timeLeft > 100)
             {
-                npc.timeLeft = 100;
+                NPC.timeLeft = 100;
             }
             for (int num168 = 0; num168 < 2; num168++)
             {
-                int num171 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 2f), npc.width, npc.height, DustID.Enchanted_Pink, npc.velocity.X * 0.1f, npc.velocity.Y * 0.1f, 80, default(Color), 1.3f);
+                int num171 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 80, default(Color), 1.3f);
                 Main.dust[num171].velocity *= 0.3f;
                 Main.dust[num171].noGravity = true;
             }
-            npc.rotation += 0.4f * (float)npc.direction;
+            NPC.rotation += 0.4f * (float)NPC.direction;
             return;
         }
     }

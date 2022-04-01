@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Catalyzer : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(146, 155, 187), LanguageManager.Instance.GetText("Catalyzer"));
             Main.tileFrameImportant[Type] = true;

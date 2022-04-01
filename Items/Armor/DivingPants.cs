@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 3;
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 20, 0);
-            item.height = dims.Height;
+            Item.defense = 3;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 20, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateEquip(Player player)
@@ -29,9 +29,9 @@ namespace ExxoAvalonOrigins.Items.Armor
             player.breathMax *= 3; //TODO: fix.
             if (player.wet)
             {
-                player.meleeDamage += 0.1f;
-                player.magicDamage += 0.1f;
-                player.rangedDamage += 0.1f;
+                player.GetDamage(DamageClass.Melee) += 0.1f;
+                player.GetDamage(DamageClass.Magic) += 0.1f;
+                player.GetDamage(DamageClass.Ranged) += 0.1f;
             }
         }
     }

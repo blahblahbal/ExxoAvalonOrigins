@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class Vertebrae : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("Vertebrae");
+            drop = Mod.Find<ModItem>("Vertebrae").Type;
             AddMapEntry(Color.LightCoral);
             dustType = DustID.HeartCrystal;
         }

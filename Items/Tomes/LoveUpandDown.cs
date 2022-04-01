@@ -17,24 +17,24 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.value = 150000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.value = 150000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.rangedDamage += 0.15f;
-            player.meleeDamage += 0.15f;
-            player.magicDamage += 0.15f;
-            player.minionDamage += 0.15f;
-            player.thrownDamage += 0.15f;
-            player.meleeCrit += 7;
-            player.magicCrit += 7;
-            player.rangedCrit += 7;
-            player.thrownCrit += 7;
+            player.GetDamage(DamageClass.Ranged) += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.15f;
+            player.GetDamage(DamageClass.Magic) += 0.15f;
+            player.GetDamage(DamageClass.Summon) += 0.15f;
+            player.GetDamage(DamageClass.Throwing) += 0.15f;
+            player.GetCritChance(DamageClass.Melee) += 7;
+            player.GetCritChance(DamageClass.Magic) += 7;
+            player.GetCritChance(DamageClass.Ranged) += 7;
+            player.GetCritChance(DamageClass.Throwing) += 7;
             player.manaCost -= 0.25f;
             player.statDefense += 12;
             player.statLifeMax2 += 80;
@@ -43,18 +43,7 @@ namespace ExxoAvalonOrigins.Items.Tomes
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DragonOrb>());
-            recipe.AddIngredient(ModContent.ItemType<AdventuresandMishaps>());
-            recipe.AddIngredient(ModContent.ItemType<ScrollofTome>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<FineLumber>(), 10);
-            recipe.AddIngredient(ModContent.ItemType<Gravel>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<CarbonSteel>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<MysteriousPage>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DragonOrb>()).AddIngredient(ModContent.ItemType<AdventuresandMishaps>()).AddIngredient(ModContent.ItemType<ScrollofTome>(), 3).AddIngredient(ModContent.ItemType<FineLumber>(), 10).AddIngredient(ModContent.ItemType<Gravel>(), 15).AddIngredient(ModContent.ItemType<Sandstone>(), 20).AddIngredient(ModContent.ItemType<CarbonSteel>(), 20).AddIngredient(ModContent.ItemType<MysteriousPage>(), 5).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

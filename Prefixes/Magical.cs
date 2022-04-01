@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Magical", new Magical());
+                Mod.AddPrefix("Magical", new Magical());
             }
             return false;
         }

@@ -52,7 +52,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 1:
                                     tile.active(true);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.type = (ushort)ModContent.TileType<Tiles.Nest>();
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.TileType = (ushort)ModContent.TileType<Tiles.Nest>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     //tile.wall = (ushort)ModContent.WallType<Walls.NestWall>();
@@ -60,10 +60,10 @@ namespace ExxoAvalonOrigins.World.Structures
                                 case 2:
                                     if (confirmPlatforms == 0)
                                     {
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
-                                        if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.NestWall>();
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.active(false);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.halfBrick(false);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.slope(0);
+                                        if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.WallType = (ushort)ModContent.WallType<Walls.NestWall>();
                                         tile.liquid = 0;
                                         tile.lava(false);
                                         tile.honey(true);
@@ -71,8 +71,8 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 3:
                                     tile.active(true);
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.type = (ushort)ModContent.TileType<Tiles.Nest>();
-                                    if (tile.type != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.wall = (ushort)ModContent.WallType<Walls.NestWall>();
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.TileType = (ushort)ModContent.TileType<Tiles.Nest>();
+                                    if (tile.TileType != (ushort)ModContent.TileType<Tiles.TuhrtlBrick>()) tile.WallType = (ushort)ModContent.WallType<Walls.NestWall>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     //tile.wall = (ushort)ModContent.WallType<Walls.NestWall>();
@@ -98,7 +98,7 @@ namespace ExxoAvalonOrigins.World.Structures
             //    {
             //        if (j > 0 && j <= Main.maxTilesY - 1)
             //        {
-            //            if (Main.tile[i, j].active() && Main.tile[i, j].type == (ushort)ModContent.TileType<Tiles.TuhrtlBrick>())
+            //            if (Main.tile[i, j].HasTile && Main.tile[i, j].type == (ushort)ModContent.TileType<Tiles.TuhrtlBrick>())
             //            {
             //                return;
             //            }
@@ -157,9 +157,9 @@ namespace ExxoAvalonOrigins.World.Structures
                 //}
             }
 
-            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Nest>();
-            Main.tile[x - 1, y].type = (ushort)ModContent.TileType<Tiles.Nest>();
-            Main.tile[x + 1, y].type = (ushort)ModContent.TileType<Tiles.Nest>();
+            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Nest>();
+            Main.tile[x - 1, y].TileType = (ushort)ModContent.TileType<Tiles.Nest>();
+            Main.tile[x + 1, y].TileType = (ushort)ModContent.TileType<Tiles.Nest>();
             Main.tile[x, y].active(true);
             Main.tile[x - 1, y].active(true);
             Main.tile[x + 1, y].active(true);

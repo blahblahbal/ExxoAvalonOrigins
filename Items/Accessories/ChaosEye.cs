@@ -16,20 +16,20 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.value = 3450000;
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.value = 3450000;
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Avalon().chaosCharm = true;
-            player.meleeCrit += 8;
-            player.rangedCrit += 8;
-            player.magicCrit += 8;
-            player.thrownCrit += 8;
+            player.GetCritChance(DamageClass.Melee) += 8;
+            player.GetCritChance(DamageClass.Ranged) += 8;
+            player.GetCritChance(DamageClass.Magic) += 8;
+            player.GetCritChance(DamageClass.Throwing) += 8;
         }
     }
 }

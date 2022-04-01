@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class RottenChunk : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(83, 65, 67));
             Main.tileSolid[Type] = true;

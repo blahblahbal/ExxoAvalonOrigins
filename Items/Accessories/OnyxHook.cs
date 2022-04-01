@@ -15,20 +15,20 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.damage = 70;
-            item.useTurn = true;
-            item.shootSpeed = 16f;
-            item.rare = ItemRarityID.Lime;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 25f;
-            item.shoot = ModContent.ProjectileType<Projectiles.OnyxHook>();
-            item.value = Item.sellPrice(0, 9, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.damage = 70;
+            Item.useTurn = true;
+            Item.shootSpeed = 16f;
+            Item.rare = ItemRarityID.Lime;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 25f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.OnyxHook>();
+            Item.value = Item.sellPrice(0, 9, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
     }
 }

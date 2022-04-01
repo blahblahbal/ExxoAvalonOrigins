@@ -15,27 +15,22 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 10;
-            item.shootSpeed = 3.4f;
-            item.ammo = AmmoID.Arrow;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.knockBack = 3f;
-            item.shoot = ModContent.ProjectileType<Projectiles.BloodyArrow>();
-            item.value = Item.sellPrice(0, 0, 0, 8);
-            item.maxStack = 2000;
-            item.height = dims.Height;
+            Item.damage = 10;
+            Item.shootSpeed = 3.4f;
+            Item.ammo = AmmoID.Arrow;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.knockBack = 3f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.BloodyArrow>();
+            Item.value = Item.sellPrice(0, 0, 0, 8);
+            Item.maxStack = 2000;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.WoodenArrow, 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.Patella>());
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this, 5);
-            recipe.AddRecipe();
+            CreateRecipe(5).AddIngredient(ItemID.WoodenArrow, 5).AddIngredient(ModContent.ItemType<Material.Patella>()).AddTile(TileID.Anvils).Register();
         }
     }
 }

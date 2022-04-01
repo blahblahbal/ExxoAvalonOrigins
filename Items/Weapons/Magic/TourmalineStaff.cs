@@ -10,37 +10,31 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tourmaline Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 28;
-            item.autoReuse = true;
-            item.shootSpeed = 7.5f;
-            item.mana = 9;
-            item.rare = ItemRarityID.Blue;
-            item.useTime = 28;
-            item.useAnimation = 28;
-            item.knockBack = 4.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.TourmalineBolt>();
-            item.value = Item.buyPrice(0, 3, 50, 0);
-            item.UseSound = SoundID.Item43;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 28;
+            Item.autoReuse = true;
+            Item.shootSpeed = 7.5f;
+            Item.mana = 9;
+            Item.rare = ItemRarityID.Blue;
+            Item.useTime = 28;
+            Item.useAnimation = 28;
+            Item.knockBack = 4.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.TourmalineBolt>();
+            Item.value = Item.buyPrice(0, 3, 50, 0);
+            Item.UseSound = SoundID.Item43;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Tourmaline>(), 15);
-            recipe.AddIngredient(ItemID.DemoniteBar, 20);
-            recipe.AddIngredient(ItemID.ShadowScale, 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.Tourmaline>(), 15).AddIngredient(ItemID.DemoniteBar, 20).AddIngredient(ItemID.ShadowScale, 5).AddTile(TileID.Anvils).Register();
         }
     }
 }

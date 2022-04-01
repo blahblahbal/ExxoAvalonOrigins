@@ -11,27 +11,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         {
             DisplayName.SetDefault("Vorazylcum-Kunzite Bolt Staff");
             Tooltip.SetDefault("Fires a spread of magical bolts");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 92;
-            item.autoReuse = true;
-            item.shootSpeed = 6f;
-            item.mana = 37;
-            item.rare = ItemRarityID.Cyan;
-            item.knockBack = 3f;
-            item.useTime = 40;
-            item.useAnimation = 40;
-            item.shoot = ModContent.ProjectileType<Projectiles.KunziteBolt>();
-            item.value = Item.sellPrice(0, 60, 0, 0);
-            item.UseSound = SoundID.Item43;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 92;
+            Item.autoReuse = true;
+            Item.shootSpeed = 6f;
+            Item.mana = 37;
+            Item.rare = ItemRarityID.Cyan;
+            Item.knockBack = 3f;
+            Item.useTime = 40;
+            Item.useAnimation = 40;
+            Item.shoot = ModContent.ProjectileType<Projectiles.KunziteBolt>();
+            Item.value = Item.sellPrice(0, 60, 0, 0);
+            Item.UseSound = SoundID.Item43;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,

@@ -15,20 +15,20 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 45;
-            item.color = Color.Red;
-            item.shootSpeed = 14f;
-            item.ranged = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTime = 24;
-            item.knockBack = 4.5f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.useAnimation = 24;
-            item.height = dims.Height;
+            Item.damage = 45;
+            Item.color = Color.Red;
+            Item.shootSpeed = 14f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTime = 24;
+            Item.knockBack = 4.5f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.useAnimation = 24;
+            Item.height = dims.Height;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,

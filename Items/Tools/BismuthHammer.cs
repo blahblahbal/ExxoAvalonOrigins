@@ -14,29 +14,24 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 11;
-            item.autoReuse = true;
-            item.hammer = 61;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.width = dims.Width;
-            item.useTime = 18;
-            item.knockBack = 4.5f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 11000;
-            item.useAnimation = 28;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 11;
+            Item.autoReuse = true;
+            Item.hammer = 61;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.width = dims.Width;
+            Item.useTime = 18;
+            Item.knockBack = 4.5f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 11000;
+            Item.useAnimation = 28;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 10);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood, 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 10).AddRecipeGroup(RecipeGroupID.Wood, 3).AddTile(TileID.Anvils).Register();
         }
     }
 }

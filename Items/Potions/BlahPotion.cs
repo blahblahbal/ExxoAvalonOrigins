@@ -15,18 +15,18 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.Blah>();
-            item.UseSound = SoundID.Item3;
-            item.consumable = false;
-            item.rare = ItemRarityID.Purple;
+            Item.buffType = ModContent.BuffType<Buffs.Blah>();
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = false;
+            Item.rare = ItemRarityID.Purple;
             //item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 1;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 1080000;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 1;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 1080000;
         }
     }
 }

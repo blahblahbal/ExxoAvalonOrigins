@@ -15,30 +15,25 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.BloodiedSpike>();
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 1, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.notAmmo = true;
-            item.ammo = ItemID.Spike;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 2;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.BloodiedSpike>();
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(0, 0, 1, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.notAmmo = true;
+            Item.ammo = ItemID.Spike;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 2;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddIngredient(ItemID.TissueSample);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Spike).AddIngredient(ItemID.TissueSample).AddTile(TileID.Anvils).Register();
         }
     }
 }

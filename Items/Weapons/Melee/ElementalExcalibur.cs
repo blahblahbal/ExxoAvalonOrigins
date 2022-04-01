@@ -14,22 +14,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 190;
-            item.autoReuse = true;
-            item.UseSound = SoundID.Item1;
-            item.scale = 1.2f;
-            item.shootSpeed = 13f;
-            item.rare = ItemRarityID.Cyan;
-            item.noMelee = false;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.knockBack = 8.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ElementBeam>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 90, 0, 0);
-            item.useAnimation = 10;
-            item.height = dims.Height;
+            Item.damage = 190;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
+            Item.scale = 1.2f;
+            Item.shootSpeed = 13f;
+            Item.rare = ItemRarityID.Cyan;
+            Item.noMelee = false;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.knockBack = 8.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.ElementBeam>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 90, 0, 0);
+            Item.useAnimation = 10;
+            Item.height = dims.Height;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -67,14 +67,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.TerraBlade);
-            recipe.AddIngredient(ModContent.ItemType<VertexofExcalibur>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.TerraBlade).AddIngredient(ModContent.ItemType<VertexofExcalibur>()).AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 20).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 10).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

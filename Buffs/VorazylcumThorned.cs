@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class VorazylcumThorned : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vorazylcum Thorns");
             Description.SetDefault("Losing life");

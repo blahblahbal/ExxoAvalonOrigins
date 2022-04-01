@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ShadowScale : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.LightSteelBlue);
             Main.tileSolid[Type] = true;

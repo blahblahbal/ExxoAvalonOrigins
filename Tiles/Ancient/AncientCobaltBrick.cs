@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles.Ancient
 {
     public class AncientCobaltBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(37, 118, 171));
             Main.tileSolid[Type] = true;

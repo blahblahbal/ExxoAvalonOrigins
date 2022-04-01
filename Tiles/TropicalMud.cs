@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class TropicalMud : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(95, 38, 12));
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][TileID.Dirt] = true;
             Main.tileBrick[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("TropicalMudBlock");
+            drop = Mod.Find<ModItem>("TropicalMudBlock").Type;
             dustType = ModContent.DustType<Dusts.TropicalMudDust>();
         }
     }

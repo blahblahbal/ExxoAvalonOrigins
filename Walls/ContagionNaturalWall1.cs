@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class ContagionNaturalWall1 : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(57, 55, 12));
             WallID.Sets.Conversion.Sandstone[Type] = true;

@@ -13,7 +13,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
+            Projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
             //Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/OnyxHook");
             //projectile.netImportant = true;
             //projectile.width = dims.Width;

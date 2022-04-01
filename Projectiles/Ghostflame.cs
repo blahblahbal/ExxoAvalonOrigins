@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.aiStyle = -1;
-            projectile.tileCollide = false;
-            projectile.friendly = false;
-            projectile.hostile = true;
-            projectile.timeLeft = 100;
-            projectile.light = 1f;
-            projectile.penetrate = -1;
-            projectile.magic = true;
-            projectile.ignoreWater = true;
-            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = -1;
+            Projectile.tileCollide = false;
+            Projectile.friendly = false;
+            Projectile.hostile = true;
+            Projectile.timeLeft = 100;
+            Projectile.light = 1f;
+            Projectile.penetrate = -1;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.ignoreWater = true;
+            Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
@@ -33,18 +33,18 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            int num890 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
+            int num890 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
             Main.dust[num890].velocity *= 0.1f;
             Main.dust[num890].scale = 1.3f;
             Main.dust[num890].noGravity = true;
-            if (projectile.ai[1] >= 20f)
+            if (Projectile.ai[1] >= 20f)
             {
-                projectile.velocity.Y = projectile.velocity.Y + 0.2f;
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.2f;
             }
-            projectile.rotation += 0.3f * projectile.direction;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation += 0.3f * Projectile.direction;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

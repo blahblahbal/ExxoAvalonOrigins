@@ -16,12 +16,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 0, 90);
-            item.height = dims.Height;
-            item.defense = 3;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 0, 90);
+            Item.height = dims.Height;
+            Item.defense = 3;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -34,19 +34,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<AmethystAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<TopazAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<SapphireAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<EmeraldAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<RubyAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<DiamondAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<TourmalineAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<PeridotAmulet>());
-            recipe.AddIngredient(ModContent.ItemType<ZirconAmulet>());
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<AmethystAmulet>()).AddIngredient(ModContent.ItemType<TopazAmulet>()).AddIngredient(ModContent.ItemType<SapphireAmulet>()).AddIngredient(ModContent.ItemType<EmeraldAmulet>()).AddIngredient(ModContent.ItemType<RubyAmulet>()).AddIngredient(ModContent.ItemType<DiamondAmulet>()).AddIngredient(ModContent.ItemType<TourmalineAmulet>()).AddIngredient(ModContent.ItemType<PeridotAmulet>()).AddIngredient(ModContent.ItemType<ZirconAmulet>()).AddTile(TileID.Anvils).Register();
         }
     }
 }

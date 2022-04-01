@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Ranged
 {
@@ -15,38 +16,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 15;
-            item.autoReuse = true;
-            item.shootSpeed = 14f;
-            item.useAmmo = AmmoID.Bullet;
-            item.ranged = true;
-            item.rare = ItemRarityID.Yellow;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 4;
-            item.knockBack = 5f;
-            item.shoot = ProjectileID.Bullet;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 780000;
-            item.reuseDelay = 14;
-            item.useAnimation = 16;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item11;
+            Item.damage = 15;
+            Item.autoReuse = true;
+            Item.shootSpeed = 14f;
+            Item.useAmmo = AmmoID.Bullet;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.Yellow;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 4;
+            Item.knockBack = 5f;
+            Item.shoot = ProjectileID.Bullet;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 780000;
+            Item.reuseDelay = 14;
+            Item.useAnimation = 16;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item11;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ClockworkAssaultRifle);
-            recipe.AddIngredient(ItemID.Shotgun);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 10);
-            recipe.AddIngredient(ItemID.SoulofFright);
-            recipe.AddIngredient(ItemID.SoulofSight);
-            recipe.AddIngredient(ItemID.SoulofMight);
-            recipe.AddIngredient(ModContent.ItemType<Material.LensApparatus>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 25);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.ClockworkAssaultRifle).AddIngredient(ItemID.Shotgun).AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 10).AddIngredient(ItemID.SoulofFright).AddIngredient(ItemID.SoulofSight).AddIngredient(ItemID.SoulofMight).AddIngredient(ModContent.ItemType<Material.LensApparatus>()).AddIngredient(ModContent.ItemType<Placeable.Tile.Onyx>(), 25).AddTile(TileID.MythrilAnvil).Register();
         }
         public override Vector2? HoldoutOffset()
         {
@@ -62,13 +52,13 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
                 num210 += (float)Main.rand.Next(-24, 25) * 0.05f;
                 num211 += (float)Main.rand.Next(-24, 25) * 0.05f;
                 Projectile.NewProjectile(position.X, position.Y, num210, num211, type, damage, knockBack, player.whoAmI, 0f, 0f);
-                Main.PlaySound(SoundID.Item, -1, -1, 11);
+                SoundEngine.PlaySound(SoundID.Item, -1, -1, 11);
             }
             return false;
         }
         public override bool ConsumeAmmo(Player player)
         {
-            return player.itemAnimation >= item.useAnimation - 4;
+            return player.itemAnimation >= Item.useAnimation - 4;
         }
     }
 }

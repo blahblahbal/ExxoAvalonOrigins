@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/BubbleBoost");
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 15, 0, 0);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 15, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

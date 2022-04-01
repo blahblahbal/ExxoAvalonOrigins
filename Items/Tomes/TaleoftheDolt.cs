@@ -16,28 +16,23 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.value = 15000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.value = 15000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeDamage += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.15f;
             player.statLifeMax2 += 20;
             player.statManaMax2 += 20;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<FlankersTome>());
-            recipe.AddIngredient(ModContent.ItemType<MistyPeachBlossoms>());
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<FlankersTome>()).AddIngredient(ModContent.ItemType<MistyPeachBlossoms>()).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

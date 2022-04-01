@@ -16,34 +16,29 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 11;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.crit += 5;
-            item.pick = 80;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 13;
-            item.knockBack = 2f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 50000;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 11;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.crit += 5;
+            Item.pick = 80;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 13;
+            Item.knockBack = 2f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 50000;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.RhodiumBar>(), 13);
-            recipe.AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.RhodiumBar>(), 13).AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 2).AddTile(TileID.Anvils).Register();
         }
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == mod.ItemType("RhodiumPickaxe"))
+            if (player.inventory[player.selectedItem].type == Mod.Find<ModItem>("RhodiumPickaxe").Type)
             {
                 player.pickSpeed -= 0.5f;
             }

@@ -18,27 +18,19 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 33;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 33;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 23);
-            recipe.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 4);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 23).AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 40).AddIngredient(ModContent.ItemType<AncientBodyplate>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 4).AddIngredient(ModContent.ItemType<Placeable.Tile.Opal>(), 10).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            Texture2D texture = mod.GetTexture("Items/Armor/SpectrumBreastplate_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Glow").Value;
             spriteBatch.Draw(texture, position, frame, new Color(SpectrumHelmet.R, SpectrumHelmet.G, SpectrumHelmet.B), 0f, origin, scale, SpriteEffects.None, 0f);
         }
         public override void UpdateEquip(Player player)

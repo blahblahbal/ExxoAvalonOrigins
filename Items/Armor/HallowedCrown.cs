@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 12;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.value = 250000;
-            item.height = dims.Height;
+            Item.defense = 12;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.value = 250000;
+            Item.height = dims.Height;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -32,13 +32,13 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Minion damage is increased by 5%";
-            player.minionDamage += 0.05f;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.minionKB += 0.12f;
-            player.minionDamage += 0.12f;
+            player.GetDamage(DamageClass.Summon) += 0.12f;
             player.maxMinions += 2;
         }
     }

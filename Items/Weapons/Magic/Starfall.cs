@@ -17,32 +17,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 1000;
-            item.mana = 400;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.knockBack = 16f;
-            item.useTime = 35;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.useAnimation = 35;
-            item.height = dims.Height;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 1000;
+            Item.mana = 400;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.knockBack = 16f;
+            Item.useTime = 35;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.useAnimation = 35;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>());
-            recipe.AddIngredient(ItemID.FallenStar, 200);
-            recipe.AddIngredient(ItemID.MeteoriteBar, 150);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 17);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 35);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.BrokenVigilanteTome>()).AddIngredient(ItemID.FallenStar, 200).AddIngredient(ItemID.MeteoriteBar, 150).AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 17).AddIngredient(ModContent.ItemType<Material.SoulofDelight>(), 35).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             //float x = Main.mouseX + Main.screenPosition.X;
             //float y = Main.mouseY + Main.screenPosition.Y - Main.rand.Next(500, 800);

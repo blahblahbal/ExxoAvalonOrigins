@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -16,47 +17,47 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/TroxiniumChainsaw");
-            projectile.width = dims.Width * 18 / 56;
-            projectile.height = dims.Height * 18 / 56 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.hide = true;
-            projectile.ownerHitCheck = true;
-            projectile.melee = true;
-            projectile.scale = 1.16f;
+            Projectile.width = dims.Width * 18 / 56;
+            Projectile.height = dims.Height * 18 / 56 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.hide = true;
+            Projectile.ownerHitCheck = true;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.scale = 1.16f;
         }
 
         public override void AI()
         {
-            if (projectile.type == ProjectileID.ChlorophyteJackhammer)
+            if (Projectile.type == ProjectileID.ChlorophyteJackhammer)
             {
-                projectile.frameCounter++;
-                if (projectile.frameCounter >= 4)
+                Projectile.frameCounter++;
+                if (Projectile.frameCounter >= 4)
                 {
-                    projectile.frameCounter = 0;
-                    projectile.frame++;
+                    Projectile.frameCounter = 0;
+                    Projectile.frame++;
                 }
-                if (projectile.frame > 3)
+                if (Projectile.frame > 3)
                 {
-                    projectile.frame = 0;
+                    Projectile.frame = 0;
                 }
             }
-            if (projectile.soundDelay <= 0)
+            if (Projectile.soundDelay <= 0)
             {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 22);
-                projectile.soundDelay = 30;
+                SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 22);
+                Projectile.soundDelay = 30;
             }
-            if (Main.myPlayer == projectile.owner)
+            if (Main.myPlayer == Projectile.owner)
             {
-                if (Main.player[projectile.owner].channel)
+                if (Main.player[Projectile.owner].channel)
                 {
-                    var num316 = Main.player[projectile.owner].inventory[Main.player[projectile.owner].selectedItem].shootSpeed * projectile.scale;
-                    var vector22 = new Vector2(Main.player[projectile.owner].position.X + Main.player[projectile.owner].width * 0.5f, Main.player[projectile.owner].position.Y + Main.player[projectile.owner].height * 0.5f);
+                    var num316 = Main.player[Projectile.owner].inventory[Main.player[Projectile.owner].selectedItem].shootSpeed * Projectile.scale;
+                    var vector22 = new Vector2(Main.player[Projectile.owner].position.X + Main.player[Projectile.owner].width * 0.5f, Main.player[Projectile.owner].position.Y + Main.player[Projectile.owner].height * 0.5f);
                     var num317 = Main.mouseX + Main.screenPosition.X - vector22.X;
                     var num318 = Main.mouseY + Main.screenPosition.Y - vector22.Y;
-                    if (Main.player[projectile.owner].gravDir == -1f)
+                    if (Main.player[Projectile.owner].gravDir == -1f)
                     {
                         num318 = Main.screenHeight - Main.mouseY + Main.screenPosition.Y - vector22.Y;
                     }
@@ -65,46 +66,46 @@ namespace ExxoAvalonOrigins.Projectiles
                     num319 = num316 / num319;
                     num317 *= num319;
                     num318 *= num319;
-                    if (num317 != projectile.velocity.X || num318 != projectile.velocity.Y)
+                    if (num317 != Projectile.velocity.X || num318 != Projectile.velocity.Y)
                     {
-                        projectile.netUpdate = true;
+                        Projectile.netUpdate = true;
                     }
-                    projectile.velocity.X = num317;
-                    projectile.velocity.Y = num318;
+                    Projectile.velocity.X = num317;
+                    Projectile.velocity.Y = num318;
                 }
                 else
                 {
-                    projectile.Kill();
+                    Projectile.Kill();
                 }
             }
-            if (projectile.velocity.X > 0f)
+            if (Projectile.velocity.X > 0f)
             {
-                Main.player[projectile.owner].ChangeDir(1);
+                Main.player[Projectile.owner].ChangeDir(1);
             }
-            else if (projectile.velocity.X < 0f)
+            else if (Projectile.velocity.X < 0f)
             {
-                Main.player[projectile.owner].ChangeDir(-1);
+                Main.player[Projectile.owner].ChangeDir(-1);
             }
-            projectile.spriteDirection = projectile.direction;
-            Main.player[projectile.owner].ChangeDir(projectile.direction);
-            Main.player[projectile.owner].heldProj = projectile.whoAmI;
-            Main.player[projectile.owner].itemTime = 2;
-            Main.player[projectile.owner].itemAnimation = 2;
-            projectile.position.X = Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2 - projectile.width / 2;
-            projectile.position.Y = Main.player[projectile.owner].position.Y + Main.player[projectile.owner].height / 2 - projectile.height / 2;
-            projectile.rotation = (float)(Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.5700000524520874);
-            if (Main.player[projectile.owner].direction == 1)
+            Projectile.spriteDirection = Projectile.direction;
+            Main.player[Projectile.owner].ChangeDir(Projectile.direction);
+            Main.player[Projectile.owner].heldProj = Projectile.whoAmI;
+            Main.player[Projectile.owner].itemTime = 2;
+            Main.player[Projectile.owner].itemAnimation = 2;
+            Projectile.position.X = Main.player[Projectile.owner].position.X + Main.player[Projectile.owner].width / 2 - Projectile.width / 2;
+            Projectile.position.Y = Main.player[Projectile.owner].position.Y + Main.player[Projectile.owner].height / 2 - Projectile.height / 2;
+            Projectile.rotation = (float)(Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.5700000524520874);
+            if (Main.player[Projectile.owner].direction == 1)
             {
-                Main.player[projectile.owner].itemRotation = (float)Math.Atan2(projectile.velocity.Y * projectile.direction, projectile.velocity.X * projectile.direction);
+                Main.player[Projectile.owner].itemRotation = (float)Math.Atan2(Projectile.velocity.Y * Projectile.direction, Projectile.velocity.X * Projectile.direction);
             }
             else
             {
-                Main.player[projectile.owner].itemRotation = (float)Math.Atan2(projectile.velocity.Y * projectile.direction, projectile.velocity.X * projectile.direction);
+                Main.player[Projectile.owner].itemRotation = (float)Math.Atan2(Projectile.velocity.Y * Projectile.direction, Projectile.velocity.X * Projectile.direction);
             }
-            projectile.velocity.X = projectile.velocity.X * (1f + Main.rand.Next(-3, 4) * 0.01f);
+            Projectile.velocity.X = Projectile.velocity.X * (1f + Main.rand.Next(-3, 4) * 0.01f);
             if (Main.rand.Next(6) == 0)
             {
-                var num320 = Dust.NewDust(projectile.position + (projectile.velocity * Main.rand.Next(6, 10)) * 0.1f, projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 80, default(Color), 1.4f);
+                var num320 = Dust.NewDust(Projectile.position + (Projectile.velocity * Main.rand.Next(6, 10)) * 0.1f, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 80, default(Color), 1.4f);
                 var dust52 = Main.dust[num320];
                 dust52.position.X = dust52.position.X - 4f;
                 Main.dust[num320].noGravity = true;

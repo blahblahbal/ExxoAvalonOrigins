@@ -18,21 +18,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/DivineLightTreads");
-            item.defense = 15;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 1, 80, 0);
-            item.height = dims.Height;
+            Item.defense = 15;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 1, 80, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PixieDust, 20);
-            recipe.AddIngredient(ItemID.HallowedBar, 20);
-            recipe.AddIngredient(ItemID.SoulofLight, 15);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.PixieDust, 20).AddIngredient(ItemID.HallowedBar, 20).AddIngredient(ItemID.SoulofLight, 15).AddTile(TileID.MythrilAnvil).Register();
         }
         public override void UpdateEquip(Player player)
         {

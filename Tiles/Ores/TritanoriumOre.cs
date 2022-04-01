@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class TritanoriumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.DarkGreen, LanguageManager.Instance.GetText("Tritanorium Ore"));
             Main.tileSolid[Type] = true;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
             Main.tileValue[Type] = 830;
-            drop = mod.ItemType("TritanoriumOre");
+            drop = Mod.Find<ModItem>("TritanoriumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 210;
@@ -50,8 +50,8 @@ namespace ExxoAvalonOrigins.Tiles.Ores
                 zero = Vector2.Zero;
             }
             Vector2 pos = new Vector2(i * 16, j * 16) + zero - Main.screenPosition;
-            Rectangle frame = new Rectangle(tile.frameX, tile.frameY, 16, 16);
-            Main.spriteBatch.Draw(mod.GetTexture("Tiles/Ores/TritanoriumOre_Glow"), pos, frame, Color.White);
+            Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
+            Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Tiles/Ores/TritanoriumOre_Glow").Value, pos, frame, Color.White);
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {

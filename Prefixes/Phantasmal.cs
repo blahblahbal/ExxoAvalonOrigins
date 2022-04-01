@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Phantasmal", new Phantasmal());
+                Mod.AddPrefix("Phantasmal", new Phantasmal());
             }
             return false;
         }

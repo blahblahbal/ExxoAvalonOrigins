@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -25,7 +26,7 @@ namespace ExxoAvalonOrigins.UI
         public override void FirstMouseOver(UIMouseEvent evt)
         {
             base.FirstMouseOver(evt);
-            Main.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(SoundID.MenuTick);
         }
 
         public void SetVisibility(float whenInactive, float whenActive)

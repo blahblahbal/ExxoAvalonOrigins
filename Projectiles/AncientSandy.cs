@@ -15,22 +15,22 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/AncientSandy");
-            projectile.width = dims.Width * 20 / 16;
-            projectile.height = dims.Height * 20 / 16 / Main.projFrames[projectile.type];
-            projectile.scale = 1f;
-            projectile.alpha = 255;
-            projectile.aiStyle = -1;
-            projectile.timeLeft = 3600;
-            projectile.friendly = true;
-            projectile.penetrate = 1;
-            projectile.ignoreWater = true;
-            projectile.tileCollide = true;
+            Projectile.width = dims.Width * 20 / 16;
+            Projectile.height = dims.Height * 20 / 16 / Main.projFrames[Projectile.type];
+            Projectile.scale = 1f;
+            Projectile.alpha = 255;
+            Projectile.aiStyle = -1;
+            Projectile.timeLeft = 3600;
+            Projectile.friendly = true;
+            Projectile.penetrate = 1;
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = true;
         }
 
         public override void AI()
         {
             var newColor2 = default(Color);
-            var num972 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Gold, 0f, 0f, 100, newColor2, 2f);
+            var num972 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Gold, 0f, 0f, 100, newColor2, 2f);
             Main.dust[num972].noGravity = true;
             return;
         }

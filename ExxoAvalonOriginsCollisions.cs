@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using BloodiedSpike = ExxoAvalonOrigins.Tiles.BloodiedSpike;
 using NastySpike = ExxoAvalonOrigins.Tiles.NastySpike;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins
 {
@@ -35,13 +36,13 @@ namespace ExxoAvalonOrigins
             {
                 for (int j = num3; j < num4; j++)
                 {
-                    if (Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].active() && Main.tileSolid[(int)Main.tile[i, j].type] && !Main.tileSolidTop[(int)Main.tile[i, j].type])
+                    if (Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].HasTile && Main.tileSolid[(int)Main.tile[i, j].TileType] && !Main.tileSolidTop[(int)Main.tile[i, j].TileType])
                     {
                         Vector2 vector;
                         vector.X = (float)(i * 16);
                         vector.Y = (float)(j * 16);
                         int num5 = 16;
-                        if (Main.tile[i, j].halfBrick())
+                        if (Main.tile[i, j]IsHalfBlock)
                         {
                             vector.Y += 8f;
                             num5 -= 8;
@@ -81,13 +82,13 @@ namespace ExxoAvalonOrigins
             {
                 for (int j = num3; j < num4; j++)
                 {
-                    if ((Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].active() && Main.tileSolid[(int)Main.tile[i, j].type] && !Main.tileSolidTop[(int)Main.tile[i, j].type] && Main.tile[i, j].type == ModContent.TileType<DemonSpikescale>()) || Main.tile[i, j].type == ModContent.TileType<BloodiedSpike>())
+                    if ((Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].HasTile && Main.tileSolid[(int)Main.tile[i, j].TileType] && !Main.tileSolidTop[(int)Main.tile[i, j].TileType] && Main.tile[i, j].TileType == ModContent.TileType<DemonSpikescale>()) || Main.tile[i, j].TileType == ModContent.TileType<BloodiedSpike>())
                     {
                         Vector2 vector;
                         vector.X = (float)(i * 16);
                         vector.Y = (float)(j * 16);
                         int num5 = 16;
-                        if (Main.tile[i, j].halfBrick())
+                        if (Main.tile[i, j]IsHalfBlock)
                         {
                             vector.Y += 8f;
                             num5 -= 8;
@@ -127,7 +128,7 @@ namespace ExxoAvalonOrigins
             {
                 for (int j = num3; j <= num4; j++)
                 {
-                    if (Main.tile[i, j] != null && Main.tile[i, j].active() && (Main.tile[i, j].type == ModContent.TileType<DemonSpikescale>() || Main.tile[i, j].type == ModContent.TileType<BloodiedSpike>() || Main.tile[i, j].type == ModContent.TileType<NastySpike>()))
+                    if (Main.tile[i, j] != null && Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == ModContent.TileType<DemonSpikescale>() || Main.tile[i, j].TileType == ModContent.TileType<BloodiedSpike>() || Main.tile[i, j].TileType == ModContent.TileType<NastySpike>()))
                     {
                         return true;
                     }
@@ -157,11 +158,11 @@ namespace ExxoAvalonOrigins
             {
                 num4 = Main.maxTilesY;
             }
-            if (Main.tile[num, num3].type == ModContent.TileType<PlayerSensor>() ^ Main.tile[num + 1, num3].type == ModContent.TileType<PlayerSensor>() ^
-                Main.tile[num, num3 + 1].type == ModContent.TileType<PlayerSensor>() ^ Main.tile[num + 1, num3 + 1].type == ModContent.TileType<PlayerSensor>() ^
-                Main.tile[num, num3 + 2].type == ModContent.TileType<PlayerSensor>() ^ Main.tile[num + 1, num3 + 2].type == ModContent.TileType<PlayerSensor>())
+            if (Main.tile[num, num3].TileType == ModContent.TileType<PlayerSensor>() ^ Main.tile[num + 1, num3].TileType == ModContent.TileType<PlayerSensor>() ^
+                Main.tile[num, num3 + 1].TileType == ModContent.TileType<PlayerSensor>() ^ Main.tile[num + 1, num3 + 1].TileType == ModContent.TileType<PlayerSensor>() ^
+                Main.tile[num, num3 + 2].TileType == ModContent.TileType<PlayerSensor>() ^ Main.tile[num + 1, num3 + 2].TileType == ModContent.TileType<PlayerSensor>())
             {
-                Main.PlaySound(28, num * 16, num3 * 16, 0);
+                SoundEngine.PlaySound(28, num * 16, num3 * 16, 0);
                 Wiring.TripWire(num, num3, 1, 1);
                 NetMessage.SendData(59, -1, -1, null, num, num3, 0f, 0f, 0);
                 return true;
@@ -170,7 +171,7 @@ namespace ExxoAvalonOrigins
             //{
             //    for (int j = num3; j < num4; j++)
             //    {
-            //        if (Main.tile[i, j] != null && Main.tile[i, j].active() && Main.tile[i, j].type == ModContent.TileType<PlayerSensor>())
+            //        if (Main.tile[i, j] != null && Main.tile[i, j].HasTile && Main.tile[i, j].type == ModContent.TileType<PlayerSensor>())
             //        {
             //            Vector2 vector;
             //            vector.X = i * 16;

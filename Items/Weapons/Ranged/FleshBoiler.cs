@@ -14,22 +14,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         }
         public override void SetDefaults()
         {
-            item.damage = 55;
-            item.ranged = true;
-            item.width = 74;
-            item.height = 34;
-            item.useTime = 4;
-            item.useAnimation = 20;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.noMelee = true;
-            item.knockBack = 0.6f;
-            item.value = 10000;
-            item.rare = ItemRarityID.Red;
-            item.UseSound = SoundID.Item34;
-            item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.FleshFire>();
-            item.shootSpeed = 10f;
-            item.useAmmo = ModContent.ItemType<Canister>();
+            Item.damage = 55;
+            Item.DamageType = DamageClass.Ranged;
+            Item.width = 74;
+            Item.height = 34;
+            Item.useTime = 4;
+            Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.noMelee = true;
+            Item.knockBack = 0.6f;
+            Item.value = 10000;
+            Item.rare = ItemRarityID.Red;
+            Item.UseSound = SoundID.Item34;
+            Item.autoReuse = true;
+            Item.shoot = ModContent.ProjectileType<Projectiles.FleshFire>();
+            Item.shootSpeed = 10f;
+            Item.useAmmo = ModContent.ItemType<Canister>();
         }
         // Vanilla Flamethrower uses the commented out code below to prevent shooting while underwater, but this weapon can shoot underwater, so we don't use this code. The projectile also is specifically programmed to survive underwater.
         /*public override bool CanUseItem(Player player)

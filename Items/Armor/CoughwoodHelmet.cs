@@ -15,10 +15,10 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 2;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 2, 0);
-            item.height = dims.Height;
+            Item.defense = 2;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.height = dims.Height;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)

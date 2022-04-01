@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class NaquadahAnvil : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(66, 66, 255), LanguageManager.Instance.GetText("Naquadah Anvil"));
             TileObjectData.newTile.Width = 2;

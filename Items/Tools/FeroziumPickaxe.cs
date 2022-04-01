@@ -15,26 +15,26 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 17;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.crit += 6;
-            item.pick = 195;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.knockBack = 3f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 250000;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 17;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.crit += 6;
+            Item.pick = 195;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.knockBack = 3f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 250000;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
 
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == mod.ItemType("FeroziumPickaxe"))
+            if (player.inventory[player.selectedItem].type == Mod.Find<ModItem>("FeroziumPickaxe").Type)
             {
                 player.pickSpeed -= 0.5f;
             }

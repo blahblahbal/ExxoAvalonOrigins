@@ -15,18 +15,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            item.width = item.height = 56;
+            Item.width = Item.height = 56;
             //item.projFireDelay = 240;
-            item.knockBack = 12f;
-            item.melee = item.useTurn = item.autoReuse = true;
-            item.rare = 7;
-            item.UseSound = SoundID.Item1;
-            item.useStyle = item.maxStack = 1;
-            item.useAnimation = item.useTime = 35;
+            Item.knockBack = 12f;
+            Item.DamageType = // item.useTurn = item.autoReuse = true /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+            Item.rare = 7;
+            Item.UseSound = SoundID.Item1;
+            Item.useStyle = Item.maxStack = 1;
+            Item.useAnimation = Item.useTime = 35;
             //item.shoot = ModContent.ProjectileType<Projectiles.Shell>();
-            item.shootSpeed = 5.5f;
-            item.damage = 87;
-            item.value = Item.sellPrice(0, 6, 20, 0);
+            Item.shootSpeed = 5.5f;
+            Item.damage = 87;
+            Item.value = Item.sellPrice(0, 6, 20, 0);
         }
         public override void HoldItem(Player player)
         {

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class UnvolanditeOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 8f;
             AddMapEntry(new Color(78, 79, 41), LanguageManager.Instance.GetText("Unvolandite"));
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileBlockLight[Type] = true;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 2100;
-            drop = mod.ItemType("UnvolanditeOre");
+            drop = Mod.Find<ModItem>("UnvolanditeOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 250;

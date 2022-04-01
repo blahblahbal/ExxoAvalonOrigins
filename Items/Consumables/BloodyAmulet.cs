@@ -17,15 +17,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item4;
-            item.consumable = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 40;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 20;
-            item.useAnimation = 40;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item4;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 40;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 20;
+            Item.useAnimation = 40;
+            Item.height = dims.Height;
         }
         public override bool CanUseItem(Player player)
         {
@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             if (Main.snowMoon) return false;
             return true;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             Main.dayTime = false;
             Main.time = 0;

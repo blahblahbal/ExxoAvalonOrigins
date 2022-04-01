@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class OrangeBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(163, 66, 14));
             Main.tileSolid[Type] = true;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[TileID.WoodBlock][Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileDungeon[Type] = true;
-            drop = mod.ItemType("OrangeBrick");
+            drop = Mod.Find<ModItem>("OrangeBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.Coralstone;

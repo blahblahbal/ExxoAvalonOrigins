@@ -15,23 +15,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 171;
-            item.noUseGraphic = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 5f;
-            item.rare = ItemRarityID.Pink;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 16;
-            item.knockBack = 5.6f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ShatterLance>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 105000;
-            item.useAnimation = 16;
-            item.height = dims.Height;
-            item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 171;
+            Item.noUseGraphic = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 5f;
+            Item.rare = ItemRarityID.Pink;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 16;
+            Item.knockBack = 5.6f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.ShatterLance>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 105000;
+            Item.useAnimation = 16;
+            Item.height = dims.Height;
+            Item.autoReuse = true;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override bool CanUseItem(Player player)
         {
-            return player.ownedProjectileCounts[item.shoot] < 1;
+            return player.ownedProjectileCounts[Item.shoot] < 1;
         }
     }
 }

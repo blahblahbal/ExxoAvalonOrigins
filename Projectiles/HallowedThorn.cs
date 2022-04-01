@@ -17,38 +17,38 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/HallowedThorn");
-            projectile.width = dims.Width * 28 / 32;
-            projectile.height = dims.Height * 28 / 32 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.alpha = 255;
-            projectile.ignoreWater = true;
-            projectile.magic = true;
+            Projectile.width = dims.Width * 28 / 32;
+            Projectile.height = dims.Height * 28 / 32 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.alpha = 255;
+            Projectile.ignoreWater = true;
+            Projectile.DamageType = DamageClass.Magic;
         }
 
         public override void AI()
         {
-            var vector73 = projectile.position + new Vector2(projectile.width / 2, projectile.height / 2);
-            projectile.position -= projectile.velocity;
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57079637f;
-            if (projectile.ai[0] == 0f)
+            var vector73 = Projectile.position + new Vector2(Projectile.width / 2, Projectile.height / 2);
+            Projectile.position -= Projectile.velocity;
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57079637f;
+            if (Projectile.ai[0] == 0f)
             {
-                projectile.alpha -= 50;
-                if (projectile.alpha <= 0)
+                Projectile.alpha -= 50;
+                if (Projectile.alpha <= 0)
                 {
-                    projectile.alpha = 0;
-                    projectile.ai[0] = 1f;
-                    if (projectile.ai[1] == 0f)
+                    Projectile.alpha = 0;
+                    Projectile.ai[0] = 1f;
+                    if (Projectile.ai[1] == 0f)
                     {
-                        projectile.ai[1] += 1f;
-                        projectile.position += projectile.velocity * 1f;
+                        Projectile.ai[1] += 1f;
+                        Projectile.position += Projectile.velocity * 1f;
                     }
-                    if (projectile.type == ModContent.ProjectileType<HallowedThorn>() && Main.myPlayer == projectile.owner)
+                    if (Projectile.type == ModContent.ProjectileType<HallowedThorn>() && Main.myPlayer == Projectile.owner)
                     {
                         var num928 = ModContent.ProjectileType<HallowedThorn>();
-                        if (projectile.ai[1] >= 11f)
+                        if (Projectile.ai[1] >= 11f)
                         {
                             num928 = ModContent.ProjectileType<HallowedThornEnd>();
                         }
@@ -56,29 +56,29 @@ namespace ExxoAvalonOrigins.Projectiles
                         {
                             num928 = ModContent.ProjectileType<HallowedThorn>();
                         }
-                        if ((int)projectile.ai[1] % 3 == 0)
+                        if ((int)Projectile.ai[1] % 3 == 0)
                         {
-                            var point = new Vector2(projectile.velocity.X, projectile.velocity.Y);
+                            var point = new Vector2(Projectile.velocity.X, Projectile.velocity.Y);
                             var num929 = 0.3926991f * (float)Main.rand.NextDouble();
-                            projectile.velocity = projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().RotateAboutOrigin(point, num929);
-                            var num930 = Projectile.NewProjectile(vector73.X + projectile.velocity.X, vector73.Y + projectile.velocity.Y, projectile.velocity.X, projectile.velocity.Y, num928, projectile.damage, projectile.knockBack, projectile.owner, 0f, 0f);
+                            Projectile.velocity = Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().RotateAboutOrigin(point, num929);
+                            var num930 = Projectile.NewProjectile(vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                             var nprojectile = Main.projectile[num930];
-                            nprojectile.damage = projectile.damage;
-                            nprojectile.ai[1] = projectile.ai[1] + 1f;
+                            nprojectile.damage = Projectile.damage;
+                            nprojectile.ai[1] = Projectile.ai[1] + 1f;
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num930, 0f, 0f, 0f, 0);
                             num929 = 0.3926991f * (float)Main.rand.NextDouble();
-                            nprojectile.velocity = projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().RotateAboutOrigin(point, -num929);
-                            num930 = Projectile.NewProjectile(vector73.X + projectile.velocity.X, vector73.Y + projectile.velocity.Y, projectile.velocity.X, projectile.velocity.Y, num928, projectile.damage, projectile.knockBack, projectile.owner, 0f, 0f);
+                            nprojectile.velocity = Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().RotateAboutOrigin(point, -num929);
+                            num930 = Projectile.NewProjectile(vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                             nprojectile = Main.projectile[num930];
-                            nprojectile.damage = projectile.damage;
-                            nprojectile.ai[1] = projectile.ai[1] + 1f;
+                            nprojectile.damage = Projectile.damage;
+                            nprojectile.ai[1] = Projectile.ai[1] + 1f;
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num930, 0f, 0f, 0f, 0);
                             return;
                         }
-                        var num931 = Projectile.NewProjectile(vector73.X + projectile.velocity.X, vector73.Y + projectile.velocity.Y, projectile.velocity.X, projectile.velocity.Y, num928, projectile.damage, projectile.knockBack, projectile.owner, 0f, 0f);
+                        var num931 = Projectile.NewProjectile(vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                         var projectile2 = Main.projectile[num931];
-                        projectile2.damage = projectile.damage;
-                        projectile2.ai[1] = projectile.ai[1] + 1f;
+                        projectile2.damage = Projectile.damage;
+                        projectile2.ai[1] = Projectile.ai[1] + 1f;
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num931, 0f, 0f, 0f, 0);
                         return;
                     }
@@ -86,18 +86,18 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             else
             {
-                if (projectile.alpha < 170 && projectile.alpha + 5 >= 170)
+                if (Projectile.alpha < 170 && Projectile.alpha + 5 >= 170)
                 {
                     for (var num932 = 0; num932 < 3; num932++)
                     {
-                        Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, projectile.velocity.X * 0.025f, projectile.velocity.Y * 0.025f, 170, default(Color), 1.2f);
+                        Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, Projectile.velocity.X * 0.025f, Projectile.velocity.Y * 0.025f, 170, default(Color), 1.2f);
                     }
-                    Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Gold, 0f, 0f, 170, default(Color), 1.1f);
+                    Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, 0f, 0f, 170, default(Color), 1.1f);
                 }
-                projectile.alpha += 5;
-                if (projectile.alpha >= 255)
+                Projectile.alpha += 5;
+                if (Projectile.alpha >= 255)
                 {
-                    projectile.Kill();
+                    Projectile.Kill();
                     return;
                 }
             }

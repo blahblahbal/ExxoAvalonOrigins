@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Hectic", new Hectic());
+                Mod.AddPrefix("Hectic", new Hectic());
             }
             return false;
         }

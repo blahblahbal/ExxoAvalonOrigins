@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class DarkMatterSoilWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(103, 48, 84));
             dustType = DustID.UnholyWater;

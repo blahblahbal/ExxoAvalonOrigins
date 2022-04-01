@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class IronBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(140, 101, 80));
             Main.tileSolid[Type] = true;
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("IronBrick");
+            drop = Mod.Find<ModItem>("IronBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.Iron;

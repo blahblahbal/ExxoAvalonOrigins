@@ -15,37 +15,22 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.Titanskin>();
-            item.consumable = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 14400;
-            item.UseSound = SoundID.Item3;
+            Item.buffType = ModContent.BuffType<Buffs.Titanskin>();
+            Item.consumable = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 14400;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.RhodiumOre>());
-            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
-            recipe.AddIngredient(ItemID.SoulofMight);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.OsmiumOre>());
-            recipe.AddIngredient(ModContent.ItemType<Material.Sweetstem>());
-            recipe.AddIngredient(ItemID.SoulofMight);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.BottledLava>()).AddIngredient(ModContent.ItemType<Placeable.Tile.RhodiumOre>()).AddIngredient(ModContent.ItemType<Material.Sweetstem>()).AddIngredient(ItemID.SoulofMight).AddTile(TileID.Bottles).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.BottledLava>()).AddIngredient(ModContent.ItemType<Placeable.Tile.OsmiumOre>()).AddIngredient(ModContent.ItemType<Material.Sweetstem>()).AddIngredient(ItemID.SoulofMight).AddTile(TileID.Bottles).Register();
         }
     }
 }

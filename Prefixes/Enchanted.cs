@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Enchanted", new Enchanted());
+                Mod.AddPrefix("Enchanted", new Enchanted());
             }
             return false;
         }

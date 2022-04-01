@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class HeartstoneBathtub : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;

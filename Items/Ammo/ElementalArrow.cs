@@ -15,27 +15,22 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 17;
-            item.shootSpeed = 3.5f;
-            item.ammo = AmmoID.Arrow;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.ElementalArrow>();
-            item.value = Item.sellPrice(0, 0, 3, 0);
-            item.maxStack = 2000;
-            item.height = dims.Height;
+            Item.damage = 17;
+            Item.shootSpeed = 3.5f;
+            Item.ammo = AmmoID.Arrow;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.knockBack = 5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.ElementalArrow>();
+            Item.value = Item.sellPrice(0, 0, 3, 0);
+            Item.maxStack = 2000;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.WoodenArrow, 250);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 2);
-            recipe.AddTile(ModContent.TileType<Tiles.CaesiumForge>());
-            recipe.SetResult(this, 250);
-            recipe.AddRecipe();
+            CreateRecipe(250).AddIngredient(ItemID.WoodenArrow, 250).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 2).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
         }
     }
 }

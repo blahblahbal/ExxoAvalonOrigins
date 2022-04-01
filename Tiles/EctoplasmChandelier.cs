@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class EctoplasmChandelier : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -35,7 +35,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             Tile tile = Main.tile[i, j];
-            if (tile.frameX == 0)
+            if (tile.TileFrameX == 0)
             {
                 r = 0.9f;
                 g = 0.45f;
@@ -50,8 +50,8 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void HitWire(int i, int j)
         {
-            int x = i - Main.tile[i, j].frameX / 18 % 3;
-            int y = j - Main.tile[i, j].frameY / 18 % 3;
+            int x = i - Main.tile[i, j].TileFrameX / 18 % 3;
+            int y = j - Main.tile[i, j].TileFrameY / 18 % 3;
             for (int l = x; l < x + 3; l++)
             {
                 for (int m = y; m < y + 3; m++)
@@ -60,15 +60,15 @@ namespace ExxoAvalonOrigins.Tiles
                     {
                         Main.tile[l, m] = new Tile();
                     }
-                    if (Main.tile[l, m].active() && Main.tile[l, m].type == Type)
+                    if (Main.tile[l, m].HasTile && Main.tile[l, m].TileType == Type)
                     {
-                        if (Main.tile[l, m].frameX < 54)
+                        if (Main.tile[l, m].TileFrameX < 54)
                         {
-                            Main.tile[l, m].frameX += 54;
+                            Main.tile[l, m].TileFrameX += 54;
                         }
                         else
                         {
-                            Main.tile[l, m].frameX -= 54;
+                            Main.tile[l, m].TileFrameX -= 54;
                         }
                     }
                 }
@@ -92,8 +92,8 @@ namespace ExxoAvalonOrigins.Tiles
         {
             ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)((ulong)i));
             Color color = new Color(224, 104, 147, 0);
-            int frameX = Main.tile[i, j].frameX;
-            int frameY = Main.tile[i, j].frameY;
+            int frameX = Main.tile[i, j].TileFrameX;
+            int frameY = Main.tile[i, j].TileFrameY;
             int width = 18;
             int offsetY = 0;
             int height = 18;
@@ -107,7 +107,7 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 float x = (float)Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 float y = (float)Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/EctoplasmChandelier_Flame"), new Vector2((float)(i * 16 - (int)Main.screenPosition.X + offsetX) - (width - 16f) / 2f + x, (float)(j * 16 - (int)Main.screenPosition.Y + offsetY) + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Tiles/EctoplasmChandelier_Flame").Value, new Vector2((float)(i * 16 - (int)Main.screenPosition.X + offsetX) - (width - 16f) / 2f + x, (float)(j * 16 - (int)Main.screenPosition.Y + offsetY) + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
     }

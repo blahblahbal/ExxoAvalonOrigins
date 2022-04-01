@@ -33,21 +33,21 @@ namespace ExxoAvalonOrigins.World.Structures
                         if (fX > x + mult * 4 + 6 - width && fX < x + mult * 4 + 6 ||
                             fX > x - mult * 4 - 1 && fX < x - mult * 4 + width - 2)
                         {
-                            Main.tile[fX, fY].type = 0;
-                            Main.tile[fX, fY].wall = WallID.IceBrick;
+                            Main.tile[fX, fY].TileType = 0;
+                            Main.tile[fX, fY].WallType = WallID.IceBrick;
                             WorldGen.SquareWallFrame(fX, fY);
                         }
                         if (fX > x + mult * 4 + 6 - 2 * width + 2 && fX < x + mult * 4 + 6 - width + 2 ||
                             fX > x - mult * 4 + width - 3 && fX < x - mult * 4 + 2 * width - 4)
                         {
-                            Main.tile[fX, fY].type = 0;
-                            Main.tile[fX, fY].wall = WallID.IceBrick;
+                            Main.tile[fX, fY].TileType = 0;
+                            Main.tile[fX, fY].WallType = WallID.IceBrick;
                             WorldGen.SquareWallFrame(fX, fY);
                         }
                         if (fX <= x + mult * 4 + 6 - 2 * width + 2 && fX >= x - mult * 4 + 2 * width - 4)
                         {
-                            Main.tile[fX, fY].type = 0;
-                            Main.tile[fX, fY].wall = WallID.IceBrick;
+                            Main.tile[fX, fY].TileType = 0;
+                            Main.tile[fX, fY].WallType = WallID.IceBrick;
                             WorldGen.SquareWallFrame(fX, fY);
                         }
                     }
@@ -57,7 +57,7 @@ namespace ExxoAvalonOrigins.World.Structures
             {
                 for (int fY = y + mult + 4; fY <= y + 13 + mod1; fY++)
                 {
-                    if (Main.tile[fX, fY].type > 0) Main.tile[fX, fY].active(true);
+                    if (Main.tile[fX, fY].TileType > 0) Main.tile[fX, fY].active(true);
                 }
             }
             #endregion
@@ -67,13 +67,13 @@ namespace ExxoAvalonOrigins.World.Structures
                 if (tower1X % 2 == 0)
                 {
                     Main.tile[tower1X, y].active(true);
-                    Main.tile[tower1X, y].type = TileID.IceBrick;
+                    Main.tile[tower1X, y].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, y, resetSlope: true);
                 }
                 if (tower1X > x - width - mult * 4 && tower1X < x - mult * 4)
                 {
                     Main.tile[tower1X, y + 4].active(true);
-                    Main.tile[tower1X, y + 4].type = TileID.IceBrick;
+                    Main.tile[tower1X, y + 4].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, y + 4, resetSlope: true);
                 }
                 if (tower1X > x - width - mult * 4 + 1 && tower1X < x - mult * 4)
@@ -83,39 +83,39 @@ namespace ExxoAvalonOrigins.World.Structures
                         if (tower1X > x - width - mult * 4 && tower1X < x - mult * 4 + 1)
                         {
                             Main.tile[tower1X, wallTY].active(false);
-                            Main.tile[tower1X, wallTY].wall = WallID.IceBrick;
+                            Main.tile[tower1X, wallTY].WallType = WallID.IceBrick;
                             WorldGen.SquareWallFrame(tower1X, wallTY);
                         }
                     }
                     Main.tile[tower1X, y + 5].active(true);
-                    Main.tile[tower1X, y + 5].type = TileID.IceBrick;
+                    Main.tile[tower1X, y + 5].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, y + 5, resetSlope: true);
                     Main.tile[tower1X, y + 8].active(true);
-                    Main.tile[tower1X, y + 8].type = TileID.IceBrick;
+                    Main.tile[tower1X, y + 8].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, y + 8, resetSlope: true);
                     if (tower1X < x - mult * 4 - 1)
                     {
                         Main.tile[tower1X, y + 9].active(true);
-                        Main.tile[tower1X, y + 9].type = TileID.IceBrick;
+                        Main.tile[tower1X, y + 9].TileType = TileID.IceBrick;
                         World.Utils.SquareTileFrame(tower1X, y + 9, resetSlope: true);
                     }
                     if (tower1X < x - mult * 4 - 2)
                     {
                         Main.tile[tower1X, y + 10].active(true);
-                        Main.tile[tower1X, y + 10].type = TileID.IceBrick;
+                        Main.tile[tower1X, y + 10].TileType = TileID.IceBrick;
                         World.Utils.SquareTileFrame(tower1X, y + 10, resetSlope: true);
                     }
                     Main.tile[tower1X, y + 9 + mod1].active(true);
-                    Main.tile[tower1X, y + 9 + mod1].type = TileID.IceBrick;
+                    Main.tile[tower1X, y + 9 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, y + 9 + mod1, resetSlope: true);
                     Main.tile[tower1X, y + 10 + mod1].active(true);
-                    Main.tile[tower1X, y + 10 + mod1].type = TileID.IceBrick;
+                    Main.tile[tower1X, y + 10 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, y + 10 + mod1, resetSlope: true);
                 }
                 for (int tower1Y = y + 1; tower1Y <= y + 1 + mult; tower1Y++)
                 {
                     Main.tile[tower1X, tower1Y].active(true);
-                    Main.tile[tower1X, tower1Y].type = TileID.IceBrick;
+                    Main.tile[tower1X, tower1Y].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower1X, tower1Y, resetSlope: true);
                 }
             }
@@ -126,13 +126,13 @@ namespace ExxoAvalonOrigins.World.Structures
                 if (tower2X % 2 == 0)
                 {
                     Main.tile[tower2X, y].active(true);
-                    Main.tile[tower2X, y].type = TileID.IceBrick;
+                    Main.tile[tower2X, y].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, y, resetSlope: true);
                 }
                 if (tower2X < x + width + mult * 4 + 4 && tower2X > x + 4 + mult * 4)
                 {
                     Main.tile[tower2X, y + 4].active(true);
-                    Main.tile[tower2X, y + 4].type = TileID.IceBrick;
+                    Main.tile[tower2X, y + 4].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, y + 4, resetSlope: true);
                 }
                 if (tower2X < x + width + mult * 4 + 3 && tower2X > x + mult * 4 + 4)
@@ -142,39 +142,39 @@ namespace ExxoAvalonOrigins.World.Structures
                         if (tower2X < x + width + mult * 4 + 2 && tower2X > x + mult * 4 + 5)
                         {
                             Main.tile[tower2X, wallTY].active(false);
-                            Main.tile[tower2X, wallTY].wall = WallID.IceBrick;
+                            Main.tile[tower2X, wallTY].WallType = WallID.IceBrick;
                             WorldGen.SquareWallFrame(tower2X, wallTY);
                         }
                     }
                     Main.tile[tower2X, y + 5].active(true);
-                    Main.tile[tower2X, y + 5].type = TileID.IceBrick;
+                    Main.tile[tower2X, y + 5].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, y + 5, resetSlope: true);
                     Main.tile[tower2X, y + 8].active(true);
-                    Main.tile[tower2X, y + 8].type = TileID.IceBrick;
+                    Main.tile[tower2X, y + 8].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, y + 8, resetSlope: true);
                     if (tower2X > x + mult * 4 + 5)
                     {
                         Main.tile[tower2X, y + 9].active(true);
-                        Main.tile[tower2X, y + 9].type = TileID.IceBrick;
+                        Main.tile[tower2X, y + 9].TileType = TileID.IceBrick;
                         World.Utils.SquareTileFrame(tower2X, y + 9, resetSlope: true);
                     }
                     if (tower2X > x + mult * 4 + 6)
                     {
                         Main.tile[tower2X, y + 10].active(true);
-                        Main.tile[tower2X, y + 10].type = TileID.IceBrick;
+                        Main.tile[tower2X, y + 10].TileType = TileID.IceBrick;
                         World.Utils.SquareTileFrame(tower2X, y + 10, resetSlope: true);
                     }
                     Main.tile[tower2X, y + 9 + mod1].active(true);
-                    Main.tile[tower2X, y + 9 + mod1].type = TileID.IceBrick;
+                    Main.tile[tower2X, y + 9 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, y + 9 + mod1, resetSlope: true);
                     Main.tile[tower2X, y + 10 + mod1].active(true);
-                    Main.tile[tower2X, y + 10 + mod1].type = TileID.IceBrick;
+                    Main.tile[tower2X, y + 10 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, y + 10 + mod1, resetSlope: true);
                 }
                 for (int tower2Y = y + 1; tower2Y <= y + 1 + mult; tower2Y++)
                 {
                     Main.tile[tower2X, tower2Y].active(true);
-                    Main.tile[tower2X, tower2Y].type = TileID.IceBrick;
+                    Main.tile[tower2X, tower2Y].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(tower2X, tower2Y, resetSlope: true);
                 }
             }
@@ -186,94 +186,94 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int pyX = x - pstep + 1; pyX <= x + pstep + 1; pyX++)
                 {
                     Main.tile[pyX + 1, pyY].active(true);
-                    Main.tile[pyX + 1, pyY].type = TileID.IceBrick;
+                    Main.tile[pyX + 1, pyY].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(pyX + 1, pyY, resetSlope: true);
                     if (pyY >= y + mult + 4 && pyY <= y + mult + 8 + mod1 && (pyX == x - pstep + 3 || pyX == x + pstep + 1))
                     {
                         Main.tile[pyX, pyY + mod1].active(true);
-                        Main.tile[pyX, pyY + mod1].type = TileID.WoodenBeam;
+                        Main.tile[pyX, pyY + mod1].TileType = TileID.WoodenBeam;
                         World.Utils.SquareTileFrame(pyX, pyY + mod1, resetSlope: true);
                         if (pyY == y + mult + 4)
                         {
                             Main.tile[pyX, pyY + mod1].active(true);
-                            Main.tile[pyX, pyY + mod1].type = TileID.IceBrick;
+                            Main.tile[pyX, pyY + mod1].TileType = TileID.IceBrick;
                             World.Utils.SquareTileFrame(pyX, pyY + mod1, resetSlope: true);
                         }
                     }
                     if (pyY == y + mult + 4 && (pyX == x - pstep + 2))
                     {
                         Main.tile[pyX, pyY + mod1].active(true);
-                        Main.tile[pyX, pyY + mod1].type = 4;
-                        Main.tile[pyX, pyY + mod1].frameY = 198;
+                        Main.tile[pyX, pyY + mod1].TileType = 4;
+                        Main.tile[pyX, pyY + mod1].TileFrameY = 198;
                         World.Utils.SquareTileFrame(pyX, pyY + mod1, resetSlope: true);
                     }
                     if (pyY == y + mult + 4 && (pyX >= x - pstep + 4 && pyX <= x + pstep))
                     {
                         Main.tile[pyX, pyY + mod1].active(true);
-                        Main.tile[pyX, pyY + mod1].type = 19;
-                        Main.tile[pyX, pyY + mod1].frameY = 0;
+                        Main.tile[pyX, pyY + mod1].TileType = 19;
+                        Main.tile[pyX, pyY + mod1].TileFrameY = 0;
                         World.Utils.SquareTileFrame(pyX, pyY + mod1, resetSlope: true);
                     }
                     if (pyY >= y + 3 && pyY <= y + 4 && (pyX >= x - 1 && pyX <= x + 5))
                     {
-                        Main.tile[pyX, pyY].type = TileID.IceBlock;
+                        Main.tile[pyX, pyY].TileType = TileID.IceBlock;
                         World.Utils.SquareTileFrame(pyX, pyY, resetSlope: true);
                     }
                 }
                 pstep++;
             }
             Main.tile[x + 9, y + mult + 4 + mod1].active(true);
-            Main.tile[x + 9, y + mult + 4 + mod1].type = 4;
-            Main.tile[x + 9, y + mult + 4 + mod1].frameY = 198;
+            Main.tile[x + 9, y + mult + 4 + mod1].TileType = 4;
+            Main.tile[x + 9, y + mult + 4 + mod1].TileFrameY = 198;
             World.Utils.SquareTileFrame(x + 12, y + mult + 4 + mod1, resetSlope: true);
             #endregion
             #region base
             for (int baseX = x - width - mult * 4 + 2; baseX <= x + mult * 4 + 2 + width; baseX++)
             {
                 Main.tile[baseX, y + 6].active(true);
-                Main.tile[baseX, y + 6].type = TileID.IceBrick;
+                Main.tile[baseX, y + 6].TileType = TileID.IceBrick;
                 World.Utils.SquareTileFrame(baseX, y + 6, resetSlope: true);
                 Main.tile[baseX, y + 7].active(true);
-                Main.tile[baseX, y + 7].type = TileID.IceBrick;
+                Main.tile[baseX, y + 7].TileType = TileID.IceBrick;
                 World.Utils.SquareTileFrame(baseX, y + 7, resetSlope: true);
                 if (baseX > x + mult * 4 + 6 - width && baseX < x + mult * 4 + 6 ||
                     baseX > x - mult * 4 - 2 && baseX < x - mult * 4 + width - 2)
                 {
                     Main.tile[baseX, y + 10 + mod1].active(true);
-                    Main.tile[baseX, y + 10 + mod1].type = TileID.IceBrick;
+                    Main.tile[baseX, y + 10 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(baseX, y + 10 + mod1, resetSlope: true);
                     Main.tile[baseX, y + 11 + mod1].active(true);
-                    Main.tile[baseX, y + 11 + mod1].type = TileID.IceBrick;
+                    Main.tile[baseX, y + 11 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(baseX, y + 11 + mod1, resetSlope: true);
                 }
                 if (baseX > x + mult * 4 + 6 - 2 * width + 2 && baseX < x + mult * 4 + 6 - width + 2 ||
                     baseX > x - mult * 4 + width - 4 && baseX < x - mult * 4 + 2 * width - 4)
                 {
                     Main.tile[baseX, y + 11 + mod1].active(true);
-                    Main.tile[baseX, y + 11 + mod1].type = TileID.IceBrick;
+                    Main.tile[baseX, y + 11 + mod1].TileType = TileID.IceBrick;
                     Main.tile[baseX, y + 11 + mod1].liquid = 0;
                     World.Utils.SquareTileFrame(baseX, y + 11 + mod1, resetSlope: true);
                     Main.tile[baseX, y + 12 + mod1].active(true);
-                    Main.tile[baseX, y + 12 + mod1].type = TileID.IceBrick;
+                    Main.tile[baseX, y + 12 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(baseX, y + 12 + mod1, resetSlope: true);
                 }
                 if (baseX < x + mult * 4 + 8 - 2 * width + 2 && baseX > x - mult * 4 + 2 * width - 6)
                 {
                     Main.tile[baseX, y + 12 + mod1].active(true);
-                    Main.tile[baseX, y + 12 + mod1].type = TileID.IceBrick;
+                    Main.tile[baseX, y + 12 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(baseX, y + 12 + mod1, resetSlope: true);
-                    Main.tile[baseX, y + 13 + mod1].wall = 0;
+                    Main.tile[baseX, y + 13 + mod1].WallType = 0;
                     Main.tile[baseX, y + 13 + mod1].active(true);
-                    Main.tile[baseX, y + 13 + mod1].type = TileID.IceBrick;
+                    Main.tile[baseX, y + 13 + mod1].TileType = TileID.IceBrick;
                     World.Utils.SquareTileFrame(baseX, y + 13 + mod1, resetSlope: true);
                 }
                 if (baseX == x - width - mult * 4 + 2 || baseX == x + mult * 4 + 2 + width)
                 {
                     for (int s = 6; s <= 6 + mod1; s++)
                     {
-                        Main.tile[baseX, y + mult + s].wall = 0;
+                        Main.tile[baseX, y + mult + s].WallType = 0;
                         Main.tile[baseX, y + mult + s].active(true);
-                        Main.tile[baseX, y + mult + s].type = TileID.IceBrick;
+                        Main.tile[baseX, y + mult + s].TileType = TileID.IceBrick;
                         Main.tile[baseX, y + mult + s].halfBrick(false);
                         Main.tile[baseX, y + mult + s].slope(0);
                         WorldGen.SquareTileFrame(baseX, y + mult + s);
@@ -283,9 +283,9 @@ namespace ExxoAvalonOrigins.World.Structures
                 {
                     for (int s = 6; s <= 6 + mod1 - 3; s++)
                     {
-                        Main.tile[baseX, y + mult + s].wall = 0;
+                        Main.tile[baseX, y + mult + s].WallType = 0;
                         Main.tile[baseX, y + mult + s].active(true);
-                        Main.tile[baseX, y + mult + s].type = TileID.IceBrick;
+                        Main.tile[baseX, y + mult + s].TileType = TileID.IceBrick;
                         Main.tile[baseX, y + mult + s].halfBrick(false);
                         Main.tile[baseX, y + mult + s].slope(0);
                         WorldGen.SquareTileFrame(baseX, y + mult + s);
@@ -338,7 +338,7 @@ namespace ExxoAvalonOrigins.World.Structures
             var k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[Main.tile[i, k].TileType])
                 {
                     var num = k;
                     var num2 = WorldGen.PlaceChest(i - 1, num - 1, 21, notNearOtherChests, 11);

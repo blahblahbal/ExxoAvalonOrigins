@@ -14,31 +14,26 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 25;
-            item.autoReuse = true;
-            item.hammer = 55;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.useTime = 35;
-            item.knockBack = 6f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 0, 36, 0);
-            item.useAnimation = 35;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 25;
+            Item.autoReuse = true;
+            Item.hammer = 55;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.useTime = 35;
+            Item.knockBack = 6f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 0, 36, 0);
+            Item.useAnimation = 35;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 11);
-            recipe.AddIngredient(ModContent.ItemType<Material.Booger>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 11).AddIngredient(ModContent.ItemType<Material.Booger>(), 4).AddTile(TileID.Anvils).Register();
         }
     }
 }

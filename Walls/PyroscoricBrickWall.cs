@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class PyroscoricBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("PyroscoricBrickWall");
+            drop = Mod.Find<ModItem>("PyroscoricBrickWall").Type;
             AddMapEntry(new Color(154, 40, 0));
             dustType = DustID.InfernoFork;
         }

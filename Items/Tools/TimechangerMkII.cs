@@ -25,13 +25,13 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightPurple;
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.useTime = 35;
-            item.useAnimation = 35;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = Item.sellPrice(0, 3, 70, 0);
+            Item.rare = ItemRarityID.LightPurple;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.sellPrice(0, 3, 70, 0);
         }
 
         public override bool AltFunctionUse(Player player)
@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (player.altFunctionUse == 2) // right click
             {

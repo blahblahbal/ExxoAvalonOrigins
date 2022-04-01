@@ -16,25 +16,25 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 78;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1;
-            item.shootSpeed = 8f;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.knockBack = 5f;
-            item.noMelee = true;
-            item.mana = 25;
-            item.crit += 3;
-            item.shoot = ModContent.ProjectileType<Projectiles.Rock>();
-            item.UseSound = SoundID.Item20;
-            item.magic = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 10, 0, 0);
-            item.useAnimation = 30;
-            item.height = dims.Height;
+            Item.damage = 78;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1;
+            Item.shootSpeed = 8f;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.knockBack = 5f;
+            Item.noMelee = true;
+            Item.mana = 25;
+            Item.crit += 3;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Rock>();
+            Item.UseSound = SoundID.Item20;
+            Item.DamageType = DamageClass.Magic;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 10, 0, 0);
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
         }
         //public override void AddRecipes()
         //{

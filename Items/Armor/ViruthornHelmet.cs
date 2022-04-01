@@ -17,20 +17,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 6;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 54, 0);
-            item.height = dims.Height;
+            Item.defense = 6;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 54, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Material.Booger>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 15).AddIngredient(ModContent.ItemType<Material.Booger>(), 5).AddTile(TileID.Anvils).Register();
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -40,17 +35,17 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "10% increased critical strike chance";
-            player.meleeCrit += 10;
-            player.rangedCrit += 10;
-            player.magicCrit += 10;
+            player.GetCritChance(DamageClass.Melee) += 10;
+            player.GetCritChance(DamageClass.Ranged) += 10;
+            player.GetCritChance(DamageClass.Magic) += 10;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.magicDamage += 0.03f;
-            player.meleeDamage += 0.03f;
-            player.minionDamage += 0.03f;
-            player.rangedDamage += 0.03f;
+            player.GetDamage(DamageClass.Magic) += 0.03f;
+            player.GetDamage(DamageClass.Melee) += 0.03f;
+            player.GetDamage(DamageClass.Summon) += 0.03f;
+            player.GetDamage(DamageClass.Ranged) += 0.03f;
         }
     }
 }

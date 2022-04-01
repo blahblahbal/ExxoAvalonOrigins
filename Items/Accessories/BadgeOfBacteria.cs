@@ -15,12 +15,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/BadgeOfBacteria");
-            item.rare = 2;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.height = dims.Height;
-            item.expert = true;
+            Item.rare = 2;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.height = dims.Height;
+            Item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

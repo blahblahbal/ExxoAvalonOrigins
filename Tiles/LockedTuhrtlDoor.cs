@@ -7,12 +7,13 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class LockedTuhrtlDoor : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileBlockLight[Type] = true;
@@ -88,23 +89,23 @@ namespace ExxoAvalonOrigins.Tiles
             int num = j;
             //if (type == ModContent.TileType<LockedTuhrtlDoor>())
             //{
-            while (Main.tile[i, num].frameY != 0)
+            while (Main.tile[i, num].TileFrameY != 0)
             {
                 num--;
-                if (Main.tile[i, num].frameY < 0 || num <= 0)
+                if (Main.tile[i, num].TileFrameY < 0 || num <= 0)
                 {
                     return;
                 }
             }
             //}
-            Main.PlaySound(SoundID.Unlock, i * 16, num * 16 + 16, 1);
+            SoundEngine.PlaySound(SoundID.Unlock, i * 16, num * 16 + 16, 1);
             for (int k = num; k <= num + 2; k++)
             {
                 if (Main.tile[i, k] == null)
                 {
                     Main.tile[i, k] = new Tile();
                 }
-                Main.tile[i, k].type = (ushort)ModContent.TileType<ClosedTuhrtlDoor>();
+                Main.tile[i, k].TileType = (ushort)ModContent.TileType<ClosedTuhrtlDoor>();
                 for (int l = 0; l < 4; l++)
                 {
                     Dust.NewDust(new Vector2((float)(i * 16), (float)(k * 16)), 16, 16, DustID.Silver, 0f, 0f, 0, default(Color), 1f);

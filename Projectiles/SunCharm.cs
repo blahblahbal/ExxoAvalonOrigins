@@ -16,16 +16,16 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SunCharm");
-            projectile.aiStyle = -1;
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.damage = 0;
-            projectile.tileCollide = false;
+            Projectile.aiStyle = -1;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.damage = 0;
+            Projectile.tileCollide = false;
         }
 
         public override void AI()
         {
-            if (projectile.active)
+            if (Projectile.active)
             {
                 Main.dayTime = true;
                 Main.time = 0.0;
@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A solar eclipse is happening!"), new Color(50, 255, 130));
                 }
             }
-            projectile.active = false;
+            Projectile.active = false;
             return;
         }
     }

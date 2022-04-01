@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Colossal", new Colossal());
+                Mod.AddPrefix("Colossal", new Colossal());
             }
             return false;
         }

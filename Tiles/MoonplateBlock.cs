@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class MoonplateBlock : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(179, 187, 199));
             Main.tileSolid[Type] = true;
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("MoonplateBlock");
+            drop = Mod.Find<ModItem>("MoonplateBlock").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
         }

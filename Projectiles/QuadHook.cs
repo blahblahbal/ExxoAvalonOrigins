@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
+            Projectile.CloneDefaults(ProjectileID.GemHookAmethyst);
             /*			Rectangle dims = ExxoAvalonOrigins.getDims("Projectiles/QuadHook");
                         projectile.netImportant = true;
                         projectile.width = dims.Width * 18 / 22;
@@ -203,10 +203,10 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = ModContent.GetTexture("ExxoAvalonOrigins/Projectiles/QuadHook_Chain");
+            var texture = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Projectiles/QuadHook_Chain");
 
-            var position = projectile.Center;
-            var mountedCenter = Main.player[projectile.owner].MountedCenter;
+            var position = Projectile.Center;
+            var mountedCenter = Main.player[Projectile.owner].MountedCenter;
             var sourceRectangle = new Rectangle?();
             var origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             float num1 = texture.Height;
@@ -230,7 +230,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     position += vector2_1 * num1;
                     vector2_4 = mountedCenter - position;
                     var color2 = Lighting.GetColor((int)position.X / 16, (int)(position.Y / 16.0));
-                    color2 = projectile.GetAlpha(color2);
+                    color2 = Projectile.GetAlpha(color2);
                     Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
                 }
             }
@@ -242,7 +242,7 @@ namespace ExxoAvalonOrigins.Projectiles
             var hooksOut = 0;
             for (var l = 0; l < 1000; l++)
             {
-                if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == projectile.type)
+                if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type)
                 {
                     hooksOut++;
                 }

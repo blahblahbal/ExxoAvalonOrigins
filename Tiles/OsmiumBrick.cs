@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class OsmiumBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(0, 148, 255));
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("OsmiumBrick");
+            drop = Mod.Find<ModItem>("OsmiumBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.OsmiumDust>();

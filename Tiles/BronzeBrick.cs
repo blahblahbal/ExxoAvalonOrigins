@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BronzeBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(121, 50, 42));
             Main.tileSolid[Type] = true;

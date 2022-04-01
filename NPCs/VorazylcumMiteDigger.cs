@@ -10,46 +10,46 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
-            npc.aiStyle = 6;
-            npc.netAlways = true;
-            npc.damage = 80;
-            npc.defense = 6;
-            npc.lifeMax = 1450;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
+            NPC.width = 14;
+            NPC.height = 14;
+            NPC.aiStyle = 6;
+            NPC.netAlways = true;
+            NPC.damage = 80;
+            NPC.defense = 6;
+            NPC.lifeMax = 1450;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override void NPCLoot()
         {
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/VorazylcumMiteGore1"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/VorazylcumMiteGore2"), npc.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore1"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore2"), NPC.scale);
         }
         public override void CustomBehavior()
         {
-            int xpos = npc.position.ToTileCoordinates().X;
-            int ypos = npc.position.ToTileCoordinates().Y;
+            int xpos = NPC.position.ToTileCoordinates().X;
+            int ypos = NPC.position.ToTileCoordinates().Y;
 
-            if (npc.ai[2] <= 300) npc.ai[2]++;
-            if (npc.ai[2] > 300)
+            if (NPC.ai[2] <= 300) NPC.ai[2]++;
+            if (NPC.ai[2] > 300)
             {
-                npc.ai[3] = 1;
+                NPC.ai[3] = 1;
             }
 
-            if (!Main.tile[xpos, ypos].active() && Main.tile[xpos, ypos + 1].active() && npc.ai[3] == 1)
+            if (!Main.tile[xpos, ypos].HasTile && Main.tile[xpos, ypos + 1].HasTile && NPC.ai[3] == 1)
             {
-                npc.Transform(ModContent.NPCType<VorazylcumMite>());
-                npc.ai[3] = 0;
-                npc.ai[2] = 0;
+                NPC.Transform(ModContent.NPCType<VorazylcumMite>());
+                NPC.ai[3] = 0;
+                NPC.ai[2] = 0;
             }
 
         }

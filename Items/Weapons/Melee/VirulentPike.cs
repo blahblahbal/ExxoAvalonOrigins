@@ -15,22 +15,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 18;
-            item.UseSound = SoundID.Item1;
-            item.noUseGraphic = true;
-            item.scale = 1f;
-            item.shootSpeed = 3.6f;
-            item.rare = ItemRarityID.Blue;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 24;
-            item.useAnimation = 24;
-            item.knockBack = 2.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.VirulentPike>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 0, 36, 0);
-            item.height = dims.Height;
+            Item.damage = 18;
+            Item.UseSound = SoundID.Item1;
+            Item.noUseGraphic = true;
+            Item.scale = 1f;
+            Item.shootSpeed = 3.6f;
+            Item.rare = ItemRarityID.Blue;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 24;
+            Item.useAnimation = 24;
+            Item.knockBack = 2.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.VirulentPike>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 0, 36, 0);
+            Item.height = dims.Height;
         }
     }
 }

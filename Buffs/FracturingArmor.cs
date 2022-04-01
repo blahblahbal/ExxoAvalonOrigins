@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class FracturingArmor : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fracturing Armor");
             Description.SetDefault("Defense is decreased by ");

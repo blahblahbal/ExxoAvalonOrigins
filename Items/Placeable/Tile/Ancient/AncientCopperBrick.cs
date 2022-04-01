@@ -14,31 +14,22 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile.Ancient
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Ancient.AncientCopperBrick>();
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.Ancient.AncientCopperBrick>();
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.CopperBrick);
-            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(this);
-            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
-            r.SetResult(ItemID.CopperBrick);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.CopperBrick).AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>()).Register();
+            CreateRecipe(1).AddIngredient(this).AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>()).ReplaceResult(ItemID.CopperBrick);
         }
     }
 }

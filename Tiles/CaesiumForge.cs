@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class CaesiumForge : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Caesium Forge"));
             Main.tileFrameImportant[Type] = true;

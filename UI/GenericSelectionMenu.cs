@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Gamepad;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -84,17 +85,17 @@ namespace ExxoAvalonOrigins.UI
         }
         private void SubmitAction(UIMouseEvent evt, UIElement listeningElement)
         {
-            Main.PlaySound(SoundID.MenuOpen);
+            SoundEngine.PlaySound(SoundID.MenuOpen);
         }
 
         private void BackAction(UIMouseEvent evt, UIElement listeningElement)
         {
-            Main.PlaySound(SoundID.MenuClose);
+            SoundEngine.PlaySound(SoundID.MenuClose);
         }
 
         private void FadedMouseOver(UIMouseEvent evt, UIElement listeningElement)
         {
-            Main.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(SoundID.MenuTick);
             ((UIPanel)evt.Target).BackgroundColor = new Color(73, 94, 171);
         }
 

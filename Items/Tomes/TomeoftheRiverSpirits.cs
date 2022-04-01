@@ -17,30 +17,23 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.value = 15000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.value = 15000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.15f;
-            player.minionDamage += 0.15f;
+            player.GetDamage(DamageClass.Magic) += 0.15f;
+            player.GetDamage(DamageClass.Summon) += 0.15f;
             player.manaCost -= 0.05f;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<MeditationsFlame>());
-            recipe.AddIngredient(ModContent.ItemType<EternitysMoon>());
-            recipe.AddIngredient(ItemID.FallenStar, 20);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>());
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<MeditationsFlame>()).AddIngredient(ModContent.ItemType<EternitysMoon>()).AddIngredient(ItemID.FallenStar, 20).AddIngredient(ModContent.ItemType<MysticalTomePage>()).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

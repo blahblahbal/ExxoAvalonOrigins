@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -157,33 +157,33 @@ namespace ExxoAvalonOrigins.World.Passes
             if (size == 0)
             {
                 Main.tile[x + 3, y].active(true);
-                Main.tile[x + 3, y].type = type;
+                Main.tile[x + 3, y].TileType = type;
                 for (int i = x + 2; i <= x + 4; i++)
                 {
                     Main.tile[i, y + 1].active(true);
-                    Main.tile[i, y + 1].type = type;
+                    Main.tile[i, y + 1].TileType = type;
                 }
                 for (int i = x; i <= x + 6; i++)
                 {
                     Main.tile[i, y + 2].active(true);
-                    Main.tile[i, y + 2].type = type;
+                    Main.tile[i, y + 2].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 5; i++)
                 {
                     Main.tile[i, y + 3].active(true);
-                    Main.tile[i, y + 3].type = type;
+                    Main.tile[i, y + 3].TileType = type;
                 }
                 for (int i = x + 2; i <= x + 4; i++)
                 {
                     Main.tile[i, y + 4].active(true);
-                    Main.tile[i, y + 4].type = type;
+                    Main.tile[i, y + 4].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 5; i++)
                 {
                     if (i != x + 3)
                     {
                         Main.tile[i, y + 5].active(true);
-                        Main.tile[i, y + 5].type = type;
+                        Main.tile[i, y + 5].TileType = type;
                     }
                 }
             }
@@ -192,29 +192,29 @@ namespace ExxoAvalonOrigins.World.Passes
                 for (int j = y; j <= y + 1; j++)
                 {
                     Main.tile[x + 4, j].active(true);
-                    Main.tile[x + 4, j].type = type;
+                    Main.tile[x + 4, j].TileType = type;
                 }
                 for (int i = x + 3; i <= x + 5; i++)
                 {
                     Main.tile[i, y + 2].active(true);
-                    Main.tile[i, y + 2].type = type;
+                    Main.tile[i, y + 2].TileType = type;
                 }
                 for (int i = x; i <= x + 8; i++)
                 {
                     Main.tile[i, y + 3].active(true);
-                    Main.tile[i, y + 3].type = type;
+                    Main.tile[i, y + 3].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 7; i++)
                 {
                     Main.tile[i, y + 4].active(true);
-                    Main.tile[i, y + 4].type = type;
+                    Main.tile[i, y + 4].TileType = type;
                 }
                 for (int i = x + 2; i <= x + 6; i++)
                 {
                     for (int j = y + 5; j <= y + 6; j++)
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
+                        Main.tile[i, j].TileType = type;
                     }
                 }
                 for (int i = x + 1; i <= x + 7; i++)
@@ -222,7 +222,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     if (i != x + 4)
                     {
                         Main.tile[i, y + 7].active(true);
-                        Main.tile[i, y + 7].type = type;
+                        Main.tile[i, y + 7].TileType = type;
                     }
                 }
                 for (int i = x + 1; i <= x + 7; i++)
@@ -230,7 +230,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     if (i <= x + 2 || i >= x + 6)
                     {
                         Main.tile[i, y + 7].active(true);
-                        Main.tile[i, y + 7].type = type;
+                        Main.tile[i, y + 7].TileType = type;
                     }
                 }
             }
@@ -239,49 +239,49 @@ namespace ExxoAvalonOrigins.World.Passes
                 for (int j = y; j <= y + 1; j++)
                 {
                     Main.tile[x + 5, j].active(true);
-                    Main.tile[x + 5, j].type = type;
+                    Main.tile[x + 5, j].TileType = type;
                     WorldGen.SquareTileFrame(x + 5, j);
                 }
                 for (int i = x + 4; i <= x + 6; i++)
                 {
                     Main.tile[i, y + 2].active(true);
-                    Main.tile[i, y + 2].type = type;
+                    Main.tile[i, y + 2].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 2);
                 }
                 for (int i = x + 3; i <= x + 7; i++)
                 {
                     Main.tile[i, y + 3].active(true);
-                    Main.tile[i, y + 3].type = type;
+                    Main.tile[i, y + 3].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 3);
                 }
                 for (int i = x; i <= x + 10; i++)
                 {
                     Main.tile[i, y + 4].active(true);
-                    Main.tile[i, y + 4].type = type;
+                    Main.tile[i, y + 4].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 4);
                 }
                 for (int i = x + 1; i <= x + 9; i++)
                 {
                     Main.tile[i, y + 5].active(true);
-                    Main.tile[i, y + 5].type = type;
+                    Main.tile[i, y + 5].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 5);
                 }
                 for (int i = x + 2; i <= x + 8; i++)
                 {
                     Main.tile[i, y + 6].active(true);
-                    Main.tile[i, y + 6].type = type;
+                    Main.tile[i, y + 6].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 6);
                 }
                 for (int i = x + 3; i <= x + 7; i++)
                 {
                     Main.tile[i, y + 7].active(true);
-                    Main.tile[i, y + 7].type = type;
+                    Main.tile[i, y + 7].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 7);
                 }
                 for (int i = x + 2; i <= x + 8; i++)
                 {
                     Main.tile[i, y + 8].active(true);
-                    Main.tile[i, y + 8].type = type;
+                    Main.tile[i, y + 8].TileType = type;
                     WorldGen.SquareTileFrame(i, y + 8);
                 }
                 for (int i = x + 1; i <= x + 9; i++)
@@ -291,13 +291,13 @@ namespace ExxoAvalonOrigins.World.Passes
                         if (((i >= x + 2 && i <= x + 4) || (i >= x + 6 && i <= x + 8)) && j == y + 9)
                         {
                             Main.tile[i, j].active(true);
-                            Main.tile[i, j].type = type;
+                            Main.tile[i, j].TileType = type;
                             WorldGen.SquareTileFrame(i, j);
                         }
                         if (((i >= x + 1 && i <= x + 3) || (i >= x + 7 && i <= x + 9)) && j == y + 10)
                         {
                             Main.tile[i, j].active(true);
-                            Main.tile[i, j].type = type;
+                            Main.tile[i, j].TileType = type;
                             WorldGen.SquareTileFrame(i, j);
                         }
                     }
@@ -321,7 +321,7 @@ namespace ExxoAvalonOrigins.World.Passes
             }
             var num2 = 1;
             Main.tile[i, j + 1].active(true);
-            Main.tile[i, j + 1].type = (ushort)tile;
+            Main.tile[i, j + 1].TileType = (ushort)tile;
             WorldGen.SquareTileFrame(i, j + 1);
             for (var k = j; k >= j - size; k--)
             {
@@ -330,7 +330,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     if ((l != i - num2 && l != i + num2) || num2 != size + 1)
                     {
                         Main.tile[l, k].active(true);
-                        Main.tile[l, k].type = (ushort)tile;
+                        Main.tile[l, k].TileType = (ushort)tile;
                         WorldGen.SquareTileFrame(l, k);
                     }
                 }
@@ -339,7 +339,7 @@ namespace ExxoAvalonOrigins.World.Passes
             for (var m = i - num2 + 1; m <= i + num2 - 1; m++)
             {
                 Main.tile[m, j - size - 1].active(true);
-                Main.tile[m, j - size - 1].type = (ushort)tile;
+                Main.tile[m, j - size - 1].TileType = (ushort)tile;
                 WorldGen.SquareTileFrame(m, j + size + 1);
             }
             for (var n = i - num2 + 2; n <= i + num2 - 2; n++)
@@ -347,7 +347,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 if (n != i)
                 {
                     Main.tile[n, j - size - 2].active(true);
-                    Main.tile[n, j - size - 2].type = (ushort)tile;
+                    Main.tile[n, j - size - 2].TileType = (ushort)tile;
                     WorldGen.SquareTileFrame(n, j + size + 2);
                 }
             }
@@ -356,7 +356,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 if (num3 != i && num3 != i + 1 && num3 != i - 1)
                 {
                     Main.tile[num3, j - size - 3].active(true);
-                    Main.tile[num3, j - size - 3].type = (ushort)tile;
+                    Main.tile[num3, j - size - 3].TileType = (ushort)tile;
                     WorldGen.SquareTileFrame(num3, j + size + 3);
                 }
             }
@@ -372,33 +372,33 @@ namespace ExxoAvalonOrigins.World.Passes
                     for (int j = y; j <= y + 1; j++)
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
+                        Main.tile[i, j].TileType = type;
                     }
                 }
                 for (int i = x; i <= x + 3; i++)
                 {
                     Main.tile[i, y + 2].active(true);
-                    Main.tile[i, y + 2].type = type;
+                    Main.tile[i, y + 2].TileType = type;
                 }
                 for (int i = x; i <= x + 4; i++)
                 {
                     Main.tile[i, y + 3].active(true);
-                    Main.tile[i, y + 3].type = type;
+                    Main.tile[i, y + 3].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 3; i++)
                 {
                     Main.tile[i, y + 4].active(true);
-                    Main.tile[i, y + 4].type = type;
+                    Main.tile[i, y + 4].TileType = type;
                 }
                 for (int i = x; i <= x + 2; i++)
                 {
                     Main.tile[i, y + 5].active(true);
-                    Main.tile[i, y + 5].type = type;
+                    Main.tile[i, y + 5].TileType = type;
                 }
                 for (int i = x; i <= x + 1; i++)
                 {
                     Main.tile[i, y + 6].active(true);
-                    Main.tile[i, y + 6].type = type;
+                    Main.tile[i, y + 6].TileType = type;
                 }
             }
             else if (size == 1)
@@ -408,43 +408,43 @@ namespace ExxoAvalonOrigins.World.Passes
                     for (int j = y; j <= y + 1; j++)
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
+                        Main.tile[i, j].TileType = type;
                     }
                 }
                 for (int i = x; i <= x + 4; i++)
                 {
                     Main.tile[i, y + 2].active(true);
-                    Main.tile[i, y + 2].type = type;
+                    Main.tile[i, y + 2].TileType = type;
                 }
                 for (int i = x; i <= x + 5; i++)
                 {
                     Main.tile[i, y + 3].active(true);
-                    Main.tile[i, y + 3].type = type;
+                    Main.tile[i, y + 3].TileType = type;
                 }
                 for (int i = x + 2; i <= x + 5; i++)
                 {
                     Main.tile[i, y + 4].active(true);
-                    Main.tile[i, y + 4].type = type;
+                    Main.tile[i, y + 4].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 4; i++)
                 {
                     Main.tile[i, y + 5].active(true);
-                    Main.tile[i, y + 5].type = type;
+                    Main.tile[i, y + 5].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 3; i++)
                 {
                     Main.tile[i, y + 6].active(true);
-                    Main.tile[i, y + 6].type = type;
+                    Main.tile[i, y + 6].TileType = type;
                 }
                 for (int i = x; i <= x + 2; i++)
                 {
                     Main.tile[i, y + 7].active(true);
-                    Main.tile[i, y + 7].type = type;
+                    Main.tile[i, y + 7].TileType = type;
                 }
                 for (int i = x; i <= x + 1; i++)
                 {
                     Main.tile[i, y + 8].active(true);
-                    Main.tile[i, y + 8].type = type;
+                    Main.tile[i, y + 8].TileType = type;
                 }
             }
             else if (size == 2)
@@ -454,7 +454,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     for (int j = y; j <= y + 1; j++)
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
+                        Main.tile[i, j].TileType = type;
                     }
                 }
                 for (int i = x + 1; i <= x + 7; i++)
@@ -462,51 +462,51 @@ namespace ExxoAvalonOrigins.World.Passes
                     for (int j = y + 2; j <= y + 3; j++)
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
+                        Main.tile[i, j].TileType = type;
                     }
                 }
                 for (int j = y + 3; j <= y + 4; j++)
                 {
                     Main.tile[x + 8, j].active(true);
-                    Main.tile[x + 8, j].type = type;
+                    Main.tile[x + 8, j].TileType = type;
                 }
                 for (int i = x; i <= x + 7; i++)
                 {
                     for (int j = y + 4; j <= y + 5; j++)
                     {
                         Main.tile[i, j].active(true);
-                        Main.tile[i, j].type = type;
+                        Main.tile[i, j].TileType = type;
                     }
                 }
                 for (int i = x + 2; i <= x + 6; i++)
                 {
                     Main.tile[i, y + 6].active(true);
-                    Main.tile[i, y + 6].type = type;
+                    Main.tile[i, y + 6].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 5; i++)
                 {
                     Main.tile[i, y + 7].active(true);
-                    Main.tile[i, y + 7].type = type;
+                    Main.tile[i, y + 7].TileType = type;
                 }
                 for (int i = x + 1; i <= x + 4; i++)
                 {
                     Main.tile[i, y + 8].active(true);
-                    Main.tile[i, y + 8].type = type;
+                    Main.tile[i, y + 8].TileType = type;
                 }
                 for (int i = x; i <= x + 3; i++)
                 {
                     Main.tile[i, y + 9].active(true);
-                    Main.tile[i, y + 9].type = type;
+                    Main.tile[i, y + 9].TileType = type;
                 }
                 for (int i = x; i <= x + 2; i++)
                 {
                     Main.tile[i, y + 10].active(true);
-                    Main.tile[i, y + 10].type = type;
+                    Main.tile[i, y + 10].TileType = type;
                 }
                 for (int i = x; i <= x + 1; i++)
                 {
                     Main.tile[i, y + 11].active(true);
-                    Main.tile[i, y + 11].type = type;
+                    Main.tile[i, y + 11].TileType = type;
                 }
             }
         }

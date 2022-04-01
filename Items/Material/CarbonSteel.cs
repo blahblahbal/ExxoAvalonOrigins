@@ -15,31 +15,17 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 0, 2, 0);
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IronOre, 30);
-            recipe.AddTile(TileID.Hellforge);
-            recipe.SetResult(this, 10);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LeadOre, 30);
-            recipe.AddTile(TileID.Hellforge);
-            recipe.SetResult(this, 10);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.NickelOre>(), 30);
-            recipe.AddTile(TileID.Hellforge);
-            recipe.SetResult(this, 10);
-            recipe.AddRecipe();
+            CreateRecipe(10).AddIngredient(ItemID.IronOre, 30).AddTile(TileID.Hellforge).Register();
+            CreateRecipe(10).AddIngredient(ItemID.LeadOre, 30).AddTile(TileID.Hellforge).Register();
+            CreateRecipe(10).AddIngredient(ModContent.ItemType<Placeable.Tile.NickelOre>(), 30).AddTile(TileID.Hellforge).Register();
         }
     }
 }

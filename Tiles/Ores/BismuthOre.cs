@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class BismuthOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(187, 89, 192), LanguageManager.Instance.GetText("Bismuth"));
             Main.tileSolid[Type] = true;

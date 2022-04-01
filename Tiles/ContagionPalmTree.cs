@@ -14,12 +14,12 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override int DropWood()
         {
-            return mod.ItemType("Coughwood");
+            return Mod.Find<ModItem>("Coughwood").Type;
         }
 
         public override Texture2D GetTexture()
         {
-            return mod.GetTexture("Tiles/ContagionPalmTree");
+            return mod.Assets.Request<Texture2D>("Tiles/ContagionPalmTree").Value;
         }
 
         public override int CreateDust()
@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override Texture2D GetTopTextures()
         {
-            return mod.GetTexture("Tiles/ContagionPalmTreeTop");
+            return mod.Assets.Request<Texture2D>("Tiles/ContagionPalmTreeTop").Value;
         }
         //public override Texture2D GetTopTextures(int i, int j, ref int frame, ref int frameWidth, ref int frameHeight, ref int xOffsetLeft, ref int yOffset)
         //{

@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class NaquadahBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.Blue);
             Main.tileSolid[Type] = true;
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("NaquadahBrick");
+            drop = Mod.Find<ModItem>("NaquadahBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.NaquadahDust>();

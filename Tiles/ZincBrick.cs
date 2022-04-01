@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ZincBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(168, 155, 168));
             Main.tileSolid[Type] = true;

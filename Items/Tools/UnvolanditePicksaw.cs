@@ -16,38 +16,33 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 30;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.15f;
-            item.axe = 22;
-            item.pick = 300;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.useTime = 9;
-            item.knockBack = 5.5f;
-            item.melee = true;
-            item.tileBoost += 5;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 416000;
-            item.useAnimation = 11;
-            item.height = dims.Height;
+            Item.damage = 30;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.15f;
+            Item.axe = 22;
+            Item.pick = 300;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.useTime = 9;
+            Item.knockBack = 5.5f;
+            Item.DamageType = DamageClass.Melee;
+            Item.tileBoost += 5;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 416000;
+            Item.useAnimation = 11;
+            Item.height = dims.Height;
         }
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == item.type)
+            if (player.inventory[player.selectedItem].type == Item.type)
             {
                 player.pickSpeed -= 0.35f;
             }
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.UnvolanditeBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.UnvolanditeBar>(), 20).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

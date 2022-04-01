@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class NickelAnvil : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(140, 130, 116), LanguageManager.Instance.GetText("Anvil"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);

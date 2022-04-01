@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class TitaniumDagger : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Titanium Dagger");
             Description.SetDefault("The dagger will fight for you");

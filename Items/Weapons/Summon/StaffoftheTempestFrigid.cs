@@ -15,34 +15,26 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.summon = true;
-            item.damage = 152;
-            item.shootSpeed = 14f;
-            item.mana = 30;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.knockBack = 8.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Summon.IceGolemSummon>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 30, 0, 0);
-            item.useAnimation = 30;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item44;
+            Item.DamageType = DamageClass.Summon;
+            Item.damage = 152;
+            Item.shootSpeed = 14f;
+            Item.mana = 30;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.knockBack = 8.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Summon.IceGolemSummon>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 30, 0, 0);
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item44;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofIce>(), 75);
-            recipe.AddIngredient(ItemID.FrostCore, 10);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.HydrolythBar>(), 40);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(ModContent.ItemType<StaffoftheTempestFrigid>());
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.StaffoftheFrostHydra).AddIngredient(ModContent.ItemType<Material.SoulofIce>(), 75).AddIngredient(ItemID.FrostCore, 10).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddIngredient(ModContent.ItemType<Placeable.Bar.HydrolythBar>(), 40).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).ReplaceResult(ModContent.ItemType<StaffoftheTempestFrigid>());
         }
     }
 }

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
@@ -16,15 +17,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = 0;
-            item.maxStack = 20;
-            item.useAnimation = 45;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = 0;
+            Item.maxStack = 20;
+            Item.useAnimation = 45;
+            Item.height = dims.Height;
         }
         public override bool CanUseItem(Player player)
         {
@@ -33,37 +34,11 @@ namespace ExxoAvalonOrigins.Items.Consumables
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.EbonstoneBlock, 30);
-            recipe.AddIngredient(ItemID.SoulofNight, 8);
-            recipe.AddIngredient(ItemID.Ectoplasm, 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.EarthStone>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CrimstoneBlock, 30);
-            recipe.AddIngredient(ItemID.SoulofNight, 8);
-            recipe.AddIngredient(ItemID.Ectoplasm, 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.EarthStone>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.ChunkstoneBlock>(), 30);
-            recipe.AddIngredient(ItemID.SoulofNight, 8);
-            recipe.AddIngredient(ItemID.Ectoplasm, 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.EarthStone>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.EbonstoneBlock, 30).AddIngredient(ItemID.SoulofNight, 8).AddIngredient(ItemID.Ectoplasm, 5).AddIngredient(ModContent.ItemType<Material.EarthStone>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>()).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ItemID.CrimstoneBlock, 30).AddIngredient(ItemID.SoulofNight, 8).AddIngredient(ItemID.Ectoplasm, 5).AddIngredient(ModContent.ItemType<Material.EarthStone>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>()).AddTile(TileID.DemonAltar).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.ChunkstoneBlock>(), 30).AddIngredient(ItemID.SoulofNight, 8).AddIngredient(ItemID.Ectoplasm, 5).AddIngredient(ModContent.ItemType<Material.EarthStone>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>()).AddTile(TileID.DemonAltar).Register();
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             Main.PlaySound(SoundID.Roar, player.position, 0);
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>());

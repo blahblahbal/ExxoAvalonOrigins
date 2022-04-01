@@ -15,27 +15,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 13;
-            item.autoReuse = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.knockBack = 5f;
-            item.useTime = 23;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.buyPrice(0, 1, 0, 0);
-            item.useAnimation = 23;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 13;
+            Item.autoReuse = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.knockBack = 5f;
+            Item.useTime = 23;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.buyPrice(0, 1, 0, 0);
+            Item.useAnimation = 23;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GoldBroadsword);
-            recipe.AddIngredient(ItemID.BugNet);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.GoldBroadsword).AddIngredient(ItemID.BugNet).AddTile(TileID.Anvils).Register();
         }
     }
 }

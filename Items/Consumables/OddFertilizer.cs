@@ -16,14 +16,14 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.maxStack = 20;
-            item.useAnimation = 45;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.maxStack = 20;
+            Item.useAnimation = 45;
+            Item.height = dims.Height;
         }
 
         public override bool CanUseItem(Player player)
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
             return true;

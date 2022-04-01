@@ -18,12 +18,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 12;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 50, 0, 0);
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.defense = 12;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 50, 0, 0);
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -32,10 +32,10 @@ namespace ExxoAvalonOrigins.Items.Accessories
             {
                 player.statDefense += 20;
                 player.lifeRegen += 5;
-                player.magicDamage += 0.2f;
-                player.meleeDamage += 0.2f;
-                player.minionDamage += 0.2f;
-                player.rangedDamage += 0.2f;
+                player.GetDamage(DamageClass.Magic) += 0.2f;
+                player.GetDamage(DamageClass.Melee) += 0.2f;
+                player.GetDamage(DamageClass.Summon) += 0.2f;
+                player.GetDamage(DamageClass.Ranged) += 0.2f;
             }
             player.noKnockback = true;
             if (player.statLife > player.statLifeMax2 * 0.25)

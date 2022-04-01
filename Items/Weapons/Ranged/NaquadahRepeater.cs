@@ -14,22 +14,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 36;
-            item.autoReuse = true;
-            item.useAmmo = AmmoID.Arrow;
-            item.shootSpeed = 10.5f;
-            item.ranged = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 2.05f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 115000;
-            item.useAnimation = 20;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item5;
+            Item.damage = 36;
+            Item.autoReuse = true;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.shootSpeed = 10.5f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 2.05f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 115000;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
         }
     }
 }

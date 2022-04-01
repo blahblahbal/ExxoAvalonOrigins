@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Shadows : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shadows");
             Description.SetDefault("You can teleport to the cursor, press V");
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Buffs
                 {
                     Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1.1f);
                 }
-                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X), (int)(Main.mouseY + Main.screenPosition.Y)].wall != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+                if (Main.tile[(int)(Main.mouseX + Main.screenPosition.X), (int)(Main.mouseY + Main.screenPosition.Y)].WallType != ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
                 {
                     player.position.X = Main.mouseX + Main.screenPosition.X;
                     player.position.Y = Main.mouseY + Main.screenPosition.Y;

@@ -164,7 +164,7 @@ namespace ExxoAvalonOrigins.Hooks
                 int y = WorldGen.genRand.Next((int)Main.rockLayer + 50, Main.maxTilesY - 300);
 
                 // Tile must be active or stone
-                if (!Main.tile[x, y].active() || Main.tile[x, y].type != 1)
+                if (!Main.tile[x, y].HasTile || Main.tile[x, y].TileType != 1)
                 {
                     continue;
                 }
@@ -173,21 +173,21 @@ namespace ExxoAvalonOrigins.Hooks
                 {
                     if (WorldGen.crimson)
                     {
-                        Main.tile[x, y].type = TileID.Crimstone;
+                        Main.tile[x, y].TileType = TileID.Crimstone;
                     }
                     else if (ExxoAvalonOriginsWorld.contagion)
                     {
-                        Main.tile[x, y].type = (ushort)ModContent.TileType<Chunkstone>();
+                        Main.tile[x, y].TileType = (ushort)ModContent.TileType<Chunkstone>();
                     }
                     else
                     {
-                        Main.tile[x, y].type = TileID.Ebonstone;
+                        Main.tile[x, y].TileType = TileID.Ebonstone;
                     }
                 }
                 // Place hallow
                 else
                 {
-                    Main.tile[x, y].type = TileID.Pearlstone;
+                    Main.tile[x, y].TileType = TileID.Pearlstone;
                 }
                 // Update clients
                 if (Main.netMode == NetmodeID.Server)

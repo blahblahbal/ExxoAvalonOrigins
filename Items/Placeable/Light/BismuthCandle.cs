@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Items.Placeable.Light
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Placeable/Light/BismuthCandle");
-            item.autoReuse = true;
-            item.noWet = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.BismuthCandle>();
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 99;
-            item.useAnimation = 15;
-            item.holdStyle = 1;
-            item.flame = true;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.noWet = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.BismuthCandle>();
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 99;
+            Item.useAnimation = 15;
+            Item.holdStyle = 1;
+            Item.flame = true;
+            Item.height = dims.Height;
         }
 
         //This whole section is just copied from the vanilla code for gold/platinum candles, is it possible to just reuse the vanilla code instead?

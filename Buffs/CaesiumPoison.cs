@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class CaesiumPoison : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Caesium Poisoning");
             Description.SetDefault("You are poisoned by the Caesium");

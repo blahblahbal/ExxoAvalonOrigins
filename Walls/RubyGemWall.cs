@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class RubyGemWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("RubyGemWall");
+            drop = Mod.Find<ModItem>("RubyGemWall").Type;
             AddMapEntry(new Color(125, 50, 64));
             dustType = DustID.Stone;
         }

@@ -16,19 +16,19 @@ namespace ExxoAvalonOrigins.Items.Placeable.Painting
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Green;
-            item.createTile = ModContent.TileType<Tiles.Paintings>();
-            item.placeStyle = 2;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 99;
-            item.value = Item.sellPrice(0, 0, 10, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Green;
+            Item.createTile = ModContent.TileType<Tiles.Paintings>();
+            Item.placeStyle = 2;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 99;
+            Item.value = Item.sellPrice(0, 0, 10, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

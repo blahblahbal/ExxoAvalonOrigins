@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
     public class Boltstone : ModTile
     {
         private Color starstoneColor = new Color(40, 195, 67);
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(starstoneColor, LanguageManager.Instance.GetText("Boltstone"));
             Main.tileSolid[Type] = true;

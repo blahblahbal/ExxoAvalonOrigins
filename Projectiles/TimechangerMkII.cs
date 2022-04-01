@@ -16,18 +16,18 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/TimechangerMkII");
-            projectile.penetrate = -1;
-            projectile.width = dims.Width * 10 / 32;
-            projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.damage = 0;
-            projectile.tileCollide = false;
+            Projectile.penetrate = -1;
+            Projectile.width = dims.Width * 10 / 32;
+            Projectile.height = dims.Height * 10 / 32 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.damage = 0;
+            Projectile.tileCollide = false;
         }
 
         public override void AI()
         {
-            switch ((int)projectile.ai[0])
+            switch ((int)Projectile.ai[0])
             {
                 case 0:
                     Main.dayTime = true;
@@ -36,7 +36,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         Main.NewText("It is now Day.", 50, 255, 130);
                     else if (Main.netMode == NetmodeID.Server)
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Day."), new Color(50, 255, 130));
-                    projectile.active = false;
+                    Projectile.active = false;
                     return;
                 case 1:
                     Main.dayTime = true;
@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         Main.NewText("It is now Noon.", 50, 255, 130);
                     else if (Main.netMode == NetmodeID.Server)
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Noon."), new Color(50, 255, 130));
-                    projectile.active = false;
+                    Projectile.active = false;
                     return;
                 case 2:
                     Main.dayTime = false;
@@ -54,7 +54,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         Main.NewText("It is now Night.", 50, 255, 130);
                     else if (Main.netMode == NetmodeID.Server)
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Night."), new Color(50, 255, 130));
-                    projectile.active = false;
+                    Projectile.active = false;
                     return;
                 case 3:
                     Main.dayTime = false;
@@ -63,7 +63,7 @@ namespace ExxoAvalonOrigins.Projectiles
                         Main.NewText("It is now Midnight.", 50, 255, 130);
                     else if (Main.netMode == NetmodeID.Server)
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Midnight."), new Color(50, 255, 130));
-                    projectile.active = false;
+                    Projectile.active = false;
                     return;
             }
 

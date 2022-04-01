@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ChunkstoneBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(109, 149, 91));
             Main.tileSolid[Type] = true;

@@ -16,22 +16,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 120;
-            item.noUseGraphic = true;
-            item.shootSpeed = 14f;
-            item.rare = ItemRarityID.Red;
-            item.autoReuse = true;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 13;
-            item.knockBack = 12f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.GuardianHammer>();
-            item.melee = true;
-            item.value = Item.sellPrice(0, 25, 0, 0);
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 13;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 120;
+            Item.noUseGraphic = true;
+            Item.shootSpeed = 14f;
+            Item.rare = ItemRarityID.Red;
+            Item.autoReuse = true;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 13;
+            Item.knockBack = 12f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.GuardianHammer>();
+            Item.DamageType = DamageClass.Melee;
+            Item.value = Item.sellPrice(0, 25, 0, 0);
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 13;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override bool CanUseItem(Player player)
         {
@@ -39,13 +39,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PaladinsHammer);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20);
-            recipe.AddIngredient(ItemID.Ectoplasm, 15);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.PaladinsHammer).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddIngredient(ItemID.Ectoplasm, 15).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

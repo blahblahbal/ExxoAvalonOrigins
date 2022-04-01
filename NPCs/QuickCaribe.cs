@@ -12,55 +12,55 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Quick Caribe");
-            Main.npcFrameCount[npc.type] = 6;
+            Main.npcFrameCount[NPC.type] = 6;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 80;
-            npc.lifeMax = 150;
-            npc.defense = 22;
-            npc.noGravity = true;
-            npc.width = 32;
-            npc.aiStyle = -1;
-            npc.value = Item.buyPrice(0, 0, 50, 0);
-            npc.timeLeft = 750;
-            npc.height = 24;
-            npc.knockBackResist = 0.8f;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            NPC.damage = 80;
+            NPC.lifeMax = 150;
+            NPC.defense = 22;
+            NPC.noGravity = true;
+            NPC.width = 32;
+            NPC.aiStyle = -1;
+            NPC.value = Item.buyPrice(0, 0, 50, 0);
+            NPC.timeLeft = 750;
+            NPC.height = 24;
+            NPC.knockBackResist = 0.8f;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
 
         public override void AI()
         {
-            if (npc.direction == 0)
+            if (NPC.direction == 0)
             {
-                npc.TargetClosest(true);
+                NPC.TargetClosest(true);
             }
-            if (!npc.wet)
+            if (!NPC.wet)
             {
                 var flag78 = false;
-                npc.TargetClosest(false);
-                if (Main.player[npc.target].wet && !Main.player[npc.target].dead)
+                NPC.TargetClosest(false);
+                if (Main.player[NPC.target].wet && !Main.player[NPC.target].dead)
                 {
                     flag78 = true;
                 }
-                var vector162 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-                var num1210 = Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f - vector162.X;
-                var num1211 = Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f - vector162.Y;
+                var vector162 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+                var num1210 = Main.player[NPC.target].position.X + Main.player[NPC.target].width * 0.5f - vector162.X;
+                var num1211 = Main.player[NPC.target].position.Y + Main.player[NPC.target].height * 0.5f - vector162.Y;
                 num1210 += Main.rand.Next(-20, 21);
                 num1211 += Main.rand.Next(-20, 21);
                 var num1212 = (float)Math.Sqrt(num1210 * num1210 + num1211 * num1211);
-                if (num1212 <= 200f && npc.ai[1] <= 0f && npc.velocity.Y < 0.6f && !flag78)
+                if (num1212 <= 200f && NPC.ai[1] <= 0f && NPC.velocity.Y < 0.6f && !flag78)
                 {
-                    npc.TargetClosest(true);
+                    NPC.TargetClosest(true);
                     var num1213 = (int)vector162.X / 16;
                     var num1214 = (int)vector162.Y / 16;
                     var num1215 = 10;
@@ -74,130 +74,130 @@ namespace ExxoAvalonOrigins.NPCs
                     }
                     if (num1210 > 16f)
                     {
-                        npc.velocity.X = 3f;
+                        NPC.velocity.X = 3f;
                     }
                     else if (num1210 < -16f)
                     {
-                        npc.velocity.X = -3f;
+                        NPC.velocity.X = -3f;
                     }
-                    npc.velocity.Y = -num1215;
-                    npc.ai[1] = 70f;
+                    NPC.velocity.Y = -num1215;
+                    NPC.ai[1] = 70f;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        npc.netUpdate = true;
-                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
+                        NPC.netUpdate = true;
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, 0f, 0f, 0f, 0);
                     }
                 }
-                else if (npc.ai[1] > 0f)
+                else if (NPC.ai[1] > 0f)
                 {
-                    npc.ai[1] = npc.ai[1] - 1f;
+                    NPC.ai[1] = NPC.ai[1] - 1f;
                 }
-                if (npc.velocity.Y == 0f && Main.netMode != NetmodeID.MultiplayerClient)
+                if (NPC.velocity.Y == 0f && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    npc.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
-                    npc.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
-                    npc.netUpdate = true;
-                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), npc.whoAmI, 0f, 0f, 0f, 0);
+                    NPC.velocity.Y = Main.rand.Next(-50, -20) * 0.1f;
+                    NPC.velocity.X = Main.rand.Next(-20, 20) * 0.1f;
+                    NPC.netUpdate = true;
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, 0f, 0f, 0f, 0);
                 }
-                npc.velocity.Y = npc.velocity.Y + 0.3f;
-                if (npc.velocity.Y > 10f)
+                NPC.velocity.Y = NPC.velocity.Y + 0.3f;
+                if (NPC.velocity.Y > 10f)
                 {
-                    npc.velocity.Y = 10f;
+                    NPC.velocity.Y = 10f;
                 }
-                npc.ai[0] = 1f;
+                NPC.ai[0] = 1f;
                 return;
             }
             var flag79 = false;
-            npc.TargetClosest(false);
-            if (Main.player[npc.target].wet && !Main.player[npc.target].dead)
+            NPC.TargetClosest(false);
+            if (Main.player[NPC.target].wet && !Main.player[NPC.target].dead)
             {
                 flag79 = true;
             }
-            var vector163 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
-            var num1216 = Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f - vector163.X;
-            var num1217 = Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f - vector163.Y;
+            var vector163 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
+            var num1216 = Main.player[NPC.target].position.X + Main.player[NPC.target].width * 0.5f - vector163.X;
+            var num1217 = Main.player[NPC.target].position.Y + Main.player[NPC.target].height * 0.5f - vector163.Y;
             num1216 += Main.rand.Next(-20, 21);
             num1217 += Main.rand.Next(-20, 21);
             var num1218 = (float)Math.Sqrt(num1216 * num1216 + num1217 * num1217);
             if (!flag79)
             {
-                if (npc.collideX)
+                if (NPC.collideX)
                 {
-                    npc.velocity.X = npc.velocity.X * -1f;
-                    npc.direction *= -1;
-                    npc.netUpdate = true;
+                    NPC.velocity.X = NPC.velocity.X * -1f;
+                    NPC.direction *= -1;
+                    NPC.netUpdate = true;
                 }
-                if (npc.collideY)
+                if (NPC.collideY)
                 {
-                    npc.netUpdate = true;
-                    if (npc.velocity.Y > 0f)
+                    NPC.netUpdate = true;
+                    if (NPC.velocity.Y > 0f)
                     {
-                        npc.velocity.Y = Math.Abs(npc.velocity.Y) * -1f;
-                        npc.directionY = -1;
-                        npc.ai[0] = -1f;
+                        NPC.velocity.Y = Math.Abs(NPC.velocity.Y) * -1f;
+                        NPC.directionY = -1;
+                        NPC.ai[0] = -1f;
                     }
-                    else if (npc.velocity.Y < 0f)
+                    else if (NPC.velocity.Y < 0f)
                     {
-                        npc.velocity.Y = Math.Abs(npc.velocity.Y);
-                        npc.directionY = 1;
-                        npc.ai[0] = 1f;
+                        NPC.velocity.Y = Math.Abs(NPC.velocity.Y);
+                        NPC.directionY = 1;
+                        NPC.ai[0] = 1f;
                     }
                 }
             }
             if (flag79)
             {
-                npc.TargetClosest(true);
-                npc.velocity.X = npc.velocity.X + npc.direction * 0.15f;
-                npc.velocity.Y = npc.velocity.Y + npc.directionY * 0.15f;
-                if (npc.velocity.X > 6f)
+                NPC.TargetClosest(true);
+                NPC.velocity.X = NPC.velocity.X + NPC.direction * 0.15f;
+                NPC.velocity.Y = NPC.velocity.Y + NPC.directionY * 0.15f;
+                if (NPC.velocity.X > 6f)
                 {
-                    npc.velocity.X = 6f;
+                    NPC.velocity.X = 6f;
                 }
-                if (npc.velocity.X < -6f)
+                if (NPC.velocity.X < -6f)
                 {
-                    npc.velocity.X = -6f;
+                    NPC.velocity.X = -6f;
                 }
-                if (npc.velocity.Y > 4f)
+                if (NPC.velocity.Y > 4f)
                 {
-                    npc.velocity.Y = 4f;
+                    NPC.velocity.Y = 4f;
                 }
-                if (npc.velocity.Y < -4f)
+                if (NPC.velocity.Y < -4f)
                 {
-                    npc.velocity.Y = -4f;
+                    NPC.velocity.Y = -4f;
                     return;
                 }
                 return;
             }
             else
             {
-                npc.velocity.X = npc.velocity.X + npc.direction * 0.1f;
-                if (npc.velocity.X < -2.5f || npc.velocity.X > 2.5f)
+                NPC.velocity.X = NPC.velocity.X + NPC.direction * 0.1f;
+                if (NPC.velocity.X < -2.5f || NPC.velocity.X > 2.5f)
                 {
-                    npc.velocity.X = npc.velocity.X * 0.95f;
+                    NPC.velocity.X = NPC.velocity.X * 0.95f;
                 }
                 if (num1218 <= 300.0)
                 {
-                    npc.TargetClosest(true);
-                    npc.velocity.Y = npc.velocity.Y - 0.15f;
+                    NPC.TargetClosest(true);
+                    NPC.velocity.Y = NPC.velocity.Y - 0.15f;
                 }
-                else if (npc.ai[0] == -1f)
+                else if (NPC.ai[0] == -1f)
                 {
-                    npc.velocity.Y = npc.velocity.Y - 0.015f;
-                    if (npc.velocity.Y < -0.50000002235174179)
+                    NPC.velocity.Y = NPC.velocity.Y - 0.015f;
+                    if (NPC.velocity.Y < -0.50000002235174179)
                     {
-                        npc.ai[0] = 1f;
+                        NPC.ai[0] = 1f;
                     }
                 }
                 else
                 {
-                    npc.velocity.Y = npc.velocity.Y + 0.015f;
-                    if (npc.velocity.Y > 0.50000002235174179)
+                    NPC.velocity.Y = NPC.velocity.Y + 0.015f;
+                    if (NPC.velocity.Y > 0.50000002235174179)
                     {
-                        npc.ai[0] = -1f;
+                        NPC.ai[0] = -1f;
                     }
                 }
-                var num1219 = (int)(npc.position.X + npc.width / 2) / 16;
-                var num1220 = (int)(npc.position.Y + npc.height / 2) / 16;
+                var num1219 = (int)(NPC.position.X + NPC.width / 2) / 16;
+                var num1220 = (int)(NPC.position.Y + NPC.height / 2) / 16;
                 if (Main.tile[num1219, num1220 - 1] == null)
                 {
                     Main.tile[num1219, num1220 - 1] = new Tile();
@@ -212,18 +212,18 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (Main.tile[num1219, num1220 - 1].liquid > 128)
                 {
-                    if (Main.tile[num1219, num1220 + 1].active())
+                    if (Main.tile[num1219, num1220 + 1].HasTile)
                     {
-                        npc.ai[0] = -1f;
+                        NPC.ai[0] = -1f;
                     }
-                    else if (Main.tile[num1219, num1220 + 2].active())
+                    else if (Main.tile[num1219, num1220 + 2].HasTile)
                     {
-                        npc.ai[0] = -1f;
+                        NPC.ai[0] = -1f;
                     }
                 }
-                if (npc.velocity.Y > 0.60000002384185791 || npc.velocity.Y < -0.60000002384185791)
+                if (NPC.velocity.Y > 0.60000002384185791 || NPC.velocity.Y < -0.60000002384185791)
                 {
-                    npc.velocity.Y = npc.velocity.Y * 0.95f;
+                    NPC.velocity.Y = NPC.velocity.Y * 0.95f;
                     return;
                 }
                 return;
@@ -232,42 +232,42 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = npc.direction;
-            npc.frameCounter += 1.0;
-            if (npc.wet)
+            NPC.spriteDirection = NPC.direction;
+            NPC.frameCounter += 1.0;
+            if (NPC.wet)
             {
-                if (npc.frameCounter < 6.0)
+                if (NPC.frameCounter < 6.0)
                 {
-                    npc.frame.Y = 0;
+                    NPC.frame.Y = 0;
                 }
-                else if (npc.frameCounter < 12.0)
+                else if (NPC.frameCounter < 12.0)
                 {
-                    npc.frame.Y = frameHeight;
+                    NPC.frame.Y = frameHeight;
                 }
-                else if (npc.frameCounter < 18.0)
+                else if (NPC.frameCounter < 18.0)
                 {
-                    npc.frame.Y = frameHeight * 2;
+                    NPC.frame.Y = frameHeight * 2;
                 }
-                else if (npc.frameCounter < 24.0)
+                else if (NPC.frameCounter < 24.0)
                 {
-                    npc.frame.Y = frameHeight * 3;
+                    NPC.frame.Y = frameHeight * 3;
                 }
                 else
                 {
-                    npc.frameCounter = 0.0;
+                    NPC.frameCounter = 0.0;
                 }
             }
-            else if (npc.frameCounter < 6.0)
+            else if (NPC.frameCounter < 6.0)
             {
-                npc.frame.Y = frameHeight * 4;
+                NPC.frame.Y = frameHeight * 4;
             }
-            else if (npc.frameCounter < 12.0)
+            else if (NPC.frameCounter < 12.0)
             {
-                npc.frame.Y = frameHeight * 5;
+                NPC.frame.Y = frameHeight * 5;
             }
             else
             {
-                npc.frameCounter = 0.0;
+                NPC.frameCounter = 0.0;
             }
         }
 

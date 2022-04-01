@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class SolariumAnvil : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(251, 199, 86), LanguageManager.Instance.GetText("Solarium Anvil"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);

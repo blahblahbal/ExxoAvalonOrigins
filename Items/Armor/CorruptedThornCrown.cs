@@ -18,21 +18,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/CorruptedThornCrown");
-            item.defense = 7;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 2, 10, 0);
-            item.height = dims.Height;
+            Item.defense = 7;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 2, 10, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Spike, 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 20);
-            recipe.AddIngredient(ItemID.SoulofNight, 10);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Spike, 20).AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 20).AddIngredient(ItemID.SoulofNight, 10).AddTile(TileID.MythrilAnvil).Register();
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -50,9 +44,9 @@ namespace ExxoAvalonOrigins.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.rangedDamage += 0.15f;
-            player.meleeDamage += 0.15f;
-            player.magicDamage += 0.35f;
+            player.GetDamage(DamageClass.Ranged) += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.15f;
+            player.GetDamage(DamageClass.Magic) += 0.35f;
         }
     }
 }

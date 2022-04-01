@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class NestWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(130, 113, 96));
             dustType = DustID.MarblePot;

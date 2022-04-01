@@ -12,24 +12,24 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shield Drone");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 150;
-            npc.noTileCollide = true;
-            npc.lifeMax = 2500;
-            npc.defense = 50;
-            npc.noGravity = true;
-            npc.width = 48;
-            npc.height = 34;
-            npc.aiStyle = -1;
-            npc.npcSlots = 6f;
-            npc.timeLeft = 750;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath14;
+            NPC.damage = 150;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 2500;
+            NPC.defense = 50;
+            NPC.noGravity = true;
+            NPC.width = 48;
+            NPC.height = 34;
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 6f;
+            NPC.timeLeft = 750;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = SoundID.NPCDeath14;
         }
 
         private const int AISlotParentID = 0;
@@ -39,44 +39,44 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
         public int AIParentID
         {
-            get => (int)npc.ai[AISlotParentID];
-            set => npc.ai[AISlotParentID] = value;
+            get => (int)NPC.ai[AISlotParentID];
+            set => NPC.ai[AISlotParentID] = value;
         }
 
         public int AIPosition
         {
-            get => (int)npc.ai[AISlotPosition];
-            set => npc.ai[AISlotPosition] = value;
+            get => (int)NPC.ai[AISlotPosition];
+            set => NPC.ai[AISlotPosition] = value;
         }
 
         public int AIMaxDrones
         {
-            get => (int)npc.ai[AISlotMaxDrones];
-            set => npc.ai[AISlotMaxDrones] = value;
+            get => (int)NPC.ai[AISlotMaxDrones];
+            set => NPC.ai[AISlotMaxDrones] = value;
         }
 
         public int AITimer
         {
-            get => (int)npc.ai[AISlotTimer];
-            set => npc.ai[AISlotTimer] = value;
+            get => (int)NPC.ai[AISlotTimer];
+            set => NPC.ai[AISlotTimer] = value;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Texture2D texture = mod.GetTexture("NPCs/Bosses/Oblivion/ShieldDrone_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("NPCs/Bosses/Oblivion/ShieldDrone_Glow").Value;
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    npc.position.X - Main.screenPosition.X + (npc.width * 0.5f),
-                    npc.position.Y - Main.screenPosition.Y + npc.height - (texture.Height * 0.5f) + 2f
+                    NPC.position.X - Main.screenPosition.X + (NPC.width * 0.5f),
+                    NPC.position.Y - Main.screenPosition.Y + NPC.height - (texture.Height * 0.5f) + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,
-                npc.rotation,
+                NPC.rotation,
                 texture.Size() * 0.5f,
-                npc.scale,
+                NPC.scale,
                 SpriteEffects.None,
                 0f
             );
@@ -90,19 +90,19 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
             if (!parentNPC.active)
             {
-                npc.active = false;
+                NPC.active = false;
             }
 
             // Set rotation outwards from parent
-            Vector2 unitVector = (npc.Center - parentNPC.Center).SafeNormalize(Vector2.UnitX);
-            npc.rotation = (float)Math.Atan2(unitVector.Y, unitVector.X) + (float)(Math.PI / 2);
+            Vector2 unitVector = (NPC.Center - parentNPC.Center).SafeNormalize(Vector2.UnitX);
+            NPC.rotation = (float)Math.Atan2(unitVector.Y, unitVector.X) + (float)(Math.PI / 2);
 
             // Set velocity and position to go in circular motion
             Vector2 desiredPosition = Vector2.UnitX.RotatedBy((Math.PI * 2 * AIPosition / AIMaxDrones) + (AITimer * 0.01f));
             desiredPosition *= 16f * 8;
             desiredPosition += parentNPC.Center;
 
-            npc.Center = desiredPosition;
+            NPC.Center = desiredPosition;
         }
     }
 }

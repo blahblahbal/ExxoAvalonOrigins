@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.potion = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 70;
-            item.value = 100;
-            item.useAnimation = 15;
-            item.healLife = 60;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item2;
+            Item.potion = true;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 70;
+            Item.value = 100;
+            Item.useAnimation = 15;
+            Item.healLife = 60;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item2;
         }
     }
 }

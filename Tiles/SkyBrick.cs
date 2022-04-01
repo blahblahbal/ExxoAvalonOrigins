@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class SkyBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(102, 102, 82));
             Main.tileSolid[Type] = true;
@@ -18,7 +18,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][TileID.Cloud] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("SkyBrick");
+            drop = Mod.Find<ModItem>("SkyBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 300;

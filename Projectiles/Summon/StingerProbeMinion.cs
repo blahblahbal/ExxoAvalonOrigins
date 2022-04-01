@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles.Summon
 {
@@ -14,33 +15,33 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stinger Probe");
-            Main.projPet[projectile.type] = true;
+            Main.projPet[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Summon/StingerProbeMinion");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height;
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.light = 0.3f;
-            projectile.ignoreWater = true;
-            projectile.tileCollide = false;
-            projectile.timeLeft = 60;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height;
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.light = 0.3f;
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = false;
+            Projectile.timeLeft = 60;
         }
 
         public override bool? CanCutTiles() { return false; }
 
         public override void AI()
         {
-            Player player = Main.player[projectile.owner];
+            Player player = Main.player[Projectile.owner];
             ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
 
             if (player.HasBuff(ModContent.BuffType<Buffs.StingerProbe>()))
             {
-                projectile.timeLeft = 2;
+                Projectile.timeLeft = 2;
             }
 
             #region Get ID
@@ -68,7 +69,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
 
             #region reflect
             // yoinked from reflex charm
-            var projWS = new Rectangle((int)projectile.Center.X - 32, (int)projectile.Center.Y - 32, 64, 64);
+            var projWS = new Rectangle((int)Projectile.Center.X - 32, (int)Projectile.Center.Y - 32, 64, 64);
             foreach (Projectile Pr in Main.projectile)
             {
                 if (!Pr.friendly && !Pr.bobber &&
@@ -104,7 +105,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
                         Pr.velocity.X *= -1f;
                         Pr.velocity.Y *= -1f;
 
-                        projectile.Kill();
+                        Projectile.Kill();
                     }
                 }
             }
@@ -131,7 +132,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
                         N.velocity.X *= -1f;
                         N.velocity.Y *= -1f;
 
-                        projectile.Kill();
+                        Projectile.Kill();
                     }
                 }
             }
@@ -141,26 +142,26 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
             int radius = 75;
             float speed = 0.1f;
             Vector2 target = player.Center + Vector2.One.RotatedBy(MathHelper.ToRadians(((360f / modPlayer.StingerProbeActiveIds.Where(i => i == true).Count()) * id) + modPlayer.StingerProbeRotTimer)) * radius;
-            Vector2 error = target - projectile.Center;
+            Vector2 error = target - Projectile.Center;
 
-            projectile.velocity = player.velocity + (error * speed);
+            Projectile.velocity = player.velocity + (error * speed);
             //projectile.Center = target;
             #endregion
 
             #region projectile
-            Vector2 dirToCursor = (modPlayer.MousePosition - projectile.Center).SafeNormalize(-Vector2.UnitY);
-            projectile.rotation = dirToCursor.ToRotation() + MathHelper.ToRadians(180f);
+            Vector2 dirToCursor = (modPlayer.MousePosition - Projectile.Center).SafeNormalize(-Vector2.UnitY);
+            Projectile.rotation = dirToCursor.ToRotation() + MathHelper.ToRadians(180f);
 
             if (projTimer-- < 0)
                 projTimer = 0;
 
             if (player.itemAnimation != 0 && player.HeldItem.damage != 0 && projTimer == 0)
             {
-                int laser = Projectile.NewProjectile(projectile.Center, dirToCursor * 36f, ModContent.ProjectileType<Projectiles.StingerLaser>(), projectile.damage, 0f, projectile.owner);
+                int laser = Projectile.NewProjectile(Projectile.Center, dirToCursor * 36f, ModContent.ProjectileType<Projectiles.StingerLaser>(), Projectile.damage, 0f, Projectile.owner);
                 Main.projectile[laser].hostile = false;
                 Main.projectile[laser].friendly = true;
                 Main.projectile[laser].tileCollide = false;
-                Main.PlaySound(SoundID.Item, projectile.Center, 12);
+                SoundEngine.PlaySound(SoundID.Item, Projectile.Center, 12);
                 projTimer = 120 + Main.rand.Next(60);
             }
             #endregion
@@ -168,15 +169,15 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
 
         public override void Kill(int timeLeft)
         {
-            Player player = Main.player[projectile.owner];
+            Player player = Main.player[Projectile.owner];
             ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
 
-            Main.PlaySound(SoundID.NPCKilled, projectile.position, 14);
+            SoundEngine.PlaySound(SoundID.NPCKilled, Projectile.position, 14);
 
             for (int i = 0; i < 2; i++)
             {
                 int randomSize = Main.rand.Next(1, 4) / 2;
-                int num161 = Gore.NewGore(new Vector2(projectile.position.X, projectile.position.Y), default(Vector2), Main.rand.Next(61, 64));
+                int num161 = Gore.NewGore(new Vector2(Projectile.position.X, Projectile.position.Y), default(Vector2), Main.rand.Next(61, 64));
                 Gore gore30 = Main.gore[num161];
                 Gore gore40 = gore30;
                 gore40.velocity *= 0.3f;
@@ -184,7 +185,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
                 Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
                 Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
             }
-            int bomb = Projectile.NewProjectile(projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
+            int bomb = Projectile.NewProjectile(Projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
             Main.projectile[bomb].timeLeft = 1;
 
             modPlayer.StingerProbeActiveIds[id] = false;

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -15,56 +16,56 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/InfectedMist");
-            projectile.width = dims.Width * 30 / 16;
-            projectile.height = dims.Height * 30 / 16 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = 6;
-            projectile.light = 0.2f;
+            Projectile.width = dims.Width * 30 / 16;
+            Projectile.height = dims.Height * 30 / 16 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = 6;
+            Projectile.light = 0.2f;
         }
 
         public override void AI()
         {
-            if (projectile.type == ModContent.ProjectileType<InfectedMist>())
+            if (Projectile.type == ModContent.ProjectileType<InfectedMist>())
             {
-                projectile.velocity *= 0.96f;
-                projectile.alpha += 3;
-                if (projectile.alpha > 255)
+                Projectile.velocity *= 0.96f;
+                Projectile.alpha += 3;
+                if (Projectile.alpha > 255)
                 {
-                    projectile.Kill();
+                    Projectile.Kill();
                 }
             }
-            else if (projectile.type == ProjectileID.SporeCloud)
+            else if (Projectile.type == ProjectileID.SporeCloud)
             {
-                projectile.velocity *= 0.96f;
-                projectile.alpha += 4;
-                if (projectile.alpha > 255)
+                Projectile.velocity *= 0.96f;
+                Projectile.alpha += 4;
+                if (Projectile.alpha > 255)
                 {
-                    projectile.Kill();
+                    Projectile.Kill();
                 }
             }
-            else if (projectile.type == ProjectileID.ChlorophyteOrb)
+            else if (Projectile.type == ProjectileID.ChlorophyteOrb)
             {
-                if (projectile.ai[0] == 0f)
+                if (Projectile.ai[0] == 0f)
                 {
-                    Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 8);
+                    SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 8);
                 }
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] > 20f)
+                Projectile.ai[0] += 1f;
+                if (Projectile.ai[0] > 20f)
                 {
-                    projectile.velocity.Y = projectile.velocity.Y + 0.3f;
-                    projectile.velocity.X = projectile.velocity.X * 0.98f;
+                    Projectile.velocity.Y = Projectile.velocity.Y + 0.3f;
+                    Projectile.velocity.X = Projectile.velocity.X * 0.98f;
                 }
             }
-            projectile.frameCounter++;
-            if (projectile.frameCounter > 5)
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter > 5)
             {
-                projectile.frame++;
-                projectile.frameCounter = 0;
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
             }
-            if (projectile.frame >= Main.projFrames[projectile.type])
+            if (Projectile.frame >= Main.projFrames[Projectile.type])
             {
-                projectile.frame = 0;
+                Projectile.frame = 0;
             }
         }
     }

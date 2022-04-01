@@ -15,33 +15,33 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 41;
-            item.noUseGraphic = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 5f;
-            item.rare = ItemRarityID.Pink;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 23;
-            item.knockBack = 5.6f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.TroxiniumSpear>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 100000;
-            item.useAnimation = 23;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 41;
+            Item.noUseGraphic = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 5f;
+            Item.rare = ItemRarityID.Pink;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 23;
+            Item.knockBack = 5.6f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.TroxiniumSpear>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 100000;
+            Item.useAnimation = 23;
+            Item.height = dims.Height;
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/Weapons/Melee/TroxiniumSpear_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Melee/TroxiniumSpear_Glow").Value;
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,

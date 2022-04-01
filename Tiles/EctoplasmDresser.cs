@@ -7,12 +7,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class EctoplasmDresser : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;
@@ -50,24 +51,24 @@ namespace ExxoAvalonOrigins.Tiles
         public override void RightClick(int i, int j)
         {
             var player = Main.LocalPlayer;
-            if (Main.tile[Player.tileTargetX, Player.tileTargetY].frameY == 0)
+            if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameY == 0)
             {
                 Main.CancelClothesWindow(true);
                 Main.mouseRightRelease = false;
-                var left = Main.tile[Player.tileTargetX, Player.tileTargetY].frameX / 18;
+                var left = Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameX / 18;
                 left %= 3;
                 left = Player.tileTargetX - left;
-                var top = Player.tileTargetY - Main.tile[Player.tileTargetX, Player.tileTargetY].frameY / 18;
+                var top = Player.tileTargetY - Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameY / 18;
                 if (player.sign > -1)
                 {
-                    Main.PlaySound(SoundID.MenuClose);
+                    SoundEngine.PlaySound(SoundID.MenuClose);
                     player.sign = -1;
                     Main.editSign = false;
                     Main.npcChatText = string.Empty;
                 }
                 if (Main.editChest)
                 {
-                    Main.PlaySound(SoundID.MenuTick);
+                    SoundEngine.PlaySound(SoundID.MenuTick);
                     Main.editChest = false;
                     Main.npcChatText = string.Empty;
                 }
@@ -82,7 +83,7 @@ namespace ExxoAvalonOrigins.Tiles
                     {
                         player.chest = -1;
                         Recipe.FindRecipes();
-                        Main.PlaySound(SoundID.MenuClose);
+                        SoundEngine.PlaySound(SoundID.MenuClose);
                     }
                     else
                     {
@@ -101,14 +102,14 @@ namespace ExxoAvalonOrigins.Tiles
                         {
                             player.chest = -1;
                             Recipe.FindRecipes();
-                            Main.PlaySound(SoundID.MenuClose);
+                            SoundEngine.PlaySound(SoundID.MenuClose);
                         }
                         else if (num213 != player.chest && player.chest == -1)
                         {
                             player.chest = num213;
                             Main.playerInventory = true;
                             Main.recBigList = false;
-                            Main.PlaySound(SoundID.MenuOpen);
+                            SoundEngine.PlaySound(SoundID.MenuOpen);
                             player.chestX = left;
                             player.chestY = top;
                         }
@@ -117,7 +118,7 @@ namespace ExxoAvalonOrigins.Tiles
                             player.chest = num213;
                             Main.playerInventory = true;
                             Main.recBigList = false;
-                            Main.PlaySound(SoundID.MenuTick);
+                            SoundEngine.PlaySound(SoundID.MenuTick);
                             player.chestX = left;
                             player.chestY = top;
                         }
@@ -142,8 +143,8 @@ namespace ExxoAvalonOrigins.Tiles
             var tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
             var left = Player.tileTargetX;
             var top = Player.tileTargetY;
-            left -= tile.frameX % 54 / 18;
-            if (tile.frameY % 36 != 0)
+            left -= tile.TileFrameX % 54 / 18;
+            if (tile.TileFrameY % 36 != 0)
             {
                 top--;
             }
@@ -184,8 +185,8 @@ namespace ExxoAvalonOrigins.Tiles
             var tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
             var left = Player.tileTargetX;
             var top = Player.tileTargetY;
-            left -= tile.frameX % 54 / 18;
-            if (tile.frameY % 36 != 0)
+            left -= tile.TileFrameX % 54 / 18;
+            if (tile.TileFrameY % 36 != 0)
             {
                 top--;
             }
@@ -213,7 +214,7 @@ namespace ExxoAvalonOrigins.Tiles
             }
             player.noThrow = 2;
             player.showItemIcon = true;
-            if (Main.tile[Player.tileTargetX, Player.tileTargetY].frameY > 0)
+            if (Main.tile[Player.tileTargetX, Player.tileTargetY].TileFrameY > 0)
             {
                 player.showItemIcon2 = ItemID.FamiliarShirt;
             }

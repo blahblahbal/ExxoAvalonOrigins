@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -20,35 +21,35 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public static void Load()
         {
-            wosTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/WallofSteel");
-            mechaHungryChainTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/MechaHungryChain");
+            wosTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/WallofSteel").Value;
+            mechaHungryChainTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/MechaHungryChain").Value;
         }
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wall of Steel");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.width = 200;
-            npc.height = 580;
-            npc.boss = npc.noTileCollide = npc.noGravity = npc.behindTiles = true;
-            npc.npcSlots = 100f;
-            npc.damage = 150;
-            npc.lifeMax = 87000;
-            npc.timeLeft = 750000;
-            npc.defense = 55;
-            npc.aiStyle = -1;
-            npc.value = Item.buyPrice(0, 10);
-            npc.knockBackResist = 0;
-            npc.scale = 1.4f;
-            npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath14;
-            npc.buffImmune[BuffID.Confused] = npc.buffImmune[ModContent.BuffType<Buffs.Frozen>()] = npc.buffImmune[BuffID.Poisoned] =
-            npc.buffImmune[BuffID.OnFire] = npc.buffImmune[BuffID.CursedInferno] = npc.buffImmune[BuffID.Venom] =
-            npc.buffImmune[BuffID.Ichor] = npc.buffImmune[BuffID.Frostburn] = true;
+            NPC.width = 200;
+            NPC.height = 580;
+            NPC.boss = NPC.noTileCollide = NPC.noGravity = NPC.behindTiles = true;
+            NPC.npcSlots = 100f;
+            NPC.damage = 150;
+            NPC.lifeMax = 87000;
+            NPC.timeLeft = 750000;
+            NPC.defense = 55;
+            NPC.aiStyle = -1;
+            NPC.value = Item.buyPrice(0, 10);
+            NPC.knockBackResist = 0;
+            NPC.scale = 1.4f;
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = SoundID.NPCDeath14;
+            NPC.buffImmune[BuffID.Confused] = NPC.buffImmune[ModContent.BuffType<Buffs.Frozen>()] = NPC.buffImmune[BuffID.Poisoned] =
+            NPC.buffImmune[BuffID.OnFire] = NPC.buffImmune[BuffID.CursedInferno] = NPC.buffImmune[BuffID.Venom] =
+            NPC.buffImmune[BuffID.Ichor] = NPC.buffImmune[BuffID.Frostburn] = true;
             bossBag = ModContent.ItemType<Items.BossBags.WallofSteelBossBag>();
         }
 
@@ -59,13 +60,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Lerp(Color.White, Lighting.GetColor((int)npc.position.X, (int)npc.position.Y), 0.5f);
+            return Color.Lerp(Color.White, Lighting.GetColor((int)NPC.position.X, (int)NPC.position.Y), 0.5f);
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.85f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.65f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.85f * bossLifeScale);
+            NPC.damage = (int)(NPC.damage * 0.65f);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -231,26 +232,26 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
         public override void AI()
         {
             bool expert = Main.expertMode;
-            if (npc.position.X < 160f || npc.position.X > (Main.maxTilesX - 10) * 16)
+            if (NPC.position.X < 160f || NPC.position.X > (Main.maxTilesX - 10) * 16)
             {
-                npc.active = false;
+                NPC.active = false;
             }
-            if (npc.localAI[0] == 0f)
+            if (NPC.localAI[0] == 0f)
             {
-                npc.localAI[0] = 1f;
+                NPC.localAI[0] = 1f;
                 ExxoAvalonOriginsWorld.wosB = -1;
                 ExxoAvalonOriginsWorld.wosT = -1;
             }
-            npc.localAI[3] += 1f;
-            if (npc.localAI[3] >= 600 + Main.rand.Next(1000))
+            NPC.localAI[3] += 1f;
+            if (NPC.localAI[3] >= 600 + Main.rand.Next(1000))
             {
-                npc.localAI[3] = -Main.rand.Next(200);
+                NPC.localAI[3] = -Main.rand.Next(200);
                 //Main.PlaySound(4, (int)npc.position.X, (int)npc.position.Y, 10);
             }
-            ExxoAvalonOriginsWorld.wos = npc.whoAmI;
-            int tilePosX = (int)(npc.position.X / 16f);
-            int tilePosXwidth = (int)((npc.position.X + npc.width) / 16f);
-            int tilePosYCenter = (int)((npc.position.Y + npc.height / 2) / 16f);
+            ExxoAvalonOriginsWorld.wos = NPC.whoAmI;
+            int tilePosX = (int)(NPC.position.X / 16f);
+            int tilePosXwidth = (int)((NPC.position.X + NPC.width) / 16f);
+            int tilePosYCenter = (int)((NPC.position.Y + NPC.height / 2) / 16f);
             int num447 = tilePosYCenter + 7;
             num447 += 4;
             if (ExxoAvalonOriginsWorld.wosB == -1)
@@ -295,109 +296,109 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     ExxoAvalonOriginsWorld.wosT = num447 * 16;
                 }
             }
-            float num450 = (ExxoAvalonOriginsWorld.wosB + ExxoAvalonOriginsWorld.wosT) / 2 - npc.height / 2;
-            if (npc.Center.Y > Main.player[npc.target].Center.Y)
+            float num450 = (ExxoAvalonOriginsWorld.wosB + ExxoAvalonOriginsWorld.wosT) / 2 - NPC.height / 2;
+            if (NPC.Center.Y > Main.player[NPC.target].Center.Y)
             {
-                if (npc.velocity.Y > 0)
+                if (NPC.velocity.Y > 0)
                 {
-                    npc.velocity.Y *= 0.98f;
+                    NPC.velocity.Y *= 0.98f;
                 }
-                npc.velocity.Y -= 0.02f;
-                if (npc.velocity.Y < -2.2f)
+                NPC.velocity.Y -= 0.02f;
+                if (NPC.velocity.Y < -2.2f)
                 {
-                    npc.velocity.Y = -2.2f;
+                    NPC.velocity.Y = -2.2f;
                 }
             }
-            if (npc.Center.Y < Main.player[npc.target].Center.Y)
+            if (NPC.Center.Y < Main.player[NPC.target].Center.Y)
             {
-                if (npc.velocity.Y < 0)
+                if (NPC.velocity.Y < 0)
                 {
-                    npc.velocity.Y *= 0.98f;
+                    NPC.velocity.Y *= 0.98f;
                 }
-                npc.velocity.Y += 0.02f;
-                if (npc.velocity.Y > 2.2f)
+                NPC.velocity.Y += 0.02f;
+                if (NPC.velocity.Y > 2.2f)
                 {
-                    npc.velocity.Y = 2.2f;
+                    NPC.velocity.Y = 2.2f;
                 }
             }
             //npc.velocity.Y = 0f;
             //npc.position.Y = num450;
-            if (npc.position.Y / 16 < Main.maxTilesY - 200)
+            if (NPC.position.Y / 16 < Main.maxTilesY - 200)
             {
-                npc.position.Y = (Main.maxTilesY - 200) * 16;
+                NPC.position.Y = (Main.maxTilesY - 200) * 16;
             }
 
             float num451 = 2.5f;
-            if (npc.life < npc.lifeMax * 0.75)
+            if (NPC.life < NPC.lifeMax * 0.75)
             {
                 num451 += 0.25f;
             }
-            if (npc.life < npc.lifeMax * 0.5)
+            if (NPC.life < NPC.lifeMax * 0.5)
             {
                 num451 += 0.4f;
             }
-            if (npc.life < npc.lifeMax * 0.25)
+            if (NPC.life < NPC.lifeMax * 0.25)
             {
                 num451 += 0.5f;
             }
-            if (npc.life < npc.lifeMax * 0.1)
+            if (NPC.life < NPC.lifeMax * 0.1)
             {
                 num451 += 0.6f;
             }
-            if (npc.life < npc.lifeMax * 0.66 && Main.expertMode)
+            if (NPC.life < NPC.lifeMax * 0.66 && Main.expertMode)
             {
                 num451 += 0.3f;
             }
-            if (npc.life < npc.lifeMax * 0.33 && Main.expertMode)
+            if (NPC.life < NPC.lifeMax * 0.33 && Main.expertMode)
             {
                 num451 += 0.3f;
             }
-            if (npc.life < npc.lifeMax * 0.05 && Main.expertMode)
+            if (NPC.life < NPC.lifeMax * 0.05 && Main.expertMode)
             {
                 num451 += 0.6f;
             }
-            if (npc.life < npc.lifeMax * 0.035 && Main.expertMode)
+            if (NPC.life < NPC.lifeMax * 0.035 && Main.expertMode)
             {
                 num451 += 0.6f;
             }
-            if (npc.life < npc.lifeMax * 0.025 && Main.expertMode)
+            if (NPC.life < NPC.lifeMax * 0.025 && Main.expertMode)
             {
                 num451 += 0.6f;
             }
-            if (npc.velocity.X == 0f)
+            if (NPC.velocity.X == 0f)
             {
-                npc.TargetClosest(true);
-                npc.velocity.X = npc.direction;
+                NPC.TargetClosest(true);
+                NPC.velocity.X = NPC.direction;
             }
-            if (npc.velocity.X < 0f)
+            if (NPC.velocity.X < 0f)
             {
-                npc.velocity.X = -num451;
-                npc.direction = -1;
+                NPC.velocity.X = -num451;
+                NPC.direction = -1;
             }
             else
             {
-                npc.velocity.X = num451;
-                npc.direction = 1;
+                NPC.velocity.X = num451;
+                NPC.direction = 1;
             }
-            if (npc.life > npc.lifeMax / 3)
+            if (NPC.life > NPC.lifeMax / 3)
             {
-                npc.ai[1]++;
-                if (npc.ai[1] == 90)
+                NPC.ai[1]++;
+                if (NPC.ai[1] == 90)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient) // leeches
                     {
-                        int num442 = NPC.NewNPC((int)(npc.position.X + npc.width / 2), (int)(npc.position.Y + npc.height / 2 + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
-                        Main.npc[num442].velocity.X = npc.direction * 8;
+                        int num442 = NPC.NewNPC((int)(NPC.position.X + NPC.width / 2), (int)(NPC.position.Y + NPC.height / 2 + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
+                        Main.npc[num442].velocity.X = NPC.direction * 8;
                     }
                 }
-                if (npc.ai[1] > 90)
+                if (NPC.ai[1] > 90)
                 {
                     int fire;
                     float f = 0f;
                     int dmg = Main.expertMode ? 75 : 60;
-                    var laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
-                    float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-                    Main.PlaySound(SoundID.Item, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
+                    var laserPos = new Vector2((NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width), ExxoAvalonOriginsWorld.wosT);
+                    float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), laserPos.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
+                    SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     while (f <= .1f)
                     {
                         fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
@@ -416,13 +417,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         }
                         f += .034f;
                     }
-                    npc.ai[1] = 0;
+                    NPC.ai[1] = 0;
                 }
-                npc.ai[2]++;
-                if (npc.ai[2] == 100)
+                NPC.ai[2]++;
+                if (NPC.ai[2] == 100)
                 {
-                    int laser = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosB, npc.velocity.X, npc.velocity.Y, ProjectileID.DeathLaser, Main.expertMode ? 70 : 55, 4f);
-                    Main.projectile[laser].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosB)) * 5f;
+                    int laser = Projectile.NewProjectile((NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width), ExxoAvalonOriginsWorld.wosB, NPC.velocity.X, NPC.velocity.Y, ProjectileID.DeathLaser, Main.expertMode ? 70 : 55, 4f);
+                    Main.projectile[laser].velocity = Vector2.Normalize(Main.player[NPC.target].Center - new Vector2(NPC.position.X, ExxoAvalonOriginsWorld.wosB)) * 5f;
                     Main.projectile[laser].hostile = true;
                     Main.projectile[laser].friendly = false;
                     Main.projectile[laser].tileCollide = false;
@@ -431,15 +432,15 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, laser);
                     }
 
-                    npc.ai[2] = 0;
+                    NPC.ai[2] = 0;
                 }
-                if (npc.ai[2] == 90)
+                if (NPC.ai[2] == 90)
                 {
                     int fire;
                     float f = 0f;
-                    var laserPos = new Vector2((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT);
-                    float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[npc.target].position.Y + (Main.player[npc.target].height * 0.5f)), laserPos.X - (Main.player[npc.target].position.X + (Main.player[npc.target].width * 0.5f)));
-                    Main.PlaySound(SoundID.Item, (int)npc.position.X, ExxoAvalonOriginsWorld.wosT, 33);
+                    var laserPos = new Vector2((NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width), ExxoAvalonOriginsWorld.wosT);
+                    float rotation = (float)Math.Atan2(laserPos.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), laserPos.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
+                    SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     //while (f <= .1f)
                     //{
                     fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
@@ -460,35 +461,35 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             }
             else
             {
-                npc.ai[3]++;
-                if (npc.ai[3] == 1)
+                NPC.ai[3]++;
+                if (NPC.ai[3] == 1)
                 {
-                    npc.defense = 0;
-                    Main.PlaySound(SoundID.Item, -1, -1, mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserCharge"));
+                    NPC.defense = 0;
+                    SoundEngine.PlaySound(SoundID.Item, -1, -1, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserCharge"));
                 }
-                if (npc.ai[3] >= 60 && npc.ai[3] <= 90)
+                if (NPC.ai[3] >= 60 && NPC.ai[3] <= 90)
                 {
-                    if (npc.ai[3] == 60)
+                    if (NPC.ai[3] == 60)
                     {
-                        Main.PlaySound(SoundID.Item, (int)npc.position.X, (int)npc.Center.Y, 33);
-                        npc.ai[1] = (npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width);
-                        npc.ai[2] = npc.Center.Y;
-                        npc.localAI[1] = npc.velocity.X;
-                        npc.localAI[2] = npc.velocity.Y;
+                        SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.Center.Y, 33);
+                        NPC.ai[1] = (NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width);
+                        NPC.ai[2] = NPC.Center.Y;
+                        NPC.localAI[1] = NPC.velocity.X;
+                        NPC.localAI[2] = NPC.velocity.Y;
                     }
                     int t = ModContent.ProjectileType<Projectiles.WallofSteelLaser>(); // middle
-                    if (npc.ai[3] == 60) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>(); // start
-                    if (npc.ai[3] == 90) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>(); // end
-                    if (npc.ai[3] % 3 == 0)
+                    if (NPC.ai[3] == 60) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserStart>(); // start
+                    if (NPC.ai[3] == 90) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>(); // end
+                    if (NPC.ai[3] % 3 == 0)
                     {
-                        int wide = Projectile.NewProjectile(npc.ai[1], npc.ai[2], npc.localAI[1], npc.localAI[2], t, 100, 4f);
-                        if (npc.velocity.X > 0)
+                        int wide = Projectile.NewProjectile(NPC.ai[1], NPC.ai[2], NPC.localAI[1], NPC.localAI[2], t, 100, 4f);
+                        if (NPC.velocity.X > 0)
                         {
-                            Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - new Vector2(npc.ai[1] - 100, npc.ai[2])) * 20f;
+                            Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(NPC.ai[1], NPC.ai[2]) - new Vector2(NPC.ai[1] - 100, NPC.ai[2])) * 20f;
                         }
-                        else if (npc.velocity.X < 0)
+                        else if (NPC.velocity.X < 0)
                         {
-                            Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(npc.ai[1] - 100, npc.ai[2]) - new Vector2(npc.ai[1], npc.ai[2])) * 20f;
+                            Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(NPC.ai[1] - 100, NPC.ai[2]) - new Vector2(NPC.ai[1], NPC.ai[2])) * 20f;
                         }
 
                         Main.projectile[wide].tileCollide = false;
@@ -498,29 +499,29 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         }
                     }
                 }
-                if (npc.ai[3] > 100 && npc.ai[3] < 150)
+                if (NPC.ai[3] > 100 && NPC.ai[3] < 150)
                 {
-                    npc.defense = 55;
-                    int fire = Projectile.NewProjectile((npc.velocity.X < 0 ? npc.position.X : npc.position.X + npc.width), ExxoAvalonOriginsWorld.wosT, npc.velocity.X, npc.velocity.Y, ProjectileID.EyeFire, 45, 4f);
-                    Main.projectile[fire].velocity = Vector2.Normalize(Main.player[npc.target].Center - new Vector2(npc.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
+                    NPC.defense = 55;
+                    int fire = Projectile.NewProjectile((NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width), ExxoAvalonOriginsWorld.wosT, NPC.velocity.X, NPC.velocity.Y, ProjectileID.EyeFire, 45, 4f);
+                    Main.projectile[fire].velocity = Vector2.Normalize(Main.player[NPC.target].Center - new Vector2(NPC.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
                     Main.projectile[fire].tileCollide = false;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                     }
                 }
-                if (npc.ai[3] > 300)
+                if (NPC.ai[3] > 300)
                 {
-                    npc.ai[3] = 0;
+                    NPC.ai[3] = 0;
                 }
             }
-            npc.spriteDirection = npc.direction;
-            if (npc.localAI[0] == 1f && Main.netMode != NetmodeID.MultiplayerClient)
+            NPC.spriteDirection = NPC.direction;
+            if (NPC.localAI[0] == 1f && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                npc.localAI[0] = 2f;
+                NPC.localAI[0] = 2f;
                 for (int num456 = 0; num456 < 11; num456++)
                 {
-                    int hungry = NPC.NewNPC((int)npc.position.X, (int)num450, ModContent.NPCType<NPCs.MechanicalHungry>(), npc.whoAmI);
+                    int hungry = NPC.NewNPC((int)NPC.position.X, (int)num450, ModContent.NPCType<NPCs.MechanicalHungry>(), NPC.whoAmI);
                     Main.npc[hungry].ai[0] = num456 * 0.1f - 0.05f;
                 }
                 return;
@@ -529,22 +530,22 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
 
         public override void NPCLoot()
         {
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore1"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore2"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore3"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore3"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore4"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore5"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore6"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore6"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore7"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore8"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore9"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore10"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore11"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore12"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore13"), npc.scale);
-            Gore.NewGore(npc.Center, npc.velocity, mod.GetGoreSlot("Gores/WallofSteelGore14"), npc.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore1"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore2"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore4"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore5"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore7"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore8"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore9"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore10"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore11"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore12"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore13"), NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore14"), NPC.scale);
             ExxoAvalonOriginsWorld.wos = -1;
             if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
             {
@@ -553,48 +554,48 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 //{
                 //    if (Main.player[i].active) numplayers++;
                 //}
-                if (!Main.expertMode) npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<Items.Consumables.DarkStarHeart>());
+                if (!Main.expertMode) NPC.DropItemInstanced(NPC.position, new Vector2(NPC.width, NPC.height), ModContent.ItemType<Items.Consumables.DarkStarHeart>());
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().InitiateSuperHardmode();
             }
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<WallofSteelTrophy>(), 1, false, 0, false);
+                Item.NewItem(NPC.getRect(), ModContent.ItemType<WallofSteelTrophy>(), 1, false, 0, false);
             }
 
             if (Main.expertMode)
             {
-                npc.DropBossBags();
+                NPC.DropBossBags();
             }
             else
             {
                 int drop = Main.rand.Next(5);
                 if (drop == 0)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<FleshBoiler>(), 1, false, -1, false);
+                    Item.NewItem(NPC.getRect(), ModContent.ItemType<FleshBoiler>(), 1, false, -1, false);
                 }
                 if (drop == 1)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<MagicCleaver>(), 1, false, -1, false);
+                    Item.NewItem(NPC.getRect(), ModContent.ItemType<MagicCleaver>(), 1, false, -1, false);
                 }
                 if (drop == 2)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.BubbleBoost>(), 1, false, -1, false);
+                    Item.NewItem(NPC.getRect(), ModContent.ItemType<Items.Accessories.BubbleBoost>(), 1, false, -1, false);
                 }
-                Item.NewItem(npc.getRect(), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56), false, 0, false);
-                Item.NewItem(npc.getRect(), ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 31), false, 0, false);
+                Item.NewItem(NPC.getRect(), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56), false, 0, false);
+                Item.NewItem(NPC.getRect(), ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 31), false, 0, false);
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int num22 = (int)(npc.position.X + (npc.width / 2)) / 16;
-                int num23 = (int)(npc.position.Y + (npc.height / 2)) / 16;
-                int num24 = npc.width / 4 / 16 + 1;
+                int num22 = (int)(NPC.position.X + (NPC.width / 2)) / 16;
+                int num23 = (int)(NPC.position.Y + (NPC.height / 2)) / 16;
+                int num24 = NPC.width / 4 / 16 + 1;
                 for (int k = num22 - num24; k <= num22 + num24; k++)
                 {
                     for (int l = num23 - num24; l <= num23 + num24; l++)
                     {
-                        if ((k == num22 - num24 || k == num22 + num24 || l == num23 - num24 || l == num23 + num24) && !Main.tile[k, l].active())
+                        if ((k == num22 - num24 || k == num22 + num24 || l == num23 - num24 || l == num23 + num24) && !Main.tile[k, l].HasTile)
                         {
-                            Main.tile[k, l].type = (ushort)ModContent.TileType<Tiles.OblivionBrick>();
+                            Main.tile[k, l].TileType = (ushort)ModContent.TileType<Tiles.OblivionBrick>();
                             Main.tile[k, l].active(true);
                         }
                         Main.tile[k, l].lava(false);

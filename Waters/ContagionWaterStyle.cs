@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Waters
     {
         public override bool ChooseWaterStyle()
         {
-            return Main.bgStyle == mod.GetSurfaceBgStyleSlot("ContagionSurfaceBG");
+            return Main.bgStyle == Mod.GetSurfaceBgStyleSlot("ContagionSurfaceBG");
         }
         //public override bool Autoload(ref string name, ref string texture, ref string blockTexture)
         //{
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Waters
         //}
         public override int ChooseWaterfallStyle()
         {
-            return mod.GetWaterfallStyleSlot("ContagionWaterfallStyle");
+            return Mod.GetWaterfallStyleSlot("ContagionWaterfallStyle");
         }
 
         public override int GetSplashDust()
@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.Waters
 
         public override int GetDropletGore()
         {
-            return mod.GetGoreSlot("Gores/ContagionDroplet");
+            return Mod.Find<ModGore>("Gores/ContagionDroplet");
         }
 
         public override void LightColorMultiplier(ref float r, ref float g, ref float b)

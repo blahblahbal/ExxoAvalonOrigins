@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class HardenedSnotsand : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(64, 78, 59));
             Main.tileSolid[Type] = true;
@@ -21,7 +21,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[ModContent.TileType<Snotsand>()][Type] = true;
             Main.tileMerge[Type][ModContent.TileType<Snotsand>()] = true;
             TileID.Sets.Conversion.HardenedSand[Type] = true;
-            drop = mod.ItemType("HardenedSnotsandBlock");
+            drop = Mod.Find<ModItem>("HardenedSnotsandBlock").Type;
             dustType = DustID.ScourgeOfTheCorruptor;
         }
     }

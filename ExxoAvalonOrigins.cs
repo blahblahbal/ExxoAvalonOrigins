@@ -122,19 +122,19 @@ namespace ExxoAvalonOrigins
 
                 ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Texture2D[]
                 {
-                    Mod.GetTexture("Sprites/LavaMerman_Head"),
-                    Mod.GetTexture("Sprites/LavaMerman_Body"),
-                    Mod.GetTexture("Sprites/LavaMerman_Arms"),
-                    Mod.GetTexture("Sprites/LavaMerman_FemaleBody"),
-                    Mod.GetTexture("Sprites/LavaMerman_Legs")
-                };
+                    Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Head").Value,
+                    Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Body").Value,
+                    Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Arms").Value,
+                    Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_FemaleBody").Value,
+                    Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Legs")
+.Value                };
                 ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Texture2D[]
                 {
-                    Mod.GetTexture("Items/Armor/SpectrumHelmet_Glow_Head"),
-                    Mod.GetTexture("Items/Armor/SpectrumBreastplate_Body_Glow"),
-                    Mod.GetTexture("Items/Armor/SpectrumBreastplate_Arms_Glow"),
-                    Mod.GetTexture("Items/Armor/SpectrumBreastplate_FemaleBody_Glow"),
-                    Mod.GetTexture("Items/Armor/SpectrumGreaves_Legs_Glow"),
+                    Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumHelmet_Glow_Head").Value,
+                    Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Body_Glow").Value,
+                    Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Arms_Glow").Value,
+                    Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_FemaleBody_Glow").Value,
+                    Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumGreaves_Legs_Glow").Value,
                 };
                 ExxoAvalonOriginsModPlayer.originalMermanTextures = new Texture2D[]
                 {
@@ -316,7 +316,7 @@ namespace ExxoAvalonOrigins
                     priority = MusicPriority.BiomeHigh;
                 }
             }
-            if (Main.tile[(int)player.position.X / 16, (int)player.position.Y / 16].wall == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && ExxoAvalonOriginsWorld.tropicTiles > 50)
+            if (Main.tile[(int)player.position.X / 16, (int)player.position.Y / 16].WallType == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && ExxoAvalonOriginsWorld.tropicTiles > 50)
             {
                 if (musicMod != null)
                 {
@@ -872,7 +872,7 @@ namespace ExxoAvalonOrigins
                 return new Rectangle(0, 0, 1, 1);
             }
 
-            return Mod.GetTexture(loc).Bounds;
+            return Mod.Assets.Request<Texture2D>(loc).Value.Bounds;
         }
 
         public enum Similarity
@@ -884,15 +884,15 @@ namespace ExxoAvalonOrigins
 
         public static Similarity GetSimilarity(Tile check, int myType, int mergeType)
         {
-            if (check?.active() != true)
+            if (check?.HasTile != true)
             {
                 return Similarity.None;
             }
-            if (check.type == myType || Main.tileMerge[myType][check.type])
+            if (check.TileType == myType || Main.tileMerge[myType][check.TileType])
             {
                 return Similarity.Same;
             }
-            if (check.type == mergeType)
+            if (check.TileType == mergeType)
             {
                 return Similarity.Merge;
             }
@@ -913,8 +913,8 @@ namespace ExxoAvalonOrigins
             Tile tile = Main.tile[x, y];
             if (tile != null)
             {
-                tile.frameX = (short)frameX;
-                tile.frameY = (short)frameY;
+                tile.TileFrameX = (short)frameX;
+                tile.TileFrameY = (short)frameY;
             }
         }
 

@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins
         /// <returns>Returns true if the player is touching the ground.</returns>
         public static bool isOnGround(this Player player)
         {
-            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].type]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].active() && Main.tileSolid[Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].type] && player.velocity.Y == 0f);
+            return (Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].HasTile && Main.tileSolid[Main.tile[(int)(player.position.X / 16f), (int)(player.position.Y / 16f) + 3].TileType]) || (Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].HasTile && Main.tileSolid[Main.tile[(int)(player.position.X / 16f) + 1, (int)(player.position.Y / 16f) + 3].TileType] && player.velocity.Y == 0f);
         }
         /// <summary>
         /// Rotate a Vector2.
@@ -93,6 +93,10 @@ namespace ExxoAvalonOrigins
             int num2 = p.whoAmI;
             Projectile.NewProjectile(position.X, position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, p.whoAmI, num2, num);
         }
+        public static bool Slope(this Tile t)
+        {
+            return t.BottomSlope || t.LeftSlope || t.RightSlope || t.TopSlope;
+        }
         public static bool Exists(this Item item)
         {
             return item.type > ItemID.None && item.stack > 0;
@@ -104,10 +108,10 @@ namespace ExxoAvalonOrigins
         /// <param name="amt">The amount to increase the crit chance by.</param>
         public static void AllCrit(this Player p, int amt)
         {
-            p.magicCrit += amt;
-            p.meleeCrit += amt;
-            p.rangedCrit += amt;
-            p.thrownCrit += amt;
+            p.GetCritChance(DamageClass.Magic) += amt;
+            p.GetCritChance(DamageClass.Melee) += amt;
+            p.GetCritChance(DamageClass.Ranged) += amt;
+            p.GetCritChance(DamageClass.Throwing) += amt;
         }
         /// <summary>
         /// Finds the closest NPC to the Projectile instance.
@@ -292,7 +296,7 @@ namespace ExxoAvalonOrigins
 
         public static Texture2D GetTexture(this ModItem item)
         {
-            return ModContent.GetTexture(item.Texture);
+            return ModContent.Request<Texture2D>(item.Texture);
         }
         public static Rectangle GetDims(this ModItem item)
         {

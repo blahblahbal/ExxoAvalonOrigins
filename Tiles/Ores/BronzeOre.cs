@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class BronzeOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(121, 50, 42), LanguageManager.Instance.GetText("Bronze"));
             Main.tileSolid[Type] = true;

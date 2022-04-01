@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -9,30 +10,30 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cloud Bat");
-            Main.npcFrameCount[npc.type] = 5;
+            Main.npcFrameCount[NPC.type] = 5;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 80;
-            npc.lifeMax = 1670;
-            npc.defense = 35;
-            npc.width = 10;
-            npc.aiStyle = 14;
-            npc.scale = 1.4f;
-            npc.value = 10000f;
-            npc.knockBackResist = 0.05f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath4;
-            npc.height = 12;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.CloudBatBanner>();
-            animationType = 49;
+            NPC.damage = 80;
+            NPC.lifeMax = 1670;
+            NPC.defense = 35;
+            NPC.width = 10;
+            NPC.aiStyle = 14;
+            NPC.scale = 1.4f;
+            NPC.value = 10000f;
+            NPC.knockBackResist = 0.05f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath4;
+            NPC.height = 12;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.CloudBatBanner>();
+            AnimationType = 49;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.65f);
-            npc.damage = (int)(npc.damage * 0.45f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.65f);
+            NPC.damage = (int)(NPC.damage * 0.45f);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

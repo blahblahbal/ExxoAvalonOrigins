@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class IceGolem : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ice Golem");
             Description.SetDefault("The ice golem will fight for you");

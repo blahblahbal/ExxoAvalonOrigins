@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 80;
-            item.autoReuse = true;
-            item.scale = 1.2f;
-            item.useTurn = true;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 5.25f;
-            item.melee = true;
-            item.value = 70000;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.damage = 80;
+            Item.autoReuse = true;
+            Item.scale = 1.2f;
+            Item.useTurn = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 5.25f;
+            Item.DamageType = DamageClass.Melee;
+            Item.value = 70000;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {

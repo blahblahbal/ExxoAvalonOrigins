@@ -7,6 +7,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -78,7 +79,7 @@ namespace ExxoAvalonOrigins.UI
             {
                 return;
             }
-            Main.PlaySound(SoundID.MenuOpen);
+            SoundEngine.PlaySound(SoundID.MenuOpen);
             Active = true;
             FadeText = false;
             SetSiblingsInactive();

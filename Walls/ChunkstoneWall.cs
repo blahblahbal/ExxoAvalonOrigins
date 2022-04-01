@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class ChunkstoneWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             WallID.Sets.Conversion.Stone[Type] = true;
             AddMapEntry(new Color(34, 44, 25));

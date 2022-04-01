@@ -381,11 +381,11 @@ namespace ExxoAvalonOrigins
                 {
                     projectile.active = false;
                 }
-                if (!Main.tile[num3, num4].active())
+                if (!Main.tile[num3, num4].HasTile)
                 {
                     WorldGen.PlaceTile(num3, num4, 4, false, true, -1, 0);
                     WorldGen.TileFrame(num3, num4, false, false);
-                    Main.tile[num3, num4].frameY = (short)(num2 * 22);
+                    Main.tile[num3, num4].TileFrameY = (short)(num2 * 22);
                     projectile.active = false;
                 }
                 else
@@ -393,7 +393,7 @@ namespace ExxoAvalonOrigins
                     Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, num, 1, false, 0, false);
                     projectile.active = false;
                 }
-                if (!Main.tile[num3, num4].active() && (Main.tile[num3 + 1, num4 + 1].active() || Main.tile[num3 - 1, num4 + 1].active() || Main.tile[num3 + 1, num4 - 1].active() || Main.tile[num3 - 1, num4 - 1].active()) && !Main.tile[num3, num4 + 1].active())
+                if (!Main.tile[num3, num4].HasTile && (Main.tile[num3 + 1, num4 + 1].HasTile || Main.tile[num3 - 1, num4 + 1].HasTile || Main.tile[num3 + 1, num4 - 1].HasTile || Main.tile[num3 - 1, num4 - 1].HasTile) && !Main.tile[num3, num4 + 1].HasTile)
                 {
                     Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, num, 1, false, 0, false);
                     projectile.active = false;

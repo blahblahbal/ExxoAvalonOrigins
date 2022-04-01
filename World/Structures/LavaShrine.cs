@@ -20,30 +20,30 @@ namespace ExxoAvalonOrigins.World.Structures
             Main.tile[x + 5, y].active(true);
             Main.tile[x + 6, y].active(true);
             Main.tile[x + 9, y].active(true);
-            Main.tile[x + 2, y].type = LB;
-            Main.tile[x + 5, y].type = LB;
-            Main.tile[x + 6, y].type = LB;
-            Main.tile[x + 9, y].type = LB;
+            Main.tile[x + 2, y].TileType = LB;
+            Main.tile[x + 5, y].TileType = LB;
+            Main.tile[x + 6, y].TileType = LB;
+            Main.tile[x + 9, y].TileType = LB;
             for (int xoff = x + 2; xoff <= x + 9; xoff++)
             {
                 Main.tile[xoff, y + 1].active(true);
-                Main.tile[xoff, y + 1].type = LB;
+                Main.tile[xoff, y + 1].TileType = LB;
             }
             Main.tile[x + 3, y + 2].active(true);
             Main.tile[x + 3, y + 3].active(true);
             Main.tile[x + 8, y + 2].active(true);
             Main.tile[x + 8, y + 3].active(true);
 
-            Main.tile[x + 3, y + 2].type = LB;
-            Main.tile[x + 3, y + 3].type = LB;
-            Main.tile[x + 8, y + 2].type = LB;
-            Main.tile[x + 8, y + 3].type = LB;
+            Main.tile[x + 3, y + 2].TileType = LB;
+            Main.tile[x + 3, y + 3].TileType = LB;
+            Main.tile[x + 8, y + 2].TileType = LB;
+            Main.tile[x + 8, y + 3].TileType = LB;
             for (int xoff = x + 4; xoff <= x + 7; xoff++)
             {
                 for (int yoff = y + 2; yoff <= y + 3; yoff++)
                 {
                     Main.tile[xoff, yoff].active(true);
-                    Main.tile[xoff, yoff].type = LA;
+                    Main.tile[xoff, yoff].TileType = LA;
                 }
             }
             Main.tile[x + 4, y + 4].active(true);
@@ -100,65 +100,65 @@ namespace ExxoAvalonOrigins.World.Structures
             Main.tile[x + 20, y + 17].active(true);
             Main.tile[x + 20, y + 18].active(true);
 
-            Main.tile[x + 4, y + 4].type = LB;
-            Main.tile[x + 5, y + 4].type = LB;
-            Main.tile[x + 6, y + 4].type = LB;
-            Main.tile[x + 7, y + 4].type = LB;
-            Main.tile[x + 5, y + 5].type = LB;
-            Main.tile[x + 6, y + 5].type = LB;
-            Main.tile[x + 7, y + 5].type = LB;
-            Main.tile[x + 5, y + 6].type = LB;
-            Main.tile[x + 5, y + 7].type = LB;
-            Main.tile[x + 5, y + 8].type = LB;
-            Main.tile[x + 4, y + 8].type = LB;
-            Main.tile[x + 3, y + 8].type = LB;
-            Main.tile[x + 3, y + 9].type = LB;
-            Main.tile[x + 3, y + 10].type = LB;
-            Main.tile[x + 2, y + 10].type = LB;
-            Main.tile[x + 1, y + 10].type = LB;
-            Main.tile[x + 1, y + 11].type = LB;
-            Main.tile[x, y + 11].type = LB;
-            Main.tile[x, y + 12].type = LB;
-            Main.tile[x, y + 13].type = LB;
-            Main.tile[x, y + 14].type = LB;
-            Main.tile[x + 1, y + 14].type = LB;
-            Main.tile[x + 1, y + 15].type = LB;
-            Main.tile[x + 2, y + 15].type = LB;
-            Main.tile[x + 2, y + 16].type = LB;
-            Main.tile[x + 3, y + 16].type = LB;
-            Main.tile[x + 3, y + 17].type = LB;
-            Main.tile[x + 4, y + 17].type = LB;
-            Main.tile[x + 5, y + 17].type = LB;
-            Main.tile[x + 6, y + 17].type = LB;
-            Main.tile[x + 6, y + 16].type = LB;
-            Main.tile[x + 7, y + 16].type = LB;
-            Main.tile[x + 8, y + 16].type = LB;
-            Main.tile[x + 8, y + 15].type = LB;
-            Main.tile[x + 9, y + 15].type = LB;
-            Main.tile[x + 9, y + 14].type = LB;
-            Main.tile[x + 10, y + 14].type = LB;
-            Main.tile[x + 10, y + 13].type = LB;
-            Main.tile[x + 11, y + 13].type = LB;
-            Main.tile[x + 12, y + 13].type = LB;
-            Main.tile[x + 13, y + 13].type = LB;
-            Main.tile[x + 13, y + 14].type = LB;
-            Main.tile[x + 14, y + 14].type = LB;
-            Main.tile[x + 14, y + 15].type = LB;
-            Main.tile[x + 15, y + 15].type = LB;
-            Main.tile[x + 16, y + 15].type = LB;
-            Main.tile[x + 16, y + 16].type = LB;
-            Main.tile[x + 17, y + 16].type = LB;
-            Main.tile[x + 18, y + 16].type = LB;
-            Main.tile[x + 19, y + 16].type = LB;
-            Main.tile[x + 19, y + 17].type = LB;
-            Main.tile[x + 20, y + 17].type = LB;
-            Main.tile[x + 20, y + 18].type = LB;
+            Main.tile[x + 4, y + 4].TileType = LB;
+            Main.tile[x + 5, y + 4].TileType = LB;
+            Main.tile[x + 6, y + 4].TileType = LB;
+            Main.tile[x + 7, y + 4].TileType = LB;
+            Main.tile[x + 5, y + 5].TileType = LB;
+            Main.tile[x + 6, y + 5].TileType = LB;
+            Main.tile[x + 7, y + 5].TileType = LB;
+            Main.tile[x + 5, y + 6].TileType = LB;
+            Main.tile[x + 5, y + 7].TileType = LB;
+            Main.tile[x + 5, y + 8].TileType = LB;
+            Main.tile[x + 4, y + 8].TileType = LB;
+            Main.tile[x + 3, y + 8].TileType = LB;
+            Main.tile[x + 3, y + 9].TileType = LB;
+            Main.tile[x + 3, y + 10].TileType = LB;
+            Main.tile[x + 2, y + 10].TileType = LB;
+            Main.tile[x + 1, y + 10].TileType = LB;
+            Main.tile[x + 1, y + 11].TileType = LB;
+            Main.tile[x, y + 11].TileType = LB;
+            Main.tile[x, y + 12].TileType = LB;
+            Main.tile[x, y + 13].TileType = LB;
+            Main.tile[x, y + 14].TileType = LB;
+            Main.tile[x + 1, y + 14].TileType = LB;
+            Main.tile[x + 1, y + 15].TileType = LB;
+            Main.tile[x + 2, y + 15].TileType = LB;
+            Main.tile[x + 2, y + 16].TileType = LB;
+            Main.tile[x + 3, y + 16].TileType = LB;
+            Main.tile[x + 3, y + 17].TileType = LB;
+            Main.tile[x + 4, y + 17].TileType = LB;
+            Main.tile[x + 5, y + 17].TileType = LB;
+            Main.tile[x + 6, y + 17].TileType = LB;
+            Main.tile[x + 6, y + 16].TileType = LB;
+            Main.tile[x + 7, y + 16].TileType = LB;
+            Main.tile[x + 8, y + 16].TileType = LB;
+            Main.tile[x + 8, y + 15].TileType = LB;
+            Main.tile[x + 9, y + 15].TileType = LB;
+            Main.tile[x + 9, y + 14].TileType = LB;
+            Main.tile[x + 10, y + 14].TileType = LB;
+            Main.tile[x + 10, y + 13].TileType = LB;
+            Main.tile[x + 11, y + 13].TileType = LB;
+            Main.tile[x + 12, y + 13].TileType = LB;
+            Main.tile[x + 13, y + 13].TileType = LB;
+            Main.tile[x + 13, y + 14].TileType = LB;
+            Main.tile[x + 14, y + 14].TileType = LB;
+            Main.tile[x + 14, y + 15].TileType = LB;
+            Main.tile[x + 15, y + 15].TileType = LB;
+            Main.tile[x + 16, y + 15].TileType = LB;
+            Main.tile[x + 16, y + 16].TileType = LB;
+            Main.tile[x + 17, y + 16].TileType = LB;
+            Main.tile[x + 18, y + 16].TileType = LB;
+            Main.tile[x + 19, y + 16].TileType = LB;
+            Main.tile[x + 19, y + 17].TileType = LB;
+            Main.tile[x + 20, y + 17].TileType = LB;
+            Main.tile[x + 20, y + 18].TileType = LB;
 
             //------------------------------------------------------------
             for (int xoff = x + 8; xoff <= x + 36; xoff++)
             {
                 Main.tile[xoff, y + 5].active(true);
-                Main.tile[xoff, y + 5].type = LB;
+                Main.tile[xoff, y + 5].TileType = LB;
             }
 
 
@@ -195,13 +195,13 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 2; yoff <= y + 4; yoff++)
                 {
                     Main.tile[xoff, yoff].active(true);
-                    Main.tile[xoff, yoff].type = LA;
+                    Main.tile[xoff, yoff].TileType = LA;
                 }
             }
             for (int xoff = x + 16; xoff <= x + 28; xoff++)
             {
                 Main.tile[xoff, y + 1].active(true);
-                Main.tile[xoff, y + 1].type = LB;
+                Main.tile[xoff, y + 1].TileType = LB;
             }
 
             Main.tile[x + 26, y + 2].active(true);
@@ -230,57 +230,57 @@ namespace ExxoAvalonOrigins.World.Structures
 
 
 
-            Main.tile[x + 11, y + 4].type = LB;
-            Main.tile[x + 12, y + 4].type = LB;
-            Main.tile[x + 13, y + 4].type = LB;
+            Main.tile[x + 11, y + 4].TileType = LB;
+            Main.tile[x + 12, y + 4].TileType = LB;
+            Main.tile[x + 13, y + 4].TileType = LB;
 
-            Main.tile[x + 14, y + 4].type = LA; // LA
+            Main.tile[x + 14, y + 4].TileType = LA; // LA
 
-            Main.tile[x + 15, y + 4].type = LB;
-            Main.tile[x + 16, y + 4].type = LB;
+            Main.tile[x + 15, y + 4].TileType = LB;
+            Main.tile[x + 16, y + 4].TileType = LB;
 
-            Main.tile[x + 17, y + 4].type = LA; // LA
-            Main.tile[x + 18, y + 4].type = LA; // LA
+            Main.tile[x + 17, y + 4].TileType = LA; // LA
+            Main.tile[x + 18, y + 4].TileType = LA; // LA
 
-            Main.tile[x + 13, y + 3].type = LB;
-            Main.tile[x + 14, y + 3].type = LB;
-            Main.tile[x + 15, y + 3].type = LB;
+            Main.tile[x + 13, y + 3].TileType = LB;
+            Main.tile[x + 14, y + 3].TileType = LB;
+            Main.tile[x + 15, y + 3].TileType = LB;
 
-            Main.tile[x + 16, y + 3].type = LA; // LA
+            Main.tile[x + 16, y + 3].TileType = LA; // LA
 
-            Main.tile[x + 17, y + 3].type = LB;
+            Main.tile[x + 17, y + 3].TileType = LB;
 
-            Main.tile[x + 18, y + 3].type = LA; // LA
+            Main.tile[x + 18, y + 3].TileType = LA; // LA
 
-            Main.tile[x + 14, y + 2].type = LB;
-            Main.tile[x + 15, y + 2].type = LB;
-            Main.tile[x + 16, y + 2].type = LB;
-            Main.tile[x + 17, y + 2].type = LB;
-            Main.tile[x + 18, y + 2].type = LB;
+            Main.tile[x + 14, y + 2].TileType = LB;
+            Main.tile[x + 15, y + 2].TileType = LB;
+            Main.tile[x + 16, y + 2].TileType = LB;
+            Main.tile[x + 17, y + 2].TileType = LB;
+            Main.tile[x + 18, y + 2].TileType = LB;
 
-            Main.tile[x + 26, y + 2].type = LB;
-            Main.tile[x + 27, y + 2].type = LB;
-            Main.tile[x + 28, y + 2].type = LB;
-            Main.tile[x + 29, y + 2].type = LB;
-            Main.tile[x + 30, y + 2].type = LB;
+            Main.tile[x + 26, y + 2].TileType = LB;
+            Main.tile[x + 27, y + 2].TileType = LB;
+            Main.tile[x + 28, y + 2].TileType = LB;
+            Main.tile[x + 29, y + 2].TileType = LB;
+            Main.tile[x + 30, y + 2].TileType = LB;
 
-            Main.tile[x + 26, y + 3].type = LA; // LA
+            Main.tile[x + 26, y + 3].TileType = LA; // LA
 
-            Main.tile[x + 27, y + 3].type = LB;
+            Main.tile[x + 27, y + 3].TileType = LB;
 
-            Main.tile[x + 28, y + 3].type = LA; // LA
+            Main.tile[x + 28, y + 3].TileType = LA; // LA
 
-            Main.tile[x + 29, y + 3].type = LB;
-            Main.tile[x + 30, y + 3].type = LB;
-            Main.tile[x + 31, y + 3].type = LB;
+            Main.tile[x + 29, y + 3].TileType = LB;
+            Main.tile[x + 30, y + 3].TileType = LB;
+            Main.tile[x + 31, y + 3].TileType = LB;
 
-            Main.tile[x + 26, y + 4].type = LA; // LA
-            Main.tile[x + 27, y + 4].type = LA; // LA
+            Main.tile[x + 26, y + 4].TileType = LA; // LA
+            Main.tile[x + 27, y + 4].TileType = LA; // LA
 
-            Main.tile[x + 28, y + 4].type = LB;
-            Main.tile[x + 29, y + 4].type = LB;
+            Main.tile[x + 28, y + 4].TileType = LB;
+            Main.tile[x + 29, y + 4].TileType = LB;
 
-            Main.tile[x + 30, y + 4].type = LA; // LA
+            Main.tile[x + 30, y + 4].TileType = LA; // LA
 
             Main.tile[x + 24, y + 18].active(true);
             Main.tile[x + 24, y + 17].active(true);
@@ -356,85 +356,85 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 2; yoff <= y + 3; yoff++)
                 {
                     Main.tile[xoff, yoff].active(true);
-                    Main.tile[xoff, yoff].type = LA;
+                    Main.tile[xoff, yoff].TileType = LA;
                 }
             }
-            Main.tile[x + 24, y + 18].type = LB;
-            Main.tile[x + 24, y + 17].type = LB;
-            Main.tile[x + 25, y + 17].type = LB;
-            Main.tile[x + 25, y + 16].type = LB;
-            Main.tile[x + 26, y + 16].type = LB;
-            Main.tile[x + 27, y + 16].type = LB;
-            Main.tile[x + 28, y + 16].type = LB;
-            Main.tile[x + 28, y + 15].type = LB;
-            Main.tile[x + 29, y + 15].type = LB;
-            Main.tile[x + 30, y + 15].type = LB;
-            Main.tile[x + 30, y + 14].type = LB;
-            Main.tile[x + 31, y + 14].type = LB;
-            Main.tile[x + 31, y + 13].type = LB;
-            Main.tile[x + 32, y + 13].type = LB;
-            Main.tile[x + 33, y + 13].type = LB;
-            Main.tile[x + 34, y + 13].type = LB;
-            Main.tile[x + 34, y + 14].type = LB;
-            Main.tile[x + 35, y + 14].type = LB;
-            Main.tile[x + 35, y + 15].type = LB;
-            Main.tile[x + 36, y + 15].type = LB;
-            Main.tile[x + 36, y + 16].type = LB;
-            Main.tile[x + 37, y + 16].type = LB;
-            Main.tile[x + 38, y + 16].type = LB;
-            Main.tile[x + 38, y + 17].type = LB;
-            Main.tile[x + 39, y + 17].type = LB;
-            Main.tile[x + 40, y + 17].type = LB;
-            Main.tile[x + 41, y + 17].type = LB;
-            Main.tile[x + 41, y + 16].type = LB;
-            Main.tile[x + 42, y + 16].type = LB;
-            Main.tile[x + 42, y + 15].type = LB;
-            Main.tile[x + 43, y + 15].type = LB;
-            Main.tile[x + 43, y + 14].type = LB;
-            Main.tile[x + 44, y + 14].type = LB;
-            Main.tile[x + 44, y + 13].type = LB;
-            Main.tile[x + 44, y + 12].type = LB;
-            Main.tile[x + 44, y + 11].type = LB;
-            Main.tile[x + 43, y + 11].type = LB;
-            Main.tile[x + 43, y + 10].type = LB;
-            Main.tile[x + 42, y + 10].type = LB;
-            Main.tile[x + 41, y + 10].type = LB;
-            Main.tile[x + 41, y + 9].type = LB;
-            Main.tile[x + 41, y + 8].type = LB;
-            Main.tile[x + 40, y + 8].type = LB;
-            Main.tile[x + 39, y + 8].type = LB;
-            Main.tile[x + 39, y + 7].type = LB;
-            Main.tile[x + 39, y + 6].type = LB;
-            Main.tile[x + 39, y + 5].type = LB;
-            Main.tile[x + 38, y + 5].type = LB;
-            Main.tile[x + 37, y + 5].type = LB;
-            Main.tile[x + 37, y + 4].type = LB;
-            Main.tile[x + 38, y + 4].type = LB;
-            Main.tile[x + 39, y + 4].type = LB;
-            Main.tile[x + 40, y + 4].type = LB;
-            Main.tile[x + 36, y + 3].type = LB;
-            Main.tile[x + 36, y + 2].type = LB;
-            Main.tile[x + 41, y + 3].type = LB;
-            Main.tile[x + 41, y + 2].type = LB;
-            Main.tile[x + 35, y + 1].type = LB;
-            Main.tile[x + 36, y + 1].type = LB;
-            Main.tile[x + 37, y + 1].type = LB;
-            Main.tile[x + 38, y + 1].type = LB;
-            Main.tile[x + 39, y + 1].type = LB;
-            Main.tile[x + 40, y + 1].type = LB;
-            Main.tile[x + 41, y + 1].type = LB;
-            Main.tile[x + 42, y + 1].type = LB;
-            Main.tile[x + 35, y].type = LB;
-            Main.tile[x + 38, y].type = LB;
-            Main.tile[x + 39, y].type = LB;
-            Main.tile[x + 42, y].type = LB;
+            Main.tile[x + 24, y + 18].TileType = LB;
+            Main.tile[x + 24, y + 17].TileType = LB;
+            Main.tile[x + 25, y + 17].TileType = LB;
+            Main.tile[x + 25, y + 16].TileType = LB;
+            Main.tile[x + 26, y + 16].TileType = LB;
+            Main.tile[x + 27, y + 16].TileType = LB;
+            Main.tile[x + 28, y + 16].TileType = LB;
+            Main.tile[x + 28, y + 15].TileType = LB;
+            Main.tile[x + 29, y + 15].TileType = LB;
+            Main.tile[x + 30, y + 15].TileType = LB;
+            Main.tile[x + 30, y + 14].TileType = LB;
+            Main.tile[x + 31, y + 14].TileType = LB;
+            Main.tile[x + 31, y + 13].TileType = LB;
+            Main.tile[x + 32, y + 13].TileType = LB;
+            Main.tile[x + 33, y + 13].TileType = LB;
+            Main.tile[x + 34, y + 13].TileType = LB;
+            Main.tile[x + 34, y + 14].TileType = LB;
+            Main.tile[x + 35, y + 14].TileType = LB;
+            Main.tile[x + 35, y + 15].TileType = LB;
+            Main.tile[x + 36, y + 15].TileType = LB;
+            Main.tile[x + 36, y + 16].TileType = LB;
+            Main.tile[x + 37, y + 16].TileType = LB;
+            Main.tile[x + 38, y + 16].TileType = LB;
+            Main.tile[x + 38, y + 17].TileType = LB;
+            Main.tile[x + 39, y + 17].TileType = LB;
+            Main.tile[x + 40, y + 17].TileType = LB;
+            Main.tile[x + 41, y + 17].TileType = LB;
+            Main.tile[x + 41, y + 16].TileType = LB;
+            Main.tile[x + 42, y + 16].TileType = LB;
+            Main.tile[x + 42, y + 15].TileType = LB;
+            Main.tile[x + 43, y + 15].TileType = LB;
+            Main.tile[x + 43, y + 14].TileType = LB;
+            Main.tile[x + 44, y + 14].TileType = LB;
+            Main.tile[x + 44, y + 13].TileType = LB;
+            Main.tile[x + 44, y + 12].TileType = LB;
+            Main.tile[x + 44, y + 11].TileType = LB;
+            Main.tile[x + 43, y + 11].TileType = LB;
+            Main.tile[x + 43, y + 10].TileType = LB;
+            Main.tile[x + 42, y + 10].TileType = LB;
+            Main.tile[x + 41, y + 10].TileType = LB;
+            Main.tile[x + 41, y + 9].TileType = LB;
+            Main.tile[x + 41, y + 8].TileType = LB;
+            Main.tile[x + 40, y + 8].TileType = LB;
+            Main.tile[x + 39, y + 8].TileType = LB;
+            Main.tile[x + 39, y + 7].TileType = LB;
+            Main.tile[x + 39, y + 6].TileType = LB;
+            Main.tile[x + 39, y + 5].TileType = LB;
+            Main.tile[x + 38, y + 5].TileType = LB;
+            Main.tile[x + 37, y + 5].TileType = LB;
+            Main.tile[x + 37, y + 4].TileType = LB;
+            Main.tile[x + 38, y + 4].TileType = LB;
+            Main.tile[x + 39, y + 4].TileType = LB;
+            Main.tile[x + 40, y + 4].TileType = LB;
+            Main.tile[x + 36, y + 3].TileType = LB;
+            Main.tile[x + 36, y + 2].TileType = LB;
+            Main.tile[x + 41, y + 3].TileType = LB;
+            Main.tile[x + 41, y + 2].TileType = LB;
+            Main.tile[x + 35, y + 1].TileType = LB;
+            Main.tile[x + 36, y + 1].TileType = LB;
+            Main.tile[x + 37, y + 1].TileType = LB;
+            Main.tile[x + 38, y + 1].TileType = LB;
+            Main.tile[x + 39, y + 1].TileType = LB;
+            Main.tile[x + 40, y + 1].TileType = LB;
+            Main.tile[x + 41, y + 1].TileType = LB;
+            Main.tile[x + 42, y + 1].TileType = LB;
+            Main.tile[x + 35, y].TileType = LB;
+            Main.tile[x + 38, y].TileType = LB;
+            Main.tile[x + 39, y].TileType = LB;
+            Main.tile[x + 42, y].TileType = LB;
 
             for (int xoff = x + 6; xoff <= x + 38; xoff++)
             {
                 for (int yoff = y + 6; yoff <= y + 12; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 17; xoff <= x + 27; xoff++)
@@ -442,7 +442,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 13; yoff <= y + 15; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 15; xoff <= x + 29; xoff++)
@@ -450,13 +450,13 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 13; yoff <= y + 14; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 20; xoff <= x + 24; xoff++)
             {
                 Main.tile[xoff, y + 16].active(false);
-                Main.tile[xoff, y + 16].wall = backWall;
+                Main.tile[xoff, y + 16].WallType = backWall;
             }
 
             Main.tile[x + 14, y + 13].active(true);
@@ -470,19 +470,19 @@ namespace ExxoAvalonOrigins.World.Structures
             Main.tile[x + 29, y + 14].active(true);
             Main.tile[x + 30, y + 13].active(true);
 
-            Main.tile[x + 14, y + 13].type = 19;
-            Main.tile[x + 15, y + 14].type = 19;
-            Main.tile[x + 16, y + 14].type = 19;
-            Main.tile[x + 17, y + 15].type = 19;
-            Main.tile[x + 18, y + 15].type = 19;
-            Main.tile[x + 26, y + 15].type = 19;
-            Main.tile[x + 27, y + 15].type = 19;
-            Main.tile[x + 28, y + 14].type = 19;
-            Main.tile[x + 29, y + 14].type = 19;
-            Main.tile[x + 30, y + 13].type = 19;
+            Main.tile[x + 14, y + 13].TileType = 19;
+            Main.tile[x + 15, y + 14].TileType = 19;
+            Main.tile[x + 16, y + 14].TileType = 19;
+            Main.tile[x + 17, y + 15].TileType = 19;
+            Main.tile[x + 18, y + 15].TileType = 19;
+            Main.tile[x + 26, y + 15].TileType = 19;
+            Main.tile[x + 27, y + 15].TileType = 19;
+            Main.tile[x + 28, y + 14].TileType = 19;
+            Main.tile[x + 29, y + 14].TileType = 19;
+            Main.tile[x + 30, y + 13].TileType = 19;
 
-            Main.tile[x + 14, y + 13].wall = backWall;
-            Main.tile[x + 30, y + 13].wall = backWall;
+            Main.tile[x + 14, y + 13].WallType = backWall;
+            Main.tile[x + 30, y + 13].WallType = backWall;
 
             WorldGen.PlaceTile(x + 12, y + 12, 4, true, true, -1, 2);
             WorldGen.PlaceTile(x + 32, y + 12, 4, true, true, -1, 2);
@@ -492,7 +492,7 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 11; yoff <= y + 14; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 36; xoff <= x + 42; xoff++)
@@ -500,18 +500,18 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 11; yoff <= y + 14; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 3; xoff <= x + 7; xoff++)
             {
                 Main.tile[xoff, y + 15].active(false);
-                Main.tile[xoff, y + 15].wall = backWall;
+                Main.tile[xoff, y + 15].WallType = backWall;
             }
             for (int xoff = x + 37; xoff <= x + 41; xoff++)
             {
                 Main.tile[xoff, y + 15].active(false);
-                Main.tile[xoff, y + 15].wall = backWall;
+                Main.tile[xoff, y + 15].WallType = backWall;
             }
             Main.tile[x + 4, y + 16].active(false);
             Main.tile[x + 5, y + 16].active(false);
@@ -520,19 +520,19 @@ namespace ExxoAvalonOrigins.World.Structures
             Main.tile[x + 9, y + 13].active(false);
             Main.tile[x + 35, y + 13].active(false);
 
-            Main.tile[x + 4, y + 16].wall = backWall;
-            Main.tile[x + 5, y + 16].wall = backWall;
-            Main.tile[x + 39, y + 16].wall = backWall;
-            Main.tile[x + 40, y + 16].wall = backWall;
-            Main.tile[x + 9, y + 13].wall = backWall;
-            Main.tile[x + 35, y + 13].wall = backWall;
+            Main.tile[x + 4, y + 16].WallType = backWall;
+            Main.tile[x + 5, y + 16].WallType = backWall;
+            Main.tile[x + 39, y + 16].WallType = backWall;
+            Main.tile[x + 40, y + 16].WallType = backWall;
+            Main.tile[x + 9, y + 13].WallType = backWall;
+            Main.tile[x + 35, y + 13].WallType = backWall;
 
             for (int xoff = x + 4; xoff <= x + 5; xoff++)
             {
                 for (int yoff = y + 9; yoff <= y + 10; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 39; xoff <= x + 40; xoff++)
@@ -540,23 +540,23 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 9; yoff <= y + 10; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 6; xoff <= x + 10; xoff++)
             {
                 Main.tile[xoff, y + 8].active(true);
-                Main.tile[xoff, y + 8].type = MO;
+                Main.tile[xoff, y + 8].TileType = MO;
             }
             for (int xoff = x + 34; xoff <= x + 38; xoff++)
             {
                 Main.tile[xoff, y + 8].active(true);
-                Main.tile[xoff, y + 8].type = MO;
+                Main.tile[xoff, y + 8].TileType = MO;
             }
             Main.tile[x + 10, y + 9].active(true);
             Main.tile[x + 34, y + 9].active(true);
-            Main.tile[x + 10, y + 9].type = MO;
-            Main.tile[x + 34, y + 9].type = MO;
+            Main.tile[x + 10, y + 9].TileType = MO;
+            Main.tile[x + 34, y + 9].TileType = MO;
 
             WorldGen.PlaceTile(x + 6, y + 6, 4, true, true, -1, 2);
             WorldGen.PlaceTile(x + 38, y + 6, 4, true, true, -1, 2);
@@ -566,18 +566,18 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int yoff = y + 18; yoff <= y + 21; yoff++)
                 {
                     Main.tile[xoff, yoff].active(false);
-                    Main.tile[xoff, yoff].wall = backWall;
+                    Main.tile[xoff, yoff].WallType = backWall;
                 }
             }
             for (int xoff = x + 20; xoff <= x + 24; xoff++)
             {
                 Main.tile[xoff, y + 22].active(true);
-                Main.tile[xoff, y + 22].type = LB;
+                Main.tile[xoff, y + 22].TileType = LB;
             }
             for (int xoff = x + 21; xoff <= x + 23; xoff++)
             {
                 Main.tile[xoff, y + 23].active(true);
-                Main.tile[xoff, y + 23].type = LB;
+                Main.tile[xoff, y + 23].TileType = LB;
             }
 
             WorldGen.PlaceTile(x + 22, y + 21, 4, true, true, -1, 2);
@@ -589,22 +589,22 @@ namespace ExxoAvalonOrigins.World.Structures
             for (int xoff = x + 21; xoff <= x + 23; xoff++)
             {
                 Main.tile[xoff, y + 17].active(true);
-                Main.tile[xoff, y + 17].type = 19;
-                Main.tile[xoff, y + 17].wall = backWall;
+                Main.tile[xoff, y + 17].TileType = 19;
+                Main.tile[xoff, y + 17].WallType = backWall;
             }
             for (int xoff = x + 31; xoff <= x + 33; xoff++)
             {
                 Main.tile[xoff, y + 4].active(true);
-                Main.tile[xoff, y + 4].type = LB;
+                Main.tile[xoff, y + 4].TileType = LB;
             }
             Main.tile[x + 43, y + 12].active(false);
             Main.tile[x + 43, y + 13].active(false);
             Main.tile[x + 1, y + 12].active(false);
             Main.tile[x + 1, y + 13].active(false);
-            Main.tile[x + 43, y + 12].wall = backWall;
-            Main.tile[x + 43, y + 13].wall = backWall;
-            Main.tile[x + 1, y + 12].wall = backWall;
-            Main.tile[x + 1, y + 13].wall = backWall;
+            Main.tile[x + 43, y + 12].WallType = backWall;
+            Main.tile[x + 43, y + 13].WallType = backWall;
+            Main.tile[x + 1, y + 12].WallType = backWall;
+            Main.tile[x + 1, y + 13].WallType = backWall;
 
             WorldGen.PlaceTile(x + 43, y + 12, 4, true, true, -1, 2);
             WorldGen.PlaceTile(x + 1, y + 12, 4, true, true, -1, 2);
@@ -620,7 +620,7 @@ namespace ExxoAvalonOrigins.World.Structures
             int k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
                 {
                     int num = k;
                     int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<Tiles.HellfireChest>(), notNearOtherChests, 0);

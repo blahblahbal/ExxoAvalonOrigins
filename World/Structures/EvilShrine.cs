@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.World.Structures
             int k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
                 {
                     int num = k;
                     int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<Tiles.CoughwoodChest>(), notNearOtherChests, 0);
@@ -155,34 +155,34 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 1:
                                     tile.active(true);
-                                    tile.type = TileID.CrimtaneBrick;
+                                    tile.TileType = TileID.CrimtaneBrick;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 2:
                                     tile.active(true);
-                                    tile.type = TileID.Demonite;
+                                    tile.TileType = TileID.Demonite;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 3:
                                     tile.active(true);
-                                    tile.type = TileID.DemoniteBrick;
+                                    tile.TileType = TileID.DemoniteBrick;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 4:
                                     tile.active(true);
-                                    tile.type = TileID.Crimtane;
+                                    tile.TileType = TileID.Crimtane;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 5:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.EbonstoneColumn>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.EbonstoneColumn>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     break;
                                 case 6:
                                     if (confirmPlatforms == 0)
@@ -190,26 +190,26 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.halfBrick(false);
                                         tile.slope(0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     }
                                     break;
                                 case 7:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.ChunkstoneColumn>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.ChunkstoneColumn>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     break;
                                 case 8:
                                     tile.active(true);
-                                    tile.type = 4;
+                                    tile.TileType = 4;
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     break;
                                 case 9:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.ChunkstoneBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.ChunkstoneBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -219,14 +219,14 @@ namespace ExxoAvalonOrigins.World.Structures
                                     WorldGen.PlaceTile(k, l, 19, true, true, -1, 9);
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     break;
                                 case 11:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.CrimstoneColumn>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.CrimstoneColumn>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     break;
                                 case 12:
                                     if (confirmPlatforms == 1)
@@ -235,7 +235,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.slope(0);
                                         tile.halfBrick(false);
                                         WorldGen.PlaceTile(k, l, 93, true, true, -1, 10);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                     }
                                     break;
                                 case 13:
@@ -253,13 +253,13 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.slope(0);
                                         tile.halfBrick(false);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.ObsidianLavaTube>();
                                         AddEvilChest(k + 1, l);
                                     }
                                     break;
                                 case 15:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.BacciliteOre>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.Ores.BacciliteOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;

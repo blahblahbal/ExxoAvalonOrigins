@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Dismal", new Dismal());
+                Mod.AddPrefix("Dismal", new Dismal());
             }
             return false;
         }

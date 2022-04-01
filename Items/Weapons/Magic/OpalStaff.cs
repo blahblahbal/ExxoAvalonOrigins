@@ -10,27 +10,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Opal Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 90;
-            item.autoReuse = true;
-            item.shootSpeed = 9.5f;
-            item.mana = 14;
-            item.rare = ItemRarityID.Yellow;
-            item.useTime = 23;
-            item.useAnimation = 23;
-            item.knockBack = 7.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.OpalBolt>();
-            item.value = Item.buyPrice(0, 30, 0, 0);
-            item.UseSound = SoundID.Item43;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 90;
+            Item.autoReuse = true;
+            Item.shootSpeed = 9.5f;
+            Item.mana = 14;
+            Item.rare = ItemRarityID.Yellow;
+            Item.useTime = 23;
+            Item.useAnimation = 23;
+            Item.knockBack = 7.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.OpalBolt>();
+            Item.value = Item.buyPrice(0, 30, 0, 0);
+            Item.UseSound = SoundID.Item43;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,

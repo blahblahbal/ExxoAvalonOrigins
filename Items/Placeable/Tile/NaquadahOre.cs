@@ -15,18 +15,18 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Ores.NaquadahOre>();
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 14, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.Ores.NaquadahOre>();
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(0, 0, 14, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

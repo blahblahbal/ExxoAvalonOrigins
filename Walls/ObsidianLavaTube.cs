@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class ObsidianLavaTube : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("ObsidianLavaTubeWall");
+            drop = Mod.Find<ModItem>("ObsidianLavaTubeWall").Type;
             AddMapEntry(new Color(51, 47, 96));
             dustType = DustID.Obsidian;
         }

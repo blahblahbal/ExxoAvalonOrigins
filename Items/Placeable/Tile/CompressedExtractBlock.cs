@@ -15,16 +15,16 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 40;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 40;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 40;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 40;
+            Item.height = dims.Height;
         }
     }
 }

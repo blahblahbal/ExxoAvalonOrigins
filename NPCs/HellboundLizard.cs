@@ -11,30 +11,30 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hellbound Lizard");
-            Main.npcFrameCount[npc.type] = 16;
+            Main.npcFrameCount[NPC.type] = 16;
         }
         public override void SetDefaults()
         {
-            npc.damage = 90;
-            npc.lifeMax = 780;
-            npc.defense = 20;
-            npc.lavaImmune = true;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.value = 1000f;
-            npc.height = 40;
-            npc.knockBackResist = 0.02f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.HellboundLizardBanner>();
+            NPC.damage = 90;
+            NPC.lifeMax = 780;
+            NPC.defense = 20;
+            NPC.lavaImmune = true;
+            NPC.width = 18;
+            NPC.aiStyle = 3;
+            NPC.value = 1000f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0.02f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.HellboundLizardBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.85f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.85f);
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -42,40 +42,40 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.velocity.X == 0f)
+                if (NPC.velocity.X == 0f)
                 {
-                    npc.frame.Y = 0;
-                    npc.frameCounter = 0.0;
+                    NPC.frame.Y = 0;
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += 1.0;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += 1.0;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 2;
+                        NPC.frame.Y = frameHeight * 2;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = frameHeight;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = frameHeight;
             }
         }
         /*public override void AI()
@@ -305,14 +305,14 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     Main.tile[num98 - num97, num99 - 3] = new Tile();
                 }
-                if ((float)(num98 * 16) < vector10.X + (float)npc.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].nactive() && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].type] && !Main.tileSolidTop[(int)Main.tile[num98, num99].type]) || (Main.tile[num98, num99 - 1].halfBrick() && Main.tile[num98, num99 - 1].nactive())) && (!Main.tile[num98, num99 - 1].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].type] || (Main.tile[num98, num99 - 1].halfBrick() && (!Main.tile[num98, num99 - 4].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].type]))) && (!Main.tile[num98, num99 - 2].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].type]) && (!Main.tile[num98, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].type]) && (!Main.tile[num98 - num97, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].type]))
+                if ((float)(num98 * 16) < vector10.X + (float)npc.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].nactive() && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].type] && !Main.tileSolidTop[(int)Main.tile[num98, num99].type]) || (Main.tile[num98, num99 - 1]IsHalfBlock && Main.tile[num98, num99 - 1].nactive())) && (!Main.tile[num98, num99 - 1].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].type] || (Main.tile[num98, num99 - 1]IsHalfBlock && (!Main.tile[num98, num99 - 4].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].type]))) && (!Main.tile[num98, num99 - 2].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].type]) && (!Main.tile[num98, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].type]) && (!Main.tile[num98 - num97, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].type]))
                 {
                     float num100 = (float)(num99 * 16);
-                    if (Main.tile[num98, num99].halfBrick())
+                    if (Main.tile[num98, num99]IsHalfBlock)
                     {
                         num100 += 80f; //f8
                     }
-                    if (Main.tile[num98, num99 - 1].halfBrick())
+                    if (Main.tile[num98, num99 - 1]IsHalfBlock)
                     {
                         num100 -= 80f; //f8
                     }
@@ -376,7 +376,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     Main.tile[num103 - npc.direction, num104 + 1] = new Tile();
                 }
-                Main.tile[num103, num104 + 1].halfBrick();
+                Main.tile[num103, num104 + 1]IsHalfBlock;
                 if (Main.tile[num103, num104 - 1].nactive() && (Main.tile[num103, num104 - 1].type == 10 || Main.tile[num103, num104 - 1].type == 485) && flag5)
                 {
                     npc.ai[2] += 1f;
@@ -531,7 +531,7 @@ namespace ExxoAvalonOrigins.NPCs
         }*/
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.Avalon().ZoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].wall == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
+            if (spawnInfo.player.Avalon().ZoneHellcastle && Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].WallType == (ushort)ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
             {
                 return 3f;
             }
@@ -541,19 +541,19 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (int i = 0; i < 20; i++)
             {
-                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
+                int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num890].velocity *= 5f;
                 Main.dust[num890].scale = 1.2f;
                 Main.dust[num890].noGravity = true;
             }
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HellboundLizardGore1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HellboundLizardGore2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HellboundLizardGore2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HellboundLizardGore3"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HellboundLizardGore3"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/HellboundLizardGore4"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore1"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore4"), 1f);
             }
         }
     }

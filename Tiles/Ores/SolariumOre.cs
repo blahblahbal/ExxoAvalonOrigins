@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class SolariumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 4f;
             AddMapEntry(new Color(244, 167, 0), LanguageManager.Instance.GetText("Solarium"));
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 730;
             Main.tileShine[Type] = 1150;
-            drop = mod.ItemType("SolariumOre");
+            drop = Mod.Find<ModItem>("SolariumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 210;

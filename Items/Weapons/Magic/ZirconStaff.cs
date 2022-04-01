@@ -10,37 +10,31 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Zircon Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 32;
-            item.autoReuse = true;
-            item.shootSpeed = 7.75f;
-            item.mana = 9;
-            item.rare = ItemRarityID.Green;
-            item.useTime = 23;
-            item.useAnimation = 23;
-            item.knockBack = 4.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.ZirconBolt>();
-            item.value = Item.buyPrice(0, 3, 60, 0);
-            item.UseSound = SoundID.Item43;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 32;
+            Item.autoReuse = true;
+            Item.shootSpeed = 7.75f;
+            Item.mana = 9;
+            Item.rare = ItemRarityID.Green;
+            Item.useTime = 23;
+            Item.useAnimation = 23;
+            Item.knockBack = 4.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.ZirconBolt>();
+            Item.value = Item.buyPrice(0, 3, 60, 0);
+            Item.UseSound = SoundID.Item43;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.Zircon>(), 15);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 8);
-            recipe.AddIngredient(ModContent.ItemType<Material.Booger>(), 5);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.Zircon>(), 15).AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 8).AddIngredient(ModContent.ItemType<Material.Booger>(), 5).AddTile(TileID.Anvils).Register();
         }
     }
 }

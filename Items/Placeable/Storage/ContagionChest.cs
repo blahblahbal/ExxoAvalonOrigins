@@ -15,18 +15,18 @@ namespace ExxoAvalonOrigins.Items.Placeable.Storage
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1f;
-            item.maxStack = 99;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.ContagionChest>();
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 0, 2, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1f;
+            Item.maxStack = 99;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.ContagionChest>();
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

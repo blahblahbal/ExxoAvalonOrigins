@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class HellWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("HellWall");
+            drop = Mod.Find<ModItem>("HellWall").Type;
             AddMapEntry(new Color(192, 5, 56));
             dustType = DustID.Ash;
         }

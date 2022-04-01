@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/BloodyArrow");
-            projectile.width = dims.Width * 10 / 32;
-            projectile.height = dims.Height * 10 / 32 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
+            Projectile.width = dims.Width * 10 / 32;
+            Projectile.height = dims.Height * 10 / 32 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
             aiType = 636;
-            projectile.friendly = true;
-            projectile.ranged = true;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            projectile.ai[0] = 1;
-            projectile.ai[1] = target.whoAmI;
-            projectile.Kill();
+            Projectile.ai[0] = 1;
+            Projectile.ai[1] = target.whoAmI;
+            Projectile.Kill();
             //projectile.velocity *= 0f;
             //projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().bloodArrowPos = projectile.position;
             target.AddBuff(ModContent.BuffType<Buffs.Bleeding>(), 8 * 60);
@@ -38,16 +38,16 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            projectile.ai[0] += 1f;
-            if (projectile.ai[0] >= 15f)
+            Projectile.ai[0] += 1f;
+            if (Projectile.ai[0] >= 15f)
             {
-                projectile.ai[0] = 15f;
-                projectile.velocity.Y = projectile.velocity.Y + 0.1f;
+                Projectile.ai[0] = 15f;
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.1f;
             }
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

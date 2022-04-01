@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class BacciliteOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.Olive, LanguageManager.Instance.GetText("Baccilite"));
             Main.tileSolid[Type] = true;

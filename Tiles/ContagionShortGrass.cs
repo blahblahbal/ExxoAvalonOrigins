@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class ContagionShortGrass : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileCut[Type] = true;
             Main.tileSolid[Type] = false;
@@ -25,7 +25,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (Main.tile[i, j].frameX / 18 == 10)
+            if (Main.tile[i, j].TileFrameX / 18 == 10)
             {
                 Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<ContaminatedMushroom>());
             }

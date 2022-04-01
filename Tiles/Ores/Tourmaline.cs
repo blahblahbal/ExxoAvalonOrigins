@@ -8,11 +8,11 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class Tourmaline : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.Aqua, LanguageManager.Instance.GetText("Tourmaline"));
             Main.tileSolid[Type] = true;
-            drop = mod.ItemType("Tourmaline");
+            drop = Mod.Find<ModItem>("Tourmaline").Type;
             Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileMerge[Type][TileID.Stone] = true;

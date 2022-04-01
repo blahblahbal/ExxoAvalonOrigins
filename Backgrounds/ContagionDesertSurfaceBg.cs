@@ -35,17 +35,17 @@ namespace ExxoAvalonOrigins.Backgrounds
 
         public override int ChooseFarTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg3");
+            return Mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg3");
         }
 
         public override int ChooseMiddleTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg2");
+            return Mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg2");
         }
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
-            return mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg1");
+            return Mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg1");
         }
     }
 }

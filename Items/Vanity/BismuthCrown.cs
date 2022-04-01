@@ -15,26 +15,15 @@ namespace ExxoAvalonOrigins.Items.Vanity
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.vanity = true;
-            item.width = dims.Width;
-            item.value = 15000;
-            item.height = dims.Height;
+            Item.vanity = true;
+            Item.width = dims.Width;
+            Item.value = 15000;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 5);
-            recipe.AddIngredient(ItemID.Ruby);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(this);
-            recipe.AddIngredient(ItemID.Gel, 20);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(ItemID.SlimeCrown);
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 5).AddIngredient(ItemID.Ruby).AddTile(TileID.Anvils).Register();
         }
     }
 }

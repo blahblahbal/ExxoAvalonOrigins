@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BlueLihzahrdBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(0, 22, 44));
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("BlueLihzahrdBrick");
+            drop = Mod.Find<ModItem>("BlueLihzahrdBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 400;

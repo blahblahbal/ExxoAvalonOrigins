@@ -15,19 +15,14 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.maxStack = 100;
-            item.value = 50;
-            item.height = dims.Height;
+            Item.width = dims.Width;
+            Item.maxStack = 100;
+            Item.value = 50;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Bottle);
-            recipe.AddIngredient(ItemID.Obsidian);
-            recipe.needLava = true;
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Bottle).AddIngredient(ItemID.Obsidian).Register();
         }
     }
 }

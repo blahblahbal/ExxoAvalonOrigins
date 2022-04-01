@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class IridiumBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(146, 167, 123));
             Main.tileSolid[Type] = true;

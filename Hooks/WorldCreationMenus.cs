@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.Localization;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ExxoAvalonOrigins.Hooks
 {
@@ -150,12 +151,12 @@ namespace ExxoAvalonOrigins.Hooks
                 WorldGen.WorldGenParam_Evil = 1;
                 TropicsMenu();
             }));
-            optionsList.Add(new ListItem("Contagion", ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconContagion"), delegate
+            optionsList.Add(new ListItem("Contagion", ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconContagion").Value, delegate
             {
                 WorldGen.WorldGenParam_Evil = 2;
                 TropicsMenu();
             }));
-            optionsList.Add(new ListItem(Language.GetTextValue("LegacyMisc.103"), ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconRandom"), delegate
+            optionsList.Add(new ListItem(Language.GetTextValue("LegacyMisc.103"), ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconRandom").Value, delegate
             {
                 WorldGen.WorldGenParam_Evil = -1;
                 TropicsMenu();
@@ -177,17 +178,17 @@ namespace ExxoAvalonOrigins.Hooks
         private static void TropicsMenu()
         {
             UIList optionsList = new UIList();
-            optionsList.Add(new ListItem("Jungle", ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconJungle"), delegate
+            optionsList.Add(new ListItem("Jungle", ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconJungle").Value, delegate
             {
                 ExxoAvalonOriginsWorld.jungleMenuSelection = ExxoAvalonOriginsWorld.JungleVariant.jungle;
                 ShinyMenu();
             }));
-            optionsList.Add(new ListItem("Tropics", ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconTropics"), delegate
+            optionsList.Add(new ListItem("Tropics", ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconTropics").Value, delegate
             {
                 ExxoAvalonOriginsWorld.jungleMenuSelection = ExxoAvalonOriginsWorld.JungleVariant.tropics;
                 ShinyMenu();
             }));
-            optionsList.Add(new ListItem("Random", ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconRandom"), delegate
+            optionsList.Add(new ListItem("Random", ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconRandom").Value, delegate
             {
                 ExxoAvalonOriginsWorld.jungleMenuSelection = ExxoAvalonOriginsWorld.JungleVariant.random;
                 ShinyMenu();
@@ -206,19 +207,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region copper
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconCopper"), "Copper", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconCopper").Value, "Copper", delegate
             {
                 ExxoAvalonOriginsWorld.copperOre = ExxoAvalonOriginsWorld.CopperVariant.copper;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconTin"), "Tin", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconTin").Value, "Tin", delegate
             {
                 ExxoAvalonOriginsWorld.copperOre = ExxoAvalonOriginsWorld.CopperVariant.tin;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconBronze"), "Bronze", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconBronze").Value, "Bronze", delegate
             {
                 ExxoAvalonOriginsWorld.copperOre = ExxoAvalonOriginsWorld.CopperVariant.bronze;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.copperOre = ExxoAvalonOriginsWorld.CopperVariant.random;
             }, true));
@@ -229,19 +230,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region iron
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconIron"), "Iron", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconIron").Value, "Iron", delegate
             {
                 ExxoAvalonOriginsWorld.ironOre = ExxoAvalonOriginsWorld.IronVariant.iron;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconLead"), "Lead", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconLead").Value, "Lead", delegate
             {
                 ExxoAvalonOriginsWorld.ironOre = ExxoAvalonOriginsWorld.IronVariant.lead;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconNickel"), "Nickel", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconNickel").Value, "Nickel", delegate
             {
                 ExxoAvalonOriginsWorld.ironOre = ExxoAvalonOriginsWorld.IronVariant.nickel;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.ironOre = ExxoAvalonOriginsWorld.IronVariant.random;
             }, true));
@@ -252,19 +253,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region silver
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconSilver"), "Silver", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconSilver").Value, "Silver", delegate
             {
                 ExxoAvalonOriginsWorld.silverOre = ExxoAvalonOriginsWorld.SilverVariant.silver;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconTungsten"), "Tungsten", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconTungsten").Value, "Tungsten", delegate
             {
                 ExxoAvalonOriginsWorld.silverOre = ExxoAvalonOriginsWorld.SilverVariant.tungsten;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconZinc"), "Zinc", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconZinc").Value, "Zinc", delegate
             {
                 ExxoAvalonOriginsWorld.silverOre = ExxoAvalonOriginsWorld.SilverVariant.zinc;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.silverOre = ExxoAvalonOriginsWorld.SilverVariant.random;
             }, true));
@@ -275,19 +276,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region gold
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconGold"), "Gold", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconGold").Value, "Gold", delegate
             {
                 ExxoAvalonOriginsWorld.goldOre = ExxoAvalonOriginsWorld.GoldVariant.gold;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconPlatinum"), "Platinum", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconPlatinum").Value, "Platinum", delegate
             {
                 ExxoAvalonOriginsWorld.goldOre = ExxoAvalonOriginsWorld.GoldVariant.platinum;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconBismuth"), "Bismuth", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconBismuth").Value, "Bismuth", delegate
             {
                 ExxoAvalonOriginsWorld.goldOre = ExxoAvalonOriginsWorld.GoldVariant.bismuth;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.goldOre = ExxoAvalonOriginsWorld.GoldVariant.random;
             }, true));
@@ -298,19 +299,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region rhodium
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconRhodium"), "Rhodium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconRhodium").Value, "Rhodium", delegate
             {
                 ExxoAvalonOriginsWorld.rhodiumOre = ExxoAvalonOriginsWorld.RhodiumVariant.rhodium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOsmium"), "Osmium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOsmium").Value, "Osmium", delegate
             {
                 ExxoAvalonOriginsWorld.rhodiumOre = ExxoAvalonOriginsWorld.RhodiumVariant.osmium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconIridium"), "Iridium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconIridium").Value, "Iridium", delegate
             {
                 ExxoAvalonOriginsWorld.rhodiumOre = ExxoAvalonOriginsWorld.RhodiumVariant.iridium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.rhodiumOre = ExxoAvalonOriginsWorld.RhodiumVariant.random;
             }, true));
@@ -321,19 +322,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region cobalt
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconCobalt"), "Cobalt", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconCobalt").Value, "Cobalt", delegate
             {
                 ExxoAvalonOriginsWorld.cobaltOre = ExxoAvalonOriginsWorld.CobaltVariant.cobalt;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconPalladium"), "Palladium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconPalladium").Value, "Palladium", delegate
             {
                 ExxoAvalonOriginsWorld.cobaltOre = ExxoAvalonOriginsWorld.CobaltVariant.palladium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconDuratanium"), "Duratanium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconDuratanium").Value, "Duratanium", delegate
             {
                 ExxoAvalonOriginsWorld.cobaltOre = ExxoAvalonOriginsWorld.CobaltVariant.duratanium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.cobaltOre = ExxoAvalonOriginsWorld.CobaltVariant.random;
             }, true));
@@ -344,19 +345,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region mythril
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconMythril"), "Mythril", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconMythril").Value, "Mythril", delegate
             {
                 ExxoAvalonOriginsWorld.mythrilOre = ExxoAvalonOriginsWorld.MythrilVariant.mythril;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOrichalcum"), "Orichalcum", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOrichalcum").Value, "Orichalcum", delegate
             {
                 ExxoAvalonOriginsWorld.mythrilOre = ExxoAvalonOriginsWorld.MythrilVariant.orichalcum;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconNaquadah"), "Naquadah", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconNaquadah").Value, "Naquadah", delegate
             {
                 ExxoAvalonOriginsWorld.mythrilOre = ExxoAvalonOriginsWorld.MythrilVariant.naquadah;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.mythrilOre = ExxoAvalonOriginsWorld.MythrilVariant.random;
             }, true));
@@ -367,19 +368,19 @@ namespace ExxoAvalonOrigins.Hooks
             #region adamantite
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconAdamantite"), "Adamantite", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconAdamantite").Value, "Adamantite", delegate
             {
                 ExxoAvalonOriginsWorld.adamantiteOre = ExxoAvalonOriginsWorld.AdamantiteVariant.adamantite;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconTitanium"), "Titanium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconTitanium").Value, "Titanium", delegate
             {
                 ExxoAvalonOriginsWorld.adamantiteOre = ExxoAvalonOriginsWorld.AdamantiteVariant.titanium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconTroxinium"), "Troxinium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconTroxinium").Value, "Troxinium", delegate
             {
                 ExxoAvalonOriginsWorld.adamantiteOre = ExxoAvalonOriginsWorld.AdamantiteVariant.troxinium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.adamantiteOre = ExxoAvalonOriginsWorld.AdamantiteVariant.random;
             }, true));
@@ -390,15 +391,15 @@ namespace ExxoAvalonOrigins.Hooks
             #region SHM Tier 1
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconTritanorium"), "Tritanorium", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconTritanorium").Value, "Tritanorium", delegate
             {
                 ExxoAvalonOriginsWorld.shmTier1Ore = ExxoAvalonOriginsWorld.SHMTier1Variant.tritanorium;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconPyroscoric"), "Pyroscoric", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconPyroscoric").Value, "Pyroscoric", delegate
             {
                 ExxoAvalonOriginsWorld.shmTier1Ore = ExxoAvalonOriginsWorld.SHMTier1Variant.pyroscoric;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.shmTier1Ore = ExxoAvalonOriginsWorld.SHMTier1Variant.random;
             }, true));
@@ -409,15 +410,15 @@ namespace ExxoAvalonOrigins.Hooks
             #region SHM Tier 2
 
             list = new UIListGrid();
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconUnvolandite"), "Unvolandite", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconUnvolandite").Value, "Unvolandite", delegate
             {
                 ExxoAvalonOriginsWorld.shmTier2Ore = ExxoAvalonOriginsWorld.SHMTier2Variant.unvolandite;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconVorazylcum"), "Vorazylcum", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconVorazylcum").Value, "Vorazylcum", delegate
             {
                 ExxoAvalonOriginsWorld.shmTier2Ore = ExxoAvalonOriginsWorld.SHMTier2Variant.vorazylcum;
             }));
-            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.GetTexture("Sprites/IconOreRandom"), "Random", delegate
+            list.Add(new UIImageButtonCustom(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/IconOreRandom").Value, "Random", delegate
             {
                 ExxoAvalonOriginsWorld.shmTier2Ore = ExxoAvalonOriginsWorld.SHMTier2Variant.random;
             }, true));

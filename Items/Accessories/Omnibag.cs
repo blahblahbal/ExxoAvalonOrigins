@@ -16,32 +16,23 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.vanity = true;
-            item.value = Item.sellPrice(0, 2, 0, 0);
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.vanity = true;
+            Item.value = Item.sellPrice(0, 2, 0, 0);
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().updateInvisibleVanity = true;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BagofIck>());
-            recipe.AddIngredient(ModContent.ItemType<BagofBlood>());
-            recipe.AddIngredient(ModContent.ItemType<BagofShadows>());
-            recipe.AddIngredient(ModContent.ItemType<BagofHallows>());
-            recipe.AddIngredient(ModContent.ItemType<BagofFrost>());
-            recipe.AddIngredient(ModContent.ItemType<BagofFire>());
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BagofIck>()).AddIngredient(ModContent.ItemType<BagofBlood>()).AddIngredient(ModContent.ItemType<BagofShadows>()).AddIngredient(ModContent.ItemType<BagofHallows>()).AddIngredient(ModContent.ItemType<BagofFrost>()).AddIngredient(ModContent.ItemType<BagofFire>()).AddTile(TileID.MythrilAnvil).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (player.controlRight)
             {
-                int dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Fire, 0, 0, 100, Color.White, 2f);
+                int dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Torch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Shadowflame, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
@@ -78,7 +69,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             }
             if (player.controlLeft)
             {
-                int dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Fire, 0, 0, 100, Color.White, 2f);
+                int dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Torch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Shadowflame, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
@@ -115,7 +106,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             }
             if (player.controlJump)
             {
-                int dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Fire, 0, 0, 100, Color.White, 2f);
+                int dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Torch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Shadowflame, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
@@ -138,7 +129,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         {
             if (player.controlRight)
             {
-                int dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Fire, 0, 0, 100, Color.White, 2f);
+                int dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Torch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Shadowflame, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
@@ -175,7 +166,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             }
             if (player.controlLeft)
             {
-                int dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Fire, 0, 0, 100, Color.White, 2f);
+                int dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Torch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Shadowflame, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
@@ -212,7 +203,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
             }
             if (player.controlJump)
             {
-                int dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Fire, 0, 0, 100, Color.White, 2f);
+                int dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Torch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Shadowflame, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;

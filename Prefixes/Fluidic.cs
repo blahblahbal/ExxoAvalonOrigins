@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Fluidic", new Fluidic());
+                Mod.AddPrefix("Fluidic", new Fluidic());
             }
             return false;
         }

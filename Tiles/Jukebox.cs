@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Jukebox : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             var name = CreateMapEntryName();
             name.SetDefault("Jukebox");

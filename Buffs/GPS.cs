@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class GPS : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("GPS");
             Description.SetDefault("GPS Effect");

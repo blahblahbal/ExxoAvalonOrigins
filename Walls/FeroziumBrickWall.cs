@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class FeroziumBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("FeroziumBrickWall");
+            drop = Mod.Find<ModItem>("FeroziumBrickWall").Type;
             AddMapEntry(new Color(0, 123, 200));
         }
     }

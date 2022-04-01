@@ -8,13 +8,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins
 {
     class ExxoAvalonOriginsGlobalTile : GlobalTile
     {
 
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             int[] spelunkers =
             {
@@ -37,8 +38,8 @@ namespace ExxoAvalonOrigins
         }
         public override bool Slope(int i, int j, int type)
         {
-            if (Main.tile[i, j - 1].type == ModContent.TileType<Tiles.IckyAltar>() ||
-                Main.tile[i, j - 1].type == ModContent.TileType<Tiles.HallowedAltar>())
+            if (Main.tile[i, j - 1].TileType == ModContent.TileType<Tiles.IckyAltar>() ||
+                Main.tile[i, j - 1].TileType == ModContent.TileType<Tiles.HallowedAltar>())
             {
                 return false;
             }
@@ -75,14 +76,14 @@ namespace ExxoAvalonOrigins
         {
             if (type == ModContent.TileType<ImperviousBrick>())
             {
-                if (Main.tile[i, j - 1].type == ModContent.TileType<LockedImperviousDoor>() ||
-                    Main.tile[i, j + 1].type == ModContent.TileType<LockedImperviousDoor>())
+                if (Main.tile[i, j - 1].TileType == ModContent.TileType<LockedImperviousDoor>() ||
+                    Main.tile[i, j + 1].TileType == ModContent.TileType<LockedImperviousDoor>())
                 {
                     fail = true;
                 }
             }
-            if (Main.tile[i, j - 1].type == ModContent.TileType<IckyAltar>() && Main.tile[i, j].type != ModContent.TileType<IckyAltar>() ||
-                Main.tile[i, j - 1].type == ModContent.TileType<HallowedAltar>() && Main.tile[i, j].type != ModContent.TileType<HallowedAltar>())
+            if (Main.tile[i, j - 1].TileType == ModContent.TileType<IckyAltar>() && Main.tile[i, j].TileType != ModContent.TileType<IckyAltar>() ||
+                Main.tile[i, j - 1].TileType == ModContent.TileType<HallowedAltar>() && Main.tile[i, j].TileType != ModContent.TileType<HallowedAltar>())
             {
                 fail = true;
             }
@@ -90,7 +91,7 @@ namespace ExxoAvalonOrigins
             {
                 fail = true;
             }
-            if (type == TileID.Stalactite && Main.tile[i, j].frameX < 54 && (Main.tile[i, j].frameY == 0 || Main.tile[i, j].frameY == 72) && Main.rand.Next(2) == 0)
+            if (type == TileID.Stalactite && Main.tile[i, j].TileFrameX < 54 && (Main.tile[i, j].TileFrameY == 0 || Main.tile[i, j].TileFrameY == 72) && Main.rand.Next(2) == 0)
             {
                 int number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Weapons.Throw.Icicle>(), 1, false, 0, false);
                 if (Main.netMode == NetmodeID.Server)
@@ -111,7 +112,7 @@ namespace ExxoAvalonOrigins
             };
             if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
             {
-                Main.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
+                SoundEngine.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
                 if (Main.rand.Next(8000) == 0)
                 {
                     int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FourLeafClover>(), 1, false, 0);
@@ -133,7 +134,7 @@ namespace ExxoAvalonOrigins
             }
             if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
             {
-                Main.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
+                SoundEngine.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
                 var flag = false;
                 var inventory = Main.player[Main.myPlayer].inventory;
                 for (var l = 0; l < inventory.Length; l++)

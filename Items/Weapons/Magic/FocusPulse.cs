@@ -15,24 +15,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 10;
-            item.useTurn = true;
-            item.scale = 1f;
-            item.shootSpeed = 15f;
-            item.crit += 1;
-            item.mana = 18;
-            item.rare = ItemRarityID.Orange;
-            item.channel = true;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 27;
-            item.knockBack = 5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.PulseLaserCharging>();
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 388500;
-            item.useAnimation = 27;
-            item.height = dims.Height;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 10;
+            Item.useTurn = true;
+            Item.scale = 1f;
+            Item.shootSpeed = 15f;
+            Item.crit += 1;
+            Item.mana = 18;
+            Item.rare = ItemRarityID.Orange;
+            Item.channel = true;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 27;
+            Item.knockBack = 5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.PulseLaserCharging>();
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 388500;
+            Item.useAnimation = 27;
+            Item.height = dims.Height;
             //item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Beam");
         }
     }

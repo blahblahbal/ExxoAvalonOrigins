@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class LeadBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("LeadBrickWall");
+            drop = Mod.Find<ModItem>("LeadBrickWall").Type;
             AddMapEntry(new Color(42, 62, 94));
         }
     }

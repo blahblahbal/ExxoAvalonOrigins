@@ -15,46 +15,46 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DarkGeyser");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height;
-            projectile.hostile = true;
-            projectile.friendly = false;
-            projectile.penetrate = -1;
-            projectile.aiStyle = -1;
-            projectile.tileCollide = true;
-            projectile.ignoreWater = true;
-            projectile.timeLeft = 50;
-            projectile.alpha = 255;
-            projectile.extraUpdates = 2;
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 10;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height;
+            Projectile.hostile = true;
+            Projectile.friendly = false;
+            Projectile.penetrate = -1;
+            Projectile.aiStyle = -1;
+            Projectile.tileCollide = true;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 50;
+            Projectile.alpha = 255;
+            Projectile.extraUpdates = 2;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
         }
         public override void AI()
         {
-            if (projectile.ai[0] > 1f)
+            if (Projectile.ai[0] > 1f)
             {
                 float num418 = 1f;
-                if (projectile.ai[0] == 8f)
+                if (Projectile.ai[0] == 8f)
                 {
                     num418 = 0.25f;
                 }
-                else if (projectile.ai[0] == 9f)
+                else if (Projectile.ai[0] == 9f)
                 {
                     num418 = 0.5f;
                 }
-                else if (projectile.ai[0] == 10f)
+                else if (Projectile.ai[0] == 10f)
                 {
                     num418 = 0.75f;
                 }
-                projectile.ai[0] += 1f;
+                Projectile.ai[0] += 1f;
                 int num419 = 6;
                 if (num419 == 6 || Main.rand.Next(3) == 0)
                 {
                     for (int num420 = 0; num420 < 1; num420++)
                     {
-                        var num150 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
+                        var num150 = Dust.NewDust(new Vector2(Projectile.position.X + Projectile.velocity.X, Projectile.position.Y + Projectile.velocity.Y), Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 1f);
                         Main.dust[num150].noGravity = true;
-                        var num151 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Ash, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
+                        var num151 = Dust.NewDust(new Vector2(Projectile.position.X + Projectile.velocity.X, Projectile.position.Y + Projectile.velocity.Y), Projectile.width, Projectile.height, DustID.Ash, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 1f);
                         Main.dust[num151].noGravity = true;
                         var randomDust = 0;
                         Dust dust98;
@@ -87,9 +87,9 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             else
             {
-                projectile.ai[0] += 1f;
+                Projectile.ai[0] += 1f;
             }
-            projectile.rotation += 0.3f * (float)projectile.direction;
+            Projectile.rotation += 0.3f * (float)Projectile.direction;
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {

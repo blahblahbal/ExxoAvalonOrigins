@@ -11,23 +11,23 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magma Skeleton");
-            Main.npcFrameCount[npc.type] = 15;
+            Main.npcFrameCount[NPC.type] = 15;
         }
         public override void SetDefaults()
         {
-            npc.damage = 42;
-            npc.lifeMax = 540;
-            npc.defense = 21;
-            npc.lavaImmune = true;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.value = 1000f;
-            npc.height = 40;
-            npc.knockBackResist = 0.15f;
-            npc.HitSound = SoundID.NPCHit2;
-            npc.DeathSound = SoundID.NPCDeath2;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
+            NPC.damage = 42;
+            NPC.lifeMax = 540;
+            NPC.defense = 21;
+            NPC.lavaImmune = true;
+            NPC.width = 18;
+            NPC.aiStyle = 3;
+            NPC.value = 1000f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0.15f;
+            NPC.HitSound = SoundID.NPCHit2;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -35,53 +35,53 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.velocity.X == 0f)
+                if (NPC.velocity.X == 0f)
                 {
-                    npc.frame.Y = 0;
-                    npc.frameCounter = 0.0;
+                    NPC.frame.Y = 0;
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += 1.0;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += 1.0;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 2;
+                        NPC.frame.Y = frameHeight * 2;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = frameHeight;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = frameHeight;
             }
         }
         public override void AI()
         {
-            Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.9f, 0.25f, 0.05f);
+            Lighting.AddLight((int)((NPC.position.X + (float)(NPC.width / 2)) / 16f), (int)((NPC.position.Y + (float)(NPC.height / 2)) / 16f), 0.9f, 0.25f, 0.05f);
             if (Main.rand.Next(7) == 0)
             {
-                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1.2f);
+                int num10 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), 1.2f);
                 Main.dust[num10].noGravity = true;
             }
         }
@@ -93,19 +93,19 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (int i = 0; i < 20; i++)
             {
-                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), 1f);
+                int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num890].velocity *= 5f;
                 Main.dust[num890].scale = 1.2f;
                 Main.dust[num890].noGravity = true;
             }
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, 43, 1f);
-                Gore.NewGore(npc.position, npc.velocity, 43, 1f);
-                Gore.NewGore(npc.position, npc.velocity, 44, 1f);
-                Gore.NewGore(npc.position, npc.velocity, 44, 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagmaHelmet"), 1f);
-                //Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/MagmaChestplate"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MagmaHelmet"), 1f);
+                //Gore.NewGore(npc.position, npc.velocity, Mod.Find<ModGore>("Gores/MagmaChestplate"), 1f);
             }
         }
     }

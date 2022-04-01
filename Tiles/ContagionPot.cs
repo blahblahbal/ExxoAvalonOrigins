@@ -3,12 +3,13 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
 	public class ContagionPot : ModTile
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;
@@ -32,13 +33,13 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            _ = j - Main.tile[i, j].frameY / 18;
-            _ = i - Main.tile[i, j].frameX / 18;
-            Main.PlaySound(4, i * 16, j * 16, 1);
+            _ = j - Main.tile[i, j].TileFrameY / 18;
+            _ = i - Main.tile[i, j].TileFrameX / 18;
+            SoundEngine.PlaySound(4, i * 16, j * 16, 1);
             Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 22, 0f, 0f, 0, default, 1f);
-            //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.mod.GetGoreSlot("Gores/DepthsPotGore1"));
-            //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.mod.GetGoreSlot("Gores/DepthsPotGore2"));
-            //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.mod.GetGoreSlot("Gores/DepthsPotGore3"));
+            //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("Gores/DepthsPotGore1"));
+            //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("Gores/DepthsPotGore2"));
+            //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("Gores/DepthsPotGore3"));
             if (!WorldGen.gen && Main.netMode != 1)
             {
                 if (WorldGen.genRand.Next(15) == 0)

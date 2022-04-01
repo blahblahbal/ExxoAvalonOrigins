@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 10, 0, 0);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 10, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -33,8 +33,8 @@ namespace ExxoAvalonOrigins.Items.Accessories
             player.frostBurn = true;
             player.kbGlove = true;
             player.meleeSpeed += 0.1f;
-            player.meleeDamage += 0.1f;
-            player.rangedDamage += 0.1f;
+            player.GetDamage(DamageClass.Melee) += 0.1f;
+            player.GetDamage(DamageClass.Ranged) += 0.1f;
             player.frostArmor = true;
         }
     }

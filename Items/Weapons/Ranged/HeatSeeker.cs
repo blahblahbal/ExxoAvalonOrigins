@@ -16,24 +16,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 98;
-            item.autoReuse = true;
-            item.useTurn = false;
-            item.useAmmo = AmmoID.Rocket;
-            item.shootSpeed = 10f;
-            item.crit += 3;
-            item.ranged = true;
-            item.rare = ItemRarityID.Red;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.knockBack = 5f;
-            item.useTime = 15;
-            item.shoot = ProjectileID.RocketI;
-            item.value = Item.sellPrice(1, 0, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item11;
+            Item.damage = 98;
+            Item.autoReuse = true;
+            Item.useTurn = false;
+            Item.useAmmo = AmmoID.Rocket;
+            Item.shootSpeed = 10f;
+            Item.crit += 3;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.Red;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.knockBack = 5f;
+            Item.useTime = 15;
+            Item.shoot = ProjectileID.RocketI;
+            Item.value = Item.sellPrice(1, 0, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item11;
 
         }
         //public override void AddRecipes()

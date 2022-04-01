@@ -21,38 +21,29 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 131;
-            item.autoReuse = true;
-            item.useTurn = false;
-            item.useAmmo = AmmoID.Bullet;
-            item.shootSpeed = 13f;
-            item.crit += 4;
-            item.ranged = true;
-            item.rare = 11;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.knockBack = 3f;
-            item.useTime = 4;
-            item.shoot = ProjectileID.Bullet;
-            item.value = Item.sellPrice(1, 0, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 4;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item41;
+            Item.damage = 131;
+            Item.autoReuse = true;
+            Item.useTurn = false;
+            Item.useAmmo = AmmoID.Bullet;
+            Item.shootSpeed = 13f;
+            Item.crit += 4;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = 11;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.knockBack = 3f;
+            Item.useTime = 4;
+            Item.shoot = ProjectileID.Bullet;
+            Item.value = Item.sellPrice(1, 0, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 4;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item41;
 
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<PlanterasFury>());
-            recipe.AddIngredient(ItemID.ChainGun);
-            recipe.AddIngredient(ItemID.Megashark);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Phantoplasm>(), 45).AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40).AddIngredient(ModContent.ItemType<SoulofTorture>(), 45).AddIngredient(ModContent.ItemType<PlanterasFury>()).AddIngredient(ItemID.ChainGun).AddIngredient(ItemID.Megashark).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override Vector2? HoldoutOffset()
         {
@@ -78,7 +69,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
             float num72 = (float)Math.Sqrt(num70 * num70 + num71 * num71);
             float num73 = num72;
             num72 = player.inventory[player.selectedItem].shootSpeed / num72;
-            if (player.inventory[player.selectedItem].type == item.type)
+            if (player.inventory[player.selectedItem].type == Item.type)
             {
                 num70 += Main.rand.Next(-100, 101) * 0.03f / num72;
                 num71 += Main.rand.Next(-100, 101) * 0.03f / num72;

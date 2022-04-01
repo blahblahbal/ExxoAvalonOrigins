@@ -14,30 +14,21 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 7;
-            item.createWall = ModContent.WallType<Walls.LeadBrickWall>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 7;
+            Item.createWall = ModContent.WallType<Walls.LeadBrickWall>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Tile.LeadBrick>());
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this, 4);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(this, 4);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(ModContent.ItemType<Tile.LeadBrick>());
-            recipe.AddRecipe();
+            CreateRecipe(4).AddIngredient(ModContent.ItemType<Tile.LeadBrick>()).AddTile(TileID.WorkBenches).Register();
+            CreateRecipe(1).AddIngredient(this, 4).AddTile(TileID.WorkBenches).ReplaceResult(ModContent.ItemType<Tile.LeadBrick>());
         }
     }
 }

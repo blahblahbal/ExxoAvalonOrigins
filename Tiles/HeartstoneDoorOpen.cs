@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class HeartstoneDoorOpen : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileSolid[Type] = false;
@@ -64,7 +64,7 @@ namespace ExxoAvalonOrigins.Tiles
             AddMapEntry(new Color(119, 105, 79), name);
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.OpenDoor };
-            closeDoorID = mod.TileType("HeartstoneDoorClosed");
+            closeDoorID = Mod.Find<ModTile>("HeartstoneDoorClosed").Type;
             dustType = DustID.Confetti_Pink;
         }
 

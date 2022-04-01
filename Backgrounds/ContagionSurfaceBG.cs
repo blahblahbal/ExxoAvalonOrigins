@@ -36,11 +36,11 @@ namespace ExxoAvalonOrigins.Backgrounds
 
         public override int ChooseFarTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG2");
+            return Mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG2");
         }
         public override int ChooseMiddleTexture()
         {
-            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG3");
+            return Mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG3");
         }
         //private static int SurfaceFrameCounter;
         //private static int SurfaceFrame;
@@ -69,7 +69,7 @@ namespace ExxoAvalonOrigins.Backgrounds
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
             b -= 75;
-            return mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG");
+            return Mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG");
         }
     }
 }

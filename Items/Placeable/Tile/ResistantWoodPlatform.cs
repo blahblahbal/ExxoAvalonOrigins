@@ -14,17 +14,17 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.createTile = ModContent.TileType<Tiles.ResistantWoodPlatform>();
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.scale = 1f;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.createTile = ModContent.TileType<Tiles.ResistantWoodPlatform>();
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.scale = 1f;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override bool CanBurnInLava()
         {
@@ -32,15 +32,8 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<ResistantWood>());
-            recipe.SetResult(this, 2);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(this, 2);
-            recipe.SetResult(ModContent.ItemType<ResistantWood>());
-            recipe.AddRecipe();
+            CreateRecipe(2).AddIngredient(ModContent.ItemType<ResistantWood>()).Register();
+            CreateRecipe(1).AddIngredient(this, 2).ReplaceResult(ModContent.ItemType<ResistantWood>());
         }
     }
 }

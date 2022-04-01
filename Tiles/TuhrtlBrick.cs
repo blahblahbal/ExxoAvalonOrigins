@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class TuhrtlBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(78, 70, 67));
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("TuhrtlBrick");
+            drop = Mod.Find<ModItem>("TuhrtlBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 210;

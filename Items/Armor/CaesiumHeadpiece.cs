@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 31;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 10, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 31;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 10, 0, 0);
+            Item.height = dims.Height;
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -33,14 +33,14 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Melee Stealth and increased stats";
-            player.meleeDamage += 0.05f;
+            player.GetDamage(DamageClass.Melee) += 0.05f;
             //player.thorns = true;
             player.statDefense += 4;
             player.Avalon().meleeStealth = true;
         }
         public override void UpdateEquip(Player player)
         {
-            player.meleeDamage += 0.08f;
+            player.GetDamage(DamageClass.Melee) += 0.08f;
         }
     }
 }

@@ -5,6 +5,7 @@ using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI.Herbology
 {
@@ -187,13 +188,13 @@ namespace ExxoAvalonOrigins.UI.Herbology
         {
             base.OnActivate();
             HerbologyLogic.UpdateHerbTier(Main.LocalPlayer.Avalon());
-            Main.PlaySound(SoundID.MenuOpen);
+            SoundEngine.PlaySound(SoundID.MenuOpen);
         }
 
         public override void OnDeactivate()
         {
             base.OnDeactivate();
-            Main.PlaySound(SoundID.MenuClose);
+            SoundEngine.PlaySound(SoundID.MenuClose);
         }
 
         private void RefreshContent()

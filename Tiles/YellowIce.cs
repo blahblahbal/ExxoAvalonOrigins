@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class YellowIce : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(234, 204, 0));
             Main.tileSolid[Type] = true;
@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[TileID.FleshIce][Type] = true;
             Main.tileShine2[Type] = true;
             TileID.Sets.Conversion.Ice[Type] = true;
-            drop = mod.ItemType("YellowIceBlock");
+            drop = Mod.Find<ModItem>("YellowIceBlock").Type;
             ExxoAvalonOrigins.MergeWith(Type, TileID.SnowBlock);
             soundType = SoundID.Item;
             soundStyle = 50;

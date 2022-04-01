@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -14,14 +15,14 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.aiStyle = -1;
-            projectile.melee = true;
-            projectile.penetrate = -1;
-            projectile.light = 0.7f;
-            projectile.friendly = true;
-            projectile.tileCollide = false;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = -1;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.penetrate = -1;
+            Projectile.light = 0.7f;
+            Projectile.friendly = true;
+            Projectile.tileCollide = false;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -29,13 +30,13 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void AI()
         {
-            projectile.velocity *= 0f;
-            projectile.ai[0]++;
-            if (projectile.ai[1] == 0)
+            Projectile.velocity *= 0f;
+            Projectile.ai[0]++;
+            if (Projectile.ai[1] == 0)
             {
-                if (projectile.ai[0] % 60 == 0)
+                if (Projectile.ai[0] % 60 == 0)
                 {
-                    Player p = Main.player[Player.FindClosest(projectile.position, projectile.width, projectile.height)];
+                    Player p = Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)];
                     if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contagion) // corruption world
                     {
                         if (p.ZoneCorrupt)
@@ -47,22 +48,22 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (p.position.Y < Main.worldSurface)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Crimslime);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Herpling);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Crimslime);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Herpling);
                                     }
                                     else if (p.ZoneRockLayerHeight)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.IchorSticker);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.FloatyGross);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.IchorSticker);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.FloatyGross);
                                     }
                                 }
                                 else
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Crimera);
-                                    if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.FaceMonster);
-                                    if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.BloodCrawler);
+                                    if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Crimera);
+                                    if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.FaceMonster);
+                                    if (t == 2) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.BloodCrawler);
                                 }
                             }
                             else // contagion mobs
@@ -72,21 +73,21 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (p.position.Y < Main.worldSurface)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                     }
                                     else if (p.ZoneRockLayerHeight)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
                                     }
                                 }
                                 else
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                    if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                    if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                    if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
                                     //if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.BloodCrawler);
                                 }
                             }
@@ -103,22 +104,22 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (p.position.Y < Main.worldSurface)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Crimslime);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Herpling);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Crimslime);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Herpling);
                                     }
                                     else if (p.ZoneRockLayerHeight)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.IchorSticker);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.FloatyGross);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.IchorSticker);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.FloatyGross);
                                     }
                                 }
                                 else
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Crimera);
-                                    if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.FaceMonster);
-                                    if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.BloodCrawler);
+                                    if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Crimera);
+                                    if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.FaceMonster);
+                                    if (t == 2) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.BloodCrawler);
                                 }
                             }
                             else // corruption mobs
@@ -128,23 +129,23 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (p.position.Y < Main.worldSurface)
                                     {
                                         int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.CorruptSlime);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Slimer);
-                                        if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Corruptor);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.CorruptSlime);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Slimer);
+                                        if (t == 2) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Corruptor);
                                     }
                                     else if (p.ZoneRockLayerHeight)
                                     {
                                         int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.SeekerHead);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.CorruptSlime);
-                                        if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Corruptor);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.SeekerHead);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.CorruptSlime);
+                                        if (t == 2) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Corruptor);
                                     }
                                 }
                                 else
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.EaterofSouls);
-                                    if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.DevourerHead);
+                                    if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.EaterofSouls);
+                                    if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.DevourerHead);
                                     //if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.BloodCrawler);
                                 }
                             }
@@ -161,23 +162,23 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (p.position.Y < Main.worldSurface)
                                     {
                                         int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.CorruptSlime);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Slimer);
-                                        if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Corruptor);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.CorruptSlime);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Slimer);
+                                        if (t == 2) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Corruptor);
                                     }
                                     else if (p.ZoneRockLayerHeight)
                                     {
                                         int t = Main.rand.Next(3);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.SeekerHead);
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.CorruptSlime);
-                                        if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.Corruptor);
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.SeekerHead);
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.CorruptSlime);
+                                        if (t == 2) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.Corruptor);
                                     }
                                 }
                                 else
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.EaterofSouls);
-                                    if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.DevourerHead);
+                                    if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.EaterofSouls);
+                                    if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, NPCID.DevourerHead);
                                     //if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.BloodCrawler);
                                 }
                             }
@@ -188,21 +189,21 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (p.position.Y < Main.worldSurface)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                     }
                                     else if (p.ZoneRockLayerHeight)
                                     {
                                         int t = Main.rand.Next(2);
-                                        if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                        if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                        if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                        if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
                                     }
                                 }
                                 else
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                    if (t == 1) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                    if (t == 0) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                    if (t == 1) NPC.NewNPC((int)Projectile.position.X, (int)Projectile.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
                                     //if (t == 2) NPC.NewNPC((int)projectile.position.X, (int)projectile.position.Y, NPCID.BloodCrawler);
                                 }
                             }
@@ -210,18 +211,18 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        int num893 = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
+                        int num893 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
                         Main.dust[num893].velocity *= 2f;
                         Main.dust[num893].scale = 0.9f;
                         Main.dust[num893].noGravity = true;
                         Main.dust[num893].fadeIn = 3f;
                     }
-                    Main.PlaySound(SoundID.Item, projectile.position, 8);
+                    SoundEngine.PlaySound(SoundID.Item, Projectile.position, 8);
                 }
             }
-            else if (projectile.ai[1] == 1)
+            else if (Projectile.ai[1] == 1)
             {
-                Point tile = projectile.position.ToTileCoordinates();
+                Point tile = Projectile.position.ToTileCoordinates();
                 for (int x = tile.X - 10; x < tile.X + 10; x++)
                 {
                     for (int y = tile.Y - 10; x < tile.Y + 10; y++)
@@ -230,7 +231,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                 }
             }
-            if (projectile.ai[0] >= 200) projectile.Kill();
+            if (Projectile.ai[0] >= 200) Projectile.Kill();
         }
         //public override void Kill(int timeLeft)
         //{

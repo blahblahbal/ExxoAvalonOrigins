@@ -16,18 +16,18 @@ namespace ExxoAvalonOrigins.Items.AdvancedPotions
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/AdvancedPotions/AdvRoguePotion");
-            item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvRogue>();
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.value = Item.sellPrice(0, 0, 4, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 3600 * 9;
+            Item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvRogue>();
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.value = Item.sellPrice(0, 0, 4, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 3600 * 9;
         }
     }
 }

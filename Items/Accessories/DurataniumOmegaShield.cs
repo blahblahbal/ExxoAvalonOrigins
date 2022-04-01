@@ -16,12 +16,12 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 4;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = 100000;
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.defense = 4;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = 100000;
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

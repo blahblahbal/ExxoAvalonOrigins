@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Anvenalforge : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Anvenalforge"));
             Main.tileFrameImportant[Type] = true;

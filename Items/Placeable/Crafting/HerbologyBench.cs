@@ -16,29 +16,22 @@ namespace ExxoAvalonOrigins.Items.Placeable.Crafting
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.HerbologyBench>();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 99;
-            item.value = Item.sellPrice(0, 0, 20);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.HerbologyBench>();
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 99;
+            Item.value = Item.sellPrice(0, 0, 20);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 8);
-            recipe.AddRecipeGroup(RecipeGroupID.Wood, 45);
-            recipe.AddIngredient(ItemID.GrassSeeds, 20);
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:Herbs", 15);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddRecipeGroup(RecipeGroupID.IronBar, 8).AddRecipeGroup(RecipeGroupID.Wood, 45).AddIngredient(ItemID.GrassSeeds, 20).AddRecipeGroup("ExxoAvalonOrigins:Herbs", 15).AddTile(TileID.Anvils).Register();
         }
     }
 }

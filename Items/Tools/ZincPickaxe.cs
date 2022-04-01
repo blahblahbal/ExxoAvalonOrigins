@@ -13,20 +13,20 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 6;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1f;
-            item.pick = 53;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.knockBack = 2f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 6250;
-            item.useAnimation = 14;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 6;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1f;
+            Item.pick = 53;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.knockBack = 2f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 6250;
+            Item.useAnimation = 14;
+            Item.height = dims.Height;
         }
     }
 }

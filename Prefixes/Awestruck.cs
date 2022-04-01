@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Awestruck", new Awestruck());
+                Mod.AddPrefix("Awestruck", new Awestruck());
             }
             return false;
         }

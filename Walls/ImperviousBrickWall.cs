@@ -7,11 +7,11 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class ImperviousBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
             AddMapEntry(new Color(51, 44, 48));
-            drop = mod.ItemType("ImperviousBrickWall");
+            drop = Mod.Find<ModItem>("ImperviousBrickWall").Type;
             dustType = DustID.Wraith;
         }
     }

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class TroxiniumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 4f;
             AddMapEntry(Color.Goldenrod, LanguageManager.Instance.GetText("Troxinium"));
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileValue[Type] = 660;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 875;
-            drop = mod.ItemType("TroxiniumOre");
+            drop = Mod.Find<ModItem>("TroxiniumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 150;

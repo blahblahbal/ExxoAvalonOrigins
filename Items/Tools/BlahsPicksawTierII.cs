@@ -15,27 +15,27 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 55;
-            item.UseSound = SoundID.Item1;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.15f;
-            item.axe = 60;
-            item.pick = 700;
-            item.rare = 11;
-            item.width = dims.Width;
-            item.useTime = 6;
-            item.knockBack = 5.5f;
-            item.melee = true;
-            item.tileBoost += 8;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 5016000;
-            item.useAnimation = 6;
-            item.height = dims.Height;
+            Item.damage = 55;
+            Item.UseSound = SoundID.Item1;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.15f;
+            Item.axe = 60;
+            Item.pick = 700;
+            Item.rare = 11;
+            Item.width = dims.Width;
+            Item.useTime = 6;
+            Item.knockBack = 5.5f;
+            Item.DamageType = DamageClass.Melee;
+            Item.tileBoost += 8;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 5016000;
+            Item.useAnimation = 6;
+            Item.height = dims.Height;
         }
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == item.type)
+            if (player.inventory[player.selectedItem].type == Item.type)
             {
                 player.pickSpeed -= 0.75f;
             }

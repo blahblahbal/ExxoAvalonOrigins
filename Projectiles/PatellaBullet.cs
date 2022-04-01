@@ -10,13 +10,13 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 12;
-            projectile.timeLeft = 30;
-            projectile.height = 12;
-            projectile.aiStyle = -1;
-            projectile.scale = 1f;
-            projectile.friendly = true;
-            projectile.ranged = true;
+            Projectile.width = 12;
+            Projectile.timeLeft = 30;
+            Projectile.height = 12;
+            Projectile.aiStyle = -1;
+            Projectile.scale = 1f;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
         }
         /*public override void AI()
 		{

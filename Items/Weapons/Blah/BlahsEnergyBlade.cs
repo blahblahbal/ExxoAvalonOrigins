@@ -19,22 +19,22 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 250;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.2f;
-            item.shootSpeed = 13f;
-            item.rare = 11;
-            item.width = dims.Width;
-            item.useTime = 14;
-            item.knockBack = 20f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.BlahBeam>();
-            item.UseSound = SoundID.Item1;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(3, 0, 0, 0);
-            item.useAnimation = 14;
-            item.height = dims.Height;
+            Item.damage = 250;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.2f;
+            Item.shootSpeed = 13f;
+            Item.rare = 11;
+            Item.width = dims.Width;
+            Item.useTime = 14;
+            Item.knockBack = 20f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.BlahBeam>();
+            Item.UseSound = SoundID.Item1;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(3, 0, 0, 0);
+            Item.useAnimation = 14;
+            Item.height = dims.Height;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -42,16 +42,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Phantoplasm>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<SoulofTorture>(), 45);
-            recipe.AddIngredient(ModContent.ItemType<ElementalExcalibur>());
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBlade>());
-            recipe.AddIngredient(ModContent.ItemType<PumpkingsSword>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Phantoplasm>(), 45).AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 40).AddIngredient(ModContent.ItemType<SoulofTorture>(), 45).AddIngredient(ModContent.ItemType<ElementalExcalibur>()).AddIngredient(ModContent.ItemType<BerserkerBlade>()).AddIngredient(ModContent.ItemType<PumpkingsSword>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)

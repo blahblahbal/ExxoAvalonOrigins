@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         }
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.TinAxe);
+            Item.CloneDefaults(ItemID.TinAxe);
         }
     }
 }

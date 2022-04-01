@@ -76,7 +76,7 @@ namespace ExxoAvalonOrigins.Logic
                         continue;
                     }
 
-                    if (Main.tile[x, y].type != 81)
+                    if (Main.tile[x, y].TileType != 81)
                     {
                         continue;
                     }
@@ -108,7 +108,7 @@ namespace ExxoAvalonOrigins.Logic
                         continue;
                     }
 
-                    if (Main.tile[x, y].type != 81)
+                    if (Main.tile[x, y].TileType != 81)
                     {
                         continue;
                     }
@@ -140,7 +140,7 @@ namespace ExxoAvalonOrigins.Logic
                         continue;
                     }
 
-                    if (Main.tile[x, y].type != 75)
+                    if (Main.tile[x, y].TileType != 75)
                     {
                         continue;
                     }
@@ -180,7 +180,7 @@ namespace ExxoAvalonOrigins.Logic
                         continue;
                     }
 
-                    if (Main.tile[x, y].type != 233 || Main.tile[x, y].type != ModContent.TileType<Tiles.TropicalShortGrass>())
+                    if (Main.tile[x, y].TileType != 233 || Main.tile[x, y].TileType != ModContent.TileType<Tiles.TropicalShortGrass>())
                     {
                         continue;
                     }

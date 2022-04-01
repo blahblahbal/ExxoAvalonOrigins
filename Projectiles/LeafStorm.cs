@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -14,44 +15,44 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.tileCollide = false;
-            projectile.penetrate = -1;
-            projectile.usesLocalNPCImmunity = true;
-            projectile.alpha = 255;
-            projectile.timeLeft = 1200;
-            projectile.magic = true;
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.tileCollide = false;
+            Projectile.penetrate = -1;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.alpha = 255;
+            Projectile.timeLeft = 1200;
+            Projectile.DamageType = DamageClass.Magic;
         }
 
         public override void AI()
         {
             float num998 = 900f;
-            if (projectile.soundDelay == 0)
+            if (Projectile.soundDelay == 0)
             {
-                projectile.soundDelay = -1;
-                Main.PlaySound(SoundID.Item82, projectile.Center);
+                Projectile.soundDelay = -1;
+                SoundEngine.PlaySound(SoundID.Item82, Projectile.Center);
             }
-            projectile.ai[0]++;
-            if (projectile.ai[0] >= num998)
+            Projectile.ai[0]++;
+            if (Projectile.ai[0] >= num998)
             {
-                projectile.Kill();
+                Projectile.Kill();
             }
-            if (projectile.localAI[0] >= 30f)
+            if (Projectile.localAI[0] >= 30f)
             {
-                projectile.damage = 0;
-                if (projectile.ai[0] < num998 - 120f)
+                Projectile.damage = 0;
+                if (Projectile.ai[0] < num998 - 120f)
                 {
-                    float num999 = projectile.ai[0] % 60f;
-                    projectile.ai[0] = num998 - 120f + num999;
-                    projectile.netUpdate = true;
+                    float num999 = Projectile.ai[0] % 60f;
+                    Projectile.ai[0] = num998 - 120f + num999;
+                    Projectile.netUpdate = true;
                 }
             }
             float num1000 = 15f;
             float num1001 = 15f;
-            Point point5 = projectile.Center.ToTileCoordinates();
+            Point point5 = Projectile.Center.ToTileCoordinates();
             Collision.ExpandVertically(point5.X, point5.Y, out int topY, out int bottomY, (int)num1000, (int)num1001);
             topY++;
             bottomY--;
@@ -60,14 +61,14 @@ namespace ExxoAvalonOrigins.Projectiles
             Vector2 vector105 = Vector2.Lerp(value68, value69, 0.5f);
             Vector2 value70 = new Vector2(0f, value69.Y - value68.Y);
             value70.X = value70.Y * 0.2f;
-            projectile.width = (int)(value70.X * 0.65f);
-            projectile.height = (int)value70.Y;
-            projectile.Center = vector105;
-            if (projectile.owner == Main.myPlayer)
+            Projectile.width = (int)(value70.X * 0.65f);
+            Projectile.height = (int)value70.Y;
+            Projectile.Center = vector105;
+            if (Projectile.owner == Main.myPlayer)
             {
                 bool flag60 = false;
-                Vector2 center13 = Main.player[projectile.owner].Center;
-                Vector2 top = Main.player[projectile.owner].Top;
+                Vector2 center13 = Main.player[Projectile.owner].Center;
+                Vector2 top = Main.player[Projectile.owner].Top;
                 for (float num1002 = 0f; num1002 < 1f; num1002 += 0.05f)
                 {
                     Vector2 position8 = Vector2.Lerp(value68, value69, num1002);
@@ -77,14 +78,14 @@ namespace ExxoAvalonOrigins.Projectiles
                         break;
                     }
                 }
-                if (!flag60 && projectile.ai[0] < num998 - 120f)
+                if (!flag60 && Projectile.ai[0] < num998 - 120f)
                 {
-                    float num1003 = projectile.ai[0] % 60f;
-                    projectile.ai[0] = num998 - 120f + num1003;
-                    projectile.netUpdate = true;
+                    float num1003 = Projectile.ai[0] % 60f;
+                    Projectile.ai[0] = num998 - 120f + num1003;
+                    Projectile.netUpdate = true;
                 }
             }
-            if (!(projectile.ai[0] < num998 - 120f))
+            if (!(Projectile.ai[0] < num998 - 120f))
             {
                 return;
             }
@@ -108,7 +109,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     dust48.velocity.X = 1f + Main.rand.NextFloat();
                 }
                 dust48.velocity.Y = Main.rand.NextFloat() * -0.5f - 1f;
-                Projectile.NewProjectile(dust48.position + new Vector2(20 + Main.rand.Next(-10, 11), (55 + Main.rand.Next(-10, 11)) * -1f), new Vector2((float)(Main.rand.Next(-500, 501) / 100), (float)(Main.rand.Next(-500, 501) / 100)), ModContent.ProjectileType<Projectiles.Leaves>(), projectile.damage, projectile.knockBack, projectile.owner);
+                Projectile.NewProjectile(dust48.position + new Vector2(20 + Main.rand.Next(-10, 11), (55 + Main.rand.Next(-10, 11)) * -1f), new Vector2((float)(Main.rand.Next(-500, 501) / 100), (float)(Main.rand.Next(-500, 501) / 100)), ModContent.ProjectileType<Projectiles.Leaves>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
         }
     }

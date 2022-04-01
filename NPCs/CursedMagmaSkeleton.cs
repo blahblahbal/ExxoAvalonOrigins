@@ -13,31 +13,31 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cursed Magma Skeleton");
-            Main.npcFrameCount[npc.type] = 15;
+            Main.npcFrameCount[NPC.type] = 15;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 120;
-            npc.netAlways = true;
-            npc.scale = 1.35f;
-            npc.lifeMax = 2000;
-            npc.defense = 40;
-            npc.lavaImmune = true;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.npcSlots = 1.1f;
-            npc.value = Item.buyPrice(0, 1, 0, 0);
-            npc.timeLeft = 750;
-            npc.height = 40;
-            npc.knockBackResist = 0.1f;
-            npc.HitSound = SoundID.NPCHit2;
-            npc.DeathSound = SoundID.NPCDeath2;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.CursedMagmaSkeletonBanner>();
+            NPC.damage = 120;
+            NPC.netAlways = true;
+            NPC.scale = 1.35f;
+            NPC.lifeMax = 2000;
+            NPC.defense = 40;
+            NPC.lavaImmune = true;
+            NPC.width = 18;
+            NPC.aiStyle = 3;
+            NPC.npcSlots = 1.1f;
+            NPC.value = Item.buyPrice(0, 1, 0, 0);
+            NPC.timeLeft = 750;
+            NPC.height = 40;
+            NPC.knockBackResist = 0.1f;
+            NPC.HitSound = SoundID.NPCHit2;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.CursedMagmaSkeletonBanner>();
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -47,19 +47,19 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.7f);
-            npc.damage = (int)(npc.damage * 0.7f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.7f);
+            NPC.damage = (int)(NPC.damage * 0.7f);
         }
 
         public override void NPCLoot()
         {
             if (Main.rand.Next(75) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<GreekExtinguisher>(), 1, false, 0, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<GreekExtinguisher>(), 1, false, 0, false);
             }
             if (Main.rand.Next(10) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofBlight>(), Main.rand.Next(4, 7), false, 0, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofBlight>(), Main.rand.Next(4, 7), false, 0, false);
             }
         }
 
@@ -70,50 +70,50 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void AI()
         {
-            Lighting.AddLight((int)((npc.position.X + (float)(npc.width / 2)) / 16f), (int)((npc.position.Y + (float)(npc.height / 2)) / 16f), 0.6f, 0.87f, 0.0f);
+            Lighting.AddLight((int)((NPC.position.X + (float)(NPC.width / 2)) / 16f), (int)((NPC.position.Y + (float)(NPC.height / 2)) / 16f), 0.6f, 0.87f, 0.0f);
             if (Main.rand.Next(5) == 0)
             {
-                int num10 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1.6f);
+                int num10 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1.6f);
                 Main.dust[num10].noGravity = true;
             }
         }
 
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.velocity.X == 0f)
+                if (NPC.velocity.X == 0f)
                 {
-                    npc.frame.Y = 0;
-                    npc.frameCounter = 0.0;
+                    NPC.frame.Y = 0;
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += 1.0;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += 1.0;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 2;
+                        NPC.frame.Y = frameHeight * 2;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = 0;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = 0;
             }
         }
 
@@ -121,22 +121,22 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (int i = 0; i < 3; i++)
             {
-                int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
+                int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
                 Main.dust[num890].velocity *= 5f;
                 Main.dust[num890].scale = 1f;
                 Main.dust[num890].noGravity = true;
                 Main.dust[num890].fadeIn = 2f;
             }
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CursedMagmaSkeletonHelmet"), 1.2f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone1"), 1.2f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone2"), 1.2f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone1"), 1.2f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/Bone2"), 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CursedMagmaSkeletonHelmet"), 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1"), 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2"), 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1"), 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2"), 1.2f);
                 for (int i = 0; i < 20; i++)
                 {
-                    int num890 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
+                    int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);
                     Main.dust[num890].velocity *= 7f;
                     Main.dust[num890].scale = 1.6f;
                     Main.dust[num890].noGravity = true;

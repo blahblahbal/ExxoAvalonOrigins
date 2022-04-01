@@ -16,22 +16,15 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 9);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 9);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<RestorationBand>());
-            r.AddIngredient(ModContent.ItemType<StaminaFlower>());
-            r.AddIngredient(ItemID.CharmofMyths);
-            r.AddIngredient(ItemID.ManaFlower);
-            r.AddTile(TileID.TinkerersWorkbench);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<RestorationBand>()).AddIngredient(ModContent.ItemType<StaminaFlower>()).AddIngredient(ItemID.CharmofMyths).AddIngredient(ItemID.ManaFlower).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

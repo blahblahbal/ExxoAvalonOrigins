@@ -10,39 +10,39 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Evil Vulture");
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[NPC.type] = 3;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 45;
-            npc.noTileCollide = false;
-            npc.lifeMax = 300;
-            npc.defense = 15;
-            npc.width = 36;
-            npc.aiStyle = 17;
-            npc.value = 750;
-            npc.timeLeft = 750;
-            npc.height = 36;
+            NPC.damage = 45;
+            NPC.noTileCollide = false;
+            NPC.lifeMax = 300;
+            NPC.defense = 15;
+            NPC.width = 36;
+            NPC.aiStyle = 17;
+            NPC.value = 750;
+            NPC.timeLeft = 750;
+            NPC.height = 36;
             animationType = 61;
             aiType = 61;
-            npc.knockBackResist = 0.6f;
-            npc.HitSound = SoundID.NPCHit28;
-            npc.DeathSound = SoundID.NPCDeath31;
-            npc.buffImmune[mod.BuffType("Freeze")] = true;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.CorruptVultureBanner>();
+            NPC.knockBackResist = 0.6f;
+            NPC.HitSound = SoundID.NPCHit28;
+            NPC.DeathSound = SoundID.NPCDeath31;
+            NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
+            //Banner = npc.type;
+            //BannerItem = ModContent.ItemType<Items.Banners.CorruptVultureBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.5f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void NPCLoot()
         {
             if (Main.rand.Next(2) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Beak>(), 1, false, 0, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Beak>(), 1, false, 0, false);
             }
         }
 
@@ -185,9 +185,9 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 if (Main.hardMode)
                 {
-                    if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1].type == TileID.Ebonsand ||
-                        Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1].type == TileID.Crimsand ||
-                        Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1].type == ModContent.TileType<Tiles.Snotsand>())
+                    if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1].TileType == TileID.Ebonsand ||
+                        Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1].TileType == TileID.Crimsand ||
+                        Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 1].TileType == ModContent.TileType<Tiles.Snotsand>())
                     {
                         return 1f;
                     }
@@ -227,13 +227,13 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CorruptVultureHead"), 0.9f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CorruptVultureWing"), 0.9f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CorruptVultureWing"), 0.9f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CorruptVultureTalon"), 0.9f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CorruptVultureTalon"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureHead"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon"), 0.9f);
             }
         }
     }

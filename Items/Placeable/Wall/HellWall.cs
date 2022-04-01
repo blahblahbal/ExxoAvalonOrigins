@@ -14,26 +14,21 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 7;
-            item.createWall = ModContent.WallType<Walls.HellWall>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 7;
+            Item.createWall = ModContent.WallType<Walls.HellWall>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.AshBlock);
-            recipe.AddIngredient(ItemID.Hellstone);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this, 8);
-            recipe.AddRecipe();
+            CreateRecipe(8).AddIngredient(ItemID.AshBlock).AddIngredient(ItemID.Hellstone).AddTile(TileID.WorkBenches).Register();
         }
     }
 }

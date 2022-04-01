@@ -15,29 +15,25 @@ namespace ExxoAvalonOrigins.Items.Weapons.Summon
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.summon = true;
-            item.damage = 27;
-            item.shootSpeed = 14f;
-            item.mana = 15;
-            item.noMelee = true;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.knockBack = 5.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Summon.HungrySummon>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.useAnimation = 30;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item44;
+            Item.DamageType = DamageClass.Summon;
+            Item.damage = 27;
+            Item.shootSpeed = 14f;
+            Item.mana = 15;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.knockBack = 5.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Summon.HungrySummon>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item44;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.FleshyTendril>(), 14);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.FleshyTendril>(), 14).AddTile(TileID.Anvils).Register();
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)

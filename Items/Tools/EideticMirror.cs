@@ -16,25 +16,19 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightPurple;
-            item.width = dims.Width;
-            item.useTime = 90;
-            item.useTurn = true;
-            item.value = Item.sellPrice(0, 2, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.useAnimation = 90;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item6;
+            Item.rare = ItemRarityID.LightPurple;
+            Item.width = dims.Width;
+            Item.useTime = 90;
+            Item.useTurn = true;
+            Item.value = Item.sellPrice(0, 2, 0, 0);
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useAnimation = 90;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item6;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.MagicMirror);
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 10);
-            recipe.AddIngredient(ModContent.ItemType<Material.BloodshotLens>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(ModContent.ItemType<EideticMirror>());
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.MagicMirror).AddRecipeGroup("ExxoAvalonOrigins:GoldBar", 10).AddIngredient(ModContent.ItemType<Material.BloodshotLens>(), 4).AddTile(TileID.Anvils).ReplaceResult(ModContent.ItemType<EideticMirror>());
 
             //recipe = new ModRecipe(mod);
             //recipe.AddIngredient(ItemID.MagicMirror);
@@ -57,9 +51,9 @@ namespace ExxoAvalonOrigins.Items.Tools
             }
             if (player.itemTime == 0)
             {
-                player.itemTime = item.useTime;
+                player.itemTime = Item.useTime;
             }
-            else if (player.itemTime == item.useTime / 2)
+            else if (player.itemTime == Item.useTime / 2)
             {
                 for (int num345 = 0; num345 < 70; num345++)
                 {

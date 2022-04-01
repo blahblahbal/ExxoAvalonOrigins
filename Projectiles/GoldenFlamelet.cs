@@ -10,19 +10,19 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 8;
-            projectile.height = 8;
-            projectile.scale = 1;
-            projectile.alpha = 100;
-            projectile.aiStyle = 8;
-            projectile.timeLeft = 600;
-            projectile.friendly = true;
-            projectile.penetrate = 5;
-            projectile.light = 0.8f;
-            projectile.magic = true;
-            projectile.tileCollide = true;
-            projectile.hostile = false;
-            projectile.knockBack = 4;
+            Projectile.width = 8;
+            Projectile.height = 8;
+            Projectile.scale = 1;
+            Projectile.alpha = 100;
+            Projectile.aiStyle = 8;
+            Projectile.timeLeft = 600;
+            Projectile.friendly = true;
+            Projectile.penetrate = 5;
+            Projectile.light = 0.8f;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.tileCollide = true;
+            Projectile.hostile = false;
+            Projectile.knockBack = 4;
         }
     }
 }

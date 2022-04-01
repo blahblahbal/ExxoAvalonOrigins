@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
 {
     public class AdvRogue : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Advanced Rogue");
             Description.SetDefault("-5% ranged damage, 25% chance to not consume ammo");
@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
         public override void Update(Player player, ref int k)
         {
             player.ammoCost75 = true;
-            player.rangedDamage -= 0.05f;
+            player.GetDamage(DamageClass.Ranged) -= 0.05f;
         }
     }
 }

@@ -8,13 +8,13 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class Opal : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(165, 255, 127), LanguageManager.Instance.GetText("Opal"));
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("Opal");
+            drop = Mod.Find<ModItem>("Opal").Type;
             Main.tileSpelunker[Type] = true;
             Main.tileMerge[TileID.Stone][Type] = true;
             Main.tileMerge[Type][TileID.Stone] = true;

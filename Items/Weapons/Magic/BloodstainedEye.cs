@@ -15,24 +15,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 22;
-            item.scale = 1.1f;
-            item.magic = true;
-            item.autoReuse = true;
-            item.noMelee = true;
-            item.useTurn = false;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.knockBack = 2f;
-            item.mana = 3;
-            item.shoot = ModContent.ProjectileType<Projectiles.BloodyTear>();
-            item.shootSpeed = 14f;
-            item.UseSound = SoundID.NPCHit1;
-            item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.damage = 22;
+            Item.scale = 1.1f;
+            Item.DamageType = DamageClass.Magic;
+            Item.autoReuse = true;
+            Item.noMelee = true;
+            Item.useTurn = false;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.knockBack = 2f;
+            Item.mana = 3;
+            Item.shoot = ModContent.ProjectileType<Projectiles.BloodyTear>();
+            Item.shootSpeed = 14f;
+            Item.UseSound = SoundID.NPCHit1;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -48,13 +48,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<GlassEye>());
-            recipe.AddIngredient(ModContent.ItemType<BloodshotLens>());
-            recipe.AddIngredient(ModContent.ItemType<BottledLava>());
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<GlassEye>()).AddIngredient(ModContent.ItemType<BloodshotLens>()).AddIngredient(ModContent.ItemType<BottledLava>()).AddTile(TileID.Anvils).Register();
         }
         public override Vector2? HoldoutOffset()
         {

@@ -16,11 +16,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightPurple;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 3);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.LightPurple;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 3);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -30,12 +30,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.ObsidianShield);
-            recipe.AddIngredient(ItemID.ObsidianRose);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.ObsidianShield).AddIngredient(ItemID.ObsidianRose).AddTile(TileID.TinkerersWorkbench).Register();
         }
     }
 }

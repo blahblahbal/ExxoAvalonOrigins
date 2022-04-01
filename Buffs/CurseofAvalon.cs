@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class CurseofAvalon : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Curse of Avalon");
             Description.SetDefault("You take quadruple damage");

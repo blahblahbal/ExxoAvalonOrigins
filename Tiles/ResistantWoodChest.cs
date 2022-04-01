@@ -7,12 +7,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class ResistantWoodChest : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSpelunker[Type] = true;
             Main.tileContainer[Type] = true;
@@ -47,11 +48,11 @@ namespace ExxoAvalonOrigins.Tiles
             var left = i;
             var top = j;
             var tile = Main.tile[i, j];
-            if (tile.frameX % 36 != 0)
+            if (tile.TileFrameX % 36 != 0)
             {
                 left--;
             }
-            if (tile.frameY != 0)
+            if (tile.TileFrameY != 0)
             {
                 top--;
             }
@@ -84,24 +85,24 @@ namespace ExxoAvalonOrigins.Tiles
             Main.mouseRightRelease = false;
             var left = i;
             var top = j;
-            if (tile.frameX % 36 != 0)
+            if (tile.TileFrameX % 36 != 0)
             {
                 left--;
             }
-            if (tile.frameY != 0)
+            if (tile.TileFrameY != 0)
             {
                 top--;
             }
             if (player.sign >= 0)
             {
-                Main.PlaySound(SoundID.MenuClose);
+                SoundEngine.PlaySound(SoundID.MenuClose);
                 player.sign = -1;
                 Main.editSign = false;
                 Main.npcChatText = "";
             }
             if (Main.editChest)
             {
-                Main.PlaySound(SoundID.MenuTick);
+                SoundEngine.PlaySound(SoundID.MenuTick);
                 Main.editChest = false;
                 Main.npcChatText = "";
             }
@@ -116,7 +117,7 @@ namespace ExxoAvalonOrigins.Tiles
                 {
                     player.chest = -1;
                     Recipe.FindRecipes();
-                    Main.PlaySound(SoundID.MenuClose);
+                    SoundEngine.PlaySound(SoundID.MenuClose);
                 }
                 else
                 {
@@ -133,14 +134,14 @@ namespace ExxoAvalonOrigins.Tiles
                     if (chest == player.chest)
                     {
                         player.chest = -1;
-                        Main.PlaySound(SoundID.MenuClose);
+                        SoundEngine.PlaySound(SoundID.MenuClose);
                     }
                     else if (chest != player.chest && player.chest == -1)
                     {
                         player.chest = chest;
                         Main.playerInventory = true;
                         Main.recBigList = false;
-                        Main.PlaySound(SoundID.MenuOpen);
+                        SoundEngine.PlaySound(SoundID.MenuOpen);
                         player.chestX = left;
                         player.chestY = top;
                     }
@@ -151,7 +152,7 @@ namespace ExxoAvalonOrigins.Tiles
                         Main.recBigList = false;
                         player.chestX = left;
                         player.chestY = top;
-                        Main.PlaySound(SoundID.MenuTick);
+                        SoundEngine.PlaySound(SoundID.MenuTick);
                     }
                     Recipe.FindRecipes();
                 }
@@ -164,11 +165,11 @@ namespace ExxoAvalonOrigins.Tiles
             var tile = Main.tile[i, j];
             var left = i;
             var top = j;
-            if (tile.frameX % 36 != 0)
+            if (tile.TileFrameX % 36 != 0)
             {
                 left--;
             }
-            if (tile.frameY != 0)
+            if (tile.TileFrameY != 0)
             {
                 top--;
             }

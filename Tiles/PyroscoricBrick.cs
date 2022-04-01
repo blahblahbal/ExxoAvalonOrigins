@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class PyroscoricBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(255, 102, 0));
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileBrick[Type] = true;
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
-            drop = mod.ItemType("PyroscoricBrick");
+            drop = Mod.Find<ModItem>("PyroscoricBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.InfernoFork;

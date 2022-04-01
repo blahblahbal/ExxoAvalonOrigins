@@ -8,12 +8,12 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class VenomSpike : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(132, 65, 172), LanguageManager.Instance.GetText("Venom Spike"));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("VenomSpike");
+            drop = Mod.Find<ModItem>("VenomSpike").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.BismuthDust>();

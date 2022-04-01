@@ -62,10 +62,10 @@ namespace ExxoAvalonOrigins.World.Structures
                             {
                                 case 0:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                                 case 1:
                                     if (confirmPlatforms == 0)
@@ -73,7 +73,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.halfBrick(false);
                                         tile.slope(0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     }
                                     break;
                             }
@@ -141,10 +141,10 @@ namespace ExxoAvalonOrigins.World.Structures
                             {
                                 case 0:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                                 case 1:
                                     if (confirmPlatforms == 0)
@@ -152,7 +152,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                         tile.active(false);
                                         tile.halfBrick(false);
                                         tile.slope(0);
-                                        tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                        tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     }
                                     break;
                             }
@@ -219,9 +219,9 @@ namespace ExxoAvalonOrigins.World.Structures
                             {
                                 case 0:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
                                     tile.slope(0);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     tile.halfBrick(false);
                                     break;
                                 case 1:
@@ -312,10 +312,10 @@ namespace ExxoAvalonOrigins.World.Structures
                             {
                                 case 0:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                                 case 1:
                                     if (confirmPlatforms == 0)
@@ -406,11 +406,11 @@ namespace ExxoAvalonOrigins.World.Structures
                             {
                                 case 0:
                                     tile.active(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                                 case 1:
                                     tile.active(false);
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                             }
                         }
@@ -686,7 +686,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 1:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     tile.lava(false);
@@ -694,12 +694,12 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 2:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.TuhrtlBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     tile.lava(false);
                                     tile.liquid = 0;
-                                    tile.wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                                    tile.WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                                     break;
                             }
                         }
@@ -728,13 +728,13 @@ namespace ExxoAvalonOrigins.World.Structures
                         if (type == 65535)
                         {
                             Main.tile[i, j].active(false);
-                            Main.tile[i, j].wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                            Main.tile[i, j].WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                         }
                         else
                         {
                             Main.tile[i, j].active(true);
-                            Main.tile[i, j].type = type;
-                            Main.tile[i, j].wall = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
+                            Main.tile[i, j].TileType = type;
+                            Main.tile[i, j].WallType = (ushort)ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>();
                             WorldGen.SquareTileFrame(i, j, true);
                         }
                     }
@@ -802,8 +802,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int topY = y - topHeight; topY < y; topY++)
                 {
                     Main.tile[topX, topY].active(true);
-                    Main.tile[topX, topY].type = brick;
-                    Main.tile[topX, topY].wall = wall;
+                    Main.tile[topX, topY].TileType = brick;
+                    Main.tile[topX, topY].WallType = wall;
                     World.Utils.SquareTileFrame(topX, topY, resetSlope: true);
                 }
             }
@@ -813,8 +813,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int topSlopeX = x - pstep + sideMod2; topSlopeX <= x + pstep + sideMod2; topSlopeX++)
                 {
                     Main.tile[topSlopeX + 1, topSlopeY].active(true);
-                    Main.tile[topSlopeX + 1, topSlopeY].type = brick;
-                    Main.tile[topSlopeX + 1, topSlopeY].wall = wall;
+                    Main.tile[topSlopeX + 1, topSlopeY].TileType = brick;
+                    Main.tile[topSlopeX + 1, topSlopeY].WallType = wall;
                     World.Utils.SquareTileFrame(topSlopeX + 1, topSlopeY, resetSlope: true);
                 }
                 if (topSlopeY % 2 == 0) pstep++;
@@ -825,8 +825,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int mid1Y = y + mult + sideMod1; mid1Y <= y + mult + sideMod1 + secondSlopeHeight; mid1Y++)
                 {
                     Main.tile[mid1X, mid1Y].active(true);
-                    Main.tile[mid1X, mid1Y].type = brick;
-                    Main.tile[mid1X, mid1Y].wall = wall;
+                    Main.tile[mid1X, mid1Y].TileType = brick;
+                    Main.tile[mid1X, mid1Y].WallType = wall;
                     World.Utils.SquareTileFrame(mid1X, mid1Y, resetSlope: true);
                 }
             }
@@ -837,8 +837,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int secondTopSlopeX = x - pstep + sideMod2 - (pstep2 / 2); secondTopSlopeX <= x + pstep + sideMod2 + (pstep2 / 2); secondTopSlopeX++)
                 {
                     Main.tile[secondTopSlopeX + 1, secondTopSlopeY].active(true);
-                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].type = brick;
-                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].wall = wall;
+                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].TileType = brick;
+                    Main.tile[secondTopSlopeX + 1, secondTopSlopeY].WallType = wall;
                     World.Utils.SquareTileFrame(secondTopSlopeX + 1, secondTopSlopeY, resetSlope: true);
                 }
                 pstep++;
@@ -849,8 +849,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int mid1Y = y + mult + sideMod1 + secondSlopeHeight + thirdSlopeHeight; mid1Y <= y + mult + sideMod1 + midMiddleHeight; mid1Y++)
                 {
                     Main.tile[mid1X, mid1Y].active(true);
-                    Main.tile[mid1X, mid1Y].type = brick;
-                    Main.tile[mid1X, mid1Y].wall = wall;
+                    Main.tile[mid1X, mid1Y].TileType = brick;
+                    Main.tile[mid1X, mid1Y].WallType = wall;
                     World.Utils.SquareTileFrame(mid1X, mid1Y, resetSlope: true);
                 }
             }
@@ -861,8 +861,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int bottomSlope1X = x + pstep + sideMod2 + pstep2 + 5; bottomSlope1X >= x - pstep + sideMod2 - pstep2 - 5; bottomSlope1X--)
                 {
                     Main.tile[bottomSlope1X + 1, bottomSlope1Y].active(true);
-                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].type = brick;
-                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].wall = wall;
+                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].TileType = brick;
+                    Main.tile[bottomSlope1X + 1, bottomSlope1Y].WallType = wall;
                     World.Utils.SquareTileFrame(bottomSlope1X + 1, bottomSlope1Y, resetSlope: true);
                 }
                 pstep--;
@@ -874,8 +874,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int bottomSlopeX = x + pstep + sideMod2; bottomSlopeX >= x - pstep + sideMod2; bottomSlopeX--)
                 {
                     Main.tile[bottomSlopeX + 1, bottomSlopeY].active(true);
-                    Main.tile[bottomSlopeX + 1, bottomSlopeY].type = brick;
-                    Main.tile[bottomSlopeX + 1, bottomSlopeY].wall = wall;
+                    Main.tile[bottomSlopeX + 1, bottomSlopeY].TileType = brick;
+                    Main.tile[bottomSlopeX + 1, bottomSlopeY].WallType = wall;
                     World.Utils.SquareTileFrame(bottomSlopeX + 1, bottomSlopeY, resetSlope: true);
                 }
                 if (bottomSlopeY % 2 == 0) pstep--;
@@ -888,8 +888,8 @@ namespace ExxoAvalonOrigins.World.Structures
                 for (int topY = y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight + sideMod1; topY <= y + mult + sideMod1 + midMiddleHeight + thirdSlopeHeight + sideMod1 + topHeight; topY++)
                 {
                     Main.tile[bottomX, topY].active(true);
-                    Main.tile[bottomX, topY].type = brick;
-                    Main.tile[bottomX, topY].wall = wall;
+                    Main.tile[bottomX, topY].TileType = brick;
+                    Main.tile[bottomX, topY].WallType = wall;
                     World.Utils.SquareTileFrame(bottomX, topY, resetSlope: true);
                 }
             }

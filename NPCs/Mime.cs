@@ -12,109 +12,109 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mime");
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[NPC.type] = 3;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 75;
-            npc.scale = 1.4f;
-            npc.noTileCollide = false;
-            npc.lifeMax = 630;
-            npc.defense = 46;
-            npc.noGravity = false;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.value = 1500f;
-            npc.height = 40;
-            npc.knockBackResist = 0.15f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.MimeBanner>();
+            NPC.damage = 75;
+            NPC.scale = 1.4f;
+            NPC.noTileCollide = false;
+            NPC.lifeMax = 630;
+            NPC.defense = 46;
+            NPC.noGravity = false;
+            NPC.width = 18;
+            NPC.aiStyle = 3;
+            NPC.value = 1500f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0.15f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.MimeBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.75f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.75f);
         }
         public override void NPCLoot()
         {
             if (Main.rand.Next(3) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
             }
             if (Main.rand.Next(100) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ManaCompromise>(), 1, false, -2, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<ManaCompromise>(), 1, false, -2, false);
             }
             if (Main.rand.Next(8) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ConfusionTalisman>(), 1, false, -2, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<ConfusionTalisman>(), 1, false, -2, false);
             }
         }
 
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
             }
-            if (npc.velocity.Y != 0f || (npc.direction == -1 && npc.velocity.X > 0f) || (npc.direction == 1 && npc.velocity.X < 0f))
+            if (NPC.velocity.Y != 0f || (NPC.direction == -1 && NPC.velocity.X > 0f) || (NPC.direction == 1 && NPC.velocity.X < 0f))
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = frameHeight * 2;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = frameHeight * 2;
             }
-            else if (npc.velocity.X == 0f)
+            else if (NPC.velocity.X == 0f)
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = 0;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = 0;
             }
             else
             {
-                npc.frameCounter += Math.Abs(npc.velocity.X);
-                if (npc.frameCounter < 8.0)
+                NPC.frameCounter += Math.Abs(NPC.velocity.X);
+                if (NPC.frameCounter < 8.0)
                 {
-                    npc.frame.Y = 0;
+                    NPC.frame.Y = 0;
                 }
-                else if (npc.frameCounter < 16.0)
+                else if (NPC.frameCounter < 16.0)
                 {
-                    npc.frame.Y = frameHeight;
+                    NPC.frame.Y = frameHeight;
                 }
-                else if (npc.frameCounter < 24.0)
+                else if (NPC.frameCounter < 24.0)
                 {
-                    npc.frame.Y = frameHeight * 2;
+                    NPC.frame.Y = frameHeight * 2;
                 }
-                else if (npc.frameCounter < 32.0)
+                else if (NPC.frameCounter < 32.0)
                 {
-                    npc.frame.Y = frameHeight;
+                    NPC.frame.Y = frameHeight;
                 }
                 else
                 {
-                    npc.frameCounter = 0.0;
+                    NPC.frameCounter = 0.0;
                 }
             }
         }
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gore/MimeHead"), 0.9f);
-            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gore/Girder1"), 0.9f);
-            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gore/Girder1"), 0.9f);
-            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gore/Girder2"), 0.9f);
-            Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gore/Girder2"), 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/MimeHead"), 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder1"), 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder1"), 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder2"), 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder2"), 0.9f);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHoly && Main.hardMode ? 0.14f : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHallow && Main.hardMode ? 0.14f : 0f;
         }
     }
 }

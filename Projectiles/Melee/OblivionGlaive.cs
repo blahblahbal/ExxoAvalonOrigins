@@ -14,21 +14,21 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override void SetDefaults()
         {
-            projectile.width = 18;
-            projectile.height = 18;
-            projectile.aiStyle = 19;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.scale = 1.1f;
-            projectile.hide = true;
-            projectile.ownerHitCheck = true;
-            projectile.melee = true;
+            Projectile.width = 18;
+            Projectile.height = 18;
+            Projectile.aiStyle = 19;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.scale = 1.1f;
+            Projectile.hide = true;
+            Projectile.ownerHitCheck = true;
+            Projectile.DamageType = DamageClass.Melee;
         }
         public float movementFactor
         {
-            get => projectile.ai[0];
-            set => projectile.ai[0] = value;
+            get => Projectile.ai[0];
+            set => Projectile.ai[0] = value;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
@@ -36,24 +36,24 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
             Vector2 spawnPosition = new Vector2(target.Center.X + offset, target.Center.Y - 700);
             Vector2 velocity = Vector2.Normalize(target.Center - spawnPosition) * 15f;
 
-            int p = Projectile.NewProjectile(spawnPosition.X, spawnPosition.Y, velocity.X, velocity.Y, ModContent.ProjectileType<Projectiles.Melee.OblivionGlaiveSky>(), damage, knockback, projectile.owner, 0f);
-            Main.projectile[p].owner = projectile.owner;
+            int p = Projectile.NewProjectile(spawnPosition.X, spawnPosition.Y, velocity.X, velocity.Y, ModContent.ProjectileType<Projectiles.Melee.OblivionGlaiveSky>(), damage, knockback, Projectile.owner, 0f);
+            Main.projectile[p].owner = Projectile.owner;
         }
         public override void AI()
         {
-            Player projOwner = Main.player[projectile.owner];
+            Player projOwner = Main.player[Projectile.owner];
             Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
-            projectile.direction = projOwner.direction;
-            projOwner.heldProj = projectile.whoAmI;
+            Projectile.direction = projOwner.direction;
+            projOwner.heldProj = Projectile.whoAmI;
             projOwner.itemTime = projOwner.itemAnimation;
-            projectile.position.X = ownerMountedCenter.X - (float)(projectile.width / 2);
-            projectile.position.Y = ownerMountedCenter.Y - (float)(projectile.height / 2);
+            Projectile.position.X = ownerMountedCenter.X - (float)(Projectile.width / 2);
+            Projectile.position.Y = ownerMountedCenter.Y - (float)(Projectile.height / 2);
             if (!projOwner.frozen)
             {
                 if (movementFactor == 0f)
                 {
                     movementFactor = 3f;
-                    projectile.netUpdate = true;
+                    Projectile.netUpdate = true;
                 }
                 if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3)
                 {
@@ -64,21 +64,21 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
                     movementFactor += 3.2f;
                 }
             }
-            projectile.position += projectile.velocity * movementFactor;
+            Projectile.position += Projectile.velocity * movementFactor;
             if (projOwner.itemAnimation == 0)
             {
-                projectile.Kill();
+                Projectile.Kill();
             }
-            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
-            if (projectile.spriteDirection == -1)
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
+            if (Projectile.spriteDirection == -1)
             {
-                projectile.rotation -= MathHelper.ToRadians(90f);
+                Projectile.rotation -= MathHelper.ToRadians(90f);
             }
-            var num314 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);
+            var num314 = Dust.NewDust(Projectile.position - Projectile.velocity * 3f, Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X * 0.4f, Projectile.velocity.Y * 0.4f, 140, default(Color), 1f);
             Main.dust[num314].noGravity = true;
             Main.dust[num314].fadeIn = 1.25f;
             Main.dust[num314].velocity *= 0.25f;
-            var num315 = Dust.NewDust(projectile.position - projectile.velocity * 3f, projectile.width, projectile.height, DustID.Ash, projectile.velocity.X * 0.4f, projectile.velocity.Y * 0.4f, 140, default(Color), 1f);
+            var num315 = Dust.NewDust(Projectile.position - Projectile.velocity * 3f, Projectile.width, Projectile.height, DustID.Ash, Projectile.velocity.X * 0.4f, Projectile.velocity.Y * 0.4f, 140, default(Color), 1f);
             Main.dust[num315].noGravity = true;
             Main.dust[num315].fadeIn = 1.25f;
             Main.dust[num315].velocity *= 0.25f;

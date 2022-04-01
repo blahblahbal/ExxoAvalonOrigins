@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -16,34 +17,34 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.CloneDefaults(ProjectileID.SapphireBolt);
+            Projectile.CloneDefaults(ProjectileID.SapphireBolt);
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SolarBoltOffspring");
-            projectile.width = dims.Width * 10 / 16;
-            projectile.height = dims.Height * 10 / 16 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.penetrate = 3;
+            Projectile.width = dims.Width * 10 / 16;
+            Projectile.height = dims.Height * 10 / 16 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = 3;
 
             color = new Color(255, 50, 0) * 0.4f;
             dustId = 152;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 10);
-            projectile.ai[0]++;
-            if (projectile.ai[0] >= 5f)
+            SoundEngine.PlaySound(2, (int)Projectile.position.X, (int)Projectile.position.Y, 10);
+            Projectile.ai[0]++;
+            if (Projectile.ai[0] >= 5f)
             {
-                projectile.position += projectile.velocity;
-                projectile.Kill();
+                Projectile.position += Projectile.velocity;
+                Projectile.Kill();
             }
             else
             {
-                if (projectile.velocity.Y != oldVelocity.Y)
+                if (Projectile.velocity.Y != oldVelocity.Y)
                 {
-                    projectile.velocity.Y = -oldVelocity.Y;
+                    Projectile.velocity.Y = -oldVelocity.Y;
                 }
-                if (projectile.velocity.X != oldVelocity.X)
+                if (Projectile.velocity.X != oldVelocity.X)
                 {
-                    projectile.velocity.X = -oldVelocity.X;
+                    Projectile.velocity.X = -oldVelocity.X;
                 }
             }
             return false;
@@ -52,25 +53,25 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             for (var i = 0; i < 2; i++)
             {
-                var dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.velocity.X, projectile.velocity.Y, 50, color, 1.2f);
+                var dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, dustId, Projectile.velocity.X, Projectile.velocity.Y, 50, color, 1.2f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.3f;
             }
-            if (projectile.ai[1] == 0f)
+            if (Projectile.ai[1] == 0f)
             {
-                projectile.ai[1] = 1f;
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 8);
+                Projectile.ai[1] = 1f;
+                SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 8);
             }
 
-            Lighting.AddLight(new Vector2((int)((projectile.position.X + (float)(projectile.width / 2)) / 16f), (int)((projectile.position.Y + (float)(projectile.height / 2)) / 16f)), color.ToVector3());
+            Lighting.AddLight(new Vector2((int)((Projectile.position.X + (float)(Projectile.width / 2)) / 16f), (int)((Projectile.position.Y + (float)(Projectile.height / 2)) / 16f)), color.ToVector3());
         }
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y);
+            SoundEngine.PlaySound(SoundID.Dig, (int)Projectile.position.X, (int)Projectile.position.Y);
             for (int num453 = 0; num453 < 15; num453++)
             {
-                int num454 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, dustId, projectile.oldVelocity.X, projectile.oldVelocity.Y, 50, color, 1.2f);
+                int num454 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, dustId, Projectile.oldVelocity.X, Projectile.oldVelocity.Y, 50, color, 1.2f);
                 Main.dust[num454].noGravity = true;
                 Dust dust152 = Main.dust[num454];
                 Dust dust226 = dust152;

@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class CurseofIcarus : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Curse of Icarus");
             Description.SetDefault("'Your wings are broken'");

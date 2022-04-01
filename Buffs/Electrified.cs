@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Electrified : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Electrified");
             Description.SetDefault("Losing more life when moving");

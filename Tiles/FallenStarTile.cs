@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class FallenStarTile : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.LightYellow);
             Main.tileSolid[Type] = true;

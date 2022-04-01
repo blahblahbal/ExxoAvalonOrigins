@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class EvilAltarsPlaced : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(0, 250, 50), LanguageManager.Instance.GetText("Evil Altar"));
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);

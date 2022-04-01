@@ -1,6 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -33,7 +33,7 @@ namespace ExxoAvalonOrigins.World.Passes
                 {
                     var num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
                     var num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);
-                    while (Main.tile[num287, num288].type != 1)
+                    while (Main.tile[num287, num288].TileType != 1)
                     {
                         num287 = WorldGen.genRand.Next(0, Main.maxTilesX);
                         num288 = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY);

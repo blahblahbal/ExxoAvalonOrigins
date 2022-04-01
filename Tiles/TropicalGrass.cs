@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class TropicalGrass : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(56, 215, 29));
             SetModTree(new TropicalTree());
@@ -24,7 +24,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (fail && !effectOnly)
             {
-                Main.tile[i, j].type = (ushort)ModContent.TileType<TropicalMud>();
+                Main.tile[i, j].TileType = (ushort)ModContent.TileType<TropicalMud>();
                 WorldGen.SquareTileFrame(i, j);
             }
         }

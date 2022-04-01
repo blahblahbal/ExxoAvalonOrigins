@@ -10,12 +10,12 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override void SetDefaults()
         {
-            projectile.width = 2;
-            projectile.height = 2;
-            projectile.aiStyle = 0;
-            projectile.friendly = true;
-            projectile.melee = true;
-            projectile.penetrate = 1;
+            Projectile.width = 2;
+            Projectile.height = 2;
+            Projectile.aiStyle = 0;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.penetrate = 1;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Impgrass : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(238, 102, 70));
             SetModTree(new ResistantTree());
@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Tiles
         {
             if (fail && !effectOnly)
             {
-                Main.tile[i, j].type = TileID.Ash;
+                Main.tile[i, j].TileType = TileID.Ash;
                 WorldGen.SquareTileFrame(i, j);
             }
         }

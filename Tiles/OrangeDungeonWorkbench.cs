@@ -9,7 +9,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class OrangeDungeonWorkbench : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileSolidTop[Type] = true;
             Main.tileFrameImportant[Type] = true;

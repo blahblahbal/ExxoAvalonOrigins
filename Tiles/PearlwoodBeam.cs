@@ -9,10 +9,10 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class PearlwoodBeam : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(75, 68, 49));
-            drop = mod.ItemType("PearlwoodBeam");
+            drop = Mod.Find<ModItem>("PearlwoodBeam").Type;
             TileObjectData.newTile.Width = 1;
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = new Point16(0, 0);
@@ -27,7 +27,7 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override bool CanPlace(int i, int j)
         {
-            return (Main.tile[i, j - 1].active() || Main.tile[i, j + 1].active() || Main.tile[i, j].wall != 0 && !Main.tile[i, j].active());
+            return (Main.tile[i, j - 1].HasTile || Main.tile[i, j + 1].HasTile || Main.tile[i, j].WallType != 0 && !Main.tile[i, j].HasTile);
         }
         public int CanPlaceAlter(int i, int j, int type, int style, int direction)
         {

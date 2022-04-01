@@ -25,11 +25,11 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
 
         public override bool CanRightClick()

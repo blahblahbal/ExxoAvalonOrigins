@@ -11,7 +11,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class TropicalShortGrass : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileCut[Type] = true;
             Main.tileSolid[Type] = false;
@@ -40,16 +40,16 @@ namespace ExxoAvalonOrigins.Tiles
         }
         public override ushort GetMapOption(int i, int j)
         {
-            return (ushort)(Main.tile[i, j].frameX / 18);
+            return (ushort)(Main.tile[i, j].TileFrameX / 18);
         }
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (Main.tile[i, j].frameX / 18 == 8)
+            if (Main.tile[i, j].TileFrameX / 18 == 8)
                 Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<TropicalShroomCap>());
         }
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            if (Main.tile[i, j].frameX / 18 == 8)
+            if (Main.tile[i, j].TileFrameX / 18 == 8)
             {
                 Main.tileLighted[Type] = true;
                 Color lightColor = new Color(227, 41, 75);

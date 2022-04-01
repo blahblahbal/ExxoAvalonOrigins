@@ -22,7 +22,7 @@ namespace ExxoAvalonOrigins.Logic
             {
                 for (int l = j - num3; l < j + num3; l++)
                 {
-                    if (WorldGen.InWorld(k, l) && Main.tile[k, l].active() && Main.tile[k, l].type == growingType)
+                    if (WorldGen.InWorld(k, l) && Main.tile[k, l].HasTile && Main.tile[k, l].TileType == growingType)
                     {
                         num5++;
                     }
@@ -37,7 +37,7 @@ namespace ExxoAvalonOrigins.Logic
             {
                 for (int n = j - num4; n < j + num4; n++)
                 {
-                    if (WorldGen.InWorld(m, n) && Main.tile[m, n].active() && Main.tile[m, n].type == growingType)
+                    if (WorldGen.InWorld(m, n) && Main.tile[m, n].HasTile && Main.tile[m, n].TileType == growingType)
                     {
                         num5++;
                     }
@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.Logic
 			{
 				for (int l = j - num2; l <= j + num2; l++)
 				{
-					if (Main.tile[k, l].active() && (Main.tile[k, l].type == growingType/* || Main.tile[k, l].type == 346*//*))
+					if (Main.tile[k, l].HasTile && (Main.tile[k, l].type == growingType/* || Main.tile[k, l].type == 346*//*))
 					{
 						num += 1f;
 						if (num >= 4f)

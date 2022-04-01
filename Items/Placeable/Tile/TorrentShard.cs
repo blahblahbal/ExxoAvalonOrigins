@@ -16,28 +16,23 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.maxStack = 999;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Shards>();
-            item.placeStyle = 6;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 0, 12, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.Shards>();
+            Item.placeStyle = 6;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 0, 12, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.WaterShard>(), 2);
-            recipe.AddIngredient(ItemID.WaterBucket);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.WaterShard>(), 2).AddIngredient(ItemID.WaterBucket).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

@@ -7,12 +7,12 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class DarkMatter : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(135, 15, 170));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("DarkMatterBlock");
+            drop = Mod.Find<ModItem>("DarkMatterBlock").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = ModContent.DustType<Dusts.DarkMatterDust>();

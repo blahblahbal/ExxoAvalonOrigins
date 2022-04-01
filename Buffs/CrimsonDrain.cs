@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class CrimsonDrain : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Aura Drain");
             Description.SetDefault("On-screen enemies take damage");

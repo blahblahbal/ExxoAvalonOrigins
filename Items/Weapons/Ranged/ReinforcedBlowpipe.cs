@@ -16,32 +16,27 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 11;
-            item.autoReuse = true;
-            item.useAmmo = AmmoID.Dart;
-            item.UseSound = SoundID.Item63;
-            item.shootSpeed = 11f;
-            item.ranged = true;
-            item.rare = ItemRarityID.Blue;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 40;
-            item.knockBack = 3.25f;
-            item.shoot = ProjectileID.PurificationPowder;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 10000;
-            item.useAnimation = 40;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item5;
+            Item.damage = 11;
+            Item.autoReuse = true;
+            Item.useAmmo = AmmoID.Dart;
+            Item.UseSound = SoundID.Item63;
+            Item.shootSpeed = 11f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.Blue;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 40;
+            Item.knockBack = 3.25f;
+            Item.shoot = ProjectileID.PurificationPowder;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 10000;
+            Item.useAnimation = 40;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:SilverBar", 5);
-            recipe.AddIngredient(ItemID.Blowpipe);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddRecipeGroup("ExxoAvalonOrigins:SilverBar", 5).AddIngredient(ItemID.Blowpipe).AddTile(TileID.Anvils).Register();
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)

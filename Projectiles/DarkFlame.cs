@@ -20,15 +20,15 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/DarkFlame");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.light = 0.8f;
-            projectile.alpha = 50;
-            projectile.magic = true;
-            projectile.penetrate = -1;
-            projectile.scale = 0.9f;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.hostile = true;
+            Projectile.light = 0.8f;
+            Projectile.alpha = 50;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.penetrate = -1;
+            Projectile.scale = 0.9f;
 
             theta = -1;
             distanceFromOrigin = 0;
@@ -37,18 +37,18 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void AI()
         {
-            var num150 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Enchanted_Pink, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
+            var num150 = Dust.NewDust(new Vector2(Projectile.position.X + Projectile.velocity.X, Projectile.position.Y + Projectile.velocity.Y), Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 1f);
             Main.dust[num150].noGravity = true;
-            var num151 = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, DustID.Ash, projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 1f);
+            var num151 = Dust.NewDust(new Vector2(Projectile.position.X + Projectile.velocity.X, Projectile.position.Y + Projectile.velocity.Y), Projectile.width, Projectile.height, DustID.Ash, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), 1f);
             Main.dust[num151].noGravity = true;
-            if (projectile.ai[1] >= 20f)
+            if (Projectile.ai[1] >= 20f)
             {
-                projectile.velocity.Y = projectile.velocity.Y + 0.2f;
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.2f;
             }
-            projectile.rotation += 0.3f * projectile.direction;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation += 0.3f * Projectile.direction;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
 

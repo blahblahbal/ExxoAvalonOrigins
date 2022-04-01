@@ -16,14 +16,14 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 30;
-            item.shoot = ModContent.ProjectileType<Projectiles.Moonphaser>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = Item.sellPrice(0, 2, 70, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 30;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Moonphaser>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = Item.sellPrice(0, 2, 70, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

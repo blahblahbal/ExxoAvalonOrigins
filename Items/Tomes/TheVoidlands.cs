@@ -17,75 +17,34 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightPurple;
-            item.width = dims.Width;
-            item.value = 105000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.LightPurple;
+            Item.width = dims.Width;
+            Item.value = 105000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.15f;
-            player.minionDamage += 0.15f;
-            player.meleeDamage += 0.15f;
-            player.rangedDamage += 0.15f;
-            player.thrownDamage += 0.15f;
-            player.meleeCrit += 3;
-            player.magicCrit += 3;
-            player.rangedCrit += 3;
-            player.thrownCrit += 3;
+            player.GetDamage(DamageClass.Magic) += 0.15f;
+            player.GetDamage(DamageClass.Summon) += 0.15f;
+            player.GetDamage(DamageClass.Melee) += 0.15f;
+            player.GetDamage(DamageClass.Ranged) += 0.15f;
+            player.GetDamage(DamageClass.Throwing) += 0.15f;
+            player.GetCritChance(DamageClass.Melee) += 3;
+            player.GetCritChance(DamageClass.Magic) += 3;
+            player.GetCritChance(DamageClass.Ranged) += 3;
+            player.GetCritChance(DamageClass.Throwing) += 3;
             player.statLifeMax2 += 60;
             player.statManaMax2 += 40;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<EternitysMoon>());
-            recipe.AddIngredient(ModContent.ItemType<TomeofDistance>());
-            recipe.AddIngredient(ModContent.ItemType<FlankersTome>());
-            recipe.AddIngredient(ModContent.ItemType<SoutheasternPeacock>());
-            recipe.AddIngredient(ModContent.ItemType<BurningDesire>());
-            recipe.AddIngredient(ModContent.ItemType<MeditationsFlame>());
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BurningDesire>());
-            recipe.AddIngredient(ModContent.ItemType<EternitysMoon>());
-            recipe.AddIngredient(ModContent.ItemType<SoutheasternPeacock>());
-            recipe.AddIngredient(ModContent.ItemType<TaleoftheDolt>());
-            recipe.AddIngredient(ModContent.ItemType<MeditationsFlame>());
-            recipe.AddIngredient(ModContent.ItemType<TaleoftheRedLotus>());
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BurningDesire>());
-            recipe.AddIngredient(ModContent.ItemType<SoutheasternPeacock>());
-            recipe.AddIngredient(ModContent.ItemType<FlankersTome>());
-            recipe.AddIngredient(ModContent.ItemType<TomeofDistance>());
-            recipe.AddIngredient(ModContent.ItemType<TomeoftheRiverSpirits>());
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<BurningDesire>());
-            recipe.AddIngredient(ModContent.ItemType<TomeoftheRiverSpirits>());
-            recipe.AddIngredient(ModContent.ItemType<SoutheasternPeacock>());
-            recipe.AddIngredient(ModContent.ItemType<TaleoftheDolt>());
-            recipe.AddIngredient(ModContent.ItemType<TaleoftheRedLotus>());
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<EternitysMoon>()).AddIngredient(ModContent.ItemType<TomeofDistance>()).AddIngredient(ModContent.ItemType<FlankersTome>()).AddIngredient(ModContent.ItemType<SoutheasternPeacock>()).AddIngredient(ModContent.ItemType<BurningDesire>()).AddIngredient(ModContent.ItemType<MeditationsFlame>()).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BurningDesire>()).AddIngredient(ModContent.ItemType<EternitysMoon>()).AddIngredient(ModContent.ItemType<SoutheasternPeacock>()).AddIngredient(ModContent.ItemType<TaleoftheDolt>()).AddIngredient(ModContent.ItemType<MeditationsFlame>()).AddIngredient(ModContent.ItemType<TaleoftheRedLotus>()).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BurningDesire>()).AddIngredient(ModContent.ItemType<SoutheasternPeacock>()).AddIngredient(ModContent.ItemType<FlankersTome>()).AddIngredient(ModContent.ItemType<TomeofDistance>()).AddIngredient(ModContent.ItemType<TomeoftheRiverSpirits>()).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<BurningDesire>()).AddIngredient(ModContent.ItemType<TomeoftheRiverSpirits>()).AddIngredient(ModContent.ItemType<SoutheasternPeacock>()).AddIngredient(ModContent.ItemType<TaleoftheDolt>()).AddIngredient(ModContent.ItemType<TaleoftheRedLotus>()).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 3).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

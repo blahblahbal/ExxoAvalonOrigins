@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.UI
 {
@@ -12,7 +13,7 @@ namespace ExxoAvalonOrigins.UI
     {
         public UIPanel tomeSlotDisplay;
         public float scale = 1f;
-        public static Texture2D BackgroundTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/TomeSlotBackground");
+        public static Texture2D BackgroundTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/TomeSlotBackground").Value;
 
         public event Action<Item, Item> OnItemChange;
 
@@ -62,7 +63,7 @@ namespace ExxoAvalonOrigins.UI
                     {
                         if (Main.mouseItem.stack == 1 && Main.mouseItem.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome && Main.player[Main.myPlayer].Avalon().tomeItem.type == ItemID.None && Main.player[Main.myPlayer].Avalon().tomeItem.type != Main.mouseItem.type)
                         {
-                            Main.PlaySound(SoundID.Grab, -1, -1, 1);
+                            SoundEngine.PlaySound(SoundID.Grab, -1, -1, 1);
                             Item item6 = Main.mouseItem;
                             Main.mouseItem = Main.player[Main.myPlayer].Avalon().tomeItem;
                             Main.player[Main.myPlayer].Avalon().tomeItem = item6;
@@ -83,7 +84,7 @@ namespace ExxoAvalonOrigins.UI
                             if (Main.mouseItem.type > ItemID.None || Main.player[Main.myPlayer].Avalon().tomeItem.type > ItemID.None)
                             {
                                 Recipe.FindRecipes();
-                                Main.PlaySound(SoundID.Grab, -1, -1, 1);
+                                SoundEngine.PlaySound(SoundID.Grab, -1, -1, 1);
                             }
                         }
                     }

@@ -20,29 +20,29 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Iceman");
-            Main.npcFrameCount[npc.type] = 25;
-            NPCID.Sets.ExtraFramesCount[npc.type] = 9;
-            NPCID.Sets.AttackFrameCount[npc.type] = 4;
-            NPCID.Sets.DangerDetectRange[npc.type] = 600;
-            NPCID.Sets.AttackType[npc.type] = 0;
-            NPCID.Sets.AttackTime[npc.type] = 50;
-            NPCID.Sets.AttackAverageChance[npc.type] = 10;
+            Main.npcFrameCount[NPC.type] = 25;
+            NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
+            NPCID.Sets.AttackFrameCount[NPC.type] = 4;
+            NPCID.Sets.DangerDetectRange[NPC.type] = 600;
+            NPCID.Sets.AttackType[NPC.type] = 0;
+            NPCID.Sets.AttackTime[NPC.type] = 50;
+            NPCID.Sets.AttackAverageChance[NPC.type] = 10;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 10;
-            npc.lifeMax = 300;
-            npc.townNPC = true;
-            npc.defense = 15;
-            npc.friendly = true;
-            npc.width = 18;
-            npc.aiStyle = 7;
-            npc.scale = 1f;
-            npc.height = 40;
-            npc.knockBackResist = 0.5f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
+            NPC.damage = 10;
+            NPC.lifeMax = 300;
+            NPC.townNPC = true;
+            NPC.defense = 15;
+            NPC.friendly = true;
+            NPC.width = 18;
+            NPC.aiStyle = 7;
+            NPC.scale = 1f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0.5f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
             animationType = 22;
         }
         public override string TownNPCName()
@@ -71,7 +71,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override string GetChat()
         {
-            if (npc.homeless)
+            if (NPC.homeless)
             {
                 switch (Main.rand.Next(3))
                 {
@@ -175,52 +175,52 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 flag22 = true;
             }
-            var num216 = (int)(npc.position.X + npc.width / 2) / 16;
-            var num217 = (int)(npc.position.Y + npc.height + 1f) / 16;
+            var num216 = (int)(NPC.position.X + NPC.width / 2) / 16;
+            var num217 = (int)(NPC.position.Y + NPC.height + 1f) / 16;
             ExxoAvalonOriginsGlobalNPC.savedIceman = true;
-            if (npc.homeTileX == -1 && npc.homeTileY == -1 && npc.velocity.Y == 0f)
+            if (NPC.homeTileX == -1 && NPC.homeTileY == -1 && NPC.velocity.Y == 0f)
             {
-                npc.homeTileX = (int)npc.Center.X / 16;
-                npc.homeTileY = (int)(npc.position.Y + npc.height + 4f) / 16;
+                NPC.homeTileX = (int)NPC.Center.X / 16;
+                NPC.homeTileY = (int)(NPC.position.Y + NPC.height + 4f) / 16;
             }
             var flag23 = false;
-            npc.directionY = -1;
-            if (npc.direction == 0)
+            NPC.directionY = -1;
+            if (NPC.direction == 0)
             {
-                npc.direction = 1;
+                NPC.direction = 1;
             }
             for (var num218 = 0; num218 < 255; num218++)
             {
-                if (Main.player[num218].active && Main.player[num218].talkNPC == npc.whoAmI)
+                if (Main.player[num218].active && Main.player[num218].talkNPC == NPC.whoAmI)
                 {
                     flag23 = true;
-                    if (npc.ai[0] != 0f)
+                    if (NPC.ai[0] != 0f)
                     {
-                        npc.netUpdate = true;
+                        NPC.netUpdate = true;
                     }
-                    npc.ai[0] = 0f;
-                    npc.ai[1] = 300f;
-                    npc.ai[2] = 100f;
-                    if (Main.player[num218].position.X + Main.player[num218].width / 2 < npc.position.X + npc.width / 2)
+                    NPC.ai[0] = 0f;
+                    NPC.ai[1] = 300f;
+                    NPC.ai[2] = 100f;
+                    if (Main.player[num218].position.X + Main.player[num218].width / 2 < NPC.position.X + NPC.width / 2)
                     {
-                        npc.direction = -1;
+                        NPC.direction = -1;
                     }
                     else
                     {
-                        npc.direction = 1;
+                        NPC.direction = 1;
                     }
                 }
             }
-            if (npc.ai[3] > 0f)
+            if (NPC.ai[3] > 0f)
             {
-                npc.life = -1;
-                npc.HitEffect(0, 10.0);
-                npc.active = false;
+                NPC.life = -1;
+                NPC.HitEffect(0, 10.0);
+                NPC.active = false;
             }
-            var num219 = npc.homeTileY;
-            if (Main.netMode != NetmodeID.MultiplayerClient && npc.homeTileY > 0)
+            var num219 = NPC.homeTileY;
+            if (Main.netMode != NetmodeID.MultiplayerClient && NPC.homeTileY > 0)
             {
-                while (!WorldGen.SolidTile(npc.homeTileX, num219) && num219 < Main.maxTilesY - 20)
+                while (!WorldGen.SolidTile(NPC.homeTileX, num219) && num219 < Main.maxTilesY - 20)
                 {
                     num219++;
                 }
@@ -229,15 +229,15 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 return;
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient && npc.townNPC && (flag22 || Main.tileDungeon[Main.tile[num216, num217].type]) && (num216 != npc.homeTileX || num217 != num219) && !npc.homeless)
+            if (Main.netMode != NetmodeID.MultiplayerClient && NPC.townNPC && (flag22 || Main.tileDungeon[Main.tile[num216, num217].TileType]) && (num216 != NPC.homeTileX || num217 != num219) && !NPC.homeless)
             {
                 var flag24 = true;
                 for (var num220 = 0; num220 < 2; num220++)
                 {
-                    var rectangle3 = new Rectangle((int)(npc.position.X + npc.width / 2 - NPC.sWidth / 2 - NPC.safeRangeX), (int)(npc.position.Y + npc.height / 2 - NPC.sHeight / 2 - NPC.safeRangeY), NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);
+                    var rectangle3 = new Rectangle((int)(NPC.position.X + NPC.width / 2 - NPC.sWidth / 2 - NPC.safeRangeX), (int)(NPC.position.Y + NPC.height / 2 - NPC.sHeight / 2 - NPC.safeRangeY), NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);
                     if (num220 == 1)
                     {
-                        rectangle3 = new Rectangle(npc.homeTileX * 16 + 8 - NPC.sWidth / 2 - NPC.safeRangeX, num219 * 16 + 8 - NPC.sHeight / 2 - NPC.safeRangeY, NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);
+                        rectangle3 = new Rectangle(NPC.homeTileX * 16 + 8 - NPC.sWidth / 2 - NPC.safeRangeX, num219 * 16 + 8 - NPC.sHeight / 2 - NPC.safeRangeY, NPC.sWidth + NPC.safeRangeX * 2, NPC.sHeight + NPC.safeRangeY * 2);
                     }
                     for (var num221 = 0; num221 < 255; num221++)
                     {
@@ -258,214 +258,214 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (flag24)
                 {
-                    if (!Collision.SolidTiles(npc.homeTileX - 1, npc.homeTileX + 1, num219 - 3, num219 - 1))
+                    if (!Collision.SolidTiles(NPC.homeTileX - 1, NPC.homeTileX + 1, num219 - 3, num219 - 1))
                     {
-                        npc.velocity.X = 0f;
-                        npc.velocity.Y = 0f;
-                        npc.position.X = npc.homeTileX * 16 + 8 - npc.width / 2;
-                        npc.position.Y = num219 * 16 - npc.height - 0.1f;
-                        npc.netUpdate = true;
+                        NPC.velocity.X = 0f;
+                        NPC.velocity.Y = 0f;
+                        NPC.position.X = NPC.homeTileX * 16 + 8 - NPC.width / 2;
+                        NPC.position.Y = num219 * 16 - NPC.height - 0.1f;
+                        NPC.netUpdate = true;
                     }
                     else
                     {
-                        npc.homeless = true;
-                        WorldGen.QuickFindHome(npc.whoAmI);
+                        NPC.homeless = true;
+                        WorldGen.QuickFindHome(NPC.whoAmI);
                     }
                 }
             }
-            if (npc.ai[0] == 0f)
+            if (NPC.ai[0] == 0f)
             {
-                if (npc.ai[2] > 0f)
+                if (NPC.ai[2] > 0f)
                 {
-                    npc.ai[2] -= 1f;
+                    NPC.ai[2] -= 1f;
                 }
                 if (flag22 && !flag23)
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        if (num216 == npc.homeTileX && num217 == num219)
+                        if (num216 == NPC.homeTileX && num217 == num219)
                         {
-                            if (npc.velocity.X != 0f)
+                            if (NPC.velocity.X != 0f)
                             {
-                                npc.netUpdate = true;
+                                NPC.netUpdate = true;
                             }
-                            if (npc.velocity.X > 0.1)
+                            if (NPC.velocity.X > 0.1)
                             {
-                                npc.velocity.X = npc.velocity.X - 0.1f;
+                                NPC.velocity.X = NPC.velocity.X - 0.1f;
                             }
-                            else if (npc.velocity.X < -0.1)
+                            else if (NPC.velocity.X < -0.1)
                             {
-                                npc.velocity.X = npc.velocity.X + 0.1f;
+                                NPC.velocity.X = NPC.velocity.X + 0.1f;
                             }
                             else
                             {
-                                npc.velocity.X = 0f;
+                                NPC.velocity.X = 0f;
                             }
                         }
                         else if (!flag23)
                         {
-                            if (num216 > npc.homeTileX)
+                            if (num216 > NPC.homeTileX)
                             {
-                                npc.direction = -1;
+                                NPC.direction = -1;
                             }
                             else
                             {
-                                npc.direction = 1;
+                                NPC.direction = 1;
                             }
-                            npc.ai[0] = 1f;
-                            npc.ai[1] = 200 + Main.rand.Next(200);
-                            npc.ai[2] = 0f;
-                            npc.netUpdate = true;
+                            NPC.ai[0] = 1f;
+                            NPC.ai[1] = 200 + Main.rand.Next(200);
+                            NPC.ai[2] = 0f;
+                            NPC.netUpdate = true;
                         }
                     }
                 }
                 else
                 {
-                    if (npc.velocity.X > 0.1)
+                    if (NPC.velocity.X > 0.1)
                     {
-                        npc.velocity.X = npc.velocity.X - 0.1f;
+                        NPC.velocity.X = NPC.velocity.X - 0.1f;
                     }
-                    else if (npc.velocity.X < -0.1)
+                    else if (NPC.velocity.X < -0.1)
                     {
-                        npc.velocity.X = npc.velocity.X + 0.1f;
+                        NPC.velocity.X = NPC.velocity.X + 0.1f;
                     }
                     else
                     {
-                        npc.velocity.X = 0f;
+                        NPC.velocity.X = 0f;
                     }
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        if (npc.ai[1] > 0f)
+                        if (NPC.ai[1] > 0f)
                         {
-                            npc.ai[1] -= 1f;
+                            NPC.ai[1] -= 1f;
                         }
-                        if (npc.ai[1] <= 0f)
+                        if (NPC.ai[1] <= 0f)
                         {
-                            npc.ai[0] = 1f;
-                            npc.ai[1] = 200 + Main.rand.Next(200);
-                            npc.ai[2] = 0f;
-                            npc.netUpdate = true;
+                            NPC.ai[0] = 1f;
+                            NPC.ai[1] = 200 + Main.rand.Next(200);
+                            NPC.ai[2] = 0f;
+                            NPC.netUpdate = true;
                         }
                     }
                 }
-                if (Main.netMode != NetmodeID.MultiplayerClient && (!flag22 || (num216 == npc.homeTileX && num217 == num219)))
+                if (Main.netMode != NetmodeID.MultiplayerClient && (!flag22 || (num216 == NPC.homeTileX && num217 == num219)))
                 {
-                    if (num216 < npc.homeTileX - 25 || num216 > npc.homeTileX + 25)
+                    if (num216 < NPC.homeTileX - 25 || num216 > NPC.homeTileX + 25)
                     {
-                        if (npc.ai[2] == 0f)
+                        if (NPC.ai[2] == 0f)
                         {
-                            if (num216 < npc.homeTileX - 50 && npc.direction == -1)
+                            if (num216 < NPC.homeTileX - 50 && NPC.direction == -1)
                             {
-                                npc.direction = 1;
-                                npc.netUpdate = true;
+                                NPC.direction = 1;
+                                NPC.netUpdate = true;
                                 return;
                             }
-                            if (num216 > npc.homeTileX + 50 && npc.direction == 1)
+                            if (num216 > NPC.homeTileX + 50 && NPC.direction == 1)
                             {
-                                npc.direction = -1;
-                                npc.netUpdate = true;
+                                NPC.direction = -1;
+                                NPC.netUpdate = true;
                                 return;
                             }
                         }
                     }
-                    else if (Main.rand.Next(80) == 0 && npc.ai[2] == 0f)
+                    else if (Main.rand.Next(80) == 0 && NPC.ai[2] == 0f)
                     {
-                        npc.ai[2] = 200f;
-                        npc.direction *= -1;
-                        npc.netUpdate = true;
+                        NPC.ai[2] = 200f;
+                        NPC.direction *= -1;
+                        NPC.netUpdate = true;
                         return;
                     }
                 }
             }
-            else if (npc.ai[0] == 1f)
+            else if (NPC.ai[0] == 1f)
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient && flag22 && num216 == npc.homeTileX && num217 == npc.homeTileY)
+                if (Main.netMode != NetmodeID.MultiplayerClient && flag22 && num216 == NPC.homeTileX && num217 == NPC.homeTileY)
                 {
-                    npc.ai[0] = 0f;
-                    npc.ai[1] = 200 + Main.rand.Next(200);
-                    npc.ai[2] = 60f;
-                    npc.netUpdate = true;
+                    NPC.ai[0] = 0f;
+                    NPC.ai[1] = 200 + Main.rand.Next(200);
+                    NPC.ai[2] = 60f;
+                    NPC.netUpdate = true;
                     return;
                 }
-                if (Main.netMode != NetmodeID.MultiplayerClient && !npc.homeless && !Main.tileDungeon[Main.tile[num216, num217].type] && (num216 < npc.homeTileX - 35 || num216 > npc.homeTileX + 35))
+                if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.homeless && !Main.tileDungeon[Main.tile[num216, num217].TileType] && (num216 < NPC.homeTileX - 35 || num216 > NPC.homeTileX + 35))
                 {
-                    if (npc.position.X < npc.homeTileX * 16 && npc.direction == -1)
+                    if (NPC.position.X < NPC.homeTileX * 16 && NPC.direction == -1)
                     {
-                        npc.ai[1] -= 5f;
+                        NPC.ai[1] -= 5f;
                     }
-                    else if (npc.position.X > npc.homeTileX * 16 && npc.direction == 1)
+                    else if (NPC.position.X > NPC.homeTileX * 16 && NPC.direction == 1)
                     {
-                        npc.ai[1] -= 5f;
+                        NPC.ai[1] -= 5f;
                     }
                 }
-                npc.ai[1] -= 1f;
-                if (npc.ai[1] <= 0f)
+                NPC.ai[1] -= 1f;
+                if (NPC.ai[1] <= 0f)
                 {
-                    npc.ai[0] = 0f;
-                    npc.ai[1] = 300 + Main.rand.Next(300);
-                    npc.ai[1] -= Main.rand.Next(100);
-                    npc.ai[2] = 60f;
-                    npc.netUpdate = true;
+                    NPC.ai[0] = 0f;
+                    NPC.ai[1] = 300 + Main.rand.Next(300);
+                    NPC.ai[1] -= Main.rand.Next(100);
+                    NPC.ai[2] = 60f;
+                    NPC.netUpdate = true;
                 }
-                if (npc.closeDoor && ((npc.position.X + npc.width / 2) / 16f > npc.doorX + 2 || (npc.position.X + npc.width / 2) / 16f < npc.doorX - 2))
+                if (NPC.closeDoor && ((NPC.position.X + NPC.width / 2) / 16f > NPC.doorX + 2 || (NPC.position.X + NPC.width / 2) / 16f < NPC.doorX - 2))
                 {
-                    var flag25 = WorldGen.CloseDoor(npc.doorX, npc.doorY, false);
+                    var flag25 = WorldGen.CloseDoor(NPC.doorX, NPC.doorY, false);
                     if (flag25)
                     {
-                        npc.closeDoor = false;
-                        NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 1, npc.doorX, npc.doorY, npc.direction, 0);
+                        NPC.closeDoor = false;
+                        NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 1, NPC.doorX, NPC.doorY, NPC.direction, 0);
                     }
-                    if ((npc.position.X + npc.width / 2) / 16f > npc.doorX + 4 || (npc.position.X + npc.width / 2) / 16f < npc.doorX - 4 || (npc.position.Y + npc.height / 2) / 16f > npc.doorY + 4 || (npc.position.Y + npc.height / 2) / 16f < npc.doorY - 4)
+                    if ((NPC.position.X + NPC.width / 2) / 16f > NPC.doorX + 4 || (NPC.position.X + NPC.width / 2) / 16f < NPC.doorX - 4 || (NPC.position.Y + NPC.height / 2) / 16f > NPC.doorY + 4 || (NPC.position.Y + NPC.height / 2) / 16f < NPC.doorY - 4)
                     {
-                        npc.closeDoor = false;
+                        NPC.closeDoor = false;
                     }
                 }
                 var num222 = 1f;
                 var num223 = 0.07f;
-                if (npc.velocity.X < -num222 || npc.velocity.X > num222)
+                if (NPC.velocity.X < -num222 || NPC.velocity.X > num222)
                 {
-                    if (npc.velocity.Y == 0f)
+                    if (NPC.velocity.Y == 0f)
                     {
-                        npc.velocity *= 0.8f;
+                        NPC.velocity *= 0.8f;
                     }
                 }
-                else if (npc.velocity.X < num222 && npc.direction == 1)
+                else if (NPC.velocity.X < num222 && NPC.direction == 1)
                 {
-                    npc.velocity.X = npc.velocity.X + num223;
-                    if (npc.velocity.X > num222)
+                    NPC.velocity.X = NPC.velocity.X + num223;
+                    if (NPC.velocity.X > num222)
                     {
-                        npc.velocity.X = num222;
+                        NPC.velocity.X = num222;
                     }
                 }
-                else if (npc.velocity.X > -num222 && npc.direction == -1)
+                else if (NPC.velocity.X > -num222 && NPC.direction == -1)
                 {
-                    npc.velocity.X = npc.velocity.X - num223;
-                    if (npc.velocity.X > num222)
+                    NPC.velocity.X = NPC.velocity.X - num223;
+                    if (NPC.velocity.X > num222)
                     {
-                        npc.velocity.X = num222;
+                        NPC.velocity.X = num222;
                     }
                 }
-                var flag26 = (npc.homeTileY - 2) * 16 <= npc.position.Y;
-                if ((npc.direction == 1 && npc.position.Y + npc.width / 2 > npc.homeTileX * 16) || (npc.direction == -1 && npc.position.Y + npc.width / 2 < npc.homeTileX * 16))
+                var flag26 = (NPC.homeTileY - 2) * 16 <= NPC.position.Y;
+                if ((NPC.direction == 1 && NPC.position.Y + NPC.width / 2 > NPC.homeTileX * 16) || (NPC.direction == -1 && NPC.position.Y + NPC.width / 2 < NPC.homeTileX * 16))
                 {
                     flag26 = true;
                 }
-                if (npc.velocity.Y >= 0f)
+                if (NPC.velocity.Y >= 0f)
                 {
                     var num224 = 0;
-                    if (npc.velocity.X < 0f)
+                    if (NPC.velocity.X < 0f)
                     {
                         num224 = -1;
                     }
-                    if (npc.velocity.X > 0f)
+                    if (NPC.velocity.X > 0f)
                     {
                         num224 = 1;
                     }
-                    var vector22 = npc.position;
-                    vector22.X += npc.velocity.X;
-                    var num225 = (int)((vector22.X + npc.width / 2 + (npc.width / 2 + 1) * num224) / 16f);
-                    var num226 = (int)((vector22.Y + npc.height - 1f) / 16f);
-                    if (num225 * 16 < vector22.X + npc.width && num225 * 16 + 16 > vector22.X)
+                    var vector22 = NPC.position;
+                    vector22.X += NPC.velocity.X;
+                    var num225 = (int)((vector22.X + NPC.width / 2 + (NPC.width / 2 + 1) * num224) / 16f);
+                    var num226 = (int)((vector22.Y + NPC.height - 1f) / 16f);
+                    if (num225 * 16 < vector22.X + NPC.width && num225 * 16 + 16 > vector22.X)
                     {
                         if (Main.tile[num225, num226] == null)
                         {
@@ -487,46 +487,46 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             Main.tile[num225, num226 + 1] = new Tile();
                         }
-                        if (((Main.tile[num225, num226].nactive() && !Main.tile[num225, num226].topSlope() && !Main.tile[num225, num226 - 1].topSlope() && ((Main.tileSolid[Main.tile[num225, num226].type] && !Main.tileSolidTop[Main.tile[num225, num226].type]) || (flag26 && Main.tileSolidTop[Main.tile[num225, num226].type] && Main.tile[num225, num226].frameY == 0 && (!Main.tileSolid[Main.tile[num225, num226 - 1].type] || !Main.tile[num225, num226 - 1].nactive()) && Main.tile[num225, num226].type != 16 && Main.tile[num225, num226].type != 18 && Main.tile[num225, num226].type != 134 && Main.tile[num225, num226].type != 360))) || (Main.tile[num225, num226 - 1].halfBrick() && Main.tile[num225, num226 - 1].nactive())) && (!Main.tile[num225, num226 - 1].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 1].type] || Main.tileSolidTop[Main.tile[num225, num226 - 1].type] || (Main.tile[num225, num226 - 1].halfBrick() && (!Main.tile[num225, num226 - 4].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 4].type] || Main.tileSolidTop[Main.tile[num225, num226 - 4].type]))) && (!Main.tile[num225, num226 - 2].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 2].type] || Main.tileSolidTop[Main.tile[num225, num226 - 2].type]) && (!Main.tile[num225, num226 - 3].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 3].type] || Main.tileSolidTop[Main.tile[num225, num226 - 3].type]) && (!Main.tile[num225 - num224, num226 - 3].nactive() || !Main.tileSolid[Main.tile[num225 - num224, num226 - 3].type] || Main.tileSolidTop[Main.tile[num225 - num224, num226 - 3].type]))
+                        if (((Main.tile[num225, num226].nactive() && !Main.tile[num225, num226].topSlope() && !Main.tile[num225, num226 - 1].topSlope() && ((Main.tileSolid[Main.tile[num225, num226].TileType] && !Main.tileSolidTop[Main.tile[num225, num226].TileType]) || (flag26 && Main.tileSolidTop[Main.tile[num225, num226].TileType] && Main.tile[num225, num226].TileFrameY == 0 && (!Main.tileSolid[Main.tile[num225, num226 - 1].TileType] || !Main.tile[num225, num226 - 1].nactive()) && Main.tile[num225, num226].TileType != 16 && Main.tile[num225, num226].TileType != 18 && Main.tile[num225, num226].TileType != 134 && Main.tile[num225, num226].TileType != 360))) || (Main.tile[num225, num226 - 1]IsHalfBlock && Main.tile[num225, num226 - 1].nactive())) && (!Main.tile[num225, num226 - 1].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 1].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 1].TileType] || (Main.tile[num225, num226 - 1]IsHalfBlock && (!Main.tile[num225, num226 - 4].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 4].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 4].TileType]))) && (!Main.tile[num225, num226 - 2].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 2].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 2].TileType]) && (!Main.tile[num225, num226 - 3].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 3].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 3].TileType]) && (!Main.tile[num225 - num224, num226 - 3].nactive() || !Main.tileSolid[Main.tile[num225 - num224, num226 - 3].TileType] || Main.tileSolidTop[Main.tile[num225 - num224, num226 - 3].TileType]))
                         {
                             float num227 = num226 * 16;
-                            if (Main.tile[num225, num226].halfBrick())
+                            if (Main.tile[num225, num226]IsHalfBlock)
                             {
                                 num227 += 8f;
                             }
-                            if (Main.tile[num225, num226 - 1].halfBrick())
+                            if (Main.tile[num225, num226 - 1]IsHalfBlock)
                             {
                                 num227 -= 8f;
                             }
-                            if (num227 < vector22.Y + npc.height)
+                            if (num227 < vector22.Y + NPC.height)
                             {
-                                var num228 = vector22.Y + npc.height - num227;
+                                var num228 = vector22.Y + NPC.height - num227;
                                 if (num228 <= 16.1)
                                 {
-                                    npc.gfxOffY += npc.position.Y + npc.height - num227;
-                                    npc.position.Y = num227 - npc.height;
+                                    NPC.gfxOffY += NPC.position.Y + NPC.height - num227;
+                                    NPC.position.Y = num227 - NPC.height;
                                     if (num228 < 9f)
                                     {
-                                        npc.stepSpeed = 1f;
+                                        NPC.stepSpeed = 1f;
                                     }
                                     else
                                     {
-                                        npc.stepSpeed = 2f;
+                                        NPC.stepSpeed = 2f;
                                     }
                                 }
                             }
                         }
                     }
                 }
-                if (npc.velocity.Y == 0f)
+                if (NPC.velocity.Y == 0f)
                 {
-                    if (npc.position.X == npc.ai[2])
+                    if (NPC.position.X == NPC.ai[2])
                     {
-                        npc.direction *= -1;
+                        NPC.direction *= -1;
                     }
-                    npc.ai[2] = -1f;
-                    var num229 = (int)((npc.position.X + npc.width / 2 + 15 * npc.direction) / 16f);
-                    var num230 = (int)((npc.position.Y + npc.height - 16f) / 16f);
+                    NPC.ai[2] = -1f;
+                    var num229 = (int)((NPC.position.X + NPC.width / 2 + 15 * NPC.direction) / 16f);
+                    var num230 = (int)((NPC.position.Y + NPC.height - 16f) / 16f);
                     if (Main.tile[num229, num230] == null)
                     {
                         Main.tile[num229, num230] = new Tile();
@@ -547,106 +547,106 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         Main.tile[num229, num230 + 1] = new Tile();
                     }
-                    if (Main.tile[num229 - npc.direction, num230 + 1] == null)
+                    if (Main.tile[num229 - NPC.direction, num230 + 1] == null)
                     {
-                        Main.tile[num229 - npc.direction, num230 + 1] = new Tile();
+                        Main.tile[num229 - NPC.direction, num230 + 1] = new Tile();
                     }
-                    if (Main.tile[num229 + npc.direction, num230 - 1] == null)
+                    if (Main.tile[num229 + NPC.direction, num230 - 1] == null)
                     {
-                        Main.tile[num229 + npc.direction, num230 - 1] = new Tile();
+                        Main.tile[num229 + NPC.direction, num230 - 1] = new Tile();
                     }
-                    if (Main.tile[num229 + npc.direction, num230 + 1] == null)
+                    if (Main.tile[num229 + NPC.direction, num230 + 1] == null)
                     {
-                        Main.tile[num229 + npc.direction, num230 + 1] = new Tile();
+                        Main.tile[num229 + NPC.direction, num230 + 1] = new Tile();
                     }
-                    Main.tile[num229 - npc.direction, num230 + 1].halfBrick();
-                    if (npc.townNPC && Main.tile[num229, num230 - 2].nactive() && Main.tile[num229, num230 - 2].type == 10 && (Main.rand.Next(10) == 0 || flag22))
+                    Main.tile[num229 - NPC.direction, num230 + 1]IsHalfBlock;
+                    if (NPC.townNPC && Main.tile[num229, num230 - 2].nactive() && Main.tile[num229, num230 - 2].TileType == 10 && (Main.rand.Next(10) == 0 || flag22))
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
-                            var flag27 = WorldGen.OpenDoor(num229, num230 - 2, npc.direction);
+                            var flag27 = WorldGen.OpenDoor(num229, num230 - 2, NPC.direction);
                             if (flag27)
                             {
-                                npc.closeDoor = true;
-                                npc.doorX = num229;
-                                npc.doorY = num230 - 2;
-                                NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, npc.direction, 0);
-                                npc.netUpdate = true;
-                                npc.ai[1] += 80f;
+                                NPC.closeDoor = true;
+                                NPC.doorX = num229;
+                                NPC.doorY = num230 - 2;
+                                NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, NPC.direction, 0);
+                                NPC.netUpdate = true;
+                                NPC.ai[1] += 80f;
                                 return;
                             }
-                            if (WorldGen.OpenDoor(num229, num230 - 2, -npc.direction))
+                            if (WorldGen.OpenDoor(num229, num230 - 2, -NPC.direction))
                             {
-                                npc.closeDoor = true;
-                                npc.doorX = num229;
-                                npc.doorY = num230 - 2;
-                                NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, -npc.direction, 0);
-                                npc.netUpdate = true;
-                                npc.ai[1] += 80f;
+                                NPC.closeDoor = true;
+                                NPC.doorX = num229;
+                                NPC.doorY = num230 - 2;
+                                NetMessage.SendData(MessageID.ChangeDoor, -1, -1, NetworkText.FromLiteral(""), 0, num229, num230 - 2, -NPC.direction, 0);
+                                NPC.netUpdate = true;
+                                NPC.ai[1] += 80f;
                                 return;
                             }
-                            npc.direction *= -1;
-                            npc.netUpdate = true;
+                            NPC.direction *= -1;
+                            NPC.netUpdate = true;
                             return;
                         }
                     }
                     else
                     {
-                        if ((npc.velocity.X < 0f && npc.spriteDirection == -1) || (npc.velocity.X > 0f && npc.spriteDirection == 1))
+                        if ((NPC.velocity.X < 0f && NPC.spriteDirection == -1) || (NPC.velocity.X > 0f && NPC.spriteDirection == 1))
                         {
-                            if (Main.tile[num229, num230 - 2].nactive() && Main.tileSolid[Main.tile[num229, num230 - 2].type] && !Main.tileSolidTop[Main.tile[num229, num230 - 2].type])
+                            if (Main.tile[num229, num230 - 2].nactive() && Main.tileSolid[Main.tile[num229, num230 - 2].TileType] && !Main.tileSolidTop[Main.tile[num229, num230 - 2].TileType])
                             {
-                                if ((npc.direction == 1 && !Collision.SolidTiles(num229 - 2, num229 - 1, num230 - 5, num230 - 1)) || (npc.direction == -1 && !Collision.SolidTiles(num229 + 1, num229 + 2, num230 - 5, num230 - 1)))
+                                if ((NPC.direction == 1 && !Collision.SolidTiles(num229 - 2, num229 - 1, num230 - 5, num230 - 1)) || (NPC.direction == -1 && !Collision.SolidTiles(num229 + 1, num229 + 2, num230 - 5, num230 - 1)))
                                 {
                                     if (!Collision.SolidTiles(num229, num229, num230 - 5, num230 - 3))
                                     {
-                                        npc.velocity.Y = -6f;
-                                        npc.netUpdate = true;
+                                        NPC.velocity.Y = -6f;
+                                        NPC.netUpdate = true;
                                     }
                                     else
                                     {
-                                        npc.direction *= -1;
-                                        npc.netUpdate = true;
+                                        NPC.direction *= -1;
+                                        NPC.netUpdate = true;
                                     }
                                 }
                                 else
                                 {
-                                    npc.direction *= -1;
-                                    npc.netUpdate = true;
+                                    NPC.direction *= -1;
+                                    NPC.netUpdate = true;
                                 }
                             }
-                            else if (Main.tile[num229, num230 - 1].nactive() && Main.tileSolid[Main.tile[num229, num230 - 1].type] && !Main.tileSolidTop[Main.tile[num229, num230 - 1].type])
+                            else if (Main.tile[num229, num230 - 1].nactive() && Main.tileSolid[Main.tile[num229, num230 - 1].TileType] && !Main.tileSolidTop[Main.tile[num229, num230 - 1].TileType])
                             {
-                                if ((npc.direction == 1 && !Collision.SolidTiles(num229 - 2, num229 - 1, num230 - 4, num230 - 1)) || (npc.direction == -1 && !Collision.SolidTiles(num229 + 1, num229 + 2, num230 - 4, num230 - 1)))
+                                if ((NPC.direction == 1 && !Collision.SolidTiles(num229 - 2, num229 - 1, num230 - 4, num230 - 1)) || (NPC.direction == -1 && !Collision.SolidTiles(num229 + 1, num229 + 2, num230 - 4, num230 - 1)))
                                 {
                                     if (!Collision.SolidTiles(num229, num229, num230 - 4, num230 - 2))
                                     {
-                                        npc.velocity.Y = -5f;
-                                        npc.netUpdate = true;
+                                        NPC.velocity.Y = -5f;
+                                        NPC.netUpdate = true;
                                     }
                                     else
                                     {
-                                        npc.direction *= -1;
-                                        npc.netUpdate = true;
+                                        NPC.direction *= -1;
+                                        NPC.netUpdate = true;
                                     }
                                 }
                                 else
                                 {
-                                    npc.direction *= -1;
-                                    npc.netUpdate = true;
+                                    NPC.direction *= -1;
+                                    NPC.netUpdate = true;
                                 }
                             }
-                            else if (npc.position.Y + npc.height - num230 * 16 > 20f && Main.tile[num229, num230].nactive() && Main.tileSolid[Main.tile[num229, num230].type] && !Main.tile[num229, num230].topSlope())
+                            else if (NPC.position.Y + NPC.height - num230 * 16 > 20f && Main.tile[num229, num230].nactive() && Main.tileSolid[Main.tile[num229, num230].TileType] && !Main.tile[num229, num230].topSlope())
                             {
-                                if ((npc.direction == 1 && !Collision.SolidTiles(num229 - 2, num229, num230 - 3, num230 - 1)) || (npc.direction == -1 && !Collision.SolidTiles(num229, num229 + 2, num230 - 3, num230 - 1)))
+                                if ((NPC.direction == 1 && !Collision.SolidTiles(num229 - 2, num229, num230 - 3, num230 - 1)) || (NPC.direction == -1 && !Collision.SolidTiles(num229, num229 + 2, num230 - 3, num230 - 1)))
                                 {
-                                    npc.velocity.Y = -4.4f;
-                                    npc.netUpdate = true;
+                                    NPC.velocity.Y = -4.4f;
+                                    NPC.netUpdate = true;
                                 }
                                 else
                                 {
-                                    npc.direction *= -1;
-                                    npc.netUpdate = true;
+                                    NPC.direction *= -1;
+                                    NPC.netUpdate = true;
                                 }
                             }
                             try
@@ -655,52 +655,52 @@ namespace ExxoAvalonOrigins.NPCs
                                 {
                                     Main.tile[num229, num230 + 1] = new Tile();
                                 }
-                                if (Main.tile[num229 - npc.direction, num230 + 1] == null)
+                                if (Main.tile[num229 - NPC.direction, num230 + 1] == null)
                                 {
-                                    Main.tile[num229 - npc.direction, num230 + 1] = new Tile();
+                                    Main.tile[num229 - NPC.direction, num230 + 1] = new Tile();
                                 }
                                 if (Main.tile[num229, num230 + 2] == null)
                                 {
                                     Main.tile[num229, num230 + 2] = new Tile();
                                 }
-                                if (Main.tile[num229 - npc.direction, num230 + 2] == null)
+                                if (Main.tile[num229 - NPC.direction, num230 + 2] == null)
                                 {
-                                    Main.tile[num229 - npc.direction, num230 + 2] = new Tile();
+                                    Main.tile[num229 - NPC.direction, num230 + 2] = new Tile();
                                 }
                                 if (Main.tile[num229, num230 + 3] == null)
                                 {
                                     Main.tile[num229, num230 + 3] = new Tile();
                                 }
-                                if (Main.tile[num229 - npc.direction, num230 + 3] == null)
+                                if (Main.tile[num229 - NPC.direction, num230 + 3] == null)
                                 {
-                                    Main.tile[num229 - npc.direction, num230 + 3] = new Tile();
+                                    Main.tile[num229 - NPC.direction, num230 + 3] = new Tile();
                                 }
                                 if (Main.tile[num229, num230 + 4] == null)
                                 {
                                     Main.tile[num229, num230 + 4] = new Tile();
                                 }
-                                if (Main.tile[num229 - npc.direction, num230 + 4] == null)
+                                if (Main.tile[num229 - NPC.direction, num230 + 4] == null)
                                 {
-                                    Main.tile[num229 - npc.direction, num230 + 4] = new Tile();
+                                    Main.tile[num229 - NPC.direction, num230 + 4] = new Tile();
                                 }
-                                else if (num216 >= npc.homeTileX - 35 && num216 <= npc.homeTileX + 35 && (!Main.tile[num229, num230 + 1].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 1].type]) && (!Main.tile[num229 - npc.direction, num230 + 1].active() || !Main.tileSolid[Main.tile[num229 - npc.direction, num230 + 1].type]) && (!Main.tile[num229, num230 + 2].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 2].type]) && (!Main.tile[num229 - npc.direction, num230 + 2].active() || !Main.tileSolid[Main.tile[num229 - npc.direction, num230 + 2].type]) && (!Main.tile[num229, num230 + 3].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 3].type]) && (!Main.tile[num229 - npc.direction, num230 + 3].active() || !Main.tileSolid[Main.tile[num229 - npc.direction, num230 + 3].type]) && (!Main.tile[num229, num230 + 4].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 4].type]) && (!Main.tile[num229 - npc.direction, num230 + 4].nactive() || !Main.tileSolid[Main.tile[num229 - npc.direction, num230 + 4].type]))
+                                else if (num216 >= NPC.homeTileX - 35 && num216 <= NPC.homeTileX + 35 && (!Main.tile[num229, num230 + 1].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 1].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 1].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 1].TileType]) && (!Main.tile[num229, num230 + 2].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 2].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 2].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 2].TileType]) && (!Main.tile[num229, num230 + 3].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 3].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 3].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 3].TileType]) && (!Main.tile[num229, num230 + 4].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 4].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 4].nactive() || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 4].TileType]))
                                 {
-                                    npc.direction *= -1;
-                                    npc.velocity.X = npc.velocity.X * -1f;
-                                    npc.netUpdate = true;
+                                    NPC.direction *= -1;
+                                    NPC.velocity.X = NPC.velocity.X * -1f;
+                                    NPC.netUpdate = true;
                                 }
                             }
                             catch
                             {
                             }
-                            if (npc.velocity.Y < 0f)
+                            if (NPC.velocity.Y < 0f)
                             {
-                                npc.ai[2] = npc.position.X;
+                                NPC.ai[2] = NPC.position.X;
                             }
                         }
-                        if (npc.velocity.Y < 0f && npc.wet)
+                        if (NPC.velocity.Y < 0f && NPC.wet)
                         {
-                            npc.velocity.Y = npc.velocity.Y * 1.2f;
+                            NPC.velocity.Y = NPC.velocity.Y * 1.2f;
                         }
                     }
                 }
@@ -708,40 +708,40 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.velocity.X == 0f)
+                if (NPC.velocity.X == 0f)
                 {
-                    npc.frame.Y = 0;
-                    npc.frameCounter = 0.0;
+                    NPC.frame.Y = 0;
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += 1.0;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += 1.0;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 2;
+                        NPC.frame.Y = frameHeight * 2;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = frameHeight;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = frameHeight;
             }
         }
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)

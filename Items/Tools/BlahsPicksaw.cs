@@ -16,28 +16,28 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item1;
-            item.damage = 50;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.scale = 1.15f;
-            item.axe = 50;
-            item.pick = 425;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.useTime = 7;
-            item.knockBack = 7f;
-            item.melee = true;
-            item.tileBoost += 6;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 1016000;
-            item.useAnimation = 7;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
+            Item.damage = 50;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.scale = 1.15f;
+            Item.axe = 50;
+            Item.pick = 425;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.useTime = 7;
+            Item.knockBack = 7f;
+            Item.DamageType = DamageClass.Melee;
+            Item.tileBoost += 6;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 1016000;
+            Item.useAnimation = 7;
+            Item.height = dims.Height;
         }
 
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == mod.ItemType("BlahsPicksaw"))
+            if (player.inventory[player.selectedItem].type == Mod.Find<ModItem>("BlahsPicksaw").Type)
             {
                 player.pickSpeed -= 0.5f;
             }
@@ -47,7 +47,7 @@ namespace ExxoAvalonOrigins.Items.Tools
                 {
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        if (Main.tile[Player.tileTargetX, Player.tileTargetY].active())
+                        if (Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile)
                         {
                             int tileId = player.hitTile.HitObject(Player.tileTargetX, Player.tileTargetY, 1);
                             if (player.inventory[player.selectedItem].pick >= ExxoAvalonOrigins.minPick[Main.tile[Player.tileTargetX, Player.tileTargetY].type])

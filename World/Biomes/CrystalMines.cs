@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Biomes
 {
@@ -69,7 +69,7 @@ namespace ExxoAvalonOrigins.World.Biomes
 
         public override bool Place(Point origin, StructureMap structures)
         {
-            if (_tiles[origin.X, origin.Y].active())
+            if (_tiles[origin.X, origin.Y].HasTile)
             {
                 return false;
             }
@@ -172,7 +172,7 @@ namespace ExxoAvalonOrigins.World.Biomes
                     {
                         break;
                     }
-                    if (_tiles[origin.X + num + num2, origin.Y + num12 + num3].active())
+                    if (_tiles[origin.X + num + num2, origin.Y + num12 + num3].HasTile)
                     {
                         ushort type = _tiles[origin.X + num + num2, origin.Y + num12 + num3].type;
                         if (type == 147 || (uint)(type - 161) <= 2u || type == 200)
@@ -197,33 +197,33 @@ namespace ExxoAvalonOrigins.World.Biomes
                     float num7 = 0.2f + 0.5f / (float)Math.Sqrt(Math.Max(0f, magma3.Pressure - magma3.Resistance));
                     if (Math.Max(1f - Math.Max(0f, num6 * num7), magma3.Pressure / 15f) > 0.35f + (WorldGen.SolidTile(origin.X + num4, origin.Y + num5) ? 0f : 0.5f))
                     {
-                        if (TileID.Sets.Ore[tile.type])
+                        if (TileID.Sets.Ore[tile.TileType])
                         {
-                            tile.ResetToType(tile.type);
+                            tile.ResetToType(tile.TileType);
                         }
-                        else if (tile.type == TileID.Pots || tile.type == TileID.Containers || tile.type == TileID.Containers2 || tile.type == TileID.Heart ||
-                            tile.type == TileID.ShadowOrbs || tile.type == TileID.DemonAltar || tile.type == ModContent.TileType<Tiles.HallowedAltar>() ||
-                            tile.type == ModContent.TileType<Tiles.SnotOrb>() || tile.type == TileID.LihzahrdBrick || tile.type == TileID.BlueDungeonBrick ||
-                            tile.type == TileID.PinkDungeonBrick || tile.type == TileID.GreenDungeonBrick || tile.type == ModContent.TileType<Tiles.TuhrtlBrick>() ||
-                            tile.type == TileID.Statues)
+                        else if (tile.TileType == TileID.Pots || tile.TileType == TileID.Containers || tile.TileType == TileID.Containers2 || tile.TileType == TileID.Heart ||
+                            tile.TileType == TileID.ShadowOrbs || tile.TileType == TileID.DemonAltar || tile.TileType == ModContent.TileType<Tiles.HallowedAltar>() ||
+                            tile.TileType == ModContent.TileType<Tiles.SnotOrb>() || tile.TileType == TileID.LihzahrdBrick || tile.TileType == TileID.BlueDungeonBrick ||
+                            tile.TileType == TileID.PinkDungeonBrick || tile.TileType == TileID.GreenDungeonBrick || tile.TileType == ModContent.TileType<Tiles.TuhrtlBrick>() ||
+                            tile.TileType == TileID.Statues)
                         {
-                            tile.ResetToType(tile.type);
+                            tile.ResetToType(tile.TileType);
                         }
                         else
                         {
                             tile.ResetToType((ushort)ModContent.TileType<Tiles.CrystalStone>());
                         }
-                        if (tile.wall != WallID.LihzahrdBrickUnsafe && tile.wall != ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && !Main.wallDungeon[tile.wall])
+                        if (tile.WallType != WallID.LihzahrdBrickUnsafe && tile.WallType != ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && !Main.wallDungeon[tile.WallType])
                         {
-                            tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                            tile.WallType = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
                         }
                     }
                     else if (magma3.Resistance < 0.01f)
                     {
                         WorldUtils.ClearTile(origin.X + num4, origin.Y + num5);
-                        if (!blacklistedWalls.Contains(tile.wall))
+                        if (!blacklistedWalls.Contains(tile.WallType))
                         {
-                            tile.wall = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
+                            tile.WallType = (ushort)ModContent.WallType<Walls.CrystalStoneWall>();
                         }
                     }
                     if (tile.liquid > 0 && flag)
@@ -288,23 +288,23 @@ namespace ExxoAvalonOrigins.World.Biomes
                     }
                     WorldUtils.TileFrame(num18, num19);
                     WorldGen.SquareWallFrame(num18, num19);
-                    //if (GenBase._random.Next(8) == 0 && GenBase._tiles[num18, num19].active())
+                    //if (GenBase._random.Next(8) == 0 && GenBase._tiles[num18, num19].HasTile)
                     //{
-                    //    if (!GenBase._tiles[num18, num19 + 1].active())
+                    //    if (!GenBase._tiles[num18, num19 + 1].HasTile)
                     //    {
                     //        WorldGen.PlaceTight(num18, num19 + 1, 165);
                     //    }
-                    //    if (!GenBase._tiles[num18, num19 - 1].active())
+                    //    if (!GenBase._tiles[num18, num19 - 1].HasTile)
                     //    {
                     //        WorldGen.PlaceTight(num18, num19 - 1, 165);
                     //    }
                     //}
-                    if (!Main.tile[num18, num19].active() && Main.tile[num18, num19 - 1].active() && Main.tile[num18, num19 - 1].type == ModContent.TileType<Tiles.CrystalStone>() ||
-                        !Main.tile[num18, num19].active() && Main.tile[num18, num19 + 1].active() && Main.tile[num18, num19 + 1].type == ModContent.TileType<Tiles.CrystalStone>() ||
-                        !Main.tile[num18, num19].active() && Main.tile[num18 - 1, num19].active() && Main.tile[num18 - 1, num19].type == ModContent.TileType<Tiles.CrystalStone>() ||
-                        !Main.tile[num18, num19].active() && Main.tile[num18 + 1, num19].active() && Main.tile[num18 + 1, num19].type == ModContent.TileType<Tiles.CrystalStone>())
+                    if (!Main.tile[num18, num19].HasTile && Main.tile[num18, num19 - 1].HasTile && Main.tile[num18, num19 - 1].TileType == ModContent.TileType<Tiles.CrystalStone>() ||
+                        !Main.tile[num18, num19].HasTile && Main.tile[num18, num19 + 1].HasTile && Main.tile[num18, num19 + 1].TileType == ModContent.TileType<Tiles.CrystalStone>() ||
+                        !Main.tile[num18, num19].HasTile && Main.tile[num18 - 1, num19].HasTile && Main.tile[num18 - 1, num19].TileType == ModContent.TileType<Tiles.CrystalStone>() ||
+                        !Main.tile[num18, num19].HasTile && Main.tile[num18 + 1, num19].HasTile && Main.tile[num18 + 1, num19].TileType == ModContent.TileType<Tiles.CrystalStone>())
                     {
-                        if (Main.tile[num18, num19].type != TileID.Crystals)
+                        if (Main.tile[num18, num19].TileType != TileID.Crystals)
                         {
                             if (WorldGen.genRand.Next(8) == 0)
                             {

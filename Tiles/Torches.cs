@@ -12,7 +12,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Torches : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
@@ -44,7 +44,7 @@ namespace ExxoAvalonOrigins.Tiles
 
         public override bool Drop(int i, int j)
         {
-            var style = Main.tile[i, j].frameY / 22;
+            var style = Main.tile[i, j].TileFrameY / 22;
             int toDrop = ItemID.Torch;
 
             switch (style)
@@ -80,9 +80,9 @@ namespace ExxoAvalonOrigins.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             var tile = Main.tile[i, j];
-            if (tile.frameX < 66)
+            if (tile.TileFrameX < 66)
             {
-                int style = Main.tile[i, j].frameY / 18;
+                int style = Main.tile[i, j].TileFrameY / 18;
                 switch (style)
                 {
                     case 0:
@@ -141,8 +141,8 @@ namespace ExxoAvalonOrigins.Tiles
         {
             var randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)((ulong)i));
             var color = new Color(100, 100, 100, 0);
-            int frameX = Main.tile[i, j].frameX;
-            int frameY = Main.tile[i, j].frameY;
+            int frameX = Main.tile[i, j].TileFrameX;
+            int frameY = Main.tile[i, j].TileFrameY;
             var width = 20;
             var offsetY = 0;
             var height = 20;
@@ -163,7 +163,7 @@ namespace ExxoAvalonOrigins.Tiles
             {
                 var x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                 var y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
-                Main.spriteBatch.Draw(mod.GetTexture("Tiles/Torches_Flame"), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Tiles/Torches_Flame").Value, new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
             }
         }
 
@@ -172,7 +172,7 @@ namespace ExxoAvalonOrigins.Tiles
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.showItemIcon = true;
-            var style = Main.tile[i, j].frameY / 22;
+            var style = Main.tile[i, j].TileFrameY / 22;
 
             switch (style)
             {

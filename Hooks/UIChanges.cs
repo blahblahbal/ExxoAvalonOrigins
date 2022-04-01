@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.Hooks
                     return;
                 }
 
-                Texture2D staminaTexture = ExxoAvalonOrigins.Mod.GetTexture("Sprites/Stamina");
+                Texture2D staminaTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/Stamina").Value;
                 Texture2D defenceTexture = TextureManager.Load("Images/UI/Bestiary/Stat_Defense");
                 //switch ((modPlayer.statStamMax - 1) / 150)
                 //{

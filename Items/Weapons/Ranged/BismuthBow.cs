@@ -13,29 +13,25 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item5;
-            item.damage = 13;
-            item.useTurn = true;
-            item.scale = 1f;
-            item.shootSpeed = 8f;
-            item.useAmmo = AmmoID.Arrow;
-            item.ranged = item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 0f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 9000;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
+            Item.damage = 13;
+            Item.useTurn = true;
+            Item.scale = 1f;
+            Item.shootSpeed = 8f;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.DamageType = // item.noMelee = true /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 0f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 9000;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 7);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 7).AddTile(TileID.Anvils).Register();
         }
     }
 }

@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 {
@@ -16,45 +17,45 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Oblivion (WIP)");
-            Main.npcFrameCount[npc.type] = 6;
+            Main.npcFrameCount[NPC.type] = 6;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 150;
-            npc.boss = true;
-            npc.netAlways = true;
-            npc.noTileCollide = true;
-            npc.lifeMax = 85000;
-            npc.defense = 50;
-            npc.noGravity = true;
-            npc.width = 110;
-            npc.aiStyle = -1;
-            npc.npcSlots = 6f;
-            npc.value = 50000f;
-            npc.timeLeft = 22500;
-            npc.height = 152;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath14;
-            npc.buffImmune[BuffID.Frostburn] = true;
+            NPC.damage = 150;
+            NPC.boss = true;
+            NPC.netAlways = true;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 85000;
+            NPC.defense = 50;
+            NPC.noGravity = true;
+            NPC.width = 110;
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 6f;
+            NPC.value = 50000f;
+            NPC.timeLeft = 22500;
+            NPC.height = 152;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath14;
+            NPC.buffImmune[BuffID.Frostburn] = true;
         }
 
         private const int AISlotFrameOffset = 0;
 
         public int AIFrameOffset
         {
-            get => (int)npc.ai[AISlotFrameOffset];
+            get => (int)NPC.ai[AISlotFrameOffset];
             set
             {
-                npc.ai[AISlotFrameOffset] = value;
+                NPC.ai[AISlotFrameOffset] = value;
                 switch (value)
                 {
                     case 1:
-                        npc.HitSound = SoundID.NPCHit4;
+                        NPC.HitSound = SoundID.NPCHit4;
                         break;
                     default:
-                        npc.HitSound = SoundID.NPCHit1;
+                        NPC.HitSound = SoundID.NPCHit1;
                         break;
                 }
             }
@@ -67,10 +68,10 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
         public override void FindFrame(int frameHeight)
         {
-            npc.frameCounter++;
-            npc.frameCounter %= 21;
-            npc.frame.Y = frameHeight * (int)(npc.frameCounter / 7);
-            npc.frame.Y += frameHeight * 3 * AIFrameOffset;
+            NPC.frameCounter++;
+            NPC.frameCounter %= 21;
+            NPC.frame.Y = frameHeight * (int)(NPC.frameCounter / 7);
+            NPC.frame.Y += frameHeight * 3 * AIFrameOffset;
         }
 
         public class MainState : StateParent
@@ -301,7 +302,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
             public override void PostDraw(SpriteBatch spriteBatch)
             {
-                Texture2D texture = ExxoAvalonOrigins.Mod.GetTexture("NPCs/Bosses/Oblivion/OblivionPhase1_Shadow_Glow");
+                Texture2D texture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("NPCs/Bosses/Oblivion/OblivionPhase1_Shadow_Glow").Value;
                 spriteBatch.Draw
                 (
                     texture,
@@ -310,7 +311,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                     Color.White * (1 - (npc.alpha / 255f)),
                     npc.rotation,
                     ModNPC.
-                    npc.frame.Size() * 0.5f,
+                    NPC.frame.Size() * 0.5f,
                     npc.scale,
                     SpriteEffects.None,
                     0f
@@ -322,7 +323,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
                     Filters.Scene.Activate(Effects.EffectsManager.SceneKeyOblivionDarkenScreen).GetShader().UseColor(tintColor);
-                    ModNPC.npc.altTexture = 1;
+                    ModNPC.NPC.altTexture = 1;
                 }
             }
 
@@ -358,9 +359,9 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                 if (Main.netMode != NetmodeID.Server) // This all needs to happen client-side!
                 {
                     Filters.Scene[Effects.EffectsManager.SceneKeyOblivionDarkenScreen].Deactivate();
-                    ModNPC.npc.altTexture = 0;
+                    ModNPC.NPC.altTexture = 0;
                 }
-                ModNPC.npc.alpha = 0;
+                ModNPC.NPC.alpha = 0;
             }
         }
 
@@ -524,7 +525,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
 
                 if (CurrentFrame == waitFrameDuration)
                 {
-                    Main.PlaySound(SoundID.ForceRoar, (int)npc.Center.X, (int)npc.Center.Y, -1);
+                    SoundEngine.PlaySound(SoundID.ForceRoar, (int)npc.Center.X, (int)npc.Center.Y, -1);
                 }
 
                 base.Update();
@@ -732,7 +733,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                         oblivionPhase1.AIFrameOffset = 1;
                     }
 
-                    Main.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y);
+                    SoundEngine.PlaySound(SoundID.NPCHit, (int)npc.Center.X, (int)npc.Center.Y);
                     for (int i = 0; i < 2; i++)
                     {
                         Gore.NewGore(npc.Center, new Vector2(syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f), 8);
@@ -743,7 +744,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses.Oblivion
                     {
                         Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Blood, syncedRandom.Next(-30, 31) * 0.2f, syncedRandom.Next(-30, 31) * 0.2f);
                     }
-                    Main.PlaySound(SoundID.Roar, (int)npc.Center.X, (int)npc.Center.Y, 0);
+                    SoundEngine.PlaySound(SoundID.Roar, (int)npc.Center.X, (int)npc.Center.Y, 0);
                 }
 
                 if (CurrentFrame > duration)

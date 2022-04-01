@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class TropicalVines : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileCut[Type] = true;
             Main.tileBlockLight[Type] = true;
@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             Tile tile = Framing.GetTileSafely(i, j + 1);
-            if (tile.active() && tile.type == Type)
+            if (tile.HasTile && tile.TileType == Type)
             {
                 WorldGen.KillTile(i, j + 1);
             }
@@ -33,9 +33,9 @@ namespace ExxoAvalonOrigins.Tiles
         {
             Tile tileAbove = Framing.GetTileSafely(i, j - 1);
             int type = -1;
-            if (tileAbove.active() && !tileAbove.bottomSlope())
+            if (tileAbove.HasTile && !tileAbove.bottomSlope())
             {
-                type = tileAbove.type;
+                type = tileAbove.TileType;
             }
 
             if (type == ModContent.TileType<TropicalGrass>() || type == Type)
@@ -50,7 +50,7 @@ namespace ExxoAvalonOrigins.Tiles
         public override void RandomUpdate(int i, int j)
         {
             Tile tileBelow = Framing.GetTileSafely(i, j + 1);
-            if (WorldGen.genRand.NextBool(15) && !tileBelow.active() && !tileBelow.lava())
+            if (WorldGen.genRand.NextBool(15) && !tileBelow.HasTile && !tileBelow.lava())
             {
                 bool placeVine = false;
                 int yTest = j;
@@ -61,7 +61,7 @@ namespace ExxoAvalonOrigins.Tiles
                     {
                         break;
                     }
-                    else if (!testTile.active() || testTile.type != ModContent.TileType<Impgrass>())
+                    else if (!testTile.HasTile || testTile.TileType != ModContent.TileType<Impgrass>())
                     {
                         yTest--;
                         continue;
@@ -71,7 +71,7 @@ namespace ExxoAvalonOrigins.Tiles
                 }
                 if (placeVine)
                 {
-                    tileBelow.type = Type;
+                    tileBelow.TileType = Type;
                     tileBelow.active(true);
                     WorldGen.SquareTileFrame(i, j + 1, true);
                     if (Main.netMode == NetmodeID.Server)

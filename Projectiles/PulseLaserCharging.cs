@@ -15,24 +15,24 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PulseLaserCharging");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = 1;
-            projectile.light = 0.5f;
-            projectile.alpha = 50;
-            projectile.scale = 1.2f;
-            projectile.timeLeft = 10;
-            projectile.ranged = true;
-            projectile.tileCollide = false;
-            projectile.damage = 0;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = 1;
+            Projectile.light = 0.5f;
+            Projectile.alpha = 50;
+            Projectile.scale = 1.2f;
+            Projectile.timeLeft = 10;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.tileCollide = false;
+            Projectile.damage = 0;
         }
 
         public override void AI()
         {
-            projectile.ai[0]++;
-            Projectile P = projectile;
+            Projectile.ai[0]++;
+            Projectile P = Projectile;
             Player O = Main.player[P.owner];
             if (P.ai[0] == 5)
             {

@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class OblivionOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 8f;
             AddMapEntry(new Color(127, 0, 110), LanguageManager.Instance.GetText("Oblivion Ore"));
@@ -17,7 +17,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileBlockLight[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 900;
-            drop = mod.ItemType("OblivionOre");
+            drop = Mod.Find<ModItem>("OblivionOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 300;

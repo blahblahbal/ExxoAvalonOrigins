@@ -14,18 +14,18 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.shootSpeed = -1f;
-            item.damage = 50;
-            item.ammo = AmmoID.StyngerBolt;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.knockBack = 3f;
-            item.shoot = ModContent.ProjectileType<Projectiles.MissileBolt>();
-            item.maxStack = 2000;
-            item.value = 150;
-            item.height = dims.Height;
+            Item.shootSpeed = -1f;
+            Item.damage = 50;
+            Item.ammo = AmmoID.StyngerBolt;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.knockBack = 3f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.MissileBolt>();
+            Item.maxStack = 2000;
+            Item.value = 150;
+            Item.height = dims.Height;
         }
     }
 }

@@ -16,24 +16,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 46;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.shootSpeed = 10f;
-            item.crit += 2;
-            item.mana = 19;
-            item.rare = ItemRarityID.Yellow;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 25;
-            item.knockBack = 4f;
-            item.shoot = ModContent.ProjectileType<Projectiles.AncientSandstorm>();
-            item.UseSound = SoundID.Item34;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 25, 0, 0);
-            item.useAnimation = 25;
-            item.height = dims.Height;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 46;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.shootSpeed = 10f;
+            Item.crit += 2;
+            Item.mana = 19;
+            Item.rare = ItemRarityID.Yellow;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 25;
+            Item.knockBack = 4f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.AncientSandstorm>();
+            Item.UseSound = SoundID.Item34;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 25, 0, 0);
+            Item.useAnimation = 25;
+            Item.height = dims.Height;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
             ref float knockBack)
@@ -58,7 +58,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         }
         public override void HoldItem(Player player)
         {
-            Item ancient = item;
+            Item ancient = Item;
             int baseCost = 19;
             if (player.Avalon().ancientLessCost)
             {

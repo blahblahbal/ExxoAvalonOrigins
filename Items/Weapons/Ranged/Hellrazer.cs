@@ -17,31 +17,31 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item11;
-            item.damage = 110;
-            item.autoReuse = true;
-            item.useTurn = false;
-            item.useAmmo = AmmoID.Bullet;
-            item.shootSpeed = 8f;
-            item.crit += 10;
-            item.ranged = true;
-            item.rare = ItemRarityID.Yellow;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.knockBack = 12f;
-            item.useTime = 30;
-            item.shoot = ProjectileID.Bullet;
-            item.value = Item.sellPrice(0, 30, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 30;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item40;
+            Item.UseSound = SoundID.Item11;
+            Item.damage = 110;
+            Item.autoReuse = true;
+            Item.useTurn = false;
+            Item.useAmmo = AmmoID.Bullet;
+            Item.shootSpeed = 8f;
+            Item.crit += 10;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.Yellow;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.knockBack = 12f;
+            Item.useTime = 30;
+            Item.shoot = ProjectileID.Bullet;
+            Item.value = Item.sellPrice(0, 30, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 30;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item40;
             if (!Main.dedServ)
             {
-                item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.GetTexture(Texture + "_Glow");
+                Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
             }
-            item.GetGlobalItem<ItemUseGlow>().glowOffsetX = -5;
-            item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
+            Item.GetGlobalItem<ItemUseGlow>().glowOffsetX = -5;
+            Item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
         }
         public override Vector2? HoldoutOffset()
         {
@@ -49,14 +49,14 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Texture2D texture = mod.GetTexture("Items/Weapons/Ranged/Hellrazer_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Weapons/Ranged/Hellrazer_Glow").Value;
             spriteBatch.Draw
             (
                 texture,
                 new Vector2
                 (
-                    item.position.X - Main.screenPosition.X + item.width * 0.5f,
-                    item.position.Y - Main.screenPosition.Y + item.height - texture.Height * 0.5f + 2f
+                    Item.position.X - Main.screenPosition.X + Item.width * 0.5f,
+                    Item.position.Y - Main.screenPosition.Y + Item.height - texture.Height * 0.5f + 2f
                 ),
                 new Rectangle(0, 0, texture.Width, texture.Height),
                 Color.White,

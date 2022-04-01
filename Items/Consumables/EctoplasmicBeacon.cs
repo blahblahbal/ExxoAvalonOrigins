@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
@@ -17,15 +18,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = 0;
-            item.maxStack = 20;
-            item.useAnimation = 45;
-            item.height = dims.Height;
-            item.rare = ItemRarityID.Yellow;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = 0;
+            Item.maxStack = 20;
+            Item.useAnimation = 45;
+            Item.height = dims.Height;
+            Item.rare = ItemRarityID.Yellow;
         }
 
         public override bool CanUseItem(Player player)
@@ -33,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.Phantasm>()) && player.Avalon().ZoneHellcastle && NPC.downedMoonlord && Main.hardMode;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Bosses.Phantasm>());
             Main.PlaySound(SoundID.Roar, player.position, 0);
@@ -42,13 +43,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Ectoplasm, 10);
-            recipe.AddIngredient(ItemID.ChlorophyteBar, 10);
-            recipe.AddIngredient(ModContent.ItemType<SolariumStar>(), 8);
-            recipe.AddTile(ModContent.TileType<Tiles.LibraryAltar>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Ectoplasm, 10).AddIngredient(ItemID.ChlorophyteBar, 10).AddIngredient(ModContent.ItemType<SolariumStar>(), 8).AddTile(ModContent.TileType<Tiles.LibraryAltar>()).Register();
         }
     }
 }

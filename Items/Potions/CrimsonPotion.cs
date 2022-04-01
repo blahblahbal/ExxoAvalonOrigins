@@ -16,44 +16,24 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.CrimsonDrain>();
-            item.consumable = true;
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.value = Item.sellPrice(0, 0, 3, 0);
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 18000;
-            item.UseSound = SoundID.Item3;
+            Item.buffType = ModContent.BuffType<Buffs.CrimsonDrain>();
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.value = Item.sellPrice(0, 0, 3, 0);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 18000;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
-            recipe.AddIngredient(ItemID.Deathweed);
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
-            recipe.AddIngredient(ModContent.ItemType<Material.Barfbush>());
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.BottledLava>());
-            recipe.AddIngredient(ModContent.ItemType<Material.Bloodberry>());
-            recipe.AddIngredient(ItemID.Spike);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.BottledLava>()).AddIngredient(ItemID.Deathweed).AddIngredient(ItemID.Spike).AddTile(TileID.Bottles).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.BottledLava>()).AddIngredient(ModContent.ItemType<Material.Barfbush>()).AddIngredient(ItemID.Spike).AddTile(TileID.Bottles).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.BottledLava>()).AddIngredient(ModContent.ItemType<Material.Bloodberry>()).AddIngredient(ItemID.Spike).AddTile(TileID.Bottles).Register();
         }
     }
 }

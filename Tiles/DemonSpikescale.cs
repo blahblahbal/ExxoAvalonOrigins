@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class DemonSpikescale : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry((Color.Indigo), LanguageManager.Instance.GetText("Demon Spikescale"));
             Main.tileSolid[Type] = true;

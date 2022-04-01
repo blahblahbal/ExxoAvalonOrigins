@@ -17,11 +17,11 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = 400000;
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = 400000;
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -35,13 +35,7 @@ namespace ExxoAvalonOrigins.Items.Accessories
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.DemonWings);
-            r.AddIngredient(ItemID.RottenChunk, 20);
-            r.AddIngredient(ItemID.CursedFlame, 25);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.DemonWings).AddIngredient(ItemID.RottenChunk, 20).AddIngredient(ItemID.CursedFlame, 25).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

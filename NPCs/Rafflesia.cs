@@ -12,24 +12,24 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rafflesia");
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[NPC.type] = 4;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 31;
-            npc.lifeMax = 160;
-            npc.defense = 7;
-            npc.width = 54;
-            npc.aiStyle = -1;
-            npc.npcSlots = 1f;
-            npc.value = 110f;
-            npc.height = 30;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0f;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.RafflesiaBanner>();
+            NPC.damage = 31;
+            NPC.lifeMax = 160;
+            NPC.defense = 7;
+            NPC.width = 54;
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 1f;
+            NPC.value = 110f;
+            NPC.height = 30;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.knockBackResist = 0f;
+            //Banner = npc.type;
+            //BannerItem = ModContent.ItemType<Items.Banners.RafflesiaBanner>();
             //drawOffsetY = 10;
         }
 
@@ -44,10 +44,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (spawnInfo.player.Avalon().ZoneTropics)
             {
-                if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2].type == ModContent.TileType<Tiles.TropicalGrass>())
+                if (Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY + 2].TileType == ModContent.TileType<Tiles.TropicalGrass>())
                     //&&
-                    //!Main.tile[spawnInfo.spawnTileX + 1, spawnInfo.spawnTileY].active() && !Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].active() &&
-                    //!Main.tile[spawnInfo.spawnTileX - 1, spawnInfo.spawnTileY].active())
+                    //!Main.tile[spawnInfo.spawnTileX + 1, spawnInfo.spawnTileY].HasTile && !Main.tile[spawnInfo.spawnTileX, spawnInfo.spawnTileY].HasTile &&
+                    //!Main.tile[spawnInfo.spawnTileX - 1, spawnInfo.spawnTileY].HasTile)
                 {
                     return 1f;
                 }
@@ -56,26 +56,26 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.65f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.65f);
         }
         public override void AI()
         {
-            npc.ai[0]++;
-            if (npc.ai[0] >= 240)
+            NPC.ai[0]++;
+            if (NPC.ai[0] >= 240)
             {
-                npc.ai[1] = 1;
+                NPC.ai[1] = 1;
                 
             }
-            if (npc.ai[1] == 1)
+            if (NPC.ai[1] == 1)
             {
-                npc.ai[2]++;
-                if (npc.ai[2] == 60 || npc.ai[2] == 120 || npc.ai[2] == 180) NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + 8, NPCID.Bee);
-                if (npc.ai[2] == 188)
+                NPC.ai[2]++;
+                if (NPC.ai[2] == 60 || NPC.ai[2] == 120 || NPC.ai[2] == 180) NPC.NewNPC((int)NPC.Center.X, (int)NPC.position.Y + 8, NPCID.Bee);
+                if (NPC.ai[2] == 188)
                 {
-                    npc.ai[2] = 0;
-                    npc.ai[0] = 0;
-                    npc.ai[1] = 0;
+                    NPC.ai[2] = 0;
+                    NPC.ai[0] = 0;
+                    NPC.ai[1] = 0;
                     return;
                 }
             }
@@ -83,33 +83,33 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            if (npc.ai[1] == 0)
+            if (NPC.ai[1] == 0)
             {
-                npc.frameCounter++;
-                if (npc.frameCounter < 16)
+                NPC.frameCounter++;
+                if (NPC.frameCounter < 16)
                 {
-                    npc.frame.Y = 0;
+                    NPC.frame.Y = 0;
                 }
-                else if (npc.frameCounter < 32)
+                else if (NPC.frameCounter < 32)
                 {
-                    npc.frame.Y = frameHeight;
+                    NPC.frame.Y = frameHeight;
                 }
-                else npc.frameCounter = 0;
+                else NPC.frameCounter = 0;
             }
-            else if (npc.ai[1] == 1)
+            else if (NPC.ai[1] == 1)
             {
-                if (npc.ai[2] < 30 || npc.ai[2] >= 70 && npc.ai[2] < 90 || npc.ai[2] >= 130 && npc.ai[2] < 150) // squish frame
+                if (NPC.ai[2] < 30 || NPC.ai[2] >= 70 && NPC.ai[2] < 90 || NPC.ai[2] >= 130 && NPC.ai[2] < 150) // squish frame
                 {
-                    npc.frame.Y = frameHeight * 2;
+                    NPC.frame.Y = frameHeight * 2;
                 }
-                else if (npc.ai[2] >= 30 && npc.ai[2] < 50 || npc.ai[2] >= 90 && npc.ai[2] < 110 || npc.ai[2] >= 150 && npc.ai[2] < 170)
+                else if (NPC.ai[2] >= 30 && NPC.ai[2] < 50 || NPC.ai[2] >= 90 && NPC.ai[2] < 110 || NPC.ai[2] >= 150 && NPC.ai[2] < 170)
                 {
-                    npc.frame.Y = frameHeight * 3;
+                    NPC.frame.Y = frameHeight * 3;
                 }
-                else if (npc.ai[2] >= 50 && npc.ai[2] < 70 || npc.ai[2] >= 110 && npc.ai[2] < 130)
+                else if (NPC.ai[2] >= 50 && NPC.ai[2] < 70 || NPC.ai[2] >= 110 && NPC.ai[2] < 130)
                 {
-                    if (npc.ai[2] % 6 == 0 || npc.ai[2] % 6 == 1 || npc.ai[2] % 8 == 6 || npc.ai[2] % 6 == 3) npc.frame.Y = 0;
-                    else npc.frame.Y = frameHeight;
+                    if (NPC.ai[2] % 6 == 0 || NPC.ai[2] % 6 == 1 || NPC.ai[2] % 8 == 6 || NPC.ai[2] % 6 == 3) NPC.frame.Y = 0;
+                    else NPC.frame.Y = frameHeight;
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             //if (npc.life <= 0)
             //{
-            //    Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/Bactus"), 1f);
+            //    Gore.NewGore(npc.position, npc.velocity * 0.8f, Mod.Find<ModGore>("Gores/Bactus"), 1f);
             //}
         }
     }

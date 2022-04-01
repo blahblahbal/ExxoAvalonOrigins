@@ -11,65 +11,65 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystal Bones");
-            Main.npcFrameCount[npc.type] = 15;
+            Main.npcFrameCount[NPC.type] = 15;
         }
         public override void SetDefaults()
         {
-            npc.damage = 122;
-            npc.lifeMax = 3500;
-            npc.defense = 15;
-            npc.lavaImmune = true;
-            npc.width = 18;
-            npc.aiStyle = 3;
-            npc.value = 50000f;
-            npc.height = 40;
-            npc.knockBackResist = 0f;
-            npc.HitSound = SoundID.NPCHit2;
-            npc.DeathSound = SoundID.NPCDeath2;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.IrateBonesBanner>();
+            NPC.damage = 122;
+            NPC.lifeMax = 3500;
+            NPC.defense = 15;
+            NPC.lavaImmune = true;
+            NPC.width = 18;
+            NPC.aiStyle = 3;
+            NPC.value = 50000f;
+            NPC.height = 40;
+            NPC.knockBackResist = 0f;
+            NPC.HitSound = SoundID.NPCHit2;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            //Banner = npc.type;
+            //BannerItem = ModContent.ItemType<Items.Banners.IrateBonesBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.7f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.7f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f)
             {
-                if (npc.direction == 1)
+                if (NPC.direction == 1)
                 {
-                    npc.spriteDirection = 1;
+                    NPC.spriteDirection = 1;
                 }
-                if (npc.direction == -1)
+                if (NPC.direction == -1)
                 {
-                    npc.spriteDirection = -1;
+                    NPC.spriteDirection = -1;
                 }
-                if (npc.velocity.X == 0f)
+                if (NPC.velocity.X == 0f)
                 {
-                    npc.frame.Y = 0;
-                    npc.frameCounter = 0.0;
+                    NPC.frame.Y = 0;
+                    NPC.frameCounter = 0.0;
                 }
                 else
                 {
-                    npc.frameCounter += Math.Abs(npc.velocity.X) * 2f;
-                    npc.frameCounter += 1.0;
-                    if (npc.frameCounter > 6.0)
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X) * 2f;
+                    NPC.frameCounter += 1.0;
+                    if (NPC.frameCounter > 6.0)
                     {
-                        npc.frame.Y = npc.frame.Y + frameHeight;
-                        npc.frameCounter = 0.0;
+                        NPC.frame.Y = NPC.frame.Y + frameHeight;
+                        NPC.frameCounter = 0.0;
                     }
-                    if (npc.frame.Y / frameHeight >= Main.npcFrameCount[npc.type])
+                    if (NPC.frame.Y / frameHeight >= Main.npcFrameCount[NPC.type])
                     {
-                        npc.frame.Y = frameHeight * 2;
+                        NPC.frame.Y = frameHeight * 2;
                     }
                 }
             }
             else
             {
-                npc.frameCounter = 0.0;
-                npc.frame.Y = frameHeight;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = frameHeight;
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -80,19 +80,19 @@ namespace ExxoAvalonOrigins.NPCs
         {
             for (int i = 0; i < 8; i++)
             {
-                float speedX = npc.velocity.X + Main.rand.Next(-51, 51) * 0.2f;
-                float speedY = npc.velocity.Y + Main.rand.Next(-51, 51) * 0.2f;
-                int proj = Projectile.NewProjectile(npc.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalShard>(), 100, 0.3f);
+                float speedX = NPC.velocity.X + Main.rand.Next(-51, 51) * 0.2f;
+                float speedY = NPC.velocity.Y + Main.rand.Next(-51, 51) * 0.2f;
+                int proj = Projectile.NewProjectile(NPC.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalShard>(), 100, 0.3f);
                 Main.projectile[proj].timeLeft = 300;
             }
-            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), Main.rand.Next(10, 15));
-            if (npc.life <= 0)
+            Item.NewItem(NPC.getRect(), ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), Main.rand.Next(10, 15));
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CrystalBonesHead"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CrystalBonesArm"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CrystalBonesArm"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CrystalBonesLeg"), 1f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CrystalBonesLeg"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesHead"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesArm"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesArm"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesLeg"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesLeg"), 1f);
             }
         }
     }

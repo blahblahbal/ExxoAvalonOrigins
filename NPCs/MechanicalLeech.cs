@@ -10,24 +10,24 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
-            npc.aiStyle = 6;
-            npc.netAlways = true;
-            npc.damage = 40;
-            npc.defense = 6;
-            npc.lifeMax = 300;
-            npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath14;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
+            NPC.width = 14;
+            NPC.height = 14;
+            NPC.aiStyle = 6;
+            NPC.netAlways = true;
+            NPC.damage = 40;
+            NPC.defense = 6;
+            NPC.lifeMax = 300;
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = SoundID.NPCDeath14;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override void Init()
         {
@@ -47,24 +47,24 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
-            npc.aiStyle = 6;
-            npc.netAlways = true;
-            npc.damage = 35;
-            npc.defense = 6;
-            npc.lifeMax = 300;
-            npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath14;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
+            NPC.width = 14;
+            NPC.height = 14;
+            NPC.aiStyle = 6;
+            NPC.netAlways = true;
+            NPC.damage = 35;
+            NPC.defense = 6;
+            NPC.lifeMax = 300;
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = SoundID.NPCDeath14;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
     }
 
@@ -77,24 +77,24 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void SetDefaults()
         {
-            npc.width = 14;
-            npc.height = 14;
-            npc.aiStyle = 6;
-            npc.netAlways = true;
-            npc.damage = 30;
-            npc.defense = 15;
-            npc.lifeMax = 300;
-            npc.HitSound = SoundID.NPCHit4;
-            npc.DeathSound = SoundID.NPCDeath14;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
+            NPC.width = 14;
+            NPC.height = 14;
+            NPC.aiStyle = 6;
+            NPC.netAlways = true;
+            NPC.damage = 30;
+            NPC.defense = 15;
+            NPC.lifeMax = 300;
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = SoundID.NPCDeath14;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override void Init()
         {

@@ -17,30 +17,22 @@ namespace ExxoAvalonOrigins.Items.Tomes
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.value = 5000;
-            item.height = dims.Height;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.value = 5000;
+            Item.height = dims.Height;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().tome = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.rangedDamage += 0.05f;
+            player.GetDamage(DamageClass.Ranged) += 0.05f;
             player.statLifeMax2 += 20;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<DewOrb>(), 6);
-            recipe.AddIngredient(ModContent.ItemType<CarbonSteel>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<Sandstone>(), 10);
-            recipe.AddIngredient(ItemID.FallenStar, 15);
-            recipe.AddIngredient(ModContent.ItemType<MysticalTomePage>(), 4);
-            recipe.AddTile(ModContent.TileType<Tiles.TomeForge>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<DewOrb>(), 6).AddIngredient(ModContent.ItemType<CarbonSteel>(), 5).AddIngredient(ModContent.ItemType<Sandstone>(), 10).AddIngredient(ItemID.FallenStar, 15).AddIngredient(ModContent.ItemType<MysticalTomePage>(), 4).AddTile(ModContent.TileType<Tiles.TomeForge>()).Register();
         }
     }
 }

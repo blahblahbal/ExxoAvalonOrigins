@@ -14,31 +14,22 @@ namespace ExxoAvalonOrigins.Items.Placeable.Wall
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTurn = true;
-            item.useTime = 10;
-            item.createWall = ModContent.WallType<Walls.AncientMythrilBrickWall>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTurn = true;
+            Item.useTime = 10;
+            Item.createWall = ModContent.WallType<Walls.AncientMythrilBrickWall>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Tile.Ancient.AncientMythrilBrick>());
-            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
-            r.SetResult(this, 4);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(this, 4);
-            r.AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>());
-            r.SetResult(ModContent.ItemType<Tile.Ancient.AncientMythrilBrick>());
-            r.AddRecipe();
+            CreateRecipe(4).AddIngredient(ModContent.ItemType<Tile.Ancient.AncientMythrilBrick>()).AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>()).Register();
+            CreateRecipe(1).AddIngredient(this, 4).AddTile(ModContent.TileType<Tiles.Ancient.AncientWorkbench>()).ReplaceResult(ModContent.ItemType<Tile.Ancient.AncientMythrilBrick>());
         }
     }
 }

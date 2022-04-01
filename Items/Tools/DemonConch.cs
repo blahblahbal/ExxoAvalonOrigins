@@ -15,25 +15,19 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override void SetDefaults()
         {
-            item.rare = ItemRarityID.Orange;
-            item.width = 24;
-            item.useTime = 90;
-            item.useTurn = true;
-            item.value = Item.sellPrice(0, 1);
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item6;
-            item.useAnimation = 90;
-            item.height = 24;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = 24;
+            Item.useTime = 90;
+            Item.useTurn = true;
+            Item.value = Item.sellPrice(0, 1);
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item6;
+            Item.useAnimation = 90;
+            Item.height = 24;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.MagicMirror);
-            r.AddIngredient(ItemID.ShadowKey);
-            r.AddIngredient(ItemID.LivingFireBlock, 50);
-            r.AddTile(TileID.TinkerersWorkbench);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.MagicMirror).AddIngredient(ItemID.ShadowKey).AddIngredient(ItemID.LivingFireBlock, 50).AddTile(TileID.TinkerersWorkbench).Register();
         }
         public override void HoldItem(Player player)
         {

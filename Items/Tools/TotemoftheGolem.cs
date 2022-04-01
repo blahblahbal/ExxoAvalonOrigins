@@ -15,14 +15,14 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = false;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.maxStack = 1;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.consumable = false;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.maxStack = 1;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

@@ -14,44 +14,44 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 6;
-            projectile.height = 6;
-            projectile.alpha = 255;
-            projectile.friendly = true;
-            projectile.hostile = false;
-            projectile.penetrate = 5;
-            projectile.timeLeft = 50;
-            projectile.ignoreWater = false;
-            projectile.tileCollide = true;
-            projectile.ranged = true;
-            projectile.extraUpdates = 2;
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 10;
+            Projectile.width = 6;
+            Projectile.height = 6;
+            Projectile.alpha = 255;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.penetrate = 5;
+            Projectile.timeLeft = 50;
+            Projectile.ignoreWater = false;
+            Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.extraUpdates = 2;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
         }
         public override void AI()
         {
-            if (projectile.ai[0] > 1f)
+            if (Projectile.ai[0] > 1f)
             {
                 float num418 = 1f;
-                if (projectile.ai[0] == 8f)
+                if (Projectile.ai[0] == 8f)
                 {
                     num418 = 0.25f;
                 }
-                else if (projectile.ai[0] == 9f)
+                else if (Projectile.ai[0] == 9f)
                 {
                     num418 = 0.5f;
                 }
-                else if (projectile.ai[0] == 10f)
+                else if (Projectile.ai[0] == 10f)
                 {
                     num418 = 0.75f;
                 }
-                projectile.ai[0] += 1f;
+                Projectile.ai[0] += 1f;
                 int num419 = 6;
                 if (num419 == 6 || Main.rand.Next(3) == 0)
                 {
                     for (int num420 = 0; num420 < 1; num420++)
                     {
-                        int num421 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, num419, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100);
+                        int num421 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, num419, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100);
                         Dust dust98;
                         Dust dust189;
                         if (Main.rand.Next(3) != 0 || (num419 == 75 && Main.rand.Next(3) == 0))
@@ -63,7 +63,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.dust[num421].velocity.X *= 2f;
                             Main.dust[num421].velocity.Y *= 2f;
                         }
-                        if (projectile.type == 188)
+                        if (Projectile.type == 188)
                         {
                             dust98 = Main.dust[num421];
                             dust189 = dust98;
@@ -85,13 +85,13 @@ namespace ExxoAvalonOrigins.Projectiles
             }
             else
             {
-                projectile.ai[0] += 1f;
+                Projectile.ai[0] += 1f;
             }
-            projectile.rotation += 0.3f * (float)projectile.direction;
+            Projectile.rotation += 0.3f * (float)Projectile.direction;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.FleshFireLinger>(), projectile.damage, projectile.knockBack, projectile.owner);
+            Projectile.NewProjectile(new Vector2(Projectile.Center.X, Projectile.Center.Y), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.FleshFireLinger>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             return true;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -120,24 +120,24 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 20;
-            projectile.height = 20;
-            projectile.alpha = 255;
-            projectile.friendly = true;
-            projectile.hostile = false;
-            projectile.penetrate = -1;
-            projectile.timeLeft = 250 + Main.rand.Next(50, 100);
-            projectile.ignoreWater = false;
-            projectile.tileCollide = false;
-            projectile.ranged = true;
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 10;
+            Projectile.width = 20;
+            Projectile.height = 20;
+            Projectile.alpha = 255;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 250 + Main.rand.Next(50, 100);
+            Projectile.ignoreWater = false;
+            Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
         }
         public override void AI()
         {
             for (int i = 0; i < 1; i++)
             {
-                int num421 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default, 3f);
+                int num421 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 3f);
                 Main.dust[num421].velocity.X *= 3f;
                 Main.dust[num421].velocity.Y *= 3.5f;
                 Main.dust[num421].noGravity = true;

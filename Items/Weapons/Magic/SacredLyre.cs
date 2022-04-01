@@ -20,24 +20,24 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item8;
-            item.magic = true;
-            item.damage = 120;
-            item.autoReuse = true;
-            item.scale = 1f;
-            item.shootSpeed = 4.5f;
-            item.mana = 16;
-            item.rare = ItemRarityID.Purple;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.knockBack = 1.75f;
-            item.shoot = ModContent.ProjectileType<Projectiles.SacredLyreShockwaveNote>();
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.holdStyle = 3;
-            item.value = 40000;
-            item.useAnimation = 10;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item8;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 120;
+            Item.autoReuse = true;
+            Item.scale = 1f;
+            Item.shootSpeed = 4.5f;
+            Item.mana = 16;
+            Item.rare = ItemRarityID.Purple;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.knockBack = 1.75f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.SacredLyreShockwaveNote>();
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.holdStyle = 3;
+            Item.value = 40000;
+            Item.useAnimation = 10;
+            Item.height = dims.Height;
         }
         public override Vector2? HoldoutOffset()
         {
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
             }
             float num72 = (float)Math.Sqrt(num70 * num70 + num71 * num71);
             float num73 = num72;
-            num72 = item.shootSpeed / num72;
+            num72 = Item.shootSpeed / num72;
             num70 *= num72;
             num71 *= num72;
             float dist = Vector2.Distance(new Vector2(Main.mouseX + Main.screenPosition.X, Main.mouseY + Main.screenPosition.Y), player.Center);

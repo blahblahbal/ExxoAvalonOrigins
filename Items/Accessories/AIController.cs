@@ -17,18 +17,18 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = -12;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 15, 0, 0);
-            item.buffType = ModContent.BuffType<Buffs.StingerProbe>();
-            item.height = dims.Height;
-            item.expert = true;
+            Item.rare = -12;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 15, 0, 0);
+            Item.buffType = ModContent.BuffType<Buffs.StingerProbe>();
+            Item.height = dims.Height;
+            Item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddBuff(item.buffType, 2, true);
+            player.AddBuff(Item.buffType, 2, true);
         }
     }
 }

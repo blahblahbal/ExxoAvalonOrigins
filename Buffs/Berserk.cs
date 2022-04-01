@@ -6,7 +6,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Berserk : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Berserk!");
             Description.SetDefault("True melee weapons deal 150% increased critical damage");

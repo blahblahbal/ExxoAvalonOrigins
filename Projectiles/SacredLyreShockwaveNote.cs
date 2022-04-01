@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/SacredLyreShockwaveNote");
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.aiStyle = 21;
-            projectile.magic = true;
-            projectile.light = 0.8f;
-            projectile.penetrate = -1;
-            projectile.friendly = true;
-            projectile.timeLeft = 840;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = 21;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.light = 0.8f;
+            Projectile.penetrate = -1;
+            Projectile.friendly = true;
+            Projectile.timeLeft = 840;
             timer = 0;
         }
         public override bool PreAI()
         {
-            Lighting.AddLight(projectile.position, 255 / 255, 72 / 255, 217 / 255);
+            Lighting.AddLight(Projectile.position, 255 / 255, 72 / 255, 217 / 255);
             return true;
         }
         public override Color? GetAlpha(Color lightColor)
@@ -36,17 +36,17 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (projectile.type == ModContent.ProjectileType<SacredLyreShockwaveNote>())
+            if (Projectile.type == ModContent.ProjectileType<SacredLyreShockwaveNote>())
             {
                 //Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
                 if (timer % 4 == 0)
                 {
-                    Vector2 c = projectile.Center;
+                    Vector2 c = Projectile.Center;
                     float rot = (float)Math.Atan2(c.Y - 1, c.X - 1);
                     for (float f = 0; f < 3.6f; f += 0.4f)
                     {
-                        Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot + f) * 4f * -1.0), (float)(Math.Sin(rot + f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
-                        Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot - f) * 4f * -1.0), (float)(Math.Sin(rot - f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
+                        Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot + f) * 4f * -1.0), (float)(Math.Sin(rot + f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot - f) * 4f * -1.0), (float)(Math.Sin(rot - f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
                     }
                 }
                 
@@ -54,21 +54,21 @@ namespace ExxoAvalonOrigins.Projectiles
                 //Main.projectile[p].Center = projectile.Center;
                 //Main.projectile[p].ai[0] = projectile.Center.X;
                 //Main.projectile[p].ai[1] = projectile.Center.Y;
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] >= 9f)
+                Projectile.ai[0] += 1f;
+                if (Projectile.ai[0] >= 9f)
                 {
-                    projectile.position += projectile.velocity;
-                    projectile.Kill();
+                    Projectile.position += Projectile.velocity;
+                    Projectile.Kill();
                 }
                 else
                 {
-                    if (projectile.velocity.Y != oldVelocity.Y)
+                    if (Projectile.velocity.Y != oldVelocity.Y)
                     {
-                        projectile.velocity.Y = -oldVelocity.Y;
+                        Projectile.velocity.Y = -oldVelocity.Y;
                     }
-                    if (projectile.velocity.X != oldVelocity.X)
+                    if (Projectile.velocity.X != oldVelocity.X)
                     {
-                        projectile.velocity.X = -oldVelocity.X;
+                        Projectile.velocity.X = -oldVelocity.X;
                     }
                 }
             }

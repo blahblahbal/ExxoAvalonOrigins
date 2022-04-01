@@ -1,6 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.World.Passes
             {
                 for (int j = y; j <= y + 99; j++)
                 {
-                    if (Main.tile[i, j].type == (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>())
+                    if (Main.tile[i, j].TileType == (ushort)ModContent.TileType<Tiles.ResistantWoodPlatform>())
                     { }
                     else
                     {

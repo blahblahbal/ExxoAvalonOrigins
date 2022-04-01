@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class GiantCrystalShard : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Tiles
         //}
         public override bool CreateDust(int i, int j, ref int type)
         {
-            switch (Main.tile[i, j].frameY / 36)
+            switch (Main.tile[i, j].TileFrameY / 36)
             {
                 case 0:
                     type = DustID.PurpleCrystalShard;
@@ -49,15 +49,15 @@ namespace ExxoAvalonOrigins.Tiles
         public override void PlaceInWorld(int i, int j, Item item)
         {
             short f = (short)(Main.rand.Next(3) * 36);
-            Main.tile[i - 1, j - 1].frameY = f;
-            Main.tile[i, j - 1].frameY = f;
-            Main.tile[i - 1, j].frameY = (short)(f + 18);
-            Main.tile[i, j].frameY = (short)(f + 18);
+            Main.tile[i - 1, j - 1].TileFrameY = f;
+            Main.tile[i, j - 1].TileFrameY = f;
+            Main.tile[i - 1, j].TileFrameY = (short)(f + 18);
+            Main.tile[i, j].TileFrameY = (short)(f + 18);
         }
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (Main.tile[i, j].frameY < 36) Lighting.AddLight(new Vector2(i * 16, j * 16), 83 / 255, 38 / 255, 131 / 255);
-            else if (Main.tile[i, j].frameY < 72) Lighting.AddLight(new Vector2(i * 16, j * 16), 0, 74 / 255, 122 / 255);
+            if (Main.tile[i, j].TileFrameY < 36) Lighting.AddLight(new Vector2(i * 16, j * 16), 83 / 255, 38 / 255, 131 / 255);
+            else if (Main.tile[i, j].TileFrameY < 72) Lighting.AddLight(new Vector2(i * 16, j * 16), 0, 74 / 255, 122 / 255);
             else Lighting.AddLight(new Vector2(i * 16, j * 16), 152 / 255, 12 / 255, 121 / 255);
         }
     }

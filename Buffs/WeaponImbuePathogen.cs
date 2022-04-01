@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class WeaponImbuePathogen : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Weapon Imbue: Infection");
             Description.SetDefault("Melee attacks inflict Infected on your targets");

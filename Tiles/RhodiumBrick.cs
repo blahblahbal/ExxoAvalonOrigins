@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class RhodiumBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(Color.Pink);
             Main.tileSolid[Type] = true;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             Main.tileMerge[Type][TileID.WoodBlock] = true;
             Main.tileMerge[TileID.WoodBlock][Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("RhodiumBrick");
+            drop = Mod.Find<ModItem>("RhodiumBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             dustType = DustID.t_LivingWood;

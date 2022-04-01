@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ExxoAvalonOrigins.World.Passes
 {
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.World.Passes
                     int x = WorldGen.genRand.Next(1, Main.maxTilesX - 3);
                     int y = (int)(WorldGen.worldSurfaceHigh + 20.0);
                     WorldGen.Place3x2(x, y, ModContent.GetInstance<Tiles.IckyAltar>().Type);
-                    if (Main.tile[x, y].type == ModContent.GetInstance<Tiles.IckyAltar>().Type)
+                    if (Main.tile[x, y].TileType == ModContent.GetInstance<Tiles.IckyAltar>().Type)
                         break;
                 }
             }

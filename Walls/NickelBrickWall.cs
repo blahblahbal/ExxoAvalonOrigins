@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class NickelBrickWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("NickelBrickWall");
+            drop = Mod.Find<ModItem>("NickelBrickWall").Type;
             AddMapEntry(new Color(52, 78, 85));
             dustType = ModContent.DustType<Dusts.NickelDust>();
         }

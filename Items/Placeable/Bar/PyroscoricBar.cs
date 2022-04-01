@@ -17,19 +17,19 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.maxStack = 999;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.PlacedBars>();
-            item.placeStyle = 13;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.value = Item.sellPrice(0, 1, 0, 0);
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.PlacedBars>();
+            Item.placeStyle = 13;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.value = Item.sellPrice(0, 1, 0, 0);
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -39,7 +39,7 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
         {
             float num7 = (float)Main.rand.Next(90, 111) * 0.01f;
             num7 *= Main.essScale;
-            Lighting.AddLight((int)((item.position.X + (float)(item.width / 2)) / 16f), (int)((item.position.Y + (float)(item.height / 2)) / 16f), 0.5f * num7, 0.2f * num7, 0.05f * num7);
+            Lighting.AddLight((int)((Item.position.X + (float)(Item.width / 2)) / 16f), (int)((Item.position.Y + (float)(Item.height / 2)) / 16f), 0.5f * num7, 0.2f * num7, 0.05f * num7);
         }
     }
 }

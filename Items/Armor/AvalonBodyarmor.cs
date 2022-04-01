@@ -19,18 +19,18 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/AvalonBodyarmor");
-            item.defense = 42;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 41, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 42;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 41, 0, 0);
+            Item.height = dims.Height;
         }
         public override void UpdateEquip(Player player)
         {
-            player.magicCrit += 10;
-            player.meleeCrit += 10;
-            player.rangedCrit += 10;
-            player.thrownCrit += 10;
+            player.GetCritChance(DamageClass.Magic) += 10;
+            player.GetCritChance(DamageClass.Melee) += 10;
+            player.GetCritChance(DamageClass.Ranged) += 10;
+            player.GetCritChance(DamageClass.Throwing) += 10;
             player.Avalon().critDamageMult += 0.30f;
             player.longInvince = true;
             player.starCloak = true;

@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Gauntlet : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gauntlet");
             Description.SetDefault("-6 defense, +12% melee damage");
@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Buffs
         public override void Update(Player player, ref int k)
         {
             player.statDefense -= 6;
-            player.meleeDamage += 0.12f;
+            player.GetDamage(DamageClass.Melee) += 0.12f;
         }
     }
 }

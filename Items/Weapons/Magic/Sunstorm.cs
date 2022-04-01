@@ -12,28 +12,28 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         {
             DisplayName.SetDefault("Sunstorm");
             Tooltip.SetDefault("Fires beams from the sun itself");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.magic = true;
-            item.damage = 50;
-            item.scale = 1.1f;
-            item.shootSpeed = 12f;
-            item.mana = 17;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 60;
-            item.knockBack = 6f;
-            item.shoot = ModContent.ProjectileType<Projectiles.VerticalLaserBeam>();
-            item.value = 999000;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 60;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item8;
+            Item.DamageType = DamageClass.Magic;
+            Item.damage = 50;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 12f;
+            Item.mana = 17;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 60;
+            Item.knockBack = 6f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.VerticalLaserBeam>();
+            Item.value = 999000;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 60;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item8;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,

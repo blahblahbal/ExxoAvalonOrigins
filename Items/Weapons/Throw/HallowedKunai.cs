@@ -14,23 +14,23 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.damage = 38;
-            item.maxStack = 999;
-            item.shootSpeed = 11f;
-            item.crit += 2;
-            item.ranged = true;
-            item.consumable = true;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Pink;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.knockBack = 2.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.HallowedKunai>();
-            item.value = 400;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 10;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.damage = 38;
+            Item.maxStack = 999;
+            Item.shootSpeed = 11f;
+            Item.crit += 2;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.knockBack = 2.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.HallowedKunai>();
+            Item.value = 400;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 10;
+            Item.height = dims.Height;
         }
     }
 }

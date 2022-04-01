@@ -15,37 +15,29 @@ namespace ExxoAvalonOrigins.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.damage = 84;
-            item.autoReuse = true;
-            item.channel = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 10f;
-            item.noMelee = true;
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.useTime = 38;
-            item.knockBack = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.BerserkerSphere>();
-            item.UseSound = SoundID.Item1;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 50, 0, 0);
-            item.useAnimation = 38;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.damage = 84;
+            Item.autoReuse = true;
+            Item.channel = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 10f;
+            Item.noMelee = true;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.useTime = 38;
+            Item.knockBack = 10f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.BerserkerSphere>();
+            Item.UseSound = SoundID.Item1;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 50, 0, 0);
+            Item.useAnimation = 38;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 60);
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 75);
-            recipe.AddIngredient(ModContent.ItemType<Material.ElementShard>(), 7);
-            recipe.AddIngredient(ModContent.ItemType<Material.VictoryPiece>());
-            recipe.AddIngredient(ItemID.Flairon);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BerserkerBar>(), 60).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 75).AddIngredient(ModContent.ItemType<Material.ElementShard>(), 7).AddIngredient(ModContent.ItemType<Material.VictoryPiece>()).AddIngredient(ItemID.Flairon).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

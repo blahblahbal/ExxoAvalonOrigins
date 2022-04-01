@@ -1,6 +1,7 @@
 ﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,27 +12,27 @@ namespace ExxoAvalonOrigins.NPCs
         public override string Texture => "ExxoAvalonOrigins/NPCs/CaesiumSeekerHead";
         public override void SetDefaults()
         {
-            npc.width = 50;
-            npc.height = 50;
-            npc.aiStyle = 6;
-            npc.scale = 0.8f;
-            npc.netAlways = true;
-            npc.damage = 65;
-            npc.defense = 15;
-            npc.lifeMax = 1800;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.value = 1000;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            npc.buffImmune[BuffID.Daybreak] = true;
-            drawOffsetY = 25;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<Items.Banners.CaesiumSeekerBanner>();
+            NPC.width = 50;
+            NPC.height = 50;
+            NPC.aiStyle = 6;
+            NPC.scale = 0.8f;
+            NPC.netAlways = true;
+            NPC.damage = 65;
+            NPC.defense = 15;
+            NPC.lifeMax = 1800;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.value = 1000;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            NPC.buffImmune[BuffID.Daybreak] = true;
+            DrawOffsetY = 25;
+            //Banner = npc.type;
+            //BannerItem = ModContent.ItemType<Items.Banners.CaesiumSeekerBanner>();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -41,21 +42,18 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(10) == 0 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CaesiumOre>(), Main.rand.Next(2, 5), false, 0, false);
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaesiumOre>(), 10, 2, 5));
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerHead"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CaesiumSeekerHead").Type, 0.8f);
             }
         }
         public override void Init()
@@ -73,24 +71,24 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 50;
-            npc.height = 50;
-            npc.aiStyle = 6;
-            npc.netAlways = true;
-            npc.damage = 60;
-            npc.scale = 0.8f;
-            npc.defense = 45;
-            npc.lifeMax = 1800;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            npc.buffImmune[BuffID.Daybreak] = true;
-            drawOffsetY = 25;
+            NPC.width = 50;
+            NPC.height = 50;
+            NPC.aiStyle = 6;
+            NPC.netAlways = true;
+            NPC.damage = 60;
+            NPC.scale = 0.8f;
+            NPC.defense = 45;
+            NPC.lifeMax = 1800;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            NPC.buffImmune[BuffID.Daybreak] = true;
+            DrawOffsetY = 25;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -98,14 +96,14 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f * bossLifeScale);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerBody"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CaesiumSeekerBody").Type, 0.8f);
             }
         }
     }
@@ -116,24 +114,24 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void SetDefaults()
         {
-            npc.width = 50;
-            npc.height = 50;
-            npc.aiStyle = 6;
-            npc.scale = 0.8f;
-            npc.netAlways = true;
-            npc.damage = 49;
-            npc.defense = 15;
-            npc.lifeMax = 1800;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.noGravity = true;
-            npc.noTileCollide = true;
-            npc.knockBackResist = 0f;
-            npc.behindTiles = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            npc.buffImmune[BuffID.Daybreak] = true;
-            drawOffsetY = 25;
+            NPC.width = 50;
+            NPC.height = 50;
+            NPC.aiStyle = 6;
+            NPC.scale = 0.8f;
+            NPC.netAlways = true;
+            NPC.damage = 49;
+            NPC.defense = 15;
+            NPC.lifeMax = 1800;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            NPC.buffImmune[BuffID.Daybreak] = true;
+            DrawOffsetY = 25;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -141,14 +139,14 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f * bossLifeScale);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/CaesiumSeekerTail"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CaesiumSeekerTail").Type, 0.8f);
             }
         }
         public override void Init()

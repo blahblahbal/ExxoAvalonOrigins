@@ -19,6 +19,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins
 {
@@ -718,7 +719,7 @@ IL_162:
                     npc.HitEffect(0, 10);
                     npc.active = false;
                     npc.NPCLoot();
-                    Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
+                    SoundEngine.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 else
                 {
@@ -766,7 +767,7 @@ IL_162:
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a);
                     }
                     //Main.npc[npc.whoAmI].NPCLoot();
-                    Main.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
+                    SoundEngine.PlaySound(SoundID.NPCKilled, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 return false;
             }
@@ -1010,7 +1011,7 @@ IL_162:
                     {
                         Item.NewItem(npc.getRect(), ItemID.JungleKey);
                     }
-                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneHoly)
+                    if (Main.rand.Next(1250) == 0 && Main.player[npc.FindClosestPlayer()].ZoneHallow)
                     {
                         Item.NewItem(npc.getRect(), ItemID.HallowedKey);
                     }
@@ -1082,9 +1083,9 @@ IL_162:
                 Mod imk = ModLoader.GetMod("imkSushisMod");
                 if (imk != null)
                 {
-                    NPCLoader.blockLoot.Add(imk.ItemType("LootMartiansToken"));
-                    NPCLoader.blockLoot.Add(imk.ItemType("LootPlanteraToken"));
-                    NPCLoader.blockLoot.Add(imk.ItemType("LootHardmodeToken"));
+                    NPCLoader.blockLoot.Add(imk.Find<ModItem>("LootMartiansToken").Type);
+                    NPCLoader.blockLoot.Add(imk.Find<ModItem>("LootPlanteraToken").Type);
+                    NPCLoader.blockLoot.Add(imk.Find<ModItem>("LootHardmodeToken").Type);
                 }
             }
             #endregion

@@ -15,33 +15,24 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Ores.Boltstone>();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = Item.sellPrice(0, 0, 0, 50);
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.Ores.Boltstone>();
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = Item.sellPrice(0, 0, 0, 50);
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(this, 35);
-            r.AddTile(TileID.Furnaces);
-            r.SetResult(ModContent.ItemType<Items.Consumables.StaminaCrystal>());
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<Items.Consumables.StaminaCrystal>());
-            r.AddTile(TileID.Furnaces);
-            r.SetResult(this, 35);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(this, 35).AddTile(TileID.Furnaces).ReplaceResult(ModContent.ItemType<Items.Consumables.StaminaCrystal>());
+            CreateRecipe(35).AddIngredient(ModContent.ItemType<Items.Consumables.StaminaCrystal>()).AddTile(TileID.Furnaces).Register();
         }
     }
 }

@@ -9,44 +9,44 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Platinum Slime");
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[NPC.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 22;
-            npc.lifeMax = 362;
-            npc.defense = 5;
-            npc.width = 36;
-            npc.aiStyle = 1;
-            npc.value = 1000f;
-            npc.knockBackResist = 0.4f;
-            npc.height = 24;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.PlatinumSlimeBanner>();
+            NPC.damage = 22;
+            NPC.lifeMax = 362;
+            NPC.defense = 5;
+            NPC.width = 36;
+            NPC.aiStyle = 1;
+            NPC.value = 1000f;
+            NPC.knockBackResist = 0.4f;
+            NPC.height = 24;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.PlatinumSlimeBanner>();
         }
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PlatinumOre, Main.rand.Next(10, 20), false, 0, false);
+            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.PlatinumOre, Main.rand.Next(10, 20), false, 0, false);
         }
 
         public override void FindFrame(int frameHeight)
         {
             var num2 = 0;
-            if (npc.aiAction == 0)
+            if (NPC.aiAction == 0)
             {
-                if (npc.velocity.Y < 0f)
+                if (NPC.velocity.Y < 0f)
                 {
                     num2 = 2;
                 }
-                else if (npc.velocity.Y > 0f)
+                else if (NPC.velocity.Y > 0f)
                 {
                     num2 = 3;
                 }
-                else if (npc.velocity.X != 0f)
+                else if (NPC.velocity.X != 0f)
                 {
                     num2 = 1;
                 }
@@ -55,27 +55,27 @@ namespace ExxoAvalonOrigins.NPCs
                     num2 = 0;
                 }
             }
-            else if (npc.aiAction == 1)
+            else if (NPC.aiAction == 1)
             {
                 num2 = 4;
             }
-            npc.frameCounter += 1.0;
+            NPC.frameCounter += 1.0;
             if (num2 > 0)
             {
-                npc.frameCounter += 1.0;
+                NPC.frameCounter += 1.0;
             }
             if (num2 == 4)
             {
-                npc.frameCounter += 1.0;
+                NPC.frameCounter += 1.0;
             }
-            if (npc.frameCounter >= 8.0)
+            if (NPC.frameCounter >= 8.0)
             {
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                npc.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
             }
-            if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
+            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
 

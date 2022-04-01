@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.Prefixes
         {
             if (base.Autoload(ref name))
             {
-                mod.AddPrefix("Needled", new Needled());
+                Mod.AddPrefix("Needled", new Needled());
             }
             return false;
         }

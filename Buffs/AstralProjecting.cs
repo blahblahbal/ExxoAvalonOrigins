@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class AstralProjecting : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Astral Projecting");
             Description.SetDefault("You are immune to damage, but cannot attack anything - touch mobs to inflict a debuff on them");

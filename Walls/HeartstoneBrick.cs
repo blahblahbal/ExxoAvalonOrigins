@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class HeartstoneBrick : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("HeartstoneBrick");
+            drop = Mod.Find<ModItem>("HeartstoneBrick").Type;
             AddMapEntry(new Color(126, 12, 28));
         }
     }

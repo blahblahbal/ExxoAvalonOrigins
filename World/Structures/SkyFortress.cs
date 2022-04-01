@@ -479,43 +479,43 @@ namespace ExxoAvalonOrigins.World.Structures
                         switch (_structureWalls[i, j])
                         {
                             case 0:
-                                tile.wall = 0;
+                                tile.WallType = 0;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 1:
-                                tile.wall = (ushort)ModContent.WallType<Walls.SkyBrickWallUnsafe>();
+                                tile.WallType = (ushort)ModContent.WallType<Walls.SkyBrickWallUnsafe>();
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 2:
-                                tile.wall = 4;
+                                tile.WallType = 4;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 3:
-                                tile.wall = 73;
+                                tile.WallType = 73;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 4:
-                                tile.wall = 17;
+                                tile.WallType = 17;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 5:
-                                tile.wall = 136;
+                                tile.WallType = 136;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 6:
-                                tile.wall = 43;
+                                tile.WallType = 43;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 7:
-                                tile.wall = 107;
+                                tile.WallType = 107;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 8:
-                                tile.wall = 21;
+                                tile.WallType = 21;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                             case 9:
-                                tile.wall = 16;
+                                tile.WallType = 16;
                                 WorldGen.SquareWallFrame(k, l);
                                 break;
                         }
@@ -707,13 +707,13 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 1:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.SkyBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.SkyBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 2:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.SkyBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.SkyBrick>();
                                     tile.slope(0);
                                     tile.halfBrick(true);
                                     break;
@@ -738,7 +738,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 5:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.SkyBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.SkyBrick>();
                                     tile.slope(4);
                                     tile.halfBrick(false);
                                     break;
@@ -751,7 +751,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 7:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.SkyBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.SkyBrick>();
                                     tile.slope(3);
                                     tile.halfBrick(false);
                                     break;
@@ -766,13 +766,13 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 9:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.SkyBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.SkyBrick>();
                                     tile.slope(2);
                                     tile.halfBrick(false);
                                     break;
                                 case 10:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.SkyBrick>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.SkyBrick>();
                                     tile.slope(1);
                                     tile.halfBrick(false);
                                     break;
@@ -792,7 +792,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                 case 28:
                                 case 49:
                                 case 50:
-                                    tile.type = (ushort)ModContent.TileType<Tiles.PearlstoneColumn>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.PearlstoneColumn>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     tile.active(true);
@@ -817,43 +817,43 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 18:
                                     tile.active(true);
-                                    tile.type = 119;
+                                    tile.TileType = 119;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 19:
                                     tile.active(true);
-                                    tile.type = 41;
+                                    tile.TileType = 41;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 20:
                                     tile.active(true);
-                                    tile.type = 119;
+                                    tile.TileType = 119;
                                     tile.slope(3);
                                     tile.halfBrick(false);
                                     break;
                                 case 21:
                                     tile.active(true);
-                                    tile.type = 119;
+                                    tile.TileType = 119;
                                     tile.slope(4);
                                     tile.halfBrick(false);
                                     break;
                                 case 22:
                                     tile.active(true);
-                                    tile.type = 124;
+                                    tile.TileType = 124;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 23:
                                     tile.active(true);
-                                    tile.type = 119;
+                                    tile.TileType = 119;
                                     tile.slope(1);
                                     tile.halfBrick(false);
                                     break;
                                 case 24:
                                     tile.active(true);
-                                    tile.type = 119;
+                                    tile.TileType = 119;
                                     tile.slope(2);
                                     tile.halfBrick(false);
                                     break;
@@ -962,8 +962,8 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 38:
                                     tile.active(true);
-                                    tile.type = 137;
-                                    tile.frameY = 3 * 18;
+                                    tile.TileType = 137;
+                                    tile.TileFrameY = 3 * 18;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -978,13 +978,13 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 40:
                                     tile.active(true);
-                                    tile.type = 30;
+                                    tile.TileType = 30;
                                     tile.slope(0);
                                     tile.halfBrick(true);
                                     break;
                                 case 41:
                                     tile.active(false);
-                                    tile.type = 0;
+                                    tile.TileType = 0;
                                     break;
                                 case 42:
                                     if (confirmPlatforms == 1)
@@ -1027,13 +1027,13 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 47:
                                     tile.active(true);
-                                    tile.type = 2;
+                                    tile.TileType = 2;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 48:
                                     tile.active(true);
-                                    tile.type = 0;
+                                    tile.TileType = 0;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -1135,7 +1135,7 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 63:
                                     tile.active(true);
-                                    tile.type = 3;
+                                    tile.TileType = 3;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -1155,19 +1155,19 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 66:
                                     tile.active(true);
-                                    tile.type = 2;
+                                    tile.TileType = 2;
                                     tile.slope(0);
                                     tile.halfBrick(true);
                                     break;
                                 case 67:
                                     tile.active(true);
-                                    tile.type = 2;
+                                    tile.TileType = 2;
                                     tile.slope(1);
                                     tile.halfBrick(false);
                                     break;
                                 case 68:
                                     tile.active(true);
-                                    tile.type = 73;
+                                    tile.TileType = 73;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -1183,85 +1183,85 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 70:
                                     tile.active(true);
-                                    tile.type = 1;
+                                    tile.TileType = 1;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 71:
                                     tile.active(true);
-                                    tile.type = 2;
+                                    tile.TileType = 2;
                                     tile.slope(2);
                                     tile.halfBrick(false);
                                     break;
                                 case 72:
                                     tile.active(true);
-                                    tile.type = 189;
+                                    tile.TileType = 189;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 73:
                                     tile.active(true);
-                                    tile.type = 189;
+                                    tile.TileType = 189;
                                     tile.slope(2);
                                     tile.halfBrick(false);
                                     break;
                                 case 74:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.VorazylcumOre>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.Ores.VorazylcumOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 75:
                                     tile.active(true);
-                                    tile.type = 189;
+                                    tile.TileType = 189;
                                     tile.slope(0);
                                     tile.halfBrick(true);
                                     break;
                                 case 76:
                                     tile.active(true);
-                                    tile.type = 52;
+                                    tile.TileType = 52;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 77:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.UnvolanditeOre>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.Ores.UnvolanditeOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 78:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.TritanoriumOre>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.Ores.TritanoriumOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 79:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.PyroscoricOre>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.Ores.PyroscoricOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 80:
                                     tile.active(true);
-                                    tile.type = 189;
+                                    tile.TileType = 189;
                                     tile.slope(4);
                                     tile.halfBrick(false);
                                     break;
                                 case 81:
                                     tile.active(true);
-                                    tile.type = (ushort)ModContent.TileType<Tiles.Ores.OblivionOre>();
+                                    tile.TileType = (ushort)ModContent.TileType<Tiles.Ores.OblivionOre>();
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 82:
                                     tile.active(true);
-                                    tile.type = 196;
+                                    tile.TileType = 196;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
                                 case 83:
                                     tile.active(true);
-                                    tile.type = 189;
+                                    tile.TileType = 189;
                                     tile.slope(3);
                                     tile.halfBrick(false);
                                     break;
@@ -1273,8 +1273,8 @@ namespace ExxoAvalonOrigins.World.Structures
                                     break;
                                 case 85:
                                     tile.active(true);
-                                    tile.type = 137;
-                                    tile.frameY = 4 * 18;
+                                    tile.TileType = 137;
+                                    tile.TileFrameY = 4 * 18;
                                     tile.slope(0);
                                     tile.halfBrick(false);
                                     break;
@@ -1291,7 +1291,7 @@ namespace ExxoAvalonOrigins.World.Structures
             int k = j;
             while (k < Main.maxTilesY)
             {
-                if (Main.tile[i, k].active() && Main.tileSolid[(int)Main.tile[i, k].type])
+                if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
                 {
                     int num = k;
                     int num2 = WorldGen.PlaceChest(i - 1, num - 1, (ushort)ModContent.TileType<Tiles.PlatinumChest>(), notNearOtherChests);

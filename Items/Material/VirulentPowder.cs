@@ -14,18 +14,14 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.width = dims.Width;
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<ContaminatedMushroom>());
-            r.AddTile(TileID.Bottles);
-            r.SetResult(this, 5);
-            r.AddRecipe();
+            CreateRecipe(5).AddIngredient(ModContent.ItemType<ContaminatedMushroom>()).AddTile(TileID.Bottles).Register();
         }
     }
 }

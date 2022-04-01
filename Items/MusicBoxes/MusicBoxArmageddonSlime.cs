@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Items.MusicBoxes
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/MusicBoxes/MusicBoxArmageddonSlime");
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.maxStack = 999;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.MusicBoxes>();
-            item.placeStyle = 2;
-            item.rare = ItemRarityID.LightRed;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.value = Item.sellPrice(0, 2, 0, 0);
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.MusicBoxes>();
+            Item.placeStyle = 2;
+            Item.rare = ItemRarityID.LightRed;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.value = Item.sellPrice(0, 2, 0, 0);
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

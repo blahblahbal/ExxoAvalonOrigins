@@ -16,62 +16,28 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.rare = ItemRarityID.Green;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.rare = ItemRarityID.Green;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            r.AddTile(TileID.Bookcases);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.BlizzardinaBottle);
-            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            r.AddTile(TileID.Bookcases);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.SandstorminaBottle);
-            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            r.AddTile(TileID.Bookcases);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.FartinaJar);
-            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            r.AddTile(TileID.Bookcases);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Book);
-            r.AddIngredient(ItemID.TsunamiInABottle);
-            r.AddIngredient(ModContent.ItemType<StaminaCrystal>());
-            r.AddTile(TileID.Bookcases);
-            r.SetResult(this);
-            r.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Book).AddIngredient(ItemID.CloudinaBottle).AddIngredient(ModContent.ItemType<StaminaCrystal>()).AddTile(TileID.Bookcases).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Book).AddIngredient(ItemID.BlizzardinaBottle).AddIngredient(ModContent.ItemType<StaminaCrystal>()).AddTile(TileID.Bookcases).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Book).AddIngredient(ItemID.SandstorminaBottle).AddIngredient(ModContent.ItemType<StaminaCrystal>()).AddTile(TileID.Bookcases).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Book).AddIngredient(ItemID.FartinaJar).AddIngredient(ModContent.ItemType<StaminaCrystal>()).AddTile(TileID.Bookcases).Register();
+            CreateRecipe(1).AddIngredient(ItemID.Book).AddIngredient(ItemID.TsunamiInABottle).AddIngredient(ModContent.ItemType<StaminaCrystal>()).AddTile(TileID.Bookcases).Register();
         }
         public override bool CanUseItem(Player player)
         {
             return !player.Avalon().rocketJumpUnlocked;
         }
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.Avalon().rocketJumpUnlocked = true;
             return true;

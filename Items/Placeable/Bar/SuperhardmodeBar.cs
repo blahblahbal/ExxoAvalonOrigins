@@ -15,37 +15,24 @@ namespace ExxoAvalonOrigins.Items.Placeable.Bar
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.maxStack = 999;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.PlacedBars>();
-            item.placeStyle = 15;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.value = Item.sellPrice(0, 1, 30, 0);
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.PlacedBars>();
+            Item.placeStyle = 15;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.value = Item.sellPrice(0, 1, 30, 0);
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<PyroscoricBar>());
-            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>());
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<TritanoriumBar>());
-            recipe.AddIngredient(ModContent.ItemType<HydrolythBar>());
-            recipe.AddIngredient(ModContent.ItemType<BerserkerBar>());
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<PyroscoricBar>()).AddIngredient(ModContent.ItemType<HydrolythBar>()).AddIngredient(ModContent.ItemType<BerserkerBar>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<TritanoriumBar>()).AddIngredient(ModContent.ItemType<HydrolythBar>()).AddIngredient(ModContent.ItemType<BerserkerBar>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
     }
 }

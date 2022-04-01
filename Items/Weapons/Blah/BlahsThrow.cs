@@ -11,29 +11,29 @@ namespace ExxoAvalonOrigins.Items.Weapons.Blah
             DisplayName.SetDefault("Blah's Throw");
             //Tooltip.SetDefault("Shoots out an example yoyo");
 
-            ItemID.Sets.Yoyo[item.type] = true;
-            ItemID.Sets.GamepadExtraRange[item.type] = 15;
-            ItemID.Sets.GamepadSmartQuickReach[item.type] = true;
+            ItemID.Sets.Yoyo[Item.type] = true;
+            ItemID.Sets.GamepadExtraRange[Item.type] = 15;
+            ItemID.Sets.GamepadSmartQuickReach[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.width = 24;
-            item.height = 24;
-            item.useAnimation = 25;
-            item.useTime = 25;
-            item.shootSpeed = 16f;
-            item.knockBack = 8.5f;
-            item.damage = 221;
-            item.rare = ItemRarityID.Purple;
-            item.melee = true;
-            item.channel = true;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.UseSound = SoundID.Item1;
-            item.value = Item.sellPrice(1);
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.BlahsThrow>();
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.width = 24;
+            Item.height = 24;
+            Item.useAnimation = 25;
+            Item.useTime = 25;
+            Item.shootSpeed = 16f;
+            Item.knockBack = 8.5f;
+            Item.damage = 221;
+            Item.rare = ItemRarityID.Purple;
+            Item.DamageType = DamageClass.Melee;
+            Item.channel = true;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.UseSound = SoundID.Item1;
+            Item.value = Item.sellPrice(1);
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.BlahsThrow>();
         }
 
         public override void AddRecipes()

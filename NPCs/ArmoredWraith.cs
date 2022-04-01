@@ -9,38 +9,38 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Armored Wraith");
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[NPC.type] = 4;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 105;
-            npc.netAlways = true;
-            npc.scale = 1f;
-            npc.noTileCollide = true;
-            npc.lifeMax = 1000;
-            npc.defense = 35;
-            npc.noGravity = true;
-            npc.alpha = 50;
-            npc.width = 24;
-            npc.aiStyle = 22;
-            npc.npcSlots = 1f;
-            npc.value = Item.buyPrice(0, 1, 0, 0);
-            npc.timeLeft = 750;
-            npc.height = 44;
-            npc.HitSound = SoundID.NPCHit54;
-            npc.DeathSound = SoundID.NPCDeath52;
-            npc.knockBackResist = 0.1f;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.ArmoredWraithBanner>();
+            NPC.damage = 105;
+            NPC.netAlways = true;
+            NPC.scale = 1f;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 1000;
+            NPC.defense = 35;
+            NPC.noGravity = true;
+            NPC.alpha = 50;
+            NPC.width = 24;
+            NPC.aiStyle = 22;
+            NPC.npcSlots = 1f;
+            NPC.value = Item.buyPrice(0, 1, 0, 0);
+            NPC.timeLeft = 750;
+            NPC.height = 44;
+            NPC.HitSound = SoundID.NPCHit54;
+            NPC.DeathSound = SoundID.NPCDeath52;
+            NPC.knockBackResist = 0.1f;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.ArmoredWraithBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.35f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.35f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -48,29 +48,29 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.X > 0f)
+            if (NPC.velocity.X > 0f)
             {
-                npc.spriteDirection = 1;
+                NPC.spriteDirection = 1;
             }
-            if (npc.velocity.X < 0f)
+            if (NPC.velocity.X < 0f)
             {
-                npc.spriteDirection = -1;
+                NPC.spriteDirection = -1;
             }
-            npc.rotation = npc.velocity.X * 0.1f;
-            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            NPC.rotation = NPC.velocity.X * 0.1f;
+            if (NPC.type == NPCID.Bee || NPC.type == NPCID.BeeSmall)
             {
-                npc.frameCounter += 1.0;
-                npc.rotation = npc.velocity.X * 0.2f;
+                NPC.frameCounter += 1.0;
+                NPC.rotation = NPC.velocity.X * 0.2f;
             }
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter >= 6.0)
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter >= 6.0)
             {
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                npc.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
             }
-            if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
+            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
     }

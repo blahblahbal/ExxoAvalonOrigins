@@ -20,11 +20,11 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/AvalonHelmet");
-            item.defense = 40;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 41, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 40;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 41, 0, 0);
+            Item.height = dims.Height;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)

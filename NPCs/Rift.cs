@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -14,35 +15,35 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rift");
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
 
         public override void SetDefaults()
         {
-            npc.width = npc.height = 70;
-            npc.noTileCollide = npc.noGravity = true;
-            npc.npcSlots = 0f;
-            npc.damage = 0;
-            npc.lifeMax = 100;
-            npc.dontTakeDamage = true;
-            npc.defense = 0;
-            npc.aiStyle = -1;
-            npc.value = 0;
-            npc.knockBackResist = 0f;
-            npc.scale = 1f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath39;
+            NPC.width = NPC.height = 70;
+            NPC.noTileCollide = NPC.noGravity = true;
+            NPC.npcSlots = 0f;
+            NPC.damage = 0;
+            NPC.lifeMax = 100;
+            NPC.dontTakeDamage = true;
+            NPC.defense = 0;
+            NPC.aiStyle = -1;
+            NPC.value = 0;
+            NPC.knockBackResist = 0f;
+            NPC.scale = 1f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath39;
         }
 
         public override void AI()
         {
-            npc.velocity *= 0f;
-            npc.ai[0]++;
-            if (npc.ai[1] == 0)
+            NPC.velocity *= 0f;
+            NPC.ai[0]++;
+            if (NPC.ai[1] == 0)
             {
-                if (npc.ai[0] % 60 == 0)
+                if (NPC.ai[0] % 60 == 0)
                 {
-                    Player p = Main.player[Player.FindClosest(npc.position, npc.width, npc.height)];
+                    Player p = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
                     if (!WorldGen.crimson && !ExxoAvalonOriginsWorld.contagion) // corruption world
                     {
                         if (Main.rand.Next(2) == 0) // crimson mobs
@@ -52,22 +53,22 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimslime);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Herpling);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimslime);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Herpling);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IchorSticker);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FloatyGross);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.IchorSticker);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FloatyGross);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(3);
-                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimera);
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FaceMonster);
-                                if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimera);
+                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FaceMonster);
+                                if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.BloodCrawler);
                             }
                         }
                         else // contagion mobs
@@ -77,21 +78,21 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -105,22 +106,22 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimslime);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Herpling);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimslime);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Herpling);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.IchorSticker);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FloatyGross);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.IchorSticker);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FloatyGross);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(3);
-                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Crimera);
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.FaceMonster);
-                                if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
+                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimera);
+                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FaceMonster);
+                                if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.BloodCrawler);
                             }
                         }
                         else // corruption mobs
@@ -130,23 +131,23 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Slimer);
-                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Slimer);
+                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.SeekerHead);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.SeekerHead);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.DevourerHead);
+                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.EaterofSouls);
+                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.DevourerHead);
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -160,23 +161,23 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Slimer);
-                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Slimer);
+                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.SeekerHead);
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.CorruptSlime);
-                                    if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.SeekerHead);
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.EaterofSouls);
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.DevourerHead);
+                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.EaterofSouls);
+                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.DevourerHead);
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -187,153 +188,153 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                    if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                if (t == 1) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        int num893 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
+                        int num893 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, 0f, 0f, 0, default, 1f);
                         Main.dust[num893].velocity *= 2f;
                         Main.dust[num893].scale = 0.9f;
                         Main.dust[num893].noGravity = true;
                         Main.dust[num893].fadeIn = 3f;
                     }
-                    Main.PlaySound(SoundID.Item, npc.position, 8);
+                    SoundEngine.PlaySound(SoundID.Item, NPC.position, 8);
                 }
             }
-            else if (npc.ai[1] == 1)
+            else if (NPC.ai[1] == 1)
             {
-                Point tile = npc.position.ToTileCoordinates();
+                Point tile = NPC.position.ToTileCoordinates();
                 for (int x = tile.X - 10; x < tile.X + 10; x++)
                 {
                     for (int y = tile.Y - 10; y < tile.Y + 10; y++)
                     {
                         #region phm ore tier 1
-                        if (Main.tile[x, y].type == TileID.Copper && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Copper && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Tin;
+                            Main.tile[x, y].TileType = TileID.Tin;
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == TileID.Tin && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Tin && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>();
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>() && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>() && !copperDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Copper;
+                            Main.tile[x, y].TileType = TileID.Copper;
                             WorldGen.SquareTileFrame(x, y);
                             copperDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 2
-                        if (Main.tile[x, y].type == TileID.Iron && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Iron && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Lead;
+                            Main.tile[x, y].TileType = TileID.Lead;
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == TileID.Lead && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Lead && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.NickelOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.NickelOre>();
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.NickelOre>() && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.NickelOre>() && !ironDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Iron;
+                            Main.tile[x, y].TileType = TileID.Iron;
                             WorldGen.SquareTileFrame(x, y);
                             ironDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 3
-                        if (Main.tile[x, y].type == TileID.Silver && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Silver && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Tungsten;
+                            Main.tile[x, y].TileType = TileID.Tungsten;
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == TileID.Tungsten && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Tungsten && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.ZincOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.ZincOre>();
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.ZincOre>() && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.ZincOre>() && !silverDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Silver;
+                            Main.tile[x, y].TileType = TileID.Silver;
                             WorldGen.SquareTileFrame(x, y);
                             silverDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 4
-                        if (Main.tile[x, y].type == TileID.Gold && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Gold && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Platinum;
+                            Main.tile[x, y].TileType = TileID.Platinum;
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == TileID.Platinum && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == TileID.Platinum && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>();
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>() && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>() && !goldDone[x - (tile.X - 10), y - (tile.Y - 10)])
                         {
-                            Main.tile[x, y].type = TileID.Gold;
+                            Main.tile[x, y].TileType = TileID.Gold;
                             WorldGen.SquareTileFrame(x, y);
                             goldDone[x - (tile.X - 10), y - (tile.Y - 10)] = true;
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                         }
                         #endregion
                         #region phm ore tier 5
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.RhodiumOre>())
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.RhodiumOre>())
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.OsmiumOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.OsmiumOre>();
                             WorldGen.SquareTileFrame(x, y);
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.OsmiumOre>())
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.OsmiumOre>())
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.IridiumOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.IridiumOre>();
                             WorldGen.SquareTileFrame(x, y);
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
                         }
-                        if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Ores.IridiumOre>())
+                        if (Main.tile[x, y].TileType == (ushort)ModContent.TileType<Tiles.Ores.IridiumOre>())
                         {
-                            Main.tile[x, y].type = (ushort)ModContent.TileType<Tiles.Ores.RhodiumOre>();
+                            Main.tile[x, y].TileType = (ushort)ModContent.TileType<Tiles.Ores.RhodiumOre>();
                             WorldGen.SquareTileFrame(x, y);
                             if (Main.netMode == NetmodeID.Server) NetMessage.SendTileSquare(-1, x, y, 2);
                             continue;
@@ -341,9 +342,9 @@ namespace ExxoAvalonOrigins.NPCs
                         #endregion
                     }
                 }
-                npc.ai[1] = 4;
+                NPC.ai[1] = 4;
             }
-            if (npc.ai[0] >= 200) npc.active = false;
+            if (NPC.ai[0] >= 200) NPC.active = false;
         }
     }
 }

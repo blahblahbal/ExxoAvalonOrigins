@@ -15,37 +15,37 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/InfectiousSpore");
-            projectile.width = dims.Width * 16 / 134;
-            projectile.height = dims.Height * 16 / 134 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.light = 0f;
-            projectile.ranged = true;
-            projectile.penetrate = 1;
-            projectile.scale = 1f;
-            projectile.tileCollide = true;
-            Main.projFrames[projectile.type] = 4;
+            Projectile.width = dims.Width * 16 / 134;
+            Projectile.height = dims.Height * 16 / 134 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.hostile = true;
+            Projectile.light = 0f;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.penetrate = 1;
+            Projectile.scale = 1f;
+            Projectile.tileCollide = true;
+            Main.projFrames[Projectile.type] = 4;
         }
 
         public override void AI()
         {
-            if (projectile.type == ModContent.ProjectileType<InfectiousSpore>())
+            if (Projectile.type == ModContent.ProjectileType<InfectiousSpore>())
             {
-                projectile.frameCounter++;
-                if (projectile.frameCounter >= 6)
+                Projectile.frameCounter++;
+                if (Projectile.frameCounter >= 6)
                 {
-                    projectile.frame++;
-                    projectile.frameCounter = 0;
+                    Projectile.frame++;
+                    Projectile.frameCounter = 0;
                 }
-                if (projectile.frame >= 4)
+                if (Projectile.frame >= 4)
                 {
-                    projectile.frame = 0;
+                    Projectile.frame = 0;
                 }
             }
-            projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
-            if (projectile.velocity.Y > 16f)
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+            if (Projectile.velocity.Y > 16f)
             {
-                projectile.velocity.Y = 16f;
+                Projectile.velocity.Y = 16f;
             }
         }
     }

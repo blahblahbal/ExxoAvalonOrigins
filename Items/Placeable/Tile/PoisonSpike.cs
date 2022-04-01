@@ -14,37 +14,26 @@ namespace ExxoAvalonOrigins.Items.Placeable.Tile
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.autoReuse = true;
-            item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.PoisonSpike>();
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.useTime = 10;
-            item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.maxStack = 999;
-            item.value = 0;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.notAmmo = true;
-            item.ammo = ItemID.Spike;
-            item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 6;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.createTile = ModContent.TileType<Tiles.PoisonSpike>();
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.useTime = 10;
+            Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.maxStack = 999;
+            Item.value = 0;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.notAmmo = true;
+            Item.ammo = ItemID.Spike;
+            Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().spike = 6;
         }
         public override void AddRecipes()
         {
-            ModRecipe r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Spike, 20);
-            r.AddIngredient(ItemID.Stinger);
-            r.AddTile(TileID.Anvils);
-            r.SetResult(this, 20);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Spike, 20);
-            r.AddIngredient(ModContent.ItemType<Material.MosquitoProboscis>());
-            r.AddTile(TileID.Anvils);
-            r.SetResult(this, 20);
-            r.AddRecipe();
+            CreateRecipe(20).AddIngredient(ItemID.Spike, 20).AddIngredient(ItemID.Stinger).AddTile(TileID.Anvils).Register();
+            CreateRecipe(20).AddIngredient(ItemID.Spike, 20).AddIngredient(ModContent.ItemType<Material.MosquitoProboscis>()).AddTile(TileID.Anvils).Register();
         }
     }
 }

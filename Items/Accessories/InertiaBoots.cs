@@ -17,24 +17,17 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/InertiaBoots");
-            item.defense = 4;
-            item.rare = ItemRarityID.Lime;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 16, 45, 0);
-            item.accessory = true;
-            item.height = dims.Height;
+            Item.defense = 4;
+            Item.rare = ItemRarityID.Lime;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 16, 45, 0);
+            Item.accessory = true;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup("ExxoAvalonOrigins:Wings");
-            recipe.AddIngredient(ItemID.FrostsparkBoots);
-            recipe.AddIngredient(ItemID.BlackBelt);
-            recipe.AddIngredient(ItemID.LunarBar, 2);
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddRecipeGroup("ExxoAvalonOrigins:Wings").AddIngredient(ItemID.FrostsparkBoots).AddIngredient(ItemID.BlackBelt).AddIngredient(ItemID.LunarBar, 2).AddTile(TileID.TinkerersWorkbench).Register();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

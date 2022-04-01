@@ -6,10 +6,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class RedVelvetCandyCaneWall : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("RedVelvetCandyCaneWall");
+            drop = Mod.Find<ModItem>("RedVelvetCandyCaneWall").Type;
             AddMapEntry(new Color(180, 80, 80));
         }
     }

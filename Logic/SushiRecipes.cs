@@ -13,42 +13,42 @@ namespace ExxoAvalonOrigins.Logic
             //start mechasting
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.StingerPack>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.StingerPack>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.StingerPack>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.StingerPack>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>());
             recipe.AddRecipe();
@@ -57,140 +57,140 @@ namespace ExxoAvalonOrigins.Logic
             //start dragon lord
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.DragonStone>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.DragonStone>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.DragonStone>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.DragonStone>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.DragonStone>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.DragonStone>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.DragonStone>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.DragonStone>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Melee.Infernasword>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.QuadroCannon>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.MagmafrostBolt>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Summon.ReflectorStaff>());
             recipe.AddRecipe();
@@ -199,42 +199,42 @@ namespace ExxoAvalonOrigins.Logic
             //start wall of steel
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.BubbleBoost>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.MagicCleaver>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.FleshBoiler>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.MagicCleaver>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.BubbleBoost>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.FleshBoiler>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.MagicCleaver>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Ranged.FleshBoiler>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.MagicCleaver>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.BubbleBoost>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Ranged.FleshBoiler>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.BubbleBoost>());
             recipe.AddRecipe();
@@ -243,42 +243,42 @@ namespace ExxoAvalonOrigins.Logic
             //start phantasm
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.PhantomKnives>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.VampireTeeth>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.EtherealHeart>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.VampireTeeth>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Weapons.Magic.PhantomKnives>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.EtherealHeart>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.VampireTeeth>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Accessories.EtherealHeart>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.VampireTeeth>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.PhantomKnives>());
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Accessories.EtherealHeart>());
-            recipe.AddIngredient(imk.ItemType("SwapToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("SwapToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Weapons.Magic.PhantomKnives>());
             recipe.AddRecipe();
@@ -288,17 +288,17 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.HellcastleToken>());
             recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.SetResult(imk.ItemType("LootMartiansToken"));
+            recipe.SetResult(imk.Find<ModItem>("LootMartiansToken").Type);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(imk.ItemType("UndergroundCorruptionEocToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("UndergroundCorruptionEocToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(imk.ItemType("UndergroundCrimsonEocToken"));
+            recipe.SetResult(imk.Find<ModItem>("UndergroundCrimsonEocToken").Type);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(imk.ItemType("UndergroundCrimsonEocToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("UndergroundCrimsonEocToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Tokens.ContagionToken>());
             recipe.AddRecipe();
@@ -306,17 +306,17 @@ namespace ExxoAvalonOrigins.Logic
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.ContagionToken>());
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(imk.ItemType("UndergroundCorruptionEocToken"));
+            recipe.SetResult(imk.Find<ModItem>("UndergroundCorruptionEocToken").Type);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Items.Tokens.TropicsToken>());
             recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(imk.ItemType("UndergroundJungleStartToken"));
+            recipe.SetResult(imk.Find<ModItem>("UndergroundJungleStartToken").Type);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(imk.ItemType("UndergroundJungleStartToken"));
+            recipe.AddIngredient(imk.Find<ModItem>("UndergroundJungleStartToken").Type);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(ModContent.ItemType<Items.Tokens.TropicsToken>());
             recipe.AddRecipe();

@@ -12,39 +12,39 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.width = 70;
-            projectile.height = 70;
-            projectile.aiStyle = -1;
-            projectile.penetrate = 1;
-            projectile.alpha = 100;
-            projectile.friendly = false;
-            projectile.timeLeft = 720;
-            projectile.ignoreWater = true;
-            projectile.hostile = true;
-            projectile.tileCollide = false;
-            projectile.scale = 0.6f;
-            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+            Projectile.width = 70;
+            Projectile.height = 70;
+            Projectile.aiStyle = -1;
+            Projectile.penetrate = 1;
+            Projectile.alpha = 100;
+            Projectile.friendly = false;
+            Projectile.timeLeft = 720;
+            Projectile.ignoreWater = true;
+            Projectile.hostile = true;
+            Projectile.tileCollide = false;
+            Projectile.scale = 0.6f;
+            Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
         }
 
         public override void AI()
         {
-            projectile.ai[0]++;
-            if (projectile.ai[0] > 500)
+            Projectile.ai[0]++;
+            if (Projectile.ai[0] > 500)
             {
-                projectile.alpha++;
-                if (projectile.alpha == 255) projectile.Kill();
+                Projectile.alpha++;
+                if (Projectile.alpha == 255) Projectile.Kill();
             }
-            projectile.velocity *= 0.98f;
-            projectile.rotation += projectile.velocity.ToRotation() / 500;
-            if (projectile.scale < 0.9f)
+            Projectile.velocity *= 0.98f;
+            Projectile.rotation += Projectile.velocity.ToRotation() / 500;
+            if (Projectile.scale < 0.9f)
             {
-                projectile.scale *= 1.005f;
+                Projectile.scale *= 1.005f;
             }
             if (Main.rand.Next(125) == 0)
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    int d = Dust.NewDust(projectile.position, 8, 8, ModContent.DustType<Dusts.CaesiumDust>());
+                    int d = Dust.NewDust(Projectile.position, 8, 8, ModContent.DustType<Dusts.CaesiumDust>());
                     Main.dust[d].velocity.X = Main.rand.NextFloat(-2f, 2f);
                     Main.dust[d].velocity.Y = Main.rand.NextFloat(-2f, 2f);
                 }
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 if (p.active && !p.dead)
                 {
-                    if (p.getRect().Intersects(projectile.getRect()))
+                    if (p.getRect().Intersects(Projectile.getRect()))
                     {
                         p.AddBuff(ModContent.BuffType<Buffs.CaesiumPoison>(), 5 * 60);
                     }

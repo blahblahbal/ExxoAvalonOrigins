@@ -10,26 +10,26 @@ namespace ExxoAvalonOrigins.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Solarium Staff");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            item.CloneDefaults(ItemID.SapphireStaff);
-            Item.staff[item.type] = true;
+            Item.CloneDefaults(ItemID.SapphireStaff);
+            Item.staff[Item.type] = true;
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.damage = 59;
-            item.autoReuse = true;
-            item.shootSpeed = 9f;
-            item.mana = 19;
-            item.rare = ItemRarityID.Cyan;
-            item.knockBack = 6f;
-            item.useTime = 19;
-            item.useAnimation = 19;
-            item.shoot = ModContent.ProjectileType<Projectiles.SolarBolt>();
-            item.value = Item.sellPrice(0, 10, 0, 0);
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.damage = 59;
+            Item.autoReuse = true;
+            Item.shootSpeed = 9f;
+            Item.mana = 19;
+            Item.rare = ItemRarityID.Cyan;
+            Item.knockBack = 6f;
+            Item.useTime = 19;
+            Item.useAnimation = 19;
+            Item.shoot = ModContent.ProjectileType<Projectiles.SolarBolt>();
+            Item.value = Item.sellPrice(0, 10, 0, 0);
         }
     }
 }

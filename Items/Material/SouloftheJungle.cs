@@ -13,10 +13,10 @@ namespace ExxoAvalonOrigins.Items.Material
         {
             DisplayName.SetDefault("Soul of Humidity");
             Tooltip.SetDefault("'The essence of moist creatures'");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
-            ItemID.Sets.AnimatesAsSoul[item.type] = true;
-            ItemID.Sets.ItemIconPulse[item.type] = true;
-            ItemID.Sets.ItemNoGravity[item.type] = true;
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+            ItemID.Sets.ItemIconPulse[Item.type] = true;
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -25,17 +25,17 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Cyan;
-            item.width = dims.Width;
-            item.maxStack = 999;
-            item.value = 70000;
-            item.height = 28;
+            Item.rare = ItemRarityID.Cyan;
+            Item.width = dims.Width;
+            Item.maxStack = 999;
+            Item.value = 70000;
+            Item.height = 28;
         }
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             float num7 = (float)Main.rand.Next(90, 111) * 0.01f;
             num7 *= Main.essScale;
-            Lighting.AddLight((int)((item.position.X + (float)(item.width / 2)) / 16f), (int)((item.position.Y + (float)(item.height / 2)) / 16f), 0.01f * num7, 0.5f * num7, 0.01f * num7);
+            Lighting.AddLight((int)((Item.position.X + (float)(Item.width / 2)) / 16f), (int)((Item.position.Y + (float)(Item.height / 2)) / 16f), 0.01f * num7, 0.5f * num7, 0.01f * num7);
         }
     }
 }

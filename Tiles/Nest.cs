@@ -7,12 +7,12 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class Nest : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(198, 175, 132));
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            drop = mod.ItemType("NestBlock");
+            drop = Mod.Find<ModItem>("NestBlock").Type;
             dustType = DustID.MarblePot;
             ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalMud>());
             ExxoAvalonOrigins.MergeWith(Type, ModContent.TileType<TropicalGrass>());

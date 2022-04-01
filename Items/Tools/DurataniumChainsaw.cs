@@ -14,23 +14,23 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item23;
-            item.damage = 25;
-            item.noUseGraphic = true;
-            item.channel = true;
-            item.axe = 15;
-            item.shootSpeed = 40f;
-            item.rare = ItemRarityID.LightRed;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 6;
-            item.knockBack = 3.5f;
-            item.shoot = ModContent.ProjectileType<Projectiles.DurataniumChainsaw>();
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = 60000;
-            item.useAnimation = 25;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item23;
+            Item.damage = 25;
+            Item.noUseGraphic = true;
+            Item.channel = true;
+            Item.axe = 15;
+            Item.shootSpeed = 40f;
+            Item.rare = ItemRarityID.LightRed;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 6;
+            Item.knockBack = 3.5f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.DurataniumChainsaw>();
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 60000;
+            Item.useAnimation = 25;
+            Item.height = dims.Height;
         }
     }
 }

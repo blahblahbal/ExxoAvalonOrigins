@@ -15,15 +15,15 @@ namespace ExxoAvalonOrigins.Items.Tools
 
         public override void SetDefaults()
         {
-            item.rare = ItemRarityID.Blue;
-            item.width = 24;
-            item.useTime = 90;
-            item.useTurn = true;
-            item.value = Item.sellPrice(0, 1);
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item6;
-            item.useAnimation = 90;
-            item.height = 24;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = 24;
+            Item.useTime = 90;
+            Item.useTurn = true;
+            Item.value = Item.sellPrice(0, 1);
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item6;
+            Item.useAnimation = 90;
+            Item.height = 24;
         }
         public override void HoldItem(Player player)
         {

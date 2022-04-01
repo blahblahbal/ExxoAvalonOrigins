@@ -21,23 +21,15 @@ namespace ExxoAvalonOrigins.Items.Armor
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.defense = 32;
-            item.rare = ItemRarityID.Red;
-            item.width = dims.Width;
-            item.value = Item.sellPrice(0, 40, 0, 0);
-            item.height = dims.Height;
+            Item.defense = 32;
+            Item.rare = ItemRarityID.Red;
+            Item.width = dims.Width;
+            Item.value = Item.sellPrice(0, 40, 0, 0);
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 40);
-            recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
-            recipe.AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 3);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.Opal>(), 10);
-            recipe.AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.OblivionBar>(), 20).AddIngredient(ModContent.ItemType<Material.DarkMatterGel>(), 40).AddIngredient(ModContent.ItemType<AncientHeadpiece>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 3).AddIngredient(ModContent.ItemType<Placeable.Tile.Opal>(), 10).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
@@ -51,12 +43,12 @@ namespace ExxoAvalonOrigins.Items.Armor
         }
         public override void UpdateEquip(Player player)
         {
-            player.rangedDamage += 0.25f;
-            player.rangedCrit += 3;
+            player.GetDamage(DamageClass.Ranged) += 0.25f;
+            player.GetCritChance(DamageClass.Ranged) += 3;
         }
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            Texture2D texture = mod.GetTexture("Items/Armor/SpectrumHelmet_Glow");
+            Texture2D texture = Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumHelmet_Glow").Value;
             spriteBatch.Draw(texture, position, frame, new Color(R, G, B), 0f, origin, scale, SpriteEffects.None, 0f);
         }
         //public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor)

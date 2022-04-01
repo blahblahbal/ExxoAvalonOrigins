@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -14,32 +15,32 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/LightningCloud");
-            projectile.width = dims.Width;
-            projectile.height = dims.Height;
-            projectile.friendly = true;
-            projectile.ranged = true;
-            projectile.tileCollide = false;
-            projectile.penetrate = -1;
-            projectile.timeLeft = 3600;
-            projectile.alpha = 20;
-            projectile.aiStyle = -1;
-            drawOriginOffsetX = projectile.width / 2;
-            drawOriginOffsetY = projectile.height / 2;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.tileCollide = false;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 3600;
+            Projectile.alpha = 20;
+            Projectile.aiStyle = -1;
+            drawOriginOffsetX = Projectile.width / 2;
+            DrawOriginOffsetY = Projectile.height / 2;
         }
 
         public override void AI()
         {
-            projectile.frameCounter++;
-            if (projectile.frameCounter == 11)
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter == 11)
             {
-                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)projectile.position.X, (int)projectile.position.Y + 10);
+                SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)Projectile.position.X, (int)Projectile.position.Y + 10);
             }
-            if (projectile.frameCounter > 11f)
+            if (Projectile.frameCounter > 11f)
             {
-                projectile.alpha += 4;
-                if (projectile.alpha > 200)
+                Projectile.alpha += 4;
+                if (Projectile.alpha > 200)
                 {
-                    projectile.active = false;
+                    Projectile.active = false;
                 }
             }
         }

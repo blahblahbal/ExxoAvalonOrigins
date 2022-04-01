@@ -15,19 +15,19 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.noUseGraphic = true;
-            item.useTurn = true;
-            item.shootSpeed = 16f;
-            item.rare = ItemRarityID.Yellow;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 7f;
-            item.shoot = ModContent.ProjectileType<Projectiles.QuadHook>();
-            item.value = Item.sellPrice(0, 12, 0, 0);
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.noUseGraphic = true;
+            Item.useTurn = true;
+            Item.shootSpeed = 16f;
+            Item.rare = ItemRarityID.Yellow;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 7f;
+            Item.shoot = ModContent.ProjectileType<Projectiles.QuadHook>();
+            Item.value = Item.sellPrice(0, 12, 0, 0);
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Other
 {
@@ -15,8 +16,8 @@ namespace ExxoAvalonOrigins.Items.Other
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
+            Item.width = dims.Width;
+            Item.height = dims.Height;
         }
 
         public override bool CanPickup(Player player)
@@ -31,7 +32,7 @@ namespace ExxoAvalonOrigins.Items.Other
             {
                 player.HealEffect(55, true);
             }
-            Main.PlaySound(SoundID.Grab, player.position);
+            SoundEngine.PlaySound(SoundID.Grab, player.position);
             return false;
         }
     }

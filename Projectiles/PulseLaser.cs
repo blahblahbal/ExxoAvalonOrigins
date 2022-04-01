@@ -30,36 +30,36 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/PulseLaser");
-            projectile.width = dims.Width * 4 / 20;
-            projectile.height = dims.Height * 4 / 20 / Main.projFrames[projectile.type];
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
-            projectile.penetrate = 7;
-            projectile.light = 0.8f;
-            projectile.alpha = 255;
-            projectile.MaxUpdates = 2;
-            projectile.scale = 1.2f;
-            projectile.timeLeft = 600;
-            projectile.magic = true;
-            StartReal = projectile.position;
+            Projectile.width = dims.Width * 4 / 20;
+            Projectile.height = dims.Height * 4 / 20 / Main.projFrames[Projectile.type];
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
+            Projectile.penetrate = 7;
+            Projectile.light = 0.8f;
+            Projectile.alpha = 255;
+            Projectile.MaxUpdates = 2;
+            Projectile.scale = 1.2f;
+            Projectile.timeLeft = 600;
+            Projectile.DamageType = DamageClass.Magic;
+            StartReal = Projectile.position;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if (projectile.penetrate == 7)
+            if (Projectile.penetrate == 7)
             {
-                DrawChain(projectile.position, End, "", spriteBatch);
+                DrawChain(Projectile.position, End, "", spriteBatch);
             }
-            else if (projectile.penetrate > 1)
+            else if (Projectile.penetrate > 1)
             {
-                DrawChain(Main.npc[(int)projectile.ai[1]].Center, End, "", spriteBatch);
+                DrawChain(Main.npc[(int)Projectile.ai[1]].Center, End, "", spriteBatch);
             }
         }
 
         public override void AI()
         {
-            Projectile p = projectile;
-            Player o = Main.player[projectile.owner];
+            Projectile p = Projectile;
+            Player o = Main.player[Projectile.owner];
             p.timeLeft = 200;
 
             if (p.penetrate < 7)
@@ -144,7 +144,7 @@ namespace ExxoAvalonOrigins.Projectiles
         {
             start -= Main.screenPosition;
             end -= Main.screenPosition;
-            Texture2D TEX = ExxoAvalonOrigins.Mod.GetTexture("Sprites/BeamVenoshock");
+            Texture2D TEX = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/BeamVenoshock").Value;
             int linklength = TEX.Height;
             Vector2 chain = end - start;
 
@@ -152,7 +152,7 @@ namespace ExxoAvalonOrigins.Projectiles
             int numlinks = (int)Math.Ceiling(length / linklength);
             Vector2[] links = new Vector2[numlinks];
             float rotation = (float)Math.Atan2(chain.Y, chain.X);
-            Projectile P = projectile;
+            Projectile P = Projectile;
             Player Pr = Main.player[P.owner];
             Player MyPr = Main.player[Main.myPlayer];
             for (int i = 0; i < numlinks; i++)
@@ -187,15 +187,15 @@ namespace ExxoAvalonOrigins.Projectiles
                                     if (R.Intersects(NR))
                                     {
                                         bool Crit = false;
-                                        if (P.melee && Main.rand.Next(100) <= Pr.meleeCrit)
+                                        if (P.melee && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Melee))
                                         {
                                             Crit = true;
                                         }
-                                        if (P.ranged && Main.rand.Next(100) <= Pr.rangedCrit)
+                                        if (P.ranged && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Ranged))
                                         {
                                             Crit = true;
                                         }
-                                        if (P.magic && Main.rand.Next(100) <= Pr.magicCrit)
+                                        if (P.magic && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Magic))
                                         {
                                             Crit = true;
                                         }
@@ -241,15 +241,15 @@ namespace ExxoAvalonOrigins.Projectiles
                                 if (R.Intersects(RP))
                                 {
                                     bool Crit = false;
-                                    if (P.melee && Main.rand.Next(100) <= Pr.meleeCrit)
+                                    if (P.melee && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Melee))
                                     {
                                         Crit = true;
                                     }
-                                    if (P.ranged && Main.rand.Next(100) <= Pr.rangedCrit)
+                                    if (P.ranged && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Ranged))
                                     {
                                         Crit = true;
                                     }
-                                    if (P.magic && Main.rand.Next(100) <= Pr.magicCrit)
+                                    if (P.magic && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Magic))
                                     {
                                         Crit = true;
                                     }
@@ -299,7 +299,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 if (zy < 0) zy = 0;
                 if (zx > Main.maxTilesX) zx = Main.maxTilesX;
                 if (zy > Main.maxTilesY) zy = Main.maxTilesY;
-                if (Main.tile[zx, zy].active() && Main.tileSolid[Main.tile[zx, zy].type]) return;
+                if (Main.tile[zx, zy].HasTile && Main.tileSolid[Main.tile[zx, zy].TileType]) return;
             }
         }
         //public override void AI()

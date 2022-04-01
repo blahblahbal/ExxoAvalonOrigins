@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class BismuthBrick : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(187, 89, 192));
             Main.tileSolid[Type] = true;

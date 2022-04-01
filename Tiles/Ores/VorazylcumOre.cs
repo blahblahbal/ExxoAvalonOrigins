@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class VorazylcumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             mineResist = 8f;
             AddMapEntry(new Color(140, 130, 196), LanguageManager.Instance.GetText("Vorazylcum"));
@@ -19,7 +19,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             Main.tileBlockLight[Type] = true;
             Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 1900;
-            drop = mod.ItemType("VorazylcumOre");
+            drop = Mod.Find<ModItem>("VorazylcumOre").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 250;

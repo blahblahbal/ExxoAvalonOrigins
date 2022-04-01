@@ -16,32 +16,32 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 8;
-            projectile.height = 8;
-            projectile.scale = 1f;
-            projectile.alpha = 100;
-            projectile.aiStyle = -1;
-            projectile.timeLeft = 50;
-            projectile.friendly = true;
-            projectile.penetrate = 1;
-            projectile.light = 1f;
-            projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            Projectile.width = 8;
+            Projectile.height = 8;
+            Projectile.scale = 1f;
+            Projectile.alpha = 100;
+            Projectile.aiStyle = -1;
+            Projectile.timeLeft = 50;
+            Projectile.friendly = true;
+            Projectile.penetrate = 1;
+            Projectile.light = 1f;
+            Projectile.ignoreWater = true;
+            Projectile.tileCollide = false;
         }
         public override void AI()
         {
             // Disgusting spaghetticode, my apologies. The checks I implemented for the lighning to make it always move down do not work always so if you want to give this a try, be my guest
-            if (projectile.scale == 1.0)
+            if (Projectile.scale == 1.0)
             {
-                projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
+                Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X);
                 if (Main.time % 6 <= 1 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int num54 = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningTrail>(), 60, 0f, projectile.owner);
-                    Main.projectile[num54].rotation = projectile.rotation;
-                    Main.projectile[num54].timeLeft = projectile.timeLeft;
-                    projectile.rotation += (Main.rand.Next(200) - 100) / 100f;
-                    projectile.velocity.Y = (float)Math.Sin(projectile.rotation) * 10;
-                    projectile.velocity.X = (float)Math.Cos(projectile.rotation) * 10;
+                    int num54 = Projectile.NewProjectile(Projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningTrail>(), 60, 0f, Projectile.owner);
+                    Main.projectile[num54].rotation = Projectile.rotation;
+                    Main.projectile[num54].timeLeft = Projectile.timeLeft;
+                    Projectile.rotation += (Main.rand.Next(200) - 100) / 100f;
+                    Projectile.velocity.Y = (float)Math.Sin(Projectile.rotation) * 10;
+                    Projectile.velocity.X = (float)Math.Cos(Projectile.rotation) * 10;
 
                     if (Main.netMode == NetmodeID.Server)
                     {
@@ -49,14 +49,14 @@ namespace ExxoAvalonOrigins.Projectiles
                     }
                 }
             }
-            if (((Main.rand.Next(15) == 0 && projectile.ai[0] > 0) || projectile.scale == 1.0) && projectile.scale > 0.4f)
+            if (((Main.rand.Next(15) == 0 && Projectile.ai[0] > 0) || Projectile.scale == 1.0) && Projectile.scale > 0.4f)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    float randRot = projectile.rotation + Main.rand.NextFloat(-0.05f, 0.05f);
-                    int lightning = Projectile.NewProjectile(projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningBolt>(), 80, 0f, projectile.owner);
+                    float randRot = Projectile.rotation + Main.rand.NextFloat(-0.05f, 0.05f);
+                    int lightning = Projectile.NewProjectile(Projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningBolt>(), 80, 0f, Projectile.owner);
                     Projectile newLightning = Main.projectile[lightning];
-                    newLightning.scale = projectile.scale * (Main.rand.Next(100) / 100f);
+                    newLightning.scale = Projectile.scale * (Main.rand.Next(100) / 100f);
                     //float r1 = Main.rand.NextFloat(0.05f, 0.2f);
                     newLightning.rotation = randRot;
                     //if (newLightning.rotation < rot + r1 && newLightning.rotation > 0.5f)
@@ -79,7 +79,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     //Main.NewText(((int)(newLightning.position.Y / 16)).ToString(), 255, 255, 100);
                     //else
                     //{
-                    newLightning.timeLeft = projectile.timeLeft;
+                    newLightning.timeLeft = Projectile.timeLeft;
                     //newLightning.position.X += (float)Math.Cos(projectile.rotation) * newLightning.scale * 48;
                     //newLightning.position.Y += Math.Abs((float)Math.Sin(projectile.rotation) * newLightning.scale * 48);
                     //newLightning.position.X += (float)Math.Cos(newLightning.rotation) * newLightning.scale * 48;
@@ -93,7 +93,7 @@ namespace ExxoAvalonOrigins.Projectiles
                     //{
                     //    newLightning.position.X--;
                     //}
-                    while (newLightning.position.Y < projectile.position.Y + 160)
+                    while (newLightning.position.Y < Projectile.position.Y + 160)
                     {
                         newLightning.position.Y += 10;
                     }
@@ -110,13 +110,13 @@ namespace ExxoAvalonOrigins.Projectiles
 
                 }
             }
-            projectile.ai[0]--;
-            projectile.alpha = 255 - (projectile.timeLeft * 2) - (int)(25 * projectile.scale);
-            if (projectile.alpha < 100) projectile.alpha = 0;
+            Projectile.ai[0]--;
+            Projectile.alpha = 255 - (Projectile.timeLeft * 2) - (int)(25 * Projectile.scale);
+            if (Projectile.alpha < 100) Projectile.alpha = 0;
             //if (Main.tileSolid[Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].type] && Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active)
-            if (!Main.tile[(int)(projectile.position.X / 16f), (int)(projectile.position.Y / 16f)].active())
+            if (!Main.tile[(int)(Projectile.position.X / 16f), (int)(Projectile.position.Y / 16f)].HasTile)
             {
-                projectile.tileCollide = true;
+                Projectile.tileCollide = true;
             }
         }
     }

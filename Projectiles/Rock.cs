@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -13,29 +14,29 @@ namespace ExxoAvalonOrigins.Projectiles
         }
         public override void SetDefaults()
         {
-            projectile.netImportant = true;
-            projectile.width = 32;
-            projectile.height = 32;
-            projectile.aiStyle = 25;
-            projectile.penetrate = -1;
-            projectile.timeLeft = 1200;
-            projectile.magic = true;
-            projectile.tileCollide = true;
-            projectile.ignoreWater = true;
-            projectile.friendly = true;
+            Projectile.netImportant = true;
+            Projectile.width = 32;
+            Projectile.height = 32;
+            Projectile.aiStyle = 25;
+            Projectile.penetrate = -1;
+            Projectile.timeLeft = 1200;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.tileCollide = true;
+            Projectile.ignoreWater = true;
+            Projectile.friendly = true;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 5f)
+            if (Projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 5f)
             {
-                Collision.HitTiles(projectile.position, projectile.velocity, projectile.width, projectile.height);
-                Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y, 1);
-                projectile.velocity.Y = -oldVelocity.Y * 0.2f;
+                Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+                SoundEngine.PlaySound(SoundID.Dig, (int)Projectile.position.X, (int)Projectile.position.Y, 1);
+                Projectile.velocity.Y = -oldVelocity.Y * 0.2f;
             }
-            if (projectile.velocity.X != oldVelocity.X)
+            if (Projectile.velocity.X != oldVelocity.X)
             {
-                projectile.Kill();
+                Projectile.Kill();
             }
             return false;
         }

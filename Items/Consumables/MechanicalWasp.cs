@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Consumables
 {
@@ -16,15 +17,15 @@ namespace ExxoAvalonOrigins.Items.Consumables
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.consumable = true;
-            item.rare = ItemRarityID.Yellow;
-            item.width = dims.Width;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.value = 0;
-            item.maxStack = 20;
-            item.useAnimation = 45;
-            item.height = dims.Height;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.width = dims.Width;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = 0;
+            Item.maxStack = 20;
+            Item.useAnimation = 45;
+            Item.height = dims.Height;
         }
 
         public override bool CanUseItem(Player player)
@@ -33,7 +34,7 @@ namespace ExxoAvalonOrigins.Items.Consumables
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             Main.PlaySound(SoundID.Roar, player.position, 0);
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Bosses.Mechasting>());
@@ -42,23 +43,8 @@ namespace ExxoAvalonOrigins.Items.Consumables
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Stinger, 9);
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 2);
-            recipe.AddIngredient(ItemID.SoulofFlight, 15);
-            recipe.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Material.MosquitoProboscis>(), 9);
-            recipe.AddIngredient(ItemID.HallowedBar, 10);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 2);
-            recipe.AddIngredient(ItemID.SoulofFlight, 15);
-            recipe.AddTile(ModContent.TileType<Tiles.HallowedAltar>());
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Stinger, 9).AddIngredient(ItemID.HallowedBar, 10).AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 2).AddIngredient(ItemID.SoulofFlight, 15).AddTile(ModContent.TileType<Tiles.HallowedAltar>()).Register();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.MosquitoProboscis>(), 9).AddIngredient(ItemID.HallowedBar, 10).AddIngredient(ModContent.ItemType<Placeable.Tile.DragonScale>(), 2).AddIngredient(ItemID.SoulofFlight, 15).AddTile(ModContent.TileType<Tiles.HallowedAltar>()).Register();
         }
     }
 }

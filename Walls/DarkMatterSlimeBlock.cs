@@ -7,10 +7,10 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class DarkMatterSlimeBlock : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = true;
-            drop = mod.ItemType("DarkSlimeBlockWall");
+            drop = Mod.Find<ModItem>("DarkSlimeBlockWall").Type;
             AddMapEntry(new Color(51, 0, 96));
             dustType = DustID.UnholyWater;
         }

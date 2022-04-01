@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Buffs
 {
     public class Wisdom : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Wisdom");
             Description.SetDefault("-8% magic damage, +60 mana");
@@ -14,7 +14,7 @@ namespace ExxoAvalonOrigins.Buffs
         public override void Update(Player player, ref int k)
         {
             player.statManaMax2 += 60;
-            player.magicDamage -= 0.08f;
+            player.GetDamage(DamageClass.Magic) -= 0.08f;
         }
     }
 }

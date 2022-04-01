@@ -10,17 +10,17 @@ namespace ExxoAvalonOrigins.Items.Material
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Tropical Shroom Cap");
-            Item.staff[item.type] = true;
+            Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.width = dims.Width;
-            item.height = dims.Height;
-            item.rare = ItemRarityID.White;
-            item.maxStack = 999;
-            item.value = Item.buyPrice(0, 0, 1, 0);
+            Item.width = dims.Width;
+            Item.height = dims.Height;
+            Item.rare = ItemRarityID.White;
+            Item.maxStack = 999;
+            Item.value = Item.buyPrice(0, 0, 1, 0);
         }
     }
 }

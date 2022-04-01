@@ -16,34 +16,29 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 13;
-            item.autoReuse = true;
-            item.useTurn = true;
-            item.crit += 6;
-            item.pick = 82;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.useTime = 13;
-            item.knockBack = 3f;
-            item.melee = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 50000;
-            item.useAnimation = 13;
-            item.height = dims.Height;
-            item.UseSound = SoundID.Item1;
+            Item.damage = 13;
+            Item.autoReuse = true;
+            Item.useTurn = true;
+            Item.crit += 6;
+            Item.pick = 82;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.useTime = 13;
+            Item.knockBack = 3f;
+            Item.DamageType = DamageClass.Melee;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 50000;
+            Item.useAnimation = 13;
+            Item.height = dims.Height;
+            Item.UseSound = SoundID.Item1;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.OsmiumBar>(), 13);
-            recipe.AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.OsmiumBar>(), 13).AddIngredient(ModContent.ItemType<Material.DesertFeather>(), 2).AddTile(TileID.Anvils).Register();
         }
         public override void HoldItem(Player player)
         {
-            if (player.inventory[player.selectedItem].type == mod.ItemType("OsmiumPickaxe"))
+            if (player.inventory[player.selectedItem].type == Mod.Find<ModItem>("OsmiumPickaxe").Type)
             {
                 player.pickSpeed -= 0.5f;
             }

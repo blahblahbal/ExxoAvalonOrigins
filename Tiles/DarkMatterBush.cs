@@ -5,7 +5,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class DarkMatterBush : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 3;
@@ -15,7 +15,7 @@ namespace ExxoAvalonOrigins.Tiles
             TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.addTile(Type);
-            drop = mod.ItemType("DarkMatterBush");
+            drop = Mod.Find<ModItem>("DarkMatterBush").Type;
             dustType = ModContent.DustType<Dusts.DarkMatterDust>();
         }
     }

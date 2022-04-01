@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles.Melee
 {
@@ -14,27 +15,27 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Melee/BlahBeam");
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.aiStyle = 27;
-            projectile.melee = true;
-            projectile.penetrate = 2;
-            projectile.light = 0.8f;
-            projectile.penetrate = 2;
-            projectile.alpha = 255;
-            projectile.friendly = true;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = 27;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.penetrate = 2;
+            Projectile.light = 0.8f;
+            Projectile.penetrate = 2;
+            Projectile.alpha = 255;
+            Projectile.friendly = true;
         }
         public override Color? GetAlpha(Color lightColor)
         {
-            if (this.projectile.localAI[1] >= 15f)
+            if (this.Projectile.localAI[1] >= 15f)
             {
-                return new Color(255, 255, 255, this.projectile.alpha);
+                return new Color(255, 255, 255, this.Projectile.alpha);
             }
-            if (this.projectile.localAI[1] < 5f)
+            if (this.Projectile.localAI[1] < 5f)
             {
                 return Color.Transparent;
             }
-            int num7 = (int)((this.projectile.localAI[1] - 5f) / 10f * 255f);
+            int num7 = (int)((this.Projectile.localAI[1] - 5f) / 10f * 255f);
             return new Color(num7, num7, num7, num7);
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -67,24 +68,24 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (projectile.type == ModContent.ProjectileType<BlahBeam>())
+            if (Projectile.type == ModContent.ProjectileType<BlahBeam>())
             {
-                Main.PlaySound(SoundID.Item, (int)projectile.position.X, (int)projectile.position.Y, 10);
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] >= 4f)
+                SoundEngine.PlaySound(SoundID.Item, (int)Projectile.position.X, (int)Projectile.position.Y, 10);
+                Projectile.ai[0] += 1f;
+                if (Projectile.ai[0] >= 4f)
                 {
-                    projectile.position += projectile.velocity;
-                    projectile.Kill();
+                    Projectile.position += Projectile.velocity;
+                    Projectile.Kill();
                 }
                 else
                 {
-                    if (projectile.velocity.Y != oldVelocity.Y)
+                    if (Projectile.velocity.Y != oldVelocity.Y)
                     {
-                        projectile.velocity.Y = -oldVelocity.Y;
+                        Projectile.velocity.Y = -oldVelocity.Y;
                     }
-                    if (projectile.velocity.X != oldVelocity.X)
+                    if (Projectile.velocity.X != oldVelocity.X)
                     {
-                        projectile.velocity.X = -oldVelocity.X;
+                        Projectile.velocity.X = -oldVelocity.X;
                     }
                 }
             }
@@ -92,26 +93,26 @@ namespace ExxoAvalonOrigins.Projectiles.Melee
         }
         public override void AI()
         {
-            int closest = projectile.FindClosestNPC(16 * 20);
+            int closest = Projectile.FindClosestNPC(16 * 20);
             if (closest != -1)
             {
                 if (Main.npc[closest].lifeMax > 5 && !Main.npc[closest].friendly && !Main.npc[closest].townNPC)
                 {
                     Vector2 v = Main.npc[closest].position;
-                    if (Collision.CanHit(projectile.position, projectile.width, projectile.height, v, Main.npc[closest].width, Main.npc[closest].height))
+                    if (Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, v, Main.npc[closest].width, Main.npc[closest].height))
                     {
-                        projectile.velocity = Vector2.Normalize(v - projectile.position) * 13f;
+                        Projectile.velocity = Vector2.Normalize(v - Projectile.position) * 13f;
                     }
                 }
             }
-            if (projectile.localAI[1] > 7f)
+            if (Projectile.localAI[1] > 7f)
             {
-                var num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, DustID.Fire, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
+                var num483 = Dust.NewDust(new Vector2(Projectile.position.X - Projectile.velocity.X * 4f + 2f, Projectile.position.Y + 2f - Projectile.velocity.Y * 4f), 8, 8, DustID.Torch, Projectile.oldVelocity.X, Projectile.oldVelocity.Y, 100, default(Color), 1.5f);
                 Main.dust[num483].velocity *= -0.25f;
                 Main.dust[num483].noGravity = true;
-                num483 = Dust.NewDust(new Vector2(projectile.position.X - projectile.velocity.X * 4f + 2f, projectile.position.Y + 2f - projectile.velocity.Y * 4f), 8, 8, DustID.Fire, projectile.oldVelocity.X, projectile.oldVelocity.Y, 100, default(Color), 1.5f);
+                num483 = Dust.NewDust(new Vector2(Projectile.position.X - Projectile.velocity.X * 4f + 2f, Projectile.position.Y + 2f - Projectile.velocity.Y * 4f), 8, 8, DustID.Torch, Projectile.oldVelocity.X, Projectile.oldVelocity.Y, 100, default(Color), 1.5f);
                 Main.dust[num483].velocity *= -0.25f;
-                Main.dust[num483].position -= projectile.velocity * 0.5f;
+                Main.dust[num483].position -= Projectile.velocity * 0.5f;
                 Main.dust[num483].noGravity = true;
             }
         }

@@ -13,21 +13,21 @@ namespace ExxoAvalonOrigins.Items.Weapons.Throw
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 13;
-            item.noUseGraphic = true;
-            item.maxStack = 999;
-            item.shootSpeed = 9f;
-            item.ranged = true;
-            item.consumable = true;
-            item.rare = ItemRarityID.Green;
-            item.noMelee = true;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.shoot = ModContent.ProjectileType<Projectiles.EnchantedShuriken>();
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.value = 30;
-            item.useAnimation = 15;
-            item.height = dims.Height;
+            Item.damage = 13;
+            Item.noUseGraphic = true;
+            Item.maxStack = 999;
+            Item.shootSpeed = 9f;
+            Item.DamageType = DamageClass.Ranged;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Green;
+            Item.noMelee = true;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.shoot = ModContent.ProjectileType<Projectiles.EnchantedShuriken>();
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.value = 30;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
         }
     }
 }

@@ -7,11 +7,11 @@ namespace ExxoAvalonOrigins.Walls
 {
     public class SkyBrickWallUnsafe : ModWall
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.wallHouse[Type] = false;
             AddMapEntry(new Color(79, 79, 59));
-            drop = mod.ItemType("SkyBrickWall");
+            drop = Mod.Find<ModItem>("SkyBrickWall").Type;
             dustType = DustID.Smoke;
         }
     }

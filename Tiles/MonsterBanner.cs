@@ -10,7 +10,7 @@ namespace ExxoAvalonOrigins.Tiles
 {
     public class MonsterBanner : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -205,7 +205,7 @@ namespace ExxoAvalonOrigins.Tiles
             if (closer)
             {
                 Player player = Main.LocalPlayer;
-                int style = Main.tile[i, j].frameX / 18;
+                int style = Main.tile[i, j].TileFrameX / 18;
                 string type;
                 switch (style)
                 {
@@ -368,7 +368,7 @@ namespace ExxoAvalonOrigins.Tiles
                     default:
                         return;
                 }
-                player.NPCBannerBuff[mod.NPCType(type)] = true;
+                player.NPCBannerBuff[Mod.Find<ModNPC>(type).Type] = true;
                 player.hasBanner = true;
             }
         }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles
 {
@@ -15,15 +16,15 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
-            projectile.aiStyle = -1;
-            projectile.hostile = true;
-            projectile.ignoreWater = true;
-            projectile.magic = true;
-            projectile.penetrate = 2;
-            projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
-            Main.projFrames[projectile.type] = 4;
+            Projectile.width = 10;
+            Projectile.height = 10;
+            Projectile.aiStyle = -1;
+            Projectile.hostile = true;
+            Projectile.ignoreWater = true;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.penetrate = 2;
+            Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
+            Main.projFrames[Projectile.type] = 4;
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
@@ -39,50 +40,50 @@ namespace ExxoAvalonOrigins.Projectiles
             int num4;
             for (int num280 = 0; num280 < num279; num280 = num4 + 1)
             {
-                int num281 = Dust.NewDust(projectile.Center, 0, 0, DustID.GoldCritter_LessOutline, 0f, 0f, 100, default(Color), 0.5f);
+                int num281 = Dust.NewDust(Projectile.Center, 0, 0, DustID.GoldCritter_LessOutline, 0f, 0f, 100, default(Color), 0.5f);
                 Dust dust = Main.dust[num281];
                 dust.velocity *= 1.6f;
                 Main.dust[num281].velocity.Y -= 1f;
-                Main.dust[num281].position = Vector2.Lerp(Main.dust[num281].position, projectile.Center, 0.5f);
+                Main.dust[num281].position = Vector2.Lerp(Main.dust[num281].position, Projectile.Center, 0.5f);
                 Main.dust[num281].noGravity = true;
                 num4 = num280;
             }
         }
         public override void AI()
         {
-            if (projectile.type == ModContent.ProjectileType<ElectricBolt>())
+            if (Projectile.type == ModContent.ProjectileType<ElectricBolt>())
             {
-                if (projectile.ai[1] == 0f && projectile.hostile)
+                if (Projectile.ai[1] == 0f && Projectile.hostile)
                 {
-                    projectile.ai[1] = 1f;
-                    Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 12);
+                    Projectile.ai[1] = 1f;
+                    SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 12);
                 }
-                projectile.alpha -= 40;
-                if (projectile.alpha < 0)
+                Projectile.alpha -= 40;
+                if (Projectile.alpha < 0)
                 {
-                    projectile.alpha = 0;
+                    Projectile.alpha = 0;
                 }
-                projectile.spriteDirection = projectile.direction;
-                projectile.frameCounter++;
-                if (projectile.frameCounter >= 3)
+                Projectile.spriteDirection = Projectile.direction;
+                Projectile.frameCounter++;
+                if (Projectile.frameCounter >= 3)
                 {
-                    projectile.frame++;
-                    projectile.frameCounter = 0;
-                    if (projectile.frame >= 4)
+                    Projectile.frame++;
+                    Projectile.frameCounter = 0;
+                    if (Projectile.frame >= 4)
                     {
-                        projectile.frame = 0;
+                        Projectile.frame = 0;
                     }
                 }
-                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.Pi / 4;
-                if (projectile.direction == -1)
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.Pi / 4;
+                if (Projectile.direction == -1)
                 {
-                    projectile.rotation += MathHelper.Pi;
+                    Projectile.rotation += MathHelper.Pi;
                 }
-                Lighting.AddLight((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, 0.3f, 0.8f, 1.1f);
-                projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-                if (projectile.velocity.Y > 16f)
+                Lighting.AddLight((int)Projectile.Center.X / 16, (int)Projectile.Center.Y / 16, 0.3f, 0.8f, 1.1f);
+                Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.57f;
+                if (Projectile.velocity.Y > 16f)
                 {
-                    projectile.velocity.Y = 16f;
+                    Projectile.velocity.Y = 16f;
                 }
             }
         }

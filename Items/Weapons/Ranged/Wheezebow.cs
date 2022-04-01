@@ -14,30 +14,26 @@ namespace ExxoAvalonOrigins.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.UseSound = SoundID.Item5;
-            item.damage = 16;
-            item.useTurn = true;
-            item.scale = 1.1f;
-            item.shootSpeed = 9f;
-            item.useAmmo = AmmoID.Arrow;
-            item.ranged = item.noMelee = true;
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.useTime = 20;
-            item.knockBack = 0f;
-            item.shoot = ProjectileID.WoodenArrowFriendly;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.value = Item.sellPrice(0, 0, 36, 0);
-            item.useAnimation = 20;
-            item.height = dims.Height;
+            Item.UseSound = SoundID.Item5;
+            Item.damage = 16;
+            Item.useTurn = true;
+            Item.scale = 1.1f;
+            Item.shootSpeed = 9f;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.DamageType = // item.noMelee = true /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.useTime = 20;
+            Item.knockBack = 0f;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = Item.sellPrice(0, 0, 36, 0);
+            Item.useAnimation = 20;
+            Item.height = dims.Height;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 9);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BacciliteBar>(), 9).AddTile(TileID.Anvils).Register();
         }
     }
 }

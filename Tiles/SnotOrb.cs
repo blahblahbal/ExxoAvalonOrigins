@@ -8,12 +8,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Tiles
 {
     public class SnotOrb : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(144, 160, 38), LanguageManager.Instance.GetText("Snot Orb"));
             Main.tileFrameImportant[Type] = true;
@@ -111,7 +112,7 @@ namespace ExxoAvalonOrigins.Tiles
                         NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(text), new Color(50, 255, 130));
                     }
                 }
-                Main.PlaySound(SoundID.NPCKilled, i * 16, j * 16, 1);
+                SoundEngine.PlaySound(SoundID.NPCKilled, i * 16, j * 16, 1);
             }
         }
     }

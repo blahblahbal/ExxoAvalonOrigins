@@ -15,28 +15,21 @@ namespace ExxoAvalonOrigins.Items.Potions
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.buffType = ModContent.BuffType<Buffs.Shadows>();
-            item.consumable = true;
-            item.rare = ItemRarityID.Green;
-            item.width = dims.Width;
-            item.useTime = 15;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.maxStack = 100;
-            item.useAnimation = 15;
-            item.height = dims.Height;
-            item.buffTime = 25200;
-            item.UseSound = SoundID.Item3;
+            Item.buffType = ModContent.BuffType<Buffs.Shadows>();
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Green;
+            Item.width = dims.Width;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.EatFood;
+            Item.maxStack = 100;
+            Item.useAnimation = 15;
+            Item.height = dims.Height;
+            Item.buffTime = 25200;
+            Item.UseSound = SoundID.Item3;
         }
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater, 5);
-            recipe.AddIngredient(ModContent.ItemType<Material.ChaosDust>(), 9);
-            recipe.AddIngredient(ItemID.Waterleaf, 3);
-            recipe.AddIngredient(ItemID.Fireblossom, 3);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this, 5);
-            recipe.AddRecipe();
+            CreateRecipe(5).AddIngredient(ItemID.BottledWater, 5).AddIngredient(ModContent.ItemType<Material.ChaosDust>(), 9).AddIngredient(ItemID.Waterleaf, 3).AddIngredient(ItemID.Fireblossom, 3).AddTile(TileID.Bottles).Register();
         }
     }
 }

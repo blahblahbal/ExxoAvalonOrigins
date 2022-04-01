@@ -10,28 +10,28 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Poison Dart Frog");
-            Main.npcFrameCount[npc.type] = 3;
+            Main.npcFrameCount[NPC.type] = 3;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 65;
-            npc.scale = 1f;
-            npc.lifeMax = 310;
-            npc.defense = 24;
-            npc.width = 36;
-            npc.aiStyle = -1;
-            npc.npcSlots = 1f;
-            npc.value = 1000f;
-            npc.timeLeft = 750;
-            npc.height = 36;
-            npc.knockBackResist = 0.2f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
+            NPC.damage = 65;
+            NPC.scale = 1f;
+            NPC.lifeMax = 310;
+            NPC.defense = 24;
+            NPC.width = 36;
+            NPC.aiStyle = -1;
+            NPC.npcSlots = 1f;
+            NPC.value = 1000f;
+            NPC.timeLeft = 750;
+            NPC.height = 36;
+            NPC.knockBackResist = 0.2f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
             AIInJump = true;
         }
 
@@ -41,28 +41,28 @@ namespace ExxoAvalonOrigins.NPCs
 
         public float AIFrame
         {
-            get => npc.ai[AISlotFrame];
-            set => npc.ai[AISlotFrame] = value;
+            get => NPC.ai[AISlotFrame];
+            set => NPC.ai[AISlotFrame] = value;
         }
 
         public float AITimer
         {
-            get => npc.ai[AISlotTimer];
-            set => npc.ai[AISlotTimer] = value;
+            get => NPC.ai[AISlotTimer];
+            set => NPC.ai[AISlotTimer] = value;
         }
 
         public bool AIInJump
         {
-            get => npc.ai[AISlotInJump] == 1;
-            set => npc.ai[AISlotInJump] = value ? 1 : 0;
+            get => NPC.ai[AISlotInJump] == 1;
+            set => NPC.ai[AISlotInJump] = value ? 1 : 0;
         }
 
         public override void AI()
         {
             AITimer++;
-            npc.TargetClosest(true);
-            Player player = Main.player[npc.target];
-            npc.spriteDirection = npc.direction;
+            NPC.TargetClosest(true);
+            Player player = Main.player[NPC.target];
+            NPC.spriteDirection = NPC.direction;
 
             if (AITimer == 1)
             {
@@ -77,41 +77,41 @@ namespace ExxoAvalonOrigins.NPCs
                 float speedY = jumpType == 0 ? -5f : -8f;
                 float speedX = 12f;
 
-                if (Vector2.Distance(npc.position, Main.player[npc.target].position) < 16 * 10)
+                if (Vector2.Distance(NPC.position, Main.player[NPC.target].position) < 16 * 10)
                 {
                     speedY = jumpType == 0 ? -7f : -10f;
                     speedX = 5f;
                 }
 
-                if (npc.collideX)
+                if (NPC.collideX)
                 {
                     speedY *= 2;
                 }
 
                 AIFrame = 1;
-                npc.velocity.Y = speedY;
-                npc.velocity.X += speedX * npc.direction;
+                NPC.velocity.Y = speedY;
+                NPC.velocity.X += speedX * NPC.direction;
                 AITimer = 0;
                 AIInJump = true;
             }
 
-            if (AIInJump && npc.velocity.X == 0)
+            if (AIInJump && NPC.velocity.X == 0)
             {
                 float speedX = 12f;
-                if (Vector2.Distance(npc.position, Main.player[npc.target].position) < 16 * 10)
+                if (Vector2.Distance(NPC.position, Main.player[NPC.target].position) < 16 * 10)
                 {
                     speedX = 5f;
                 }
 
-                npc.velocity.X += speedX * npc.direction;
+                NPC.velocity.X += speedX * NPC.direction;
             }
 
-            if (npc.collideY && npc.velocity.Y >= 0 && ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, npc.width, npc.height))
+            if (NPC.collideY && NPC.velocity.Y >= 0 && ExxoAvalonOriginsCollisions.SolidCollisionArma(NPC.position, NPC.width, NPC.height))
             {
-                npc.velocity.X *= 0.7f;
-                if (npc.velocity.X > -0.5 && npc.velocity.X < 0.5)
+                NPC.velocity.X *= 0.7f;
+                if (NPC.velocity.X > -0.5 && NPC.velocity.X < 0.5)
                 {
-                    npc.velocity.X = 0f;
+                    NPC.velocity.X = 0f;
                     //AIFrame = 0;
                 }
                 AIInJump = false;
@@ -119,22 +119,22 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f * bossLifeScale);
-            npc.damage = (int)(npc.damage * 0.8f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f * bossLifeScale);
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.collideY && npc.velocity.Y >= 0 && ExxoAvalonOriginsCollisions.SolidCollisionArma(npc.position, npc.width, npc.height))
+            if (NPC.collideY && NPC.velocity.Y >= 0 && ExxoAvalonOriginsCollisions.SolidCollisionArma(NPC.position, NPC.width, NPC.height))
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
             else
             {
                 if (AIFrame == 0)
                 {
-                    npc.frame.Y = frameHeight * 2;
+                    NPC.frame.Y = frameHeight * 2;
                 }
-                else npc.frame.Y = frameHeight * 3;
+                else NPC.frame.Y = frameHeight * 3;
             }
         }
 
@@ -144,13 +144,13 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore1"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore2"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore3"), 1f);
-                Gore.NewGore(npc.position, npc.velocity * 0.8f, mod.GetGoreSlot("Gores/FrogGore3"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/FrogGore1"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/FrogGore2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/FrogGore2"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/FrogGore3"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/FrogGore3"), 1f);
             }
         }
     }

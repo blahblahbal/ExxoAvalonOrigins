@@ -15,24 +15,19 @@ namespace ExxoAvalonOrigins.Items.Ammo
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.damage = 9;
-            item.ammo = 51;
-            item.ranged = true;
-            item.rare = ItemRarityID.Orange;
-            item.width = dims.Width;
-            item.shoot = ModContent.ProjectileType<Projectiles.CursedTooth>();
-            item.maxStack = 999;
-            item.height = dims.Height;
+            Item.damage = 9;
+            Item.ammo = 51;
+            Item.DamageType = DamageClass.Ranged;
+            Item.rare = ItemRarityID.Orange;
+            Item.width = dims.Width;
+            Item.shoot = ModContent.ProjectileType<Projectiles.CursedTooth>();
+            Item.maxStack = 999;
+            Item.height = dims.Height;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Seed, 50);
-            recipe.AddIngredient(ItemID.CursedFlame);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this, 50);
-            recipe.AddRecipe();
+            CreateRecipe(50).AddIngredient(ItemID.Seed, 50).AddIngredient(ItemID.CursedFlame).AddTile(TileID.MythrilAnvil).Register();
         }
     }
 }

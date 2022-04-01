@@ -8,7 +8,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
 {
     public class IridiumOre : ModTile
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             AddMapEntry(new Color(146, 167, 123), LanguageManager.Instance.GetText("Iridium"));
             Main.tileSolid[Type] = true;

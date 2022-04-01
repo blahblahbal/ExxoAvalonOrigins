@@ -8,22 +8,22 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.Homing[projectile.type] = true;
-            ProjectileID.Sets.MinionShot[projectile.type] = true;
+            ProjectileID.Sets.Homing[Projectile.type] = true;
+            ProjectileID.Sets.MinionShot[Projectile.type] = true;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.penetrate = 3;
-            projectile.friendly = true;
-            projectile.ignoreWater = true;
-            projectile.aiStyle = 101;
-            projectile.light = 0.75f;
-            projectile.scale = 1.2f;
-            projectile.timeLeft = 600;
-            projectile.extraUpdates = 2;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.penetrate = 3;
+            Projectile.friendly = true;
+            Projectile.ignoreWater = true;
+            Projectile.aiStyle = 101;
+            Projectile.light = 0.75f;
+            Projectile.scale = 1.2f;
+            Projectile.timeLeft = 600;
+            Projectile.extraUpdates = 2;
             //Main.PlaySound(SoundID.Item20);
         }
 

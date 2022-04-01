@@ -16,26 +16,21 @@ namespace ExxoAvalonOrigins.Items.Accessories
         public override void SetDefaults()
         {
             Rectangle dims = this.GetDims();
-            item.rare = ItemRarityID.Blue;
-            item.width = dims.Width;
-            item.accessory = true;
-            item.value = Item.sellPrice(0, 0, 30);
-            item.height = dims.Height;
+            Item.rare = ItemRarityID.Blue;
+            Item.width = dims.Width;
+            Item.accessory = true;
+            Item.value = Item.sellPrice(0, 0, 30);
+            Item.height = dims.Height;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.05f;
+            player.GetDamage(DamageClass.Magic) += 0.05f;
         }
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Amethyst, 12);
-            recipe.AddIngredient(ItemID.Chain);
-            recipe.SetResult(this);
-            recipe.AddTile(TileID.Anvils);
-            recipe.AddRecipe();
+            CreateRecipe(1).AddIngredient(ItemID.Amethyst, 12).AddIngredient(ItemID.Chain).AddTile(TileID.Anvils).Register();
         }
     }
 }

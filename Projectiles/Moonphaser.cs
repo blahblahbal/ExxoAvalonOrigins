@@ -16,16 +16,16 @@ namespace ExxoAvalonOrigins.Projectiles
         public override void SetDefaults()
         {
             Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Moonphaser");
-            projectile.aiStyle = -1;
-            projectile.width = dims.Width;
-            projectile.height = dims.Height / Main.projFrames[projectile.type];
-            projectile.damage = 0;
-            projectile.tileCollide = false;
+            Projectile.aiStyle = -1;
+            Projectile.width = dims.Width;
+            Projectile.height = dims.Height / Main.projFrames[Projectile.type];
+            Projectile.damage = 0;
+            Projectile.tileCollide = false;
         }
 
         public override void AI()
         {
-            if (projectile.active)
+            if (Projectile.active)
             {
                 Main.moonPhase++;
                 if (Main.moonPhase >= 8)
@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 1)
@@ -53,7 +53,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 2)
@@ -64,7 +64,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 3)
@@ -75,7 +75,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 4)
@@ -86,7 +86,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 5)
@@ -97,7 +97,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 6)
@@ -108,7 +108,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                     if (Main.moonPhase == 7)
@@ -119,7 +119,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             Main.NewText("The Blood Moon has risen...", 50, 255, 130, false);
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                 }
@@ -133,7 +133,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 1)
                     {
@@ -143,7 +143,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 2)
                     {
@@ -153,7 +153,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 3)
                     {
@@ -163,7 +163,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 4)
                     {
@@ -173,7 +173,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 5)
                     {
@@ -183,7 +183,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 6)
                     {
@@ -193,7 +193,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                     }
                     if (Main.moonPhase == 7)
                     {
@@ -203,7 +203,7 @@ namespace ExxoAvalonOrigins.Projectiles
                             Main.bloodMoon = true;
                             NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon has risen..."), new Color(50, 255, 130));
                         }
-                        projectile.active = false;
+                        Projectile.active = false;
                         return;
                     }
                 }

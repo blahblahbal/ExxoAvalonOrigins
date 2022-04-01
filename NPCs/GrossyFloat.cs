@@ -9,60 +9,60 @@ namespace ExxoAvalonOrigins.NPCs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Grossy Float");
-            Main.npcFrameCount[npc.type] = 5;
+            Main.npcFrameCount[NPC.type] = 5;
         }
 
         public override void SetDefaults()
         {
-            npc.damage = 70;
-            npc.noTileCollide = true;
-            npc.lifeMax = 200;
-            npc.defense = 10;
-            npc.noGravity = true;
-            npc.alpha = 100;
-            npc.width = 24;
-            npc.aiStyle = 22;
-            npc.value = 500f;
-            npc.height = 56;
-            npc.knockBackResist = 0.7f;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath2;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
+            NPC.damage = 70;
+            NPC.noTileCollide = true;
+            NPC.lifeMax = 200;
+            NPC.defense = 10;
+            NPC.noGravity = true;
+            NPC.alpha = 100;
+            NPC.width = 24;
+            NPC.aiStyle = 22;
+            NPC.value = 500f;
+            NPC.height = 56;
+            NPC.knockBackResist = 0.7f;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.55f);
-            npc.damage = (int)(npc.damage * 0.5f);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
+            NPC.damage = (int)(NPC.damage * 0.5f);
         }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.velocity.X > 0f)
+            if (NPC.velocity.X > 0f)
             {
-                npc.spriteDirection = 1;
+                NPC.spriteDirection = 1;
             }
-            if (npc.velocity.X < 0f)
+            if (NPC.velocity.X < 0f)
             {
-                npc.spriteDirection = -1;
+                NPC.spriteDirection = -1;
             }
-            npc.rotation = npc.velocity.X * 0.1f;
-            if (npc.type == NPCID.Bee || npc.type == NPCID.BeeSmall)
+            NPC.rotation = NPC.velocity.X * 0.1f;
+            if (NPC.type == NPCID.Bee || NPC.type == NPCID.BeeSmall)
             {
-                npc.frameCounter += 1.0;
-                npc.rotation = npc.velocity.X * 0.2f;
+                NPC.frameCounter += 1.0;
+                NPC.rotation = NPC.velocity.X * 0.2f;
             }
-            npc.frameCounter += 1.0;
-            if (npc.frameCounter >= 6.0)
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter >= 6.0)
             {
-                npc.frame.Y = npc.frame.Y + frameHeight;
-                npc.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
             }
-            if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
+            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
             {
-                npc.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -73,10 +73,10 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void HitEffect(int hitDirection, double damage)
         {
-            if (npc.life <= 0)
+            if (NPC.life <= 0)
             {
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GrossyFloatHead"), 0.9f);
-                Gore.NewGore(npc.position, npc.velocity, mod.GetGoreSlot("Gores/GrossyFloatTail"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GrossyFloatHead"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GrossyFloatTail"), 0.9f);
             }
         }
     }
