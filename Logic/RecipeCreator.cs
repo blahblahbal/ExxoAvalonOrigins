@@ -2933,7 +2933,7 @@ public static class RecipeCreator
 
 
         recipe = new ModRecipe(mod);
-        recipe.AddIngredient(ModContent.ItemType<SouloftheJungle>(), 20);
+        recipe.AddIngredient(ModContent.ItemType<SoulofHumidity>(), 20);
         recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 60);
         recipe.AddIngredient(ModContent.ItemType<AncientHeadpiece>());
         recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 15);
@@ -2942,7 +2942,7 @@ public static class RecipeCreator
         recipe.AddRecipe();
 
         recipe = new ModRecipe(mod);
-        recipe.AddIngredient(ModContent.ItemType<SouloftheJungle>(), 23);
+        recipe.AddIngredient(ModContent.ItemType<SoulofHumidity>(), 23);
         recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 65);
         recipe.AddIngredient(ModContent.ItemType<AncientBodyplate>());
         recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 15);
@@ -2951,7 +2951,7 @@ public static class RecipeCreator
         recipe.AddRecipe();
 
         recipe = new ModRecipe(mod);
-        recipe.AddIngredient(ModContent.ItemType<SouloftheJungle>(), 17);
+        recipe.AddIngredient(ModContent.ItemType<SoulofHumidity>(), 17);
         recipe.AddIngredient(ModContent.ItemType<DarkMatterGel>(), 70);
         recipe.AddIngredient(ModContent.ItemType<AncientLeggings>());
         recipe.AddIngredient(ModContent.ItemType<LifeDew>(), 15);

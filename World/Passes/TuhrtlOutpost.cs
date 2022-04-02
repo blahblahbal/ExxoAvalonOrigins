@@ -1,12 +1,13 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Terraria.IO;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
 class TuhrtlOutpost
 {
-    public static void Method(GenerationProgress progress)
+    public static void Method(GenerationProgress progress, GameConfiguration configuration)
     {
         progress.Message = "Generating Tuhrtl Outpost";
         bool flag30 = true;

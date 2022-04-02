@@ -6,12 +6,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Terraria.IO;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
 class Contagion
 {
-    public static void Method(GenerationProgress progress)
+    public static void Method(GenerationProgress progress, GameConfiguration configuration)
     {
         progress.Message = "Making the world gross";
         int num208 = 0;

@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses;
 
@@ -19,6 +20,14 @@ public class DesertBeak : ModNPC
     {
         DisplayName.SetDefault("Desert Beak");
         Main.npcFrameCount[NPC.type] = 3;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                ModContent.BuffType<Buffs.Frozen>()
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -38,7 +47,6 @@ public class DesertBeak : ModNPC
         NPC.knockBackResist = 0f;
         NPC.HitSound = SoundID.NPCHit28;
         NPC.DeathSound = SoundID.NPCDeath31;
-        NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
         Music = ExxoAvalonOrigins.Mod.MusicMod == null ? MusicID.Boss2 : MusicLoader.GetMusicSlot(ExxoAvalonOrigins.Mod.MusicMod, "Sounds/Music/DesertBeak");
     }
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -2,12 +2,13 @@
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Terraria.IO;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
 class Altars
 {
-    public static void Method(GenerationProgress progress)
+    public static void Method(GenerationProgress progress, GameConfiguration configuration)
     {
         progress.Message = Language.GetTextValue("LegacyWorldGen.26");
         int num = (int)(Main.maxTilesX * Main.maxTilesY * 1.99999994947575E-05);

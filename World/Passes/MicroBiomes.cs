@@ -4,12 +4,13 @@ using Terraria;
 using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
+using Terraria.IO;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
 class MicroBiomes
 {
-    public static void Method(GenerationProgress progress)
+    public static void Method(GenerationProgress progress, GameConfiguration configuration)
     {
         progress.Message = Lang.gen[76].Value + "..Thin Ice";
         float num = (float)(Main.maxTilesX * Main.maxTilesY) / 5040000f;

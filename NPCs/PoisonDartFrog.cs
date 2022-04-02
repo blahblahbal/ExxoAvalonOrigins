@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -11,6 +12,17 @@ public class PoisonDartFrog : ModNPC
     {
         DisplayName.SetDefault("Poison Dart Frog");
         Main.npcFrameCount[NPC.type] = 3;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.CursedInferno,
+                BuffID.OnFire,
+                BuffID.Poisoned
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -28,10 +40,6 @@ public class PoisonDartFrog : ModNPC
         NPC.knockBackResist = 0.2f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.buffImmune[BuffID.Poisoned] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         AIInJump = true;
     }
 

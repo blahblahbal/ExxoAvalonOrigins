@@ -2,12 +2,13 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using Terraria.IO;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
 class Underworld
 {
-    public static void Method(GenerationProgress progress)
+    public static void Method(GenerationProgress progress, GameConfiguration configuration)
     {
         progress.Message = "Generating Caesium Blastplains";
         //for (var i = 0; i < (int)((Main.maxTilesX * Main.maxTilesY) * 0.0008); i++)

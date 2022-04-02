@@ -69,7 +69,7 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
         ModContent.ItemType<Items.Accessories.QuackinaBalloon>(),
         ModContent.ItemType<Items.Accessories.QuackinaBottle>()
     };
-    Dictionary<int, byte> allowedPrefixes = new Dictionary<int, byte>()
+    Dictionary<int, int> allowedPrefixes = new Dictionary<int, int>()
     {
         { 0, ModContent.PrefixType<Prefixes.Barbaric>() },
         { 1, ModContent.PrefixType<Prefixes.Boosted>() },
@@ -173,7 +173,7 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
         TooltipLine lineSpeed = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "Speed" && x.mod == "Terraria");
         if (lineKB != null)
         {
-            if (LanguageManager.Instance.ActiveCulture == GameCulture.English)
+            if (LanguageManager.Instance.ActiveCulture.LegacyId == (int)GameCulture.CultureName.English)
             {
                 if (item.knockBack > 0f && item.knockBack < 1.5f)
                 {
@@ -195,7 +195,7 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
         }
         if (lineSpeed != null)
         {
-            if (LanguageManager.Instance.ActiveCulture == GameCulture.English)
+            if (LanguageManager.Instance.ActiveCulture.LegacyId == (int)GameCulture.CultureName.English)
             {
                 if (item.useAnimation <= 5f)
                 {
@@ -216,10 +216,10 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
                     new Color(252, 66, 0),
                     new Color(203, 203, 203)
                 };
-                int num = (int)(Main.GlobalTime / 2f % colors.Count);
+                int num = (int)(Main.GlobalTimeWrappedHourly / 2f % colors.Count);
                 Color orange = colors[num];
                 Color silver = colors[(num + 1) % colors.Count];
-                tooltipLine.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
+                tooltipLine.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTimeWrappedHourly % 2f > 1f) ? 1f : (Main.GlobalTimeWrappedHourly % 1f));
             }
             if (avalonRarityItems.Contains(item.type))
             {
@@ -228,10 +228,10 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
                     new Color(71, 142, 147),
                     new Color(255, 242, 0)
                 };
-                int num = (int)(Main.GlobalTime / 2f % colors.Count);
+                int num = (int)(Main.GlobalTimeWrappedHourly / 2f % colors.Count);
                 Color teal = colors[num];
                 Color yellow = colors[(num + 1) % colors.Count];
-                tooltipLine.overrideColor = Color.Lerp(teal, yellow, (Main.GlobalTime % 2f > 1f) ? 1f : (Main.GlobalTime % 1f));
+                tooltipLine.overrideColor = Color.Lerp(teal, yellow, (Main.GlobalTimeWrappedHourly % 2f > 1f) ? 1f : (Main.GlobalTimeWrappedHourly % 1f));
             }
             if (rainbowRarityItems.Contains(item.type))
             {
@@ -239,45 +239,43 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
             }
         }
     }
+    //public override GlobalItem NewInstance(Item item)
+    //{
+    //    return base.NewInstance(item);
+    //}
 
-    public override GlobalItem NewInstance(Item item)
-    {
-        return base.NewInstance(item);
-    }
+    //public override bool NeedsSaving(Item item)
+    //{
+    //    return true;
+    //}
+    //public override TagCompound SaveData(Item item)
+    //{
+    //    return new TagCompound
+    //    {
+    //        ["ExxoAvalonOrigins:Rarity"] = (int)avalonRarity,
+    //        ["ExxoAvalonOrigins:Spike"] = spike,
+    //        ["ExxoAvalonOrigins:Torch"] = torch
+    //    };
+    //}
 
-    public override bool NeedsSaving(Item item)
-    {
-        return true;
-    }
+    //public override void Load(Item item, TagCompound tag)
+    //{
+    //    avalonRarity = (AvalonRarity)tag.GetInt("ExxoAvalonOrigins:Rarity");
+    //    spike = tag.GetInt("ExxoAvalonOrigins:Spike");
+    //    torch = tag.GetInt("ExxoAvalonOrigins:Torch");
+    //}
 
-    public override TagCompound Save(Item item)
-    {
-        return new TagCompound
-        {
-            ["ExxoAvalonOrigins:Rarity"] = (int)avalonRarity,
-            ["ExxoAvalonOrigins:Spike"] = spike,
-            ["ExxoAvalonOrigins:Torch"] = torch
-        };
-    }
+    //public override void NetSend(Item item, BinaryWriter writer)
+    //{
+    //    writer.Write((int)avalonRarity);
+    //    writer.Write(spike);
+    //    writer.Write(torch);
+    //}
 
-    public override void Load(Item item, TagCompound tag)
-    {
-        avalonRarity = (AvalonRarity)tag.GetInt("ExxoAvalonOrigins:Rarity");
-        spike = tag.GetInt("ExxoAvalonOrigins:Spike");
-        torch = tag.GetInt("ExxoAvalonOrigins:Torch");
-    }
-
-    public override void NetSend(Item item, BinaryWriter writer)
-    {
-        writer.Write((int)avalonRarity);
-        writer.Write(spike);
-        writer.Write(torch);
-    }
-
-    public override void NetReceive(Item item, BinaryReader reader)
-    {
-        avalonRarity = (AvalonRarity)reader.ReadInt32();
-        spike = reader.ReadInt32();
-        torch = reader.ReadInt32();
-    }
+    //public override void NetReceive(Item item, BinaryReader reader)
+    //{
+    //    avalonRarity = (AvalonRarity)reader.ReadInt32();
+    //    spike = reader.ReadInt32();
+    //    torch = reader.ReadInt32();
+    //}
 }

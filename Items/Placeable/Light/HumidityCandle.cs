@@ -32,8 +32,8 @@ class HumidityCandle : ModItem
 
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.SouloftheJungle>(), 15).AddIngredient(ItemID.Candle).AddTile(TileID.MythrilAnvil).Register();
-        CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.SouloftheJungle>(), 15).AddIngredient(ItemID.PlatinumCandle).AddTile(TileID.MythrilAnvil).Register();
-        CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.SouloftheJungle>(), 15).AddIngredient(ModContent.ItemType<Placeable.Light.BismuthCandle>()).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.SoulofHumidity>(), 15).AddIngredient(ItemID.Candle).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.SoulofHumidity>(), 15).AddIngredient(ItemID.PlatinumCandle).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1).AddIngredient(ModContent.ItemType<Material.SoulofHumidity>(), 15).AddIngredient(ModContent.ItemType<Placeable.Light.BismuthCandle>()).AddTile(TileID.MythrilAnvil).Register();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ExxoAvalonOrigins.Items.Placeable.Bar;
 using Terraria;
 using Terraria.ID;
+using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
@@ -8,7 +9,7 @@ namespace ExxoAvalonOrigins.World.Passes;
 
 class Setup
 {
-    public static void Method(GenerationProgress progress)
+    public static void Method(GenerationProgress progress, GameConfiguration configuration)
     {
         progress.Message = "Setting up Avalonian World Gen";
 
@@ -20,17 +21,17 @@ class Setup
         switch (ExxoAvalonOriginsWorld.copperOre)
         {
             case ExxoAvalonOriginsWorld.CopperVariant.copper:
-                WorldGen.CopperTierOre = TileID.Copper;
+                WorldGen.SavedOreTiers.Copper = TileID.Copper;
                 WorldGen.copperBar = ItemID.CopperBar;
                 break;
 
             case ExxoAvalonOriginsWorld.CopperVariant.tin:
-                WorldGen.CopperTierOre = TileID.Tin;
+                WorldGen.SavedOreTiers.Copper = TileID.Tin;
                 WorldGen.copperBar = ItemID.TinBar;
                 break;
 
             case ExxoAvalonOriginsWorld.CopperVariant.bronze:
-                WorldGen.CopperTierOre = (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>();
+                WorldGen.SavedOreTiers.Copper = (ushort)ModContent.TileType<Tiles.Ores.BronzeOre>();
                 WorldGen.copperBar = ModContent.ItemType<BronzeBar>();
                 break;
         }
@@ -43,17 +44,17 @@ class Setup
         switch (ExxoAvalonOriginsWorld.ironOre)
         {
             case ExxoAvalonOriginsWorld.IronVariant.iron:
-                WorldGen.IronTierOre = TileID.Iron;
+                WorldGen.SavedOreTiers.Iron = TileID.Iron;
                 WorldGen.ironBar = ItemID.IronBar;
                 break;
 
             case ExxoAvalonOriginsWorld.IronVariant.lead:
-                WorldGen.IronTierOre = TileID.Lead;
+                WorldGen.SavedOreTiers.Iron = TileID.Lead;
                 WorldGen.ironBar = ItemID.LeadBar;
                 break;
 
             case ExxoAvalonOriginsWorld.IronVariant.nickel:
-                WorldGen.IronTierOre = (ushort)ModContent.TileType<Tiles.Ores.NickelOre>();
+                WorldGen.SavedOreTiers.Iron = (ushort)ModContent.TileType<Tiles.Ores.NickelOre>();
                 WorldGen.ironBar = ModContent.ItemType<NickelBar>();
                 break;
         }
@@ -66,17 +67,17 @@ class Setup
         switch (ExxoAvalonOriginsWorld.silverOre)
         {
             case ExxoAvalonOriginsWorld.SilverVariant.silver:
-                WorldGen.SilverTierOre = TileID.Silver;
+                WorldGen.SavedOreTiers.Silver = TileID.Silver;
                 WorldGen.silverBar = ItemID.SilverBar;
                 break;
 
             case ExxoAvalonOriginsWorld.SilverVariant.tungsten:
-                WorldGen.SilverTierOre = TileID.Tungsten;
+                WorldGen.SavedOreTiers.Silver = TileID.Tungsten;
                 WorldGen.silverBar = ItemID.TungstenBar;
                 break;
 
             case ExxoAvalonOriginsWorld.SilverVariant.zinc:
-                WorldGen.SilverTierOre = (ushort)ModContent.TileType<Tiles.Ores.ZincOre>();
+                WorldGen.SavedOreTiers.Silver = (ushort)ModContent.TileType<Tiles.Ores.ZincOre>();
                 WorldGen.silverBar = ModContent.ItemType<ZincBar>();
                 break;
         }
@@ -89,17 +90,17 @@ class Setup
         switch (ExxoAvalonOriginsWorld.goldOre)
         {
             case ExxoAvalonOriginsWorld.GoldVariant.gold:
-                WorldGen.GoldTierOre = TileID.Gold;
+                WorldGen.SavedOreTiers.Gold = TileID.Gold;
                 WorldGen.goldBar = ItemID.GoldBar;
                 break;
 
             case ExxoAvalonOriginsWorld.GoldVariant.platinum:
-                WorldGen.GoldTierOre = TileID.Platinum;
+                WorldGen.SavedOreTiers.Gold = TileID.Platinum;
                 WorldGen.goldBar = ItemID.PlatinumBar;
                 break;
 
             case ExxoAvalonOriginsWorld.GoldVariant.bismuth:
-                WorldGen.GoldTierOre = (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>();
+                WorldGen.SavedOreTiers.Gold = (ushort)ModContent.TileType<Tiles.Ores.BismuthOre>();
                 WorldGen.goldBar = ModContent.ItemType<BismuthBar>();
                 break;
         }
@@ -117,15 +118,15 @@ class Setup
         switch (ExxoAvalonOriginsWorld.cobaltOre)
         {
             case ExxoAvalonOriginsWorld.CobaltVariant.cobalt:
-                WorldGen.oreTier1 = TileID.Cobalt;
+                WorldGen.SavedOreTiers.Cobalt = TileID.Cobalt;
                 break;
 
             case ExxoAvalonOriginsWorld.CobaltVariant.palladium:
-                WorldGen.oreTier1 = TileID.Palladium;
+                WorldGen.SavedOreTiers.Cobalt = TileID.Palladium;
                 break;
 
             case ExxoAvalonOriginsWorld.CobaltVariant.duratanium:
-                WorldGen.oreTier1 = 0;
+                WorldGen.SavedOreTiers.Cobalt = 0;
                 break;
         }
 
@@ -137,15 +138,15 @@ class Setup
         switch (ExxoAvalonOriginsWorld.mythrilOre)
         {
             case ExxoAvalonOriginsWorld.MythrilVariant.mythril:
-                WorldGen.oreTier2 = TileID.Mythril;
+                WorldGen.SavedOreTiers.Mythril = TileID.Mythril;
                 break;
 
             case ExxoAvalonOriginsWorld.MythrilVariant.orichalcum:
-                WorldGen.oreTier2 = TileID.Orichalcum;
+                WorldGen.SavedOreTiers.Mythril = TileID.Orichalcum;
                 break;
 
             case ExxoAvalonOriginsWorld.MythrilVariant.naquadah:
-                WorldGen.oreTier2 = 1;
+                WorldGen.SavedOreTiers.Mythril = 1;
                 break;
         }
 
@@ -157,15 +158,15 @@ class Setup
         switch (ExxoAvalonOriginsWorld.adamantiteOre)
         {
             case ExxoAvalonOriginsWorld.AdamantiteVariant.adamantite:
-                WorldGen.oreTier3 = TileID.Adamantite;
+                WorldGen.SavedOreTiers.Adamantite = TileID.Adamantite;
                 break;
 
             case ExxoAvalonOriginsWorld.AdamantiteVariant.titanium:
-                WorldGen.oreTier3 = TileID.Titanium;
+                WorldGen.SavedOreTiers.Adamantite = TileID.Titanium;
                 break;
 
             case ExxoAvalonOriginsWorld.AdamantiteVariant.troxinium:
-                WorldGen.oreTier3 = 2;
+                WorldGen.SavedOreTiers.Adamantite = 2;
                 break;
         }
 

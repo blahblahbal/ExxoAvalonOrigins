@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -46,7 +47,6 @@ public class MechanicalDiggerHead : MechanicalDiggerWorm
         NPC.knockBackResist = 0f;
         NPC.HitSound = SoundID.NPCHit4;
         NPC.DeathSound = SoundID.NPCDeath14;
-        NPC.buffImmune[BuffID.Frostburn] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
     }
@@ -98,7 +98,6 @@ public class MechanicalDiggerBody : MechanicalDiggerWorm
         NPC.knockBackResist = 0f;
         NPC.HitSound = SoundID.NPCHit4;
         NPC.DeathSound = SoundID.NPCDeath14;
-        NPC.buffImmune[BuffID.Frostburn] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
     }
@@ -144,7 +143,6 @@ public class MechanicalDiggerTail : MechanicalDiggerWorm
         NPC.knockBackResist = 0f;
         NPC.HitSound = SoundID.NPCHit4;
         NPC.DeathSound = SoundID.NPCDeath14;
-        NPC.buffImmune[BuffID.Frostburn] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.MechanicalDiggerBanner>();
     }
@@ -168,6 +166,15 @@ public abstract class MechanicalDiggerWorm : Worm
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Mechanical Digger");
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.Frostburn
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void Init()

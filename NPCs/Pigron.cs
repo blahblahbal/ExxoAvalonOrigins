@@ -1,6 +1,7 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -10,6 +11,14 @@ public class Pigron : ModNPC
     {
         DisplayName.SetDefault("Pigron");
         Main.npcFrameCount[NPC.type] = 14;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -24,7 +33,6 @@ public class Pigron : ModNPC
         NPC.knockBackResist = 0.5f;
         NPC.HitSound = SoundID.NPCHit27;
         NPC.DeathSound = SoundID.NPCDeath30;
-        NPC.buffImmune[BuffID.Confused] = true;
     }
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
     {

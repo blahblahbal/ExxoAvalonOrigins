@@ -10,6 +10,14 @@ public class UnvolanditeMite : ModNPC
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Unvolandite Mite");
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -23,7 +31,6 @@ public class UnvolanditeMite : ModNPC
         NPC.knockBackResist = 0f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.buffImmune[BuffID.Confused] = true;
         NPC.lavaImmune = true;
     }
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

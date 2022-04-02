@@ -870,7 +870,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
         {
             if (Main.rand.Next(4) == 0)
             {
-                player.QuickSpawnItem(ModContent.ItemType<StaminaCrystal>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(0), ModContent.ItemType<StaminaCrystal>());
             }
         }
         if (context == "bossBag" && arg == ItemID.WallOfFleshBossBag)
@@ -879,16 +879,16 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
             NPCLoader.blockLoot.Add(ItemID.SummonerEmblem);
             NPCLoader.blockLoot.Add(ItemID.WarriorEmblem);
             NPCLoader.blockLoot.Add(ItemID.SorcererEmblem);
-            player.QuickSpawnItem(ModContent.ItemType<NullEmblem>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.WallOfFleshBossBag), ModContent.ItemType<NullEmblem>());
         }
         if (context == "bossBag" && arg == ItemID.KingSlimeBossBag)
         {
-            if (Main.rand.Next(3) == 0) player.QuickSpawnItem(ModContent.ItemType<BandofSlime>());
+            if (Main.rand.Next(3) == 0) player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.KingSlimeBossBag), ModContent.ItemType<BandofSlime>());
         }
         if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
         {
-            player.QuickSpawnItem(ModContent.ItemType<LifeDew>(), Main.rand.Next(15, 22));
-            player.QuickSpawnItem(ItemID.ChlorophyteOre, Main.rand.Next(60, 121));
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.PlanteraBossBag), ModContent.ItemType<LifeDew>(), Main.rand.Next(15, 22));
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.PlanteraBossBag), ItemID.ChlorophyteOre, Main.rand.Next(60, 121));
         }
         if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag) //keeping it this way because we might add unholy arrow alt
         {
@@ -897,25 +897,25 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 NPCLoader.blockLoot.Add(ItemID.UnholyArrow);
                 NPCLoader.blockLoot.Add(ItemID.DemoniteOre);
                 NPCLoader.blockLoot.Add(ItemID.CorruptSeeds);
-                player.QuickSpawnItem(ModContent.ItemType<BacciliteOre>(), Main.rand.Next(30, 81));
-                player.QuickSpawnItem(ModContent.ItemType<IckgrassSeeds>(), Main.rand.Next(1, 3));
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.EyeOfCthulhuBossBag), ModContent.ItemType<BacciliteOre>(), Main.rand.Next(30, 81));
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.EyeOfCthulhuBossBag), ModContent.ItemType<IckgrassSeeds>(), Main.rand.Next(1, 3));
                 //player.QuickSpawnItem(ModContent.ItemType<ShitArrow>(), Main.rand.Next(20, 50));
             }
             if (WorldGen.crimson)
             {
-                player.QuickSpawnItem(ModContent.ItemType<Items.Ammo.BloodyArrow>(), Main.rand.Next(20, 50));
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.EyeOfCthulhuBossBag), ModContent.ItemType<Items.Ammo.BloodyArrow>(), Main.rand.Next(20, 50));
             }
             if (!Main.hardMode && !ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(10) < 3)
             {
-                player.QuickSpawnItem(ModContent.ItemType<BloodyAmulet>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.EyeOfCthulhuBossBag), ModContent.ItemType<BloodyAmulet>());
             }
             else if (Main.hardMode && !ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(100) < 15)
             {
-                player.QuickSpawnItem(ModContent.ItemType<BloodyAmulet>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.EyeOfCthulhuBossBag), ModContent.ItemType<BloodyAmulet>());
             }
             else if (Main.hardMode && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.rand.Next(100) < 7)
             {
-                player.QuickSpawnItem(ModContent.ItemType<BloodyAmulet>());
+                player.QuickSpawnItem(player.GetItemSource_OpenItem(ItemID.EyeOfCthulhuBossBag), ModContent.ItemType<BloodyAmulet>());
             }
         }
     }
@@ -1008,7 +1008,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
         #endregion
         if (player.Avalon().ancientMinionGuide)
         {
-            if (item.summon && ExxoAvalonOrigins.Mod.minionGuidingHotkey.Current)
+            if (item.DamageType == DamageClass.Summon && ExxoAvalonOrigins.Mod.minionGuidingHotkey.Current)
             {
                 foreach (Projectile proj in Main.projectile)
                 {
@@ -1059,13 +1059,13 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                     }
                 }
             }
-            if (player.itemAnimation > 0 && player.whoAmI == Main.myPlayer && /*player.itemTime == 0 &&*/ hasAmmo && item2 != null)
-            {
-                if (vanillaFastGuns.Contains(item.type))
-                {
-                    Shoot(item, player, ref center, ref num70, ref num71, ref item2.shoot, ref item.damage, ref item.knockBack);
-                }
-            }
+            //if (player.itemAnimation > 0 && player.whoAmI == Main.myPlayer && /*player.itemTime == 0 &&*/ hasAmmo && item2 != null)
+            //{
+            //    if (vanillaFastGuns.Contains(item.type))
+            //    {
+            //        Shoot(item, player, ref center, ref num70, ref num71, ref item2.shoot, ref item.damage, ref item.knockBack);
+            //    }
+            //}
         }
     }
 
@@ -1229,7 +1229,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                             player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY &&
                             (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
             if (item.createTile > -1 && (Main.tileSolid[item.createTile] || nonSolidExceptions.Contains(item.createTile)) &&
-                (!Main.tile[Player.tileTargetX, Player.tileTargetY].lava() || player.HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
+                (Main.tile[Player.tileTargetX, Player.tileTargetY].LiquidType != LiquidID.Lava || player.HasItemInArmor(ModContent.ItemType<ObsidianGlove>())) &&
                 !Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile && inrange)
             {
                 bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
@@ -1239,10 +1239,10 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 }
                 if (subtractFromStack) item.stack--;
             }
-            if (item.createWall > 0 && Main.tile[Player.tileTargetX, Player.tileTargetY].wall == 0 && inrange)
+            if (item.createWall > 0 && Main.tile[Player.tileTargetX, Player.tileTargetY].WallType == 0 && inrange)
             {
                 WorldGen.PlaceWall(Player.tileTargetX, Player.tileTargetY, item.createWall);
-                if (Main.tile[Player.tileTargetX, Player.tileTargetY].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
+                if (Main.tile[Player.tileTargetX, Player.tileTargetY].WallType != 0 && Main.netMode != NetmodeID.SinglePlayer)
                 {
                     NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, item.createWall);
                 }
@@ -1665,23 +1665,23 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 break;
         }
     }
-    public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Item item, Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockBack)
     {
         if (player.Avalon().splitProj &&
-            item.ranged &&
+            item.DamageType == DamageClass.Ranged &&
             Main.rand.Next(7) == 0 &&
             type != ModContent.ProjectileType<Projectiles.EnchantedShuriken>())
         {
             for (int num221 = 0; num221 < 1; num221++)
             {
-                float num222 = speedX;
-                float num223 = speedY;
+                float num222 = velocity.X;
+                float num223 = velocity.Y;
                 num222 += Main.rand.Next(-30, 31) * 0.05f;
                 num223 += Main.rand.Next(-30, 31) * 0.05f;
                 if (item.type == ModContent.ItemType<Items.Weapons.Blah.TacticalBlahncher>()) type = ModContent.ProjectileType<Projectiles.Blahcket>();
                 if (item.type == ModContent.ItemType<VorazylcumFusebow>()) type = ModContent.ProjectileType<Projectiles.ArrowBeam>();
                 if (item.type == ModContent.ItemType<UnvolanditeFusebow>()) type = ModContent.ProjectileType<Projectiles.UnvolanditeBolt>();
-                Projectile.NewProjectile(position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(source, position.X, position.Y, num222, num223, type, damage, knockBack, player.whoAmI, 0f, 0f);
             }
         }
 
@@ -1699,7 +1699,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
             return false;
         }*/
 
-        return base.Shoot(item, player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+        return base.Shoot(item, player, source, position, velocity, type, damage, knockBack);
     }
 
     public override void PostUpdate(Item item)

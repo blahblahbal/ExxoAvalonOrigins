@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.GameContent.ItemDropRules;
+using ExxoAvalonOrigins.Systems;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses;
 
@@ -433,7 +434,7 @@ public class Phantasm : ModNPC
     }
     public override void OnKill()
     {
-        if (!ExxoAvalonOriginsWorld.downedPhantasm)
+        if (!DownedBossSystem.downedPhantasm)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
@@ -443,7 +444,7 @@ public class Phantasm : ModNPC
             {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The spirits are stirring in the depths!"), new Color(50, 255, 130));
             }
-            ExxoAvalonOriginsWorld.downedPhantasm = true;
+            NPC.SetEventFlagCleared(ref DownedBossSystem.downedPhantasm, -1);
         }
     }
     public override void HitEffect(int hitDirection, double damage)

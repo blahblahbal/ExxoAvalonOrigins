@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -13,6 +14,14 @@ public class QuickCaribe : ModNPC
     {
         DisplayName.SetDefault("Quick Caribe");
         Main.npcFrameCount[NPC.type] = 6;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -27,7 +36,6 @@ public class QuickCaribe : ModNPC
         NPC.timeLeft = 750;
         NPC.height = 24;
         NPC.knockBackResist = 0.8f;
-        NPC.buffImmune[BuffID.Confused] = true;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
     }

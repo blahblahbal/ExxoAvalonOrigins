@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Material;
 
-class SouloftheJungle : ModItem
+class SoulofHumidity : ModItem
 {
     public override void SetStaticDefaults()
     {

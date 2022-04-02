@@ -40,7 +40,7 @@ public class Infernaspaz : ModNPC
     public override void NPCLoot()
     {
         Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.SoulofFright, Main.rand.Next(5) + 1, false, 0, false);
-        Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SouloftheJungle>(), Main.rand.Next(5) + 1, false, 0, false);
+        Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofHumidity>(), Main.rand.Next(5) + 1, false, 0, false);
         Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<LifeDew>(), Main.rand.Next(5) + 1, false, 0, false);
     }
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
