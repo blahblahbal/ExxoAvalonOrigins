@@ -1,4 +1,5 @@
 ﻿using ExxoAvalonOrigins.Backgrounds;
+using ExxoAvalonOrigins.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +23,6 @@ public class Tropics : ModBiome
 
     public override bool IsBiomeActive(Player player)
     {
-        player.Avalon().ZoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
-        return player.Avalon().ZoneTropics;
+        return player.GetModPlayer<ExxoBiomePlayer>().ZoneTropics;
     }
 }

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Biomes;
 
-public class DarkMatter : ModBiome
+public class HellCastle : ModBiome
 {
     public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
 
@@ -14,12 +14,12 @@ public class DarkMatter : ModBiome
         get
         {
             Mod musicMod = ModLoader.GetMod("AvalonMusic");
-            return musicMod != null ? MusicLoader.GetMusicSlot(musicMod, "Sounds/Music/DarkMatter") : MusicID.Eclipse;
+            return musicMod != null ? MusicLoader.GetMusicSlot(musicMod, "Sounds/Music/Hellcastle") : MusicID.Dungeon;
         }
     }
 
     public override bool IsBiomeActive(Player player)
     {
-        return player.GetModPlayer<ExxoBiomePlayer>().ZoneDarkMatter;
+        return player.GetModPlayer<ExxoBiomePlayer>().ZoneHellCastle;
     }
 }

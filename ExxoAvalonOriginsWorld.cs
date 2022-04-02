@@ -20,7 +20,7 @@ using Terraria.Audio;
 
 namespace ExxoAvalonOrigins;
 
-public class ExxoAvalonOriginsWorld : ModWorld
+public class ExxoAvalonOriginsWorld : ModSystem
 {
     private Version worldVersion;
     public bool SuperHardmode { get; private set; }
@@ -40,23 +40,6 @@ public class ExxoAvalonOriginsWorld : ModWorld
     public static int jungleX = 0;
     public static int grassSpread = 0;
     public static bool contaigonSet = false;
-    public static int hellcastleTiles = 0;
-    public static int ickyTiles = 0;
-    public static int darkTiles = 0;
-    public static int tropicTiles = 0;
-    public static int caesiumTiles = 0;
-    public static int blightTiles = 0;
-    public static int delightTiles = 0;
-    public static int flightTiles = 0;
-    public static int frightTiles = 0;
-    public static int humidityTiles = 0;
-    public static int iceSoulTiles = 0;
-    public static int mightTiles = 0;
-    public static int nightTiles = 0;
-    public static int timeTiles = 0;
-    public static int tortureTiles = 0;
-    public static int skyFortressTiles = 0;
-    public static int crystalTiles = 0;
     public static Vector2 LoK = Vector2.Zero;
     public static int wosT;
     public static int wosB;
@@ -196,18 +179,6 @@ public class ExxoAvalonOriginsWorld : ModWorld
             }
         }
         return false;
-    }
-    public override void TileCountsAvailable(int[] tileCounts)
-    {
-        Main.jungleTiles += tileCounts[ModContent.TileType<GreenIce>()];
-        ickyTiles = tileCounts[ModContent.TileType<Chunkstone>()] + tileCounts[ModContent.TileType<HardenedSnotsand>()] + tileCounts[ModContent.TileType<Snotsandstone>()] + tileCounts[ModContent.TileType<Ickgrass>()] + tileCounts[ModContent.TileType<Snotsand>()] + tileCounts[ModContent.TileType<YellowIce>()];
-        tropicTiles = tileCounts[ModContent.TileType<TropicalStone>()] + tileCounts[ModContent.TileType<TuhrtlBrick>()] + tileCounts[ModContent.TileType<TropicalMud>()] + tileCounts[ModContent.TileType<TropicalGrass>()];
-        hellcastleTiles = tileCounts[ModContent.TileType<ImperviousBrick>()];
-        darkTiles = tileCounts[ModContent.TileType<DarkMatter>()] + tileCounts[ModContent.TileType<DarkMatterSand>()] + tileCounts[ModContent.TileType<BlackIce>()] + tileCounts[ModContent.TileType<DarkMatterSoil>()] + tileCounts[ModContent.TileType<HardenedDarkSand>()] + tileCounts[ModContent.TileType<Darksandstone>()] + tileCounts[ModContent.TileType<DarkMatterGrass>()];
-        caesiumTiles = tileCounts[ModContent.TileType<BlackBlaststone>()];
-        skyFortressTiles = tileCounts[ModContent.TileType<SkyBrick>()];
-        crystalTiles = tileCounts[ModContent.TileType<CrystalStone>()];
-        Main.sandTiles += tileCounts[ModContent.TileType<Snotsand>()];
     }
 
     public void RetroGen()

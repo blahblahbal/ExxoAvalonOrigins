@@ -1,4 +1,5 @@
 ﻿using ExxoAvalonOrigins.Backgrounds;
+using ExxoAvalonOrigins.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -46,7 +47,6 @@ public class Contagion : ModBiome
 
     public override bool IsBiomeActive(Player player)
     {
-        player.Avalon().ZoneContagion = ExxoAvalonOriginsWorld.ickyTiles > 200;
-        return player.Avalon().ZoneContagion;
+        return player.GetModPlayer<ExxoBiomePlayer>().ZoneContagion;
     }
 }
