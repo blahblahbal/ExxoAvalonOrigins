@@ -56,22 +56,23 @@ public class PinkTorch : ModProjectile
                 Projectile.active = false;
             }
 
-            if (!Main.tile[TileX, TileY].HasTile && (Main.tile[TileX + 1, TileY + 1].HasTile || Main.tile[TileX - 1, TileY + 1].HasTile || Main.tile[TileX + 1, TileY - 1].HasTile || Main.tile[TileX - 1, TileY - 1].HasTile) && !Main.tile[TileX, TileY + 1].HasTile)
-            {
-                Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                if (!Main.tile[TileX, TileY].HasTile && (Main.tile[TileX + 1, TileY + 1].HasTile || Main.tile[TileX - 1, TileY + 1].HasTile || Main.tile[TileX + 1, TileY - 1].HasTile || Main.tile[TileX - 1, TileY - 1].HasTile) && !Main.tile[TileX, TileY + 1].HasTile)
+                {
+                    Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
+                }
+                if (Main.tile[TileX, TileY].LiquidAmount > 0)
+                {
+                    Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
+                }
+                if (Main.tile[TileX, TileY + 1].Slope() || Main.tile[TileX, TileY + 1]..IsHalfBlock)
+                {
+                    Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                    Projectile.active = false;
+                }
                 Projectile.active = false;
             }
-            if (Main.tile[TileX, TileY].LiquidAmount > 0)
-            {
-                Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
-                Projectile.active = false;
-            }
-            if (Main.tile[TileX, TileY + 1].Slope() || Main.tile[TileX, TileY + 1]..IsHalfBlock)
-            {
-                Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
-                Projectile.active = false;
-            }
-            Projectile.active = false;
         }
     }
 }

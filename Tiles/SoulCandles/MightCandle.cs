@@ -29,26 +29,26 @@ public class MightCandle : ModTile
         dustType = ModContent.DustType<Dusts.SoulofMight>();
     }
 
-    public override void MouseOver(int i, int j)
-    {
-        Player player = Main.player[Main.myPlayer];
-        player.noThrow = 2;
-        player.showItemIcon = true;
-        player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.MightCandle>();
-    }
-    public override void KillMultiTile(int i, int j, int frameX, int frameY)
-    {
-        Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.Light.MightCandle>());
-    }
-    public override bool RightClick(int i, int j)
-    {
-        WorldGen.KillTile(i, j);
-        if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
+        public override void MouseOver(int i, int j)
         {
-            NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+            Player player = Main.player[Main.myPlayer];
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Light.MightCandle>();
         }
-        return false;
-    }
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        {
+            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.Light.MightCandle>());
+        }
+        public override bool RightClick(int i, int j)
+        {
+            WorldGen.KillTile(i, j);
+            if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+            }
+            return false;
+        }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
     {

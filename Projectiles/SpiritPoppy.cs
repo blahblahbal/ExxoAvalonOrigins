@@ -95,10 +95,10 @@ public class SpiritPoppy : ModProjectile
                 }
                 WorldGen.PlaceTile(xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), false, true);
 
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), 0);
-                }
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), 0);
+                    }
 
                 if (Main.tile[xpos, ypos].HasTile)
                 {
