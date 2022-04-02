@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Terraria.IO;
+using Terraria.ID;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
@@ -46,7 +47,7 @@ class ManaCrystal
             if (Main.tile[i, k].HasTile && Main.tileSolid[(int)Main.tile[i, k].TileType])
             {
                 int num = k - 1;
-                if (Main.tile[i, num - 1].lava() || Main.tile[i - 1, num - 1].lava())
+                if (Main.tile[i, num - 1].LiquidType == LiquidID.Lava || Main.tile[i - 1, num - 1].LiquidType == LiquidID.Lava)
                 {
                     return false;
                 }
@@ -62,19 +63,19 @@ class ManaCrystal
                 {
                     return false;
                 }
-                Main.tile[i - 1, num - 1].active(true);
+                //Main.tile[i - 1, num - 1].active(true);
                 Main.tile[i - 1, num - 1].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
                 Main.tile[i - 1, num - 1].TileFrameX = 0;
                 Main.tile[i - 1, num - 1].TileFrameY = 0;
-                Main.tile[i, num - 1].active(true);
+                //Main.tile[i, num - 1].active(true);
                 Main.tile[i, num - 1].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
                 Main.tile[i, num - 1].TileFrameX = 18;
                 Main.tile[i, num - 1].TileFrameY = 0;
-                Main.tile[i - 1, num].active(true);
+                //Main.tile[i - 1, num].active(true);
                 Main.tile[i - 1, num].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
                 Main.tile[i - 1, num].TileFrameX = 0;
                 Main.tile[i - 1, num].TileFrameY = 18;
-                Main.tile[i, num].active(true);
+                //Main.tile[i, num].active(true);
                 Main.tile[i, num].TileType = (ushort)ModContent.TileType<Tiles.ManaCrystal>();
                 Main.tile[i, num].TileFrameX = 18;
                 Main.tile[i, num].TileFrameY = 18;

@@ -115,7 +115,7 @@ class HallowedAltars
                         {
                             Main.tile[k, l].WallType = 222;
                         }
-                        if (Main.tile[k, l].HasTile && !Main.tile[k, l - 1].HasTile && !Main.tile[k, l - 1].lava() && Main.tile[k, l - 1].TileType != TileID.Containers && Main.tile[k, l - 1].TileType != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(150) == 0) // hallowed altar gen
+                        if (Main.tile[k, l].HasTile && !Main.tile[k, l - 1].HasTile && Main.tile[k, l - 1].LiquidType != LiquidID.Lava && Main.tile[k, l - 1].TileType != TileID.Containers && Main.tile[k, l - 1].TileType != TileID.Containers2 && l < Main.maxTilesY - 200 && Main.rand.Next(150) == 0) // hallowed altar gen
                         {
                             WorldGen.Place3x2(k, l - 1, (ushort)ModContent.TileType<HallowedAltar>());
                         }

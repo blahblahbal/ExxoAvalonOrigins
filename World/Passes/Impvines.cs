@@ -16,7 +16,6 @@ class Impvines
             {
                 if (num587 > 0 && !Main.tile[num586, num589].HasTile)
                 {
-                    Main.tile[num586, num589].active(true);
                     Main.tile[num586, num589].TileType = (ushort)ModContent.TileType<Tiles.Impvines>();
                     num587--;
                 }
@@ -24,7 +23,7 @@ class Impvines
                 {
                     num587 = 0;
                 }
-                if (Main.tile[num586, num589].HasTile && Main.tile[num586, num589].TileType == (ushort)ModContent.TileType<Tiles.Impgrass>() && !Main.tile[num586, num589].bottomSlope() && WorldGen.genRand.Next(5) < 3)
+                if (Main.tile[num586, num589].HasTile && Main.tile[num586, num589].TileType == (ushort)ModContent.TileType<Tiles.Impgrass>() && !Main.tile[num586, num589].BottomSlope && WorldGen.genRand.Next(5) < 3)
                 {
                     num587 = WorldGen.genRand.Next(1, 10);
                 }

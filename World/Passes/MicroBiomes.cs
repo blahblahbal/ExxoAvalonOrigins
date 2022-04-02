@@ -8,6 +8,7 @@ using Terraria.IO;
 
 namespace ExxoAvalonOrigins.World.Passes;
 
+//DO WE NEED THIS?
 class MicroBiomes
 {
     public static void Method(GenerationProgress progress, GameConfiguration configuration)
@@ -19,6 +20,8 @@ class MicroBiomes
         int num4 = 0;
         while (num4 < num3)
         {
+            //WorldGenConfiguration config = WorldGenConfiguration.FromEmbeddedPath("Terraria.GameContent.WorldBuilding.Configuration.json");
+
             if (Biomes<ThinIceBiome>.Place(WorldGen.RandomWorldPoint((int)Main.worldSurface + 20, 50, 200, 50), WorldGen.structures))
             {
                 num4++;

@@ -7,6 +7,7 @@ using ExxoAvalonOrigins.Items.Placeable.Seed;
 using ExxoAvalonOrigins.Logic;
 using ExxoAvalonOrigins.Tiles;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -1356,7 +1357,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
     }
     public void DarkMatterSpread(int i, int j)
     {
-        if (!Main.hardMode || Main.tile[i, j].inActive())
+        if (!Main.hardMode || Main.tile[i, j].IsActuated)
         {
             return;
         }
@@ -1472,7 +1473,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
 
     public static void ContagionHardmodeSpread(int i, int j)
     {
-        if (!Main.hardMode || Main.tile[i, j].inActive())
+        if (!Main.hardMode || Main.tile[i, j].IsActuated)
         {
             return;
         }
@@ -1788,7 +1789,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
                 if (Main.tile[num5, num6].TileType == TileID.CrimsonGrass || Main.tile[num5, num6].TileType == TileID.Crimstone)
                 {
                     int num14 = Main.tile[num5, num6].TileType;
-                    if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].LiquidAmount == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].Slope == SlopeType.Solid && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
+                    if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].LiquidAmount == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].Slope == SlopeType.Solid && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && (num14 == TileID.CrimsonPlants || num14 == TileID.Crimstone))
                     {
                         WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
                         if (Main.tile[num5, num9].HasTile)
@@ -1931,7 +1932,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
                             {
                                 if (Main.tile[m, n].TileType == ModContent.TileType<BlackBlaststone>())
                                 {
-                                    WorldGen.SpreadGrass(m, n, ModContent.TileType<BlackBlaststone>(), ModContent.TileType<LaziteGrass>(), false, Main.tile[num5, num6].color());
+                                    WorldGen.SpreadGrass(m, n, ModContent.TileType<BlackBlaststone>(), ModContent.TileType<LaziteGrass>(), false, Main.tile[num5, num6].TileColor);
                                 }
                                 if (Main.tile[m, n].TileType == num14)
                                 {
@@ -2010,7 +2011,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
 
                 #region impvines growing
 
-                if ((Main.tile[num5, num6].TileType == ModContent.TileType<Impgrass>() || Main.tile[num5, num6].TileType == ModContent.TileType<Impvines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].HasTile && !Main.tile[num5, num6 + 1].lava())
+                if ((Main.tile[num5, num6].TileType == ModContent.TileType<Impgrass>() || Main.tile[num5, num6].TileType == ModContent.TileType<Impvines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].HasTile && Main.tile[num5, num6 + 1].LiquidType != LiquidID.Lava)
                 {
                     bool flag10 = false;
                     for (int num47 = num6; num47 > num6 - 10; num47--)
@@ -2044,7 +2045,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
 
                 #region contagion vines growing
 
-                if ((Main.tile[num5, num6].TileType == ModContent.TileType<Ickgrass>() || Main.tile[num5, num6].TileType == ModContent.TileType<ContagionVines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].HasTile && !Main.tile[num5, num6 + 1].lava())
+                if ((Main.tile[num5, num6].TileType == ModContent.TileType<Ickgrass>() || Main.tile[num5, num6].TileType == ModContent.TileType<ContagionVines>()) && WorldGen.genRand.Next(15) == 0 && !Main.tile[num5, num6 + 1].HasTile && Main.tile[num5, num6 + 1].LiquidType != LiquidID.Lava)
                 {
                     bool flag10 = false;
                     for (int num47 = num6; num47 > num6 - 10; num47--)
@@ -2094,7 +2095,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
                 num72 = num67 / num72;
                 num70 *= num72;
                 num71 *= num72;
-                Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
+                Projectile.NewProjectile(new Terraria.DataStructures.EntitySource_ByProjectileSourceId(ProjectileSourceID.None), vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
             }
         }
         if (!Main.dayTime && Main.player[Main.myPlayer].HasBuff(ModContent.BuffType<Buffs.AdvancedBuffs.AdvStarbright>()))
@@ -2114,7 +2115,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
                 num72 = num67 / num72;
                 num70 *= num72;
                 num71 *= num72;
-                Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
+                Projectile.NewProjectile(new Terraria.DataStructures.EntitySource_ByProjectileSourceId(ProjectileSourceID.None), vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
             }
         }
         if (!Main.dayTime && Main.bloodMoon)
@@ -2134,7 +2135,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
                 num72 = num67 / num72;
                 num70 *= num72;
                 num71 *= num72;
-                Projectile.NewProjectile(vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
+                Projectile.NewProjectile(new Terraria.DataStructures.EntitySource_ByProjectileSourceId(ProjectileSourceID.None), vector.X, vector.Y, num70, num71, ProjectileID.FallingStar, 1000, 10f, Main.myPlayer);
             }
         }
         for (int thing = 0; thing < Main.npc.Length; thing++)
@@ -2369,7 +2370,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
 
     public void SpreadXanthophyte(int x, int y)
     {
-        if (Main.tile[x, y].inActive())
+        if (Main.tile[x, y].IsActuated)
         {
             return;
         }
@@ -3271,7 +3272,8 @@ public class ExxoAvalonOriginsWorld : ModSystem
                     if (Main.tile[k, l].TileType == 165 || Main.tile[k, l].TileType == 185 || Main.tile[k, l].TileType == 186 ||
                         Main.tile[k, l].TileType == 187)
                     {
-                        Main.tile[k, l].active(false);
+                        Tile t = Main.tile[k, l];
+                        t.HasTile = false;
                     }
                     if (Math.Abs(k - vector.X) + Math.Abs(l - vector.Y) < strength * 0.5 * (1.0 + WorldGen.genRand.Next(-10, 11) * 0.015) && (TileID.Sets.CanBeClearedDuringOreRunner[Main.tile[k, l].TileType] || Main.tileMoss[Main.tile[k, l].TileType]))
                     {

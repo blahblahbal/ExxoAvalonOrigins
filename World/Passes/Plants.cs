@@ -13,7 +13,7 @@ class Plants
         {
             for (int j = 1; j < Main.maxTilesY; j++)
             {
-                if (Main.tile[i, j].TileType == (ushort)ModContent.TileType<Tiles.Ickgrass>() && Main.tile[i, j].HasUnactuatedTile && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].IsHalfBlock && Main.rand.Next(3) == 0)
+                if (Main.tile[i, j].TileType == (ushort)ModContent.TileType<Tiles.Ickgrass>() && Main.tile[i, j].HasUnactuatedTile && Main.tile[i, j].Slope == Terraria.ID.SlopeType.Solid && !Main.tile[i, j].IsHalfBlock && Main.rand.Next(3) == 0)
                 {
                     if (!Main.tile[i, j - 1].HasTile)
                     {
@@ -21,7 +21,7 @@ class Plants
                         Main.tile[i, j - 1].TileFrameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
                     }
                 }
-                if (Main.tile[i, j].TileType == (ushort)ModContent.TileType<Tiles.TropicalGrass>() && Main.tile[i, j].HasUnactuatedTile && Main.tile[i, j].slope() == 0 && !Main.tile[i, j].IsHalfBlock && Main.rand.Next(3) == 0)
+                if (Main.tile[i, j].TileType == (ushort)ModContent.TileType<Tiles.TropicalGrass>() && Main.tile[i, j].HasUnactuatedTile && Main.tile[i, j].Slope == Terraria.ID.SlopeType.Solid && !Main.tile[i, j].IsHalfBlock && Main.rand.Next(3) == 0)
                 {
                     if (!Main.tile[i, j - 1].HasTile)
                     {

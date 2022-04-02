@@ -36,7 +36,7 @@ public class ExxoAvalonOriginsCollisions
         {
             for (int j = num3; j < num4; j++)
             {
-                if (Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].HasTile && Main.tileSolid[(int)Main.tile[i, j].TileType] && !Main.tileSolidTop[(int)Main.tile[i, j].TileType])
+                if (Main.tile[i, j] != null && !Main.tile[i, j].IsActuated && Main.tile[i, j].HasTile && Main.tileSolid[(int)Main.tile[i, j].TileType] && !Main.tileSolidTop[(int)Main.tile[i, j].TileType])
                 {
                     Vector2 vector;
                     vector.X = (float)(i * 16);
@@ -82,7 +82,7 @@ public class ExxoAvalonOriginsCollisions
         {
             for (int j = num3; j < num4; j++)
             {
-                if ((Main.tile[i, j] != null && !Main.tile[i, j].inActive() && Main.tile[i, j].HasTile && Main.tileSolid[(int)Main.tile[i, j].TileType] && !Main.tileSolidTop[(int)Main.tile[i, j].TileType] && Main.tile[i, j].TileType == ModContent.TileType<DemonSpikescale>()) || Main.tile[i, j].TileType == ModContent.TileType<BloodiedSpike>())
+                if ((Main.tile[i, j] != null && !Main.tile[i, j].IsActuated && Main.tile[i, j].HasTile && Main.tileSolid[(int)Main.tile[i, j].TileType] && !Main.tileSolidTop[(int)Main.tile[i, j].TileType] && Main.tile[i, j].TileType == ModContent.TileType<DemonSpikescale>()) || Main.tile[i, j].TileType == ModContent.TileType<BloodiedSpike>())
                 {
                     Vector2 vector;
                     vector.X = (float)(i * 16);

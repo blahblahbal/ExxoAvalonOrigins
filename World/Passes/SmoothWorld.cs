@@ -21,8 +21,9 @@ class SmoothWorld
                 { }
                 else
                 {
-                    Main.tile[i, j].slope(0);
-                    Main.tile[i, j].halfBrick(false);
+                    Tile t = Main.tile[i, j];
+                    t.BlockType = Terraria.ID.BlockType.Solid;
+                    t.Slope = Terraria.ID.SlopeType.Solid;
                 }
             }
         }

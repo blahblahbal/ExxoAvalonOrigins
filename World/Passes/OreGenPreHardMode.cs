@@ -106,22 +106,22 @@ class OreGenPreHardMode
             double stuff;
             stuff = Main.rockLayer - 75f;
             int j6 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
-            WorldGen.OreRunner(i6, j6, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.SavedOreTiers.Copper);
+            WorldGen.OreRunner(i6, j6, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), (ushort)WorldGen.SavedOreTiers.Copper);
 
             // iron
             int i3 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
             int j3 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
-            WorldGen.OreRunner(i3, j3, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.SavedOreTiers.Iron);
+            WorldGen.OreRunner(i3, j3, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), (ushort)WorldGen.SavedOreTiers.Iron);
 
             // silver
             int i4 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
             int j4 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
-            WorldGen.OreRunner(i4, j4, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.SavedOreTiers.Silver);
+            WorldGen.OreRunner(i4, j4, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), (ushort)WorldGen.SavedOreTiers.Silver);
 
             // gold
             int i5 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
             int j5 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
-            WorldGen.OreRunner(i5, j5, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), WorldGen.SavedOreTiers.Gold);
+            WorldGen.OreRunner(i5, j5, (double)WorldGen.genRand.Next(20, 30), WorldGen.genRand.Next(23, 33), (ushort)WorldGen.SavedOreTiers.Gold);
             // rhodium/osmium
             int i7 = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
             int j7 = WorldGen.genRand.Next((int)stuff, Main.maxTilesY - 200);
@@ -157,34 +157,32 @@ class OreGenPreHardMode
         if (WorldGen.genRand.Next(20) == 0) size = 2;
         if (size == 0)
         {
-            Main.tile[x + 3, y].active(true);
-            Main.tile[x + 3, y].TileType = type;
+            //Main.tile[x + 3, y].active(true);
+            WorldGen.PlaceTile(x + 3, y, type);
             for (int i = x + 2; i <= x + 4; i++)
             {
-                Main.tile[i, y + 1].active(true);
-                Main.tile[i, y + 1].TileType = type;
+                //Main.tile[i, y + 1].active(true);
+                WorldGen.PlaceTile(i, y + 1, type);
             }
             for (int i = x; i <= x + 6; i++)
             {
-                Main.tile[i, y + 2].active(true);
-                Main.tile[i, y + 2].TileType = type;
+                //Main.tile[i, y + 2].active(true);
+                WorldGen.PlaceTile(i, y + 2, type);
             }
             for (int i = x + 1; i <= x + 5; i++)
             {
-                Main.tile[i, y + 3].active(true);
-                Main.tile[i, y + 3].TileType = type;
+                //Main.tile[i, y + 3].active(true);
+                WorldGen.PlaceTile(i, y + 3, type);
             }
             for (int i = x + 2; i <= x + 4; i++)
             {
-                Main.tile[i, y + 4].active(true);
-                Main.tile[i, y + 4].TileType = type;
+                WorldGen.PlaceTile(i, y + 4, type);
             }
             for (int i = x + 1; i <= x + 5; i++)
             {
                 if (i != x + 3)
                 {
-                    Main.tile[i, y + 5].active(true);
-                    Main.tile[i, y + 5].TileType = type;
+                    WorldGen.PlaceTile(i, y + 5, type);
                 }
             }
         }
@@ -192,46 +190,42 @@ class OreGenPreHardMode
         {
             for (int j = y; j <= y + 1; j++)
             {
-                Main.tile[x + 4, j].active(true);
-                Main.tile[x + 4, j].TileType = type;
+                //Main.tile[x + 4, j].active(true);
+                WorldGen.PlaceTile(x + 4, j, type);
             }
             for (int i = x + 3; i <= x + 5; i++)
             {
-                Main.tile[i, y + 2].active(true);
-                Main.tile[i, y + 2].TileType = type;
+                //Main.tile[i, y + 2].active(true);
+                WorldGen.PlaceTile(i, y + 2, type);
             }
             for (int i = x; i <= x + 8; i++)
             {
-                Main.tile[i, y + 3].active(true);
-                Main.tile[i, y + 3].TileType = type;
+                //Main.tile[i, y + 3].active(true);
+                WorldGen.PlaceTile(i, y + 3, type);
             }
             for (int i = x + 1; i <= x + 7; i++)
             {
-                Main.tile[i, y + 4].active(true);
-                Main.tile[i, y + 4].TileType = type;
+                WorldGen.PlaceTile(i, y + 4, type);
             }
             for (int i = x + 2; i <= x + 6; i++)
             {
                 for (int j = y + 5; j <= y + 6; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].TileType = type;
+                    WorldGen.PlaceTile(i, j, type);
                 }
             }
             for (int i = x + 1; i <= x + 7; i++)
             {
                 if (i != x + 4)
                 {
-                    Main.tile[i, y + 7].active(true);
-                    Main.tile[i, y + 7].TileType = type;
+                    WorldGen.PlaceTile(i, y + 7, type);
                 }
             }
             for (int i = x + 1; i <= x + 7; i++)
             {
                 if (i <= x + 2 || i >= x + 6)
                 {
-                    Main.tile[i, y + 7].active(true);
-                    Main.tile[i, y + 7].TileType = type;
+                    WorldGen.PlaceTile(i, y + 7, type);
                 }
             }
         }
@@ -239,50 +233,42 @@ class OreGenPreHardMode
         {
             for (int j = y; j <= y + 1; j++)
             {
-                Main.tile[x + 5, j].active(true);
-                Main.tile[x + 5, j].TileType = type;
+                WorldGen.PlaceTile(x + 5, j, type);
                 WorldGen.SquareTileFrame(x + 5, j);
             }
             for (int i = x + 4; i <= x + 6; i++)
             {
-                Main.tile[i, y + 2].active(true);
-                Main.tile[i, y + 2].TileType = type;
+                WorldGen.PlaceTile(i, y + 2, type);
                 WorldGen.SquareTileFrame(i, y + 2);
             }
             for (int i = x + 3; i <= x + 7; i++)
             {
-                Main.tile[i, y + 3].active(true);
-                Main.tile[i, y + 3].TileType = type;
+                WorldGen.PlaceTile(i, y + 3, type);
                 WorldGen.SquareTileFrame(i, y + 3);
             }
             for (int i = x; i <= x + 10; i++)
             {
-                Main.tile[i, y + 4].active(true);
-                Main.tile[i, y + 4].TileType = type;
+                WorldGen.PlaceTile(i, y + 4, type);
                 WorldGen.SquareTileFrame(i, y + 4);
             }
             for (int i = x + 1; i <= x + 9; i++)
             {
-                Main.tile[i, y + 5].active(true);
-                Main.tile[i, y + 5].TileType = type;
+                WorldGen.PlaceTile(i, y + 5, type);
                 WorldGen.SquareTileFrame(i, y + 5);
             }
             for (int i = x + 2; i <= x + 8; i++)
             {
-                Main.tile[i, y + 6].active(true);
-                Main.tile[i, y + 6].TileType = type;
+                WorldGen.PlaceTile(i, y + 6, type);
                 WorldGen.SquareTileFrame(i, y + 6);
             }
             for (int i = x + 3; i <= x + 7; i++)
             {
-                Main.tile[i, y + 7].active(true);
-                Main.tile[i, y + 7].TileType = type;
+                WorldGen.PlaceTile(i, y + 7, type);
                 WorldGen.SquareTileFrame(i, y + 7);
             }
             for (int i = x + 2; i <= x + 8; i++)
             {
-                Main.tile[i, y + 8].active(true);
-                Main.tile[i, y + 8].TileType = type;
+                WorldGen.PlaceTile(i, y + 8, type);
                 WorldGen.SquareTileFrame(i, y + 8);
             }
             for (int i = x + 1; i <= x + 9; i++)
@@ -291,14 +277,12 @@ class OreGenPreHardMode
                 {
                     if (((i >= x + 2 && i <= x + 4) || (i >= x + 6 && i <= x + 8)) && j == y + 9)
                     {
-                        Main.tile[i, j].active(true);
-                        Main.tile[i, j].TileType = type;
+                        WorldGen.PlaceTile(i, j, type);
                         WorldGen.SquareTileFrame(i, j);
                     }
                     if (((i >= x + 1 && i <= x + 3) || (i >= x + 7 && i <= x + 9)) && j == y + 10)
                     {
-                        Main.tile[i, j].active(true);
-                        Main.tile[i, j].TileType = type;
+                        WorldGen.PlaceTile(i, j, type);
                         WorldGen.SquareTileFrame(i, j);
                     }
                 }
@@ -321,8 +305,7 @@ class OreGenPreHardMode
             size = 5;
         }
         var num2 = 1;
-        Main.tile[i, j + 1].active(true);
-        Main.tile[i, j + 1].TileType = (ushort)tile;
+        WorldGen.PlaceTile(i, j + 1, (ushort)tile);
         WorldGen.SquareTileFrame(i, j + 1);
         for (var k = j; k >= j - size; k--)
         {
@@ -330,8 +313,7 @@ class OreGenPreHardMode
             {
                 if ((l != i - num2 && l != i + num2) || num2 != size + 1)
                 {
-                    Main.tile[l, k].active(true);
-                    Main.tile[l, k].TileType = (ushort)tile;
+                    WorldGen.PlaceTile(l, k, (ushort)tile);
                     WorldGen.SquareTileFrame(l, k);
                 }
             }
@@ -339,16 +321,14 @@ class OreGenPreHardMode
         }
         for (var m = i - num2 + 1; m <= i + num2 - 1; m++)
         {
-            Main.tile[m, j - size - 1].active(true);
-            Main.tile[m, j - size - 1].TileType = (ushort)tile;
+            WorldGen.PlaceTile(m, j - size - 1, (ushort)tile);
             WorldGen.SquareTileFrame(m, j + size + 1);
         }
         for (var n = i - num2 + 2; n <= i + num2 - 2; n++)
         {
             if (n != i)
             {
-                Main.tile[n, j - size - 2].active(true);
-                Main.tile[n, j - size - 2].TileType = (ushort)tile;
+                WorldGen.PlaceTile(n, j - size - 2, (ushort)tile);
                 WorldGen.SquareTileFrame(n, j + size + 2);
             }
         }
@@ -356,8 +336,7 @@ class OreGenPreHardMode
         {
             if (num3 != i && num3 != i + 1 && num3 != i - 1)
             {
-                Main.tile[num3, j - size - 3].active(true);
-                Main.tile[num3, j - size - 3].TileType = (ushort)tile;
+                WorldGen.PlaceTile(num3, j - size - 3, (ushort)tile);
                 WorldGen.SquareTileFrame(num3, j + size + 3);
             }
         }
@@ -372,34 +351,28 @@ class OreGenPreHardMode
             {
                 for (int j = y; j <= y + 1; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].TileType = type;
+                    WorldGen.PlaceTile(i, j, type);
                 }
             }
             for (int i = x; i <= x + 3; i++)
             {
-                Main.tile[i, y + 2].active(true);
-                Main.tile[i, y + 2].TileType = type;
+                WorldGen.PlaceTile(i, y + 2, type);
             }
             for (int i = x; i <= x + 4; i++)
             {
-                Main.tile[i, y + 3].active(true);
-                Main.tile[i, y + 3].TileType = type;
+                WorldGen.PlaceTile(i, y + 3, type);
             }
             for (int i = x + 1; i <= x + 3; i++)
             {
-                Main.tile[i, y + 4].active(true);
-                Main.tile[i, y + 4].TileType = type;
+                WorldGen.PlaceTile(i, y + 4, type);
             }
             for (int i = x; i <= x + 2; i++)
             {
-                Main.tile[i, y + 5].active(true);
-                Main.tile[i, y + 5].TileType = type;
+                WorldGen.PlaceTile(i, y + 5, type);
             }
             for (int i = x; i <= x + 1; i++)
             {
-                Main.tile[i, y + 6].active(true);
-                Main.tile[i, y + 6].TileType = type;
+                WorldGen.PlaceTile(i, y + 6, type);
             }
         }
         else if (size == 1)
@@ -408,44 +381,36 @@ class OreGenPreHardMode
             {
                 for (int j = y; j <= y + 1; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].TileType = type;
+                    WorldGen.PlaceTile(i, j, type);
                 }
             }
             for (int i = x; i <= x + 4; i++)
             {
-                Main.tile[i, y + 2].active(true);
-                Main.tile[i, y + 2].TileType = type;
+                WorldGen.PlaceTile(i, y + 2, type);
             }
             for (int i = x; i <= x + 5; i++)
             {
-                Main.tile[i, y + 3].active(true);
-                Main.tile[i, y + 3].TileType = type;
+                WorldGen.PlaceTile(i, y + 3, type);
             }
             for (int i = x + 2; i <= x + 5; i++)
             {
-                Main.tile[i, y + 4].active(true);
-                Main.tile[i, y + 4].TileType = type;
+                WorldGen.PlaceTile(i, y + 4, type);
             }
             for (int i = x + 1; i <= x + 4; i++)
             {
-                Main.tile[i, y + 5].active(true);
-                Main.tile[i, y + 5].TileType = type;
+                WorldGen.PlaceTile(i, y + 5, type);
             }
             for (int i = x + 1; i <= x + 3; i++)
             {
-                Main.tile[i, y + 6].active(true);
-                Main.tile[i, y + 6].TileType = type;
+                WorldGen.PlaceTile(i, y + 6, type);
             }
             for (int i = x; i <= x + 2; i++)
             {
-                Main.tile[i, y + 7].active(true);
-                Main.tile[i, y + 7].TileType = type;
+                WorldGen.PlaceTile(i, y + 7, type);
             }
             for (int i = x; i <= x + 1; i++)
             {
-                Main.tile[i, y + 8].active(true);
-                Main.tile[i, y + 8].TileType = type;
+                WorldGen.PlaceTile(i, y + 8, type);
             }
         }
         else if (size == 2)
@@ -454,60 +419,50 @@ class OreGenPreHardMode
             {
                 for (int j = y; j <= y + 1; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].TileType = type;
+                    WorldGen.PlaceTile(i, j, type);
                 }
             }
             for (int i = x + 1; i <= x + 7; i++)
             {
                 for (int j = y + 2; j <= y + 3; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].TileType = type;
+                    WorldGen.PlaceTile(i, j, type);
                 }
             }
             for (int j = y + 3; j <= y + 4; j++)
             {
-                Main.tile[x + 8, j].active(true);
-                Main.tile[x + 8, j].TileType = type;
+                WorldGen.PlaceTile(x + 8, j, type);
             }
             for (int i = x; i <= x + 7; i++)
             {
                 for (int j = y + 4; j <= y + 5; j++)
                 {
-                    Main.tile[i, j].active(true);
-                    Main.tile[i, j].TileType = type;
+                    WorldGen.PlaceTile(i, j, type);
                 }
             }
             for (int i = x + 2; i <= x + 6; i++)
             {
-                Main.tile[i, y + 6].active(true);
-                Main.tile[i, y + 6].TileType = type;
+                WorldGen.PlaceTile(i, y + 6, type);
             }
             for (int i = x + 1; i <= x + 5; i++)
             {
-                Main.tile[i, y + 7].active(true);
-                Main.tile[i, y + 7].TileType = type;
+                WorldGen.PlaceTile(i, y + 7, type);
             }
             for (int i = x + 1; i <= x + 4; i++)
             {
-                Main.tile[i, y + 8].active(true);
-                Main.tile[i, y + 8].TileType = type;
+                WorldGen.PlaceTile(i, y + 8, type);
             }
             for (int i = x; i <= x + 3; i++)
             {
-                Main.tile[i, y + 9].active(true);
-                Main.tile[i, y + 9].TileType = type;
+                WorldGen.PlaceTile(i, y + 9, type);
             }
             for (int i = x; i <= x + 2; i++)
             {
-                Main.tile[i, y + 10].active(true);
-                Main.tile[i, y + 10].TileType = type;
+                WorldGen.PlaceTile(i, y + 10, type);
             }
             for (int i = x; i <= x + 1; i++)
             {
-                Main.tile[i, y + 11].active(true);
-                Main.tile[i, y + 11].TileType = type;
+                WorldGen.PlaceTile(i, y + 11, type);
             }
         }
     }

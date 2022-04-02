@@ -10,6 +10,7 @@ using MonoMod.Cil;
 using ReLogic.Content;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -107,7 +108,7 @@ public static class ClassExtensions
 
         p.lifeSteal -= num;
         int num2 = p.whoAmI;
-        Projectile.NewProjectile(position.X, position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, p.whoAmI, num2, num);
+        Projectile.NewProjectile(p.GetProjectileSource_Accessory(new Item(ModContent.ItemType<Items.Accessories.VampireTeeth>())), position.X, position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, p.whoAmI, num2, num);
     }
 
     public static bool Slope(this Tile t)
@@ -278,11 +279,11 @@ public static class ClassExtensions
 
             Color color = Lighting.GetColor((int)playerPosModified.X / 16, (int)playerPosModified.Y / 16, lineColor);
             float rotation = vector2.ToRotation() - ((float)Math.PI / 2f);
-            Main.spriteBatch.Draw(Main.fishingLineTexture,
-                new Vector2(playerPosModified.X - Main.screenPosition.X + (Main.fishingLineTexture.Width * 0.5f),
-                    playerPosModified.Y - Main.screenPosition.Y + (Main.fishingLineTexture.Height * 0.5f)),
-                new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)num3), color, rotation,
-                new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureAssets.FishingLine.Value,
+                new Vector2(playerPosModified.X - Main.screenPosition.X + (TextureAssets.FishingLine.Value.Width * 0.5f),
+                    playerPosModified.Y - Main.screenPosition.Y + (TextureAssets.FishingLine.Value.Height * 0.5f)),
+                new Rectangle(0, 0, TextureAssets.FishingLine.Value.Width, (int)num3), color, rotation,
+                new Vector2(TextureAssets.FishingLine.Value.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
         }
 
         return false;
