@@ -42,9 +42,9 @@ public class ClosedCrystalDoor : ModTile
         var name = CreateMapEntryName();
         name.SetDefault("Crystal Door");
         AddMapEntry(new Color(119, 105, 79), name);
-        disableSmartCursor = true;
-        adjTiles = new int[] { TileID.ClosedDoor };
-        openDoorID = Mod.Find<ModTile>("OpenCrystalDoor").Type;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        AdjTiles = new int[] { TileID.ClosedDoor };
+        OpenDoorID = Mod.Find<ModTile>("OpenCrystalDoor").Type;
     }
 
     public override bool HasSmartInteract()
@@ -59,14 +59,14 @@ public class ClosedCrystalDoor : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 16, 48, ItemID.CrystalDoor);
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 48, ItemID.CrystalDoor);
     }
 
     public override void MouseOver(int i, int j)
     {
         var player = Main.LocalPlayer;
         player.noThrow = 2;
-        player.showItemIcon = true;
-        player.showItemIcon2 = ItemID.CrystalDoor;
+        player.cursorItemIconEnabled = true;
+        player.cursorItemIconID = ItemID.CrystalDoor;
     }
 }

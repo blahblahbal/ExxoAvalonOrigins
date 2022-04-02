@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -59,7 +59,7 @@ class BagofHallows : ModItem
         }
     }
 
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         if (player.controlRight)
         {

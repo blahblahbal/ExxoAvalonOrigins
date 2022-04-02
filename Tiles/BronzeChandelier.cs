@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
@@ -24,7 +24,7 @@ public class BronzeChandelier : ModTile
         TileObjectData.newTile.Origin = new Point16(1, 0);
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.addTile(Type);
-        dustType = -1;
+        DustType = -1;
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         Main.tileLighted[Type] = true;
         var name = CreateMapEntryName();
@@ -45,7 +45,7 @@ public class BronzeChandelier : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.BronzeChandelier>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.BronzeChandelier>());
     }
 
     public override void HitWire(int i, int j)
@@ -56,10 +56,6 @@ public class BronzeChandelier : ModTile
         {
             for (int m = y; m < y + 3; m++)
             {
-                if (Main.tile[l, m] == null)
-                {
-                    Main.tile[l, m] = new Tile();
-                }
                 if (Main.tile[l, m].HasTile && Main.tile[l, m].TileType == Type)
                 {
                     if (Main.tile[l, m].TileFrameX < 54)

@@ -13,13 +13,13 @@ public class Anvenalforge : ModTile
     {
         AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Anvenalforge"));
         Main.tileFrameImportant[Type] = true;
-        animationFrameHeight = 54;
+        AnimationFrameHeight = 54;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.addTile(Type);
         Main.tileLighted[Type] = true;
-        adjTiles = new int[]
+        AdjTiles = new int[]
         {
             ModContent.TileType<CaesiumForge>(),
             TileID.AdamantiteForge,
@@ -48,7 +48,7 @@ public class Anvenalforge : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.Anvenalforge>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.Anvenalforge>());
     }
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
     {

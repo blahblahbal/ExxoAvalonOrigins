@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,9 +26,6 @@ class ChaosEye : ModItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.Avalon().chaosCharm = true;
-        player.GetCritChance(DamageClass.Melee) += 8;
-        player.GetCritChance(DamageClass.Ranged) += 8;
-        player.GetCritChance(DamageClass.Magic) += 8;
-        player.GetCritChance(DamageClass.Throwing) += 8;
+        player.GetCritChance(DamageClass.Generic) += 8;
     }
 }

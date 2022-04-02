@@ -12,13 +12,13 @@ public class BrownIce : ModTile
         AddMapEntry(new Color(210, 147, 128));
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
-        drop = Mod.Find<ModItem>("BrownIceBlock").Type;
+        ItemDrop = Mod.Find<ModItem>("BrownIceBlock").Type;
         Main.tileMerge[Type][TileID.IceBlock] = true;
         Main.tileMerge[TileID.IceBlock][Type] = true;
         Main.tileShine2[Type] = true;
-        soundType = SoundID.Item;
-        soundStyle = 50;
-        dustType = DustID.Dirt;
+        SoundType = SoundID.Item;
+        SoundStyle = 50;
+        DustType = DustID.Dirt;
         TileID.Sets.Conversion.Ice[Type] = true;
         ExxoAvalonOrigins.MergeWith(Type, TileID.SnowBlock);
     }

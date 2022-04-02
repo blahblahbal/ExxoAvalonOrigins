@@ -71,7 +71,7 @@ class BagofIck : ModItem
         }
     }
 
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         if (player.controlRight)
         {

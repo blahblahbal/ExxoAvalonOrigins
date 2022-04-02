@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses;
 
@@ -31,6 +32,21 @@ public class WallofSteel : ModNPC
     {
         DisplayName.SetDefault("Wall of Steel");
         Main.npcFrameCount[NPC.type] = 1;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused, // Most NPCs have this
+		        BuffID.Poisoned,
+                BuffID.OnFire,
+                BuffID.CursedInferno,
+                BuffID.Ichor,
+                BuffID.Frostburn,
+                BuffID.Venom,
+                ModContent.BuffType<Buffs.Frozen>(), // Modded buffs
+	        }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -49,15 +65,12 @@ public class WallofSteel : ModNPC
         NPC.scale = 1.4f;
         NPC.HitSound = SoundID.NPCHit4;
         NPC.DeathSound = SoundID.NPCDeath14;
-        NPC.buffImmune[BuffID.Confused] = NPC.buffImmune[ModContent.BuffType<Buffs.Frozen>()] = NPC.buffImmune[BuffID.Poisoned] =
-            NPC.buffImmune[BuffID.OnFire] = NPC.buffImmune[BuffID.CursedInferno] = NPC.buffImmune[BuffID.Venom] =
-            NPC.buffImmune[BuffID.Ichor] = NPC.buffImmune[BuffID.Frostburn] = true;
-            //bossBag = ModContent.ItemType<Items.BossBags.WallofSteelBossBag>();
-        }
+        Music = ExxoAvalonOrigins.Mod.MusicMod == null ? MusicID.Boss2 : MusicID.Boss2; // MusicLoader.GetMusicSlot(ExxoAvalonOrigins.Mod.MusicMod, "Sounds/Music/WallofSteel");
+    }
 
     public override void BossLoot(ref string name, ref int potionType)
     {
-        potionType = ItemID.GreaterHealingPotion;
+        potionType = ItemID.SuperHealingPotion;
     }
 
     public override Color? GetAlpha(Color lightColor)

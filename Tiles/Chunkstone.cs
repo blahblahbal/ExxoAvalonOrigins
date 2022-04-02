@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,10 +24,10 @@ public class Chunkstone : ModTile
         Main.tileMerge[TileID.Stone][Type] = true;
         Main.tileMerge[Type][TileID.Mud] = true;
         Main.tileMerge[TileID.Mud][Type] = true;
-        drop = Mod.Find<ModItem>("ChunkstoneBlock").Type;
-        soundType = SoundID.Tink;
-        soundStyle = 1;
-        minPick = 60;
-        dustType = ModContent.DustType<Dusts.ContagionDust>();
+        ItemDrop = Mod.Find<ModItem>("ChunkstoneBlock").Type;
+        SoundType = SoundID.Tink;
+        SoundStyle = 1;
+        MinPick = 60;
+        DustType = ModContent.DustType<Dusts.ContagionDust>();
     }
 }

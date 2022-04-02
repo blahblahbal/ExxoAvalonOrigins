@@ -42,10 +42,10 @@ public class ClosedImperviousDoor : ModTile
         var name = CreateMapEntryName();
         name.SetDefault("Impervious Door Closed");
         AddMapEntry(new Color(119, 105, 79), name);
-        disableSmartCursor = true;
-        adjTiles = new int[] { TileID.ClosedDoor };
-        openDoorID = Mod.Find<ModTile>("OpenImperviousDoor").Type;
-        dustType = DustID.Wraith;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        AdjTiles = new int[] { TileID.ClosedDoor };
+        OpenDoorID = Mod.Find<ModTile>("OpenImperviousDoor").Type;
+        DustType = DustID.Wraith;
     }
 
     public override bool HasSmartInteract()
@@ -60,14 +60,14 @@ public class ClosedImperviousDoor : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<ImperviousDoor>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<ImperviousDoor>());
     }
 
     public override void MouseOver(int i, int j)
     {
         var player = Main.LocalPlayer;
         player.noThrow = 2;
-        player.showItemIcon = true;
-        player.showItemIcon2 = ModContent.ItemType<ImperviousDoor>();
+        player.cursorItemIconEnabled = true;
+        player.cursorItemIconID = ModContent.ItemType<ImperviousDoor>();
     }
 }

@@ -16,9 +16,9 @@ public class BismuthBrick : ModTile
         Main.tileBrick[Type] = true;
         Main.tileMerge[Type][TileID.WoodBlock] = true;
         Main.tileMerge[TileID.WoodBlock][Type] = true;
-        drop = ModContent.ItemType<Items.Placeable.Tile.BismuthBrick>();
-        soundType = SoundID.Tink;
-        soundStyle = 1;
-        dustType = ModContent.DustType<Dusts.BismuthDust>();
+        ItemDrop = ModContent.ItemType<Items.Placeable.Tile.BismuthBrick>();
+        SoundType = SoundID.Tink;
+        SoundStyle = 1;
+        DustType = ModContent.DustType<Dusts.BismuthDust>();
     }
 }

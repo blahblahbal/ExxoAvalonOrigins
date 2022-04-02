@@ -42,9 +42,9 @@ public class ClosedNickelDoor : ModTile
         var name = CreateMapEntryName();
         name.SetDefault("Nickel Door Closed");
         AddMapEntry(new Color(119, 105, 79), name);
-        disableSmartCursor = true;
-        adjTiles = new int[] { TileID.ClosedDoor };
-        openDoorID = Mod.Find<ModTile>("OpenNickelDoor").Type;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        AdjTiles = new int[] { TileID.ClosedDoor };
+        OpenDoorID = Mod.Find<ModTile>("OpenNickelDoor").Type;
     }
 
     public override bool HasSmartInteract()
@@ -59,14 +59,14 @@ public class ClosedNickelDoor : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<NickelDoor>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<NickelDoor>());
     }
 
     public override void MouseOver(int i, int j)
     {
         var player = Main.LocalPlayer;
         player.noThrow = 2;
-        player.showItemIcon = true;
-        player.showItemIcon2 = ModContent.ItemType<NickelDoor>();
+        player.cursorItemIconEnabled = true;
+        player.cursorItemIconID = ModContent.ItemType<NickelDoor>();
     }
 }

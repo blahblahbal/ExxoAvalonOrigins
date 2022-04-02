@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -13,13 +13,13 @@ public class Catalyzer : ModTile
     {
         AddMapEntry(new Color(146, 155, 187), LanguageManager.Instance.GetText("Catalyzer"));
         Main.tileFrameImportant[Type] = true;
-        animationFrameHeight = 38;
+        AnimationFrameHeight = 38;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.addTile(Type);
         Main.tileLighted[Type] = true;
-        dustType = DustID.Stone;
+        DustType = DustID.Stone;
     }
 
     public override void AnimateTile(ref int frame, ref int frameCounter)
@@ -35,6 +35,6 @@ public class Catalyzer : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Material.Catalyzer>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Material.Catalyzer>());
     }
 }

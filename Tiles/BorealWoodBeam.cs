@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -11,7 +11,7 @@ public class BorealWoodBeam : ModTile
 {
     public override void SetStaticDefaults()
     {
-        drop = Mod.Find<ModItem>("BorealWoodBeam").Type;
+        ItemDrop = Mod.Find<ModItem>("BorealWoodBeam").Type;
         AddMapEntry(new Color(85, 68, 57));
         Main.tileSolid[Type] = false;
         Main.tileNoAttach[Type] = false;
@@ -22,11 +22,11 @@ public class BorealWoodBeam : ModTile
         TileObjectData.newTile.CoordinateHeights = new int[1] { 16 };
         TileObjectData.newTile.CoordinateWidth = 16;
         TileObjectData.newTile.CoordinatePadding = 2;
-        TileObjectData.newTile.HookCheck = new PlacementHook(CanPlaceAlter, -1, 0, processedCoordinates: true);
+        TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(CanPlaceAlter, -1, 0, processedCoordinates: true);
         TileObjectData.newTile.UsesCustomCanPlace = true;
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement, -1, 0, processedCoordinates: false);
         TileObjectData.addTile(Type);
-        dustType = DustID.BorealWood;
+        DustType = DustID.BorealWood;
     }
 
     public override bool CanPlace(int i, int j)

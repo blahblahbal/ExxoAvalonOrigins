@@ -39,6 +39,7 @@ public class DesertBeak : ModNPC
         NPC.HitSound = SoundID.NPCHit28;
         NPC.DeathSound = SoundID.NPCDeath31;
         NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
+        Music = ExxoAvalonOrigins.Mod.MusicMod == null ? MusicID.Boss2 : MusicLoader.GetMusicSlot(ExxoAvalonOrigins.Mod.MusicMod, "Sounds/Music/DesertBeak");
     }
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
     {

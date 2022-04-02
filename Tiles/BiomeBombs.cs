@@ -49,7 +49,7 @@ public class BiomeBombs : ModTile
         }
         if (item > 0)
         {
-            Item.NewItem(i * 16, j * 16, 48, 48, item);
+            Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 48, item);
         }
     }
 
@@ -71,7 +71,7 @@ public class BiomeBombs : ModTile
         {
             for (int y = j - 1; y <= j; y++)
             {
-                Main.tile[x, y].active(false);
+                WorldGen.KillTile(x, y, noItem: true);
                 if (!Main.tile[x, y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                 {
                     NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);
@@ -98,7 +98,7 @@ public class BiomeBombs : ModTile
     {
         Player player = Main.LocalPlayer;
         player.noThrow = 2;
-        player.showItemIcon = true;
+        player.cursorItemIconEnabled = true;
         int item = 0;
         Tile tile = Main.tile[i, j];
         if (tile.TileFrameX <= 52) item = ModContent.ItemType<Items.Placeable.Tile.PurityBomb>();
@@ -109,7 +109,7 @@ public class BiomeBombs : ModTile
         else if (tile.TileFrameX >= 270 && tile.TileFrameX <= 322) item = ModContent.ItemType<Items.Placeable.Tile.MushroomBomb>();
         else if (tile.TileFrameX >= 324 && tile.TileFrameX <= 376) item = ModContent.ItemType<Items.Placeable.Tile.HallowBomb>();
         else if (tile.TileFrameX >= 378 && tile.TileFrameX <= 430) item = ModContent.ItemType<Items.Placeable.Tile.TropicsBomb>();
-        player.showItemIcon2 = item;
+        player.cursorItemIconID = item;
     }
     public override void HitWire(int i, int j)
     {
@@ -129,7 +129,7 @@ public class BiomeBombs : ModTile
         {
             for (int y = j - 1; y <= j; y++)
             {
-                Main.tile[x, y].active(false);
+                WorldGen.KillTile(x, y, noItem: true);
                 if (!Main.tile[x, y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                 {
                     NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);

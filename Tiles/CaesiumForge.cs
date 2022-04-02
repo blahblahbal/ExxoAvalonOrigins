@@ -13,13 +13,13 @@ public class CaesiumForge : ModTile
     {
         AddMapEntry(new Color(76, 255, 0), LanguageManager.Instance.GetText("Caesium Forge"));
         Main.tileFrameImportant[Type] = true;
-        animationFrameHeight = 36;
+        AnimationFrameHeight = 36;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.addTile(Type);
         Main.tileLighted[Type] = true;
-        adjTiles = new int[] { TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces };
+        AdjTiles = new int[] { TileID.AdamantiteForge, TileID.Hellforge, TileID.Furnaces };
     }
 
     public override void AnimateTile(ref int frame, ref int frameCounter)
@@ -36,7 +36,7 @@ public class CaesiumForge : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.CaesiumForge>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Crafting.CaesiumForge>());
     }
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
     {

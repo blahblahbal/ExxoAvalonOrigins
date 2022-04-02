@@ -47,6 +47,7 @@ public class ArmageddonSlime : ModNPC
         NPC.buffImmune[BuffID.CursedInferno] = true;
         NPC.buffImmune[BuffID.Frostburn] = true;
         NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
+        Music = ExxoAvalonOrigins.Mod.MusicMod == null ? MusicID.Boss2 : MusicLoader.GetMusicSlot(ExxoAvalonOrigins.Mod.MusicMod, "Sounds/Music/ArmageddonSlime");
         //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
         //bossBag = ModContent.ItemType<Items.BossBags.ArmageddonSlimeBossBag>();
 

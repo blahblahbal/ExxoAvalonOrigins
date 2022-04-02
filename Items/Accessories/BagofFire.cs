@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -58,7 +58,7 @@ class BagofFire : ModItem
             Main.dust[num54].noGravity = true;
         }
     }
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         if (player.controlRight)
         {

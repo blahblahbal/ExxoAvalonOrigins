@@ -18,8 +18,8 @@ public class BossTrophy : ModTile
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.StyleWrapLimit = 36;
         TileObjectData.addTile(Type);
-        dustType = 7;
-        disableSmartCursor = true;
+        DustType = 7;
+        TileID.Sets.DisableSmartCursor[Type] = true;
         ModTranslation name = CreateMapEntryName();
         name.SetDefault("Trophy");
         AddMapEntry(new Color(120, 85, 60), name);
@@ -60,7 +60,7 @@ public class BossTrophy : ModTile
         }
         if (item > 0)
         {
-            Item.NewItem(i * 16, j * 16, 48, 48, item);
+            Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 48, item);
         }
     }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -10,6 +10,6 @@ public class ChocolateCandyCaneBlock : ModTile
     {
         AddMapEntry(Color.Brown);
         Main.tileSolid[Type] = true;
-        drop = Mod.Find<ModItem>("ChocolateCandyCaneBlock").Type;
+        ItemDrop = Mod.Find<ModItem>("ChocolateCandyCaneBlock").Type;
     }
 }

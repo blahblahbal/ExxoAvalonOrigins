@@ -18,9 +18,9 @@ public class BronzeBrick : ModTile
         Main.tileBrick[Type] = true;
         Main.tileMerge[Type][TileID.WoodBlock] = true;
         Main.tileMerge[TileID.WoodBlock][Type] = true;
-        drop = ModContent.ItemType<Items.Placeable.Tile.BronzeBrick>();
-        soundType = SoundID.Tink;
-        soundStyle = 1;
-        dustType = ModContent.DustType<Dusts.BronzeDust>();
+        ItemDrop = ModContent.ItemType<Items.Placeable.Tile.BronzeBrick>();
+        SoundType = SoundID.Tink;
+        SoundStyle = 1;
+        DustType = ModContent.DustType<Dusts.BronzeDust>();
     }
 }

@@ -23,12 +23,12 @@ public class BookcaseTeleporter : ModTile
         var name = CreateMapEntryName();
         name.SetDefault("Bookcase");
         AddMapEntry(new Color(191, 142, 111), name);
-        dustType = DustID.Dirt;
+        DustType = DustID.Dirt;
     }
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Furniture.BookcaseTeleporter>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Furniture.BookcaseTeleporter>());
     }
     public override bool RightClick(int i, int j)
     {

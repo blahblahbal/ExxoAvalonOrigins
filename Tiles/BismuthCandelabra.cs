@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -21,7 +21,7 @@ public class BismuthCandelabra : ModTile
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.addTile(Type);
-        dustType = -1;
+        DustType = -1;
         Main.tileLighted[Type] = true;
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         var name = CreateMapEntryName();
@@ -42,7 +42,7 @@ public class BismuthCandelabra : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.BismuthCandelabra>());
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Placeable.Light.BismuthCandelabra>());
     }
 
     public override void HitWire(int i, int j)
@@ -53,10 +53,6 @@ public class BismuthCandelabra : ModTile
         {
             for (int m = y; m < y + 2; m++)
             {
-                if (Main.tile[l, m] == null)
-                {
-                    Main.tile[l, m] = new Tile();
-                }
                 if (Main.tile[l, m].HasTile && Main.tile[l, m].TileType == Type)
                 {
                     if (Main.tile[l, m].TileFrameX < 36)

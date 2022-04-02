@@ -38,12 +38,13 @@ public class Phantasm : ModNPC
         NPC.scale = 1.5f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath39;
+        Music = ExxoAvalonOrigins.Mod.MusicMod == null ? MusicID.Boss5 : MusicLoader.GetMusicSlot(ExxoAvalonOrigins.Mod.MusicMod, "Sounds/Music/Phantasm");
 
         transitionDone = false;
     }
     public override void BossLoot(ref string name, ref int potionType)
     {
-        potionType = ItemID.GreaterHealingPotion;
+        potionType = ItemID.SuperHealingPotion;
     }
     private static void TeleportPhantasm(Vector2 coords, bool sync = false, int whoAmI = 0)
     {

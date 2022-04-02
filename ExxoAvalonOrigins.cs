@@ -107,15 +107,19 @@ public class ExxoAvalonOrigins : Mod
             {
                 ExxoAvalonOriginsGlobalNPC.imkCompat = true;
             }
-
-            ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Texture2D[]
+            if (ModLoader.GetMod("AvalonMusic") != null)
             {
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Head").Value,
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Body").Value,
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Arms").Value,
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_FemaleBody").Value,
+                MusicMod = ModLoader.GetMod("AvalonMusic");
+            }
+
+            ExxoAvalonOriginsModPlayer.lavaMermanTextures = new ReLogic.Content.Asset<Texture2D>[]
+            {
+                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Head"),
+                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Body"),
+                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Arms"),
+                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_FemaleBody"),
                 Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Legs")
-                    .Value                };
+            };
             ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Texture2D[]
             {
                 Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumHelmet_Glow_Head").Value,
@@ -248,7 +252,7 @@ public class ExxoAvalonOrigins : Mod
         }
     }
 
-    public override void UpdateMusic(ref int music, ref MusicPriority priority)
+    /*public override void UpdateMusic(ref int music, ref MusicPriority priority)
     {
         Mod musicMod = ModLoader.GetMod("AvalonMusic");
         if (Main.musicVolume == 0f || Main.myPlayer == -1 || Main.gameMenu)
@@ -468,13 +472,12 @@ public class ExxoAvalonOrigins : Mod
 
             priority = MusicPriority.BossLow;
         }
-    }
+    }*/
 
     public override void PostSetupContent()
     {
         ExxoAvalonOriginsCall.Support();
     }
-
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
     {
         layers.Insert(0, new LegacyGameInterfaceLayer(
@@ -742,9 +745,9 @@ public class ExxoAvalonOrigins : Mod
         {
             for (int j = num3; j < num4; j++)
             {
-                if (Main.tile[i, j]?.liquid > 0 && Main.tile[i, j - 1].liquid == 0 && Main.tile[i, j].lava())
+                if (Main.tile[i, j]?.liquid > 0 && Main.tile[i, j - 1].LiquidAmount == 0 && Main.tile[i, j].LiquidType == LiquidID.Lava)
                 {
-                    int num5 = (Main.tile[i, j].liquid / 32 * 2) + 2;
+                    int num5 = (Main.tile[i, j].LiquidAmount / 32 * 2) + 2;
                     Vector2 vector3;
                     vector3.X = i * 16;
                     vector3.Y = (j * 16) + 16 - num5;
@@ -933,12 +936,12 @@ public class ExxoAvalonOrigins : Mod
         int randomFrame;
         if (resetFrame)
         {
-            randomFrame = Terraria.WorldGen.genRand.Next(3);
-            Main.tile[x, y].frameNumber((byte)randomFrame);
+            randomFrame = WorldGen.genRand.Next(3);
+            Main.tile[x, y].TileFrameNumber = (byte)randomFrame;
         }
         else
         {
-            randomFrame = Main.tile[x, y].frameNumber();
+            randomFrame = Main.tile[x, y].TileFrameNumber;
         }
         mergedDown = (mergedLeft = (mergedRight = (mergedUp = false)));
         switch (leftSim)

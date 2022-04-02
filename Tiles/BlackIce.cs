@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,13 +12,13 @@ public class BlackIce : ModTile
         AddMapEntry(new Color(127, 104, 135));
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
-        drop = Mod.Find<ModItem>("BlackIceBlock").Type;
+        ItemDrop = Mod.Find<ModItem>("BlackIceBlock").Type;
         Main.tileMerge[Type][TileID.IceBlock] = true;
         Main.tileMerge[TileID.IceBlock][Type] = true;
         Main.tileShine2[Type] = true;
-        dustType = DustID.Clentaminator_Purple;
-        soundType = SoundID.Item;
-        soundStyle = 50;
+        DustType = DustID.Clentaminator_Purple;
+        SoundType = SoundID.Item;
+        SoundStyle = 50;
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

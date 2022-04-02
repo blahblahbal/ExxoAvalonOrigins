@@ -24,7 +24,7 @@ public class ContagionChest : ModTile
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Origin = new Point16(0, 1);
         TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
-        TileObjectData.newTile.HookCheck = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.FindEmptyChest), -1, 0, true);
+        TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.FindEmptyChest), -1, 0, true);
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.AfterPlacement_Hook), -1, 0, false);
         TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
         TileObjectData.newTile.StyleHorizontal = true;
@@ -77,11 +77,11 @@ public class ContagionChest : ModTile
 
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
-        Item.NewItem(i * 16, j * 16, 32, 32, chestDrop);
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 32, chestDrop);
         Chest.DestroyChest(i, j);
     }
 
-    public override void RightClick(int i, int j)
+    public override bool RightClick(int i, int j)
     {
         var player = Main.LocalPlayer;
         var tile = Main.tile[i, j];
@@ -160,6 +160,7 @@ public class ContagionChest : ModTile
                 Recipe.FindRecipes();
             }
         }
+        return true;
     }
 
     public override void MouseOver(int i, int j)
@@ -177,32 +178,32 @@ public class ContagionChest : ModTile
             top--;
         }
         var chest = Chest.FindChest(left, top);
-        player.showItemIcon2 = -1;
+        player.cursorItemIconID = -1;
         if (chest < 0)
         {
-            player.showItemIconText = Language.GetTextValue("LegacyChestType.0");
+            player.cursorItemIconText = Language.GetTextValue("LegacyChestType.0");
         }
         else
         {
-            player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Contagion Chest";
-            if (player.showItemIconText == "Contagion Chest")
+            player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Contagion Chest";
+            if (player.cursorItemIconText == "Contagion Chest")
             {
-                player.showItemIcon2 = ModContent.ItemType<Items.Placeable.Storage.ContagionChest>();
-                player.showItemIconText = "";
+                player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Storage.ContagionChest>();
+                player.cursorItemIconText = "";
             }
         }
         player.noThrow = 2;
-        player.showItemIcon = true;
+        player.cursorItemIconEnabled = true;
     }
 
     public override void MouseOverFar(int i, int j)
     {
         MouseOver(i, j);
         var player = Main.LocalPlayer;
-        if (player.showItemIconText == "")
+        if (player.cursorItemIconText == "")
         {
-            player.showItemIcon = false;
-            player.showItemIcon2 = 0;
+            player.cursorItemIconEnabled = false;
+            player.cursorItemIconID = 0;
         }
     }
 }

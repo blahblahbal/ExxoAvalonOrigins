@@ -13,10 +13,10 @@ public class BlackBlaststone : ModTile
         Main.tileSolid[Type] = true;
         Main.tileShine[Type] = 1150;
         Main.tileBlockLight[Type] = true;
-        drop = ModContent.ItemType<Items.Placeable.Tile.BlackBlaststone>();
-        soundType = SoundID.Tink;
-        soundStyle = 1;
-        dustType = DustID.Wraith;
+        ItemDrop = ModContent.ItemType<Items.Placeable.Tile.BlackBlaststone>();
+        SoundType = SoundID.Tink;
+        SoundStyle = 1;
+        DustType = DustID.Wraith;
         ExxoAvalonOrigins.MergeWith(Type, TileID.Ash);
     }
 
