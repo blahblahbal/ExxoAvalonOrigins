@@ -91,7 +91,7 @@ public class FrostFire : ModProjectile
     }
     public override bool OnTileCollide(Vector2 oldVelocity)
     {
-        Projectile.NewProjectile(new Vector2(Projectile.Center.X, Projectile.Center.Y), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.FrostFireLinger>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+        Projectile.NewProjectile(Projectile.GetItemSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Center.Y), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.FrostFireLinger>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         return true;
     }
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

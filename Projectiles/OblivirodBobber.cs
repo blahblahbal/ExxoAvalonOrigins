@@ -19,8 +19,7 @@ public class OblivirodBobber : ModProjectile
         Projectile.bobber = true;
         Projectile.penetrate = -1;
     }
-
-    public override bool PreDrawExtras(SpriteBatch spriteBatch)
+    public override bool PreDrawExtras()
     {
         return Projectile.DrawFishingLine(ModContent.ItemType<Items.Tools.Oblivirod>(), new Color(234, 113, 201, 100));
     }

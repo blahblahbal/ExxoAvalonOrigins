@@ -50,7 +50,7 @@ public class EnchantedShuriken : ModProjectile
         if (Projectile.owner == Main.myPlayer)
         {
             // Drop a javelin item, 1 in 18 chance (~5.5% chance)
-            Item.NewItem(Projectile.getRect(), ModContent.ItemType<Items.Weapons.Throw.EnchantedShuriken>());
+            Item.NewItem(Projectile.GetItemSource_DropAsItem(), Projectile.getRect(), ModContent.ItemType<Items.Weapons.Throw.EnchantedShuriken>());
         }
     }
 }

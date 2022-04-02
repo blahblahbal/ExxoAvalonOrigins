@@ -31,7 +31,7 @@ public class GoldDagger : ModProjectile
         Projectile.timeLeft = 60;
         Projectile.usesLocalNPCImmunity = true;
         Projectile.localNPCHitCooldown = 60;
-        //aiType = 388;
+        //AIType = 388;
     }
 
     public override bool? CanCutTiles() { return false; }

@@ -35,7 +35,7 @@ public class TimechangerMkII : ModProjectile
                 if (Main.netMode == NetmodeID.SinglePlayer)
                     Main.NewText("It is now Day.", 50, 255, 130);
                 else if (Main.netMode == NetmodeID.Server)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Day."), new Color(50, 255, 130));
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("It is now Day."), new Color(50, 255, 130));
                 Projectile.active = false;
                 return;
             case 1:
@@ -44,7 +44,7 @@ public class TimechangerMkII : ModProjectile
                 if (Main.netMode == NetmodeID.SinglePlayer)
                     Main.NewText("It is now Noon.", 50, 255, 130);
                 else if (Main.netMode == NetmodeID.Server)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Noon."), new Color(50, 255, 130));
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("It is now Noon."), new Color(50, 255, 130));
                 Projectile.active = false;
                 return;
             case 2:
@@ -53,7 +53,7 @@ public class TimechangerMkII : ModProjectile
                 if (Main.netMode == NetmodeID.SinglePlayer)
                     Main.NewText("It is now Night.", 50, 255, 130);
                 else if (Main.netMode == NetmodeID.Server)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Night."), new Color(50, 255, 130));
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("It is now Night."), new Color(50, 255, 130));
                 Projectile.active = false;
                 return;
             case 3:
@@ -62,7 +62,7 @@ public class TimechangerMkII : ModProjectile
                 if (Main.netMode == NetmodeID.SinglePlayer)
                     Main.NewText("It is now Midnight.", 50, 255, 130);
                 else if (Main.netMode == NetmodeID.Server)
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("It is now Midnight."), new Color(50, 255, 130));
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("It is now Midnight."), new Color(50, 255, 130));
                 Projectile.active = false;
                 return;
         }

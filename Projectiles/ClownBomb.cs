@@ -25,17 +25,16 @@ public class ClownBomb : ModProjectile
         Projectile.alpha = 0;
         Projectile.scale = 1f;
         Projectile.timeLeft = 240;
-        aiType = 30;
+        AIType = 30;
         Projectile.tileCollide = true;
         Projectile.CloneDefaults(30);
     }
 
-    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
     {
         fallThrough = false;
         return true;
     }
-
     public override void Kill(int timeLeft)
     {
         SoundEngine.PlaySound(SoundID.Item14, Projectile.position);

@@ -22,7 +22,7 @@ public class ElementalArrow : ModProjectile
         Projectile.aiStyle = 1;
         Projectile.friendly = true;
         Projectile.DamageType = DamageClass.Ranged;
-        aiType = ProjectileID.WoodenArrowFriendly;
+        AIType = ProjectileID.WoodenArrowFriendly;
     }
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {

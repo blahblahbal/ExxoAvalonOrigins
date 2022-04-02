@@ -18,7 +18,7 @@ public class BloodyArrow : ModProjectile
         Projectile.width = dims.Width * 10 / 32;
         Projectile.height = dims.Height * 10 / 32 / Main.projFrames[Projectile.type];
         Projectile.aiStyle = -1;
-        aiType = 636;
+        AIType = 636;
         Projectile.friendly = true;
         Projectile.DamageType = DamageClass.Ranged;
     }

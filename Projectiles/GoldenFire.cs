@@ -148,7 +148,7 @@ public class GoldenFire : ModProjectile
             return;
         }
         Projectile.timeLeft = 0;
-        SoundEngine.PlaySound(SoundID.Item, Projectile.position, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Fireball"));
+        SoundEngine.PlaySound(SoundID.Item, Projectile.position, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/Fireball"));
 
         float len = 4f;
         int flam = ModContent.ProjectileType<GoldenFlamelet>();
@@ -179,7 +179,7 @@ public class GoldenFire : ModProjectile
             velX *= len + var;
             velY *= len + var;
 
-            Projectile.NewProjectile(Projectile.position.X, Projectile.position.Y, velX, velY, flam, damg, 0, Projectile.owner);
+            Projectile.NewProjectile(Projectile.GetItemSource_FromThis(), Projectile.position.X, Projectile.position.Y, velX, velY, flam, damg, 0, Projectile.owner);
         }
 
         // setup projectile for explosion

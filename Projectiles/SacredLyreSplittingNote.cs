@@ -41,7 +41,7 @@ public class SacredLyreSplittingNote : ModProjectile
             {
                 float num134 = -Projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
                 float num135 = -Projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-                int proj = Projectile.NewProjectile(Projectile.position.X + num134, Projectile.position.Y + num135, num134, num135, ProjectileID.CrystalShard, (int)(Projectile.damage * 0.65f), 0f, Projectile.owner, 0f, 0f);
+                int proj = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X + num134, Projectile.position.Y + num135, num134, num135, ProjectileID.CrystalShard, (int)(Projectile.damage * 0.65f), 0f, Projectile.owner, 0f, 0f);
                 // Main.projectile[proj].ranged = false /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
                 Main.projectile[proj].DamageType = DamageClass.Magic;
             }

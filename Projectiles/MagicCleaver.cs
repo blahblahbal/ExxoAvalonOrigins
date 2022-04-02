@@ -48,7 +48,8 @@ public class MagicCleaver : ModProjectile
             Main.dust[num411].velocity *= 1f;
         }
     }
-    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
     {
         height = 25;
         width = 25;

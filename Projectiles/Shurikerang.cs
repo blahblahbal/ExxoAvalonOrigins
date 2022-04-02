@@ -22,7 +22,7 @@ public class Shurikerang : ModProjectile
         Projectile.friendly = true;
         Projectile.penetrate = -1;
         Projectile.DamageType = DamageClass.Ranged;
-        aiType = ProjectileID.EnchantedBoomerang;
+        AIType = ProjectileID.EnchantedBoomerang;
     }
 
     public override bool OnTileCollide(Vector2 oldVelocity)

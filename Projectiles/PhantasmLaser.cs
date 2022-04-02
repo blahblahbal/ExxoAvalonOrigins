@@ -42,8 +42,7 @@ public class PhantasmLaser : ModProjectile
         Projectile.timeLeft = 3600;
         Projectile.tileCollide = false;
     }
-
-    public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override void PostDraw(Color lightColor)
     {
         Projectile p = Projectile;
 
@@ -72,7 +71,7 @@ public class PhantasmLaser : ModProjectile
             laserColor = colorArray[2];
         }
 
-        spriteBatch.Draw(texture2D19, p.Center - Main.screenPosition, null, laserColor, Projectile.rotation, texture2D19.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+        Main.EntitySpriteDraw(texture2D19, p.Center - Main.screenPosition, null, laserColor, Projectile.rotation, texture2D19.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
         num204 -= (texture2D19.Height / 2 + texture2D20.Height) * Projectile.scale;
         Vector2 center2 = p.Center;
         center2 += Projectile.velocity * Projectile.scale * texture2D19.Height / 2f;
@@ -86,7 +85,7 @@ public class PhantasmLaser : ModProjectile
                 {
                     rectangle7.Height = (int)(num204 - num205);
                 }
-                spriteBatch.Draw(texture2D18, center2 - Main.screenPosition, rectangle7, laserColor, Projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), Projectile.scale, SpriteEffects.None, 0f);
+                Main.EntitySpriteDraw(texture2D18, center2 - Main.screenPosition, rectangle7, laserColor, Projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), Projectile.scale, SpriteEffects.None, 0);
                 num205 += rectangle7.Height * Projectile.scale;
                 center2 += Projectile.velocity * rectangle7.Height * Projectile.scale;
                 rectangle7.Y += 16;
@@ -96,7 +95,7 @@ public class PhantasmLaser : ModProjectile
                 }
             }
         }
-        spriteBatch.Draw(texture2D20, center2 - Main.screenPosition, null, laserColor, Projectile.rotation, texture2D20.Frame().Top(), Projectile.scale, SpriteEffects.None, 0f);
+        Main.EntitySpriteDraw(texture2D20, center2 - Main.screenPosition, null, laserColor, Projectile.rotation, texture2D20.Frame().Top(), Projectile.scale, SpriteEffects.None, 0);
     }
 
     public bool Colliding2(Rectangle myRect, Rectangle targetRect)

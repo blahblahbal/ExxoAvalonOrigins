@@ -26,12 +26,12 @@ public class MagicGrenade : ModProjectile
         Projectile.scale = 1f;
         Projectile.timeLeft = 240;
         Projectile.DamageType = DamageClass.Magic;
-        aiType = 30;
+        AIType = 30;
         Projectile.tileCollide = true;
         Projectile.CloneDefaults(30);
     }
 
-    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
     {
         fallThrough = false;
         return true;

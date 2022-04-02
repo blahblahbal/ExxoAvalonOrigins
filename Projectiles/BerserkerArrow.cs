@@ -40,7 +40,7 @@ public class BerserkerArrow : ModProjectile
             num126 *= num128;
             int num129 = Projectile.damage;
             num129 = (int)(num129 * 0.5f);
-            int num130 = Projectile.NewProjectile(x, y, num125, num126, 92, num129, Projectile.knockBack, Projectile.owner, 0f, 0f);
+            int num130 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), x, y, num125, num126, 92, num129, Projectile.knockBack, Projectile.owner, 0f, 0f);
             if (Projectile.type == 91 || Projectile.type == 459)
             {
                 Main.projectile[num130].ai[1] = Projectile.position.Y;

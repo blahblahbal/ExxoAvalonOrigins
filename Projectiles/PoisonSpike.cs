@@ -34,7 +34,7 @@ public class PoisonSpike : ModProjectile
         {
             float num134 = -Projectile.velocity.X * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
             float num135 = -Projectile.velocity.Y * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
-            Projectile.NewProjectile(Projectile.position.X + num134, Projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<SpikeShard>(), (int)(Projectile.damage * 0.33), 0f, Projectile.owner, 0f, 0f);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X + num134, Projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<SpikeShard>(), (int)(Projectile.damage * 0.33), 0f, Projectile.owner, 0f, 0f);
         }
     }
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

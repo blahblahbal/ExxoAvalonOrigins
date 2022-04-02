@@ -429,7 +429,7 @@ internal static class HerbologyLogic
         UpdateHerbTier(modPlayer);
 
         ItemText.NewText(item, item.stack, false, false);
-        SoundEngine.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/HerbConsume"));
+        SoundEngine.PlaySound(SoundID.Item, -1, -1, ExxoAvalonOrigins.SoundLoader.GetSoundSlot(Mod, "Sounds/Item/HerbConsume"));
         return true;
     }
 }

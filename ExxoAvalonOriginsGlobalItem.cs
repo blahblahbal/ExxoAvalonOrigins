@@ -1716,7 +1716,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                     if (Main.hardMode && ExxoAvalonOriginsWorld.downedPhantasm)
                     {
                         ExxoAvalonOriginsGlobalNPC.SpawnWOS(item.position);
-                        SoundEngine.PlaySound(SoundID.Item, -1, -1, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/WoS"), 0.75f);
+                        SoundEngine.PlaySound(SoundID.Item, -1, -1, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/WoS"), 0.75f);
                     }
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.Empty, item.whoAmI, 0f, 0f, 0f, 0);
                 }

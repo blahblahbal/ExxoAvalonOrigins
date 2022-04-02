@@ -39,7 +39,7 @@ public class UltrabrightRazorbladeBullet : ModProjectile
         {
             float num134 = -Projectile.velocity.X * (float)Main.rand.Next(40, 70) * 0.01f + (float)Main.rand.Next(-20, 21) * 0.9f;
             float num135 = -Projectile.velocity.Y * (float)Main.rand.Next(40, 70) * 0.01f + (float)Main.rand.Next(-20, 21) * 0.9f;
-            Projectile.NewProjectile(Projectile.position.X + num134, Projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<UltrabrightRazorbladeBulletTyphoon>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X + num134, Projectile.position.Y + num135, num134, num135, ModContent.ProjectileType<UltrabrightRazorbladeBulletTyphoon>(), Projectile.damage, 0f, Projectile.owner, 0f, 0f);
         }
     }
     public override void AI()

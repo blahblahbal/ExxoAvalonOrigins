@@ -2568,7 +2568,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 for (int i = 0; i < 3; i++)
                 {
                     int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/Bubble"), 1f);
-                    SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
+                    SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/Bubbles"));
                 }
             }
             if (bubbleCD == 30)
@@ -4040,7 +4040,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             Player.immuneTime = 30;
         }
 
-        SoundEngine.PlaySound(SoundID.Item, Player.position, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/SpectrumDodge"));
+        SoundEngine.PlaySound(SoundID.Item, Player.position, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/SpectrumDodge"));
         for (int i = 0; i < Player.hurtCooldowns.Length; i++)
         {
             Player.hurtCooldowns[i] = Player.immuneTime;

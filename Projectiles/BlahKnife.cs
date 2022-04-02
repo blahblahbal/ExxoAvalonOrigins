@@ -113,7 +113,7 @@ public class BlahKnife : ModProjectile
     }
     public void ghostHurt(int dmg, Vector2 Position)
     {
-        if (!Projectile.magic || Projectile.damage <= 0)
+        if (Projectile.DamageType != DamageClass.Magic || Projectile.damage <= 0)
         {
             return;
         }
@@ -156,7 +156,7 @@ public class BlahKnife : ModProjectile
             num9 = 4f / num9;
             num7 *= num9;
             num8 *= num9;
-            Projectile.NewProjectile(Position, new Vector2(num7, num8), ModContent.ProjectileType<BlahKnifeSplit>(), num, 0f, Projectile.owner, num2);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Position, new Vector2(num7, num8), ModContent.ProjectileType<BlahKnifeSplit>(), num, 0f, Projectile.owner, num2);
         }
     }
 }

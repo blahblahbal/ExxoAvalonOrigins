@@ -24,7 +24,7 @@ public class LightningCloud : ModProjectile
         Projectile.timeLeft = 3600;
         Projectile.alpha = 20;
         Projectile.aiStyle = -1;
-        drawOriginOffsetX = Projectile.width / 2;
+        DrawOriginOffsetX = Projectile.width / 2;
         DrawOriginOffsetY = Projectile.height / 2;
     }
 
@@ -33,7 +33,7 @@ public class LightningCloud : ModProjectile
         Projectile.frameCounter++;
         if (Projectile.frameCounter == 11)
         {
-            SoundEngine.PlaySound(Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/LightningStrike"), (int)Projectile.position.X, (int)Projectile.position.Y + 10);
+            SoundEngine.PlaySound(SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LightningStrike"), (int)Projectile.position.X, (int)Projectile.position.Y + 10);
         }
         if (Projectile.frameCounter > 11f)
         {

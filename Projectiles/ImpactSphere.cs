@@ -113,7 +113,7 @@ public class ImpactSphere : ModProjectile
                     num609 = num606 / num609;
                     num607 *= num609;
                     num608 *= num609;
-                    var num610 = Projectile.NewProjectile(value8.X, value8.Y, num607, num608, ModContent.ProjectileType<ImpactBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+                    var num610 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), value8.X, value8.Y, num607, num608, ModContent.ProjectileType<ImpactBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                     Main.projectile[num610].velocity = Vector2.Normalize(Main.player[Player.FindClosest(Projectile.Center, Projectile.width, Projectile.height)].Center - Projectile.Center) * 3f;
                 }
             }

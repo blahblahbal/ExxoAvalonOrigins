@@ -112,7 +112,7 @@ public class Minisphere : ModProjectile
                     num596 = num593 / num596;
                     num594 *= num596;
                     num595 *= num596;
-                    var num597 = Projectile.NewProjectile(value7.X, value7.Y, num594, num595, ProjectileID.MagnetSphereBolt, (Projectile.type == ModContent.ProjectileType<Minisphere>()) ? (Projectile.damage / 3 * 2) : Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+                    var num597 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), value7.X, value7.Y, num594, num595, ProjectileID.MagnetSphereBolt, (Projectile.type == ModContent.ProjectileType<Minisphere>()) ? (Projectile.damage / 3 * 2) : Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                     if (Projectile.type == ModContent.ProjectileType<Minisphere>())
                     {
                         // Main.projectile[num597].magic = false /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;

@@ -45,8 +45,8 @@ public class SacredLyreShockwaveNote : ModProjectile
                 float rot = (float)Math.Atan2(c.Y - 1, c.X - 1);
                 for (float f = 0; f < 3.6f; f += 0.4f)
                 {
-                    Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot + f) * 4f * -1.0), (float)(Math.Sin(rot + f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
-                    Projectile.NewProjectile(c.X, c.Y, (float)(Math.Cos(rot - f) * 4f * -1.0), (float)(Math.Sin(rot - f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), c.X, c.Y, (float)(Math.Cos(rot + f) * 4f * -1.0), (float)(Math.Sin(rot + f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), c.X, c.Y, (float)(Math.Cos(rot - f) * 4f * -1.0), (float)(Math.Sin(rot - f) * 4f * -1.0), ModContent.ProjectileType<Shockwave>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
                 }
             }
                 

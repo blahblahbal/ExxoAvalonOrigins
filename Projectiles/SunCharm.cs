@@ -32,11 +32,11 @@ public class SunCharm : ModProjectile
             Main.eclipse = true;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText("A solar eclipse is happening!", 50, 255, 130, false);
+                Main.NewText("A solar eclipse is happening!", 50, 255, 130);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A solar eclipse is happening!"), new Color(50, 255, 130));
+                Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("A solar eclipse is happening!"), new Color(50, 255, 130));
             }
         }
         Projectile.active = false;

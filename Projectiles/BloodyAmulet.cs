@@ -32,11 +32,12 @@ public class BloodyAmulet : ModProjectile
             Main.bloodMoon = true;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText("The Blood Moon is rising...", 50, 255, 130, false);
+                Main.NewText("The Blood Moon is rising...", 50, 255, 130);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50, 255, 130));
+                Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."),
+                    new Color(50, 255, 130));
             }
             Projectile.active = false;
             return;
