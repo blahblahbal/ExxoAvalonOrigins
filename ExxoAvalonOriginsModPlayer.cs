@@ -22,6 +22,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Audio;
+using Terraria.GameContent;
+using ExxoAvalonOrigins.PlayerDrawLayers;
 
 namespace ExxoAvalonOrigins;
 
@@ -181,8 +183,8 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
     };
     public static Dictionary<int, int> torches;
 
-    public static Texture2D[] lavaMermanTextures;
-    public static Texture2D[] originalMermanTextures;
+    public static ReLogic.Content.Asset<Texture2D>[] lavaMermanTextures;
+    public static ReLogic.Content.Asset<Texture2D>[] originalMermanTextures;
 
     public static Texture2D[] spectrumArmorTextures;
 
@@ -313,7 +315,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
     public bool ZoneHumidity;
     public bool ZoneDelight;
     public bool ZoneSight;
-    public bool ZoneBooger;
+    public bool ZoneContagion;
     public bool ZoneDark;
     public bool ZoneComet;
     public bool ZoneHellcastle;
@@ -398,7 +400,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
     public int herbTotal;
     public Dictionary<int, int> herbCounts = new Dictionary<int, int>();
     private int gemCount = 0;
-    private bool[] ownedLargeGems = new bool[10];
+    public bool[] ownedLargeGems = new bool[10];
 
     // Crit damage multiplyer vars
     public float critDamageMult = 1f;
@@ -577,96 +579,20 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
     }
 
-    public override void UpdateBiomes()
-    {
-        ZoneHellcastle = false;
-        if (ExxoAvalonOriginsWorld.hellcastleTiles >= 350)
-        {
-            int num = (int)Player.position.X / 16;
-            int num2 = (int)Player.position.Y / 16;
-            if (Main.tile[num, num2].WallType == ModContent.WallType<Walls.ImperviousBrickWallUnsafe>())
-            {
-                ZoneHellcastle = true;
-            }
-        }
-        ZoneNearHellcastle = ExxoAvalonOriginsWorld.hellcastleTiles >= 350;
-        Point tileC = Player.position.ToTileCoordinates();
-        ZoneBooger = ExxoAvalonOriginsWorld.ickyTiles > 200;
-        ZoneDarkMatter = ExxoAvalonOriginsWorld.darkTiles > 300;
-        ZoneTropics = ExxoAvalonOriginsWorld.tropicTiles > 50;
-        ZoneOutpost = ExxoAvalonOriginsWorld.tropicTiles > 50 && Main.tile[tileC.X, tileC.Y].WallType == ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>() && Player.ZoneRockLayerHeight;
-        ZoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && Player.position.Y / 16 > Main.maxTilesY - 200;
-        ZoneSkyFortress = ExxoAvalonOriginsWorld.skyFortressTiles > 50 && Player.position.Y / 16 < 300;
-        ZoneBlight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.BlightCandle>());
-        ZoneDelight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.DelightCandle>());
-        ZoneFlight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.FlightCandle>());
-        ZoneFright = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.FrightCandle>());
-        ZoneHumidity = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.HumidityCandle>());
-        ZoneIceSoul = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.IceCandle>());
-        ZoneMight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.MightCandle>());
-        ZoneNight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.NightCandle>());
-        ZoneSight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.SightCandle>());
-        ZoneTime = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.TimeCandle>());
-        ZoneTorture = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.TortureCandle>());
-        ZoneCrystal = ExxoAvalonOriginsWorld.crystalTiles > 100;
-    }
-
-    public override void SendCustomBiomes(BinaryWriter writer)
-    {
-        var flags = new BitsByte();
-        flags[0] = ZoneHellcastle;
-        flags[1] = ZoneBooger;
-        flags[2] = ZoneDarkMatter;
-        flags[3] = ZoneTropics;
-        flags[4] = ZoneCaesium;
-        flags[5] = ZoneOutpost;
-        flags[6] = ZoneSkyFortress;
-        flags[7] = ZoneCrystal;
-        writer.Write(flags);
-        var flags2 = new BitsByte();
-        flags2[0] = ZoneBlight;
-        flags2[1] = ZoneDelight;
-        flags2[2] = ZoneFlight;
-        flags2[3] = ZoneFright;
-        flags2[4] = ZoneHumidity;
-        flags2[5] = ZoneIceSoul;
-        flags2[6] = ZoneMight;
-        flags2[7] = ZoneNight;
-        writer.Write(flags2);
-        var flags3 = new BitsByte();
-        flags3[0] = ZoneTime;
-        flags3[1] = ZoneTorture;
-        flags3[2] = ZoneSight;
-        flags3[3] = ZoneNearHellcastle;
-        writer.Write(flags3);
-    }
-
-    public override void ReceiveCustomBiomes(BinaryReader reader)
-    {
-        BitsByte flags = reader.ReadByte();
-        ZoneHellcastle = flags[0];
-        ZoneBooger = flags[1];
-        ZoneDarkMatter = flags[2];
-        ZoneTropics = flags[3];
-        ZoneCaesium = flags[4];
-        ZoneOutpost = flags[5];
-        ZoneSkyFortress = flags[6];
-        ZoneCrystal = flags[7];
-        BitsByte flags2 = reader.ReadByte();
-        ZoneBlight = flags2[0];
-        ZoneDelight = flags2[1];
-        ZoneFlight = flags2[2];
-        ZoneFright = flags2[3];
-        ZoneHumidity = flags2[4];
-        ZoneIceSoul = flags2[5];
-        ZoneMight = flags2[6];
-        ZoneNight = flags2[7];
-        BitsByte flags3 = reader.ReadByte();
-        ZoneTime = flags3[0];
-        ZoneTorture = flags3[1];
-        ZoneSight = flags3[2];
-        ZoneNearHellcastle = flags3[3];
-    }
+    //public override void UpdateBiomes()
+    //{
+    //    ZoneBlight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.BlightCandle>());
+    //    ZoneDelight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.DelightCandle>());
+    //    ZoneFlight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.FlightCandle>());
+    //    ZoneFright = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.FrightCandle>());
+    //    ZoneHumidity = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.HumidityCandle>());
+    //    ZoneIceSoul = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.IceCandle>());
+    //    ZoneMight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.MightCandle>());
+    //    ZoneNight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.NightCandle>());
+    //    ZoneSight = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.SightCandle>());
+    //    ZoneTime = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.TimeCandle>());
+    //    ZoneTorture = ExxoAvalonOriginsWorld.AnyTiles(Player, (ushort)ModContent.TileType<Tiles.SoulCandles.TortureCandle>());
+    //}
 
     public override void OnEnterWorld(Player player)
     {
@@ -681,68 +607,21 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         astralCD = 3600;
     }
 
-    public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
+    public override void UpdateEquips()
     {
         if (tomeItem.stack > 0)
         {
             Player.VanillaUpdateEquip(tomeItem);
-            Player.VanillaUpdateAccessory(Player.whoAmI, tomeItem, true, ref wallSpeedBuff, ref tileSpeedBuff,
-                ref tileRangeBuff);
         }
     }
         
     public override void PreUpdateBuffs()
     {
-        //int[] array = new int[Main.maxProjectileTypes];
-        //for (int j = 0; j < Main.projectile.Length; j++)
-        //{
-        //    if (Main.projectile[j].active && Main.projectile[j].owner == player.whoAmI)
-        //    {
-        //        array[Main.projectile[j].type]++;
-        //    }
-        //}
-
         for (int k = 0; k < Player.buffType.Length; k++)
         {
-            //if (player.buffType[k] == ModContent.BuffType<Buffs.Hungry>())
-            //{
-            //    if (array[ModContent.ProjectileType<HungrySummon>()] > 0)
-            //    {
-            //        hungryMinion = true;
-            //    }
-            //    if (!hungryMinion)
-            //    {
-            //        player.DelBuff(k);
-            //        k--;
-            //    }
-            //    else
-            //    {
-            //        player.buffTime[k] = 18000;
-            //    }
-            //}
-            //if (player.buffType[k] == ModContent.BuffType<Buffs.PrimeArms>())
-            //{
-            //    if (array[ModContent.ProjectileType<PriminiCannon>()] > 0 ||
-            //        array[ModContent.ProjectileType<PriminiLaser>()] > 0 ||
-            //        array[ModContent.ProjectileType<PriminiSaw>()] > 0 ||
-            //        array[ModContent.ProjectileType<PriminiVice>()] > 0)
-            //    {
-            //        primeMinion = true;
-            //    }
-            //    if (!primeMinion)
-            //    {
-            //        player.DelBuff(k);
-            //        k--;
-            //    }
-            //    else
-            //    {
-            //        player.buffTime[k] = 18000;
-            //    }
-            //}
-
             if (Player.buffType[k] == 37)
             {
-                if (Main.wof >= 0 && Main.npc[Main.wof].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.Bosses.WallofSteel>())
+                if (Main.wofNPCIndex >= 0 && Main.npc[Main.wofNPCIndex].type == NPCID.WallofFlesh || ExxoAvalonOriginsWorld.wos >= 0 && Main.npc[ExxoAvalonOriginsWorld.wos].type == ModContent.NPCType<NPCs.Bosses.WallofSteel>())
                 {
                     Player.gross = true;
                     Player.buffTime[k] = 10;
@@ -755,7 +634,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             }
         }
     }
-    public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         #region spike cannon logic
         if (item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeCannon>() || item.type == ModContent.ItemType<Items.Weapons.Ranged.SpikeRailgun>())
@@ -865,19 +744,19 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                         {
                             float num87 = MathHelper.Pi / 10;
                             int num88 = 3;
-                            Vector2 vector2 = new Vector2(speedX, speedY);
+                            Vector2 vector2 = velocity;
                             vector2.Normalize();
                             vector2 *= 40f;
                             for (int num89 = 0; num89 < num88; num89++)
                             {
                                 float num90 = num89 - (num88 - 1f) / 2f;
                                 Vector2 vector3 = vector2.Rotate(num87 * num90, default);
-                                int num91 = Projectile.NewProjectile(position.X + vector3.X, position.Y + vector3.Y, speedX, speedY, t, damage + dmgAdd, knockBack, Player.whoAmI, 0f, 0f);
+                                int num91 = Projectile.NewProjectile(Player.GetProjectileSource_Item(new Item(ModContent.ItemType<Items.Weapons.Ranged.SpikeRailgun>())), position.X + vector3.X, position.Y + vector3.Y, velocity.X, velocity.Y, t, damage + dmgAdd, knockback, Player.whoAmI, 0f, 0f);
                             }
                             Main.NewText(t);
                             return false;
                         }
-                        Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, damage + dmgAdd, knockBack, Player.whoAmI);
+                        Projectile.NewProjectile(Player.GetProjectileSource_Item(new Item(ModContent.ItemType<Items.Weapons.Ranged.SpikeCannon>())), position, velocity, t, damage + dmgAdd, knockback, Player.whoAmI);
                         return false;
                     }
                 }
@@ -919,10 +798,10 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                     int t = 0;
                     if (torches.TryGetValue(item2.type, out t))
                     {
-                        Projectile.NewProjectile(position, new Vector2(speedX, speedY), t, 0, 0);
+                        Projectile.NewProjectile(Player.GetProjectileSource_Item(new Item(ModContent.ItemType<TorchLauncher>())), position, new Vector2(velocity.X, velocity.Y), t, 0, 0);
                         return false;
                     }
-                    else return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+                    else return base.Shoot(item, source, position, velocity, type, damage, knockback);
                     /*if (item2.type == ItemID.Torch)
                     {
                         t = ModContent.ProjectileType<Torch>();
@@ -1021,7 +900,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             }
         }
         #endregion
-        return base.Shoot(item, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+        return base.Shoot(item, source, position, velocity, type, damage, knockback);
     }
     public void WOSTongue()
     {
@@ -1090,7 +969,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
     }
 
-    public override bool ConsumeAmmo(Item weapon, Item ammo)
+    public override bool CanConsumeAmmo(Item weapon, Item ammo)
     {
         bool consume = true;
         // 30% chance to not consume ammo
@@ -1120,22 +999,22 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
         else
         {
-            return base.ConsumeAmmo(weapon, ammo);
+            return base.CanConsumeAmmo(weapon, ammo);
         }
     }
 
-    public override void ModifyWeaponDamage(Item item, ref float add, ref float mult, ref float flat)
+    public override void ModifyWeaponDamage(Item item, ref StatModifier damage, ref float flat)
     {
         if (item.useAmmo == AmmoID.Arrow && advArcheryBuff)
         {
-            mult *= 1.4f;
+            damage = new StatModifier(0, 1.4f);
         }
-        base.ModifyWeaponDamage(item, ref add, ref mult, ref flat);
+        base.ModifyWeaponDamage(item, ref damage, ref flat);
     }
 
     public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
     {
-        if (terraClaws && item.melee)
+        if (terraClaws && item.DamageType == DamageClass.Melee)
         {
             switch (Main.rand.Next(5))
             {
@@ -1158,11 +1037,11 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
         if (ancientSandVortex && Main.rand.Next(10) == 0)
         {
-            Projectile.NewProjectile(target.position, Vector2.Zero, ModContent.ProjectileType<AncientSandnado>(), 0, 0);
+            Projectile.NewProjectile(Player.GetProjectileSource_OnHit(target, ProjectileSourceID.None), target.position, Vector2.Zero, ModContent.ProjectileType<AncientSandnado>(), 0, 0);
         }
         if (vampireTeeth)
         {
-            if (item.melee)
+            if (item.DamageType == DamageClass.Melee)
             {
                 if (target.boss)
                 {
@@ -1189,9 +1068,9 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 Player.AddBuff(ModContent.BuffType<Buffs.BlessingofAvalon>(), 120);
             }
         }
-        if (Player.inventory[Player.selectedItem].melee && bloodyWhetstone)
+        if (Player.inventory[Player.selectedItem].DamageType == DamageClass.Melee && bloodyWhetstone)
         {
-            target.AddBuff(ModContent.BuffType<Buffs.Bleeding>(), 120);
+            target.AddBuff(ModContent.BuffType<Bleeding>(), 120);
             target.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().isBleedingHMBleed = true;
         }
     }
@@ -1211,11 +1090,11 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
 
         if (roseMagic)
         {
-            if (proj.magic)
+            if (proj.DamageType == DamageClass.Magic)
             {
                 if (Main.rand.Next(8) == 0 && roseMagicCooldown <= 0)
                 {
-                    int num36 = Item.NewItem((int)target.position.X, (int)target.position.Y, target.width, target.height, ModContent.ItemType<Rosebud>());
+                    int num36 = Item.NewItem(Player.GetProjectileSource_OnHit(target, ProjectileSourceID.None), (int)target.position.X, (int)target.position.Y, target.width, target.height, ModContent.ItemType<Rosebud>());
                     Main.item[num36].velocity.Y = Main.rand.Next(-20, 1) * 0.2f;
                     Main.item[num36].velocity.X = Main.rand.Next(10, 31) * 0.2f * Player.direction;
                     roseMagicCooldown = 20;
@@ -1227,9 +1106,9 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         {
             if (ancientGunslinger)
             {
-                if (proj.owner == Main.myPlayer && proj.ranged)
+                if (proj.owner == Main.myPlayer && proj.DamageType == DamageClass.Ranged)
                 {
-                    Projectile.NewProjectile(target.position, Vector2.Zero, ModContent.ProjectileType<SandyExplosion>(), damage * 2, knockback);
+                    Projectile.NewProjectile(Player.GetProjectileSource_OnHit(target, ProjectileSourceID.None), target.position, Vector2.Zero, ModContent.ProjectileType<SandyExplosion>(), damage * 2, knockback);
                 }
             }
         }
@@ -1307,7 +1186,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             float num572 = (float)Math.Atan2(center.Y - npc.Center.Y, center.X - npc.Center.X);
             for (float f = 0f; f <= 3.6f; f += 0.4f)
             {
-                int proj = Projectile.NewProjectile(center.X, center.Y, (float)(Math.Cos(num572 + f) * shootSpeed * -1), (float)(Math.Sin(num572 + f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
+                int proj = Projectile.NewProjectile(npc.GetSpawnSource_ForProjectile(), center.X, center.Y, (float)(Math.Cos(num572 + f) * shootSpeed * -1), (float)(Math.Sin(num572 + f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
                 Main.projectile[proj].timeLeft = 600;
                 Main.projectile[proj].tileCollide = false;
                 Main.projectile[proj].hostile = false;
@@ -1316,7 +1195,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 {
                     NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), proj, 0f, 0f, 0f, 0);
                 }
-                proj = Projectile.NewProjectile(center.X, center.Y, (float)(Math.Cos(num572 - f) * shootSpeed * -1), (float)(Math.Sin(num572 - f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
+                proj = Projectile.NewProjectile(npc.GetSpawnSource_ForProjectile(), center.X, center.Y, (float)(Math.Cos(num572 - f) * shootSpeed * -1), (float)(Math.Sin(num572 - f) * shootSpeed * -1.0), ProjectileID.Stinger, 60, 0f, 0, 0f, 0f);
                 Main.projectile[proj].timeLeft = 600;
                 Main.projectile[proj].tileCollide = false;
                 Main.projectile[proj].hostile = false;
@@ -1364,15 +1243,15 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         {
             damage += 15;
         }
-        if (Player.HasBuff(ModContent.BuffType<Buffs.BacteriaEndurance>()))
+        if (Player.HasBuff(ModContent.BuffType<BacteriaEndurance>()))
         {
             damage += 8;
         }
-        if (target.HasBuff(ModContent.BuffType<Buffs.AstralCurse>()))
+        if (target.HasBuff(ModContent.BuffType<AstralCurse>()))
         {
             damage *= 3;
         }
-        if (target.HasBuff(ModContent.BuffType<Buffs.CurseofAvalon>()))
+        if (target.HasBuff(ModContent.BuffType<CurseofAvalon>()))
         {
             damage *= 4;
             target.DelBuff(target.FindBuffIndex(ModContent.BuffType<Buffs.CurseofAvalon>()));
@@ -1429,10 +1308,10 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             proj.type != ModContent.ProjectileType<LightningTrail>())
         {
             damage *= 4;
-            target.DelBuff(target.FindBuffIndex(ModContent.BuffType<Buffs.CurseofAvalon>()));
+            target.DelBuff(target.FindBuffIndex(ModContent.BuffType<CurseofAvalon>()));
         }
 
-        if (hyperMelee && proj.melee)
+        if (hyperMelee && proj.DamageType == DamageClass.Melee)
         {
             hyperBar++;
             if (hyperBar > 15 && hyperBar <= 25)
@@ -1444,7 +1323,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 }
             }
         }
-        if (hyperRanged && proj.ranged)
+        if (hyperRanged && proj.DamageType == DamageClass.Ranged)
         {
             hyperBar++;
             if (hyperBar > 15 && hyperBar <= 25)
@@ -1456,7 +1335,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 }
             }
         }
-        if (hyperMagic && proj.magic)
+        if (hyperMagic && proj.DamageType == DamageClass.Magic)
         {
             hyperBar++;
             if (hyperBar > 15 && hyperBar <= 25)
@@ -1519,8 +1398,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         bonusDmg += (int)((dmg * (critDamageMult + 1f)) / 2);
         return bonusDmg;
     }
-
-    public override void ModifyDrawInfo(ref PlayerDrawInfo drawInfo)
+    public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
     {
         if (Player.HasItemInArmor(ModContent.ItemType<ShadowRing>()))
         {
@@ -1536,32 +1414,20 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
         if (mermanLava)
         {
-            Main.armorHeadTexture[39] = lavaMermanTextures[0];
-            Main.armorBodyTexture[22] = lavaMermanTextures[1];
-            Main.armorArmTexture[22] = lavaMermanTextures[2];
-            Main.femaleBodyTexture[22] = lavaMermanTextures[3];
-            Main.armorLegTexture[21] = lavaMermanTextures[4];
+            TextureAssets.ArmorHead[39] = lavaMermanTextures[0];
+            TextureAssets.ArmorBody[22] = lavaMermanTextures[1];
+            TextureAssets.ArmorArm[22] = lavaMermanTextures[2];
+            TextureAssets.FemaleBody[22] = lavaMermanTextures[3];
+            TextureAssets.ArmorLeg[21] = lavaMermanTextures[4];
         }
         else
         {
-            Main.armorHeadTexture[39] = originalMermanTextures[0];
-            Main.armorBodyTexture[22] = originalMermanTextures[1];
-            Main.armorArmTexture[22] = originalMermanTextures[2];
-            Main.femaleBodyTexture[22] = originalMermanTextures[3];
-            Main.armorLegTexture[21] = originalMermanTextures[4];
+            TextureAssets.ArmorHead[39] = originalMermanTextures[0];
+            TextureAssets.ArmorBody[22] = originalMermanTextures[1];
+            TextureAssets.ArmorArm[22] = originalMermanTextures[2];
+            TextureAssets.FemaleBody[22] = originalMermanTextures[3];
+            TextureAssets.ArmorLeg[21] = originalMermanTextures[4];
         }
-        //if (frozen)
-        //{
-        //    if (drawInfo.bodyColor == baseSkinTone)
-        //        drawInfo.bodyColor = new Color(0f, baseSkinTone.G * 0.639f, default, default);
-        //}
-        //else
-        //{
-        //    if (drawInfo.bodyColor != baseSkinTone && baseSkinTone != new Color())
-        //        drawInfo.bodyColor = baseSkinTone;
-        //    else
-        //        baseSkinTone = drawInfo.bodyColor;
-        //}
     }
 
     public override void UpdateLifeRegen()
@@ -1609,9 +1475,9 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         UpdateStaminaRegen();
     }
 
-    public override TagCompound Save()
+    public override void SaveData(TagCompound tag)
     {
-        var tag = new TagCompound
+        tag = new TagCompound
         {
             { "ExxoAvalonOrigins:TomeSlot", ItemIO.Save(tomeItem) },
             { "ExxoAvalonOrigins:CrystalHealth", crystalHealth },
@@ -1628,9 +1494,8 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             { "ExxoAvalonOrigins:SprintUnlocked", sprintUnlocked },
             { "ExxoAvalonOrigins:FlightRestoreUnlocked", flightRestoreUnlocked },
         };
-        return tag;
     }
-    public override void Load(TagCompound tag)
+    public override void LoadData(TagCompound tag)
     {
         if (tag.ContainsKey("ExxoAvalonOrigins:TomeSlot"))
         {
@@ -1853,7 +1718,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         if (ZoneFlight) Player.slowFall = true; // doesn't work
         if (ZoneFright) Player.statDefense += 5;
         if (ZoneIceSoul) slimeBand = true; // doesn't work
-        if (ZoneMight) Player.allDamage += 0.06f;
+        if (ZoneMight) Player.GetDamage(DamageClass.Generic) += 0.06f;
         if (ZoneNight) Player.wolfAcc = true;
         if (ZoneTime) Player.accWatch = 3;
         if (ZoneTorture) Player.AllCrit(6);
@@ -1864,7 +1729,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
 
         #region rift goggles
 
-        if (Player.ZoneCrimson || Player.ZoneCorrupt || ZoneBooger)
+        if (Player.ZoneCrimson || Player.ZoneCorrupt || ZoneContagion)
         {
             if (Main.rand.Next(3000) == 0 && riftGoggles)
             {
@@ -1872,7 +1737,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 Point pt = pposTile2.ToTileCoordinates();
                 if (!Main.tile[pt.X, pt.Y].HasTile)
                 {
-                    int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), 0);
+                    int proj = NPC.NewNPC(Player.GetNPCSource_TileInteraction(pt.X, pt.Y), pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), 0);
                     if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, proj);
@@ -1895,7 +1760,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             {
                 Vector2 pposTile2 = Player.position + new Vector2(Main.rand.Next(-35 * 16, 35 * 16), Main.rand.Next(-35 * 16, 35 * 16));
                 Point pt = pposTile2.ToTileCoordinates();
-                int proj = NPC.NewNPC(pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
+                int proj = NPC.NewNPC(Player.GetNPCSource_TileInteraction(pt.X, pt.Y), pt.X * 16, pt.Y * 16, ModContent.NPCType<NPCs.Rift>(), ai1: 1);
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, proj);
@@ -1914,15 +1779,15 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
 
         #endregion rift goggles
 
-        if (Player.HasItemInArmor(ModContent.ItemType<ShadowRing>()))
-        {
-            Player.shadow = 0f;
-        }
+        //if (Player.HasItemInArmor(ModContent.ItemType<ShadowRing>()))
+        //{
+        //    Player.shadow = 0f;
+        //}
 
-        if (blahArmor)
-        {
-            Player.shadow = 0f;
-        }
+        //if (blahArmor)
+        //{
+        //    Player.shadow = 0f;
+        //}
         // Herbology bench distance check
         if (Player.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb)
         {
@@ -1939,22 +1804,6 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         {
             Player.Avalon().herb = false;
         }
-        //if (chaosCharm)
-        //{
-        //    int lvl = 9 - (int)Math.Floor((10.0 * player.statLife) / player.statLifeMax2);
-        //    int modCrit = 2 * (int)Math.Floor((player.statLifeMax2 - (double)player.statLife) /
-        //                  player.statLifeMax2 * 10.0);
-        //    if (lvl < 0)
-        //    {
-        //        lvl = 0;
-        //    }
-
-        //    player.meleeCrit += 2 * lvl;
-        //    player.magicCrit += 2 * lvl;
-        //    player.rangedCrit += 2 * lvl;
-        //    player.thrownCrit += 2 * lvl;
-        //}
-        //chaosCharm = false;
         slimeImmune = false;
         if (Player.tongued)
         {
@@ -2085,9 +1934,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                                     continue;
                                 }
 
-                                target.AddBuff(ModContent.BuffType<Buffs.NecroticDrain>(), 2);
-                                //target.StrikeNPCNoInteraction(3 + (int)(target.defense / 2), 0f, 1, default, true);
-                                //target.StrikeNPC(3 + (int)(target.defense / 2), 0f, 1, default, true);
+                                target.AddBuff(ModContent.BuffType<NecroticDrain>(), 2);
                             }
                         }
                         count = 0;
@@ -2133,203 +1980,13 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
     }
 
-    public static readonly PlayerLayer SpectrumArmorLayer = new PlayerLayer(ExxoAvalonOrigins.Mod.Name, "SpectrumArmorLayer", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
-    {
-        if (drawInfo.shadow != 0f)
-        {
-            return;
-        }
-        Player p = drawInfo.drawPlayer;
-        Color rb = new Color(Items.Armor.SpectrumHelmet.R, Items.Armor.SpectrumHelmet.G, Items.Armor.SpectrumHelmet.B, drawInfo.bodyColor.A);
-        SpriteEffects spriteEffects = SpriteEffects.None;
-        if (p.gravDir == 1f)
-        {
-            if (p.direction == 1)
-            {
-                spriteEffects = SpriteEffects.None;
-            }
-            else
-            {
-                spriteEffects = SpriteEffects.FlipHorizontally;
-            }
-            if (!p.dead)
-            {
-                p.legPosition.Y = 0f;
-                p.headPosition.Y = 0f;
-                p.bodyPosition.Y = 0f;
-            }
-        }
-        else
-        {
-            if (p.direction == 1)
-            {
-                spriteEffects = SpriteEffects.FlipVertically;
-            }
-            else
-            {
-                spriteEffects = (SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically);
-            }
-            if (!p.dead)
-            {
-                p.legPosition.Y = 6f;
-                p.headPosition.Y = 6f;
-                p.bodyPosition.Y = 6f;
-            }
-        }
-        Vector2 vector2 = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.75f);
-        Vector2 origin = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.5f);
-        Vector2 vector3 = new Vector2(p.legFrame.Width * 0.5f, p.legFrame.Height * 0.4f);
-        if (p.head == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumHelmet", EquipType.Head))
-        {
-                
-            var value = default(DrawData);
-            value = new DrawData(spectrumArmorTextures[0], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.headPosition + vector3, new Rectangle?(p.bodyFrame), rb, p.headRotation, vector3, 1f, spriteEffects, 0);
-            Main.playerDrawData.Add(value);
-        }
-        if (p.body == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumBreastplate", EquipType.Body))
-        {
-            Rectangle bodyFrame2 = p.bodyFrame;
-            int num55 = 0;
-            bodyFrame2.X += num55;
-            bodyFrame2.Width -= num55;
-            var value = default(DrawData);
-            value = new DrawData(spectrumArmorTextures[1], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2) + num55, (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.bodyPosition + new Vector2(p.bodyFrame.Width / 2, p.bodyFrame.Height / 2), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
-            Main.playerDrawData.Add(value);
-        }
-        if (p.legs == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumGreaves", EquipType.Legs))
-        {
-            var value = new DrawData(spectrumArmorTextures[4], new Vector2((int)(drawInfo.position.X - Main.screenPosition.X - p.legFrame.Width / 2 + p.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + p.height - p.legFrame.Height + 4f)) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
-            Main.playerDrawData.Add(value);
-        }
-    });
-
-    // Large gem player layer logic
-    public static readonly PlayerLayer LargeGemLayer = new PlayerLayer(ExxoAvalonOrigins.Mod.Name, "LargeGemLayer", PlayerLayer.FrontAcc, delegate (PlayerDrawInfo drawInfo)
-    {
-        if (drawInfo.shadow != 0f)
-        {
-            return;
-        }
-        Player drawPlayer = drawInfo.drawPlayer;
-        bool[] ownedLargeGems = drawPlayer.Avalon().ownedLargeGems;
-        if (ownedLargeGems.Length > 0)
-        {
-            bool flag2 = false;
-            var value = default(DrawData);
-            float numGems = 0f;
-            for (int num23 = 0; num23 < 10; num23++)
-            {
-                if (ownedLargeGems[num23])
-                {
-                    numGems += 1f;
-                }
-            }
-            float num25 = 1f - numGems * 0.06f;
-            float num26 = (numGems - 1f) * 4f;
-            switch ((int)numGems)
-            {
-                case 2:
-                    num26 += 10f;
-                    break;
-
-                case 3:
-                    num26 += 8f;
-                    break;
-
-                case 4:
-                    num26 += 6f;
-                    break;
-
-                case 5:
-                    num26 += 6f;
-                    break;
-
-                case 6:
-                    num26 += 2f;
-                    break;
-
-                case 7:
-                    num26 += 0f;
-                    break;
-
-                case 8:
-                    num26 += 0f;
-                    break;
-
-                case 9:
-                    num26 += 0f;
-                    break;
-
-                case 10:
-                    num26 += 0f;
-                    break;
-            }
-            float rotSpeed = drawPlayer.miscCounter / 300f * ((float)Math.PI * 2f);
-            if (numGems > 0f)
-            {
-                float spacing = (float)Math.PI * 2f / numGems;
-                float num29 = 0f;
-                var ringSize = new Vector2(1.5f, 0.85f);
-                var list = new List<DrawData>();
-                for (int num30 = 0; num30 < 10; num30++)
-                {
-                    if (!ownedLargeGems[num30])
-                    {
-                        num29 += 1f;
-                        continue;
-                    }
-                    Vector2 value14 = (rotSpeed + spacing * (num30 - num29)).ToRotationVector2();
-                    float num31 = num25;
-                    if (flag2)
-                    {
-                        num31 = MathHelper.Lerp(num25 * 0.7f, 1f, value14.Y / 2f + 0.5f);
-                    }
-
-                    Texture2D texture2D4 = null;
-                    if (num30 < 7)
-                    {
-                        texture2D4 = Main.gemTexture[num30];
-                    }
-                    else
-                    {
-                        switch (num30)
-                        {
-                            case 7:
-                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeZircon>()).GetTexture();
-                                num31 *= 1.5f;
-                                break;
-
-                            case 8:
-                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargeTourmaline>()).GetTexture();
-                                num31 *= 1.5f;
-                                break;
-
-                            case 9:
-                                texture2D4 = ModContent.GetModItem(ModContent.ItemType<Items.Other.LargePeridot>()).GetTexture();
-                                num31 *= 1.5f;
-                                break;
-                        }
-                    }
-
-                    value = new DrawData(texture2D4, new Vector2((int)(drawInfo.position.X - Main.screenPosition.X + drawPlayer.width / 2), (int)(drawInfo.position.Y - Main.screenPosition.Y + drawPlayer.height - 80f)) + value14 * ringSize * num26, null, new Color(250, 250, 250, Main.mouseTextColor / 2), 0f, texture2D4.Size() / 2f, (Main.mouseTextColor / 1000f + 0.8f) * num31, SpriteEffects.None, 0);
-                    list.Add(value);
-                }
-                if (flag2)
-                {
-                    list.Sort(DelegateMethods.CompareDrawSorterByYScale);
-                }
-                Main.playerDrawData.AddRange(list);
-            }
-        }
-    });
-
-    public override void ModifyDrawLayers(List<PlayerLayer> layers)
-    {
-        LargeGemLayer.visible = true;
-        layers.Add(LargeGemLayer);
-        SpectrumArmorLayer.visible = true;
-        layers.Add(SpectrumArmorLayer);
-    }
+    //public override void ModifyDrawLayers(List<PlayerLayer> layers)
+    //{
+    //    LargeGemLayer.Visible = true;
+    //    layers.Add(LargeGemLayer);
+    //    SpectrumArmorLayer.visible = true;
+    //    layers.Add(SpectrumArmorLayer);
+    //}
 
     // Large gem drop on death logic
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -2346,7 +2003,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                          Player.inventory[i].type == ModContent.ItemType<Items.Other.LargeTourmaline>() ||
                          Player.inventory[i].type == ModContent.ItemType<Items.Other.LargePeridot>()))
                     {
-                        int num = Item.NewItem((int)Player.position.X, (int)Player.position.Y, Player.width, Player.height, Player.inventory[i].type);
+                        int num = Item.NewItem(Player.GetItemSource_Death(), (int)Player.position.X, (int)Player.position.Y, Player.width, Player.height, Player.inventory[i].type);
                         Main.item[num].netDefaults(Player.inventory[i].netID);
                         Main.item[num].Prefix(Player.inventory[i].prefix);
                         Main.item[num].stack = Player.inventory[i].stack;
@@ -2400,7 +2057,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         for (int i = 0; i < 3; i++)
         {
             ArmorPrefix prefix;
-            if ((prefix = ModPrefix.GetPrefix(Player.armor[i].prefix) as ArmorPrefix) != null)
+            if ((prefix = PrefixLoader.GetPrefix(Player.armor[i].prefix) as ArmorPrefix) != null)
             {
                 //int kb = prefix.PreUpdateEquip(player);
                 prefix.UpdateEquip(Player);
@@ -2567,22 +2224,22 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/Bubble"), 1f);
-                    SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Bubbles"));
+                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/Bubble").Type, 1f);
+                    SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/Bubbles"));
                 }
             }
             if (bubbleCD == 30)
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/LargeBubble"), 1f);
+                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/LargeBubble").Type, 1f);
                 }
             }
             if (bubbleCD == 40)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/SmallBubble"), 1f);
+                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/SmallBubble").Type, 1f);
                 }
                 bubbleCD = 0;
             }
@@ -2742,7 +2399,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         if (curseOfIcarus)
         {
             Player.wingsLogic = 0;
-            if (Player.mount.CanFly || Player.mount.CanHover) // Setting player.mount._flyTime does not work for all mounts. Bye-bye mounts!
+            if (Player.mount.CanFly() || Player.mount.CanHover()) // Setting player.mount._flyTime does not work for all mounts. Bye-bye mounts!
             {
                 Player.mount.Dismount(Player);
             }
@@ -2829,7 +2486,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    int newBall = Projectile.NewProjectile(Player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Melee.DragonBall>(), (Player.HeldItem.damage / 2) * 3, 1f, Player.whoAmI);
+                    int newBall = Projectile.NewProjectile(Player.GetProjectileSource_Accessory(new Item(ModContent.ItemType<DragonsBondage>())), Player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Melee.DragonBall>(), (Player.HeldItem.damage / 2) * 3, 1f, Player.whoAmI);
                     Main.projectile[newBall].localAI[0] = i;
                 }
             }
@@ -2870,7 +2527,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
 
             if (Math.Abs(Player.velocity.X) >= maxSpeed)
             {
-                Player.AddBuff(ModContent.BuffType<Buffs.SpectrumBlur>(), 5);
+                Player.AddBuff(ModContent.BuffType<SpectrumBlur>(), 5);
             }
 
             Player.GetDamage(DamageClass.Ranged) += damagePercent / 100f;
@@ -3382,7 +3039,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         {
             flag = Player.mount.BlockExtraJumps;
         }
-        bool flag2 = (!Player.doubleJumpCloud || !Player.jumpAgainCloud) && (!Player.doubleJumpSandstorm || !Player.jumpAgainSandstorm) && (!Player.doubleJumpBlizzard || !Player.jumpAgainBlizzard) && (!Player.doubleJumpFart || !Player.jumpAgainFart) && (!Player.doubleJumpSail || !Player.jumpAgainSail) && (!Player.doubleJumpUnicorn || !Player.jumpAgainUnicorn) && NumHookProj() <= 0 && flag;
+        bool flag2 = (!Player.hasJumpOption_Cloud || !Player.canJumpAgain_Cloud) && (!Player.hasJumpOption_Sandstorm || !Player.canJumpAgain_Sandstorm) && (!Player.hasJumpOption_Blizzard || !Player.canJumpAgain_Blizzard) && (!Player.hasJumpOption_Fart || !Player.canJumpAgain_Fart) && (!Player.hasJumpOption_Sail || !Player.canJumpAgain_Sail) && (!Player.hasJumpOption_Unicorn || !Player.canJumpAgain_Unicorn) && NumHookProj() <= 0 && flag;
         if (!(PlayerInput.Triggers.JustPressed.Jump && Player.position.Y != Player.oldPosition.Y && flag2))
         {
             return;
@@ -3404,14 +3061,14 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             Main.dust[num8].velocity *= 0.5f;
 
             int g = Main.rand.Next(2);
-            if (g == 0) g = Mod.Find<ModGore>("Gores/QuackGore1");
-            if (g == 1) g = Mod.Find<ModGore>("Gores/QuackGore2");
+            if (g == 0) g = Mod.Find<ModGore>("Gores/QuackGore1").Type;
+            if (g == 1) g = Mod.Find<ModGore>("Gores/QuackGore2").Type;
             int g2 = Main.rand.Next(2);
-            if (g2 == 0) g2 = Mod.Find<ModGore>("Gores/QuackGore1");
-            if (g2 == 1) g2 = Mod.Find<ModGore>("Gores/QuackGore2");
+            if (g2 == 0) g2 = Mod.Find<ModGore>("Gores/QuackGore1").Type;
+            if (g2 == 1) g2 = Mod.Find<ModGore>("Gores/QuackGore2").Type;
             int g3 = Main.rand.Next(2);
-            if (g3 == 0) g3 = Mod.Find<ModGore>("Gores/QuackGore1");
-            if (g3 == 1) g3 = Mod.Find<ModGore>("Gores/QuackGore2");
+            if (g3 == 0) g3 = Mod.Find<ModGore>("Gores/QuackGore1").Type;
+            if (g3 == 1) g3 = Mod.Find<ModGore>("Gores/QuackGore2").Type;
             int num3 = Gore.NewGore(new Vector2(Player.position.X + Player.width / 2 - 16f, Player.position.Y + h - 16f), new Vector2(-Player.velocity.X, -Player.velocity.Y), g, 1f);
             Main.gore[num3].velocity.X = Main.gore[num3].velocity.X * 0.1f - Player.velocity.X * 0.1f;
             Main.gore[num3].velocity.Y = Main.gore[num3].velocity.Y * 0.1f - Player.velocity.Y * 0.05f;
@@ -3449,28 +3106,28 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                     targetPosition3 = new Vector2(Player.Center.X + Main.rand.Next(20, 40), Player.Center.Y);
                 }
 
-                Projectile.NewProjectile(cloudPosition, Vector2.Zero, ModContent.ProjectileType<LightningCloud>(), 0, 0f, Player.whoAmI);
+                Projectile.NewProjectile(Player.GetProjectileSource_Accessory(new Item(ModContent.ItemType<LightninginaBottle>())), cloudPosition, Vector2.Zero, ModContent.ProjectileType<LightningCloud>(), 0, 0f, Player.whoAmI);
 
                 for (int i = 0; i < 1; i++)
                 {
                     Vector2 vectorBetween = targetPosition - cloudPosition;
                     float randomSeed = Main.rand.Next(100);
                     Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
-                    Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                    Projectile.NewProjectile(Player.GetProjectileSource_Accessory(new Item(ModContent.ItemType<LightninginaBottle>())), cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
                 }
                 for (int i = 0; i < 1; i++)
                 {
                     Vector2 vectorBetween = targetPosition2 - cloudPosition;
                     float randomSeed = Main.rand.Next(100);
                     Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
-                    Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                    Projectile.NewProjectile(Player.GetProjectileSource_Accessory(new Item(ModContent.ItemType<LightninginaBottle>())), cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
                 }
                 for (int i = 0; i < 1; i++)
                 {
                     Vector2 vectorBetween = targetPosition3 - cloudPosition;
                     float randomSeed = Main.rand.Next(100);
                     Vector2 startVelocity = Vector2.Normalize(vectorBetween.RotatedByRandom(0.78539818525314331)) * 27f;
-                    Projectile.NewProjectile(cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
+                    Projectile.NewProjectile(Player.GetProjectileSource_Accessory(new Item(ModContent.ItemType<LightninginaBottle>())), cloudPosition, startVelocity, ModContent.ProjectileType<Lightning>(), 47, 0f, Main.myPlayer, vectorBetween.ToRotation(), randomSeed);
                 }
             }
 
@@ -3478,7 +3135,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             {
                 if (damage > 50)
                 {
-                    Player.AddBuff(ModContent.BuffType<Buffs.Berserk>(), 180);
+                    Player.AddBuff(ModContent.BuffType<Berserk>(), 180);
                 }
             }
 
@@ -3491,7 +3148,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                     {
                         pos.Y--;
                     }
-                    Projectile.NewProjectile(pos, Vector2.Zero, ModContent.ProjectileType<Projectiles.LeafStorm>(), 80, 0.6f, Main.myPlayer);
+                    Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(ProjectileSourceID.None), pos, Vector2.Zero, ModContent.ProjectileType<LeafStorm>(), 80, 0.6f, Main.myPlayer);
                 }
             }
         }
@@ -3672,18 +3329,13 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
     }
 
-    public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+    public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
     {
-        if (junk)
-        {
-            return;
-        }
-
         #region Contagion Fish
 
-        if (ZoneBooger && Main.rand.NextBool(10))
+        if (ZoneContagion && Main.rand.NextBool(10))
         {
-            caughtType = ModContent.ItemType<Items.Fish.NauSeaFish>();
+            itemDrop = ModContent.ItemType<Items.Fish.NauSeaFish>();
         }
 
         #endregion Contagion Fish
@@ -3748,18 +3400,6 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         int num = (int)((Player.position.X + Player.width / 2) / 16f);
         int num2 = (int)((Player.position.Y + Player.height) / 16f);
         int num3 = -1;
-        if (Main.tile[num - 1, num2] == null)
-        {
-            Main.tile[num - 1, num2] = new Tile();
-        }
-        if (Main.tile[num + 1, num2] == null)
-        {
-            Main.tile[num + 1, num2] = new Tile();
-        }
-        if (Main.tile[num, num2] == null)
-        {
-            Main.tile[num, num2] = new Tile();
-        }
         if (Main.tile[num, num2].HasUnactuatedTile && Main.tileSolid[Main.tile[num, num2].TileType])
         {
             num3 = Main.tile[num, num2].TileType;
@@ -3850,9 +3490,8 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         switch (mode)
         {
             case 0:
-                Player.Spawn();
+                Player.Spawn(PlayerSpawnContext.RecallFromItem);
                 break;
-
             case 1: // dungeon
                 Player.noFallDmg = true;
                 Player.immuneTime = 100;
@@ -3918,7 +3557,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 }
                 else if (Main.netMode == NetmodeID.MultiplayerClient && Player.whoAmI == Main.myPlayer)
                 {
-                    NetMessage.SendData(MessageID.TeleportationPotion, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.Teleport, -1, -1, NetworkText.Empty, 0, 0f, 0f, 0f, 0);
                 }
 
                 break;
@@ -3930,24 +3569,19 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             case 0:
                 d = DustID.MagicMirror;
                 break;
-
             case 1:
                 d = ModContent.DustType<Dusts.DungeonTeleportDust>();
                 break;
-
             case 2:
                 d = ModContent.DustType<Dusts.JungleTeleportDust>();
                 break;
-
             case 3:
             case 4:
                 d = ModContent.DustType<Dusts.OceanTeleportDust>();
                 break;
-
             case 5:
                 d = ModContent.DustType<Dusts.DemonConchDust>();
                 break;
-
             default:
                 d = DustID.MagicMirror;
                 break;
@@ -4040,7 +3674,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             Player.immuneTime = 30;
         }
 
-        SoundEngine.PlaySound(SoundID.Item, Player.position, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/SpectrumDodge"));
+        SoundEngine.PlaySound(SoundID.Item, Player.position, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/SpectrumDodge"));
         for (int i = 0; i < Player.hurtCooldowns.Length; i++)
         {
             Player.hurtCooldowns[i] = Player.immuneTime;

@@ -26,7 +26,7 @@ class ContagionWings : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        if (player.Avalon().ZoneBooger)
+        if (player.Avalon().ZoneContagion)
         {
             player.statDefense += 5;
             player.statLifeMax2 += 40;

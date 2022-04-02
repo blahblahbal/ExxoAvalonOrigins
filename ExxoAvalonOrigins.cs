@@ -33,6 +33,8 @@ public class ExxoAvalonOrigins : Mod
     public const bool GodMode = false;
     public new readonly Version Version = new Version(0, 9, 8, 3, DevMode);
 
+    public Mod MusicMod;
+
     // Hotkeys
 
     public ModHotKey ShadowHotkey;
@@ -104,20 +106,6 @@ public class ExxoAvalonOrigins : Mod
             if (imkTokensMod != null)
             {
                 ExxoAvalonOriginsGlobalNPC.imkCompat = true;
-            }
-            Mod musicMod = ModLoader.GetMod("AvalonMusic");
-            if (musicMod != null)
-            {
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Contagion"), ItemType("MusicBoxContagion"), TileType("MusicBoxes"));
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/BacteriumPrime"), ItemType("MusicBoxBacteriumPrime"), TileType("MusicBoxes"), 36);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/ArmageddonSlime"), ItemType("MusicBoxArmageddonSlime"), TileType("MusicBoxes"), 36 * 2);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/DesertBeak"), ItemType("MusicBoxDesertBeak"), TileType("MusicBoxes"), 36 * 3);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/UndergroundContagion"), ItemType("MusicBoxUndergroundContagion"), TileType("MusicBoxes"), 36 * 4);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Tropics"), ItemType("MusicBoxTropics"), TileType("MusicBoxes"), 36 * 5);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Phantasm"), ItemType("MusicBoxPhantasm"), TileType("MusicBoxes"), 36 * 6);
-                //AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/DarkMatter"), ItemType("MusicBoxDarkMatter"), TileType("MusicBoxes"), 36 * 7);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hellcastle"), ItemType("MusicBoxHellCastle"), TileType("MusicBoxes"), 36 * 8);
-                AddMusicBox(musicMod.GetSoundSlot(SoundType.Music, "Sounds/Music/TuhrtlOutpost"), ItemType("MusicBoxTuhrtlOutpost"), TileType("MusicBoxes"), 36 * 9);
             }
 
             ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Texture2D[]
@@ -287,7 +275,7 @@ public class ExxoAvalonOrigins : Mod
 
             priority = MusicPriority.BiomeMedium;
         }
-        if (player.Avalon().ZoneBooger)
+        if (player.Avalon().ZoneContagion)
         {
             if (Main.player[Main.myPlayer].position.Y > (Main.worldSurface * 16.0) + (Main.screenHeight / 2))
             {

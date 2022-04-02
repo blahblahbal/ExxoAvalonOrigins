@@ -95,7 +95,7 @@ public class MidairRift : ModProjectile
                 }
                 else if (!WorldGen.crimson && ExxoAvalonOriginsWorld.contagion) // contagion world
                 {
-                    if (p.Avalon().ZoneBooger)
+                    if (p.Avalon().ZoneContagion)
                     {
                         if (Main.rand.Next(2) == 0) // crimson mobs
                         {

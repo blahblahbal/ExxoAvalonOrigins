@@ -7,7 +7,7 @@ public class ContagionSurfaceBgStyle : ModSurfaceBgStyle
 {
     public override bool ChooseBgStyle()
     {
-        return !Main.gameMenu && Main.LocalPlayer.Avalon().ZoneBooger && !Main.LocalPlayer.ZoneDesert;
+        return !Main.gameMenu && Main.LocalPlayer.Avalon().ZoneContagion && !Main.LocalPlayer.ZoneDesert;
     }
 
     // Use this to keep far Backgrounds like the mountains.

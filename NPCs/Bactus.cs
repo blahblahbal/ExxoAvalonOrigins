@@ -41,7 +41,7 @@ public class Bactus : ModNPC
     }
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.Avalon().ZoneBooger && spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone())
+        if (spawnInfo.player.Avalon().ZoneContagion && spawnInfo.player.ZoneOverworldHeight && !spawnInfo.player.InPillarZone())
             return 1;
         return 0;
     }

@@ -127,7 +127,7 @@ public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
             pool.Add(ModContent.NPCType<NPCs.Valkyrie>(), 0.6f);
             pool.Add(ModContent.NPCType<NPCs.CloudBat>(), 0.9f);
         }
-        if (spawnInfo.player.Avalon().ZoneBooger && !spawnInfo.player.InPillarZone())
+        if (spawnInfo.player.Avalon().ZoneContagion && !spawnInfo.player.InPillarZone())
         {
             pool.Clear();
             pool.Add(ModContent.NPCType<NPCs.Bactus>(), 1f);
@@ -251,7 +251,7 @@ public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
             spawnRate = (int)(spawnRate * 0.2);
             maxSpawns = (int)(maxSpawns * 3f);
         }
-        if (player.Avalon().ZoneBooger)
+        if (player.Avalon().ZoneContagion)
         {
             spawnRate = (int)(spawnRate * 0.65f);
             maxSpawns = (int)(maxSpawns * 1.3f);
@@ -1128,7 +1128,7 @@ public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.DarkMatterToken>());
             }
-            if (Main.rand.Next(15) == 0 && NPC.downedBoss1 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneBooger && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
+            if (Main.rand.Next(15) == 0 && NPC.downedBoss1 && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneContagion && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight)
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tokens.ContagionToken>());
             }
@@ -1141,7 +1141,7 @@ public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
             else if (item == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumPlateMail>(), 1, false, 0, false);
             else Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientTitaniumGreaves>(), 1, false, 0, false);
         }
-        if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneBooger && Main.rand.Next(5) == 0 && npc.lifeMax > 5 && !npc.friendly && Main.hardMode)
+        if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].ZoneRockLayerHeight && Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneContagion && Main.rand.Next(5) == 0 && npc.lifeMax > 5 && !npc.friendly && Main.hardMode)
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, 0, false);
         }
@@ -1620,7 +1620,7 @@ public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EvilOuroboros>(), 1, false, 0, false);
         }
-        if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneBooger && Main.rand.Next(700) == 0)
+        if (Main.player[Player.FindClosest(npc.position, npc.width, npc.height)].Avalon().ZoneContagion && Main.rand.Next(700) == 0)
         {
             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RingofDisgust>(), 1, false, 0, false);
         }

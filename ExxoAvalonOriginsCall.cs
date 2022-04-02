@@ -79,7 +79,7 @@ public static class ExxoAvalonOriginsCall
                         return null;
                     }
 
-                    return player.Avalon().ZoneBooger;
+                    return player.Avalon().ZoneContagion;
                 }
                 case "getinzonecomet":
                 {
@@ -454,7 +454,7 @@ public static class ExxoAvalonOriginsCall
                 (Func<bool>)(() => GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode),
                 ItemType<HellboundRemote>(),
                 new List<int> { ItemType<WallofSteelTrophy>() },
-                new List<int> {ItemType < DarkStarHeart >(),
+                new List<int> {ItemType<MechanicalHeart>(),
                     ItemType < FleshBoiler >(),
                     ItemType < MagicCleaver >(),
                     ItemType < SoulofBlight >()},

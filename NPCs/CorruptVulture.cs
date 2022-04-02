@@ -179,7 +179,7 @@ public class CorruptVulture : ModNPC
 
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.Avalon().ZoneBooger || spawnInfo.player.ZoneCorrupt || spawnInfo.player.ZoneCrimson)
+        if (spawnInfo.player.Avalon().ZoneContagion || spawnInfo.player.ZoneCorrupt || spawnInfo.player.ZoneCrimson)
         {
             if (Main.hardMode)
             {

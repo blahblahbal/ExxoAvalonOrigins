@@ -29,7 +29,7 @@ class BacterialTotem : ModItem
 
     public override bool CanUseItem(Player player)
     {
-        return !NPC.AnyNPCs(ModContent.NPCType<NPCs.BacteriumPrime>()) && player.Avalon().ZoneBooger;
+        return !NPC.AnyNPCs(ModContent.NPCType<NPCs.BacteriumPrime>()) && player.Avalon().ZoneContagion;
     }
 
     public override bool? UseItem(Player player)

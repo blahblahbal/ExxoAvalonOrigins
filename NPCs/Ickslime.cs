@@ -42,8 +42,8 @@ public class Ickslime : ModNPC
     }
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.Avalon().ZoneBooger && !spawnInfo.player.InPillarZone() && Main.hardMode)
-            return (spawnInfo.player.Avalon().ZoneBooger && !spawnInfo.player.InPillarZone() && Main.hardMode) ? 0.7f : 0f;
+        if (spawnInfo.player.Avalon().ZoneContagion && !spawnInfo.player.InPillarZone() && Main.hardMode)
+            return (spawnInfo.player.Avalon().ZoneContagion && !spawnInfo.player.InPillarZone() && Main.hardMode) ? 0.7f : 0f;
         return 0f;
     }
     public override void FindFrame(int frameHeight)

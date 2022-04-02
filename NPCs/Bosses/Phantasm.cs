@@ -276,7 +276,7 @@ public class Phantasm : ModNPC
                     #region sweeping laser attack
                     if (NPC.ai[1] % 60 == 0)
                     {
-                        SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserFire").Style);
+                        SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LaserFire"));
                         // fire laser
                         Vector2 velocityOfProj = Main.player[NPC.target].Center - NPC.Center;
                         velocityOfProj.Normalize();
@@ -392,7 +392,7 @@ public class Phantasm : ModNPC
                 }
                 if (NPC.ai[0] == 400 || NPC.ai[0] == 450 || NPC.ai[0] == 500 || NPC.ai[0] == 550)
                 {
-                    SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserFire").Style, 0.8f);
+                    SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LaserFire"), 0.8f);
                     Vector2 velocityOfProj = Main.player[NPC.target].Center - NPC.Center;
                     velocityOfProj.Normalize();
                     float num1275 = -1f;

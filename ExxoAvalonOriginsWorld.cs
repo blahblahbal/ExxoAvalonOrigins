@@ -175,7 +175,7 @@ public class ExxoAvalonOriginsWorld : ModWorld
 
     public override void ChooseWaterStyle(ref int style)
     {
-        if (Main.LocalPlayer.Avalon().ZoneBooger)
+        if (Main.LocalPlayer.Avalon().ZoneContagion)
         {
             style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
         }

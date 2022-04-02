@@ -7,7 +7,7 @@ public class ContagionUgBgStyle : ModUgBgStyle
 {
     public override bool ChooseBgStyle()
     {
-        return Main.LocalPlayer.position.Y / 16 < Main.maxTilesY - 390 && Main.LocalPlayer.position.Y / 16 > Main.rockLayer + 90 && Main.LocalPlayer.Avalon().ZoneBooger && !Main.LocalPlayer.ZoneSnow;
+        return Main.LocalPlayer.position.Y / 16 < Main.maxTilesY - 390 && Main.LocalPlayer.position.Y / 16 > Main.rockLayer + 90 && Main.LocalPlayer.Avalon().ZoneContagion && !Main.LocalPlayer.ZoneSnow;
     }
     public override void FillTextureArray(int[] textureSlots)
     {

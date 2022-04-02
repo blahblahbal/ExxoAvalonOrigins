@@ -68,8 +68,8 @@ public class GrossyFloat : ModNPC
     }
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
-        if (spawnInfo.player.Avalon().ZoneBooger && spawnInfo.player.ZoneRockLayerHeight)
-            return (spawnInfo.player.Avalon().ZoneBooger && spawnInfo.player.ZoneRockLayerHeight) ? 1f : 0f;
+        if (spawnInfo.player.Avalon().ZoneContagion && spawnInfo.player.ZoneRockLayerHeight)
+            return (spawnInfo.player.Avalon().ZoneContagion && spawnInfo.player.ZoneRockLayerHeight) ? 1f : 0f;
         return 0f;
     }
     public override void HitEffect(int hitDirection, double damage)

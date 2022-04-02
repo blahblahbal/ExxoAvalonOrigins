@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -138,8 +138,7 @@ class BagofFrost : ModItem
             Main.dust[num87].noGravity = true;
         }
     }
-
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         if (player.controlRight)
         {

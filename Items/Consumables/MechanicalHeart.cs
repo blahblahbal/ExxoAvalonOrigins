@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Consumables;
 
-class DarkStarHeart : ModItem
+class MechanicalHeart : ModItem
 {
     public override void SetStaticDefaults()
     {
