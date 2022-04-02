@@ -3,6 +3,7 @@ using ExxoAvalonOrigins.Items.Armor;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -81,38 +82,21 @@ namespace ExxoAvalonOrigins.NPCs
                 }
             }
         }
-        public override void NPCLoot()
-        {
 
-            if (Main.rand.Next(18) == 0)
-            {
-                switch (Main.rand.Next(3))
-                {
-                    case 0:
-                        Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<BloodstainedHelmet>(), 1, false, 0, false);
-                        break;
-                    case 1:
-                        Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Items.Vanity.BloodstainedChestplate>(), 1, false, 0, false);
-                        break;
-                    case 2:
-                        Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Items.Vanity.BloodstainedGreaves>(), 1, false, 0, false);
-                        break;
-                }
-            }
-            if (Main.rand.Next(12) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Items.Weapons.Melee.MinersSword>(), 1, false, -1, false);
-            }
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.OneFromOptions(18, new int[] { ModContent.ItemType<BloodstainedHelmet>(), ModContent.ItemType<Items.Vanity.BloodstainedChestplate>(), ModContent.ItemType<Items.Vanity.BloodstainedGreaves>() }));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Melee.MinersSword>(), 12));
         }
         public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore1"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore2"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore2"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore3"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore3"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore1").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore2").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore2").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore3").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore3").Type, 0.9f);
             }
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

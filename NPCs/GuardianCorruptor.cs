@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -39,12 +40,10 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
             NPC.damage = (int)(NPC.damage * 0.5f);
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.RottenChunk, Main.rand.Next(3) + 1, false, 0, false);
+            npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk, 1, 1, 3));
         }
-
         public override void AI()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead)
@@ -168,7 +167,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else if (Main.rand.Next(20) == 0)
             {
-                var num1182 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + NPC.height * 0.25f), NPC.width, (int)(NPC.height * 0.5f), DustID.Vile, NPC.velocity.X, 2f, 75, NPC.color, NPC.scale);
+                var num1182 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + NPC.height * 0.25f), NPC.width, (int)(NPC.height * 0.5f), DustID.CorruptGibs, NPC.velocity.X, 2f, 75, NPC.color, NPC.scale);
                 var dust52 = Main.dust[num1182];
                 dust52.velocity.X = dust52.velocity.X * 0.5f;
                 var dust53 = Main.dust[num1182];
@@ -208,13 +207,13 @@ namespace ExxoAvalonOrigins.NPCs
                         var player5 = Main.player[NPC.target];
                         var vector158 = new Vector2(NPC.position.X + NPC.width / 2, NPC.position.Y + NPC.height / 2);
                         var num1191 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f + 40f), vector158.X - (player5.position.X + player5.width * 0.5f + 40f));
-                        var number2 = Projectile.NewProjectile(NPC.position.X + NPC.width / 2, NPC.position.Y + NPC.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ModContent.ProjectileType<Projectiles.VileSpit>(), 70, 1f, NPC.target, 0f, 0f);
+                        var number2 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.position.X + NPC.width / 2, NPC.position.Y + NPC.height * 0.5f, -(float)Math.Cos(num1191) * 7f, -(float)Math.Sin(num1191) * 7f, ModContent.ProjectileType<Projectiles.VileSpit>(), 70, 1f, NPC.target, 0f, 0f);
                         if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
                         }
                         var num1192 = (float)Math.Atan2(vector158.Y - (player5.position.Y + player5.height * 0.5f - 40f), vector158.X - (player5.position.X + player5.width * 0.5f - 40f));
-                        var num1193 = Projectile.NewProjectile(NPC.position.X + NPC.width / 2, NPC.position.Y + NPC.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.VileSpit>(), 70, 1f, NPC.target, 0f, 0f);
+                        var num1193 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.position.X + NPC.width / 2, NPC.position.Y + NPC.height * 0.5f, -(float)Math.Cos(num1192), -(float)Math.Sin(num1192), ModContent.ProjectileType<Projectiles.VileSpit>(), 70, 1f, NPC.target, 0f, 0f);
                         var expr_4284B_cp_0 = Main.projectile[num1193];
                         expr_4284B_cp_0.velocity.X = expr_4284B_cp_0.velocity.X * 7f;
                         var expr_4286B_cp_0 = Main.projectile[num1193];
@@ -223,7 +222,7 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num1193, 0f, 0f, 0f, 0);
                         }
-                        NPC.NewNPC((int)(NPC.position.X + NPC.width / 2 + NPC.velocity.X), (int)(NPC.position.Y + NPC.height / 2 + NPC.velocity.Y), NPCID.VileSpit, 0);
+                        NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)(NPC.position.X + NPC.width / 2 + NPC.velocity.X), (int)(NPC.position.Y + NPC.height / 2 + NPC.velocity.Y), NPCID.VileSpit, 0);
                     }
                     NPC.localAI[0] = 0f;
                 }
@@ -240,10 +239,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor1"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor2"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor3"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor4"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor1").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor2").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor3").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor4").Type, 0.9f);
             }
         }
 

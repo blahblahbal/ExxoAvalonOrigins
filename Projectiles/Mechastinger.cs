@@ -28,7 +28,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
         public override void AI()
         {
-            int num12 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Vile, 0f, 0f, 0, default, 0.9f);
+            int num12 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.CorruptGibs, 0f, 0f, 0, default, 0.9f);
             Main.dust[num12].noGravity = true;
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
             if (Projectile.velocity.Y > 16f)

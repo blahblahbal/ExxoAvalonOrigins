@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -27,10 +28,9 @@ namespace ExxoAvalonOrigins.NPCs
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.TitaniumSlimeBanner>();
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot loot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.TitaniumOre, Main.rand.Next(10, 16), false, 0, false);
+            loot.Add(ItemDropRule.Common(ItemID.TitaniumOre, 1, 10, 16));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

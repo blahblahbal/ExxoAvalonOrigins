@@ -70,7 +70,7 @@ namespace ExxoAvalonOrigins.Tiles
             var rightType = -1;
             if (topTile.HasTile && !topTile.bottomSlope())
                 bottomType = topTile.TileType;
-            if (bottomTile.HasTile && !bottomTileIsHalfBlock && !bottomTile.topSlope())
+            if (bottomTile.HasTile && !bottomTile.IsHalfBlock && !bottomTile.topSlope())
                 topType = bottomTile.TileType;
             if (leftTile.HasTile)
                 leftType = leftTile.TileType;

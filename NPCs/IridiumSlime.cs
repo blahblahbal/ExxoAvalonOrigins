@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -28,10 +29,9 @@ namespace ExxoAvalonOrigins.NPCs
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.IridiumSlimeBanner>();
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<IridiumOre>(), Main.rand.Next(10, 16), false, 0, false);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IridiumOre>(), 1, 10, 16));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

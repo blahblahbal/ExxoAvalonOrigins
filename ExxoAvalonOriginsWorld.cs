@@ -1620,7 +1620,7 @@ namespace ExxoAvalonOrigins
                     }
 
                     #region hardmode/superhardmode stuff
-                    if (Main.tile[num5, num6].nactive())
+                    if (Main.tile[num5, num6].HasUnactuatedTile)
                     {
                         ContagionHardmodeSpread(num5, num6);
                         if (Main.hardMode)
@@ -1733,7 +1733,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].TileType == ModContent.TileType<TropicalGrass>())
                     {
                         int num14 = Main.tile[num5, num6].TileType;
-                        if (!Main.tile[num5, num9].HasTile && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<TropicalGrass>())
+                        if (!Main.tile[num5, num9].HasTile && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<TropicalGrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<TropicalShortGrass>(), true, false, -1, 0);
                             Main.tile[num5, num9].TileFrameX = (short)(WorldGen.genRand.Next(0, 8) * 18);
@@ -1751,7 +1751,7 @@ namespace ExxoAvalonOrigins
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
                         }
-                        if (!Main.tile[num5, num9].nactive())
+                        if (!Main.tile[num5, num9].HasUnactuatedTile)
                         {
                             return;
                         }
@@ -1775,7 +1775,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].TileType == TileID.HallowedGrass || Main.tile[num5, num6].TileType == TileID.Pearlstone)
                     {
                         int num14 = Main.tile[num5, num6].TileType;
-                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 600 : 250)) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
+                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 600 : 250)) == 0 && (num14 == TileID.HallowedGrass || num14 == TileID.Pearlstone))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Holybird>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].HasTile)
@@ -1796,7 +1796,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].TileType == ModContent.TileType<Nest>() || Main.tile[num5, num6].TileType == TileID.Hive)
                     {
                         int num14 = Main.tile[num5, num6].TileType;
-                        if (!Main.tile[num5, num9].HasTile && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(450) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
+                        if (!Main.tile[num5, num9].HasTile && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(450) == 0 && (num14 == ModContent.TileType<Nest>() || num14 == TileID.Hive))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Sweetstem>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].HasTile)
@@ -1817,7 +1817,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].TileType == TileID.FleshGrass || Main.tile[num5, num6].TileType == TileID.Crimstone)
                     {
                         int num14 = Main.tile[num5, num6].TileType;
-                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
+                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && (num14 == TileID.FleshGrass || num14 == TileID.Crimstone))
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Bloodberry>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].HasTile)
@@ -1866,7 +1866,7 @@ namespace ExxoAvalonOrigins
                     if (Main.tile[num5, num6].TileType == ModContent.TileType<Ickgrass>())
                     {
                         int num14 = Main.tile[num5, num6].TileType;
-                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<ContagionShortGrass>(), true, false, -1, 0);
                             Main.tile[num5, num9].TileFrameX = (short)(WorldGen.genRand.Next(0, 11) * 18);
@@ -1879,7 +1879,7 @@ namespace ExxoAvalonOrigins
                                 NetMessage.SendTileSquare(-1, num5, num9, 1);
                             }
                         }
-                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && num14 == ModContent.TileType<Ickgrass>())
+                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next((num6 > Main.worldSurface ? 500 : 200)) == 0 && num14 == ModContent.TileType<Ickgrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<Tiles.Herbs.Barfbush>(), true, false, -1, 0);
                             if (Main.tile[num5, num9].HasTile)
@@ -1938,7 +1938,7 @@ namespace ExxoAvalonOrigins
                     {
                         int num14 = Main.tile[num5, num6].TileType;
                         // where lazite tallgrass would grow
-                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6]IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<LaziteGrass>())
+                        if (!Main.tile[num5, num9].HasTile && Main.tile[num5, num9].liquid == 0 && !Main.tile[num5, num6].IsHalfBlock && Main.tile[num5, num6].slope() == 0 && WorldGen.genRand.Next(5) == 0 && num14 == ModContent.TileType<LaziteGrass>())
                         {
                             WorldGen.PlaceTile(num5, num9, ModContent.TileType<LaziteShortGrass>(), true, false, -1, 0);
                             Main.tile[num5, num9].TileFrameX = (short)(WorldGen.genRand.Next(0, 10) * 18);
@@ -2534,7 +2534,7 @@ namespace ExxoAvalonOrigins
             {
                 return false;
             }
-            if (Main.tile[i, j].nactive() && !Main.tile[i, j]IsHalfBlock && Main.tile[i, j].slope() == 0 && TileLoader.CanGrowModTree(Main.tile[i - 1, j].TileType) || TileLoader.CanGrowModTree(Main.tile[i + 1, j].TileType) || TileLoader.CanGrowModTree(Main.tile[i, j].TileType))
+            if (Main.tile[i, j].HasUnactuatedTile && !Main.tile[i, j].IsHalfBlock && Main.tile[i, j].slope() == 0 && TileLoader.CanGrowModTree(Main.tile[i - 1, j].TileType) || TileLoader.CanGrowModTree(Main.tile[i + 1, j].TileType) || TileLoader.CanGrowModTree(Main.tile[i, j].TileType))
             {
                 int num = 2;
                 int maxTreeHeight = 16;
@@ -2804,11 +2804,11 @@ namespace ExxoAvalonOrigins
                     int num6 = WorldGen.genRand.Next(3);
                     bool flag3 = false;
                     bool flag4 = false;
-                    if (Main.tile[i - 1, j].nactive() && !Main.tile[i - 1, j]IsHalfBlock && Main.tile[i - 1, j].slope() == 0 && (Main.tile[i - 1, j].TileType == 2 || Main.tile[i - 1, j].TileType == 23 || Main.tile[i - 1, j].TileType == 60 || Main.tile[i - 1, j].TileType == 109 || Main.tile[i - 1, j].TileType == 147 || Main.tile[i - 1, j].TileType == 199 || TileLoader.CanGrowModTree(Main.tile[i - 1, j].TileType)))
+                    if (Main.tile[i - 1, j].HasUnactuatedTile && !Main.tile[i - 1, j].IsHalfBlock && Main.tile[i - 1, j].slope() == 0 && (Main.tile[i - 1, j].TileType == 2 || Main.tile[i - 1, j].TileType == 23 || Main.tile[i - 1, j].TileType == 60 || Main.tile[i - 1, j].TileType == 109 || Main.tile[i - 1, j].TileType == 147 || Main.tile[i - 1, j].TileType == 199 || TileLoader.CanGrowModTree(Main.tile[i - 1, j].TileType)))
                     {
                         flag3 = true;
                     }
-                    if (Main.tile[i + 1, j].nactive() && !Main.tile[i + 1, j]IsHalfBlock && Main.tile[i + 1, j].slope() == 0 && (Main.tile[i + 1, j].TileType == 2 || Main.tile[i + 1, j].TileType == 23 || Main.tile[i + 1, j].TileType == 60 || Main.tile[i + 1, j].TileType == 109 || Main.tile[i + 1, j].TileType == 147 || Main.tile[i + 1, j].TileType == 199 || TileLoader.CanGrowModTree(Main.tile[i + 1, j].TileType)))
+                    if (Main.tile[i + 1, j].HasUnactuatedTile && !Main.tile[i + 1, j].IsHalfBlock && Main.tile[i + 1, j].slope() == 0 && (Main.tile[i + 1, j].TileType == 2 || Main.tile[i + 1, j].TileType == 23 || Main.tile[i + 1, j].TileType == 60 || Main.tile[i + 1, j].TileType == 109 || Main.tile[i + 1, j].TileType == 147 || Main.tile[i + 1, j].TileType == 199 || TileLoader.CanGrowModTree(Main.tile[i + 1, j].TileType)))
                     {
                         flag4 = true;
                     }

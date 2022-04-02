@@ -1343,7 +1343,7 @@ namespace ExxoAvalonOrigins
                         N2.StrikeNPC(damage, 5f, 1);
                         if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
-                            NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, damage, 0f, 0f, 0);
+                            NetMessage.SendData(MessageID.DamageNPC, -1, -1, NetworkText.FromLiteral(""), N2.whoAmI, damage, 0f, 0f, 0);
                         }
                     }
                 }
@@ -3760,15 +3760,15 @@ namespace ExxoAvalonOrigins
             {
                 Main.tile[num, num2] = new Tile();
             }
-            if (Main.tile[num, num2].nactive() && Main.tileSolid[Main.tile[num, num2].TileType])
+            if (Main.tile[num, num2].HasUnactuatedTile && Main.tileSolid[Main.tile[num, num2].TileType])
             {
                 num3 = Main.tile[num, num2].TileType;
             }
-            else if (Main.tile[num - 1, num2].nactive() && Main.tileSolid[Main.tile[num - 1, num2].TileType])
+            else if (Main.tile[num - 1, num2].HasUnactuatedTile && Main.tileSolid[Main.tile[num - 1, num2].TileType])
             {
                 num3 = Main.tile[num - 1, num2].TileType;
             }
-            else if (Main.tile[num + 1, num2].nactive() && Main.tileSolid[Main.tile[num + 1, num2].TileType])
+            else if (Main.tile[num + 1, num2].HasUnactuatedTile && Main.tileSolid[Main.tile[num + 1, num2].TileType])
             {
                 num3 = Main.tile[num + 1, num2].TileType;
             }

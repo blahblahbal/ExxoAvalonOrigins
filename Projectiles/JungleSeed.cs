@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.Projectiles
             {
                 for (var j = 0; j < 2; j++)
                 {
-                    var num19 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width, Projectile.height, DustID.Vile, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 80, default(Color), 1.3f);
+                    var num19 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width, Projectile.height, DustID.CorruptGibs, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 80, default(Color), 1.3f);
                     Main.dust[num19].velocity *= 0.3f;
                     Main.dust[num19].noGravity = true;
                 }

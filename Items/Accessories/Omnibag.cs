@@ -42,9 +42,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 Main.dust[dust3].noGravity = true;
                 int dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
-                dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Vile, 0, 0, 100, Color.White, .9f);
+                dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, .9f);
                 Main.dust[dust].noGravity = true;
-                dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Vile, 0, 0, 100, Color.White, 1.5f);
+                dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
                 for (int num126 = 0; num126 < 4; num126++)
                 {
@@ -79,9 +79,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 Main.dust[dust3].noGravity = true;
                 int dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
-                dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Vile, 0, 0, 100, Color.White, .9f);
+                dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, .9f);
                 Main.dust[dust].noGravity = true;
-                dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Vile, 0, 0, 100, Color.White, 1.5f);
+                dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
                 for (int num126 = 0; num126 < 4; num126++)
                 {
@@ -116,9 +116,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 Main.dust[dust3].noGravity = true;
                 int dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
-                dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Vile, 0, 0, 100, Color.White, .9f);
+                dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.CorruptGibs, 0, 0, 100, Color.White, .9f);
                 Main.dust[dust].noGravity = true;
-                dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Vile, 0, 0, 100, Color.White, 1.5f);
+                dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.CorruptGibs, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.IceTorch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;
@@ -139,9 +139,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 Main.dust[dust3].noGravity = true;
                 int dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
-                dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Vile, 0, 0, 100, Color.White, .9f);
+                dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, .9f);
                 Main.dust[dust].noGravity = true;
-                dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Vile, 0, 0, 100, Color.White, 1.5f);
+                dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
                 for (int num126 = 0; num126 < 4; num126++)
                 {
@@ -176,9 +176,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 Main.dust[dust3].noGravity = true;
                 int dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
-                dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Vile, 0, 0, 100, Color.White, .9f);
+                dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, .9f);
                 Main.dust[dust].noGravity = true;
-                dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Vile, 0, 0, 100, Color.White, 1.5f);
+                dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.CorruptGibs, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
                 for (int num126 = 0; num126 < 4; num126++)
                 {
@@ -213,9 +213,9 @@ namespace ExxoAvalonOrigins.Items.Accessories
                 Main.dust[dust3].noGravity = true;
                 int dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
-                dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Vile, 0, 0, 100, Color.White, .9f);
+                dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.CorruptGibs, 0, 0, 100, Color.White, .9f);
                 Main.dust[dust].noGravity = true;
-                dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Vile, 0, 0, 100, Color.White, 1.5f);
+                dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.CorruptGibs, 0, 0, 100, Color.White, 1.5f);
                 Main.dust[dust2].noGravity = true;
                 dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.IceTorch, 0, 0, 100, Color.White, 2f);
                 Main.dust[dust].noGravity = true;

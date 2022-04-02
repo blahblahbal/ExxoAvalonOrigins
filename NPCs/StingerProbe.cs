@@ -100,7 +100,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         int num153 = 57;
                         int num154 = ModContent.ProjectileType<Projectiles.StingerLaser>();
-                        int proj = Projectile.NewProjectile(vector17.X, vector17.Y, num149, num150, num154, num153, 0f, Main.myPlayer, 0f, 0f);
+                        int proj = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector17.X, vector17.Y, num149, num150, num154, num153, 0f, Main.myPlayer, 0f, 0f);
                         Main.projectile[proj].velocity = Vector2.Normalize(NPC.position - Main.npc[NPC.target].position) * 14f;
                         //if (type == 480) Main.projectile[proj].notReflect = true;
                     }

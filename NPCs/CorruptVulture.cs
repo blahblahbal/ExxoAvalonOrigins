@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -24,8 +25,8 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.value = 750;
             NPC.timeLeft = 750;
             NPC.height = 36;
-            animationType = 61;
-            aiType = 61;
+            AnimationType = 61;
+            AIType = 61;
             NPC.knockBackResist = 0.6f;
             NPC.HitSound = SoundID.NPCHit28;
             NPC.DeathSound = SoundID.NPCDeath31;
@@ -38,12 +39,9 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.5f);
             NPC.damage = (int)(NPC.damage * 0.5f);
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot loot)
         {
-            if (Main.rand.Next(2) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Beak>(), 1, false, 0, false);
-            }
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<Beak>(), 2));
         }
 
         //public override void AI()
@@ -229,11 +227,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureHead"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureHead").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon").Type, 0.9f);
             }
         }
     }

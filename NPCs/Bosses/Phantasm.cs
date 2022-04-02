@@ -9,6 +9,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -36,7 +38,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.scale = 1.5f;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath39;
-            bossBag = ModContent.ItemType<Items.BossBags.PhantasmBossBag>();
 
             transitionDone = false;
         }
@@ -275,7 +276,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         #region sweeping laser attack
                         if (NPC.ai[1] % 60 == 0)
                         {
-                            SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"));
+                            SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserFire").Style);
                             // fire laser
                             Vector2 velocityOfProj = Main.player[NPC.target].Center - NPC.Center;
                             velocityOfProj.Normalize();
@@ -334,7 +335,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     int p;
                     if (NPC.ai[1] == 50 || NPC.ai[1] == 100 || NPC.ai[1] == 150 || NPC.ai[1] == 200)
                     {
-                        NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<PhantasmMinion>());
+                        NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<PhantasmMinion>());
                     }
                     if (NPC.ai[0] % 10 == 0)
                     {
@@ -391,7 +392,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     }
                     if (NPC.ai[0] == 400 || NPC.ai[0] == 450 || NPC.ai[0] == 500 || NPC.ai[0] == 550)
                     {
-                        SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/LaserFire"), 0.8f);
+                        SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserFire").Style, 0.8f);
                         Vector2 velocityOfProj = Main.player[NPC.target].Center - NPC.Center;
                         velocityOfProj.Normalize();
                         float num1275 = -1f;
@@ -429,80 +430,69 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
             }
         }
-
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (!ExxoAvalonOriginsWorld.downedPhantasm)
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText("The spirits are stirring in the depths!", 50, 255, 130, false);
+                    Main.NewText("The spirits are stirring in the depths!", new Color(50, 255, 130));
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The spirits are stirring in the depths!"), new Color(50, 255, 130));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The spirits are stirring in the depths!"), new Color(50, 255, 130));
                 }
                 ExxoAvalonOriginsWorld.downedPhantasm = true;
             }
-            if (Main.expertMode)
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
             {
-                NPC.DropBossBags();
-            }
-            else
-            {
-                int drop = Main.rand.Next(3);
-                if (drop == 0)
+                for (int i = 0; i < 40; i++)
                 {
-                    Item.NewItem(NPC.getRect(), ModContent.ItemType<PhantomKnives>(), 1, false, -1);
+                    int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num890].velocity *= 5f;
+                    Main.dust[num890].scale = 1.5f;
+                    Main.dust[num890].noGravity = true;
+                    Main.dust[num890].fadeIn = 2f;
                 }
-                if (drop == 1)
+                for (int i = 0; i < 20; i++)
                 {
-                    Item.NewItem(NPC.getRect(), ModContent.ItemType<EtherealHeart>(), 1, false, -1);
+                    int num893 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num893].velocity *= 2f;
+                    Main.dust[num893].scale = 1.5f;
+                    Main.dust[num893].noGravity = true;
+                    Main.dust[num893].fadeIn = 3f;
                 }
-                if (drop == 2)
+                for (int i = 0; i < 40; i++)
                 {
-                    Item.NewItem(NPC.getRect(), ModContent.ItemType<VampireTeeth>(), 1, false, -1);
+                    int num892 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SpectreStaff, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num892].velocity *= 5f;
+                    Main.dust[num892].scale = 1.5f;
+                    Main.dust[num892].noGravity = true;
+                    Main.dust[num892].fadeIn = 2f;
                 }
-                Item.NewItem(NPC.getRect(), ModContent.ItemType<GhostintheMachine>(), Main.rand.Next(3, 6), false, 0);
-            }
-            if (Main.rand.Next(10) == 0)
-            {
-                Item.NewItem(NPC.getRect(), ModContent.ItemType<PhantasmTrophy>(), 1, false, 0);
-            }
-            for (int i = 0; i < 40; i++)
-            {
-                int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
-                Main.dust[num890].velocity *= 5f;
-                Main.dust[num890].scale = 1.5f;
-                Main.dust[num890].noGravity = true;
-                Main.dust[num890].fadeIn = 2f;
-            }
-            for (int i = 0; i < 20; i++)
-            {
-                int num893 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
-                Main.dust[num893].velocity *= 2f;
-                Main.dust[num893].scale = 1.5f;
-                Main.dust[num893].noGravity = true;
-                Main.dust[num893].fadeIn = 3f;
-            }
-            for (int i = 0; i < 40; i++)
-            {
-                int num892 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SpectreStaff, 0f, 0f, 0, default(Color), 1f);
-                Main.dust[num892].velocity *= 5f;
-                Main.dust[num892].scale = 1.5f;
-                Main.dust[num892].noGravity = true;
-                Main.dust[num892].fadeIn = 2f;
-            }
-            for (int i = 0; i < 40; i++)
-            {
-                int num891 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
-                Main.dust[num891].velocity *= 10f;
-                Main.dust[num891].scale = 1.5f;
-                Main.dust[num891].noGravity = true;
-                Main.dust[num891].fadeIn = 1.5f;
+                for (int i = 0; i < 40; i++)
+                {
+                    int num891 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num891].velocity *= 10f;
+                    Main.dust[num891].scale = 1.5f;
+                    Main.dust[num891].noGravity = true;
+                    Main.dust[num891].fadeIn = 1.5f;
+                }
             }
         }
-
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            if (!Main.expertMode)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GhostintheMachine>(), 1, 3, 6));
+                npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[] { ModContent.ItemType<PhantomKnives>(), ModContent.ItemType<EtherealHeart>(), ModContent.ItemType<VampireTeeth>() }));
+            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PhantasmTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.BossBags.PhantasmBossBag>()));
+        }
         public override void FindFrame(int frameHeight)
         {
             NPC.frameCounter++;

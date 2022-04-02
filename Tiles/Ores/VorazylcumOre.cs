@@ -23,7 +23,7 @@ namespace ExxoAvalonOrigins.Tiles.Ores
             soundType = SoundID.Tink;
             soundStyle = 1;
             minPick = 250;
-            dustType = DustID.VilePowder;
+            dustType = DustID.CorruptGibsPowder;
         }
         public override bool CanExplode(int i, int j)
         {

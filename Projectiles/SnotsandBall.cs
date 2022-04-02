@@ -91,7 +91,7 @@ namespace ExxoAvalonOrigins.Projectiles
                 Tile tile = Main.tile[tileX, tileY];
                 Tile tileBelow = Main.tile[tileX, tileY + 1];
 
-                if (tileIsHalfBlock && Projectile.velocity.Y > 0f && System.Math.Abs(Projectile.velocity.Y) > System.Math.Abs(Projectile.velocity.X))
+                if (tile.IsHalfBlock && Projectile.velocity.Y > 0f && System.Math.Abs(Projectile.velocity.Y) > System.Math.Abs(Projectile.velocity.X))
                     tileY--;
 
                 if (!tile.HasTile)
@@ -103,7 +103,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
                     if (!onMinecartTrack && tile.HasTile && tile.TileType == tileType)
                     {
-                        if (tileBelowIsHalfBlock || tileBelow.slope() != 0)
+                        if (tileBelow.IsHalfBlock || tileBelow.slope() != 0)
                         {
                             WorldGen.SlopeTile(tileX, tileY + 1, 0);
 

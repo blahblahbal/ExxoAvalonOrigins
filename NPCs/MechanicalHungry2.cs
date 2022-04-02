@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -33,9 +34,9 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.66f);
             NPC.damage = (int)(NPC.damage * 0.4f);
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ItemID.Heart);
+            npcLoot.Add(ItemDropRule.Common(ItemID.Heart));
         }
         public override void AI()
         {

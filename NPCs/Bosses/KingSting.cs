@@ -5,6 +5,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -46,7 +48,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
         public override void SetDefaults()
         {
             NPC.npcSlots = 150f;
-            animationType = NPCID.Hornet;
+            AnimationType = NPCID.Hornet;
             NPC.height = 174;
             NPC.width = 88;
             NPC.knockBackResist = 0f;
@@ -64,7 +66,6 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.boss = true;
             NPC.lifeMax = 3400;
             NPC.scale = 1;
-            bossBag = ModContent.ItemType<Items.BossBags.KingStingBossBag>();
 
             // Misc vars
             phase = 0;
@@ -254,7 +255,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, 17);
                     Vector2 rotation = (player.Center - NPC.Center).SafeNormalize(-Vector2.UnitY);
                     float speed = 8f;
-                    Projectile.NewProjectile(NPC.Center, rotation * speed, ProjectileID.Stinger, 20, 1.5f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center, rotation * speed, ProjectileID.Stinger, 20, 1.5f, Main.myPlayer);
                     attackTimer = 0;
                 }
 
@@ -289,7 +290,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     if (attackTimer >= 60)
                     {
                         Vector2 velocity = new Vector2(Main.rand.Next(-100, 101) * 0.03f, Main.rand.Next(-100, 101) * 0.03f);
-                        int larvae = NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<NPCs.Larvae>(), default, default, default, default, default, NPC.target);
+                        int larvae = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<NPCs.Larvae>(), default, default, default, default, default, NPC.target);
                         Main.npc[larvae].velocity = velocity;
                         attackTimer = 0;
                     }
@@ -301,7 +302,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         for (int i = 0; i < 3; i++)
                         {
                             Vector2 velocity = new Vector2(0f, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-35, 36)));
-                            Projectile.NewProjectile(NPC.Center, velocity, ModContent.ProjectileType<Projectiles.ToxinBall>(), 25, 0.5f, NPC.target);
+                            Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center, velocity, ModContent.ProjectileType<Projectiles.ToxinBall>(), 25, 0.5f, NPC.target);
                         }
                         attackTimer = 0;
                     }
@@ -405,31 +406,32 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 pickInit = false;
             }
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingHead").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingWing").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingBody").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingStinger").Type, 1f);
+            }
+        }
+        public override void OnKill()
         {
             ExxoAvalonOriginsWorld.downedKingSting = true;
-            if (Main.expertMode)
-            {
-                NPC.DropBossBags();
-            }
-            else
-            {
-                if (Main.rand.Next(7) == 0) Item.NewItem(NPC.position, ModContent.ItemType<Items.Vanity.KingStingMask>());
-                Item.NewItem(NPC.position, ItemID.BeeWax, Main.rand.Next(16, 27));
-                Item.NewItem(NPC.position, ItemID.BottledHoney, Main.rand.Next(5, 16));
-                if (Main.rand.Next(4) == 0) Item.NewItem(NPC.position, ItemID.JestersArrow, Main.rand.Next(20, 31));
-            }
-
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingHead"), 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingWing"), 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingBody"), 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingStinger"), 1f);
         }
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor) // Not flipping? Not sure why it's not
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ItemID.BeeWax, 1, 16, 27)); // wasp fiber
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<Items.Vanity.KingStingMask>(), 7));
+            //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<KingStingTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.BossBags.KingStingBossBag>()));
+        }
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 v, Color lightColor) // Not flipping? Not sure why it's not
         {
             if (afterImage)
             {
-                Vector2 drawOrigin = Main.npcTexture[NPC.type].Size() / new Vector2(2, (Main.npcFrameCount[NPC.type] * 2));
+                Vector2 drawOrigin = TextureAssets.Npc[NPC.type].Size() / new Vector2(2, (Main.npcFrameCount[NPC.type] * 2));
 
                 SpriteEffects spriteEffect;
                 if (NPC.spriteDirection == 1)
@@ -440,8 +442,8 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 for (int i = 0; i < NPC.oldPos.Length; i++)
                 {
                     Vector2 drawPos = NPC.oldPos[i] - Main.screenPosition + drawOrigin + new Vector2(0f, NPC.gfxOffY);
-                    Color color = NPC.GetAlpha(lightColor) * ((float)(NPC.oldPos.Length - i) / (float)NPC.oldPos.Length);
-                    spriteBatch.Draw(Main.npcTexture[NPC.type], drawPos, NPC.frame, color, NPC.rotation, drawOrigin, NPC.scale, spriteEffect, 0f);
+                    Color color = NPC.GetAlpha(lightColor) * ((float)(NPC.oldPos.Length - i) / NPC.oldPos.Length);
+                    spriteBatch.Draw(TextureAssets.Npc[NPC.type].Value, drawPos, NPC.frame, color, NPC.rotation, drawOrigin, NPC.scale, spriteEffect, 0f);
                 }
             }
             return true;

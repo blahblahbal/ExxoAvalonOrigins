@@ -31,10 +31,13 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
             NPC.damage = (int)(NPC.damage * 0.5f);
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
         {
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore1"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore2"), NPC.scale);
+            if (NPC.life <= 0)
+            {
+                Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore1").Type, NPC.scale);
+                Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore2").Type, NPC.scale);
+            }
         }
         public override void AI()
         {
@@ -43,7 +46,7 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.ai[2]++;
             if (NPC.ai[2] >= 360 && Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height))
             {
-                int proj = Projectile.NewProjectile(NPC.position, Vector2.Normalize(Main.player[NPC.target].position - NPC.position) * 7f, ProjectileID.Stinger, 65, 4f);
+                int proj = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.position, Vector2.Normalize(Main.player[NPC.target].position - NPC.position) * 7f, ProjectileID.Stinger, 65, 4f);
                 NPC.ai[2] = 0;
             }
             if (NPC.ai[1] < 1200f)

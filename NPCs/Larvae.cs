@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -52,20 +52,20 @@ namespace ExxoAvalonOrigins.NPCs
             }
         }
 
-        public override void NPCLoot()
+        public override void OnKill()
         {
             float halfWidth = NPC.width / 2;
             float halfHeight = NPC.height / 2;
             Vector2 origin = NPC.Center + new Vector2(Main.rand.NextFloat(-halfWidth, halfWidth + 1f), Main.rand.NextFloat(-halfHeight, halfHeight + 1f));
             if (NPC.ai[0] == 1)
             {
-                NPC.NewNPC((int)origin.X, (int)origin.Y, NPCID.Hornet, default, default, default, default, default, NPC.target);
+                NPC.NewNPC(NPC.GetSpawnSourceForNaturalSpawn(), (int)origin.X, (int)origin.Y, NPCID.Hornet, default, default, default, default, default, NPC.target);
             }
             else
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    NPC.NewNPC((int)origin.X, (int)origin.Y, NPCID.Bee, default, default, default, default, default, NPC.target);
+                    NPC.NewNPC(NPC.GetSpawnSourceForNaturalSpawn(), (int)origin.X, (int)origin.Y, NPCID.Bee, default, default, default, default, default, NPC.target);
                 }
             }
         }

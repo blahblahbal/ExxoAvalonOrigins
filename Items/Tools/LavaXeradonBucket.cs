@@ -29,7 +29,7 @@ namespace ExxoAvalonOrigins.Items.Tools
         public override bool? UseItem(Player player)
         {
             if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 &&
-                (!Main.tile[Player.tileTargetX, Player.tileTargetY].nactive() ||
+                (!Main.tile[Player.tileTargetX, Player.tileTargetY].HasUnactuatedTile ||
                  !Main.tileSolid[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type] ||
                  Main.tileSolidTop[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type]))
             {
@@ -56,7 +56,7 @@ namespace ExxoAvalonOrigins.Items.Tools
                 }
             }
             else if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 &&
-                     (!Main.tile[Player.tileTargetX, Player.tileTargetY].nactive() ||
+                     (!Main.tile[Player.tileTargetX, Player.tileTargetY].HasUnactuatedTile ||
                       !Main.tileSolid[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type] ||
                       Main.tileSolidTop[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type]))
             {

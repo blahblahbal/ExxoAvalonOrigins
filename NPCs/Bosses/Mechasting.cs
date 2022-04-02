@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -36,7 +37,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.boss = true;
             NPC.lifeMax = 82000;
             NPC.scale = 1.2f;
-            bossBag = ModContent.ItemType<Items.BossBags.MechastingBossBag>();
+            //bossBag = ModContent.ItemType<Items.BossBags.MechastingBossBag>();
 
         }
         public override void BossLoot(ref string name, ref int potionType)
@@ -100,7 +101,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, 33);
                     Vector2 offset = new Vector2(NPC.Center.X + Main.rand.Next(5) * NPC.direction, NPC.Center.Y + Main.rand.Next(5, 10));
                     float rotation = (float)Math.Atan2(NPC.Center.Y - offset.Y, NPC.Center.X - offset.X);
-                    int num54 = Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ProjectileID.DeathLaser, damage, 0f, 0);
+                    int num54 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), ProjectileID.DeathLaser, damage, 0f, 0);
                     //Main.projectile[num54].notReflect = true;
                     NPC.ai[2] = 0;
                 }
@@ -161,7 +162,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     {
                         while (f <= .2f)
                         {
-                            num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * speed) * -1), type, damage, 0f, NPC.target);
+                            num54 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector8.X, vector8.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * speed) * -1), type, damage, 0f, NPC.target);
                             Main.projectile[num54].timeLeft = 600;
                             Main.projectile[num54].tileCollide = false;
                             //Main.projectile[num54].notReflect = true;
@@ -169,7 +170,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             {
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num54);
                             }
-                            num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * speed) * -1), type, damage, 0f, NPC.target);
+                            num54 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector8.X, vector8.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * speed) * -1), type, damage, 0f, NPC.target);
                             Main.projectile[num54].timeLeft = 600;
                             Main.projectile[num54].tileCollide = false;
                             //Main.projectile[num54].notReflect = true;
@@ -199,7 +200,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 // spawn stinger probes
                 if (NPC.ai[1] % 70 == 0)
                 {
-                    NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<StingerProbe>(), NPC.target);
+                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<StingerProbe>(), NPC.target);
                 }
                 if (NPC.ai[2] > 700)
                 {
@@ -222,7 +223,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     int p;
                     while (f < 0.2f) // less than 20 degrees
                     {
-                        p = Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * speed) * -1), ModContent.ProjectileType<Projectiles.HomingRocket>(), 80, 0f, NPC.target);
+                        p = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * speed) * -1), ModContent.ProjectileType<Projectiles.HomingRocket>(), 80, 0f, NPC.target);
                         Main.projectile[p].timeLeft = 600;
                         Main.projectile[p].friendly = false;
                         //Main.projectile[p].notReflect = true;
@@ -233,7 +234,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                         }
 
-                        p = Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * speed) * -1), ModContent.ProjectileType<Projectiles.HomingRocket>(), 80, 0f, NPC.target);
+                        p = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * speed) * -1), ModContent.ProjectileType<Projectiles.HomingRocket>(), 80, 0f, NPC.target);
                         Main.projectile[p].timeLeft = 600;
                         Main.projectile[p].friendly = false;
                         //Main.projectile[p].notReflect = true;
@@ -301,7 +302,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         while (f <= 3.6f)
                         {
                             // above the boss
-                            p = Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * speed) * -1), ModContent.ProjectileType<Projectiles.ElectricBolt>(), 80, 0f, NPC.target);
+                            p = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation + f) * speed) * -1), (float)((Math.Sin(rotation + f) * speed) * -1), ModContent.ProjectileType<Projectiles.ElectricBolt>(), 80, 0f, NPC.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
                             //Main.projectile[p].notReflect = true;
@@ -311,7 +312,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                                 NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                             }
                             // below the boss
-                            p = Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * speed) * -1), ModContent.ProjectileType<Projectiles.ElectricBolt>(), 80, 0f, NPC.target);
+                            p = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation - f) * speed) * -1), (float)((Math.Sin(rotation - f) * speed) * -1), ModContent.ProjectileType<Projectiles.ElectricBolt>(), 80, 0f, NPC.target);
                             Main.projectile[p].timeLeft = 600;
                             Main.projectile[p].friendly = false;
                             //Main.projectile[p].notReflect = true;
@@ -338,34 +339,20 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 }
             }
         }
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            if (Main.expertMode)
-            {
-                NPC.DropBossBags();
-            }
-            else
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41), false, 0, false);
-                int rn = Main.rand.Next(4);
-                if (rn == 0)
-                {
-                    Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Items.Accessories.StingerPack>(), 1, false, -1, false);
-                }
-                if (rn == 1)
-                {
-                    Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>(), 1, false, -1, false);
-                }
-                if (rn == 2)
-                {
-                    Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>(), 1, false, -1, false);
-                }
-            }
-
             if (!ExxoAvalonOriginsWorld.downedMechasting)
                 ExxoAvalonOriginsWorld.downedMechasting = true;
         }
-
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            if (!Main.expertMode)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofDelight>(), 1, 20, 40));
+                npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[] { ModContent.ItemType<Items.Accessories.StingerPack>(), ModContent.ItemType<Items.Weapons.Magic.Mechazapinator>(), ModContent.ItemType<Items.Weapons.Ranged.HeatSeeker>() }));
+            }
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.BossBags.MechastingBossBag>()));
+        }
         public override void FindFrame(int frameHeight)
         {
             NPC.spriteDirection = NPC.direction;

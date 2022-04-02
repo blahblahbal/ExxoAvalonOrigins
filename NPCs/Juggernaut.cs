@@ -2,9 +2,11 @@
 using ExxoAvalonOrigins.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -33,22 +35,23 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = SoundID.NPCDeath2;
         }
-
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<IllegalWeaponInstructions>(), 1, false, 0, false);
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofBlight>(), Main.rand.Next(3) + 1, false, 0, false);
             NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = false;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText("A Juggernaut has been defeated!", 175, 75, 255, false);
+                Main.NewText("A Juggernaut has been defeated!", new Color(175, 75, 255));
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has been defeated!"), new Color(175, 75, 255));
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has been defeated!"), new Color(175, 75, 255));
             }
         }
-
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IllegalWeaponInstructions>()));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofBlight>(), 1, 1, 3));
+        }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.65f * bossLifeScale);
@@ -63,18 +66,18 @@ namespace ExxoAvalonOrigins.NPCs
             {
                 NPC.position = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)].position;
                 NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().jugRunonce = true;
-                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText("A Juggernaut has awoken!", 175, 75, 255, false);
-                else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has awoken!"), new Color(175, 75, 255));
+                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText("A Juggernaut has awoken!", new Color(175, 75, 255));
+                else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("A Juggernaut has awoken!"), new Color(175, 75, 255));
             }
             if (NPC.justHit)
             {
                 if (Main.rand.Next(20) == 0)
                 {
-                    NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<JuggernautSorcerer>(), 0);
+                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<JuggernautSorcerer>(), 0);
                 }
                 if (Main.rand.Next(20) == 0)
                 {
-                    NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<EyeBones>(), 0);
+                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<EyeBones>(), 0);
                 }
                 //if (Main.rand.Next(10) == 1)
                 //{
@@ -82,7 +85,7 @@ namespace ExxoAvalonOrigins.NPCs
                 //}
                 if (Main.rand.Next(45) == 0)
                 {
-                    NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CursedMagmaSkeleton>(), 0);
+                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<CursedMagmaSkeleton>(), 0);
                 }
                 //if (Main.rand.Next(33) == 1)
                 //{
@@ -193,34 +196,34 @@ namespace ExxoAvalonOrigins.NPCs
                 vector42.X += NPC.velocity.X;
                 var num447 = (int)((vector42.X + NPC.width / 2 + (NPC.width / 2 + 1) * num446) / 16f);
                 var num448 = (int)((vector42.Y + NPC.height - 1f) / 16f);
-                if (Main.tile[num447, num448] == null)
-                {
-                    Main.tile[num447, num448] = new Tile();
-                }
-                if (Main.tile[num447, num448 - 1] == null)
-                {
-                    Main.tile[num447, num448 - 1] = new Tile();
-                }
-                if (Main.tile[num447, num448 - 2] == null)
-                {
-                    Main.tile[num447, num448 - 2] = new Tile();
-                }
-                if (Main.tile[num447, num448 - 3] == null)
-                {
-                    Main.tile[num447, num448 - 3] = new Tile();
-                }
-                if (Main.tile[num447, num448 + 1] == null)
-                {
-                    Main.tile[num447, num448 + 1] = new Tile();
-                }
-                if (num447 * 16 < vector42.X + NPC.width && num447 * 16 + 16 > vector42.X && ((Main.tile[num447, num448].nactive() && !Main.tile[num447, num448].topSlope() && !Main.tile[num447, num448 - 1].topSlope() && Main.tileSolid[Main.tile[num447, num448].TileType] && !Main.tileSolidTop[Main.tile[num447, num448].TileType]) || (Main.tile[num447, num448 - 1]IsHalfBlock && Main.tile[num447, num448 - 1].nactive())) && (!Main.tile[num447, num448 - 1].nactive() || !Main.tileSolid[Main.tile[num447, num448 - 1].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 1].TileType] || (Main.tile[num447, num448 - 1]IsHalfBlock && (!Main.tile[num447, num448 - 4].nactive() || !Main.tileSolid[Main.tile[num447, num448 - 4].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 4].TileType]))) && (!Main.tile[num447, num448 - 2].nactive() || !Main.tileSolid[Main.tile[num447, num448 - 2].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 2].TileType]) && (!Main.tile[num447, num448 - 3].nactive() || !Main.tileSolid[Main.tile[num447, num448 - 3].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 3].TileType]) && (!Main.tile[num447 - num446, num448 - 3].nactive() || !Main.tileSolid[Main.tile[num447 - num446, num448 - 3].TileType]))
+                //if (Main.tile[num447, num448] == null)
+                //{
+                //    Main.tile[num447, num448] = new Tile();
+                //}
+                //if (Main.tile[num447, num448 - 1] == null)
+                //{
+                //    Main.tile[num447, num448 - 1] = new Tile();
+                //}
+                //if (Main.tile[num447, num448 - 2] == null)
+                //{
+                //    Main.tile[num447, num448 - 2] = new Tile();
+                //}
+                //if (Main.tile[num447, num448 - 3] == null)
+                //{
+                //    Main.tile[num447, num448 - 3] = new Tile();
+                //}
+                //if (Main.tile[num447, num448 + 1] == null)
+                //{
+                //    Main.tile[num447, num448 + 1] = new Tile();
+                //}
+                if (num447 * 16 < vector42.X + NPC.width && num447 * 16 + 16 > vector42.X && ((Main.tile[num447, num448].HasUnactuatedTile && !Main.tile[num447, num448].topSlope() && !Main.tile[num447, num448 - 1].TopSlope && Main.tileSolid[Main.tile[num447, num448].TileType] && !Main.tileSolidTop[Main.tile[num447, num448].TileType]) || (Main.tile[num447, num448 - 1].IsHalfBlock && Main.tile[num447, num448 - 1].HasUnactuatedTile)) && (!Main.tile[num447, num448 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num447, num448 - 1].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 1].TileType] || (Main.tile[num447, num448 - 1].IsHalfBlock && (!Main.tile[num447, num448 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num447, num448 - 4].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 4].TileType]))) && (!Main.tile[num447, num448 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num447, num448 - 2].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 2].TileType]) && (!Main.tile[num447, num448 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num447, num448 - 3].TileType] || Main.tileSolidTop[Main.tile[num447, num448 - 3].TileType]) && (!Main.tile[num447 - num446, num448 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num447 - num446, num448 - 3].TileType]))
                 {
                     float num449 = num448 * 16;
-                    if (Main.tile[num447, num448]IsHalfBlock)
+                    if (Main.tile[num447, num448].IsHalfBlock)
                     {
                         num449 += 8f;
                     }
-                    if (Main.tile[num447, num448 - 1]IsHalfBlock)
+                    if (Main.tile[num447, num448 - 1].IsHalfBlock)
                     {
                         num449 -= 8f;
                     }
@@ -249,45 +252,45 @@ namespace ExxoAvalonOrigins.NPCs
             }
             var num451 = (int)((NPC.position.X + NPC.width / 2 + (NPC.width / 2 + 2) * NPC.direction + NPC.velocity.X * 5f) / 16f);
             var num452 = (int)((NPC.position.Y + NPC.height - 15f) / 16f);
-            if (Main.tile[num451, num452] == null)
-            {
-                Main.tile[num451, num452] = new Tile();
-            }
-            if (Main.tile[num451, num452 - 1] == null)
-            {
-                Main.tile[num451, num452 - 1] = new Tile();
-            }
-            if (Main.tile[num451, num452 - 2] == null)
-            {
-                Main.tile[num451, num452 - 2] = new Tile();
-            }
-            if (Main.tile[num451, num452 - 3] == null)
-            {
-                Main.tile[num451, num452 - 3] = new Tile();
-            }
-            if (Main.tile[num451, num452 + 1] == null)
-            {
-                Main.tile[num451, num452 + 1] = new Tile();
-            }
-            if (Main.tile[num451 + NPC.direction, num452 - 1] == null)
-            {
-                Main.tile[num451 + NPC.direction, num452 - 1] = new Tile();
-            }
-            if (Main.tile[num451 + NPC.direction, num452 + 1] == null)
-            {
-                Main.tile[num451 + NPC.direction, num452 + 1] = new Tile();
-            }
-            if (Main.tile[num451 - NPC.direction, num452 + 1] == null)
-            {
-                Main.tile[num451 - NPC.direction, num452 + 1] = new Tile();
-            }
+            //if (Main.tile[num451, num452] == null)
+            //{
+            //    Main.tile[num451, num452] = new Tile();
+            //}
+            //if (Main.tile[num451, num452 - 1] == null)
+            //{
+            //    Main.tile[num451, num452 - 1] = new Tile();
+            //}
+            //if (Main.tile[num451, num452 - 2] == null)
+            //{
+            //    Main.tile[num451, num452 - 2] = new Tile();
+            //}
+            //if (Main.tile[num451, num452 - 3] == null)
+            //{
+            //    Main.tile[num451, num452 - 3] = new Tile();
+            //}
+            //if (Main.tile[num451, num452 + 1] == null)
+            //{
+            //    Main.tile[num451, num452 + 1] = new Tile();
+            //}
+            //if (Main.tile[num451 + NPC.direction, num452 - 1] == null)
+            //{
+            //    Main.tile[num451 + NPC.direction, num452 - 1] = new Tile();
+            //}
+            //if (Main.tile[num451 + NPC.direction, num452 + 1] == null)
+            //{
+            //    Main.tile[num451 + NPC.direction, num452 + 1] = new Tile();
+            //}
+            //if (Main.tile[num451 - NPC.direction, num452 + 1] == null)
+            //{
+            //    Main.tile[num451 - NPC.direction, num452 + 1] = new Tile();
+            //}
             if ((NPC.velocity.X >= 0f || NPC.spriteDirection != -1) && (NPC.velocity.X <= 0f || NPC.spriteDirection != 1))
             {
                 return;
             }
-            if (Main.tile[num451, num452 - 2].nactive() && Main.tileSolid[Main.tile[num451, num452 - 2].TileType])
+            if (Main.tile[num451, num452 - 2].HasUnactuatedTile && Main.tileSolid[Main.tile[num451, num452 - 2].TileType])
             {
-                if (Main.tile[num451, num452 - 3].nactive() && Main.tileSolid[Main.tile[num451, num452 - 3].TileType])
+                if (Main.tile[num451, num452 - 3].HasUnactuatedTile && Main.tileSolid[Main.tile[num451, num452 - 3].TileType])
                 {
                     NPC.velocity.Y = -8.5f;
                     NPC.netUpdate = true;
@@ -299,19 +302,19 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else
             {
-                if (Main.tile[num451, num452 - 1].nactive() && !Main.tile[num451, num452 - 1].topSlope() && Main.tileSolid[Main.tile[num451, num452 - 1].TileType])
+                if (Main.tile[num451, num452 - 1].HasUnactuatedTile && !Main.tile[num451, num452 - 1].TopSlope && Main.tileSolid[Main.tile[num451, num452 - 1].TileType])
                 {
                     NPC.velocity.Y = -7f;
                     NPC.netUpdate = true;
                     return;
                 }
-                if (NPC.position.Y + NPC.height - num452 * 16 > 20f && Main.tile[num451, num452].nactive() && !Main.tile[num451, num452].topSlope() && Main.tileSolid[Main.tile[num451, num452].TileType])
+                if (NPC.position.Y + NPC.height - num452 * 16 > 20f && Main.tile[num451, num452].HasUnactuatedTile && !Main.tile[num451, num452].TopSlope && Main.tileSolid[Main.tile[num451, num452].TileType])
                 {
                     NPC.velocity.Y = -6f;
                     NPC.netUpdate = true;
                     return;
                 }
-                if ((NPC.directionY < 0 || Math.Abs(NPC.velocity.X) > 3f) && (!Main.tile[num451, num452 + 2].nactive() || !Main.tileSolid[Main.tile[num451, num452 + 2].TileType]) && (!Main.tile[num451 + NPC.direction, num452 + 3].nactive() || !Main.tileSolid[Main.tile[num451 + NPC.direction, num452 + 3].TileType]))
+                if ((NPC.directionY < 0 || Math.Abs(NPC.velocity.X) > 3f) && (!Main.tile[num451, num452 + 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num451, num452 + 2].TileType]) && (!Main.tile[num451 + NPC.direction, num452 + 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num451 + NPC.direction, num452 + 3].TileType]))
                 {
                     NPC.velocity.Y = -8f;
                     NPC.netUpdate = true;
@@ -364,11 +367,11 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/JuggernautHead"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1"), 1.7f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2"), 1.7f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1"), 1.7f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2"), 1.7f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/JuggernautHead").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.7f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.7f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.7f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.7f);
             }
         }
 

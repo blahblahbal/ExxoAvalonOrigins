@@ -45,7 +45,7 @@ namespace ExxoAvalonOrigins.Hooks
                         int num5 = 0;
                         int type = (int)Main.tile[i, j].TileType;
                         int num6 = 16;
-                        if (Main.tile[i, j]IsHalfBlock)
+                        if (Main.tile[i, j].IsHalfBlock)
                         {
                             vector2.Y += 8f;
                             num6 -= 8;

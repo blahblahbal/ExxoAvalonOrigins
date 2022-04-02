@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -76,16 +77,15 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Main.hardMode && spawnInfo.player.ZoneDungeon ? 0.6f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/IrateBonesHelmet"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/IrateBonesHelmet").Type, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
-                //Gore.NewGore(npc.position, npc.velocity, Mod.Find<ModGore>("Gores/MagmaChestplate"), 1f);
             }
         }
     }

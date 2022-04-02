@@ -53,22 +53,22 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimslime);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Herpling);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimslime);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Herpling);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.IchorSticker);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FloatyGross);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IchorSticker);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.FloatyGross);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(3);
-                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimera);
-                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FaceMonster);
-                                if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.BloodCrawler);
+                                if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimera);
+                                if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.FaceMonster);
+                                if (t == 2) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.BloodCrawler);
                             }
                         }
                         else // contagion mobs
@@ -78,21 +78,21 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -106,22 +106,22 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimslime);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Herpling);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimslime);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Herpling);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.IchorSticker);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FloatyGross);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IchorSticker);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.FloatyGross);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(3);
-                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimera);
-                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.FaceMonster);
-                                if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.BloodCrawler);
+                                if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Crimera);
+                                if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.FaceMonster);
+                                if (t == 2) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.BloodCrawler);
                             }
                         }
                         else // corruption mobs
@@ -131,23 +131,23 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Slimer);
-                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Slimer);
+                                    if (t == 2) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.SeekerHead);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
-                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.SeekerHead);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 2) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.EaterofSouls);
-                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.DevourerHead);
+                                if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.EaterofSouls);
+                                if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DevourerHead);
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -161,23 +161,23 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Slimer);
-                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Slimer);
+                                    if (t == 2) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(3);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.SeekerHead);
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
-                                    if (t == 2) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.SeekerHead);
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.CorruptSlime);
+                                    if (t == 2) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.Corruptor);
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.EaterofSouls);
-                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, NPCID.DevourerHead);
+                                if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.EaterofSouls);
+                                if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DevourerHead);
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }
@@ -188,21 +188,21 @@ namespace ExxoAvalonOrigins.NPCs
                                 if (p.position.Y < Main.worldSurface)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Ickslime>());
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Cougher>());
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Ickslime>());
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Cougher>());
                                 }
                                 else if (p.ZoneRockLayerHeight)
                                 {
                                     int t = Main.rand.Next(2);
-                                    if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Virus>());
-                                    if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
+                                    if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Virus>());
+                                    if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.GrossyFloat>());
                                 }
                             }
                             else
                             {
                                 int t = Main.rand.Next(2);
-                                if (t == 0) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Bactus>());
-                                if (t == 1) NPC.NewNPC((int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
+                                if (t == 0) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.Bactus>());
+                                if (t == 1) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<NPCs.PyrasiteHead>());
                                 //if (t == 2) NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, NPCID.BloodCrawler);
                             }
                         }

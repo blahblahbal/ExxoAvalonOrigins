@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -57,7 +58,7 @@ namespace ExxoAvalonOrigins.NPCs
                         NPC.velocity.X = 0f;
                         float speedX = NPC.velocity.X + Main.rand.Next(-51, 51) * 0.1f;
                         float speedY = NPC.velocity.Y + Main.rand.Next(-51, 51) * 0.1f;
-                        Projectile.NewProjectile(NPC.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalBit>(), 0, 0, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.CrystalBit>(), 0, 0, Main.myPlayer);
                     }
                 }
                 if (NPC.ai[3] == 540) NPC.ai[3] = 0;
@@ -209,9 +210,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return !Main.dayTime && Main.hardMode && spawnInfo.player.Avalon().ZoneCrystal ? 0.5f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
-        public override void NPCLoot()
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.getRect(), ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), Main.rand.Next(10, 15));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Tile.CrystalStoneBlock>(), 1, 10, 15));
         }
         public override void HitEffect(int hitDirection, double damage)
         {

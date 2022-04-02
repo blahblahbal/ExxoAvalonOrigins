@@ -104,14 +104,14 @@ namespace ExxoAvalonOrigins.NPCs
                     int num254 = Main.rand.Next(num248 - num251, num248 + num251);
                     for (int num255 = num254; num255 < num248 + num251; num255++)
                     {
-                        if ((num255 < num248 - 4 || num255 > num248 + 4 || num253 < num247 - 4 || num253 > num247 + 4) && (num255 < num250 - 1 || num255 > num250 + 1 || num253 < num249 - 1 || num253 > num249 + 1) && Main.tile[num253, num255].nactive())
+                        if ((num255 < num248 - 4 || num255 > num248 + 4 || num253 < num247 - 4 || num253 > num247 + 4) && (num255 < num250 - 1 || num255 > num250 + 1 || num253 < num249 - 1 || num253 > num249 + 1) && Main.tile[num253, num255].HasUnactuatedTile)
                         {
                             bool flag29 = true;
                             if (!Main.wallDungeon[Main.tile[num253, num255 - 1].WallType])
                             {
                                 flag29 = false;
                             }
-                            else if (Main.tile[num253, num255 - 1].lava())
+                            else if (Main.tile[num253, num255 - 1].LiquidType == LiquidID.Lava)
                             {
                                 flag29 = false;
                             }
@@ -147,7 +147,7 @@ namespace ExxoAvalonOrigins.NPCs
                         num258 *= 1.4f;
                         if (!NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().silenced)
                         {
-                            int num262 = Projectile.NewProjectile(vector23.X, vector23.Y, num257, num258, ModContent.ProjectileType<Projectiles.SpikyBall>(), 78, 0f, Main.myPlayer, 0f, 0f);
+                            int num262 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector23.X, vector23.Y, num257, num258, ModContent.ProjectileType<Projectiles.SpikyBall>(), 78, 0f, Main.myPlayer, 0f, 0f);
                             Main.projectile[num262].timeLeft = 300;
                             if (Main.netMode == NetmodeID.Server)
                             {

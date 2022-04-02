@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -62,16 +63,10 @@ namespace ExxoAvalonOrigins.NPCs
                 NPC.frame.Y = 0;
             }
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(3) == 0)
-            {
-                Item.NewItem(NPC.position, new Vector2(NPC.width, NPC.height), ItemID.CursedFlame, 1);
-            }
-            if (Main.rand.Next(50) == 0)
-            {
-                Item.NewItem(NPC.position, new Vector2(NPC.width, NPC.height), ModContent.ItemType<GreekExtinguisher>(), 1);
-            }
+            npcLoot.Add(ItemDropRule.Common(ItemID.CursedFlame, 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GreekExtinguisher>(), 40));
         }
         public Vector2 RotateAboutOrigin(Vector2 point, Vector2 origin, float rotation)
         {
@@ -203,7 +198,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             else if (Main.rand.Next(20) == 0)
             {
-                var num1182 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + NPC.height * 0.25f), NPC.width, (int)(NPC.height * 0.5f), DustID.Vile, NPC.velocity.X, 2f, 75, NPC.color, NPC.scale);
+                var num1182 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + NPC.height * 0.25f), NPC.width, (int)(NPC.height * 0.5f), DustID.CorruptGibs, NPC.velocity.X, 2f, 75, NPC.color, NPC.scale);
                 var dust52 = Main.dust[num1182];
                 dust52.velocity.X = dust52.velocity.X * 0.5f;
                 var dust53 = Main.dust[num1182];
@@ -233,7 +228,7 @@ namespace ExxoAvalonOrigins.NPCs
                     if (Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height))
                     {
                         var mainproj = (float)Math.Atan2(NPC.Center.Y - (Main.player[NPC.target].Center.Y), NPC.Center.X - (Main.player[NPC.target].Center.X));
-                        int p = Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ProjectileID.CursedFlameHostile, 50, 1f, NPC.target, 0f, 0f);
+                        int p = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, -(float)Math.Cos(mainproj), -(float)Math.Sin(mainproj), ProjectileID.CursedFlameHostile, 50, 1f, NPC.target, 0f, 0f);
                         Main.projectile[p].velocity *= 7f;
                         if (Main.netMode == NetmodeID.Server)
                         {
@@ -272,7 +267,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 for (int i2 = 1; i2 <= C; i2++)
                 {
-                    int D2 = Dust.NewDust(NPC.position, R.Width, R.Height, DustID.Vile, 0, 0, 100, new Color(), 2f);
+                    int D2 = Dust.NewDust(NPC.position, R.Width, R.Height, DustID.CorruptGibs, 0, 0, 100, new Color(), 2f);
                     Main.dust[D2].noGravity = true;
                     Main.dust[D2].velocity.X = vR * (Main.dust[D2].position.X - (NPC.position.X + (NPC.width / 2)));
                     Main.dust[D2].velocity.Y = vR * (Main.dust[D2].position.Y - (NPC.position.Y + (NPC.height / 2)));

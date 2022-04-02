@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -34,11 +35,10 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.65f);
             NPC.damage = (int)(NPC.damage * 0.7f);
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot loot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Pathogen>(), 2 + Main.rand.Next(4), false, 0, false);
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<Pathogen>(), 1, 2, 5));
         }
-
         public override void FindFrame(int frameHeight)
         {
             NPC.frameCounter += 1.0;
@@ -57,13 +57,13 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusTail"), 0.8f);
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb"), 0.8f);
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHead"), 0.8f);
-                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHair"), 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusTail").Type, 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHead").Type, 0.8f);
+                Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHair").Type, 0.8f);
             }
         }
     }

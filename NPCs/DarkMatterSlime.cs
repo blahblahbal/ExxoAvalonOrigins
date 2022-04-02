@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -49,32 +50,12 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.damage = (int)(NPC.damage * 0.5f);
         }
 
-        public override void NPCLoot()
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            bool canDrop = true;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC scannedNPC = Main.npc[i];
-                if (scannedNPC.type == ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>())
-                {
-                    if (Vector2.Distance(NPC.Center, scannedNPC.Center) < 5000)
-                    {
-                        canDrop = false;
-                        NPC.value = 0;
-                    }
-                }
-            }
-
-            if (Main.rand.Next(75) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SixHundredWattLightbulb>(), 1, false, -2, false);
-            }
-            if (NPC.type == ModContent.NPCType<NPCs.DarkMatterSlime>() && canDrop)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DarkMatterGel>(), Main.rand.Next(2) + 2, false, 0, false);
-            }
+            npcLoot.Add(ItemDropRule.ByCondition(new DropConditions.DropIfNoArmaAlive(), ModContent.ItemType<DarkMatterGel>(), 1, 2, 4));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SixHundredWattLightbulb>()));
         }
-
         public override void FindFrame(int frameHeight)
         {
             var num2 = 0;

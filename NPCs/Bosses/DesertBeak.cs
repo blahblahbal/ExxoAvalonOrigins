@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -38,48 +39,25 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.HitSound = SoundID.NPCHit28;
             NPC.DeathSound = SoundID.NPCDeath31;
             NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
-            bossBag = ModContent.ItemType<Items.BossBags.DesertBeakBossBag>();
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.57f * bossLifeScale);
             NPC.damage = (int)(NPC.damage * 0.55f);
         }
-
-        public override void NPCLoot()
+        public override void OnKill()
         {
-            if (Main.rand.Next(7) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DesertBeakMask>(), 1, false, 0, false);
-            }
-            if (Main.rand.Next(10) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DesertBeakTrophy>(), 1, false, 0, false);
-            }
-            if (Main.expertMode)
-            {
-                NPC.DropBossBags();
-            }
-            else
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.SandBlock, Main.rand.Next(22, 55), false, 0, false);
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DesertFeather>(), Main.rand.Next(2, 4), false, 0, false);
-                if (Main.rand.Next(10) <= 2)
-                {
-                    Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(15, 26), false, 0, false);
-                }
-				else
-				{
-					Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), Main.rand.Next(10, 15), false, 0, false);
-				}
-                if (Main.rand.Next(3) == 0)
-                {
-                    Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<TomeoftheDistantPast>(), 1, false, -2, false);
-                }
-            }
-
             if (!ExxoAvalonOriginsWorld.downedDesertBeak)
                 ExxoAvalonOriginsWorld.downedDesertBeak = true;
+        }
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ItemID.SandBlock, 1, 22, 55));
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<DesertBeakMask>(), 7));
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<DesertFeather>(), 1, 6, 10));
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ExxoAvalonOriginsWorld.rhodiumOre.GetItemOre(), 1, 15, 26));
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<TomeoftheDistantPast>(), 3));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.BossBags.DesertBeakBossBag>()));
         }
 
         public override void AI()
@@ -133,7 +111,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         float Speed = 8f;
                         SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 17);
                         float rotation = (float)Math.Atan2(NPC.Center.Y - (pPos.Y + (Main.player[NPC.target].height * 0.5f)), NPC.Center.X - (pPos.X + (Main.player[NPC.target].width * 0.5f)));
-                        Projectile.NewProjectile(NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), 83, 40, 0f, 0);
+                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X, NPC.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), 83, 40, 0f, 0);
                         NPC.ai[1] = 0;
                     }
                 }
@@ -233,7 +211,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         float num78 = speedX + Main.rand.Next(-50, 51) * 0.05f;
                         float num79 = speedY + Main.rand.Next(-50, 51) * 0.05f;
                         SoundEngine.PlaySound(2, (int)NPC.position.X, (int)NPC.position.Y, 11);
-                        int bomb = Projectile.NewProjectile(npcPosRefined.X, npcPosRefined.Y, num78, num79, 102, 20, 0f, 0);
+                        int bomb = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), npcPosRefined.X, npcPosRefined.Y, num78, num79, 102, 20, 0f, 0);
                     }
                     NPC.ai[2] = 0;
                 }
@@ -274,9 +252,9 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakHead"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakWing"), 0.9f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakWing"), 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakHead").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakWing").Type, 0.9f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakWing").Type, 0.9f);
             }
         }
     }

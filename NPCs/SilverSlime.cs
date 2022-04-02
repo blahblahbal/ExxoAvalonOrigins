@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -28,9 +29,9 @@ namespace ExxoAvalonOrigins.NPCs
             BannerItem = ModContent.ItemType<Items.Banners.SilverSlimeBanner>();
         }
 
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot loot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.SilverOre, Main.rand.Next(15, 25), false, 0, false);
+            loot.Add(ItemDropRule.Common(ItemID.SilverOre, 1, 15, 25));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -85,7 +86,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && (Main.hardMode || WorldGen.SilverTierOre == TileID.Silver) ? 0.00526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && (Main.hardMode || WorldGen.SavedOreTiers.Silver == TileID.Silver) ? 0.00526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

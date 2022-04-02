@@ -172,7 +172,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC.NewNPC((int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), ModContent.NPCType<MechanicalHungry2>(), 0);
+                NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + NPC.height), ModContent.NPCType<MechanicalHungry2>(), 0);
                 for (int num193 = 0; num193 < 10; num193++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, (float)hitDirection, -1f, 0, default(Color), 1f);

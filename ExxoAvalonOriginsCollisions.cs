@@ -42,7 +42,7 @@ namespace ExxoAvalonOrigins
                         vector.X = (float)(i * 16);
                         vector.Y = (float)(j * 16);
                         int num5 = 16;
-                        if (Main.tile[i, j]IsHalfBlock)
+                        if (Main.tile[i, j].IsHalfBlock)
                         {
                             vector.Y += 8f;
                             num5 -= 8;
@@ -88,7 +88,7 @@ namespace ExxoAvalonOrigins
                         vector.X = (float)(i * 16);
                         vector.Y = (float)(j * 16);
                         int num5 = 16;
-                        if (Main.tile[i, j]IsHalfBlock)
+                        if (Main.tile[i, j].IsHalfBlock)
                         {
                             vector.Y += 8f;
                             num5 -= 8;

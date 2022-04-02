@@ -83,7 +83,7 @@ namespace ExxoAvalonOrigins.Projectiles
         //				Vector2 vector10;
         //				vector10.X = num127 * 16;
         //				vector10.Y = num128 * 16;
-        //				if (projectile.position.X + projectile.width > vector10.X && projectile.position.X < vector10.X + 16f && projectile.position.Y + projectile.height > vector10.Y && projectile.position.Y < vector10.Y + 16f && Main.tile[num127, num128].nactive() && (Main.tileSolid[Main.tile[num127, num128].type] || Main.tile[num127, num128].type == 314) && (projectile.type != ProjectileID.TrackHook || Main.tile[num127, num128].type == 314))
+        //				if (projectile.position.X + projectile.width > vector10.X && projectile.position.X < vector10.X + 16f && projectile.position.Y + projectile.height > vector10.Y && projectile.position.Y < vector10.Y + 16f && Main.tile[num127, num128].HasUnactuatedTile && (Main.tileSolid[Main.tile[num127, num128].type] || Main.tile[num127, num128].type == 314) && (projectile.type != ProjectileID.TrackHook || Main.tile[num127, num128].type == 314))
         //				{
         //					if (Main.player[projectile.owner].grapCount < 10)
         //					{
@@ -206,7 +206,7 @@ namespace ExxoAvalonOrigins.Projectiles
         //				Vector2 vector11;
         //				vector11.X = num140 * 16;
         //				vector11.Y = num141 * 16;
-        //				if (projectile.position.X + projectile.width / 2 > vector11.X && projectile.position.X + projectile.width / 2 < vector11.X + 16f && projectile.position.Y + projectile.height / 2 > vector11.Y && projectile.position.Y + projectile.height / 2 < vector11.Y + 16f && Main.tile[num140, num141].nactive() && (Main.tileSolid[Main.tile[num140, num141].type] || Main.tile[num140, num141].type == 314))
+        //				if (projectile.position.X + projectile.width / 2 > vector11.X && projectile.position.X + projectile.width / 2 < vector11.X + 16f && projectile.position.Y + projectile.height / 2 > vector11.Y && projectile.position.Y + projectile.height / 2 < vector11.Y + 16f && Main.tile[num140, num141].HasUnactuatedTile && (Main.tileSolid[Main.tile[num140, num141].type] || Main.tile[num140, num141].type == 314))
         //				{
         //					flag3 = false;
         //				}

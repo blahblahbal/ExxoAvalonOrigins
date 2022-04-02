@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -27,9 +28,9 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.DeathSound = SoundID.NPCDeath1;
         }
 
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DurataniumOre>(), Main.rand.Next(20, 32), false, 0, false);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DurataniumOre>(), 1, 20, 32));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

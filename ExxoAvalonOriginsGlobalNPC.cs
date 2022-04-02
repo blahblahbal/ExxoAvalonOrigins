@@ -724,7 +724,7 @@ IL_162:
                 else
                 {
                     NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(npc.FullName + TownDeathMSG(npc.type)), new Color(178, 0, 90));
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, npc.whoAmI, -1);
+                    NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, -1);
                     int t = 0;
                     int s = 1;
                     switch (npc.type)

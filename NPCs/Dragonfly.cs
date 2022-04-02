@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -119,11 +120,7 @@ namespace ExxoAvalonOrigins.NPCs
             var num406 = 3;
             for (var num428 = num405; num428 < num405 + num406; num428++)
             {
-                if (Main.tile[num404, num428] == null)
-                {
-                    Main.tile[num404, num428] = new Tile();
-                }
-                if ((Main.tile[num404, num428].nactive() && Main.tileSolid[Main.tile[num404, num428].TileType]) || Main.tile[num404, num428].liquid > 0)
+                if ((Main.tile[num404, num428].HasUnactuatedTile && Main.tileSolid[Main.tile[num404, num428].TileType]) || Main.tile[num404, num428].LiquidAmount > 0)
                 {
                     flag36 = false;
                     break;
@@ -249,7 +246,7 @@ namespace ExxoAvalonOrigins.NPCs
             var frameHeightX = 1;
             if (!Main.dedServ)
             {
-                frameHeightX = Main.npcTexture[NPC.type].Height / Main.npcFrameCount[NPC.type];
+                frameHeightX = TextureAssets.Npc[NPC.type].Height / Main.npcFrameCount[NPC.type];
             }
             if (frames == 4 || frames == 68 || frames == 132 || frames == 196 || frames == 260 || frames == 324 || frames == 388)
             {

@@ -4,6 +4,7 @@ using ExxoAvalonOrigins.Items.Material;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -38,22 +39,12 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
             NPC.damage = (int)(NPC.damage * 0.75f);
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(3) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofTime>(), Main.rand.Next(5) + 1, false, 0, false);
-            }
-            if (Main.rand.Next(100) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<ManaCompromise>(), 1, false, -2, false);
-            }
-            if (Main.rand.Next(8) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<ConfusionTalisman>(), 1, false, -2, false);
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofTime>(), 3, 1, 5));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ManaCompromise>(), 100));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ConfusionTalisman>(), 8));
         }
-
         public override void FindFrame(int frameHeight)
         {
             if (NPC.velocity.Y == 0f)
@@ -105,16 +96,16 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/MimeHead"), 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder1"), 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder1"), 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder2"), 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder2"), 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/MimeHead").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder1").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder1").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder2").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gore/Girder2").Type, 0.9f);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneHallow && Main.hardMode ? 0.14f : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && spawnInfo.player.ZoneMarble && Main.hardMode ? 0.14f : 0f;
         }
     }
 }

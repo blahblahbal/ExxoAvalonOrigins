@@ -26,7 +26,7 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.height = 34;
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.ValkyrieBanner>();
-            animationType = 48;
+            AnimationType = 48;
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

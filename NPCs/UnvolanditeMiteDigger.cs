@@ -31,10 +31,13 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
             NPC.damage = (int)(NPC.damage * 0.8f);
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
         {
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore1"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore2"), NPC.scale);
+            if (NPC.life <= 0)
+            {
+                Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore1").Type, NPC.scale);
+                Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore2").Type, NPC.scale);
+            }
         }
         public override void CustomBehavior()
         {
@@ -98,10 +101,6 @@ namespace ExxoAvalonOrigins.NPCs
                 NPC.localAI[1] = 1f;
                 Init();
             }
-            //if (npc.ai[3] > 0f)
-            //{
-            //    npc.realLife = (int)npc.ai[3];
-            //}
             if (!head && NPC.timeLeft < 300)
             {
                 NPC.timeLeft = 300;
@@ -116,44 +115,9 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                //if (!tail && npc.ai[0] == 0f)
-                //{
-                //    if (head)
-                //    {
-                //        npc.ai[3] = (float)npc.whoAmI;
-                //        npc.realLife = npc.whoAmI;
-                //        npc.ai[2] = (float)Main.rand.Next(minLength, maxLength + 1);
-                //        npc.ai[0] = (float)NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)npc.height), bodyType, npc.whoAmI);
-                //    }
-                //    else if (npc.ai[2] > 0f)
-                //    {
-                //        npc.ai[0] = (float)NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)npc.height), npc.type, npc.whoAmI);
-                //    }
-                //    else
-                //    {
-                //        npc.ai[0] = (float)NPC.NewNPC((int)(npc.position.X + (float)(npc.width / 2)), (int)(npc.position.Y + (float)npc.height), tailType, npc.whoAmI);
-                //    }
-                //    Main.npc[(int)npc.ai[0]].ai[3] = npc.ai[3];
-                //    Main.npc[(int)npc.ai[0]].realLife = npc.realLife;
-                //    Main.npc[(int)npc.ai[0]].ai[1] = (float)npc.whoAmI;
-                //    Main.npc[(int)npc.ai[0]].ai[2] = npc.ai[2] - 1f;
-                //    npc.netUpdate = true;
-                //}
-                //if (!head && (!Main.npc[(int)npc.ai[1]].active || Main.npc[(int)npc.ai[1]].type != headType && Main.npc[(int)npc.ai[1]].type != bodyType))
-                //{
-                //    npc.life = 0;
-                //    npc.HitEffect(0, 10.0);
-                //    npc.active = false;
-                //}
-                //if (!tail && (!Main.npc[(int)npc.ai[0]].active || Main.npc[(int)npc.ai[0]].type != bodyType && Main.npc[(int)npc.ai[0]].type != tailType))
-                //{
-                //    npc.life = 0;
-                //    npc.HitEffect(0, 10.0);
-                //    npc.active = false;
-                //}
                 if (!NPC.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
+                    NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
                 }
             }
             int num180 = (int)(NPC.position.X / 16f) - 1;
@@ -183,7 +147,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     for (int num185 = num182; num185 < num183; num185++)
                     {
-                        if (Main.tile[num184, num185] != null && (Main.tile[num184, num185].nactive() && (Main.tileSolid[(int)Main.tile[num184, num185].TileType] || Main.tileSolidTop[(int)Main.tile[num184, num185].TileType] && Main.tile[num184, num185].TileFrameY == 0) || Main.tile[num184, num185].liquid > 64))
+                        if (Main.tile[num184, num185] != null && (Main.tile[num184, num185].HasUnactuatedTile && (Main.tileSolid[(int)Main.tile[num184, num185].TileType] || Main.tileSolidTop[(int)Main.tile[num184, num185].TileType] && Main.tile[num184, num185].TileFrameY == 0) || Main.tile[num184, num185].LiquidAmount > 64))
                         {
                             Vector2 vector17;
                             vector17.X = (float)(num184 * 16);
@@ -191,7 +155,7 @@ namespace ExxoAvalonOrigins.NPCs
                             if (NPC.position.X + (float)NPC.width > vector17.X && NPC.position.X < vector17.X + 16f && NPC.position.Y + (float)NPC.height > vector17.Y && NPC.position.Y < vector17.Y + 16f)
                             {
                                 flag18 = true;
-                                if (Main.rand.NextBool(100) && NPC.behindTiles && Main.tile[num184, num185].nactive())
+                                if (Main.rand.NextBool(100) && NPC.behindTiles && Main.tile[num184, num185].HasUnactuatedTile)
                                 {
                                     WorldGen.KillTile(num184, num185, true, true, false);
                                 }

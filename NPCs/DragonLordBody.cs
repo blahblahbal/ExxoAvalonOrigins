@@ -82,7 +82,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (!NPC.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, -1f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.DamageNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, -1f, 0f, 0f, 0);
                 }
             }
             var num193 = (int)(NPC.position.X / 16f) - 1;
@@ -112,7 +112,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     for (var num198 = num195; num198 < num196; num198++)
                     {
-                        if (Main.tile[num197, num198] != null && ((Main.tile[num197, num198].nactive() && (Main.tileSolid[Main.tile[num197, num198].TileType] || (Main.tileSolidTop[Main.tile[num197, num198].TileType] && Main.tile[num197, num198].TileFrameY == 0))) || Main.tile[num197, num198].liquid > 64))
+                        if (Main.tile[num197, num198] != null && ((Main.tile[num197, num198].HasUnactuatedTile && (Main.tileSolid[Main.tile[num197, num198].TileType] || (Main.tileSolidTop[Main.tile[num197, num198].TileType] && Main.tile[num197, num198].TileFrameY == 0))) || Main.tile[num197, num198].liquid > 64))
                         {
                             Vector2 vector20;
                             vector20.X = num197 * 16;
@@ -120,7 +120,7 @@ namespace ExxoAvalonOrigins.NPCs
                             if (NPC.position.X + NPC.width > vector20.X && NPC.position.X < vector20.X + 16f && NPC.position.Y + NPC.height > vector20.Y && NPC.position.Y < vector20.Y + 16f)
                             {
                                 flag18 = true;
-                                if (Main.rand.Next(100) == 0 && Main.tile[num197, num198].nactive())
+                                if (Main.rand.Next(100) == 0 && Main.tile[num197, num198].HasUnactuatedTile)
                                 {
                                     WorldGen.KillTile(num197, num198, true, true, false);
                                 }

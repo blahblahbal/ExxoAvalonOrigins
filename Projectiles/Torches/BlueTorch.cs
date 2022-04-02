@@ -61,7 +61,7 @@ namespace ExxoAvalonOrigins.Projectiles.Torches
                     Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                     Projectile.active = false;
                 }
-                if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1]IsHalfBlock)
+                if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1].IsHalfBlock)
                 {
                     Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                     Projectile.active = false;

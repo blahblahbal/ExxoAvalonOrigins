@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -50,19 +51,11 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.7f);
             NPC.damage = (int)(NPC.damage * 0.7f);
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(75) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<GreekExtinguisher>(), 1, false, 0, false);
-            }
-            if (Main.rand.Next(10) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<SoulofBlight>(), Main.rand.Next(4, 7), false, 0, false);
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GreekExtinguisher>(), 60));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulofBlight>(), 10));
         }
-
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode ? 0.03f : 0f;
@@ -129,11 +122,11 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CursedMagmaSkeletonHelmet"), 1.2f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1"), 1.2f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2"), 1.2f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1"), 1.2f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2"), 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CursedMagmaSkeletonHelmet").Type, 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.2f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.2f);
                 for (int i = 0; i < 20; i++)
                 {
                     int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);

@@ -483,7 +483,7 @@ namespace ExxoAvalonOrigins.Projectiles.Summon
                     {
                         var num458 = (int)(Projectile.position.X + Projectile.width / 2) / 16;
                         var num459 = (int)(Projectile.position.Y + Projectile.height) / 16 + 1;
-                        if (WorldGen.SolidTile(num458, num459) || Main.tile[num458, num459]IsHalfBlock || Main.tile[num458, num459].slope() > 0)
+                        if (WorldGen.SolidTile(num458, num459) || Main.tile[num458, num459].IsHalfBlock || Main.tile[num458, num459].slope() > 0)
                         {
                             try
                             {

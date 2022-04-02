@@ -163,7 +163,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (!NPC.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, -1f, 0f, 0f, 0);
+                    NetMessage.SendData(MessageID.DamageNPC, -1, -1, NetworkText.FromLiteral(""), NPC.whoAmI, -1f, 0f, 0f, 0);
                 }
             }
             var num193 = (int)(NPC.position.X / 16f) - 1;

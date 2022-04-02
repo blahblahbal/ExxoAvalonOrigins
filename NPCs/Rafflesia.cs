@@ -33,12 +33,9 @@ namespace ExxoAvalonOrigins.NPCs
             //drawOffsetY = 10;
         }
 
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot loot)
         {
-            //if (Main.rand.Next(2) == 0)
-            //{
-            //    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<YuckyBit>(), 1, false, 0, false);
-            //}
+
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -70,7 +67,7 @@ namespace ExxoAvalonOrigins.NPCs
             if (NPC.ai[1] == 1)
             {
                 NPC.ai[2]++;
-                if (NPC.ai[2] == 60 || NPC.ai[2] == 120 || NPC.ai[2] == 180) NPC.NewNPC((int)NPC.Center.X, (int)NPC.position.Y + 8, NPCID.Bee);
+                if (NPC.ai[2] == 60 || NPC.ai[2] == 120 || NPC.ai[2] == 180) NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.position.Y + 8, NPCID.Bee);
                 if (NPC.ai[2] == 188)
                 {
                     NPC.ai[2] = 0;
@@ -118,7 +115,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             //if (npc.life <= 0)
             //{
-            //    Gore.NewGore(npc.position, npc.velocity * 0.8f, Mod.Find<ModGore>("Gores/Bactus"), 1f);
+            //    Gore.NewGore(npc.position, npc.velocity * 0.8f, Mod.Find<ModGore>("Gores/Rafflesia").Type, 1f);
             //}
         }
     }

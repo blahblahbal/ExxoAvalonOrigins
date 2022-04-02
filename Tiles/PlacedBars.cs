@@ -73,7 +73,7 @@ namespace ExxoAvalonOrigins.Tiles
                     break;
                 case 7:
                     toDrop = ModContent.ItemType<VorazylcumBar>();
-                    dustType = DustID.VilePowder;
+                    dustType = DustID.CorruptGibsPowder;
                     break;
                 case 8:
                     toDrop = ModContent.ItemType<TritanoriumBar>();

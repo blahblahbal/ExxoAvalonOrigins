@@ -20,7 +20,7 @@ namespace ExxoAvalonOrigins.NPCs
         }
         public override void SetDefaults()
         {
-            NPC.damage = 66;
+            NPC.damage = 80;
             NPC.lifeMax = 1600;
             NPC.defense = 30;
             NPC.width = 30;
@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Color.White;
         }
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 v, Color drawColor)
         {
             Vector2 vector7 = new Vector2(NPC.Center.X, NPC.Center.Y);
             float num29 = NPC.ai[1] - vector7.X;
@@ -72,7 +72,7 @@ namespace ExxoAvalonOrigins.NPCs
                     num30 = NPC.ai[2] - vector7.Y;
 
                     Color color7 = Lighting.GetColor((int)vector7.X / 16, (int)(vector7.Y / 16f));
-                    Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value, new Vector2(vector7.X - Main.screenPosition.X, vector7.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Width, Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Height)), Color.White, rotation7, new Vector2(Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Width * 0.5f, Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value, new Vector2(vector7.X - v.X, vector7.Y - v.Y), new Rectangle?(new Rectangle(0, 0, Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Width, Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Height)), Color.White, rotation7, new Vector2(Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Width * 0.5f, Mod.Assets.Request<Texture2D>("NPCs/EctoArm").Value.Height * 0.5f), 1f, SpriteEffects.None, 0f);
                 }
             }
             return true;

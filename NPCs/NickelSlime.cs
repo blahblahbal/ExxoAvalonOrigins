@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -28,10 +29,9 @@ namespace ExxoAvalonOrigins.NPCs
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.NickelSlimeBanner>();
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<NickelOre>(), Main.rand.Next(15, 25), false, 0, false);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NickelOre>(), 1, 15, 25));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -86,7 +86,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon ? 0.00526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && (Main.hardMode || WorldGen.SavedOreTiers.Iron == ModContent.TileType<Tiles.Ores.NickelOre>()) ? 0.00526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

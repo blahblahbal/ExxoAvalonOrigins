@@ -39,11 +39,6 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
             NPC.damage = (int)(NPC.damage * 0.65f);
         }
-
-        public override void NPCLoot()
-        {
-        }
-
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.player.Avalon().ZoneDarkMatter && !spawnInfo.player.InPillarZone() && ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode)
@@ -80,9 +75,9 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyTable"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyChair"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyChair"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyTable").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyChair").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyChair").Type, 1f);
                 for (int i = 0; i < 30; i++)
                 {
                     int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.SoulofLight>(), 0f, 0f, 0, default(Color), 1f);

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -20,7 +21,7 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.height = 38;
             NPC.aiStyle = -1;
             NPC.timeLeft = 1750;
-            animationType = 75;
+            AnimationType = 75;
             NPC.damage = 62;
             NPC.defense = 28;
             NPC.HitSound = SoundID.NPCHit5;
@@ -44,16 +45,10 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Main.hardMode && !spawnInfo.player.InPillarZone() && spawnInfo.player.ZoneHallow && spawnInfo.spawnTileY < (Main.maxTilesY - 200) ? 0.13f : 0f;
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(3) == 0)
-            {
-                Item.NewItem(NPC.position, new Vector2(NPC.width, NPC.height), ItemID.PixieDust, 1);
-            }
-            if (Main.rand.Next(50) == 0)
-            {
-                Item.NewItem(NPC.position, new Vector2(NPC.width, NPC.height), ItemID.Megaphone, 1);
-            }
+            npcLoot.Add(ItemDropRule.Common(ItemID.PixieDust, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Megaphone, 50));
         }
         public override void AI()
         {
@@ -211,7 +206,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if (Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height))
                     {
-                        NPC.NewNPC((int)(NPC.position.X + (float)(NPC.width / 2) + NPC.velocity.X), (int)(NPC.position.Y + (float)(NPC.height / 2) + NPC.velocity.Y), ModContent.NPCType<NPCs.HallowSpit>(), 0);
+                        NPC.NewNPC(NPC.GetSpawnSourceForProjectileNPC(), (int)(NPC.position.X + (float)(NPC.width / 2) + NPC.velocity.X), (int)(NPC.position.Y + (float)(NPC.height / 2) + NPC.velocity.Y), ModContent.NPCType<NPCs.HallowSpit>(), 0);
                     }
                     NPC.localAI[0] = 0f;
                 }

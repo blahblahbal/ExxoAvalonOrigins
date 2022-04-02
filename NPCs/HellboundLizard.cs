@@ -259,7 +259,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         return;
                     }
-                    if (Main.tile[num96, num93].nactive() && Main.tileSolid[(int)Main.tile[num96, num93].type])
+                    if (Main.tile[num96, num93].HasUnactuatedTile && Main.tileSolid[(int)Main.tile[num96, num93].type])
                     {
                         flag11 = true;
                         break;
@@ -305,14 +305,14 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     Main.tile[num98 - num97, num99 - 3] = new Tile();
                 }
-                if ((float)(num98 * 16) < vector10.X + (float)npc.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].nactive() && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].type] && !Main.tileSolidTop[(int)Main.tile[num98, num99].type]) || (Main.tile[num98, num99 - 1]IsHalfBlock && Main.tile[num98, num99 - 1].nactive())) && (!Main.tile[num98, num99 - 1].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].type] || (Main.tile[num98, num99 - 1]IsHalfBlock && (!Main.tile[num98, num99 - 4].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].type]))) && (!Main.tile[num98, num99 - 2].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].type]) && (!Main.tile[num98, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].type]) && (!Main.tile[num98 - num97, num99 - 3].nactive() || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].type]))
+                if ((float)(num98 * 16) < vector10.X + (float)npc.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].HasUnactuatedTile && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].type] && !Main.tileSolidTop[(int)Main.tile[num98, num99].type]) || (Main.tile[num98, num99 - 1].IsHalfBlock && Main.tile[num98, num99 - 1].HasUnactuatedTile)) && (!Main.tile[num98, num99 - 1].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].type] || (Main.tile[num98, num99 - 1].IsHalfBlock && (!Main.tile[num98, num99 - 4].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].type]))) && (!Main.tile[num98, num99 - 2].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].type]) && (!Main.tile[num98, num99 - 3].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].type] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].type]) && (!Main.tile[num98 - num97, num99 - 3].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].type]))
                 {
                     float num100 = (float)(num99 * 16);
-                    if (Main.tile[num98, num99]IsHalfBlock)
+                    if (Main.tile[num98, num99].IsHalfBlock)
                     {
                         num100 += 80f; //f8
                     }
-                    if (Main.tile[num98, num99 - 1]IsHalfBlock)
+                    if (Main.tile[num98, num99 - 1].IsHalfBlock)
                     {
                         num100 -= 80f; //f8
                     }
@@ -376,8 +376,8 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     Main.tile[num103 - npc.direction, num104 + 1] = new Tile();
                 }
-                Main.tile[num103, num104 + 1]IsHalfBlock;
-                if (Main.tile[num103, num104 - 1].nactive() && (Main.tile[num103, num104 - 1].type == 10 || Main.tile[num103, num104 - 1].type == 485) && flag5)
+                Main.tile[num103, num104 + 1].IsHalfBlock;
+                if (Main.tile[num103, num104 - 1].HasUnactuatedTile && (Main.tile[num103, num104 - 1].type == 10 || Main.tile[num103, num104 - 1].type == 485) && flag5)
                 {
                     npc.ai[2] += 1f;
                     npc.ai[3] = 0f;
@@ -435,9 +435,9 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     if ((npc.velocity.X < 0f && npc.spriteDirection == -1) || (npc.velocity.X > 0f && npc.spriteDirection == 1))
                     {
-                        if (Main.tile[num103, num104 - 2].nactive() && Main.tileSolid[(int)Main.tile[num103, num104 - 2].type])
+                        if (Main.tile[num103, num104 - 2].HasUnactuatedTile && Main.tileSolid[(int)Main.tile[num103, num104 - 2].type])
                         {
-                            if (Main.tile[num103, num104 - 3].nactive() && Main.tileSolid[(int)Main.tile[num103, num104 - 3].type])
+                            if (Main.tile[num103, num104 - 3].HasUnactuatedTile && Main.tileSolid[(int)Main.tile[num103, num104 - 3].type])
                             {
                                 npc.velocity.Y = -8f;
                                 npc.netUpdate = true;
@@ -448,17 +448,17 @@ namespace ExxoAvalonOrigins.NPCs
                                 npc.netUpdate = true;
                             }
                         }
-                        else if (Main.tile[num103, num104 - 1].nactive() && Main.tileSolid[(int)Main.tile[num103, num104 - 1].type])
+                        else if (Main.tile[num103, num104 - 1].HasUnactuatedTile && Main.tileSolid[(int)Main.tile[num103, num104 - 1].type])
                         {
                             npc.velocity.Y = -6f;
                             npc.netUpdate = true;
                         }
-                        else if (npc.position.Y + (float)npc.height - (float)(num104 * 16) > 20f && Main.tile[num103, num104].nactive() && !Main.tile[num103, num104].topSlope() && Main.tileSolid[(int)Main.tile[num103, num104].type])
+                        else if (npc.position.Y + (float)npc.height - (float)(num104 * 16) > 20f && Main.tile[num103, num104].HasUnactuatedTile && !Main.tile[num103, num104].topSlope() && Main.tileSolid[(int)Main.tile[num103, num104].type])
                         {
                             npc.velocity.Y = -5f;
                             npc.netUpdate = true;
                         }
-                        else if (npc.directionY < 0 && npc.type != 67 && (!Main.tile[num103, num104 + 1].nactive() || !Main.tileSolid[(int)Main.tile[num103, num104 + 1].type]) && (!Main.tile[num103 + npc.direction, num104 + 1].nactive() || !Main.tileSolid[(int)Main.tile[num103 + npc.direction, num104 + 1].type]))
+                        else if (npc.directionY < 0 && npc.type != 67 && (!Main.tile[num103, num104 + 1].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num103, num104 + 1].type]) && (!Main.tile[num103 + npc.direction, num104 + 1].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num103 + npc.direction, num104 + 1].type]))
                         {
                             npc.velocity.Y = -8f;
                             npc.velocity.X = npc.velocity.X * 1.5f;
@@ -506,7 +506,7 @@ namespace ExxoAvalonOrigins.NPCs
                     int num112 = Main.rand.Next(num106 - num109, num106 + num109);
                     for (int num113 = num112; num113 < num106 + num109; num113++)
                     {
-                        if ((num113 < num106 - 4 || num113 > num106 + 4 || num111 < num105 - 4 || num111 > num105 + 4) && (num113 < num108 - 1 || num113 > num108 + 1 || num111 < num107 - 1 || num111 > num107 + 1) && Main.tile[num111, num113].nactive())
+                        if ((num113 < num106 - 4 || num113 > num106 + 4 || num111 < num105 - 4 || num111 > num105 + 4) && (num113 < num108 - 1 || num113 > num108 + 1 || num111 < num107 - 1 || num111 > num107 + 1) && Main.tile[num111, num113].HasUnactuatedTile)
                         {
                             bool flag15 = true;
                             if (npc.type == 32 && Main.tile[num111, num113 - 1].wall == 0)
@@ -537,7 +537,7 @@ namespace ExxoAvalonOrigins.NPCs
             }
             return 0f;
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
         {
             for (int i = 0; i < 20; i++)
             {
@@ -548,12 +548,12 @@ namespace ExxoAvalonOrigins.NPCs
             }
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore1"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3"), 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore4"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore1").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3").Type, 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore4").Type, 1f);
             }
         }
     }

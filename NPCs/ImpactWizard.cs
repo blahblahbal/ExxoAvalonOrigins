@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -38,12 +39,9 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
             NPC.damage = (int)(NPC.damage * 0.55f);
         }
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(10) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Phantoplasm>(), 1, false, 0, false);
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Phantoplasm>(), 10));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -121,14 +119,14 @@ namespace ExxoAvalonOrigins.NPCs
                     var num254 = Main.rand.Next(num248 - num251, num248 + num251);
                     for (var num255 = num254; num255 < num248 + num251; num255++)
                     {
-                        if ((num255 < num248 - 4 || num255 > num248 + 4 || num253 < num247 - 4 || num253 > num247 + 4) && (num255 < num250 - 1 || num255 > num250 + 1 || num253 < num249 - 1 || num253 > num249 + 1) && Main.tile[num253, num255].nactive())
+                        if ((num255 < num248 - 4 || num255 > num248 + 4 || num253 < num247 - 4 || num253 > num247 + 4) && (num255 < num250 - 1 || num255 > num250 + 1 || num253 < num249 - 1 || num253 > num249 + 1) && Main.tile[num253, num255].HasUnactuatedTile)
                         {
                             var flag29 = true;
                             if (!Main.wallDungeon[Main.tile[num253, num255 - 1].WallType])
                             {
                                 flag29 = false;
                             }
-                            else if (Main.tile[num253, num255 - 1].lava())
+                            else if (Main.tile[num253, num255 - 1].LiquidType == LiquidID.Lava)
                             {
                                 flag29 = false;
                             }
@@ -164,7 +162,7 @@ namespace ExxoAvalonOrigins.NPCs
                         num258 *= 1.4f;
                         if (!NPC.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().silenced)
                         {
-                            var num262 = Projectile.NewProjectile(vector23.X, vector23.Y, num257, num258, ModContent.ProjectileType<Projectiles.ImpactSphere>(), Main.expertMode ? 35 : 65, 0f, Main.myPlayer, 0f, 0f);
+                            var num262 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector23.X, vector23.Y, num257, num258, ModContent.ProjectileType<Projectiles.ImpactSphere>(), Main.expertMode ? 35 : 65, 0f, Main.myPlayer, 0f, 0f);
                             Main.projectile[num262].timeLeft = 300;
                         }
                         NPC.localAI[0] = 0f;

@@ -31,7 +31,7 @@ namespace ExxoAvalonOrigins.Items.Tools
             if (player.whoAmI == Main.myPlayer)
             {
                 if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 &&
-                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].nactive() ||
+                    (!Main.tile[Player.tileTargetX, Player.tileTargetY].HasUnactuatedTile ||
                      !Main.tileSolid[Main.tile[Player.tileTargetX, Player.tileTargetY].type] ||
                      Main.tileSolidTop[Main.tile[Player.tileTargetX, Player.tileTargetY].type]))
                 {
@@ -69,7 +69,7 @@ namespace ExxoAvalonOrigins.Items.Tools
                     player.showItemIcon = true;
                     if (player.itemTime == 0 && player.itemAnimation > 0 && player.controlUseItem)
                     {
-                        if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 && (!Main.tile[Player.tileTargetX, Player.tileTargetY].nactive() || !Main.tileSolid[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type] || Main.tileSolidTop[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type]))
+                        if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid < 200 && (!Main.tile[Player.tileTargetX, Player.tileTargetY].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type] || Main.tileSolidTop[(int)Main.tile[Player.tileTargetX, Player.tileTargetY].type]))
                         {
                             if (Main.tile[Player.tileTargetX, Player.tileTargetY].liquid == 0 || Main.tile[Player.tileTargetX, Player.tileTargetY].liquidType() == 2)
                             {

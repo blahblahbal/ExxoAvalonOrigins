@@ -1,5 +1,6 @@
 ﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,10 +29,9 @@ namespace ExxoAvalonOrigins.NPCs
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.NaquadahSlimeBanner>();
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<NaquadahOre>(), Main.rand.Next(15, 22), false, 0, false);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NaquadahOre>(), 1, 15, 22));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {

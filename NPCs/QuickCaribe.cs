@@ -64,11 +64,11 @@ namespace ExxoAvalonOrigins.NPCs
                     var num1213 = (int)vector162.X / 16;
                     var num1214 = (int)vector162.Y / 16;
                     var num1215 = 10;
-                    if (Main.tile[num1213, num1214 + 1] == null)
-                    {
-                        Main.tile[num1213, num1214 + 1] = new Tile();
-                    }
-                    if (Main.tile[num1213, num1214 + 1].liquid < 128)
+                    //if (Main.tile[num1213, num1214 + 1] == null)
+                    //{
+                    //    Main.tile[num1213, num1214 + 1] = new Tile();
+                    //}
+                    if (Main.tile[num1213, num1214 + 1].LiquidAmount < 128)
                     {
                         num1215 = 5;
                     }
@@ -198,19 +198,19 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 var num1219 = (int)(NPC.position.X + NPC.width / 2) / 16;
                 var num1220 = (int)(NPC.position.Y + NPC.height / 2) / 16;
-                if (Main.tile[num1219, num1220 - 1] == null)
-                {
-                    Main.tile[num1219, num1220 - 1] = new Tile();
-                }
-                if (Main.tile[num1219, num1220 + 1] == null)
-                {
-                    Main.tile[num1219, num1220 + 1] = new Tile();
-                }
-                if (Main.tile[num1219, num1220 + 2] == null)
-                {
-                    Main.tile[num1219, num1220 + 2] = new Tile();
-                }
-                if (Main.tile[num1219, num1220 - 1].liquid > 128)
+                //if (Main.tile[num1219, num1220 - 1] == null)
+                //{
+                //    Main.tile[num1219, num1220 - 1] = new Tile();
+                //}
+                //if (Main.tile[num1219, num1220 + 1] == null)
+                //{
+                //    Main.tile[num1219, num1220 + 1] = new Tile();
+                //}
+                //if (Main.tile[num1219, num1220 + 2] == null)
+                //{
+                //    Main.tile[num1219, num1220 + 2] = new Tile();
+                //}
+                if (Main.tile[num1219, num1220 - 1].LiquidType > 128)
                 {
                     if (Main.tile[num1219, num1220 + 1].HasTile)
                     {

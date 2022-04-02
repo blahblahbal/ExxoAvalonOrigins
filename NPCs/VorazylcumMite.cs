@@ -34,10 +34,13 @@ namespace ExxoAvalonOrigins.NPCs
         {
             target.AddBuff(ModContent.BuffType<Buffs.VorazylcumThorned>(), 10 * 60);
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
         {
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore1"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore2"), NPC.scale);
+            if (NPC.life <= 0)
+            {
+                Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore1").Type, NPC.scale);
+                Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore2").Type, NPC.scale);
+            }
         }
         public override void AI()
         {

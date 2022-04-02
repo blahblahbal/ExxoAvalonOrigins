@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -27,12 +28,10 @@ namespace ExxoAvalonOrigins.NPCs
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<Items.Banners.PlatinumSlimeBanner>();
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.PlatinumOre, Main.rand.Next(10, 20), false, 0, false);
+            npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumOre, 1, 10, 20));
         }
-
         public override void FindFrame(int frameHeight)
         {
             var num2 = 0;
@@ -81,7 +80,7 @@ namespace ExxoAvalonOrigins.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && (Main.hardMode || WorldGen.GoldTierOre == TileID.Platinum) ? 0.00526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
+            return spawnInfo.player.ZoneRockLayerHeight && !spawnInfo.player.ZoneDungeon && (Main.hardMode || WorldGen.SavedOreTiers.Gold == TileID.Platinum) ? 0.00526f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
     }
 }

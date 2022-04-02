@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs
 {
@@ -15,16 +16,12 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerHead"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerHead").Type, 1f);
             }
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.rand.Next(25) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<MechanicalWhoopieCushion>(), 1);
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MechanicalWhoopieCushion>(), 25));
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -75,7 +72,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerBody"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerBody").Type, 1f);
             }
         }
 
@@ -121,7 +118,7 @@ namespace ExxoAvalonOrigins.NPCs
         {
             if (NPC.life <= 0)
             {
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerTail"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerTail").Type, 1f);
             }
         }
 
@@ -238,15 +235,15 @@ namespace ExxoAvalonOrigins.NPCs
                         NPC.ai[3] = (float)NPC.whoAmI;
                         NPC.realLife = NPC.whoAmI;
                         NPC.ai[2] = (float)Main.rand.Next(minLength, maxLength + 1);
-                        NPC.ai[0] = (float)NPC.NewNPC((int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), bodyType, NPC.whoAmI);
+                        NPC.ai[0] = (float)NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), bodyType, NPC.whoAmI);
                     }
                     else if (NPC.ai[2] > 0f)
                     {
-                        NPC.ai[0] = (float)NPC.NewNPC((int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), NPC.type, NPC.whoAmI);
+                        NPC.ai[0] = (float)NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), NPC.type, NPC.whoAmI);
                     }
                     else
                     {
-                        NPC.ai[0] = (float)NPC.NewNPC((int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), tailType, NPC.whoAmI);
+                        NPC.ai[0] = (float)NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)(NPC.position.X + (float)(NPC.width / 2)), (int)(NPC.position.Y + (float)NPC.height), tailType, NPC.whoAmI);
                     }
                     Main.npc[(int)NPC.ai[0]].ai[3] = NPC.ai[3];
                     Main.npc[(int)NPC.ai[0]].realLife = NPC.realLife;
@@ -268,7 +265,7 @@ namespace ExxoAvalonOrigins.NPCs
                 }
                 if (!NPC.active && Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
+                    NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f, 0f, 0f, 0, 0, 0);
                 }
             }
             int num180 = (int)(NPC.position.X / 16f) - 1;
@@ -298,7 +295,7 @@ namespace ExxoAvalonOrigins.NPCs
                 {
                     for (int num185 = num182; num185 < num183; num185++)
                     {
-                        if (Main.tile[num184, num185] != null && (Main.tile[num184, num185].nactive() && (Main.tileSolid[(int)Main.tile[num184, num185].TileType] || Main.tileSolidTop[(int)Main.tile[num184, num185].TileType] && Main.tile[num184, num185].TileFrameY == 0) || Main.tile[num184, num185].liquid > 64))
+                        if (Main.tile[num184, num185] != null && (Main.tile[num184, num185].HasUnactuatedTile && (Main.tileSolid[(int)Main.tile[num184, num185].TileType] || Main.tileSolidTop[(int)Main.tile[num184, num185].TileType] && Main.tile[num184, num185].TileFrameY == 0) || Main.tile[num184, num185].LiquidAmount > 64))
                         {
                             Vector2 vector17;
                             vector17.X = (float)(num184 * 16);
@@ -306,7 +303,7 @@ namespace ExxoAvalonOrigins.NPCs
                             if (NPC.position.X + (float)NPC.width > vector17.X && NPC.position.X < vector17.X + 16f && NPC.position.Y + (float)NPC.height > vector17.Y && NPC.position.Y < vector17.Y + 16f)
                             {
                                 flag18 = true;
-                                if (Main.rand.NextBool(100) && NPC.behindTiles && Main.tile[num184, num185].nactive())
+                                if (Main.rand.NextBool(100) && NPC.behindTiles && Main.tile[num184, num185].HasUnactuatedTile)
                                 {
                                     WorldGen.KillTile(num184, num185, true, true, false);
                                 }

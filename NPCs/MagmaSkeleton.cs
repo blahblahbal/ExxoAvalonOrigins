@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,9 +30,17 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.buffImmune[BuffID.Confused] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
         }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.Next(3) == 0) target.AddBuff(BuffID.OnFire, 60 * 7);
+        }
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255);
+        }
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.Vortex>(), 30));
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
@@ -89,23 +98,23 @@ namespace ExxoAvalonOrigins.NPCs
         {
             return Main.hardMode && !spawnInfo.player.ZoneDungeon && spawnInfo.player.ZoneRockLayerHeight ? 0.1f * ExxoAvalonOriginsGlobalNPC.endoSpawnRate : 0f;
         }
-        public override void NPCLoot()
+        public override void HitEffect(int hitDirection, double damage)
         {
-            for (int i = 0; i < 20; i++)
-            {
-                int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), 1f);
-                Main.dust[num890].velocity *= 5f;
-                Main.dust[num890].scale = 1.2f;
-                Main.dust[num890].noGravity = true;
-            }
+            
             if (NPC.life <= 0)
             {
+                for (int i = 0; i < 20; i++)
+                {
+                    int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), 1f);
+                    Main.dust[num890].velocity *= 5f;
+                    Main.dust[num890].scale = 1.2f;
+                    Main.dust[num890].noGravity = true;
+                }
                 Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
                 Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
-                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MagmaHelmet"), 1f);
-                //Gore.NewGore(npc.position, npc.velocity, Mod.Find<ModGore>("Gores/MagmaChestplate"), 1f);
+                Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MagmaHelmet").Type, 1f);
             }
         }
     }

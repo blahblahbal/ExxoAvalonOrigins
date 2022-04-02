@@ -43,7 +43,7 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.knockBackResist = 0.5f;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            animationType = 22;
+            AnimationType = 22;
         }
         public override string TownNPCName()
         {
@@ -487,14 +487,14 @@ namespace ExxoAvalonOrigins.NPCs
                         {
                             Main.tile[num225, num226 + 1] = new Tile();
                         }
-                        if (((Main.tile[num225, num226].nactive() && !Main.tile[num225, num226].topSlope() && !Main.tile[num225, num226 - 1].topSlope() && ((Main.tileSolid[Main.tile[num225, num226].TileType] && !Main.tileSolidTop[Main.tile[num225, num226].TileType]) || (flag26 && Main.tileSolidTop[Main.tile[num225, num226].TileType] && Main.tile[num225, num226].TileFrameY == 0 && (!Main.tileSolid[Main.tile[num225, num226 - 1].TileType] || !Main.tile[num225, num226 - 1].nactive()) && Main.tile[num225, num226].TileType != 16 && Main.tile[num225, num226].TileType != 18 && Main.tile[num225, num226].TileType != 134 && Main.tile[num225, num226].TileType != 360))) || (Main.tile[num225, num226 - 1]IsHalfBlock && Main.tile[num225, num226 - 1].nactive())) && (!Main.tile[num225, num226 - 1].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 1].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 1].TileType] || (Main.tile[num225, num226 - 1]IsHalfBlock && (!Main.tile[num225, num226 - 4].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 4].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 4].TileType]))) && (!Main.tile[num225, num226 - 2].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 2].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 2].TileType]) && (!Main.tile[num225, num226 - 3].nactive() || !Main.tileSolid[Main.tile[num225, num226 - 3].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 3].TileType]) && (!Main.tile[num225 - num224, num226 - 3].nactive() || !Main.tileSolid[Main.tile[num225 - num224, num226 - 3].TileType] || Main.tileSolidTop[Main.tile[num225 - num224, num226 - 3].TileType]))
+                        if (((Main.tile[num225, num226].HasUnactuatedTile && !Main.tile[num225, num226].TopSlope && !Main.tile[num225, num226 - 1].TopSlope && ((Main.tileSolid[Main.tile[num225, num226].TileType] && !Main.tileSolidTop[Main.tile[num225, num226].TileType]) || (flag26 && Main.tileSolidTop[Main.tile[num225, num226].TileType] && Main.tile[num225, num226].TileFrameY == 0 && (!Main.tileSolid[Main.tile[num225, num226 - 1].TileType] || !Main.tile[num225, num226 - 1].HasUnactuatedTile) && Main.tile[num225, num226].TileType != 16 && Main.tile[num225, num226].TileType != 18 && Main.tile[num225, num226].TileType != 134 && Main.tile[num225, num226].TileType != 360))) || (Main.tile[num225, num226 - 1].IsHalfBlock && Main.tile[num225, num226 - 1].HasUnactuatedTile)) && (!Main.tile[num225, num226 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num225, num226 - 1].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 1].TileType] || (Main.tile[num225, num226 - 1].IsHalfBlock && (!Main.tile[num225, num226 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num225, num226 - 4].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 4].TileType]))) && (!Main.tile[num225, num226 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num225, num226 - 2].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 2].TileType]) && (!Main.tile[num225, num226 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num225, num226 - 3].TileType] || Main.tileSolidTop[Main.tile[num225, num226 - 3].TileType]) && (!Main.tile[num225 - num224, num226 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num225 - num224, num226 - 3].TileType] || Main.tileSolidTop[Main.tile[num225 - num224, num226 - 3].TileType]))
                         {
                             float num227 = num226 * 16;
-                            if (Main.tile[num225, num226]IsHalfBlock)
+                            if (Main.tile[num225, num226].IsHalfBlock)
                             {
                                 num227 += 8f;
                             }
-                            if (Main.tile[num225, num226 - 1]IsHalfBlock)
+                            if (Main.tile[num225, num226 - 1].IsHalfBlock)
                             {
                                 num227 -= 8f;
                             }
@@ -559,8 +559,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         Main.tile[num229 + NPC.direction, num230 + 1] = new Tile();
                     }
-                    Main.tile[num229 - NPC.direction, num230 + 1]IsHalfBlock;
-                    if (NPC.townNPC && Main.tile[num229, num230 - 2].nactive() && Main.tile[num229, num230 - 2].TileType == 10 && (Main.rand.Next(10) == 0 || flag22))
+                    if (NPC.townNPC && Main.tile[num229, num230 - 2].HasUnactuatedTile && Main.tile[num229, num230 - 2].TileType == 10 && (Main.rand.Next(10) == 0 || flag22))
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
@@ -594,7 +593,7 @@ namespace ExxoAvalonOrigins.NPCs
                     {
                         if ((NPC.velocity.X < 0f && NPC.spriteDirection == -1) || (NPC.velocity.X > 0f && NPC.spriteDirection == 1))
                         {
-                            if (Main.tile[num229, num230 - 2].nactive() && Main.tileSolid[Main.tile[num229, num230 - 2].TileType] && !Main.tileSolidTop[Main.tile[num229, num230 - 2].TileType])
+                            if (Main.tile[num229, num230 - 2].HasUnactuatedTile && Main.tileSolid[Main.tile[num229, num230 - 2].TileType] && !Main.tileSolidTop[Main.tile[num229, num230 - 2].TileType])
                             {
                                 if ((NPC.direction == 1 && !Collision.SolidTiles(num229 - 2, num229 - 1, num230 - 5, num230 - 1)) || (NPC.direction == -1 && !Collision.SolidTiles(num229 + 1, num229 + 2, num230 - 5, num230 - 1)))
                                 {
@@ -615,7 +614,7 @@ namespace ExxoAvalonOrigins.NPCs
                                     NPC.netUpdate = true;
                                 }
                             }
-                            else if (Main.tile[num229, num230 - 1].nactive() && Main.tileSolid[Main.tile[num229, num230 - 1].TileType] && !Main.tileSolidTop[Main.tile[num229, num230 - 1].TileType])
+                            else if (Main.tile[num229, num230 - 1].HasUnactuatedTile && Main.tileSolid[Main.tile[num229, num230 - 1].TileType] && !Main.tileSolidTop[Main.tile[num229, num230 - 1].TileType])
                             {
                                 if ((NPC.direction == 1 && !Collision.SolidTiles(num229 - 2, num229 - 1, num230 - 4, num230 - 1)) || (NPC.direction == -1 && !Collision.SolidTiles(num229 + 1, num229 + 2, num230 - 4, num230 - 1)))
                                 {
@@ -636,7 +635,7 @@ namespace ExxoAvalonOrigins.NPCs
                                     NPC.netUpdate = true;
                                 }
                             }
-                            else if (NPC.position.Y + NPC.height - num230 * 16 > 20f && Main.tile[num229, num230].nactive() && Main.tileSolid[Main.tile[num229, num230].TileType] && !Main.tile[num229, num230].topSlope())
+                            else if (NPC.position.Y + NPC.height - num230 * 16 > 20f && Main.tile[num229, num230].HasUnactuatedTile && Main.tileSolid[Main.tile[num229, num230].TileType] && !Main.tile[num229, num230].topSlope())
                             {
                                 if ((NPC.direction == 1 && !Collision.SolidTiles(num229 - 2, num229, num230 - 3, num230 - 1)) || (NPC.direction == -1 && !Collision.SolidTiles(num229, num229 + 2, num230 - 3, num230 - 1)))
                                 {
@@ -683,7 +682,7 @@ namespace ExxoAvalonOrigins.NPCs
                                 {
                                     Main.tile[num229 - NPC.direction, num230 + 4] = new Tile();
                                 }
-                                else if (num216 >= NPC.homeTileX - 35 && num216 <= NPC.homeTileX + 35 && (!Main.tile[num229, num230 + 1].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 1].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 1].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 1].TileType]) && (!Main.tile[num229, num230 + 2].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 2].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 2].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 2].TileType]) && (!Main.tile[num229, num230 + 3].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 3].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 3].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 3].TileType]) && (!Main.tile[num229, num230 + 4].nactive() || !Main.tileSolid[Main.tile[num229, num230 + 4].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 4].nactive() || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 4].TileType]))
+                                else if (num216 >= NPC.homeTileX - 35 && num216 <= NPC.homeTileX + 35 && (!Main.tile[num229, num230 + 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num229, num230 + 1].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 1].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 1].TileType]) && (!Main.tile[num229, num230 + 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num229, num230 + 2].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 2].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 2].TileType]) && (!Main.tile[num229, num230 + 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num229, num230 + 3].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 3].HasTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 3].TileType]) && (!Main.tile[num229, num230 + 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num229, num230 + 4].TileType]) && (!Main.tile[num229 - NPC.direction, num230 + 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num229 - NPC.direction, num230 + 4].TileType]))
                                 {
                                     NPC.direction *= -1;
                                     NPC.velocity.X = NPC.velocity.X * -1f;

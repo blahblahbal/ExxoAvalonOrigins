@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -47,7 +48,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.buffImmune[BuffID.Frostburn] = true;
             NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
             //music = mod.GetSoundSlot(SoundType.Music, "Music/ArmageddonSlime");
-            bossBag = ModContent.ItemType<Items.BossBags.ArmageddonSlimeBossBag>();
+            //bossBag = ModContent.ItemType<Items.BossBags.ArmageddonSlimeBossBag>();
 
             cindersOnce = false;
             newLanding = true;
@@ -135,13 +136,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         teleportSpeed++;
                         Vector2 randomTarget = new Vector2(Main.rand.Next(playerTileCenter.X - 10, playerTileCenter.X + 11), Main.rand.Next(playerTileCenter.Y - 10, playerTileCenter.Y + 1));
 
-                        if (((int)randomTarget.Y >= playerTileCenter.Y - 7 && (int)randomTarget.Y <= playerTileCenter.Y + 7 && (int)randomTarget.X >= playerTileCenter.X - 7 && (int)randomTarget.X <= playerTileCenter.X + 7) || ((int)randomTarget.Y >= npcTileCenter.Y && (int)randomTarget.Y <= playerTileCenter.Y && (int)randomTarget.X >= playerTileCenter.X && (int)randomTarget.X <= playerTileCenter.X) || Main.tile[(int)randomTarget.X, (int)randomTarget.Y].nactive())
+                        if (((int)randomTarget.Y >= playerTileCenter.Y - 7 && (int)randomTarget.Y <= playerTileCenter.Y + 7 && (int)randomTarget.X >= playerTileCenter.X - 7 && (int)randomTarget.X <= playerTileCenter.X + 7) || ((int)randomTarget.Y >= npcTileCenter.Y && (int)randomTarget.Y <= playerTileCenter.Y && (int)randomTarget.X >= playerTileCenter.X && (int)randomTarget.X <= playerTileCenter.X) || Main.tile[(int)randomTarget.X, (int)randomTarget.Y].HasUnactuatedTile)
                             continue;
 
                         int randomTargetYWhy = (int)randomTarget.Y;
                         int tileCounter = 0;
 
-                        if (Main.tile[(int)randomTarget.X, randomTargetYWhy].nactive() && Main.tileSolid[Main.tile[(int)randomTarget.X, randomTargetYWhy].TileType] && !Main.tileSolidTop[Main.tile[(int)randomTarget.X, randomTargetYWhy].TileType])
+                        if (Main.tile[(int)randomTarget.X, randomTargetYWhy].HasUnactuatedTile && Main.tileSolid[Main.tile[(int)randomTarget.X, randomTargetYWhy].TileType] && !Main.tileSolidTop[Main.tile[(int)randomTarget.X, randomTargetYWhy].TileType])
                         {
                             tileCounter = 1;
                         }
@@ -150,7 +151,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                             for (; tileCounter < 150 && randomTargetYWhy + tileCounter < Main.maxTilesY; tileCounter++)
                             {
                                 int total = randomTargetYWhy + tileCounter;
-                                if (Main.tile[(int)randomTarget.X, total].nactive() && Main.tileSolid[Main.tile[(int)randomTarget.X, total].TileType] && !Main.tileSolidTop[Main.tile[(int)randomTarget.X, total].TileType])
+                                if (Main.tile[(int)randomTarget.X, total].HasUnactuatedTile && Main.tileSolid[Main.tile[(int)randomTarget.X, total].TileType] && !Main.tileSolidTop[Main.tile[(int)randomTarget.X, total].TileType])
                                 {
                                     tileCounter--;
                                     break;
@@ -160,7 +161,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                         randomTarget.Y += tileCounter;
                         bool foundDestination = true;
 
-                        if (foundDestination && Main.tile[(int)randomTarget.X, (int)randomTarget.Y].lava())
+                        if (foundDestination && Main.tile[(int)randomTarget.X, (int)randomTarget.Y].LiquidType == LiquidID.Lava)
                             foundDestination = false;
 
                         if (foundDestination && !Collision.CanHitLine(NPC.Center, 0, 0, Main.player[NPC.target].Center, 0, 0))
@@ -376,7 +377,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     {
                         Vector2 origin = new Vector2(NPC.Center.X + Main.rand.Next(-(NPC.width / 2), (NPC.width / 2) + 1), NPC.Center.Y + (NPC.height / 2));
                         Vector2 velocity = new Vector2(NPC.velocity.X / 4, Main.rand.NextFloat(-3f, -5f)).RotatedBy(MathHelper.ToRadians(Main.rand.Next(-5, 6)));
-                        Projectile.NewProjectile(origin, velocity, ModContent.ProjectileType<Projectiles.DarkCinder>(), NPC.damage / 4, 0.5f, NPC.target);
+                        Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), origin, velocity, ModContent.ProjectileType<Projectiles.DarkCinder>(), NPC.damage / 4, 0.5f, NPC.target);
                     }
                     cindersOnce = true;
                 }
@@ -424,7 +425,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 {
                     var x2 = (int)(NPC.position.X + Main.rand.Next(NPC.width - 32));
                     var y2 = (int)(NPC.position.Y + Main.rand.Next(NPC.height - 32));
-                    var newNPC = NPC.NewNPC(x2, y2, ModContent.NPCType<DarkMotherSlime>(), 0);
+                    var newNPC = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), x2, y2, ModContent.NPCType<DarkMotherSlime>(), 0);
                     Main.npc[newNPC].velocity.X = Main.rand.Next(-15, 16) * 0.1f;
                     Main.npc[newNPC].velocity.Y = Main.rand.Next(-30, 1) * 0.1f;
                     Main.npc[newNPC].ai[1] = Main.rand.Next(3);
@@ -471,14 +472,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     var num1166 = (float)Math.Atan2(vector155.Y - (Main.player[NPC.target].position.Y + Main.player[NPC.target].height * 0.5f), vector155.X - (Main.player[NPC.target].position.X + Main.player[NPC.target].width * 0.5f));
                     for (var num1167 = 0f; num1167 <= 3.6f; num1167 += increment)
                     {
-                        var num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 16f * -1.0), (float)(Math.Sin(num1166 + num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, NPC.target, 0f, 0f);
+                        var num1168 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector155.X, vector155.Y, (float)(Math.Cos(num1166 + num1167) * 16f * -1.0), (float)(Math.Sin(num1166 + num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, NPC.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, num1168);
                         }
-                        num1168 = Projectile.NewProjectile(vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 16f * -1.0), (float)(Math.Sin(num1166 - num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, NPC.target, 0f, 0f);
+                        num1168 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), vector155.X, vector155.Y, (float)(Math.Cos(num1166 - num1167) * 16f * -1.0), (float)(Math.Sin(num1166 - num1167) * 16f * -1.0), ModContent.ProjectileType<Projectiles.DarkFlame>(), 60, 0f, NPC.target, 0f, 0f);
                         Main.projectile[num1168].timeLeft = 600;
                         Main.projectile[num1168].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
@@ -504,7 +505,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     for (int i = 0; i < increments; i++)
                     {
                         Vector2 velocity = rotation.RotatedBy(MathHelper.ToRadians(((float)(degrees / 2f) * -1f) + ((float)(degrees / increments) * i) + offset)) * speed;
-                        int spray = Projectile.NewProjectile(NPC.Center, velocity, ModContent.ProjectileType<Projectiles.DarkFlame>(), 70, 0f, NPC.target, 0f, 0f);
+                        int spray = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center, velocity, ModContent.ProjectileType<Projectiles.DarkFlame>(), 70, 0f, NPC.target, 0f, 0f);
                         Main.projectile[spray].timeLeft = 600;
                         Main.projectile[spray].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
@@ -520,32 +521,21 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
         {
             potionType = ModContent.ItemType<ElixirofLife>();
         }
-
-        public override void NPCLoot()
+        public override void OnKill()
         {
             if (!ExxoAvalonOriginsWorld.stoppedArmageddon)
             {
                 ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateSkyFortress();
                 ExxoAvalonOriginsWorld.stoppedArmageddon = true;
             }
-            if (Main.expertMode)
-            {
-                NPC.DropBossBags();
-            }
-            else
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<DarkMatterSoilBlock>(), Main.rand.Next(100, 210), false, 0, false);
-            }
-            if (Main.rand.Next(10) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<ArmageddonSlimeTrophy>(), 1, false, 0, false);
-            }
-            if (Main.rand.Next(7) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<ArmageddonSlimeMask>(), 1, false, 0, false);
-            }
         }
-
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<DarkMatterSoilBlock>(), 1, 100, 210));
+            npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<ArmageddonSlimeMask>(), 7));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArmageddonSlimeTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.BossBags.ArmageddonSlimeBossBag>()));
+        }
         public override void FindFrame(int frameHeight)
         {
             var num2 = 0;

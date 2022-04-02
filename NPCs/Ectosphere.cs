@@ -2,6 +2,7 @@
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -37,14 +38,10 @@ namespace ExxoAvalonOrigins.NPCs
             NPC.lifeMax = (int)(NPC.lifeMax * 0.7f);
             NPC.damage = (int)(NPC.damage * 0.67f);
         }
-
-        public override void NPCLoot()
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.Ectoplasm, Main.rand.Next(2, 5), false, 0, false);
-            if (Main.rand.Next(4) == 0)
-            {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<Phantoplasm>(), Main.rand.Next(3, 6), false, 0, false);
-            }
+            npcLoot.Add(ItemDropRule.Common(ItemID.Ectoplasm, 1, 2, 5));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Phantoplasm>(), 4, 3, 6));
         }
 
         public override void AI()
@@ -154,7 +151,7 @@ namespace ExxoAvalonOrigins.NPCs
                     if (Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height))
                     {
                         NPC.localAI[1] = 1f;
-                        var num1227 = Projectile.NewProjectile(NPC.Center.X + NPC.velocity.X, NPC.Center.Y + NPC.velocity.Y, 1f, 1f, ModContent.ProjectileType<Projectiles.Ectosoul>(), 75, 3f, NPC.target, 0f, 0f);
+                        var num1227 = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.Center.X + NPC.velocity.X, NPC.Center.Y + NPC.velocity.Y, 1f, 1f, ModContent.ProjectileType<Projectiles.Ectosoul>(), 75, 3f, NPC.target, 0f, 0f);
                         Main.projectile[num1227].velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 7f;
                     }
                     NPC.localAI[0] = 0f;

@@ -16,7 +16,7 @@ namespace ExxoAvalonOrigins.Tiles
             drop = Mod.Find<ModItem>("VoltBrick").Type;
             soundType = SoundID.Tink;
             soundStyle = 1;
-            dustType = DustID.VilePowder;
+            dustType = DustID.CorruptGibsPowder;
         }
     }
 }
