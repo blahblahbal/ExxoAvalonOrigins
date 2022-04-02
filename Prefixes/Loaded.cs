@@ -19,14 +19,14 @@ public class Loaded : ArmorPrefix
         valueMult *= 1.15f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Loaded", new Loaded());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Loaded", new Loaded());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.statDefense++;

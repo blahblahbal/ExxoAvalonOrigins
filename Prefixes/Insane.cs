@@ -19,14 +19,14 @@ public class Insane : ArmorPrefix
         valueMult *= 1.2f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Insane", new Insane());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Insane", new Insane());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.tileSpeed += 0.3f;

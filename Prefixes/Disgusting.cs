@@ -19,14 +19,14 @@ public class Disgusting : ArmorPrefix
         valueMult *= 0.9f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Disgusting", new Disgusting());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Disgusting", new Disgusting());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.statDefense -= 2;

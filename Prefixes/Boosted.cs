@@ -19,14 +19,14 @@ public class Boosted : ArmorPrefix
         valueMult *= 1.15f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Boosted", new Boosted());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Boosted", new Boosted());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.moveSpeed += 0.04f;

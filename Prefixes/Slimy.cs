@@ -14,14 +14,14 @@ public class Slimy : ArmorPrefix
         return IsArmor(item);
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Slimy", new Slimy());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Slimy", new Slimy());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.endurance += 0.03f;
