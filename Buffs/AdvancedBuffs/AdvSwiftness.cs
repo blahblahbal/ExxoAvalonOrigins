@@ -11,7 +11,7 @@ public class AdvSwiftness : ModBuff
         Description.SetDefault("Increases stats");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.moveSpeed += 0.5f;
     }

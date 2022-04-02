@@ -12,9 +12,11 @@ public class Berserk : ModBuff
         Description.SetDefault("True melee weapons deal 150% increased critical damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         if (player.HeldItem.shoot == ProjectileID.None)
+        {
             player.Avalon().critDamageMult += 1.5f;
+        }
     }
 }

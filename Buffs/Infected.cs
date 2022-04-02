@@ -13,7 +13,7 @@ public class Infected : ModBuff
         Main.debuff[Type] = true;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().infectTimer++;
         if (player.Avalon().infectTimer % 60 == 0 && player.Avalon().infectTimer != 0)
@@ -26,7 +26,8 @@ public class Infected : ModBuff
             {
                 player.Avalon().infectDmg = 16;
             }
-            player.Hurt(PlayerDeathReason.ByCustomReason(" was infected."), player.Avalon().infectDmg, 0, false, false, false);
+
+            player.Hurt(PlayerDeathReason.ByCustomReason(" was infected."), player.Avalon().infectDmg, 0);
         }
     }
 }

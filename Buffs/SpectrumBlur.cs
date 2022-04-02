@@ -12,7 +12,7 @@ public class SpectrumBlur : ModBuff
         Main.buffNoTimeDisplay[Type] = true;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().spectrumBlur = true;
     }

@@ -11,7 +11,7 @@ public class AdvWaterWalking : ModBuff
         Description.SetDefault("Press DOWN to enter water");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.waterWalk = true;
     }

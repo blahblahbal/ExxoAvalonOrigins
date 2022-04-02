@@ -11,7 +11,7 @@ public class Gauntlet : ModBuff
         Description.SetDefault("-6 defense, +12% melee damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.statDefense -= 6;
         player.GetDamage(DamageClass.Melee) += 0.12f;

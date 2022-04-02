@@ -7,7 +7,7 @@ namespace ExxoAvalonOrigins.Buffs;
 
 public class BlessingofAvalon : ModBuff
 {
-    List<int> dontRemove = new List<int>()
+    private readonly List<int> dontRemove = new()
     {
         BuffID.Horrified,
         BuffID.TheTongue,
@@ -19,6 +19,7 @@ public class BlessingofAvalon : ModBuff
         BuffID.ChaosState,
         ModContent.BuffType<CurseofIcarus>()
     };
+
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Blessing of Avalon");
@@ -26,7 +27,7 @@ public class BlessingofAvalon : ModBuff
                                + "\nYour stats are greatly increased");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         for (int i = 0; i < player.buffType.Length; i++)
         {
@@ -49,7 +50,7 @@ public class BlessingofAvalon : ModBuff
             }
         }
 
-        player.allDamage += 0.2f;
+        player.GetDamage(DamageClass.Generic) += 0.2f;
         player.GetCritChance(DamageClass.Melee) += 10;
         player.GetCritChance(DamageClass.Magic) += 10;
         player.GetCritChance(DamageClass.Ranged) += 10;

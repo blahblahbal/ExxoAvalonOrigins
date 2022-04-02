@@ -12,7 +12,7 @@ public class Melting : ModBuff
         Main.debuff[Type] = true;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().melting = true;
     }

@@ -11,7 +11,7 @@ public class AdvHeartreach : ModBuff
         Description.SetDefault("Increased heart pickup range");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.lifeMagnet = true;
     }

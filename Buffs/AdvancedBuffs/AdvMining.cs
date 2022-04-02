@@ -11,7 +11,7 @@ public class AdvMining : ModBuff
         Description.SetDefault("35% increased mining speed");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.pickSpeed -= 0.35f;
     }

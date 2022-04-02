@@ -11,7 +11,7 @@ public class Wisdom : ModBuff
         Description.SetDefault("-8% magic damage, +60 mana");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.statManaMax2 += 60;
         player.GetDamage(DamageClass.Magic) -= 0.08f;

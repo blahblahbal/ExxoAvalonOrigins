@@ -11,8 +11,8 @@ public class AdvWrath : ModBuff
         Description.SetDefault("15% increased damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
-        player.allDamage += 0.15f;
+        player.GetDamage(DamageClass.Generic) += 0.15f;
     }
 }

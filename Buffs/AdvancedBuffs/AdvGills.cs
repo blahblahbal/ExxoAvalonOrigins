@@ -11,7 +11,7 @@ public class AdvGills : ModBuff
         Description.SetDefault("Breate water instead of air");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.gills = true;
     }

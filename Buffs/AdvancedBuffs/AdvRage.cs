@@ -11,7 +11,7 @@ public class AdvRage : ModBuff
         Description.SetDefault("15% increased critical strike chance");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.AllCrit(15);
     }

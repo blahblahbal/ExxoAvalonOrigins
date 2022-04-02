@@ -11,7 +11,7 @@ public class AdvIronskin : ModBuff
         Description.SetDefault("Increases defense by 12");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.statDefense += 12;
     }

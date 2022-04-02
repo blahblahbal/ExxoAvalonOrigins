@@ -11,7 +11,7 @@ public class GPS : ModBuff
         Description.SetDefault("GPS Effect");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.accCompass = 1;
         player.accDepthMeter = 1;

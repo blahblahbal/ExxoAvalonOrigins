@@ -11,7 +11,7 @@ public class AdvRogue : ModBuff
         Description.SetDefault("-5% ranged damage, 25% chance to not consume ammo");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.ammoCost75 = true;
         player.GetDamage(DamageClass.Ranged) -= 0.05f;

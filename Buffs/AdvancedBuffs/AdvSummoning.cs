@@ -11,7 +11,7 @@ public class AdvSummoning : ModBuff
         Description.SetDefault("Increased max number of minions");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.maxMinions += 2;
     }

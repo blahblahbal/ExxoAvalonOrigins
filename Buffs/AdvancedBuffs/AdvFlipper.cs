@@ -11,7 +11,7 @@ public class AdvFlipper : ModBuff
         Description.SetDefault("Move like normal in water");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.accFlipper = true;
     }

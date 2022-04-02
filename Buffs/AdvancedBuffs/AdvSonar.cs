@@ -11,7 +11,7 @@ public class AdvSonar : ModBuff
         Description.SetDefault("You can see what's biting your hook");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.sonarPotion = true;
     }

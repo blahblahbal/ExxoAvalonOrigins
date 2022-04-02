@@ -13,20 +13,21 @@ public class Reflector : ModBuff
         Main.buffNoSave[Type] = false;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Reflector>()] > 0)
         {
             player.Avalon().reflectorMinion = true;
         }
+
         if (!player.Avalon().reflectorMinion)
         {
-            player.DelBuff(k);
-            k--;
+            player.DelBuff(buffIndex);
+            buffIndex--;
         }
         else
         {
-            player.buffTime[k] = 18000;
+            player.buffTime[buffIndex] = 18000;
         }
     }
 }

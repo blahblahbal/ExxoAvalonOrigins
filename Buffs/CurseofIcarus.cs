@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs;
@@ -12,10 +13,10 @@ public class CurseofIcarus : ModBuff
         Main.debuff[Type] = true;
         Main.buffNoTimeDisplay[Type] = true;
         Main.buffNoSave[Type] = true;
-        canBeCleared = false;
+        BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().curseOfIcarus = true;
     }

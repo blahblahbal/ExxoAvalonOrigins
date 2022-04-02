@@ -11,7 +11,7 @@ public class Blah : ModBuff
         Description.SetDefault("You shouldn't be affected by this");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().lucky = true;
         player.enemySpawns = true;

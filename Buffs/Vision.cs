@@ -11,7 +11,7 @@ public class Vision : ModBuff
         Description.SetDefault("Open caves light up");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().vision = true;
     }

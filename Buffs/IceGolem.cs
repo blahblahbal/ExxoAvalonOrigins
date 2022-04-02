@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ExxoAvalonOrigins.Projectiles.Summon;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs;
@@ -13,20 +14,21 @@ public class IceGolem : ModBuff
         Main.buffNoSave[Type] = true;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
-        if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.IceGolemSummon>()] > 0)
+        if (player.ownedProjectileCounts[ModContent.ProjectileType<IceGolemSummon>()] > 0)
         {
             player.Avalon().iceGolem = true;
         }
+
         if (!player.Avalon().iceGolem)
         {
-            player.DelBuff(k);
-            k--;
+            player.DelBuff(buffIndex);
+            buffIndex--;
         }
         else
         {
-            player.buffTime[k] = 18000;
+            player.buffTime[buffIndex] = 18000;
         }
     }
 }

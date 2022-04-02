@@ -11,9 +11,9 @@ public class AdvStrength : ModBuff
         Description.SetDefault("Increases stats");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
-        player.allDamage += 0.13f;
+        player.GetDamage(DamageClass.Generic) += 0.13f;
         player.AllCrit(2);
         player.statDefense += 7;
         player.lifeRegen++;

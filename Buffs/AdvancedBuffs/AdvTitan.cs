@@ -11,7 +11,7 @@ public class AdvTitan : ModBuff
         Description.SetDefault("Increases knockback");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.kbBuff = true;
     }

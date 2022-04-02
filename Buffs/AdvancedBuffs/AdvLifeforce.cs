@@ -11,7 +11,7 @@ public class AdvLifeforce : ModBuff
         Description.SetDefault("30% increased max life");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.lifeForce = true;
         player.statLifeMax2 += player.statLifeMax / 5 / 20 * 30;

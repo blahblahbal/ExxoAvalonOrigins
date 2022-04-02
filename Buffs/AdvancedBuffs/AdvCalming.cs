@@ -11,7 +11,7 @@ public class AdvCalming : ModBuff
         Description.SetDefault("Reduced enemy aggression");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().advCalmingBuff = true;
     }

@@ -11,7 +11,7 @@ public class AdvArchery : ModBuff
         Description.SetDefault("30% increased arrow speed and damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().advArcheryBuff = true;
     }
