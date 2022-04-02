@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Projectiles.Melee;
 
@@ -16,20 +17,20 @@ public class Moonerang : ModProjectile
     public override void SetDefaults()
     {
         Rectangle dims = ExxoAvalonOrigins.GetDims("Projectiles/Melee/Moonerang");
-        projectile.width = 18;
-        projectile.height = 18;
-        projectile.aiStyle = 3;
-        projectile.friendly = true;
-        projectile.melee = true;
-        projectile.tileCollide = true;
-        projectile.penetrate = 1;
-        projectile.timeLeft = 300;
-        drawOffsetX = -9;
-        drawOriginOffsetY = -9;
+        Projectile.width = 18;
+        Projectile.height = 18;
+        Projectile.aiStyle = 3;
+        Projectile.friendly = true;
+        Projectile.DamageType = DamageClass.Melee;
+        Projectile.tileCollide = true;
+        Projectile.penetrate = 1;
+        Projectile.timeLeft = 300;
+        DrawOffsetX = -9;
+        DrawOriginOffsetY = -9;
     }
     public override Color? GetAlpha(Color lightColor)
     {
-        return new Color(255, 255, 255, this.projectile.alpha);
+        return new Color(255, 255, 255, Projectile.alpha);
     }
     public override void ModifyDamageHitbox(ref Rectangle hitbox)
     {
@@ -41,24 +42,24 @@ public class Moonerang : ModProjectile
     }
     public override bool OnTileCollide(Vector2 oldVelocity)
     {
-        projectile.Kill();
+        Projectile.Kill();
         return true;
     }
     public override void AI()
     {
         if (Main.rand.Next(3) == 0)
         {
-            int num239 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), 18, 18, 68, projectile.oldVelocity.X * 0.1f, projectile.oldVelocity.Y * 0.1f, default, default, 1.2f);
+            int num239 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), 18, 18, 68, Projectile.oldVelocity.X * 0.1f, Projectile.oldVelocity.Y * 0.1f, default, default, 1.2f);
             Dust dust30 = Main.dust[num239];
             dust30.noGravity = true;
         }
     }
     public override void Kill(int timeLeft)
     {
-        Main.PlaySound(SoundID.NPCHit, (int)projectile.Center.X, (int)projectile.Center.Y, 3, 0.8f, -0.25f);
+        SoundEngine.PlaySound(SoundID.NPCHit, (int)Projectile.Center.X, (int)Projectile.Center.Y, 3, 0.8f, -0.25f);
         for (int num237 = 0; num237 < 15; num237++)
         {
-            int num239 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), 18, 18, 68, projectile.oldVelocity.X * 0.3f, projectile.oldVelocity.Y * 0.3f, default, default, 1.5f);
+            int num239 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), 18, 18, 68, Projectile.oldVelocity.X * 0.3f, Projectile.oldVelocity.Y * 0.3f, default, default, 1.5f);
             Dust dust30 = Main.dust[num239];
             dust30.noGravity = true;
         }

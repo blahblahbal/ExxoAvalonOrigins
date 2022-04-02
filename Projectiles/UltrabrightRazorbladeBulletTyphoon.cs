@@ -46,7 +46,8 @@ public class UltrabrightRazorbladeBulletTyphoon : ModProjectile
         }
         return false;
     }
-    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
     {
         height = 30;
         width = 30;
@@ -142,7 +143,7 @@ public class UltrabrightRazorbladeBulletTyphoon : ModProjectile
                 flag28 = false;
                 Projectile.netUpdate = true;
             }
-        }
+        }    
         if (flag28)
         {
             Vector2 v2 = vector55 - Projectile.Center;
@@ -163,14 +164,14 @@ public class UltrabrightRazorbladeBulletTyphoon : ModProjectile
         Projectile.velocity.Normalize();
         Projectile.velocity *= num600 + 0.0025f;
     }
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
-        Vector2 drawOrigin = new Vector2(Main.projectileTexture[Projectile.type].Width * 0.5f, Projectile.height * 0.5f);
+        Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Width() * 0.5f, Projectile.height * 0.5f);
         for (int k = 0; k < Projectile.oldPos.Length; k++)
         {
             Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
             Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-            spriteBatch.Draw(Main.projectileTexture[Projectile.type], drawPos, new Rectangle(0, Projectile.height * Projectile.frame, Projectile.width, Projectile.height), color, Projectile.rotation, drawOrigin, Projectile.scale * 0.9f, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, drawPos, new Rectangle(0, Projectile.height * Projectile.frame, Projectile.width, Projectile.height), color, Projectile.rotation, drawOrigin, Projectile.scale * 0.9f, SpriteEffects.None, 0);
         }
         return true;
     }

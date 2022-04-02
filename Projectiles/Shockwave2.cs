@@ -28,16 +28,16 @@ public class Shockwave2 : ModProjectile
         Projectile.MaxUpdates = 2;
         Projectile.DamageType = DamageClass.Magic;
     }
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
-        spriteBatch.End();
-        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null);
+        Main.spriteBatch.End();
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null);
         return true;
     }
-    public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override void PostDraw(Color lightColor)
     {
-        spriteBatch.End();
-        spriteBatch.Begin();
+        Main.spriteBatch.End();
+        Main.spriteBatch.Begin();
     }
     public override void AI()
     {

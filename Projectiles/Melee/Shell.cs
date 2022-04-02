@@ -62,31 +62,31 @@ public class Shell : ModProjectile
             vector10.X += Projectile.velocity.X;
             int num98 = (int)((vector10.X + (float)(Projectile.width / 2) + (float)((Projectile.width / 2 + 1) * num97)) / 16f);
             int num99 = (int)((vector10.Y + (float)Projectile.height - 1f) / 16f);
-            if (Main.tile[num98, num99] == null)
-            {
-                Main.tile[num98, num99] = new Tile();
-            }
-            if (Main.tile[num98, num99 - 1] == null)
-            {
-                Main.tile[num98, num99 - 1] = new Tile();
-            }
-            if (Main.tile[num98, num99 - 2] == null)
-            {
-                Main.tile[num98, num99 - 2] = new Tile();
-            }
-            if (Main.tile[num98, num99 - 3] == null)
-            {
-                Main.tile[num98, num99 - 3] = new Tile();
-            }
-            if (Main.tile[num98, num99 + 1] == null)
-            {
-                Main.tile[num98, num99 + 1] = new Tile();
-            }
-            if (Main.tile[num98 - num97, num99 - 3] == null)
-            {
-                Main.tile[num98 - num97, num99 - 3] = new Tile();
-            }
-            if ((float)(num98 * 16) < vector10.X + (float)Projectile.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].HasUnactuatedTile && !Main.tile[num98, num99].topSlope() && !Main.tile[num98, num99 - 1].topSlope() && Main.tileSolid[(int)Main.tile[num98, num99].TileType] && !Main.tileSolidTop[(int)Main.tile[num98, num99].TileType]) || (Main.tile[num98, num99 - 1].IsHalfBlock && Main.tile[num98, num99 - 1].HasUnactuatedTile)) && (!Main.tile[num98, num99 - 1].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].TileType] || (Main.tile[num98, num99 - 1].IsHalfBlock && (!Main.tile[num98, num99 - 4].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].TileType]))) && (!Main.tile[num98, num99 - 2].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].TileType]) && (!Main.tile[num98, num99 - 3].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].TileType]) && (!Main.tile[num98 - num97, num99 - 3].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].TileType]))
+            // if (Main.tile[num98, num99] == null)
+            // {
+            //     Main.tile[num98, num99] = new Tile();
+            // }
+            // if (Main.tile[num98, num99 - 1] == null)
+            // {
+            //     Main.tile[num98, num99 - 1] = new Tile();
+            // }
+            // if (Main.tile[num98, num99 - 2] == null)
+            // {
+            //     Main.tile[num98, num99 - 2] = new Tile();
+            // }
+            // if (Main.tile[num98, num99 - 3] == null)
+            // {
+            //     Main.tile[num98, num99 - 3] = new Tile();
+            // }
+            // if (Main.tile[num98, num99 + 1] == null)
+            // {
+            //     Main.tile[num98, num99 + 1] = new Tile();
+            // }
+            // if (Main.tile[num98 - num97, num99 - 3] == null)
+            // {
+            //     Main.tile[num98 - num97, num99 - 3] = new Tile();
+            // }
+            if ((float)(num98 * 16) < vector10.X + (float)Projectile.width && (float)(num98 * 16 + 16) > vector10.X && ((Main.tile[num98, num99].HasUnactuatedTile && !Main.tile[num98, num99].TopSlope && !Main.tile[num98, num99 - 1].TopSlope && Main.tileSolid[(int)Main.tile[num98, num99].TileType] && !Main.tileSolidTop[(int)Main.tile[num98, num99].TileType]) || (Main.tile[num98, num99 - 1].IsHalfBlock && Main.tile[num98, num99 - 1].HasUnactuatedTile)) && (!Main.tile[num98, num99 - 1].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 1].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 1].TileType] || (Main.tile[num98, num99 - 1].IsHalfBlock && (!Main.tile[num98, num99 - 4].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 4].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 4].TileType]))) && (!Main.tile[num98, num99 - 2].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 2].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 2].TileType]) && (!Main.tile[num98, num99 - 3].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98, num99 - 3].TileType] || Main.tileSolidTop[(int)Main.tile[num98, num99 - 3].TileType]) && (!Main.tile[num98 - num97, num99 - 3].HasUnactuatedTile || !Main.tileSolid[(int)Main.tile[num98 - num97, num99 - 3].TileType]))
             {
                 float num100 = (float)(num99 * 16);
                 if (Main.tile[num98, num99].IsHalfBlock)

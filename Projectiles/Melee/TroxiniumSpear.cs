@@ -65,13 +65,14 @@ public class TroxiniumSpear : ModProjectile
             Projectile.rotation -= MathHelper.ToRadians(90f);
         }
     }
-    public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+
+    public override void PostDraw(Color lightColor)
     {
         Player player = Main.player[Projectile.owner];
         Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/Melee/TroxiniumSpear_Glow").Value;
         Vector2 drawOrigin = new Vector2(0, 0) + (Projectile.spriteDirection != 1 ? new Vector2(48, 0) : Vector2.Zero);
         Vector2 drawPos = Projectile.Center - Main.screenPosition;
         Color color = Color.White;
-        spriteBatch.Draw(texture, drawPos, null, Projectile.GetAlpha(color), Projectile.rotation, drawOrigin, Projectile.scale, Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+        Main.EntitySpriteDraw(texture, drawPos, null, Projectile.GetAlpha(color), Projectile.rotation, drawOrigin, Projectile.scale, Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
     }
 }

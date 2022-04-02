@@ -82,7 +82,7 @@ public class ElementBeam : ModProjectile
     }
     public override void AI()
     {
-        int num12 = DustID.Rainbow;
+        int num12 = DustID.RainbowRod;
 
         DiscoRGB = new Vector3((float)Main.DiscoR / 255f, (float)Main.DiscoG / 255f, (float)Main.DiscoB / 255f);
         RGB = new Color(DiscoRGB.X, DiscoRGB.Y, DiscoRGB.Z);
@@ -108,7 +108,7 @@ public class ElementBeam : ModProjectile
         {
             float num395 = Projectile.oldVelocity.X * (30f / (float)num394);
             float num396 = Projectile.oldVelocity.Y * (30f / (float)num394);
-            int num12 = DustID.Rainbow;
+            int num12 = DustID.RainbowRod;
             int num398 = Dust.NewDust(new Vector2(Projectile.position.X - num395, Projectile.position.Y - num396), 8, 8, num12, Projectile.oldVelocity.X * 0.5f, Projectile.oldVelocity.Y * 0.5f, 100, RGB, 1.8f);
             Main.dust[num398].velocity *= 1f;
             Main.dust[num398].noGravity = true;

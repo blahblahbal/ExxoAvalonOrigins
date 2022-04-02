@@ -82,18 +82,18 @@ public class TritonWave : ModProjectile
     {
         return new Color(255, 255, 255, this.Projectile.alpha);
     }
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
-        Vector2 drawOrigin = new Vector2(Main.projectileTexture[Projectile.type].Width * 0.5f, Projectile.height * 0.5f);
+        Vector2 drawOrigin = new Vector2(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Width() * 0.5f, Projectile.height * 0.5f);
         for (int k = 0; k < Projectile.oldPos.Length; k++)
         {
             Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(-24f, Projectile.gfxOffY);
             Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-            spriteBatch.Draw(Main.projectileTexture[Projectile.type], drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
         }
         Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/Melee/FireWave").Value;
         Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
-        spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, new Color(50, 50, 50, 50), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0.0f);
+        Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, new Color(50, 50, 50, 50), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
         return true;
     }
 }
