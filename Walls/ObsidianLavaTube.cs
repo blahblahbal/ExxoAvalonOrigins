@@ -3,16 +3,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Walls
+namespace ExxoAvalonOrigins.Walls;
+
+public class ObsidianLavaTube : ModWall
 {
-    public class ObsidianLavaTube : ModWall
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            Main.wallHouse[Type] = true;
-            drop = Mod.Find<ModItem>("ObsidianLavaTubeWall").Type;
-            AddMapEntry(new Color(51, 47, 96));
-            dustType = DustID.Obsidian;
-        }
+        Main.wallHouse[Type] = true;
+        drop = Mod.Find<ModItem>("ObsidianLavaTubeWall").Type;
+        AddMapEntry(new Color(51, 47, 96));
+        dustType = DustID.Obsidian;
     }
 }

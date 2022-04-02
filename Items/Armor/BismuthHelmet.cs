@@ -3,37 +3,36 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Armor
+namespace ExxoAvalonOrigins.Items.Armor;
+
+[AutoloadEquip(EquipType.Head)]
+class BismuthHelmet : ModItem
 {
-    [AutoloadEquip(EquipType.Head)]
-    class BismuthHelmet : ModItem
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bismuth Helmet");
-        }
+        DisplayName.SetDefault("Bismuth Helmet");
+    }
 
-        public override void SetDefaults()
-        {
-            Rectangle dims = this.GetDims();
-            Item.defense = 5;
-            Item.width = dims.Width;
-            Item.value = Item.sellPrice(0, 0, 40);
-            Item.height = dims.Height;
-        }
+    public override void SetDefaults()
+    {
+        Rectangle dims = this.GetDims();
+        Item.defense = 5;
+        Item.width = dims.Width;
+        Item.value = Item.sellPrice(0, 0, 40);
+        Item.height = dims.Height;
+    }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return body.type == ModContent.ItemType<BismuthChainmail>() && legs.type == ModContent.ItemType<BismuthGreaves>();
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 20).AddTile(TileID.Anvils).Register();
-        }
-        public override void UpdateArmorSet(Player player)
-        {
-            player.setBonus = "+4 defense";
-            player.statDefense += 4;
-        }
+    public override bool IsArmorSet(Item head, Item body, Item legs)
+    {
+        return body.type == ModContent.ItemType<BismuthChainmail>() && legs.type == ModContent.ItemType<BismuthGreaves>();
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Bar.BismuthBar>(), 20).AddTile(TileID.Anvils).Register();
+    }
+    public override void UpdateArmorSet(Player player)
+    {
+        player.setBonus = "+4 defense";
+        player.statDefense += 4;
     }
 }

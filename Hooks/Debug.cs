@@ -1,18 +1,17 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
-namespace ExxoAvalonOrigins.Hooks
+namespace ExxoAvalonOrigins.Hooks;
+
+class Debug
 {
-    class Debug
+    public static void OutputIL(ILContext il)
     {
-        public static void OutputIL(ILContext il)
+        var c = new ILCursor(il);
+        foreach (Instruction instruction in c.Instrs)
         {
-            var c = new ILCursor(il);
-            foreach (Instruction instruction in c.Instrs)
-            {
-                object obj = (instruction.Operand == null) ? "" : instruction.Operand.ToString();
-                ExxoAvalonOrigins.Mod.Logger.Debug($"{instruction.Offset} | {instruction.OpCode} | {obj}");
-            }
+            object obj = (instruction.Operand == null) ? "" : instruction.Operand.ToString();
+            ExxoAvalonOrigins.Mod.Logger.Debug($"{instruction.Offset} | {instruction.OpCode} | {obj}");
         }
     }
 }

@@ -4,92 +4,91 @@ using MonoMod.Cil;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Hooks
+namespace ExxoAvalonOrigins.Hooks;
+
+class MicroBiomes
 {
-    class MicroBiomes
+    private static readonly ushort[] invalidWalls = new ushort[]
     {
-        private static readonly ushort[] invalidWalls = new ushort[]
-            {
-                7, 94, 95, 8, 98, 99, 9, 96, 97, 3,
-                83, 87, (ushort) ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(), 86
-            };
+        7, 94, 95, 8, 98, 99, 9, 96, 97, 3,
+        83, 87, (ushort) ModContent.WallType<Walls.TuhrtlBrickWallUnsafe>(), 86
+    };
 
-        public static void ILTrackGeneratorTrackCanBePlaced(ILContext il)
+    public static void ILTrackGeneratorTrackCanBePlaced(ILContext il)
+    {
+        var c = new ILCursor(il);
+
+        if (!c.TryGotoNext(i => i.MatchLdelemU1()))
+            return;
+        if (!c.TryGotoPrev(i => i.MatchLdsfld(out _)))
+            return;
+
+        Utils.SoftReplaceAllMatchingInstructionsWithMethod(il, c.Next, typeof(MicroBiomes).GetMethod(nameof(ReturnInvalidWalls)));
+
+        if (!c.TryGotoNext(i => i.MatchLdelemU1()))
+            return;
+
+        c.Remove();
+        c.Emit(OpCodes.Ldelem_U2);
+    }
+
+    public static ushort[] ReturnInvalidWalls()
+    {
+        return invalidWalls;
+    }
+
+    public static void ILMiningExplosivesBiomePlace(ILContext il)
+    {
+        var c = new ILCursor(il);
+
+        if (!c.TryGotoNext(i => i.MatchConvU2()))
+            return;
+        if (!c.TryGotoNext(i => i.MatchStelemI2()))
+            return;
+
+        c.Emit(OpCodes.Pop);
+        c.EmitDelegate<Func<ushort>>(() =>
         {
-            var c = new ILCursor(il);
+            return WorldGen.GoldTierOre;
+        });
 
-            if (!c.TryGotoNext(i => i.MatchLdelemU1()))
-                return;
-            if (!c.TryGotoPrev(i => i.MatchLdsfld(out _)))
-                return;
+        if (!c.TryGotoNext(i => i.MatchConvU2()))
+            return;
+        if (!c.TryGotoNext(i => i.MatchStelemI2()))
+            return;
 
-            Utils.SoftReplaceAllMatchingInstructionsWithMethod(il, c.Next, typeof(MicroBiomes).GetMethod(nameof(ReturnInvalidWalls)));
-
-            if (!c.TryGotoNext(i => i.MatchLdelemU1()))
-                return;
-
-            c.Remove();
-            c.Emit(OpCodes.Ldelem_U2);
-        }
-
-        public static ushort[] ReturnInvalidWalls()
+        c.Emit(OpCodes.Pop);
+        c.EmitDelegate<Func<ushort>>(() =>
         {
-            return invalidWalls;
-        }
+            return WorldGen.SilverTierOre;
+        });
 
-        public static void ILMiningExplosivesBiomePlace(ILContext il)
+        if (!c.TryGotoNext(i => i.MatchConvU2()))
+            return;
+        if (!c.TryGotoNext(i => i.MatchStelemI2()))
+            return;
+
+        c.Emit(OpCodes.Pop);
+        c.EmitDelegate<Func<ushort>>(() =>
         {
-            var c = new ILCursor(il);
+            return WorldGen.IronTierOre;
+        });
 
-            if (!c.TryGotoNext(i => i.MatchConvU2()))
-                return;
-            if (!c.TryGotoNext(i => i.MatchStelemI2()))
-                return;
+        if (!c.TryGotoNext(i => i.MatchConvU2()))
+            return;
+        if (!c.TryGotoNext(i => i.MatchStelemI2()))
+            return;
 
-            c.Emit(OpCodes.Pop);
-            c.EmitDelegate<Func<ushort>>(() =>
-            {
-                return WorldGen.GoldTierOre;
-            });
-
-            if (!c.TryGotoNext(i => i.MatchConvU2()))
-                return;
-            if (!c.TryGotoNext(i => i.MatchStelemI2()))
-                return;
-
-            c.Emit(OpCodes.Pop);
-            c.EmitDelegate<Func<ushort>>(() =>
-            {
-                return WorldGen.SilverTierOre;
-            });
-
-            if (!c.TryGotoNext(i => i.MatchConvU2()))
-                return;
-            if (!c.TryGotoNext(i => i.MatchStelemI2()))
-                return;
-
-            c.Emit(OpCodes.Pop);
-            c.EmitDelegate<Func<ushort>>(() =>
-            {
-                return WorldGen.IronTierOre;
-            });
-
-            if (!c.TryGotoNext(i => i.MatchConvU2()))
-                return;
-            if (!c.TryGotoNext(i => i.MatchStelemI2()))
-                return;
-
-            c.Emit(OpCodes.Pop);
-            c.EmitDelegate<Func<ushort>>(() =>
-            {
-                return WorldGen.CopperTierOre;
-            });
-        }
-
-        public static void OnCaveHouseBiome(On.Terraria.GameContent.Biomes.CaveHouseBiome.orig_cctor orig)
+        c.Emit(OpCodes.Pop);
+        c.EmitDelegate<Func<ushort>>(() =>
         {
-            orig();
-            Terraria.GameContent.Biomes.CaveHouseBiome._blacklistedTiles = Terraria.ID.TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, ModContent.TileType<Tiles.TuhrtlBrick>(), 203, 112, 25, 151);
-        }
+            return WorldGen.CopperTierOre;
+        });
+    }
+
+    public static void OnCaveHouseBiome(On.Terraria.GameContent.Biomes.CaveHouseBiome.orig_cctor orig)
+    {
+        orig();
+        Terraria.GameContent.Biomes.CaveHouseBiome._blacklistedTiles = Terraria.ID.TileID.Sets.Factory.CreateBoolSet(true, 225, 41, 43, 44, 226, ModContent.TileType<Tiles.TuhrtlBrick>(), 203, 112, 25, 151);
     }
 }

@@ -1,13 +1,12 @@
 ﻿using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs;
+
+public class AdvStarbright : ModBuff
 {
-    public class AdvStarbright : ModBuff
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Advanced Starbright");
-            Description.SetDefault("Fallen stars fall even more frequently");
-        }
+        DisplayName.SetDefault("Advanced Starbright");
+        Description.SetDefault("Fallen stars fall even more frequently");
     }
 }

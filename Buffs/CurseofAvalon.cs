@@ -1,21 +1,20 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs
-{
-    public class CurseofAvalon : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Curse of Avalon");
-            Description.SetDefault("You take quadruple damage");
-            Main.debuff[Type] = true;
-            Main.buffNoSave[Type] = true;
-        }
+namespace ExxoAvalonOrigins.Buffs;
 
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.buffTime[buffIndex] = 18000;
-        }
+public class CurseofAvalon : ModBuff
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Curse of Avalon");
+        Description.SetDefault("You take quadruple damage");
+        Main.debuff[Type] = true;
+        Main.buffNoSave[Type] = true;
+    }
+
+    public override void Update(NPC npc, ref int buffIndex)
+    {
+        npc.buffTime[buffIndex] = 18000;
     }
 }

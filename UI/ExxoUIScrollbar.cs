@@ -3,44 +3,43 @@ using ExxoAvalonOrigins.Logic;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI.Elements;
 
-namespace ExxoAvalonOrigins.UI
+namespace ExxoAvalonOrigins.UI;
+
+public class ExxoUIScrollbar : UIScrollbar
 {
-    public class ExxoUIScrollbar : UIScrollbar
+    public EventHandler OnViewPositionChanged;
+    private readonly Observer<float> observer;
+    public ExxoUIScrollbar()
     {
-        public EventHandler OnViewPositionChanged;
-        private readonly Observer<float> observer;
-        public ExxoUIScrollbar()
+        observer = new Observer<float>(() => ViewPosition);
+    }
+    public new void SetView(float viewSize, float maxViewSize)
+    {
+        viewSize = MathHelper.Clamp(viewSize, 0f, maxViewSize);
+        if (viewSize == maxViewSize)
         {
-            observer = new Observer<float>(() => ViewPosition);
+            Width.Set(0, 0);
+            if (Parent is ExxoUIElementWrapper<ExxoUIScrollbar> exxoParent)
+            {
+                exxoParent.Hidden = true;
+            }
         }
-        public new void SetView(float viewSize, float maxViewSize)
+        else
         {
-            viewSize = MathHelper.Clamp(viewSize, 0f, maxViewSize);
-            if (viewSize == maxViewSize)
+            Width.Set(20, 0);
+            if (Parent is ExxoUIElementWrapper<ExxoUIScrollbar> exxoParent)
             {
-                Width.Set(0, 0);
-                if (Parent is ExxoUIElementWrapper<ExxoUIScrollbar> exxoParent)
-                {
-                    exxoParent.Hidden = true;
-                }
+                exxoParent.Hidden = false;
             }
-            else
-            {
-                Width.Set(20, 0);
-                if (Parent is ExxoUIElementWrapper<ExxoUIScrollbar> exxoParent)
-                {
-                    exxoParent.Hidden = false;
-                }
-            }
-            base.SetView(viewSize, maxViewSize);
         }
-        public override void Update(GameTime gameTime)
+        base.SetView(viewSize, maxViewSize);
+    }
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+        if (observer.Check())
         {
-            base.Update(gameTime);
-            if (observer.Check())
-            {
-                OnViewPositionChanged?.Invoke(this, EventArgs.Empty);
-            }
+            OnViewPositionChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

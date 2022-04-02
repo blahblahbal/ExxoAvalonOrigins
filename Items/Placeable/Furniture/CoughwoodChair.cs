@@ -2,28 +2,27 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Placeable.Furniture
-{
-    class CoughwoodChair : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Coughwood Chair");
-        }
+namespace ExxoAvalonOrigins.Items.Placeable.Furniture;
 
-        public override void SetDefaults()
-        {
-            Rectangle dims = this.GetDims();
-            Item.autoReuse = true;
-            Item.consumable = true;
-            Item.createTile = ModContent.TileType<Tiles.CoughwoodChair>();
-            Item.width = dims.Width;
-            Item.useTurn = true;
-            Item.useTime = 10;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.maxStack = 99;
-            Item.useAnimation = 15;
-            Item.height = dims.Height;
-        }
+class CoughwoodChair : ModItem
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Coughwood Chair");
+    }
+
+    public override void SetDefaults()
+    {
+        Rectangle dims = this.GetDims();
+        Item.autoReuse = true;
+        Item.consumable = true;
+        Item.createTile = ModContent.TileType<Tiles.CoughwoodChair>();
+        Item.width = dims.Width;
+        Item.useTurn = true;
+        Item.useTime = 10;
+        Item.useStyle = ItemUseStyleID.Swing;
+        Item.maxStack = 99;
+        Item.useAnimation = 15;
+        Item.height = dims.Height;
     }
 }

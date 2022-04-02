@@ -1,35 +1,34 @@
 ﻿using Terraria;
 
-namespace ExxoAvalonOrigins.Prefixes
+namespace ExxoAvalonOrigins.Prefixes;
+
+public class Loaded : ArmorPrefix
 {
-    public class Loaded : ArmorPrefix
+    public Loaded()
     {
-        public Loaded()
-        {
 
-        }
+    }
 
-        public override bool CanRoll(Item item)
-        {
-            return IsArmor(item);
-        }
+    public override bool CanRoll(Item item)
+    {
+        return IsArmor(item);
+    }
 
-        public override void ModifyValue(ref float valueMult)
-        {
-            valueMult *= 1.15f;
-        }
+    public override void ModifyValue(ref float valueMult)
+    {
+        valueMult *= 1.15f;
+    }
 
-        public override bool Autoload(ref string name)
+    public override bool Autoload(ref string name)
+    {
+        if (base.Autoload(ref name))
         {
-            if (base.Autoload(ref name))
-            {
-                Mod.AddPrefix("Loaded", new Loaded());
-            }
-            return false;
+            Mod.AddPrefix("Loaded", new Loaded());
         }
-        public override void UpdateEquip(Player player)
-        {
-            player.statDefense++;
-        }
+        return false;
+    }
+    public override void UpdateEquip(Player player)
+    {
+        player.statDefense++;
     }
 }

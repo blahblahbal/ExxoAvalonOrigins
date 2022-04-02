@@ -1,9 +1,8 @@
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Dusts
-{
-    public class ZincDust : ModDust
-    {
+namespace ExxoAvalonOrigins.Dusts;
 
-    }
+public class ZincDust : ModDust
+{
+
 }

@@ -3,32 +3,31 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Armor
+namespace ExxoAvalonOrigins.Items.Armor;
+
+[AutoloadEquip(EquipType.Legs)]
+class TroxiniumCuisses : ModItem
 {
-    [AutoloadEquip(EquipType.Legs)]
-    class TroxiniumCuisses : ModItem
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Troxinium Cuisses");
-            Tooltip.SetDefault("5% increased critical strike chance");
-        }
+        DisplayName.SetDefault("Troxinium Cuisses");
+        Tooltip.SetDefault("5% increased critical strike chance");
+    }
 
-        public override void SetDefaults()
-        {
-            Rectangle dims = this.GetDims();
-            Item.defense = 13;
-            Item.rare = ItemRarityID.Pink;
-            Item.width = dims.Width;
-            Item.value = Item.sellPrice(0, 2, 30, 0);
-            Item.height = dims.Height;
-        }
+    public override void SetDefaults()
+    {
+        Rectangle dims = this.GetDims();
+        Item.defense = 13;
+        Item.rare = ItemRarityID.Pink;
+        Item.width = dims.Width;
+        Item.value = Item.sellPrice(0, 2, 30, 0);
+        Item.height = dims.Height;
+    }
 
-        public override void UpdateEquip(Player player)
-        {
-            player.GetCritChance(DamageClass.Magic) += 5;
-            player.GetCritChance(DamageClass.Ranged) += 5;
-            player.GetCritChance(DamageClass.Melee) += 5;
-        }
+    public override void UpdateEquip(Player player)
+    {
+        player.GetCritChance(DamageClass.Magic) += 5;
+        player.GetCritChance(DamageClass.Ranged) += 5;
+        player.GetCritChance(DamageClass.Melee) += 5;
     }
 }

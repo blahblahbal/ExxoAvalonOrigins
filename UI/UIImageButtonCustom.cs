@@ -9,177 +9,176 @@ using Terraria.ID;
 using Terraria.UI;
 using Terraria.Audio;
 
-namespace ExxoAvalonOrigins.UI
+namespace ExxoAvalonOrigins.UI;
+
+public class UIImageButtonCustom : UIImageButton
 {
-    public class UIImageButtonCustom : UIImageButton
+    private Texture2D arrowDownTexture;
+    private Texture2D texture;
+    private UITextCustom UIText;
+    private List<UIImageButtonCustom> siblings;
+    private string label;
+    public bool Active;
+    public bool FadeText;
+    private bool firstDraw;
+    public UIImageButtonCustom(Texture2D texture, string label, MouseEvent clickAction, bool active = false) : base(texture)
     {
-        private Texture2D arrowDownTexture;
-        private Texture2D texture;
-        private UITextCustom UIText;
-        private List<UIImageButtonCustom> siblings;
-        private string label;
-        public bool Active;
-        public bool FadeText;
-        private bool firstDraw;
-        public UIImageButtonCustom(Texture2D texture, string label, MouseEvent clickAction, bool active = false) : base(texture)
+        arrowDownTexture = TextureManager.Load("Images/UI/TexturePackButtons");
+
+        firstDraw = true;
+        Active = active;
+        if (Active)
         {
-            arrowDownTexture = TextureManager.Load("Images/UI/TexturePackButtons");
-
-            firstDraw = true;
-            Active = active;
-            if (Active)
-            {
-                clickAction.Invoke(null, null);
-            }
-            this.label = label;
-            this.texture = texture;
-
-            OnClick += SetActive;
-            OnClick += clickAction;
+            clickAction.Invoke(null, null);
         }
+        this.label = label;
+        this.texture = texture;
 
-        public override void OnInitialize()
+        OnClick += SetActive;
+        OnClick += clickAction;
+    }
+
+    public override void OnInitialize()
+    {
+        UIText = new UITextCustom(label);
+        UIText.Hidden = true;
+        Append(UIText);
+
+        UIText.HAlign = 0.5f;
+        UIText.Top.Set(-(UIText.Height.Pixels / 2 + 16), 0);
+
+        siblings = GetSiblings();
+
+        base.OnInitialize();
+    }
+
+    private List<UIImageButtonCustom> GetSiblings()
+    {
+        List<UIImageButtonCustom> siblingsList = new List<UIImageButtonCustom>();
+        Type parentType = Parent.Parent.GetType();
+        if (parentType == typeof(UIList) || parentType == typeof(UIListGrid))
         {
-            UIText = new UITextCustom(label);
-            UIText.Hidden = true;
-            Append(UIText);
-
-            UIText.HAlign = 0.5f;
-            UIText.Top.Set(-(UIText.Height.Pixels / 2 + 16), 0);
-
-            siblings = GetSiblings();
-
-            base.OnInitialize();
-        }
-
-        private List<UIImageButtonCustom> GetSiblings()
-        {
-            List<UIImageButtonCustom> siblingsList = new List<UIImageButtonCustom>();
-            Type parentType = Parent.Parent.GetType();
-            if (parentType == typeof(UIList) || parentType == typeof(UIListGrid))
+            UIList list = (UIList)Parent.Parent;
+            foreach (UIElement element in list._items)
             {
-                UIList list = (UIList)Parent.Parent;
-                foreach (UIElement element in list._items)
+                if (element.GetType() == typeof(UIImageButtonCustom))
                 {
-                    if (element.GetType() == typeof(UIImageButtonCustom))
+                    if (element != this)
                     {
-                        if (element != this)
-                        {
-                            siblingsList.Add((UIImageButtonCustom)element);
-                        }
+                        siblingsList.Add((UIImageButtonCustom)element);
                     }
                 }
             }
-            return siblingsList;
         }
+        return siblingsList;
+    }
 
-        private void SetActive(UIMouseEvent evt, UIElement listeningElement)
+    private void SetActive(UIMouseEvent evt, UIElement listeningElement)
+    {
+        if (Active)
         {
-            if (Active)
-            {
-                return;
-            }
-            SoundEngine.PlaySound(SoundID.MenuOpen);
-            Active = true;
-            FadeText = false;
-            SetSiblingsInactive();
+            return;
         }
+        SoundEngine.PlaySound(SoundID.MenuOpen);
+        Active = true;
+        FadeText = false;
+        SetSiblingsInactive();
+    }
 
-        public override void MouseOver(UIMouseEvent evt)
+    public override void MouseOver(UIMouseEvent evt)
+    {
+        foreach (UIImageButtonCustom sibling in siblings)
         {
-            foreach (UIImageButtonCustom sibling in siblings)
-            {
-                sibling.FadeText = true;
-            }
-            base.MouseOver(evt);
+            sibling.FadeText = true;
         }
+        base.MouseOver(evt);
+    }
 
-        public override void MouseOut(UIMouseEvent evt)
+    public override void MouseOut(UIMouseEvent evt)
+    {
+        foreach (UIImageButtonCustom sibling in siblings)
         {
-            foreach (UIImageButtonCustom sibling in siblings)
-            {
-                sibling.FadeText = false;
-            }
-            base.MouseOut(evt);
+            sibling.FadeText = false;
         }
+        base.MouseOut(evt);
+    }
 
-        private void SetSiblingsInactive()
+    private void SetSiblingsInactive()
+    {
+        foreach (UIImageButtonCustom sibling in siblings)
         {
-            foreach (UIImageButtonCustom sibling in siblings)
-            {
-                sibling.Active = false;
-            }
+            sibling.Active = false;
         }
+    }
 
-        public void DrawFromExternal(SpriteBatch spriteBatch)
+    public void DrawFromExternal(SpriteBatch spriteBatch)
+    {
+        base.Draw(spriteBatch);
+    }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+        if (!IsMouseHovering || Active)
         {
             base.Draw(spriteBatch);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        if (Active)
         {
-            if (!IsMouseHovering || Active)
+            foreach (UIImageButtonCustom sibling in siblings)
             {
-                base.Draw(spriteBatch);
-            }
-
-            if (Active)
-            {
-                foreach (UIImageButtonCustom sibling in siblings)
+                if (sibling.IsMouseHovering)
                 {
-                    if (sibling.IsMouseHovering)
-                    {
-                        sibling.DrawFromExternal(spriteBatch);
-                    }
+                    sibling.DrawFromExternal(spriteBatch);
                 }
             }
         }
+    }
 
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+    protected override void DrawSelf(SpriteBatch spriteBatch)
+    {
+        if (firstDraw)
         {
-            if (firstDraw)
+            // Shifts text to ensure it is within bounds
+            CalculatedStyle textDims = UIText.GetOuterDimensions();
+            if (textDims.X < Parent.GetOuterDimensions().X)
             {
-                // Shifts text to ensure it is within bounds
-                CalculatedStyle textDims = UIText.GetOuterDimensions();
-                if (textDims.X < Parent.GetOuterDimensions().X)
-                {
-                    UIText.Left.Set(0, 0);
-                    UIText.HAlign = 0f;
-                }
-                else if (textDims.X + textDims.Width > Parent.GetOuterDimensions().X + Parent.GetOuterDimensions().Width)
-                {
-                    UIText.Left.Set(0, 0);
-                    UIText.HAlign = 1f;
-                }
-                firstDraw = false;
+                UIText.Left.Set(0, 0);
+                UIText.HAlign = 0f;
             }
-
-            float alpha;
-            CalculatedStyle outerDimensions = GetOuterDimensions();
-            UIText.TextColor = Color.White;
-
-            if (IsMouseHovering || Active)
+            else if (textDims.X + textDims.Width > Parent.GetOuterDimensions().X + Parent.GetOuterDimensions().Width)
             {
-                UIText.Hidden = false;
-
-                if (Active)
-                {
-                    UIText.TextColor = new Color(255, 215, 0) * (FadeText ? 0.7f : 1f);
-                }
-
-                alpha = 1;
+                UIText.Left.Set(0, 0);
+                UIText.HAlign = 1f;
             }
-            else
-            {
-                UIText.Hidden = true;
-                alpha = 0.4f;
-            }
+            firstDraw = false;
+        }
 
-            spriteBatch.Draw(texture, base.GetDimensions().Position(), Color.White * alpha);
+        float alpha;
+        CalculatedStyle outerDimensions = GetOuterDimensions();
+        UIText.TextColor = Color.White;
+
+        if (IsMouseHovering || Active)
+        {
+            UIText.Hidden = false;
+
             if (Active)
             {
-                spriteBatch.Draw(arrowDownTexture, new Vector2(outerDimensions.X + outerDimensions.Width / 2, outerDimensions.Y - 10), new Rectangle(32, 0, 32, 32), Color.White, 0f, new Vector2(16, 0), 1f, SpriteEffects.None, 0f);
+                UIText.TextColor = new Color(255, 215, 0) * (FadeText ? 0.7f : 1f);
             }
+
+            alpha = 1;
+        }
+        else
+        {
+            UIText.Hidden = true;
+            alpha = 0.4f;
+        }
+
+        spriteBatch.Draw(texture, base.GetDimensions().Position(), Color.White * alpha);
+        if (Active)
+        {
+            spriteBatch.Draw(arrowDownTexture, new Vector2(outerDimensions.X + outerDimensions.Width / 2, outerDimensions.Y - 10), new Rectangle(32, 0, 32, 32), Color.White, 0f, new Vector2(16, 0), 1f, SpriteEffects.None, 0f);
         }
     }
 }

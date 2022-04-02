@@ -1,35 +1,34 @@
 ﻿using Terraria;
 
-namespace ExxoAvalonOrigins.Prefixes
+namespace ExxoAvalonOrigins.Prefixes;
+
+public class Mythic : ArmorPrefix
 {
-    public class Mythic : ArmorPrefix
+    public Mythic()
     {
-        public Mythic()
-        {
 
-        }
+    }
 
-        public override bool CanRoll(Item item)
-        {
-            return IsArmor(item);
-        }
+    public override bool CanRoll(Item item)
+    {
+        return IsArmor(item);
+    }
 
-        public override void ModifyValue(ref float valueMult)
-        {
-            valueMult *= 1.1f;
-        }
+    public override void ModifyValue(ref float valueMult)
+    {
+        valueMult *= 1.1f;
+    }
 
-        public override bool Autoload(ref string name)
+    public override bool Autoload(ref string name)
+    {
+        if (base.Autoload(ref name))
         {
-            if (base.Autoload(ref name))
-            {
-                Mod.AddPrefix("Mythic", new Mythic());
-            }
-            return false;
+            Mod.AddPrefix("Mythic", new Mythic());
         }
-        public override void UpdateEquip(Player player)
-        {
-            player.statManaMax2 += 20;
-        }
+        return false;
+    }
+    public override void UpdateEquip(Player player)
+    {
+        player.statManaMax2 += 20;
     }
 }

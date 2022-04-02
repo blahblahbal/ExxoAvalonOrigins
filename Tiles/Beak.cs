@@ -4,17 +4,16 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Tiles
+namespace ExxoAvalonOrigins.Tiles;
+
+public class Beak : ModTile
 {
-    public class Beak : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            AddMapEntry((Color.DarkOrange), LanguageManager.Instance.GetText("Beak"));
-            Main.tileSolid[Type] = true;
-            drop = Mod.Find<ModItem>("Beak").Type;
-            soundType = SoundID.NPCHit;
-            soundStyle = 2;
-        }
+        AddMapEntry((Color.DarkOrange), LanguageManager.Instance.GetText("Beak"));
+        Main.tileSolid[Type] = true;
+        drop = Mod.Find<ModItem>("Beak").Type;
+        soundType = SoundID.NPCHit;
+        soundStyle = 2;
     }
 }

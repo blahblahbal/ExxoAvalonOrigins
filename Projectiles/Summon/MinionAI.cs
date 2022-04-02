@@ -7,18 +7,17 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Projectiles.Summon
+namespace ExxoAvalonOrigins.Projectiles.Summon;
+
+public abstract class MinionAI : ModProjectile
 {
-    public abstract class MinionAI : ModProjectile
+    public override void AI()
     {
-        public override void AI()
-        {
-            CheckActive();
-            Behavior();
-        }
-
-        public abstract void CheckActive();
-
-        public abstract void Behavior();
+        CheckActive();
+        Behavior();
     }
+
+    public abstract void CheckActive();
+
+    public abstract void Behavior();
 }

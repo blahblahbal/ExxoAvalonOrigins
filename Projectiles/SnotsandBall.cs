@@ -2,122 +2,121 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Projectiles
+namespace ExxoAvalonOrigins.Projectiles;
+
+public class SnotsandBall : ModProjectile
 {
-    public class SnotsandBall : ModProjectile
+    protected bool falling = true;
+    protected int tileType;
+    protected int dustType;
+
+    public override void SetStaticDefaults()
     {
-        protected bool falling = true;
-        protected int tileType;
-        protected int dustType;
+        DisplayName.SetDefault("Snotsand Ball");
+        ProjectileID.Sets.ForcePlateDetection[Projectile.type] = true;
+    }
+    public override void SetDefaults()
+    {
+        Projectile.knockBack = 6f;
+        Projectile.width = 10;
+        Projectile.height = 10;
+        Projectile.friendly = true;
+        Projectile.hostile = true;
+        Projectile.penetrate = -1;
+        tileType = ModContent.TileType<Tiles.Snotsand>();
+    }
 
-        public override void SetStaticDefaults()
+    public override void AI()
+    {
+
+        if (Main.rand.Next(5) == 0)
         {
-            DisplayName.SetDefault("Snotsand Ball");
-            ProjectileID.Sets.ForcePlateDetection[Projectile.type] = true;
+            int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, dustType);
+            Main.dust[dust].velocity.X *= 0.4f;
         }
-        public override void SetDefaults()
+
+        Projectile.tileCollide = true;
+        Projectile.localAI[1] = 0f;
+
+        if (Projectile.ai[0] == 1f)
         {
-            Projectile.knockBack = 6f;
-            Projectile.width = 10;
-            Projectile.height = 10;
-            Projectile.friendly = true;
-            Projectile.hostile = true;
-            Projectile.penetrate = -1;
-            tileType = ModContent.TileType<Tiles.Snotsand>();
-        }
-
-        public override void AI()
-        {
-
-            if (Main.rand.Next(5) == 0)
+            if (!falling)
             {
-                int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, dustType);
-                Main.dust[dust].velocity.X *= 0.4f;
-            }
+                Projectile.ai[1] += 1f;
 
-            Projectile.tileCollide = true;
-            Projectile.localAI[1] = 0f;
-
-            if (Projectile.ai[0] == 1f)
-            {
-                if (!falling)
+                if (Projectile.ai[1] >= 60f)
                 {
-                    Projectile.ai[1] += 1f;
-
-                    if (Projectile.ai[1] >= 60f)
-                    {
-                        Projectile.ai[1] = 60f;
-                        Projectile.velocity.Y += 0.2f;
-                    }
+                    Projectile.ai[1] = 60f;
+                    Projectile.velocity.Y += 0.2f;
                 }
-                else
-                    Projectile.velocity.Y += 0.41f;
             }
-            else if (Projectile.ai[0] == 2f)
-            {
-                Projectile.velocity.Y += 0.2f;
-
-                if (Projectile.velocity.X < -0.04f)
-                    Projectile.velocity.X += 0.04f;
-                else if (Projectile.velocity.X > 0.04f)
-                    Projectile.velocity.X -= 0.04f;
-                else
-                    Projectile.velocity.X = 0f;
-            }
-
-            Projectile.rotation += 0.1f;
-
-            if (Projectile.velocity.Y > 10f)
-                Projectile.velocity.Y = 10f;
-        }
-
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
-        {
-            if (falling)
-                Projectile.velocity = Collision.AnyCollision(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, true);
             else
-                Projectile.velocity = Collision.TileCollision(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, fallThrough, fallThrough, 1);
+                Projectile.velocity.Y += 0.41f;
+        }
+        else if (Projectile.ai[0] == 2f)
+        {
+            Projectile.velocity.Y += 0.2f;
 
-            return false;
+            if (Projectile.velocity.X < -0.04f)
+                Projectile.velocity.X += 0.04f;
+            else if (Projectile.velocity.X > 0.04f)
+                Projectile.velocity.X -= 0.04f;
+            else
+                Projectile.velocity.X = 0f;
         }
 
-        public override void Kill(int timeLeft)
+        Projectile.rotation += 0.1f;
+
+        if (Projectile.velocity.Y > 10f)
+            Projectile.velocity.Y = 10f;
+    }
+
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+    {
+        if (falling)
+            Projectile.velocity = Collision.AnyCollision(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, true);
+        else
+            Projectile.velocity = Collision.TileCollision(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, fallThrough, fallThrough, 1);
+
+        return false;
+    }
+
+    public override void Kill(int timeLeft)
+    {
+        if (Projectile.owner == Main.myPlayer && !Projectile.noDropItem)
         {
-            if (Projectile.owner == Main.myPlayer && !Projectile.noDropItem)
+            int tileX = (int)(Projectile.position.X + Projectile.width / 2) / 16;
+            int tileY = (int)(Projectile.position.Y + Projectile.width / 2) / 16;
+
+            Tile tile = Main.tile[tileX, tileY];
+            Tile tileBelow = Main.tile[tileX, tileY + 1];
+
+            if (tile.IsHalfBlock && Projectile.velocity.Y > 0f && System.Math.Abs(Projectile.velocity.Y) > System.Math.Abs(Projectile.velocity.X))
+                tileY--;
+
+            if (!tile.HasTile)
             {
-                int tileX = (int)(Projectile.position.X + Projectile.width / 2) / 16;
-                int tileY = (int)(Projectile.position.Y + Projectile.width / 2) / 16;
+                bool onMinecartTrack = tileY < Main.maxTilesY - 2 && tileBelow != null && tileBelow.HasTile && tileBelow.TileType == TileID.MinecartTrack;
 
-                Tile tile = Main.tile[tileX, tileY];
-                Tile tileBelow = Main.tile[tileX, tileY + 1];
+                if (!onMinecartTrack)
+                    WorldGen.PlaceTile(tileX, tileY, tileType, false, true);
 
-                if (tile.IsHalfBlock && Projectile.velocity.Y > 0f && System.Math.Abs(Projectile.velocity.Y) > System.Math.Abs(Projectile.velocity.X))
-                    tileY--;
-
-                if (!tile.HasTile)
+                if (!onMinecartTrack && tile.HasTile && tile.TileType == tileType)
                 {
-                    bool onMinecartTrack = tileY < Main.maxTilesY - 2 && tileBelow != null && tileBelow.HasTile && tileBelow.TileType == TileID.MinecartTrack;
-
-                    if (!onMinecartTrack)
-                        WorldGen.PlaceTile(tileX, tileY, tileType, false, true);
-
-                    if (!onMinecartTrack && tile.HasTile && tile.TileType == tileType)
+                    if (tileBelow.IsHalfBlock || tileBelow.slope() != 0)
                     {
-                        if (tileBelow.IsHalfBlock || tileBelow.slope() != 0)
-                        {
-                            WorldGen.SlopeTile(tileX, tileY + 1, 0);
+                        WorldGen.SlopeTile(tileX, tileY + 1, 0);
 
-                            if (Main.netMode == NetmodeID.Server)
-                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 14, tileX, tileY + 1);
-                        }
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendData(MessageID.TileChange, -1, -1, null, 14, tileX, tileY + 1);
+                    }
 
                         if (Main.netMode != NetmodeID.SinglePlayer)
-                            NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, tileX, tileY, tileType);
+                            NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, tileX, tileY, tileType);
                     }
                 }
             }
         }
 
-        public override bool CanDamage() => Projectile.localAI[1] != -1f;
-    }
+    public override bool CanDamage() => Projectile.localAI[1] != -1f;
 }

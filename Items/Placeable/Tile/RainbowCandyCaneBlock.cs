@@ -2,32 +2,31 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Placeable.Tile
-{
-    class RainbowCandyCaneBlock : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Rainbow Candy Cane Block");
-        }
+namespace ExxoAvalonOrigins.Items.Placeable.Tile;
 
-        public override void SetDefaults()
-        {
-            Rectangle dims = this.GetDims();
-            Item.autoReuse = true;
-            Item.consumable = true;
-            Item.createTile = ModContent.TileType<Tiles.RainbowCandyCane>();
-            Item.width = dims.Width;
-            Item.useTurn = true;
-            Item.useTime = 10;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.maxStack = 999;
-            Item.useAnimation = 15;
-            Item.height = dims.Height;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe(3).AddIngredient(ItemID.CandyCaneBlock).AddIngredient(ItemID.GreenCandyCaneBlock).AddIngredient(ModContent.ItemType<ChocolateCandyCaneBlock>()).AddTile(TileID.WorkBenches).Register();
-        }
+class RainbowCandyCaneBlock : ModItem
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Rainbow Candy Cane Block");
+    }
+
+    public override void SetDefaults()
+    {
+        Rectangle dims = this.GetDims();
+        Item.autoReuse = true;
+        Item.consumable = true;
+        Item.createTile = ModContent.TileType<Tiles.RainbowCandyCane>();
+        Item.width = dims.Width;
+        Item.useTurn = true;
+        Item.useTime = 10;
+        Item.useStyle = ItemUseStyleID.Swing;
+        Item.maxStack = 999;
+        Item.useAnimation = 15;
+        Item.height = dims.Height;
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe(3).AddIngredient(ItemID.CandyCaneBlock).AddIngredient(ItemID.GreenCandyCaneBlock).AddIngredient(ModContent.ItemType<ChocolateCandyCaneBlock>()).AddTile(TileID.WorkBenches).Register();
     }
 }

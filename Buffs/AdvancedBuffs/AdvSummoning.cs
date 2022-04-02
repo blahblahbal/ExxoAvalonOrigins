@@ -1,19 +1,18 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
-{
-    public class AdvSummoning : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Advanced Summoning");
-            Description.SetDefault("Increased max number of minions");
-        }
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs;
 
-        public override void Update(Player player, ref int k)
-        {
-            player.maxMinions += 2;
-        }
+public class AdvSummoning : ModBuff
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Advanced Summoning");
+        Description.SetDefault("Increased max number of minions");
+    }
+
+    public override void Update(Player player, ref int k)
+    {
+        player.maxMinions += 2;
     }
 }

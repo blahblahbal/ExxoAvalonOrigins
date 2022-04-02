@@ -1,18 +1,17 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Weapons.Melee
-{
-    class BronzeShortsword : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bronze Shortsword");
-        }
+namespace ExxoAvalonOrigins.Items.Weapons.Melee;
 
-        public override void SetDefaults()
-        {
-            Item.CloneDefaults(ItemID.TinShortsword);
-        }
+class BronzeShortsword : ModItem
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Bronze Shortsword");
+    }
+
+    public override void SetDefaults()
+    {
+        Item.CloneDefaults(ItemID.TinShortsword);
     }
 }

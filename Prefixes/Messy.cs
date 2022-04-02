@@ -1,35 +1,34 @@
 ﻿using Terraria;
 
-namespace ExxoAvalonOrigins.Prefixes
+namespace ExxoAvalonOrigins.Prefixes;
+
+public class Messy : ArmorPrefix
 {
-    public class Messy : ArmorPrefix
+    public Messy()
     {
-        public Messy()
-        {
 
-        }
+    }
 
-        public override bool CanRoll(Item item)
-        {
-            return IsArmor(item);
-        }
+    public override bool CanRoll(Item item)
+    {
+        return IsArmor(item);
+    }
 
-        public override void ModifyValue(ref float valueMult)
-        {
-            valueMult *= 0.9f;
-        }
+    public override void ModifyValue(ref float valueMult)
+    {
+        valueMult *= 0.9f;
+    }
 
-        public override bool Autoload(ref string name)
+    public override bool Autoload(ref string name)
+    {
+        if (base.Autoload(ref name))
         {
-            if (base.Autoload(ref name))
-            {
-                Mod.AddPrefix("Messy", new Messy());
-            }
-            return false;
+            Mod.AddPrefix("Messy", new Messy());
         }
-        public override void UpdateEquip(Player player)
-        {
-            player.allDamage -= 0.05f;
-        }
+        return false;
+    }
+    public override void UpdateEquip(Player player)
+    {
+        player.allDamage -= 0.05f;
     }
 }

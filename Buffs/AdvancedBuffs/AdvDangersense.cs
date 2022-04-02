@@ -1,19 +1,18 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
-{
-    public class AdvDangersense : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Advanced Dangersense");
-            Description.SetDefault("You can see nearby hazards");
-        }
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs;
 
-        public override void Update(Player player, ref int k)
-        {
-            player.dangerSense = true;
-        }
+public class AdvDangersense : ModBuff
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Advanced Dangersense");
+        Description.SetDefault("You can see nearby hazards");
+    }
+
+    public override void Update(Player player, ref int k)
+    {
+        player.dangerSense = true;
     }
 }

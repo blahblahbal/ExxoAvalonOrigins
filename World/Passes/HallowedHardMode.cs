@@ -1,6 +1,5 @@
-﻿namespace ExxoAvalonOrigins.World.Passes
+﻿namespace ExxoAvalonOrigins.World.Passes;
+
+class HallowedHardMode
 {
-    class HallowedHardMode
-    {
-    }
 }

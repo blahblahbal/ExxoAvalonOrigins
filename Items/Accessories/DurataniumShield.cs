@@ -3,30 +3,29 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Items.Accessories
+namespace ExxoAvalonOrigins.Items.Accessories;
+
+class DurataniumShield : ModItem
 {
-    class DurataniumShield : ModItem
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Duratanium Shield");
-            Tooltip.SetDefault("Slows the effects of damage over time debuffs");
-        }
+        DisplayName.SetDefault("Duratanium Shield");
+        Tooltip.SetDefault("Slows the effects of damage over time debuffs");
+    }
 
-        public override void SetDefaults()
-        {
-            Rectangle dims = this.GetDims();
-            Item.defense = 2;
-            Item.rare = ItemRarityID.LightRed;
-            Item.width = dims.Width;
-            Item.value = 54000;
-            Item.accessory = true;
-            Item.height = dims.Height;
-        }
+    public override void SetDefaults()
+    {
+        Rectangle dims = this.GetDims();
+        Item.defense = 2;
+        Item.rare = ItemRarityID.LightRed;
+        Item.width = dims.Width;
+        Item.value = 54000;
+        Item.accessory = true;
+        Item.height = dims.Height;
+    }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.Avalon().duraShield = true;
-        }
+    public override void UpdateAccessory(Player player, bool hideVisual)
+    {
+        player.Avalon().duraShield = true;
     }
 }

@@ -4,26 +4,25 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Tiles.Ores
+namespace ExxoAvalonOrigins.Tiles.Ores;
+
+public class HydrolythOre : ModTile
 {
-    public class HydrolythOre : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            mineResist = 8f;
-            AddMapEntry(new Color(0, 255, 255), LanguageManager.Instance.GetText("Hydrolyth"));
-            Main.tileSolid[Type] = true;
-            Main.tileBlockLight[Type] = true;
-            Main.tileSpelunker[Type] = true;
-            drop = Mod.Find<ModItem>("HydrolythOre").Type;
-            soundType = SoundID.Tink;
-            soundStyle = 1;
-            minPick = 300;
-            dustType = DustID.MagicMirror;
-        }
-        public override bool CanExplode(int i, int j)
-        {
-            return false;
-        }
+        mineResist = 8f;
+        AddMapEntry(new Color(0, 255, 255), LanguageManager.Instance.GetText("Hydrolyth"));
+        Main.tileSolid[Type] = true;
+        Main.tileBlockLight[Type] = true;
+        Main.tileSpelunker[Type] = true;
+        drop = Mod.Find<ModItem>("HydrolythOre").Type;
+        soundType = SoundID.Tink;
+        soundStyle = 1;
+        minPick = 300;
+        dustType = DustID.MagicMirror;
+    }
+    public override bool CanExplode(int i, int j)
+    {
+        return false;
     }
 }

@@ -5,37 +5,36 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace ExxoAvalonOrigins.Tiles
+namespace ExxoAvalonOrigins.Tiles;
+
+public class Catalyzer : ModTile
 {
-    public class Catalyzer : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            AddMapEntry(new Color(146, 155, 187), LanguageManager.Instance.GetText("Catalyzer"));
-            Main.tileFrameImportant[Type] = true;
-            animationFrameHeight = 38;
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-            TileObjectData.newTile.DrawYOffset = 2;
-            TileObjectData.newTile.LavaDeath = false;
-            TileObjectData.addTile(Type);
-            Main.tileLighted[Type] = true;
-            dustType = DustID.Stone;
-        }
+        AddMapEntry(new Color(146, 155, 187), LanguageManager.Instance.GetText("Catalyzer"));
+        Main.tileFrameImportant[Type] = true;
+        animationFrameHeight = 38;
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+        TileObjectData.newTile.DrawYOffset = 2;
+        TileObjectData.newTile.LavaDeath = false;
+        TileObjectData.addTile(Type);
+        Main.tileLighted[Type] = true;
+        dustType = DustID.Stone;
+    }
 
-        public override void AnimateTile(ref int frame, ref int frameCounter)
+    public override void AnimateTile(ref int frame, ref int frameCounter)
+    {
+        frameCounter++;
+        if (frameCounter > 4)
         {
-            frameCounter++;
-            if (frameCounter > 4)
-            {
-                frameCounter = 0;
-                frame++;
-                if (frame >= 12) frame = 0;
-            }
+            frameCounter = 0;
+            frame++;
+            if (frame >= 12) frame = 0;
         }
+    }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Material.Catalyzer>());
-        }
+    public override void KillMultiTile(int i, int j, int frameX, int frameY)
+    {
+        Item.NewItem(i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Material.Catalyzer>());
     }
 }

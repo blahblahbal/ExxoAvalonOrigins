@@ -1,23 +1,22 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs
+namespace ExxoAvalonOrigins.Buffs;
+
+public class Malaria : ModBuff
 {
-    public class Malaria : ModBuff
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Malaria");
-            Description.SetDefault("Itchy Bastards");
-            Main.debuff[Type] = true;
-        }
-        public override void Update(Player player, ref int buffIndex)
-        {
-            player.Avalon().malaria = true;
-        }
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().malaria = true;
-        }
+        DisplayName.SetDefault("Malaria");
+        Description.SetDefault("Itchy Bastards");
+        Main.debuff[Type] = true;
+    }
+    public override void Update(Player player, ref int buffIndex)
+    {
+        player.Avalon().malaria = true;
+    }
+    public override void Update(NPC npc, ref int buffIndex)
+    {
+        npc.GetGlobalNPC<ExxoAvalonOriginsGlobalNPCInstance>().malaria = true;
     }
 }

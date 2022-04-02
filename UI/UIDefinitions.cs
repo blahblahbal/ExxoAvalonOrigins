@@ -1,15 +1,14 @@
-﻿namespace ExxoAvalonOrigins.UI
+﻿namespace ExxoAvalonOrigins.UI;
+
+public enum Justification
 {
-    public enum Justification
-    {
-        Start,
-        End,
-        Center,
-        SpaceBetween,
-    }
-    public enum Direction
-    {
-        Vertical,
-        Horizontal
-    }
+    Start,
+    End,
+    Center,
+    SpaceBetween,
+}
+public enum Direction
+{
+    Vertical,
+    Horizontal
 }
