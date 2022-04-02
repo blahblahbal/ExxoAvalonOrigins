@@ -12,8 +12,9 @@ class Utils
     {
         if (resetSlope)
         {
-            Main.tile[i, j].slope(0);
-            Main.tile[i, j].halfBrick(false);
+            Tile t = Main.tile[i, j];
+            t.Slope = SlopeType.Solid;
+            t.IsHalfBlock = false;
         }
         WorldGen.TileFrame(i - 1, j - 1, false, largeHerb);
         WorldGen.TileFrame(i - 1, j, false, largeHerb);
@@ -96,7 +97,8 @@ class Utils
             for (int j = y; j < y + 5; j++)
             {
                 Main.tile[i, j].TileType = TileID.Stone;
-                Main.tile[i, j].active(true);
+                Tile t = Main.tile[i, j];
+                t.HasTile = true;
                 WorldGen.SquareTileFrame(i, j);
             }
         }
@@ -110,13 +112,15 @@ class Utils
                 float dist = Vector2.Distance(new Vector2(k, l), new Vector2(x, y));
                 if (dist <= radius && dist >= (radius - 29))
                 {
-                    Main.tile[k, l].active(false);
+                    Tile t = Main.tile[k, l];
+                    t.HasTile = false;
                 }
-                if ((dist <= radius && dist >= radius - 7) || (dist <= (float)(radius - 22) && dist >= (float)(radius - 29)))
+                if ((dist <= radius && dist >= radius - 7) || (dist <= radius - 22 && dist >= radius - 29))
                 {
-                    Main.tile[k, l].active(true);
-                    Main.tile[k, l].halfBrick(false);
-                    Main.tile[k, l].slope(0);
+                    Tile t = Main.tile[k, l];
+                    t.HasTile = false;
+                    t.IsHalfBlock = false;
+                    t.Slope = SlopeType.Solid;
                     Main.tile[k, l].TileType = (ushort)tileType;
                     WorldGen.SquareTileFrame(k, l);
                 }
