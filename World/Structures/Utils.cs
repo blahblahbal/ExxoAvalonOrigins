@@ -1,6 +1,5 @@
-﻿namespace ExxoAvalonOrigins.World.Structures
+﻿namespace ExxoAvalonOrigins.World.Structures;
+
+public class Utils
 {
-    public class Utils
-    {
-    }
 }

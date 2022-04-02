@@ -1,21 +1,20 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Hooks
+namespace ExxoAvalonOrigins.Hooks;
+
+class EideticMirror
 {
-    class EideticMirror
+    public static void OnTakeUnityItem(On.Terraria.Player.orig_TakeUnityPotion orig, Player self)
     {
-        public static void OnTakeUnityItem(On.Terraria.Player.orig_TakeUnityPotion orig, Player self)
-        {
-            if (self.HasItem(ModContent.ItemType<Items.Tools.EideticMirror>())) return;
+        if (self.HasItem(ModContent.ItemType<Items.Tools.EideticMirror>())) return;
 
-            orig(self);
-        }
+        orig(self);
+    }
 
-        public static bool OnHasUnityItem(On.Terraria.Player.orig_HasUnityPotion orig, Player self)
-        {
-            if (self.HasItem(ModContent.ItemType<Items.Tools.EideticMirror>())) return true;
-            return orig(self);
-        }
+    public static bool OnHasUnityItem(On.Terraria.Player.orig_HasUnityPotion orig, Player self)
+    {
+        if (self.HasItem(ModContent.ItemType<Items.Tools.EideticMirror>())) return true;
+        return orig(self);
     }
 }

@@ -2,15 +2,14 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Tiles
+namespace ExxoAvalonOrigins.Tiles;
+
+public class RedVelCandyCane : ModTile
 {
-    public class RedVelCandyCane : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            AddMapEntry(Color.GreenYellow);
-            Main.tileSolid[Type] = true;
-            drop = Mod.Find<ModItem>("RedVelvetCandyCaneBlock").Type;
-        }
+        AddMapEntry(Color.GreenYellow);
+        Main.tileSolid[Type] = true;
+        drop = Mod.Find<ModItem>("RedVelvetCandyCaneBlock").Type;
     }
 }

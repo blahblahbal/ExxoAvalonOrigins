@@ -2,15 +2,14 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Walls
+namespace ExxoAvalonOrigins.Walls;
+
+public class ChunkstoneWall : ModWall
 {
-    public class ChunkstoneWall : ModWall
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            WallID.Sets.Conversion.Stone[Type] = true;
-            AddMapEntry(new Color(34, 44, 25));
-            dustType = ModContent.DustType<Dusts.ContagionDust>();
-        }
+        WallID.Sets.Conversion.Stone[Type] = true;
+        AddMapEntry(new Color(34, 44, 25));
+        dustType = ModContent.DustType<Dusts.ContagionDust>();
     }
 }

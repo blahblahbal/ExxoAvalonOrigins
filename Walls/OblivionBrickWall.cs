@@ -2,15 +2,14 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Walls
+namespace ExxoAvalonOrigins.Walls;
+
+public class OblivionBrickWall : ModWall
 {
-    public class OblivionBrickWall : ModWall
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            Main.wallHouse[Type] = true;
-            drop = Mod.Find<ModItem>("ObsidianLavaTube").Type;
-            AddMapEntry(new Color(121, 0, 48));
-        }
+        Main.wallHouse[Type] = true;
+        drop = Mod.Find<ModItem>("ObsidianLavaTube").Type;
+        AddMapEntry(new Color(121, 0, 48));
     }
 }

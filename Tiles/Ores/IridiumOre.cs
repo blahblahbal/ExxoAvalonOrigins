@@ -4,24 +4,23 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Tiles.Ores
+namespace ExxoAvalonOrigins.Tiles.Ores;
+
+public class IridiumOre : ModTile
 {
-    public class IridiumOre : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            AddMapEntry(new Color(146, 167, 123), LanguageManager.Instance.GetText("Iridium"));
-            Main.tileSolid[Type] = true;
-            Main.tileMergeDirt[Type] = true;
-            Main.tileShine2[Type] = true;
-            Main.tileShine[Type] = 1150;
-            Main.tileValue[Type] = 440;
-            Main.tileSpelunker[Type] = true;
-            Main.tileBlockLight[Type] = true;
-            drop = ModContent.ItemType<Items.Placeable.Tile.IridiumOre>();
-            soundType = SoundID.Tink;
-            soundStyle = 1;
-            dustType = ModContent.DustType<Dusts.IridiumDust>();
-        }
+        AddMapEntry(new Color(146, 167, 123), LanguageManager.Instance.GetText("Iridium"));
+        Main.tileSolid[Type] = true;
+        Main.tileMergeDirt[Type] = true;
+        Main.tileShine2[Type] = true;
+        Main.tileShine[Type] = 1150;
+        Main.tileValue[Type] = 440;
+        Main.tileSpelunker[Type] = true;
+        Main.tileBlockLight[Type] = true;
+        drop = ModContent.ItemType<Items.Placeable.Tile.IridiumOre>();
+        soundType = SoundID.Tink;
+        soundStyle = 1;
+        dustType = ModContent.DustType<Dusts.IridiumDust>();
     }
 }

@@ -1,11 +1,10 @@
-﻿namespace ExxoAvalonOrigins.Network
+﻿namespace ExxoAvalonOrigins.Network;
+
+public enum MessageID
 {
-    public enum MessageID
-    {
-        ShadowTeleport = 0,
-        CursorPosition = 1,
-        SyncTime = 2,
-        SyncWiring = 3,
-        StaminaHeal = 4
-    }
+    ShadowTeleport = 0,
+    CursorPosition = 1,
+    SyncTime = 2,
+    SyncWiring = 3,
+    StaminaHeal = 4
 }

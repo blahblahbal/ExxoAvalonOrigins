@@ -1,19 +1,18 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
-{
-    public class AdvCalming : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Advanced Calm");
-            Description.SetDefault("Reduced enemy aggression");
-        }
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs;
 
-        public override void Update(Player player, ref int k)
-        {
-            player.Avalon().advCalmingBuff = true;
-        }
+public class AdvCalming : ModBuff
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Advanced Calm");
+        Description.SetDefault("Reduced enemy aggression");
+    }
+
+    public override void Update(Player player, ref int k)
+    {
+        player.Avalon().advCalmingBuff = true;
     }
 }

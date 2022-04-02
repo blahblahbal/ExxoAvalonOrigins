@@ -2,14 +2,13 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Walls
+namespace ExxoAvalonOrigins.Walls;
+
+public class NestWall : ModWall
 {
-    public class NestWall : ModWall
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            AddMapEntry(new Color(130, 113, 96));
-            dustType = DustID.MarblePot;
-        }
+        AddMapEntry(new Color(130, 113, 96));
+        dustType = DustID.MarblePot;
     }
 }

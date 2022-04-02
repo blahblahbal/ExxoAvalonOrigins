@@ -1,20 +1,19 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
-{
-    public class AdvLifeforce : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Advanced Lifeforce");
-            Description.SetDefault("30% increased max life");
-        }
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs;
 
-        public override void Update(Player player, ref int k)
-        {
-            player.lifeForce = true;
-            player.statLifeMax2 += player.statLifeMax / 5 / 20 * 30;
-        }
+public class AdvLifeforce : ModBuff
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Advanced Lifeforce");
+        Description.SetDefault("30% increased max life");
+    }
+
+    public override void Update(Player player, ref int k)
+    {
+        player.lifeForce = true;
+        player.statLifeMax2 += player.statLifeMax / 5 / 20 * 30;
     }
 }

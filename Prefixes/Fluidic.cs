@@ -1,36 +1,35 @@
 ﻿using Terraria;
 
-namespace ExxoAvalonOrigins.Prefixes
+namespace ExxoAvalonOrigins.Prefixes;
+
+public class Fluidic : ArmorPrefix
 {
-    public class Fluidic : ArmorPrefix
+    public Fluidic()
     {
-        public Fluidic()
-        {
 
-        }
+    }
 
-        public override bool CanRoll(Item item)
-        {
-            return IsArmor(item);
-        }
+    public override bool CanRoll(Item item)
+    {
+        return IsArmor(item);
+    }
 
-        public override void ModifyValue(ref float valueMult)
-        {
-            valueMult *= 1.25f;
-        }
+    public override void ModifyValue(ref float valueMult)
+    {
+        valueMult *= 1.25f;
+    }
 
-        public override bool Autoload(ref string name)
+    public override bool Autoload(ref string name)
+    {
+        if (base.Autoload(ref name))
         {
-            if (base.Autoload(ref name))
-            {
-                Mod.AddPrefix("Fluidic", new Fluidic());
-            }
-            return false;
+            Mod.AddPrefix("Fluidic", new Fluidic());
         }
-        public override void UpdateEquip(Player player)
-        {
-            player.moveSpeed += 0.05f;
-            player.ignoreWater = true;
-        }
+        return false;
+    }
+    public override void UpdateEquip(Player player)
+    {
+        player.moveSpeed += 0.05f;
+        player.ignoreWater = true;
     }
 }

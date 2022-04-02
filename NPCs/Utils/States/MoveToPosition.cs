@@ -3,92 +3,91 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace ExxoAvalonOrigins.NPCs.Utils.States
+namespace ExxoAvalonOrigins.NPCs.Utils.States;
+
+public class MoveToPosition : State
 {
-    public class MoveToPosition : State
+    private readonly uint frameDuration;
+    private readonly Func<float, float> easeFunction;
+    private readonly bool relativeToTarget;
+    private readonly bool relativeToTargetedPosition;
+    private readonly Vector2 position;
+    private readonly Vector2 targetedPosition;
+    private Vector2Tween movementTween;
+
+    public MoveToPosition(Vector2 position, uint frameDuration, Func<float, float> easeFunction, bool relativeToTarget = false)
     {
-        private readonly uint frameDuration;
-        private readonly Func<float, float> easeFunction;
-        private readonly bool relativeToTarget;
-        private readonly bool relativeToTargetedPosition;
-        private readonly Vector2 position;
-        private readonly Vector2 targetedPosition;
-        private Vector2Tween movementTween;
+        this.frameDuration = frameDuration;
+        this.easeFunction = easeFunction;
+        this.relativeToTarget = relativeToTarget;
+        relativeToTargetedPosition = false;
 
-        public MoveToPosition(Vector2 position, uint frameDuration, Func<float, float> easeFunction, bool relativeToTarget = false)
+        this.position = position;
+        targetedPosition = Vector2.Zero;
+    }
+
+    public MoveToPosition(Vector2 position, uint frameDuration, Func<float, float> easeFunction, Vector2 targetedPosition) : this(position, frameDuration, easeFunction, false)
+    {
+        this.targetedPosition = targetedPosition;
+        relativeToTargetedPosition = true;
+    }
+
+    public override void Write(BinaryWriter writer)
+    {
+        base.Write(writer);
+        movementTween.Write(writer);
+    }
+
+    public override void Read(BinaryReader reader)
+    {
+        base.Read(reader);
+        movementTween = new Vector2Tween(frameDuration, easeFunction, Vector2.Zero, Vector2.Zero);
+        movementTween.Read(reader);
+    }
+
+    public override void PostDraw(SpriteBatch spriteBatch)
+    {
+        if (movementTween != null)
         {
-            this.frameDuration = frameDuration;
-            this.easeFunction = easeFunction;
-            this.relativeToTarget = relativeToTarget;
-            relativeToTargetedPosition = false;
-
-            this.position = position;
-            targetedPosition = Vector2.Zero;
+            Utils.Debug.DrawIndicator(spriteBatch, movementTween.EndPosition);
         }
+    }
 
-        public MoveToPosition(Vector2 position, uint frameDuration, Func<float, float> easeFunction, Vector2 targetedPosition) : this(position, frameDuration, easeFunction, false)
+    protected override void Start()
+    {
+        if (relativeToTarget)
         {
-            this.targetedPosition = targetedPosition;
-            relativeToTargetedPosition = true;
+            movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center - target.Center, position);
         }
-
-        public override void Write(BinaryWriter writer)
+        else
         {
-            base.Write(writer);
-            movementTween.Write(writer);
-        }
-
-        public override void Read(BinaryReader reader)
-        {
-            base.Read(reader);
-            movementTween = new Vector2Tween(frameDuration, easeFunction, Vector2.Zero, Vector2.Zero);
-            movementTween.Read(reader);
-        }
-
-        public override void PostDraw(SpriteBatch spriteBatch)
-        {
-            if (movementTween != null)
+            if (relativeToTargetedPosition)
             {
-                Utils.Debug.DrawIndicator(spriteBatch, movementTween.EndPosition);
-            }
-        }
-
-        protected override void Start()
-        {
-            if (relativeToTarget)
-            {
-                movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center - target.Center, position);
+                movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center, position + targetedPosition);
             }
             else
             {
-                if (relativeToTargetedPosition)
-                {
-                    movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center, position + targetedPosition);
-                }
-                else
-                {
-                    movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center, position);
-                }
+                movementTween = new Vector2Tween(frameDuration, easeFunction, npc.Center, position);
             }
         }
+    }
 
-        protected override void Update()
+    protected override void Update()
+    {
+        npc.velocity = Vector2.Zero;
+
+        if (relativeToTarget)
         {
-            npc.velocity = Vector2.Zero;
+            npc.Center = target.Center + movementTween.Update();
+        }
+        else
+        {
+            npc.Center = movementTween.Update();
+        }
 
-            if (relativeToTarget)
-            {
-                npc.Center = target.Center + movementTween.Update();
-            }
-            else
-            {
-                npc.Center = movementTween.Update();
-            }
-
-            if (movementTween.Finished)
-            {
-                Destroy();
-            }
+        if (movementTween.Finished)
+        {
+            Destroy();
         }
     }
 }

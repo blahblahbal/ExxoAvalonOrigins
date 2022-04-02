@@ -1,20 +1,19 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs
-{
-    public class AdvWisdom : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Advanced Wisdom");
-            Description.SetDefault("-4% magic damage, +120 mana");
-        }
+namespace ExxoAvalonOrigins.Buffs.AdvancedBuffs;
 
-        public override void Update(Player player, ref int k)
-        {
-            player.GetDamage(DamageClass.Magic) -= 0.04f;
-            player.statManaMax2 += 120;
-        }
+public class AdvWisdom : ModBuff
+{
+    public override void SetStaticDefaults()
+    {
+        DisplayName.SetDefault("Advanced Wisdom");
+        Description.SetDefault("-4% magic damage, +120 mana");
+    }
+
+    public override void Update(Player player, ref int k)
+    {
+        player.GetDamage(DamageClass.Magic) -= 0.04f;
+        player.statManaMax2 += 120;
     }
 }

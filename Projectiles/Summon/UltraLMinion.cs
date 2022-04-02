@@ -2,58 +2,57 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Projectiles.Summon
+namespace ExxoAvalonOrigins.Projectiles.Summon;
+
+public class UltraLMinion : HoverShooter
 {
-    public class UltraLMinion : HoverShooter
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Projectile.type] = 3;
-            Main.projPet[Projectile.type] = true;
-            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.Homing[Projectile.type] = true;
-            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-        }
+        Main.projFrames[Projectile.type] = 3;
+        Main.projPet[Projectile.type] = true;
+        ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+        ProjectileID.Sets.Homing[Projectile.type] = true;
+        ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+    }
 
-        public override void SetDefaults()
-        {
-            Projectile.netImportant = true;
-            Projectile.width = 50;
-            Projectile.height = 24;
-            Projectile.friendly = true;
-            Projectile.minion = true;
-            Projectile.minionSlots = 0.25f;
-            Projectile.aiStyle = 66;
-            Projectile.penetrate = -1;
-            Projectile.timeLeft *= 5;
-            Projectile.tileCollide = false;
-            Projectile.ignoreWater = true;
-            shoot = ModContent.ProjectileType<UltraLFire>();
-            shootSpeed = 12f;
-        }
+    public override void SetDefaults()
+    {
+        Projectile.netImportant = true;
+        Projectile.width = 50;
+        Projectile.height = 24;
+        Projectile.friendly = true;
+        Projectile.minion = true;
+        Projectile.minionSlots = 0.25f;
+        Projectile.aiStyle = 66;
+        Projectile.penetrate = -1;
+        Projectile.timeLeft *= 5;
+        Projectile.tileCollide = false;
+        Projectile.ignoreWater = true;
+        shoot = ModContent.ProjectileType<UltraLFire>();
+        shootSpeed = 12f;
+    }
 
-        public override void CheckActive()
+    public override void CheckActive()
+    {
+        Player player = Main.player[Projectile.owner];
+        ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
+        if (player.dead)
         {
-            Player player = Main.player[Projectile.owner];
-            ExxoAvalonOriginsModPlayer modPlayer = player.Avalon();
-            if (player.dead)
-            {
-                modPlayer.UltraLMinion = false;
-            }
-            if (modPlayer.UltraLMinion)
-            {
-                Projectile.timeLeft = 2;
-            }
+            modPlayer.UltraLMinion = false;
         }
-
-        public override void SelectFrame()
+        if (modPlayer.UltraLMinion)
         {
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 8)
-            {
-                Projectile.frameCounter = 0;
-                Projectile.frame = (Projectile.frame + 1) % 3;
-            }
+            Projectile.timeLeft = 2;
+        }
+    }
+
+    public override void SelectFrame()
+    {
+        Projectile.frameCounter++;
+        if (Projectile.frameCounter >= 8)
+        {
+            Projectile.frameCounter = 0;
+            Projectile.frame = (Projectile.frame + 1) % 3;
         }
     }
 }

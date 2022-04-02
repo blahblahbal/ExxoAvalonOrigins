@@ -1,21 +1,20 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs
+namespace ExxoAvalonOrigins.Buffs;
+
+public class BacteriaEndurance : ModBuff
 {
-    public class BacteriaEndurance : ModBuff
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bacterial Endurance");
-            Description.SetDefault("Thorns effect and increased damage and jump speed");
-        }
+        DisplayName.SetDefault("Bacterial Endurance");
+        Description.SetDefault("Thorns effect and increased damage and jump speed");
+    }
 
-        public override void Update(Player player, ref int k)
-        {
-            player.thorns += 0.8f; //effects of this will mostlikely change
-            player.jumpSpeedBoost += 0.2f;
+    public override void Update(Player player, ref int k)
+    {
+        player.thorns += 0.8f; //effects of this will mostlikely change
+        player.jumpSpeedBoost += 0.2f;
 
-        }
     }
 }

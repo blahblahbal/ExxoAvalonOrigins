@@ -1,224 +1,223 @@
 ﻿using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace ExxoAvalonOrigins.NPCs.Utils
+namespace ExxoAvalonOrigins.NPCs.Utils;
+
+/// <summary>
+/// A State which calls and manages other states
+/// </summary>
+public abstract class StateParent : State
 {
     /// <summary>
-    /// A State which calls and manages other states
+    /// The current state being executed
     /// </summary>
-    public abstract class StateParent : State
+    public State CurrentState { get; private set; }
+    /// <summary>
+    /// Reference to the current state tree being executed by this parent
+    /// </summary>
+    protected byte TreeID { get; private set; }
+    /// <summary>
+    /// The position within the current state tree starting from 0
+    /// </summary>
+    protected byte StatePosition { get; private set; }
+    /// <summary>
+    /// Whether or not to destroy after first tree has finished
+    /// </summary>
+    protected abstract bool AutoDestroyOnFinish { get; }
+
+    /// <summary>
+    /// Frame counter for the inactive update when no tree is running, starting at 1
+    /// </summary>
+    protected uint FramesInactive { get; private set; }
+    public ushort RepeatTimes { get; private set; }
+
+    public virtual void PreWrite(BinaryWriter writer) { }
+    public virtual void PreRead(BinaryReader reader) { }
+
+    public sealed override void Write(BinaryWriter writer)
     {
-        /// <summary>
-        /// The current state being executed
-        /// </summary>
-        public State CurrentState { get; private set; }
-        /// <summary>
-        /// Reference to the current state tree being executed by this parent
-        /// </summary>
-        protected byte TreeID { get; private set; }
-        /// <summary>
-        /// The position within the current state tree starting from 0
-        /// </summary>
-        protected byte StatePosition { get; private set; }
-        /// <summary>
-        /// Whether or not to destroy after first tree has finished
-        /// </summary>
-        protected abstract bool AutoDestroyOnFinish { get; }
+        PreWrite(writer);
+        base.Write(writer);
+        writer.Write(FramesInactive);
+        writer.Write(StatePosition);
+        writer.Write(TreeID);
 
-        /// <summary>
-        /// Frame counter for the inactive update when no tree is running, starting at 1
-        /// </summary>
-        protected uint FramesInactive { get; private set; }
-        public ushort RepeatTimes { get; private set; }
-
-        public virtual void PreWrite(BinaryWriter writer) { }
-        public virtual void PreRead(BinaryReader reader) { }
-
-        public sealed override void Write(BinaryWriter writer)
+        bool currentStateActive = CurrentState?.Active != null && CurrentState.Active;
+        writer.Write(currentStateActive);
+        if (currentStateActive)
         {
-            PreWrite(writer);
-            base.Write(writer);
-            writer.Write(FramesInactive);
-            writer.Write(StatePosition);
-            writer.Write(TreeID);
-
-            bool currentStateActive = CurrentState?.Active != null && CurrentState.Active;
-            writer.Write(currentStateActive);
-            if (currentStateActive)
-            {
-                CurrentState.Write(writer);
-            }
-
-            writer.Write(RepeatTimes);
+            CurrentState.Write(writer);
         }
 
-        public sealed override void Read(BinaryReader reader)
-        {
-            PreRead(reader);
-            base.Read(reader);
-            FramesInactive = reader.ReadUInt32();
-            StatePosition = reader.ReadByte();
-            TreeID = reader.ReadByte();
+        writer.Write(RepeatTimes);
+    }
 
-            bool currentStateActive = reader.ReadBoolean();
-            if (currentStateActive)
+    public sealed override void Read(BinaryReader reader)
+    {
+        PreRead(reader);
+        base.Read(reader);
+        FramesInactive = reader.ReadUInt32();
+        StatePosition = reader.ReadByte();
+        TreeID = reader.ReadByte();
+
+        bool currentStateActive = reader.ReadBoolean();
+        if (currentStateActive)
+        {
+            State oldState = CurrentState;
+            HandleAdvanceState(false);
+            CurrentState.UpdateBaseData(ModNPC);
+            CurrentState.Read(reader);
+            if (oldState != null)
             {
-                State oldState = CurrentState;
-                HandleAdvanceState(false);
-                CurrentState.UpdateBaseData(ModNPC);
-                CurrentState.Read(reader);
-                if (oldState != null)
+                if (CurrentState.Type != oldState.Type)
                 {
-                    if (CurrentState.Type != oldState.Type)
-                    {
-                        oldState.Unload();
-                    }
-                    else
-                    {
-                        CurrentState.HasLoaded = oldState.HasLoaded;
-                    }
-                }
-            }
-            RepeatTimes = reader.ReadUInt16();
-        }
-
-        /// <summary>
-        /// Sets the current state to the specified state
-        /// </summary>
-        /// <param name="state">The state to start</param>
-        protected void SetState(State state, ushort repeatTimes = 0)
-        {
-            RepeatTimes = repeatTimes;
-            state.Parent = this;
-            CurrentState = state;
-        }
-
-        /// <summary>
-        /// Start the specified tree at state position 0
-        /// </summary>
-        /// <param name="treeID">The identifier for the state tree</param>
-        protected void StartTree(byte treeID)
-        {
-            TreeID = treeID;
-            StatePosition = 0;
-            HandleAdvanceState(true);
-        }
-
-        /// <summary>
-        /// Method to get run before every update
-        /// </summary>
-        protected virtual void PreUpdate()
-        {
-        }
-
-        protected sealed override void Update()
-        {
-            PreUpdate();
-
-            if (CurrentState == null)
-            {
-                FramesInactive++;
-                InactiveUpdate();
-                return;
-            }
-
-            if (CurrentState.Active)
-            {
-                FramesInactive = 0;
-                CurrentState.StartUpdate(ModNPC);
-            }
-            else
-            {
-                if (FramesInactive == 0)
-                {
-                    if (RepeatTimes > 0)
-                    {
-                        RepeatTimes--;
-                        bool hasLoaded = CurrentState.HasLoaded;
-                        ushort repeatTimes = RepeatTimes;
-                        HandleAdvanceState(true);
-                        RepeatTimes = repeatTimes;
-                        CurrentState.HasLoaded = hasLoaded;
-                    }
-                    else
-                    {
-                        StatePosition++;
-                        HandleAdvanceState(true);
-                        if (CurrentState.Active)
-                        {
-                            CurrentState.StartUpdate(ModNPC);
-                        }
-                        else
-                        {
-                            if (AutoDestroyOnFinish)
-                            {
-                                Destroy();
-                            }
-                            else
-                            {
-                                FramesInactive++;
-                                InactiveUpdate();
-                            }
-                        }
-                    }
+                    oldState.Unload();
                 }
                 else
                 {
-                    FramesInactive++;
-                    InactiveUpdate();
+                    CurrentState.HasLoaded = oldState.HasLoaded;
                 }
             }
         }
+        RepeatTimes = reader.ReadUInt16();
+    }
 
-        public override void Unload()
+    /// <summary>
+    /// Sets the current state to the specified state
+    /// </summary>
+    /// <param name="state">The state to start</param>
+    protected void SetState(State state, ushort repeatTimes = 0)
+    {
+        RepeatTimes = repeatTimes;
+        state.Parent = this;
+        CurrentState = state;
+    }
+
+    /// <summary>
+    /// Start the specified tree at state position 0
+    /// </summary>
+    /// <param name="treeID">The identifier for the state tree</param>
+    protected void StartTree(byte treeID)
+    {
+        TreeID = treeID;
+        StatePosition = 0;
+        HandleAdvanceState(true);
+    }
+
+    /// <summary>
+    /// Method to get run before every update
+    /// </summary>
+    protected virtual void PreUpdate()
+    {
+    }
+
+    protected sealed override void Update()
+    {
+        PreUpdate();
+
+        if (CurrentState == null)
         {
-            CurrentState?.Unload();
+            FramesInactive++;
+            InactiveUpdate();
+            return;
         }
 
-        protected override void PreDestroy()
+        if (CurrentState.Active)
         {
-            CurrentState?.Destroy();
+            FramesInactive = 0;
+            CurrentState.StartUpdate(ModNPC);
         }
-
-        /// <summary>
-        /// Method to run while no state is being run
-        /// </summary>
-        protected virtual void InactiveUpdate()
+        else
         {
-        }
-
-        /// <summary>
-        /// Important method that gets run to determine the current state of the parent, use to implement logic and modify state within a tree
-        /// Use TreeID and StatePosition as means of branching to the correct state,
-        /// Use SetState to set the state to be run for a particular branch,
-        /// </summary>
-        /// <param name="isNewState">Should be used to run any additional code accompanying a SetState if present</param>
-        protected abstract void HandleAdvanceState(bool isNewState);
-
-        public T FindState<T>() where T : State
-        {
-            if (CurrentState is T t)
+            if (FramesInactive == 0)
             {
-                return t;
-            }
-            else if (CurrentState is StateParent stateParent)
-            {
-                return stateParent.FindState<T>();
+                if (RepeatTimes > 0)
+                {
+                    RepeatTimes--;
+                    bool hasLoaded = CurrentState.HasLoaded;
+                    ushort repeatTimes = RepeatTimes;
+                    HandleAdvanceState(true);
+                    RepeatTimes = repeatTimes;
+                    CurrentState.HasLoaded = hasLoaded;
+                }
+                else
+                {
+                    StatePosition++;
+                    HandleAdvanceState(true);
+                    if (CurrentState.Active)
+                    {
+                        CurrentState.StartUpdate(ModNPC);
+                    }
+                    else
+                    {
+                        if (AutoDestroyOnFinish)
+                        {
+                            Destroy();
+                        }
+                        else
+                        {
+                            FramesInactive++;
+                            InactiveUpdate();
+                        }
+                    }
+                }
             }
             else
             {
-                return null;
+                FramesInactive++;
+                InactiveUpdate();
             }
         }
+    }
 
-        public override void PreDraw(SpriteBatch spriteBatch)
-        {
-            CurrentState?.PreDraw(spriteBatch);
-        }
+    public override void Unload()
+    {
+        CurrentState?.Unload();
+    }
 
-        public override void PostDraw(SpriteBatch spriteBatch)
+    protected override void PreDestroy()
+    {
+        CurrentState?.Destroy();
+    }
+
+    /// <summary>
+    /// Method to run while no state is being run
+    /// </summary>
+    protected virtual void InactiveUpdate()
+    {
+    }
+
+    /// <summary>
+    /// Important method that gets run to determine the current state of the parent, use to implement logic and modify state within a tree
+    /// Use TreeID and StatePosition as means of branching to the correct state,
+    /// Use SetState to set the state to be run for a particular branch,
+    /// </summary>
+    /// <param name="isNewState">Should be used to run any additional code accompanying a SetState if present</param>
+    protected abstract void HandleAdvanceState(bool isNewState);
+
+    public T FindState<T>() where T : State
+    {
+        if (CurrentState is T t)
         {
-            CurrentState?.PostDraw(spriteBatch);
+            return t;
         }
+        else if (CurrentState is StateParent stateParent)
+        {
+            return stateParent.FindState<T>();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public override void PreDraw(SpriteBatch spriteBatch)
+    {
+        CurrentState?.PreDraw(spriteBatch);
+    }
+
+    public override void PostDraw(SpriteBatch spriteBatch)
+    {
+        CurrentState?.PostDraw(spriteBatch);
     }
 }

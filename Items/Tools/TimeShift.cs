@@ -1,6 +1,5 @@
-﻿namespace ExxoAvalonOrigins.Items.Tools
+﻿namespace ExxoAvalonOrigins.Items.Tools;
+
+public class TimeShift
 {
-    public class TimeShift
-    {
-    }
 }

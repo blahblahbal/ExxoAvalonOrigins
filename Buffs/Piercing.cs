@@ -1,19 +1,18 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs
+namespace ExxoAvalonOrigins.Buffs;
+
+public class Piercing : ModBuff
 {
-    public class Piercing : ModBuff
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Piercing");
-            Description.SetDefault("Projectile penetration is increased");
-        }
+        DisplayName.SetDefault("Piercing");
+        Description.SetDefault("Projectile penetration is increased");
+    }
 
-        public override void Update(Player player, ref int k)
-        {
+    public override void Update(Player player, ref int k)
+    {
 
-        }
     }
 }

@@ -1,15 +1,14 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Buffs
+namespace ExxoAvalonOrigins.Buffs;
+
+public class AstralCurse : ModBuff
 {
-    public class AstralCurse : ModBuff
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Astral Curse");
-            Description.SetDefault("You take triple damage");
-            Main.debuff[Type] = true;
-        }
+        DisplayName.SetDefault("Astral Curse");
+        Description.SetDefault("You take triple damage");
+        Main.debuff[Type] = true;
     }
 }

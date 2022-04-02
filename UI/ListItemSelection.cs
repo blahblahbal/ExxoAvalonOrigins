@@ -7,106 +7,105 @@ using Terraria.ID;
 using Terraria.UI;
 using Terraria.Audio;
 
-namespace ExxoAvalonOrigins.UI
+namespace ExxoAvalonOrigins.UI;
+
+public class ListItemSelection : UIPanel
 {
-    public class ListItemSelection : UIPanel
+    private Texture2D dividerTexture;
+    private Texture2D innerPanelTexture;
+    private UIListGrid optionList;
+    private UIText UIText;
+    private Color textColor;
+
+    private string itemName;
+
+    public ListItemSelection(string name, UIListGrid list)
     {
-        private Texture2D dividerTexture;
-        private Texture2D innerPanelTexture;
-        private UIListGrid optionList;
-        private UIText UIText;
-        private Color textColor;
+        itemName = name;
+        LoadTextures();
 
-        private string itemName;
+        UIText = new UIText(itemName, 0.45f, true);
+        Append(UIText);
 
-        public ListItemSelection(string name, UIListGrid list)
-        {
-            itemName = name;
-            LoadTextures();
+        optionList = list;
+        optionList.Width.Set(0, 1f);
+        optionList.Height.Set(0f, 1f);
+        optionList.Top.Set(0f, 0);
+        optionList.MarginY = 55f;
+        optionList.ListPadding = 5f;
+        Append(optionList);
+    }
 
-            UIText = new UIText(itemName, 0.45f, true);
-            Append(UIText);
+    public override void OnInitialize()
+    {
+        InitializeAppearance();
+        base.OnInitialize();
+    }
 
-            optionList = list;
-            optionList.Width.Set(0, 1f);
-            optionList.Height.Set(0f, 1f);
-            optionList.Top.Set(0f, 0);
-            optionList.MarginY = 55f;
-            optionList.ListPadding = 5f;
-            Append(optionList);
-        }
+    private void LoadTextures()
+    {
+        dividerTexture = TextureManager.Load("Images/UI/Divider");
+        innerPanelTexture = TextureManager.Load("Images/UI/InnerPanelBackground");
+    }
 
-        public override void OnInitialize()
-        {
-            InitializeAppearance();
-            base.OnInitialize();
-        }
+    private void InitializeAppearance()
+    {
+        Width.Set(0f, 1f);
+        SetPadding(3f);
+        Recalculate();
 
-        private void LoadTextures()
-        {
-            dividerTexture = TextureManager.Load("Images/UI/Divider");
-            innerPanelTexture = TextureManager.Load("Images/UI/InnerPanelBackground");
-        }
+        Height.Set(optionList.GetTotalHeight() + PaddingTop + PaddingBottom, 0f);
+        optionList.MarginX = ((GetInnerDimensions().Width - optionList.GetTotalWidth()) / 2f);
+        optionList.Recalculate();
+        optionList.Width.Set(optionList.GetTotalWidth() + optionList.MarginX, 0f);
+        optionList.HAlign = 0.5f;
 
-        private void InitializeAppearance()
-        {
-            Width.Set(0f, 1f);
-            SetPadding(3f);
-            Recalculate();
+        UIText.Left.Set(5f, 0);
+        UIText.Top.Set(innerPanelTexture.Height / 2, 0);
 
-            Height.Set(optionList.GetTotalHeight() + PaddingTop + PaddingBottom, 0f);
-            optionList.MarginX = ((GetInnerDimensions().Width - optionList.GetTotalWidth()) / 2f);
-            optionList.Recalculate();
-            optionList.Width.Set(optionList.GetTotalWidth() + optionList.MarginX, 0f);
-            optionList.HAlign = 0.5f;
+        BorderColor = new Color(89, 116, 213) * 0.7f;
+        textColor = Color.White * 0.9f;
+    }
 
-            UIText.Left.Set(5f, 0);
-            UIText.Top.Set(innerPanelTexture.Height / 2, 0);
+    private void ClickAction(UIMouseEvent evt, UIElement listeningElement)
+    {
+        SoundEngine.PlaySound(SoundID.MenuOpen);
+    }
 
-            BorderColor = new Color(89, 116, 213) * 0.7f;
-            textColor = Color.White * 0.9f;
-        }
+    public override void MouseOver(UIMouseEvent evt)
+    {
+        base.MouseOver(evt);
+        BackgroundColor = new Color(73, 94, 171);
+        BorderColor = new Color(89, 116, 213);
+        textColor = Color.White;
+    }
 
-        private void ClickAction(UIMouseEvent evt, UIElement listeningElement)
-        {
-            SoundEngine.PlaySound(SoundID.MenuOpen);
-        }
+    public override void MouseOut(UIMouseEvent evt)
+    {
+        base.MouseOut(evt);
+        BackgroundColor = new Color(63, 82, 151) * 0.7f;
+        BorderColor = new Color(89, 116, 213) * 0.7f;
+        textColor = Color.White * 0.9f;
+    }
 
-        public override void MouseOver(UIMouseEvent evt)
-        {
-            base.MouseOver(evt);
-            BackgroundColor = new Color(73, 94, 171);
-            BorderColor = new Color(89, 116, 213);
-            textColor = Color.White;
-        }
+    private void DrawPanel(SpriteBatch spriteBatch, Vector2 position, float width)
+    {
+        spriteBatch.Draw(innerPanelTexture, position, new Rectangle(0, 0, 8, innerPanelTexture.Height), Color.White);
+        spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, innerPanelTexture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
+        spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, innerPanelTexture.Height), Color.White);
+    }
 
-        public override void MouseOut(UIMouseEvent evt)
-        {
-            base.MouseOut(evt);
-            BackgroundColor = new Color(63, 82, 151) * 0.7f;
-            BorderColor = new Color(89, 116, 213) * 0.7f;
-            textColor = Color.White * 0.9f;
-        }
+    protected override void DrawSelf(SpriteBatch spriteBatch)
+    {
+        //Height.Set(optionList.GetTotalHeight() + 50f, 0f);
+        base.DrawSelf(spriteBatch);
+        CalculatedStyle innerDimensions = GetInnerDimensions();
+        CalculatedStyle outerDimensions = GetOuterDimensions();
+        float num = innerDimensions.X;
+        Vector2 vector = new Vector2(num, innerDimensions.Y + 5f);
+        this.DrawPanel(spriteBatch, vector, innerDimensions.Width);
 
-        private void DrawPanel(SpriteBatch spriteBatch, Vector2 position, float width)
-        {
-            spriteBatch.Draw(innerPanelTexture, position, new Rectangle(0, 0, 8, innerPanelTexture.Height), Color.White);
-            spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, innerPanelTexture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
-            spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, innerPanelTexture.Height), Color.White);
-        }
-
-        protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
-            //Height.Set(optionList.GetTotalHeight() + 50f, 0f);
-            base.DrawSelf(spriteBatch);
-            CalculatedStyle innerDimensions = GetInnerDimensions();
-            CalculatedStyle outerDimensions = GetOuterDimensions();
-            float num = innerDimensions.X;
-            Vector2 vector = new Vector2(num, innerDimensions.Y + 5f);
-            this.DrawPanel(spriteBatch, vector, innerDimensions.Width);
-
-            //Utils.DrawBorderStringBig(spriteBatch, itemName, new Vector2(num + 5f, innerDimensions.Y + innerPanelTexture.Height / 2), textColor, 0.45f);
-            spriteBatch.Draw(this.dividerTexture, new Vector2(outerDimensions.X, innerDimensions.Y + 35f), null, Color.White, 0f, Vector2.Zero, new Vector2(outerDimensions.Width, 1f), SpriteEffects.None, 0f);
-        }
+        //Utils.DrawBorderStringBig(spriteBatch, itemName, new Vector2(num + 5f, innerDimensions.Y + innerPanelTexture.Height / 2), textColor, 0.45f);
+        spriteBatch.Draw(this.dividerTexture, new Vector2(outerDimensions.X, innerDimensions.Y + 35f), null, Color.White, 0f, Vector2.Zero, new Vector2(outerDimensions.Width, 1f), SpriteEffects.None, 0f);
     }
 }

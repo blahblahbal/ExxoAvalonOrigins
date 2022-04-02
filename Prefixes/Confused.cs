@@ -1,31 +1,30 @@
 ﻿using Terraria;
 
-namespace ExxoAvalonOrigins.Prefixes
+namespace ExxoAvalonOrigins.Prefixes;
+
+public class Confused : ArmorPrefix
 {
-    public class Confused : ArmorPrefix
+    public Confused()
     {
-        public Confused()
-        {
 
-        }
+    }
 
-        public override bool CanRoll(Item item)
-        {
-            return IsArmor(item);
-        }
+    public override bool CanRoll(Item item)
+    {
+        return IsArmor(item);
+    }
 
-        public override bool Autoload(ref string name)
+    public override bool Autoload(ref string name)
+    {
+        if (base.Autoload(ref name))
         {
-            if (base.Autoload(ref name))
-            {
-                Mod.AddPrefix("Bloated", new Confused());
-            }
-            return false;
+            Mod.AddPrefix("Bloated", new Confused());
         }
-        public override void UpdateEquip(Player player)
-        {
-            player.GetDamage(DamageClass.Melee) += 0.05f;
-            player.meleeSpeed -= 0.02f;
-        }
+        return false;
+    }
+    public override void UpdateEquip(Player player)
+    {
+        player.GetDamage(DamageClass.Melee) += 0.05f;
+        player.meleeSpeed -= 0.02f;
     }
 }

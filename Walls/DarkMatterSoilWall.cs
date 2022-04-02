@@ -2,14 +2,13 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Walls
+namespace ExxoAvalonOrigins.Walls;
+
+public class DarkMatterSoilWall : ModWall
 {
-    public class DarkMatterSoilWall : ModWall
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            AddMapEntry(new Color(103, 48, 84));
-            dustType = DustID.UnholyWater;
-        }
+        AddMapEntry(new Color(103, 48, 84));
+        dustType = DustID.UnholyWater;
     }
 }

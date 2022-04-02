@@ -3,76 +3,75 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace ExxoAvalonOrigins.Projectiles.Melee
+namespace ExxoAvalonOrigins.Projectiles.Melee;
+
+public class TroxiniumSpear : ModProjectile
 {
-    public class TroxiniumSpear : ModProjectile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
+        DisplayName.SetDefault("Troxinium Spear");
+    }
+    public override void SetDefaults()
+    {
+        Projectile.width = 18;
+        Projectile.height = 18;
+        Projectile.aiStyle = 19;
+        Projectile.friendly = true;
+        Projectile.penetrate = -1;
+        Projectile.tileCollide = false;
+        Projectile.scale = 1.3f;
+        Projectile.hide = true;
+        Projectile.ownerHitCheck = true;
+        Projectile.DamageType = DamageClass.Melee;
+    }
+    public float movementFactor
+    {
+        get => Projectile.ai[0];
+        set => Projectile.ai[0] = value;
+    }
+    public override void AI()
+    {
+        Player projOwner = Main.player[Projectile.owner];
+        Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
+        Projectile.direction = projOwner.direction;
+        projOwner.heldProj = Projectile.whoAmI;
+        projOwner.itemTime = projOwner.itemAnimation;
+        Projectile.position.X = ownerMountedCenter.X - (float)(Projectile.width / 2);
+        Projectile.position.Y = ownerMountedCenter.Y - (float)(Projectile.height / 2);
+        if (!projOwner.frozen)
         {
-            DisplayName.SetDefault("Troxinium Spear");
-        }
-        public override void SetDefaults()
-        {
-            Projectile.width = 18;
-            Projectile.height = 18;
-            Projectile.aiStyle = 19;
-            Projectile.friendly = true;
-            Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
-            Projectile.scale = 1.3f;
-            Projectile.hide = true;
-            Projectile.ownerHitCheck = true;
-            Projectile.DamageType = DamageClass.Melee;
-        }
-        public float movementFactor
-        {
-            get => Projectile.ai[0];
-            set => Projectile.ai[0] = value;
-        }
-        public override void AI()
-        {
-            Player projOwner = Main.player[Projectile.owner];
-            Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
-            Projectile.direction = projOwner.direction;
-            projOwner.heldProj = Projectile.whoAmI;
-            projOwner.itemTime = projOwner.itemAnimation;
-            Projectile.position.X = ownerMountedCenter.X - (float)(Projectile.width / 2);
-            Projectile.position.Y = ownerMountedCenter.Y - (float)(Projectile.height / 2);
-            if (!projOwner.frozen)
+            if (movementFactor == 0f)
             {
-                if (movementFactor == 0f)
-                {
-                    movementFactor = 3f;
-                    Projectile.netUpdate = true;
-                }
-                if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3)
-                {
-                    movementFactor -= 2.4f;
-                }
-                else
-                {
-                    movementFactor += 2.1f;
-                }
+                movementFactor = 3f;
+                Projectile.netUpdate = true;
             }
-            Projectile.position += Projectile.velocity * movementFactor;
-            if (projOwner.itemAnimation == 0)
+            if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3)
             {
-                Projectile.Kill();
+                movementFactor -= 2.4f;
             }
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
-            if (Projectile.spriteDirection == -1)
+            else
             {
-                Projectile.rotation -= MathHelper.ToRadians(90f);
+                movementFactor += 2.1f;
             }
         }
-        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+        Projectile.position += Projectile.velocity * movementFactor;
+        if (projOwner.itemAnimation == 0)
         {
-            Player player = Main.player[Projectile.owner];
-            Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/Melee/TroxiniumSpear_Glow").Value;
-            Vector2 drawOrigin = new Vector2(0, 0) + (Projectile.spriteDirection != 1 ? new Vector2(48, 0) : Vector2.Zero);
-            Vector2 drawPos = Projectile.Center - Main.screenPosition;
-            Color color = Color.White;
-            spriteBatch.Draw(texture, drawPos, null, Projectile.GetAlpha(color), Projectile.rotation, drawOrigin, Projectile.scale, Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
+            Projectile.Kill();
         }
+        Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(135f);
+        if (Projectile.spriteDirection == -1)
+        {
+            Projectile.rotation -= MathHelper.ToRadians(90f);
+        }
+    }
+    public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+    {
+        Player player = Main.player[Projectile.owner];
+        Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/Melee/TroxiniumSpear_Glow").Value;
+        Vector2 drawOrigin = new Vector2(0, 0) + (Projectile.spriteDirection != 1 ? new Vector2(48, 0) : Vector2.Zero);
+        Vector2 drawPos = Projectile.Center - Main.screenPosition;
+        Color color = Color.White;
+        spriteBatch.Draw(texture, drawPos, null, Projectile.GetAlpha(color), Projectile.rotation, drawOrigin, Projectile.scale, Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
     }
 }
