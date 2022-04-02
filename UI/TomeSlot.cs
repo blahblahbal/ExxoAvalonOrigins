@@ -6,6 +6,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace ExxoAvalonOrigins.UI;
 
@@ -38,7 +39,7 @@ public class TomeSlot : UIState
         if (Main.playerInventory && Main.EquipPage == 2)
         {
             var mouseLoc = new Point(Main.mouseX, Main.mouseY);
-            var r = new Rectangle(0, 0, (int)(Main.inventoryBackTexture.Width * 0.9), (int)(Main.inventoryBackTexture.Height * 0.9));
+            var r = new Rectangle(0, 0, (int)(TextureAssets.InventoryBack.Width() * 0.9), (int)(TextureAssets.InventoryBack.Height() * 0.9));
             Main.inventoryScale = 0.85f;
             Item tmpItem = Main.player[Main.myPlayer].Avalon().tomeItem;
             int mH = 0;

@@ -1,15 +1,9 @@
-using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Backgrounds;
 
-public class ContagionDesertSurfaceBg : ModSurfaceBackgroundStyle
+public class ContagionSurfaceDesertBackground : ModSurfaceBackgroundStyle
 {
-    public override bool ChooseBgStyle()
-    {
-        return !Main.gameMenu && Main.LocalPlayer.Avalon().ZoneContagion && Main.LocalPlayer.ZoneDesert;
-    }
-
     public override void ModifyFarFades(float[] fades, float transitionSpeed)
     {
         for (int i = 0; i < fades.Length; i++)
@@ -35,16 +29,16 @@ public class ContagionDesertSurfaceBg : ModSurfaceBackgroundStyle
 
     public override int ChooseFarTexture()
     {
-        return Mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg3");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/ContagionSurfaceDesertBackground3");
     }
 
     public override int ChooseMiddleTexture()
     {
-        return Mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg2");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/ContagionSurfaceDesertBackground2");
     }
 
     public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
     {
-        return Mod.GetBackgroundSlot("Backgrounds/ContagionDesertSurfaceBg1");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/ContagionSurfaceDesertBackground1");
     }
 }

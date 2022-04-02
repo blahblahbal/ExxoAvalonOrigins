@@ -30,12 +30,12 @@ public class CoolGemsparkBlock : ModItem
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
     {
-        spriteBatch.Draw(Main.itemTexture[Item.type], position, frame, new Color(Tiles.CoolGemsparkBlock.R, Tiles.CoolGemsparkBlock.G, Tiles.CoolGemsparkBlock.B), 0f, origin, scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[Item.type], position, frame, new Color(Tiles.CoolGemsparkBlock.R, Tiles.CoolGemsparkBlock.G, Tiles.CoolGemsparkBlock.B), 0f, origin, scale, SpriteEffects.None, 0f);
         return false;
     }
 
     public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
     {
-        spriteBatch.Draw(Main.itemTexture[Item.type], Item.position - Main.screenPosition, null, new Color(Tiles.CoolGemsparkBlock.R, Tiles.CoolGemsparkBlock.G, Tiles.CoolGemsparkBlock.B), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[Item.type], Item.position - Main.screenPosition, null, new Color(Tiles.CoolGemsparkBlock.R, Tiles.CoolGemsparkBlock.G, Tiles.CoolGemsparkBlock.B), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
     }
 }

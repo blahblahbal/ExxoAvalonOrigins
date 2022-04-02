@@ -32,7 +32,7 @@ internal class ExxoUIState : UIState
         base.Update(gameTime);
         if (mouseWasOver)
         {
-            Main.LocalPlayer.showItemIcon = !HideItemHoverIcon;
+            Main.LocalPlayer.cursorItemIconEnabled = !HideItemHoverIcon;
             Main.LocalPlayer.mouseInterface = FocusInteractionsToUI;
             if (DisableRecipeScrolling)
             {

@@ -30,7 +30,8 @@ public class ExxoUIText : ExxoUIElement
 
     private void UpdateText()
     {
-        Vector2 textSize = new Vector2((IsLarge ? Main.fontDeathText : Main.fontMouseText).MeasureString(Text).X, IsLarge ? 32f : 16f) * TextScale;
+        Vector2 textSize = new Vector2(0, 0);
+        //Vector2 textSize = new Vector2((IsLarge ? Main.text : Main.fontMouseText).MeasureString(Text).X, IsLarge ? 32f : 16f) * TextScale;
         MinWidth.Set(textSize.X + PaddingLeft + PaddingRight, 0f);
         MinHeight.Set(textSize.Y + PaddingTop + PaddingBottom, 0f);
     }

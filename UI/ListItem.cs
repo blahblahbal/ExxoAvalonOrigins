@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
@@ -12,8 +13,8 @@ namespace ExxoAvalonOrigins.UI;
 public class ListItem : UIPanel
 {
 
-    private Texture2D dividerTexture;
-    private Texture2D innerPanelTexture;
+    private Asset<Texture2D> dividerTexture;
+    private Asset<Texture2D> innerPanelTexture;
     private readonly UIImage worldIcon;
     private readonly UIText UIText;
 
@@ -53,8 +54,8 @@ public class ListItem : UIPanel
 
     private void LoadTextures()
     {
-        dividerTexture = TextureManager.Load("Images/UI/Divider");
-        innerPanelTexture = TextureManager.Load("Images/UI/InnerPanelBackground");
+        dividerTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/Divider");
+        innerPanelTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/InnerPanelBackground");
     }
 
     public override void OnInitialize()
@@ -68,7 +69,7 @@ public class ListItem : UIPanel
         CalculatedStyle innerDimensions = GetInnerDimensions();
         CalculatedStyle dimensions = worldIcon.GetDimensions();
         UIText.Left.Set(dimensions.Width + 11f + 5f, 0);
-        UIText.Top.Set((innerDimensions.Height * 0.25f) + innerPanelTexture.Height / 4, 0);
+        UIText.Top.Set((innerDimensions.Height * 0.25f) + innerPanelTexture.Height() / 4, 0);
     }
 
     private void ClickAction(UIMouseEvent evt, UIElement listeningElement)
@@ -95,9 +96,9 @@ public class ListItem : UIPanel
 
     private void DrawPanel(SpriteBatch spriteBatch, Vector2 position, float width)
     {
-        spriteBatch.Draw(innerPanelTexture, position, new Rectangle(0, 0, 8, innerPanelTexture.Height), Color.White);
-        spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, innerPanelTexture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
-        spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, innerPanelTexture.Height), Color.White);
+        spriteBatch.Draw(innerPanelTexture.Value, position, new Rectangle(0, 0, 8, innerPanelTexture.Height()), Color.White);
+        spriteBatch.Draw(innerPanelTexture.Value, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, innerPanelTexture.Height()), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
+        spriteBatch.Draw(innerPanelTexture.Value, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, innerPanelTexture.Height()), Color.White);
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -108,6 +109,6 @@ public class ListItem : UIPanel
         float num = dimensions.X + dimensions.Width;
         var vector = new Vector2(num + 6f, innerDimensions.Y + (innerDimensions.Height * 0.25f));
         DrawPanel(spriteBatch, vector, innerDimensions.Width - dimensions.Width - 12f);
-        spriteBatch.Draw(dividerTexture, new Vector2(num, vector.Y + innerPanelTexture.Height + 5), null, Color.White, 0f, Vector2.Zero, new Vector2((GetDimensions().X + base.GetDimensions().Width - num) / 8f, 1f), SpriteEffects.None, 0f);
+        spriteBatch.Draw(dividerTexture.Value, new Vector2(num, vector.Y + innerPanelTexture.Height() + 5), null, Color.White, 0f, Vector2.Zero, new Vector2((GetDimensions().X + base.GetDimensions().Width - num) / 8f, 1f), SpriteEffects.None, 0f);
     }
 }

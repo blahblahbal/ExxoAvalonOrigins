@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI;
@@ -20,7 +21,7 @@ internal class ExxoUIImageButtonToggle : ExxoUIImageButton
     }
     private Color inactiveColor;
     private Color activeColor;
-    public ExxoUIImageButtonToggle(Texture2D texture, Color inactiveColor, Color activeColor) : base(texture)
+    public ExxoUIImageButtonToggle(Asset<Texture2D> texture, Color inactiveColor, Color activeColor) : base(texture)
     {
         this.inactiveColor = inactiveColor;
         this.activeColor = activeColor;

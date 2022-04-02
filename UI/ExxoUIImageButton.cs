@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
 using Terraria.UI;
@@ -11,7 +12,7 @@ internal class ExxoUIImageButton : ExxoUIImage
 {
     private float visibilityActive = 1f;
     private float visibilityInactive = 0.4f;
-    public ExxoUIImageButton(Texture2D texture) : base(texture)
+    public ExxoUIImageButton(Asset<Texture2D> texture) : base(texture)
     {
     }
 

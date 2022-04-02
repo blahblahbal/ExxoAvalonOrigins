@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
 using Terraria.UI;
@@ -14,17 +15,17 @@ internal class ExxoUIItemSlot : ExxoUIImageButton
         set
         {
             item = value;
-            InnerImage.SetImage(Main.itemTexture[Item.type]);
+            InnerImage.SetImage(Terraria.GameContent.TextureAssets.Item[Item.type]);
         }
     }
     public bool HoverItemDrawStack = true;
     public readonly ExxoUIImage InnerImage;
-    public ExxoUIItemSlot(Texture2D backgroundTexture, int itemID) : base(backgroundTexture)
+    public ExxoUIItemSlot(Asset<Texture2D> backgroundTexture, int itemID) : base(backgroundTexture)
     {
         item = new Item();
         item.netDefaults(itemID);
         item.stack = 1;
-        InnerImage = new ExxoUIImage(Main.itemTexture[item.type])
+        InnerImage = new ExxoUIImage(Terraria.GameContent.TextureAssets.Item[item.type])
         {
             HAlign = UIAlign.Center,
             VAlign = UIAlign.Center

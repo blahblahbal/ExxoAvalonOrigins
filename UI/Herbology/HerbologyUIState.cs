@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace ExxoAvalonOrigins.UI.Herbology;
 
@@ -54,7 +56,7 @@ internal class HerbologyUIState : ExxoUIState
         var titleText = new ExxoUITextPanel(new ExxoUIText("Herbology Bench", 0.8f, true));
         titleRow.Append(titleText);
 
-        helpToggle = new ExxoUIImageButtonToggle(TextureManager.Load("Images/UI/ButtonRename"), Color.White * 0.7f, Color.White)
+        helpToggle = new ExxoUIImageButtonToggle(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/ButtonRename"), Color.White * 0.7f, Color.White)
         {
             Scale = 2,
             Tooltip = "Help"
@@ -219,7 +221,7 @@ internal class HerbologyUIState : ExxoUIState
         var elements = new List<UIElement>();
         foreach (int itemID in items)
         {
-            var herbItem = new ExxoUIItemSlot(Main.inventoryBack7Texture, itemID);
+            var herbItem = new ExxoUIItemSlot(TextureAssets.InventoryBack7, itemID);
             herbItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
             {
                 purchaseAttachment.AttachTo(listeningElement as ExxoUIItemSlot);
@@ -264,7 +266,7 @@ internal class HerbologyUIState : ExxoUIState
         var elements = new List<UIElement>();
         foreach (int itemID in items)
         {
-            var potionItem = new ExxoUIItemSlot(Main.inventoryBack7Texture, itemID);
+            var potionItem = new ExxoUIItemSlot(TextureAssets.InventoryBack7, itemID);
             potionItem.OnClick += (UIMouseEvent _, UIElement listeningElement) =>
             {
                 purchaseAttachment.AttachTo(listeningElement as ExxoUIItemSlot);
@@ -273,7 +275,7 @@ internal class HerbologyUIState : ExxoUIState
             };
             if (itemID == ModContent.ItemType<Items.Potions.BlahPotion>())
             {
-                potionItem.SetImage(Main.inventoryBack6Texture);
+                potionItem.SetImage(TextureAssets.InventoryBack7);
             }
             elements.Add(potionItem);
         }

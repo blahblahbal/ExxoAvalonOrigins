@@ -46,7 +46,7 @@ internal class HerbologyUIHerbCountAttachment : ExxoUIAttachment<ExxoUIItemSlot,
             {
                 Text.SetText("0");
             }
-            Image.SetImage(Main.itemTexture[herbType]);
+            Image.SetImage(Terraria.GameContent.TextureAssets.Item[herbType]);
         }
     }
 }
