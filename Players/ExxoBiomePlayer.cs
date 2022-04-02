@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Players;
 
-public abstract class ExxoBiomePlayer : ModPlayer
+public class ExxoBiomePlayer : ModPlayer
 {
     public bool ZoneContagion { get; private set; }
     public bool ZoneCaesium { get; private set; }

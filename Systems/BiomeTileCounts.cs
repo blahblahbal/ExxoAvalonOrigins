@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Systems;
 
-public abstract class BiomeTileCounts : ModSystem
+public class BiomeTileCounts : ModSystem
 {
     public int ContagionTiles { get; private set; }
     public int TropicsTiles { get; private set; }
