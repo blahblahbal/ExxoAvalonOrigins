@@ -52,23 +52,23 @@ public class CursedTorch : ModProjectile
             }
             else
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
 
             if (!Main.tile[TileX, TileY].HasTile && (Main.tile[TileX + 1, TileY + 1].HasTile || Main.tile[TileX - 1, TileY + 1].HasTile || Main.tile[TileX + 1, TileY - 1].HasTile || Main.tile[TileX - 1, TileY - 1].HasTile) && !Main.tile[TileX, TileY + 1].HasTile)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
-            if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1].IsHalfBlock)
+            if (Main.tile[TileX, TileY + 1].Slope != SlopeType.Solid || Main.tile[TileX, TileY + 1].IsHalfBlock)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
             //if (Main.tile[TileX, TileY].liquid > 0)
             //{
-            //    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, 16, 16, it);
+            //    Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
             //    projectile.active = false;
             //}
             Projectile.active = false;

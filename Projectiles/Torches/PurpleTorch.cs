@@ -53,23 +53,23 @@ public class PurpleTorch : ModProjectile
             else
             {
                 Item.NewItem(Projectile.GetProjectileSource_FromThis(), Projectile.position, it);
-                //Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                //Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
 
             if (!Main.tile[TileX, TileY].HasTile && (Main.tile[TileX + 1, TileY + 1].HasTile || Main.tile[TileX - 1, TileY + 1].HasTile || Main.tile[TileX + 1, TileY - 1].HasTile || Main.tile[TileX - 1, TileY - 1].HasTile) && !Main.tile[TileX, TileY + 1].HasTile)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
-            if (Main.tile[TileX, TileY].liquid > 0)
+            if (Main.tile[TileX, TileY].LiquidAmount > 0)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
-            if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1].IsHalfBlock)
+            if (Main.tile[TileX, TileY + 1].Slope != SlopeType.Solid || Main.tile[TileX, TileY + 1].IsHalfBlock)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
             Projectile.active = false;
