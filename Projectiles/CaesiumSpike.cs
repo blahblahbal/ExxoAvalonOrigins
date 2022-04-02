@@ -37,7 +37,7 @@ public class CaesiumSpike : ModProjectile
         }
     }
     int counter = 0;
-    public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
+    public override void PostDraw(Color lightColor)
     {
         Texture2D texture = Mod.Assets.Request<Texture2D>("Projectiles/CaesiumSpike").Value;
         Vector2 origin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);

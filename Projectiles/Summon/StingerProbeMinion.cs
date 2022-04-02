@@ -157,7 +157,7 @@ public class StingerProbeMinion : ModProjectile
 
         if (player.itemAnimation != 0 && player.HeldItem.damage != 0 && projTimer == 0)
         {
-            int laser = Projectile.NewProjectile(Projectile.Center, dirToCursor * 36f, ModContent.ProjectileType<Projectiles.StingerLaser>(), Projectile.damage, 0f, Projectile.owner);
+            int laser = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, dirToCursor * 36f, ModContent.ProjectileType<Projectiles.StingerLaser>(), Projectile.damage, 0f, Projectile.owner);
             Main.projectile[laser].hostile = false;
             Main.projectile[laser].friendly = true;
             Main.projectile[laser].tileCollide = false;
@@ -185,7 +185,7 @@ public class StingerProbeMinion : ModProjectile
             Main.gore[num161].velocity.X += Main.rand.Next(-1, 2);
             Main.gore[num161].velocity.Y += Main.rand.Next(-1, 2);
         }
-        int bomb = Projectile.NewProjectile(Projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
+        int bomb = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position, Vector2.Zero, ProjectileID.Grenade, 50, 3f);
         Main.projectile[bomb].timeLeft = 1;
 
         modPlayer.StingerProbeActiveIds[id] = false;

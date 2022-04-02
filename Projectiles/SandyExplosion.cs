@@ -46,21 +46,21 @@ public class SandyExplosion : ModProjectile
         if (Projectile.ai[0] >= (3 * 7)) Projectile.Kill();
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
-        spriteBatch.End();
-        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, null, null, null, null, Main.GameViewMatrix.ZoomMatrix);
+        Main.spriteBatch.End();
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, null, null, null, null, Main.GameViewMatrix.ZoomMatrix);
 
-        Texture2D tex = Main.projectileTexture[Projectile.type];
+        Texture2D tex = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
 
         float frame = (float)Math.Floor(Projectile.ai[0] / 3) * 70;
 
-        spriteBatch.Draw(tex, Projectile.Center - Main.screenPosition,
+        Main.EntitySpriteDraw(tex, Projectile.Center - Main.screenPosition,
             new Rectangle(0, (int)frame, 70, 70), Color.White, 0f,
-            new Vector2(70 / 2, 70 / 2), Projectile.scale, SpriteEffects.None, 0f);
+            new Vector2(70 / 2, 70 / 2), Projectile.scale, SpriteEffects.None, 0);
 
-        spriteBatch.End();
-        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Main.GameViewMatrix.ZoomMatrix);
+        Main.spriteBatch.End();
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Main.GameViewMatrix.ZoomMatrix);
 
         return false;
     }

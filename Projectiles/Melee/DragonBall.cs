@@ -186,21 +186,21 @@ public class DragonBall : ModProjectile
                 rotation.Normalize();
                 rotation *= new Vector2(6f, 6f).Length();
                 Vector2 velocity = new Vector2(rotation.X, rotation.Y + Main.rand.Next(-40, 41) * 0.02f);
-                int meteor = Projectile.NewProjectile(origin, velocity, ProjectileID.Meteor1 + rand, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
+                int meteor = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), origin, velocity, ProjectileID.Meteor1 + rand, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0.5f + (float)Main.rand.NextDouble() * 0.3f);
             }
             meteorCooldown = 120;
         }
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
         var texture = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Projectiles/Cell_Chain");
 
         var position = Projectile.Center;
         var mountedCenter = Main.player[Projectile.owner].MountedCenter;
         var sourceRectangle = new Rectangle?();
-        var origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
-        float num1 = texture.Height;
+        var origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);
+        float num1 = texture.Height();
         var vector2_4 = mountedCenter - position;
         var rotation = (float)Math.Atan2(vector2_4.Y, vector2_4.X) - 1.57f;
         var flag = true;
@@ -222,7 +222,7 @@ public class DragonBall : ModProjectile
                 vector2_4 = mountedCenter - position;
                 var color2 = Lighting.GetColor((int)position.X / 16, (int)(position.Y / 16.0));
                 color2 = Projectile.GetAlpha(color2);
-                Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
+                Main.EntitySpriteDraw(texture.Value, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0);
             }
         }
 

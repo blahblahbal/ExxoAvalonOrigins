@@ -45,7 +45,7 @@ public class CorruptKnife : ModProjectile
     {
         for (int num84 = 0; num84 < 2; num84++)
         {
-            Projectile.NewProjectile(Projectile.position.X, Projectile.position.Y, Projectile.velocity.X, Projectile.velocity.Y, ProjectileID.TinyEater, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X, Projectile.position.Y, Projectile.velocity.X, Projectile.velocity.Y, ProjectileID.TinyEater, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
         }
         for (int num85 = 0; num85 < 3; num85++)
         {

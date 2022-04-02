@@ -27,6 +27,6 @@ public class StingerLaser : ModProjectile
         Projectile.timeLeft = 300;
         Projectile.DamageType = DamageClass.Ranged;
         Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().notReflect = true;
-        aiType = ProjectileID.DeathLaser;
+        AIType = ProjectileID.DeathLaser;
     }
 }

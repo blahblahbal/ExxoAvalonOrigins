@@ -49,7 +49,7 @@ public class CrystalBit : ModProjectile
         if (Projectile.ai[0] > rn)
         {
             SoundEngine.PlaySound(2, Projectile.position, 43);
-            int p = Projectile.NewProjectile(Projectile.position, Projectile.velocity, ModContent.ProjectileType<CrystalBeam>(), 67, Projectile.knockBack, Main.myPlayer);
+            int p = Projectile.NewProjectile(Projectile.GetItemSource_FromThis(), Projectile.position, Projectile.velocity, ModContent.ProjectileType<CrystalBeam>(), 67, Projectile.knockBack, Main.myPlayer);
             Main.projectile[p].velocity = Vector2.Normalize(Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)].position - Projectile.position) * 7f;
             Projectile.active = false;
         }

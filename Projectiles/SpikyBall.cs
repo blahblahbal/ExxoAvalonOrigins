@@ -57,7 +57,7 @@ public class SpikyBall : ModProjectile
             {
                 if (Projectile.ai[1] <= 7.2f)
                 {
-                    p = Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
+                    p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
                     Main.projectile[p].timeLeft = 600;
                     Main.projectile[p].friendly = false;
                     Main.projectile[p].hostile = true;
@@ -67,7 +67,7 @@ public class SpikyBall : ModProjectile
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                     }
-                    p = Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation2 - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation2 - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
+                    p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation2 - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation2 - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
                     Main.projectile[p].timeLeft = 600;
                     Main.projectile[p].friendly = false;
                     Main.projectile[p].hostile = true;
@@ -77,7 +77,7 @@ public class SpikyBall : ModProjectile
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                     }
-                    p = Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation3 - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation3 - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
+                    p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation3 - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation3 - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
                     Main.projectile[p].timeLeft = 600;
                     Main.projectile[p].friendly = false;
                     Main.projectile[p].hostile = true;
@@ -87,7 +87,7 @@ public class SpikyBall : ModProjectile
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, p);
                     }
-                    p = Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation4 - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation4 - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
+                    p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, (float)((Math.Cos(rotation4 - Projectile.ai[1]) * speed) * -1), (float)((Math.Sin(rotation4 - Projectile.ai[1]) * speed) * -1), ModContent.ProjectileType<Spike>(), 60, 0f);
                     Main.projectile[p].timeLeft = 600;
                     Main.projectile[p].friendly = false;
                     Main.projectile[p].hostile = true;

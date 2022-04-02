@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -71,7 +72,7 @@ public class SnotsandBall : ModProjectile
             Projectile.velocity.Y = 10f;
     }
 
-    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
     {
         if (falling)
             Projectile.velocity = Collision.AnyCollision(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, true);
@@ -103,7 +104,7 @@ public class SnotsandBall : ModProjectile
 
                 if (!onMinecartTrack && tile.HasTile && tile.TileType == tileType)
                 {
-                    if (tileBelow.IsHalfBlock || tileBelow.slope() != 0)
+                    if (tileBelow.IsHalfBlock || tileBelow.Slope != SlopeType.Solid)
                     {
                         WorldGen.SlopeTile(tileX, tileY + 1, 0);
 
@@ -117,6 +118,5 @@ public class SnotsandBall : ModProjectile
                 }
             }
         }
-
-    public override bool CanDamage() => Projectile.localAI[1] != -1f;
+    public override bool? CanDamage() => Projectile.localAI[1] != -1f;
 }

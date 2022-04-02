@@ -22,7 +22,7 @@ class TheSun : ModProjectile
         Projectile.alpha = 0;
         Projectile.scale = 1.4f;
         Projectile.aiStyle = -1;
-        aiType = 20;
+        AIType = 20;
         Projectile.timeLeft = 900;
         Projectile.friendly = true;
         Projectile.penetrate = -1;
@@ -32,16 +32,16 @@ class TheSun : ModProjectile
         Projectile.tileCollide = false;
         Projectile.DamageType = DamageClass.Magic;
     }
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
-        spriteBatch.End();
-        spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null);
+        Main.spriteBatch.End();
+        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, null, null);
         return true;
     }
-    public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override void PostDraw(Color lightColor)
     {
-        spriteBatch.End();
-        spriteBatch.Begin();
+        Main.spriteBatch.End();
+        Main.spriteBatch.Begin();
     }
     public override void AI()
     {

@@ -35,7 +35,7 @@ public class BlahStar : ModProjectile
         {
             float speedX = Projectile.velocity.X + Main.rand.Next(-51, 51) * 0.2f;
             float speedY = Projectile.velocity.Y + Main.rand.Next(-51, 51) * 0.2f;
-            int proj = Projectile.NewProjectile(Projectile.position, new Vector2(speedX, speedY), ModContent.ProjectileType<BlahFire>(), Projectile.damage, Projectile.knockBack);
+            int proj = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position, new Vector2(speedX, speedY), ModContent.ProjectileType<BlahFire>(), Projectile.damage, Projectile.knockBack);
             Main.projectile[proj].hostile = false;
             Main.projectile[proj].friendly = true;
             Main.projectile[proj].owner = Projectile.owner;

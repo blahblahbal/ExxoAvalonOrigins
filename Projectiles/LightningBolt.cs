@@ -36,7 +36,7 @@ public class LightningBolt : ModProjectile
             Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X);
             if (Main.time % 6 <= 1 && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int num54 = Projectile.NewProjectile(Projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningTrail>(), 60, 0f, Projectile.owner);
+                int num54 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningTrail>(), 60, 0f, Projectile.owner);
                 Main.projectile[num54].rotation = Projectile.rotation;
                 Main.projectile[num54].timeLeft = Projectile.timeLeft;
                 Projectile.rotation += (Main.rand.Next(200) - 100) / 100f;
@@ -54,7 +54,7 @@ public class LightningBolt : ModProjectile
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 float randRot = Projectile.rotation + Main.rand.NextFloat(-0.05f, 0.05f);
-                int lightning = Projectile.NewProjectile(Projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningBolt>(), 80, 0f, Projectile.owner);
+                int lightning = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position, Vector2.Zero, ModContent.ProjectileType<LightningBolt>(), 80, 0f, Projectile.owner);
                 Projectile newLightning = Main.projectile[lightning];
                 newLightning.scale = Projectile.scale * (Main.rand.Next(100) / 100f);
                 //float r1 = Main.rand.NextFloat(0.05f, 0.2f);

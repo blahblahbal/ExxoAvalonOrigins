@@ -228,15 +228,15 @@ public class ZirconHook : ModProjectile
     //}
 
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
         var texture = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Projectiles/ZirconHook_Chain");
 
         var position = Projectile.Center;
         var mountedCenter = Main.player[Projectile.owner].MountedCenter;
         var sourceRectangle = new Rectangle?();
-        var origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
-        float num1 = texture.Height;
+        var origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);
+        float num1 = texture.Height();
         var vector2_4 = mountedCenter - position;
         var rotation = (float)Math.Atan2(vector2_4.Y, vector2_4.X) - 1.57f;
         var flag = true;
@@ -258,7 +258,7 @@ public class ZirconHook : ModProjectile
                 vector2_4 = mountedCenter - position;
                 var color2 = Lighting.GetColor((int)position.X / 16, (int)(position.Y / 16.0));
                 color2 = Projectile.GetAlpha(color2);
-                Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
+                Main.EntitySpriteDraw(texture.Value, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0);
             }
         }
 

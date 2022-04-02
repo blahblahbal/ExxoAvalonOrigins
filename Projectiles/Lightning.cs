@@ -20,7 +20,7 @@ public class Lightning : ModProjectile
         Projectile.width = 14;
         Projectile.height = 14;
         Projectile.aiStyle = -1;
-        aiType = ProjectileID.CultistBossLightningOrbArc;
+        AIType = ProjectileID.CultistBossLightningOrbArc;
         Projectile.ignoreWater = true;
         Projectile.tileCollide = true;
         Projectile.timeLeft = 600;
@@ -42,7 +42,7 @@ public class Lightning : ModProjectile
         base.OnHitNPC(target, damage, knockback, crit);
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
         Vector2 end = Projectile.position + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
         Vector2 scale = new Vector2(Projectile.scale) / 2f;
@@ -72,14 +72,14 @@ public class Lightning : ModProjectile
                 {
                     Vector2 start = Projectile.oldPos[j] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
                     Vector2 end2 = Projectile.oldPos[j - 1] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-                    Utils.DrawLaser(spriteBatch, Main.projectileTexture[Projectile.type], start, end2, scale, DelegateMethods.LightningLaserDraw);
+                    Utils.DrawLaser(Main.spriteBatch, Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, start, end2, scale, DelegateMethods.LightningLaserDraw);
                 }
             }
             if (Projectile.oldPos[0] != Vector2.Zero)
             {
                 DelegateMethods.f_1 = 1f;
                 Vector2 start2 = Projectile.oldPos[0] + new Vector2(Projectile.width, Projectile.height) / 2f + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition;
-                Utils.DrawLaser(spriteBatch, Main.projectileTexture[Projectile.type], start2, end, scale, DelegateMethods.LightningLaserDraw);
+                Utils.DrawLaser(Main.spriteBatch, Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value, start2, end, scale, DelegateMethods.LightningLaserDraw);
             }
         }
         return false;

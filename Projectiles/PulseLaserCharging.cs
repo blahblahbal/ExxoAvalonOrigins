@@ -36,7 +36,7 @@ public class PulseLaserCharging : ModProjectile
         Player O = Main.player[P.owner];
         if (P.ai[0] == 5)
         {
-            Projectile.NewProjectile(P.Center, P.velocity, ModContent.ProjectileType<PulseLaser>(), P.damage, P.knockBack);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), P.Center, P.velocity, ModContent.ProjectileType<PulseLaser>(), P.damage, P.knockBack);
         }
         float MY = Main.mouseY + Main.screenPosition.Y;
         float MX = Main.mouseX + Main.screenPosition.X;

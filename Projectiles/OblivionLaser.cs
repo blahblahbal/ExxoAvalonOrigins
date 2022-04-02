@@ -30,15 +30,15 @@ public class OblivionLaser : ModProjectile
     public const uint LifeTime = 100;
     public override string Texture => "Terraria/Projectile_" + ProjectileID.PhantasmalDeathray;
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override bool PreDraw(ref Color lightColor)
     {
         if (Projectile.velocity == Vector2.Zero)
         {
             return false;
         }
-        Texture2D texture2D10 = Main.projectileTexture[Projectile.type];
-        Texture2D texture2D11 = Main.extraTexture[21];
-        Texture2D texture2D13 = Main.extraTexture[22];
+        Texture2D texture2D10 = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+        Texture2D texture2D11 = Terraria.GameContent.TextureAssets.Extra[21].Value;
+        Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Extra[22].Value;
         float num120 = Projectile.localAI[1];
         Microsoft.Xna.Framework.Color color35 = new Microsoft.Xna.Framework.Color(255, 255, 255, 0) * 0.9f;
         Main.spriteBatch.Draw(texture2D10, Projectile.Center - Main.screenPosition, null, color35, Projectile.rotation, texture2D10.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);

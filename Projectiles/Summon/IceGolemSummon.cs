@@ -90,7 +90,7 @@ public class IceGolemSummon : ModProjectile
                     if (Collision.CanHit(Projectile.Center, Projectile.width, Projectile.height, Main.npc[n].Center, Main.npc[n].width, Main.npc[n].height))
                     {
                         SoundEngine.PlaySound(2, Projectile.position, 12);
-                        int p = Projectile.NewProjectile(Projectile.Center, Projectile.velocity, ModContent.ProjectileType<IceGolemBeam>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        int p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, Projectile.velocity, ModContent.ProjectileType<IceGolemBeam>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                         Main.projectile[p].velocity = Vector2.Normalize(Main.npc[n].Center - Projectile.Center) * 18f;
                     }
                 }
@@ -374,7 +374,7 @@ public class IceGolemSummon : ModProjectile
                             {
                                 num435 = ModContent.ProjectileType<IceGolemBeam>();
                             }
-                            var num436 = Projectile.NewProjectile(vector32.X, vector32.Y, num430, num432, num435, num434, (Projectile.type == ModContent.ProjectileType<IceGolemSummon>()) ? 8f : Projectile.knockBack, Main.myPlayer, 0f, 0f);
+                            var num436 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), vector32.X, vector32.Y, num430, num432, num435, num434, (Projectile.type == ModContent.ProjectileType<IceGolemSummon>()) ? 8f : Projectile.knockBack, Main.myPlayer, 0f, 0f);
                             Main.projectile[num436].friendly = true;
                             Main.projectile[num436].hostile = false;
                             Main.projectile[num436].timeLeft = 300;
@@ -483,7 +483,7 @@ public class IceGolemSummon : ModProjectile
                 {
                     var num458 = (int)(Projectile.position.X + Projectile.width / 2) / 16;
                     var num459 = (int)(Projectile.position.Y + Projectile.height) / 16 + 1;
-                    if (WorldGen.SolidTile(num458, num459) || Main.tile[num458, num459].IsHalfBlock || Main.tile[num458, num459].slope() > 0)
+                    if (WorldGen.SolidTile(num458, num459) || Main.tile[num458, num459].IsHalfBlock || Main.tile[num458, num459].Slope != SlopeType.Solid)
                     {
                         try
                         {

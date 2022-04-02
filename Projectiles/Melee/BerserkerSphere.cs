@@ -122,19 +122,19 @@ public class BerserkerSphere : ModProjectile
             vector65.Normalize();
             vector65 *= Main.rand.Next(45, 65) * 0.1f;
             vector65 = vector65.RotatedBy((Main.rand.NextDouble() - 0.5) * 1.5707963705062866, default(Vector2));
-            Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, vector65.X, vector65.Y, ModContent.ProjectileType<Minisphere>(), Projectile.damage, Projectile.knockBack, Projectile.owner, -10f, 0f);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, vector65.X, vector65.Y, ModContent.ProjectileType<Minisphere>(), Projectile.damage, Projectile.knockBack, Projectile.owner, -10f, 0f);
         }
     }
-
-    public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+    
+    public override bool PreDraw(ref Color lightColor)
     {
         var texture = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Projectiles/Melee/BerserkerSphere_Chain");
 
         var position = Projectile.Center;
         var mountedCenter = Main.player[Projectile.owner].MountedCenter;
         var sourceRectangle = new Rectangle?();
-        var origin = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
-        float num1 = texture.Height;
+        var origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);
+        float num1 = texture.Height();
         var vector2_4 = mountedCenter - position;
         var rotation = (float)Math.Atan2(vector2_4.Y, vector2_4.X) - 1.57f;
         var flag = true;
@@ -156,7 +156,7 @@ public class BerserkerSphere : ModProjectile
                 vector2_4 = mountedCenter - position;
                 var color2 = Lighting.GetColor((int)position.X / 16, (int)(position.Y / 16.0));
                 color2 = Projectile.GetAlpha(color2);
-                Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
+                Main.EntitySpriteDraw(texture.Value, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0);
             }
         }
 

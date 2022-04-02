@@ -61,21 +61,21 @@ public class HallowedThornEnd : ModProjectile
                         var point = new Vector2(Projectile.velocity.X, Projectile.velocity.Y);
                         var num929 = 0.3926991f * (float)Main.rand.NextDouble();
                         Projectile.velocity = Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().RotateAboutOrigin(point, num929);
-                        var num930 = Projectile.NewProjectile(vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+                        var num930 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                         var nprojectile = Main.projectile[num930];
                         nprojectile.damage = Projectile.damage;
                         Projectile.ai[1] = Projectile.ai[1] + 1f;
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num930, 0f, 0f, 0f, 0);
                         num929 = 0.3926991f * (float)Main.rand.NextDouble();
                         Projectile.velocity = Projectile.GetGlobalProjectile<ExxoAvalonOriginsGlobalProjectileInstance>().RotateAboutOrigin(point, -num929);
-                        num930 = Projectile.NewProjectile(vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+                        num930 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                         nprojectile = Main.projectile[num930];
                         nprojectile.damage = Projectile.damage;
                         nprojectile.ai[1] = Projectile.ai[1] + 1f;
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.FromLiteral(""), num930, 0f, 0f, 0f, 0);
                         return;
                     }
-                    var num931 = Projectile.NewProjectile(vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
+                    var num931 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), vector73.X + Projectile.velocity.X, vector73.Y + Projectile.velocity.Y, Projectile.velocity.X, Projectile.velocity.Y, num928, Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, 0f);
                     var projectile2 = Main.projectile[num931];
                     projectile2.damage = Projectile.damage;
                     projectile2.ai[1] = Projectile.ai[1] + 1f;

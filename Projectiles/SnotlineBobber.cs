@@ -20,7 +20,7 @@ public class SnotlineBobber : ModProjectile
         Projectile.penetrate = -1;
     }
 
-    public override bool PreDrawExtras(SpriteBatch spriteBatch)
+    public override bool PreDrawExtras()
     {
         return Projectile.DrawFishingLine(ModContent.ItemType<Items.Tools.Oblivirod>(), new Color(139, 143, 18));
     }

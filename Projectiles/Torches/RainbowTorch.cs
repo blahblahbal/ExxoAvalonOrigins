@@ -21,7 +21,7 @@ public class RainbowTorch : ModProjectile
         Projectile.penetrate = -1;
         Projectile.light = 1f;
         Projectile.damage = 0;
-        Projectile.DamageType = // projectile.tileCollide = true /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+        Projectile.DamageType = DamageClass.Ranged;
     }
     public override void Kill(int timeLeft)
     {
@@ -52,23 +52,23 @@ public class RainbowTorch : ModProjectile
             }
             else
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
 
             if (!Main.tile[TileX, TileY].HasTile && (Main.tile[TileX + 1, TileY + 1].HasTile || Main.tile[TileX - 1, TileY + 1].HasTile || Main.tile[TileX + 1, TileY - 1].HasTile || Main.tile[TileX - 1, TileY - 1].HasTile) && !Main.tile[TileX, TileY + 1].HasTile)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
-            if (Main.tile[TileX, TileY].liquid > 0)
+            if (Main.tile[TileX, TileY].LiquidAmount > 0)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
-            if (Main.tile[TileX, TileY + 1].slope() != 0 || Main.tile[TileX, TileY + 1].IsHalfBlock)
+            if (Main.tile[TileX, TileY + 1].Slope != SlopeType.Solid || Main.tile[TileX, TileY + 1].IsHalfBlock)
             {
-                Item.NewItem((int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
+                Item.NewItem(Projectile.GetItemSource_FromThis(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                 Projectile.active = false;
             }
             Projectile.active = false;

@@ -61,7 +61,7 @@ public class SolarBolt : ModProjectile
         }
         for (int p = 0; p < 8; p++)
         {
-            int proj = Projectile.NewProjectile(Projectile.position.X, Projectile.position.Y, Projectile.velocity.X + (Main.rand.Next(-40, 41) * 0.1f), Projectile.velocity.Y + (Main.rand.Next(-40, 41) * 0.1f), ModContent.ProjectileType<SolarBoltOffspring>(), (int)(Projectile.damage * 0.8), Projectile.knockBack, Projectile.owner);
+            int proj = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X, Projectile.position.Y, Projectile.velocity.X + (Main.rand.Next(-40, 41) * 0.1f), Projectile.velocity.Y + (Main.rand.Next(-40, 41) * 0.1f), ModContent.ProjectileType<SolarBoltOffspring>(), (int)(Projectile.damage * 0.8), Projectile.knockBack, Projectile.owner);
             Main.projectile[proj].timeLeft = 300;
         }
     }

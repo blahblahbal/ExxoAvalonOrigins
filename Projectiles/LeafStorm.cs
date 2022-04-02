@@ -109,7 +109,7 @@ public class LeafStorm : ModProjectile
                 dust48.velocity.X = 1f + Main.rand.NextFloat();
             }
             dust48.velocity.Y = Main.rand.NextFloat() * -0.5f - 1f;
-            Projectile.NewProjectile(dust48.position + new Vector2(20 + Main.rand.Next(-10, 11), (55 + Main.rand.Next(-10, 11)) * -1f), new Vector2((float)(Main.rand.Next(-500, 501) / 100), (float)(Main.rand.Next(-500, 501) / 100)), ModContent.ProjectileType<Projectiles.Leaves>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), dust48.position + new Vector2(20 + Main.rand.Next(-10, 11), (55 + Main.rand.Next(-10, 11)) * -1f), new Vector2((float)(Main.rand.Next(-500, 501) / 100), (float)(Main.rand.Next(-500, 501) / 100)), ModContent.ProjectileType<Projectiles.Leaves>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
     }
 }

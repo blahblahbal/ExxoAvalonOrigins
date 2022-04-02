@@ -44,15 +44,15 @@ public class PulseLaser : ModProjectile
         StartReal = Projectile.position;
     }
 
-    public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+    public override void PostDraw(Color lightColor)
     {
         if (Projectile.penetrate == 7)
         {
-            DrawChain(Projectile.position, End, "", spriteBatch);
+            DrawChain(Projectile.position, End, "", Main.spriteBatch);
         }
         else if (Projectile.penetrate > 1)
         {
-            DrawChain(Main.npc[(int)Projectile.ai[1]].Center, End, "", spriteBatch);
+            DrawChain(Main.npc[(int)Projectile.ai[1]].Center, End, "", Main.spriteBatch);
         }
     }
 
@@ -103,7 +103,7 @@ public class PulseLaser : ModProjectile
                     // to the index of the npc we want to exclude
                     if (p.ai[0] == 0)
                     {
-                        int proj = Projectile.NewProjectile(Main.npc[npcIndex].Center, newVel, p.type, p.damage, p.knockBack, ai1: thing);
+                        int proj = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Main.npc[npcIndex].Center, newVel, p.type, p.damage, p.knockBack, ai1: thing);
                         Main.projectile[proj].penetrate--;
                         p.ai[0] = 1;
                     }
@@ -131,7 +131,7 @@ public class PulseLaser : ModProjectile
                     // to the index of the npc we want to exclude
                     if (p.ai[0] == 0)
                     {
-                        int proj = Projectile.NewProjectile(Main.npc[npcIndex].Center, newVel, p.type, p.damage, p.knockBack, ai1: thing);
+                        int proj = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Main.npc[npcIndex].Center, newVel, p.type, p.damage, p.knockBack, ai1: thing);
                         Main.projectile[proj].penetrate--;
                         p.ai[0] = 1;
                     }
@@ -187,15 +187,15 @@ public class PulseLaser : ModProjectile
                                 if (R.Intersects(NR))
                                 {
                                     bool Crit = false;
-                                    if (P.melee && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Melee))
+                                    if (P.DamageType == DamageClass.Melee && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Melee))
                                     {
                                         Crit = true;
                                     }
-                                    if (P.ranged && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Ranged))
+                                    if (P.DamageType == DamageClass.Ranged && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Ranged))
                                     {
                                         Crit = true;
                                     }
-                                    if (P.magic && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Magic))
+                                    if (P.DamageType == DamageClass.Magic && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Magic))
                                     {
                                         Crit = true;
                                     }
@@ -241,15 +241,15 @@ public class PulseLaser : ModProjectile
                             if (R.Intersects(RP))
                             {
                                 bool Crit = false;
-                                if (P.melee && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Melee))
+                                if (P.DamageType == DamageClass.Melee && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Melee))
                                 {
                                     Crit = true;
                                 }
-                                if (P.ranged && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Ranged))
+                                if (P.DamageType == DamageClass.Ranged && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Ranged))
                                 {
                                     Crit = true;
                                 }
-                                if (P.magic && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Magic))
+                                if (P.DamageType == DamageClass.Magic && Main.rand.Next(100) <= Pr.GetCritChance(DamageClass.Magic))
                                 {
                                     Crit = true;
                                 }

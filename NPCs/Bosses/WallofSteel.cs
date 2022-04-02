@@ -467,7 +467,7 @@ public class WallofSteel : ModNPC
                 if (NPC.ai[3] == 1)
                 {
                     NPC.defense = 0;
-                    SoundEngine.PlaySound(SoundID.Item, -1, -1, SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserCharge").Style);
+                    SoundEngine.PlaySound(SoundID.Item, -1, -1, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LaserCharge"));
                 }
                 if (NPC.ai[3] >= 60 && NPC.ai[3] <= 90)
                 {

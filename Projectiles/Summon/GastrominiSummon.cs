@@ -214,7 +214,7 @@ public class GastrominiSummon : ModProjectile
                         var value24 = vector57 - Projectile.Center;
                         value24.Normalize();
                         value24 *= scaleFactor7;
-                        var num833 = Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, value24.X, value24.Y, num832, (int)(Projectile.damage * 0.8f), 0f, Main.myPlayer, 0f, 0f);
+                        var num833 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, value24.X, value24.Y, num832, (int)(Projectile.damage * 0.8f), 0f, Main.myPlayer, 0f, 0f);
                         Main.projectile[num833].timeLeft = 300;
                         Projectile.netUpdate = true;
                     }

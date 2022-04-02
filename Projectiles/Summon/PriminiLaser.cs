@@ -115,7 +115,7 @@ public class PriminiLaser : ModProjectile
                 }
                 else if (Projectile.ai[1] >= 95f)
                 {
-                    var num958 = Projectile.NewProjectile(Projectile.position.X, Projectile.position.Y, 1.5f, 1.5f, ProjectileID.MiniRetinaLaser, 70, 4.5f, Projectile.owner, 0f, 0f);
+                    var num958 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X, Projectile.position.Y, 1.5f, 1.5f, ProjectileID.MiniRetinaLaser, 70, 4.5f, Projectile.owner, 0f, 0f);
                     Main.projectile[num958].velocity = Vector2.Normalize(Main.npc[num957].Center - Projectile.Center) * 8f;
                     Projectile.ai[1] = 51f;
                     return;

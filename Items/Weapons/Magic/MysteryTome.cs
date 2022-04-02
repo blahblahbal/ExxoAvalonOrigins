@@ -69,7 +69,7 @@ class MysteryTome : ModItem
         }
         if (x == 4) // Focus Beam
         {
-            SoundEngine.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, Mod.GetSoundSlot(SoundType.Item, "Sounds/Item/Beam"));
+            SoundEngine.PlaySound(SoundID.Item, (int)player.position.X, (int)player.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/Beam"));
             Projectile.NewProjectile(position, vel, ModContent.ProjectileType<Projectiles.FocusBeam>(), Item.damage, 5);
             return false;
         }

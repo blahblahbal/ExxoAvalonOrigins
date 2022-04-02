@@ -27,7 +27,7 @@ public class Electrobullet : ModProjectile
         Projectile.scale = 1f;
         Projectile.timeLeft = 1200;
         Projectile.DamageType = DamageClass.Ranged;
-        aiType = ProjectileID.CursedBullet;
+        AIType = ProjectileID.CursedBullet;
     }
     public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
     {

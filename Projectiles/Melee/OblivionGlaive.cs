@@ -36,7 +36,7 @@ public class OblivionGlaive : ModProjectile
         Vector2 spawnPosition = new Vector2(target.Center.X + offset, target.Center.Y - 700);
         Vector2 velocity = Vector2.Normalize(target.Center - spawnPosition) * 15f;
 
-        int p = Projectile.NewProjectile(spawnPosition.X, spawnPosition.Y, velocity.X, velocity.Y, ModContent.ProjectileType<Projectiles.Melee.OblivionGlaiveSky>(), damage, knockback, Projectile.owner, 0f);
+        int p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), spawnPosition.X, spawnPosition.Y, velocity.X, velocity.Y, ModContent.ProjectileType<Projectiles.Melee.OblivionGlaiveSky>(), damage, knockback, Projectile.owner, 0f);
         Main.projectile[p].owner = Projectile.owner;
     }
     public override void AI()

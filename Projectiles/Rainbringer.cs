@@ -32,11 +32,11 @@ public class Rainbringer : ModProjectile
                 ExxoAvalonOrigins.StartRain();
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText("A rain event has started.", 0, 148, 255, false);
+                    Main.NewText("A rain event has started.", 0, 148, 255);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A rain event has started."), new Color(0, 148, 255));
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("A rain event has started."), new Color(0, 148, 255));
                 }
             }
             else
@@ -44,11 +44,11 @@ public class Rainbringer : ModProjectile
                 ExxoAvalonOrigins.StopRain();
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText("The rain has stopped.", 0, 148, 255, false);
+                    Main.NewText("The rain has stopped.", 0, 148, 255);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The rain has stopped."), new Color(0, 148, 255));
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The rain has stopped."), new Color(0, 148, 255));
                 }
             }
             Projectile.active = false;
