@@ -10,6 +10,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses
 {
@@ -50,7 +51,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.buffImmune[BuffID.Confused] = NPC.buffImmune[ModContent.BuffType<Buffs.Frozen>()] = NPC.buffImmune[BuffID.Poisoned] =
             NPC.buffImmune[BuffID.OnFire] = NPC.buffImmune[BuffID.CursedInferno] = NPC.buffImmune[BuffID.Venom] =
             NPC.buffImmune[BuffID.Ichor] = NPC.buffImmune[BuffID.Frostburn] = true;
-            bossBag = ModContent.ItemType<Items.BossBags.WallofSteelBossBag>();
+            //bossBag = ModContent.ItemType<Items.BossBags.WallofSteelBossBag>();
         }
 
         public override void BossLoot(ref string name, ref int potionType)
@@ -69,7 +70,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
             NPC.damage = (int)(NPC.damage * 0.65f);
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 vector2, Color drawColor)
         {
             if (ExxoAvalonOriginsWorld.wos >= 0)
             {
@@ -387,7 +388,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient) // leeches
                     {
-                        int num442 = NPC.NewNPC((int)(NPC.position.X + NPC.width / 2), (int)(NPC.position.Y + NPC.height / 2 + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
+                        int num442 = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)(NPC.position.X + NPC.width / 2), (int)(NPC.position.Y + NPC.height / 2 + 20f), ModContent.NPCType<MechanicalLeechHead>(), 1);
                         Main.npc[num442].velocity.X = NPC.direction * 8;
                     }
                 }
@@ -401,14 +402,14 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     while (f <= .1f)
                     {
-                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
+                        fire = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                         }
-                        fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
+                        fire = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ProjectileID.CursedFlameHostile, dmg, 6f);
                         Main.projectile[fire].timeLeft = 600;
                         Main.projectile[fire].tileCollide = false;
                         if (Main.netMode != NetmodeID.SinglePlayer)
@@ -422,7 +423,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 NPC.ai[2]++;
                 if (NPC.ai[2] == 100)
                 {
-                    int laser = Projectile.NewProjectile((NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width), ExxoAvalonOriginsWorld.wosB, NPC.velocity.X, NPC.velocity.Y, ProjectileID.DeathLaser, Main.expertMode ? 70 : 55, 4f);
+                    int laser = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width, ExxoAvalonOriginsWorld.wosB, NPC.velocity.X, NPC.velocity.Y, ProjectileID.DeathLaser, Main.expertMode ? 70 : 55, 4f);
                     Main.projectile[laser].velocity = Vector2.Normalize(Main.player[NPC.target].Center - new Vector2(NPC.position.X, ExxoAvalonOriginsWorld.wosB)) * 5f;
                     Main.projectile[laser].hostile = true;
                     Main.projectile[laser].friendly = false;
@@ -443,13 +444,13 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, ExxoAvalonOriginsWorld.wosT, 33);
                     //while (f <= .1f)
                     //{
-                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
+                    fire = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), laserPos.X, laserPos.Y, (float)((Math.Cos(rotation + f) * 12f) * -1), (float)((Math.Sin(rotation + f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
                         NetMessage.SendData(MessageID.SyncProjectile, -1, -1, NetworkText.Empty, fire);
                     }
-                    fire = Projectile.NewProjectile(laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
+                    fire = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), laserPos.X, laserPos.Y, (float)((Math.Cos(rotation - f) * 12f) * -1), (float)((Math.Sin(rotation - f) * 12f) * -1), ProjectileID.CursedFlameFriendly, Main.expertMode ? 70 : 55, 6f);
                     Main.projectile[fire].timeLeft = 600;
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
@@ -482,7 +483,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                     if (NPC.ai[3] == 90) t = ModContent.ProjectileType<Projectiles.WallofSteelLaserEnd>(); // end
                     if (NPC.ai[3] % 3 == 0)
                     {
-                        int wide = Projectile.NewProjectile(NPC.ai[1], NPC.ai[2], NPC.localAI[1], NPC.localAI[2], t, 100, 4f);
+                        int wide = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.ai[1], NPC.ai[2], NPC.localAI[1], NPC.localAI[2], t, 100, 4f);
                         if (NPC.velocity.X > 0)
                         {
                             Main.projectile[wide].velocity = Vector2.Normalize(new Vector2(NPC.ai[1], NPC.ai[2]) - new Vector2(NPC.ai[1] - 100, NPC.ai[2])) * 20f;
@@ -502,7 +503,7 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 if (NPC.ai[3] > 100 && NPC.ai[3] < 150)
                 {
                     NPC.defense = 55;
-                    int fire = Projectile.NewProjectile((NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width), ExxoAvalonOriginsWorld.wosT, NPC.velocity.X, NPC.velocity.Y, ProjectileID.EyeFire, 45, 4f);
+                    int fire = Projectile.NewProjectile(NPC.GetSpawnSource_ForProjectile(), NPC.velocity.X < 0 ? NPC.position.X : NPC.position.X + NPC.width, ExxoAvalonOriginsWorld.wosT, NPC.velocity.X, NPC.velocity.Y, ProjectileID.EyeFire, 45, 4f);
                     Main.projectile[fire].velocity = Vector2.Normalize(Main.player[NPC.target].Center - new Vector2(NPC.position.X, ExxoAvalonOriginsWorld.wosT)) * 20f;
                     Main.projectile[fire].tileCollide = false;
                     if (Main.netMode != NetmodeID.SinglePlayer)
@@ -521,31 +522,34 @@ namespace ExxoAvalonOrigins.NPCs.Bosses
                 NPC.localAI[0] = 2f;
                 for (int num456 = 0; num456 < 11; num456++)
                 {
-                    int hungry = NPC.NewNPC((int)NPC.position.X, (int)num450, ModContent.NPCType<NPCs.MechanicalHungry>(), NPC.whoAmI);
+                    int hungry = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X, (int)num450, ModContent.NPCType<NPCs.MechanicalHungry>(), NPC.whoAmI);
                     Main.npc[hungry].ai[0] = num456 * 0.1f - 0.05f;
                 }
                 return;
             }
         }
-
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore1").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore2").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore4").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore5").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore7").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore8").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore9").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore10").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore11").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore12").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore13").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore14").Type, NPC.scale);
+        }
         public override void NPCLoot()
         {
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore1"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore2"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore4"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore5"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore7"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore8"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore9"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore10"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore11"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore12"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore13"), NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore14"), NPC.scale);
+            
             ExxoAvalonOriginsWorld.wos = -1;
             if (!ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && Main.hardMode)
             {

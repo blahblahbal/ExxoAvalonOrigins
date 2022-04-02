@@ -41,7 +41,7 @@ namespace ExxoAvalonOrigins.Tiles
             WorldGen.KillTile(i, j);
             if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
             {
-                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
             }
             return true;
         }

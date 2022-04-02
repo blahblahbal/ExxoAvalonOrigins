@@ -241,7 +241,7 @@ namespace ExxoAvalonOrigins.Projectiles
                                     WorldGen.KillTile(i, j, false, false, false);
                                     if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                                     {
-                                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);
+                                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);
                                     }
                                 }
                             }
@@ -256,7 +256,7 @@ namespace ExxoAvalonOrigins.Projectiles
                                             WorldGen.KillWall(x, y, false);
                                             if (Main.tile[x, y].WallType == 0 && Main.netMode != NetmodeID.SinglePlayer)
                                             {
-                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);
+                                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);
                                             }
                                         }
                                     }

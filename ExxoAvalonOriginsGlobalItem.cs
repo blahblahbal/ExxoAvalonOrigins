@@ -995,12 +995,12 @@ namespace ExxoAvalonOrigins
                     WorldGen.KillTile(mpTile.X, mpTile.Y);
                     if (!Main.tile[mpTile.X, mpTile.Y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, mpTile.X, mpTile.Y);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, mpTile.X, mpTile.Y);
                     }
                     WorldGen.PlaceTile(mpTile.X, mpTile.Y, item.createTile, style: item.placeStyle);
                     if (Main.tile[mpTile.X, mpTile.Y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, mpTile.X, mpTile.Y, item.createTile, item.placeStyle);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, mpTile.X, mpTile.Y, item.createTile, item.placeStyle);
                     }
                     item.stack--;
                 }
@@ -1235,7 +1235,7 @@ namespace ExxoAvalonOrigins
                     bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
                     if (Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, item.createTile);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, item.createTile);
                     }
                     if (subtractFromStack) item.stack--;
                 }
@@ -1244,7 +1244,7 @@ namespace ExxoAvalonOrigins
                     WorldGen.PlaceWall(Player.tileTargetX, Player.tileTargetY, item.createWall);
                     if (Main.tile[Player.tileTargetX, Player.tileTargetY].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, item.createWall);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, item.createWall);
                     }
                     //Main.PlaySound(0, Player.tileTargetX * 16, Player.tileTargetY * 16, 1);
                     item.stack--;

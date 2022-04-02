@@ -87,9 +87,9 @@ namespace ExxoAvalonOrigins.Projectiles
 
                             if (Main.netMode == NetmodeID.MultiplayerClient)
                             {
-                                NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos, ypos, 0);
-                                NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos + 1, ypos, 0);
-                                NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos - 1, ypos, 0);
+                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, NetworkText.Empty, 1, xpos, ypos, 0);
+                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, NetworkText.Empty, 1, xpos + 1, ypos, 0);
+                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, NetworkText.Empty, 1, xpos - 1, ypos, 0);
                             }
                         }
                     }
@@ -97,7 +97,7 @@ namespace ExxoAvalonOrigins.Projectiles
 
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 1, xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), 0);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, NetworkText.Empty, 1, xpos, ypos, ModContent.TileType<Tiles.SpiritPoppy>(), 0);
                     }
 
                     if (Main.tile[xpos, ypos].HasTile)

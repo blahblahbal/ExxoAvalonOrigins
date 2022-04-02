@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.Projectiles.Torches
                     Main.tile[TileX, TileY].TileFrameY = (short)(style * 22);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, TileX, TileY, ModContent.TileType<Tiles.Torches>(), style);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, TileX, TileY, ModContent.TileType<Tiles.Torches>(), style);
                     }
                     Projectile.active = false;
                 }

@@ -71,7 +71,7 @@ namespace ExxoAvalonOrigins.Items.Tools
                                     WorldGen.KillTile(x, y);
                                     if (Main.netMode == NetmodeID.MultiplayerClient)
                                     {
-                                        NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
+                                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
                                     }
                                 }
                             }

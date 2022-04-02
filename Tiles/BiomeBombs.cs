@@ -74,7 +74,7 @@ namespace ExxoAvalonOrigins.Tiles
                     Main.tile[x, y].active(false);
                     if (!Main.tile[x, y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, x, y);
                     }
                     for (int num369 = 0; num369 < 3; num369++)
                     {
@@ -132,7 +132,7 @@ namespace ExxoAvalonOrigins.Tiles
                     Main.tile[x, y].active(false);
                     if (!Main.tile[x, y].HasTile && Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, x, y);
                     }
                     for (int num369 = 0; num369 < 3; num369++)
                     {

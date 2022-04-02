@@ -46,7 +46,7 @@ namespace ExxoAvalonOrigins.Projectiles.Torches
                     Main.tile[TileX, TileY].TileFrameY = (short)(style * 22);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, TileX, TileY, 4, style);
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, TileX, TileY, 4, style);
                     }
                     Projectile.active = false;
                 }
@@ -66,7 +66,7 @@ namespace ExxoAvalonOrigins.Projectiles.Torches
                     Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                     Projectile.active = false;
                 }
-                if (Main.tile[TileX, TileY + 1].Slope() || Main.tile[TileX, TileY + 1]..IsHalfBlock)
+                if (Main.tile[TileX, TileY + 1].Slope() || Main.tile[TileX, TileY + 1].IsHalfBlock)
                 {
                     Item.NewItem(Projectile.GetItemSource_DropAsItem(), (int)Projectile.position.X, (int)Projectile.position.Y, 16, 16, it);
                     Projectile.active = false;

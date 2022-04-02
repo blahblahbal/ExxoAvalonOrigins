@@ -48,7 +48,7 @@ namespace ExxoAvalonOrigins.Items.Tools
                             WorldGen.PlaceWall(Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.DungeonWallItemToBackwallID(type));
                             if (Main.tile[Player.tileTargetX, Player.tileTargetY].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.DungeonWallItemToBackwallID(type));
+                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.DungeonWallItemToBackwallID(type));
                             }
                             player.inventory[q].stack--;
                             if (player.inventory[q].stack <= 0)
