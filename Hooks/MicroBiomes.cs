@@ -49,7 +49,7 @@ class MicroBiomes
         c.Emit(OpCodes.Pop);
         c.EmitDelegate<Func<ushort>>(() =>
         {
-            return WorldGen.SavedOreTiers.Gold;
+            return (ushort)WorldGen.SavedOreTiers.Gold;
         });
 
         if (!c.TryGotoNext(i => i.MatchConvU2()))
@@ -60,7 +60,7 @@ class MicroBiomes
         c.Emit(OpCodes.Pop);
         c.EmitDelegate<Func<ushort>>(() =>
         {
-            return WorldGen.SavedOreTiers.Silver;
+            return (ushort)WorldGen.SavedOreTiers.Silver;
         });
 
         if (!c.TryGotoNext(i => i.MatchConvU2()))
@@ -71,7 +71,7 @@ class MicroBiomes
         c.Emit(OpCodes.Pop);
         c.EmitDelegate<Func<ushort>>(() =>
         {
-            return WorldGen.SavedOreTiers.Iron;
+            return (ushort)WorldGen.SavedOreTiers.Iron;
         });
 
         if (!c.TryGotoNext(i => i.MatchConvU2()))
@@ -82,7 +82,7 @@ class MicroBiomes
         c.Emit(OpCodes.Pop);
         c.EmitDelegate<Func<ushort>>(() =>
         {
-            return WorldGen.SavedOreTiers.Copper;
+            return (ushort)WorldGen.SavedOreTiers.Copper;
         });
     }
 

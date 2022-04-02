@@ -93,11 +93,11 @@ class ExxoAvalonOriginsGlobalTile : GlobalTile
         }
         if (type == TileID.Stalactite && Main.tile[i, j].TileFrameX < 54 && (Main.tile[i, j].TileFrameY == 0 || Main.tile[i, j].TileFrameY == 72) && Main.rand.Next(2) == 0)
         {
-            int number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Weapons.Throw.Icicle>(), 1, false, 0, false);
+            int number2 = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Weapons.Throw.Icicle>(), 1, false, 0, false);
             if (Main.netMode == NetmodeID.Server)
             {
                 NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
-                Main.item[number2].owner = Player.FindClosest(Main.item[number2].position, 8, 8);
+                Main.item[number2].playerIndexTheItemIsReservedFor = Player.FindClosest(Main.item[number2].position, 8, 8);
             }
         }
         int[] blowPipes =
@@ -110,29 +110,29 @@ class ExxoAvalonOriginsGlobalTile : GlobalTile
             ModContent.ItemType<OrichythrilBlowpipe>(),
             ModContent.ItemType<HallowedBlowpipe>()
         };
-        if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
+        if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.CrimsonPlants || type == TileID.Plants)
         {
             SoundEngine.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
             if (Main.rand.Next(8000) == 0)
             {
-                int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FourLeafClover>(), 1, false, 0);
+                int a = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<FourLeafClover>(), 1, false, 0);
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
-                    Main.item[a].owner = Player.FindClosest(Main.item[a].position, 8, 8);
+                    Main.item[a].playerIndexTheItemIsReservedFor = Player.FindClosest(Main.item[a].position, 8, 8);
                 }
             }
             if (Main.rand.Next(500) == 0)
             {
-                int a = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<FakeFourLeafClover>(), 1, false, 0);
+                int a = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<FakeFourLeafClover>(), 1, false, 0);
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), a, 0f, 0f, 0f, 0);
-                    Main.item[a].owner = Player.FindClosest(Main.item[a].position, 8, 8);
+                    Main.item[a].playerIndexTheItemIsReservedFor = Player.FindClosest(Main.item[a].position, 8, 8);
                 }
             }
         }
-        if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.FleshWeeds || type == TileID.Plants)
+        if (type == TileID.CorruptPlants || type == TileID.JunglePlants || type == TileID.JunglePlants2 || type == TileID.CrimsonPlants || type == TileID.Plants)
         {
             SoundEngine.PlaySound(SoundID.Grass, i * 16, j * 16, 1);
             var flag = false;
@@ -152,27 +152,27 @@ class ExxoAvalonOriginsGlobalTile : GlobalTile
             }
             if (flag && Main.rand.Next(2) == 0)
             {
-                var number2 = Item.NewItem(i * 16, j * 16, 16, 16, ItemID.Seed, 1, false, 0, false);
+                var number2 = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Seed, 1, false, 0, false);
                 switch (type)
                 {
                     case TileID.CorruptPlants:
-                        number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<CorruptionSeed>(), 1, false, 0, false);
+                        number2 = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<CorruptionSeed>(), 1, false, 0, false);
                         break;
                     case TileID.JunglePlants:
                     case TileID.JunglePlants2:
-                        number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<JungleSeed>(), 1, false, 0, false);
+                        number2 = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<JungleSeed>(), 1, false, 0, false);
                         break;
-                    case TileID.FleshWeeds:
-                        number2 = Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<CrimsonSeed>(), 1, false, 0, false);
+                    case TileID.CrimsonPlants:
+                        number2 = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<CrimsonSeed>(), 1, false, 0, false);
                         break;
                     case TileID.Plants:
-                        number2 = Item.NewItem(i * 16, j * 16, 16, 16, ItemID.Seed, 1, false, 0, false);
+                        number2 = Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ItemID.Seed, 1, false, 0, false);
                         break;
                 }
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number2, 0f, 0f, 0f, 0);
-                    Main.item[number2].owner = Player.FindClosest(Main.item[number2].position, 8, 8);
+                    Main.item[number2].playerIndexTheItemIsReservedFor = Player.FindClosest(Main.item[number2].position, 8, 8);
                 }
             }
         }

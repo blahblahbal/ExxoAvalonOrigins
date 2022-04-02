@@ -157,18 +157,18 @@ public class ExxoAvalonOriginsWorld : ModSystem
 
     #endregion WorldGen Variants
 
-    public override void ChooseWaterStyle(ref int style)
-    {
-        if (Main.LocalPlayer.Avalon().ZoneContagion)
-        {
-            style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
-        }
+    //public override void ChooseWaterStyle(ref int style)
+    //{
+    //    if (Main.LocalPlayer.Avalon().ZoneContagion)
+    //    {
+    //        style = ModContent.GetInstance<Waters.ContagionWaterStyle>().Type;
+    //    }
 
-        if (Main.LocalPlayer.Avalon().ZoneTropics)
-        {
-            style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
-        }
-    }
+    //    if (Main.LocalPlayer.Avalon().ZoneTropics)
+    //    {
+    //        style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
+    //    }
+    //}
     public static bool AnyTiles(Player player, ushort type, int distance = 20, bool candle = true)
     {
         Point tileC = player.position.ToTileCoordinates();
@@ -2494,7 +2494,8 @@ public class ExxoAvalonOriginsWorld : ModSystem
         }
     }
 
-    public static bool GrowHellTree(int i, int y)
+    #region growhelltree
+    /*public static bool GrowHellTree(int i, int y)
     {
         int j;
         for (j = y; TileLoader.IsSapling(Main.tile[i, j].TileType); j--)
@@ -2958,7 +2959,8 @@ public class ExxoAvalonOriginsWorld : ModSystem
             }
         }
         return false;
-    }
+    }*/
+    #endregion
 
     public void DropComet(int tile)
     {
@@ -3073,7 +3075,8 @@ public class ExxoAvalonOriginsWorld : ModSystem
                 {
                     if (!Main.tileSolid[Main.tile[num2, num3].TileType])
                     {
-                        Main.tile[num2, num3].active(false);
+                        WorldGen.KillTile(num2, num3, noItem: true);
+                        //Main.tile[num2, num3].active(false);
                     }
                     Main.tile[num2, num3].TileType = (ushort)tile;
                 }
@@ -3086,7 +3089,8 @@ public class ExxoAvalonOriginsWorld : ModSystem
             {
                 if (num5 > j + Main.rand.Next(-2, 3) - 5 && Math.Abs(i - num4) + Math.Abs(j - num5) < num + Main.rand.Next(-3, 4))
                 {
-                    Main.tile[num4, num5].active(false);
+                    WorldGen.KillTile(num4, num5, noItem: true);
+                    //Main.tile[num4, num5].active(false);
                 }
             }
         }
@@ -3122,11 +3126,11 @@ public class ExxoAvalonOriginsWorld : ModSystem
         stopCometDrops = false;
         if (Main.netMode == NetmodeID.SinglePlayer)
         {
-            Main.NewText("A comet has struck ground!", 0, 201, 190, false);
+            Main.NewText("A comet has struck ground!", 0, 201, 190);
         }
         else if (Main.netMode == NetmodeID.Server)
         {
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("A comet has struck ground!"), new Color(0, 201, 190));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("A comet has struck ground!"), new Color(0, 201, 190));
         }
         if (Main.netMode != NetmodeID.MultiplayerClient)
         {
@@ -3187,7 +3191,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
         }
         else if (Main.netMode == NetmodeID.Server)
         {
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Something is hiding on the top of your world..."), new Color(244, 140, 140));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Something is hiding on the top of your world..."), new Color(244, 140, 140));
         }
     }
     public void CrystalMinesCallback(object threadContext)
@@ -3199,7 +3203,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
         }
         else if (Main.netMode == NetmodeID.Server)
         {
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(176, 153, 214));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The otherworldly crystals begin to grow..."), new Color(176, 153, 214));
         }
         float num611 = Main.maxTilesX * Main.maxTilesY / 5040000f;
         int amtOfBiomes = 3;
@@ -3215,9 +3219,12 @@ public class ExxoAvalonOriginsWorld : ModSystem
             //CrystalMinesRunner(point.X, point.Y, 150, 150);
             //Biomes<World.Biomes.CrystalMinesHouseBiome>.Place(new Point(point.X, point.Y), null);
             //num614++;
-            if (Biomes<World.Biomes.CrystalMines>.Place(point, null))
+            WorldGenConfiguration config = WorldGenConfiguration.FromEmbeddedPath("Terraria.GameContent.WorldBuilding.Configuration.json");
+            World.Biomes.CrystalMines crystalMines = config.CreateBiome<World.Biomes.CrystalMines>();
+            if (crystalMines.Place(point, null))
             {
-                Biomes<World.Biomes.CrystalMinesHouseBiome>.Place(new Point(point.X, point.Y + 15), null);
+                World.Biomes.CrystalMinesHouseBiome crystalHouse = config.CreateBiome<World.Biomes.CrystalMinesHouseBiome>();
+                crystalHouse.Place(new Point(point.X, point.Y + 15), null);
                 num614++;
             }
         }
@@ -3315,9 +3322,9 @@ public class ExxoAvalonOriginsWorld : ModSystem
         }
         else if (Main.netMode == NetmodeID.Server)
         {
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The ancient souls have been disturbed..."), new Color(255, 60, 0));
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The heavens above are rumbling..."), new Color(50, 255, 130));
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with the elements!"), new Color(0, 255, 0));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The ancient souls have been disturbed..."), new Color(255, 60, 0));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The heavens above are rumbling..."), new Color(50, 255, 130));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Your world has been blessed with the elements!"), new Color(0, 255, 0));
         }
         if (Main.netMode == NetmodeID.Server)
         {
