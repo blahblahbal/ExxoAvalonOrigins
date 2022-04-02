@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -19,14 +20,14 @@ public class Silly : ArmorPrefix
         valueMult *= 1.2f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Silly", new Silly());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Silly", new Silly());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.GetCritChance(DamageClass.Magic) += 2;

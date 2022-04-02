@@ -11,7 +11,7 @@ public class AdvGravitation : ModBuff
         Description.SetDefault("Press UP to reverse gravity");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.gravControl = true;
     }

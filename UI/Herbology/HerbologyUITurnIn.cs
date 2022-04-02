@@ -1,4 +1,5 @@
 ﻿using System;
+using IL.Terraria.GameContent;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -22,13 +23,13 @@ internal class HerbologyUITurnIn : ExxoUIPanelWrapper<ExxoUIList>
         InnerElement.FitWidthToContent = true;
         InnerElement.ContentHAlign = UIAlign.Center;
 
-        Button = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/HerbButton").Value)
+        Button = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/HerbButton"))
         {
             Tooltip = "Consume Herbs/Potions",
         };
         InnerElement.Append(Button);
 
-        ItemSlot = new ExxoUIItemSlot(Main.inventoryBack7Texture, ItemID.None);
+        ItemSlot = new ExxoUIItemSlot(Terraria.GameContent.TextureAssets.InventoryBack7, ItemID.None);
         InnerElement.Append(ItemSlot);
         ItemSlot.OnClick += delegate
         {

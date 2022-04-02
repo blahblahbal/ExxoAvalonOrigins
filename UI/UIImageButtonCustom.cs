@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.UI;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace ExxoAvalonOrigins.UI;
 
 public class UIImageButtonCustom : UIImageButton
 {
-    private Texture2D arrowDownTexture;
-    private Texture2D texture;
+    private Asset<Texture2D> arrowDownTexture;
+    private Asset<Texture2D> texture;
     private UITextCustom UIText;
     private List<UIImageButtonCustom> siblings;
     private string label;
     public bool Active;
     public bool FadeText;
     private bool firstDraw;
-    public UIImageButtonCustom(Texture2D texture, string label, MouseEvent clickAction, bool active = false) : base(texture)
+    public UIImageButtonCustom(Asset<Texture2D> texture, string label, MouseEvent clickAction, bool active = false) : base(texture)
     {
-        arrowDownTexture = TextureManager.Load("Images/UI/TexturePackButtons");
+        arrowDownTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/TexturePackButtons");
 
         firstDraw = true;
         Active = active;
@@ -175,10 +177,10 @@ public class UIImageButtonCustom : UIImageButton
             alpha = 0.4f;
         }
 
-        spriteBatch.Draw(texture, base.GetDimensions().Position(), Color.White * alpha);
+        spriteBatch.Draw(texture.Value, base.GetDimensions().Position(), Color.White * alpha);
         if (Active)
         {
-            spriteBatch.Draw(arrowDownTexture, new Vector2(outerDimensions.X + outerDimensions.Width / 2, outerDimensions.Y - 10), new Rectangle(32, 0, 32, 32), Color.White, 0f, new Vector2(16, 0), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(arrowDownTexture.Value, new Vector2(outerDimensions.X + outerDimensions.Width / 2, outerDimensions.Y - 10), new Rectangle(32, 0, 32, 32), Color.White, 0f, new Vector2(16, 0), 1f, SpriteEffects.None, 0f);
         }
     }
 }

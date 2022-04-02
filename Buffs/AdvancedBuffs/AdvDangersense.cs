@@ -11,7 +11,7 @@ public class AdvDangersense : ModBuff
         Description.SetDefault("You can see nearby hazards");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.dangerSense = true;
     }

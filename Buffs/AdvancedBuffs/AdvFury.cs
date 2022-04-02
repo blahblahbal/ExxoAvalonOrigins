@@ -11,7 +11,7 @@ public class AdvFury : ModBuff
         Description.SetDefault("30% increased critical damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().critDamageMult += 0.3f;
     }

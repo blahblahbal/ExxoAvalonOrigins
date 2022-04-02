@@ -1,16 +1,9 @@
-using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Backgrounds;
 
-public class ContagionSurfaceBgStyle : ModSurfaceBgStyle
+public class ContagionSurfaceBackground : ModSurfaceBackgroundStyle
 {
-    public override bool ChooseBgStyle()
-    {
-        return !Main.gameMenu && Main.LocalPlayer.Avalon().ZoneContagion && !Main.LocalPlayer.ZoneDesert;
-    }
-
-    // Use this to keep far Backgrounds like the mountains.
     public override void ModifyFarFades(float[] fades, float transitionSpeed)
     {
         for (int i = 0; i < fades.Length; i++)
@@ -36,12 +29,20 @@ public class ContagionSurfaceBgStyle : ModSurfaceBgStyle
 
     public override int ChooseFarTexture()
     {
-        return Mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG2");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/ContagionSurfaceBackground2");
     }
+
     public override int ChooseMiddleTexture()
     {
-        return Mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG3");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/ContagionSurfaceBackground3");
     }
+
+    public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
+    {
+        b -= 75;
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/ContagionSurfaceBackground1");
+    }
+
     //private static int SurfaceFrameCounter;
     //private static int SurfaceFrame;
     //public override int ChooseMiddleTexture()
@@ -65,10 +66,4 @@ public class ContagionSurfaceBgStyle : ModSurfaceBgStyle
     //            return -1;
     //    }
     //}
-
-    public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
-    {
-        b -= 75;
-        return Mod.GetBackgroundSlot("Backgrounds/ContagionSurfaceBG");
-    }
 }

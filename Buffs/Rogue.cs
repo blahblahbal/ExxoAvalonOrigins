@@ -11,7 +11,7 @@ public class Rogue : ModBuff
         Description.SetDefault("-3% ranged damage, 20% chance to not consume ammo");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.GetDamage(DamageClass.Ranged) -= 0.03f;
         player.ammoCost80 = true;

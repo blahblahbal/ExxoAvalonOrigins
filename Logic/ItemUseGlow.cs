@@ -43,15 +43,15 @@ public class PlayerUseGlow : ModPlayer
                         float num104 = drawPlayer.itemRotation + 0.785f * (float)drawPlayer.direction;
                         int num105 = 0;
                         int num106 = 0;
-                        Vector2 zero3 = new Vector2(0f, (float)Main.itemTexture[item.type].Height);
+                        Vector2 zero3 = new Vector2(0f, (float)Terraria.GameContent.TextureAssets.Item[item.type].Height);
 
                         if (drawPlayer.gravDir == -1f)
                         {
                             if (drawPlayer.direction == -1)
                             {
                                 num104 += 1.57f;
-                                zero3 = new Vector2((float)Main.itemTexture[item.type].Width, 0f);
-                                num105 -= Main.itemTexture[item.type].Width;
+                                zero3 = new Vector2((float)Terraria.GameContent.TextureAssets.Item[item.type].Width, 0f);
+                                num105 -= Terraria.GameContent.TextureAssets.Item[item.type].Width;
                             }
                             else
                             {
@@ -61,18 +61,18 @@ public class PlayerUseGlow : ModPlayer
                         }
                         else if (drawPlayer.direction == -1)
                         {
-                            zero3 = new Vector2((float)Main.itemTexture[item.type].Width, (float)Main.itemTexture[item.type].Height);
-                            num105 -= Main.itemTexture[item.type].Width;
+                            zero3 = new Vector2((float)Terraria.GameContent.TextureAssets.Item[item.type].Width, (float)Terraria.GameContent.TextureAssets.Item[item.type].Height);
+                            num105 -= Terraria.GameContent.TextureAssets.Item[item.type].Width;
                         }
 
 
-                        DrawData value = new DrawData(texture, new Vector2((float)((int)(value2.X - Main.screenPosition.X + zero3.X + (float)num105)), (float)((int)(value2.Y - Main.screenPosition.Y + (float)num106))), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height)), Color.White, num104, zero3, item.scale, drawInfo.spriteEffects, 0);
+                        DrawData value = new DrawData(texture, new Vector2((float)((int)(value2.X - Main.screenPosition.X + zero3.X + (float)num105)), (float)((int)(value2.Y - Main.screenPosition.Y + (float)num106))), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, 0, Terraria.GameContent.TextureAssets.Item[item.type].Width, Terraria.GameContent.TextureAssets.Item[item.type].Height)), Color.White, num104, zero3, item.scale, drawInfo.spriteEffects, 0);
                         Main.playerDrawData.Add(value);
 
                     }
                     else
                     {
-                        Vector2 vector10 = new Vector2((float)(Main.itemTexture[item.type].Width / 2), (float)(Main.itemTexture[item.type].Height / 2));
+                        Vector2 vector10 = new Vector2((float)(Terraria.GameContent.TextureAssets.Item[item.type].Width / 2), (float)(Terraria.GameContent.TextureAssets.Item[item.type].Height / 2));
 
                         //Vector2 vector11 = this.DrawPlayerItemPos(drawPlayer.gravDir, item.type);
                         Vector2 vector11 = new Vector2(10, texture.Height / 2);
@@ -83,17 +83,17 @@ public class PlayerUseGlow : ModPlayer
                         vector11.Y += item.GetGlobalItem<ItemUseGlow>().glowOffsetY * drawPlayer.gravDir;
                         int num107 = (int)vector11.X;
                         vector10.Y = vector11.Y;
-                        Vector2 origin5 = new Vector2((float)(-(float)num107), (float)(Main.itemTexture[item.type].Height / 2));
+                        Vector2 origin5 = new Vector2((float)(-(float)num107), (float)(Terraria.GameContent.TextureAssets.Item[item.type].Height / 2));
                         if (drawPlayer.direction == -1)
                         {
-                            origin5 = new Vector2((float)(Main.itemTexture[item.type].Width + num107), (float)(Main.itemTexture[item.type].Height / 2));
+                            origin5 = new Vector2((float)(Terraria.GameContent.TextureAssets.Item[item.type].Width + num107), (float)(Terraria.GameContent.TextureAssets.Item[item.type].Height / 2));
                         }
 
-                        //value = new DrawData(Main.itemTexture[item.type], new Vector2((float)((int)(value2.X - Main.screenPosition.X + vector10.X)), (float)((int)(value2.Y - Main.screenPosition.Y + vector10.Y))), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height)), item.GetAlpha(color37), drawPlayer.itemRotation, origin5, item.scale, effect, 0);
+                        //value = new DrawData(Terraria.GameContent.TextureAssets.Item[item.type], new Vector2((float)((int)(value2.X - Main.screenPosition.X + vector10.X)), (float)((int)(value2.Y - Main.screenPosition.Y + vector10.Y))), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Terraria.GameContent.TextureAssets.Item[item.type].Width, Terraria.GameContent.TextureAssets.Item[item.type].Height)), item.GetAlpha(color37), drawPlayer.itemRotation, origin5, item.scale, effect, 0);
                         //Main.playerDrawData.Add(value);
 
 
-                        DrawData value = new DrawData(texture, new Vector2((float)((int)(value2.X - Main.screenPosition.X + vector10.X)), (float)((int)(value2.Y - Main.screenPosition.Y + vector10.Y))), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height)), Color.White, drawPlayer.itemRotation, origin5, item.scale, drawInfo.spriteEffects, 0);
+                        DrawData value = new DrawData(texture, new Vector2((float)((int)(value2.X - Main.screenPosition.X + vector10.X)), (float)((int)(value2.Y - Main.screenPosition.Y + vector10.Y))), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, 0, Terraria.GameContent.TextureAssets.Item[item.type].Width, Terraria.GameContent.TextureAssets.Item[item.type].Height)), Color.White, drawPlayer.itemRotation, origin5, item.scale, drawInfo.spriteEffects, 0);
                         Main.playerDrawData.Add(value);
 
 

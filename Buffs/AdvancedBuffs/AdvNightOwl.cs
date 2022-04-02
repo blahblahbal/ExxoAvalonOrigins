@@ -11,7 +11,7 @@ public class AdvNightOwl : ModBuff
         Description.SetDefault("Increased night vision");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.nightVision = true;
     }

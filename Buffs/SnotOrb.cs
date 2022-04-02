@@ -17,13 +17,16 @@ public class SnotOrb : ModBuff
     {
         player.buffTime[buffIndex] = 18000;
         player.Avalon().snotOrb = true;
-        if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.SnotOrb>()] <= 0 && player.whoAmI == Main.myPlayer)
+        if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.SnotOrb>()] <= 0 &&
+            player.whoAmI == Main.myPlayer)
         {
-            Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, ModContent.ProjectileType<Projectiles.SnotOrb>(), 0, 0f, player.whoAmI);
+            Projectile.NewProjectile(player.GetProjectileSource_Buff(buffIndex), player.position.X + (player.width / 2),
+                player.position.Y + (player.height / 2),
+                0f, 0f, ModContent.ProjectileType<Projectiles.SnotOrb>(), 0, 0f, player.whoAmI);
         }
     }
 
-    /*public override void Update(Player player, ref int k)
+    /*public override void Update(Player player, ref int buffIndex)
     {
         if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.SnotOrb>()] > 0)
         {

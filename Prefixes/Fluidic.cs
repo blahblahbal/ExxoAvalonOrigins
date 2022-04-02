@@ -19,14 +19,14 @@ public class Fluidic : ArmorPrefix
         valueMult *= 1.25f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Fluidic", new Fluidic());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Fluidic", new Fluidic());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
         player.moveSpeed += 0.05f;

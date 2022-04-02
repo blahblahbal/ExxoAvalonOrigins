@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 
 namespace ExxoAvalonOrigins.UI;
 
 internal class ExxoUIImage : ExxoUIElement
 {
-    protected Texture2D Texture { get; private set; }
+    protected Asset<Texture2D> Texture { get; private set; }
     protected Color Color = Color.White;
     public float LocalScale = 1f;
     public float LocalRotation;
@@ -22,7 +23,7 @@ internal class ExxoUIImage : ExxoUIElement
             UpdateDimensions();
         }
     }
-    public void SetImage(Texture2D texture)
+    public void SetImage(Asset<Texture2D> texture)
     {
         Texture = texture;
         UpdateDimensions();
@@ -31,11 +32,11 @@ internal class ExxoUIImage : ExxoUIElement
     {
         if (Texture != null)
         {
-            MinWidth.Set((Texture.Width - (Inset.X * 2)) * Scale, 0f);
-            MinHeight.Set((Texture.Height - (Inset.Y * 2)) * Scale, 0f);
+            MinWidth.Set((Texture.Width() - (Inset.X * 2)) * Scale, 0f);
+            MinHeight.Set((Texture.Height() - (Inset.Y * 2)) * Scale, 0f);
         }
     }
-    public ExxoUIImage(Texture2D texture)
+    public ExxoUIImage(Asset<Texture2D> texture)
     {
         SetImage(texture);
     }
@@ -44,7 +45,7 @@ internal class ExxoUIImage : ExxoUIElement
     {
         if (Texture != null)
         {
-            spriteBatch.Draw(Texture, (GetDimensions().Position() + (Texture.Size() * Scale / 2) - (Inset * Scale)).ToNearestPixel(), null, Color, LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture.Value, (GetDimensions().Position() + (Texture.Size() * Scale / 2) - (Inset * Scale)).ToNearestPixel(), null, Color, LocalRotation, Texture.Size() / 2, Scale * LocalScale, SpriteEffects.None, 0f);
         }
     }
 }

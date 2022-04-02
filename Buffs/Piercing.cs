@@ -11,8 +11,7 @@ public class Piercing : ModBuff
         Description.SetDefault("Projectile penetration is increased");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
-
     }
 }

@@ -145,18 +145,18 @@ public class ExxoAvalonOrigins : Mod
                 Main.logoTexture = GetTexture("Sprites/EAOLogoAprilFools");
                 Main.logo2Texture = GetTexture("Sprites/EAOLogoAprilFools");
             }
-            Main.itemTexture[ItemID.HallowedKey] = GetTexture("Sprites/HallowedKey");
-            Main.itemTexture[ItemID.MagicDagger] = GetTexture("Sprites/MagicDagger");
+            Terraria.GameContent.TextureAssets.Item[ItemID.HallowedKey] = GetTexture("Sprites/HallowedKey");
+            Terraria.GameContent.TextureAssets.Item[ItemID.MagicDagger] = GetTexture("Sprites/MagicDagger");
             Main.tileTexture[TileID.CopperCoinPile] = GetTexture("Sprites/CopperCoin");
             Main.tileTexture[TileID.SilverCoinPile] = GetTexture("Sprites/SilverCoin");
             Main.tileTexture[TileID.GoldCoinPile] = GetTexture("Sprites/GoldCoin");
             Main.tileTexture[TileID.PlatinumCoinPile] = GetTexture("Sprites/PlatinumCoin");
-            Main.itemTexture[ItemID.PaladinBanner] = GetTexture("Sprites/PaladinBanner");
-            Main.itemTexture[ItemID.PossessedArmorBanner] = GetTexture("Sprites/PossessedArmorBanner");
-            Main.itemTexture[ItemID.BoneLeeBanner] = GetTexture("Sprites/BoneLeeBanner");
-            Main.itemTexture[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");
-            Main.itemTexture[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
-            Main.itemTexture[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
+            Terraria.GameContent.TextureAssets.Item[ItemID.PaladinBanner] = GetTexture("Sprites/PaladinBanner");
+            Terraria.GameContent.TextureAssets.Item[ItemID.PossessedArmorBanner] = GetTexture("Sprites/PossessedArmorBanner");
+            Terraria.GameContent.TextureAssets.Item[ItemID.BoneLeeBanner] = GetTexture("Sprites/BoneLeeBanner");
+            Terraria.GameContent.TextureAssets.Item[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");
+            Terraria.GameContent.TextureAssets.Item[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
+            Terraria.GameContent.TextureAssets.Item[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
             Main.projectileTexture[ProjectileID.MagicDagger] = GetTexture("Sprites/MagicDagger");
             Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
             Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");

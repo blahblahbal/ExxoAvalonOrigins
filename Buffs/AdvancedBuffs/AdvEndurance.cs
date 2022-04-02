@@ -11,7 +11,7 @@ public class AdvEndurance : ModBuff
         Description.SetDefault("15% reduced damage taken");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.endurance += 0.15f;
     }

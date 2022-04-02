@@ -1,5 +1,5 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using ExxoAvalonOrigins.Players;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Biomes;
@@ -8,8 +8,6 @@ public class CrystalMines : ModBiome
 {
     public override bool IsBiomeActive(Player player)
     {
-        player.Avalon().ZoneCrystal = ExxoAvalonOriginsWorld.crystalTiles > 100;
-        return player.Avalon().ZoneCrystal;
+        return player.GetModPlayer<ExxoBiomePlayer>().ZoneCrystal;
     }
 }
-

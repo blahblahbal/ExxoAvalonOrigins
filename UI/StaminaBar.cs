@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI;
@@ -29,7 +30,8 @@ class StaminaBar : UIState
         int manaStarSpacing = 28;
         textYOffset = manaStarSpacing * 11 + 30;
 
-        labelDimensions = Main.fontMouseText.MeasureString(labelText);
+        //labelDimensions = MeasurFontAssets.MouseText .MeasureString(labelText);
+        labelDimensions = Vector2.Zero;
 
         Top.Set(textYOffset + labelDimensions.Y, 0);
         Width.Set(staminaTexture1.Width, 0);
@@ -44,7 +46,7 @@ class StaminaBar : UIState
 
         CalculatedStyle dimensions = GetDimensions();
         // Draw labelText above stamina bar
-        DynamicSpriteFontExtensionMethods.DrawString(Main.spriteBatch, Main.fontMouseText, labelText, new Vector2((Main.screenWidth - labelDimensions.X + 15), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 0.7f, SpriteEffects.None, 0f);
+        Main.spriteBatch.DrawString(FontAssets.MouseText.Value, labelText, new Vector2((Main.screenWidth - labelDimensions.X + 15), textYOffset), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, default(Vector2), 0.7f, SpriteEffects.None, 0f);
 
         var player = Main.player[Main.myPlayer].Avalon();
 

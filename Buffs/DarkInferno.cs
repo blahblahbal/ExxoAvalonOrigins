@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs;
@@ -10,10 +11,10 @@ public class DarkInferno : ModBuff
         DisplayName.SetDefault("Dark Inferno");
         Description.SetDefault("Losing life");
         Main.debuff[Type] = true;
-        canBeCleared = false;
+        BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().darkInferno = true;
     }

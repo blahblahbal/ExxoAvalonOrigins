@@ -11,7 +11,7 @@ public class BeeSweet : ModBuff
         Description.SetDefault("You are immune to Hornets");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().beeRepel = true;
     }

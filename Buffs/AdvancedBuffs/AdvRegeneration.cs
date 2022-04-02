@@ -11,7 +11,7 @@ public class AdvRegeneration : ModBuff
         Description.SetDefault("Provides life regeneration");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.lifeRegen += 3;
     }

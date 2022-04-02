@@ -11,7 +11,7 @@ public class AdvManaRegeneration : ModBuff
         Description.SetDefault("Increased mana regeneration");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.manaRegenBuff = true;
     }

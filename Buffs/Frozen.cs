@@ -1,6 +1,6 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-
 
 namespace ExxoAvalonOrigins.Buffs;
 
@@ -11,8 +11,9 @@ public class Frozen : ModBuff
         DisplayName.SetDefault("Frozen");
         Description.SetDefault("I can't move!");
         Main.debuff[Type] = true;
-        canBeCleared = false;
+        BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
     }
+
     public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().frozen = true;
@@ -24,6 +25,7 @@ public class Frozen : ModBuff
         player.controlJump = false;
         player.noItems = true;
     }
+
     public override void Update(NPC npc, ref int buffIndex)
     {
         npc.velocity.X = 0;

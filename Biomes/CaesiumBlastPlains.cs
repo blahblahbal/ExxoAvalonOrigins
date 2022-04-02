@@ -1,12 +1,13 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using ExxoAvalonOrigins.Players;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Biomes;
 
-public class CaesiumBlastplains : ModBiome
+public class CaesiumBlastPlains : ModBiome
 {
-    //public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
+    public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
+
     //public override int Music
     //{
     //    get
@@ -21,8 +22,6 @@ public class CaesiumBlastplains : ModBiome
     //}
     public override bool IsBiomeActive(Player player)
     {
-        player.Avalon().ZoneCaesium = ExxoAvalonOriginsWorld.caesiumTiles > 200 && player.position.Y / 16 > Main.maxTilesY - 200;
-        return player.Avalon().ZoneCaesium;
+        return player.GetModPlayer<ExxoBiomePlayer>().ZoneCaesium;
     }
 }
-

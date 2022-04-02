@@ -11,7 +11,7 @@ public class Titanskin : ModBuff
         Description.SetDefault("Defense is increased by 15 and damage is reduced by 8%");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.statDefense += 15;
         player.GetDamage(DamageClass.Magic) -= 0.08f;

@@ -11,7 +11,7 @@ public class BloodCast : ModBuff
         Description.SetDefault("Maximum life is added to maximum mana");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().bloodCast = true;
     }

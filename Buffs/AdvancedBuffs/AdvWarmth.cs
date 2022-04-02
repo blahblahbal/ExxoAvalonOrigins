@@ -11,7 +11,7 @@ public class AdvWarmth : ModBuff
         Description.SetDefault("Reduces damage from cold sources");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.resistCold = true;
     }

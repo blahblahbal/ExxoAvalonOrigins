@@ -20,14 +20,14 @@ public class Overactive : ModPrefix
         valueMult *= 1.1f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Overactive", new Overactive());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Overactive", new Overactive());
+    //     }
+    //     return false;
+    // }
 
     public override void Apply(Item item)
     {

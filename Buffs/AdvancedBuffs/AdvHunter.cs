@@ -11,7 +11,7 @@ public class AdvHunter : ModBuff
         Description.SetDefault("Shows the location of enemies");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.detectCreature = true;
     }

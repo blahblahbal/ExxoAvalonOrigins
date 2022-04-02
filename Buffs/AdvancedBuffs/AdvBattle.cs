@@ -11,7 +11,7 @@ public class AdvBattle : ModBuff
         Description.SetDefault("Increased enemy spawn rate");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().advBattleBuff = true;
     }

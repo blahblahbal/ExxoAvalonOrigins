@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics;
@@ -11,8 +12,8 @@ namespace ExxoAvalonOrigins.UI;
 
 public class ListItemSelection : UIPanel
 {
-    private Texture2D dividerTexture;
-    private Texture2D innerPanelTexture;
+    private Asset<Texture2D> dividerTexture;
+    private Asset<Texture2D> innerPanelTexture;
     private UIListGrid optionList;
     private UIText UIText;
     private Color textColor;
@@ -44,8 +45,8 @@ public class ListItemSelection : UIPanel
 
     private void LoadTextures()
     {
-        dividerTexture = TextureManager.Load("Images/UI/Divider");
-        innerPanelTexture = TextureManager.Load("Images/UI/InnerPanelBackground");
+        dividerTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/Divider");
+        innerPanelTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/InnerPanelBackground");
     }
 
     private void InitializeAppearance()
@@ -61,7 +62,7 @@ public class ListItemSelection : UIPanel
         optionList.HAlign = 0.5f;
 
         UIText.Left.Set(5f, 0);
-        UIText.Top.Set(innerPanelTexture.Height / 2, 0);
+        UIText.Top.Set(innerPanelTexture.Height() / 2, 0);
 
         BorderColor = new Color(89, 116, 213) * 0.7f;
         textColor = Color.White * 0.9f;
@@ -90,9 +91,9 @@ public class ListItemSelection : UIPanel
 
     private void DrawPanel(SpriteBatch spriteBatch, Vector2 position, float width)
     {
-        spriteBatch.Draw(innerPanelTexture, position, new Rectangle(0, 0, 8, innerPanelTexture.Height), Color.White);
-        spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, innerPanelTexture.Height), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
-        spriteBatch.Draw(innerPanelTexture, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, innerPanelTexture.Height), Color.White);
+        spriteBatch.Draw(innerPanelTexture.Value, position, new Rectangle(0, 0, 8, innerPanelTexture.Height()), Color.White);
+        spriteBatch.Draw(innerPanelTexture.Value, new Vector2(position.X + 8f, position.Y), new Rectangle(8, 0, 8, innerPanelTexture.Height()), Color.White, 0f, Vector2.Zero, new Vector2((width - 16f) / 8f, 1f), SpriteEffects.None, 0f);
+        spriteBatch.Draw(innerPanelTexture.Value, new Vector2(position.X + width - 8f, position.Y), new Rectangle(16, 0, 8, innerPanelTexture.Height()), Color.White);
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -106,6 +107,6 @@ public class ListItemSelection : UIPanel
         this.DrawPanel(spriteBatch, vector, innerDimensions.Width);
 
         //Utils.DrawBorderStringBig(spriteBatch, itemName, new Vector2(num + 5f, innerDimensions.Y + innerPanelTexture.Height / 2), textColor, 0.45f);
-        spriteBatch.Draw(this.dividerTexture, new Vector2(outerDimensions.X, innerDimensions.Y + 35f), null, Color.White, 0f, Vector2.Zero, new Vector2(outerDimensions.Width, 1f), SpriteEffects.None, 0f);
+        spriteBatch.Draw(dividerTexture.Value, new Vector2(outerDimensions.X, innerDimensions.Y + 35f), null, Color.White, 0f, Vector2.Zero, new Vector2(outerDimensions.Width, 1f), SpriteEffects.None, 0f);
     }
 }

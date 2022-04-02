@@ -11,9 +11,9 @@ public class AdvTitanskin : ModBuff
         Description.SetDefault("Defense is increased by 20 and damage is reduced by 6%");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
-        player.allDamage -= 0.06f;
+        player.GetDamage(DamageClass.Generic) -= 0.06f;
         player.statDefense += 20;
     }
 }

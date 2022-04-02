@@ -11,9 +11,9 @@ public class Strong : ModBuff
         Description.SetDefault("Increased stats");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
-        player.allDamage += 0.1f;
+        player.GetDamage(DamageClass.Generic) += 0.1f;
         player.AllCrit(1);
         player.statDefense += 5;
         player.lifeRegen++;

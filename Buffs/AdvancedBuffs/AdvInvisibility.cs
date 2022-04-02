@@ -11,7 +11,7 @@ public class AdvInvisibility : ModBuff
         Description.SetDefault("Grants invisibility");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.invis = true;
     }

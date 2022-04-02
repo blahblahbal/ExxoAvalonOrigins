@@ -1,4 +1,5 @@
-﻿using Terraria.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics;
 using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI;
@@ -26,13 +27,13 @@ internal class ExxoUINumberInputWithButtons : ExxoUIList
             Justification = Justification.Center
         };
 
-        incrementButton = new ExxoUIImageButton(TextureManager.Load("Images/UI/Minimap/Default/MinimapButton_ZoomIn"));
+        incrementButton = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/Minimap/Default/MinimapButton_ZoomIn"));
         incrementButton.OnClick += delegate
         {
             NumberInput.Number++;
         };
         buttonColumn.Append(incrementButton);
-        decrementButton = new ExxoUIImageButton(TextureManager.Load("Images/UI/Minimap/Default/MinimapButton_ZoomOut"));
+        decrementButton = new ExxoUIImageButton(ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/Minimap/Default/MinimapButton_ZoomOut"));
         decrementButton.OnClick += delegate
         {
             NumberInput.Number--;

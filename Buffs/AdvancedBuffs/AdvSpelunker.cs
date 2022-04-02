@@ -11,7 +11,7 @@ public class AdvSpelunker : ModBuff
         Description.SetDefault("Shows the location of treasure and ore");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.findTreasure = true;
     }

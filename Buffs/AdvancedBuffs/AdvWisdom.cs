@@ -11,7 +11,7 @@ public class AdvWisdom : ModBuff
         Description.SetDefault("-4% magic damage, +120 mana");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.GetDamage(DamageClass.Magic) -= 0.04f;
         player.statManaMax2 += 120;

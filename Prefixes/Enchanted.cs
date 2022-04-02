@@ -17,14 +17,14 @@ public class Enchanted : ModPrefix
         valueMult *= 1.25f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Enchanted", new Enchanted());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Enchanted", new Enchanted());
+    //     }
+    //     return false;
+    // }
 
     public override void Apply(Item item)
     {

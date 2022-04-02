@@ -11,7 +11,7 @@ public class WeaponImbuePathogen : ModBuff
         Description.SetDefault("Melee attacks inflict Infected on your targets");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.meleeEnchant = 9;
     }

@@ -17,14 +17,14 @@ public class Bogus : ModPrefix
         valueMult *= 1.25f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Bogus", new Bogus());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Bogus", new Bogus());
+    //     }
+    //     return false;
+    // }
 
     public override void Apply(Item item)
     {

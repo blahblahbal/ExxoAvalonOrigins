@@ -1,14 +1,11 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Backgrounds;
 
-public class TropicsSurfaceBgStyle : ModSurfaceBgStyle
+public class TropicsSurfaceBackground : ModSurfaceBackgroundStyle
 {
-    public override bool ChooseBgStyle()
-    {
-        return !Main.gameMenu && !Main.LocalPlayer.ZoneCrimson && !Main.LocalPlayer.ZoneCorrupt && Main.LocalPlayer.Avalon().ZoneTropics;
-    }
+    private static int SurfaceFrameCounter;
+    private static int SurfaceFrame;
 
     // Use this to keep far Backgrounds like the mountains.
     // This shit doesn't work. Why?
@@ -38,11 +35,9 @@ public class TropicsSurfaceBgStyle : ModSurfaceBgStyle
     // Also this displays too low down.
     public override int ChooseFarTexture()
     {
-        return Mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG3");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/TropicsSurfaceBackground3");
     }
 
-    private static int SurfaceFrameCounter;
-    private static int SurfaceFrame;
     public override int ChooseMiddleTexture()
     {
         if (++SurfaceFrameCounter > 12)
@@ -50,12 +45,13 @@ public class TropicsSurfaceBgStyle : ModSurfaceBgStyle
             SurfaceFrame = (SurfaceFrame + 1) % 4;
             SurfaceFrameCounter = 0;
         }
-        return Mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG2");
+
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/TropicsSurfaceBackground2");
     }
 
     public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
     {
         b -= 200;
-        return Mod.GetBackgroundSlot("Backgrounds/TropicsSurfaceBG");
+        return BackgroundTextureLoader.GetBackgroundSlot("Backgrounds/TropicsSurfaceBackground1");
     }
 }

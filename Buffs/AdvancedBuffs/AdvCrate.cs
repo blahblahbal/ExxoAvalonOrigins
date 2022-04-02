@@ -11,7 +11,7 @@ public class AdvCrate : ModBuff
         Description.SetDefault("Greater chance of fishing up a crate");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().advCrateBuff = true;
     }

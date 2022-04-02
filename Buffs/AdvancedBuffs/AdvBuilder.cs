@@ -11,7 +11,7 @@ public class AdvBuilder : ModBuff
         Description.SetDefault("Increased placement speed and range");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.tileSpeed += 0.3f;
         player.wallSpeed += 0.3f;

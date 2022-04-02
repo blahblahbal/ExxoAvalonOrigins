@@ -11,7 +11,7 @@ public class AdvInvincibility : ModBuff
         Description.SetDefault("You are invincible. Hurray!");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.immune = true;
     }

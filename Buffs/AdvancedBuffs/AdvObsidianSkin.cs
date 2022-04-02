@@ -11,7 +11,7 @@ public class AdvObsidianSkin : ModBuff
         Description.SetDefault("Immune to lava");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.lavaImmune = true;
     }

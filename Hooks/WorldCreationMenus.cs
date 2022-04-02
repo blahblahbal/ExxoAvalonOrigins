@@ -141,12 +141,12 @@ public class WorldCreationMenus
     private static void EvilMenu()
     {
         UIList optionsList = new UIList();
-        optionsList.Add(new ListItem(Language.GetTextValue("LegacyMisc.101"), TextureManager.Load("Images/UI/IconCorruption"), delegate
+        optionsList.Add(new ListItem(Language.GetTextValue("LegacyMisc.101"), ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/IconCorruption"), delegate
         {
             WorldGen.WorldGenParam_Evil = 0;
             TropicsMenu();
         }));
-        optionsList.Add(new ListItem(Language.GetTextValue("LegacyMisc.102"), TextureManager.Load("Images/UI/IconCrimson"), delegate
+        optionsList.Add(new ListItem(Language.GetTextValue("LegacyMisc.102"), ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Images/UI/IconCrimson"), delegate
         {
             WorldGen.WorldGenParam_Evil = 1;
             TropicsMenu();

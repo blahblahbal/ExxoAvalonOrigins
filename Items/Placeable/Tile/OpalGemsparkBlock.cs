@@ -34,12 +34,12 @@ class OpalGemsparkBlock : ModItem
     }
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
     {
-        spriteBatch.Draw(Main.itemTexture[Item.type], position, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, origin, scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[Item.type], position, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, origin, scale, SpriteEffects.None, 0f);
         return false;
     }
     public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
     {
         Vector2 iPos = Item.position - Main.screenPosition;
-        spriteBatch.Draw(Main.itemTexture[Item.type], Item.position - Main.screenPosition, null, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(Terraria.GameContent.TextureAssets.Item[Item.type], Item.position - Main.screenPosition, null, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
     }
 }

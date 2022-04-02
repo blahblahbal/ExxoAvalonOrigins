@@ -11,7 +11,7 @@ public class AdvThorns : ModBuff
         Description.SetDefault("Attackers also take full damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.turtleArmor = true;
         player.thorns = 1f;

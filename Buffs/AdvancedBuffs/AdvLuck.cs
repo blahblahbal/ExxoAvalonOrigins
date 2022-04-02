@@ -11,7 +11,7 @@ public class AdvLuck : ModBuff
         Description.SetDefault("Doubles rare drop chance");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.Avalon().lucky = true;
         player.enemySpawns = true;

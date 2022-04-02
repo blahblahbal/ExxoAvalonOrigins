@@ -11,7 +11,7 @@ public class AdvFishing : ModBuff
         Description.SetDefault("Increased fishing level");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.fishingSkill += 30;
     }

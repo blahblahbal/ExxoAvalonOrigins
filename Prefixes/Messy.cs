@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -19,16 +20,16 @@ public class Messy : ArmorPrefix
         valueMult *= 0.9f;
     }
 
-    public override bool Autoload(ref string name)
-    {
-        if (base.Autoload(ref name))
-        {
-            Mod.AddPrefix("Messy", new Messy());
-        }
-        return false;
-    }
+    // public override bool Autoload(ref string name)
+    // {
+    //     if (base.Autoload(ref name))
+    //     {
+    //         Mod.AddPrefix("Messy", new Messy());
+    //     }
+    //     return false;
+    // }
     public override void UpdateEquip(Player player)
     {
-        player.allDamage -= 0.05f;
+        player.GetDamage<GenericDamageClass>() -= 0.05f;
     }
 }

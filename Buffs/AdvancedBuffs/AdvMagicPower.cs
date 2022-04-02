@@ -11,7 +11,7 @@ public class AdvMagicPower : ModBuff
         Description.SetDefault("30% increased magic damage");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.GetDamage(DamageClass.Magic) += 0.3f;
     }

@@ -11,7 +11,7 @@ public class AdvFeatherfall : ModBuff
         Description.SetDefault("Press UP or DOWN to control speed of descent");
     }
 
-    public override void Update(Player player, ref int k)
+    public override void Update(Player player, ref int buffIndex)
     {
         player.slowFall = true;
     }

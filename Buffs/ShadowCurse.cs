@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Buffs;
@@ -10,6 +11,6 @@ public class ShadowCurse : ModBuff
         DisplayName.SetDefault("Shadow Curse");
         Description.SetDefault("You take double damage");
         Main.debuff[Type] = true;
-        canBeCleared = false;
+        BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
     }
 }

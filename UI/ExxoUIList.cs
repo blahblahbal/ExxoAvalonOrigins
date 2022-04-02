@@ -60,11 +60,9 @@ public class ExxoUIList : ExxoUIElement
 
     public virtual void AddRange(IEnumerable<UIElement> items)
     {
-        Elements.AddRange(items);
         foreach (UIElement item in items)
         {
-            item.Remove();
-            item.Parent = this;
+            base.Append(item);
             ElementParamsList.Add(new ElementParams());
         }
     }
