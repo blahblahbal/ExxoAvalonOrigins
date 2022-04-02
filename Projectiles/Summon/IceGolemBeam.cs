@@ -77,21 +77,21 @@ public class IceGolemBeam : ModProjectile
         for (int g = 0; g < 2; g++)
         {
             int gore1 = Main.rand.Next(3);
-            if (gore1 == 0) gore1 = Mod.Find<ModGore>("Gores/IcyExplosionGore1");
-            if (gore1 == 1) gore1 = Mod.Find<ModGore>("Gores/IcyExplosionGore2");
-            if (gore1 == 2) gore1 = Mod.Find<ModGore>("Gores/IcyExplosionGore3");
+            if (gore1 == 0) gore1 = Mod.Find<ModGore>("Gores/IcyExplosionGore1").Type;
+            if (gore1 == 1) gore1 = Mod.Find<ModGore>("Gores/IcyExplosionGore2").Type;
+            if (gore1 == 2) gore1 = Mod.Find<ModGore>("Gores/IcyExplosionGore3").Type;
             int gore2 = Main.rand.Next(3);
-            if (gore2 == 0) gore2 = Mod.Find<ModGore>("Gores/IcyExplosionGore1");
-            if (gore2 == 1) gore2 = Mod.Find<ModGore>("Gores/IcyExplosionGore2");
-            if (gore2 == 2) gore2 = Mod.Find<ModGore>("Gores/IcyExplosionGore3");
+            if (gore2 == 0) gore2 = Mod.Find<ModGore>("Gores/IcyExplosionGore1").Type;
+            if (gore2 == 1) gore2 = Mod.Find<ModGore>("Gores/IcyExplosionGore2").Type;
+            if (gore2 == 2) gore2 = Mod.Find<ModGore>("Gores/IcyExplosionGore3").Type;
             int gore3 = Main.rand.Next(3);
-            if (gore3 == 0) gore3 = Mod.Find<ModGore>("Gores/IcyExplosionGore1");
-            if (gore3 == 1) gore3 = Mod.Find<ModGore>("Gores/IcyExplosionGore2");
-            if (gore3 == 2) gore3 = Mod.Find<ModGore>("Gores/IcyExplosionGore3");
+            if (gore3 == 0) gore3 = Mod.Find<ModGore>("Gores/IcyExplosionGore1").Type;
+            if (gore3 == 1) gore3 = Mod.Find<ModGore>("Gores/IcyExplosionGore2").Type;
+            if (gore3 == 2) gore3 = Mod.Find<ModGore>("Gores/IcyExplosionGore3").Type;
             int gore4 = Main.rand.Next(3);
-            if (gore4 == 0) gore4 = Mod.Find<ModGore>("Gores/IcyExplosionGore1");
-            if (gore4 == 1) gore4 = Mod.Find<ModGore>("Gores/IcyExplosionGore2");
-            if (gore4 == 2) gore4 = Mod.Find<ModGore>("Gores/IcyExplosionGore3");
+            if (gore4 == 0) gore4 = Mod.Find<ModGore>("Gores/IcyExplosionGore1").Type;
+            if (gore4 == 1) gore4 = Mod.Find<ModGore>("Gores/IcyExplosionGore2").Type;
+            if (gore4 == 2) gore4 = Mod.Find<ModGore>("Gores/IcyExplosionGore3").Type;
             int goreIndex = Gore.NewGore(Projectile.position, Projectile.velocity, gore1);
             Main.gore[goreIndex].velocity.X = Main.gore[goreIndex].velocity.X + 1.5f;
             Main.gore[goreIndex].velocity.Y = Main.gore[goreIndex].velocity.Y + 1.5f;

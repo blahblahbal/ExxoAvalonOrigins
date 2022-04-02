@@ -103,7 +103,7 @@ public class PriminiCannon : ModProjectile
             Projectile.rotation = Vector2.Normalize(Main.npc[num954].Center - Projectile.Center).ToRotation() + 1.57079637f;
             if (Projectile.ai[0] > 240f && Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, Main.npc[num954].position, Main.npc[num954].width, Main.npc[num954].height))
             {
-                var num955 = Projectile.NewProjectile(Projectile.position.X, Projectile.position.Y, 0f, 0f, ProjectileID.Grenade, 80, 4.5f, Projectile.owner, 0f, 0f);
+                var num955 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.position.X, Projectile.position.Y, 0f, 0f, ProjectileID.Grenade, 80, 4.5f, Projectile.owner, 0f, 0f);
                 Main.projectile[num955].velocity = Vector2.Normalize(Main.npc[num954].Center - Projectile.Center) * new Vector2(12f, 1f);
                 Main.projectile[num955].timeLeft = 100;
                 Main.projectile[num955].friendly = true;

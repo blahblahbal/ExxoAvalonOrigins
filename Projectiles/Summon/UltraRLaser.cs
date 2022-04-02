@@ -8,7 +8,7 @@ public class UltraRLaser : ModProjectile
 {
     public override void SetStaticDefaults()
     {
-        ProjectileID.Sets.Homing[Projectile.type] = true;
+        ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         ProjectileID.Sets.MinionShot[Projectile.type] = true;
     }
 
