@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -15,6 +16,16 @@ public class CursedMagmaSkeleton : ModNPC
     {
         DisplayName.SetDefault("Cursed Magma Skeleton");
         Main.npcFrameCount[NPC.type] = 15;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire,
+                BuffID.CursedInferno
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -34,9 +45,6 @@ public class CursedMagmaSkeleton : ModNPC
         NPC.knockBackResist = 0.1f;
         NPC.HitSound = SoundID.NPCHit2;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.CursedMagmaSkeletonBanner>();
     }

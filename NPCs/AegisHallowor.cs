@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
@@ -14,6 +15,15 @@ public class AegisHallowor : ModNPC
     {
         DisplayName.SetDefault("Aegis Hallowor");
         Main.npcFrameCount[NPC.type] = 4;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                ModContent.BuffType<Buffs.Frozen>()
+	        }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -33,7 +43,6 @@ public class AegisHallowor : ModNPC
         NPC.noGravity = true;
         NPC.noTileCollide = false;
         NPC.value = 6500;
-        NPC.buffImmune[BuffID.Confused] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.AegisHalloworBanner>();
     }

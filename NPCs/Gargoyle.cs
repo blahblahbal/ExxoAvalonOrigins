@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -13,10 +14,20 @@ public class Gargoyle : ModNPC
     {
         DisplayName.SetDefault("Gargoyle");
         Main.npcFrameCount[NPC.type] = 5;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire,
+                BuffID.CursedInferno
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
-        NPC.damage = 85;
+        NPC.damage = 105;
         NPC.netAlways = true;
         NPC.scale = 1.1f;
         NPC.lifeMax = 2400;
@@ -29,9 +40,6 @@ public class Gargoyle : ModNPC
         NPC.knockBackResist = 0f;
         NPC.HitSound = null;
         NPC.DeathSound = null;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.GargoyleBanner>();
     }

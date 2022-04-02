@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -11,6 +12,16 @@ public class GrossyFloat : ModNPC
     {
         DisplayName.SetDefault("Grossy Float");
         Main.npcFrameCount[NPC.type] = 5;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.OnFire,
+                BuffID.Poisoned,
+                BuffID.CursedInferno
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -28,9 +39,6 @@ public class GrossyFloat : ModNPC
         NPC.knockBackResist = 0.7f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.buffImmune[BuffID.Poisoned] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.GrossyFloatBanner>();
     }

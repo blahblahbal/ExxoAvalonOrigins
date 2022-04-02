@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -12,6 +13,16 @@ public class CrystalSpectre : ModNPC
     {
         DisplayName.SetDefault("Crystal Spectre");
         Main.npcFrameCount[NPC.type] = 8;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire,
+                BuffID.CursedInferno
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -33,9 +44,6 @@ public class CrystalSpectre : ModNPC
         NPC.HitSound = SoundID.NPCHit54;
         NPC.DeathSound = SoundID.NPCDeath52;
         NPC.knockBackResist = 0.05f;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         //Banner = npc.type;
         //BannerItem = ModContent.ItemType<Items.Banners.CrystalSpectreBanner>();
     }

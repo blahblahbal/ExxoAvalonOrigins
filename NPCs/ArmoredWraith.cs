@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -10,6 +11,16 @@ public class ArmoredWraith : ModNPC
     {
         DisplayName.SetDefault("Armored Wraith");
         Main.npcFrameCount[NPC.type] = 4;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.CursedInferno,
+                BuffID.OnFire
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -12,6 +13,15 @@ public class HellboundLizard : ModNPC
     {
         DisplayName.SetDefault("Hellbound Lizard");
         Main.npcFrameCount[NPC.type] = 16;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -26,8 +36,6 @@ public class HellboundLizard : ModNPC
         NPC.knockBackResist = 0.02f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.HellboundLizardBanner>();
     }

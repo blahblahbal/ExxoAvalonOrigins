@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -15,6 +16,14 @@ public class ImpactWizard : ModNPC
     {
         DisplayName.SetDefault("Impact Wizard");
         Main.npcFrameCount[NPC.type] = 3;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.OnFire
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -30,7 +39,6 @@ public class ImpactWizard : ModNPC
         NPC.knockBackResist = 0.4f;
         NPC.HitSound = SoundID.NPCHit2;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.buffImmune[BuffID.OnFire] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.ImpactWizardBanner>();
     }

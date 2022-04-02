@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -16,6 +17,11 @@ public class CaesiumStalker : ModNPC
     {
         DisplayName.SetDefault("Caesium Stalker");
         Main.npcFrameCount[NPC.type] = 4;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            ImmuneToAllBuffsThatAreNotWhips = true
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -32,30 +38,13 @@ public class CaesiumStalker : ModNPC
         NPC.timeLeft = 750;
         NPC.knockBackResist = 0f;
         NPC.height = 32;
-        //npc.HitSound = SoundID.NPCHit1;
-        //npc.DeathSound = SoundID.NPCDeath6;
-        /*npc.buffImmune[BuffID.OnFire] = true;
-        npc.buffImmune[BuffID.CursedInferno] = true;
-        npc.buffImmune[BuffID.Confused] = true;
-        npc.buffImmune[BuffID.Daybreak] = true;*/
         for (int i = 0; i < NPC.buffImmune.Length; i++)
         {
             NPC.buffImmune[i] = true;
         }
-        //Banner = npc.type;
-        //BannerItem = ModContent.ItemType<Items.Banners.CaesiumStalkerBanner>();
+        Banner = NPC.type;
+        BannerItem = ModContent.ItemType<Items.Banners.CaesiumStalkerBanner>();
     }
-    //public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
-    //{
-    //    SpriteEffects effects = SpriteEffects.None;
-    //    if (npc.spriteDirection == 1)
-    //    {
-    //        effects = SpriteEffects.FlipHorizontally;
-    //    }
-    //    float num66 = Main.NPCAddHeight(npc.whoAmI);
-    //    Vector2 vector13 = new Vector2((float)(Main.npcTexture[npc.type].Width / 2), (float)(Main.npcTexture[npc.type].Height / Main.npcFrameCount[npc.type] / 2));
-    //    Main.spriteBatch.Draw(mod.GetTexture("Sprites/BlazeGlow"), new Vector2(npc.position.X - Main.screenPosition.X + (float)(npc.width / 2) - (float)Main.npcTexture[npc.type].Width * npc.scale / 2f + vector13.X * npc.scale, npc.position.Y - Main.screenPosition.Y + (float)npc.height - (float)Main.npcTexture[npc.type].Height * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + vector13.Y * npc.scale + num66), new Rectangle?(npc.frame), new Color(200, 200, 200, 0), npc.rotation, vector13, npc.scale, effects, 0f);
-    //}
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
     {
         NPC.lifeMax = (int)(NPC.lifeMax * 0.55f);
@@ -70,7 +59,7 @@ public class CaesiumStalker : ModNPC
     }
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaesiumOre>(), 10, 2, 5));
+        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.DownedAllMechBosses(), ModContent.ItemType<CaesiumOre>(), 10, 2, 5));
     }
     public override void AI()
     {

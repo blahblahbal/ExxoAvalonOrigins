@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -12,6 +13,14 @@ public class CorruptVulture : ModNPC
     {
         DisplayName.SetDefault("Evil Vulture");
         Main.npcFrameCount[NPC.type] = 3;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                ModContent.BuffType<Buffs.Frozen>()
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -30,7 +39,6 @@ public class CorruptVulture : ModNPC
         NPC.knockBackResist = 0.6f;
         NPC.HitSound = SoundID.NPCHit28;
         NPC.DeathSound = SoundID.NPCDeath31;
-        NPC.buffImmune[Mod.Find<ModBuff>("Freeze").Type] = true;
         //Banner = npc.type;
         //BannerItem = ModContent.ItemType<Items.Banners.CorruptVultureBanner>();
     }

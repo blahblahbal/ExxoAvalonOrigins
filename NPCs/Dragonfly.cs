@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -12,6 +13,17 @@ public class Dragonfly : ModNPC
     {
         DisplayName.SetDefault("Dragonfly");
         Main.npcFrameCount[NPC.type] = 7;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.Poisoned,
+                BuffID.OnFire,
+                BuffID.CursedInferno
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -31,10 +43,6 @@ public class Dragonfly : ModNPC
         NPC.knockBackResist = 0f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.buffImmune[BuffID.Poisoned] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.DragonflyBanner>();
     }

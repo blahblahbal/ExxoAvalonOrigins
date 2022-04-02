@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -16,6 +17,15 @@ public class Blaze : ModNPC
     {
         DisplayName.SetDefault("Blaze");
         Main.npcFrameCount[NPC.type] = 4;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -34,8 +44,6 @@ public class Blaze : ModNPC
         NPC.height = 32;
         //npc.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath6;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.Confused] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.BlazeBanner>();
         DrawOffsetY = 10;

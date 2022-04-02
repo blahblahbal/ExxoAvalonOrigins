@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -13,6 +14,14 @@ public class Hallowor : ModNPC
     {
         DisplayName.SetDefault("Hallowor");
         Main.npcFrameCount[NPC.type] = 4;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -32,7 +41,6 @@ public class Hallowor : ModNPC
         NPC.noGravity = true;
         NPC.noTileCollide = false;
         NPC.value = 900;
-        NPC.buffImmune[BuffID.Confused] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.HalloworBanner>();
     }

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -13,6 +14,14 @@ public class FallenHero : ModNPC
     {
         DisplayName.SetDefault("Fallen Hero");
         Main.npcFrameCount[NPC.type] = 3;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -27,7 +36,6 @@ public class FallenHero : ModNPC
         NPC.knockBackResist = 0.5f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.buffImmune[BuffID.Confused] = true;
     }
     public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
     {

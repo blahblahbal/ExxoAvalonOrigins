@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -15,6 +16,15 @@ public class CaesiumBrute : ModNPC
     {
         DisplayName.SetDefault("Caesium Brute");
         Main.npcFrameCount[NPC.type] = 5;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.OnFire,
+                BuffID.CursedInferno
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -30,11 +40,9 @@ public class CaesiumBrute : ModNPC
         NPC.HitSound = SoundID.NPCHit21;
         NPC.DeathSound = SoundID.NPCDeath24;
         NPC.knockBackResist = 0.1f;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
         NPC.lavaImmune = true;
-        //Banner = npc.type;
-        //BannerItem = ModContent.ItemType<Items.Banners.CaesiumBruteBanner>();
+        Banner = NPC.type;
+        BannerItem = ModContent.ItemType<Items.Banners.CaesiumBruteBanner>();
     }
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {

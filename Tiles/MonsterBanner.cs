@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -22,8 +23,8 @@ public class MonsterBanner : ModTile
         TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
         TileObjectData.newTile.StyleWrapLimit = 111;
         TileObjectData.addTile(Type);
-        dustType = -1;
-        disableSmartCursor = true;
+        DustType = -1;
+        TileID.Sets.DisableSmartCursor[Type] = true;
         ModTranslation name = CreateMapEntryName();
         name.SetDefault("Banner");
         AddMapEntry(new Color(13, 88, 130), name);
@@ -194,10 +195,22 @@ public class MonsterBanner : ModTile
             case 58:
                 item = ModContent.ItemType<Items.Banners.ValkyrieBanner>();
                 break;
+            case 59:
+                item = ModContent.ItemType<Items.Banners.CaesiumSeekerBanner>();
+                break;
+            case 60:
+                item = ModContent.ItemType<Items.Banners.CaesiumBruteBanner>();
+                break;
+            case 61:
+                item = ModContent.ItemType<Items.Banners.CaesiumStalkerBanner>();
+                break;
+            case 62:
+                item = ModContent.ItemType<Items.Banners.RafflesiaBanner>();
+                break;
             default:
                 return;
         }
-        Item.NewItem(i * 16, j * 16, 16, 48, item);
+        Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 48, item);
     }
 
     public override void NearbyEffects(int i, int j, bool closer)
@@ -365,11 +378,23 @@ public class MonsterBanner : ModTile
                 case 58:
                     type = "Valkyrie";
                     break;
+                case 59:
+                    type = "CaesiumSeeker";
+                    break;
+                case 60:
+                    type = "CaesiumBrute";
+                    break;
+                case 61:
+                    type = "CaesiumStalker";
+                    break;
+                case 62:
+                    type = "Rafflesia";
+                    break;
                 default:
                     return;
             }
-            player.NPCBannerBuff[Mod.Find<ModNPC>(type).Type] = true;
-            player.hasBanner = true;
+            Main.SceneMetrics.NPCBannerBuff[Mod.Find<ModNPC>(type).Type] = true;
+            //player.hasBannerBuff = true;
         }
     }
 

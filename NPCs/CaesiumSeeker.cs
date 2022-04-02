@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -27,12 +28,9 @@ public class CaesiumSeekerHead : CaesiumSeekerWorm
         NPC.value = 1000;
         NPC.knockBackResist = 0f;
         NPC.behindTiles = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
-        NPC.buffImmune[BuffID.Daybreak] = true;
         DrawOffsetY = 25;
-        //Banner = npc.type;
-        //BannerItem = ModContent.ItemType<Items.Banners.CaesiumSeekerBanner>();
+        Banner = NPC.type;
+        BannerItem = ModContent.ItemType<Items.Banners.CaesiumSeekerBanner>();
     }
     public override float SpawnChance(NPCSpawnInfo spawnInfo)
     {
@@ -47,7 +45,7 @@ public class CaesiumSeekerHead : CaesiumSeekerWorm
     }
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaesiumOre>(), 10, 2, 5));
+        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.DownedAllMechBosses(), ModContent.ItemType<CaesiumOre>(), 10, 2, 5));
     }
     public override void HitEffect(int hitDirection, double damage)
     {
@@ -85,9 +83,6 @@ public class CaesiumSeekerBody : CaesiumSeekerWorm
         NPC.noTileCollide = true;
         NPC.knockBackResist = 0f;
         NPC.behindTiles = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
-        NPC.buffImmune[BuffID.Daybreak] = true;
         DrawOffsetY = 25;
     }
     public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
@@ -128,9 +123,6 @@ public class CaesiumSeekerTail : CaesiumSeekerWorm
         NPC.noTileCollide = true;
         NPC.knockBackResist = 0f;
         NPC.behindTiles = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
-        NPC.buffImmune[BuffID.Daybreak] = true;
         DrawOffsetY = 25;
     }
     public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
@@ -160,6 +152,16 @@ public abstract class CaesiumSeekerWorm : Worm
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Caesium Seeker");
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.OnFire,
+                BuffID.CursedInferno,
+                BuffID.Daybreak
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void Init()

@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -15,6 +16,17 @@ public class CursedFlamer : ModNPC
     {
         DisplayName.SetDefault("Cursed Flamer");
         Main.npcFrameCount[NPC.type] = 2;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire,
+                BuffID.CursedInferno,
+                BuffID.Poisoned
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -34,10 +46,6 @@ public class CursedFlamer : ModNPC
         NPC.noGravity = true;
         NPC.noTileCollide = false;
         NPC.value = 500;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
-        NPC.buffImmune[BuffID.CursedInferno] = true;
-        NPC.buffImmune[BuffID.Poisoned] = true;
         //Banner = npc.type;
         //BannerItem = ModContent.ItemType<Items.Banners.CursedFlamerBanner>();
     }

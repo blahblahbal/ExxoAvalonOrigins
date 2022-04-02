@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -15,6 +16,15 @@ public class DarkMotherSlime : ModNPC
     {
         DisplayName.SetDefault("Dark Mother Slime");
         Main.npcFrameCount[NPC.type] = 4;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.Poisoned
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -28,8 +38,6 @@ public class DarkMotherSlime : ModNPC
         NPC.knockBackResist = 0.3f;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
-        NPC.buffImmune[BuffID.Poisoned] = true;
-        NPC.buffImmune[BuffID.Confused] = true;
 
         suicideTimer = 0;
     }

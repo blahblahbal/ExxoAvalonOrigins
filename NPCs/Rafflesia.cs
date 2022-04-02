@@ -28,8 +28,8 @@ public class Rafflesia : ModNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.knockBackResist = 0f;
-        //Banner = npc.type;
-        //BannerItem = ModContent.ItemType<Items.Banners.RafflesiaBanner>();
+        Banner = NPC.type;
+        BannerItem = ModContent.ItemType<Items.Banners.RafflesiaBanner>();
         //drawOffsetY = 10;
     }
 

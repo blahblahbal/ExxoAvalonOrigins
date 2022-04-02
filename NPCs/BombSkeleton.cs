@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -12,6 +13,15 @@ public class BombSkeleton : ModNPC
     {
         DisplayName.SetDefault("Bomb Skeleton");
         Main.npcFrameCount[NPC.type] = 15;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.Poisoned
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -25,8 +35,6 @@ public class BombSkeleton : ModNPC
         NPC.knockBackResist = 0.05f;
         NPC.HitSound = SoundID.NPCHit2;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.buffImmune[BuffID.Poisoned] = true;
-        NPC.buffImmune[BuffID.Confused] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.BombSkeletonBanner>();
     }

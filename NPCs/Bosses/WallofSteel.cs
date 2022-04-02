@@ -36,14 +36,14 @@ public class WallofSteel : ModNPC
         {
             SpecificallyImmuneTo = new int[]
             {
-                BuffID.Confused, // Most NPCs have this
+                BuffID.Confused,
 		        BuffID.Poisoned,
                 BuffID.OnFire,
                 BuffID.CursedInferno,
                 BuffID.Ichor,
                 BuffID.Frostburn,
                 BuffID.Venom,
-                ModContent.BuffType<Buffs.Frozen>(), // Modded buffs
+                ModContent.BuffType<Buffs.Frozen>(),
 	        }
         };
         NPCID.Sets.DebuffImmunitySets[Type] = debuffData;

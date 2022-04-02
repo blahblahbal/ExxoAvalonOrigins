@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -12,6 +13,15 @@ public class ArmoredHellTortoise : ModNPC
     {
         DisplayName.SetDefault("Armored Hell Tortoise");
         Main.npcFrameCount[NPC.type] = 8;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
 
     public override void SetDefaults()
@@ -29,8 +39,6 @@ public class ArmoredHellTortoise : ModNPC
         NPC.knockBackResist = 0.2f;
         NPC.HitSound = SoundID.NPCHit24;
         NPC.DeathSound = SoundID.NPCDeath27;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
         Banner = NPC.type;
         BannerItem = ModContent.ItemType<Items.Banners.ArmoredHellTortoiseBanner>();
     }

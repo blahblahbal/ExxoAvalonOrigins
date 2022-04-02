@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.NPCs;
 
@@ -13,6 +14,15 @@ public class MagmaSkeleton : ModNPC
     {
         DisplayName.SetDefault("Magma Skeleton");
         Main.npcFrameCount[NPC.type] = 15;
+        NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+        {
+            SpecificallyImmuneTo = new int[]
+            {
+                BuffID.Confused,
+                BuffID.OnFire
+            }
+        };
+        NPCID.Sets.DebuffImmunitySets[Type] = debuffData;
     }
     public override void SetDefaults()
     {
@@ -27,8 +37,7 @@ public class MagmaSkeleton : ModNPC
         NPC.knockBackResist = 0.15f;
         NPC.HitSound = SoundID.NPCHit2;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.buffImmune[BuffID.Confused] = true;
-        NPC.buffImmune[BuffID.OnFire] = true;
+        //TODO: add banner
     }
     public override void OnHitPlayer(Player target, int damage, bool crit)
     {
