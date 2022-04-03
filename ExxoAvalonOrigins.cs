@@ -36,22 +36,6 @@ public class ExxoAvalonOrigins : Mod
 
     public Mod MusicMod;
 
-    // Hotkeys
-
-    public ModHotKey ShadowHotkey;
-    public ModHotKey SprintHotkey;
-    public ModHotKey DashHotkey;
-    public ModHotKey QuintupleHotkey;
-    public ModHotKey SwimHotkey;
-    public ModHotKey WallSlideHotkey;
-    public ModHotKey BubbleBoostHotkey;
-    public ModHotKey ModeChangeHotkey;
-    public ModHotKey AstralHotkey;
-    public ModHotKey minionGuidingHotkey;
-    public ModHotKey RocketJumpHotkey;
-    public ModHotKey QuickStaminaHotkey;
-    public ModHotKey FlightTimeRestoreHotkey;
-
     // UI
 
     private UserInterface staminaInterface;
@@ -168,22 +152,6 @@ public class ExxoAvalonOrigins : Mod
 
             Effects.EffectsManager.Load();
             Hooks.HooksManager.Load();
-
-            // Hotkeys
-
-            ShadowHotkey = RegisterHotKey("Shadow/Stamina Teleport", "V");
-            SprintHotkey = RegisterHotKey("Toggle Stamina Sprinting", "F");
-            DashHotkey = RegisterHotKey("Toggle Stamina Stamina Dash", "K");
-            QuintupleHotkey = RegisterHotKey("Toggle Quintuple Jump", "RightControl");
-            SwimHotkey = RegisterHotKey("Toggle Stamina Swimming", "L");//implemented?
-            WallSlideHotkey = RegisterHotKey("Toggle Stamina Wall Sliding", "Z");
-            FlightTimeRestoreHotkey = RegisterHotKey("Stamina Restore Flight Time", "G");
-            BubbleBoostHotkey = RegisterHotKey("Toggle Bubble Boost", "U");
-            ModeChangeHotkey = RegisterHotKey("Change Modes", "N");
-            AstralHotkey = RegisterHotKey("Activate Astral Projecting", "OemPipe");
-            minionGuidingHotkey = RegisterHotKey("Ancient Minion Guiding", "Mouse2");
-            RocketJumpHotkey = RegisterHotKey("Stamina Rocket Jump", "C");
-            QuickStaminaHotkey = RegisterHotKey("Quick Stamina", "X");
 
             // UI
 
