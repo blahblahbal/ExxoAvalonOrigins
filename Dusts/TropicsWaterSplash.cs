@@ -7,7 +7,7 @@ public class TropicsWaterSplash : ModDust
 {
     public override void SetStaticDefaults()
     {
-        updateType = 33;
+        UpdateType = 33;
     }
 
     public override void OnSpawn(Dust dust)
