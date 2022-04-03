@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI;
 
-class StaminaBar : UIState
+public class StaminaBar : UIState
 {
     private float staminaPerBar = 30;
     private const int maxStaminaBars = 5;

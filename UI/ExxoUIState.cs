@@ -5,7 +5,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI;
 
-internal class ExxoUIState : UIState
+public class ExxoUIState : UIState
 {
     public bool DisableRecipeScrolling = true;
     public bool FocusInteractionsToUI = true;

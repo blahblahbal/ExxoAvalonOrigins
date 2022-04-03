@@ -38,12 +38,12 @@ public class ExxoAvalonOrigins : Mod
 
     // UI
 
-    private UserInterface staminaInterface;
-    private UserInterface tomeSlotUserInterface;
-    private UserInterface herbologyUserInterface;
-    private StaminaBar staminaBar;
-    private TomeSlot tomeSlot;
-    private UI.Herbology.HerbologyUIState herbology;
+    public UserInterface staminaInterface;
+    public UserInterface tomeSlotUserInterface;
+    public UserInterface herbologyUserInterface;
+    public StaminaBar staminaBar;
+    public TomeSlot tomeSlot;
+    public UI.Herbology.HerbologyUIState herbology;
     public bool CheckPointer = true;
 
     // Reference to the main instance of the mod
@@ -167,8 +167,6 @@ public class ExxoAvalonOrigins : Mod
 
             Main.chTitle = true;
         }
-
-        //AddAvalonAlts();
     }
 
     public override void Unload()
@@ -184,41 +182,6 @@ public class ExxoAvalonOrigins : Mod
     public override void HandlePacket(BinaryReader reader, int whoAmI)
     {
         Network.MessageHandler.HandlePacket(reader, whoAmI);
-    }
-    public override void PreUpdateEntities()
-    {
-        if (Main.netMode == NetmodeID.MultiplayerClient)
-        {
-            Main.tileSolidTop[ModContent.TileType<Tiles.FallenStarTile>()] = Main.dayTime;
-        }
-    }
-
-    public override void PostUpdateEverything()
-    {
-        Tiles.CoolGemsparkBlock.StaticUpdate();
-        Tiles.WarmGemsparkBlock.StaticUpdate();
-        Items.Armor.SpectrumHelmet.StaticUpdate();
-    }
-
-    public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
-    {
-        float ickyStrength = ExxoAvalonOriginsWorld.ickyTiles / 800f;
-        ickyStrength = Math.Min(ickyStrength, 1f);
-        if (ickyStrength > 0)
-        {
-            int sunR = Main.bgColor.R;
-            int sunG = Main.bgColor.G;
-            int sunB = Main.bgColor.B;
-            sunR -= (int)(100f * ickyStrength * (Main.bgColor.R / 255f));
-            sunG -= (int)(50f * ickyStrength * (Main.bgColor.G / 255f));
-            sunB -= (int)(80f * ickyStrength * (Main.bgColor.G / 255f));
-            sunR = Utils.Clamp(sunR, 15, 255);
-            sunG = Utils.Clamp(sunG, 15, 255);
-            sunB = Utils.Clamp(sunB, 15, 255);
-            Main.bgColor.R = (byte)sunR;
-            Main.bgColor.G = (byte)sunG;
-            Main.bgColor.B = (byte)sunB;
-        }
     }
 
     /*public override void UpdateMusic(ref int music, ref MusicPriority priority)
@@ -447,67 +410,7 @@ public class ExxoAvalonOrigins : Mod
     {
         ExxoAvalonOriginsCall.Support();
     }
-    public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-    {
-        layers.Insert(0, new LegacyGameInterfaceLayer(
-            "ExxoAvalonOrigins: Update Interfaces",
-            delegate
-            {
-                if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb && Main.playerInventory && herbologyUserInterface.CurrentState == null)
-                {
-                    herbologyUserInterface.SetState(herbology);
-                    typeof(UserInterface).GetField("_clickDisabledTimeRemaining", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(herbologyUserInterface, 10);
-                }
-                else if (!(Main.playerInventory && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) && herbologyUserInterface.CurrentState != null)
-                {
-                    herbologyUserInterface.SetState(null);
-                }
-
-                herbologyUserInterface.Update(Main._drawInterfaceGameTime);
-                staminaInterface.Update(Main._drawInterfaceGameTime);
-                return true;
-            },
-            InterfaceScaleType.UI)
-        );
-
-        int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Radial Hotbars"));
-        if (inventoryIndex >= 0)
-        {
-            layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
-                "ExxoAvalonOrigins: Tome Slot",
-                delegate
-                {
-                    tomeSlot.DrawTomes(Main.spriteBatch);
-                    return true;
-                },
-                InterfaceScaleType.UI)
-            );
-
-            layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
-                "ExxoAvalonOrigins: Herbology Bench",
-                delegate
-                {
-                    herbologyUserInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
-                    return true;
-                },
-                InterfaceScaleType.UI)
-            );
-        }
-
-        int resourceBarsIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-        if (resourceBarsIndex >= 0)
-        {
-            layers.Insert(resourceBarsIndex, new LegacyGameInterfaceLayer(
-                "ExxoAvalonOrigins: Stamina Bar",
-                delegate
-                {
-                    staminaInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
-                    return true;
-                },
-                InterfaceScaleType.UI)
-            );
-        }
-    }
+    
 
     public override void AddRecipeGroups()
     {
@@ -714,7 +617,7 @@ public class ExxoAvalonOrigins : Mod
         {
             for (int j = num3; j < num4; j++)
             {
-                if (Main.tile[i, j]?.liquid > 0 && Main.tile[i, j - 1].LiquidAmount == 0 && Main.tile[i, j].LiquidType == LiquidID.Lava)
+                if (Main.tile[i, j].LiquidAmount > 0 && Main.tile[i, j - 1].LiquidAmount == 0 && Main.tile[i, j].LiquidType == LiquidID.Lava)
                 {
                     int num5 = (Main.tile[i, j].LiquidAmount / 32 * 2) + 2;
                     Vector2 vector3;
@@ -844,7 +747,7 @@ public class ExxoAvalonOrigins : Mod
 
     public static Similarity GetSimilarity(Tile check, int myType, int mergeType)
     {
-        if (check?.HasTile != true)
+        if (check.HasTile != true)
         {
             return Similarity.None;
         }
@@ -906,7 +809,8 @@ public class ExxoAvalonOrigins : Mod
         if (resetFrame)
         {
             randomFrame = WorldGen.genRand.Next(3);
-            Main.tile[x, y].TileFrameNumber = (byte)randomFrame;
+            Tile t = Main.tile[x, y];
+            t.TileFrameNumber = (byte)randomFrame;
         }
         else
         {

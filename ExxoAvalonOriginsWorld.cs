@@ -19,6 +19,7 @@ using Terraria.WorldBuilding;
 using Utils = ExxoAvalonOrigins.World.Utils;
 using Terraria.Audio;
 using Terraria.Chat;
+using Terraria.UI;
 
 namespace ExxoAvalonOrigins;
 
@@ -170,6 +171,100 @@ public class ExxoAvalonOriginsWorld : ModSystem
     //        style = ModContent.GetInstance<Waters.TropicsWaterStyle>().Type;
     //    }
     //}
+    //public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
+    //{
+    //    float ickyStrength = ExxoAvalonOriginsWorld.ickyTiles / 800f;
+    //    ickyStrength = Math.Min(ickyStrength, 1f);
+    //    if (ickyStrength > 0)
+    //    {
+    //        int sunR = Main.bgColor.R;
+    //        int sunG = Main.bgColor.G;
+    //        int sunB = Main.bgColor.B;
+    //        sunR -= (int)(100f * ickyStrength * (Main.bgColor.R / 255f));
+    //        sunG -= (int)(50f * ickyStrength * (Main.bgColor.G / 255f));
+    //        sunB -= (int)(80f * ickyStrength * (Main.bgColor.G / 255f));
+    //        sunR = Utils.Clamp(sunR, 15, 255);
+    //        sunG = Utils.Clamp(sunG, 15, 255);
+    //        sunB = Utils.Clamp(sunB, 15, 255);
+    //        Main.bgColor.R = (byte)sunR;
+    //        Main.bgColor.G = (byte)sunG;
+    //        Main.bgColor.B = (byte)sunB;
+    //    }
+    //}
+    public override void PostUpdateEverything()
+    {
+        Tiles.CoolGemsparkBlock.StaticUpdate();
+        Tiles.WarmGemsparkBlock.StaticUpdate();
+        Items.Armor.SpectrumHelmet.StaticUpdate();
+    }
+    public override void PreUpdateEntities()
+    {
+        if (Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            Main.tileSolidTop[ModContent.TileType<Tiles.FallenStarTile>()] = Main.dayTime;
+        }
+    }
+    public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+    {
+        layers.Insert(0, new LegacyGameInterfaceLayer(
+            "ExxoAvalonOrigins: Update Interfaces",
+            delegate
+            {
+                if (Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb && Main.playerInventory && ExxoAvalonOrigins.Mod.herbologyUserInterface.CurrentState == null)
+                {
+                    ExxoAvalonOrigins.Mod.herbologyUserInterface.SetState(ExxoAvalonOrigins.Mod.herbology);
+                    typeof(UserInterface).GetField("_clickDisabledTimeRemaining", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(ExxoAvalonOrigins.Mod.herbologyUserInterface, 10);
+                }
+                else if (!(Main.playerInventory && Main.LocalPlayer.GetModPlayer<ExxoAvalonOriginsModPlayer>().herb) && ExxoAvalonOrigins.Mod.herbologyUserInterface.CurrentState != null)
+                {
+                    ExxoAvalonOrigins.Mod.herbologyUserInterface.SetState(null);
+                }
+
+                ExxoAvalonOrigins.Mod.herbologyUserInterface.Update(Main._drawInterfaceGameTime);
+                ExxoAvalonOrigins.Mod.staminaInterface.Update(Main._drawInterfaceGameTime);
+                return true;
+            },
+            InterfaceScaleType.UI)
+        );
+
+        int inventoryIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Radial Hotbars"));
+        if (inventoryIndex >= 0)
+        {
+            layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
+                "ExxoAvalonOrigins: Tome Slot",
+                delegate
+                {
+                    ExxoAvalonOrigins.Mod.tomeSlot.DrawTomes(Main.spriteBatch);
+                    return true;
+                },
+                InterfaceScaleType.UI)
+            );
+
+            layers.Insert(inventoryIndex, new LegacyGameInterfaceLayer(
+                "ExxoAvalonOrigins: Herbology Bench",
+                delegate
+                {
+                    ExxoAvalonOrigins.Mod.herbologyUserInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                    return true;
+                },
+                InterfaceScaleType.UI)
+            );
+        }
+
+        int resourceBarsIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+        if (resourceBarsIndex >= 0)
+        {
+            layers.Insert(resourceBarsIndex, new LegacyGameInterfaceLayer(
+                "ExxoAvalonOrigins: Stamina Bar",
+                delegate
+                {
+                    ExxoAvalonOrigins.Mod.staminaInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                    return true;
+                },
+                InterfaceScaleType.UI)
+            );
+        }
+    }
     public static bool AnyTiles(Player player, ushort type, int distance = 20, bool candle = true)
     {
         Point tileC = player.position.ToTileCoordinates();

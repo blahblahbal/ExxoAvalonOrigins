@@ -3,7 +3,7 @@ using Terraria.UI;
 
 namespace ExxoAvalonOrigins.UI;
 
-internal class ExxoUIDraggablePanel : ExxoUIPanel
+public class ExxoUIDraggablePanel : ExxoUIPanel
 {
     private bool isMouseHeld;
     private Vector2 clickDelta;
