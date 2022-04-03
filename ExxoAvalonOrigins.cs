@@ -17,6 +17,7 @@ using ExxoAvalonOrigins.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -128,38 +129,39 @@ public class ExxoAvalonOrigins : Mod
                 Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_FemaleBody_Glow").Value,
                 Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumGreaves_Legs_Glow").Value,
             };
-            ExxoAvalonOriginsModPlayer.originalMermanTextures = new Texture2D[]
+            ExxoAvalonOriginsModPlayer.originalMermanTextures = new ReLogic.Content.Asset<Texture2D>[]
             {
-                Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Head_39"),
-                Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Body_22"),
-                Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Arm_22"),
-                Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Female_Body_22"),
-                Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Legs_21")
+                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Head_39"),
+                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Body_22"),
+                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Arm_22"),
+                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Female_Body_22"),
+                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Legs_21")
             };
 
             // Vanilla Texture replacements
-            Main.logoTexture = GetTexture("Sprites/EAOLogo");
-            Main.logo2Texture = GetTexture("Sprites/EAOLogo");
+            TextureAssets.Logo = ModContent.Request<Texture2D>("Sprites/EAOLogo");
+            TextureAssets.Logo2 = ModContent.Request<Texture2D>("Sprites/EAOLogo");
             if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
             {
-                Main.logoTexture = GetTexture("Sprites/EAOLogoAprilFools");
-                Main.logo2Texture = GetTexture("Sprites/EAOLogoAprilFools");
+                TextureAssets.Logo = ModContent.Request<Texture2D>("Sprites/EAOLogoAprilFools");
+                TextureAssets.Logo2 = ModContent.Request<Texture2D>("Sprites/EAOLogoAprilFools");
             }
-            Terraria.GameContent.TextureAssets.Item[ItemID.HallowedKey] = GetTexture("Sprites/HallowedKey");
-            Terraria.GameContent.TextureAssets.Item[ItemID.MagicDagger] = GetTexture("Sprites/MagicDagger");
-            Main.tileTexture[TileID.CopperCoinPile] = GetTexture("Sprites/CopperCoin");
-            Main.tileTexture[TileID.SilverCoinPile] = GetTexture("Sprites/SilverCoin");
-            Main.tileTexture[TileID.GoldCoinPile] = GetTexture("Sprites/GoldCoin");
-            Main.tileTexture[TileID.PlatinumCoinPile] = GetTexture("Sprites/PlatinumCoin");
-            Terraria.GameContent.TextureAssets.Item[ItemID.PaladinBanner] = GetTexture("Sprites/PaladinBanner");
-            Terraria.GameContent.TextureAssets.Item[ItemID.PossessedArmorBanner] = GetTexture("Sprites/PossessedArmorBanner");
-            Terraria.GameContent.TextureAssets.Item[ItemID.BoneLeeBanner] = GetTexture("Sprites/BoneLeeBanner");
-            Terraria.GameContent.TextureAssets.Item[ItemID.AngryTrapperBanner] = GetTexture("Sprites/AngryTrapperBanner");
-            Terraria.GameContent.TextureAssets.Item[ItemID.Deathweed] = GetTexture("Sprites/Deathweed");
-            Terraria.GameContent.TextureAssets.Item[ItemID.WaterleafSeeds] = GetTexture("Sprites/WaterleafSeeds");
-            Main.projectileTexture[ProjectileID.MagicDagger] = GetTexture("Sprites/MagicDagger");
-            Main.tileTexture[91] = GetTexture("Sprites/VanillaBanners");
-            Main.tileTexture[21] = GetTexture("Sprites/VanillaChests");
+
+            TextureAssets.Item[ItemID.HallowedKey] = ModContent.Request<Texture2D>("Sprites/HallowedKey");
+            TextureAssets.Item[ItemID.MagicDagger] = ModContent.Request<Texture2D>("Sprites/MagicDagger");
+            TextureAssets.Tile[TileID.CopperCoinPile] = ModContent.Request<Texture2D>("Sprites/CopperCoin");
+            TextureAssets.Tile[TileID.SilverCoinPile] = ModContent.Request<Texture2D>("Sprites/SilverCoin");
+            TextureAssets.Tile[TileID.GoldCoinPile] = ModContent.Request<Texture2D>("Sprites/GoldCoin");
+            TextureAssets.Tile[TileID.PlatinumCoinPile] = ModContent.Request<Texture2D>("Sprites/PlatinumCoin");
+            TextureAssets.Item[ItemID.PaladinBanner] = ModContent.Request<Texture2D>("Sprites/PaladinBanner");
+            TextureAssets.Item[ItemID.PossessedArmorBanner] = ModContent.Request<Texture2D>("Sprites/PossessedArmorBanner");
+            TextureAssets.Item[ItemID.BoneLeeBanner] = ModContent.Request<Texture2D>("Sprites/BoneLeeBanner");
+            TextureAssets.Item[ItemID.AngryTrapperBanner] = ModContent.Request<Texture2D>("Sprites/AngryTrapperBanner");
+            TextureAssets.Item[ItemID.Deathweed] = ModContent.Request<Texture2D>("Sprites/Deathweed");
+            TextureAssets.Item[ItemID.WaterleafSeeds] = ModContent.Request<Texture2D>("Sprites/WaterleafSeeds");
+            TextureAssets.Projectile[ProjectileID.MagicDagger] = ModContent.Request<Texture2D>("Sprites/MagicDagger");
+            TextureAssets.Tile[91] = ModContent.Request<Texture2D>("Sprites/VanillaBanners");
+            TextureAssets.Tile[21] = ModContent.Request<Texture2D>("Sprites/VanillaChests");
 
             NPCs.Bosses.WallofSteel.Load();
             Projectiles.PhantasmLaser.Load();
@@ -206,8 +208,8 @@ public class ExxoAvalonOrigins : Mod
         ExxoAvalonOriginsModPlayer.torches = null;
         if (Main.netMode != NetmodeID.Server)
         {
-            Main.logoTexture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
-            Main.logo2Texture = Main.instance.OurLoad<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo2");
+            TextureAssets.Logo = ModContent.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
+            TextureAssets.Logo2 = ModContent.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo2");
         }
     }
 
@@ -215,7 +217,6 @@ public class ExxoAvalonOrigins : Mod
     {
         Network.MessageHandler.HandlePacket(reader, whoAmI);
     }
-
     public override void PreUpdateEntities()
     {
         if (Main.netMode == NetmodeID.MultiplayerClient)
