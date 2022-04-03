@@ -61,16 +61,6 @@ public static class RecipeCreator
             .AddIngredient(ItemID.SoulofSight, 5)
             .AddTile(TileID.MythrilAnvil);
 
-        mod.CreateRecipe(ModContent.ItemType<ChlorophyteBrick>(), 2)
-            .AddIngredient(ItemID.ChlorophyteOre)
-            .AddIngredient(ItemID.MudBlock)
-            .AddIngredient(ItemID.StoneBlock)
-            .AddTile(TileID.AdamantiteForge);
-
-        mod.CreateRecipe(ModContent.ItemType<ChlorophyteBrickWall>(), 4)
-            .AddIngredient(ModContent.ItemType<ChlorophyteBrick>())
-            .AddTile(TileID.WorkBenches);
-
         mod.CreateRecipe(ModContent.ItemType<CoughwoodDoor>())
             .AddIngredient(ModContent.ItemType<Coughwood>(), 6)
             .AddTile(TileID.WorkBenches);
@@ -813,11 +803,6 @@ public static class RecipeCreator
             .AddIngredient(ItemID.DarkShard)
             .AddIngredient(ItemID.LightShard)
             .AddTile(TileID.AdamantiteForge);
-
-        mod.CreateRecipe(ModContent.ItemType<SunCharm>())
-            .AddIngredient(ModContent.ItemType<SolarFragment>(), 3)
-            .AddRecipeGroup("ExxoAvalonOrigins:SilverBar", 5)
-            .AddTile(TileID.MythrilAnvil);
 
         mod.CreateRecipe(ModContent.ItemType<DarklightLance>())
             .AddIngredient(ItemID.DarkLance)
@@ -2121,21 +2106,21 @@ public static class RecipeCreator
 
 
         mod.CreateRecipe(ModContent.ItemType<AwakenedRoseCrown>())
-            .AddIngredient(ModContent.ItemType<SouloftheJungle>(), 20)
+            .AddIngredient(ModContent.ItemType<SoulofHumidity>(), 20)
             .AddIngredient(ModContent.ItemType<DarkMatterGel>(), 60)
             .AddIngredient(ModContent.ItemType<AncientHeadpiece>())
             .AddIngredient(ModContent.ItemType<LifeDew>(), 15)
             .AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
 
         mod.CreateRecipe(ModContent.ItemType<AwakenedRosePlateMail>())
-            .AddIngredient(ModContent.ItemType<SouloftheJungle>(), 23)
+            .AddIngredient(ModContent.ItemType<SoulofHumidity>(), 23)
             .AddIngredient(ModContent.ItemType<DarkMatterGel>(), 65)
             .AddIngredient(ModContent.ItemType<AncientBodyplate>())
             .AddIngredient(ModContent.ItemType<LifeDew>(), 15)
             .AddTile(ModContent.TileType<Tiles.SolariumAnvil>());
 
         mod.CreateRecipe(ModContent.ItemType<AwakenedRoseSubligar>())
-            .AddIngredient(ModContent.ItemType<SouloftheJungle>(), 17)
+            .AddIngredient(ModContent.ItemType<SoulofHumidity>(), 17)
             .AddIngredient(ModContent.ItemType<DarkMatterGel>(), 70)
             .AddIngredient(ModContent.ItemType<AncientLeggings>())
             .AddIngredient(ModContent.ItemType<LifeDew>(), 15)
