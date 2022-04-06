@@ -115,7 +115,7 @@ public class Rafflesia : ModNPC
     {
         //if (npc.life <= 0)
         //{
-        //    Gore.NewGore(npc.position, npc.velocity * 0.8f, Mod.Find<ModGore>("Gores/Rafflesia").Type, 1f);
+        //    Gore.NewGore(npc.position, npc.velocity * 0.8f, Mod.Find<ModGore>("Rafflesia").Type, 1f);
         //}
     }
 }

@@ -16,7 +16,7 @@ class Oblivirod : ModItem
     {
         Rectangle dims = this.GetDims();
         Item.shootSpeed = 15.5f;
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.RainbowRarity>();
         Item.width = dims.Width;
         Item.useTime = 8;
         Item.fishingPole = 110;

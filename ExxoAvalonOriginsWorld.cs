@@ -1651,7 +1651,7 @@ public class ExxoAvalonOriginsWorld : ModSystem
     }
     public override void PostUpdateWorld()
     {
-        float num2 = 3E-05f * Main.worldRate;
+        float num2 = 3E-05f * (float)WorldGen.GetWorldUpdateRate();
         //float num3 = 1.5E-05f * (float)Main.worldRate;
         int num4 = 0;
         while (num4 < Main.maxTilesX * Main.maxTilesY * num2)

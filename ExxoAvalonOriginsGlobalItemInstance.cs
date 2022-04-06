@@ -22,52 +22,11 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
     public bool wasMech = false;
     public bool tome = false;
     public bool updateInvisibleVanity = false;
-    public AvalonRarity avalonRarity;
 
-    List<int> blahRarityItems = new List<int>
-    {
-        ModContent.ItemType<Items.Weapons.Blah.BlahBullet>(),
-        ModContent.ItemType<Items.Weapons.Blah.BlahsEnergyBlade>(),
-        ModContent.ItemType<Items.Weapons.Blah.BlahStaff>(),
-        ModContent.ItemType<Items.Weapons.Blah.TacticalBlahncher>(),
-        ModContent.ItemType<Items.Accessories.BlahsWings>(),
-        ModContent.ItemType<Items.Armor.BlahsHeadguard>(),
-        ModContent.ItemType<Items.Armor.BlahsHauberk>(),
-        ModContent.ItemType<Items.Armor.BlahsCuisses2>(),
-        ModContent.ItemType<Items.Potions.BlahPotion>(),
-        ModContent.ItemType<Items.Tools.BlahsPicksawTierII>(),
-        ModContent.ItemType<Items.Tools.BlahsWarhammer>(),
-        ModContent.ItemType<Items.Weapons.Blah.BlahsThrow>(),
-        ModContent.ItemType<Items.Weapons.Blah.BlahsKnives>(),
-        ModContent.ItemType<Items.Weapons.Blah.SpraynBlah>(),
-        ModContent.ItemType<Items.Placeable.Painting.CrossingtheTropics>()
-    };
-    List<int> avalonRarityItems = new List<int>
-    {
-        ModContent.ItemType<Items.Armor.AvalonHelmet>(),
-        ModContent.ItemType<Items.Armor.AvalonBodyarmor>(),
-        ModContent.ItemType<Items.Armor.AvalonCuisses>(),
-        ModContent.ItemType<Items.Other.MechanicalWhoopieCushion>(),
-        ModContent.ItemType<Items.Placeable.Crafting.Anvenalforge>()
-    };
     List<int> rainbowRarityItems = new List<int>
     {
-        ModContent.ItemType<Items.Placeable.Tile.Opal>(),
         ItemID.RainbowBrick,
         ItemID.RainbowBrickWall,
-        ModContent.ItemType<Items.Armor.BlahsHelmet>(),
-        ModContent.ItemType<Items.Armor.BlahsBodyarmor>(),
-        ModContent.ItemType<Items.Armor.BlahsCuisses>(),
-        ModContent.ItemType<Items.Other.Quack>(),
-        ModContent.ItemType<Items.Accessories.TitanGauntlets>(),
-        ModContent.ItemType<Items.Material.SpikedBlastShell>(),
-        ModContent.ItemType<Items.Tools.BlahsPicksaw>(),
-        ModContent.ItemType<Items.Accessories.TerraClaws>(),
-        ModContent.ItemType<Items.Placeable.Trophy.EggmanTrophy>(),
-        ModContent.ItemType<Items.Placeable.Tile.OpalGemsparkBlock>(),
-        ModContent.ItemType<Items.Tools.Oblivirod>(),
-        ModContent.ItemType<Items.Accessories.QuackinaBalloon>(),
-        ModContent.ItemType<Items.Accessories.QuackinaBottle>()
     };
     Dictionary<int, int> allowedPrefixes = new Dictionary<int, int>()
     {
@@ -207,75 +166,5 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
                 }
             }
         }
-        if (tooltipLine != null)
-        {
-            if (blahRarityItems.Contains(item.type))
-            {
-                List<Color> colors = new List<Color>
-                {
-                    new Color(252, 66, 0),
-                    new Color(203, 203, 203)
-                };
-                int num = (int)(Main.GlobalTimeWrappedHourly / 2f % colors.Count);
-                Color orange = colors[num];
-                Color silver = colors[(num + 1) % colors.Count];
-                tooltipLine.overrideColor = Color.Lerp(orange, silver, (Main.GlobalTimeWrappedHourly % 2f > 1f) ? 1f : (Main.GlobalTimeWrappedHourly % 1f));
-            }
-            if (avalonRarityItems.Contains(item.type))
-            {
-                List<Color> colors = new List<Color>
-                {
-                    new Color(71, 142, 147),
-                    new Color(255, 242, 0)
-                };
-                int num = (int)(Main.GlobalTimeWrappedHourly / 2f % colors.Count);
-                Color teal = colors[num];
-                Color yellow = colors[(num + 1) % colors.Count];
-                tooltipLine.overrideColor = Color.Lerp(teal, yellow, (Main.GlobalTimeWrappedHourly % 2f > 1f) ? 1f : (Main.GlobalTimeWrappedHourly % 1f));
-            }
-            if (rainbowRarityItems.Contains(item.type))
-            {
-                tooltipLine.overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
-            }
-        }
     }
-    //public override GlobalItem NewInstance(Item item)
-    //{
-    //    return base.NewInstance(item);
-    //}
-
-    //public override bool NeedsSaving(Item item)
-    //{
-    //    return true;
-    //}
-    //public override TagCompound SaveData(Item item)
-    //{
-    //    return new TagCompound
-    //    {
-    //        ["ExxoAvalonOrigins:Rarity"] = (int)avalonRarity,
-    //        ["ExxoAvalonOrigins:Spike"] = spike,
-    //        ["ExxoAvalonOrigins:Torch"] = torch
-    //    };
-    //}
-
-    //public override void Load(Item item, TagCompound tag)
-    //{
-    //    avalonRarity = (AvalonRarity)tag.GetInt("ExxoAvalonOrigins:Rarity");
-    //    spike = tag.GetInt("ExxoAvalonOrigins:Spike");
-    //    torch = tag.GetInt("ExxoAvalonOrigins:Torch");
-    //}
-
-    //public override void NetSend(Item item, BinaryWriter writer)
-    //{
-    //    writer.Write((int)avalonRarity);
-    //    writer.Write(spike);
-    //    writer.Write(torch);
-    //}
-
-    //public override void NetReceive(Item item, BinaryReader reader)
-    //{
-    //    avalonRarity = (AvalonRarity)reader.ReadInt32();
-    //    spike = reader.ReadInt32();
-    //    torch = reader.ReadInt32();
-    //}
 }

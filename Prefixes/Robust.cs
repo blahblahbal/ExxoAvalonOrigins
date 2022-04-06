@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
@@ -25,7 +25,10 @@ public class Robust : ModPrefix
     //     }
     //     return false;
     // }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     public override void Apply(Item item)
     {
         Main.player[Main.myPlayer].statDefense += 3;

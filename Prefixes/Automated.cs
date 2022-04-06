@@ -1,3 +1,4 @@
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
@@ -15,7 +16,10 @@ public class Automated : ModPrefix
     {
         valueMult *= 1.05f;
     }
-
+    public override bool CanRoll(Item item)
+    {
+        return true;
+    }
     // public override bool Autoload(ref string name)
     // {
     //     if (base.Autoload(ref name))

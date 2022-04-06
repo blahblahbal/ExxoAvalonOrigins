@@ -26,7 +26,7 @@ public class TropicsWaterStyle : ModWaterStyle
 
     public override int GetDropletGore()
     {
-        return Mod.Find<ModGore>("Gores/TropicsDroplet");
+        return Mod.Find<ModGore>("TropicsDroplet");
     }
 
     public override void LightColorMultiplier(ref float r, ref float g, ref float b)

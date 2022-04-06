@@ -16,7 +16,7 @@ class QuackinaBottle : ModItem
     public override void SetDefaults()
     {
         Rectangle dims = this.GetDims();
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.RainbowRarity>();
         Item.width = dims.Width;
         Item.accessory = true;
         Item.value = Item.sellPrice(0, 1, 0, 0);

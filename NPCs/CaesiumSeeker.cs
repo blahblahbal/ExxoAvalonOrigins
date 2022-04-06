@@ -51,7 +51,7 @@ public class CaesiumSeekerHead : CaesiumSeekerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CaesiumSeekerHead").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CaesiumSeekerHead").Type, 0.8f);
         }
     }
     public override void Init()
@@ -98,7 +98,7 @@ public class CaesiumSeekerBody : CaesiumSeekerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CaesiumSeekerBody").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CaesiumSeekerBody").Type, 0.8f);
         }
     }
 }
@@ -138,7 +138,7 @@ public class CaesiumSeekerTail : CaesiumSeekerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CaesiumSeekerTail").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CaesiumSeekerTail").Type, 0.8f);
         }
     }
     public override void Init()

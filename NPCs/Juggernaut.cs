@@ -367,11 +367,11 @@ public class Juggernaut : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/JuggernautHead").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.7f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.7f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.7f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.7f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("JuggernautHead").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone1").Type, 1.7f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone2").Type, 1.7f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone1").Type, 1.7f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone2").Type, 1.7f);
         }
     }
 

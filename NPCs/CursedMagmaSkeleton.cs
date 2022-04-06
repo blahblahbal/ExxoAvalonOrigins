@@ -130,11 +130,11 @@ public class CursedMagmaSkeleton : ModNPC
         }
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CursedMagmaSkeletonHelmet").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone1").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/Bone2").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CursedMagmaSkeletonHelmet").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone1").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone2").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone1").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Bone2").Type, 1.2f);
             for (int i = 0; i < 20; i++)
             {
                 int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CursedTorch, 0f, 0f, 0, default(Color), 1f);

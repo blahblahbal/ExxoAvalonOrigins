@@ -26,7 +26,7 @@ public class ContagionWaterStyle : ModWaterStyle
 
     public override int GetDropletGore()
     {
-        return Mod.Find<ModGore>("Gores/ContagionDroplet");
+        return Mod.Find<ModGore>("ContagionDroplet");
     }
 
     public override void LightColorMultiplier(ref float r, ref float g, ref float b)

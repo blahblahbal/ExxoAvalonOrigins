@@ -1,8 +1,4 @@
 ﻿using System;
-using ExxoAvalonOrigins.Items.Accessories;
-using ExxoAvalonOrigins.Items.Material;
-using ExxoAvalonOrigins.Items.Placeable.Trophy;
-using ExxoAvalonOrigins.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -10,8 +6,12 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.Chat;
-using Terraria.GameContent.ItemDropRules;
 using ExxoAvalonOrigins.Systems;
+using Terraria.GameContent.ItemDropRules;
+using ExxoAvalonOrigins.Items.Material;
+using ExxoAvalonOrigins.Items.Weapons.Magic;
+using ExxoAvalonOrigins.Items.Accessories;
+using ExxoAvalonOrigins.Items.Placeable.Trophy;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses;
 
@@ -278,7 +278,7 @@ public class Phantasm : ModNPC
                     #region sweeping laser attack
                     if (NPC.ai[1] % 60 == 0)
                     {
-                        SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LaserFire"));
+                        SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserFire"), (int)NPC.position.X, (int)NPC.position.Y).Volume *= 0.8f;
                         // fire laser
                         Vector2 velocityOfProj = Main.player[NPC.target].Center - NPC.Center;
                         velocityOfProj.Normalize();
@@ -394,7 +394,7 @@ public class Phantasm : ModNPC
                 }
                 if (NPC.ai[0] == 400 || NPC.ai[0] == 450 || NPC.ai[0] == 500 || NPC.ai[0] == 550)
                 {
-                    SoundEngine.PlaySound(SoundID.Item, (int)NPC.position.X, (int)NPC.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LaserFire"), 0.8f);
+                    SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserFire"), (int)NPC.position.X, (int)NPC.position.Y).Volume *= 0.8f;
                     Vector2 velocityOfProj = Main.player[NPC.target].Center - NPC.Center;
                     velocityOfProj.Normalize();
                     float num1275 = -1f;

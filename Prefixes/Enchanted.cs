@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
@@ -16,7 +16,10 @@ public class Enchanted : ModPrefix
     {
         valueMult *= 1.25f;
     }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     // public override bool Autoload(ref string name)
     // {
     //     if (base.Autoload(ref name))

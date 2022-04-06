@@ -16,6 +16,7 @@ using ExxoAvalonOrigins.Projectiles.Torches;
 using ExxoAvalonOrigins.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -92,12 +93,9 @@ public class ExxoAvalonOrigins : Mod
             {
                 ExxoAvalonOriginsGlobalNPC.imkCompat = true;
             }
-            if (ModLoader.GetMod("AvalonMusic") != null)
-            {
-                MusicMod = ModLoader.GetMod("AvalonMusic");
-            }
+            ModLoader.TryGetMod("AvalonMusic", out MusicMod);
 
-            ExxoAvalonOriginsModPlayer.lavaMermanTextures = new ReLogic.Content.Asset<Texture2D>[]
+            ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Asset<Texture2D>[]
             {
                 Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Head"),
                 Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Body"),
@@ -105,15 +103,13 @@ public class ExxoAvalonOrigins : Mod
                 Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_FemaleBody"),
                 Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Legs")
             };
-            ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Texture2D[]
+            ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Asset<Texture2D>[]
             {
-                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumHelmet_Glow_Head").Value,
-                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Body_Glow").Value,
-                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Arms_Glow").Value,
-                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_FemaleBody_Glow").Value,
-                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumGreaves_Legs_Glow").Value,
+                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumHelmet_Glow_Head"),
+                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Body_Glow"),
+                Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumGreaves_Legs_Glow")
             };
-            ExxoAvalonOriginsModPlayer.originalMermanTextures = new ReLogic.Content.Asset<Texture2D>[]
+            ExxoAvalonOriginsModPlayer.originalMermanTextures = new Asset<Texture2D>[]
             {
                 Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Head_39"),
                 Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Body_22"),
@@ -123,32 +119,49 @@ public class ExxoAvalonOrigins : Mod
             };
 
             // Vanilla Texture replacements
-            TextureAssets.Logo = ModContent.Request<Texture2D>("Sprites/EAOLogo");
-            TextureAssets.Logo2 = ModContent.Request<Texture2D>("Sprites/EAOLogo");
+            ModLoader.TryGetMod("AvalonMusic", out MusicMod);
+            TextureAssets.Logo = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
+            TextureAssets.Logo2 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
+            TextureAssets.Logo3 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
+            TextureAssets.Logo4 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
             if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
             {
-                TextureAssets.Logo = ModContent.Request<Texture2D>("Sprites/EAOLogoAprilFools");
-                TextureAssets.Logo2 = ModContent.Request<Texture2D>("Sprites/EAOLogoAprilFools");
+                TextureAssets.Logo = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
+                TextureAssets.Logo2 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
+                TextureAssets.Logo3 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
+                TextureAssets.Logo4 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
             }
-
-            TextureAssets.Item[ItemID.HallowedKey] = ModContent.Request<Texture2D>("Sprites/HallowedKey");
-            TextureAssets.Item[ItemID.MagicDagger] = ModContent.Request<Texture2D>("Sprites/MagicDagger");
-            TextureAssets.Tile[TileID.CopperCoinPile] = ModContent.Request<Texture2D>("Sprites/CopperCoin");
-            TextureAssets.Tile[TileID.SilverCoinPile] = ModContent.Request<Texture2D>("Sprites/SilverCoin");
-            TextureAssets.Tile[TileID.GoldCoinPile] = ModContent.Request<Texture2D>("Sprites/GoldCoin");
-            TextureAssets.Tile[TileID.PlatinumCoinPile] = ModContent.Request<Texture2D>("Sprites/PlatinumCoin");
-            TextureAssets.Item[ItemID.PaladinBanner] = ModContent.Request<Texture2D>("Sprites/PaladinBanner");
-            TextureAssets.Item[ItemID.PossessedArmorBanner] = ModContent.Request<Texture2D>("Sprites/PossessedArmorBanner");
-            TextureAssets.Item[ItemID.BoneLeeBanner] = ModContent.Request<Texture2D>("Sprites/BoneLeeBanner");
-            TextureAssets.Item[ItemID.AngryTrapperBanner] = ModContent.Request<Texture2D>("Sprites/AngryTrapperBanner");
-            TextureAssets.Item[ItemID.Deathweed] = ModContent.Request<Texture2D>("Sprites/Deathweed");
-            TextureAssets.Item[ItemID.WaterleafSeeds] = ModContent.Request<Texture2D>("Sprites/WaterleafSeeds");
-            TextureAssets.Projectile[ProjectileID.MagicDagger] = ModContent.Request<Texture2D>("Sprites/MagicDagger");
-            TextureAssets.Tile[91] = ModContent.Request<Texture2D>("Sprites/VanillaBanners");
-            TextureAssets.Tile[21] = ModContent.Request<Texture2D>("Sprites/VanillaChests");
-
-            NPCs.Bosses.WallofSteel.Load();
-            Projectiles.PhantasmLaser.Load();
+            ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Asset<Texture2D>[]
+            {
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Items/Armor/SpectrumHelmet_Glow_Head"),
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Items/Armor/SpectrumBreastplate_Body_Glow"),
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Items/Armor/SpectrumGreaves_Legs_Glow")
+            };
+            TextureAssets.Item[ItemID.HallowedKey] = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/HallowedKey");
+            TextureAssets.Item[ItemID.MagicDagger] = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/MagicDagger");
+            TextureAssets.Tile[TileID.CopperCoinPile] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/CopperCoin");
+            TextureAssets.Tile[TileID.SilverCoinPile] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/SilverCoin");
+            TextureAssets.Tile[TileID.GoldCoinPile] = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/GoldCoin");
+            TextureAssets.Tile[TileID.PlatinumCoinPile] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/PlatinumCoin");
+            TextureAssets.Item[ItemID.PaladinBanner] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/PaladinBanner");
+            TextureAssets.Item[ItemID.PossessedArmorBanner] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/PossessedArmorBanner");
+            TextureAssets.Item[ItemID.BoneLeeBanner] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/BoneLeeBanner");
+            TextureAssets.Item[ItemID.AngryTrapperBanner] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/AngryTrapperBanner");
+            TextureAssets.Item[ItemID.Deathweed] = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/Deathweed");
+            TextureAssets.Item[ItemID.WaterleafSeeds] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/WaterleafSeeds");
+            TextureAssets.Projectile[ProjectileID.MagicDagger] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/MagicDagger");
+            TextureAssets.Tile[TileID.Banners] = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/VanillaBanners");
+            TextureAssets.Tile[TileID.Containers] =
+                ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/VanillaChests");
 
             Effects.EffectsManager.Load();
             Hooks.HooksManager.Load();
@@ -165,7 +178,7 @@ public class ExxoAvalonOrigins : Mod
             staminaBar = new StaminaBar();
             staminaInterface.SetState(staminaBar);
 
-            Main.chTitle = true;
+            //Main.chTitle = true;
         }
     }
 
@@ -577,14 +590,12 @@ public class ExxoAvalonOrigins : Mod
 
     public override void AddRecipes()
     {
-        RecipeChanger.ChangeRecipes();
         RecipeCreator.CreateRecipes(this);
-        VanillaItemRecipeCreator.CreateRecipes(this);
-        Mod imkTokensMod = ModLoader.GetMod("imkSushisMod");
-        if (imkTokensMod != null)
+        ModLoader.TryGetMod("Tokens", out Mod tokens);
+        if (tokens != null)
         {
             ExxoAvalonOriginsGlobalNPC.imkCompat = true;
-            SushiRecipes.CreateRecipes(Mod, imkTokensMod);
+            SushiRecipes.CreateRecipes(Mod, tokens);
         }
     }
 

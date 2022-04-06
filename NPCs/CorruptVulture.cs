@@ -235,11 +235,11 @@ public class CorruptVulture : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureHead").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureWing").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CorruptVultureTalon").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CorruptVultureHead").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CorruptVultureWing").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CorruptVultureWing").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CorruptVultureTalon").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CorruptVultureTalon").Type, 0.9f);
         }
     }
 }

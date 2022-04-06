@@ -95,11 +95,11 @@ public class CrystalBones : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesHead").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesArm").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesArm").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesLeg").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/CrystalBonesLeg").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CrystalBonesHead").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CrystalBonesArm").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CrystalBonesArm").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CrystalBonesLeg").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("CrystalBonesLeg").Type, 1f);
         }
     }
 }

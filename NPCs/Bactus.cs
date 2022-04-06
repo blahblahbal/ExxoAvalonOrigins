@@ -221,7 +221,7 @@ public class Bactus : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/Bactus").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Bactus").Type, 1f);
         }
     }
 }

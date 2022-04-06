@@ -22,7 +22,7 @@ class BlahsWarhammer : ModItem
         Item.hammer = 250;
         Item.useTurn = true;
         Item.scale = 1.15f;
-        Item.rare = ItemRarityID.Red;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.useTime = 9;
         Item.knockBack = 20f;

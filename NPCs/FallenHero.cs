@@ -100,11 +100,11 @@ public class FallenHero : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore1").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore2").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore2").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore3").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/FallenHeroGore3").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("FallenHeroGore1").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("FallenHeroGore2").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("FallenHeroGore2").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("FallenHeroGore3").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("FallenHeroGore3").Type, 0.9f);
         }
     }
     public override float SpawnChance(NPCSpawnInfo spawnInfo)

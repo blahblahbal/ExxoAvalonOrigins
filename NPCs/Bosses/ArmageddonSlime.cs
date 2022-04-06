@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
+using ExxoAvalonOrigins.Systems;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses;
 
@@ -532,10 +533,10 @@ public class ArmageddonSlime : ModNPC
     }
     public override void OnKill()
     {
-        if (!ExxoAvalonOriginsWorld.stoppedArmageddon)
+        if (!DownedBossSystem.stoppedArmageddon)
         {
             ModContent.GetInstance<ExxoAvalonOriginsWorld>().GenerateSkyFortress();
-            ExxoAvalonOriginsWorld.stoppedArmageddon = true;
+            DownedBossSystem.stoppedArmageddon = true;
         }
     }
     public override void ModifyNPCLoot(NPCLoot npcLoot)

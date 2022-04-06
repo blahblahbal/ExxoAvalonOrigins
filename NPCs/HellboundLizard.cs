@@ -556,12 +556,12 @@ public class HellboundLizard : ModNPC
         }
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore1").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore2").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore3").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/HellboundLizardGore4").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("HellboundLizardGore1").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("HellboundLizardGore2").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("HellboundLizardGore2").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("HellboundLizardGore3").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("HellboundLizardGore3").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("HellboundLizardGore4").Type, 1f);
         }
     }
 }

@@ -27,7 +27,7 @@ public class BlahStaff : ModItem
         Item.damage = 278;
         Item.mana = 19;
         Item.noMelee = true;
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.knockBack = 16f;
         Item.useTime = 15;
@@ -62,11 +62,11 @@ public class BlahStaff : ModItem
                     num312 = 20f;
                 }
                 float num313 = (float)Math.Sqrt(num311 * num311 + num312 * num312);
-                num313 = item.shootSpeed / num313;
+                num313 = Item.shootSpeed / num313;
                 num311 *= num313;
                 num312 *= num313;
                 Vector2 vector3 = new Vector2(num311, num312) / 2f;
-                int p = Projectile.NewProjectile(vector.X, vector.Y, vector3.X, vector3.Y, ModContent.ProjectileType<Projectiles.BlahMeteor>(), (int)(item.damage * player.magicDamage), item.knockBack, player.whoAmI, 0f, ai2);
+                int p = Projectile.NewProjectile(Projectile.GetNoneSource(), vector.X, vector.Y, vector3.X, vector3.Y, ModContent.ProjectileType<Projectiles.BlahMeteor>(), (int)(Item.damage * player.GetDamage(DamageClass.Magic)), Item.knockBack, player.whoAmI, 0f, ai2);
                 Main.projectile[p].owner = player.whoAmI;
             }
         }

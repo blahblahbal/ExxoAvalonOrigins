@@ -21,7 +21,7 @@ class AvalonHelmet : ModItem
     {
         Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/AvalonHelmet");
         Item.defense = 40;
-        Item.rare = ItemRarityID.Yellow;
+        Item.rare = ModContent.RarityType<Rarities.AvalonRarity>();
         Item.width = dims.Width;
         Item.value = Item.sellPrice(0, 41, 0, 0);
         Item.height = dims.Height;

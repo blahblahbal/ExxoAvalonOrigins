@@ -57,13 +57,13 @@ public class Virus : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusTail").Type, 0.8f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusLimb").Type, 0.8f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHead").Type, 0.8f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/VirusHair").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusTail").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusLimb").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusLimb").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusLimb").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusLimb").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusHead").Type, 0.8f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("VirusHair").Type, 0.8f);
         }
     }
 }

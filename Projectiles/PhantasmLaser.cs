@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -13,15 +14,15 @@ public class PhantasmLaser : ModProjectile
     private Color laserColor;
     private readonly Color[] colorArray = new Color[3];
     private int colorShift;
-    private static Texture2D texture2D18;
-    private static Texture2D texture2D19;
-    private static Texture2D texture2D20;
+    private static Asset<Texture2D> BeamMiddleTexture;
+    private static Asset<Texture2D> BeamStartTexture;
+    private static Asset<Texture2D> BeamEndTexture;
 
-    public static void Load()
+    public override void Load()
     {
-        texture2D18 = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/BeamVenoshock").Value;
-        texture2D19 = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/BeamStart").Value;
-        texture2D20 = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/BeamEnd").Value;
+        BeamMiddleTexture = ModContent.Request<Texture2D>("Sprites/BeamVenoshock");
+        BeamStartTexture = ModContent.Request<Texture2D>("Sprites/BeamStart");
+        BeamEndTexture = ModContent.Request<Texture2D>("Sprites/BeamEnd");
     }
 
     public override void SetStaticDefaults()
@@ -71,31 +72,31 @@ public class PhantasmLaser : ModProjectile
             laserColor = colorArray[2];
         }
 
-        Main.EntitySpriteDraw(texture2D19, p.Center - Main.screenPosition, null, laserColor, Projectile.rotation, texture2D19.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
-        num204 -= (texture2D19.Height / 2 + texture2D20.Height) * Projectile.scale;
+        Main.EntitySpriteDraw(BeamEndTexture.Value, p.Center - Main.screenPosition, null, laserColor, Projectile.rotation, BeamEndTexture.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
+        num204 -= (BeamEndTexture.Value.Height / 2 + BeamStartTexture.Value.Height) * Projectile.scale;
         Vector2 center2 = p.Center;
-        center2 += Projectile.velocity * Projectile.scale * texture2D19.Height / 2f;
+        center2 += Projectile.velocity * Projectile.scale * BeamStartTexture.Value.Height / 2f;
         if (num204 > 0f)
         {
             float num205 = 0f;
-            var rectangle7 = new Rectangle(0, 16 * (Projectile.timeLeft / 3 % 5), texture2D19.Width, 16);
+            var rectangle7 = new Rectangle(0, 16 * (Projectile.timeLeft / 3 % 5), BeamStartTexture.Value.Width, 16);
             while (num205 + 1f < num204)
             {
                 if (num204 - num205 < rectangle7.Height)
                 {
                     rectangle7.Height = (int)(num204 - num205);
                 }
-                Main.EntitySpriteDraw(texture2D18, center2 - Main.screenPosition, rectangle7, laserColor, Projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), Projectile.scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(BeamMiddleTexture.Value, center2 - Main.screenPosition, rectangle7, laserColor, Projectile.rotation, new Vector2(rectangle7.Width / 2, 0f), Projectile.scale, SpriteEffects.None, 0);
                 num205 += rectangle7.Height * Projectile.scale;
                 center2 += Projectile.velocity * rectangle7.Height * Projectile.scale;
                 rectangle7.Y += 16;
-                if (rectangle7.Y + rectangle7.Height > texture2D18.Height)
+                if (rectangle7.Y + rectangle7.Height > BeamMiddleTexture.Value.Height)
                 {
                     rectangle7.Y = 0;
                 }
             }
         }
-        Main.EntitySpriteDraw(texture2D20, center2 - Main.screenPosition, null, laserColor, Projectile.rotation, texture2D20.Frame().Top(), Projectile.scale, SpriteEffects.None, 0);
+        Main.EntitySpriteDraw(BeamStartTexture.Value, center2 - Main.screenPosition, null, laserColor, Projectile.rotation, BeamEndTexture.Frame().Top(), Projectile.scale, SpriteEffects.None, 0);
     }
 
     public bool Colliding2(Rectangle myRect, Rectangle targetRect)

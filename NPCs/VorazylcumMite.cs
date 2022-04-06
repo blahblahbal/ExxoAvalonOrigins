@@ -46,8 +46,8 @@ public class VorazylcumMite : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore1").Type, NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/VorazylcumMiteGore2").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("VorazylcumMiteGore1").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("VorazylcumMiteGore2").Type, NPC.scale);
         }
     }
     public override void AI()

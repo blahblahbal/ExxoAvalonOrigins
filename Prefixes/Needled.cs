@@ -1,4 +1,4 @@
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -14,6 +14,10 @@ public class Needled : ModPrefix
     public override void ModifyValue(ref float valueMult)
     {
         valueMult *= 1.1f;
+    }
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
     }
 
     // public override bool Autoload(ref string name)

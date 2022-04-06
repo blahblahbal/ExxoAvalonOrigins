@@ -5,6 +5,7 @@ using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,7 +29,7 @@ class TacticalBlahncher : ModItem
         Item.shootSpeed = 11f;
         Item.crit += 7;
         Item.DamageType = DamageClass.Ranged;
-        Item.rare = 11;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.noMelee = true;
         Item.width = dims.Width;
         Item.knockBack = 5f;
@@ -49,19 +50,18 @@ class TacticalBlahncher : ModItem
     {
         return new Vector2(-10f, 0f);
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int i = 0; i < 3; i++)
         {
-            float num78 = speedX + (float)Main.rand.Next(-50, 51) * 0.05f;
-            float num79 = speedY + (float)Main.rand.Next(-50, 51) * 0.05f;
+            float num78 = velocity.X + (float)Main.rand.Next(-50, 51) * 0.05f;
+            float num79 = velocity.Y + (float)Main.rand.Next(-50, 51) * 0.05f;
             if (Main.rand.Next(3) == 0)
             {
                 num78 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
                 num79 *= 1f + (float)Main.rand.Next(-40, 41) * 0.02f;
             }
-            Projectile.NewProjectile(position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(source, position.X, position.Y, num78, num79, ModContent.ProjectileType<Projectiles.Blahcket>(), damage, knockback, player.whoAmI, 0f, 0f);
         }
         return false;
     }
@@ -86,9 +86,9 @@ class TacticalBlahncher : ModItem
         num71 *= num72;
         player.itemRotation = (float)Math.Atan2((double)(num71 * (float)player.direction), (double)(num70 * (float)player.direction));
     }
-    public override bool ConsumeAmmo(Player player)
+    public override bool CanConsumeAmmo(Player player)
     {
         if (Main.rand.Next(4) < 3) return false;
-        return base.ConsumeAmmo(player);
+        return base.CanConsumeAmmo(player);
     }
 }

@@ -21,7 +21,7 @@ class Opal : ModItem
         Item.createTile = ModContent.TileType<Tiles.PlacedGems>();
         Item.placeStyle = 0;
         Item.consumable = true;
-        Item.rare = 11;
+        Item.rare = ModContent.RarityType<Rarities.RainbowRarity>();
         Item.width = dims.Width;
         Item.useTime = 10;
         Item.value = Item.sellPrice(0, 1, 0, 0);

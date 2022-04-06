@@ -16,7 +16,10 @@ public class Bogus : ModPrefix
     {
         valueMult *= 1.25f;
     }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     // public override bool Autoload(ref string name)
     // {
     //     if (base.Autoload(ref name))

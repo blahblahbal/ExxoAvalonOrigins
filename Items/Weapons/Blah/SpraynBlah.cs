@@ -5,6 +5,7 @@ using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,7 +29,7 @@ class SpraynBlah : ModItem
         Item.shootSpeed = 13f;
         Item.crit += 4;
         Item.DamageType = DamageClass.Ranged;
-        Item.rare = 11;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.noMelee = true;
         Item.width = dims.Width;
         Item.knockBack = 3f;
@@ -49,12 +50,11 @@ class SpraynBlah : ModItem
     {
         return new Vector2(-10f, 0f);
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        float num78 = speedX + (float)Main.rand.Next(-100, 101) * 0.05f;
-        float num79 = speedY + (float)Main.rand.Next(-100, 101) * 0.05f;
-        Projectile.NewProjectile(position.X, position.Y, num78, num79, type, damage, knockBack, player.whoAmI, 0f, 0f);
+        float num78 = velocity.X + (float)Main.rand.Next(-200, 201) * 0.05f;
+        float num79 = velocity.Y + (float)Main.rand.Next(-200, 201) * 0.05f;
+        Projectile.NewProjectile(source, position.X, position.Y, num78, num79, type, damage, knockback, player.whoAmI, 0f, 0f);
         return false;
     }
     public override void HoldItem(Player player)
@@ -78,9 +78,9 @@ class SpraynBlah : ModItem
         num71 *= num72;
         player.itemRotation = (float)Math.Atan2(num71 * player.direction, num70 * player.direction);
     }
-    public override bool ConsumeAmmo(Player player)
+    public override bool CanConsumeAmmo(Player player)
     {
         if (Main.rand.Next(10) < 3) return false;
-        return base.ConsumeAmmo(player);
+        return base.CanConsumeAmmo(player);
     }
 }

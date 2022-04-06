@@ -22,7 +22,7 @@ class BlahsPicksawTierII : ModItem
         Item.scale = 1.15f;
         Item.axe = 60;
         Item.pick = 700;
-        Item.rare = 11;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.useTime = 6;
         Item.knockBack = 5.5f;

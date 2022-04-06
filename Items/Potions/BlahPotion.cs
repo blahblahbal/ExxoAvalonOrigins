@@ -18,8 +18,7 @@ class BlahPotion : ModItem
         Item.buffType = ModContent.BuffType<Buffs.Blah>();
         Item.UseSound = SoundID.Item3;
         Item.consumable = false;
-        Item.rare = ItemRarityID.Purple;
-        //item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.useTime = 15;
         Item.useStyle = ItemUseStyleID.EatFood;

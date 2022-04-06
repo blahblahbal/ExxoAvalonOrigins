@@ -18,7 +18,7 @@ class CrossingtheTropics : ModItem
         Rectangle dims = this.GetDims();
         Item.autoReuse = true;
         Item.consumable = true;
-        Item.rare = ItemRarityID.Cyan;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.createTile = ModContent.TileType<Tiles.Paintings>();
         Item.placeStyle = 12;
         Item.width = dims.Width;

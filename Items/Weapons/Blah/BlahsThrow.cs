@@ -9,8 +9,6 @@ public class BlahsThrow : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Blah's Throw");
-        //Tooltip.SetDefault("Shoots out an example yoyo");
-
         ItemID.Sets.Yoyo[Item.type] = true;
         ItemID.Sets.GamepadExtraRange[Item.type] = 15;
         ItemID.Sets.GamepadSmartQuickReach[Item.type] = true;
@@ -26,7 +24,7 @@ public class BlahsThrow : ModItem
         Item.shootSpeed = 16f;
         Item.knockBack = 8.5f;
         Item.damage = 221;
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.DamageType = DamageClass.Melee;
         Item.channel = true;
         Item.noMelee = true;

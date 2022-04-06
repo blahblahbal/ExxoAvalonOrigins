@@ -68,8 +68,8 @@ public class BloodshotEye : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/BloodshotEye1").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/BloodshotEye2").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("BloodshotEye1").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("BloodshotEye2").Type, 1f);
         }
     }
     public override float SpawnChance(NPCSpawnInfo spawnInfo)

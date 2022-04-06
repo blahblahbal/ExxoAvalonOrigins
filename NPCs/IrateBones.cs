@@ -89,7 +89,7 @@ public class IrateBones : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/IrateBonesHelmet").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("IrateBonesHelmet").Type, 1f);
             Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
             Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
             Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);

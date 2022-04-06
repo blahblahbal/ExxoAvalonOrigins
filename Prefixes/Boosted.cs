@@ -18,7 +18,10 @@ public class Boosted : ArmorPrefix
     {
         valueMult *= 1.15f;
     }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     // public override bool Autoload(ref string name)
     // {
     //     if (base.Autoload(ref name))

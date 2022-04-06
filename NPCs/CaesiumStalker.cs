@@ -249,13 +249,13 @@ public class CaesiumStalker : ModNPC
         {
             SoundEngine.PlaySound(SoundID.Item, (int)NPC.Center.X, (int)NPC.Center.Y, 27, 1.2f, -0.5f);
             SoundEngine.PlaySound(SoundID.NPCHit, (int)NPC.Center.X, (int)NPC.Center.Y, 5, 1f, -0.5f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore1").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore2").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore3").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore4").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore5").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore5").Type, 1.2f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("Gores/StalkerGore6").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore1").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore2").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore3").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore4").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore5").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore5").Type, 1.2f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0f, Mod.Find<ModGore>("StalkerGore6").Type, 1.2f);
             /*for (int k = 0; k < 7; k++)
             {
                 Vector2 value14 = new Vector2(Main.rand.Next(-10, 10), Main.rand.Next(-10, 10));

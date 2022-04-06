@@ -13,19 +13,20 @@ using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent;
 using Terraria.DataStructures;
+using ReLogic.Content;
 
 namespace ExxoAvalonOrigins.NPCs.Bosses;
 
 [AutoloadBossHead]
 public class WallofSteel : ModNPC
 {
-    private static Texture2D wosTexture;
-    private static Texture2D mechaHungryChainTexture;
+    private static Asset<Texture2D> wosTexture;
+    private static Asset<Texture2D> mechaHungryChainTexture;
 
-    public static void Load()
+    public override void Load()
     {
-        wosTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/WallofSteel").Value;
-        mechaHungryChainTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/MechaHungryChain").Value;
+        wosTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/WallofSteel");
+        mechaHungryChainTexture = ExxoAvalonOrigins.Mod.Assets.Request<Texture2D>("Sprites/MechaHungryChain");
     }
 
     public override void SetStaticDefaults()
@@ -166,7 +167,7 @@ public class WallofSteel : ModNPC
                         num9 = num6 - vector2.X;
                         num10 = num7 - vector2.Y;
                         Color color2 = Lighting.GetColor((int)vector2.X / 16, (int)(vector2.Y / 16f));
-                        Main.spriteBatch.Draw(mechaHungryChainTexture, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mechaHungryChainTexture.Width, height)), color2, rotation2, new Vector2(mechaHungryChainTexture.Width * 0.5f, mechaHungryChainTexture.Height * 0.5f), 1f, effects, 0f);
+                        Main.EntitySpriteDraw(mechaHungryChainTexture.Value, new Vector2(vector2.X - Main.screenPosition.X, vector2.Y - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, 0, mechaHungryChainTexture.Value.Width, height)), color2, rotation2, new Vector2(mechaHungryChainTexture.Value.Width * 0.5f, mechaHungryChainTexture.Value.Height * 0.5f), 1f, effects, 0);
                     }
                 }
             }
@@ -225,9 +226,9 @@ public class WallofSteel : ModNPC
                 int num20 = 0;
                 while (flag5)
                 {
-                    int x = (int)(wosPosX + wosTexture.Width / 2) / 16;
+                    int x = (int)(wosPosX + wosTexture.Value.Width / 2) / 16;
                     int y = (int)(num16 + num20) / 16;
-                    Main.spriteBatch.Draw(wosTexture, new Vector2(wosPosX - Main.screenPosition.X, num16 + num20 - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, num19 + num20, wosTexture.Width, 16)), Lighting.GetColor(x, y), 0f, default(Vector2), 1f, effects2, 0f);
+                    Main.spriteBatch.Draw(wosTexture.Value, new Vector2(wosPosX - Main.screenPosition.X, num16 + num20 - Main.screenPosition.Y), new Rectangle?(new Rectangle(0, num19 + num20, wosTexture.Value.Width, 16)), Lighting.GetColor(x, y), 0f, default(Vector2), 1f, effects2, 0f);
                     num20 += 16;
                     if (num20 >= num18)
                     {
@@ -480,7 +481,7 @@ public class WallofSteel : ModNPC
                 if (NPC.ai[3] == 1)
                 {
                     NPC.defense = 0;
-                    SoundEngine.PlaySound(SoundID.Item, -1, -1, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/LaserCharge"));
+                    SoundEngine.PlaySound(SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/LaserCharge"), -1, -1);
                 }
                 if (NPC.ai[3] >= 60 && NPC.ai[3] <= 90)
                 {
@@ -544,22 +545,22 @@ public class WallofSteel : ModNPC
         }
     public override void HitEffect(int hitDirection, double damage)
     {
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore1").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore2").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore3").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore4").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore5").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore6").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore7").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore8").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore9").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore10").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore11").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore12").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore13").Type, NPC.scale);
-        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/WallofSteelGore14").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore1").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore2").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore3").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore3").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore4").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore5").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore6").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore6").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore7").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore8").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore9").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore10").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore11").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore12").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore13").Type, NPC.scale);
+        Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("WallofSteelGore14").Type, NPC.scale);
     }
     public override void OnKill()
     {

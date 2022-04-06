@@ -1,4 +1,4 @@
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -24,7 +24,10 @@ public class Marvelous : ModPrefix
     //     }
     //     return false;
     // }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {
         damageMult = 1.14f;

@@ -18,7 +18,7 @@ class Anvenalforge : ModItem
         Item.autoReuse = true;
         Item.consumable = true;
         Item.createTile = ModContent.TileType<Tiles.Anvenalforge>();
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.AvalonRarity>();
         Item.width = dims.Width;
         Item.useTurn = true;
         Item.useTime = 10;

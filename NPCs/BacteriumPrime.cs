@@ -364,9 +364,9 @@ public class BacteriumPrime : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/BacteriumPrime1"), 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/BacteriumPrime2"), 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/BacteriumPrime3"), 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("BacteriumPrime1"), 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("BacteriumPrime2"), 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("BacteriumPrime3"), 1f);
         }
     }
 }

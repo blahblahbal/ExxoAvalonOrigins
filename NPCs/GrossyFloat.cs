@@ -84,8 +84,8 @@ public class GrossyFloat : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GrossyFloatHead").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GrossyFloatTail").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GrossyFloatHead").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GrossyFloatTail").Type, 0.9f);
         }
     }
 }

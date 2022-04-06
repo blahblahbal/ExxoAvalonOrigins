@@ -116,9 +116,9 @@ public class CaesiumBrute : ModNPC
         }
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/CaesiumBruteHead").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/CaesiumBruteWing").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/CaesiumBruteWing").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("CaesiumBruteHead").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("CaesiumBruteWing").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("CaesiumBruteWing").Type, 1f);
         }
     }
 }

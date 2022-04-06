@@ -36,8 +36,8 @@ public class UnvolanditeMiteDigger : UnvolanditeMiteDiggerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore1").Type, NPC.scale);
-            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("Gores/UnvolanditeMiteGore2").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("UnvolanditeMiteGore1").Type, NPC.scale);
+            Gore.NewGore(NPC.Center, NPC.velocity, Mod.Find<ModGore>("UnvolanditeMiteGore2").Type, NPC.scale);
         }
     }
     public override void CustomBehavior()

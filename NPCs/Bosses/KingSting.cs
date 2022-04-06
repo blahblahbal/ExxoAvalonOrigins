@@ -411,10 +411,10 @@ public class KingSting : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingHead").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingWing").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingBody").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("Gores/KingStingStinger").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("KingStingHead").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("KingStingWing").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("KingStingBody").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity * 0.8f, Mod.Find<ModGore>("KingStingStinger").Type, 1f);
         }
     }
     public override void OnKill()

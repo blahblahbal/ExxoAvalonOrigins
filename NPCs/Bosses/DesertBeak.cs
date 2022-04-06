@@ -261,9 +261,9 @@ public class DesertBeak : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakHead").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakWing").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/DesertBeakWing").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DesertBeakHead").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DesertBeakWing").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("DesertBeakWing").Type, 0.9f);
         }
     }
 }

@@ -19,8 +19,7 @@ class Quack : ModItem
     {
         Rectangle dims = this.GetDims();
         Item.noUseGraphic = true;
-        Item.rare = ItemRarityID.Red;
-        Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+        Item.rare = ModContent.RarityType<Rarities.AvalonRarity>();
         Item.width = dims.Width;
         Item.useTurn = true;
         Item.useTime = 30;

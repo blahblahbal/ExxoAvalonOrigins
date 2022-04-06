@@ -1,4 +1,4 @@
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -15,7 +15,10 @@ public class Stupid : ModPrefix
     {
         valueMult *= 0.9f;
     }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     // public override bool Autoload(ref string name)
     // {
     //     if (base.Autoload(ref name))

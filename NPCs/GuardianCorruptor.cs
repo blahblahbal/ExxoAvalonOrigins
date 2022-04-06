@@ -247,10 +247,10 @@ public class GuardianCorruptor : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor1").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor2").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor3").Type, 0.9f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/GuardianCorruptor4").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GuardianCorruptor1").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GuardianCorruptor2").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GuardianCorruptor3").Type, 0.9f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("GuardianCorruptor4").Type, 0.9f);
         }
     }
 

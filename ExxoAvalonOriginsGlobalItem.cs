@@ -18,6 +18,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using ExxoAvalonOrigins.Systems;
 
 namespace ExxoAvalonOrigins;
 
@@ -1008,7 +1009,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
         #endregion
         if (player.Avalon().ancientMinionGuide)
         {
-            if (item.DamageType == DamageClass.Summon && ExxoAvalonOrigins.Mod.minionGuidingHotkey.Current)
+            if (item.DamageType == DamageClass.Summon && KeybindSystem.MinionGuidingHotkey.Current)
             {
                 foreach (Projectile proj in Main.projectile)
                 {

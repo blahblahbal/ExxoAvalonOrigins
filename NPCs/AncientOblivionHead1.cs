@@ -333,8 +333,8 @@ public class AncientOblivionHead1 : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/OblivionTop"), 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/OblivionMouth"), 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("OblivionTop"), 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("OblivionMouth"), 1f);
         }
     }
 }

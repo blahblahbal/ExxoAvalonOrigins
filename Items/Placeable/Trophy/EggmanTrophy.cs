@@ -21,7 +21,7 @@ class EggmanTrophy : ModItem
         Item.consumable = true;
         Item.createTile = ModContent.TileType<Tiles.BossTrophy>();
         Item.placeStyle = 5;
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.RainbowRarity>();
         Item.width = dims.Width;
         Item.useTime = 10;
         Item.useStyle = ItemUseStyleID.Swing;

@@ -17,7 +17,7 @@ public class MechanicalDiggerHead : MechanicalDiggerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerHead").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MechanicalDiggerHead").Type, 1f);
         }
     }
     public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -72,7 +72,7 @@ public class MechanicalDiggerBody : MechanicalDiggerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerBody").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MechanicalDiggerBody").Type, 1f);
         }
     }
 
@@ -117,7 +117,7 @@ public class MechanicalDiggerTail : MechanicalDiggerWorm
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MechanicalDiggerTail").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MechanicalDiggerTail").Type, 1f);
         }
     }
 

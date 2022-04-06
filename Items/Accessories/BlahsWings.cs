@@ -18,7 +18,7 @@ class BlahsWings : ModItem
     {
         Rectangle dims = this.GetDims();
         Item.defense = 4;
-        Item.rare = 11;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.value = Item.sellPrice(2, 0, 0, 0);
         Item.accessory = true;

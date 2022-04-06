@@ -37,9 +37,9 @@ public class ContagionPot : ModTile
         _ = i - Main.tile[i, j].TileFrameX / 18;
         SoundEngine.PlaySound(4, i * 16, j * 16, 1);
         Dust.NewDust(new Vector2(i * 16, j * 16), 16, 16, 22, 0f, 0f, 0, default, 1f);
-        //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("Gores/DepthsPotGore1"));
-        //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("Gores/DepthsPotGore2"));
-        //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("Gores/DepthsPotGore3"));
+        //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("DepthsPotGore1"));
+        //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("DepthsPotGore2"));
+        //Gore.NewGore(new Vector2((float)(i * 16), (float)(j * 16)), default(Vector2), base.Mod.Find<ModGore>("DepthsPotGore3"));
         if (!WorldGen.gen && Main.netMode != 1)
         {
             if (WorldGen.genRand.Next(15) == 0)

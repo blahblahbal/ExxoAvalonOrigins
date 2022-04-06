@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +23,7 @@ class BlahsPicksaw : ModItem
         Item.scale = 1.15f;
         Item.axe = 50;
         Item.pick = 425;
-        Item.rare = ItemRarityID.Red;
+        Item.rare = ModContent.RarityType<Rarities.RainbowRarity>();
         Item.width = dims.Width;
         Item.useTime = 7;
         Item.knockBack = 7f;

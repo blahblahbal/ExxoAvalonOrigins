@@ -18,8 +18,7 @@ class BlahsCuisses2 : ModItem
     {
         Rectangle dims = this.GetDims();
         Item.defense = 100;
-        Item.rare = ItemRarityID.Purple;
-        Item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().avalonRarity = AvalonRarity.Rainbow;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.value = Item.sellPrice(2, 0, 0, 0);
         Item.height = dims.Height;

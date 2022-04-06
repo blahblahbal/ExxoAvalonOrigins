@@ -123,7 +123,7 @@ public class MagmaSkeleton : ModNPC
             Gore.NewGore(NPC.position, NPC.velocity, 43, 1f);
             Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
             Gore.NewGore(NPC.position, NPC.velocity, 44, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/MagmaHelmet").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("MagmaHelmet").Type, 1f);
         }
     }
 }

@@ -13,7 +13,10 @@ public class Fluidic : ArmorPrefix
     {
         return IsArmor(item);
     }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     public override void ModifyValue(ref float valueMult)
     {
         valueMult *= 1.25f;

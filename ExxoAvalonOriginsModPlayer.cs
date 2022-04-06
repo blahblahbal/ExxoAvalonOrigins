@@ -24,6 +24,8 @@ using Terraria.ModLoader.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 using ExxoAvalonOrigins.PlayerDrawLayers;
+using ReLogic.Content;
+using ExxoAvalonOrigins.Systems;
 
 namespace ExxoAvalonOrigins;
 
@@ -183,10 +185,10 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
     };
     public static Dictionary<int, int> torches;
 
-    public static ReLogic.Content.Asset<Texture2D>[] lavaMermanTextures;
-    public static ReLogic.Content.Asset<Texture2D>[] originalMermanTextures;
+    public static Asset<Texture2D>[] lavaMermanTextures;
+    public static Asset<Texture2D>[] originalMermanTextures;
 
-    public static Texture2D[] spectrumArmorTextures;
+    public static Asset<Texture2D>[] spectrumArmorTextures;
 
     public bool inertiaBoots = false;
     public bool blahWings = false;
@@ -2224,7 +2226,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/Bubble").Type, 1f);
+                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Bubble").Type, 1f);
                     SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, SoundLoader.GetSoundSlot(Mod, "Sounds/Item/Bubbles"));
                 }
             }
@@ -2232,14 +2234,14 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/LargeBubble").Type, 1f);
+                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("LargeBubble").Type, 1f);
                 }
             }
             if (bubbleCD == 40)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("Gores/SmallBubble").Type, 1f);
+                    int g1 = Gore.NewGore(Player.Center + new Vector2(Main.rand.Next(-32, 33), Main.rand.Next(-32, 33)), Player.velocity, Mod.Find<ModGore>("SmallBubble").Type, 1f);
                 }
                 bubbleCD = 0;
             }
@@ -2791,11 +2793,11 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
     }
     public override void ProcessTriggers(TriggersSet triggersSet)
     {
-        if (ExxoAvalonOrigins.Mod.QuickStaminaHotkey.JustPressed)
+        if (KeybindSystem.QuickStaminaHotkey.JustPressed)
         {
             QuickStamina();
         }
-        if (ExxoAvalonOrigins.Mod.FlightTimeRestoreHotkey.JustPressed && Player.wingsLogic > 0 && Player.wingTime == 0 && flightRestoreUnlocked && stamFlightRestoreCD >= 60 * 60)
+        if (KeybindSystem.FlightTimeRestoreHotkey.JustPressed && Player.wingsLogic > 0 && Player.wingTime == 0 && flightRestoreUnlocked && stamFlightRestoreCD >= 60 * 60)
         {
             int amt = 150;
             if (staminaDrain)
@@ -2819,7 +2821,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 }
             }
         }
-        if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && tpStam && tpCD >= 300 && teleportUnlocked)
+        if (KeybindSystem.ShadowHotkey.JustPressed && tpStam && tpCD >= 300 && teleportUnlocked)
         {
             int amt = 90;
             if (staminaDrain)
@@ -2870,7 +2872,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 }
             }
         }
-        else if (ExxoAvalonOrigins.Mod.ShadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
+        else if (KeybindSystem.ShadowHotkey.JustPressed && (teleportV || teleportVWasTriggered) && tpCD >= 300)
         {
             teleportVWasTriggered = false;
             tpCD = 0;
@@ -2889,7 +2891,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
                 }
             }
         }
-        if (ExxoAvalonOrigins.Mod.AstralHotkey.JustPressed && astralProject)
+        if (KeybindSystem.AstralHotkey.JustPressed && astralProject)
         {
             if (astralStart)
             {
@@ -2909,49 +2911,49 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
 
         #region other hotkeys
-        if (ExxoAvalonOrigins.Mod.RocketJumpHotkey.JustPressed && rocketJumpUnlocked)
+        if (KeybindSystem.RocketJumpHotkey.JustPressed && rocketJumpUnlocked)
         {
             activateRocketJump = !activateRocketJump;
             Main.NewText(!activateRocketJump ? "Rocket Jump Off" : "Rocket Jump On");
         }
 
-        if (ExxoAvalonOrigins.Mod.SprintHotkey.JustPressed && sprintUnlocked)
+        if (KeybindSystem.SprintHotkey.JustPressed && sprintUnlocked)
         {
             activateSprint = !activateSprint;
             Main.NewText(!activateSprint ? "Sprinting Off" : "Sprinting On");
         }
 
-        if (ExxoAvalonOrigins.Mod.DashHotkey.JustPressed)
+        if (KeybindSystem.DashHotkey.JustPressed)
         {
             stamDashKey = !stamDashKey;
             Main.NewText(!stamDashKey ? "Dashing Off" : "Dashing On");
         }
 
-        if (ExxoAvalonOrigins.Mod.QuintupleHotkey.JustPressed)
+        if (KeybindSystem.QuintupleHotkey.JustPressed)
         {
             quintJump = !quintJump;
             Main.NewText(!quintJump ? "Quintuple Jump Off" : "Quintuple Jump On");
         }
 
-        if (ExxoAvalonOrigins.Mod.SwimHotkey.JustPressed && swimmingUnlocked)
+        if (KeybindSystem.SwimHotkey.JustPressed && swimmingUnlocked)
         {
             activateSwim = !activateSwim;
             Main.NewText(!activateSwim ? "Swimming Off" : "Swimming On");
         }
 
-        if (ExxoAvalonOrigins.Mod.WallSlideHotkey.JustPressed)
+        if (KeybindSystem.WallSlideHotkey.JustPressed)
         {
             activateSlide = !activateSlide;
             Main.NewText(!activateSlide ? "Wall Sliding Off" : "Wall Sliding On");
         }
 
-        if (ExxoAvalonOrigins.Mod.BubbleBoostHotkey.JustPressed)
+        if (KeybindSystem.BubbleBoostHotkey.JustPressed)
         {
             activateBubble = !activateBubble;
             Main.NewText(!activateBubble ? "Bubble Boost Off" : "Bubble Boost On");
         }
         #endregion
-        if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<Items.Tools.AccelerationDrill>() && ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
+        if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<Items.Tools.AccelerationDrill>() && KeybindSystem.ModeChangeHotkey.JustPressed)
         {
             speed = !speed;
             if (!speed)
@@ -2965,7 +2967,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         }
 
         if (Main.netMode != NetmodeID.SinglePlayer && Player.inventory[Player.selectedItem].type == ModContent.ItemType<EideticMirror>() &&
-            ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
+            KeybindSystem.ModeChangeHotkey.JustPressed)
         {
             int newPlayer = teleportToPlayer;
             int numPlayersCounted = 0;
@@ -2995,7 +2997,7 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
         if (Player.inventory[Player.selectedItem].type == ModContent.ItemType<ShadowMirror>())
         {
             Player.noFallDmg = true; //TODO: Replace with better anti-fall-damage mechanism.
-            if (ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
+            if (KeybindSystem.ModeChangeHotkey.JustPressed)
             {
                 shadowWP++;
                 shadowWP %= 7;
@@ -3061,14 +3063,14 @@ public class ExxoAvalonOriginsModPlayer : ModPlayer
             Main.dust[num8].velocity *= 0.5f;
 
             int g = Main.rand.Next(2);
-            if (g == 0) g = Mod.Find<ModGore>("Gores/QuackGore1").Type;
-            if (g == 1) g = Mod.Find<ModGore>("Gores/QuackGore2").Type;
+            if (g == 0) g = Mod.Find<ModGore>("QuackGore1").Type;
+            if (g == 1) g = Mod.Find<ModGore>("QuackGore2").Type;
             int g2 = Main.rand.Next(2);
-            if (g2 == 0) g2 = Mod.Find<ModGore>("Gores/QuackGore1").Type;
-            if (g2 == 1) g2 = Mod.Find<ModGore>("Gores/QuackGore2").Type;
+            if (g2 == 0) g2 = Mod.Find<ModGore>("QuackGore1").Type;
+            if (g2 == 1) g2 = Mod.Find<ModGore>("QuackGore2").Type;
             int g3 = Main.rand.Next(2);
-            if (g3 == 0) g3 = Mod.Find<ModGore>("Gores/QuackGore1").Type;
-            if (g3 == 1) g3 = Mod.Find<ModGore>("Gores/QuackGore2").Type;
+            if (g3 == 0) g3 = Mod.Find<ModGore>("QuackGore1").Type;
+            if (g3 == 1) g3 = Mod.Find<ModGore>("QuackGore2").Type;
             int num3 = Gore.NewGore(new Vector2(Player.position.X + Player.width / 2 - 16f, Player.position.Y + h - 16f), new Vector2(-Player.velocity.X, -Player.velocity.Y), g, 1f);
             Main.gore[num3].velocity.X = Main.gore[num3].velocity.X * 0.1f - Player.velocity.X * 0.1f;
             Main.gore[num3].velocity.Y = Main.gore[num3].velocity.Y * 0.1f - Player.velocity.Y * 0.05f;

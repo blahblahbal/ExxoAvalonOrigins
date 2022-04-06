@@ -1,4 +1,4 @@
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -15,7 +15,10 @@ public class Gilded : ModPrefix
     {
         valueMult *= 1.05f;
     }
-
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
     // public override bool Autoload(ref string name)
     // {
     //     if (base.Autoload(ref name))

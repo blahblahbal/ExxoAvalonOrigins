@@ -23,7 +23,7 @@ class BlahBullet : ModItem
         Item.ammo = AmmoID.Bullet;
         Item.DamageType = DamageClass.Ranged;
         Item.consumable = true;
-        Item.rare = ItemRarityID.Purple;
+        Item.rare = ModContent.RarityType<Rarities.BlahRarity>();
         Item.width = dims.Width;
         Item.knockBack = 4f;
         Item.shoot = ModContent.ProjectileType<Projectiles.BlahBullet>();

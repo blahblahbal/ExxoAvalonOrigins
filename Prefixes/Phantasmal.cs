@@ -1,4 +1,4 @@
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
@@ -11,14 +11,10 @@ public class Phantasmal : ModPrefix
 
     public override PrefixCategory Category { get { return PrefixCategory.Magic; } }
 
-    // public override bool Autoload(ref string name)
-    // {
-    //     if (base.Autoload(ref name))
-    //     {
-    //         Mod.AddPrefix("Phantasmal", new Phantasmal());
-    //     }
-    //     return false;
-    // }
+    public override bool CanRoll(Terraria.Item item)
+    {
+        return true;
+    }
 
     public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
     {

@@ -83,9 +83,9 @@ public class UnstableAnomaly : ModNPC
     {
         if (NPC.life <= 0)
         {
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyTable").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyChair").Type, 1f);
-            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("Gores/UnstableAnomalyChair").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("UnstableAnomalyTable").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("UnstableAnomalyChair").Type, 1f);
+            Gore.NewGore(NPC.position, NPC.velocity, Mod.Find<ModGore>("UnstableAnomalyChair").Type, 1f);
             for (int i = 0; i < 30; i++)
             {
                 int num890 = Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.SoulofLight>(), 0f, 0f, 0, default(Color), 1f);
