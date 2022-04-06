@@ -15,7 +15,7 @@ class AdvAmmoReservationPotion : ModItem
 
     public override void SetDefaults()
     {
-        Rectangle dims = Item.modItem.GetDims();
+        Rectangle dims = this.GetDims();
         Item.width = dims.Width;
         Item.height = dims.Height;
         Item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvAmmoReservation>();

@@ -55,7 +55,7 @@ public class OblivionBossBag : ModItem
         }
         if (Main.rand.Next(20) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Accessories.TomeofLuck>());
+            player.QuickSpawnItem(ModContent.ItemType<Accessories.LuckyPapyrus>());
         }
     }
 

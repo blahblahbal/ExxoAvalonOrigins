@@ -29,7 +29,7 @@ class BagofBlood : ModItem
     {
         if (player.controlRight)
         {
-            var num18 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestoryer, 0f, 0f, 100,
+            var num18 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestroyer, 0f, 0f, 100,
                 Color.White, 0.9f);
             Main.dust[num18].noGravity = true;
             var num19 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Blood, 0f, 0f, 100, Color.White,
@@ -39,7 +39,7 @@ class BagofBlood : ModItem
 
         if (player.controlLeft)
         {
-            var num20 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestoryer, 0f, 0f, 100,
+            var num20 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestroyer, 0f, 0f, 100,
                 Color.White, 0.9f);
             Main.dust[num20].noGravity = true;
             var num21 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Blood, 0f, 0f, 100, Color.White,
@@ -49,7 +49,7 @@ class BagofBlood : ModItem
 
         if (player.controlJump)
         {
-            var num22 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestoryer, 0f, 0f, 100,
+            var num22 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestroyer, 0f, 0f, 100,
                 Color.White, 0.9f);
             Main.dust[num22].noGravity = true;
             var num23 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Blood, 0f, 0f, 100,
@@ -59,7 +59,7 @@ class BagofBlood : ModItem
 
         if (player.controlRight)
         {
-            var num61 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestoryer, 0f, 0f, 100,
+            var num61 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestroyer, 0f, 0f, 100,
                 Color.White, 0.9f);
             Main.dust[num61].noGravity = true;
             var num62 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Blood, 0f, 0f, 100, Color.White,
@@ -69,7 +69,7 @@ class BagofBlood : ModItem
 
         if (player.controlLeft)
         {
-            var num63 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestoryer, 0f, 0f, 100,
+            var num63 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestroyer, 0f, 0f, 100,
                 Color.White, 0.9f);
             Main.dust[num63].noGravity = true;
             var num64 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Blood, 0f, 0f, 100, Color.White,
@@ -79,7 +79,7 @@ class BagofBlood : ModItem
 
         if (player.controlJump)
         {
-            var num65 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestoryer, 0f, 0f, 100,
+            var num65 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestroyer, 0f, 0f, 100,
                 Color.White, 0.9f);
             Main.dust[num65].noGravity = true;
             var num66 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Blood, 0f, 0f, 100,

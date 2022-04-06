@@ -17,7 +17,7 @@ class LargeTourmaline : ModItem
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.LargeAmber);
-        Rectangle dims = Item.modItem.GetDims();
+        Rectangle dims = this.GetDims();
         Item.rare = ItemRarityID.Blue;
         Item.width = 20;
         Item.height = 20;

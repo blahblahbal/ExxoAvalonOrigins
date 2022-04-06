@@ -28,6 +28,7 @@ public class AlchemicalSkull : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.waterWalk = (player.waterWalk2 = (player.enemySpawns = /*(player.thorns = */(player.noKnockback = (player.fireWalk = true))/*)*/));
+        player.waterWalk = player.waterWalk2 = player.enemySpawns = player.noKnockback = player.fireWalk = true;
+        player.thorns = 1f;
     }
 }

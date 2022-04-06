@@ -1,11 +1,11 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Items.Accessories;
 
-class TransformationTalisman : ModItem
+class BestialBand : ModItem
 {
     public override void SetStaticDefaults()
     {

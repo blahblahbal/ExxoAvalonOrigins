@@ -54,7 +54,7 @@ public static class ExxoAvalonOriginsCall
 
     public static object Call(params object[] args)
     {
-        if (args.Length == 0 || !(args[0] is string))
+        if (args.Length == 0 || args[0] is not string)
         {
             Logger.Error("CALL ERROR: NO METHOD NAME! First param MUST be a method name!");
             return null;
@@ -324,7 +324,7 @@ public static class ExxoAvalonOriginsCall
     }
     #endregion
 
-    #region Mod Support (Boss Checklist, etch)
+    #region Mod Support (Boss Checklist, etc)
     public static void Support()
     {
         Mod mod = ExxoAvalonOrigins.Mod;
@@ -432,12 +432,12 @@ public static class ExxoAvalonOriginsCall
                 (Func<bool>)(() => ExxoAvalonOriginsWorld.downedPhantasm),
                 ItemType<EctoplasmicBeacon>(),
                 new List<int> { ItemType<PhantasmTrophy>() },
-                new List<int> {ItemType < PhantomKnives >(),
-                    ItemType < EtherealHeart >(),
-                    ItemType < VampireTeeth >(),
-                    ItemType < GhostintheMachine >()},
-                "Use an [i:" + ItemType<EctoplasmicBeacon>() + "] on the Library Alter in the Library of Knowledge",
-                "The Phantasm fades away",
+                new List<int> { ItemType<PhantomKnives>(),
+                    ItemType<EtherealHeart>(),
+                    ItemType<VampireTeeth>(),
+                    ItemType<GhostintheMachine>()},
+                "Use an [i:" + ItemType<EctoplasmicBeacon>() + "] on the Library Altar in the Library of Knowledge",
+                "Phantasm fades away",
                 "ExxoAvalonOrigins/Sprites/BossChecklist/PhantasmBossChecklist",
                 "ExxoAvalonOrigins/NPCs/Bosses/Phantasm_Head_Boss"
             );
@@ -455,9 +455,9 @@ public static class ExxoAvalonOriginsCall
                 ItemType<HellboundRemote>(),
                 new List<int> { ItemType<WallofSteelTrophy>() },
                 new List<int> {ItemType<MechanicalHeart>(),
-                    ItemType < FleshBoiler >(),
-                    ItemType < MagicCleaver >(),
-                    ItemType < SoulofBlight >()},
+                    ItemType<FleshBoiler>(),
+                    ItemType<MagicCleaver>(),
+                    ItemType<SoulofBlight>()},
                 "Throw a [i:" + ItemType<HellboundRemote>() + "] into lava",
                 "The Wall of Steel hisses steam and sinks into the lava",
                 "ExxoAvalonOrigins/Sprites/BossChecklist/WallofSteelBossChecklist",

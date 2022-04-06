@@ -15,7 +15,7 @@ class LimeTorch : ModItem
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.Torch);
-        Rectangle dims = Item.modItem.GetDims();
+        Rectangle dims = this.GetDims();
         Item.createTile = ModContent.TileType<Tiles.Torches>();
         Item.width = dims.Width;
         Item.height = dims.Height;

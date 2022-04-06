@@ -41,10 +41,7 @@ class TitanGauntlets : ModItem
         {
             player.statDefense += 20;
             player.lifeRegen += 5;
-            player.GetDamage(DamageClass.Magic) += 0.2f;
-            player.GetDamage(DamageClass.Melee) += 0.2f;
-            player.GetDamage(DamageClass.Summon) += 0.2f;
-            player.GetDamage(DamageClass.Ranged) += 0.2f;
+            player.GetDamage(DamageClass.Generic) += 0.2f;
         }
         player.noKnockback = true;
         if (player.statLife > player.statLifeMax2 * 0.25)

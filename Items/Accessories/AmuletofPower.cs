@@ -26,8 +26,8 @@ class AmuletofPower : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.allDamage += 0.07f;
-        player.AllCrit(5);
+        player.GetDamage(DamageClass.Generic) += 0.07f;
+        player.GetCritChance(DamageClass.Generic) += 5;
         player.statManaMax2 += 40;
         player.statLifeMax2 += 40;
     }

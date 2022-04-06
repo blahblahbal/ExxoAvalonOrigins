@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,7 +19,7 @@ class ApollosQuiver : ModItem
         Item.rare = ItemRarityID.Yellow;
         Item.width = dims.Width;
         Item.accessory = true;
-        Item.value = Item.sellPrice(0, 7, 0, 0);
+        Item.value = Item.sellPrice(0, 7);
         Item.height = dims.Height;
     }
 

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,6 +25,20 @@ class GoblinArmyKnife : ModItem
         Item.height = dims.Height;
     }
 
+    public override void AddRecipes()
+    {
+        CreateRecipe(1)
+            .AddIngredient(ModContent.ItemType<GoblinToolbelt>())
+            .AddIngredient(ItemID.JellyfishNecklace)
+            .AddIngredient(ItemID.DestroyerEmblem)
+            .AddIngredient(ItemID.CrossNecklace)
+            .AddIngredient(ItemID.BundleofBalloons)
+            .AddIngredient(ItemID.TreasureMagnet)
+            .AddIngredient(ItemID.SpelunkerPotion, 5)
+            .AddIngredient(ItemID.HunterPotion, 5)
+            .AddTile(TileID.TinkerersWorkbench);
+    }
+
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.tileSpeed += 1f;
@@ -37,17 +51,12 @@ class GoblinArmyKnife : ModItem
         Lighting.AddLight((int)player.Center.X / 16, (int)player.Center.Y / 16, 2f, 2f, 2f);
         if (player.Avalon().quintJump)
         {
-            player.doubleJumpCloud = player.doubleJumpSandstorm = player.doubleJumpBlizzard = true;
+            player.hasJumpOption_Cloud = player.hasJumpOption_Sandstorm = player.hasJumpOption_Blizzard = player.hasJumpOption_Fart = true;
         }
-        player.jumpBoost = player.Avalon().magnet = player.Avalon().longInvince2 = player.longInvince = player.detectCreature = player.findTreasure = true;
+        player.jumpBoost = player.treasureMagnet = player.Avalon().longInvince2 = player.longInvince = player.detectCreature = player.findTreasure = true;
         player.manaRegenDelayBonus++;
         player.manaRegenBonus += 25;
-        player.GetDamage(DamageClass.Melee) += 0.07f;
-        player.GetDamage(DamageClass.Ranged) += 0.07f;
-        player.GetDamage(DamageClass.Magic) += 0.07f;
-        player.GetDamage(DamageClass.Summon) += 0.07f;
-        player.GetCritChance(DamageClass.Magic) += 2;
-        player.GetCritChance(DamageClass.Melee) += 2;
-        player.GetCritChance(DamageClass.Ranged) += 2;
+        player.GetDamage(DamageClass.Generic) += 0.07f;
+        player.GetCritChance(DamageClass.Generic) += 2;
     }
 }

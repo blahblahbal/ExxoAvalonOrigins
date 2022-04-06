@@ -295,7 +295,7 @@ public class AncientOblivionHead1 : ModNPC
             }
             if (Main.rand.Next(20) == 0)
             {
-                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<TomeofLuck>(), 1, false, -1, false);
+                Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<LuckyPapyrus>(), 1, false, -1, false);
             }
             Item.NewItem((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ModContent.ItemType<OblivionOre>(), Main.rand.Next(100, 201), false, 0, false);
         }

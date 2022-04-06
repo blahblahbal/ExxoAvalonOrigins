@@ -1,4 +1,4 @@
-using ExxoAvalonOrigins.Items.Placeable.Tile;
+﻿using ExxoAvalonOrigins.Items.Placeable.Tile;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -26,10 +26,7 @@ class TourmalineAmulet : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetCritChance(DamageClass.Melee) += 5;
-        player.GetCritChance(DamageClass.Magic) += 5;
-        player.GetCritChance(DamageClass.Ranged) += 5;
-        player.GetCritChance(DamageClass.Throwing) += 5;
+        player.GetCritChance(DamageClass.Generic) += 5;
     }
 
     public override void AddRecipes()

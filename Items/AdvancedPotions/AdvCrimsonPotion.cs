@@ -15,7 +15,7 @@ class AdvCrimsonPotion : ModItem
 
     public override void SetDefaults()
     {
-        Rectangle dims = Item.modItem.GetDims();
+        Rectangle dims = this.GetDims();
         Item.buffType = ModContent.BuffType<Buffs.AdvancedBuffs.AdvCrimson>();
         Item.UseSound = SoundID.Item3;
         Item.consumable = true;

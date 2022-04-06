@@ -10,7 +10,7 @@ public class AIController : ModItem
     {
         DisplayName.SetDefault("AI Controller");
         Tooltip.SetDefault("Stinger probe minions circle you"
-                           + "\nThis probe will reflect hostile projectiles and explodes"
+                           + "\nThis probe will reflect hostile projectiles and explode"
                            + "\nProbes will regenerate over time, to a max of four");
     }
 

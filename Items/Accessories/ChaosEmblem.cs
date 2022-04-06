@@ -26,6 +26,6 @@ class ChaosEmblem : ModItem
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
         player.Avalon().critDamageMult += 0.1f;
-        player.allDamage += 0.1f;
+        player.GetDamage(DamageClass.Generic) += 0.1f;
     }
 }

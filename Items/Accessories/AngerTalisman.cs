@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,9 +27,6 @@ class AngerTalisman : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.GetDamage(DamageClass.Melee) += 0.27f;
-        player.GetDamage(DamageClass.Ranged) += 0.27f;
-        player.GetDamage(DamageClass.Magic) += 0.27f;
-        player.GetDamage(DamageClass.Summon) += 0.27f;
+        player.GetDamage(DamageClass.Generic) += 0.27f;
     }
 }

@@ -27,7 +27,7 @@ class ObsidianGlove : ModItem
     {
         player.Avalon().cloudGloves = true;
     }
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         player.Avalon().cloudGloves = true;
     }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,7 +15,7 @@ public class BubbleBoost : ModItem
 
     public override void SetDefaults()
     {
-        Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Accessories/BubbleBoost");
+        Rectangle dims = this.GetDims();
         Item.rare = ItemRarityID.Cyan;
         Item.width = dims.Width;
         Item.accessory = true;

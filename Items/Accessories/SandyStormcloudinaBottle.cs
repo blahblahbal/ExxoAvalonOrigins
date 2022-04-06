@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,8 +25,8 @@ class SandyStormcloudinaBottle : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.doubleJumpSandstorm = true;
-        player.doubleJumpCloud = true;
-        player.doubleJumpBlizzard = true;
+        player.hasJumpOption_Cloud = true;
+        player.hasJumpOption_Blizzard = true;
+        player.hasJumpOption_Sandstorm = true;
     }
 }

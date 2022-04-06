@@ -32,6 +32,6 @@ class ThornHeartAmulet : ModItem
         float dmg = (2 * (float)Math.Floor((player.statLifeMax2 - (double)player.statLife) / player.statLifeMax2 * 10)) / 50;
         if (dmg < 0) dmg = 0;
         //Main.NewText(player.statLifeMax2);
-        player.allDamage += dmg;
+        player.GetDamage(DamageClass.Generic) += dmg;
     }
 }

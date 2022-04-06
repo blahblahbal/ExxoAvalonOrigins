@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,6 +25,8 @@ class CloakofAssists : ModItem
 
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        player.bee = (player.starCloak = (player.panic = (player.Avalon().LightningInABottle = true)));
+        player.honeyCombItem = Item;
+        player.starCloakItem = Item;
+        player.panic = player.Avalon().LightningInABottle = true;
     }
 }

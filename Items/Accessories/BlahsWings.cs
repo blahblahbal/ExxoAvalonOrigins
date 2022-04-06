@@ -27,7 +27,7 @@ class BlahsWings : ModItem
 
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 40).AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 20).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 25).AddIngredient(ModContent.ItemType<InertiaBoots>()).AddIngredient(ModContent.ItemType<GuardianBoots>()).AddIngredient(ItemID.PhilosophersStone).AddIngredient(ModContent.ItemType<SouloftheGolem>()).AddIngredient(ModContent.ItemType<ForsakenRelic>()).AddIngredient(ModContent.ItemType<BubbleBoost>()).AddIngredient(ModContent.ItemType<TomeofLuck>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
+        CreateRecipe(1).AddIngredient(ModContent.ItemType<Placeable.Tile.Phantoplasm>(), 40).AddIngredient(ModContent.ItemType<Placeable.Bar.SuperhardmodeBar>(), 20).AddIngredient(ModContent.ItemType<Material.SoulofTorture>(), 25).AddIngredient(ModContent.ItemType<InertiaBoots>()).AddIngredient(ModContent.ItemType<GuardianBoots>()).AddIngredient(ItemID.PhilosophersStone).AddIngredient(ModContent.ItemType<SouloftheGolem>()).AddIngredient(ModContent.ItemType<ForsakenRelic>()).AddIngredient(ModContent.ItemType<BubbleBoost>()).AddIngredient(ModContent.ItemType<LuckyPapyrus>()).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual)
@@ -38,13 +38,13 @@ class BlahsWings : ModItem
         player.Avalon().bubbleBoost = true;
         player.Avalon().trapImmune =
             player.Avalon().heartGolem =
-                player.Avalon().ethHeart =
-                    player.Avalon().longInvince2 = true;
+            player.Avalon().ethHeart =
+            player.Avalon().longInvince2 = true;
         player.wingTime = 1000;
         if (player.immune)
         {
-            player.AllCrit(7);
-            player.allDamage += 0.07f;
+            player.GetCritChance(DamageClass.Generic) += 7;
+            player.GetDamage(DamageClass.Generic) += 0.07f;
         }
         player.accRunSpeed = 10.29f;
         player.rocketBoots = 2;

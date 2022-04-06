@@ -38,7 +38,7 @@ class Omnibag : ModItem
             Main.dust[dust].noGravity = true;
             dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Enchanted_Gold, 0, 0, 100, Color.White, 2f);
             Main.dust[dust].noGravity = true;
-            int dust3 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestoryer, 0, 0, 100, Color.White, .9f);
+            int dust3 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestroyer, 0, 0, 100, Color.White, .9f);
             Main.dust[dust3].noGravity = true;
             int dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
             Main.dust[dust2].noGravity = true;
@@ -75,7 +75,7 @@ class Omnibag : ModItem
             Main.dust[dust].noGravity = true;
             dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Enchanted_Gold, 0, 0, 100, Color.White, 2f);
             Main.dust[dust].noGravity = true;
-            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestoryer, 0, 0, 100, Color.White, .9f);
+            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestroyer, 0, 0, 100, Color.White, .9f);
             Main.dust[dust3].noGravity = true;
             int dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
             Main.dust[dust2].noGravity = true;
@@ -112,7 +112,7 @@ class Omnibag : ModItem
             Main.dust[dust].noGravity = true;
             dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Enchanted_Gold, 0, 0, 100, Color.White, 2f);
             Main.dust[dust].noGravity = true;
-            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestoryer, 0, 0, 100, Color.White, .9f);
+            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestroyer, 0, 0, 100, Color.White, .9f);
             Main.dust[dust3].noGravity = true;
             int dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
             Main.dust[dust2].noGravity = true;
@@ -125,7 +125,7 @@ class Omnibag : ModItem
         }
     }
 
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         if (player.controlRight)
         {
@@ -135,7 +135,7 @@ class Omnibag : ModItem
             Main.dust[dust].noGravity = true;
             dust = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Enchanted_Gold, 0, 0, 100, Color.White, 2f);
             Main.dust[dust].noGravity = true;
-            int dust3 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestoryer, 0, 0, 100, Color.White, .9f);
+            int dust3 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.TheDestroyer, 0, 0, 100, Color.White, .9f);
             Main.dust[dust3].noGravity = true;
             int dust2 = Dust.NewDust(player.position, player.width - 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
             Main.dust[dust2].noGravity = true;
@@ -172,7 +172,7 @@ class Omnibag : ModItem
             Main.dust[dust].noGravity = true;
             dust = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Enchanted_Gold, 0, 0, 100, Color.White, 2f);
             Main.dust[dust].noGravity = true;
-            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestoryer, 0, 0, 100, Color.White, .9f);
+            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.TheDestroyer, 0, 0, 100, Color.White, .9f);
             Main.dust[dust3].noGravity = true;
             int dust2 = Dust.NewDust(player.position, player.width + 20, player.height, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
             Main.dust[dust2].noGravity = true;
@@ -209,7 +209,7 @@ class Omnibag : ModItem
             Main.dust[dust].noGravity = true;
             dust = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Enchanted_Gold, 0, 0, 100, Color.White, 2f);
             Main.dust[dust].noGravity = true;
-            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestoryer, 0, 0, 100, Color.White, .9f);
+            int dust3 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.TheDestroyer, 0, 0, 100, Color.White, .9f);
             Main.dust[dust3].noGravity = true;
             int dust2 = Dust.NewDust(player.position, player.width + 20, player.height + 20, DustID.Blood, 0, 0, 100, Color.White, 1.5f);
             Main.dust[dust2].noGravity = true;

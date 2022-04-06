@@ -24,7 +24,7 @@ class BlackWhetstone : ModItem
     }
     public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        if (player.inventory[player.selectedItem].melee)
+        if (player.inventory[player.selectedItem].DamageType == DamageClass.Melee)
         {
             player.armorPenetration += 10;
         }

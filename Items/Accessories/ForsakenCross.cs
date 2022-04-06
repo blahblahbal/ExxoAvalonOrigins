@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,13 +28,8 @@ class ForsakenCross : ModItem
         player.longInvince = true;
         if (player.immune)
         {
-            player.GetCritChance(DamageClass.Magic) += 7;
-            player.GetCritChance(DamageClass.Melee) += 7;
-            player.GetCritChance(DamageClass.Ranged) += 7;
-            player.GetDamage(DamageClass.Magic) += 0.07f;
-            player.GetDamage(DamageClass.Melee) += 0.07f;
-            player.GetDamage(DamageClass.Ranged) += 0.07f;
-            player.GetDamage(DamageClass.Summon) += 0.07f;
+            player.GetCritChance(DamageClass.Generic) += 7;
+            player.GetDamage(DamageClass.Generic) += 0.07f;
         }
     }
 }
