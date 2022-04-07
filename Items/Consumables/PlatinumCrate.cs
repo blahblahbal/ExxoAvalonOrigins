@@ -1,4 +1,4 @@
-using ExxoAvalonOrigins.Items.Material;
+﻿using ExxoAvalonOrigins.Items.Material;
 using ExxoAvalonOrigins.Items.Placeable.Bar;
 using ExxoAvalonOrigins.Items.Placeable.Tile;
 using ExxoAvalonOrigins.Items.Potions;
@@ -40,7 +40,7 @@ class PlatinumCrate : ModItem
         {
             if (ModContent.GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode && flag4 && Main.rand.Next(50) == 0)
             {
-                var number19 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<IllegalWeaponInstructions>(), 1, false, 0, false);
+                var number19 = Item.NewItem(player.GetItemSource_OpenItem(Item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, ModContent.ItemType<IllegalWeaponInstructions>(), 1, false, 0, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number19, 1f, 0f, 0f, 0);
@@ -61,7 +61,7 @@ class PlatinumCrate : ModItem
                     type13 = ItemID.GoldCoin;
                     stack18 = Main.rand.Next(20, 91);
                 }
-                var number20 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, type13, stack18, false, 0, false);
+                var number20 = Item.NewItem(player.GetItemSource_OpenItem(Item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, type13, stack18, false, 0, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number20, 1f, 0f, 0f, 0);
@@ -164,7 +164,7 @@ class PlatinumCrate : ModItem
                 {
                     stack19 = Main.rand.Next(10, 24);
                 }
-                var number21 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, num12, stack19, false, 0, false);
+                var number21 = Item.NewItem(player.GetItemSource_OpenItem(Item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, num12, stack19, false, 0, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number21, 1f, 0f, 0f, 0);
@@ -257,7 +257,7 @@ class PlatinumCrate : ModItem
                     }
                     num14 -= Main.rand.Next(4);
                 }
-                var number22 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, num13, num14, false, 0, false);
+                var number22 = Item.NewItem(player.GetItemSource_OpenItem(Item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, num13, num14, false, 0, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number22, 1f, 0f, 0f, 0);
@@ -316,7 +316,7 @@ class PlatinumCrate : ModItem
                 {
                     stack20 = 1;
                 }
-                var number23 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, num15, stack20, false, 0, false);
+                var number23 = Item.NewItem(player.GetItemSource_OpenItem(Item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, num15, stack20, false, 0, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number23, 1f, 0f, 0f, 0);
@@ -338,7 +338,7 @@ class PlatinumCrate : ModItem
                     num16 = ItemID.SuperManaPotion;
                 }
                 var stack21 = Main.rand.Next(5, 16);
-                var number24 = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, num16, stack21, false, 0, false);
+                var number24 = Item.NewItem(player.GetItemSource_OpenItem(Item.type), (int)player.position.X, (int)player.position.Y, player.width, player.height, num16, stack21, false, 0, false);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, NetworkText.FromLiteral(""), number24, 1f, 0f, 0f, 0);

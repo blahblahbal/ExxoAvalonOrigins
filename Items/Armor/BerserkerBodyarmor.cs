@@ -13,7 +13,7 @@ class BerserkerBodyarmor : ModItem
         DisplayName.SetDefault("Berserker Bodyarmor");
         Tooltip.SetDefault("Enemies are more likely to target you"
                            + "\nTaking heavy damage will give you the 'Berserk!' buff"
-                           + "\n'Berserk!' gives a massive buff to the critical strike damage of true melee weapons");
+                           + "\nThis buff greatly increases the critical strike damage of true melee weapons");
     }
 
     public override void SetDefaults()

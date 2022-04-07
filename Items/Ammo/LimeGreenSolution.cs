@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +25,7 @@ class LimeGreenSolution : ModItem
         Item.maxStack = 2000;
         Item.height = dims.Height;
     }
-    public override bool ConsumeAmmo(Player player)
+    public override bool CanConsumeAmmo(Player player)
     {
         return player.itemAnimation >= player.HeldItem.useAnimation - 3;
     }

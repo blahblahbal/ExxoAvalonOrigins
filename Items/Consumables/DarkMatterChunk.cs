@@ -29,8 +29,7 @@ class DarkMatterChunk : ModItem
     }
     public override bool CanUseItem(Player player)
     {
-        if (NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>())) return false;
-        return true;
+        return !NPC.AnyNPCs(ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>());
     }
     public override void AddRecipes()
     {
@@ -40,7 +39,7 @@ class DarkMatterChunk : ModItem
     }
     public override bool? UseItem(Player player)
     {
-        Main.PlaySound(SoundID.Roar, player.position, 0);
+        SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
         NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Bosses.ArmageddonSlime>());
         return true;
     }

@@ -33,12 +33,13 @@ class BlahsHauberk : ModItem
 
     public override bool IsArmorSet(Item head, Item body, Item legs)
     {
-        return (head.type == ModContent.ItemType<BlahsHeadguard>() && body.type == ModContent.ItemType<BlahsHauberk>() && legs.type == ModContent.ItemType<BlahsCuisses2>());
+        return (head.type == ModContent.ItemType<BlahsHeadguard>() && body.type == ModContent.ItemType<BlahsHauberk>() && legs.type == ModContent.ItemType<BlahsCuisses>());
     }
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "Melee Stealth, Ranged Stealth, Attackers also take double full damage, and Spectre Heal";
+        player.setBonus = "Melee and Ranged Stealth, Go Berserk, Rosebuds, Spectrum Speed, Attackers also take double full damage, and Spectre Heal";
         player.Avalon().doubleDamage = player.ghostHeal = player.Avalon().ghostSilence = player.Avalon().meleeStealth = player.shroomiteStealth = true;
+        player.Avalon().spectrumSpeed = player.Avalon().goBerserk = player.Avalon().roseMagic = true;
     }
 }

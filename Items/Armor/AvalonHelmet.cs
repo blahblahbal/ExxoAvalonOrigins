@@ -47,7 +47,7 @@ class AvalonHelmet : ModItem
     }
     public override void UpdateEquip(Player player)
     {
-        player.allDamage += 0.32f;
+        player.GetDamage(DamageClass.Generic) += 0.32f;
         player.manaCost -= 0.20f;
         player.statManaMax2 += 280;
         player.Avalon().leafStorm = true;

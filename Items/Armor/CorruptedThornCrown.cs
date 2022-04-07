@@ -11,8 +11,7 @@ class CorruptedThornCrown : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Corrupted Thorn Crown");
-        Tooltip.SetDefault("15% increased melee and ranged damage" +
-                           "\n35% increased magic damage");
+        Tooltip.SetDefault("35% increased magic damage");
     }
 
     public override void SetDefaults()
@@ -26,7 +25,11 @@ class CorruptedThornCrown : ModItem
     }
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.Spike, 20).AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 20).AddIngredient(ItemID.SoulofNight, 10).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1)
+            .AddIngredient(ItemID.Spike, 20)
+            .AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 20)
+            .AddIngredient(ModContent.ItemType<Placeable.Bar.CaesiumBar>(), 15)
+            .AddIngredient(ItemID.SoulofNight, 10).AddTile(TileID.MythrilAnvil).Register();
     }
     public override bool IsArmorSet(Item head, Item body, Item legs)
     {
@@ -44,8 +47,6 @@ class CorruptedThornCrown : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Ranged) += 0.15f;
-        player.GetDamage(DamageClass.Melee) += 0.15f;
         player.GetDamage(DamageClass.Magic) += 0.35f;
     }
 }

@@ -37,5 +37,6 @@ class MoltenCrown : ModItem
         player.setBonus = "17% increased magic damage and 17% decreased mana usage";
         player.GetDamage(DamageClass.Magic) += 0.17f;
         player.manaCost -= 0.17f;
+        player.buffImmune[BuffID.OnFire] = true;
     }
 }

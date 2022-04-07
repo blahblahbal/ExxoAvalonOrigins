@@ -1714,7 +1714,7 @@ public static class RecipeCreator
             .AddIngredient(ItemID.SlushBlock, 100)
             .AddTile(TileID.WorkBenches).Register();
 
-        mod.CreateRecipe(ModContent.ItemType<BacterialTotem>())
+        mod.CreateRecipe(ModContent.ItemType<InfestedCarcass>())
             .AddIngredient(ModContent.ItemType<YuckyBit>(), 15)
             .AddIngredient(ModContent.ItemType<VirulentPowder>(), 30)
             .AddTile(TileID.DemonAltar).Register();
@@ -1928,7 +1928,7 @@ public static class RecipeCreator
             .AddIngredient(ModContent.ItemType<SoulofTorture>(), 20)
             .AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
 
-        mod.CreateRecipe(ModContent.ItemType<BlahsCuisses>())
+        mod.CreateRecipe(ModContent.ItemType<BlahsGreaves>())
             .AddIngredient(ModContent.ItemType<Phantoplasm>(), 30)
             .AddIngredient(ModContent.ItemType<SuperhardmodeBar>(), 25)
             .AddIngredient(ModContent.ItemType<SoulofTorture>(), 17)

@@ -22,12 +22,6 @@ class DragonSpine : ModItem
         Item.maxStack = 20;
         Item.height = dims.Height;
     }
-
-    public override bool CanUseItem(Player player)
-    {
-        if (NPC.AnyNPCs(ModContent.NPCType<NPCs.DragonLordHead>())) return false;
-        return false;
-    }
     public override void AddRecipes()
     {
         CreateRecipe(2).AddIngredient(ModContent.ItemType<DragonBait>()).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 5).AddIngredient(ItemID.SoulofMight, 5).AddIngredient(ItemID.SoulofFlight, 5).AddIngredient(ItemID.RottenChunk, 5).AddIngredient(ItemID.PearlstoneBlock, 20).AddTile(ModContent.TileType<Tiles.DragonAltar>()).Register();

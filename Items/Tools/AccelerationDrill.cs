@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ExxoAvalonOrigins.Systems;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -42,7 +43,7 @@ public class AccelerationDrill : ModItem
 
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        List<string> assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
+        List<string> assignedKeys = KeybindSystem.ModeChangeHotkey.GetAssignedKeys();
 
         var assignedKeyInfo = new TooltipLine(Mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change mining modes");
         tooltips.Add(assignedKeyInfo);
@@ -71,7 +72,7 @@ public class AccelerationDrill : ModItem
                                 WorldGen.KillTile(x, y);
                                 if (Main.netMode == NetmodeID.MultiplayerClient)
                                 {
-                                    NetMessage.SendData(MessageID.TileChange, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
+                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, NetworkText.Empty, 0, x, y, 0f, 0);
                                 }
                             }
                         }

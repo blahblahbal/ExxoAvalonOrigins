@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,9 +26,6 @@ class TroxiniumBodyarmor : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Magic) += 0.08f;
-        player.GetDamage(DamageClass.Ranged) += 0.08f;
-        player.GetDamage(DamageClass.Summon) += 0.08f;
-        player.GetDamage(DamageClass.Melee) += 0.08f;
+        player.GetDamage(DamageClass.Generic) += 0.08f;
     }
 }

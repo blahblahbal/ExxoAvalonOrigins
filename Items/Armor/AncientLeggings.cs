@@ -29,27 +29,6 @@ class AncientLeggings : ModItem
         CreateRecipe(1).AddIngredient(ItemID.NebulaLeggings).AddIngredient(ItemID.FragmentSolar, 10).AddIngredient(ItemID.FragmentStardust, 10).AddIngredient(ItemID.FragmentVortex, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
         CreateRecipe(1).AddIngredient(ItemID.StardustLeggings).AddIngredient(ItemID.FragmentNebula, 10).AddIngredient(ItemID.FragmentSolar, 10).AddIngredient(ItemID.FragmentVortex, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
         CreateRecipe(1).AddIngredient(ItemID.VortexLeggings).AddIngredient(ItemID.FragmentNebula, 10).AddIngredient(ItemID.FragmentStardust, 10).AddIngredient(ItemID.FragmentSolar, 10).AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5).AddIngredient(ModContent.ItemType<Material.GhostintheMachine>()).AddTile(ModContent.TileType<Tiles.CaesiumForge>()).Register();
-
-
-        //ModRecipe recipe = new ModRecipe(mod);
-        //recipe.AddIngredient(ItemID.TurtleLeggings);
-        //recipe.AddIngredient(ItemID.SpectrePants);
-        //recipe.AddIngredient(ItemID.ShroomiteLeggings);
-        //recipe.AddIngredient(ItemID.TikiPants);
-        //recipe.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5);
-        //recipe.AddTile(TileID.MythrilAnvil);
-        //recipe.SetResult(ModContent.ItemType<AncientLeggings>());
-        //recipe.AddRecipe();
-
-        //recipe = new ModRecipe(mod);
-        //recipe.AddIngredient(ItemID.TurtleLeggings);
-        //recipe.AddIngredient(ItemID.SpectrePants);
-        //recipe.AddIngredient(ItemID.ShroomiteLeggings);
-        //recipe.AddIngredient(ItemID.SpookyLeggings);
-        //recipe.AddIngredient(ModContent.ItemType<Material.LifeDew>(), 5);
-        //recipe.AddTile(TileID.MythrilAnvil);
-        //recipe.SetResult(ModContent.ItemType<AncientLeggings>());
-        //recipe.AddRecipe();
     }
     public override void UpdateEquip(Player player)
     {

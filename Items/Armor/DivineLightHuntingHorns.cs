@@ -11,13 +11,12 @@ class DivineLightHuntingHorns : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Divine Light Hunting Horns");
-        Tooltip.SetDefault("15% increased melee and magic damage"
-                           + "\n25% increased ranged damage");
+        Tooltip.SetDefault("25% increased ranged damage");
     }
 
     public override void SetDefaults()
     {
-        Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/DivineLightHuntingHorns");
+        Rectangle dims = this.GetDims();
         Item.defense = 10;
         Item.rare = ItemRarityID.LightRed;
         Item.width = dims.Width;
@@ -26,7 +25,10 @@ class DivineLightHuntingHorns : ModItem
     }
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.PixieDust, 20).AddIngredient(ItemID.HallowedBar, 20).AddIngredient(ItemID.SoulofLight, 10).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1)
+            .AddIngredient(ItemID.PixieDust, 20)
+            .AddIngredient(ModContent.ItemType<Placeable.Bar.CaesiumBar>(), 20)
+            .AddIngredient(ItemID.SoulofLight, 10).AddTile(TileID.MythrilAnvil).Register();
     }
     public override bool IsArmorSet(Item head, Item body, Item legs)
     {
@@ -46,7 +48,5 @@ class DivineLightHuntingHorns : ModItem
     public override void UpdateEquip(Player player)
     {
         player.GetDamage(DamageClass.Ranged) += 0.25f;
-        player.GetDamage(DamageClass.Melee) += 0.15f;
-        player.GetDamage(DamageClass.Magic) += 0.15f;
     }
 }

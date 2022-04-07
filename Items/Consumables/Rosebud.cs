@@ -47,7 +47,7 @@ public class Rosebud : ModItem
 
     public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
     {
-        Texture2D texture = ModContent.Request<Texture2D>(Texture + "Glow");
+        Texture2D texture = ModContent.Request<Texture2D>(Texture + "Glow").Value;
         spriteBatch.Draw
         (
             texture,

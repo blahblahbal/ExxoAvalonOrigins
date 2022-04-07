@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,9 +29,7 @@ class DivingSuit : ModItem
         player.breathMax *= 3; //TODO: fix.
         if (player.wet)
         {
-            player.GetDamage(DamageClass.Melee) += 0.1f;
-            player.GetDamage(DamageClass.Magic) += 0.1f;
-            player.GetDamage(DamageClass.Ranged) += 0.1f;
+            player.GetDamage(DamageClass.Generic) += 0.1f;
         }
     }
 }

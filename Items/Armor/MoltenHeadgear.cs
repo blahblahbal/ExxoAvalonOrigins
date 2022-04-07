@@ -37,5 +37,6 @@ class MoltenHeadgear : ModItem
         player.setBonus = "17% increased ranged damage and 20% chance to not consume ammo";
         player.GetDamage(DamageClass.Ranged) += 0.17f;
         player.ammoCost80 = true;
+        player.buffImmune[BuffID.OnFire] = true;
     }
 }

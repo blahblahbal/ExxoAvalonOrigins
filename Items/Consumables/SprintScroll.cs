@@ -21,7 +21,7 @@ class SprintScroll : ModItem
         Item.useTime = 20;
         Item.rare = ItemRarityID.Green;
         Item.useStyle = ItemUseStyleID.HoldUp;
-        Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Scroll");
+        Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/Scroll");
         Item.useAnimation = 20;
         Item.height = dims.Height;
     }

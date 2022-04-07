@@ -30,19 +30,19 @@ public class DragonLordBossBag : ModItem
 
     public override void OpenBossBag(Player player)
     {
-        player.TryGettingDevArmor();
-        //if (Main.rand.Next(7) == 0) player.QuickSpawnItem(ModContent.ItemType<Placeable.Trophy.DragonLordTrophy>());
-        player.QuickSpawnItem(ModContent.ItemType<DragonScale>(), Main.rand.Next(10, 21));
-        player.QuickSpawnItem(ModContent.ItemType<Accessories.DragonsBondage>());
+        player.TryGettingDevArmor(player.GetItemSource_OpenItem(Item.type));
+
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<DragonScale>(), Main.rand.Next(10, 21));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Accessories.DragonsBondage>());
         int rand = Main.rand.Next(5);
-        if (rand == 0) player.QuickSpawnItem(ModContent.ItemType<Accessories.DragonStone>());
-        else if (rand == 1) player.QuickSpawnItem(ModContent.ItemType<Weapons.Melee.Infernasword>());
-        else if (rand == 2) player.QuickSpawnItem(ModContent.ItemType<Weapons.Ranged.QuadroCannon>());
-        else if (rand == 3) player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.MagmafrostBolt>());
-        else if (rand == 4) player.QuickSpawnItem(ModContent.ItemType<Weapons.Summon.ReflectorStaff>());
+        if (rand == 0) player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Accessories.DragonStone>());
+        else if (rand == 1) player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Weapons.Melee.Infernasword>());
+        else if (rand == 2) player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Weapons.Ranged.QuadroCannon>());
+        else if (rand == 3) player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Weapons.Magic.MagmafrostBolt>());
+        else if (rand == 4) player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Weapons.Summon.ReflectorStaff>());
         if (Main.rand.Next(4) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Consumables.StaminaCrystal>());
         }
     }
 

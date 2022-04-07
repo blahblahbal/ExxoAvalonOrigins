@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +27,7 @@ class AwakenedRoseSubligar : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.moveSpeed += 0.1f;
+        player.moveSpeed += 0.1f; // rework into boosting movement speed even after hermes boots is equipped
         player.manaCost -= 0.1f;
     }
 }

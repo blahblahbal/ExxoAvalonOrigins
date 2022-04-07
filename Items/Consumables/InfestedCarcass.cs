@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,7 +6,7 @@ using Terraria.Audio;
 
 namespace ExxoAvalonOrigins.Items.Consumables;
 
-class BacterialTotem : ModItem
+class InfestedCarcass : ModItem
 {
     public override void SetStaticDefaults()
     {
@@ -35,7 +35,7 @@ class BacterialTotem : ModItem
     public override bool? UseItem(Player player)
     {
         NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.BacteriumPrime>());
-        Main.PlaySound(SoundID.Roar, player.position, 0);
+        SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
         return true;
     }
 }

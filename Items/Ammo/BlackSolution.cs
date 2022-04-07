@@ -25,7 +25,7 @@ class BlackSolution : ModItem
         Item.maxStack = 2000;
         Item.height = dims.Height;
     }
-    public override bool ConsumeAmmo(Player player)
+    public override bool CanConsumeAmmo(Player player)
     {
         return player.itemAnimation >= player.HeldItem.useAnimation - 3;
     }

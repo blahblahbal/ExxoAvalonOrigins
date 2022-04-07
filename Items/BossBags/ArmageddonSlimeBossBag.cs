@@ -31,12 +31,12 @@ public class ArmageddonSlimeBossBag : ModItem
 
     public override void OpenBossBag(Player player)
     {
-        player.TryGettingDevArmor();
+        player.TryGettingDevArmor(player.GetItemSource_OpenItem(Item.type));
 
-        player.QuickSpawnItem(ModContent.ItemType<DarkMatterSoilBlock>(), Main.rand.Next(100, 210));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<DarkMatterSoilBlock>(), Main.rand.Next(100, 210));
         if (Main.rand.Next(4) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<StaminaCrystal>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<StaminaCrystal>());
         }
     }
 

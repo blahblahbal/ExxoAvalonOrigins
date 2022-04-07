@@ -37,12 +37,12 @@ class EctoplasmicBeacon : ModItem
     public override bool? UseItem(Player player)
     {
         NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.Bosses.Phantasm>());
-        Main.PlaySound(SoundID.Roar, player.position, 0);
+        SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
         return true;
     }
 
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.Ectoplasm, 10).AddIngredient(ItemID.ChlorophyteBar, 10).AddIngredient(ModContent.ItemType<SolariumStar>(), 8).AddTile(ModContent.TileType<Tiles.LibraryAltar>()).Register();
+        CreateRecipe(1).AddIngredient(ItemID.Ectoplasm, 10).AddIngredient(ItemID.LunarBar, 5).AddIngredient(ModContent.ItemType<SolariumStar>(), 8).AddTile(ModContent.TileType<Tiles.LibraryAltar>()).Register();
     }
 }

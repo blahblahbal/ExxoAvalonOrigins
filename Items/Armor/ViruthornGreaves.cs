@@ -29,9 +29,6 @@ class ViruthornGreaves : ModItem
     }
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Magic) += 0.03f;
-        player.GetDamage(DamageClass.Melee) += 0.03f;
-        player.GetDamage(DamageClass.Summon) += 0.03f;
-        player.GetDamage(DamageClass.Ranged) += 0.03f;
+        player.GetDamage(DamageClass.Generic) += 0.03f;
     }
 }

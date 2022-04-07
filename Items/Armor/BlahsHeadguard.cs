@@ -24,7 +24,7 @@ class BlahsHeadguard : ModItem
     }
     public override bool IsArmorSet(Item head, Item body, Item legs)
     {
-        return body.type == ModContent.ItemType<BlahsHauberk>() && legs.type == ModContent.ItemType<BlahsCuisses2>();
+        return body.type == ModContent.ItemType<BlahsHauberk>() && legs.type == ModContent.ItemType<BlahsCuisses>();
     }
 
     public override void UpdateArmorSet(Player player)
@@ -41,11 +41,7 @@ class BlahsHeadguard : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Melee) += 0.35f;
-        player.GetDamage(DamageClass.Magic) += 0.35f;
-        player.GetDamage(DamageClass.Ranged) += 0.35f;
-        player.GetCritChance(DamageClass.Melee) += 11;
-        player.GetCritChance(DamageClass.Ranged) += 11;
-        player.GetCritChance(DamageClass.Magic) += 11;
+        player.GetDamage(DamageClass.Generic) += 0.35f;
+        player.GetCritChance(DamageClass.Generic) += 11;
     }
 }

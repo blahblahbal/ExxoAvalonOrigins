@@ -31,29 +31,27 @@ public class DesertBeakBossBag : ModItem
 
     public override void OpenBossBag(Player player)
     {
-        //player.TryGettingDevArmor();
-
-        player.QuickSpawnItem(ItemID.SandBlock, Main.rand.Next(22, 55));
-        player.QuickSpawnItem(ModContent.ItemType<DesertFeather>(), Main.rand.Next(6, 11));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ItemID.SandBlock, Main.rand.Next(22, 55));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<DesertFeather>(), Main.rand.Next(6, 11));
         if (ExxoAvalonOriginsWorld.rhodiumOre == ExxoAvalonOriginsWorld.RhodiumVariant.rhodium)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Placeable.Tile.RhodiumOre>(), Main.rand.Next(20, 31));
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Placeable.Tile.RhodiumOre>(), Main.rand.Next(20, 31));
         }
         else if (ExxoAvalonOriginsWorld.rhodiumOre == ExxoAvalonOriginsWorld.RhodiumVariant.osmium)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Placeable.Tile.OsmiumOre>(), Main.rand.Next(20, 31));
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Placeable.Tile.OsmiumOre>(), Main.rand.Next(20, 31));
         }
         else if (ExxoAvalonOriginsWorld.rhodiumOre == ExxoAvalonOriginsWorld.RhodiumVariant.iridium)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Placeable.Tile.IridiumOre>(), Main.rand.Next(20, 31));
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Placeable.Tile.IridiumOre>(), Main.rand.Next(20, 31));
         }
         if (Main.rand.Next(3) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<TomeoftheDistantPast>(), 1);
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<TomeoftheDistantPast>(), 1);
         }
         if (Main.rand.Next(4) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Consumables.StaminaCrystal>());
         }
     }
 

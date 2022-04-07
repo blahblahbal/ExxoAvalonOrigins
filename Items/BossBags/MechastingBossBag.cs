@@ -30,26 +30,26 @@ public class MechastingBossBag : ModItem
 
     public override void OpenBossBag(Player player)
     {
-        player.TryGettingDevArmor();
+        player.TryGettingDevArmor(player.GetItemSource_OpenItem(Item.type));
 
-        player.QuickSpawnItem(ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41));
-        player.QuickSpawnItem(ModContent.ItemType<Items.Accessories.AIController>(), 1);
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<SoulofDelight>(), Main.rand.Next(20, 41));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Items.Accessories.AIController>(), 1);
         if (Main.rand.Next(4) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Consumables.StaminaCrystal>());
         }
         int rn = Main.rand.Next(4);
         if (rn == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Accessories.StingerPack>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Accessories.StingerPack>());
         }
         if (rn == 1)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.Mechazapinator>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Weapons.Magic.Mechazapinator>());
         }
         if (rn == 2)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Weapons.Ranged.HeatSeeker>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Weapons.Ranged.HeatSeeker>());
         }
     }
 

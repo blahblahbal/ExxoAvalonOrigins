@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,8 +26,6 @@ class TroxiniumCuisses : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetCritChance(DamageClass.Magic) += 5;
-        player.GetCritChance(DamageClass.Ranged) += 5;
-        player.GetCritChance(DamageClass.Melee) += 5;
+        player.GetCritChance(DamageClass.Generic) += 5;
     }
 }

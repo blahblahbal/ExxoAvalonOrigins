@@ -12,8 +12,8 @@ class CorruptedThornBodyarmor : ModItem
     {
         DisplayName.SetDefault("Corrupted Thorn Bodyarmor");
         Tooltip.SetDefault("10% increased critical strike chance" +
-                           "\n50% increased critical damage" +
-                           "\nMax life increased by 100");
+                           "\n20% increased critical damage" +
+                           "\nMax life increased by 40");
     }
 
     public override void SetDefaults()
@@ -27,7 +27,11 @@ class CorruptedThornBodyarmor : ModItem
     }
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.Spike, 25).AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 25).AddIngredient(ItemID.SoulofNight, 20).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1)
+            .AddIngredient(ItemID.Spike, 25)
+            .AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 25)
+            .AddIngredient(ModContent.ItemType<Placeable.Bar.CaesiumBar>(), 25)
+            .AddIngredient(ItemID.SoulofNight, 20).AddTile(TileID.MythrilAnvil).Register();
     }
     public override void UpdateEquip(Player player)
     {
@@ -35,7 +39,7 @@ class CorruptedThornBodyarmor : ModItem
         player.GetCritChance(DamageClass.Melee) += 10;
         player.GetCritChance(DamageClass.Ranged) += 10;
         player.GetCritChance(DamageClass.Throwing) += 10;
-        player.Avalon().critDamageMult += 0.50f;
-        player.statLifeMax2 += 100;
+        player.Avalon().critDamageMult += 0.2f;
+        player.statLifeMax2 += 40;
     }
 }

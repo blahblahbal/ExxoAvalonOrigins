@@ -11,13 +11,13 @@ class DivineLightJerkin : ModItem
     public override void SetStaticDefaults()
     {
         DisplayName.SetDefault("Divine Light Jerkin");
-        Tooltip.SetDefault("10% increased critical strike chance" +
+        Tooltip.SetDefault("10% increased ranged critical strike chance" +
                            "\n25% increased critical damage");
     }
 
     public override void SetDefaults()
     {
-        Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/DivineLightJerkin");
+        Rectangle dims = this.GetDims();
         Item.defense = 18;
         Item.rare = ItemRarityID.LightRed;
         Item.width = dims.Width;
@@ -26,14 +26,14 @@ class DivineLightJerkin : ModItem
     }
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.PixieDust, 25).AddIngredient(ItemID.HallowedBar, 25).AddIngredient(ItemID.SoulofLight, 20).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1)
+            .AddIngredient(ItemID.PixieDust, 25)
+            .AddIngredient(ModContent.ItemType<Placeable.Bar.CaesiumBar>(), 25)
+            .AddIngredient(ItemID.SoulofLight, 20).AddTile(TileID.MythrilAnvil).Register();
     }
     public override void UpdateEquip(Player player)
     {
-        player.GetCritChance(DamageClass.Magic) += 10;
-        player.GetCritChance(DamageClass.Melee) += 10;
         player.GetCritChance(DamageClass.Ranged) += 10;
-        player.GetCritChance(DamageClass.Throwing) += 10;
         player.Avalon().critDamageMult += 0.25f;
     }
 }

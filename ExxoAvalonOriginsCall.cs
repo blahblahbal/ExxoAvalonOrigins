@@ -383,12 +383,12 @@ public static class ExxoAvalonOriginsCall
                 mod,
                 "Bacterium Prime",
                 (Func<bool>)(() => ExxoAvalonOriginsWorld.downedBacteriumPrime),
-                ItemType<BacterialTotem>(),
+                ItemType<InfestedCarcass>(),
                 new List<int> {ItemType<BacteriumPrimeTrophy>(),
                     ItemType<BacteriumPrimeMask>()},
                 new List<int> {ItemType<BacciliteOre>(),
                     ItemType<Booger>()},
-                "Use [i:" + ItemType<BacterialTotem>() + "] or break three Snot Orbs in a Contagion ring",
+                "Use [i:" + ItemType<InfestedCarcass>() + "] or break three Snot Orbs in a Contagion ring",
                 "Bacterium Prime melts back into the ick",
                 "ExxoAvalonOrigins/Sprites/BossChecklist/BacteriumPrimeBossChecklist",
                 "ExxoAvalonOrigins/NPCs/Bosses/BacteriumPrime_Head_Boss",
@@ -568,7 +568,7 @@ public static class ExxoAvalonOriginsCall
         Mod fargos = ModLoader.GetMod("Fargowiltas");
         if (fargos != null)
         {
-            fargos.Call("AddSummon", 3f, ItemType<BacterialTotem>(), (Func<bool>)(() => ExxoAvalonOriginsWorld.downedBacteriumPrime), 10000);
+            fargos.Call("AddSummon", 3f, ItemType<InfestedCarcass>(), (Func<bool>)(() => ExxoAvalonOriginsWorld.downedBacteriumPrime), 10000);
             fargos.Call("AddSummon", 3.5f, ItemType<TheBeak>(), (Func<bool>)(() => ExxoAvalonOriginsWorld.downedDesertBeak), 10000);
             fargos.Call("AddSummon", 15f, ItemType<EctoplasmicBeacon>(), (Func<bool>)(() => ExxoAvalonOriginsWorld.downedPhantasm), 10000);
             fargos.Call("AddSummon", 16f, ItemType<HellboundRemote>(), (Func<bool>)(() => GetInstance<ExxoAvalonOriginsWorld>().SuperHardmode), 10000);

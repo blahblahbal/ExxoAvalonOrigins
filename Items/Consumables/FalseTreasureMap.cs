@@ -36,7 +36,7 @@ class FalseTreasureMap : ModItem
     public override bool? UseItem(Player player)
     {
         Main.invasionSize = 0;
-        Main.PlaySound(SoundID.Roar, player.position, 0);
+        SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
         return true;
     }
 }

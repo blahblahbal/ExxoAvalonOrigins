@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +24,7 @@ class BloodstainedHelmet : ModItem
         Item.height = dims.Height;
     }
 
-    public override void UpdateVanity(Player player, EquipType type)
+    public override void UpdateVanity(Player player)
     {
         player.findTreasure = true;
     }

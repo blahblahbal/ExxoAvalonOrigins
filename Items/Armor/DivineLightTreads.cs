@@ -17,7 +17,7 @@ class DivineLightTreads : ModItem
 
     public override void SetDefaults()
     {
-        Rectangle dims = ExxoAvalonOrigins.GetDims("Items/Armor/DivineLightTreads");
+        Rectangle dims = this.GetDims();
         Item.defense = 15;
         Item.rare = ItemRarityID.LightRed;
         Item.width = dims.Width;
@@ -26,7 +26,10 @@ class DivineLightTreads : ModItem
     }
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.PixieDust, 20).AddIngredient(ItemID.HallowedBar, 20).AddIngredient(ItemID.SoulofLight, 15).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1)
+            .AddIngredient(ItemID.PixieDust, 20)
+            .AddIngredient(ModContent.ItemType<Placeable.Bar.CaesiumBar>(), 15)
+            .AddIngredient(ItemID.SoulofLight, 15).AddTile(TileID.MythrilAnvil).Register();
     }
     public override void UpdateEquip(Player player)
     {

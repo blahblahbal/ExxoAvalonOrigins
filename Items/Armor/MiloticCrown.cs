@@ -32,7 +32,7 @@ class MiloticCrown : ModItem
     public override void UpdateArmorSet(Player player)
     {
         player.setBonus = "Minions have a chance to freeze your enemies" +
-                          "\nFrozen enemies or enemies which cannot be frozen take an additional 10% damage";
+                          "\nFrozen enemies or enemies that cannot be frozen take 10% more damage";
         player.Avalon().minionFreeze = true;
     }
 

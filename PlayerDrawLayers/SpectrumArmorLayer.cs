@@ -67,7 +67,7 @@ public class SpectrumArmorLayer : PlayerDrawLayer
         {
 
             var value = default(DrawData);
-            value = new DrawData(ExxoAvalonOriginsModPlayer.spectrumArmorTextures[0], new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2), (int)(drawInfo.Position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.headPosition + vector3, new Rectangle?(p.bodyFrame), rb, p.headRotation, vector3, 1f, spriteEffects, 0);
+            value = new DrawData(ExxoAvalonOriginsModPlayer.spectrumArmorTextures[0].Value, new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2), (int)(drawInfo.Position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.headPosition + vector3, new Rectangle?(p.bodyFrame), rb, p.headRotation, vector3, 1f, spriteEffects, 0);
             drawInfo.DrawDataCache.Add(value);
         }
         if (p.body == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumBreastplate", EquipType.Body))
@@ -77,12 +77,12 @@ public class SpectrumArmorLayer : PlayerDrawLayer
             bodyFrame2.X += num55;
             bodyFrame2.Width -= num55;
             var value = default(DrawData);
-            value = new DrawData(ExxoAvalonOriginsModPlayer.spectrumArmorTextures[1], new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2) + num55, (int)(drawInfo.Position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.bodyPosition + new Vector2(p.bodyFrame.Width / 2, p.bodyFrame.Height / 2), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
+            value = new DrawData(ExxoAvalonOriginsModPlayer.spectrumArmorTextures[1].Value, new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - p.bodyFrame.Width / 2 + p.width / 2) + num55, (int)(drawInfo.Position.Y - Main.screenPosition.Y + p.height - p.bodyFrame.Height + 4f)) + p.bodyPosition + new Vector2(p.bodyFrame.Width / 2, p.bodyFrame.Height / 2), new Rectangle?(bodyFrame2), rb, p.bodyRotation, origin, 1f, spriteEffects, 0);
             drawInfo.DrawDataCache.Add(value);
         }
         if (p.legs == ExxoAvalonOrigins.Mod.GetEquipSlot("SpectrumGreaves", EquipType.Legs))
         {
-            var value = new DrawData(ExxoAvalonOriginsModPlayer.spectrumArmorTextures[4], new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - p.legFrame.Width / 2 + p.width / 2), (int)(drawInfo.Position.Y - Main.screenPosition.Y + p.height - p.legFrame.Height + 4f)) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
+            var value = new DrawData(ExxoAvalonOriginsModPlayer.spectrumArmorTextures[2].Value, new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - p.legFrame.Width / 2 + p.width / 2), (int)(drawInfo.Position.Y - Main.screenPosition.Y + p.height - p.legFrame.Height + 4f)) + p.legPosition + vector2, new Rectangle?(p.legFrame), rb, p.legRotation, vector2, 1f, spriteEffects, 0);
             drawInfo.DrawDataCache.Add(value);
         }
     }

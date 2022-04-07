@@ -13,7 +13,7 @@ class CorruptedThornGreaves : ModItem
         DisplayName.SetDefault("Corrupted Thorn Greaves");
         Tooltip.SetDefault("20% increased movement speed" +
                            "\nMana regen greatly increased" +
-                           "\nAttackers take full damage");
+                           "\nAttackers also take full damage");
     }
 
     public override void SetDefaults()
@@ -27,7 +27,11 @@ class CorruptedThornGreaves : ModItem
     }
     public override void AddRecipes()
     {
-        CreateRecipe(1).AddIngredient(ItemID.Spike, 20).AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 20).AddIngredient(ItemID.SoulofNight, 15).AddTile(TileID.MythrilAnvil).Register();
+        CreateRecipe(1)
+            .AddIngredient(ItemID.Spike, 20)
+            .AddIngredient(ModContent.ItemType<Material.CorruptShard>(), 20)
+            .AddIngredient(ModContent.ItemType<Placeable.Bar.CaesiumBar>(), 20)
+            .AddIngredient(ItemID.SoulofNight, 15).AddTile(TileID.MythrilAnvil).Register();
     }
     public override void UpdateEquip(Player player)
     {

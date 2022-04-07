@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,6 +38,7 @@ class OddFertilizer : ModItem
 
     public override bool? UseItem(Player player)
     {
+        SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
         NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
         return true;
     }

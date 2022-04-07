@@ -32,30 +32,30 @@ public class WallofSteelBossBag : ModItem
 
     public override void OpenBossBag(Player player)
     {
-        player.TryGettingDevArmor();
+        player.TryGettingDevArmor(player.GetItemSource_OpenItem(Item.type));
 
         if (player.extraAccessorySlots == 0 && !Main.expertMode || player.extraAccessorySlots == 1 && Main.expertMode)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Consumables.DarkStarHeart>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Consumables.MechanicalHeart>());
         }
         int drop = Main.rand.Next(5);
         if (drop == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<FleshBoiler>(), 1);
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<FleshBoiler>(), 1);
         }
         if (drop == 1)
         {
-            player.QuickSpawnItem(ModContent.ItemType<MagicCleaver>(), 1);
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<MagicCleaver>(), 1);
         }
         if (drop == 2)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Accessories.BubbleBoost>(), 1);
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Accessories.BubbleBoost>(), 1);
         }
-        player.QuickSpawnItem(ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56));
-        player.QuickSpawnItem(ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 31));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<SoulofBlight>(), Main.rand.Next(40, 56));
+        player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<HellsteelPlate>(), Main.rand.Next(20, 31));
         if (Main.rand.Next(4) == 0)
         {
-            player.QuickSpawnItem(ModContent.ItemType<Consumables.StaminaCrystal>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Item.type), ModContent.ItemType<Consumables.StaminaCrystal>());
         }
     }
 

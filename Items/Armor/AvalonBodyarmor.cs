@@ -27,12 +27,9 @@ class AvalonBodyarmor : ModItem
     }
     public override void UpdateEquip(Player player)
     {
-        player.GetCritChance(DamageClass.Magic) += 10;
-        player.GetCritChance(DamageClass.Melee) += 10;
-        player.GetCritChance(DamageClass.Ranged) += 10;
-        player.GetCritChance(DamageClass.Throwing) += 10;
+        player.GetCritChance(DamageClass.Generic) += 10;
         player.Avalon().critDamageMult += 0.30f;
         player.longInvince = true;
-        player.starCloak = true;
+        player.starCloakItem = Item;
     }
 }

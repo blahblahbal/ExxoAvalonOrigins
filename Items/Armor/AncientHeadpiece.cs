@@ -50,14 +50,7 @@ class AncientHeadpiece : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Ranged) += 0.2f;
-        player.GetDamage(DamageClass.Melee) += 0.2f;
-        player.GetDamage(DamageClass.Summon) += 0.2f;
-        player.GetDamage(DamageClass.Magic) += 0.2f;
-        player.GetDamage(DamageClass.Throwing) += 0.2f;
-        player.GetCritChance(DamageClass.Magic) += 5;
-        player.GetCritChance(DamageClass.Melee) += 5;
-        player.GetCritChance(DamageClass.Ranged) += 5;
-        player.GetCritChance(DamageClass.Throwing) += 5;
+        player.GetDamage(DamageClass.Generic) += 0.2f;
+        player.GetCritChance(DamageClass.Generic) += 5;
     }
 }

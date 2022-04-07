@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -22,7 +23,7 @@ class BloodyAmulet : ModItem
         Item.rare = ItemRarityID.Orange;
         Item.width = dims.Width;
         Item.useTime = 40;
-        Item.useStyle = ItemUseStyleID.Swing;
+        Item.useStyle = ItemUseStyleID.HoldUp;
         Item.maxStack = 20;
         Item.useAnimation = 40;
         Item.height = dims.Height;
@@ -42,7 +43,7 @@ class BloodyAmulet : ModItem
         {
             Main.NewText("The Blood Moon is rising...", 50, 255, 130);
         }
-        else if (Main.netMode == NetmodeID.Server) NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50, 255, 130));
+        else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("The Blood Moon is rising..."), new Color(50, 255, 130));
         return true;
     }
 }

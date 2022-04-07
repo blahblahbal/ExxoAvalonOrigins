@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,12 +40,7 @@ class UnvolanditeHeadpiece : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Ranged) += 0.16f;
-        player.GetDamage(DamageClass.Melee) += 0.16f;
-        player.GetDamage(DamageClass.Summon) += 0.16f;
-        player.GetDamage(DamageClass.Magic) += 0.16f;
-        player.GetCritChance(DamageClass.Magic) += 6;
-        player.GetCritChance(DamageClass.Melee) += 6;
-        player.GetCritChance(DamageClass.Ranged) += 6;
+        player.GetDamage(DamageClass.Generic) += 0.16f;
+        player.GetCritChance(DamageClass.Generic) += 6;
     }
 }

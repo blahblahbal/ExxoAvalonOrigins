@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,12 +38,7 @@ class VorazylcumHeadpiece : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Ranged) += 0.2f;
-        player.GetDamage(DamageClass.Melee) += 0.2f;
-        player.GetDamage(DamageClass.Summon) += 0.2f;
-        player.GetDamage(DamageClass.Magic) += 0.2f;
-        player.GetCritChance(DamageClass.Magic) += 7;
-        player.GetCritChance(DamageClass.Melee) += 7;
-        player.GetCritChance(DamageClass.Ranged) += 7;
+        player.GetDamage(DamageClass.Generic) += 0.2f;
+        player.GetCritChance(DamageClass.Generic) += 7;
     }
 }

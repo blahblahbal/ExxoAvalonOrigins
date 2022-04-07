@@ -35,16 +35,11 @@ class ViruthornHelmet : ModItem
     public override void UpdateArmorSet(Player player)
     {
         player.setBonus = "10% increased critical strike chance";
-        player.GetCritChance(DamageClass.Melee) += 10;
-        player.GetCritChance(DamageClass.Ranged) += 10;
-        player.GetCritChance(DamageClass.Magic) += 10;
+        player.GetCritChance(DamageClass.Generic) += 10;
     }
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Magic) += 0.03f;
-        player.GetDamage(DamageClass.Melee) += 0.03f;
-        player.GetDamage(DamageClass.Summon) += 0.03f;
-        player.GetDamage(DamageClass.Ranged) += 0.03f;
+        player.GetDamage(DamageClass.Generic) += 0.03f;
     }
 }

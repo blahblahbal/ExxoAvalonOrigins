@@ -26,11 +26,7 @@ class BlahsHelmet : ModItem
 
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage(DamageClass.Melee) += 0.29f;
-        player.GetDamage(DamageClass.Magic) += 0.29f;
-        player.GetDamage(DamageClass.Ranged) += 0.29f;
-        player.GetCritChance(DamageClass.Melee) += 10;
-        player.GetCritChance(DamageClass.Ranged) += 10;
-        player.GetCritChance(DamageClass.Magic) += 10;
+        player.GetDamage(DamageClass.Generic) += 0.29f;
+        player.GetCritChance(DamageClass.Generic) += 10;
     }
 }
