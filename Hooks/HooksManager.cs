@@ -29,6 +29,7 @@ public static class HooksManager
         On.Terraria.Player.AddBuff += BuffEffects.OnAddBuff;
         On.Terraria.NPC.AddBuff += BuffEffects.OnAddBuffNPC;
         On.Terraria.Player.OpenBossBag += BossBagDrops.OnOpenBossBag;
+        On.Terraria.Lang.CreateDeathMessage += DeathMessages.OnCreateDeathMessage;
         IL.Terraria.Projectile.FishingCheck += BuffEffects.ILCatchFish;
         IL.Terraria.Player.Update += ExtraHealth.ILUpdate;
         IL.Terraria.Lang.GetDryadWorldStatusDialog += DryadText.ILDryadText;

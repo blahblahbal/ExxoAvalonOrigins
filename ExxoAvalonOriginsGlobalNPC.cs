@@ -665,6 +665,31 @@ public class ExxoAvalonOriginsGlobalNPC : GlobalNPC
             if (r == 3) result += " went through the wrong portal.";
             if (r == 4) result += " drank his feelings away.";
         }
+        else if (Type == NPCID.Princess)
+        {
+            int r = Main.rand.Next(4);
+            if (r == 0) result += " was taken away by a dragon.";
+            if (r == 1) result += " was chained up in a tower.";
+            if (r == 2) result += " swallowed her scepter.";
+            if (r == 3) result += " tripped on her dress.";
+        }
+        else if (Type == NPCID.Golfer)
+        {
+            int r = Main.rand.Next(6);
+            if (r == 0) result += " didn't yell \"fore!\"";
+            if (r == 1) result += " was hit in the head by a golfball.";
+            if (r == 2) result += " got a triple bogey.";
+            if (r == 3) result += " went over par.";
+            if (r == 4) result += " fell in a hole.";
+            if (r == 5) result += "'s club hit back.";
+        }
+        else if (Type == NPCID.BestiaryGirl)
+        {
+            int r = Main.rand.Next(3);
+            if (r == 0) result += " got rabies.";
+            if (r == 1) result += " was put down.";
+            if (r == 2) result += " got too comfortable with an exotic beast.";
+        }
         else if (Type == ModContent.NPCType<NPCs.Iceman>())
         {
             int r = Main.rand.Next(7);
