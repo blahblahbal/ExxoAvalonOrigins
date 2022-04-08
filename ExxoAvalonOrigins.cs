@@ -88,49 +88,20 @@ public class ExxoAvalonOrigins : Mod
 
         if (Main.netMode != NetmodeID.Server)
         {
-            Mod imkTokensMod = ModLoader.GetMod("imkSushisMod");
-            if (imkTokensMod != null)
+            if (ModLoader.HasMod("Tokens"))
             {
                 ExxoAvalonOriginsGlobalNPC.imkCompat = true;
             }
             ModLoader.TryGetMod("AvalonMusic", out MusicMod);
 
-            ExxoAvalonOriginsModPlayer.lavaMermanTextures = new Asset<Texture2D>[]
-            {
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Head"),
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Body"),
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Arms"),
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_FemaleBody"),
-                Mod.Assets.Request<Texture2D>("Sprites/LavaMerman_Legs")
-            };
             ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Asset<Texture2D>[]
             {
                 Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumHelmet_Glow_Head"),
                 Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumBreastplate_Body_Glow"),
                 Mod.Assets.Request<Texture2D>("Items/Armor/SpectrumGreaves_Legs_Glow")
             };
-            ExxoAvalonOriginsModPlayer.originalMermanTextures = new Asset<Texture2D>[]
-            {
-                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Head_39"),
-                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Body_22"),
-                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Arm_22"),
-                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Female_Body_22"),
-                Mod.Assets.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Armor_Legs_21")
-            };
 
             // Vanilla Texture replacements
-            ModLoader.TryGetMod("AvalonMusic", out MusicMod);
-            TextureAssets.Logo = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
-            TextureAssets.Logo2 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
-            TextureAssets.Logo3 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
-            TextureAssets.Logo4 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogo");
-            if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
-            {
-                TextureAssets.Logo = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
-                TextureAssets.Logo2 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
-                TextureAssets.Logo3 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
-                TextureAssets.Logo4 = ModContent.Request<Texture2D>("ExxoAvalonOrigins/Sprites/EAOLogoAprilFools");
-            }
             ExxoAvalonOriginsModPlayer.spectrumArmorTextures = new Asset<Texture2D>[]
             {
                 ModContent.Request<Texture2D>("ExxoAvalonOrigins/Items/Armor/SpectrumHelmet_Glow_Head"),
@@ -185,11 +156,6 @@ public class ExxoAvalonOrigins : Mod
     public override void Unload()
     {
         ExxoAvalonOriginsModPlayer.torches = null;
-        if (Main.netMode != NetmodeID.Server)
-        {
-            TextureAssets.Logo = ModContent.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo");
-            TextureAssets.Logo2 = ModContent.Request<Texture2D>("Images" + Path.DirectorySeparatorChar + "Logo2");
-        }
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI)

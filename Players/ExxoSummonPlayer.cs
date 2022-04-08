@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Players;
 
-public class ExxoSummonPlayer : ModPlayer
+partial class ExxoModPlayer
 {
     private readonly List<bool> daggerSummons = new();
 

@@ -265,7 +265,7 @@ class ExxoAvalonOriginsGlobalProjectile : GlobalProjectile
                 {
                     ExxoAvalonOriginsWorld.ConvertFromThings(i, j, 1, !flag);
                 }
-                NetMessage.SendTileRange(-1, i, j, 1, 1);
+                NetMessage.SendTileSquare(-1, i, j, 1, 1);
             }
         }
     }

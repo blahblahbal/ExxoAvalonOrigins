@@ -14,6 +14,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using ExxoAvalonOrigins.Players;
 
 namespace ExxoAvalonOrigins;
 
@@ -24,9 +25,9 @@ public static class ClassExtensions
     /// </summary>
     /// <param name="player">The current player.</param>
     /// <returns>Returns the ExxoAvalonOriginsModPlayer instance.</returns>
-    public static ExxoAvalonOriginsModPlayer Avalon(this Player player)
+    public static ExxoModPlayer Avalon(this Player p)
     {
-        return player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
+        return p.GetModPlayer<ExxoModPlayer>();
     }
     /// <summary>
     /// Helper method for checking if the current item is an armor piece - used for armor prefixes.

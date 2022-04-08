@@ -6,16 +6,18 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Players;
 
-public class ExxoBiomePlayer : ModPlayer
+partial class ExxoModPlayer
 {
     public bool ZoneContagion { get; private set; }
     public bool ZoneCaesium { get; private set; }
     public bool ZoneCrystal { get; private set; }
     public bool ZoneDarkMatter { get; private set; }
-    public bool ZoneHellCastle { get; private set; }
+    public bool ZoneHellcastle { get; private set; }
     public bool ZoneSkyFortress { get; private set; }
     public bool ZoneTropics { get; private set; }
     public bool ZoneTuhrtlOutpost { get; private set; }
+    public bool ZoneNearHellcastle { get; private set; }
+    public bool ZoneComet { get; private set; }
 
     public void UpdateZones(BiomeTileCounts biomeTileCounts)
     {
@@ -26,7 +28,7 @@ public class ExxoBiomePlayer : ModPlayer
         ZoneCaesium = biomeTileCounts.CaesiumTiles > 200 && Player.ZoneUnderworldHeight;
         ZoneCrystal = biomeTileCounts.CrystalTiles > 100;
         ZoneDarkMatter = biomeTileCounts.DarkTiles > 300;
-        ZoneHellCastle = biomeTileCounts.HellCastleTiles > 350 &&
+        ZoneHellcastle = biomeTileCounts.HellCastleTiles > 350 &&
                          wallType == ModContent.WallType<ImperviousBrickWallUnsafe>() && Player.ZoneUnderworldHeight;
         ZoneSkyFortress = biomeTileCounts.SkyFortressTiles > 50 && Player.ZoneSkyHeight;
         ZoneTropics = biomeTileCounts.TropicsTiles > 50;

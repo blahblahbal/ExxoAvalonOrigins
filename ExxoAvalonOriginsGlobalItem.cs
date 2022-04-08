@@ -453,7 +453,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
             ItemID.SoulofSight,
             ItemID.SoulofFright
         };
-
+        if (item.accessory) item.canBePlacedInVanityRegardlessOfConditions = true;
         switch (item.type)
         {
             case ItemID.Mushroom:
