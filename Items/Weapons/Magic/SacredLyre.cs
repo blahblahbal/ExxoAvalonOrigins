@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -43,7 +44,7 @@ class SacredLyre : ModItem
     {
         return new Vector2(-6, 0);
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         float num70 = Main.mouseX + Main.screenPosition.X - position.X;
         float num71 = Main.mouseY + Main.screenPosition.Y - position.Y;
@@ -78,7 +79,7 @@ class SacredLyre : ModItem
         float num76 = num71 + Main.rand.Next(-40, 41) * 0.01f;
         num75 *= num73 + 0.25f;
         num76 *= num73 + 0.25f;
-        int num77 = Projectile.NewProjectile(position.X, position.Y, num75, num76, type, damage, knockBack, player.whoAmI, 0f, 0f);
+        int num77 = Projectile.NewProjectile(source, position.X, position.Y, num75, num76, type, damage, knockback, player.whoAmI, 0f, 0f);
         Main.projectile[num77].ai[1] = 1f;
         num73 = num73 * 2f - 1f;
         if (num73 < -1f)

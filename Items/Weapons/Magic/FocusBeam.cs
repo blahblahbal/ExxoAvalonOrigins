@@ -33,6 +33,6 @@ class FocusBeam : ModItem
         Item.value = 388500;
         Item.useAnimation = 27;
         Item.height = dims.Height;
-        Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/Beam");
+        Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/Beam");
     }
 }

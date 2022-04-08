@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,10 +34,10 @@ class ShatterLance : ModItem
         Item.height = dims.Height;
         Item.autoReuse = true;
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         Vector2 pos = player.Center + new Vector2(100, 0).RotatedBy(player.AngleTo(Main.MouseWorld));
-        Projectile.NewProjectile(pos.X, pos.Y, speedX * 3, speedY * 3, ModContent.ProjectileType<Projectiles.Melee.ShatterShard>(), damage, knockBack, player.whoAmI);
+        Projectile.NewProjectile(source, pos.X, pos.Y, velocity.X * 3, velocity.Y * 3, ModContent.ProjectileType<Projectiles.Melee.ShatterShard>(), damage, knockback, player.whoAmI);
         return true;
     }
     public override Color? GetAlpha(Color lightColor)

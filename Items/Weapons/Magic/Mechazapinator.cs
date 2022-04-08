@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,15 +37,15 @@ class Mechazapinator : ModItem
     {
         return new Vector2(-10f, 0f);
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int num182 = 0; num182 < 3; num182++)
         {
-            float num183 = speedX;
-            float num184 = speedY;
+            float num183 = velocity.X;
+            float num184 = velocity.Y;
             num183 += Main.rand.Next(-30, 31) * 0.1f;
             num184 += Main.rand.Next(-30, 31) * 0.1f;
-            int proj = Projectile.NewProjectile(position.X, position.Y, num183, num184, type, damage, knockBack, player.whoAmI, 0f, 0f);
+            int proj = Projectile.NewProjectile(source, position.X, position.Y, num183, num184, type, damage, knockback, player.whoAmI, 0f, 0f);
             Main.projectile[proj].hostile = false;
             Main.projectile[proj].friendly = true;
         }

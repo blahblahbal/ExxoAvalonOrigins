@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -49,16 +50,15 @@ class RockTumble : ModItem
     //    recipe.SetResult(this);
     //    recipe.AddRecipe();
     //}
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int num194 = 0; num194 < 5; num194++)
         {
-            float num195 = speedX;
-            float num196 = speedY;
+            float num195 = velocity.X;
+            float num196 = velocity.Y;
             num195 += (float)Main.rand.Next(-40, 41) * 0.05f;
             num196 += (float)Main.rand.Next(-40, 41) * 0.05f;
-            Projectile.NewProjectile(position.X, position.Y, num195, num196, type, damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(source, position.X, position.Y, num195, num196, type, damage, knockback, player.whoAmI, 0f, 0f);
         }
         return false;
     }

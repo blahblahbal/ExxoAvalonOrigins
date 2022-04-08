@@ -3,9 +3,9 @@ using Terraria.ModLoader;
 
 namespace ExxoAvalonOrigins.Prefixes;
 
-public class Confused : ArmorPrefix
+public class Bloated : ArmorPrefix
 {
-    public Confused()
+    public Bloated()
     {
 
     }
@@ -25,7 +25,7 @@ public class Confused : ArmorPrefix
     // }
     public override void UpdateEquip(Player player)
     {
-        player.GetDamage<MeleeDamageClass>() += 0.05f;
+        player.GetDamage(DamageClass.Melee) += 0.05f;
         player.meleeSpeed -= 0.02f;
     }
 }

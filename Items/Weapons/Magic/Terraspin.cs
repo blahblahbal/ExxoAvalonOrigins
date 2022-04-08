@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -38,7 +39,7 @@ public class Terraspin : ModItem
         Item.height = dims.Height;
         if (!Main.dedServ)
         {
-            Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
+            Item.GetGlobalItem<ItemUseGlow>().glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
         }
         Item.GetGlobalItem<ItemUseGlow>().glowOffsetX = 2;
         Item.GetGlobalItem<ItemUseGlow>().glowOffsetY = 0;
@@ -49,7 +50,7 @@ public class Terraspin : ModItem
     }
     public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
     {
-        Texture2D texture = ModContent.Request<Texture2D>(Texture + "_Glow");
+        Texture2D texture = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
         spriteBatch.Draw
         (
             texture,
@@ -67,16 +68,15 @@ public class Terraspin : ModItem
             0f
         );
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int num212 = 0; num212 < 2; num212++)
         {
-            float num213 = speedX;
-            float num214 = speedY;
+            float num213 = velocity.X;
+            float num214 = velocity.Y;
             num213 += Main.rand.Next(-30, 31) * 0.05f;
             num214 += Main.rand.Next(-30, 31) * 0.05f;
-            Projectile.NewProjectile(position.X, position.Y, num213, num214, type, damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(source, position.X, position.Y, num213, num214, type, damage, knockback, player.whoAmI, 0f, 0f);
         }
         return false;
     }

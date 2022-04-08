@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -37,25 +38,24 @@ class SpiritbeamFork : ModItem
     {
         CreateRecipe(1).AddIngredient(ItemID.InfernoFork).AddIngredient(ItemID.SpectreStaff).AddIngredient(ItemID.ShadowbeamStaff).AddIngredient(ModContent.ItemType<Material.SoulofBlight>(), 20).AddTile(ModContent.TileType<Tiles.SolariumAnvil>()).Register();
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int num172 = 0; num172 < 3; num172++)
         {
-            float num173 = speedX;
-            float num174 = speedY;
+            float num173 = velocity.X;
+            float num174 = velocity.Y;
             num173 += (float)Main.rand.Next(-30, 31) * 0.05f;
             num174 += (float)Main.rand.Next(-30, 31) * 0.05f;
             switch (num172)
             {
                 case 0:
-                    Projectile.NewProjectile(position.X, position.Y, num173, num174, ProjectileID.InfernoFriendlyBolt, damage, knockBack, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(source, position.X, position.Y, num173, num174, ProjectileID.InfernoFriendlyBolt, damage, knockback, player.whoAmI, 0f, 0f);
                     break;
                 case 1:
-                    Projectile.NewProjectile(position.X, position.Y, num173, num174, ProjectileID.LostSoulFriendly, damage, knockBack, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(source, position.X, position.Y, num173, num174, ProjectileID.LostSoulFriendly, damage, knockback, player.whoAmI, 0f, 0f);
                     break;
                 case 2:
-                    Projectile.NewProjectile(position.X, position.Y, num173, num174, ProjectileID.ShadowBeamFriendly, damage, knockBack, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(source, position.X, position.Y, num173, num174, ProjectileID.ShadowBeamFriendly, damage, knockback, player.whoAmI, 0f, 0f);
                     break;
             }
         }

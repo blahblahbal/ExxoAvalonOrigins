@@ -42,8 +42,7 @@ class EideticMirror : ModItem
     {
         return true;
     }
-
-    public override void UseStyle(Player player)
+    public override void UseStyle(Player player, Rectangle r)
     {
         if (Main.rand.Next(2) == 0)
         {
@@ -68,7 +67,7 @@ class EideticMirror : ModItem
                     Main.projectile[num346].Kill();
                 }
             }
-            player.Spawn();
+            player.Spawn(PlayerSpawnContext.RecallFromItem);
             for (int num347 = 0; num347 < 70; num347++)
             {
                 Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.5f);

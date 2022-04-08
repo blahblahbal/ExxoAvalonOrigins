@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using ExxoAvalonOrigins.Logic;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.DataStructures;
 
 namespace ExxoAvalonOrigins.Items.Weapons.Melee;
 
@@ -17,24 +18,24 @@ public class Moonerang : ModItem
     public override void SetDefaults()
     {
         Rectangle dims = this.GetDims();
-        item.damage = 20;
-        item.scale = 1.2f;
-        item.melee = true;
-        item.autoReuse = true;
-        item.useTurn = true;
-        item.rare = ItemRarityID.Pink;
-        item.width = dims.Width;
-        item.height = dims.Height;
-        item.useTime = 30;
-        item.useAnimation = 20;
-        item.useStyle = ItemUseStyleID.SwingThrow;
-        item.knockBack = 5f;
-        item.shoot = ModContent.ProjectileType<Projectiles.Melee.Moonerang>();
-        item.shootSpeed = 12f;
-        item.UseSound = SoundID.Item1;
-        item.value = Item.sellPrice(0, 1, 0, 0);
+        Item.damage = 20;
+        Item.scale = 1.2f;
+        Item.DamageType = DamageClass.Melee;
+        Item.autoReuse = true;
+        Item.useTurn = true;
+        Item.rare = ItemRarityID.Pink;
+        Item.width = dims.Width;
+        Item.height = dims.Height;
+        Item.useTime = 30;
+        Item.useAnimation = 20;
+        Item.useStyle = ItemUseStyleID.Swing;
+        Item.knockBack = 5f;
+        Item.shoot = ModContent.ProjectileType<Projectiles.Melee.Moonerang>();
+        Item.shootSpeed = 12f;
+        Item.UseSound = SoundID.Item1;
+        Item.value = Item.sellPrice(0, 1, 0, 0);
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         if(!Main.dayTime)
         {

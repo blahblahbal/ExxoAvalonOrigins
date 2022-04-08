@@ -64,7 +64,7 @@ class PumpkingsSword : ModItem
             num5 = 8f / num5;
             num3 *= num5;
             num4 *= num5;
-            Projectile.NewProjectile((float)num, (float)num2, num4, num5, ModContent.ProjectileType<Projectiles.Melee.PumpkinHead>(), dmg, kb, p.whoAmI, (float)i, 0f);
+            Projectile.NewProjectile(p.GetProjectileSource_Item(Item), num, num2, num4, num5, ModContent.ProjectileType<Projectiles.Melee.PumpkinHead>(), dmg, kb, p.whoAmI, (float)i, 0f);
         }
     }
 

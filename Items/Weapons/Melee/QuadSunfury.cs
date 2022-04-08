@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using ExxoAvalonOrigins.Systems;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -37,7 +39,7 @@ public class QuadSunfury : ModItem
     }
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        List<string> assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
+        List<string> assignedKeys = KeybindSystem.ModeChangeHotkey.GetAssignedKeys();
 
         var assignedKeyInfo = new TooltipLine(Mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change attack modes");
         tooltips.Add(assignedKeyInfo);
@@ -50,7 +52,7 @@ public class QuadSunfury : ModItem
     }
     public override void HoldItem(Player player)
     {
-        if (ExxoAvalonOrigins.Mod.ModeChangeHotkey.JustPressed)
+        if (KeybindSystem.ModeChangeHotkey.JustPressed)
         {
             mode++;
             if (mode == 1)
@@ -79,20 +81,19 @@ public class QuadSunfury : ModItem
             done = false;
         }
     }
-
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         done = false;
         if (mode == 2)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, -speedX, speedY, type, damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, -speedY, type, damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, -speedX, -speedY, type, damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position.X, position.Y, -velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position.X, position.Y, velocity.X, -velocity.Y, type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position.X, position.Y, -velocity.X, -velocity.Y, type, damage, knockback, player.whoAmI);
         }
         if (mode == 3)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.MegaQuadBall>(), damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<Projectiles.Melee.MegaQuadBall>(), damage, knockback, player.whoAmI);
         }
 
         if (mode == 4)
@@ -103,15 +104,15 @@ public class QuadSunfury : ModItem
             for (int i = 0; i < amt; i++)
             {
                 float
-                    vX = speedX + Main.rand.Next(-spread, spread + 1) * mult,
-                    vY = speedY + Main.rand.Next(-spread, spread + 1) * mult;
-                Projectile.NewProjectile(position.X, position.Y, vX, vY, type, damage, knockBack, player.whoAmI);
+                    vX = velocity.X + Main.rand.Next(-spread, spread + 1) * mult,
+                    vY = velocity.Y + Main.rand.Next(-spread, spread + 1) * mult;
+                Projectile.NewProjectile(source, position.X, position.Y, vX, vY, type, damage, knockback, player.whoAmI);
             }
         }
         return false;
     }
 
-    public override void UseStyle(Player player)
+    public override void UseStyle(Player player, Rectangle r)
     {
         int PID = player.whoAmI;
         float
@@ -127,22 +128,22 @@ public class QuadSunfury : ModItem
             timer++;
             if (timer == 1)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
+                Projectile.NewProjectile(player.GetProjectileSource_Item(Item), player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
             }
 
             if (timer == 16)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
+                Projectile.NewProjectile(player.GetProjectileSource_Item(Item), player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
             }
 
             if (timer == 31)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
+                Projectile.NewProjectile(player.GetProjectileSource_Item(Item), player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
             }
 
             if (timer == 46)
             {
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
+                Projectile.NewProjectile(player.GetProjectileSource_Item(Item), player.position.X + player.width / 2, player.position.Y + player.height / 2, speedX, speedY, ModContent.ProjectileType<Projectiles.Melee.QuadBall>(), (int)(player.inventory[player.selectedItem].damage * player.GetDamage(DamageClass.Melee)), 8, PID);
                 timer = 0;
                 done = true;
             }

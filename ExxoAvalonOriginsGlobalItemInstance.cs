@@ -28,12 +28,12 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
         ItemID.RainbowBrick,
         ItemID.RainbowBrickWall,
     };
-    Dictionary<int, int> allowedPrefixes = new Dictionary<int, int>()
+    public static Dictionary<int, int> allowedPrefixes = new Dictionary<int, int>()
     {
         { 0, ModContent.PrefixType<Prefixes.Barbaric>() },
         { 1, ModContent.PrefixType<Prefixes.Boosted>() },
         { 2, ModContent.PrefixType<Prefixes.Busted>() },
-        { 3, ModContent.PrefixType<Prefixes.Confused>() },
+        { 3, ModContent.PrefixType<Prefixes.Bloated>() },
         { 4, ModContent.PrefixType<Prefixes.Disgusting>() },
         { 5, ModContent.PrefixType<Prefixes.Fluidic>() },
         { 6, ModContent.PrefixType<Prefixes.Glorious>() },
@@ -47,17 +47,9 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
         { 14, ModContent.PrefixType<Prefixes.Slimy>() }
 
     };
-    public bool IsArmor(Item item)
-    {
-        if (item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1)
-        {
-            return !item.vanity;
-        }
-        return false;
-    }
     public override bool? PrefixChance(Item item, int pre, UnifiedRandom rand)
     {
-        if (IsArmor(item) && pre == -3)
+        if (item.IsArmor() && pre == -3)
         {
             return true;
         }
@@ -65,15 +57,27 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
     }
     public override int ChoosePrefix(Item item, UnifiedRandom rand)
     {
-        if (IsArmor(item))
+        if (item.IsArmor())
         {
             return allowedPrefixes[rand.Next(allowedPrefixes.Count)];
         }
         return base.ChoosePrefix(item, rand);
     }
+    public override bool AllowPrefix(Item item, int pre)
+    {
+        if (item.IsArmor())
+        {
+            if (pre >= PrefixID.Hard && pre < PrefixID.Legendary)
+            {
+                pre = allowedPrefixes[Main.rand.Next(15)];
+                return base.AllowPrefix(item, pre);
+            }
+        }
+        return base.AllowPrefix(item, pre);
+    }
     public override void PostReforge(Item item)
     {
-        if (IsArmor(item))
+        if (item.IsArmor())
         {
             switch (Main.rand.Next(15))
             {
@@ -87,7 +91,7 @@ public class ExxoAvalonOriginsGlobalItemInstance : GlobalItem
                     item.prefix = ModContent.PrefixType<Prefixes.Busted>();
                     break;
                 case 3:
-                    item.prefix = ModContent.PrefixType<Prefixes.Confused>();
+                    item.prefix = ModContent.PrefixType<Prefixes.Bloated>();
                     break;
                 case 4:
                     item.prefix = ModContent.PrefixType<Prefixes.Disgusting>();

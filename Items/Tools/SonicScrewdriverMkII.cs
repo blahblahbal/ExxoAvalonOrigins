@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,6 +23,6 @@ class SonicScrewdriverMkII : ModItem
         Item.useStyle = ItemUseStyleID.Thrust;
         Item.useAnimation = 70;
         Item.height = dims.Height;
-        Item.UseSound = Mod.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/SonicScrewdriver");
+        Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Item/SonicScrewdriver");
     }
 }

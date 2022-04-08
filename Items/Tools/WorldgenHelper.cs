@@ -54,7 +54,7 @@ class WorldgenHelper : ModItem
     }
     public static int GetXCoord(int x, int y, ref int xStored)
     {
-        if (Main.tile[x, y].HasTile || Main.tile[x, y].liquid > 0 || Main.tile[x, y].WallType > 0)
+        if (Main.tile[x, y].HasTile || Main.tile[x, y].LiquidAmount > 0 || Main.tile[x, y].WallType > 0)
         {
             xStored--;
             GetXCoord(xStored, y, ref xStored);

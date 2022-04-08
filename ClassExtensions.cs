@@ -28,7 +28,19 @@ public static class ClassExtensions
     {
         return player.GetModPlayer<ExxoAvalonOriginsModPlayer>();
     }
-
+    /// <summary>
+    /// Helper method for checking if the current item is an armor piece - used for armor prefixes.
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns>Whether or not the item is an armor piece.</returns>
+    public static bool IsArmor(this Item item)
+    {
+        if (item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1)
+        {
+            return !item.vanity;
+        }
+        return false;
+    }
     /// <summary>
     ///     A helper method to check if the given Player is touching the ground.
     /// </summary>

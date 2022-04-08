@@ -1,5 +1,6 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,17 +34,15 @@ class VorazylcumKunziteBoltStaff : ModItem
         Item.value = Item.sellPrice(0, 60, 0, 0);
         Item.UseSound = SoundID.Item43;
     }
-
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int num161 = 0; num161 < 10; num161++)
         {
-            float num162 = speedX;
-            float num163 = speedY;
+            float num162 = velocity.X;
+            float num163 = velocity.Y;
             num162 += (float)Main.rand.Next(-30, 31) * 0.05f;
             num163 += (float)Main.rand.Next(-30, 31) * 0.05f;
-            Projectile.NewProjectile(position.X, position.Y, num162, num163, type, damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(source, position.X, position.Y, num162, num163, type, damage, knockback, player.whoAmI, 0f, 0f);
         }
 
         return false;

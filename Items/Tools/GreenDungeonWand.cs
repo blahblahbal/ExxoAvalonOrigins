@@ -42,10 +42,10 @@ class GreenDungeonWand : ModItem
                                 (player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY);
                 if (type == ItemID.GreenTiledWall || type == ItemID.GreenBrickWall || type == ItemID.GreenSlabWall)
                 {
-                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].wall == 0 && inrange)
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].WallType == 0 && inrange)
                     {
                         WorldGen.PlaceWall(Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.DungeonWallItemToBackwallID(type));
-                        if (Main.tile[Player.tileTargetX, Player.tileTargetY].wall != 0 && Main.netMode != NetmodeID.SinglePlayer)
+                        if (Main.tile[Player.tileTargetX, Player.tileTargetY].WallType != 0 && Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, ExxoAvalonOriginsGlobalItem.DungeonWallItemToBackwallID(type));
                         }

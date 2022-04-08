@@ -15,7 +15,7 @@ class Infernasword : ModItem
     public override void SetDefaults()
     {
         Rectangle dims = this.GetDims();
-        Item.damage = 44;
+        Item.damage = 80;
         Item.autoReuse = true;
         Item.shootSpeed = 4f;
         Item.rare = ItemRarityID.Lime;
@@ -25,7 +25,7 @@ class Infernasword : ModItem
         Item.shoot = ModContent.ProjectileType<Projectiles.Melee.InfernoScythe>();
         Item.DamageType = DamageClass.Melee;
         Item.useStyle = ItemUseStyleID.Swing;
-        Item.value = Item.sellPrice(0, 0, 80, 0);
+        Item.value = Item.sellPrice(0, 5);
         Item.useAnimation = 20;
         Item.height = dims.Height;
         Item.UseSound = SoundID.Item1;

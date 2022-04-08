@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ExxoAvalonOrigins.Systems;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,7 +38,7 @@ class ShadowMirror : ModItem
     }
     public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        var assignedKeys = ExxoAvalonOrigins.Mod.ModeChangeHotkey.GetAssignedKeys();
+        var assignedKeys = KeybindSystem.ModeChangeHotkey.GetAssignedKeys();
 
         var assignedKeyInfo = new TooltipLine(Mod, "Controls:PromptKey", "Press " + (assignedKeys.Count > 0 ? string.Join(", ", assignedKeys) : "[c/565656:<Unbound>]") + " to change teleportation modes");
         tooltips.Add(assignedKeyInfo);

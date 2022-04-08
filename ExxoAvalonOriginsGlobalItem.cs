@@ -840,9 +840,14 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch = 21;
                 break;
         }
+        if (item.IsArmor()) ItemID.Sets.CanGetPrefixes[item.type] = true;
         if (item.type >= ItemID.BrainMask && item.type <= ItemID.DestroyerMask)
         {
             item.value = Item.sellPrice(0, 2, 0, 0);
+        }
+        if (item.type == ItemID.RainbowBrick || item.type == ItemID.RainbowBrickWall)
+        {
+            item.rare = ModContent.RarityType<Rarities.RainbowRarity>();
         }
         if (to2000.Contains(item.type))
         {
@@ -856,10 +861,6 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
         {
             item.maxStack = 100;
         }
-        //if (souls.Contains(item.type))
-        //{
-        //    item.noUseGraphic = true;
-        //}
         if (item.GetGlobalItem<ExxoAvalonOriginsGlobalItemInstance>().torch > 0)
         {
             item.notAmmo = true;
@@ -1213,16 +1214,6 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
 
     public override bool? UseItem(Item item, Player player)
     {
-        //if (item.type == ModContent.ItemType<Items.Weapons.Summon.AdamantiteDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.BismuthDaggerStaff>() ||
-        //    item.type == ModContent.ItemType<Items.Weapons.Summon.GoldDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.PlatinumDaggerStaff>() ||
-        //    item.type == ModContent.ItemType<Items.Weapons.Summon.TitaniumDaggerStaff>() || item.type == ModContent.ItemType<Items.Weapons.Summon.TroxiniumDaggerStaff>())
-        //{
-        //    if (player.Avalon().daggerStaffActiveIDs.Count >= player.maxMinions)
-        //    {
-        //        player.Avalon().daggerStaffActiveIDs[0] = false;
-        //        player.Avalon().daggerStaffActiveIDs.RemoveAt(0);
-        //    }
-        //}
         if (player.Avalon().cloudGloves && player.whoAmI == Main.myPlayer)
         {
             bool inrange = (player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX &&
@@ -1236,7 +1227,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 bool subtractFromStack = WorldGen.PlaceTile(Player.tileTargetX, Player.tileTargetY, item.createTile);
                 if (Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile && Main.netMode != NetmodeID.SinglePlayer && subtractFromStack)
                 {
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, item.createTile);
+                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, Player.tileTargetX, Player.tileTargetY, item.createTile);
                 }
                 if (subtractFromStack) item.stack--;
             }
@@ -1245,21 +1236,13 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 WorldGen.PlaceWall(Player.tileTargetX, Player.tileTargetY, item.createWall);
                 if (Main.tile[Player.tileTargetX, Player.tileTargetY].WallType != 0 && Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, item.createWall);
+                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 3, Player.tileTargetX, Player.tileTargetY, item.createWall);
                 }
                 //Main.PlaySound(0, Player.tileTargetX * 16, Player.tileTargetY * 16, 1);
                 item.stack--;
             }
         }
         return base.UseItem(item, player);
-    }
-    public bool IsArmor(Item item)
-    {
-        if (item.headSlot != -1 || item.bodySlot != -1 || item.legSlot != -1)
-        {
-            return !item.vanity;
-        }
-        return false;
     }
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
     {
@@ -1299,7 +1282,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                 tooltipLine.text = "Lunatic Cultist Trophy";
             }
         }
-        if (IsArmor(item) && !item.social)
+        if (item.IsArmor() && !item.social)
         {
             if (item.prefix == ModContent.PrefixType<Fluidic>())
             {
@@ -1489,7 +1472,7 @@ public class ExxoAvalonOriginsGlobalItem : GlobalItem
                     });
                 }
             }
-            if (item.prefix == ModContent.PrefixType<Confused>())
+            if (item.prefix == ModContent.PrefixType<Bloated>())
             {
                 int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
                                                          && (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));

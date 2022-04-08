@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,9 +36,7 @@ class Sunstorm : ModItem
         Item.height = dims.Height;
         Item.UseSound = SoundID.Item8;
     }
-
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         for (int num144 = 0; num144 < 12; num144++)
         {
@@ -51,7 +50,7 @@ class Sunstorm : ModItem
             num150 = num149 / num150;
             num147 *= num150;
             num148 *= num150;
-            int num151 = Projectile.NewProjectile(num145, num146, num147, 0f, type, damage, knockBack, player.whoAmI, 0f, 0f);
+            int num151 = Projectile.NewProjectile(source, num145, num146, num147, 0f, type, damage, knockback, player.whoAmI, 0f, 0f);
             Main.projectile[num151].ai[1] = Main.rand.Next(2);
         }
 

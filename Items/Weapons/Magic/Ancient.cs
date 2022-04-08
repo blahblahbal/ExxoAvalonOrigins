@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,8 +36,7 @@ class Ancient : ModItem
         Item.useAnimation = 25;
         Item.height = dims.Height;
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage,
-                               ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         float num175 = 14f;
         float num176 = (float)Main.mouseX + Main.screenPosition.X - (player.position.X + (float)player.width * 0.5f) + (float)Main.rand.Next(-10, 11);
@@ -47,11 +47,11 @@ class Ancient : ModItem
         num177 *= num178;
         for (int num179 = 0; num179 < 2; num179++)
         {
-            float num180 = speedX;
-            float num181 = speedY;
+            float num180 = velocity.X;
+            float num181 = velocity.Y;
             num180 += (float)Main.rand.Next(-15, 16) * 0.05f;
             num181 += (float)Main.rand.Next(-15, 16) * 0.05f;
-            Projectile.NewProjectile(position.X, position.Y, num176, num177, type, damage, knockBack, player.whoAmI, 0f, 0f);
+            Projectile.NewProjectile(source, position.X, position.Y, num176, num177, type, damage, knockback, player.whoAmI, 0f, 0f);
         }
 
         return false;

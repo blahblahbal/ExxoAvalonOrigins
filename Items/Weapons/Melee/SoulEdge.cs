@@ -1,5 +1,6 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,16 +37,13 @@ class SoulEdge : ModItem
     {
         return new Color(255, 255, 255, 150);
     }
-    public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
         int numberProjectiles = 2 + Main.rand.Next(2); // 4 or 5 shots
         for (int i = 0; i < numberProjectiles; i++)
         {
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(25));
-            //float scale = 1f - (Main.rand.NextFloat() * .3f);
-            //perturbedSpeed = perturbedSpeed * scale; 
-            int spirit = Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
-            // Main.projectile[spirit].magic = false /* tModPorter - this is redundant, for more info see https://github.com/tModLoader/tModLoader/wiki/Update-Migration-Guide#damage-classes */ ;
+            Vector2 perturbedSpeed = velocity.RotatedByRandom(MathHelper.ToRadians(25));
+            int spirit = Projectile.NewProjectile(source, position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockback, player.whoAmI);
             Main.projectile[spirit].DamageType = DamageClass.Melee;
         }
         return false; // return false because we don't want tmodloader to shoot projectile

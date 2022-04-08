@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -33,11 +34,11 @@ class Timechanger : ModItem
 
         if (Main.netMode == NetmodeID.SinglePlayer)
         {
-            Main.NewText(String.Format("It is now {0}.", Main.dayTime ? "Night" : "Day"), 50, 255, 130, false);
+            Main.NewText(String.Format("It is now {0}.", Main.dayTime ? "Night" : "Day"), 50, 255, 130);
         }
         else if (Main.netMode == NetmodeID.Server)
         {
-            NetMessage.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", Main.dayTime ? "Night" : "Day")), new Color(50, 255, 130));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(String.Format("It is now {0}.", Main.dayTime ? "Night" : "Day")), new Color(50, 255, 130));
         }
 
         return true;
